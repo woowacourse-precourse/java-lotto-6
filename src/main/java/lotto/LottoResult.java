@@ -7,8 +7,8 @@ import java.util.Map;
 public class LottoResult {
     private static final int PERCENT = 100;
 
-    public double calculateEarningRate(int purchaseMoney) {
-        Map<Rank, Integer> result = getFinalResult();
+    public double calculateEarningRate(List<Rank> ranks2, int purchaseMoney) {
+        Map<Rank, Integer> result = completeResult(ranks2);
         Rank[] ranks = Rank.values();
         double profit = 0;
 
@@ -19,24 +19,24 @@ public class LottoResult {
         return profit / purchaseMoney * PERCENT;
     }
 
-    public Map<Rank, Integer> getFinalResult(List<Rank> ranks) {
-        Map<Rank, Integer> finalResult = initFinalResult();
+    public Map<Rank, Integer> completeResult(List<Rank> ranks) {
+        Map<Rank, Integer> result = initResult();
 
         for (Rank rank : ranks) {
-            finalResult.put(rank, finalResult.getOrDefault(rank, 0) + 1);
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
 
-        return finalResult;
+        return result;
     }
 
-    private Map<Rank, Integer> initFinalResult() {
-        Map<Rank, Integer> finalResult = new HashMap<>();
-        finalResult.put(Rank.THREE_MATCH, 0);
-        finalResult.put(Rank.FOUR_MATCH, 0);
-        finalResult.put(Rank.FIVE_MATCH, 0);
-        finalResult.put(Rank.FIVE_MATCH_AND_BONUS, 0);
-        finalResult.put(Rank.SIX_MATCH, 0);
+    private Map<Rank, Integer> initResult() {
+        Map<Rank, Integer> result = new HashMap<>();
+        result.put(Rank.THREE_MATCH, 0);
+        result.put(Rank.FOUR_MATCH, 0);
+        result.put(Rank.FIVE_MATCH, 0);
+        result.put(Rank.FIVE_MATCH_AND_BONUS, 0);
+        result.put(Rank.SIX_MATCH, 0);
 
-        return finalResult;
+        return result;
     }
 }

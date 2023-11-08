@@ -14,11 +14,11 @@ public class Application {
         WinningLotto winningLotto = runWinningLottoStep(winningNumbers);
         List<Rank> ranks = lottoProcess.makeRanks(lottos, winningLotto);
         LottoResult lottoResult = new LottoResult();
-        double earningRate = lottoResult.calculateEarningRate(purchaseMoney.getAmount());
+        double earningRate = lottoResult.calculateEarningRate(ranks, purchaseMoney.getAmount());
 
         OutputView.printLottoQuantity(lottoQuantity);
         OutputView.printLottos(lottos);
-        OutputView.printStatistics(lottoResult.getFinalResult(ranks));
+        OutputView.printStatistics(lottoResult.completeResult(ranks));
         OutputView.printEarningRate(earningRate);
     }
 

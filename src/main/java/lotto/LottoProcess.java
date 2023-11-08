@@ -4,6 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoProcess {
+    public List<Lotto> buyLotto(int lottoQuantity) {
+        List<Lotto> lottos = new ArrayList<>();
+
+        for (int i = 0; i < lottoQuantity; i++) {
+            Lotto lotto = new Lotto(NumberGenerator.generate());
+            lottos.add(lotto);
+        }
+
+        return lottos;
+    }
     public List<Rank> makeRanks(List<Lotto> lottos, WinningLotto winningLotto) {
         List<Rank> ranks = new ArrayList<>();
         List<LottoWinningChecker> lottoWinningCheckers = makeLottoWinningCheckers(lottos, winningLotto);
@@ -16,16 +26,7 @@ public class LottoProcess {
         return ranks;
     }
 
-    public List<LottoWinningChecker> makeLottoWinningCheckers(List<Lotto> lottos, WinningLotto winningLotto) {
-        /*List<Integer> counted = new ArrayList<>();
-        List<Boolean> checked = new ArrayList<>();
-
-        for (Lotto lotto : lottos) {
-            counted.add(winningLotto.getLotto().countOverlappingNumbers(lotto));
-            checked.add(lotto.isContainBonusNumber(winningLotto.getBonusNumber()));
-        }
-
-        return new LottoResult(counted, checked);*/
+    private List<LottoWinningChecker> makeLottoWinningCheckers(List<Lotto> lottos, WinningLotto winningLotto) {
         List<LottoWinningChecker> lottoWinningCheckers = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
@@ -34,16 +35,5 @@ public class LottoProcess {
         }
 
         return lottoWinningCheckers;
-    }
-
-    public List<Lotto> buyLotto(int lottoQuantity) {
-        List<Lotto> lottos = new ArrayList<>();
-
-        for (int i = 0; i < lottoQuantity; i++) {
-            Lotto lotto = new Lotto(NumberGenerator.generate());
-            lottos.add(lotto);
-        }
-
-        return lottos;
     }
 }

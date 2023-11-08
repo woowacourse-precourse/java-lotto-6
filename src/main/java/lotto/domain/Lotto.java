@@ -9,6 +9,7 @@ public class Lotto {
 	private List<Integer> lottoNumbers;
 	public InputView inputView;
 	public InputLottoException inputLottoException;
+	private final static int BONUS_NUMBER_INDEX =6;
 	
 	public Lotto(List<Integer> lottoNumbers) {
 		validateLottoNumbers(lottoNumbers);
@@ -26,6 +27,6 @@ public class Lotto {
 	}
 	
 	public int getBonusNumber() {
-		return lottoNumbers.get(6);
+		return lottoNumbers.get(BONUS_NUMBER_INDEX);
 	}
 }

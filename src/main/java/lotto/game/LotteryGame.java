@@ -70,9 +70,7 @@ public class LotteryGame {
             try {
                 outputHandler.print(Messasge.REQUEST_NUMBERS);
                 List<Integer> numbers = getLottoNumbers();
-                LottoNumberValidator.validateNumbersCount(numbers);
-                LottoNumberValidator.hasDuplicateNumbers(numbers);
-                LottoNumberValidator.validateLottoNumbersRange(numbers);
+                LottoNumberValidator.validateLottoNumbers(numbers);
 
                 outputHandler.print(Messasge.REQUEST_BONUS_NUMBER);
                 int bonusNumber = getBonusNumber(numbers);
@@ -91,8 +89,7 @@ public class LotteryGame {
                 Integer[] numbers = toIntegerArray(inputNumbers);
 
                 List<Integer> numberList = Arrays.asList(numbers);
-                LottoNumberValidator.validateLottoNumbersRange(numberList);
-                LottoNumberValidator.validateNumbersCount(numberList);
+                LottoNumberValidator.validateLottoNumbers(numberList);
 
                 return numberList;
             } catch (IllegalArgumentException e) {

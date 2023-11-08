@@ -24,9 +24,8 @@ public class WinNumber {
     }
 
     private void validate(List<Integer> numbers, int bonusNumber) {
-        LottoNumberValidator.validateNumbersCount(numbers);
-        LottoNumberValidator.hasDuplicateNumbers(numbers);
-        LottoNumberValidator.validateLottoNumbersRange(numbers);
+        LottoNumberValidator.validateLottoNumbers(numbers);
+        LottoNumberValidator.validateDuplicatedNumber(numbers, bonusNumber);
         LottoNumberValidator.validateSingleNumberRange(bonusNumber);
     }
 }

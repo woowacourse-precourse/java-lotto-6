@@ -97,7 +97,7 @@ class PartialFunctionTest {
     @Test
     void getWinningNumbersByNullInput() {
         PartialFunction PARTIAL_FUNCTION = new PartialFunction();
-        assertThatThrownBy(() -> PARTIAL_FUNCTION.getWinningNumbers("1,a,2,3,4,5"))
+        assertThatThrownBy(() -> PARTIAL_FUNCTION.getWinningNumbers(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -151,6 +151,28 @@ class PartialFunctionTest {
         int expectedBonus = 42;
 
         assertThat(expectedBonus).isEqualTo(actualBonus);
+    }
+
+    @DisplayName("보너스 번호에 공백이 포함된 경우")
+    @Test
+    void getBonusNumberWithSpace() {
+        PartialFunction PARTIAL_FUNCTION = new PartialFunction();
+        int actualBonus = PARTIAL_FUNCTION.getBonusNumber("  42 ",
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+        int expectedBonus = 42;
+
+        assertThat(expectedBonus).isEqualTo(actualBonus);
+    }
+
+    @DisplayName("입력이 없는 경우")
+    @Test
+    void getBonusNumberByNullInput() {
+        PartialFunction PARTIAL_FUNCTION = new PartialFunction();
+        assertThatThrownBy(() -> PARTIAL_FUNCTION.getBonusNumber(
+                "", List.of(1, 2, 3, 4, 5, 6)
+        ))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("정수가 아닌 값인 경우")

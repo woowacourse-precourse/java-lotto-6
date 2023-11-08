@@ -1,8 +1,12 @@
 package lotto.model;
 
-import java.util.List;
+import lotto.validator.InputValidator;
 
-import static lotto.model.Constants.LOTTO_LENGTH;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static lotto.model.Constants.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,8 +18,9 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
         }
+        InputValidator.checkUserInputDuplicated(numbers);
     }
 
     // TODO: 추가 기능 구현

@@ -13,7 +13,8 @@ public class LottoService {
     }
     public void printRandomLotto() {
         int money = InputService.inputMoney();
-        lottoController.getLottoTicket(money);
+        int ticket = lottoController.getLottoTicket(money);
+        lottoController.setRandomLottoNumber(ticket);
         System.out.println(lottoController.getLottoString());
         System.out.println();
     }

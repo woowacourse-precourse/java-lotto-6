@@ -6,8 +6,4 @@ public class Input {
     public String readLine() {
         return Console.readLine().trim();
     }
-
-    public void close() {
-        Console.close();
-    }
 }

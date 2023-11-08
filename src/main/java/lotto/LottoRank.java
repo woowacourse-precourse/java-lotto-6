@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,11 +44,10 @@ public enum LottoRank {
     }
 
     private static LottoRank findByNormalAndBonus(int normalCount, boolean isCorrectBonus) {
-        for (LottoRank lottoRank : LottoRank.values()) {
-            if (lottoRank.correctCount == normalCount && lottoRank.isCorrectBonus == isCorrectBonus) {
-                return lottoRank;
-            }
-        }
-        return null;
+        return Arrays.stream(LottoRank.values())
+                .filter(lottoRank -> lottoRank.correctCount == normalCount
+                        && lottoRank.isCorrectBonus == isCorrectBonus)
+                .findFirst()
+                .orElse(null);
     }
 }

@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Comparator;
 import java.util.List;
 import lotto.constant.LottoPrize;
 import lotto.validator.LottoNumberValidator;
@@ -11,7 +10,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         LottoNumberValidator.validateLottoNumbers(numbers);
-        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 

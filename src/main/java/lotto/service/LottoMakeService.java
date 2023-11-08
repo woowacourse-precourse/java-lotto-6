@@ -27,6 +27,6 @@ public class LottoMakeService {
                 LottoConstant.LOTTO_NUMBER_MAX.getValue(),
                 LottoConstant.LOTTO_NUMBER_COUNT.getValue()
             );
-        return new Lotto(lottoNumbers);
+        return new Lotto(lottoNumbers.stream().sorted().toList());
     }
 }

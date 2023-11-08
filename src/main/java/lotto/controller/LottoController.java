@@ -66,8 +66,8 @@ public class LottoController {
 
     private WinningLotto receiveWinningLotto() {
         try {
-            List<Integer> winningNumbers = InputView.readWinningNumbers();
-            int bonusNumber = InputView.readBonusNumber();
+            List<Integer> winningNumbers = receiveWinningNumbers();
+            int bonusNumber = receiveBonusNumber();
             return WinningLotto.of(winningNumbers, BonusNumber.from(bonusNumber));
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());

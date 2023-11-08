@@ -1,5 +1,7 @@
 package game;
 
+import static game.Judgement.checkOneLottoNumber;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import io.Input;
 import io.Output;
@@ -61,7 +63,7 @@ public class Game {
         while (true) {
             try {
                 String stringSpecialNumber = input.scan();
-                specialNumber = judgement.checkSpecialNumber(stringSpecialNumber);
+                specialNumber = checkOneLottoNumber(stringSpecialNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 Output.printMessage(e.getMessage());
@@ -98,12 +100,12 @@ public class Game {
     public void inputHitNumbersCheckFunction(String hitNumbersStrings,
             List<Integer> hitNumberList) {
         String[] hitNumbers = hitNumbersStrings.split(",");
-        inputHitNumbersDuplicateCheck(hitNumbers, hitNumberList);
-        isinputHitNumberOver6Check(hitNumbers);
-
+        isinputHitNumbersDuplicateCheck(hitNumbers, hitNumberList);
+        isinputHitNumberIs6Check(hitNumbers);
+        isinputHitNumber1to45(hitNumbers);
     }
 
-    public void inputHitNumbersDuplicateCheck(String[] hitNumbers, List<Integer> hitNumberList) {
+    public void isinputHitNumbersDuplicateCheck(String[] hitNumbers, List<Integer> hitNumberList) {
         Set<Integer> numberSet = new HashSet<>();
         for (String numStr : hitNumbers) {
             try {
@@ -120,11 +122,18 @@ public class Game {
         }
     }
 
-    public void isinputHitNumberOver6Check(String[] hitNumbers) {
-        if (hitNumbers.length > 6) {
-            throw new IllegalArgumentException(Output.errorOver6NumbersMessage);
+    public void isinputHitNumber1to45(String[] hitNumbers) {
+        for (String number : hitNumbers) {
+            checkOneLottoNumber(number);
         }
-        ;
+    }
+
+
+    public void isinputHitNumberIs6Check(String[] hitNumbers) {
+        if (hitNumbers.length != 6) {
+            throw new IllegalArgumentException(Output.errorHitNumberCountIsNotValidMessage);
+        }
+
     }
 
 

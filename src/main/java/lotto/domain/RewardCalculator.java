@@ -22,7 +22,7 @@ public class RewardCalculator {
         this.lottos = lottos;
         this.winningLotto = WinningLotto.lotto.getNumbers();
         this.bonusNumber = WinningLotto.bonus;
-        this.winCount  = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
+        this.winCount = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
         this.reward = 0;
     }
 
@@ -58,7 +58,7 @@ public class RewardCalculator {
 
             Optional<Rewards> rewards = Rewards.getRewardByValues(matches, isBonusMatch);
             int i = 5;
-            if (rewards.isPresent()){
+            if (rewards.isPresent()) {
                 i = rewards.get().ordinal();
             }
             winCount.set(i, winCount.get(i) + 1);
@@ -67,7 +67,7 @@ public class RewardCalculator {
 
     public int countNumOfMatches(List<Integer> lotto, List<Integer> winning) {
         int count = 0;
-        for(int i : lotto) {
+        for (int i : lotto) {
             if (binarySearch(winning, i) >= 0) {
                 count++;
             }

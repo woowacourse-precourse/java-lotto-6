@@ -18,8 +18,8 @@ public class WinningLotto {
     private static final String ERROR_DUPLICATE_NUM_TEXT = "[ERROR] 서로 다른 숫자를 입력해주세요.";
 
     public static void setWinningLotto() {
-            setLotto();
-            setBonus();
+        setLotto();
+        setBonus();
     }
 
     public static void setWinningLotto(List<Integer> winning, int bonusNumber) {

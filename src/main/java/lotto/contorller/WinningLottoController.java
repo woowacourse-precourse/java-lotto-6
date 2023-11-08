@@ -22,9 +22,9 @@ public class WinningLottoController {
     public Lotto getLottoInput() {
         System.out.println(NoticeType.WINNING_LOTTO_INPUT.getMessage());
 
-        while(true) {
+        while (true) {
             String lottoInput = Console.readLine();
-            if(Validator.validateLotto(lottoInput)) {
+            if (Validator.validateLotto(lottoInput)) {
                 System.out.println();
                 return ticketsService.stringToLotto(lottoInput);
             }
@@ -34,9 +34,9 @@ public class WinningLottoController {
     public int getAmountInput() {
         System.out.println("\n" + NoticeType.AMOUNT_INPUT.getMessage());
 
-        while(true) {
+        while (true) {
             String amountInput = Console.readLine();
-            if(Validator.validateAmount(amountInput)) {
+            if (Validator.validateAmount(amountInput)) {
                 System.out.println();
                 return Integer.parseInt(amountInput);
             }
@@ -45,15 +45,30 @@ public class WinningLottoController {
 
     public int getBonusNumInput() {
         System.out.println(NoticeType.BONUS_NUM_INPUT.getMessage());
-        String bonusNumInput = Console.readLine();
-        System.out.println();
-        return Integer.parseInt(bonusNumInput);
+
+        while (true) {
+            String bonusNumInput = Console.readLine();
+
+            if (Validator.validateBonus(bonusNumInput)) {
+                System.out.println();
+                return Integer.parseInt(bonusNumInput);
+            }
+        }
+
     }
 
     public void init() {
         amount = getAmountInput();
         issueWinningLotto();
-        winningLotto = ticketsService.getWinningLotto(getLottoInput(), getBonusNumInput());
+        Lotto lotto = getLottoInput();
+        while (true) {
+            int bonus = getBonusNumInput();
+            if (Validator.validateWinningLotto(lotto, bonus)) {
+                winningLotto = ticketsService.getWinningLotto(lotto, bonus);
+                break;
+            }
+        }
+
     }
 
     public void issueWinningLotto() {
@@ -83,7 +98,7 @@ public class WinningLottoController {
     }
 
     private void printProfitRate() {
-       System.out.print(NoticeType.PROFIT_FRONT.getMessage() + profitRate + NoticeType.PROFIT_END.getMessage());
+        System.out.print(NoticeType.PROFIT_FRONT.getMessage() + profitRate + NoticeType.PROFIT_END.getMessage());
     }
 
     private void printTickets() {

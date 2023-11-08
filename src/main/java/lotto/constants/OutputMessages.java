@@ -3,7 +3,7 @@ package lotto.constants;
 public enum OutputMessages {
 
     LOTTO_PURCHASE_MESSAGE("%d개를 구매했습니다.\n"),
-    WINNING_STATISTIC_MESSAGE("당첨 통계"),
+    WINNING_STATISTIC_MESSAGE("\n당첨 통계"),
     HORIZONTAL_RULE("---"),
     THREE_MATCH_PRIZE("3개 일치 (5,000원) - %d개\n"),
     FOUR_MATCH_PRIZE("4개 일치 (50,000원) - %d개\n"),

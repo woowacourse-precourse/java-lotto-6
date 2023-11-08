@@ -22,14 +22,14 @@ public class LottoNumber {
         return lottoNumbers;
     }
 
-//    public boolean contains(LottoBonusNumber lottoBonusNumber){
-//        for(Positive lottoNumbers : lottoNumbers){
-//            if(lottoNumbers.getNumber() == lottoBonusNumber.getNumber()){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public boolean contains(LottoBonusNumber lottoBonusNumber){
+        for(Positive lottoNumbers : lottoNumbers){
+            if(lottoNumbers.getNumber() == lottoBonusNumber.getNumber()){
+                return true;
+            }
+        }
+        return false;
+    }
 //    public int match(Lotto userLotto){
 //        int matchCount =0;
 //        for(int i =0; i<6; i++){

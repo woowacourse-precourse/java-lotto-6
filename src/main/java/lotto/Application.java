@@ -95,14 +95,13 @@ public class Application {
 
     private  static  void resultPrint(int tiral, List<Lotto> lottos,List<Integer> winningnumber ){
         System.out.println("당첨 통계\n"+ "---");
-        int[] lottosresult = new int[5];
+        int[] lottosresult =printCheckNumber(tiral,lottos,winningnumber);
 
-        for(int i =0; i < tiral; i++){
-            Lotto lottoticket =  lottos.get(i);
-            int matchednumber = checkNumber(lottoticket,winningnumber);
-            boolean isbonusmatch = lottoticket.getNumbers().contains(winningnumber.get(6));
-            lottosresult[checkWinning(matchednumber, isbonusmatch)] +=1;
-        }
+        System.out.println("3개 일치 (5,000원) -"+ lottosresult[4] +"개\n"
+                + "4개 일치 (50,000원) - "+ lottosresult[3] +"개\n"
+                + "5개 일치 (1,500,000원) - "+ lottosresult[2] +"개\n"
+                + "5개 일치, 보너스 볼 일치 (30,000,000원) - "+ lottosresult[1] +"개\n"
+                + "6개 일치 (2,000,000,000원) - "+ lottosresult[0] +"개");
 
 
     }
@@ -125,8 +124,15 @@ public class Application {
 
         return matchdnumber;
     }
-    private static void printCheckNumber(){
-
+    private static int[] printCheckNumber(int tiral, List<Lotto> lottos,List<Integer> winningnumber){
+        int[] lottosresult = new int[5];
+        for(int i =0; i < tiral; i++){
+            Lotto lottoticket =  lottos.get(i);
+            int matchednumber = checkNumber(lottoticket,winningnumber);
+            boolean isbonusmatch = lottoticket.getNumbers().contains(winningnumber.get(6));
+            lottosresult[checkWinning(matchednumber, isbonusmatch)] +=1;
+        }
+        return lottosresult;
     }
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -146,7 +152,7 @@ public class Application {
 
         winningnumber.add(getBonceNumber(winningnumber));
 
-        resultPrint();
+        resultPrint(ticket, lottes, winningnumber);
     }
 
 }

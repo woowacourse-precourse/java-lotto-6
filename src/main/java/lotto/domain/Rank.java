@@ -36,6 +36,10 @@ public enum Rank {
             .orElseThrow(IllegalArgumentException::new);
     }
 
+    public Long getPrize() {
+        return prize;
+    }
+
     public String getStatisticsFormat() {
         return statisticsFormat;
     }

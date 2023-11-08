@@ -69,13 +69,20 @@ public class IOHandler {
     }
 
     public void printWinningHistory(Map<LottoRank, Integer> winningHistory) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %d개\n", winningHistory.get(LottoRank.FIFTH));
-        System.out.printf("4개 일치 (50,000원) - %d개\n", winningHistory.get(LottoRank.FOURTH));
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", winningHistory.get(LottoRank.THIRD));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", winningHistory.get(LottoRank.SECOND));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", winningHistory.get(LottoRank.FIRST));
+        System.out.printf("""
+                        당첨 통계
+                        ---
+                        3개 일치 (5,000원) - %d개
+                        4개 일치 (50,000원) - %d개
+                        5개 일치 (1,500,000원) - %d개
+                        5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
+                        6개 일치 (2,000,000,000원) - %d개
+                        """,
+                winningHistory.get(LottoRank.FIFTH),
+                winningHistory.get(LottoRank.FOURTH),
+                winningHistory.get(LottoRank.THIRD),
+                winningHistory.get(LottoRank.SECOND),
+                winningHistory.get(LottoRank.FIRST));
     }
 
     public void printProfitRate(double profitRate) {

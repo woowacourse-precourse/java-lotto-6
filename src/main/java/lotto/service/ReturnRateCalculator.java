@@ -21,7 +21,10 @@ public class ReturnRateCalculator {
         for (Map.Entry<Integer, Boolean> result : results) {
             getSumPrizeMoney(result);
         }
-        return purchaseAmount / sumPrizeMoney * 100;
+        if(sumPrizeMoney == 0) {
+            return 0;
+        }
+        return ((double) sumPrizeMoney / purchaseAmount) * 100;
     }
 
     private void getSumPrizeMoney(Entry<Integer, Boolean> result) {

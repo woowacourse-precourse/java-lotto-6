@@ -34,7 +34,9 @@ public class ConsoleOutput {
     }
 
     public static void printReturnRate(double rate) {
-        System.out.printf("총 수익률은 %.1f%입니다" + rate);
+        System.out.print("총 수익률은 ");
+        System.out.printf("%.1f", rate);
+        System.out.print("%입니다.");
     }
 
     private static int countMatchNumber(List<Map.Entry<Integer, Boolean>> results, int number) {

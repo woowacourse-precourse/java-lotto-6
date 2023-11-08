@@ -1,7 +1,6 @@
 package lotto.service;
 
-import lotto.domain.LottoMachine;
-import lotto.domain.LottoTicket;
+import lotto.domain.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,4 +22,19 @@ public class LottoService {
 
         return tickets;
     }
+
+    public LottoResult checkLottoTickets(List<LottoTicket> tickets, WinningLotto winningLotto) {
+        LottoResult lottoResult = new LottoResult();
+
+        for (LottoTicket ticket : tickets) {
+            int matchCount = getMatchCount(ticket, winningLotto); // 티켓과 당첨 번호 확인 함수
+            boolean matchBonus = checkBonusMatch(ticket, winningLotto); // 보너스 번호 확인 변수
+            Rank rank = Rank.valueOf(matchCount, matchBonus);
+            lottoResult.addRank(rank);
+        }
+
+        return lottoResult;
+    }
+
+
 }

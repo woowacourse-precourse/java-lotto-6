@@ -78,4 +78,8 @@ public class LottoMachine {
     public double getProfitRate() {
         return profitRate;
     }
+
+    public Map<Integer, Integer> getWinningDetails() {
+        return winningDetails;
+    }
 }

@@ -3,6 +3,7 @@ package lotto.domain;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.view.ExceptionMessage.DIVISIBLE_EXCEPTION;
 import static lotto.view.ExceptionMessage.NATURAL_EXCEPTION;
+import static lotto.view.ExceptionMessage.TYPE_EXCEPTION;
 
 import lotto.view.ExceptionMessage;
 
@@ -13,8 +14,15 @@ public class ReadPurchaseAmount {
 
     public ReadPurchaseAmount(String readAmount) {
         nullCheckPurchaseAmount(readAmount);
+        validateText(readAmount);
         invalidLottoPurchaseAmount(readAmount);
         this.readPurchaseAmount = readAmount;
+    }
+
+    private void validateText(String readAmount) throws IllegalArgumentException{
+        if (!readAmount.matches("^\\d+$")) {
+            throw new IllegalArgumentException(TYPE_EXCEPTION.getMessage());
+        }
     }
 
     private void nullCheckPurchaseAmount(String readPurchaseAmount) throws IllegalArgumentException {

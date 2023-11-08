@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import util.LottoUtil;
 
 public class LottoGenerate {
     public static int lottoTicketsCount(int moneyNumber) {
@@ -11,7 +12,8 @@ public class LottoGenerate {
     }
 
     private static List<Integer> generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoUtil.LOTTO_START.value(),
+                LottoUtil.LOTTO_END.value(), LottoUtil.LOTTO_SIZE.value());
         return numbers;
     }
 

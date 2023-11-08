@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import static lotto.constants.Error.DUPLICATION_ERROR;
+import static lotto.constants.Error.SIZE_ERROR;
+import static lotto.constants.Value.LOTTO_SIZE;
+
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -7,14 +12,23 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != LOTTO_SIZE.get()) {
+            throw new IllegalArgumentException(SIZE_ERROR.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplication(List<Integer> numbers) {
+        if (numbers.size() != new HashSet<>(numbers).size()) {
+            throw new IllegalArgumentException(DUPLICATION_ERROR.getMessage());
+        }
+    }
 }

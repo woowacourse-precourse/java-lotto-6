@@ -1,7 +1,9 @@
 package lotto.Controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.Domain.Lotto;
 import lotto.Domain.Result;
 import lotto.LottoGenerator;
@@ -65,5 +67,44 @@ public class LottoController {
         }
 
         return new int[]{normalHitCount, bonusHitCount};
+    }
+
+    private Map<String, Integer> setDefaultResult(Map<String, Integer> results) {
+        for (Result result : Result.values()) {
+            results.put(result.name(), 0);
+        }
+
+        return results;
+    }
+
+    private Map<String, Integer> makeResults(Map<String, Integer> results,
+                                             int normalHitCount, int bonusHitCount) {
+        for (Result result : Result.values()) {
+            if (normalHitCount == 5 && bonusHitCount == 1
+                    && result.getHitCount() == normalHitCount) {
+                results.put(result.name(), results.get(result.name()) + 1);
+                break;
+            }
+
+            if (normalHitCount == result.getHitCount()) {
+                results.put(result.name(), results.get(result.name()) + 1);
+            }
+        }
+
+        return results;
+    }
+
+    private Map<String, Integer> allLottoResult() {
+        Map<String, Integer> results = setDefaultResult(new HashMap<>());
+
+        for (Lotto lotto : this.lottos) {
+            int[] comparedResult = compareWinnerAndPurchased(lotto);
+            int normalHitCount = comparedResult[0];
+            int bonusHitCount = comparedResult[1];
+
+            results = makeResults(results, normalHitCount, bonusHitCount);
+        }
+
+        return results;
     }
 }

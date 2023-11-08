@@ -1,10 +1,12 @@
 package lotto;
 
+import static lotto.constants.ProgramMessage.PRINT_COUNT_OF_LOTTO_ISSUED;
 import static lotto.constants.ProgramMessage.REQUEST_PURCHASE_AMOUNT;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -54,5 +56,16 @@ public class LottoTerminal {
         }
 
         return list;
+    }
+
+    public void printAllLotto() {
+        System.out.println();
+        System.out.println(countOfLottoIssued + PRINT_COUNT_OF_LOTTO_ISSUED.getMessage());
+
+        for (int i = 0; i < allLottoIssued.size(); i++) {
+            Collections.sort(allLottoIssued.get(i));
+
+            System.out.println(allLottoIssued.get(i));
+        }
     }
 }

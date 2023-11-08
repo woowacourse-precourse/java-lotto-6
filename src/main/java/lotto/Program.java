@@ -12,6 +12,7 @@ public class Program {
     public void start() {
         processPayment();
         lottoTerminal.LottoIssuance();
+        lottoTerminal.printAllLotto();
     }
 
     private void processPayment() {

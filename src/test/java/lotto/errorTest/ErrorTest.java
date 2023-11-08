@@ -94,6 +94,15 @@ public class ErrorTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("보너스 금액 입력시 당첨 금액 숫자중에 중복 숫자가 있을때")
+    public void inputBonusNumberDuplicationError(){
+        assertSimpleTest(() -> {
+            runException("3000","1,2,3,4,5,6" , "1");
+            assertThat(output()).contains(ExceptionMessage.duplicationError.getErrorMessage());
+        });
+    }
+
 
 
 

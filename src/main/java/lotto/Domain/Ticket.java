@@ -13,10 +13,10 @@ public class Ticket{
 	private static final int Len_Number = 6;
 	
 	public Ticket() {
-			
-			for(int i =0; i< Units.Lotto_Length.Unit(); i++) {
-				this.Ticket.add(NonDuplicated_RandomNumber_Generator(this.Ticket));
-			}
+			this.Ticket= Randoms.pickUniqueNumbersInRange(Units.Lotto_Min_Number.Unit(),Units.Lotto_Max_Number.Unit(), Units.Lotto_Length.Unit());
+	//		for(int i =0; i< Units.Lotto_Length.Unit(); i++) {
+	//			this.Ticket.add(NonDuplicated_RandomNumber_Generator(this.Ticket));
+	//		}
 			Collections.sort(Ticket);
 	}
 	public List<Integer> getNumber(){

@@ -13,7 +13,7 @@ public class Game{
 	public Game() {
 		
 		budget = Cash_In();
-		tickets =Ticket_Issue(budget);
+		tickets =Ticket_Issue(budget.get_Count());
 		lotto_number = Lotto_Lots(tickets);
 		tickets.Win_Tickets(lotto_number.get_Lotto(), lotto_number.get_Bonus());
 		roe = Fianl_Roe(tickets);
@@ -58,17 +58,31 @@ public class Game{
 	}
 	private Budget Cash_In() {
 		//자본금입력//
-		OutputView.Print_Budget_Message();
-		Budget budget = new Budget(InputView.Input_Budget());
+		//OutputView.Print_Budget_Message();
+		Budget budget = new Budget();
+		System.out.println(budget.get_Cash());
 		//구매수량 출력//
 		OutputView.Print_Purchase_Message(budget.get_Count());
 		return budget;
 	}
-	private Tickets Ticket_Issue(Budget budget) {
+	private Tickets Ticket_Issue_old(Budget budget) {
 		//티켓 출력//
 		Tickets tickets = new Tickets(budget.get_Count());
 		return tickets;
 	}
+	
+	public Tickets Ticket_Issue(Integer Purchase_Number) {
+		Tickets tickets = new Tickets(Purchase_Number);
+		for (int i = 0 ; i<Purchase_Number; i++) {
+			Ticket ticket = new Ticket();
+			System.out.println(ticket.getNumber());
+			tickets.add(ticket);
+			
+		}
+		return tickets;
+	}
+//	}
+	
 	private Lotto_Number Lotto_Lots(Tickets tickets) {
 		OutputView.Print_Lotto_Input_Message();
 		Lotto_Number lotto = new Lotto_Number();

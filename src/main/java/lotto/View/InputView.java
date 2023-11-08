@@ -7,42 +7,46 @@ import java.util.*;
 
 public class InputView{
 	
-	public static int Input_Budget() {
+	public static String Input_Budget() {
 		String input = Console.readLine();
-		Integer budget;
-		Exceptions.Input_Void(input);
-		Exceptions.Input_Valid_Number(input);
 		System.out.println(input);
-		budget = Integer.parseInt(input);
-		Exceptions.Budget_Range_Valid(budget);
-		Exceptions.Budget_Positive_Error(budget);
-		return budget;
+		Integer budget;
+//		while (true) {
+//				Exceptions.Input_Void(input);
+//				Exceptions.Input_Valid_Number(input);
+//				budget = Integer.parseInt(input);
+//				Exceptions.Budget_Range_Valid(budget);
+//				Exceptions.Budget_Positive_Error(budget);
+		return input;
+		//}
 	}
 	
-	public static List<Integer> Lotto_Number() {
+	public static String Lotto_Number() {
 		String input = Console.readLine();
-		Exceptions.Input_Void(input);
-		Exceptions.Input_Valid_Number(input);
-		Exceptions.Number_Count_Valid(input);
+		System.out.println(input);
+		//Exceptions.Input_Void(input);
+		//Exceptions.Input_Valid_Number(input);
+		//Exceptions.Number_Count_Valid(input);
 		//Validate_Lotto_Number(input);
 		List<Integer> Lotto_Number = Parse.List_Int(input);
-		Exceptions.Numbers_Range_Valid(Lotto_Number);
-		Exceptions.Numbers_Redundant(Lotto_Number);
+		//Exceptions.Numbers_Range_Valid(Lotto_Number);
+		//Exceptions.Numbers_Redundant(Lotto_Number);
 		
-		return Lotto_Number;
+		return input;
 	}
 	
-	public static int Lotto_Bonus_Number(List<Integer> Lotto_Number) {
+	public static String Lotto_Bonus_Number(List<Integer> Lotto_Number) {
 		String input = Console.readLine();
+		System.out.println(input);
 		Integer bonus;
 		
-		Exceptions.Input_Void(input);
-		Exceptions.Input_Valid_Number(input);
+		//Exceptions.Input_Void(input);
+		//Exceptions.Input_Valid_Number(input);
 		//Validate_Bonus_Number(input);
 		bonus = Integer.parseInt(input);
-		Lotto_Number.add(bonus);
-		Exceptions.Number_Range_Valid(bonus);
-		Exceptions.Numbers_Redundant(Lotto_Number);
-		return bonus;
+		//Lotto_Number.add(bonus);
+		//Exceptions.Number_Range_Valid(bonus);
+		//Exceptions.Numbers_Redundant(Lotto_Number);
+		return input;
 	}
 }

@@ -6,54 +6,72 @@ import lotto.Utils.*;
 
 public class Exceptions{
 	
-	public static void Number_Count_Valid(String input) {
+	public static boolean Number_Count_Valid(String input,Exception e) {
 		List<String> Number = Arrays.asList(input.split(Units.Lotto_Length.Delimiter()));
 		if(Number.size()!=Units.Lotto_Length.Unit()){
-			throw new IllegalArgumentException(ErrorMessage.Lotto_Number_Count_Error.Message());
+			System.out.println(ErrorMessage.Lotto_Number_Count_Error.Message()+ e.getMessage());
+			return true;
 		}
+		return false;
 	}
 	
-	public static void Numbers_Range_Valid(List<Integer> input) {
+	public static boolean Numbers_Range_Valid(List<Integer> input,Exception e) {
 		if(Collections.max(input)>Units.Lotto_Max_Number.Unit() || Collections.min(input)<Units.Lotto_Min_Number.Unit()) {
-			throw new IllegalArgumentException(ErrorMessage.Lotto_Number_Range_Error.Message());
+			System.out.println(ErrorMessage.Lotto_Number_Range_Error.Message()+ e.getMessage());
+			return true;
 		}
+		return false;
 	}
 	
-	public static void Numbers_Redundant(List<Integer> input) {
+	public static boolean Numbers_Redundant(List<Integer> input,Exception e) {
 		if(input.size() != input.stream().distinct().count()) {
-			throw new IllegalArgumentException(ErrorMessage.Lotto_Number_Redundant_Error.Message());
+			System.out.println(ErrorMessage.Lotto_Number_Redundant_Error.Message()+ e.getMessage());
+			return true;
 		}
+		return false;
 	}
 	
-	public static void Budget_Range_Valid(Integer input) {
+	public static boolean Budget_Range_Valid(Integer input) {
+		System.out.println("3");
 		if(input%1000!=0) {
 			throw new IllegalArgumentException(ErrorMessage.Input_Min_Budget_Range_Error.Message());
 		}
+		return true;
 	}
-	public static void Budget_Positive_Error(Integer input) {
+	public static boolean Budget_Positive_Error(Integer input) {
+		System.out.println("4");
 		if(input<0 ) {
-			throw new IllegalArgumentException(ErrorMessage.Input_Positive_Budget_Error.Message());
+			System.out.println(ErrorMessage.Input_Positive_Budget_Error.Message());
+			return false;
 		}
+		return true;
 	}
 	
-	public static void Number_Range_Valid(Integer input) {
+	public static boolean Number_Range_Valid(Integer input,Exception e) {
 		if(input>Units.Lotto_Max_Number.Unit() || input<Units.Lotto_Min_Number.Unit()) {
-			throw new IllegalArgumentException(ErrorMessage.Lotto_Number_Range_Error.Message());
+			System.out.println(ErrorMessage.Lotto_Number_Range_Error.Message()+ e.getMessage());
+			return false;
 		}
+		return true;
 	}
-	
 
-	public static void Input_Valid_Number(String input) {
+	public static boolean Input_Valid_Number(String input,Exception e) {
+		System.out.println("2");
 		try {
-			Parse.List_Int(input);
+			Integer.parseInt(input);
 		} catch(Exception e1){
-			throw new IllegalArgumentException(ErrorMessage.Input_Invalid_Number_Error.Message());
+			System.out.println(ErrorMessage.Input_Invalid_Number_Error.Message()+ e1.getMessage());
+			return true;
 		}
+		return false;
 	}
 	
-	public static void Input_Void(String input) {
+	public static boolean Input_Void(String input,Exception e) {
+		System.out.println("1");
 		if(input.isBlank()) {
-			throw new IllegalArgumentException(ErrorMessage.Input_Void_Error.Message());
+			System.out.println(ErrorMessage.Input_Void_Error.Message()+ e.getMessage());
+			return true;
 		}
+		return false;
 	}
 }

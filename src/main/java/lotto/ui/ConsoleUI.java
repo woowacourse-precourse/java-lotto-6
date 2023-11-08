@@ -11,6 +11,7 @@ public class ConsoleUI {
     }
 
     public int getPurchaseAmount(){
+        System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         validator.validateInteger(input);
         int lottoPurchaseCost = Integer.parseInt(input);

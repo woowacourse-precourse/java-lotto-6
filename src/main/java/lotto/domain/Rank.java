@@ -28,7 +28,7 @@ public enum Rank {
         for (Rank rank : values()) {
             if (rank.correctCount==correctCount) {
                 if (correctCount==SECOND_PRIZE.correctCount && bonusNumber) return SECOND_PRIZE;
-                else return rank;
+                return rank;
             }
         }
         return NONE;

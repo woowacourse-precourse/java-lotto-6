@@ -2,8 +2,6 @@ package lotto.view;
 
 
 import java.util.Map.Entry;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import lotto.model.Lotto;
@@ -31,7 +29,6 @@ public class messagePrinter {
         List<Lotto> lottos = lottoService.getLottos();
 
         for(int i=0;i<lottos.size();i++){
-            Collections.sort(lottos.get(i).getNumbers());
             System.out.println(lottos.get(i).getNumbers());
         }
     }

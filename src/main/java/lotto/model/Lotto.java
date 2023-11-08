@@ -1,7 +1,8 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import lotto.service.lottoService;
 import lotto.util.ErrorCode;
 
 public class Lotto {
@@ -10,7 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateRedundantNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = sortImmutableList(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -51,6 +52,12 @@ public class Lotto {
 
     public boolean compareBonusNumber(WinningLotto winningNumber){
         return numbers.contains(winningNumber.getBonusNumber());
+    }
+
+    private List<Integer> sortImmutableList(List<Integer> numbers) {
+        List<Integer> mutable = new ArrayList<>(numbers);
+        Collections.sort(mutable);
+        return Collections.unmodifiableList(mutable);
     }
 
 }

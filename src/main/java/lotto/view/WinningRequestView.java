@@ -4,19 +4,39 @@ import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
 import static lotto.view.ui.Input.enterMessage;
 import static lotto.view.ui.Output.printlnMessageWithNewLine;
 
+import java.util.Arrays;
+import java.util.List;
+import lotto.domain.Number;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 
 public class WinningRequestView {
     private static final String WINNING_NUMBERS_REQUEST_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String SEPARATOR = ",";
 
-    public static String request() {
+    public static List<Number> request() {
         printlnMessageWithNewLine(WINNING_NUMBERS_REQUEST_MESSAGE);
         try {
-            return Validator.validate(enterMessage());
+            String winningNumbers = Validator.validate(enterMessage());
+            return parseWinningNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
-            return Validator.validate(enterMessage());
+            return request();
         }
+    }
+
+    private static List<Number> parseWinningNumbers(final String winningNumbers) {
+        try {
+            return Arrays.stream(split(winningNumbers))
+                    .map(Integer::parseInt)
+                    .map(Number::valueOf)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw LottoException.from(ErrorMessage.NOT_NUMBER_ERROR);
+        }
+    }
+
+    private static String[] split(final String winningNumbers) {
+        return winningNumbers.split(INPUT_SEPARATOR.getSymbol());
     }
 
     private static class Validator {

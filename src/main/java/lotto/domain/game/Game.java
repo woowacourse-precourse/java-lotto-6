@@ -1,6 +1,6 @@
 package lotto.domain.game;
 
-import static lotto.ExceptionHandler.handle;
+import static lotto.ExceptionHandler.restartWhenExceptionOccur;
 import static lotto.constant.GameGuideMessage.ENTER_BONUS_NUMBER;
 import static lotto.constant.GameGuideMessage.ENTER_PURCHASE_AMOUNT;
 import static lotto.constant.GameGuideMessage.ENTER_WINNING_LOTTO;
@@ -9,9 +9,9 @@ import static lotto.constant.GameGuideMessage.WINNING_STATISTICS;
 
 import lotto.domain.computer.Computer;
 import lotto.domain.lotto.Lottos;
+import lotto.domain.user.User;
 import lotto.input.Input;
 import lotto.output.Output;
-import lotto.domain.user.User;
 
 public class Game {
 
@@ -37,7 +37,7 @@ public class Game {
     }
 
     private void setMoneyOnComputer() {
-        handle(this::setMoney);
+        restartWhenExceptionOccur(this::setMoney);
     }
 
     private void setMoney() {
@@ -55,8 +55,8 @@ public class Game {
     }
 
     private void setWinningLottoAndBonusNumberOnComputer() {
-        handle(this::setWinningLotto);
-        handle(this::setBonusNumber);
+        restartWhenExceptionOccur(this::setWinningLotto);
+        restartWhenExceptionOccur(this::setBonusNumber);
     }
 
     private void setWinningLotto() {

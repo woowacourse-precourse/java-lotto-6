@@ -37,4 +37,10 @@ public class InputLottoInfoService {
         int bonusNumber = lottoUtil.bonusNumberParser(inputView.inputBonusNumber());
         return bonusNumber;
     }
+    
+    public Lotto setLotto(List<Integer> lottoNumbers, int bonusNumber) {
+        Lotto lotto = new Lotto(lottoNumbers);
+        lotto.setBonusNumber(bonusNumber);
+        return lotto;
+    }
 }

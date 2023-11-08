@@ -21,9 +21,6 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    private final PickNumbersStrategy pickNumbersStrategy = new PickRandomNumbersStrategy();
-    private final LottoNumbersGenerator lottoNumbersGenerator = new LottoNumbersGenerator(pickNumbersStrategy);
-
     private final Messenger messenger = new Messenger();
 
     public LottoController(InputView inputView, OutputView outputView) {
@@ -60,6 +57,9 @@ public class LottoController {
     }
 
     private List<Lotto> generateLotteries(int count) {
+        PickNumbersStrategy pickNumbersStrategy = new PickRandomNumbersStrategy();
+        LottoNumbersGenerator lottoNumbersGenerator = new LottoNumbersGenerator(pickNumbersStrategy);
+
         List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(count);
         outputView.print(messenger.getLotteriesNumbersMessage(lottoNumbersDTOs));
         return lottoNumbersDTOs.stream()

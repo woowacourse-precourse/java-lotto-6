@@ -11,22 +11,17 @@ import lotto.validation.LottoInputValidator;
 
 public class InputView {
 
-    // TODO 재입력 while 문 format 맞추기
     public static int getLottoPurchaseAmount() {
-        String lottoPurchaseAmount = "";
-        boolean isNotRightInput = true;
-
-        while (isNotRightInput) {
+        while (true) {
             System.out.println("구입금액을 입력해 주세요.");
-            lottoPurchaseAmount = Console.readLine();
+            String lottoPurchaseAmount = Console.readLine();
             try {
                 LottoInputValidator.validateLottoPurchaseAmount(lottoPurchaseAmount);
-                isNotRightInput = false;
+                return Integer.parseInt(lottoPurchaseAmount) / LOTTO_PURCHASE_MINIMUM_AMOUNT;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return Integer.parseInt(lottoPurchaseAmount) / LOTTO_PURCHASE_MINIMUM_AMOUNT;
     }
 
     public static Lotto getWinningNumbers() {

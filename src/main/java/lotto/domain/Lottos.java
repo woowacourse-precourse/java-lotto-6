@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +17,10 @@ public class Lottos {
     }
 
     public void printLottos() {
-        for (Lotto lotto : lottos) {
-            lotto.printLotto();
-            System.out.println();
-        }
+        lottos.forEach(Lotto::printLotto);
+    }
+
+    public int numberOfLotto() {
+        return lottos.size();
     }
 }

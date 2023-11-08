@@ -1,8 +1,16 @@
 package lotto.domain;
 
+import lotto.constant.LottoValue;
+import lotto.view.OutputView;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
+    private static String OPEN_DELIMITER = "[";
+    private static String CLOSE_DELIMITER = "]";
+    private static String BLANK_DELIMITER = " ";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,15 +19,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoValue.NUMBERS_COUNT.getValue()) {
             throw new IllegalArgumentException();
         }
     }
 
     public void printLotto() {
-        for (Integer num : numbers) {
-            System.out.print(num + " ");
-        }
+        String lotto = OPEN_DELIMITER;
+        lotto += numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(BLANK_DELIMITER)) + CLOSE_DELIMITER;
+
+        OutputView.printMessage(lotto);
     }
 }
 

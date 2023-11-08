@@ -15,13 +15,16 @@ public class LottoMachine {
     }
 
     public void lotto() {
-        purchaseLotto();
+        Lottos lottos = purchaseLotto();
+        OutputView.printLottos(lottos);
+
     }
 
-    private void purchaseLotto() {
+    private Lottos purchaseLotto() {
         int money = getPurchaseAmount();
         Lottos lottos = lottoService.buyLottos(money);
-//        lottos.printLottos();
+
+        return lottos;
     }
 
     private int getPurchaseAmount() {

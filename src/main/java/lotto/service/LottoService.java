@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.LongStream;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 
 public class LottoService {
     public List<Lotto> generateAutoLottos(long count) {
@@ -21,6 +22,10 @@ public class LottoService {
 
     public Lotto generateManualLotto(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public LottoNumber generateLottoNumber(long number) {
+        return new LottoNumber(number);
     }
 
 }

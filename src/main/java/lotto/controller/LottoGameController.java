@@ -60,8 +60,9 @@ public class LottoGameController {
     }
 
     public LottoNumber inputBonusNumber() {
-        return new LottoNumber(inputView.inputBonusNumberFromUser());
-    }//고려
+        long bonusNumber = inputView.inputBonusNumberFromUser();
+        return lottoService.generateLottoNumber(bonusNumber);
+    }
 
     public Result getResult(Lottos lottos, WinningLotto winningLotto) {
         return resultService.generate(lottos, winningLotto);

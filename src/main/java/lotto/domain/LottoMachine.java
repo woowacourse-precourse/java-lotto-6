@@ -6,12 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static lotto.utils.Constants.LOTTO_NUMBERS_SIZE;
+import static lotto.utils.Constants.MAX_LOTTO_NUMBER;
+import static lotto.utils.Constants.MIN_LOTTO_NUMBER;
+
 public class LottoMachine {
 
     private static final int LOTTO_PRICE = 1000;
-    private static final int START_NUMBER = 1;
-    private static final int END_NUMBER = 45;
-    private static final int COUNT = 6;
     private static final String DELIMITER = ",";
 
     public LottoTickets buy(Money money) {
@@ -31,7 +32,7 @@ public class LottoMachine {
     }
 
     private List<Integer> makeLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, COUNT);
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_SIZE);
     }
 
     public Lotto makeWinningLotto(String winningNumbers) {

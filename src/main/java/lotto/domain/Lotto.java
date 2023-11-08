@@ -3,11 +3,12 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.utils.Constants.LOTTO_NUMBERS_SIZE;
+import static lotto.utils.Constants.MAX_LOTTO_NUMBER;
+import static lotto.utils.Constants.MIN_LOTTO_NUMBER;
+
 public class Lotto {
 
-    private static final int LOTTO_NUMBERS_SIZE = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
     private static final String SIZE_EXCEPTION = "로또는 %d개의 번호로 이뤄져야 합니다.";
     private static final String DUPLICATE_EXCEPTION = "로또에 같은 번호가 존재합니다.";
     private static final String RANGE_EXCEPTION = "로또 번호는 %d부터 %d 사이의 숫자여야 합니다.";

@@ -5,7 +5,12 @@ import lotto.controller.LottoGameController;
 
 public class Application {
     public static void main(String[] args) {
-        LottoGameController lottoGameController = new LottoGameController(new AppConfig());
+        AppConfig appConfig = new AppConfig();
+        LottoGameController lottoGameController = new LottoGameController(
+                appConfig.inputView(),
+                appConfig.outputView(),
+                appConfig.profitRateCalculator(),
+                appConfig.numberGenerator());
         lottoGameController.run();
     }
 }

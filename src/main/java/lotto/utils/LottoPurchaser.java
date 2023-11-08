@@ -12,8 +12,4 @@ public class LottoPurchaser {
     public int purchase() {
         return money.purchase();
     }
-
-    public int purchaseMoney() {
-        return money.purchaseMoney();
-    }
 }

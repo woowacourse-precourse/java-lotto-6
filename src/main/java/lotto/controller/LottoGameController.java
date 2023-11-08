@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.config.AppConfig;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoResult;
@@ -18,20 +17,53 @@ import lotto.view.OutputView;
 
 public class LottoGameController {
 
-    private final AppConfig appConfig;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final ProfitRateCalculator profitRateCalculator;
+    private final NumberGenerator numberGenerator;
 
-    public LottoGameController(final AppConfig appConfig) {
-        this.appConfig = appConfig;
+    public LottoGameController(final InputView inputView,
+                               final OutputView outputView,
+                               final ProfitRateCalculator profitRateCalculator,
+                               final NumberGenerator numberGenerator) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.profitRateCalculator = profitRateCalculator;
+        this.numberGenerator = numberGenerator;
     }
 
     public void run() {
         Money money = getMoney();
-        LottoPurchaser lottoPurchaser = new LottoPurchaser(money);
-        int purchased = lottoPurchaser.purchase();
-        OutputView outputView = appConfig.outputView();
-        outputView.printPurchasedLottoSize(purchased);
+        Lottos lottos = getLottos(money);
+        WinningLotto winningLotto = getWinningLotto();
+        LottoResult results = getResults(lottos, winningLotto);
+        getProfitRate(money,results);
+        inputView.close();
+    }
 
-        NumberGenerator numberGenerator = appConfig.numberGenerator();
+    private void getProfitRate(Money money, LottoResult lottoResult) {
+        double profitRate = profitRateCalculator.calculateProfitRate(
+                lottoResult.getTotalProfit(), money.purchasedMoney());
+        outputView.printProfitRate(profitRate);
+    }
+
+    private LottoResult getResults(Lottos lottos, WinningLotto winningLotto) {
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.result(lottos, winningLotto);
+        outputView.printWinningResults(LottoResultDto.from(lottoResult));
+        return lottoResult;
+    }
+
+    private WinningLotto getWinningLotto() {
+        List<Integer> winningNumbers = inputView.getWinningNumbers();
+        Lotto lotto = new Lotto(winningNumbers);
+        LottoNumber bonusNumber = inputView.getBonusNumber(lotto);
+        return new WinningLotto(lotto, bonusNumber);
+    }
+
+    private Lottos getLottos(Money money) {
+        int purchased = purchasedLotto(money);
+
         Lottos lottos = new Lottos();
         while (purchased > 0) {
             Lotto lotto = numberGenerator.generate();
@@ -41,26 +73,17 @@ public class LottoGameController {
                 purchased--;
             }
         }
+        return lottos;
+    }
 
-        InputView inputView = appConfig.inputView();
-        List<Integer> winningNumbers = inputView.getWinningNumbers();
-        Lotto lotto = new Lotto(winningNumbers);
-        LottoNumber bonusNumber = inputView.getBonusNumber(lotto);
-        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-
-        LottoResult lottoResult = new LottoResult();
-        lottoResult.result(lottos, winningLotto);
-        outputView.printWinningResults(LottoResultDto.from(lottoResult));
-
-        ProfitRateCalculator profitRateCalculator = appConfig.profitRateCalculator();
-        double profitRate = profitRateCalculator.calculateProfitRate(
-                lottoResult.getTotalProfit(),
-                lottoPurchaser.purchaseMoney());
-        outputView.printProfitRate(profitRate);
+    private int purchasedLotto(Money money) {
+        LottoPurchaser lottoPurchaser = new LottoPurchaser(money);
+        int purchased = lottoPurchaser.purchase();
+        outputView.printPurchasedLottoSize(purchased);
+        return purchased;
     }
 
     public Money getMoney() {
-        InputView inputView = appConfig.inputView();
         return inputView.getMoney();
     }
 

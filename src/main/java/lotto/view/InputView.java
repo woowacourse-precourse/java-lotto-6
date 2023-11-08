@@ -107,5 +107,9 @@ public class InputView {
         }
     }
 
+    public void close() {
+        receiver.close();
+    }
+
 }
 

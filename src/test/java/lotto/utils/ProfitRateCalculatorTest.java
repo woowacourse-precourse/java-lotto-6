@@ -15,9 +15,9 @@ public class ProfitRateCalculatorTest {
     @CsvSource(value = {"8000,62.5"})
     void calculate(int money, double expectedProfitRate) {
         ProfitRateCalculator profitRateCalculator = new ProfitRateTwoDecimalRoundCalculator();
-        LottoPurchaser lottoPurchaser = new LottoPurchaser(new Money(money));
+        Money purchaseMoney = new Money(money);
 
-        int invested = lottoPurchaser.purchaseMoney();
+        int invested = purchaseMoney.purchasedMoney();
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.putRank(Rank.FIFTH);
@@ -31,9 +31,9 @@ public class ProfitRateCalculatorTest {
     @CsvSource(value = {"8000,40.3"})
     void calculateWrong(int money, double expectedProfitRate) {
         ProfitRateCalculator profitRateCalculator = new ProfitRateTwoDecimalRoundCalculator();
-        LottoPurchaser lottoPurchaser = new LottoPurchaser(new Money(money));
+        Money purchaseMoney = new Money(money);
 
-        int invested = lottoPurchaser.purchaseMoney();
+        int invested = purchaseMoney.purchasedMoney();
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.putRank(Rank.FIFTH);
@@ -47,9 +47,9 @@ public class ProfitRateCalculatorTest {
     @CsvSource(value = {"8000,62.54", "8000,40"})
     void notRoundTwoDecimalPoint(int money, double expectedProfitRate) {
         ProfitRateCalculator profitRateCalculator = new ProfitRateTwoDecimalRoundCalculator();
-        LottoPurchaser lottoPurchaser = new LottoPurchaser(new Money(money));
+        Money purchaseMoney = new Money(money);
 
-        int invested = lottoPurchaser.purchaseMoney();
+        int invested = purchaseMoney.purchasedMoney();
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.putRank(Rank.FIFTH);

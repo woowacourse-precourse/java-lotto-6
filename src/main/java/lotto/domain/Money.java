@@ -29,7 +29,7 @@ public class Money {
         return amount / LottoGameRule.LOTTO_PRICE.value();
     }
 
-    public int purchaseMoney() {
+    public int purchasedMoney() {
         int purchase = purchase();
         return purchase * LottoGameRule.LOTTO_PRICE.value();
     }

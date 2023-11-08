@@ -28,10 +28,13 @@ class LottoRankTest {
     private static Stream<Arguments> lottoRankProvider() {
         return Stream.of(
                 Arguments.of(6, false, LottoRank.FIRST),
+                Arguments.of(6, true, LottoRank.FIRST),
                 Arguments.of(5, true, LottoRank.SECOND),
                 Arguments.of(5, false, LottoRank.THIRD),
                 Arguments.of(4, false, LottoRank.FOURTH),
-                Arguments.of(3, false, LottoRank.FIFTH)
+                Arguments.of(4, true, LottoRank.FOURTH),
+                Arguments.of(3, false, LottoRank.FIFTH),
+                Arguments.of(3, true, LottoRank.FIFTH)
         );
     }
 }

@@ -25,6 +25,7 @@ public class Application {
     }
 
     public static int inputBudget() {
+        System.out.println("구입금액을 입력해 주세요.");
         int input = convertInteger(Console.readLine());
         boolean isNotMultipleOf1000 = input % 1000 != 0;
         if(isNotMultipleOf1000) {

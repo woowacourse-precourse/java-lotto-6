@@ -48,6 +48,12 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int matchCount(final Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto.numbers::contains)
+                .count();
+    }
+
     public String formatNumbers() {
         return numbers.toString();
     }

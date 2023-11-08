@@ -7,13 +7,13 @@ import lotto.output.Output;
 
 public class GameController {
 
-    public int getPurchaseAmount() {
-        Output.printPurchaseAmountInputMessage();
+    public int getNumber(final String inputMessage) {
+        Output.print(inputMessage);
         try {
             return Input.getInteger();
         } catch (IllegalArgumentException e) {
             Output.printErrorMessage(e.getMessage());
-            return getPurchaseAmount();
+            return getNumber(inputMessage);
         }
     }
 
@@ -27,16 +27,6 @@ public class GameController {
         } catch (IllegalArgumentException e) {
             Output.printErrorMessage("[ERROR] 정수와 쉼표만 입력해야 합니다.");
             return getLottoNumbers();
-        }
-    }
-
-    public int getBonusLottoNumber() {
-        Output.printBonusLottoNumbersInputMessage();
-        try {
-            return Input.getInteger();
-        } catch (IllegalArgumentException e) {
-            Output.printErrorMessage(e.getMessage());
-            return getBonusLottoNumber();
         }
     }
 }

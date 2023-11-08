@@ -97,12 +97,12 @@ public class Application {
         System.out.print("%입니다.");
     }
 
-    public void Play() {
-        inputPrice();
-        randomNums();
-        viewNums();
-        getInputNums();
-        result();
+//    public void Play() {
+//        inputPrice();
+//        randomNums();
+//        viewNums();
+//        getInputNums();
+//        result();
     }
 }
 

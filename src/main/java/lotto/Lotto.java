@@ -3,12 +3,14 @@ package lotto;
 
 import java.util.List;
 import lotto.domain.WinningLottoNumbers;
+import lotto.validate.InputValidation;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -18,6 +20,9 @@ public class Lotto {
         }
     }
 
+    private void validateDuplicate(List<Integer> numbers) {
+        InputValidation.isDuplicate(numbers);
+    }
     public List<Integer> getNumbers() {
         return numbers;
     }

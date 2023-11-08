@@ -7,9 +7,10 @@ import lotto.validate.InputValidation;
 
 public class Purchase {
     private int purchase;
-
     private int quantity;
+
     public Purchase(String purchaseAmount) {
+        validatePurchaseAmount(purchaseAmount);
         this.quantity = calculateQuantity(purchaseAmount);
         this.purchase = Integer.parseInt(purchaseAmount);
     }
@@ -26,10 +27,9 @@ public class Purchase {
     }
 
     // 구입금액 validation
-    public void validatePurchaseAmount(String amount) {
+    private void validatePurchaseAmount(String amount) {
         InputValidation inputValidation = new InputValidation();
-
-        inputValidation.isNumber(amount);
+        inputValidation.isNumberOnly(amount);
         inputValidation.isDividedOneThousand(Integer.parseInt(amount));
         inputValidation.isNullOrBlank(amount);
     }

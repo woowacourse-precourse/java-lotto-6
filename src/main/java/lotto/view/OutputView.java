@@ -1,15 +1,24 @@
 package lotto.view;
 
+import static lotto.util.OutputMessage.CORRECT_FIVE;
+import static lotto.util.OutputMessage.CORRECT_FIVE_AND_BONU;
+import static lotto.util.OutputMessage.CORRECT_FOURE;
+import static lotto.util.OutputMessage.CORRECT_SIX;
+import static lotto.util.OutputMessage.CORRECT_THREE;
+import static lotto.util.OutputMessage.GAE;
+import static lotto.util.OutputMessage.IS_PERCENT;
+import static lotto.util.OutputMessage.PURCHASE_QUANTITY_MESSAGE;
+import static lotto.util.OutputMessage.TOTAL_RATE;
+import static lotto.util.OutputMessage.WINNING_RESULT_MESSAGE;
 import static lotto.util.util.println;
 
 import java.util.List;
 import lotto.domain.Lottos;
 import lotto.domain.Rank;
-import lotto.domain.Rsult;
+import lotto.domain.Result;
 
 public class OutputView {
-    public static String PURCHASE_QUANTITY_MESSAGE = "개를 구매했습니다.";
-    public static String WINNING_RESULT_MESSAGE = "당첨 통계\n---";
+
 
     public void printPurchaseQyantity(int quantity) {
         println(quantity + PURCHASE_QUANTITY_MESSAGE);
@@ -23,12 +32,12 @@ public class OutputView {
     }
 
     public String printResultFormat(List<Rank> ranks, int purchase) {
-        return  "3개 일치 (5,000원) - " + matchResult(ranks,Rank.FIFTH) + "개\n"
-        + "4개 일치 (50,000원) - " +  matchResult(ranks,Rank.FOURTH) + "개\n"
-        + "5개 일치 (1,500,000원) - " +  matchResult(ranks,Rank.THIRD) + "개\n"
-        +"5개 일치, 보너스 볼 일치 (30,000,000원) - " +  matchResult(ranks,Rank.SECOND) + "개\n"
-        + "6개 일치 (2,000,000,000원) - " + matchResult(ranks,Rank.FIRST) + "개\n"
-        + "총 수익률은 " + matchYeild(purchase, ranks) + "%입니다.";
+        return  CORRECT_THREE + matchResult(ranks,Rank.FIFTH) + GAE
+        + CORRECT_FOURE +  matchResult(ranks,Rank.FOURTH) + GAE
+        + CORRECT_FIVE +  matchResult(ranks,Rank.THIRD) + GAE
+        + CORRECT_FIVE_AND_BONU +  matchResult(ranks,Rank.SECOND) + GAE
+        + CORRECT_SIX + matchResult(ranks,Rank.FIRST) + GAE
+        + TOTAL_RATE + matchYeild(purchase, ranks) + IS_PERCENT;
     }
     public void printResult(List<Rank> ranks, int purchase) {
         println(printResultFormat(ranks, purchase));
@@ -40,6 +49,6 @@ public class OutputView {
                 .count();
     }
     public double matchYeild(int purchase, List<Rank> ranks ) {
-        return Rsult.yield(purchase, ranks);
+        return Result.yield(purchase, ranks);
     }
 }

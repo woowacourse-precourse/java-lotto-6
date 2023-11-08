@@ -6,11 +6,11 @@ import java.util.Arrays;
  *  */
 public enum Rank {
     FIRST(6, 2_000_000_000),
-    SECOND(5, 30_000_000), // bonus
+    SECOND(5, 30_000_000),
     THIRD(5, 1_500_000),
     FOURTH(4, 50_000),
     FIFTH(3, 5_000),
-    NONE(0, 0); // 일치하는 번호가 없거나 기준에 미달할 때
+    NONE(0, 0);
 
 
     private final int matchCount;
@@ -36,7 +36,6 @@ public enum Rank {
     }
 
     public static Rank isSecondMatch(int matchCount, boolean isBonus) {
-        // matchcount: 5면서, isBonus:true인건 SECOND로 return
         if (matchCount == 5 && isBonus) {
             return SECOND;
         }

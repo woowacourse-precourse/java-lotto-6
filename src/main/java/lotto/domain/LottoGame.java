@@ -1,54 +1,51 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.util.util;
+import lotto.validate.InputValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    InputValidation inputValidation = new InputValidation();
     Lottos lottos;
     WinningLottoNumbers winningLottoNumbers;
     Purchase purchase;
-    public LottoGame() {
-
-    }
 
     public void game() {
-        purchase = inputPurchase(); // 구매금액 입력
+        input();
+
+        String winningNumber = inputWinningNumbers();
+        util.lineBlank();
+
+        String bonus = inputBonus(winningNumber);
+        util.lineBlank();
+
+        winningLottoNumbers = new WinningLottoNumbers(winningNumber,bonus);
+
+        output(lottos.matchRanks(winningLottoNumbers));
+    }
+
+    public void input() {
+        purchase = inputPurchase();
 
         util.lineBlank();
         outputView.printPurchaseQyantity(purchase.getQuantity());
 
-        // 로또 생성
         lottos = new Lottos(new LottosGenerator(purchase.getQuantity()).generateLottos());
 
-        // 로또 출력
         outputView.printLottoNumbers(lottos);
         util.lineBlank();
+    }
 
-        // 당첨번호 입력
-        String winningNumber = inputWinningNumbers();
-        util.lineBlank();
-
-        // 보너스 번호 입력
-        String bonus = inputBonus();
-        util.lineBlank();
-
-        //WinningLottoNumbers 생성
-        winningLottoNumbers = new WinningLottoNumbers(winningNumber,bonus);
-
-        /*로또 값 비교 로직*/
-        List<Rank> rankResult = lottos.matchRanks(winningLottoNumbers);
-
-        // 당첨통계
+    public void output(List<Rank> rankResult) {
         outputView.printwinningResultMessage();
         outputView.printResult(rankResult, purchase.getPurchase());
     }
 
-    // 구매금액 입력
+
     public Purchase inputPurchase() {
         try {
             inputView.printInputPurchaseAmountMessage();
@@ -56,6 +53,7 @@ public class LottoGame {
 
             return new Purchase(purchaseAmount);
         } catch (IllegalArgumentException e) {
+            util.println(e.getMessage());
             return inputPurchase();
         }
     }
@@ -63,20 +61,26 @@ public class LottoGame {
     public String inputWinningNumbers() {
         try {
             inputView.printInputWinningNumberMessage();
-            return inputView.inputWinningNumbers();
-        } catch(IllegalArgumentException e) {
-            util.println(e);
+            String inputWinningNumbers = inputView.inputWinningNumbers();
+            inputValidation.validateWinningNumbers(inputWinningNumbers);
+
+            return inputWinningNumbers;
+        } catch (IllegalArgumentException e) {
+            util.println(e.getMessage());
             return inputWinningNumbers();
         }
     }
 
-    public String inputBonus() {
+    public String inputBonus(String winningNumber) {
         try {
             inputView.printInputBonusNumberMessage();
-            return inputView.inputBounsNumber();
-        } catch(IllegalArgumentException e) {
-            util.println(e);
-            return inputBonus();
+            String bonus = inputView.inputBounsNumber();
+            inputValidation.validateBonusNumber(bonus, winningNumber);
+
+            return bonus;
+        } catch (IllegalArgumentException e) {
+            util.println(e.getMessage());
+            return inputBonus(winningNumber);
         }
 
     }

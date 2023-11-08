@@ -1,12 +1,10 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class LottoService {
     private static final int LOTTO_MINIMUM_NUMBER = 1;
@@ -27,9 +25,9 @@ public class LottoService {
         return purchasedLotto;
     }
 
-    public List<LottoResult> calculateResult(List<Lotto> lottoTickets,
-                                             List<Integer> winningLottoNumbers,
-                                             int bonusNumber) {
+    public Map<LottoResult, Integer> calculateResult(List<Lotto> lottoTickets,
+                                                     List<Integer> winningLottoNumbers,
+                                                     int bonusNumber) {
         List<LottoResult> results = new ArrayList<>();
         for (Lotto ticket : lottoTickets) {
             int matchCount = 0;
@@ -37,7 +35,17 @@ public class LottoService {
             boolean bonusMatch = (matchCount == 5) && ticket.getNumbers().contains(bonusNumber);
             results.add(LottoResult.valueOf(matchCount, bonusMatch));
         }
-        return results;
+        return countResults(results);
+    }
+
+    private Map<LottoResult, Integer> countResults(List<LottoResult> results) {
+        Map<LottoResult, Integer> resultCount = new EnumMap<>(LottoResult.class);
+
+        for (LottoResult result : results) {
+            resultCount.put(result, resultCount.getOrDefault(result, 0) + 1);
+        }
+
+        return resultCount;
     }
 
     private int getMatchCount(List<Integer> winningLottoNumbers, Lotto ticket, int matchCount) {
@@ -49,7 +57,7 @@ public class LottoService {
         return matchCount;
     }
 
-    public double getEarningsRate(List<LottoResult> lottoResult,int purchaseAmount) {
+    public double getEarningsRate(Map<LottoResult, Integer> lottoResult,int purchaseAmount) {
         int totalPrizeMoney = calculatePrizeMoney(lottoResult);
         int totalInvestment = purchaseAmount*1000;
         return calculateEarningsRate(totalPrizeMoney,totalInvestment);
@@ -61,9 +69,9 @@ public class LottoService {
 
     }
 
-    private int calculatePrizeMoney(List<LottoResult> lottoResult) {
-        return lottoResult.stream()
-                .mapToInt(LottoResult::getPrizeMoney)
+    private int calculatePrizeMoney(Map<LottoResult, Integer> lottoResult) {
+        return lottoResult.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
     }
 

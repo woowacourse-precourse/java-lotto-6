@@ -1,6 +1,5 @@
 package lotto.controller.validator;
 
-// controller.validator에서만 사용하는 에러메세지
 enum ErrorMessage {
     NOT_INTEGER("정수가 아닙니다."),
     NOT_POSITIVE_INTEGER("양의 정수가 아닙니다."),

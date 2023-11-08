@@ -22,8 +22,7 @@ public class OutputControllerTest {
     void init() {
         outputController = new OutputController(new OutputView());
     }
-
-    // 업데이트 되는 부분 양식 생성 검증 테스트
+    
     @DisplayName("OutputView에서 업데이트 되어야 하는 양식(구매한 로또 개수)이 제대로 생성되는지 테스트.")
     @ParameterizedTest
     @CsvSource(value = {"1:1", "5:5"}, delimiter = ':')

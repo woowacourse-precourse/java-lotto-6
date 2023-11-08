@@ -1,6 +1,5 @@
 package lotto.model.validator;
 
-// model.validator에서만 사용하는 에러메세지
 enum ErrorMessage {
     NOT_PROPER_SIZE_OF_LOTTO("번호의 개수가 6개가 아닙니다."),
     NUMBER_NOT_IN_RANGE("올바른 범위의 수가 아닙니다."),

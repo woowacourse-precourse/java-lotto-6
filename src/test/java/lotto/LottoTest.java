@@ -33,6 +33,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 1~45사이의 정수가 아니면 예외가 발생한다.")
+    @Test
+    void createLottoNotBound1_45() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 45)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호와 결과를 비교하여 요구 사항에 맞는 결과를 반환한다.")
     @ParameterizedTest
     @CsvSource({

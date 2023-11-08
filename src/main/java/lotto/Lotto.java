@@ -18,7 +18,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6 || numbers.stream().distinct().toList().size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또 번호는 6개의 정수로 이루어져야 합니다.");
+        }
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("로또 번호의 숫자 범위는 1~45 입니다.");
+            }
         }
     }
 

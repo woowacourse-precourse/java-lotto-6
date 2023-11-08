@@ -6,25 +6,43 @@ import lotto.util.LottoConverter;
 import lotto.util.Validator;
 
 public class InputView {
-    private InputView(){
+    private InputView() {
         throw new IllegalArgumentException("[ERROR]");
     }
 
     public static String inputMoney() {
-        String money = Console.readLine();
-        Validator.validateMoney(money);
-        return money;
+        try {
+            String money = Console.readLine();
+            Validator.validateMoney(money);
+
+            return money;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputMoney();
+        }
     }
 
     public static Lotto inputWinningLottoNumbers() {
-        String winningLottoNumbers = Console.readLine();
-        Validator.validateInputPattern(winningLottoNumbers);
-        return LottoConverter.convertStringToLotto(winningLottoNumbers);
+        try {
+            String winningLottoNumbers = Console.readLine();
+            Validator.validateInputPattern(winningLottoNumbers);
+
+            return LottoConverter.convertStringToLotto(winningLottoNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningLottoNumbers();
+        }
     }
 
     public static Integer inputBonusNumber() {
-        String bonusNumber = Console.readLine();
-        Validator.validateInputType(bonusNumber);
-        return Integer.parseInt(bonusNumber);
+        try {
+            String bonusNumber = Console.readLine();
+            Validator.validateInputType(bonusNumber);
+
+            return Integer.parseInt(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
     }
 }

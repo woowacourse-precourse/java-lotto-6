@@ -21,7 +21,7 @@ public class Validator {
 
     public void verifyDivisible(Integer target, Integer unit) {
         if (target % unit != 0) {
-            throw new IllegalArgumentException("범위안에 속하지 않습니다.");
+            throw new IllegalArgumentException("나누어지지 않는 단위 이거나 또는 대상이 잘못 입력되었습니다.");
         }
     }
 

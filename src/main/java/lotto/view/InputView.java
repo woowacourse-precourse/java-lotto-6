@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.Validator;
+import lotto.message.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,8 +11,16 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputView {
     public static int getPurchasingPrice() {
-        String input = readLine();
-        Validator.validateIsInt(input);
+        String input;
+        while (true) {
+            try {
+                input = readLine();
+                Validator.validateIsInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessage.NON_INTEGER_INPUT.getMessage());
+            }
+        }
         return Integer.parseInt(input);
     }
 

@@ -5,10 +5,11 @@ import lotto.message.ErrorMessage;
 import java.util.List;
 
 public class Validator {
-    public static void validateIsInt(String input) {
-        if (input == null && !input.matches("\\d*")) {
-            throw new IllegalArgumentException(ErrorMessage.NON_INTEGER_INPUT.getMessage());
+    public static String validateIsInt(String input) throws IllegalArgumentException {
+        if (input != null && input.matches("^[0-9]+$")) {
+            return input;
         }
+        throw new IllegalArgumentException();
     }
 
     public static void validatePaymentAmount(int input) {

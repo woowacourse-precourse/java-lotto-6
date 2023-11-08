@@ -10,24 +10,23 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoController {
-    private OutputManager outputManager = OutputManager.getInstance();
-    private InputManager inputManager = InputManager.getInstance();
     private final int WINNING_NUMBER_SCORE = 10;
     private final int BONUS_NUMBER_SCORE = 5;
     private final int ZERO_SCORE = 0;
-    private List<Lotto> lottos;
-    private List<Integer> winningNumbers;
-    private int bonusNumber;
-    private Map<Integer, Integer> statistic;
-    private int totalReward;
     private final int FIRST_REWARD = 2_000_000_000;
     private final int SECOND_REWARD = 30_000_000;
     private final int THIRD_REWARD = 1_500_000;
     private final int FOURTH_REWARD = 50_000;
     private final int FIFTH_REWARD = 5_000;
+    private final OutputManager outputManager = OutputManager.getInstance();
+    private final InputManager inputManager = InputManager.getInstance();
+    private List<Lotto> lottos;
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
+    private Map<Integer, Integer> statistic;
+    private int totalReward;
 
     public void simulate() {
-
         outputManager.requestMoney();
         int purchaseAmount = inputManager.getPurchaseAmount();
 
@@ -46,7 +45,6 @@ public class LottoController {
         calculateProfit();
 
         outputManager.printRateOfReturn(totalReward, purchaseAmount);
-
     }
 
     public void createLotto(int purchaseAmount) {

@@ -5,11 +5,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputManager {
+    private final double LOTTO_COST = 1000;
     private final String REQUEST_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
-    private String PURCHASE_MESSAGE = "개를 구매했습니다.";
     private final String REQUEST_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private final String REQUEST_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private final double LOTTO_COST = 1000;
+    private final String PURCHASE_MESSAGE = "개를 구매했습니다.";
 
     private static OutputManager outputManager;
 

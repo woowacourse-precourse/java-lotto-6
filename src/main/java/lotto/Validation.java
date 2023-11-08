@@ -29,7 +29,7 @@ public class Validation {
             throw new IllegalStateException(VALID_SIZE_ERROR);
         if (!validRange(data))
             throw new IllegalStateException(VALID_RANGE_ERROR);
-        if(!validDuplication(data))
+        if (!validDuplication(data))
             throw new IllegalStateException(VALID_DUPLICATE_ERROR);
     }
 
@@ -40,7 +40,7 @@ public class Validation {
             throw new IllegalStateException(VALID_SIZE_ERROR);
         if (!validRange(data))
             throw new IllegalStateException(VALID_RANGE_ERROR);
-        if(!validDuplication(data))
+        if (!validDuplication(data))
             throw new IllegalStateException(VALID_DUPLICATE_ERROR);
     }
 

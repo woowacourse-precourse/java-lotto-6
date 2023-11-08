@@ -27,8 +27,7 @@ public class InputManager {
             try {
                 Validation.validPurchaseMoney(data);
                 return Integer.parseInt(data) / 1000;
-            }
-            catch (NumberFormatException | IllegalStateException e) {
+            } catch (NumberFormatException | IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
             data = readLine();
@@ -41,13 +40,13 @@ public class InputManager {
             try {
                 Validation.validWinningNumbers(data);
                 return splitNumbers(data);
-            }
-            catch (NumberFormatException | IllegalStateException e) {
+            } catch (NumberFormatException | IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
             data = readLine();
         }
     }
+
     public List<Integer> splitNumbers(String data) {
         String[] splitNumbers = data.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
@@ -63,8 +62,7 @@ public class InputManager {
             try {
                 Validation.validBonusNumber(data);
                 return Integer.parseInt(data);
-            }
-            catch (NumberFormatException | IllegalStateException e) {
+            } catch (NumberFormatException | IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
             data = readLine();

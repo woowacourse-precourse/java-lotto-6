@@ -14,8 +14,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputManagerTest {
+    private final OutputManager outputManager = OutputManager.getInstance();
     private static OutputStream outputMessage;
-    private OutputManager outputManager = OutputManager.getInstance();
 
     @BeforeEach
     void setUpStreams() {

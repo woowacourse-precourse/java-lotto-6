@@ -2,7 +2,6 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 class InputManagerTest {
-    private InputManager inputManager = InputManager.getInstance();
+    private final InputManager inputManager = InputManager.getInstance();
+
     @AfterEach
     void closeConsole() {
         Console.close();
     }
+
     @DisplayName("복권 구입 금액을 입력 받는다.")
     @Test
     void getPurchaseAmount() {

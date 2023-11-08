@@ -13,8 +13,17 @@ import lotto.view.OutputView;
 
 public class LottoService {
 
+
+    public WinningNumber setWinningNumber(Lotto winningNumber,int bonusNumber){
+        WinningNumber winningNumbers=new WinningNumber(winningNumber,bonusNumber);
+        return winningNumbers;
+    }
+
+
+
     public Lottos exchangeLottoTicket(int purchaseAmount){
         Buyer buyerInfo = getBuyerInfo(purchaseAmount);
+        OutputView.printQuantityOfLotto(buyerInfo.getLottoQuantity());
         return generateLottos(buyerInfo.getLottoQuantity());
     }
 
@@ -38,7 +47,7 @@ public class LottoService {
         return lotto;
     }
 
-    private List<LottoResult> getResult(Lottos lottos, WinningNumber winningNumber){
+    public List<LottoResult> getResult(Lottos lottos, WinningNumber winningNumber){
         List<LottoResult> results=new ArrayList<>();
 
         for(Lotto lotto:lottos.getLottos()){
@@ -60,4 +69,14 @@ public class LottoService {
     }
 
 
+
+    public double calculateRevenue(int purchaseAmount,List<LottoResult>results){
+        int winningPrize=results.stream()
+                .mapToInt(LottoResult::getPrize)
+                .sum();
+        if(winningPrize==0){
+            return 0;
+        }
+        return ((double) winningPrize/purchaseAmount)*100;
+    }
 }

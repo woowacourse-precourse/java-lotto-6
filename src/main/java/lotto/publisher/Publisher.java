@@ -1,7 +1,8 @@
 package lotto.publisher;
 
+import java.util.List;
 import lotto.lotto.Lotto;
 
 public interface Publisher {
-    Lotto publish();
+    List<Lotto> publish(int number);
 }

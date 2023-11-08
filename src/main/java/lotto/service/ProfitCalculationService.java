@@ -1,6 +1,4 @@
-package lotto.Service;
-
-import java.util.List;
+package lotto.service;
 
 public class ProfitCalculationService {
 

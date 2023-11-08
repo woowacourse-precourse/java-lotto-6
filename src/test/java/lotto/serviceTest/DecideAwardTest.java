@@ -24,7 +24,7 @@ public class DecideAwardTest {
         User user = new User(1, Collections.singletonList(new Lotto(lottoNumbers)));
 
         // 당첨 번호 및 유저의 로또를 전달하여 결과 계산
-        JackpotNumber jackpotNumber = new JackpotNumber(new Lotto(winningNumbers), bonusNumber);
+        JackpotNumber jackpotNumber = new JackpotNumber(new Lotto(winningNumbers));
         Result result = DecideAward.userResult(user, jackpotNumber);
 
         // 기대되는 결과를 정의

@@ -19,11 +19,11 @@ public enum ErrorMessage {
         return value;
     }
 
-    public String getValue(Object invalidArgument) {
-        return this.value + ": " + invalidArgument;
+    public String getValue(Object arg1) {
+        return this.value + ": " + arg1;
     }
 
-    public String getValue(Object invalidArgument1, Object invalidArgument2) {
-        return this.value + ": " + invalidArgument1 + ", " + invalidArgument2;
+    public String getValue(Object arg1, Object arg2) {
+        return this.value + ": " + arg1 + ", " + arg2;
     }
 }

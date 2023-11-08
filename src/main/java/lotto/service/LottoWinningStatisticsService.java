@@ -9,6 +9,7 @@ import lotto.model.purchase.LottoPurchase;
 import lotto.model.purchase.LottoPurchaseAmount;
 
 public class LottoWinningStatisticsService {
+    private static final int PERCENTAGE = 100;
 
     public WinningLottoResultDto getWinningStatistics(LottoPurchase lottoPurchase, WinningTicket winningTicket) {
         LottoPurchaseAmount purchaseAmount = lottoPurchase.amount();
@@ -37,6 +38,6 @@ public class LottoWinningStatisticsService {
 
     private float calculateProfitRate(LottoPurchaseAmount lottoPurchaseAmount, long totalPrize) {
         int purchaseAmount = lottoPurchaseAmount.getValue();
-        return (float) totalPrize / purchaseAmount * 100;
+        return (float) totalPrize / purchaseAmount * PERCENTAGE;
     }
 }

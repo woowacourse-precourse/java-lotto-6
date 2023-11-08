@@ -15,10 +15,11 @@ class UserTest {
 
     @BeforeEach
     void createUser() {
+        LottoSalesOffice salesOffice = new LottoSalesOffice();
         Money money = new Money(String.valueOf((int) SPEND_MONEY));
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    user = new User(money);
+                    user = new User(money, salesOffice.buyLottos(money.getPurchaseLottoCount()));
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),

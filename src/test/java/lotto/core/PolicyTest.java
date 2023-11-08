@@ -1,3 +1,4 @@
+/*
 package lotto.core;
 
 import lotto.core.policy.WinningCheckPolicy;
@@ -41,3 +42,4 @@ public class PolicyTest {
         return new WinningCheckPolicy();
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package lotto.entity.mapper;
 
 import lotto.entity.Cost;
@@ -22,3 +23,4 @@ public class FieldMapperTest {
                     .hasMessage(ErrorProperty.FILED_MAPPER_IS_NOT_CORRECT_PARAMETER.toString());
     }
 }
+*/

@@ -34,6 +34,7 @@ public class Lotto {
         for (int number : numbers) {
             if (number > maxNumber || number < minNumber) {
                 new ThrowNewException().rangeException();
+
             }
         }
         overlapValidate(numbers);

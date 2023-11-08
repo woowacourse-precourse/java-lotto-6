@@ -70,7 +70,8 @@ public class Input {
         System.out.println(lottosNumber);
     }
 
-    private void winningInput() {
+    public void winningInput() {
+        System.out.println(winningInputSpeech);
         String winningInput = Console.readLine();
         winningDivision(winningInput);
     }

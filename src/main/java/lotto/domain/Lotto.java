@@ -21,6 +21,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(INVALID_SIZE_EXCEPTION.getMessage());
         }
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(NOT_UNIQUE_EXCEPTION.getMessage());
+        }
     }
 
     // TODO: 추가 기능 구현

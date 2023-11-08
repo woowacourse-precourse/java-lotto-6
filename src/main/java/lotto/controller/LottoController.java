@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.PrizeRank;
-import lotto.model.WinningLotto;
+import lotto.domain.Lotto;
+import lotto.domain.PrizeRank;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.ResultView;

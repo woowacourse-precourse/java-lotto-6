@@ -1,8 +1,8 @@
 package lotto.service;
 
-import lotto.model.Lotto;
-import lotto.model.PrizeRank;
-import lotto.model.WinningLotto;
+import lotto.domain.Lotto;
+import lotto.domain.PrizeRank;
+import lotto.domain.WinningLotto;
 import lotto.util.LottoUtils;
 import java.util.ArrayList;
 import java.util.List;

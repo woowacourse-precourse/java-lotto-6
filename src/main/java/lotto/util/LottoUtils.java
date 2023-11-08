@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.model.Lotto;
+import lotto.domain.Lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;

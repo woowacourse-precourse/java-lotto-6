@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-
     private static final String ERROR_MESSAGE ="[ERROR]";
     private final List<Integer> numbers;
 
@@ -34,7 +33,6 @@ public class Lotto {
             throw new IllegalArgumentException(ERROR_MESSAGE + "중복된 번호 입니다.");
         }
     }
-
     private void outOfRange(List<Integer> numbers) {
         for(int num : numbers) {
             if(num < 0 || num > 45) {

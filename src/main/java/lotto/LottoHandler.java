@@ -89,7 +89,7 @@ public class LottoHandler {
     public int calculateLottoTicketCount(String receivedPurchasePrice) {
         int purchasePrice;
         try {
-            purchasePrice = Integer.parseInt(receivedPurchasePrice);
+            purchasePrice = Integer.parseInt(removeSpaces(receivedPurchasePrice));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
         }
@@ -115,7 +115,7 @@ public class LottoHandler {
         String[] separatedWinningLotto = receivedWinningLotto.split(",");
         try {
             for (String winningLotto : separatedWinningLotto) {
-                winningNumbers.add(Integer.parseInt(winningLotto));
+                winningNumbers.add(Integer.parseInt(removeSpaces(winningLotto)));
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
@@ -127,7 +127,7 @@ public class LottoHandler {
     public int receiveBonusNumber(String receivedBonusNumber) {
         int bonusNumber = 0;
         try {
-            bonusNumber = Integer.parseInt(receivedBonusNumber);
+            bonusNumber = Integer.parseInt(removeSpaces(receivedBonusNumber));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
         }

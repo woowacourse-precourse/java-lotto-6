@@ -64,7 +64,7 @@ class LottoTest {
 
     @DisplayName("로또 번호가 오름차순으로 정렬되어 있지 않으면 예외가 발생한다.")
     @Test
-    void createLottoByImproperOrder() {
+    void createLottoByNotAscendingOrder() {
         assertThatThrownBy(() -> new Lotto(List.of(6, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ERROR_MESSAGE_HEAD + INVALID_NUMBERS_ORDER_EXCEPTION

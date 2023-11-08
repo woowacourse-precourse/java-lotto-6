@@ -14,36 +14,15 @@ import lotto.domain.Rank;
 import lotto.domain.UserLotto;
 import lotto.input.Input;
 import lotto.output.Output;
+import lotto.utils.IntegerParser;
 
 public class GameController {
-
-    private int getNumber(final String inputMessage) {
-        Output.print(inputMessage);
-        try {
-            return Input.getInteger();
-        } catch (IllegalArgumentException e) {
-            Output.print(e.getMessage());
-            return getNumber(inputMessage);
-        }
-    }
-
-    private List<Integer> getLottoNumbers() {
-        Output.print(Output.LOTTO_NUMBERS_INPUT_MESSAGE);
-        try {
-            String readLine = Input.getLine();
-            return Arrays.stream(readLine.split(","))
-                    .map(Integer::parseInt)
-                    .toList();
-        } catch (IllegalArgumentException e) {
-            Output.print("[ERROR] 정수와 쉼표만 입력해야 합니다.");
-            return getLottoNumbers();
-        }
-    }
 
     public void play(final NumbersGeneratorStrategy numbersGeneratorStrategy) {
         Money money = getMoney();
         Lotteries lotteries = getLotteries(numbersGeneratorStrategy, money);
-        UserLotto userLotto = UserLotto.from(getLotto(), getBonusLottoNumber());
+        Lotto lotto = getLotto();
+        UserLotto userLotto = getUserLotto(lotto);
 
         Map<Rank, Integer> rankIntegerMap = lotteries.calculateTotalRankCount(userLotto);
         Output.printWinningStatics(rankIntegerMap);
@@ -53,8 +32,14 @@ public class GameController {
     }
 
     private Money getMoney() {
-        int purchaseAmount = getNumber(Output.PURCHASE_AMOUNT_INPUT_MESSAGE);
-        return Money.from(purchaseAmount);
+        Output.printMoneyInputMessage();
+        try {
+            Integer purchaseAmount = Input.getInteger();
+            return Money.from(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            Output.print(e.getMessage());
+            return getMoney();
+        }
     }
 
     private Lotteries getLotteries(final NumbersGeneratorStrategy numbersGeneratorStrategy, final Money money) {
@@ -65,12 +50,28 @@ public class GameController {
     }
 
     private Lotto getLotto() {
-        List<Integer> lottoNumbers = getLottoNumbers();
-        return new Lotto(lottoNumbers);
+        Output.printLottoNumbersInputMessage();
+        try {
+            String readLine = Input.getLine();
+            List<Integer> lottoNumbers = Arrays.stream(readLine.split(","))
+                    .map(IntegerParser::stringToInteger)
+                    .toList();
+            return new Lotto(lottoNumbers);
+        } catch (IllegalArgumentException e) {
+            Output.print(e.getMessage());
+            return getLotto();
+        }
     }
 
-    private LottoNumber getBonusLottoNumber() {
-        int bonusNumber = getNumber(Output.BONUS_LOTTO_NUMBER_INPUT_MESSAGE);
-        return LottoNumber.valueOf(bonusNumber);
+    private UserLotto getUserLotto(final Lotto lotto) {
+        Output.printBonusLottoNumberInputMessage();
+        try {
+            int bonusNumber = Input.getInteger();
+            LottoNumber bonusLottoNumber = LottoNumber.valueOf(bonusNumber);
+            return UserLotto.from(lotto, bonusLottoNumber);
+        } catch (IllegalArgumentException e) {
+            Output.print(e.getMessage());
+            return getUserLotto(lotto);
+        }
     }
 }

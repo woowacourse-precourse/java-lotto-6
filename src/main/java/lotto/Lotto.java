@@ -2,7 +2,7 @@ package lotto;
 
 
 import java.util.List;
-import java.util.stream.Stream;
+import lotto.domain.WinningLottoNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,18 +18,21 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
     }
-    public int matchNumber(Lotto lotto) {
+
+    public int matchCount(Lotto lotto) {
         return (int) numbers.stream()
                 .filter(lotto::isContains)
                 .count();
     }
+    public boolean matchBonus(WinningLottoNumbers winningLottoNumbers) {
+        return isBonus(winningLottoNumbers.getBonus());
+    }
 
-    public int matchBonus(int bonus) {
-        return (int) Stream.of(numbers.contains(bonus)).count();
+    public boolean isBonus(int bonus) {
+        return numbers.contains(bonus);
     }
 
     public boolean isContains(int lottoNumber) {

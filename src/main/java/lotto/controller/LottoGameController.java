@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoRank;
 import lotto.domain.LottoRanks;
+import lotto.service.ReturnService;
 import lotto.view.InputView;
 import lotto.domain.Lotto;
 import lotto.service.LottoDrawService;
@@ -14,17 +15,28 @@ import java.util.List;
 public class LottoGameController {
     PurchaseService purchaseService = new PurchaseService();
     LottoDrawService lottoDrawService = new LottoDrawService();
+    ReturnService returnService = new ReturnService();
 
     public void start() {
         int payment = getPurchaseAmount();
         List<Lotto> purchasedLottos = purchaseLotto(payment);
         displayPurchasedLottos(purchasedLottos);
 
-        LottoRanks lottoRanks = getRanks(getWinningLotto(), purchasedLottos);
-        int winningAmount = getWinningAmount();
+        Lotto winningLotto = getWinningLotto();
+        int bonusNumber = getBonusNumber(winningLotto);
 
+        LottoRanks lottoRanks = getRanks(
+                new WinningLotto(winningLotto, bonusNumber),
+                purchasedLottos
+        );
+        int winningAmount = getWinningAmount();
         displayWinningResult(lottoRanks);
-        displayReturnsResult(evaluateLottoReturns(payment, winningAmount));
+
+        displayReturnsResult(getReturn(payment, winningAmount));
+    }
+
+    private int getBonusNumber(Lotto winningLotto) {
+        return InputView.inputBonusNumber(winningLotto);
     }
 
     private int getPurchaseAmount() {
@@ -37,6 +49,11 @@ public class LottoGameController {
         return purchaseService.purchaseLottoForCount(countOfPurchasable);
     }
 
+    private void displayPurchasedLottos(List<Lotto> purchasedLottos) {
+        for (Lotto lotto : purchasedLottos) {
+            OutputView.printGeneratedLottoResult(lotto.getNumbers());
+        }
+    }
 
     private void displayReturnsResult(String lottoReturns) {
         OutputView.printReturnsResult(lottoReturns);
@@ -48,17 +65,8 @@ public class LottoGameController {
         }
     }
 
-    private void displayPurchasedLottos(List<Lotto> purchasedLottos) {
-        for (Lotto lotto : purchasedLottos) {
-            OutputView.printGeneratedLottoResult(lotto.getNumbers());
-        }
-    }
-
-    private WinningLotto getWinningLotto() {
-        return new WinningLotto(
-                new Lotto(InputView.inputWinningNumbers()),
-                InputView.inputBonusNumber()
-        );
+    private Lotto getWinningLotto() {
+        return new Lotto(InputView.inputWinningNumbers());
     }
 
     private LottoRanks getRanks(WinningLotto winningLotto, List<Lotto> purchasedLottos) {
@@ -69,9 +77,8 @@ public class LottoGameController {
         return lottoDrawService.getWinningAmount();
     }
 
-    private String evaluateLottoReturns(int payment, int winningAmount) {
-        float returns = ((float) winningAmount / payment) * 100;
-        return String.format("%.2f%%", returns);
+    private String getReturn(int payment, int winningAmount) {
+        return returnService.evaluateLottoReturn(payment, winningAmount);
     }
 
 }

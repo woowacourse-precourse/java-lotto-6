@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.repository.PurchaseRepository;
 import lotto.service.PurchaseService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

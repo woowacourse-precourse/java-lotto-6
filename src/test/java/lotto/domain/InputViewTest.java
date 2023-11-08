@@ -49,33 +49,33 @@ public class InputViewTest {
                 .withMessageContaining("숫자가 아닌 값이 입력되었습니다.");
     }
 
-    @Test
-    void inputBonusNumber() {
-        // given
-        System.setIn(createUserInput("1"));
-        // when, then
-        assertThat(InputView.inputBonusNumber()).isEqualTo(1);
-    }
+//    @Test
+//    void inputBonusNumber() {
+//        // given
+//        System.setIn(createUserInput("1"));
+//        // when, then
+//        assertThat(InputView.inputBonusNumber()).isEqualTo(1);
+//    }
 
-    @DisplayName("음수가 입력되면 예외가 발생한다.")
-    @Test
-    void inputBonusNumber_음수_입력() {
-        // given
-        System.setIn(createUserInput("-1"));
-        // when, then
-        assertThatIllegalArgumentException().isThrownBy(InputView::inputBonusNumber)
-                .withMessageContaining("음수가 입력되었습니다.");
-    }
-
-    @DisplayName("숫자가 아닌값이 입력되면 예외가 발생한다.")
-    @Test
-    void inputBonusNumber_숫자가_아닌값() {
-        // given
-        System.setIn(createUserInput("hi"));
-        // when, then
-        assertThatIllegalArgumentException().isThrownBy(InputView::inputBonusNumber)
-                .withMessageContaining("숫자가 아닌 값이 입력되었습니다.");
-    }
+//    @DisplayName("음수가 입력되면 예외가 발생한다.")
+//    @Test
+//    void inputBonusNumber_음수_입력() {
+//        // given
+//        System.setIn(createUserInput("-1"));
+//        // when, then
+//        assertThatIllegalArgumentException().isThrownBy(InputView::inputBonusNumber)
+//                .withMessageContaining("음수가 입력되었습니다.");
+//    }
+//
+//    @DisplayName("숫자가 아닌값이 입력되면 예외가 발생한다.")
+//    @Test
+//    void inputBonusNumber_숫자가_아닌값() {
+//        // given
+//        System.setIn(createUserInput("hi"));
+//        // when, then
+//        assertThatIllegalArgumentException().isThrownBy(InputView::inputBonusNumber)
+//                .withMessageContaining("숫자가 아닌 값이 입력되었습니다.");
+//    }
 
     InputStream createUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());

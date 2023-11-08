@@ -10,7 +10,6 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        LottoNumbersValidator.validateLotto(numbers);
         this.numbers = sortNumberInAscending(numbers);
     }
 

@@ -1,8 +1,9 @@
-package lotto.domain;
+package lotto.repository;
+
+import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 // TODO: Repository 인터페이스화
 public class PurchaseRepository {

@@ -1,13 +1,12 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
-import lotto.domain.PurchaseRepository;
+import lotto.repository.PurchaseRepository;
 import lotto.utils.RandomNumberGenerator;
 import lotto.validator.LottoPurchaseValidator;
 
 import java.util.List;
 
-// TODO: 로또 생성 전략을 Interface로
 public class PurchaseService {
     private static PurchaseRepository purchaseRepository = PurchaseRepository.getInstance();
 

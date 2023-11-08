@@ -56,7 +56,7 @@ public class InputException {
     }
 
     public static void isThousandUnit(int num) {
-        if (num % 1000 != 0)
+        if (num % 1000 != 0 || num < 1000)
             throw new IllegalArgumentException(PrintMessage.ONLY_THOUSAND_UNIT);
     }
 

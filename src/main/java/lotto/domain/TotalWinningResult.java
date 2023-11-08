@@ -7,12 +7,15 @@ public class TotalWinningResult {
     private double totalPrizeMoney;
 
     public TotalWinningResult() {
+        initPrizeResult();
+        totalPrizeMoney = 0.0;
+    }
+
+    private void initPrizeResult() {
         prizeResult = new HashMap<>();
         for (LottoPrize lottoPrize : LottoPrize.values()) {
             prizeResult.put(lottoPrize, 0);
         }
-
-        totalPrizeMoney = 0.0;
     }
 
     public HashMap<LottoPrize, Integer> getPrizeResult() {

@@ -46,9 +46,9 @@ public class LottoController {
 
     private Revenue calculate(List<Rank> ranks, PurchaseAmount amount) {
         Calculator<Revenue> calculator = new PrizeCalculator();
-        Long prizes = Rank.sum(ranks);
-        Long investmentCost = Long.valueOf(amount.getAmount());
-        return calculator.calculate(prizes, investmentCost);
+        Long totalPrize = Rank.sum(ranks);
+        Long investmentAmount = Long.valueOf(amount.getAmount());
+        return calculator.calculate(totalPrize, investmentAmount);
     }
 
     private List<Rank> collectWinners(List<Lotto> boughtLotto, WinningLotto winningLotto) {

@@ -2,6 +2,9 @@ package lotto.View.InputView;
 
 import lotto.View.GeneralInputOutput.Input;
 import lotto.View.GeneralInputOutput.Output;
+import lotto.util.TypeConverter.UserPromptConverter;
+
+import static lotto.Common.ErrorMessage.*;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
@@ -14,14 +17,26 @@ public class InputView {
 
     public String getLottoPurchaseAmount() {
         GeneralOutput.stringPrintln(PURCHASE_AMOUNT_PROMPT);
-        return GeneralInput.stringInput();
+        String purchaseAmount = GeneralInput.stringInput();
+        validateEmpty(purchaseAmount);
+        return purchaseAmount;
+    }
+
+    public void validateEmpty( String amount){
+        if(amount.isEmpty() ){
+            throw new IllegalArgumentException(INPUT_EMPTY.getMessage());
+        }
     }
 
     public String getLottoWinningNumber() {
         System.out.println();
         GeneralOutput.stringPrintln(WINNING_NUMBER_PROMPT);
         return GeneralInput.stringInput();
+
     }
+
+
+
 
     public String getLottoBonusNumber() {
         System.out.println();

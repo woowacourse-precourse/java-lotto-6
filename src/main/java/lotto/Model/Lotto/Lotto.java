@@ -1,8 +1,13 @@
 package lotto.Model.Lotto;
 
 import java.util.List;
+
 import static lotto.Common.LottoValue.*;
+
 import lotto.Common.LottoValue;
+
+import static lotto.Common.ErrorMessage.*;
+import static lotto.Common.ErrorMessage.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,15 +30,15 @@ public class Lotto {
     //생성된 로또 번호가 6개가 아닐경우
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_COUNT_NUMBER.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_COUNT_INVALID.getMessage());
         }
     }
 
     //수가 1~45 사인인지
-    private void validateNumberRange(List<Integer> numbers){
-        for( Integer number : numbers) {
-            if(number < LOTTO_FIRST_NUMBER.getValue() || number > LOTTO_FINAL_NUMBER.getValue() ) {
-                throw new IllegalArgumentException("");
+    private void validateNumberRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < LOTTO_FIRST_NUMBER.getValue() || number > LOTTO_FINAL_NUMBER.getValue()) {
+                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
 
@@ -43,7 +48,7 @@ public class Lotto {
     private void validateNumberDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().toList().size()
                 != LOTTO_COUNT_NUMBER.getValue()) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(NUMBER_DUPLICATE.getMessage());
         }
 
     }
@@ -51,19 +56,16 @@ public class Lotto {
     //각 수가 오름차순 으로 정렬 되어 있는지
     private void validateNumberSorting(List<Integer> numbers) {
         if (numbers.stream().distinct().sorted().toList().size()
-                != LottoValue.LOTTO_COUNT_NUMBER.getValue()){
+                != LottoValue.LOTTO_COUNT_NUMBER.getValue()) {
             throw new IllegalArgumentException("");
         }
     }
 
 
-
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return this.numbers;
     }
 
-
-    // TODO: 추가 기능 구현
 
 
 }

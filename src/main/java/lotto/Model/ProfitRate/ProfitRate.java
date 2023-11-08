@@ -8,7 +8,7 @@ public class ProfitRate {
     }
 
 
-    public Double getProfitRatePercent(){
+    public Double  getProfitRatePercent(){
         return this.ProfitRate;
     }
 

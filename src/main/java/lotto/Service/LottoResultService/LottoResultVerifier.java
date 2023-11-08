@@ -12,7 +12,6 @@ public class LottoResultVerifier {
     private Integer bonusNumber;
     private List<Integer> winningNumber;
     private final LottoWinningResult winningResultList;
-    private  LottoSet lottoSet;
     private final PromptService Prompt;
 
 
@@ -22,7 +21,6 @@ public class LottoResultVerifier {
     }
 
     public LottoWinningResult findWinningLotto(LottoSet lottoSet) {
-        this.lottoSet = lottoSet;
 
         this.winningNumber = Prompt.getLottoWinningNumber().getWinningNumber();
         this.bonusNumber = Prompt.getLottoBonusNumber().getBonusNumber();

@@ -1,25 +1,32 @@
 package lotto.Model.LottoSet;
-
 import java.util.List;
 import lotto.Model.Lotto.Lotto;
-
+import static lotto.Common.ErrorMessage.*;
 public class LottoSet {
     private  List<Lotto> lottoSet;
 
     public LottoSet(List<Lotto> set ) {
+        validateNull(set);
+        validateNotEmpty(set);
         this.lottoSet = set;
     }
 
-    public List<Lotto> getLottoSet(){
-        return this.lottoSet;
+    private void validateNull(List<Lotto> lottoSet) {
+        if (lottoSet == null) {
+            throw new IllegalArgumentException(LOTTO_SET_NULL.getMessage());
+        }
     }
 
-    /**
-     * 로또 세트 에서 검증 할 목록
-     *
-     */
+    private void validateNotEmpty(List<Lotto> lottoSet) {
+        if (lottoSet.isEmpty()) {
+            throw new IllegalArgumentException(LOTTO_SET_EMPTY.getMessage());
+        }
+    }
 
 
+    public List<Lotto> getLottoSet(){
 
+        return this.lottoSet;
+    }
 
 }

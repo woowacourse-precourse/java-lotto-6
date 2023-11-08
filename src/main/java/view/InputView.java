@@ -1,5 +1,6 @@
 package view;
 
+import Constant.ErrorMessage;
 import Constant.ViewMessage;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("[ERROR] 입력된 값이 숫자가 아닙니다.");
+            throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_VALUE.getMessage());
         }
     }
 }

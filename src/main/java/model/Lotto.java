@@ -1,5 +1,6 @@
 package model;
 
+import Constant.ErrorMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,21 +19,21 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자로 이루어져 있어야합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INCORRECT_NUMBER_OF_NUMBERS.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.indexOf(numbers.get(i)) != i) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATION_OF_NUMBERS.getMessage());
             }
         }
     }
 
     protected void validateNumberRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_OF_RANGE.getMessage());
         }
     }
 

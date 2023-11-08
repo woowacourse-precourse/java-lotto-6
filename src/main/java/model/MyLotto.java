@@ -1,5 +1,6 @@
 package model;
 
+import Constant.ErrorMessage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +20,7 @@ public class MyLotto {
 
     private void validate(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위가 아닌 값을 입력되었습니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_OF_UNITS.getMessage());
         }
     }
 

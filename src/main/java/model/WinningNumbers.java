@@ -1,5 +1,6 @@
 package model;
 
+import Constant.ErrorMessage;
 import java.util.List;
 
 public class WinningNumbers extends Lotto {
@@ -21,7 +22,7 @@ public class WinningNumbers extends Lotto {
 
     private void validateBonusNumber(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATION_OF_NUMBERS.getMessage());
         }
     }
 }

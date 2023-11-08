@@ -53,7 +53,7 @@ public class Statistic {
         OutputHandler.printRateOfReturn(rateOfReturn);
     }
 
-    private long getWinningPrize() {
+    public long getWinningPrize() {
         return getRank(1) * (long) RANK1_PRIZE.getNumber()
                 + getRank(2) * (long) RANK2_PRIZE.getNumber()
                 + getRank(3) * (long) RANK3_PRIZE.getNumber()

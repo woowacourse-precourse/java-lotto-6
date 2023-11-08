@@ -23,7 +23,6 @@ public class LottoController {
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-    private BonusNumberChecker bonusNumberChecker;
     private LottoReader lottoReader;
     private Statistic statistic;
 

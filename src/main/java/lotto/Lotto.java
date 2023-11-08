@@ -8,6 +8,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateLottoNumber(numbers);
+        overLappingCheck(numbers);
         this.numbers = numbers;
     }
 
@@ -21,6 +22,16 @@ public class Lotto {
         for (int i = 0; i < 6; i++) {
             if (numbers.get(i) > 45 || numbers.get(i) < 1) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+
+    private void overLappingCheck(List<Integer> numbers) {
+        for (int i = 0; i < 5; i++) {
+            for (int j = i + 1; j < 6; j++) {
+                if (numbers.get(i).equals(numbers.get(j))) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호 중 중복된 숫자가 있습니다.");
+                }
             }
         }
     }

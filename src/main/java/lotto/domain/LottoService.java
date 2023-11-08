@@ -42,6 +42,14 @@ public class LottoService {
         return winningResults;
     }
 
+    public long calculateTotalPrize(Map<LottoRank, Integer> getWinningResults) {
+        long totalPrize = 0L;
+        for (LottoRank lottoRank : getWinningResults.keySet()) {
+            totalPrize += lottoRank.getPrize() * getWinningResults.get(lottoRank);
+        }
+        return totalPrize;
+    }
+
     public int calculateLottoCount(int purchaseAmount) {
         return purchaseAmount / LOTTO_PRICE;
     }

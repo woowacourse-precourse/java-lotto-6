@@ -30,6 +30,7 @@ public class LottoWinning {
 
     public static void validateDuplicateValue(List<Integer> _lotto) {
         _lotto = _lotto.stream().distinct().collect(Collectors.toList());
+
         if (_lotto.size() != LOTTO_SIZE.getNumber()) {
             OutputView.printError(ErrorMessage.DUPLICATE_NUMBER.getMessage());
             throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage() + ErrorMessage.DUPLICATE_NUMBER.getMessage());

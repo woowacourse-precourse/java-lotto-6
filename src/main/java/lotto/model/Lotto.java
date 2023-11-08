@@ -34,15 +34,19 @@ public class Lotto {
     }
 
     public int compare(List<Integer> _winning) {
-        List<Integer> _same = getNumbers().stream().filter(
-                _number -> {
+        List<Integer> _same = getNumbers()
+                .stream()
+                .filter(_number -> {
                     return _winning.contains(_number);
                 }).toList();
         return _same.size();
     }
 
     public static boolean validateDuplicateValue(List<Integer> _lotto) {
-        _lotto = _lotto.stream().distinct().collect(Collectors.toList());
+        _lotto = _lotto.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
         if (_lotto.size() != LOTTO_SIZE.getNumber()) {
             return true;
         }

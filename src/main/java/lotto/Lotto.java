@@ -1,8 +1,10 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -30,4 +32,12 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    public void print_lotto(){
+        String result=numbers.stream()
+                .sorted()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", " ,"[","]"));
+        System.out.println(result);
+    }
 }

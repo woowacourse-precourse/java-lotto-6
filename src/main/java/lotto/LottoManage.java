@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoManage {
@@ -18,6 +19,7 @@ public class LottoManage {
         money/=1000;
 
         //로또 번호 생성
+        lottos=new ArrayList<>();
         for (int i=0;i<money;i++){
             buy_Lotto();
         }
@@ -31,9 +33,11 @@ public class LottoManage {
     }
 
     //correct_lotto와 bonus를 저장하는 함수
-    public void setCorrect_lotto(List<Integer> input,int bonus){
+    public void setCorrect_lotto(List<Integer> input){
         this.correct_lotto=new Lotto(input);
-        this.bonus=bonus;
+    }
+    public void setBonus(int input){
+        this.bonus=input;
     }
 
     //money값에 따라 lotto를 생성하는 함수
@@ -42,6 +46,12 @@ public class LottoManage {
         lottos.add(new Lotto(numbers));
     }
 
-
+    //보유한 로또의 수량과 내용을 출력하는 함수
+    public void print_lottos(){
+        System.out.println(lottos.size()+"개를 구매했습니다.");
+        for (Lotto lotto:lottos){
+            lotto.print_lotto();
+        }
+    }
 
 }

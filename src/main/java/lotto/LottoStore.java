@@ -11,6 +11,7 @@ public class LottoStore {
     private final int THIRD_PLACE = 5;
     private final int FOURTH_PLACE = 4;
     private final int FIFTH_PLACE = 3;
+    private final double RATE = 100D;
 
     private List<Lotto> myLottos;
     private Lotto winningNumber;
@@ -36,6 +37,7 @@ public class LottoStore {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
     }
 
     public void printLottos() {
@@ -43,6 +45,7 @@ public class LottoStore {
         for (Lotto lotto : myLottos) {
             lotto.printLotto();
         }
+        System.out.println();
     }
 
     public void getWinningNumber() {
@@ -57,6 +60,7 @@ public class LottoStore {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
     }
 
     public void getBonusNumber() {
@@ -71,6 +75,7 @@ public class LottoStore {
                 System.out.println(e.getMessage());
             }
         }
+        System.out.println();
     }
 
     public void caculatePrize() {
@@ -95,8 +100,22 @@ public class LottoStore {
         System.out.println(this.countRanking[THIRD_PLACE] + "개");
         System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
         System.out.println(this.countRanking[SECOND_PLACE] + "개");
-        System.out.print("6개 일치 (30,000,000원) - ");
+        System.out.print("6개 일치 (2,000,000,000원) - ");
         System.out.println(this.countRanking[FIRST_PLACE] + "개");
+    }
+
+    public void printReturn(double returnRate) {
+        String roundedReturnRate = String.format("%.1f", returnRate);
+        System.out.print("총 수익률은 " + roundedReturnRate + "%입니다.");
+    }
+
+    public double calculateReturn() {
+        double totalPrize = (double) countRanking[FIFTH_PLACE] * (double) Value.FIFTH_PRIZE.get()
+                + (double) countRanking[FOURTH_PLACE] * (double) Value.FOURTH_PRIZE.get()
+                + (double) countRanking[THIRD_PLACE] * (double) Value.THIRD_PRIZE.get()
+                + (double) countRanking[SECOND_PLACE] * (double) Value.SECOND_PRIZE.get()
+                + (double) countRanking[FOURTH_PLACE] * (double) Value.FIFTH_PRIZE.get();
+        return totalPrize / (double) this.money * RATE;
     }
 
     private void validateBonusNumber(String input) {

@@ -38,6 +38,13 @@ public class Validator {
         return numbers;
     }
 
+    public static int isDuplicatedNumber(int input, List<Integer> numbers) {
+        if (numbers.contains(input)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER);
+        }
+        return input;
+    }
+
     public static int validatePurchaseAmount(String input) {
         int purchasePrice = isNumber(input);
         isThousandUnit(purchasePrice);
@@ -57,9 +64,7 @@ public class Validator {
     public static int validateBonusNumber(String input, List<Integer> winningNumber) {
         int bonusNumber = isNumber(input);
         isValidRange(bonusNumber);
-        if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE);
-        }
-        return isValidRange(bonusNumber);
+        return isDuplicatedNumber(bonusNumber, winningNumber);
     }
+
 }

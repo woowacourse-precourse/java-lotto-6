@@ -15,7 +15,7 @@ public class GameController {
         OutputMessage.printPurchaseAmount(purchasePrice, lotteries.getLottos());
 
         List<Integer> winningNumber = InputController.getWinningNumber();
-        int bonusNumber = InputController.getBounusNumber();
+        int bonusNumber = InputController.getBounusNumber(winningNumber);
 
         LottoMatcher lottoMatcher = new LottoMatcher(lottos, winningNumber, bonusNumber);
         OutputMessage.printResult(lottoMatcher.getStatistics(), lottoMatcher.getProfitRate());

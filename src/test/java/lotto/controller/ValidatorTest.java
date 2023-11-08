@@ -110,7 +110,7 @@ class ValidatorTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         assertThatThrownBy(() -> Validator.validateBonusNumber(inputDuplicate, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ErrorMessage.BONUS_NUMBER_DUPLICATE);
+                .hasMessageContaining(ErrorMessage.DUPLICATE_NUMBER);
     }
 
 

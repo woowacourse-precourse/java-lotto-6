@@ -6,9 +6,15 @@ import lotto.view.InputMessage;
 
 public class InputController {
     public static int getPurchasePrice() {
-        InputMessage.promptPurchasePrice();
-        String input = Console.readLine();
-        return Validator.validatePurchaseAmount(input);
+        while (true) {
+            try {
+                InputMessage.promptPurchasePrice();
+                String input = Console.readLine();
+                return Validator.validatePurchaseAmount(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static List<Integer> getWinningNumber() {
@@ -17,9 +23,9 @@ public class InputController {
         return Validator.validateWinningNumber(input);
     }
 
-    public static int getBounusNumber() {
+    public static int getBounusNumber(List<Integer> winningNumber) {
         InputMessage.promptBonusNumber();
         String input = Console.readLine();
-        return Validator.validateBonusNumber(input,getWinningNumber());
+        return Validator.validateBonusNumber(input, winningNumber);
     }
 }

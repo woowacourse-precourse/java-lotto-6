@@ -1,8 +1,10 @@
 package lotto.model;
 
+import static lotto.exception.ExceptionMessage.MESSAGE_RANGE_NUMBER;
+import static lotto.utils.Constants.MAX_LOTTO_NUMBER;
+import static lotto.utils.Constants.MIN_LOTTO_NUMBER;
+
 import lotto.exception.ClientException;
-import lotto.exception.ExceptionMessage;
-import lotto.utils.Constants;
 
 public class Bonus {
 
@@ -14,8 +16,8 @@ public class Bonus {
     }
 
     private void validateRange(int bonus) {
-        if (bonus < Constants.MIN_LOTTO_NUMBER || Constants.MAX_LOTTO_NUMBER < bonus) {
-            throw new ClientException(ExceptionMessage.MESSAGE_RANGE_NUMBER);
+        if (bonus < MIN_LOTTO_NUMBER || MAX_LOTTO_NUMBER < bonus) {
+            throw new ClientException(MESSAGE_RANGE_NUMBER);
         }
     }
 

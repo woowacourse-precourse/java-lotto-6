@@ -6,7 +6,6 @@ import lotto.Lotto;
 import lotto.Service.LottoService;
 import lotto.View.InputView;
 import lotto.View.OutputView;
-import lotto.WinPrize;
 
 import java.util.*;
 
@@ -21,7 +20,6 @@ public class LottoController {
     OutputView outputView = new OutputView();
     LottoService lottoService = new LottoService();
     List<Lotto> lottos = new ArrayList<>();
-    WinPrize winResult = new WinPrize();
 
     public void LottoGamePlay() {
         int count = lottoPurchase();
@@ -133,11 +131,18 @@ public class LottoController {
                 prizeCount += "+1";
             }
             Prize prize = Prize.fromCount(prizeCount);
-            winResult.getWinPrize().put(prize, winResult.getWinPrize().get(prize) + 1);
+            winResult.put(prize, winResult.get(prize) + 1);
         }
     }
 
-
+    private void ResultInit() {
+        winResult = new TreeMap<>(Collections.reverseOrder());
+        winResult.put(Prize.THREE_CORRECT, 0);
+        winResult.put(Prize.FOUR_CORRECT, 0);
+        winResult.put(Prize.FIVE_CORRECT_NOT_BONUS, 0);
+        winResult.put(Prize.FIVE_CORRECT_MATCH_BONUS, 0);
+        winResult.put(Prize.SIX_CORRECT, 0);
+    }
 
 
 }

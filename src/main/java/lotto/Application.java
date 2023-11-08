@@ -106,8 +106,7 @@ public class Application {
         rateReturnPrint(lottosresult, tiral);
     }
     private  static void rateReturnPrint(int[] lottosresult, int tiral){
-       System.out.println("총 수익률은"+ +"%입니다.");
-
+       System.out.println("총 수익률은"+ (double)(calculatePrize(lottosresult)/tiral)+"%입니다.");
 
     }
 

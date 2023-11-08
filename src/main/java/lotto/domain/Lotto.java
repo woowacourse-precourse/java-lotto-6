@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static lotto.exception.ExceptionMessage.DUPLICATION_EXCEPTION;
+
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -18,6 +21,14 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+
+        HashSet<Integer> set = new HashSet<>();
+
+        for (Integer number : numbers) {
+            if (!set.add(number)) {
+                throw new IllegalArgumentException(DUPLICATION_EXCEPTION.getMessage());
+            }
         }
     }
 

@@ -27,6 +27,8 @@ public class Game {
         List<Integer> winningNumbers = inputUser.inputWinningNumber();
         Integer bonusNumber = inputUser.inputBonusNumber();
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+        resultLottoGame(this.numberTickets, this.winningLotto);
     }
     private void makeNumberTicket(Integer lottoMoney){
         this.totalLottoCount = lottoMoney/1000;
@@ -40,8 +42,17 @@ public class Game {
         Lotto lotto = new Lotto(numbers);
         return lotto;
     }
-
     private void sortAscNumber(List<Integer> numbers){
         Collections.sort(numbers);
+    }
+    private void resultLottoGame(List<Lotto> numberTickets, WinningLotto winningLotto){
+        for (Lotto lotto : numberTickets){
+            System.out.println(calculateLottoGame(lotto, winningLotto.getLotto()));
+        }
+    }
+    private int calculateLottoGame(Lotto lotto, Lotto winningLotto){
+        List<Integer> resultLotto = new ArrayList<>(lotto.getNumbers());
+        resultLotto.retainAll(winningLotto.getNumbers());
+        return resultLotto.size();
     }
 }

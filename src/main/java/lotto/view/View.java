@@ -30,7 +30,8 @@ public class View {
 
     private int formatCost(String cost) {
         try {
-            return Integer.parseInt(cost);
+            String costWithoutSpace = cost.replaceAll("\\s+", "");
+            return Integer.parseInt(costWithoutSpace);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(COST_FORMAT);
         }

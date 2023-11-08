@@ -27,25 +27,41 @@ public class Controller {
     }
 
     private void proceedGame(){
+        issuanceLotto();
+        createAnswerLotto();
+        createBonusNumber();
+    }
+
+    private void issuanceLotto(){
         gameModel.lottoIssuance();
         ArrayList<LottoData> playerLottos = gameModel.transferPlayerLottoDatas();
         Output.printLottos(playerLottos);
+    }
 
+    private void createAnswerLotto(){
         Output.printInsertLottoNumbers();
         String playerInsert = Input.insertString();
         gameModel.initAnswerByStrings(playerInsert);
 
+    }
+    private void createBonusNumber(){
         Output.printInsertBonusNumber();
         Integer insertBonusNumber = Input.insertInteger();
         gameModel.initBonus(insertBonusNumber);
     }
 
     private void finshGame(){
-        ScoreBoard scoreBoard = gameModel.calculateRoundScore();
-        Output.printScores(scoreBoard);
-
-        Double earnLate = gameModel.calculateRoundEarnRate();
-        Output.printEarnRate(earnLate);
+        makeTotalScore();
+        makeTotalEarnRate();
     }
 
+    private void makeTotalScore(){
+        ScoreBoard scoreBoard = gameModel.getRoundScore();
+        Output.printScores(scoreBoard);
+    }
+
+    private void makeTotalEarnRate(){
+        Double earnLate = gameModel.getRoundEarnRate();
+        Output.printEarnRate(earnLate);
+    }
 }

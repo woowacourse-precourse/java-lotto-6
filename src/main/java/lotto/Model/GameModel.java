@@ -35,7 +35,7 @@ public class GameModel {
         return lottoPlayer.getLottoDatas();
     }
 
-    public ScoreBoard calculateRoundScore(){
+    public ScoreBoard getRoundScore(){
         Integer bonusNumber = lottoHost.getBonusNumberData();
         LottoData roundLotto = lottoHost.getLottoData();
 
@@ -64,7 +64,7 @@ public class GameModel {
         giveLottos(purchaseQuanity);
     }
 
-    public double calculateRoundEarnRate(){
+    public double getRoundEarnRate(){
         return lottoPlayer.getEarnRate();
     }
 

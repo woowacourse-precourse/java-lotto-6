@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.model.dto.AnalyzerWinningStatistics;
+import lotto.model.dto.BuyerLottoHistory;
 import lotto.model.lottonumbersgenerator.LottoNumbersGenerator;
 
 public class LottoBuyer {
@@ -8,6 +9,10 @@ public class LottoBuyer {
 
     public void buyLotto(int purchaseAmount, LottoNumbersGenerator lottoNumbersGenerator) {
         this.lottos = LottoSeller.sellLotto(purchaseAmount, lottoNumbersGenerator);
+    }
+
+    public BuyerLottoHistory generateBuyerLottoHistory() {
+        return BuyerLottoHistory.of(lottos);
     }
 
     public AnalyzerWinningStatistics calculateWinningStatistics(WinningNumbers winningNumbers) {

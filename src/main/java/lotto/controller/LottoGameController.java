@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.LottoBuyer;
+import lotto.model.dto.BuyerLottoHistory;
 import lotto.model.lottonumbersgenerator.RandomLottoNumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,13 +21,19 @@ public class LottoGameController {
     }
 
     private static void buyAutoLotto() {
-        LottoBuyer buyer = new LottoBuyer();
         int purchaseAmount = askPurchaseAmount();
+        LottoBuyer buyer = new LottoBuyer();
         buyer.buyLotto(purchaseAmount, new RandomLottoNumbersGenerator());
+        logBuyHistory(buyer);
     }
 
     private static int askPurchaseAmount() {
         OutputView.printPurchaseAmountPrompt();
         return InputView.readPurchaseAmount();
+    }
+
+    private static void logBuyHistory(LottoBuyer lottoBuyer) {
+        BuyerLottoHistory buyerLottoHistory = lottoBuyer.generateBuyerLottoHistory();
+        OutputView.printBuyerLottoHistory(buyerLottoHistory);
     }
 }

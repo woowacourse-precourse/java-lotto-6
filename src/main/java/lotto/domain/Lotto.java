@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.util.message.Error.VALID_DUPLICATION_INPUT;
+import static lotto.util.message.Error.VALID_RANGE_INPUT;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -14,7 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(VALID_RANGE_INPUT);
         }
     }
 
@@ -22,7 +25,7 @@ public class Lotto {
     private void validateDuplication(List<Integer> numbers) {
         List<Integer> copy = copyNumbers(numbers);
         if(compareNumbers(numbers, copy)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(VALID_DUPLICATION_INPUT);
         }
     }
     private List<Integer> copyNumbers(List<Integer> numbers) {

@@ -34,7 +34,7 @@ public class GameResult {
         return new GameResult(finalResult, rateOfReturn);
     }
 
-    private static void preprocessFinalResult(Map<LottoResultInfo, Integer> resultMap) {
+    public static void preprocessFinalResult(Map<LottoResultInfo, Integer> resultMap) {
         for (LottoResultInfo value : LottoResultInfo.values()) {
             resultMap.put(value, 0);
         }

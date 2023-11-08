@@ -12,7 +12,6 @@ public class InputView {
 
 
     public String ask(Supplier<String> input) throws IllegalArgumentException {
-//        System.out.println();
         String result = input.get();
         validateBlank(result);
 

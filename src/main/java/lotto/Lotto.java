@@ -32,5 +32,11 @@ public class Lotto {
         return numbers;
     }
 
+    public Rank checkWinning(Lotto winningLotto, int bonusNumber) {
+        int matchCount = (int) numbers.stream().filter(winningLotto.numbers::contains).count();
+        boolean bonusMatch = numbers.contains(bonusNumber);
+        return Rank.valueOf(matchCount, bonusMatch);
+    }
+
     // TODO: 추가 기능 구현
 }

@@ -28,6 +28,7 @@ public interface LottoFinalConsts {
     String LOTTO_RANGE_OUT_OF_BOUNDS = "로또 번호가 6개가 아닙니다.";
     String LOTTO_CANNOT_SPLIT_WINNING = "당첨번호 쉼표(,)로 구분되어 있지 않습니다.";
     String LOTTO_BONUS_NUMBER_ALREADY_EXIST = "보너스 번호가 이미 당첨번호에 존재합니다.";
+    String LOTTO_NUMBER_OUT_OF_RANGE = "로또 번호는 1~45까지의 숫자여야합니다.";
     String INPUT_LOTTO_PURCHASE = "구입금액을 입력해 주세요.";
     String PRINT_LOTTO_PURCHASE_COUNT = "개를 구매했습니다.";
     String INPUT_WIN_LOTTO = "당첨 번호를 입력해 주세요.";

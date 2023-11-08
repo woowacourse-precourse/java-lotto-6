@@ -34,10 +34,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호의 개수가 6개가 안되면 예외가 발생한다.")
+    @Test
+    void createLottoByLowSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -110,6 +116,25 @@ class LottoTest {
     void validateDividePrice() {
         assertThatThrownBy(() -> inputValidator.validateLottoSheets("1500"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 1등 당첨")
+    @Test
+    void validateHitCount() {
+        //given
+        List<Lotto> lottos = new ArrayList<>();
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(3, 4, 5, 6, 10, 12));
+        UserLotto userLotto = new UserLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        lottos.add(lotto1);
+        lottos.add(lotto2);
+        //when
+        EnumMap<LottoRank, Integer> lottoResult = lottoService.getLottoResult(lottos, userLotto);
+        Integer firstWinnerCount = lottoResult.get(LottoRank.FIRST);
+
+        //then
+        Assertions.assertThat(firstWinnerCount).isEqualTo(1);
     }
 
     @DisplayName("로또 1등 1장일 때 구매 금액 수익률")

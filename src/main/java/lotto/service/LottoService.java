@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 
 public class LottoService {
@@ -22,5 +23,22 @@ public class LottoService {
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    public int getMatchCount(Lotto lotto, Lotto winningNumbers) {
+        int matchCount = 0;
+        for (Integer lottoNumber : lotto.getNumbers()) {
+            if (winningNumbers.getNumbers().contains(lottoNumber)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public boolean getIsMatchBonus(Lotto lotto, Bonus bonusNumber) {
+        if (lotto.getNumbers().contains(bonusNumber.getNumber())) {
+            return true;
+        }
+        return false;
     }
 }

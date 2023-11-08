@@ -25,15 +25,29 @@
 ### controllor
     LottoController.java
     - 전체적인 흐름을 표현하는 코드 파일 
+    - 구입한 Lotto List를 purchaseLottoNumberDomain으로 부터 받고, 
+    - 당첨 로또 번호가 있는 Integer List를 setLottoNumberDomain으로 부터 받는다.
+    - 위 2개의 List를 LottoWinningResultDomain에 인자로 주입한다.
 ### domain
     EnterLottoWinningNumbersDomain.java
     - 로또 당첨 번호를 사용자에게 받는 세부 로직이 들어간 코드 파일
+    - 사용자로부터 당첨 번호를 받고, Integer List에 초기화 시켜준다.
+    - 그 후 사용자로부터 보너스 번호를 받고, Integer List에 추가시켜준다.
+    - 위 List를 리턴하여 controller에게 전달한다. 
     LottoStatisticsDomain.java
     - 로또 당첨 통계를 내는 세부 로직이 들어간 코드 파일
+    - LottoWinningResultDomain에서 구입한 Lotto List와 당첨 번호 List를 인자로 받는다.
+    - 각 로또의 번호와 당첨 번호 및 보너스 번호를 비교하여 일치하는 번호의 개수를 Integer List에 저장한다.
+    - 이 저장된 리스트를 LottoWinningResultDomain에게 전달한다.
     LottoWinningResultDomain.java
     - 로또 당첨 통계를 View와 연결시키는 로직이 들어간 코드 파일
+    - LottoStatisticsDomain에서부터 일치하는 번호가 들어간 Integer List를 받는다.
+    - 이 List를 LottoStatisticsView에게 전달하여 보여준다.
     PurchaseLottoNumberDomain.java
     - 구입할 금액을 확인하고, 랜덤 로또를 생성하는 세부 로직이 들어간 코드 파일
+    - 사용자로부터 구입할 금액을 받아 int 자료에 초기화 시킨다.
+    - 이 데이터를 PurchaseLottoDto에 넘겨 Lotto List를 받아온다.
+    - 받은 Lotto List 데이터를 controller에게 전달한다.
 ### constants
     EnterLottoWinningNumberConstants.java
     - 당첨 번호 및 보너스 번호 UI가 나올 때 사용되는 상수를 나타낸 코드 파일
@@ -54,10 +68,15 @@
 ### dto
     PurchaseLottoDto.java
     - 랜덤 로또를 생성하는 세부 로직이 들어간 코드 파일
+    - 구입 금액을 기반으로 Lotto를 생성하고, List자료형으로 하나의 객체로 묶는다.
+    - 이 묶인 객체를 PurchaseLottoNumberDomain에게 전달한다.
 ### view
     EnterLottoWinningNumberView.java
     - 당첨 번호 및 보너스 번호를 사용자에게 받는 UI가 들어간 로직
+    - 위 받은 번호들을 String자료형으로 EnterLottoWinningNumbersDomain에게 전달한다.
     LottoWinningStatisticsView.java
     - 당첨 로또 통계를 사용자에게 보여주는 UI가 들어간 로직
+    - LottoWinningResultDomain으로부터 당첨 번호 개수가 들어간 Integer List를 받아 통계를 표현한다.
     lottoPurchasedResult.java
     - 로또 구입 금액을 사용자에게 받는 UI가 들어간 로직
+    - 로또 구입 금액을 String자료형으로 받아 PurchaseLottoNumberDomain에게 전달한다.

@@ -6,7 +6,7 @@ public enum LottoCorrectResult {
     private final int minCorrectCount;
     private final LottoPlace lottoPlace;
 
-    LottoCorrectResult(int correctCount, LottoPlace lottoPlace) {
+    LottoCorrectResult(final int correctCount, final LottoPlace lottoPlace) {
         minCorrectCount = correctCount;
         this.lottoPlace = lottoPlace;
     }

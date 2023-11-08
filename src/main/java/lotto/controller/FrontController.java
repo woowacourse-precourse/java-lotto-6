@@ -7,7 +7,6 @@ import lotto.domain.WinningNumbers;
 import lotto.domain.WinningScores;
 
 public class FrontController {
-
     private final BudgetController budgetController;
     private final LottoController lottoController;
     private final WinningController winningController;

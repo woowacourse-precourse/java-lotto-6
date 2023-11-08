@@ -12,7 +12,7 @@ public enum LottoPlace {
     private final int reward;
     private final String description;
 
-    LottoPlace(int place, int reward, String description) {
+    LottoPlace(final int place, final int reward, final String description) {
         this.place = place;
         this.reward = reward;
         this.description = description;

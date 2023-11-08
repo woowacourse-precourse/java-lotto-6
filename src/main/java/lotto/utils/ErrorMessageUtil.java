@@ -6,7 +6,7 @@ public class ErrorMessageUtil {
     private ErrorMessageUtil() {
     }
 
-    public static String getOutputErrorMessage(IllegalArgumentException exception) {
+    public static String getOutputErrorMessage(final IllegalArgumentException exception) {
         StringBuilder sb = new StringBuilder(PREFIX);
         sb.append(exception.getMessage()).append("\n");
 

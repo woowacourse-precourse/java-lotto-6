@@ -5,7 +5,6 @@ import lotto.service.BudgetService;
 import lotto.view.GameView;
 
 public class BudgetController {
-
     private final BudgetService budgetService;
     private final GameView gameView;
 

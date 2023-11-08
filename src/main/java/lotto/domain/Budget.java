@@ -5,7 +5,7 @@ import lotto.utils.ErrorMessage;
 public class Budget {
     private final int budget;
 
-    public Budget(int budget) {
+    public Budget(final int budget) {
         budgetValidation(budget);
 
         this.budget = budget;

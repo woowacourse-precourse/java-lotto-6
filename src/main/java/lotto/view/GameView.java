@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.utils.OutputMessage;
 
-//todo: input, output view 분리 고민
 public class GameView {
 
     public void printInputBudgetMessage() {

@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     private void validateDuplicated(List<Integer> numbers) {
-        if (getDistintCount(numbers) != numbers.size()) {
+        if (getDistinctCount(numbers) != numbers.size()) {
             throw new IllegalArgumentException(
                     ErrorMessage.DUPLICATED_NUMBER.getValue()
             );
@@ -57,7 +57,7 @@ public class Lotto {
         }
     }
 
-    private long getDistintCount(List<Integer> numbers) {
+    private long getDistinctCount(List<Integer> numbers) {
         return numbers.stream().distinct().count();
     }
 }

@@ -3,6 +3,9 @@ package lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class TestInputException {
@@ -54,6 +57,81 @@ public class TestInputException {
 
         assertThatThrownBy(()-> testUi.check1000(falseValue))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void testSplitInput(){
+
+        String testValue = "1,2,3,4,5,6";
+        String [] result = {"1", "2", "3", "4", "5", "6"};
+
+        assertThat(testUi.splitInput(testValue)).isEqualTo(result);
+    }
+
+    @Test
+    public void checkNumOfInput(){
+
+        String [] trueValue = {"1", "2", "3", "4", "5", "6"};
+        String [] lessValue = {"1", "2", "3", "4", "5"};
+        String [] moreValue = {"1", "2", "3", "4", "5", "6", "7"};
+
+        assertThatCode(()->testUi.checkNumOfInput(trueValue))
+                .doesNotThrowAnyException();
+
+        assertThatThrownBy(()->testUi.checkNumOfInput(lessValue))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(()->testUi.checkNumOfInput(moreValue))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void checkRangeOfInput(){
+
+        int maxValue = 45;
+        int minValue = 1;
+        int falseValue = 0;
+        int falseValue2 = 46;
+
+        assertThatCode(()->testUi.checkRangeOfInput(maxValue))
+                .doesNotThrowAnyException();
+        assertThatCode(()->testUi.checkRangeOfInput(minValue))
+                .doesNotThrowAnyException();
+
+        assertThatThrownBy(()->testUi.checkRangeOfInput(falseValue))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(()->testUi.checkRangeOfInput(falseValue2))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    @Test
+    public void checkDuplicatedInput(){
+
+        List<Integer> trueValue = new ArrayList<>();
+        trueValue.add(1);
+        trueValue.add(2);
+        trueValue.add(3);
+        trueValue.add(4);
+        trueValue.add(5);
+        trueValue.add(6);
+
+        List<Integer> falseValue = new ArrayList<>();
+        falseValue.add(1);
+        falseValue.add(1);
+        falseValue.add(2);
+        falseValue.add(3);
+        falseValue.add(4);
+        falseValue.add(5);
+
+        assertThatCode(()->testUi.checkDuplicatedInput(trueValue))
+                .doesNotThrowAnyException();
+
+        assertThatThrownBy(()->testUi.checkDuplicatedInput(falseValue))
+                .isInstanceOf(IllegalArgumentException.class);
+
+
+
     }
 
 }

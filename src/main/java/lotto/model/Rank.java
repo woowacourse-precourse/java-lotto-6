@@ -11,19 +11,19 @@ public enum Rank {
     FIFTH(3, 5000, false),
     PASS(0, 0, false);
 
-    private final int winningCount;
+    private final int matchedNumberCount;
     private final int reward;
     private final boolean bonus;
 
-    Rank(int winningCount, int reward, boolean bonus) {
-        this.winningCount = winningCount;
+    Rank(int matchedNumberCount, int reward, boolean bonus) {
+        this.matchedNumberCount = matchedNumberCount;
         this.reward = reward;
         this.bonus = bonus;
     }
 
     public static Rank judge(int matchNumberCount, boolean bonus) {
         return Arrays.stream(Rank.values())
-                .filter(rank -> isSameWinningCount(matchNumberCount, rank) && isSameBonusStatus(bonus, rank))
+                .filter(rank -> isSameMatchedNumberCount(matchNumberCount, rank) && isSameBonusStatus(bonus, rank))
                 .findFirst()
                 .orElse(PASS);
     }
@@ -32,12 +32,12 @@ public enum Rank {
         return rank.bonus == bonus;
     }
 
-    private static boolean isSameWinningCount(int matchCount, Rank rank) {
-        return rank.winningCount == matchCount;
+    private static boolean isSameMatchedNumberCount(int matchedNumberCount, Rank rank) {
+        return rank.matchedNumberCount == matchedNumberCount;
     }
 
-    public int getWinningCount() {
-        return winningCount;
+    public int getMatchedNumberCount() {
+        return matchedNumberCount;
     }
 
     public int getReward() {
@@ -49,7 +49,7 @@ public enum Rank {
         return formatter.format(reward);
     }
 
-    public boolean isBonus() {
+    public boolean hasBonus() {
         return bonus;
     }
 }

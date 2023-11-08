@@ -5,6 +5,8 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public class OutputView {
+    private static final String START_RESULT_MESSAGE = "당첨 통계";
+    private static final String SEPARATOR_LINE ="---";
     private static final String TICKET_COUNT_MESSAGE = "%d개를 구매했습니다.";
     private static final String RANK_RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String BONUS_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
@@ -18,6 +20,8 @@ public class OutputView {
     }
 
     public void printRankResult(int[] rankCount, double profitability){
+        System.out.println(START_RESULT_MESSAGE);
+        System.out.println(SEPARATOR_LINE);
         System.out.println(String.format(RANK_RESULT_MESSAGE, 3, "5,000", rankCount[0]));
         System.out.println(String.format(RANK_RESULT_MESSAGE, 4, "50,000", rankCount[1]));
         System.out.println(String.format(RANK_RESULT_MESSAGE, 5, "1,500,000", rankCount[2]));

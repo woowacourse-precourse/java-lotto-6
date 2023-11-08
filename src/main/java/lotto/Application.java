@@ -20,6 +20,7 @@ public class Application {
         int bonusNumber = getBonusNumber(winningNumbers);
 
         Map<Prize, Integer> results = checkLottoResults(lottoTickets, winningNumbers, bonusNumber);
+        printResults(results);
     }
 
     public static int getValidPurchaseAmount(){
@@ -133,5 +134,14 @@ public class Application {
             }
         }
         return matchCount;
+    }
+
+    public static void printResults(Map<Prize, Integer> results) {
+        System.out.println("\n당첨 통계\n---");
+        for (Prize prize : Prize.values()) {
+            if (prize != Prize.NONE) {
+                System.out.println(prize.getMatchCount() + "개 일치 (" + prize.getPrizeMoney() + "원)- " + results.getOrDefault(prize, 0) + "개");
+            }
+        }
     }
 }

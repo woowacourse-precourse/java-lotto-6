@@ -17,4 +17,8 @@ public class Lottos {
 
         return new MatchingResults(matchingResults);
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

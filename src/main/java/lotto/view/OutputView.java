@@ -14,27 +14,25 @@ import static lotto.util.LottoGenerator.generateLottoNumbers;
 
 public class OutputView {
 
-    public static Lottos announceIssuedLottos(PurchaseQuantity quantity) {
-        announcePurchaseQuantity(quantity);
-        return showIssuedLottos(quantity);
-    }
-
     public static void announcePurchaseQuantity(PurchaseQuantity purchaseQuantity) {
         printObject(ANNOUNCE_PURCHASE_QUANTITY_FORMAT, purchaseQuantity);
         lineBreak();
     }
 
-    private static Lottos showIssuedLottos(PurchaseQuantity quantity) {
+    public static Lottos getIssuedLottos(PurchaseQuantity quantity) {
         List<Lotto> lottos = new ArrayList<>();
-        quantity.forEach((repeat) -> {
-            Lotto lotto = new Lotto(generateLottoNumbers());
-            lottos.add(lotto);
-
-            printObject(lotto);
-            lineBreak();
-        });
-
+        quantity.forEach((repeat) -> lottos.add(new Lotto(generateLottoNumbers())));
         return new Lottos(lottos);
+    }
+
+    public static void showIssuedLottos(Lottos lottos) {
+        lottos.getLottos()
+                .forEach((lotto) -> printObjectWithLine(lotto));
+    }
+
+    private static void printObjectWithLine(Lotto lotto) {
+        printObject(lotto);
+        lineBreak();
     }
 
     public static void printObject(OutputMessage outputMessage, Object object) {

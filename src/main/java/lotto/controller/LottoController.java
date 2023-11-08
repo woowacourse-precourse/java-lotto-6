@@ -11,7 +11,9 @@ public class LottoController {
         PurchaseBudget purchaseBudget = getPurchaseBudget();
         lineBreak();
 
-        Lottos issuedLottos = announceIssuedLottos(purchaseBudget.createQuantity());
+        announcePurchaseQuantity(purchaseBudget.createQuantity());
+        Lottos issuedLottos = getIssuedLottos(purchaseBudget.createQuantity());
+        showIssuedLottos(issuedLottos);
         lineBreak();
 
         Lotto winningLotto = getWinningLotto();

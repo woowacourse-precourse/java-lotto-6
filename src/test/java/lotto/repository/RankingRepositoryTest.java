@@ -32,8 +32,8 @@ class RankingRepositoryTest {
     }
 
     @Test
-    @DisplayName("getTotalRewards() 동작 테스트")
-    void testGetTotalRewards() {
+    @DisplayName("findTotalRewards() 동작 테스트")
+    void testFindTotalRewards() {
         // Given
         rankingRepository.increaseNumberOfRanking(1);
         rankingRepository.increaseNumberOfRanking(2);

@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.service.CalculateLottoService;
 import lotto.service.InputLottoInfoService;

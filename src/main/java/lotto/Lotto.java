@@ -1,10 +1,7 @@
 package lotto;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +9,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-        sortLottoNumbers();
     }
 
     private void validate(List<Integer> numbers) {
@@ -26,12 +22,11 @@ public class Lotto {
         return this.numbers;
     }
 
-    private void sortLottoNumbers() {
-        Collections.sort(this.numbers);
-    }
 
     public void displayLottoNumbers() {
-        System.out.println(numbers.toString());
+        List<Integer> numbers = this.numbers;
+
+        System.out.println(numbers);
     }
 
 

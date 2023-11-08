@@ -10,9 +10,10 @@ import java.util.Map;
 public class LottoController {
 
     static final String INPUT_PROMPT_AMOUNT_TO_PAY = "구입금액을 입력해 주세요.";
-    static final String PROMPT_LOTTO_COUNT = "8개를 구매했습니다.";
+    static final String PROMPT_LOTTO_COUNT = "개를 구매했습니다.";
     static final String INPUT_PROMPT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     static final String INPUT_PROMPT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    static final String PROMPT_WINNING_STATISTIC = "당첨 통계\n---";
     static final int LOTTO_PRICE = 1000;
 
     private int totalAmountToPay;
@@ -24,6 +25,7 @@ public class LottoController {
 
     public LottoController() {
         issuedLottos = new ArrayList<>();
+        winningNumbers = new ArrayList<>();
         winningStatistics = new HashMap<>();
 
         winningStatistics.put(LottoWinningStatus.THREE_MATCH, 0);
@@ -33,25 +35,61 @@ public class LottoController {
         winningStatistics.put(LottoWinningStatus.SIX_MATCH, 0);
     }
 
-    public void inputAmountToPay() {
+    public void LottoStart() {
+        while (true) {
+            try {
+                inputAmountToPay();
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 숫자만 입력해주세요");
+                continue;
+            }
+
+            createLotto();
+
+            displayIssuedLottos();
+            try {
+                inputWinningNumbers();
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 숫자만 입력해주세요");
+                continue;
+            }
+            inputBonusNumber();
+            calculateWinningResult();
+
+
+            double rateOfRevenue = calculateRateOfRevenue();
+            displayWinningStatistics(rateOfRevenue);
+
+            return;
+        }
+    }
+
+    private void inputAmountToPay() {
         System.out.println(INPUT_PROMPT_AMOUNT_TO_PAY);
-        this.totalAmountToPay = Integer.parseInt(Console.readLine());
+        try {
+            this.totalAmountToPay = Integer.parseInt(Console.readLine());
+        }
+        catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요");
+        }
         this.lottoCount = calculateLottoTicketCount(totalAmountToPay);
     }
 
-    public void inputWinningNumbers() {
+    private void inputWinningNumbers() {
         System.out.println(INPUT_PROMPT_WINNING_NUMBERS);
         String winningNumbersInput = Console.readLine();
         String[] winningNumbers = winningNumbersInput.split(",");
 
-        validate(winningNumbers);
+        validateWinningNumbers(winningNumbers);
 
         for (String number : winningNumbers) {
             this.winningNumbers.add(Integer.parseInt(number));
         }
     }
 
-    public void inputBonusNumber() {
+    private void inputBonusNumber() {
         System.out.println(INPUT_PROMPT_BONUS_NUMBER);
         this.bonusNumber = Integer.parseInt(Console.readLine());
     }
@@ -64,7 +102,7 @@ public class LottoController {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    public void createLotto() {
+    private void createLotto() {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
             Lotto lotto = new Lotto(lottoNumbers);
@@ -73,19 +111,24 @@ public class LottoController {
         }
     }
 
-    public void displayIssuedLottos() {
-        System.out.println(PROMPT_LOTTO_COUNT);
+    private void displayIssuedLottos() {
+        System.out.println(this.lottoCount + PROMPT_LOTTO_COUNT);
 
         for(Lotto lotto: this.issuedLottos) {
             lotto.displayLottoNumbers();
         }
     }
 
-    private void validate(String[] numbers) {
+    private void validateWinningNumbers(String[] numbers) {
         validateInputCount(numbers);
         validateInputIsNumbers(numbers);
-        validateInputNumberRange(numbers);
+        validateNumberRange(numbers);
         validateDuplication(numbers);
+    }
+
+    private void validateBonusNumber(String number) {
+        validateInputIsNumbers(number);
+        validateNumberRange(number);
     }
 
     private void validateInputCount(String[] numbers) {
@@ -104,7 +147,15 @@ public class LottoController {
         }
     }
 
-    private void validateInputNumberRange(String[] numbers) {
+    private void validateInputIsNumbers(String inputNumber) {
+        try {
+            int number = Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.");
+        }
+    }
+
+    private void validateNumberRange(String[] numbers) {
         for (String inputNumber : numbers) {
             int number = Integer.parseInt(inputNumber);
             if (number < 1 || number > 45) {
@@ -113,10 +164,17 @@ public class LottoController {
         }
     }
 
+    private void validateNumberRange(String inputNumber) {
+        int number = Integer.parseInt(inputNumber);
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자만 입력하세요.");
+        }
+    }
+
     private void validateDuplication(String[] numbers) {
-        for (String number1 : numbers) {
-            for (String number2 : numbers) {
-                if (number1.equals(number2)) {
+        for (int i = 0; i < numbers.length - 1; i++) {
+            for (int j = i + 1; j < numbers.length; j++) {
+                if (numbers[i].equals(numbers[j])) {
                     throw new IllegalArgumentException("[ERROR] 중복 값을 입력했습니다.");
                 }
             }
@@ -137,6 +195,14 @@ public class LottoController {
         return lotto.getNumbers().contains(this.bonusNumber);
     }
 
+    private void calculateWinningResult() {
+        for (Lotto lotto : this.issuedLottos) {
+            int winningCount = compareToWinningNumber(lotto);
+            boolean isContainBonus = compareToBonusNumber(lotto);
+            updateWinningStatistics(winningCount, isContainBonus);
+        }
+    }
+
     private void updateWinningCount(LottoWinningStatus MATCH) {
         int currentValue = winningStatistics.get(MATCH);
         int newValue = currentValue + 1;
@@ -144,14 +210,14 @@ public class LottoController {
 
     }
 
-    private void updateWinningStatistics(int count, boolean bonus) {
+    private void updateWinningStatistics(int count, boolean isContainBonus) {
         if (count == 3) {
            updateWinningCount(LottoWinningStatus.THREE_MATCH);
         }
         if (count == 4) {
             updateWinningCount(LottoWinningStatus.FOUR_MATCH);
         }
-        if (count == 5 && !bonus) {
+        if (count == 5 && !isContainBonus) {
             updateWinningCount(LottoWinningStatus.FIVE_MATCH);
         }
         if (count == 5) {
@@ -170,14 +236,16 @@ public class LottoController {
         return revenue / totalAmountToPay;
     }
 
-    public void displayWinningStatistics(double rateOfRevenue) {
+    private void displayWinningStatistics(double rateOfRevenue) {
         String commonString = "개";
+
+        System.out.println(PROMPT_WINNING_STATISTIC);
 
         for (Map.Entry<LottoWinningStatus, Integer> entry : winningStatistics.entrySet()) {
             System.out.println(entry.getKey().getPrompt() + entry.getValue() + commonString);
         }
 
-        System.out.println("총 수익률은 " + rateOfRevenue + "%입니다.");
+        System.out.println("총 수익률은 " + Math.round(rateOfRevenue * 10000)/100.0 + "%입니다.");
     }
 
 

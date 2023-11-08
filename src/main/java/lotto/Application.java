@@ -95,7 +95,7 @@ public class Application {
 
     private  static  void resultPrint(int tiral, List<Lotto> lottos,List<Integer> winningnumber ){
         System.out.println("당첨 통계\n"+ "---");
-        int[] lottosresult =printCheckNumber(tiral,lottos,winningnumber);
+        int[] lottosresult =getCheckNumber(tiral,lottos,winningnumber);
 
         System.out.println("3개 일치 (5,000원) -"+ lottosresult[4] +"개\n"
                 + "4개 일치 (50,000원) - "+ lottosresult[3] +"개\n"
@@ -103,9 +103,20 @@ public class Application {
                 + "5개 일치, 보너스 볼 일치 (30,000,000원) - "+ lottosresult[1] +"개\n"
                 + "6개 일치 (2,000,000,000원) - "+ lottosresult[0] +"개");
 
+        rateReturnPrint(lottosresult, tiral);
+    }
+    private  static void rateReturnPrint(int[] lottosresult, int tiral){
+       System.out.println("총 수익률은"+ +"%입니다.");
+
 
     }
 
+    private  static  int calculatePrize(int[] lottsresult){
+        int prize =0;
+        return prize = (2000000000 * lottsresult[0]) + (30000000 * lottsresult[1]) + (1500000 * lottsresult[2]) +
+                (50000 * lottsresult[3]) +(5000 * lottsresult[4]);
+
+    }
     private  static int checkNumber(Lotto lottoticket,List<Integer> winningnumber ){
         return (int) lottoticket.getNumbers().stream().filter(winningnumber::contains).count();
     }
@@ -124,7 +135,7 @@ public class Application {
 
         return matchdnumber;
     }
-    private static int[] printCheckNumber(int tiral, List<Lotto> lottos,List<Integer> winningnumber){
+    private static int[] getCheckNumber(int tiral, List<Lotto> lottos,List<Integer> winningnumber){
         int[] lottosresult = new int[5];
         for(int i =0; i < tiral; i++){
             Lotto lottoticket =  lottos.get(i);
@@ -153,6 +164,8 @@ public class Application {
         winningnumber.add(getBonceNumber(winningnumber));
 
         resultPrint(ticket, lottes, winningnumber);
+
+
     }
 
 }

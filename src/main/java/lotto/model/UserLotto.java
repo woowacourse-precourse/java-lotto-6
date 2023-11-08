@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserLotto {
-    private final List<Lotto> myLotto;
+    private final List<Lotto> userLotto;
 
     public UserLotto(List<Lotto> lotto) {
-        myLotto = lotto;
+        userLotto = lotto;
     }
 
-    public List<Lotto> getMyLotto() {
-        return myLotto.stream()
+    public List<Lotto> getUserLotto() {
+        return userLotto.stream()
                 .map(o -> new Lotto(o.getLotto()))
                 .collect(Collectors.toList());
     }

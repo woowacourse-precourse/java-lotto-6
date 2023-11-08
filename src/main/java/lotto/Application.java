@@ -1,3 +1,8 @@
+/*
+ * 로또 구현 프로그램
+ * 2023.11.02 ~ 2023.11.08
+ */
+
 package lotto;
 
 import lotto.controller.MainController;

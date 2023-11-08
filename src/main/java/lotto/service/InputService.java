@@ -19,7 +19,7 @@ public class InputService {
         }
         int price = Integer.parseInt(input);
         try {
-            PriceValidator.isMultipleOfThousand(price);
+            PriceValidator.isMultipleOfLottoPriceUnit(price);
         } catch (IllegalArgumentException e) {
             System.out.println(ErrorMessage.PRICE_NOT_MULTIPLE_OF_THOUSAND.getMessage());
             return false;

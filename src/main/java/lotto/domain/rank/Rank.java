@@ -38,10 +38,6 @@ public enum Rank {
         return lottoResult;
     }
 
-    public int matchCount() {
-        return lottoResult.matchCount();
-    }
-
     public int reward() {
         return reward;
     }

@@ -4,10 +4,13 @@ import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -37,28 +40,31 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
     @DisplayName("로또 3개 이하의 번호가 일치하는 경우 RANK.NON_RANKING 반환한다.")
-    @Test
-    void matchWithNumbers_NON_RANKING() {
+    @MethodSource("generateNonRanking")
+    void matchWithNumbers_NON_RANKING(List<Integer> lottoNumbers) {
         // given
-        Lotto lottoZero = new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12));
-        Lotto lottoOne = new Lotto(Arrays.asList(1, 7, 8, 9, 10, 11));
-        Lotto lottoTwo = new Lotto(Arrays.asList(1, 2, 7, 8, 9, 10));
+        Lotto lotto = new Lotto(lottoNumbers);
         WinLotto winLotto = new WinLotto(Arrays.asList(1, 2, 3, 4, 5, 6), 10);
 
         // when
-        Ranking rankingZero = lottoZero.matchWithWinLotto(winLotto);
-        Ranking rankingOne = lottoOne.matchWithWinLotto(winLotto);
-        Ranking rankingTwo = lottoTwo.matchWithWinLotto(winLotto);
+        Ranking ranking = lotto.matchWithWinLotto(winLotto);
 
         // then
-        assertThat(rankingZero).isEqualTo(Ranking.NON_RANKING);
-        assertThat(rankingOne).isEqualTo(Ranking.NON_RANKING);
-        assertThat(rankingTwo).isEqualTo(Ranking.NON_RANKING);
+        assertThat(ranking).isEqualTo(Ranking.NON_RANKING);
     }
 
+    static Stream<Arguments> generateNonRanking() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(7, 8, 9, 10, 11, 12)),
+                Arguments.of(Arrays.asList(1, 7, 8, 9, 10, 11)),
+                Arguments.of(Arrays.asList(1, 2, 7, 8, 9, 10))
+        );
+    }
+
+    @ParameterizedTest
     @DisplayName("로또의 3개의 번호가 일치하는 경우 RANK.FIFTH를 반환한다.")
-    @Test
     void matchWithNumbers_FIFTH() {
         // given
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));

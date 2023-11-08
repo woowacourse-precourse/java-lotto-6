@@ -42,7 +42,7 @@ class LottoMachineTest {
     @DisplayName("범위 밖의 숫자를 가진 로또를 생성하면 Lotto 생성 과정에서 예외가 발생한다.")
     void issueLotto_outOfRange() {
         // given
-        numberMaker = new ExpectedNumberMaker(List.of(1,2,3,4,5,49), 6);
+        numberMaker = new ExpectedNumberMaker(List.of(1,2,3,4,5,49));
         lottoMachine = new LottoMachine(numberMaker);
         Money money = new Money(1000);
 
@@ -56,7 +56,7 @@ class LottoMachineTest {
     @DisplayName("중복된 숫자를 생성하면 Lotto생성 과정에서 예외가 발생한다.")
     void issueLotto_duplicate() {
         // given
-        numberMaker = new ExpectedNumberMaker(List.of(1,2,3,4,5,6,6), 7);
+        numberMaker = new ExpectedNumberMaker(List.of(1,2,3,4,5,6,6));
         lottoMachine = new LottoMachine(numberMaker);
         Money money = new Money(1000);
 

@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoWallet;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
 
@@ -13,17 +16,19 @@ public class LottoController {
     }
 
     public void startGame() {
-        Integer amount = getPurchaseAmount();
-        lottoService.purchase(amount);
+        LottoWallet lottoWallet = purchaseLotto();
+        System.out.println(lottoWallet);
     }
 
-    private Integer getPurchaseAmount() {
+    private LottoWallet purchaseLotto() {
         try {
-            return consoleLottoView.getPurchaseAmount();
-        } catch (NumberFormatException e) {
-            consoleLottoView.displayError(e.getMessage());
-            return getPurchaseAmount();
+            int purchaseAmount = consoleLottoView.getPurchaseAmount();
+            return lottoService.purchase(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return purchaseLotto();
         }
     }
+
 
 }

@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.stream.Stream;
+import lotto.LottoMoney;
 import lotto.LottoWinningNumber.Builder;
-import ui.validator.MoneyValidator;
 
 class InputView {
     private InputView() {
@@ -14,12 +14,11 @@ class InputView {
     /**
      * @return 1000 단위로 끊어진 로또 구매 금액.
      */
-    public static int getMoney() {
+    public static LottoMoney getMoney() {
         return repeat(() -> {
             String input = Console.readLine();
             int money = Integer.parseInt(input);
-            MoneyValidator.verify(money);
-            return money;
+            return new LottoMoney(money);
         });
     }
 
@@ -50,7 +49,7 @@ class InputView {
                 return supplier.call();
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println(e.getMessage());
             } catch (Exception e) {
                 System.out.println("[ERROR] Unexpected Exception");

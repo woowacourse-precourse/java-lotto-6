@@ -12,8 +12,8 @@ import java.util.List;
 public class LottoTickets {
     private final List<Lotto> tickets;
 
-    public static LottoTickets buy(int money) {
-        int amount = money / LottoConfig.PRICE;
+    public static LottoTickets buy(LottoMoney money) {
+        int amount = money.getAmount();
         return new LottoTickets(amount);
     }
 

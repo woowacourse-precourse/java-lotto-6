@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.List;
+import lotto.LottoMoney;
 import lotto.LottoPrizeBag;
 import lotto.LottoTickets;
 import lotto.LottoWinningNumber;
@@ -10,7 +11,7 @@ public class IOView {
     private IOView() {
     }
 
-    public static int getMoney() {
+    public static LottoMoney getMoney() {
         OutputView.printForInputMoney();
         return InputView.getMoney();
     }

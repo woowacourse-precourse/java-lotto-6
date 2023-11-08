@@ -1,16 +1,23 @@
-package ui.validator;
+package lotto;
 
 import java.text.MessageFormat;
-import lotto.LottoConfig;
 
-public class MoneyValidator {
-    private MoneyValidator() {
+public class LottoMoney {
+    private final int money;
+
+    public LottoMoney(int money) {
+        verify(money);
+        this.money = money;
     }
 
-    public static void verify(int money) {
+    private void verify(int money) {
         if (money % LottoConfig.PRICE != 0) {
             String format = MessageFormat.format("[ERROR] {0}원 단위로 입력해주세요.", LottoConfig.PRICE);
             throw new IllegalArgumentException(format);
         }
+    }
+
+    public int getAmount() {
+        return money / LottoConfig.PRICE;
     }
 }

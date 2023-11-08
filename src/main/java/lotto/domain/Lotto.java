@@ -17,6 +17,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateLottoDuplication(numbers);
+        validateLottoRange(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -33,6 +34,14 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != 6) {
             throw new IllegalArgumentException(ErrorCode.DUPLICATE_LOTTO_NUMBERS.getMessage());
+        }
+    }
+
+    private void validateLottoRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+            }
         }
     }
 }

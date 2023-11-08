@@ -18,7 +18,7 @@ public class Application {
         numberOfLotto = user.getNumberOfLotto();
         lottos = publisher.publishLotto(numberOfLotto);
         printer = new Printing(lottos);
-        printer.printLotto();
+        printer.printLotto(lottos);
 
         user.enterWinningNumber();
         user.enterBonusNumber();

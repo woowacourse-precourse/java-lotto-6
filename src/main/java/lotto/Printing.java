@@ -10,9 +10,9 @@ public class Printing {
         this.lottos = lottos;
     }
 
-    public void printLotto() {
+    public void printLotto(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            lotto.printLotto();
         }
     }
 

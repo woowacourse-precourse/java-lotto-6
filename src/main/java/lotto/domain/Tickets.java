@@ -8,7 +8,7 @@ import lotto.enums.GlobalConstant;
 import lotto.enums.Reward;
 
 public class Tickets {
-    private static final int ADD_NUM = 1;
+
 
     private final List<Lotto> tickets;
 
@@ -42,17 +42,7 @@ public class Tickets {
 
     private void circuitEnum(EnumMap<Reward, Integer> totalResult, Result result) {
         for (Reward reward : totalResult.keySet()) {
-            compareResultToCriterion(totalResult, reward, result);
-        }
-    }
-
-    private void compareResultToCriterion(EnumMap<Reward, Integer> totalResult, Reward reward, Result result) {
-        int hitResult = result.getHitResult();
-        int bonusResult = result.getBonusResult();
-
-        if (reward.compareHitCnt(hitResult) && reward.compareBonusCnt(bonusResult)) {
-            int preValue = totalResult.get(reward);
-            totalResult.put(reward, preValue + ADD_NUM);
+            result.compareResultToCriterion(totalResult, reward);
         }
     }
 }

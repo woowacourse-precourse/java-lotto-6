@@ -12,7 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class ExceptionTest {
-    @Test
+    @ParameterizedTest
     @CsvSource({"-1000", "-1", "-12345"})
     void 금액_음수_예외_테스트(String input) {
         assertThatThrownBy(() -> validMoney(input))
@@ -28,9 +28,16 @@ public class ExceptionTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"'1,2,3,4,5'", "'1,2,3,4,5,6,7'", ""})
+    @CsvSource({"'1,2,3,4,5'", "'1,2,3,4,5,6,7'"})
     void 로또_번호_6개_아닐때_예외_테스트(String input){
         assertThatThrownBy(() -> validLotto(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE.getMessage());
+    }
+
+    @Test
+    void 로또_번호_입력_없을때_예외_테스트(){
+        assertThatThrownBy(() -> validLotto(""))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE.getMessage());
     }

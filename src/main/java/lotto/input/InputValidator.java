@@ -7,6 +7,16 @@ public class InputValidator {
         isMultipleOfThousand(purchaseAmount);
     }
 
+    public static void isValidWinningNumbers(String[] winningNumbers) throws IllegalArgumentException {
+        if (winningNumbers.length == 0) {
+            throw new IllegalArgumentException();
+        }
+        for (String number : winningNumbers) {
+            isNotEmpty(number);
+            isNumber(number);
+        }
+    }
+
     private static void isNotEmpty(String input) {
         if (input == null || input.isEmpty() || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 있어야 합니다.");

@@ -1,6 +1,6 @@
 package lotto.output;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 public class Output {
     private static void print(OutputMessage message) {

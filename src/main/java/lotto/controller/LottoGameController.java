@@ -26,10 +26,6 @@ public class LottoGameController {
         lottoCalculateService.calculateWinning(player, lottoDrawingMachine);
     }
 
-    private static LottoDrawingMachine createWinningLottoNumbers(Lotto winningBall, LottoBall bonusBall) {
-        return new LottoDrawingMachine(winningBall, bonusBall);
-    }
-
     private static Player inputAmount() {
         try {
             return new Player(InputView.inputAmount());
@@ -65,5 +61,9 @@ public class LottoGameController {
             OutputView.printException(e);
             return createBonusBall();
         }
+    }
+
+    private static LottoDrawingMachine createWinningLottoNumbers(Lotto winningBall, LottoBall bonusBall) {
+        return new LottoDrawingMachine(winningBall, bonusBall);
     }
 }

@@ -4,20 +4,17 @@ import java.util.List;
 
 public enum WinningRank {
 
-	FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - "),
-	SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
-	THIRD(5, 1500000, "5개 일치 (1,500,000원) - "),
-	FOURTH(4, 50000, "4개 일치 (50,000원) - "),
-	FIFTH(3, 5000, "3개 일치 (5,000원) - "),
-	NONE(0, 0, "");
+	FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - "), SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
+	THIRD(5, 1500000, "5개 일치 (1,500,000원) - "), FOURTH(4, 50000, "4개 일치 (50,000원) - "),
+	FIFTH(3, 5000, "3개 일치 (5,000원) - "), NONE(0, 0, "");
 
 	private int matchingNumbers;
 	private int winningmoney;
 	private String message;
 
-	WinningRank(int matchingNumbers, int winningmoney, String message) {
+	WinningRank(int matchingNumbers, int winningMoney, String message) {
 		this.matchingNumbers = matchingNumbers;
-		this.winningmoney = winningmoney;
+		this.winningmoney = winningMoney;
 		this.message = message;
 	}
 
@@ -43,7 +40,6 @@ public enum WinningRank {
 	}
 
 	public static void printResult(List<WinningRank> rankingList) {
-
 		int[] countByRank = new int[WinningRank.values().length];
 		WinningRank[] ranks = WinningRank.values();
 
@@ -54,6 +50,11 @@ public enum WinningRank {
 		System.out.println("");
 		System.out.println("당첨 통계");
 		System.out.println("---");
+
+		printRanking(countByRank, ranks);
+	}
+
+	private static void printRanking(int[] countByRank, WinningRank[] ranks) {
 
 		for (int i = ranks.length - 1; i >= 0; i--) { // 역순 출력
 			WinningRank rank = ranks[i];

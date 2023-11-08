@@ -2,8 +2,8 @@ package io;
 
 import java.util.List;
 
-import static io.InputErrorMessage.*;
-import static lotto.LottoConstants.*;
+import static io.message.InputErrorMessage.*;
+import static lotto.constant.LottoProperty.*;
 
 public class InputValidator {
 

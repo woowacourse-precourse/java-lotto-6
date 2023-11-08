@@ -1,4 +1,4 @@
-package io;
+package io.message;
 
 public enum InputInfoMessage {
     LOTTO_PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요."),

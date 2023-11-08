@@ -1,4 +1,4 @@
-package io;
+package io.message;
 
 public enum InputErrorMessage {
     NOT_INTEGER("정수를 입력해주세요."),

@@ -1,12 +1,13 @@
 package lotto;
 
+import lotto.constant.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
 
-import static lotto.LottoRank.FIFTH;
+import static lotto.constant.LottoRank.FIFTH;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoGameTest {

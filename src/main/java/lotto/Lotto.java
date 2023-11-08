@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.LottoConstants.*;
+import static lotto.constant.LottoProperty.*;
 
 public class Lotto {
     private final List<Integer> numbers;

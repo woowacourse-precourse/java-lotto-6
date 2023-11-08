@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum LottoProperty {
     LOTTO_PRICE(1000),

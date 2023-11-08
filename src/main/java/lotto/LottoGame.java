@@ -1,6 +1,7 @@
 package lotto;
 
 import io.IOHandler;
+import lotto.constant.LottoRank;
 
 import java.util.HashMap;
 import java.util.List;

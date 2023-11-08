@@ -2,12 +2,12 @@ package io;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
-import lotto.LottoRank;
+import lotto.constant.LottoRank;
 
 import java.util.*;
 
-import static io.InputErrorMessage.NOT_INTEGER;
-import static io.InputInfoMessage.*;
+import static io.message.InputErrorMessage.NOT_INTEGER;
+import static io.message.InputInfoMessage.*;
 
 public class IOHandler {
 

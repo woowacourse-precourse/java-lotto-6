@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum LottoRank {
     FIRST(2_000_000_000, 6),

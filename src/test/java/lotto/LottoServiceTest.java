@@ -82,6 +82,17 @@ class LottoServiceTest {
         assertEquals(6, lottos.size());
     }
 
+    @DisplayName("로또 번호에 0을 입력할경우 예외 발생.")
+    @Test
+    void isNumberBelowZero() {
+        String number = "0";
+        assertThatThrownBy(() -> {
+            lottoService.isNumberBelowZero(number);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(ErrorMessage.CONTAINS_ZERO.getMessage());
+    }
+
     @DisplayName("당첨번호가 보너스 번호를 가지고 있을 경우 예외 발생.")
     @Test
     void winningNumbersContainBonusNumber() {

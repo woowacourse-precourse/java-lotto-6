@@ -21,13 +21,31 @@ public class Application {
         }
         System.out.println(purchaseAmount + "개를 구매했습니다.");
         List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i<purchaseAmount; i++) {
+        for (int i = 0; i < purchaseAmount; i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(randomNumbers);
             Lotto lotto = new Lotto(randomNumbers);
             lottoList.add(lotto);
             System.out.println(randomNumbers);
         }
+        List<Integer> winningNumbers = new ArrayList<>();
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String inputWinningNumber = Console.readLine();
+            String[] numberString = inputWinningNumber.split(",");
+            if (numberString.length != 6) {
+                System.err.println("[ERROR] 6개의 번호를 입력해주세요.");
+                continue;
+            }
+            if (checkVaileNumbers(numberString, winningNumbers)) {
+                break;
+            }
+
+            System.out.println(winningNumbers);
+            winningNumbers.clear();
+            System.out.println(winningNumbers);
+        }
+
     }
 
     private static boolean isValidInput(String input) {
@@ -44,5 +62,29 @@ public class Application {
         }
     }
 
+    private static boolean checkVaileNumbers(String[] numberStrings, List<Integer> winningNumbers) {
+        for (String numberString : numberStrings) {
+            int number = 0;
+            try {
+                number = Integer.parseInt(numberString);
+
+            } catch (NumberFormatException e) {
+                System.err.println("[ERROR] 숫자로 변환할 수 없는 값이 입력되었습니다.");
+                return false;
+            }
+
+            if (number < 1 || number > 45) {
+                System.err.println("[ERROR] 1부터 45 사이의 번호를 입력하세요.");
+                return false;
+            }
+
+            if (winningNumbers.contains(number)) {
+                System.err.println("[ERROR] 중복된 번호를 입력했습니다.");
+                return false;
+            }
+            winningNumbers.add(number);
+        }
+        return true;
+    }
 
 }

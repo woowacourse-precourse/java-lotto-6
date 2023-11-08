@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.List;
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;

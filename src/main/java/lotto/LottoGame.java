@@ -21,7 +21,8 @@ public class LottoGame {
         printRandomLottoNumber();
         inputWinningNumber();
         inputBonusNumber();
-
+        compareLottoNumber(winningNumbers, bonusNumber);
+        printResult();
     }
 
     private void inputPurchaseAmount() {
@@ -89,5 +90,15 @@ public class LottoGame {
     private void inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusNumber = Integer.parseInt(readLine());
+    }
+
+    private void compareLottoNumber(String[] winningNumbers, int bonusNumber) {
+        lottoRepository.compareLottoNumber(winningNumbers, bonusNumber);
+
+    }
+
+    private void printResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
     }
 }

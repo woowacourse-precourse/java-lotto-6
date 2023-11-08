@@ -16,4 +16,8 @@ public class LottoRepository {
             System.out.println(lottos.get(i).getLotto());
         }
     }
+
+    public void compareLottoNumber(String[] winningNumbers, int bonusNumber) {
+
+    }
 }

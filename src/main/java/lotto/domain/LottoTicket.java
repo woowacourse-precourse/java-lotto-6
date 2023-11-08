@@ -18,7 +18,7 @@ public class LottoTicket {
         lottoGames.add(lotto);
     }
 
-    public List<Lotto> getLottoGames() {
+    public static List<Lotto> getLottoGames() {
         return new ArrayList<>(lottoGames);
     }
 
@@ -31,8 +31,8 @@ public class LottoTicket {
         return lottoRandomNumbers;
     }
 
-    public static Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    private static Lotto generateRandomLotto() {
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
     }

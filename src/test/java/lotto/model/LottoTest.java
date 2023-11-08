@@ -55,6 +55,7 @@ class LottoTest {
     @Test
     @DisplayName("로또 숫자 중 1 ~ 45 이외의 수가 있다면 예외가 발생한다.")
     void lottoNumberValuesExceptionTest() {
+        // when & then
         assertThatThrownBy(() -> new Lotto(List.of(1, 100, 20, 30, 40, -1)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(UNVALID_LOTTO_NUMBER.getMessage());

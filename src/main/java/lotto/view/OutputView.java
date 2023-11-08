@@ -4,10 +4,8 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.LottoResult;
-import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.Rank;
-import lotto.model.User;
 
 public class OutputView {
 

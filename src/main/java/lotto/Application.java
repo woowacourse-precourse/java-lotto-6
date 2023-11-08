@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class Application {
     public static void main(String[] args) {
@@ -9,12 +10,22 @@ public class Application {
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
         Buyer buyer = new Buyer(lottoMachine, lottoResultChecker);
 
-        int price = InputProcessor.parsePrice(LottoUI.readLine("구매금액을 입력해 주세요."));
+        int price = getInput("구매금액을 입력해 주세요.", InputProcessor::parsePrice);
         buyer.buyLotto(price);
 
-        List<Integer> winningNumbers = InputProcessor.getWinningNumbers(LottoUI.readLine("구매금액을 입력해 주세요."));
-        Integer bonusNumber = InputProcessor.getBonusNumber(LottoUI.readLine("보너스 번호를 입력해 주세요."));
+        List<Integer> winningNumbers = getInput("당첨 번호를 입력해 주세요.", InputProcessor::getWinningNumbers);
+        Integer bonusNumber = getInput("보너스 번호를 입력해 주세요.", InputProcessor::getBonusNumber);
         buyer.drawWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
         buyer.aggregateLotto();
+    }
+
+    private static <T> T getInput(String message, Function<String, T> parser) {
+        while (true) {
+            try {
+                return parser.apply(LottoUI.readLine(message));
+            } catch (IllegalArgumentException e) {
+                LottoUI.printMessage(e.getMessage());
+            }
+        }
     }
 }

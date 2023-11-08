@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -44,5 +46,18 @@ class LotteryAnswerControllerTest {
         // THEN
         assertNotNull(answer);
         assertEquals(answer.getAnswerSize(), 6);
+    }
+
+    @Test
+    void printResult() {
+        // GIVEN
+        Map<Integer, Integer> rankToCount = new HashMap<>();
+        rankToCount.put(2, 2);
+        rankToCount.put(4, 1);
+        rankToCount.put(5, 1);
+        // WHEN
+        lotteryAnswerController.printResult(rankToCount);
+
+        // THEN
     }
 }

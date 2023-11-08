@@ -30,7 +30,7 @@ class LottoAnswerTest {
         Lotto lottoSecond = new Lotto(List.of(1, 2, 3, 4, 5, 7)); // 2등
         Lotto lottoSecondAgain = new Lotto(List.of(1, 2, 3, 4, 5, 7)); // 2등
         Lotto lottoThird = new Lotto(List.of(1, 2, 3, 4, 5, 8)); // 3등
-        User user = new User(List.of(lottoFirst, lottoSecond, lottoSecondAgain, lottoThird), 4);
+        User user = new User(List.of(lottoFirst, lottoSecond, lottoSecondAgain, lottoThird), 4L);
 
         // WHEN
         Map<Integer, Integer> rankToCount = lottoAnswer.getRankToCount(WinningPolicy.getRank, user);
@@ -39,5 +39,6 @@ class LottoAnswerTest {
         assertEquals(1, rankToCount.get(1));
         assertEquals(2, rankToCount.get(2));
         assertEquals(1, rankToCount.get(3));
+        System.out.println(rankToCount);
     }
 }

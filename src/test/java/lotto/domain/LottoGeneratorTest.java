@@ -8,7 +8,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class LottoGeneratorTest {
+class LottoGeneratorTest {
     private LottoGenerator lottoGenerator;
     private List<List<Integer>> lottoNumbers;
 
@@ -39,6 +39,15 @@ public class LottoGeneratorTest {
         for (List<Integer> actual : lottoNumbers) {
             Set<Integer> numbersWithoutDuplicates = new HashSet<>(actual);
             assertThat(actual.size()).isEqualTo(numbersWithoutDuplicates.size());
+        }
+    }
+
+    @Test
+    void issueLottoAsManyAsPurchased_메서드가_issueLotto_메서드를_호출해_뽑은_숫자들을_오름차순으로_정렬한다() {
+        for (List<Integer> actual : lottoNumbers) {
+            for (int i = 0; i < actual.size() - 1; i++) {
+                assertThat(actual.get(i)).isLessThan(actual.get(i + 1));
+            }
         }
     }
 

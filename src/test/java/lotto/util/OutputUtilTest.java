@@ -30,20 +30,20 @@ class OutputUtilTest {
     }
 
     @Test
-    @DisplayName("로또의 개수가 주어졌을 때, 헤당 개수와 출력 메시지가 나와야한다.")
+    @DisplayName("로또의 개수가 주어졌을 때, 헤당 개수와 원하는 메시지가 나와야한다.")
     void testOutputLottoAmount() {
         //given
         int amount = 5;
 
         //when
-        OutputUtil.formatSystemMessageWithNumber(OUTPUT_PURCHASE_LOTTO_AMOUNT,amount);
+        String output = OutputUtil.formatSystemMessageWithNumber(OUTPUT_PURCHASE_LOTTO_AMOUNT, amount);
 
         //then
         String expectedOutput = String.format(
                 OUTPUT_PURCHASE_LOTTO_AMOUNT.getMessage()
                 , amount);
 
-        assertThat(output()).isEqualTo(
+        assertThat(output).isEqualTo(
                 expectedOutput
         );
     }

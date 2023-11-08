@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.validator.ErrorMessage.*;
+import static lotto.message.ErrorMessage.*;
 
 class BonusNumberValidatorTest {
 
@@ -31,7 +31,7 @@ class BonusNumberValidatorTest {
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input, lotto)).
-                withMessage(BONUS_NUMBER_IS_NOT_NUMERIC_MESSAGE);
+                withMessage(BONUS_NUMBER_IS_NOT_NUMERIC_MESSAGE.getMessage());
     }
 
     @Test
@@ -43,10 +43,10 @@ class BonusNumberValidatorTest {
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input1, lotto)).
-                withMessage(BONUS_NUMBER_NOT_IN_RANGE_MESSAGE);
+                withMessage(BONUS_NUMBER_NOT_IN_RANGE_MESSAGE.getMessage());
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input2, lotto)).
-                withMessage(BONUS_NUMBER_NOT_IN_RANGE_MESSAGE);
+                withMessage(BONUS_NUMBER_NOT_IN_RANGE_MESSAGE.getMessage());
 
     }
 
@@ -58,7 +58,7 @@ class BonusNumberValidatorTest {
 
         Assertions.assertThatIllegalArgumentException().
                 isThrownBy(() -> validator.validate(input, lotto)).
-                withMessage(BONUS_NUMBER_IS_DUPLICATED_BY_LOTTO_NUMBER);
+                withMessage(BONUS_NUMBER_IS_DUPLICATED_BY_LOTTO_NUMBER.getMessage());
     }
 
 }

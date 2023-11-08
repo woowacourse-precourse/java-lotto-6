@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lotteries {
+public class MyLotteries {
 
     public List<Lotto> BuyLotteries(int purchaseAmount) {
         List<Lotto> lotteries = new ArrayList<>();
@@ -21,10 +21,9 @@ public class Lotteries {
 
     private Lotto Buy() {
         List<Integer> LottoNumberList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        LottoNumberList =
-                LottoNumberList.stream().
-                        sorted().
-                        collect(Collectors.toList());
+        LottoNumberList = LottoNumberList.stream().
+                sorted().
+                collect(Collectors.toList());
 
         return new Lotto(LottoNumberList);
     }

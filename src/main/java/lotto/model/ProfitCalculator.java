@@ -16,10 +16,6 @@ public class ProfitCalculator {
         return profitRatio;
     }
 
-    public ProfitCalculator(double profitRatio) {
-        this.profitRatio = profitRatio;
-    }
-
     private double calculateProfitRatio(double purchaseMoney, double totalPrize) {
         return totalPrize / purchaseMoney * Constant.RATIO_NUMBER;
     }

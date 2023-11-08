@@ -46,6 +46,24 @@ public class Application {
         return cashier;
     }
 
+    private static List<Lotto> createLottoTickets(Cashier cashier) {
+        long purchaseQuantity = cashier.getPurchaseQuantity();
+        System.out.println(messageContainer.getPurchaseQuantityMessage(purchaseQuantity));
+
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        List<List<Integer>> lottoNumbers = lottoGenerator.issueLottoAsManyAsPurchased(purchaseQuantity);
+        printLottoNumbers(lottoNumbers);
+
+        return Lotto.createLottoTickets(lottoNumbers);
+    }
+
+    private static void printLottoNumbers(List<List<Integer>> lottoNumbers) {
+        for (List<Integer> numbers : lottoNumbers) {
+            System.out.println(numbers.toString());
+        }
+        System.out.println();
+    }
+
     private static List<Integer> getWinningNumbers() {
         List<Integer> winningNumbers;
         while (true) {
@@ -64,7 +82,7 @@ public class Application {
     }
 
     private static Integer getBonusNumber() {
-        Integer bonusNumber;
+        int bonusNumber;
         while (true) {
             System.out.println(messageContainer.getEnterBonusNumbers());
             try {
@@ -78,20 +96,6 @@ public class Application {
         }
 
         return bonusNumber;
-    }
-
-    private static List<Lotto> createLottoTickets(Cashier cashier) {
-        long purchaseQuantity = cashier.getPurchaseQuantity();
-        System.out.println(messageContainer.getPurchaseQuantityMessage(purchaseQuantity));
-
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        List<List<Integer>> lottoNumbers = lottoGenerator.issueLottoAsManyAsPurchased(purchaseQuantity);
-        for (List<Integer> numbers : lottoNumbers) {
-            System.out.println(numbers.toString());
-        }
-        System.out.println();
-
-        return Lotto.createLottoTickets(lottoNumbers);
     }
 
     private static void printWinningResults(List<Lotto> lottoTickets, LottoNumbers lottoNumbers, Cashier cashier) {

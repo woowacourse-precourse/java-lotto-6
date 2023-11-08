@@ -11,7 +11,7 @@ public record LottoNumber(int number) {
     private static final int LOTTO_NUMBER_RANGE_END = 45;
 
     public LottoNumber {
-        validate(number);
+        validateLottoNumberInRange(number);
     }
 
     public static Set<LottoNumber> createRandomLottoNumbers(int count) {
@@ -22,7 +22,7 @@ public record LottoNumber(int number) {
             .collect(Collectors.toSet());
     }
 
-    private void validate(int number) {
+    private void validateLottoNumberInRange(int number) {
         if (number < LOTTO_NUMBER_RANGE_START || LOTTO_NUMBER_RANGE_END < number) {
             throw new IllegalArgumentException();
         }

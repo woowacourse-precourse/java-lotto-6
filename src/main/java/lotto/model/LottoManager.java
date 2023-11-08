@@ -50,6 +50,6 @@ public class LottoManager {
     public String toString() {
         return lottos.stream()
                 .map(Objects::toString)
-                .collect(Collectors.joining(LINE_BREAK));
+                .collect(Collectors.joining(LINE_BREAK)) + LINE_BREAK;
     }
 }

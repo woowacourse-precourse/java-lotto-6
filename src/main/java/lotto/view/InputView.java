@@ -25,9 +25,8 @@ public class InputView {
         return new AnswerLotto(winningNo);
     }
 
-    private int readBonusNo() {
-        System.out.println(LINE_BREAK + READ_BONUS_NO);
     public int readBonusNo() {
+        System.out.println();
         System.out.println(READ_BONUS_NO);
         return TypeConverter.toInt(readLine());
     }

@@ -11,14 +11,20 @@ public class View {
     private final LottoController lottoController = new LottoController();
 
     public void main(){
+        System.out.println("구입 금액을 입력해 주세요.");
         int money = inputController.getNumber();
-        List<Integer> numbers = inputController.getNumbers();
-        int bonus = inputController.getNumber();
+
         int count = lottoController.getCount(money);
         countView(count);
         List<Lotto> lottoGenerate = lottoController.lottoGenerate(count);
         lottoView(lottoGenerate);
 
+        System.out.println("당첨 번호를 입력해 주세요.");
+        List<Integer> numbers = inputController.getNumbers();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonus = inputController.getNumber();
+        
     }
 
     public void countView(int count){

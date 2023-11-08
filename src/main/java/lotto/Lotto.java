@@ -34,8 +34,16 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     static void validateAmount(String inputPurchaseAmount) {
-        if (!inputPurchaseAmount.matches("\\d+")) {
-            throw new IllegalArgumentException("[ERROR] 숫자로만 입력하셔야 합니다.");
+        try {
+            Integer.parseInt(inputPurchaseAmount);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자로만 입력해주세요.");
+            InputLotto.PurchaseAmount();
+        }
+
+        int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000의 단위로 입력해주세요.");
         }
     }
 

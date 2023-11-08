@@ -12,7 +12,7 @@ public class Output {
     }
 
     public void outputTicketPurchaseHistory(int ticket, List<List<Integer>> allTicketNumbers) {
-        System.out.println(ticket + "개를 구했습니다.");
+        System.out.println(ticket + "개를 구매했습니다.");
         for (int i = 0; i < ticket; i++) {
             System.out.println(allTicketNumbers.get(i));
         }

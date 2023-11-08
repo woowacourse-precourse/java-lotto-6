@@ -74,6 +74,7 @@ public class LottoGame {
         }
     }
 
+    //4. 로또 발행 시 중복되지 않는 숫자 6개를 뽑는다.
     public List<Integer> makeLottoNumbers() {
         return IntStream.generate(() -> Randoms.pickNumberInRange(1, 45))
                 .distinct()

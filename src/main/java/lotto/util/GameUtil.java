@@ -15,7 +15,6 @@ public class GameUtil {
     //로또 생성
     public static Lotto createLotto() {
         List<Integer> newLotto = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_NUM);
-
         return new Lotto(newLotto);
     }
 
@@ -34,20 +33,19 @@ public class GameUtil {
     }
 
     //당첨 결과
-    public static HashMap<Rank, Integer> setLottoHit(List<Rank> rankList){
-        HashMap<Rank,Integer> rankIntegerHashMap = new LinkedHashMap<>();
+    public static HashMap<Rank, Integer> setLottoHit(List<Rank> rankList) {
+        HashMap<Rank, Integer> rankIntegerHashMap = new LinkedHashMap<>();
 
         Arrays.stream(Rank.values())
-                .forEach(rank -> rankIntegerHashMap.put(rank,0));
-        rankList.forEach(rank -> rankIntegerHashMap.put(rank,rankIntegerHashMap.get(rank)+1));
+                .forEach(rank -> rankIntegerHashMap.put(rank, 0));
+        rankList.forEach(rank -> rankIntegerHashMap.put(rank, rankIntegerHashMap.get(rank) + 1));
 
         return rankIntegerHashMap;
     }
 
     //당첨 수령금
-    public static int setTotalHitMoney(HashMap<Rank, Integer> rankIntegerHashMap){
+    public static int setTotalHitMoney(HashMap<Rank, Integer> rankIntegerHashMap) {
         return rankIntegerHashMap.entrySet().stream()
                 .mapToInt(e -> e.getKey().getWinningMoney() * e.getValue()).sum();
     }
-
 }

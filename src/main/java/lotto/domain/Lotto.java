@@ -20,7 +20,6 @@ public class Lotto {
         if (numbersHash.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
-
     }
 
     public List<Integer> getNumbers() {

@@ -19,12 +19,4 @@ public class PrizeLotto {
 
         return Rank.valueOf(count, isBonusMatch);
     }
-
-    public Lotto getWinLotto() {
-        return this.winLotto;
-    }
-
-    public int getBonusNum() {
-        return this.bonusNum;
-    }
 }

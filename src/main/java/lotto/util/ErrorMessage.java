@@ -1,7 +1,6 @@
 package lotto.util;
 
 public enum ErrorMessage {
-
     IS_EMPTY("값을 입력해 주세요."),
     IS_NOT_NUMBER("숫자를 입력해 주세요."),
     IS_NOT_DIVIDED_BY_PRICE("로또 금액 단위로 금액을 투입해 주세요."),

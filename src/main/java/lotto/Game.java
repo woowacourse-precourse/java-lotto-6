@@ -16,10 +16,9 @@ public class Game {
 
     private View view;
     private Validator validator;
-
-    private int money;
     private List<Lotto> purchasedLotto;
     private PrizeLotto prizeLotto;
+    private int money;
 
 
     public Game() {
@@ -29,11 +28,8 @@ public class Game {
 
     public void play() {
         getMoney();
-
         purchaseLotto(money / LOTTO_PRICE);
-
         getPrizeLotto();
-
         showResult();
     }
 
@@ -57,7 +53,7 @@ public class Game {
         }
     }
 
-    //----------로또 생성----------
+    //----------로또 구매 & 생성----------
     private void purchaseLotto(int purchaseNumber) {
         view.print_PurchasedLottoNumbers(purchaseNumber);
 

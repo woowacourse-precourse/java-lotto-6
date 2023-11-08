@@ -135,6 +135,4 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
-
-    //보너스 숫자와 당첨 번호중 하나가 중첩될 경우
 }

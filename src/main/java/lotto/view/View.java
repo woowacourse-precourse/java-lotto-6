@@ -24,8 +24,8 @@ public class View {
     private static final String OUTPUT_RATE_RETURN_1 = "총 수익률은 ";
     private static final String OUTPUT_RATE_RETURN_2 = "%입니다.";
 
-
     DecimalFormat formatter = new DecimalFormat("###,###");
+
 
     public void request_InputMoney() {
         System.out.println(INPUT_MONEY);
@@ -43,6 +43,7 @@ public class View {
         System.out.println(purchasedLottoNum + OUTPUT_PURCHASED_LOTTO_NUMBERS);
     }
 
+    //구입 금액 문구
     public void print_purchasedLotto(List<Lotto> purchasedLotto) {
         purchasedLotto.stream()
                 .map(Lotto::getNumbers)

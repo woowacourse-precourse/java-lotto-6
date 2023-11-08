@@ -1,5 +1,6 @@
 package lotto;
 
+
 import lotto.domain.*;
 
 import java.util.ArrayList;
@@ -32,3 +33,5 @@ public class Application {
         printLotto.print(ranklist, buy);
     }
 }
+
+

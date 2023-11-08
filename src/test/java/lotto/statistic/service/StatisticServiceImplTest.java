@@ -2,8 +2,8 @@ package lotto.statistic.service;
 
 import lotto.constant.Prize;
 import lotto.lotto.dto.LottoDto;
+import lotto.statistic.dto.StatisticDto;
 import lotto.statistic.repository.StatisticRepositoryImpl;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class StatisticServiceImplTest {
 
@@ -53,5 +52,37 @@ class StatisticServiceImplTest {
         assertThat(statisticService.calculateRank(4, false).getReward()).isEqualTo(Prize.FOURTH.getReward());
         assertThat(statisticService.calculateRank(3, false).getReward()).isEqualTo(Prize.FIFTH.getReward());
         assertThat(statisticService.calculateRank(2, false).getReward()).isEqualTo(Prize.NONE.getReward());
+    }
+
+    @Test
+    @DisplayName("정산 통계 중 등수 합계 테스트")
+    void getResultRankTest() {
+        int[] ranks = new int[Prize.values().length];
+        List<StatisticDto> statisticDtos = new ArrayList<>();
+        statisticDtos.add(new StatisticDto(Prize.NONE));
+        statisticDtos.add(new StatisticDto(Prize.FIFTH));
+        statisticDtos.add(new StatisticDto(Prize.FOURTH));
+        statisticDtos.add(new StatisticDto(Prize.SECOND));
+
+        for (StatisticDto statisticDto : statisticDtos) {
+            ranks[statisticDto.getPrize().ordinal()]++;
+        }
+        assertThat(ranks).isEqualTo(new int[]{1, 1, 1, 0, 1, 0});
+    }
+
+    @Test
+    @DisplayName("정산 통계 중 상금 합계 테스트")
+    void getResultRevenueTest() {
+        int sum = 0;
+        List<StatisticDto> statisticDtos = new ArrayList<>();
+        statisticDtos.add(new StatisticDto(Prize.NONE));
+        statisticDtos.add(new StatisticDto(Prize.FIFTH));
+        statisticDtos.add(new StatisticDto(Prize.FOURTH));
+        statisticDtos.add(new StatisticDto(Prize.SECOND));
+
+        for (StatisticDto statisticDto : statisticDtos) {
+            sum += statisticDto.getPrize().getReward();
+        }
+        assertThat(sum).isEqualTo(30_055_000);
     }
 }

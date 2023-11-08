@@ -40,4 +40,15 @@ class WinningLottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
     }
+
+    @DisplayName("보너스 번호가 당첨 로또 번호와 중복된 숫자라면 예외가 발생한다.")
+    @Test
+    void validateBonus() {
+        assertThatThrownBy(() -> {
+            WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
+            winningLotto.validateBonus(3);
+        })
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 중복될 수 없습니다.");
+    }
 }

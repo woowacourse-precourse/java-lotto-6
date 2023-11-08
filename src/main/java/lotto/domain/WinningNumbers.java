@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -54,5 +55,9 @@ public class WinningNumbers {
         if (winningNumbersString.startsWith(",") || winningNumbersString.endsWith(",")) {
             throw new IllegalArgumentException(LEADING_TRAILING_COMMA_ERROR_MESSAGE);
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 }

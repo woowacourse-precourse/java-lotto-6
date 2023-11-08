@@ -98,14 +98,6 @@ public class LottoService {
         }
     }
 
-    private void validateIsInteger(String number) {
-        try {
-            Integer.parseInt(number);
-        } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(COMMON_ERROR_MESSAGE + ONLY_NUMBER_MESSAGE);
-        }
-    }
-
     public double getLottoRateOfReturn(String buyLottoAmount, Map<LottoRank, Integer> lottoWinningResult) {
         long inputBuyLottoAmount = Long.parseLong(buyLottoAmount);
         long totalPrize = 0L;
@@ -120,6 +112,14 @@ public class LottoService {
         // 수익률 = 총상금 / 구매금액 * 100
         double rateOfReturn = (double) totalPrize / inputBuyLottoAmount * 100; // 수익률
         return Math.round(rateOfReturn * 10) / 10.0;
+    }
+
+    private void validateIsInteger(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException(COMMON_ERROR_MESSAGE + ONLY_NUMBER_MESSAGE);
+        }
     }
 
     private boolean isMatchBonusNumber(List<Integer> lottoTicket, Map<String, String> userLottoNumbersAndBonusNumber) {

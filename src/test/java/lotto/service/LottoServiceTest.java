@@ -117,6 +117,19 @@ class LottoServiceTest {
         assertThat(userLottoNumbersAndBonusNumber.get("userBonusNumber")).isEqualTo(bonusNumber);
     }
 
+    @DisplayName("로또 당첨 총 수익률")
+    @Test
+    void totalLottoRateOfReturn() {
+        String buyLottoAmount = "5000";
+        Map<LottoRank, Integer> lottoWinningResult = new HashMap<>();
+        lottoWinningResult.put(LottoRank.FIFTH, 1);
+
+        double lottoRateOfReturn = lottoService.getLottoRateOfReturn(buyLottoAmount, lottoWinningResult);
+        System.out.println("lottoRateOfReturn = " + lottoRateOfReturn);
+
+        assertThat(lottoRateOfReturn).isEqualTo(100.0);
+    }
+
     @DisplayName("로또 1등~5등 당첨 결과 테스트")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})

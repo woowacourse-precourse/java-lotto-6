@@ -12,8 +12,13 @@ public class Application {
         NumberGenerator[] purchaseNumbers = new NumberGenerator[purchaseAmount];
         System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
         generateLottos(purchaseAmount, purchaseNumbers); // 구매한 개수만큼 로또 번호를 생성
+        // 사용자에게 당첨 번호와 보너스 번호를 입력받음
         Lotto winningNumbers = askWiningNumber();
         int bonusNumber = askBonusNumber();
+        // 입력받은 당첨번호를 바탕으로 사용자가 구매한 로또 번호들의 당첨 결과를 계산
+        Lotto[] userLotto = getLottos(purchaseAmount, purchaseNumbers);
+        LottoResultChecker lottoResultChecker = new LottoResultChecker(winningNumbers, userLotto, bonusNumber);
+        lottoResultChecker.checkLottoResult();
     }
 
     // 입력 값이 1,000 단위로 나누어 떨어지는지 체크하는 메서드

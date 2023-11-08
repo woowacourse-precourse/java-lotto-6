@@ -22,18 +22,18 @@
 
 
 ## 기능 목록
-- [ ] 로또 구입 금액을 입력 받는다.
-  - [ ] 1000 원 단위가 아닌 경우 예외 처리한다.
+- [ ] 로또 구입 금액을 입력 받는다. LottoGameMachine#insertLottoPayment
+  - [ ] 1000 원 단위가 아닌 경우 예외 처리한다. LottoGameMachine#validateLottoPayment
     - [ ] 예외 처리 완료 후 "[ERROR]"로 시작 하는 메시지 출력
-    - [ ] 에러가 난 그 부분부터 입력을 다시 받는다.
-- [ ] 로또 구입 금액에 해당하는 로또를 발행한다.
-  - [ ] 로또 번호를 오름차순으로 정렬하여 보여준다.
-- [ ] 1~45까지 서로 다른 6개의 숫자를 생성한다.
-- [ ] 1~45까지 서로 다른 6개의 숫자를 입력 받는다. (당첨 번호 입력)
+    - [ ] 에러가 난 그 부분부터 입력을 다시 받는다. ??
+- [ ] 로또 구입 금액에 해당하는 로또를 발행한다. LottoGameMachine#issueLotto
+  - [ ] 로또 번호를 오름차순으로 정렬하여 보여준다. LottoGameMachine#arrangeAscendingOrder
+- [ ] 1~45까지 서로 다른 6개의 숫자를 생성한다. LottoGameMachine#createNumbers
+- [ ] 1~45까지 서로 다른 6개의 숫자를 입력 받는다. (당첨 번호 입력) LottoGameMachine#insertWinningNumber
   - [ ] 쉼표(,)를 기준으로 번호를 구분 한다.
-- [ ] 당첨 번호와 중복되지 않는 번호 1개를 입력 받는다. (보너스 번호 입력)
-- [ ] 당첨 번호와 발행된 로또 번호의 번호 일치를 확인한다.
-- [ ] 로또 당첨 내역 및 수익률을 출력하고 게임을 종료한다.
-  - [ ] 당첨 내역을 출력한다.
-  - [ ] 수익률을 출력한다.
+- [ ] 당첨 번호와 중복되지 않는 번호 1개를 입력 받는다. (보너스 번호 입력) LottoGameMachine#insertBonusNumber
+- [ ] 당첨 번호와 발행된 로또 번호의 번호 일치를 확인한다. LottoGameMachine#compareNumbers
+- [ ] 로또 당첨 내역 및 수익률을 출력하고 게임을 종료한다. LottoGameMachine#printResult
+  - [ ] 당첨 내역을 출력한다. Calculator#printWinningHistory
+  - [ ] 수익률을 출력한다. Calculator#printProfitRate
     - [ ] 소수점 2째 자리에서 반올림한다.

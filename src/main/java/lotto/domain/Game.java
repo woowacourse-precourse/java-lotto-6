@@ -62,7 +62,7 @@ public class Game {
 
     private void issuance(Integer purchaseAmount) {
         validator.validatePurchaseAmount(purchaseAmount);
-        lottos.inssuance(purchaseAmount);
+        lottos.issuance(purchaseAmount);
     }
 
     private void setResult() {

@@ -4,17 +4,18 @@ import static lotto.domain.Lotto.*;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
 public class Lottos {
-    private List<Lotto> lottos = new ArrayList<>();
+    private static final String DELIMITER = "\n";
+    private static final String FORMAT = "%d개를 구매했습니다.";
+    private final List<Lotto> lottos = new ArrayList<>();
 
-    public void inssuance(Integer purchaseAmount) {
-        Integer lottoCount = purchaseAmount / PRICE;
+    public void issuance(Integer purchaseAmount) {
+        int lottoCount = purchaseAmount / PRICE;
         for (int count = 1; count <= lottoCount; count++) {
             List<Integer> numbers = pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_LENGTH);
             lottos.add(new Lotto(numbers));
@@ -35,8 +36,8 @@ public class Lottos {
 
     @Override
     public String toString() {
-        StringJoiner stringJoiner = new StringJoiner("\n");
-        stringJoiner.add(lottos.size() + "개를 구매했습니다.");
+        StringJoiner stringJoiner = new StringJoiner(DELIMITER);
+        stringJoiner.add(String.format(FORMAT,lottos.size()));
         for (Lotto lotto : lottos) {
             stringJoiner.add(lotto.toString());
         }

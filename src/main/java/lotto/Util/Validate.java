@@ -40,24 +40,11 @@ public class Validate {
         return lottoNumbers;
     }
 
-    public static List<Integer> WinningLottoInput(String WinningLotto) {
-        boolean hasInvalidDelimiter = WinningLotto.matches(".*[^\\d,].*"); //공백 및 ,외 다른 구분자 사용시 true 반환
-
-        if (hasInvalidDelimiter) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 공백없이 ,를 이용하여 입력해주세요.");
-        }
-
-        List<Integer> lottoNumbers = Divide.Delimiter(WinningLotto);
-        if (lottoNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 6개의 숫자로 입력해주세요.");
-        }
-        return lottoNumbers;
+    public static void isDuplicateBonus(LottoChecker checker, int bonus){
+       Boolean isDuplicate = checker.isDuplicateBonus(bonus);
+       if(isDuplicate){
+           throw new IllegalArgumentException("[ERROR] 보너스 숫자는 당첨번호와 겹칠 수 없습니다.");
+       }
     }
 
-    public static void isDuplicateBonus(BonusNumberChecker checker, int bonus){
-        Boolean isDuplicate = checker.isDuplicateBonus(bonus);
-        if(isDuplicate){
-            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 당첨번호와 겹칠 수 없습니다.");
-        }
-    }
 }

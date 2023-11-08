@@ -12,8 +12,15 @@ import lotto.model.Match;
 import lotto.model.MatchResult;
 import lotto.model.RandomNumber;
 import lotto.model.Statistics;
+import lotto.view.LottoView;
 
 public class LottoController {
+
+    private final LottoView lottoView;
+
+    public LottoController(LottoView lottoView) {
+        this.lottoView = lottoView;
+    }
 
     public void testRun() {
         // 구입 금액 입력
@@ -21,7 +28,7 @@ public class LottoController {
 
         // 로또 구매 개수 계산
         LottoQuantity lottoQuantity = new LottoQuantity(amount.getAmount());
-        System.out.println(lottoQuantity.getQuantity() + "개를 구매했습니다.");
+        lottoView.printQuantityLotto(lottoQuantity.toString());
 
         // 로또 발행
         List<Lotto> lottos = generateLottos(lottoQuantity);
@@ -39,13 +46,15 @@ public class LottoController {
 
         // 통계 계산 및 결과 출력
         Statistics statistics = new Statistics(amount.getAmount(), matchResults);
-        statistics.evaluateTotalProfit();
+        float totalProfit = statistics.evaluateTotalProfit();
+        String convertedTotalProfit = String.valueOf(totalProfit);
+        lottoView.printTotalProfitRate(convertedTotalProfit);
     }
 
     private Amount promptForAmount() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                lottoView.printAskInputAmount();
                 String purchaseAmount = Console.readLine();
                 return new Amount(purchaseAmount);
             } catch (IllegalArgumentException e) {
@@ -57,7 +66,7 @@ public class LottoController {
     private InputLottoNumber promptForWinningNumber() {
         while (true) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                lottoView.printAskInputWinningNumber();
                 String winningNumbers = Console.readLine();
                 return new InputLottoNumber(winningNumbers);
             } catch (IllegalArgumentException e) {
@@ -69,7 +78,7 @@ public class LottoController {
     private InputBonusNumber promptForBonusNumber() {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                lottoView.printAskInputBonusNumber();
                 String bonusNumber = Console.readLine();
                 return new InputBonusNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
@@ -87,11 +96,11 @@ public class LottoController {
     }
 
     private void printLottos(List<Lotto> lottos) {
-        System.out.println("구매한 로또 번호:");
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers()); // 각 로또의 번호를 출력
+            lottoView.printLottoNumber(lotto.toString());
+            lottoView.printEmptyLine();
         }
-        System.out.println();
+        lottoView.printEmptyLine();
     }
 
     private List<MatchResult> calculateMatchResults(List<Lotto> lottos,
@@ -101,49 +110,5 @@ public class LottoController {
             matchResults.add(new Match(inputNumber, inputBonusNumber, lotto).calculate());
         }
         return matchResults;
-    }
-
-    public void run() {
-        // 구입 금액 입력
-
-        System.out.println("구입금액을 입력해 주세요.");
-        String purchaseAmount = Console.readLine();
-        System.out.println(purchaseAmount);
-        System.out.println();
-
-        // 로또 구매 개수
-        Amount amount = new Amount(purchaseAmount);
-
-        // 구매 개수에 따른 로또 발행 및 확인
-        LottoQuantity lottoQuantity = new LottoQuantity(amount.getAmount());
-        System.out.println(lottoQuantity.getQuantity() + "개를 구매했습니다.");
-
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < lottoQuantity.getQuantity(); i++) {
-            List<Integer> randomNumber = new RandomNumber().getRandomNumber();
-            Lotto lotto = new Lotto(randomNumber);
-            lottos.add(lotto);
-        }
-        System.out.println();
-
-        // 당첨 번호 입력
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String inputLottoNumber = Console.readLine();
-        InputLottoNumber inputNumber = new InputLottoNumber(inputLottoNumber);
-        System.out.println();
-
-        // 보너스 번호 입력
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String inputBonusNumber1 = Console.readLine();
-        InputBonusNumber inputBonusNumber = new InputBonusNumber(inputBonusNumber1);
-
-        List<MatchResult> matchResults = new ArrayList<MatchResult>();
-        for (Lotto lotto : lottos) {
-            Match match = new Match(inputNumber, inputBonusNumber, lotto);
-            MatchResult matchResult = match.calculate();
-            matchResults.add(matchResult);
-        }
-        Statistics statistics = new Statistics(amount.getAmount(), matchResults);
-        statistics.evaluateTotalProfit();
     }
 }

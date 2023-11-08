@@ -36,6 +36,16 @@ public class LottoView {
         this.newLine();
     }
 
+    public void printProfitRate(String profitRate) {
+        System.out.print("총 수익률은 " + profitRate + "입니다.");
+        this.newLine();
+    }
+
+    public void printResult(String message, int count) {
+        System.out.print(message + " - " + count + "개");
+        this.newLine();
+    }
+
 
 
     public void newLine() {

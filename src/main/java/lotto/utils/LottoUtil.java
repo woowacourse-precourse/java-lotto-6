@@ -39,15 +39,6 @@ public class LottoUtil {
                 .collect(Collectors.toList());
     }
 
-    public boolean checkDuplicateNumbers(List<Integer> numbers) {
-        Set<Integer> deleteDupliNumber = new HashSet<>(numbers);
-        if(numbers.size() != deleteDupliNumber.size()) {
-            ExceptionMessage.WINNING_NUMBER_DUPLICATE.printValue();
-            return false;
-        }
-        return true;
-    }
-
     public List<Integer> calculateVariance(List<Integer> winningLotto, List<Integer> myLotto, int bonusNumber) {
         int sameNumber = 0;
         int sameBonusNumber = 0;

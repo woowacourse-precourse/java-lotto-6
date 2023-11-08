@@ -54,12 +54,13 @@ public class LottoGame {
                 continue;
             }
             winnerNumber = lottoUtil.convertNumbers(winningNumber);
-            if(!lottoUtil.checkDuplicateNumbers(winnerNumber)) {
-                continue;
+            try {
+                lotto = new Lotto(winnerNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+
             }
-            break;
         }
-        lotto = new Lotto(winnerNumber);
     }
 
     public void printMessageAndInputBonusNumber() {

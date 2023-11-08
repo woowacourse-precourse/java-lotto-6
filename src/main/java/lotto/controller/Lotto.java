@@ -2,7 +2,9 @@ package lotto.controller;
 
 import lotto.utils.ExceptionMessage;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,14 +17,10 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             ExceptionMessage.WINNING_NUMBER_TOTAL.printValue();
-            new LottoGame().inputWinninNumber();
+            throw new IllegalArgumentException();
         }
-        numbers.forEach(number -> {
-            if(0 >= number && number > 45) {
-                ExceptionMessage.WINNING_NUMBER_RANGE.getValue();
-                new LottoGame().inputWinninNumber();
-            }
-        });
+        validateDuplicate(numbers);
+        validateRange(numbers);
     }
 
     public boolean validate(String number) {
@@ -39,6 +37,23 @@ public class Lotto {
             return false;
         }
         return true;
+    }
+
+    public void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> deleteDupliNumber = new HashSet<>(numbers);
+        if(numbers.size() != deleteDupliNumber.size()) {
+            ExceptionMessage.WINNING_NUMBER_DUPLICATE.printValue();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateRange(List<Integer> numbers) {
+        numbers.forEach(number -> {
+            if(0 >= number && number > 45) {
+                ExceptionMessage.WINNING_NUMBER_RANGE.getValue();
+                throw new IllegalArgumentException();
+            }
+        });
     }
 
     public List<Integer> getNumbers() {

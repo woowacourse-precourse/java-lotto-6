@@ -13,8 +13,13 @@ class RandomNumberGeneratorTest {
     @DisplayName("1~45사이 랜덤 번호를 생성한다.")
     @Test
     void createRandomUniqueNumber() {
+        //given
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+
+        //when
         List<Integer> randomUniqueNumber = randomNumberGenerator.createRandomUniqueNumber();
+
+        //then
         assertThat(randomUniqueNumber.size()).isEqualTo(SIZE.getValue());
         assertThat(randomUniqueNumber).allMatch(num -> num >= START_VALUE.getValue() && num <= END_VALUE.getValue());
     }

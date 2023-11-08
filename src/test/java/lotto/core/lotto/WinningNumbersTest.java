@@ -14,7 +14,13 @@ class WinningNumbersTest {
     @DisplayName("당첨 번호를 WinningNumbers 로 감싼다.")
     @Test
     void getNumbers() {
+        //given
         WinningNumbers winningNumbers = new WinningNumbers(lottoTicket);
-        Assertions.assertThat(winningNumbers.getNumbers()).isEqualTo(numbers);
+
+        //when
+        List<Integer> rawWinningNumbers = winningNumbers.getNumbers();
+
+        //then
+        Assertions.assertThat(rawWinningNumbers).isEqualTo(numbers);
     }
 }

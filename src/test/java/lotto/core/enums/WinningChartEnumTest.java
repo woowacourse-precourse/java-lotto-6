@@ -12,7 +12,10 @@ class WinningChartEnumTest {
     @CsvSource({"5,true,FIVE_AND_BONUS_MATCH", "5,false,FIVE_MATCH", "4,true,FOUR_MATCH", "3,true,THREE_MATCH",
             "2,false,NO_MATCH", "1,true,NO_MATCH", "0,true,NO_MATCH"})
     void valueOf(Integer matchCount, Boolean bonusNumber, String winningChartName) {
+        //when
         WinningChartEnum winningChartEnum = WinningChartEnum.valueOf(matchCount, bonusNumber);
+
+        //then
         assertThat(winningChartEnum.name()).isEqualTo(winningChartName);
     }
 }

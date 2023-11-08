@@ -2,9 +2,11 @@ package lotto.validation;
 
 import static lotto.constant.ErrorMessage.*;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.constant.constant;
 import lotto.domain.Lotto;
 
 public class Validation {
@@ -30,7 +32,7 @@ public class Validation {
     }
 
     public static void validatedivide(int number){
-        if(number%1000 != 0){
+        if(number%constant.THOUSAND != 0){
             throw new IllegalArgumentException(DIVIDE.getMessage());
         }
     }
@@ -56,7 +58,7 @@ public class Validation {
     }
 
     private static void validateBonusNumberInRange(int number){
-        if(number < 1 || number > 45){
+        if(number < constant.MINLOTTONUMBER || number > constant.MAXLOTTONUMBER){
             throw new IllegalArgumentException(NUMBERINRANGE.getMessage());
         }
     }

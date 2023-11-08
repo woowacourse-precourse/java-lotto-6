@@ -9,12 +9,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 import lotto.View.OutputView;
 import lotto.constant.LottoRank;
+import lotto.constant.constant;
 import lotto.domain.IssuedLottos;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
 public class LottoCalculation {
     private Map<Integer, Integer> lottoResultstat = new LinkedHashMap<>();
+    private static final String PATTERN = "#,##0.0";
+    private static final int PERCENT = 100;
+    private static final int MATCHBONUSNUMBER = 10;
 
     public LottoResult lottoResult(List<Integer> countWinningLotto){
         InputLottoResultKey(lottoResultstat);
@@ -34,8 +38,8 @@ public class LottoCalculation {
         for(int i = 0 ; i < issuedLottos.size() ; i++){
             List<Integer> issuedLotto = issuedLottos.find_issued_lotto_by_index(i);
             int count = CountCorrectNumber(issuedLotto, lotto.getLottoNumbersWithoutBonusNumber());
-            if(count == 5 && isBonusNumber(issuedLotto, lotto.getBonusNumber())){
-                count *= 10;
+            if(count == constant.BEFOREBONUSNUMBERSIZE && isBonusNumber(issuedLotto, lotto.getBonusNumber())){
+                count *= MATCHBONUSNUMBER;
             }
             countWinningNumbers.add(count);
         }
@@ -48,8 +52,8 @@ public class LottoCalculation {
         if (Lotto_Earning == 0) {
             return "0.0";
         }
-        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
-        return decimalFormat.format(((double) Lotto_Earning / purchaseAmount)*100);
+        DecimalFormat decimalFormat = new DecimalFormat(PATTERN);
+        return decimalFormat.format(((double) Lotto_Earning / purchaseAmount)*PERCENT);
     }
 
     private int add_Lotto_Earnings(){
@@ -86,7 +90,7 @@ public class LottoCalculation {
         int[] allRanks = Arrays.stream(LottoRank.values())
                 .mapToInt(LottoRank::getCount_correct_number)
                 .toArray();
-        for(int i = 0 ; i < 5 ; i++){
+        for(int i = 0; i < constant.BEFOREBONUSNUMBERSIZE ; i++){
             lottoresult.put(allRanks[i], 0);
         }
     }

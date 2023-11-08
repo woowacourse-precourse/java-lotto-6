@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.constant.constant;
 import lotto.validation.Validation;
 import lotto.View.InputView;
 import lotto.View.OutputView;
@@ -12,7 +13,7 @@ import lotto.domain.IssuedLottos;
 
 public class IssuedLottoDataService {
     public IssuedLottos create_issued_lottos(){
-        int amount = purchaceAmount()/1000;
+        int amount = purchaceAmount()/ constant.THOUSAND;
         IssuedLottos issuedLottos = new IssuedLottos(new ArrayList<>(), amount);
         OutputView.printAmount(amount);
         for(int i = 0 ; i < amount ; i++){
@@ -30,7 +31,7 @@ public class IssuedLottoDataService {
     }
 
     private IssuedLotto create_issued_lotto_Numbers(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(constant.MINLOTTONUMBER, constant.MAXLOTTONUMBER, 6);
         List<Integer> lotto_numbers = new ArrayList<>(numbers);
         Collections.sort(lotto_numbers);
         return new IssuedLotto(lotto_numbers);

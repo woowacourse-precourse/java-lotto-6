@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.constant;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,14 +19,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != constant.WITHBONUSNUMBERSIZE) {
             throw new IllegalArgumentException(NUMBERSIZE.getMessage());
         }
     }
 
     private void validateInRange(List<Integer> numbers){
         for (int number : numbers) {
-            if(number < 1 || number > 45){
+            if(number < constant.MINLOTTONUMBER || number > constant.MAXLOTTONUMBER){
                 throw new IllegalArgumentException(NUMBERINRANGE.getMessage());
             }
         }
@@ -33,7 +34,7 @@ public class Lotto {
 
     private void validateDuplicate(List<Integer> numbers){
         Set<Integer> noDuplicateNumbers = new HashSet<>(numbers);
-        if(noDuplicateNumbers.size() != 6){
+        if(noDuplicateNumbers.size() != constant.WITHBONUSNUMBERSIZE){
             throw new IllegalArgumentException(NUMBERDUPLICATE.getMessage());
         }
     }
@@ -47,12 +48,12 @@ public class Lotto {
     }
 
     public int getBonusNumber(){
-        return numbers.get(6);
+        return numbers.get(constant.WITHBONUSNUMBERSIZE);
     }
 
     public List<Integer> getLottoNumbersWithoutBonusNumber(){
-        int lastIndex = numbers.size() - 1;
-        List<Integer> LottoNumbersWithoutBonusNumber = new ArrayList<>(numbers.subList(0, lastIndex));
+        int withoutBonusNumber = numbers.size() - 1;
+        List<Integer> LottoNumbersWithoutBonusNumber = new ArrayList<>(numbers.subList(0, withoutBonusNumber));
         return LottoNumbersWithoutBonusNumber;
     }
 

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.View.OutputView;
+import lotto.constant.constant;
 import lotto.domain.IssuedLottos;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
@@ -23,7 +24,7 @@ public class LottoController {
         lotto = lottoDataService.create_official_Lotto();
         List<Integer> countWinningLottos =  lottoCalculation.CountWinningLottos(issuedLottos, lotto);
         lottoResult = lottoCalculation.lottoResult(countWinningLottos);
-        String yield = lottoCalculation.getYield(issuedLottos.getAmount()*1000);
+        String yield = lottoCalculation.getYield(issuedLottos.getAmount()* constant.THOUSAND);
         OutputView.printYield(yield);
     }
 

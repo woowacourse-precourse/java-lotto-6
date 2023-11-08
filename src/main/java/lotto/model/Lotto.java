@@ -8,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateRedundantNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -16,6 +17,15 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+
+    private void validateRedundantNumbers(List<Integer> numbers) {
+        List<Integer> distinctList = numbers.stream().distinct().toList();
+        if (numbers.size() != distinctList.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 
     public List<Integer> getNumbers() {
         return this.numbers;
@@ -41,11 +51,5 @@ public class Lotto {
     public boolean compareBonusNumber(WinningLotto winningNumber){
         return numbers.contains(winningNumber.getBonusNumber());
     }
-
-
-
-
-
-
 
 }

@@ -4,7 +4,7 @@ package lotto.model;
 public class Cash {
 
     private final int UNIT = 1000;
-    private final int amount;
+    private static int amount = 0;
     public Cash(int amount) {
         validateAmount(amount);
         validateAmountUnit(amount);
@@ -15,7 +15,7 @@ public class Cash {
         return this.amount / UNIT;
     }
 
-    public int getAmount() { return this.amount; }
+    public static int getAmount() { return amount; }
 
     private void validateAmount(int amount) {
         if(amount < 1000) {

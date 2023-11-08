@@ -31,4 +31,12 @@ public enum Rank {
 
         return Rank.NONE;
     }
+
+    public int getPrice(){
+        return price;
+    }
+
+    public String getResult() {
+        return result;
+    }
 }

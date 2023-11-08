@@ -29,7 +29,7 @@ public class InputReader {
     }
 
     public static int inputBonusNumber() {
-        int bonus = Integer.parseInt(Console.readLine());
+        int bonus = checkIsInteger(Console.readLine());
         validateBonus(bonus);
 
         return bonus;

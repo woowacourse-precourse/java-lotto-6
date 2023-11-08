@@ -11,7 +11,7 @@ public class Validator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_FORMAT);
+            throw new IllegalArgumentException(INVALID_INPUT_FORMAT);
         }
     }
 
@@ -22,7 +22,7 @@ public class Validator {
 
     private static void checkIsPositive(int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_FORMAT);
+            throw new IllegalArgumentException(INVALID_PURCHASE_SIGN);
         }
     }
 

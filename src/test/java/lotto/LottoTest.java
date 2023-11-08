@@ -3,6 +3,8 @@ package lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -31,33 +33,21 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호와 결과를 비교하여 요구 사항는 결과를 반환한다.")
-    @Test
-    void compareLottoNumWithResultNum() {
+    @DisplayName("로또 번호와 결과를 비교하여 요구 사항에 맞는 결과를 반환한다.")
+    @ParameterizedTest
+    @CsvSource({
+            "1,2,3,4,5,6,7,SIX",
+            "1,2,3,4,5,13,6,FIVE_BONUS",
+            "1,2,3,4,5,13,7,FIVE",
+            "1,2,3,4,9,13,6,FOUR",
+            "1,2,3,8,9,13,6,THREE",
+            "1,2,7,8,9,13,6,LOSE",
+            "1,40,7,8,9,13,6,LOSE",
+            "41,40,7,8,9,13,6,LOSE"
+    })
+    void compareLottoNumWithResultNum(int num1, int num2, int num3, int num4, int num5, int num6, int bonusNum, Result expected) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
-        Result sixExpected = lotto.match(List.of(1, 2, 3, 4, 5, 6), 7);
-        assertThat(sixExpected).isEqualTo(Result.SIX);
-
-        Result fiveBonusExpected = lotto.match(List.of(1, 2, 3, 4, 5, 13), 6);
-        assertThat(fiveBonusExpected).isEqualTo(Result.FIVE_BONUS);
-
-        Result fiveExpected = lotto.match(List.of(1, 2, 3, 4, 5, 13), 7);
-        assertThat(fiveExpected).isEqualTo(Result.FIVE);
-
-        Result fourExpected = lotto.match(List.of(1, 2, 3, 4, 9, 13), 6);
-        assertThat(fourExpected).isEqualTo(Result.FOUR);
-
-        Result threeExpected = lotto.match(List.of(1, 2, 3, 8, 9, 13), 6);
-        assertThat(threeExpected).isEqualTo(Result.THREE);
-
-        Result loseExpected2 = lotto.match(List.of(1, 2, 7, 8, 9, 13), 6);
-        assertThat(loseExpected2).isEqualTo(Result.LOSE);
-
-        Result loseExpected1 = lotto.match(List.of(1, 40, 7, 8, 9, 13), 6);
-        assertThat(loseExpected1).isEqualTo(Result.LOSE);
-
-        Result loseExpected0 = lotto.match(List.of(41, 40, 7, 8, 9, 13), 6);
-        assertThat(loseExpected0).isEqualTo(Result.LOSE);
+        Result result = lotto.match(List.of(num1, num2, num3, num4, num5, num6), bonusNum);
+        assertThat(result).isEqualTo(expected);
     }
 }

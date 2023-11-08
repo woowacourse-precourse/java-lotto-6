@@ -5,6 +5,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.User;
 import lotto.domain.WinningNumber;
 import lotto.utils.InputValidator;
+import lotto.utils.LottoGameException;
 
 public class InputView {
     public static User readPayment() {
@@ -12,7 +13,8 @@ public class InputView {
             String pay = Console.readLine();
             InputValidator.validatePayNumber(pay);
             return User.paid(pay);
-        } catch (IllegalArgumentException e) {
+        } catch (LottoGameException e) {
+            OutputView.println(e.getMessage());
             return readPayment();
         }
     }
@@ -22,7 +24,8 @@ public class InputView {
             String winningNumber = Console.readLine();
             InputValidator.validateWinningNumber(winningNumber);
             return WinningNumber.consistOf(winningNumber);
-        } catch (IllegalArgumentException e) {
+        } catch (LottoGameException e) {
+            OutputView.println(e.getMessage());
             return readWinningNumber();
         }
     }
@@ -32,7 +35,8 @@ public class InputView {
             String bonusNumber = Console.readLine();
             InputValidator.validateBonusNumber(bonusNumber, winningNumber);
             return BonusNumber.consistOf(bonusNumber);
-        } catch (IllegalArgumentException e) {
+        } catch (LottoGameException e) {
+            OutputView.println(e.getMessage());
             return readBonusNumber(winningNumber);
         }
     }

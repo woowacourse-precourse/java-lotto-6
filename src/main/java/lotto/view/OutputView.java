@@ -23,4 +23,8 @@ public class OutputView {
     public static void printBonusNumberMessage() {
         System.out.println(GameMessage.BONUS_NUMBER_MESSAGE.getMessage());
     }
+
+    public static void println(String message) {
+        System.out.println(message);
+    }
 }

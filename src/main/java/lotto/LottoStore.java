@@ -18,8 +18,8 @@ public class LottoStore {
         this.ng = ng;
     }
 
-    public List<Lotto> purchaseLottoTickets(int amount) {
-        int lottoCount = getLottoCount(amount);
+    public List<Lotto> purchaseLottoTickets(String amountInput) {
+        int lottoCount = getLottoCount(amountInput);
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
@@ -32,18 +32,23 @@ public class LottoStore {
         return new Lotto(ng.generateNumberSet(LottoConfig.LOTTO_MIN, LottoConfig.LOTTO_MAX, LottoConfig.LOTTO_SIZE));
     }
 
-    private int getLottoCount(int amount) {
-        validateAmount(amount);
+    private int getLottoCount(String amountInput) {
+        validateAmount(amountInput);
 
-        return amount / LottoConfig.LOTTO_PRICE;
+        return Integer.parseInt(amountInput) / LottoConfig.LOTTO_PRICE;
     }
 
-    private void validateAmount(int amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 양수여야 합니다.");
-        }
-        if (amount % LottoConfig.LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(String.format("[ERROR] 로또 구매 금액은 %d원 단위여야 합니다.", LottoConfig.LOTTO_PRICE));
+    private void validateAmount(String amountInput) {
+        try {
+            int amount = Integer.parseInt(amountInput);
+            if (amount <= 0) {
+                throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 양수여야 합니다.");
+            }
+            if (amount % LottoConfig.LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException(String.format("[ERROR] 로또 구매 금액은 %d원 단위여야 합니다.", LottoConfig.LOTTO_PRICE));
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 숫자로만 입력해야 합니다.");
         }
     }
 }

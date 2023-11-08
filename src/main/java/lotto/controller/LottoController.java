@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import static lotto.domain.LottoGenerator.startRandom;
+
 public class LottoController {
         int payMoney;
         private static List<Integer> lottoNumbers;
@@ -49,8 +52,7 @@ public class LottoController {
                 return lottos;
         }
         private static Lotto makeLotto(){
-                LottoGenerator lottoGenerator = new LottoGenerator();
-                lottoNumbers = LottoGenerator.startRandom();
+                lottoNumbers = startRandom();
                 System.out.println(lottoNumbers);
                 return new Lotto(lottoNumbers);
         }

@@ -15,15 +15,16 @@ public class LottoAmount {
 
         return price / 1000;
     }
+    public Integer inputPrice(){
+        return Integer.parseInt(readLine());
+    }
 
-    private int inputAmount() {
+    public int inputAmount() {
         int inputPrice;
         while (true) {
             try {
-                inputPrice = Integer.parseInt(readLine());
-                if (inputPrice % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 1000원 단위로만 구매 가능합니다.");
-                }
+                inputPrice = inputPrice();
+                new LottoAmountException(inputPrice);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해야 합니다.");

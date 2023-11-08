@@ -8,57 +8,57 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public class OutputView {
-    public void askPurchaseAmount() {
+    public static void askPurchaseAmount() {
         System.out.println(ENTER_PURCHASE_AMOUNT.getMessage());
     }
 
-    public void askLottoWinningNumber() {
+    public static void askLottoWinningNumber() {
         printNewLine();
         System.out.println(ENTER_LOTTO_NUMBERS.getMessage());
     }
 
-    public void askBonusNumber() {
+    public static void askBonusNumber() {
         printNewLine();
         System.out.println(ENTER_BONUS_NUMBER.getMessage());
     }
 
-    public void printPurchasedResult(List<Lotto> purchasedLotto, int purchasedGameCount) {
+    public static void printPurchasedResult(List<Lotto> purchasedLotto, int purchasedGameCount) {
         printNewLine();
         printPurchasedGameCount(purchasedGameCount);
         printPurchasedLottoNumbers(purchasedLotto);
     }
 
-    private void printPurchasedGameCount(int purchasedGameCount) {
+    private static void printPurchasedGameCount(int purchasedGameCount) {
         System.out.printf(SHOW_LOTTO_GAME_COUNT.getMessage(), purchasedGameCount);
         printNewLine();
     }
 
-    private void printPurchasedLottoNumbers(List<Lotto> purchasedLotto) {
+    private static void printPurchasedLottoNumbers(List<Lotto> purchasedLotto) {
         for (Lotto eachLotto : purchasedLotto) {
             System.out.println(eachLotto.getNumbers());
         }
     }
 
-    public void printLottoResult(int[] rankResult, String lottoYield) {
+    public static void printLottoResult(int[] rankResult, String lottoYield) {
         printNewLine();
         printLottoResultIntroduction();
         printLottoPrize(rankResult);
         printYieldOfLottoResult(lottoYield);
     }
 
-    private void printLottoResultIntroduction() {
+    private static void printLottoResultIntroduction() {
         System.out.println(SHOW_LOTTO_STATISTIC_INTRODUCTION.getMessage());
         System.out.println(SHOW_LOTTO_SEPARATOR_LINE.getMessage());
     }
 
-    private void printLottoPrize(int[] rankResult) {
+    private static void printLottoPrize(int[] rankResult) {
         for (int matchedNumber = FIFTH_RANK_MATCH_INDEX.getIndex();
              matchedNumber <= FIRST_RANK_MATCH_INDEX.getIndex(); matchedNumber++) {
             printMatchedLotto(rankResult, matchedNumber);
         }
     }
 
-    private void printMatchedLotto(int[] rankResult, int matchedNumber) {
+    private static void printMatchedLotto(int[] rankResult, int matchedNumber) {
         System.out.printf(SHOW_LOTTO_PRIZE.getMessage(),
                 matchedNumber, getLottoRank(matchedNumber).getWinningAmount(), rankResult[matchedNumber]);
         printNewLine();
@@ -68,22 +68,22 @@ public class OutputView {
         }
     }
 
-    private void printMatchedLottoWithBonus(int[] rankResult, int matchedNumber) {
+    private static void printMatchedLottoWithBonus(int[] rankResult, int matchedNumber) {
         System.out.printf(SHOW_LOTTO_PRIZE_WITH_BONUS.getMessage(),
                 matchedNumber, SECOND_RANK.getWinningAmount(), rankResult[SECOND_RANK_INDEX.getIndex()]);
         printNewLine();
     }
 
-    private void printYieldOfLottoResult(String lottoYield) {
+    private static void printYieldOfLottoResult(String lottoYield) {
         System.out.printf(SHOW_LOTTO_RESULT_YIELD.getMessage(), lottoYield);
         printNewLine();
     }
 
-    public void printNewLine() {
+    public static void printNewLine() {
         System.out.println();
     }
 
-    public void printErrorMessage(String errorMessage) {
+    public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 }

@@ -6,7 +6,6 @@ import static lotto.exception.ErrorMessage.PURCHASE_AMOUNT_IS_NOT_DIVIDED_UNIT_A
 import static lotto.constraint.PurchaseAmountConstraint.*;
 
 import lotto.exception.Exception;
-import lotto.util.ConvertInput;
 
 public class Player {
     private final int DIVIDED_REMAINDER = 0;

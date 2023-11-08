@@ -2,7 +2,6 @@ package lotto.cotroller;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.PurchaseAmount;
 import lotto.Util;
 import lotto.Validator;
 import lotto.view.InputView;
@@ -15,10 +14,9 @@ public class InputController {
         this.inputView = inputView;
     }
 
-    public PurchaseAmount getPurchaseAmount() {
+    public int getPurchaseAmount() {
         String purchaseAmountInput = inputView.getPurchaseAmountInput();
-        int purchaseAmountValue = Integer.parseInt(purchaseAmountInput);
-        return PurchaseAmount.from(purchaseAmountValue);
+        return Integer.parseInt(purchaseAmountInput);
     }
 
     public List<Integer> getWinningNumber() {

@@ -41,7 +41,8 @@ public class MainController {
 
     private PurchaseAmount getPurchaseAmount() {
         try {
-            return inputController.getPurchaseAmount();
+            int purchaseAmount = inputController.getPurchaseAmount();
+            return PurchaseAmount.from(purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return this.getPurchaseAmount();

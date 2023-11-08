@@ -1,10 +1,7 @@
 package lotto.domain.result;
 
 import static lotto.domain.grade.Grade.FIFTH;
-import static lotto.domain.grade.Grade.FIRST;
-import static lotto.domain.grade.Grade.THIRD;
 import static lotto.domain.grade.Grade.values;
-import static lotto.view.write.OutputMessage.LOTTO_STATISTICS_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
@@ -12,8 +9,6 @@ import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.grade.Grade;
 import lotto.domain.grade.GradeCount;
-import lotto.service.LottoMessagePrinter;
-import lotto.view.write.OutputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,21 +57,5 @@ class StatisticsTest {
                 .filteredOn(gradeCount -> gradeCount.getGrade() == expectedGrade)
                 .isNotEmpty()
                 .allSatisfy(gradeCount -> assertThat(gradeCount.getCount()).isOne());
-    }
-
-    @Test
-    void 통계를_출력한다() {
-        //Arrange
-        Statistics statistics = Statistics.of();
-        statistics.apply(FIRST);
-        statistics.apply(THIRD);
-
-        //Act
-        statistics.print(LottoMessagePrinter.of(new OutputView()));
-
-        //Assert
-        assertThat(outputStreamCaptor.toString())
-                .contains(String.format(LOTTO_STATISTICS_MESSAGE.getMessage(), FIRST.getDescription(), 1))
-                .contains(String.format(LOTTO_STATISTICS_MESSAGE.getMessage(), THIRD.getDescription(), 1));
     }
 }

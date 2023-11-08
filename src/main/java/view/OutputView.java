@@ -13,4 +13,6 @@ public interface OutputView {
     void requestBonusLottoNumber();
 
     void printLottoStatisticsResult(LottoStatisticsResult lottoStatisticsResult);
+
+    void printExceptionMessage(String exceptionMessage);
 }

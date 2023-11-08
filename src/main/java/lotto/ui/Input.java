@@ -33,7 +33,7 @@ public class Input {
         while (!isValid) {
             try {
                 readWinningNumbers();
-                isValid = Validator.lottoNumbers(this.winningNumbers);
+                isValid = Validator.lottoNumbersWithString(this.winningNumbers);
 
             } catch (IllegalArgumentException e) {
                 System.out.print("[ERROR] " + e.getMessage());

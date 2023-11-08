@@ -14,12 +14,18 @@ public class Validator {
         return true;
     }
 
-    public static boolean lottoNumbers(List<String> lottoNumbers) {
-        lottoNumbersCount(lottoNumbers);
-        lottoNumbersFormat(lottoNumbers);
-        lottoNumbersDuplicate(lottoNumbers);
+    public static boolean lottoNumbersWithString(List<String> lottoNumbers) {
+        lottoNumbersCountWithString(lottoNumbers);
+        lottoNumbersFormatWithString(lottoNumbers);
+        lottoNumbersDuplicateWithString(lottoNumbers);
 
         return true;
+    }
+
+    public static void lottoNumbersWithInteger(List<Integer> lottoNumbers) {
+        lottoNumbersCountWithInteger(lottoNumbers);
+        lottoNumbersFormatWithInteger(lottoNumbers);
+        lottoNumbersDuplicateWithInteger(lottoNumbers);
     }
 
     public static boolean bonusNumber(String input, List<String> winningNumbers) {
@@ -29,20 +35,40 @@ public class Validator {
         return true;
     }
 
-    private static void lottoNumbersCount(List<String> numbers) {
+    private static void lottoNumbersCountWithString(List<String> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 쉼표(,)를 기준으로 6개여야 합니다.\n");
         }
     }
 
-    private static void lottoNumbersFormat(List<String> numbers) {
+    private static void lottoNumbersFormatWithString(List<String> numbers) {
         for (String number : numbers) {
             lottoNumberFormat(number);
         }
     }
 
-    private static void lottoNumbersDuplicate(List<String> numbers) {
+    private static void lottoNumbersDuplicateWithString(List<String> numbers) {
         Set<String> noDuplicateNumbers = new HashSet<>(numbers);
+
+        if (noDuplicateNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException("로또 번호는 중복되지 않는 숫자 6개여야 합니다.\n");
+        }
+    }
+
+    private static void lottoNumbersCountWithInteger(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("로또 번호는 쉼표(,)를 기준으로 6개여야 합니다.\n");
+        }
+    }
+
+    private static void lottoNumbersFormatWithInteger(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            lottoNumberFormat(String.valueOf(number));
+        }
+    }
+
+    private static void lottoNumbersDuplicateWithInteger(List<Integer> numbers) {
+        Set<Integer> noDuplicateNumbers = new HashSet<>(numbers);
 
         if (noDuplicateNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("로또 번호는 중복되지 않는 숫자 6개여야 합니다.\n");

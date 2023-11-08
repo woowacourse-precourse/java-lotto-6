@@ -16,5 +16,16 @@ public class Lotto {
         }
     }
 
+    private void loopCheckNumberRange(){
+    }
+
+    private void checkNumberRange(){
+        boolean hasSameNumber =false;
+
+        hasSameNumber = numbers.size() != numbers.stream().distinct().count();
+        if (hasSameNumber) {
+            throw new IllegalArgumentException();
+        }
+    }
     // TODO: 추가 기능 구현
 }

@@ -3,6 +3,7 @@
 
 - 구입 금액을 입력받아서 저장한다. 에러메세지가 뜨면 다시 입력받는다. LottoManager#insertMoney
     - 금액을 1000으로 나눈 나머지가 0이 아니면 에러메세지를 보낸다. LottoManager#checkMoney
+    - 에러메세지가 뜨면 다시 입력 받도록 조치한다. LottoManager#insertMoneyErrorHandling    
 
 - 구입 금액을 1000으로 나눠 로또 수량을 저장한다. LottoManager#buyLottoAmount
 - 로또 수량을 출력한다. LottoManager#showBuyAmount

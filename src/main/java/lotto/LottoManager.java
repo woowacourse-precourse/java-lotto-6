@@ -13,10 +13,15 @@ public class LottoManager {
     List<List<Integer>> lottoCandidateSets = new ArrayList<>();
     Lotto winlotto;
     public void insertMoney() {
+        System.out.println("구입금액을 입력해 주세요.");
+        insertMoneyErrorHandling();
+    }
+
+    public void insertMoneyErrorHandling()
+    {
         int money =0;
         boolean pass = true;
 
-        System.out.println("구입금액을 입력해 주세요.");
         do {
             try {
                 money=Integer.parseInt(Console.readLine());

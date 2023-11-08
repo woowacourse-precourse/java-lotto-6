@@ -9,7 +9,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WinningCalculatorTest {
+class IncomeCalculatorTest {
     private Lottos lottos;
     private StandardLotto standardLotto;
     @BeforeEach
@@ -26,7 +26,7 @@ class WinningCalculatorTest {
     @DisplayName("Lottos 컬렉션이 비교 결과를 잘 전달하고, WinningCalc 는 해당 결과를 잘 가지고 있음을 테스트")
     void calculateWinning() {
         lottos.calculateWinning(standardLotto);
-        Map<Prize, Integer> prizeCountMap = WinningCalculator.getPrizeCountMap();
+        Map<Prize, Integer> prizeCountMap = IncomeCalculator.getPrizeCountMap();
         assertThat(prizeCountMap.get(Prize.FIRST)).isOne();
         assertThat(prizeCountMap.get(Prize.NONE)).isOne();
     }
@@ -34,9 +34,9 @@ class WinningCalculatorTest {
     @Test
     @DisplayName("총 상금의 계산을 테스트")
     void getTotalWinning() {
-        WinningCalculator.addCount(Prize.FIRST);
-        WinningCalculator.addCount(Prize.FIRST);
+        IncomeCalculator.addCount(Prize.FIRST);
+        IncomeCalculator.addCount(Prize.FIRST);
 
-        assertThat(WinningCalculator.getTotalWinning()).isEqualTo(Prize.FIRST.getWinning() * 2);
+        assertThat(IncomeCalculator.getTotalIncome()).isEqualTo(Prize.FIRST.getWinning() * 2);
     }
 }

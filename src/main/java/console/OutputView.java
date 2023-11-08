@@ -3,7 +3,7 @@ package console;
 import lotto.Lotto;
 import lotto.Lottos;
 import lotto.Prize;
-import lotto.WinningCalculator;
+import lotto.IncomeCalculator;
 
 import java.util.List;
 import java.util.Map;
@@ -67,7 +67,7 @@ public class OutputView {
 
     public static void printEarningDetail() {
         System.out.println(RANK_RESULT);
-        Map<Prize, Integer> prizeCountMap = WinningCalculator.getPrizeCountMap();
+        Map<Prize, Integer> prizeCountMap = IncomeCalculator.getPrizeCountMap();
         for (Map.Entry<Prize, Integer> entry : prizeCountMap.entrySet()) {
             printDetails(entry);
         }

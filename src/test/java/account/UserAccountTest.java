@@ -1,7 +1,7 @@
 package account;
 
 import lotto.Prize;
-import lotto.WinningCalculator;
+import lotto.IncomeCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -32,8 +32,8 @@ class UserAccountTest {
         int inputMoney = 100000;
         UserAccount userAccount = new UserAccount(inputMoney);
         //when
-        WinningCalculator.addCount(Prize.FIFTH);
-        long totalWinning = WinningCalculator.getTotalWinning();
+        IncomeCalculator.addCount(Prize.FIFTH);
+        long totalWinning = IncomeCalculator.getTotalIncome();
         //then
         double earningRate = userAccount.getEarningRate(totalWinning);
         double expected = (double) Prize.FIFTH.getWinning() / inputMoney;

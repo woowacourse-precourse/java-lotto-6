@@ -3,7 +3,7 @@ package lotto;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class WinningCalculator { // 상금 계산기. 이상한 영어인가?
+public class IncomeCalculator { // 상금 계산기. 이상한 영어인가?
     private static final Map<Prize, Integer> prizeCountMap = new LinkedHashMap<>();
 
     static {
@@ -12,8 +12,8 @@ public class WinningCalculator { // 상금 계산기. 이상한 영어인가?
         }
     }
 
-    private WinningCalculator() {
-        throw new IllegalArgumentException();
+    private IncomeCalculator() {
+        throw new UnsupportedOperationException();
     }
 
     public static void addCount(Prize prize){
@@ -24,7 +24,7 @@ public class WinningCalculator { // 상금 계산기. 이상한 영어인가?
         return new LinkedHashMap<>(prizeCountMap);
     }
 
-    public static long getTotalWinning() {
+    public static long getTotalIncome() {
         return prizeCountMap.entrySet().stream()
                 .map(entry -> entry.getKey().getWinning() * entry.getValue())
                 .mapToLong(Long::valueOf)

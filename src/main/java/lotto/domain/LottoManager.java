@@ -1,6 +1,6 @@
-package domain;
+package lotto.domain;
 
-import static domain.LottoInfoNumbers.*;
+import static lotto.domain.LottoInfoNumbers.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

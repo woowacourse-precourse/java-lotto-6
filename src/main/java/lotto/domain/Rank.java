@@ -1,4 +1,4 @@
-package domain;
+package lotto.domain;
 
 public enum Rank {
     ZERO_MATCH(0, 0L, "0"),

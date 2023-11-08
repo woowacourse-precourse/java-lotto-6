@@ -1,7 +1,7 @@
-package domain;
+package lotto.domain;
 
-import static domain.LottoInfoNumbers.*;
-import static view.Messages.*;
+import static lotto.domain.LottoInfoNumbers.*;
+import static lotto.view.Messages.*;
 
 import java.util.HashSet;
 import java.util.List;

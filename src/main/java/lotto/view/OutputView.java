@@ -1,6 +1,6 @@
-package view;
+package lotto.view;
 
-import domain.Rank;
+import lotto.domain.Rank;
 import java.util.HashMap;
 import java.util.List;
 

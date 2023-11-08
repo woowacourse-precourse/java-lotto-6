@@ -1,4 +1,4 @@
-package view;
+package lotto.view;
 
 public class Messages {
     public static final String ERROR_HEADER = "[ERROR] ";

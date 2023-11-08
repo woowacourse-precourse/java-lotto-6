@@ -1,15 +1,15 @@
-package controller;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.Lotto;
-import domain.LottoInfoNumbers;
-import domain.LottoManager;
-import domain.LottoValidation;
-import domain.User;
-import domain.Utils;
+import lotto.domain.Lotto;
+import lotto.domain.LottoInfoNumbers;
+import lotto.domain.LottoManager;
+import lotto.domain.LottoValidation;
+import lotto.domain.User;
+import lotto.domain.Utils;
 import java.util.List;
-import view.InputView;
-import view.OutputView;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Controller {
 

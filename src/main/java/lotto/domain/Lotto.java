@@ -1,6 +1,4 @@
-package domain;
-
-import static domain.LottoInfoNumbers.*;
+package lotto.domain;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        Validations.validateLengthOfList(numbers, LOTTO_TOTAL_NUMBER);
+        Validations.validateLengthOfList(numbers, LottoInfoNumbers.LOTTO_TOTAL_NUMBER);
         Validations.validateDuplicate(numbers);
         Validations.validateListWithinRange(numbers);
     }

@@ -8,8 +8,6 @@ import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
@@ -32,15 +30,11 @@ public class LottoService {
     }
 
     private void getNewLotto() {
-        List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() != 6) {
-            int number = Randoms.pickNumberInRange(1, 45);
-            if (!numbers.contains(number)) {
-                numbers.add(number);
-            }
-        }
-        Collections.sort(numbers);
-        lottoRepository.save(new Lotto(numbers));
+        lottoRepository.save(new Lotto(getRandomNumbers()));
+    }
+
+    private List<Integer> getRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
 
     public void getUserLotto() {

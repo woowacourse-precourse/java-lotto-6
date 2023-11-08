@@ -24,14 +24,14 @@ public class Player {
         }
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     public WinningResult calculateResult(WinningNumbers winningNumbers) {
         Calculator calculator = new Calculator(lottos, winningNumbers);
         Map<Rank, Integer> winningStatistics = calculator.calculateStatistics();
         Double winningRate = calculator.calculateWinningRate(winningStatistics, money);
         return new WinningResult(winningStatistics, winningRate);
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

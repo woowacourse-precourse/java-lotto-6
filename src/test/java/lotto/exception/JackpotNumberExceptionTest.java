@@ -43,4 +43,11 @@ public class JackpotNumberExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨번호 입력 시 1~45 범위 밖의 숫자를 입력하면 예외가 발생한다.")
+    @Test
+    public void inputJackpotNumberByOutOfRange() {
+        assertThatThrownBy(() -> InputValidator.checkJackpotNumberInput("1,2,3,4,5,99"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

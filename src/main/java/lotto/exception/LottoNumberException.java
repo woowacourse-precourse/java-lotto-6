@@ -3,7 +3,6 @@ package lotto.exception;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.exception.LottoNumberRangeException.NumberRangeException;
 
 public class LottoNumberException {
     public static List<Integer> LottoNumberException(String input) {
@@ -18,4 +17,3 @@ public class LottoNumberException {
         return lotto_numbers;
     }
 }
-

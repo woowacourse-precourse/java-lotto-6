@@ -12,8 +12,8 @@ public class MoneyReader {
                 int number = Integer.parseInt(value);
                 MoneyAmountException.money_reader(number);
                 return number;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalStateException e) {
+                System.out.println("[ERROR] 다시 입력해라");
                 return money_reader(); // 예외가 발생한 경우 다시 입력하도록 재귀 호출
             }
         }

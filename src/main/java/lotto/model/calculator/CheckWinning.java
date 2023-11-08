@@ -13,7 +13,7 @@ public class CheckWinning {
         this.bonusNumber = bonusNumber;
     }
 
-    public static Integer winningNumberCounter(List<Integer> purchaseNumber) {
+    public Integer winningNumberCounter(List<Integer> purchaseNumber) {
         int count = UnitNumber.ZERO.getNumber();
         for(int i = UnitNumber.ZERO.getNumber(); i < UnitNumber.WINNING_COUNT.getNumber(); i++) {
             if(purchaseNumber.contains(winningNumber.get(i))) {
@@ -23,7 +23,7 @@ public class CheckWinning {
         return count;
     }
 
-    public static BonusMatchType bonusNumberCounter(List<Integer> purchaseNumber) {
+    public BonusMatchType bonusNumberCounter(List<Integer> purchaseNumber) {
         BonusMatchType bonus = BonusMatchType.MISMATCH;
         if(purchaseNumber.contains(bonusNumber)) {
             bonus = BonusMatchType.MATCH;

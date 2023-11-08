@@ -21,7 +21,7 @@ import lotto.view.LottoOutputView;
 public class Controller {
     private final LottoInputView inputView = new LottoInputView();
     private final LottoOutputView outputView = new LottoOutputView();
-    private List<Lotto> lottoPurchaseNumbers = new ArrayList<>();
+    private final List<Lotto> lottoPurchaseNumbers = new ArrayList<>();
 
     public void excute() {
         int purchase = purchaseManager(); // 로또 구입
@@ -92,10 +92,10 @@ public class Controller {
         WinningRank winningRank = new WinningRank();
         for(Lotto lotto : lottoPurchaseNumbers) {
             List<Integer> purchaseLottoNumber = lotto.getNumbers();
-            int count = CheckWinning.winningNumberCounter(purchaseLottoNumber);
+            int count = checkWinning.winningNumberCounter(purchaseLottoNumber);
             BonusMatchType bonus = BonusMatchType.NOT_APPLICABLE;
             if(count == MatchNumber.FIVE.getNumber()) {
-                bonus = CheckWinning.bonusNumberCounter(purchaseLottoNumber);
+                bonus = checkWinning.bonusNumberCounter(purchaseLottoNumber);
             }
             wonRecordManager(winningRank, count, bonus);
         }

@@ -2,14 +2,11 @@ package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
-import lotto.domain.Lotto;
 import lotto.enums.ErrorMessages;
 import org.junit.jupiter.api.Test;
 
 public class InputValidatorTest {
     private final InputValidator validator = new InputValidator();
-    Lotto mockHitNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
     @Test
     void 금액을_입력하지_않거나_공백_으로_입력한_경우() {

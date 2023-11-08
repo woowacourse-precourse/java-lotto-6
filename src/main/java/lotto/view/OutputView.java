@@ -12,6 +12,7 @@ import static lotto.constants.MessageConstants.OUTPUT_MESSAGE_FOR_RESULT_INIT;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.domain.dto.GameResultDto;
@@ -48,10 +49,13 @@ public class OutputView {
 
     private void printPrizesResult(GameResultDto gameResultDto) {
         Map<Prize, Integer> prizeIntegerMap = gameResultDto.prizeCounter();
-        prizeIntegerMap.keySet().stream()
-                .sorted(Collections.reverseOrder())
+        sortKeysInAscendingOrder(prizeIntegerMap.keySet())
                 .forEach(key -> printPrizeResult(key,
                         prizeIntegerMap.get(key)));
+    }
+
+    private List<Prize> sortKeysInAscendingOrder(Set<Prize> keyset) {
+        return keyset.stream().sorted(Collections.reverseOrder()).toList();
     }
 
     private void printPrizeResult(Prize key, int count) {

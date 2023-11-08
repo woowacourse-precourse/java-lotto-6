@@ -32,7 +32,7 @@ class NumberValidatorTest {
 
     @DisplayName("로또 번호가 정상적인 값으로 전달 됬을 경우 에러가 발생하지 않는다.")
     @Test
-    void testVerifyNumbersSuccess() {
+    void testVerifyLottoNumbersSuccess() {
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         assertThatCode(() -> {
             NumberValidator.verifyLottoNumbers(lottoNumbers);
@@ -42,9 +42,27 @@ class NumberValidatorTest {
     @DisplayName("로또 번호로 null 이 전달 됬을 경우 에러가 발생한다.")
     @ParameterizedTest
     @NullSource
-    void testVerifyNumbersNullExceptionCheck(List<Integer> lotto) {
+    void testVerifyLottoNumbersNullExceptionCheck(List<Integer> lotto) {
         assertThatIllegalArgumentException().isThrownBy(() -> {
             NumberValidator.verifyLottoNumbers(lotto);
+        });
+    }
+
+    @DisplayName("당첨 번호가 정상적인 값으로 전달 됬을 경우 에러가 발생하지 않는다.")
+    @Test
+    void testVerifyWinningNumbersSuccess() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatCode(() -> {
+            NumberValidator.verifyWinningNumbers(winningNumbers);
+        }).doesNotThrowAnyException();
+    }
+
+    @DisplayName("당첨 번호로 null 이 전달 됬을 경우 에러가 발생한다.")
+    @ParameterizedTest
+    @NullSource
+    void testVerifyWinningNumbersNullExceptionCheck(List<Integer> winningNumbers) {
+        assertThatIllegalArgumentException().isThrownBy(() -> {
+            NumberValidator.verifyWinningNumbers(winningNumbers);
         });
     }
 }

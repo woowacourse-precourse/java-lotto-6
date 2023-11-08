@@ -9,23 +9,38 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class LottoMachineTest {
+class LottoMachineTest extends NsTest {
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
-    @DisplayName("1~45의 숫자를 입력하지 않으면 예외 발생")
+    @DisplayName("금액 예외 테스트")
     @Test
-    void inputStrangeValue() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+    void getMoneyTest() {
+        assertSimpleTest(() -> {
+            runException("abc");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @DisplayName("당첨번호 예외 테스트")
+    @Test
+    void getWinTest() {
+        assertSimpleTest(() -> {
+            runException("7000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("보너스 번호 예외 테스트")
     @Test
-    void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+    void getBonusTest() {
+        assertSimpleTest(() -> {
+            runException("7000", "1,2,3,4,5,6", "100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
     }
 
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
+    }
 }

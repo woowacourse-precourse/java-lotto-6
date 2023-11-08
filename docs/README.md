@@ -1,3 +1,50 @@
+# 우아한 프리코스 3주차 — 💸 로또
+## 🚀 프로젝트 구조
+![로또_프로젝트_구성도](https://raw.githubusercontent.com/HongYeseul/java-lotto-6/HongYeseul/docs/imgs/%EB%A1%9C%EB%98%90_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EA%B5%AC%EC%84%B1%EB%8F%84.png)
+![로또_프로젝트_구성도_단순화_UML](https://raw.githubusercontent.com/HongYeseul/java-lotto-6/HongYeseul/docs/imgs/%EB%A1%9C%EB%98%90_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EA%B5%AC%EC%84%B1%EB%8F%84_%EB%8B%A8%EC%88%9C%ED%99%94_UML.png)
+
+## 📚 고민의 흔적
+
+✏️ 01. ```MVC 패턴에서는 각자가 하는 역할을 구분해야한다.```
+- MVC 패턴에서는 Controller가 View와 Model을 호출하여 관리하는 방법으로 구현해야 합니다.
+
+✏️ 02. ```TDD는 코드 구현하는 시간을 단축하는 데 좋다.```
+- 저번 미션 때는 테스트를 생각하지 않고 기능을 먼저 구현하는 바람에 기능 목록별 테스트 케이스를 작성하지 못했습니다.
+- 그래서 이번에는 **TDD**를 적용하려 노력했습니다.
+- 그 결과, 빠른 코드 구현이 가능했고, 2주차 기준 촉박하게 구현해야 했던 기능들을 여유롭게 완성할 수 있었습니다.
+
+️✏️ 03. ```올바른 코딩 컨벤션을 지키자.```
+- 클래스 내부 선언 순서 컨벤션은 다음과 같습니다.
+  ```
+  Static Variable : public -> protected -> private
+  Member Variable : public -> protected -> private
+  Constructor
+  Static Method
+  Other Method : 기능 및 역할별로 분류하여 기능을 구현하는 그룹별로 작성
+  Standard Method : toString, equals, hashcode 와 같은 메소드
+  Getter / Setter : 클래스의 가장 하단 부분에 위치
+  ```
+  [출처 - _자동차 경주 @jhon3242님 PR 내 @h-beeen님 의견 中_](https://github.com/woowacourse-precourse/java-racingcar-6/pull/1130#discussion_r1379075024)
+
+✏️ 04. ```접근 제어자는 최소로 유지하되, Getter를 사용하지 않아야 한다.```
+- 저번 미션 때는 테스트 코드를 만드는 데 어려움을 겪으면서 클래스 내 선언된 변수들을 불필요하게 ```public```으로 선언을 했습니다.
+- 해당 부분을 지적 받아 클래스 내 필드 값들은 ```private```로 선언하여 값을 활용 했습니다.
+- 특히 private라면 필수로 확인 해봐야할 것이 Getter의 사용 유무입니다. 
+  Getter를 사용하지 않도록 노력했고, 요청한 메서드에 값을 가공하여 원본 값을 넘기지 않도록 했습니다.
+  이번 미션에서 제시되었던 ```'Lotto 클래스의 private number 값을 private로 유지하라.'``` 라는 요구사항 덕분에 Getter를 사용하지 않고 값을 넘기는 방법에 대해 좀 더 고민 해볼 수 있었습니다.
+
+✏️ 05. ```static 키워드는 많이 사용하면 메모리에 악영향을 끼친다.```
+- 저번 미션을 하면서 고민 됐던 것 중 하나는 ```static을 이렇게 많이 사용해도 되나?``` 입니다.
+- 해당 미션을 진행하면서 전역적으로 사용이 필요할 때 static으로 선언을 하자고 판단을 했습니다. 
+  그렇기 때문에 view 클래스는 Controller 클래스에서만 사용하므로 정적 변수로 선언하지 않았습니다.
+
+✏️ 06. ```생각해 볼 수 있는 테스트 케이스를 최대로 적어보자.```
+- 저번 미션에 대한 아쉬움이 있었기 때문에 최대의 테스트 케이스를 적어보고 싶었습니다.
+- <img src="https://raw.githubusercontent.com/HongYeseul/java-lotto-6/HongYeseul/docs/imgs/%EC%BB%A4%EB%B2%84%EB%A6%AC%EC%A7%80_%ED%85%8C%EC%8A%A4%ED%8A%B8_%EA%B2%B0%EA%B3%BC.png" width="70%">
+- IntelliJ의 기능 중 하나인 커버리지 테스트에 대해 알게 되었고, 커버리지 테스트를 100% 구현하는 것을 최소로 두고 만들었습니다.
+
+---
+
 ## 기능 요구 사항 목록
 
 ### 로또의 규칙

@@ -2,6 +2,9 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.function.Predicate;
+import lotto.system.Util;
+import lotto.validator.LottoValidator;
+import lotto.view.OutputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,9 +15,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        String checkParam = Util.makeIntegerListToStringFormat(numbers);
+        new LottoValidator().check(checkParam);
     }
 
     public boolean contains(int number) {
@@ -32,7 +34,7 @@ public class Lotto {
         return another.compareWithNumberList(this.numbers);
     }
 
-//    public void printLottoInfo() {
-//        OutputView.printLotto(numbers);
-//    }
+    public void printLottoInfo() {
+        OutputView.printLotto(numbers);
+    }
 }

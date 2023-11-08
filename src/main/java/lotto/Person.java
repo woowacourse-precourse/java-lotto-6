@@ -1,32 +1,35 @@
 package lotto;
 
 import lotto.InputView;
+import lotto.OutputView;
 import lotto.LottoAmount;
 import lotto.AutoLottoNumber;
 import lotto.Lotto;
 
 public class Person {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public Person(InputView inputView) {
+    public Person(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void buyLotto() {
-        LottoAmount lottoAmount = InputCashInHand();
 
+        LottoAmount lottoAmount = InputCashInHand();
         Lotto[] autoLotto = new Lotto[lottoAmount.getLottoAmount()];
         AutoLotto(autoLotto, lottoAmount);
 
         WinningNumber winningNumber = InputWinningNumber();
-
         BonusNumber bonusNumber = InputBonus(winningNumber);
 
         int[] ranking = new int[8];
 
-        for(int index = 0; index < lottoAmount.getLottoAmount();index++){
+        for (int index = 0; index < lottoAmount.getLottoAmount(); index++) {
             ranking[winningNumber.checkLotto(autoLotto[index].getLotto(), bonusNumber)]++;
         }
+        outputView.printResult(ranking, TotalReturn.getTotalReturnRate(ranking, lottoAmount.getLottoAmount()));
 
     }
 
@@ -41,8 +44,10 @@ public class Person {
     }
 
     private void AutoLotto(Lotto[] autoLotto, LottoAmount Amount) {
+        outputView.printAmount(Amount.getLottoAmount());
         for (int index = 0; index < Amount.getLottoAmount(); index++) {
             autoLotto[index] = new Lotto(AutoLottoNumber.putOutNumber());
+            outputView.printLotto(autoLotto[index].getLotto());
         }
     }
 

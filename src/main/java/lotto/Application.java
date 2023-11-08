@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.InputView;
+import lotto.OutputView;
+import lotto.Person;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Person me = new Person(new InputView(), new OutputView());
+        me.buyLotto();
     }
 }

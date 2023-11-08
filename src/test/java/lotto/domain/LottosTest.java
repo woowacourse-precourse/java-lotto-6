@@ -42,7 +42,7 @@ class LottosTest extends NsTest {
         Lottos lottos = new Lottos(List.of(firstLotto, secondLotto));
         int expectedResult = 2;
         // when, then
-        assertThat(lottos.getLottoCount()).isEqualTo(expectedResult);
+        assertThat(lottos.getCount()).isEqualTo(expectedResult);
     }
 
     @DisplayName("로또들의 당첨 결과를 만든다.")
@@ -70,7 +70,7 @@ class LottosTest extends NsTest {
         expectedResult.put(Prize.FOURTH, 1);
         expectedResult.put(Prize.FIFTH, 2);
         // when
-        Map<Prize, Integer> lottosResult = lottos.getLottosResult(winnigMachine);
+        Map<Prize, Integer> lottosResult = lottos.getWinningResult(winnigMachine);
         // then
         assertThat(lottosResult).isEqualTo(expectedResult);
     }

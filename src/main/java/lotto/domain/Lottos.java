@@ -24,22 +24,22 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public int getLottoCount() {
+    public int getCount() {
         return lottos.size();
     }
 
-    public Map<Prize, Integer> getLottosResult(WinnigMachine winnigMachine) {
-        Map<Prize, Integer> lottosResult = new HashMap<>();
+    public Map<Prize, Integer> getWinningResult(WinnigMachine winnigMachine) {
+        Map<Prize, Integer> winningResult = new HashMap<>();
         for (Lotto lotto : lottos) {
             Prize prize = winnigMachine.getPrize(lotto);
             if (prize.equals(Prize.NO_PRIZE)) {
                 continue;
             }
-            Integer prizeCount = lottosResult.getOrDefault(prize, DEFAULT_COUNT);
+            Integer prizeCount = winningResult.getOrDefault(prize, DEFAULT_COUNT);
             prizeCount++;
-            lottosResult.put(prize, prizeCount);
+            winningResult.put(prize, prizeCount);
         }
-        return lottosResult;
+        return winningResult;
     }
 
     @Override

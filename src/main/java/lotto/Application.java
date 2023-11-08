@@ -19,12 +19,12 @@ public class Application {
         // 로또 게임에 필요한 값들을 콘솔로부터 입력받는다.
         PurchaseAmount purchaseAmount = getValidPurchaseAmount();
         Lottos lottos = new Lottos(purchaseAmount);
-        OutputView.printLottos(lottos.getLottoCount(), lottos.toString());
+        OutputView.printLottos(lottos.getCount(), lottos.toString());
         Lotto winningLotto = getValidWinningLotto();
         int bonusNumber = getValidBonusNumber(winningLotto);
         // 로또 게임을 진행한다.
         WinnigMachine winnigMachine = new WinnigMachine(winningLotto, bonusNumber);
-        Map<Prize, Integer> lottosResult = lottos.getLottosResult(winnigMachine);
+        Map<Prize, Integer> lottosResult = lottos.getWinningResult(winnigMachine);
         ProfitCalculator profitCalculator = new ProfitCalculator(lottosResult);
         double profitRate = purchaseAmount.calculateProfitRate(profitCalculator.getTotalProfit());
         // 로또 게임 결과를 출력한다.

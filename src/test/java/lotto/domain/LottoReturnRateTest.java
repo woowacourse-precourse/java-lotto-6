@@ -14,5 +14,4 @@ class LottoReturnRateTest {
         returnRate.calculateReturnRate(5000);
         assertThat(returnRate.getReturnRate()).isEqualTo(62.5);
     }
-
 }

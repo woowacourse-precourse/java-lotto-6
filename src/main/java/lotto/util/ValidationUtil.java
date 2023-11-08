@@ -5,7 +5,7 @@ import java.lang.reflect.Array;
 import static lotto.constant.message.ErrorOutputMessage.*;
 import static lotto.constant.LottoNumber.*;
 
-public class ValidateUtil {
+public class ValidationUtil {
     /*
     * 구매 금액이 1000원 단위로 나누어 떨어지는지 검증한다.
     * @param amount 구매 금액

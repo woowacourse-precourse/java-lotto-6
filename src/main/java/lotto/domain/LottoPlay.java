@@ -1,54 +1,23 @@
 package lotto.domain;
 
 import lotto.Lotto;
-import lotto.constant.LottoNumber;
-import lotto.util.InputUtil;
 import lotto.util.MessageUtil;
-import lotto.util.ValidateUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoPlay {
 
     private final MessageUtil messageUtil = new MessageUtil();
-    private final InputUtil inputUtil = new InputUtil();
-    private final ValidateUtil validateUtil = new ValidateUtil();
+    private final LottoPurchase lottoPurchase = new LottoPurchase();
 
-    private final NumberGenerator numberGenerator = new NumberGenerator();
-    private final List<Lotto> userLottos = new ArrayList<>();
+    private final LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
 
-    public void play(){
-        messageUtil.printBonusInput();
-        int purchaseAmount = getUserPurchaseAmount();
-        getPurchaseInfo(purchaseAmount);
-    }
 
-    private int getUserPurchaseAmount(){
-        int purchaseAmount = Integer.parseInt(inputUtil.getUserInput());
-        validateUtil.validatePurchase(purchaseAmount);
-        return purchaseAmount;
-    }
-    private void getPurchaseInfo(int purchaseAmount){
-        int purchaseCount = getPurchaseCount(purchaseAmount);
+    public void play() {
+        messageUtil.printPurchaseInput();
+        List<Lotto> userLottos = lottoPurchase.getPurchaseInfo();
+        lottoWinningNumber.getWinningNumberInfo();
 
-        for (int i = 0; i <purchaseCount; i++){
-            Lotto lotto = generateLottoNumbers();
-            userLottos.add(lotto);
-        }
-    }
-
-    private Lotto generateLottoNumbers(){
-        List<Integer>lottoNumbers = numberGenerator.getLottoNumbers();
-        Lotto lotto = new Lotto(lottoNumbers);
-        messageUtil.printPurchaseInfo(lotto.getLottoNumbers);
-        return lotto;
-    }
-
-    private int getPurchaseCount(int purchaseAmount){
-        int purchaseCount = purchaseAmount/LottoNumber.PURCHASE_AMOUNT_COND.getNumber();
-        messageUtil.printPurchaseCount(purchaseCount);
-        return purchaseCount;
     }
 
 }

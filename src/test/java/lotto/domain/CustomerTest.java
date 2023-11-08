@@ -8,7 +8,7 @@ import lotto.constant.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottosTest {
+class CustomerTest {
     @DisplayName("보유한 로또의 당첨 결과 반환 기능 테스트 - 1등, 3등")
     @Test
     void checkWinningResultFirstAndThird() {
@@ -18,8 +18,8 @@ class LottosTest {
         Lotto firstLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto thirdLotto = new Lotto(List.of(1, 2, 3, 4, 5, 9));
 
-        Lottos lottos = new Lottos(List.of(firstLotto, thirdLotto));
-        Map<Prize, Integer> result = lottos.checkWinningResult(winningNumbers);
+        Customer customer = new Customer(List.of(firstLotto, thirdLotto));
+        Map<Prize, Integer> result = customer.checkWinningResult(winningNumbers);
         assertThat(result.get(Prize.FIRST)).isEqualTo(1);
         assertThat(result.get(Prize.THIRD)).isEqualTo(1);
         assertThat(result.get(Prize.SECOND)).isEqualTo(0);
@@ -37,8 +37,8 @@ class LottosTest {
         Lotto secondLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         Lotto thirdLotto = new Lotto(List.of(1, 2, 3, 4, 5, 9));
 
-        Lottos lottos = new Lottos(List.of(secondLotto, thirdLotto));
-        Map<Prize, Integer> result = lottos.checkWinningResult(winningNumbers);
+        Customer customer = new Customer(List.of(secondLotto, thirdLotto));
+        Map<Prize, Integer> result = customer.checkWinningResult(winningNumbers);
         assertThat(result.get(Prize.FIRST)).isEqualTo(0);
         assertThat(result.get(Prize.THIRD)).isEqualTo(1);
         assertThat(result.get(Prize.SECOND)).isEqualTo(1);

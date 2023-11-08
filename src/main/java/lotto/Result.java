@@ -14,6 +14,11 @@ public class Result {
         }
     }
 
+    private void printResultByRank(int rank, int count) {
+        String prize = rank == 6 ? "2,000,000,000원" : (rank == 5 ? "30,000,000원" : (rank == 4 ? "1,500,000원" : (rank == 3 ? "50,000원" : "5,000원")));
+        System.out.printf("%d개 일치 (%s) - %d개\n", rank, prize, count);
+    }
+
     private double calculateTotalProfitRate() {
         int totalPrize = matchCounts[0] * 5000 + matchCounts[1] * 50000 + matchCounts[2] * 1500000 +
                 matchCounts[3] * 30000000 + matchCounts[4] * 2000000000;

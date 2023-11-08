@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,7 +14,8 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void 기능_테스트() {
+    @DisplayName("정상적으로 기능이 동작한다.")
+    void 정상적으로_기능이_동작한다() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("8000", "1,2,3,4,5,6", "7");
@@ -47,9 +49,109 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    @DisplayName("구매 금액 입력값이 숫자가 아닌 경우 예외를 반환한다.")
+    void 구매_금액_입력값이_숫자가_아닌_경우_예외를_반환한다() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("구매 금액 입력값이 0보다 같거나 작을 경우 예외를 반환한다.")
+    void 구매_금액_입력값이_0보다_같거나_작을_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("구매 금액 입력값이 1000원 단위가 아닌 경우 예외를 반환한다.")
+    void 구매_금액_입력값이_1000원_단위가_아닌_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력값이 숫자가 아닌 경우 예외를 반환한다.")
+    void 당첨_번호_입력값이_숫자가_아닌_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6j", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력값이 6개 보다 적을 경우 예외를 반환한다.")
+    void 당첨_번호_입력값이_6개_보다_적을_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력값이 6개 보다 많을 경우 예외를 반환한다.")
+    void 당첨_번호_입력값이_6개_보다_많을_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7", "8");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력값이 1보다 작을 경우 예외를 반환한다.")
+    void 당첨_번호_입력값이_1보다_작을_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "0,2,3,4,5,6", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력값이 45보다 클 경우 예외를 반환한다.")
+    void 당첨_번호_입력값이_45보다_클_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,46", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력값이 숫자가 아닌 경우 예외를 반환한다.")
+    void 보너스_번호_입력값이_숫자가_아닌_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "7j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력값이 1보다 작을 경우 예외를 반환한다.")
+    void 보너스_번호_입력값이_1보다_작을_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력값이 45보다 클 경우 예외를 반환한다.")
+    void 보너스_번호_입력값이_45보다_클_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    @DisplayName("보너스 번호 입력값이 당첨 번호에 포함되는 경우 예외를 반환한다.")
+    void 보너스_번호_입력값이_당첨_번호에_포함되는_경우_예외를_반환한다() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

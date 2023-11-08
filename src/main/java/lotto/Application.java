@@ -13,6 +13,7 @@ import lotto.service.Output;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
+    public static final String MESSAGE_ERROR = "[ERROR]";
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int amount = validateAmount(Input.getPurchaseAmount());
@@ -36,13 +37,14 @@ public class Application {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException e) {
-          throw new IllegalArgumentException();
+            Output.printErrorMessage(" 숫자로 변환할 수 없는 입력입니다.");
         }
+        return 0;
     }
 
     public static void validateDivisible(int amount) {
         if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(MESSAGE_ERROR+"1000원 단위로 입력해주세요.");
         }
     }
 
@@ -58,7 +60,7 @@ public class Application {
 
     public static List<Integer> generateRandomNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
+//        Collections.sort(numbers);
         return numbers;
     }
 }

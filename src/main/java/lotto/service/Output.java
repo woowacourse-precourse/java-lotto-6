@@ -14,6 +14,7 @@ public class Output {
     public static final String MESSAGE_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
     public static final String MESSAGE_LOTTO_WINNING_STATICS = "당첨 통계";
     public static final String LINE = "---";
+    public static final String MESSAGE_ERROR = "[ERROR]";
 
     public static void printLottoReceipt(LottoReceipt lottoReceipt) {
         List<Lotto> lottoTickets = lottoReceipt.getLottoTickets();
@@ -50,7 +51,7 @@ public class Output {
         System.out.printf((MESSAGE_PROFIT_RATE) + "%n", rate);
     }
 
-    public static void printErrorMessage() {
-
+    public static void printErrorMessage(String comment) {
+        System.out.println(MESSAGE_ERROR + comment);
     }
 }

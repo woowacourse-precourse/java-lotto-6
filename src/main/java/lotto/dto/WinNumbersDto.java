@@ -1,7 +1,7 @@
 package lotto.dto;
 
 import lotto.domain.Lotto;
-import lotto.util.ErrorMessage;
+import lotto.util.consts.ErrorMessage;
 
 import java.util.List;
 

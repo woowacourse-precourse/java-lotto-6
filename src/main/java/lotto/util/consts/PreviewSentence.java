@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.consts;
 
 public enum PreviewSentence {
     INPUT_MONEY("구입금액을 입력해주세요."),

@@ -1,6 +1,6 @@
 package lotto.dto;
 
-import lotto.util.Ranking;
+import lotto.util.consts.Ranking;
 
 import java.util.Map;
 

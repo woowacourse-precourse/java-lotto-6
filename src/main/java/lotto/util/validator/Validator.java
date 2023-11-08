@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.validator;
 
 public class Validator {
     public void throwIllegalArgumentException(String message) {

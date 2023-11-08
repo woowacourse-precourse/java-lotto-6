@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.dto.MoneyDto;
 import lotto.dto.ResultDto;
 import lotto.dto.WinNumbersDto;
-import lotto.util.Ranking;
+import lotto.util.consts.Ranking;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

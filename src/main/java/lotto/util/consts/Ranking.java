@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.consts;
 
 public enum Ranking {
     FIRST(2000000000, 6, "6개 일치 (2,000,000,000원) - %d개"),

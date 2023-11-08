@@ -6,8 +6,8 @@ import lotto.dto.MoneyDto;
 import lotto.dto.ResultDto;
 import lotto.dto.WinNumbersDto;
 import lotto.repository.LottoRepository;
-import lotto.util.Consts;
-import lotto.util.Ranking;
+import lotto.util.consts.Consts;
+import lotto.util.consts.Ranking;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.consts;
 
 public enum ErrorMessage {
     NOT_NUMBER_INPUTTED("구입할 금액은 숫자로 입력해야합니다."),

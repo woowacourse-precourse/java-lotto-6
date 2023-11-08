@@ -2,8 +2,8 @@ package lotto.view;
 
 import lotto.dto.LottoesDto;
 import lotto.dto.ResultDto;
-import lotto.util.PreviewSentence;
-import lotto.util.Ranking;
+import lotto.util.consts.PreviewSentence;
+import lotto.util.consts.Ranking;
 
 import java.util.Arrays;
 import java.util.Comparator;

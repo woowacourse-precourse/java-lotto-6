@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.util.validator.InputValidator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

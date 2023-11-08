@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.util.consts;
 
 public enum Consts {
     SINGLE_LOTTO_PRICE(1000);

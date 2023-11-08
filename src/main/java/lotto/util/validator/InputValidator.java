@@ -1,11 +1,11 @@
-package lotto.util;
+package lotto.util.validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.util.ErrorMessage.NOT_NUMBER_INPUTTED;
-import static lotto.util.ErrorMessage.TOO_LARGE_NUMBER;
+import static lotto.util.consts.ErrorMessage.NOT_NUMBER_INPUTTED;
+import static lotto.util.consts.ErrorMessage.TOO_LARGE_NUMBER;
 
 public class InputValidator extends Validator {
     private static final int MEMORY_SIZE_LIMIT = 2100000000;

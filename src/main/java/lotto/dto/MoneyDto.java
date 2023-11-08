@@ -1,9 +1,9 @@
 package lotto.dto;
 
-import lotto.util.Consts;
+import lotto.util.consts.Consts;
 
-import static lotto.util.ErrorMessage.MINUS_MONEY;
-import static lotto.util.ErrorMessage.NOT_DIVIDED_BY_LOTTO_PRICE;
+import static lotto.util.consts.ErrorMessage.MINUS_MONEY;
+import static lotto.util.consts.ErrorMessage.NOT_DIVIDED_BY_LOTTO_PRICE;
 
 public record MoneyDto(int amount) {
 

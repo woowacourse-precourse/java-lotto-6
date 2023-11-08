@@ -11,12 +11,14 @@ public class LottoDatas {
     private BonusNumber bonusNumber;
     private PurChase purchase;
     private Lotto winnigNumber;
+    private List<WinningData> winningData;
 
-    public LottoDatas() {
+    public LottoDatas() { //초기화 시키기 위해작성
         this.lottoNumbers = new ArrayList<>();
         this.bonusNumber = null;
         this.purchase = null;
         this.winnigNumber = null;
+        this.winningData = new ArrayList<>();
     }
 
 
@@ -35,7 +37,12 @@ public class LottoDatas {
     }
 
     public void inputBonusNumber(final int bonusNumber) {
-        this.bonusNumber = BonusNumber.CreateBonusNumber(bonusNumber);
+        this.bonusNumber = BonusNumber.inputBonusNumber(bonusNumber);
+    }
+
+    public void saveWinningDatas(final List<Integer> generatedLottoNumbers) {
+        WinningData winningData = WinningData.inputWinningDatas(generatedLottoNumbers);
+        this.winningData.add(winningData);
     }
 
     public List<Integer> getlottoNumbers(int index) {
@@ -50,6 +57,10 @@ public class LottoDatas {
 
     public List<Integer> getWinningNumbers() {
         return winnigNumber.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.getBonusNumber();
     }
 
     public void generateLottoNumbers() {

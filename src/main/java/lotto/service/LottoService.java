@@ -110,5 +110,4 @@ public class LottoService {
         }
         return printLottoNumbers;
     }
-
 }

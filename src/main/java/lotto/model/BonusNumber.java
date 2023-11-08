@@ -12,7 +12,7 @@ public class BonusNumber {
         return BonusNumber;
     }
 
-    public static BonusNumber CreateBonusNumber(int BonusNumber) {
+    public static BonusNumber inputBonusNumber(int BonusNumber) {
         return new BonusNumber(BonusNumber);
     }
 }

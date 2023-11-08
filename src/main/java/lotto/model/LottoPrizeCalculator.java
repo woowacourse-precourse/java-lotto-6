@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 public class LottoPrizeCalculator {
 
-    private static final long ZERO = 0L;
     private static final int THREE = 3;
     private static final int FOUR = 4;
     private static final int FIVE = 5;
@@ -30,7 +29,10 @@ public class LottoPrizeCalculator {
         Map<LottoPrize, Long> lottoPrizeStatus = groupByLottoPrize();
 
         return lottoPrizeStatus.entrySet().stream()
-                .mapToLong(entry -> multiplyNumbers(entry.getKey().getPrize(), entry.getValue()))
+                .mapToLong(entry -> {
+                    LottoPrize key = entry.getKey();
+                    return multiplyNumbers(key.getPrize(), entry.getValue());
+                })
                 .sum();
     }
 

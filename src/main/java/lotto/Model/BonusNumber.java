@@ -14,6 +14,10 @@ public class BonusNumber {
 
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void numberLengthCheck(List<Integer> numbers){
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_BONUS_DUPLICATION.getErrorMessage());

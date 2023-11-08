@@ -17,7 +17,24 @@ public class LottoController {
     Lotto lotto;
 
     public void gameStart(){
+        inputBuyLotto();
+        publishedLottoList();
+        outputLottoPublished();
+        inputWinningNumber();
+        inputBonusNumber();
+        outputWinningCount();
+        outputPrefix();
 
+    }
+    private void publishedLottoList(){
+        this.lottoPublish = new LottoPublish(amount);
+    }
+    private void outputLottoPublished(){
+        outputView.printPurchaseTicket(amount,lottoPublish.getLottoPublish());
+    }
+
+    private void outputPrefix(){
+        outputView.printTotalPrefix(winningLotto.calculateMoney(amount));
     }
     private void outputWinningCount(){
         winningLotto.FindMatchNumber(lottoPublish.getLottoPublish()

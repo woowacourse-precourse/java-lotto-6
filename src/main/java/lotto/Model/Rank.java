@@ -1,6 +1,10 @@
 package lotto.Model;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum Rank {
     FIRST(6, 2_000_000_000), // 1등
@@ -27,6 +31,14 @@ public enum Rank {
         return Arrays.stream(Rank.values())
                 .filter(prizeRank -> prizeRank.isPrizeRank(matchNumber))
                 .findAny().orElse(MISS);
+    }
+
+    public static List<Rank> getRanks() {
+        List<Rank> winningHistoryValues = Stream.of(Rank.values())
+                .filter(rankType -> rankType.getMatchNumber() >= 3)
+                .collect(Collectors.toList());
+        Collections.reverse(winningHistoryValues);
+        return winningHistoryValues;
     }
 
     public String getWinningMessage(int count){

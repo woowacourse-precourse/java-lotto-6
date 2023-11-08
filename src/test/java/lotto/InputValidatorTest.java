@@ -143,4 +143,24 @@ public class InputValidatorTest {
         assertThat(result2).isInstanceOf(IndexOutOfBoundsException.class);
         assertThat(result3).doesNotThrowAnyException();
     }
+
+    @DisplayName("당첨 번호가 숫자로 입력되었는지 검사")
+    @Test
+    void 당첨_번호_숫자_테스트() {
+        // given
+        String[] case1 = new String[]{"1", "2", "3", "4", "5", "육"};
+        String[] case2 = new String[]{"1", "2", "3", "4", "5", "6"};
+
+        // when
+        Throwable result1 = catchThrowable(() -> {
+            InputValidator.validateWinningNumbersIsNumeric(case1);
+        });
+        Throwable result2 = catchThrowable(() -> {
+            InputValidator.validateWinningNumbersIsNumeric(case2);
+        });
+
+        // then
+        assertThat(result1).isInstanceOf(IllegalArgumentException.class);
+        assertThat(result2).doesNotThrowAnyException();
+    }
 }

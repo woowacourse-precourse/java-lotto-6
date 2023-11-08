@@ -22,6 +22,24 @@ public class Validator {
         }
     }
 
+    public static void validateWinningNumber(String numbers){
+        if(hasBlank(numbers)){
+            throw new IllegalArgumentException(HAS_BLANK_EXCEPTION.getMessage());
+        }
+        if(!isCommaSeparated(numbers)){
+            throw new IllegalArgumentException(NOT_COMMA_SEPARATED_EXCEPTION.getMessage());
+        }
+        if(!isAllNumberic(numbers)){
+            throw new IllegalArgumentException(NOT_ALL_NUMERIC_EXCEPTION.getMessage());
+        }
+        if(!isInRange(numbers)){
+            throw new IllegalArgumentException(NOT_IN_RANGE_EXCEPTION.getMessage());
+        }
+        if(!areNumbersUnique(numbers)){
+            throw new IllegalArgumentException(NOT_UNIQUE_EXCEPTION.getMessage());
+        }
+    }
+
     public static boolean hasBlank(String input) {
         return input.contains(" ");
     }

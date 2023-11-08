@@ -34,7 +34,7 @@ public class LottoView {
     }
 
     public void printBonusPrompt() {
-        System.out.println(BONUS_NUMBER.getMessage()));
+        System.out.println(BONUS_NUMBER.getMessage());
     }
 
     public void printWinningResult(LottoResult lottoResult) {

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.Constants.Constants.ZERO;
+
 import java.util.Arrays;
 
 public enum LottoRank {
@@ -47,7 +49,7 @@ public enum LottoRank {
     }
 
     public boolean isPositivePrize() {
-        return prize > 0;
+        return prize > ZERO;
     }
 
     public int getPrize() {

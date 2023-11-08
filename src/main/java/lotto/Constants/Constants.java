@@ -10,4 +10,6 @@ public final class Constants {
     public static final int MAX_RANDOM_NUMBER = 45;
     public static final int LOTTO_NUMBER_COUNT = 6;
 
+    public static final int ZERO = 0;
+
 }

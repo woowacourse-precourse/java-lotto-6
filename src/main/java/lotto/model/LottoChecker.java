@@ -20,18 +20,18 @@ public class LottoChecker {
         this.bonus = bonus;
     }
 
-    private void validateBonusNumber(final Lotto winningLotto, final int bonus) {
+    private static void validateBonusNumber(final Lotto winningLotto, final int bonus) {
         validateBonusNumberRange(bonus);
         validateBonusNumberDuplicate(winningLotto, bonus);
     }
 
-    private void validateBonusNumberRange(final int number) {
+    private static void validateBonusNumberRange(final int number) {
         if (number < MIN_RANDOM_NUMBER || number > MAX_RANDOM_NUMBER) {
             throw new BonusNumberException(BONUS_NUMBER_RANGE);
         }
     }
 
-    private void validateBonusNumberDuplicate(final Lotto winningLotto, final int number) {
+    private static void validateBonusNumberDuplicate(final Lotto winningLotto, final int number) {
         if (winningLotto.contains(number)) {
             throw new BonusNumberException(BONUS_NUMBER_DUPLICATE);
         }

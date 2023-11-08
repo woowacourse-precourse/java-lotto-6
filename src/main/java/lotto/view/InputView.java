@@ -2,14 +2,19 @@ package lotto.view;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
+import lotto.domain.Lotto;
 import lotto.io.InputViewReader;
 import lotto.util.message.ErrorMessage;
 import lotto.util.validator.Validator;
 
 public class InputView {
 
-	private static final String NUMBERS_DELIMITER = ",";
+	public static final Pattern NUMBER_FORMAT = Pattern.compile("^-?\\d+$");
+	public static final Pattern INPUT_ANSWER_LOTTO_NUMBERS_FORMAT = 
+			Pattern.compile("^" + "-?\\d+,".repeat(Lotto.LOTTO_SIZE - 1) + "-?\\d+$");
+	public static final String NUMBERS_DELIMITER = ",";
 
 	private final InputViewReader reader;
 
@@ -27,9 +32,10 @@ public class InputView {
 
 	public List<Integer> inputAnswerLottoNumbers() {
 		String inputValue = reader.readLine();
-		String[] inputValues = inputValue.split(NUMBERS_DELIMITER);
 
-		validateAnswerLottoNumbers(inputValues);
+		validateAnswerLottoNumbers(inputValue);
+
+		String[] inputValues = inputValue.split(NUMBERS_DELIMITER);
 
 		return convertStrArrToCollection(inputValues);
 	}
@@ -46,10 +52,15 @@ public class InputView {
 		validateisNumberFormat(inputValue);
 	}
 
-	private void validateAnswerLottoNumbers(String[] inputValues) {
-		for (String inputValue : inputValues) {
-			validateisNumberFormat(inputValue);
-		}
+	private void validateAnswerLottoNumbers(String inputValue) {
+		Validator.validateIsEmpty(inputValue, ErrorMessage.INPUT_EMPTY_ERROR.getMessage());
+		validateInputAnswerLottoNumbersFormat(inputValue);
+	}
+
+	private void validateInputAnswerLottoNumbersFormat(String inputValue) {
+		Validator.validateSpecificFormat(INPUT_ANSWER_LOTTO_NUMBERS_FORMAT, inputValue,
+				ErrorMessage.INPUT_ANSWER_LOTTO_NUMBER_ERROR
+						.getFormattedMessage(NUMBERS_DELIMITER, Lotto.LOTTO_SIZE));
 	}
 
 	private List<Integer> convertStrArrToCollection(String[] strArr) {
@@ -62,6 +73,6 @@ public class InputView {
 
 	private void validateisNumberFormat(String inputValue) {
 		Validator.validateIsEmpty(inputValue, ErrorMessage.INPUT_EMPTY_ERROR.getMessage());
-		Validator.validateNumberFormat(inputValue, ErrorMessage.INPUT_LETTER_ERROR.getMessage());
+		Validator.validateSpecificFormat(NUMBER_FORMAT, inputValue, ErrorMessage.INPUT_LETTER_ERROR.getMessage());
 	}
 }

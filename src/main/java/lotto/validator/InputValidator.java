@@ -1,11 +1,9 @@
 package lotto.validator;
 
+import static lotto.globar.GlobalConstants.SINGLE_LOTTO_PRICE;
 import static lotto.message.ErrorMessage.*;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.IntStream;
 import lotto.exception.ParseIntException;
 import lotto.exception.UserInputException;
 import lotto.util.InputUtil;
@@ -23,16 +21,18 @@ public class InputValidator {
         }
     }
 
-    public static void validateIsNumbers(List<String> strings) {
-        for (String string : strings) {
-            validateIsNumber(string);
+    public static void validateIsMultiplesOfSingleLottoPrice(int purchasePrice) {
+        if ((purchasePrice % SINGLE_LOTTO_PRICE) != 0) {
+            throw new UserInputException(INVALID_PURCHASE_AMOUNT_UNIT);
+        }
+        if ((purchasePrice < 0)) {
+            throw new UserInputException(INVALID_PURCHASE_PRICE_FORMAT);
         }
     }
 
-
-    public static void validateIsMultiplesOf1000(int purchasePrice) {
-        if (purchasePrice % 1000 != 0) {
-            throw new UserInputException(INVALID_PURCHASE_AMOUNT_UNIT);
+    public static void validateIsNumbers(List<String> strings) {
+        for (String string : strings) {
+            validateIsNumber(string);
         }
     }
 
@@ -42,6 +42,7 @@ public class InputValidator {
         }
     }
     public static void validateUniqueNumbers(List<Integer> winningNums, int validateNum) {
+        validateUniqueNumbers(winningNums);
         if (winningNums.stream().anyMatch(num -> num.equals(validateNum))) {
             throw new UserInputException(INVALID_UNIQUE_FORMAT);
         }

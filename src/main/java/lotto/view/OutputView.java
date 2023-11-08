@@ -16,7 +16,6 @@ public class OutputView {
     public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void printLottos(List<List<Integer>> lottos) {
-        System.out.println();
         System.out.println(String.format(LOTTO_COUNT_MESSAGE, lottos.size()));
 
         lottos.forEach(this::printLotto);
@@ -27,7 +26,6 @@ public class OutputView {
     }
 
     public void printStatisticsHeader() {
-        System.out.println();
         System.out.println(STATISTICS_HEADER);
         System.out.println(STATISTICS_DIVIDER);
     }
@@ -53,5 +51,9 @@ public class OutputView {
 
     public void printRateOfReturn(double rateOfReturn) {
         System.out.println(String.format(RATE_OF_RETURN_MESSAGE, rateOfReturn * 100));
+    }
+
+    public void printLineSeparator() {
+        System.out.print(System.lineSeparator());
     }
 }

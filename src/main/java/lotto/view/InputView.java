@@ -32,7 +32,6 @@ public class InputView {
     }
 
     public List<Integer> readWinningNumbers() {
-        System.out.println();
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
 
         String readLine = reader.get();
@@ -60,7 +59,6 @@ public class InputView {
     }
 
     public int readBonusNumber() {
-        System.out.println();
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
 
         try {

@@ -33,16 +33,19 @@ public class GameController {
         int purchaseMoney = inputView.readPurchaseMoney();
         LottoPurchaseReceipt receipt = gameService.purchaseLottos(purchaseMoney);
         outputView.printLottos(receipt.purchasedLottos().getSortedLottos());
-
+        outputView.printLineSeparator();
         return receipt;
     }
 
     private void handleWinningStatistics(LottoPurchaseReceipt receipt) {
         Lotto winningLotto = ExceptionRetryHandler.retryUntilValid(this::inputWinningLotto);
+        outputView.printLineSeparator();
         LottoNumber bonusNumber = ExceptionRetryHandler.retryUntilValid(this::inputBonusNumber);
 
         WinningStatistics statistics =
                 gameService.getWinningStatistics(winningLotto, bonusNumber, receipt.purchasedLottos());
+
+        outputView.printLineSeparator();
 
         printWinningStatistics(statistics.sortedByWinningMoney());
         printRateOfReturn(statistics.getTotalWinningMoney(), receipt.purchaseMoney());

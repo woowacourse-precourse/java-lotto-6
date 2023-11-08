@@ -9,7 +9,7 @@ public class ExceptionRetryHandler {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage() + System.lineSeparator());
             }
         }
     }
@@ -20,7 +20,7 @@ public class ExceptionRetryHandler {
                 consumer.accept(argument);
                 return;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(e.getMessage() + System.lineSeparator());
             }
         }
     }

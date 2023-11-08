@@ -29,4 +29,12 @@ public class InputValidator {
         }
         return numbers;
     }
+
+    public static void validateMoney(long money){
+        if(money <= 0 || money > 21 * Math.pow(10, 8))
+                throw new IllegalArgumentException("[ERROR] 금액은 유효한 값으로 입력해주세요.");
+        if(money % 1000 != 0)
+            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해주세요");
+
+    }
 }

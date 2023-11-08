@@ -9,6 +9,8 @@ public class Game {
     private Lotto winningLotto;
     private int bonusNumber;
 
+    private int money;
+
 
     public int getBonusNmber() {
         return this.bonusNumber;
@@ -24,6 +26,11 @@ public class Game {
 
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
+    }
+
+    public void setMoney(long money) {
+        InputValidator.validateMoney(money);
+        this.money = (int) money;
     }
 
     public void askWinningNumbers() {
@@ -56,5 +63,20 @@ public class Game {
         }
     }
 
+    public void askMoney() {
+        while (true) {
+            try {
+                String input = InputService.askMoney();
+                InputValidator.validateBlankString(input);
+
+                long money = Long.parseLong((input));
+                this.setMoney(money);
+                break;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+    }
 
 }

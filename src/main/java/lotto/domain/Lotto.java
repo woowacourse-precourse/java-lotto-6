@@ -18,7 +18,8 @@ public class Lotto {
 
     public int compare(List<Integer> winningNumbers) {
         int count = 0;
-        for (int i : numbers) {
+        System.out.println(numbers);
+        for (Integer i : numbers) {
             if (winningNumbers.contains(i)) {
                 winningNumbers.remove(i);
                 count++;

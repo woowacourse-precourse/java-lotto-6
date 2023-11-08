@@ -39,7 +39,7 @@ public class Money {
         return money / Constants.DIVISION_UNIT_FOR_INPUT_MONEY;
     }
 
-    public int getMoney() {
-        return money;
+    public double calculateRateOfReturn(int totalPrize) {
+        return ((double) totalPrize / this.money) * 100;
     }
 }

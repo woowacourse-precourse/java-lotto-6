@@ -18,10 +18,6 @@ public class Calculator {
         return totalPrize;
     }
 
-    public double calculateRateOfReturn(int totalPrize, Money money) {
-        return ((double) totalPrize / money.getMoney()) * 100;
-    }
-
     public Map<Rank, Integer> calculateRankCount(List<Lotto> userLottos, WinningNumbers winningNumbers,
                                                  BonusNumber bonusNumber) {
         for (Lotto lotto : userLottos) {

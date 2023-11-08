@@ -53,7 +53,7 @@ public class LottoManager {
 
     public void printRateOfReturn(Map<Rank, Integer> rankCount, Money money) {
         int totalPrize = calculator.calculateTotalPrize(rankCount);
-        double rateOfReturn = calculator.calculateRateOfReturn(totalPrize, money);
+        double rateOfReturn = money.calculateRateOfReturn(totalPrize);
         OutputView.printRateOfReturn(rateOfReturn);
     }
 }

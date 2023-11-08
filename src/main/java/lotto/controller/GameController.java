@@ -4,7 +4,7 @@ import lotto.domain.*;
 import lotto.service.LottoService;
 import lotto.service.RankingService;
 
-public class `:GameController {
+public class GameController {
 
     public void play() {
         LottoService lottoService = new LottoService();

@@ -14,6 +14,7 @@ public class Printer {
             Collections.sort(ticket.getNumbers());
             System.out.println(ticket.getNumbers());
         }
+        System.out.println();
     }
 
     public static void printStatistics(StatisticsVO stats) {

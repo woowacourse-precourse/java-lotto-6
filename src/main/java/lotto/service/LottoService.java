@@ -16,11 +16,15 @@ public class LottoService {
         return money / 1000;
     }
 
-    public List<Lotto> lottoGenerate(int count){
+    public List<Lotto> lottoGenerate(int count) {
         return IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)))
+                .map(lotto -> new Lotto(
+                        lotto.getNumbers().stream()
+                                .sorted()
+                                .collect(Collectors.toList())
+                ))
                 .collect(Collectors.toList());
-
     }
 
     public LottoScore lottoScore(List<Integer> results, List<Lotto> lottos, int bonusNumber){

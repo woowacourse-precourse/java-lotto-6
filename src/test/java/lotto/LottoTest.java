@@ -73,7 +73,7 @@ class LottoTest {
         assertThat(result).isEqualTo(false);
     }
 
-    @DisplayName("주어진 로또에 해당하는 리스트를 반환한다.")
+    @DisplayName("로또에 해당하는 숫자 리스트를 반환한다.")
     @Test
     void getNumbers() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

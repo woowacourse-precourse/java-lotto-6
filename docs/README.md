@@ -1,27 +1,36 @@
 # 미션 - 로또
 
 ## 구현할 기능 목록
-- [x] 유저로 부터 구입 금액을 입력 받는다. InputHandler
-  - [x] 입력 메시지를 전달한다. 
-  - [x] 입력값을 받는다. OutputHandler@
-  - [x] 입력값을 검증한다.
+- [x] 유저로 부터 구입 금액을 입력 받는다. - InputHandler#`getValidPurchaseAmountFromUser()`
+  - [x] 입력 메시지를 전달한다. - OutputHandler#`printMessage()`
+  - [x] 입력값을 받는다. - InputHandler#`getUserInput()`
+  - [x] 입력값을 검증한다. - InputHandler#`validatePurchaseAmount()`
     - [x] [ERROR] 0이 아닌 양의 정수만 입력해야 합니다.
     - [x] [ERROR] 1인당 10만원을 초과해서 구매할 수 없습니다.
-- [x] 1,000원 단위로 로또 개수를 구한다.
-  - 입력값을 검증한다.
     - [x] [ERROR] 1,000 단위로 입력해야 합니다.
-- [x] 개수 만큼 로또를 생성한다. LottoGenerator
+- [x] 구입 금액을 1,000원 단위로 로또 개수를 구한다. - LottoService#`calculateLottoCount()`
+- [x] 개수 만큼 로또를 구입한다. - LottoGame#`buyLottoBundle`
   - [x] 중복되지 않는 랜덤 숫자 6개를 고른다.
   - [x] 오름 차순으로 정렬한다.
-  - [x] 로또에 담는다.
-- [x] 생성된 로또를 출력한다.
-- [x] 유저로 부터 6개의 당첨 번호를 입력 받는다. InputHandler
-- [x] 유저로 부터 1개의 보너스 번호를 입력 받는다.
-- [x] 당첨 결과를 계산한다. Comparator
-  - [ ] 로또 번호와 당첨 번호를 받아 등수를 반환한다.
-  - [ ] 
-- [x] 당첨 결과를 출력한다. OutputHandler
-- [x] 총 수익률을 출력한다. OutputHandler
+  - [x] 좌우 공백을 trim한다.
+  - [x] 로또를 생성한다.
+    - [x] 로또에 담기는 숫자들을 검증한다.
+      - [x] [ERROR] 6개를 초과하는 숫자를 입력할 수 없습니다.
+      - [x] [ERROR] 중복된 숫자를 입력할 수 없습니다.
+      - [x] [ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.
+- [x] 생성된 로또를 출력한다. - OutputHandler#`printPurchaseHistory()`
+- [x] 당첨 번호를 생성한다.
+  - [x] 유저로 부터 6개의 당첨 번호를 입력 받는다. InputHandler#`getWinningNumbersFromUser()`
+  - [x] 유저로 부터 1개의 보너스 번호를 입력 받는다. InputHandler#`getBonusNumberFromUser()`
+  - [x] 당첨 번호를 생성한다. WinningNumbers
+    - [x] 생성시 당첨 번호를 상호 검증한다.
+      - [x] [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.
+      - [x] [ERROR] 중복된 숫자를 입력할 수 없습니다.
+- [x] 당첨 결과를 계산한다. 
+  - [x] 당첨 결과를 계산한다. - LottoService#`getWinningResults()`
+  - [x] 총 당첨 금액을 계산한다. - LottoService#`calculateTotalPrize()`
+  - [x] 수익률을 계산 한다.- LottoService#`calculateProfitRate()`
+- [x] 당첨 결과를 출력한다. - OutputHandler#`printResults()`
 
 
 ## 🚀 기능 요구 사항

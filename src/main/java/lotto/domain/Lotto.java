@@ -7,6 +7,8 @@ import static lotto.constant.GameNumber.MAX_NUMBER;
 import static lotto.constant.GameNumber.MIN_NUMBER;
 import static lotto.constant.GameNumber.NORMAL_NUMBER_COUNT;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -24,7 +26,9 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        List<Integer> sortedList = new ArrayList<>(numbers);
+        Collections.sort(sortedList);
+        return sortedList.toString();
     }
 
     private void validate(List<Integer> numbers) {

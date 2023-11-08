@@ -56,4 +56,11 @@ public class Game {
         }
         return checkCount;
     }
+
+    public boolean checkBonusNumber(List<Integer> numbers) {
+        if (numbers.contains(this.getBonusNumber())) {
+            return true;
+        }
+        return false;
+    }
 }

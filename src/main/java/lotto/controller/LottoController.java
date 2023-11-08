@@ -30,6 +30,7 @@ public class LottoController {
             outputView.printLottoNumber(lotto.getNumbers());
             lottos.add(lotto);
         }
+        outputView.printNewLine();
         return lottos;
     }
 

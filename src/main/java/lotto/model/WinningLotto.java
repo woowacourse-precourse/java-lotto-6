@@ -39,7 +39,7 @@ public class WinningLotto extends Lotto {
     @Override
     protected void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalStateException(ErrorMessage.WINNING_NUMBERS_WRONG_SIZE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_WRONG_SIZE.getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ public class WinningLotto extends Lotto {
     protected void validateNumberInRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < LottoSpec.MIN_NUMBER.getValue() || number > LottoSpec.MAX_NUMBER.getValue()) {
-                throw new IllegalStateException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
     }

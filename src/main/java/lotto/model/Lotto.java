@@ -31,14 +31,14 @@ public class Lotto {
 
     protected void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalStateException(ErrorMessage.LOTTO_NUMBERS_WRONG_SIZE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_WRONG_SIZE.getMessage());
         }
     }
 
     protected void validateNumberInRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < LottoSpec.MIN_NUMBER.getValue() || number > LottoSpec.MAX_NUMBER.getValue()) {
-                throw new IllegalStateException(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
+                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE.getMessage());
             }
         }
     }
@@ -46,7 +46,7 @@ public class Lotto {
     protected void validateDuplicate(List<Integer> numbers) {
         HashSet<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != 6) {
-            throw new IllegalStateException(ErrorMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 

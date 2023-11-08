@@ -35,7 +35,7 @@ public class LottoGameController {
         try {
             outputView.printInputPurchaseMoney();
             return new PurchaseAmount(inputView.readPurchaseMoney());
-        } catch (IllegalArgumentException | IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputPurchaseAmount();
         }
@@ -48,7 +48,7 @@ public class LottoGameController {
             int bonus = inputWinningBonus();
             outputView.printBlankLine();
             return new WinningLotto(winningNumbers, bonus);
-        } catch (IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputWinningLotto();
         }

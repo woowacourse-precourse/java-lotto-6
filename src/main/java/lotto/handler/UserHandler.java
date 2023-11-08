@@ -84,22 +84,28 @@ public class UserHandler {
     public static int getAndValidateBonusNumber(List<String> winningNumbers) {
         while (true) {
             try {
-                ResultView.printNewLine();
-                System.out.println("보너스 번호를 입력해주세요.");
-                String BonusNumberInput = Console.readLine();
-
-                checkValidBonusNumberInput(BonusNumberInput);
-
-                int bonusNumber = Integer.parseInt(BonusNumberInput);
-
-                checkvalidateBonusNumber(bonusNumber);
-                checkDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
-
+                String bonusNumberInput = getBonusNumberInput();
+                int bonusNumber = validateAndReturnBonusNumber(bonusNumberInput, winningNumbers);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static String getBonusNumberInput() {
+        ResultView.printNewLine();
+        System.out.println("보너스 번호를 입력해주세요.");
+        String bonusNumberInput = Console.readLine();
+        checkValidBonusNumberInput(bonusNumberInput);
+        return bonusNumberInput;
+    }
+
+    private static int validateAndReturnBonusNumber(String bonusNumberInput, List<String> winningNumbers) {
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        checkvalidateBonusNumber(bonusNumber);
+        checkDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
+        return bonusNumber;
     }
 
     private static List<String> validateWinningNumberInput(String winningNumberInput) {

@@ -86,6 +86,16 @@ class InputValidatorTest {
     }
 
     @Test
+    @DisplayName("[오류] 당첨 번호가 범위를 벗어남2")
+    public void validWinningNumberFailOutOfRange2() {
+        List<Integer> winningNumbers = List.of(0, 2, 3, 4, 4, 46);
+        InputValidator inputValidator = new InputValidator();
+
+        Assertions.assertThatThrownBy(() -> inputValidator.validateDrawNumbers(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     @DisplayName("[정상] 보너스 번호 입력")
     public void validBonusNumber() {
         int bonusNumber = 10;

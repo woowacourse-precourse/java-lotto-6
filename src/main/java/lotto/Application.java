@@ -35,6 +35,7 @@ public class Application {
     private static LottoService createLottoService() {
         LottoGenerator lottoGenerator = new LottoGenerator();
         LottoChecker lottoChecker = new LottoChecker();
+
         return new LottoService(lottoGenerator, lottoChecker);
     }
 }

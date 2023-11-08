@@ -40,10 +40,10 @@ public class InputValidator {
         }
     }
 
-    public void validateBonusNumber(Integer bonusNumber, List<Integer> drawNumbers) {
+    public void validateBonusNumber(Integer bonusNumber, List<Integer> winningNumbers) {
         isNumberInRange(bonusNumber);
 
-        isBonusNumberDuplicated(bonusNumber, drawNumbers);
+        isBonusNumberDuplicated(bonusNumber, winningNumbers);
     }
 
     private void isBonusNumberDuplicated(Integer bonusNumber, List<Integer> winningNumbers) {

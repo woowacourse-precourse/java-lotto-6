@@ -1,14 +1,14 @@
 package lotto.model.service;
 
+import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoRank;
+import lotto.model.dto.BonusNumber;
 import lotto.model.dto.LottoResult;
-import lotto.model.dto.WinningNumber;
+import lotto.model.dto.WinningNumbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 class LottoCheckerTest {
 
@@ -16,12 +16,13 @@ class LottoCheckerTest {
     @DisplayName("로또 1등 검증")
     void findWinningLottosFirst() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 7);
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(7);
 
         LottoChecker lottoChecker = new LottoChecker();
-        LottoResult winningLottos = lottoChecker.findWinningLottos(List.of(lotto), winningNumber);
+        LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
-        Assertions.assertThat(winningLottos.getLottoRanks())
+        Assertions.assertThat(lottoResult.getLottoRanks())
                 .containsExactly(LottoRank.FIRST_PLACE);
     }
 
@@ -29,12 +30,13 @@ class LottoCheckerTest {
     @DisplayName("로또 2등 검증")
     void findWinningLottosSecond() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 7), 6);
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 7));
+        BonusNumber bonusNumber = new BonusNumber(6);
 
         LottoChecker lottoChecker = new LottoChecker();
-        LottoResult winningLottos = lottoChecker.findWinningLottos(List.of(lotto), winningNumber);
+        LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
-        Assertions.assertThat(winningLottos.getLottoRanks())
+        Assertions.assertThat(lottoResult.getLottoRanks())
                 .containsExactly(LottoRank.SECOND_PLACE);
     }
 
@@ -42,12 +44,13 @@ class LottoCheckerTest {
     @DisplayName("로또 3등 검증")
     void findWinningLottosThird() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 7), 10);
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 7));
+        BonusNumber bonusNumber = new BonusNumber(10);
 
         LottoChecker lottoChecker = new LottoChecker();
-        LottoResult winningLottos = lottoChecker.findWinningLottos(List.of(lotto), winningNumber);
+        LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
-        Assertions.assertThat(winningLottos.getLottoRanks())
+        Assertions.assertThat(lottoResult.getLottoRanks())
                 .containsExactly(LottoRank.THIRD_PLACE);
     }
 
@@ -55,12 +58,13 @@ class LottoCheckerTest {
     @DisplayName("로또 4등 검증")
     void findWinningLottosFourth() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 8, 7), 10);
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 8, 7));
+        BonusNumber bonusNumber = new BonusNumber(10);
 
         LottoChecker lottoChecker = new LottoChecker();
-        LottoResult winningLottos = lottoChecker.findWinningLottos(List.of(lotto), winningNumber);
+        LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
-        Assertions.assertThat(winningLottos.getLottoRanks())
+        Assertions.assertThat(lottoResult.getLottoRanks())
                 .containsExactly(LottoRank.FOURTH_PLACE);
     }
 
@@ -68,12 +72,13 @@ class LottoCheckerTest {
     @DisplayName("로또 5등 검증")
     void findWinningLottosFifth() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 9, 8, 7), 10);
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 9, 8, 7));
+        BonusNumber bonusNumber = new BonusNumber(10);
 
         LottoChecker lottoChecker = new LottoChecker();
-        LottoResult winningLottos = lottoChecker.findWinningLottos(List.of(lotto), winningNumber);
+        LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
-        Assertions.assertThat(winningLottos.getLottoRanks())
+        Assertions.assertThat(lottoResult.getLottoRanks())
                 .containsExactly(LottoRank.FIFTH_PLACE);
     }
 
@@ -82,12 +87,13 @@ class LottoCheckerTest {
     @DisplayName("로또 꼴등 검증")
     void findWinningLottosNoLuck() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 11, 9, 8, 7), 10);
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 11, 9, 8, 7));
+        BonusNumber bonusNumber = new BonusNumber(10);
 
         LottoChecker lottoChecker = new LottoChecker();
-        LottoResult winningLottos = lottoChecker.findWinningLottos(List.of(lotto), winningNumber);
+        LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto), winningNumbers, bonusNumber);
 
-        Assertions.assertThat(winningLottos.getLottoRanks())
+        Assertions.assertThat(lottoResult.getLottoRanks())
                 .containsExactly(LottoRank.NO_LUCK);
     }
 
@@ -96,12 +102,13 @@ class LottoCheckerTest {
     void findWinningLottosMultiple() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
-        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 10);
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(10);
 
         LottoChecker lottoChecker = new LottoChecker();
-        LottoResult winningLottos = lottoChecker.findWinningLottos(List.of(lotto, lotto2), winningNumber);
+        LottoResult lottoResult = lottoChecker.findWinningLottos(List.of(lotto, lotto2), winningNumbers, bonusNumber);
 
-        Assertions.assertThat(winningLottos.getLottoRanks())
+        Assertions.assertThat(lottoResult.getLottoRanks())
                 .containsExactly(LottoRank.FIRST_PLACE, LottoRank.NO_LUCK);
     }
 

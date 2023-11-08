@@ -2,9 +2,10 @@ package lotto.model.service;
 
 import java.util.List;
 import lotto.model.domain.Lotto;
+import lotto.model.dto.BonusNumber;
 import lotto.model.dto.LottoResult;
 import lotto.model.dto.PurchaseMoney;
-import lotto.model.dto.WinningNumber;
+import lotto.model.dto.WinningNumbers;
 
 public class LottoService {
 
@@ -20,8 +21,8 @@ public class LottoService {
         return lottoGenerator.purchaseLotto(purchaseMoney);
     }
 
-    public LottoResult findWinningLottos(List<Lotto> lottos, WinningNumber winningNumber) {
-        return lottoChecker.findWinningLottos(lottos, winningNumber);
+    public LottoResult findWinningLottos(List<Lotto> lottos, WinningNumbers winningNumber, BonusNumber bonusNumber) {
+        return lottoChecker.findWinningLottos(lottos, winningNumber, bonusNumber);
     }
 
 }

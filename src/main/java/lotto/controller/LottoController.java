@@ -3,9 +3,10 @@ package lotto.controller;
 import java.util.List;
 import lotto.controller.util.handler.InputHandler;
 import lotto.model.domain.Lotto;
+import lotto.model.dto.BonusNumber;
 import lotto.model.dto.LottoResult;
 import lotto.model.dto.PurchaseMoney;
-import lotto.model.dto.WinningNumber;
+import lotto.model.dto.WinningNumbers;
 import lotto.model.service.LottoService;
 import lotto.view.output.OutputView;
 
@@ -25,9 +26,10 @@ public class LottoController {
         List<Lotto> lottos = lottoService.purchaseLotto(purchaseMoney);
         outputView.printLottos(lottos);
 
-        WinningNumber winningNumber = inputHandler.getWinningNumber();
+        WinningNumbers winningNumbers = inputHandler.getWinningNumbers();
+        BonusNumber bonusNumber = inputHandler.getBonusNumber(winningNumbers);
 
-        LottoResult lottoResult = lottoService.findWinningLottos(lottos, winningNumber);
+        LottoResult lottoResult = lottoService.findWinningLottos(lottos, winningNumbers, bonusNumber);
         outputView.printLottoRanks(lottoResult);
         outputView.printEarningRate(lottoResult.getTotalReward(), purchaseMoney.getValue());
     }

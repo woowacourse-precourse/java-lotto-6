@@ -19,7 +19,7 @@ public class Revenue {
 
     }
 
-    public String getRevenue() {
+    public String getValue() {
         return revenue;
     }
 

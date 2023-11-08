@@ -1,8 +1,6 @@
 package lotto.view;
 
-import java.text.NumberFormat;
 import java.util.Arrays;
-import java.util.Locale;
 import lotto.model.Revenue;
 import lotto.model.lotto.LottoRank;
 import lotto.model.lotto.LottoTicket;
@@ -31,7 +29,7 @@ public class OutputView {
     }
 
     public static void printRevenue(Revenue revenue){
-        String revenueFormatted = revenue.getRevenue();
+        String revenueFormatted = revenue.getValue();
         System.out.printf(REVENUE_MESSAGE + "%n", revenueFormatted);
     }
 

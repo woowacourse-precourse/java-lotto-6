@@ -6,21 +6,23 @@ import lotto.exception.input.NotIntegerException;
 import lotto.exception.input.NullInputException;
 
 public class InputValidator {
+    // 입력값 형식 검증
     private static final String SPACE = " ";
+    private static final String SPLIT_DELIMITER = ",";
 
-    public static void validateInputBudget(String input) {
+    public static void validateInputBudgetType(String input) {
         validateNull(input);
         validateHasNoSpace(input);
         validateInteger(input);
     }
 
-    public static void validateInputNumbers(String input) {
+    public static void validateInputNumbersType(String input) {
         validateNull(input);
         validateHasNoSpace(input);
         validateIntegerNumbers(input);
     }
 
-    public static void validateBonusNumber(String input) {
+    public static void validateBonusNumberType(String input) {
         validateNull(input);
         validateHasNoSpace(input);
         validateInteger(input);
@@ -52,7 +54,7 @@ public class InputValidator {
     }
 
     private static boolean allIntegers(String input) {
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(SPLIT_DELIMITER))
                 .allMatch(part -> {
                     try {
                         Integer.parseInt(part);

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
@@ -8,7 +8,7 @@ import lotto.view.OutputView;
 import java.util.List;
 import java.util.Map;
 
-public class Application {
+public class LottoController {
     public static void main(String[] args) {
         // 1. 사용자로부터 구입 금액을 입력 받습니다.
         int purchaseAmount = InputView.inputPurchaseAmount();
@@ -32,7 +32,5 @@ public class Application {
         // 7. 당첨 결과를 출력합니다.
         Map<Integer, Integer> winningResult = lottoGame.getWinningResult();
         OutputView.printWinningResult(winningResult, winningLotto, bonusBall);
-
-
     }
 }

@@ -6,6 +6,7 @@ import java.util.stream.IntStream;
 import lotto.controller.InputController;
 import lotto.model.LottoNumbers;
 import lotto.model.entity.Lotto;
+import lotto.utils.Constants;
 
 public class LottoService {
 
@@ -13,7 +14,7 @@ public class LottoService {
         return InputController.inputValidPlayerAmount();
     }
     public List<Lotto> createLottos(int ticketCount) {
-        return IntStream.range(0, ticketCount)
+        return IntStream.range(Constants.ZERO, ticketCount)
                 .mapToObj(i -> new Lotto(LottoNumbers.generateRandomNum()))
                 .collect(Collectors.toList());
     }

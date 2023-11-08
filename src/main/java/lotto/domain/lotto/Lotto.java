@@ -8,7 +8,7 @@ import lotto.domain.lotto.validator.LottoValidator;
 /**
  * 사용자가 입력한 금액으로 구매한 로또 용지를 나타내는 클래스입니다. 6자리의 로또 번호를 가지고 있습니다.
  */
-public class Lotto {
+public sealed class Lotto permits WinningLotto {
 
     /**
      * `Lotto` 객체의 유일한 필드이자 6자리의 로또 번호를 나타냅니다.

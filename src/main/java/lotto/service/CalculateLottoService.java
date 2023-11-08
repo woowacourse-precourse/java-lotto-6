@@ -47,5 +47,9 @@ public class CalculateLottoService {
 			return;
 		}
 	}
+	public void winningLotto(int countLottoNumbers, User user) {
+		inputWinningCount(WinningLotto.FIND.valueOf(countLottoNumbers));
+		user.sumWinningPrice(WinningLotto.FIND.valueOf(countLottoNumbers).getPrice());
+	}
 
 }

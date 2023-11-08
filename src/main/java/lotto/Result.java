@@ -13,4 +13,13 @@ public class Result {
             matchCounts[matchedCount - 1]++;
         }
     }
+
+    private int getTotalPurchaseAmount() {
+        int pricePerLotto = 1000;
+        int totalLottos = 0;
+        for (int count : matchCounts) {
+            totalLottos += count;
+        }
+        return totalLottos * pricePerLotto;
+    }
 }

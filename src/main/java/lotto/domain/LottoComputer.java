@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Map;
 import lotto.Dto.SingleResultDto;
 import lotto.Dto.TotalResultDto;
 import lotto.constant.constants.Config;
@@ -10,26 +9,22 @@ import lotto.constant.messages.Error;
 public class LottoComputer {
 
 
-    private Lotto winnerLotto;
-    private Integer bonusNumber;
-
-    private Lottos myLottos;
-
-    // matched / prize
-    Map<Integer, Integer> prizes;
+    private Lotto winningLotto;
+    private Lottos boughtLottos;
+    private Integer bonus;
 
 
-    public void config(String bonusNumber) {
-        validateBonusNumber(bonusNumber);
-        this.bonusNumber = Integer.parseInt(bonusNumber);
+    public void configBonus(String bonus) {
+        validateBonus(bonus);
+        this.bonus = Integer.parseInt(bonus);
     }
 
-    public void config(Lottos myLottos) {
-        this.myLottos = myLottos;
+    public void configBoughtLottos(Lottos boughtLottos) {
+        this.boughtLottos = boughtLottos;
     }
 
-    public void config(Lotto winnerLotto) {
-        this.winnerLotto = winnerLotto;
+    public void configWinningLotto(Lotto winningLotto) {
+        this.winningLotto = winningLotto;
     }
 
 
@@ -40,7 +35,7 @@ public class LottoComputer {
 
         for (Prize prize : Prize.values()) {
             SingleResultDto singleResultDto = calculateWonLottery(prize);
-            totalResultDto.add(singleResultDto.getMatch(), calculateWonLottery(prize));
+            totalResultDto.add(singleResultDto);
             totalWonPrize += singleResultDto.getWon() * singleResultDto.getPrize();
         }
         totalResultDto.setProfit(calculateProfit(totalWonPrize));
@@ -50,7 +45,7 @@ public class LottoComputer {
 
 
     private double calculateProfit(Integer wonPrize) {
-        int spentMoney = myLottos.size() * Config.LOTTO_PRICE.getConfig();
+        int spentMoney = boughtLottos.size() * Config.LOTTO_PRICE.getConfig();
         return (double) wonPrize / spentMoney * 100;
     }
 
@@ -58,15 +53,15 @@ public class LottoComputer {
     private SingleResultDto calculateWonLottery(Prize prize) {
         SingleResultDto singleResultDto = new SingleResultDto();
         singleResultDto.setMatched(prize.getMatched());
-        singleResultDto.setWon(myLottos.calculateMatched(winnerLotto, bonusNumber, prize));
+        singleResultDto.setWon(boughtLottos.calculateMatched(winningLotto, bonus, prize));
         singleResultDto.setPrize(prize.getPrize());
         return singleResultDto;
     }
 
 
-    public void validateBonusNumber(String val) {
-        validateAllDigit(val);
-        validateNumberRange(Integer.parseInt(val));
+    public void validateBonus(String bonus) {
+        validateAllDigit(bonus);
+        validateNumberRange(bonus);
     }
 
 
@@ -76,7 +71,11 @@ public class LottoComputer {
         }
     }
 
-    private void validateNumberRange(Integer number) {
+    private void validateNumberRange(String input) {
+        if (input.length() > 2) {
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+        }
+        int number = Integer.parseInt(input);
         if (number < Config.LOTTO_MIN_NUMBER.getConfig() || number > Config.LOTTO_MAX_NUMBER.getConfig()) {
             throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }

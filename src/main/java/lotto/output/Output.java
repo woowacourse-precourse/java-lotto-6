@@ -8,6 +8,7 @@ public class Output {
     }
 
     public static void printLottoAmount(int lottoCount) {
+        System.out.println();
         System.out.print(lottoCount);
         print(OutputMessage.LOTTO_AMOUNT);
     }

@@ -10,7 +10,9 @@ import java.util.List;
 
 public class LottoGame {
     private static final List<Lotto> lottos = new ArrayList<>();
-    public static List<Integer> winningNumbers;
+    private static List<Integer> winningNumbers;
+    private static int bonusNumber;
+
     private int lottoCount;
 
     public void play() {
@@ -21,16 +23,14 @@ public class LottoGame {
 
     private void startGame() {
         lottoCount = Input.getPurchaseAmount() / 1000;
-        System.out.println();
-
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(new Lotto(makeRandomNumbers()));
         }
+
         Output.printLottoAmount(lottoCount);
         for (Lotto lotto : lottos) {
             Output.printLotto(lotto);
         }
-        System.out.println();
     }
 
     private List<Integer> makeRandomNumbers() {
@@ -41,5 +41,6 @@ public class LottoGame {
 
     private void playGame() {
         winningNumbers = Input.getWinningNumbers();
+        bonusNumber = Input.getBonusNumber();
     }
 }

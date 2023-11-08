@@ -3,7 +3,6 @@ package lotto.input;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Input {
@@ -31,6 +30,7 @@ public class Input {
     }
 
     public static List<Integer> getWinningNumbers() {
+        System.out.println();
         printEnterWinningNumbers();
         String[] winningNumbers = Console.readLine().split(",");
 
@@ -44,5 +44,13 @@ public class Input {
             numbers.add(Integer.parseInt(number));
         }
         return numbers;
+    }
+
+    public static int getBonusNumber() {
+        System.out.println();
+        printEnterBonusNumber();
+        String bonusNumber = Console.readLine();
+        InputValidator.isValidBonusNumber(bonusNumber);
+        return Integer.parseInt(bonusNumber);
     }
 }

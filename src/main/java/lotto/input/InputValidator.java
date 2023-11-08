@@ -18,6 +18,12 @@ public class InputValidator {
         }
     }
 
+    public static void isValidBonusNumber(String bonusNumber) throws IllegalArgumentException {
+        isNotEmpty(bonusNumber);
+        isNumber(bonusNumber);
+        isValidRange(bonusNumber);
+    }
+
     private static void isNotEmpty(String input) {
         if (input == null || input.isEmpty() || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 있어야 합니다.");

@@ -2,16 +2,19 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.config.InOutMessage;
+import lotto.model.LottoArrays;
 import lotto.model.PurchaseInfo;
+import lotto.service.ProcessorHelper;
 import lotto.validate.Validator;
 
 public class PlayLottoGame {
 
     Validator validator = new Validator();
+    ProcessorHelper processorHelper = new ProcessorHelper();
 
     public void runLottoGame(){
-        inputPurchaseCost();
-        printLottoNumber();
+        PurchaseInfo purchaseInfo = new PurchaseInfo(inputPurchaseCost());
+        printLottoNumber(purchaseInfo.getPurchaseCount());
         inputWinnerAndBounsNumber();
         printLottoResult();
     }
@@ -22,8 +25,10 @@ public class PlayLottoGame {
         return Integer.parseInt(purchaseCost);
     }
 
-    private void printLottoNumber(){
-
+    private void printLottoNumber(int purchaseCount){
+        System.out.println(Integer.toString(purchaseCount) + InOutMessage.PURCHASE_QUATITY_MESSAGE.getMessage());
+        LottoArrays lottoArrays = processorHelper.createLottoNumber(purchaseCount);
+        processorHelper.printLottoArrays(lottoArrays);
     }
     private void inputWinnerAndBounsNumber(){
 

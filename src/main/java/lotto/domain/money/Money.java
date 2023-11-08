@@ -6,10 +6,6 @@ import static lotto.domain.constant.DomainConstant.ZERO;
 public record Money(long amount) {
     public static final Money ZERO_MONEY = new Money(0);
 
-    public Money add(final long money) {
-        return new Money(amount + money);
-    }
-
     public Money sum(final Money money) {
         return new Money(amount + money.amount());
     }

@@ -30,4 +30,20 @@ class StatisticsTest {
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
+    @DisplayName("총 수익률을 계산한다.")
+    @Test
+    void calculateRevenueRate() {
+        List<Lotto> lottos = Arrays.asList(
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(8, 9, 10, 11, 12, 13))
+        );
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonus = 7;
+
+        Statistics statistics = new Statistics(lottos, winningLotto, bonus);
+        Buyer buyer = new Buyer(2000);
+        String actual = statistics.calculateRevenueRate(buyer);
+
+        Assertions.assertThat(actual).isEqualTo("1,500,000.0");
+    }
 }

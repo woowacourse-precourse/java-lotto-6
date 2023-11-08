@@ -73,6 +73,20 @@ public class InteractServiceTest extends NsTest {
         });
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "0,2,3,4,5,6", "1,2,3,4,5,46", "11,22,33,44,55,66"
+    })
+    void winningNumOverBoundary(String input) {
+        assertSimpleTest(() -> {
+            runException(
+                    PURCHASE_FEE,
+                    input
+            );
+            assertThat(output()).contains(ErrorStatus.LOTTO_BOUNDARY_ERROR.getMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

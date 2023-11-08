@@ -5,44 +5,29 @@ import java.util.List;
 
 public class Prize {
     private int total = 0;
-    private List<Integer> winningNumbers;
-    private List<Lotto> lottos;
-    private int bonusNumber;
-    private int totalPrize;
 
     public Prize(List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber){
-        this.winningNumbers = winningNumbers;
-        this.lottos = lottos;
-        this.bonusNumber = bonusNumber;
-        this.totalPrize = getPrize();
-    }
-
-    private int getPrize(){
-        int sameNumberCount = 0;
         for(Lotto lotto: lottos){
-            sameNumberCount = lotto.countSameNumber(winningNumbers);
-
-
+            Rank rank = new Rank(winningNumbers, lotto, bonusNumber);
+            this.total += getPrize(rank.toString());
         }
-
     }
 
-    private Rank getRank(int sameNumberCount, boolean sameBonusNumber){
-        switch(sameNumberCount){
-            case 6:
-                return Rank.FIRST;
-            case 5:
-                if(sameBonusNumber){
-                    return Rank.SECOND;
-                }
-                return Rank.THIRD;
-            case 4:
-                return Rank.FOURTH;
-            case 3:
-                return Rank.FIFTH;
+    private int getPrize(String rank){
+        switch(rank){
+            case "FIRST":
+                return 2000000000;
+            case "SECOND":
+                return 30000000;
+            case "THIRD":
+                return 1500000;
+            case "FOURTH":
+                return 50000;
             default:
-                return Rank.NOTHING;
-
+                return 0;
         }
+
     }
+
+
 }

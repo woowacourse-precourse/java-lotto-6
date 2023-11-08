@@ -2,20 +2,23 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import static lotto.utils.Constants.MIN_NUMBER_IN_RANGE;
-import static lotto.utils.Constants.MAX_NUMBER_IN_RANGE;
+import java.util.List;
+
+import static lotto.utils.Constants.*;
 import static lotto.utils.ErrorMessages.CHECK_NUMBER_IN_RANGE;
 
 public class GenerateRandomNum {
 
-    public static int pickNumber() {
-        int num = Randoms.pickNumberInRange(MIN_NUMBER_IN_RANGE, MAX_NUMBER_IN_RANGE);
-        checkNumberInRange(num);
-        return num;
+    public static List<Integer> pickNumber() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER_IN_RANGE, MAX_NUMBER_IN_RANGE, LOTTO_SIZE);
+        checkNumberInRange(numbers);
+        return numbers;
     }
 
-    public static void checkNumberInRange(int num) {
-        if (num < MIN_NUMBER_IN_RANGE || num > MAX_NUMBER_IN_RANGE)
-            throw new IllegalArgumentException(CHECK_NUMBER_IN_RANGE);
+    public static void checkNumberInRange(List<Integer> numbers) {
+        for (int num : numbers) {
+            if (num < MIN_NUMBER_IN_RANGE || num > MAX_NUMBER_IN_RANGE)
+                throw new IllegalArgumentException(CHECK_NUMBER_IN_RANGE);
+        }
     }
 }

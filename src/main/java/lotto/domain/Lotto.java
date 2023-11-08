@@ -33,12 +33,7 @@ public class Lotto {
     }
 
     public static List<Integer> randomLottery() {
-        List<Integer> lotto = Stream.generate(() -> pickNumber())
-                .distinct()
-                .limit(LOTTO_SIZE)
-                .sorted()
-                .collect(Collectors.toList());
-        return lotto;
+        return pickNumber();
     }
 
     public static void checkDuplicate(List<Integer> lotto) {

@@ -15,7 +15,6 @@ import static lotto.view.InputValidator.*;
 public class InputView {
 
     public static Buyer payForLottery() {
-        System.out.println(BUY_LOTTERY_INPUT);
         try {
             int paymentNumber = getPaymentNumber();
             int ticketCount = calculateTicketCount(paymentNumber);

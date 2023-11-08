@@ -14,5 +14,6 @@ public class Application {
         Winning winning = InputView.inputBonusNum(lotto);
         OutputView outputView = new OutputView();
         outputView.getStatistic(buyer, winning);
+        outputView.earningRatio(buyer);
     }
 }

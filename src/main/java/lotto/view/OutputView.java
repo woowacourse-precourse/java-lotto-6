@@ -9,12 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.utils.Constants.COUNT;
 import static lotto.utils.Constants.WINNING_PRIZE_STATISTICS;
 
 public class OutputView {
 
     public void getStatistic(Buyer buyer, Winning winning) {
         System.out.println(WINNING_PRIZE_STATISTICS);
+        int totalPrize = 0;
         List<Lotto> lottos = buyer.getLotto();
         Lotto winningLotto = winning.getLotto();
         int bonus = winning.getBonus();
@@ -29,16 +31,16 @@ public class OutputView {
             boolean bonusMatch = isBonusMatch(lotto, bonus);
 
             Prize prize = calculateWinningPrize(matchCount, bonusMatch);
-
             if (prize != null) {
                 statistics.put(prize, statistics.get(prize) + 1);
+                totalPrize += prize.getPrizeAmount();
             }
         }
-
         for (Prize prize : Prize.values()) {
             int count = statistics.get(prize);
-            System.out.println(prize.getDescription() + count + "개");
+            System.out.println(prize.getDescription() + count + COUNT);
         }
+        buyer.totalEarning(totalPrize);
     }
 
     private int countMatchingNumbers(Lotto lotto, Lotto winningLotto) {
@@ -66,5 +68,10 @@ public class OutputView {
             return Prize.THREE_MATCH;
         }
         return null;
+    }
+
+    public void earningRatio(Buyer buyer) {
+        float profitRate = (float) buyer.getEarningPrize() / buyer.getPayment() * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
 }

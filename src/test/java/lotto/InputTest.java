@@ -14,10 +14,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class InputTest {
     private Input input;
+    private Output output;
 
     @BeforeEach
     void setUp() {
-        input = new Input();
+        output = new Output();
+        input = new Input(output);
     }
 
     @DisplayName("아무 입력도 하지않으면 에러가 발생한다.")

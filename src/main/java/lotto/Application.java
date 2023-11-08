@@ -14,7 +14,8 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        Input input = new Input();
+        Output output = new Output();
+        Input input = new Input(output);
         Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Analyzer analyzer = new Analyzer();
 

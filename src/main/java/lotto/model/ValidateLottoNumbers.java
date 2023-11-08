@@ -64,7 +64,6 @@ public abstract class ValidateLottoNumbers {
     }
 
     private boolean validateNumberRange(int number) {
-        return number < MIN_NUMBER ||
-                number > MAX_NUMBER;
+        return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 }

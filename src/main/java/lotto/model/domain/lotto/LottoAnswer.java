@@ -3,7 +3,7 @@ package lotto.model.domain.lotto;
 import java.util.List;
 import lotto.constance.GameConst;
 import lotto.exception.LottoGameException;
-import lotto.model.domain.result.LottoCompareResult;
+import lotto.model.domain.result.compare.LottoAnswerCompareResult;
 
 public class LottoAnswer extends Lotto {
     private final Integer bonusNumber;
@@ -21,13 +21,13 @@ public class LottoAnswer extends Lotto {
     }
 
     @Override
-    public LottoCompareResult compareLotto(Lotto lotto) {
+    public LottoAnswerCompareResult compareLotto(Lotto lotto) {
         int collectNumber = collectNumber(lotto);
         boolean collectBonus = false;
         if (collectNumber == GameConst.BONUS_CHECK_NECESSARY_NUMBER) {
             collectBonus = isCollectBonus(lotto);
         }
-        return new LottoCompareResult(collectNumber, collectBonus);
+        return new LottoAnswerCompareResult(collectNumber, collectBonus);
     }
 
     private int collectNumber(Lotto lotto) {

@@ -15,7 +15,7 @@ public class LottoNumbers {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        lottoNumbers.forEach(lottoNumber -> stringBuilder.append(lottoNumber.toString()).append("\n"));
+        lottoNumbers.forEach(lottoNumber -> stringBuilder.append(lottoNumber.toString()));
         return stringBuilder.toString();
     }
 

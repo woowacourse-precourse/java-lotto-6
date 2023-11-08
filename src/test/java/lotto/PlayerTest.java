@@ -10,8 +10,7 @@ public class PlayerTest {
     @ParameterizedTest
     @ValueSource(ints = {5,6,7,8,9,10})
     void makeLotto(int lottoNumberCount){
-        Player player = new Player();
-        player.makeLotto(lottoNumberCount);
+        Player player = new Player(lottoNumberCount);
         assertThat(player.getLottoSize()).isEqualTo(lottoNumberCount);
     }
 }

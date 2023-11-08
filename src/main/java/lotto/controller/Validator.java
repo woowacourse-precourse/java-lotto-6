@@ -51,6 +51,7 @@ public class Validator {
 
         if (!isContainComma(playerInput)) {
             Exception.isNotSixByComma();
+            return false;
         }
 
         try {
@@ -64,14 +65,17 @@ public class Validator {
 
             if (!isSizeSix(numbers)) {
                 Exception.isNotSixByComma();
+                return false;
             }
 
             if(!isDisticnt(numbers)) {
                 Exception.isNotDistinct();
+                return false;
             }
 
         } catch (NumberFormatException e) {
             Exception.isNotNumber();
+            return false;
         }
 
         return true;

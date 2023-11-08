@@ -46,7 +46,6 @@ public class LottoController {
 
     private static List<Integer> setLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
         return numbers;
     }
 

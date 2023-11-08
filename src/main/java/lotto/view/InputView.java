@@ -23,24 +23,30 @@ public class InputView {
     }
 
     public static List<Integer> getAnswerLottoNumbers() {
-        String playerInput = readLine();
+        String playerInput = "";
 
-        if (Validator.isValidAnswerLottoNumbers(playerInput)) {
-            return Arrays.stream(playerInput.split(Validator.DELEMTER))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+        while (true) {
+            playerInput = readLine();
+
+            if (Validator.isValidAnswerLottoNumbers(playerInput)) {
+                break;
+            }
         }
-
-        return null;
+        return Arrays.stream(playerInput.split(Validator.DELEMTER))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public static int getBonusNumber() {
-        String playerInput = readLine();
+        String playerInput = "";
 
-        if (Validator.isValidBonusNumber(LottoController.getAnswerlottoNumbers(), playerInput)) {
-            return Integer.parseInt(playerInput);
+        while (true) {
+            playerInput = readLine();
+
+            if (Validator.isValidBonusNumber(LottoController.getAnswerlottoNumbers(), playerInput)) {
+                break;
+            }
         }
-
-        return -1;
+        return Integer.parseInt(playerInput);
     }
 }

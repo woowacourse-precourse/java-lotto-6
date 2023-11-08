@@ -2,6 +2,8 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.controller.Result;
 
@@ -14,9 +16,12 @@ public class OutputView {
         System.out.println(String.format(Message.FOR_LOTTO_COUNT.label(), lottoCnt));
     }
     public static void printLottoList(List<Integer> numbers) {
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        Collections.sort(mutableNumbers);
         System.out.println(String.format(Message.FOR_LOTTO.label(),
-                numbers.get(0), numbers.get(1), numbers.get(2),
-                numbers.get(3), numbers.get(4), numbers.get(5)));
+                mutableNumbers.get(0), mutableNumbers.get(1), mutableNumbers.get(2),
+                mutableNumbers.get(3), mutableNumbers.get(4), mutableNumbers.get(5)
+        ));
     }
 
     public static void promptForAnswerLottoNumbers() {

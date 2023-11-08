@@ -7,31 +7,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.domain.Rank;
 import lotto.domain.Statistics;
 
 public class OutputView {
     private static final String STATISTICS_FORMAT = "%d개 일치 (%s원) - %d개";
     private static final String STATISTICS_FORMAT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    private static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static void printLottoTickets(List<Lotto> lottoTickets) {
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
         lottoTickets.forEach(OutputView::printLotto);
     }
 
-    public static void printLotto(Lotto lotto) {
+    private static void printLotto(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         Collections.sort(lottoNumbers);
         System.out.println(lottoNumbers);
     }
 
-    public static void printStatistics(Statistics statistics) {
+    public static void printStatistics(Statistics statistics, Money money) {
         printStatisticsBeginMessage();
         Map<Rank, Integer> winningResult = statistics.getWinningResult();
         for (Rank rank : getRanksToPrint()) {
             printStatistic(rank, winningResult.get(rank));
         }
-
+        printRateOfReturn(statistics.calculateRateOfReturn(money));
     }
 
     private static void printStatisticsBeginMessage() {
@@ -55,5 +57,9 @@ public class OutputView {
         }
         System.out.printf(STATISTICS_FORMAT, countOfMatch, winningMoney, count);
         System.out.println();
+    }
+
+    private static void printRateOfReturn(double rateOfReturn) {
+        System.out.printf(RATE_OF_RETURN_FORMAT, rateOfReturn);
     }
 }

@@ -12,9 +12,6 @@ public class LottoDatas {
     private PurChase purchase;
     private Lotto winnigNumber;
 
-    public LottoDatas(final String userInputNumber) {
-
-    }
 
     public void saveCount(int purchase) {
         this.purchase = PurChase.inputPurchase(purchase);
@@ -28,6 +25,10 @@ public class LottoDatas {
     public void inputWinningNumber(final List<Integer> generatedLottoNumbers) {
         Lotto lotto = Lotto.createLotto(generatedLottoNumbers);
         this.winnigNumber = lotto;
+    }
+
+    public int getLottoCount() {
+        return this.purchase.getLottoCount();
     }
 
     public LottoDatas() {

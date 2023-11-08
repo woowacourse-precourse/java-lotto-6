@@ -36,7 +36,7 @@ public class GameController {
     }
 
     private void printLotto() {
-
+        OutputView.printPurChaseCount(lottoDatas.getLottoCount());
     }
 
     private void inputWinningNumber() {

@@ -122,7 +122,7 @@ public class MainController {
                 + WinningRank.FOURTH.getPrice() * WinningRank.FOURTH.getCount()
                 + WinningRank.FIFTH.getPrice() * WinningRank.FIFTH.getCount();
         float totalSpentMoney = lottoPrice.getPrice();
-        float profitPercentage = (float) Math.round((earnedMoney / totalSpentMoney) * 10) / 10;
+        float profitPercentage = (float) Math.round((earnedMoney / totalSpentMoney)*100 * 10) / 10;
         outputView.printTotalProfitPercentage(profitPercentage);
 
     }

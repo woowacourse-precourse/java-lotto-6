@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class NotDigitException extends IllegalArgumentException {
     public NotDigitException() {
-        super("[ERROR] 숫자만 입력해야 합니다.");
+        super("[ERROR] 숫자만 입력해야 합니다.\n");
     }
 }
 

@@ -37,8 +37,8 @@
 - [X] 잘못된 값을 입력할 경우 IllegalArgumentException을 던진다.
     - [X] 0~9로 이루어진 문자열이 아닌 경우
     - [X] 금액을 1,000원 단위로 입력하지 않은 경우
-- [ ] IllegalArgumentException 발생 시 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - [ ] 에러 메시지는 "[ERROR]"로 시작한다.
+- [X] IllegalArgumentException 발생 시 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+    - [X] 에러 메시지는 "[ERROR]"로 시작한다.
 
 
 ### 로또를 발행한다.

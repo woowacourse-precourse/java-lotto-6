@@ -3,7 +3,9 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.domain.Judgement;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.view.Printer;
 import lotto.view.UserInput;
 
@@ -11,6 +13,7 @@ public class GameController {
 	
 	Printer printer = new Printer();
 	UserInput input = new UserInput();
+	Judgement judge = new Judgement(); 
 	
 	List<Integer> numbers = new ArrayList<Integer>();
 	Lotto lotto = new Lotto(numbers);
@@ -29,11 +32,9 @@ public class GameController {
 		printer.printDirection("\n보너스 번호를 입력해 주세요.\n");
 		int bonusNumberByUser = input.getBonusNumber(winnersNumbersByUser);
 		
-		//테스트
-		//System.out.println("당첨번호는" + winnersNumbersByUser);
-		//System.out.println("보너스 넘버는" + bonusNumberByUser);
-		
-		
-		
+		List<Rank> ticketRank = judge.compareLottoNumbers(totalTickets, winnersNumbersByUser, bonusNumberByUser);
+		double totalRevenue = judge.calculateRevenue(getUserMoney, ticketRank);
+		printer.printWinnersDetail(ticketRank);
+		printer.printDirection("총 수익률은 " + totalRevenue + "%입니다.");
 	}
 }

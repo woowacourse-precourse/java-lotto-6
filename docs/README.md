@@ -57,7 +57,11 @@ BonusNumber
      - [ERROR] : 당첨번호에 없는 번호를 입력해 주셔야 합니다.
 - 보너스번호 저장
 
-WinStatisticsCalculate
+Rank
+> 당첨 통계 계산기에서 사용될 기준에 대한 enum클래스
+- WinningStatistics에서 선언해서 코드가 길어지는 것보다 enum으로 따로 빼서 get함수로 필요한 값들을 가져와서 편리하게 사용할 수 있도록 구현 
+
+WinningStatistics
 > 당첨 통계 계산기로, 당첨 내역 개수와 수익률에 대해 계산하고 저장하는 클래스
 - 당첨 내역 초기화
 - 당첨 번호와 로또 비교

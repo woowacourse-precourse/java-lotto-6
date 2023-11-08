@@ -10,7 +10,7 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
         int quantity = customer.getQuantity();
         for (int count = 0; count < quantity; count++) {
-            List<Integer> numbers = NumberGenerator.CreateRandomNumbers();
+            List<Integer> numbers = NumberGenerator.createRandomNumbers();
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }

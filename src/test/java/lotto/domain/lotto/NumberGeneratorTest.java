@@ -14,13 +14,13 @@ class NumberGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        randomNumbers = NumberGenerator.CreateRandomNumbers();
+        randomNumbers = NumberGenerator.createRandomNumbers();
     }
 
     @DisplayName("숫자 List를 생성한다.")
     @Test
     void createIntegerList() {
-        assertThat(NumberGenerator.CreateRandomNumbers()).isInstanceOf(List.class);
+        assertThat(NumberGenerator.createRandomNumbers()).isInstanceOf(List.class);
     }
 
     @DisplayName("6개의 숫자를 생성한다.")

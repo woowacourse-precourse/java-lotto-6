@@ -9,7 +9,7 @@ public class InputView {
 
     public String getUserMoney(){
         System.out.println(INPUT_MONEY);
-        return  Console.readLine();
+        return Console.readLine();
     }
 
     public String getWinningNumber(){

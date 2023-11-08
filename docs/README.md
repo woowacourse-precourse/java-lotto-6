@@ -1,7 +1,9 @@
 #### 1. 구입금액 입력받기
 - `camp.nextstep.edu.missionutils.Console`
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`
+- [ERROR] 숫자를 입력하셔야 합니다.
 - [ERROR] 로또 1장의 가격은 1,000원입니다.
+- [ERROR] 로또를 최소 1장 구입하셔야 합니다.
 
 #### 2️. 사용자가 구입한 로또 발행하기
 - `camp.nextstep.edu.missionutils.Randoms`

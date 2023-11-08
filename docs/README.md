@@ -14,9 +14,17 @@
         </tr>
         <tr><td></td></tr>
         <tr>
-            <td rowspan="1"><b>🎱&nbsp;&nbsp;Model</b></td>
+            <td rowspan="3"><b>🎱&nbsp;&nbsp;Model</b></td>
             <td><b>✨&nbsp;&nbsp;Lotto</b></td>
             <td>로또 기본정보를 가지고 있는 클래스</td>
+        </tr>
+        <tr>
+            <td><b>✨&nbsp;&nbsp;Customer</b></td>
+            <td>로또 구매자를 의미하는 클래스로 지불금액, 구매한 로또 리스트, 당첨된 로또 정보를 가지고 있다.</td>
+        </tr>
+        <tr>
+            <td><b>✨&nbsp;&nbsp;LottoWinning</b></td>
+            <td>당첨 로또 관련 정보를 가지고 있는 클래스</td>
         </tr>
         <tr><td></td></tr>
         <tr>
@@ -28,6 +36,26 @@
             <td><b>✨&nbsp;&nbsp;OutputView</b></td>
             <td>출력을 위한 클래스</td>
         </tr>
+        <tr><td></td></tr>
+        <tr>
+            <td rowspan="1"><b>⚙️&nbsp;&nbsp;Validation</b></td>
+            <td><b>✨&nbsp;&nbsp;Validator</b></td>
+            <td>유효성 검사 로직을 가지고 있는 클래스</td>
+        </tr>
+        <tr><td></td></tr>
+        <tr>
+            <td rowspan="3"><b>📌️&nbsp;&nbsp;Constant</b></td>
+            <td><b>✨&nbsp;&nbsp;LottoConstant</b></td>
+            <td>로또와 관련된 상수 enum</td>
+        </tr>
+        <tr>
+            <td><b>✨&nbsp;&nbsp;ConstantMessage</b></td>
+            <td>로또 발행과 관련된 메시지 enum</td>
+        </tr>
+        <tr>
+            <td><b>✨&nbsp;&nbsp;ErrorMessage</b></td>
+            <td>에러 관련 메시지 enum</td>
+        </tr>
     </table>    
 </div>
 
@@ -38,7 +66,7 @@
 
 ## 🚀&nbsp;&nbsp;구현 목록
 ### 1️⃣ Non-Functional
-- [ ] MVC Pattern 구현
+- [x] MVC Pattern 구현
 <br>
 
 ### 2️⃣ Functional

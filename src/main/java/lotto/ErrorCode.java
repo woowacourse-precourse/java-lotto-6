@@ -14,8 +14,6 @@ public enum ErrorCode {
     // lottos
     NOT_DIVIDED_BY_UNIT_PRICE("[ERROR] 구입 금액은 1000원 단위입니다.");
 
-    
-
     private final String message;
 
     ErrorCode(String message) {

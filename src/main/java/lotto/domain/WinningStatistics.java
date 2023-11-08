@@ -4,26 +4,51 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WinningStatistics {
-    private Map<LottoPrize, Integer> result;
+    private final Map<LottoPrize, Integer> result;
+    private final LottoStore lottoStore;
+    private final LottoAnswer lottoAnswer;
 
-    public WinningStatistics() {
+    public WinningStatistics(LottoStore lottoStore, LottoAnswer lottoAnswer) {
         this.result = new HashMap<>();
+        this.lottoStore = lottoStore;
+        this.lottoAnswer = lottoAnswer;
+        aggregateResult();
     }
 
-    public void recordMatching(int matchedNumbers, boolean bonusNumberMatch) {
+    private void recordMatching(int matchedNumbers, boolean bonusNumberMatch) {
         LottoPrize prize = LottoPrize.determinePrize(matchedNumbers, bonusNumberMatch);
-        result.put(prize, result.getOrDefault(prize, 0) + 1);
-    }
-
-    public void aggregateResult(LottoStore lottoStore, LottoAnswer lottoAnswer) {
-        for (Lotto lotto : lottoStore.getLottoTickets()) {
-            int matchedNumbers = LottoChecker.countMatchingNumbers(lotto, lottoAnswer);
-            boolean bonusNumberMatch = LottoChecker.isBonusNumberMatch(lotto,lottoAnswer.getBonusNumber());
-            recordMatching(matchedNumbers , bonusNumberMatch);
+        if (prize != null) {
+            result.put(prize, result.getOrDefault(prize, 0) + 1);
         }
     }
 
-    public Map<LottoPrize, Integer> getResult() {
+    private void aggregateResult() {
+        for (Lotto lotto : lottoStore.getLottoTickets()) {
+            int matchedNumbers = LottoChecker.countMatchingNumbers(lotto, lottoAnswer);
+            boolean bonusNumberMatch = LottoChecker.isBonusNumberMatch(lotto, lottoAnswer.getBonusNumber());
+            recordMatching(matchedNumbers, bonusNumberMatch);
+        }
+    }
+
+    public Map<LottoPrize, Integer> getMatchingResult() {
         return result;
+    }
+
+    public double getReturnRate(Money money) {
+        long totalPrize = getTotalPrize();
+        int moneyAmount = money.getAmount();
+
+        double returnRate =  ((double) totalPrize / moneyAmount) * 100.0;
+        return Math.round(returnRate * 10.0) / 10.0;
+    }
+
+    public long getTotalPrize() {
+        long totalPrize = 0;
+        for (Map.Entry<LottoPrize, Integer> entry : result.entrySet()) {
+            LottoPrize prize = entry.getKey();
+            int count = entry.getValue();
+            totalPrize += prize.getPrize() * count;
+        }
+        return totalPrize;
     }
 }

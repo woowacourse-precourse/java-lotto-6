@@ -150,6 +150,40 @@ class ApplicationTest extends NsTest {
         assertDoesNotThrow(() -> winningLotto.validate(parsedWinningNumbers));
     }
 
+    @DisplayName("형식에 맞지 않은 보너스 번호를 입력 받으면 예외가 발생한다.")
+    @Test
+    void createBonusNumberByInvalidFormat() {
+        WinningLotto winningLotto = new WinningLotto();
+        assertThatThrownBy(() -> winningLotto.parseBonusNumber("1,"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("범위에 맞지 않는 보너스 번호를 입력 받으면 예외가 발생한다.")
+    @Test
+    void createBonusNumberByInvalidRange() {
+        WinningLotto winningLotto = new WinningLotto();
+        winningLotto.setWinningNumbers(new Lotto(List.of(1,2,3,4,5,6)));
+        assertThatThrownBy(() -> winningLotto.validate(57))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨번호와 중복되는 보너스 번호를 입력 받으면 예외가 발생한다.")
+    @Test
+    void createBonusNumberWithDuplicateWinningNumbers() {
+        WinningLotto winningLotto = new WinningLotto();
+        winningLotto.setWinningNumbers(new Lotto(List.of(1,2,3,4,5,6)));
+        assertThatThrownBy(() -> winningLotto.validate(2))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1~45 사이의 당첨번호와 중복되지 않는 번호를 입력 받으면 정상 동작한다.")
+    @Test
+    void createBonusNumber() {
+        WinningLotto winningLotto = new WinningLotto();
+        winningLotto.setWinningNumbers(new Lotto(List.of(1,2,3,4,5,6)));
+        assertDoesNotThrow(() -> winningLotto.validate(7));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

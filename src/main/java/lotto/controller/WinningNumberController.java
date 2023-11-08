@@ -9,10 +9,10 @@ public class WinningNumberController {
     OutputView outputView = new OutputView();
 
     public List<Integer> setWinningNumber() {
-        outputView.printInsertWinningNumber();
         String winningNumber;
         while (true) {
             try {
+                outputView.printInsertWinningNumber();
                 winningNumber = InputView.insertWinningNumber();
                 new WinningNumberValidator(winningNumber);
                 return InputView.convertToList(winningNumber);

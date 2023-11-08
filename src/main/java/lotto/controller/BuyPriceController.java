@@ -8,10 +8,10 @@ public class BuyPriceController {
     OutputView outputView = new OutputView();
 
     public int setBuyPrice() {
-        outputView.printInsertBuyPrice();
         String buyPrice;
         while (true) {
             try {
+                outputView.printInsertBuyPrice();
                 buyPrice = InputView.insertBuyPrice();
                 new BuyPriceValidator(buyPrice);
                 return InputView.convertToInt(buyPrice);

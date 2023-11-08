@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.constant.GameMessage.INPUT_BUY_PRICE;
+import static lotto.constant.GameMessage.INPUT_WIN_NUMBERS;
 import static lotto.constant.GameMessage.YOU_BOUGHT_N_LOTTOS;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -18,6 +19,7 @@ public class Game {
         printBoughtAmount(price);
         List<Lotto> lottos = makeLottos(price.getAmount());
         printLottos(lottos);
+        Lotto winLotto = inputWinningNumbers();
     }
 
     private static Price inputBuyPrice() {
@@ -49,6 +51,18 @@ public class Game {
     private static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
+        }
+    }
+
+    private static Lotto inputWinningNumbers() {
+        while (true) {
+            System.out.println(INPUT_WIN_NUMBERS.getMessage());
+            try {
+                String input = Console.readLine();
+                return new Lotto(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

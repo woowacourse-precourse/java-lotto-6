@@ -31,17 +31,21 @@ public class LottoController {
     }
 
     public void run() {
-        // 로또 발행
+        // 금액 입력 받고 로또 발행
         int money = receiveValidMoney();
         List<Lotto> lottos = lottoGenerator.generate(money, generator);
+
         // 발행 로또 출력
         outputView.printLottoNumbers(parseLottoToInteger(lottos));
-        // 로또 당첨 판단 객체 생성
+
+        // 당첨 번호와 보너스 번호 입력
         List<Integer> validWinningNumbers = receiveValidWinningNumbers();
         int validBonusNumber = receiveValidBonusNumber();
-        // 당첨 등수 맵 생성
+
+        // 결과 분석
         LottoMatchChecker lottoMatchChecker = new LottoMatchChecker(validWinningNumbers, validBonusNumber);
         Map<LottoRank, Integer> result = lottoMatchChecker.getResult(lottos);
+
         // 결과 출력
         showResult(result);
     }

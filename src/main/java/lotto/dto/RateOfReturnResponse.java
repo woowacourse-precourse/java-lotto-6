@@ -31,7 +31,7 @@ public class RateOfReturnResponse {
 
     @Override
     public String toString() {
-        return "총 수익률은 " + this.profitPercentage + "%입니다.";
+        return "총 수익률은 " + this.profitPercentage*100 + "%입니다.";
     }
 
 

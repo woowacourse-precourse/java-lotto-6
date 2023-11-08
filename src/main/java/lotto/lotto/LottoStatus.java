@@ -26,7 +26,7 @@ final class LottoStatus {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder("당첨 통계\n---\n");
+        StringBuilder stringBuilder = new StringBuilder("\n당첨 통계\n---\n");
         stringBuilder.append(lottoResultToStautsString(FIFTH_PRIZE));
         stringBuilder.append(lottoResultToStautsString(FOURTH_PRIZE));
         stringBuilder.append(lottoResultToStautsString(THIRD_PRIZE));

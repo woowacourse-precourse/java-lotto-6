@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 final class LottoPrinter {
     static String printAll(List<Lotto> lottos) {
         int count = lottos.size();
-        String prefix = String.format("%d개를 구매했습니다.\n", count);
+        String prefix = String.format("\n%d개를 구매했습니다.\n", count);
         String body = lottos.stream()
                 .map(Lotto::toString)
                 .collect(Collectors.joining("\n"));

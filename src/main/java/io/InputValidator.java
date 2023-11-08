@@ -2,7 +2,7 @@ package io;
 
 import java.util.List;
 
-import static io.ValidationErrorMessages.*;
+import static io.InputErrorMessage.*;
 import static lotto.LottoConstants.*;
 
 public class InputValidator {

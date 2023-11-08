@@ -1,6 +1,6 @@
 package io;
 
-public enum ValidationErrorMessages {
+public enum InputErrorMessage {
     NOT_INTEGER("정수를 입력해주세요."),
     NOT_MULTIPLE_OF_PRICE("1000원 단위로 입력해주세요."),
     INVALID_LOTTO_SIZE("로또 번호의 개수는 6개여야 합니다."),
@@ -11,7 +11,7 @@ public enum ValidationErrorMessages {
 
     private final String message;
 
-    ValidationErrorMessages(String message) {
+    InputErrorMessage(String message) {
         this.message = message;
     }
 

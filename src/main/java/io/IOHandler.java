@@ -6,8 +6,8 @@ import lotto.LottoRank;
 
 import java.util.*;
 
-import static io.IOMessages.*;
-import static io.ValidationErrorMessages.NOT_INTEGER;
+import static io.InputErrorMessage.NOT_INTEGER;
+import static io.InputInfoMessage.*;
 
 public class IOHandler {
 

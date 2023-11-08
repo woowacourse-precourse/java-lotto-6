@@ -116,8 +116,14 @@ public class LottoController {
 
     public WinningLotto initWinningLotto() {
         Lotto lotto = askWinningNumbers();
-        Number number = askWinningBonusNumber();
-        return new WinningLotto(lotto, number);
+        while (true) {
+            try {
+                Number bonusNumber = askWinningBonusNumber();
+                return new WinningLotto(lotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void printCurrent(final LottoResult lottoResult) {

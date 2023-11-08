@@ -59,7 +59,7 @@ public class Input {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER_VALUE.getErrMsg());
         }
-        if ((temp / 1000) != 0) {
+        if ((temp % 1000) != 0) {
             throw new IllegalArgumentException(UNDIVIDED_PURCHASE_AMOUNT.getErrMsg());
         }
     }

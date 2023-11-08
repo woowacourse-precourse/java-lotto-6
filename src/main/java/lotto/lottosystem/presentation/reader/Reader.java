@@ -14,22 +14,40 @@ public class Reader {
     }
 
     public MoneyVO readMoney() {
-        System.out.println("구입 금액을 입력해주세요.");
-        String rawValue = lottoConsole.readLine();
-        if (validateNumber(rawValue)) {
-            return new MoneyVO(Integer.parseInt(rawValue));
+        while (true) {
+            System.out.println("구입 금액을 입력해주세요.");
+            String rawValue = lottoConsole.readLine();
+            try {
+                if (validateNumber(rawValue)) {
+                    return new MoneyVO(Integer.parseInt(rawValue));
+                }
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력 가능합니다.");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
-        throw new IllegalArgumentException("구입 금액은 숫자만 입력 가능합니다.");
     }
 
     public LottoNumbersVO readLottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        Lotto lottoNumbers = readNumbers();
-        System.out.println();
-        System.out.println("보너스 번호를 입력 해주세요.");
-        int bonusNumber = readNumber();
-        System.out.println();
-        return new LottoNumbersVO(lottoNumbers, bonusNumber);
+        Lotto lottoNumbers;
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                lottoNumbers = readNumbers();
+                System.out.println();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            try {
+                System.out.println("보너스 번호를 입력 해주세요.");
+                int bonusNumber = readNumber();
+                System.out.println();
+                return new LottoNumbersVO(lottoNumbers, bonusNumber);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Lotto readNumbers() {

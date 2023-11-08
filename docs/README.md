@@ -14,7 +14,7 @@
     - 입력 값에 중복된 수가 있을 경우 `IllegalArgumentException` 발생 시키는 기능
 
 
--보너스 번호를 입력 받기
+- 보너스 번호를 입력 받기
     - 입력 값이 숫자가 아닌 경우 `IllegalArgumentException` 발생 시키는 기능
     - 입력 값이 1~45 사이가 아닌 경우 `IllegalArgumentException` 발생 시키는 기능
 

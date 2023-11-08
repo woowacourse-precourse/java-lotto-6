@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Application {
     private static Scanner sc = new Scanner(System.in);
@@ -19,8 +16,10 @@ public class Application {
             System.out.println(lotto.getNumbers());
         }
 
-        List<Integer> winnigNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(winnigNumbers);
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+
+        Map<Prize, Integer> results = checkLottoResults(lottoTickets, winningNumbers, bonusNumber);
     }
 
     public static int getValidPurchaseAmount(){
@@ -113,5 +112,26 @@ public class Application {
             if(bonusNumber == winnigNumbers.get(i)) return false;
         }
         return true;
+    }
+
+    public static Map<Prize, Integer> checkLottoResults(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Prize, Integer> results = new EnumMap<>(Prize.class);
+        for (Lotto ticket : lottoTickets) {
+            int matchCount = countMatches(ticket.getNumbers(), winningNumbers);
+            boolean hasBonus = ticket.getNumbers().contains(bonusNumber);
+            Prize prize = Prize.valueOf(matchCount, hasBonus);
+            results.put(prize, results.getOrDefault(prize, 0) + 1);
+        }
+        return results;
+    }
+
+    public static int countMatches(List<Integer> ticketNumbers, List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : ticketNumbers) {
+            if (winningNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 }

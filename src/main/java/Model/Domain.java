@@ -3,28 +3,25 @@ package Model;
 import Controller.ModelHandler;
 import View.ViewString;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Domain {
     private final ModelHandler MODEL = ModelHandler.getInstance();
     private final Service SERVICE = Service.getInstance();
-    private final List<Integer> LOTTO_WINNING_NUMBER = MODEL.setInputWinningNumber();
-
+    private final List<Integer> LOTTO_WINNING_NUMBER = MODEL.setWinningNumber();
     public static final int LOTTO_PRICE = 1000;
-    private final int BONUS_NUMBER = MODEL.setBonusNumber();
-    private final int PRICE = MODEL.setPrice();
-    private final int LOTTO_NUM = PRICE / LOTTO_PRICE;
 
     private List<Lotto> myLotto;
     private List<Integer> duplicatedNumberCount;
     private List<Integer> winningRanking;
     private List<Boolean> duplicatedBonusNumber;
+    private int bonusNumber;
+    private int lottoNum;
     private int winnings;
+    private int price;
     private double revenueRate;
 
     private Domain() {
@@ -32,7 +29,10 @@ public class Domain {
         duplicatedNumberCount = new ArrayList<>();
         duplicatedBonusNumber = new ArrayList<>();
         winningRanking = new ArrayList<>();
+        bonusNumber = 0;
+        lottoNum = 0;
         winnings = 0;
+        price = 0;
         revenueRate = 0;
     }
 
@@ -44,14 +44,26 @@ public class Domain {
         return Singleton.INSTANCE;
     }
 
-    private void setWinningRanking() {
+    public void setBonusNumber(int number) {
+        this.bonusNumber = number;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setLottoNum() {
+        lottoNum = price / LOTTO_PRICE;
+    }
+
+    public void setWinningRanking() {
         for (int i = 0; i < duplicatedNumberCount.size(); i++) {
             int rank = SERVICE.calWinningsRank(duplicatedNumberCount.get(i), duplicatedBonusNumber.get(i));
             winningRanking.add(rank);
         }
     }
 
-    private void sumWinnings() {
+    public void sumWinnings() {
         for (var Ranking : winningRanking) {
             if (Ranking != 0) {
                 winnings += SERVICE.getMyWinning(Ranking);
@@ -59,12 +71,12 @@ public class Domain {
         }
     }
 
-    private void setRevenueRate() {
-        revenueRate = winnings / PRICE;
+    public void setRevenueRate() {
+        revenueRate = winnings / price;
     }
 
-    private void setMyLotto() {
-        for(int i = 0; i < LOTTO_NUM; i++) {
+    public void setMyLotto() {
+        for(int i = 0; i < lottoNum; i++) {
             myLotto.add(new Lotto(SERVICE.lottoGenerator()));
         }
     }
@@ -87,7 +99,7 @@ public class Domain {
 
     private boolean bonusNumberDuplicateCount(List<Integer> list) {
         for (int number : list) {
-            if (number == BONUS_NUMBER) {
+            if (number == bonusNumber) {
                 return true;
             }
         }

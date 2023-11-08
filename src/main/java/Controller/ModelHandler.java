@@ -22,18 +22,41 @@ public class ModelHandler {
         return Singleton.INSTANCE;
     }
 
-    public List<Integer> setInputWinningNumber() {
+    public List<Integer> setWinningNumber() {
         return SERVICE.makeLotto(INPUT_VIEW.inputWinningNumber());
     }
 
-    public int setBonusNumber() {
-        return INPUT_VIEW.inputBonusNumber();
+    public void setBonusNumber(int bonusNumber) {
+        DOMAIN.setBonusNumber(bonusNumber);
     }
 
-    public int setPrice() {
-        int price = INPUT_VIEW.inputPrice();
+    public void setPrice(int price) {
         EXCEPTION.checkPriceUnit(price);
-        return price;
+        DOMAIN.setPrice(price);
+    }
+
+    public void setLottoNum() {
+        DOMAIN.setLottoNum();
+    }
+
+    public void setWinnings() {
+        DOMAIN.sumWinnings();
+    }
+
+    public void setWinningRanking() {
+        DOMAIN.setWinningRanking();
+    }
+
+    public void setRevenueRate() {
+        DOMAIN.setRevenueRate();
+    }
+
+    public void setMyLotto() {
+        DOMAIN.setMyLotto();
+    }
+
+    public void setDuplicate() {
+        DOMAIN.compareNumbers();
     }
 
     public void printMyLotto() {

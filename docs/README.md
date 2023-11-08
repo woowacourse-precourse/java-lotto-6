@@ -26,7 +26,7 @@
 - [x] 로또 번호
 - [x] 당첨 숫자 개수
 - [x] 로또 번호와 당첨 번호 비교
-- [ ] 등수 계산
+- [x] 등수 계산
 - [x] 수익률 계산
 - [x] 당첨 횟수에 따른 상금
 
@@ -38,11 +38,11 @@
 ### output
 - [x] 발행한 로또 수량
 - [x] 발행한 로또 번호 [오름차순]
-- [ ] 당첨 내역
+- [x] 당첨 내역
 - [x] 수익률 [소수점 둘째 자리에서 반올림]
 
 ### exception
-- [ ] 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
+- [x] 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
 - [x] 로또 구입 금액이 1000 단위로 입력되어야 한다.
 - [ ] 로또 구입 금액은 숫자여야한다.
 - [ ] 당첨 번호는 쉼표로 구분 되어야한다.
@@ -75,3 +75,29 @@
 - camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console API를 사용하여 구현해야 한다.
 - Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
 - 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
+
+***
+### DOMAIN
+- [x] LOTTO_PRICE
+  - 전역 상수
+- [x] LOTTO_WINNING_NUMBer
+  - 로또 번호
+- [x] myLotto
+  - 로또 리스트
+- [x] winningRanking
+  - 로또 등수 리스트
+- [x] duplicatedNumberCount
+  - 내 로또에 중복된 숫자 개수 리스트
+  - 로또 리스트 크기만큼 생김
+- [x] duplicatedBonusNumber
+  - 내 로또에 보너스 번호가 포함 유무
+- [x] bonusNumber
+  - 보너스 번호
+- [x] lottoNum
+  - 로또 개수
+- [x] winnings
+  - 당첨금 합
+- [x] price
+  - 비용
+- [x] revenueRate
+  - 수익률

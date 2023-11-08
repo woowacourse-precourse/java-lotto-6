@@ -4,7 +4,7 @@ import Controller.ModelHandler;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    private ModelHandler moder = ModelHandler.getInstance();
+    private ModelHandler model = ModelHandler.getInstance();
 
     private InputView() {
     }
@@ -17,9 +17,10 @@ public class InputView {
         return Singleton.INSTANCE;
     }
 
-    public int inputPrice() {
+    public void inputPrice() {
         System.out.println(ViewString.INPUT_PRICE_NOTIFICATION);
-        return Integer.parseInt(Console.readLine());
+        int price = Integer.parseInt(Console.readLine());
+        model.setPrice(price);
     }
 
     public String inputWinningNumber() {

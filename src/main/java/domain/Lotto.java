@@ -1,12 +1,11 @@
 package domain;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
-
+    private Place place;
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         replicated(numbers);
@@ -39,6 +38,33 @@ public class Lotto {
         if(set.size() != 6){
             throw new IllegalArgumentException();
         }
+    }
+
+    public Place whichPlace(Lotto winningLotto, int bonusNumber){
+        Set<Integer> winningNumbers = new HashSet<>(winningLotto.numbers);
+
+        int correctNumbers = (int)numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        boolean bonusOn = isBonusValidate(winningNumbers,bonusNumber);
+
+        this.place = PlaceAndCorrectNumberMap.whichPlace(correctNumbers,bonusOn);
+        return this.place;
+    }
+    public boolean isBonusValidate(Set<Integer> winningLotto, int bonusNumber){
+        if(winningLotto.contains(bonusNumber)){
+            return false;
+        }
+        for(int number : numbers){
+            if(number == bonusNumber){
+                return true;
+            }
+        }
+        return false;
+    }
+    public Place getPlace(){
+        return place;
     }
 
 

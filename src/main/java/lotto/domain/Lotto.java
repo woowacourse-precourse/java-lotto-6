@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static lotto.util.Utils.ascendingOrder;
 
@@ -11,11 +13,16 @@ public class Lotto {
         validate(numbers);
         this.numbers = ascendingOrder(numbers);
     }
+
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != 6 || isDuplicate(numbers)) {
             throw new IllegalArgumentException();
         }
     }
-    // TODO: 추가 기능 구현
+
+    private boolean isDuplicate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        return set.size() != Buyer.LOTTO_COUNT;
+    }
 
 }

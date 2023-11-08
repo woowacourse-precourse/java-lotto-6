@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import lotto.constant.PriceConstant;
@@ -30,7 +29,7 @@ class LottoResultTest {
         LottoResult result = LottoResult.from();
         result.countWinningCase(lotteries.getLotteries(), winningLotto);
 
-        assertThat(result.getResultMap().get(PriceConstant.SECOND_PLACE.getLabel())).isEqualTo(1);
+        assertThat(result.getWinningResult().get(PriceConstant.SECOND_PLACE.getLabel())).isEqualTo(1);
     }
 
     @DisplayName("수익률을 계산한다.")

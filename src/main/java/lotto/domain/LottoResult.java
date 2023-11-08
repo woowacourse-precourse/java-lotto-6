@@ -10,11 +10,11 @@ public class LottoResult {
 
     private static final Double PERCENTAGE = 100.0;
 
-    private Map<String, Integer> resultMap;
+    private Map<String, Integer> winningResult;
     private int winningCount;
 
     private LottoResult() {
-        this.resultMap = generateResultMap();
+        this.winningResult = generateResultMap();
     }
 
     public static LottoResult from() {
@@ -22,14 +22,14 @@ public class LottoResult {
     }
 
     private Map<String, Integer> generateResultMap() {
-        resultMap = new LinkedHashMap<>();
-        resultMap.put(PriceConstant.FIFTH_PLACE.getLabel(), 0);
-        resultMap.put(PriceConstant.FOURTH_PLACE.getLabel(), 0);
-        resultMap.put(PriceConstant.THIRD_PLACE.getLabel(), 0);
-        resultMap.put(PriceConstant.SECOND_PLACE.getLabel(), 0);
-        resultMap.put(PriceConstant.FIRST_PLACE.getLabel(), 0);
+        winningResult = new LinkedHashMap<>();
+        winningResult.put(PriceConstant.FIFTH_PLACE.getLabel(), 0);
+        winningResult.put(PriceConstant.FOURTH_PLACE.getLabel(), 0);
+        winningResult.put(PriceConstant.THIRD_PLACE.getLabel(), 0);
+        winningResult.put(PriceConstant.SECOND_PLACE.getLabel(), 0);
+        winningResult.put(PriceConstant.FIRST_PLACE.getLabel(), 0);
 
-        return resultMap;
+        return winningResult;
     }
 
     public void countWinningCase(List<Lotto> lotteries, WinningLotto winningLotto) {
@@ -43,7 +43,7 @@ public class LottoResult {
     private void countResultMap(int winningCount, boolean isMatchBonusNumber) {
         PriceConstant priceConstant = PriceConstant.countWinningPlace(winningCount, isMatchBonusNumber);
         if (priceConstant != null) {
-            resultMap.put(priceConstant.getLabel(), resultMap.get(priceConstant.getLabel()) + 1);
+            winningResult.put(priceConstant.getLabel(), winningResult.get(priceConstant.getLabel()) + 1);
         }
     }
 
@@ -54,8 +54,8 @@ public class LottoResult {
         return false;
     }
 
-    public Map<String, Integer> getResultMap() {
-        return Collections.unmodifiableMap(resultMap);
+    public Map<String, Integer> getWinningResult() {
+        return Collections.unmodifiableMap(winningResult);
     }
 
     public double calculateEarningRate(int purchaseAmount) {
@@ -67,8 +67,8 @@ public class LottoResult {
     }
 
     private int calculateTotalEarning() {
-        return resultMap.keySet().stream()
-                .mapToInt(key -> PriceConstant.getPriceByLabel(key) * resultMap.get(key))
+        return winningResult.keySet().stream()
+                .mapToInt(key -> PriceConstant.getPriceByLabel(key) * winningResult.get(key))
                 .sum();
     }
 }

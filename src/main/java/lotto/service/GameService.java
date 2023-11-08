@@ -60,7 +60,7 @@ public class GameService {
     }
 
     public Map<String, Integer> printGameResult() {
-        return lottoResult.getResultMap();
+        return lottoResult.getWinningResult();
     }
 
     public double printEarningRate() {

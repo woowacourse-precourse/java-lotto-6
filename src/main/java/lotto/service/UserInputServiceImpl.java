@@ -3,10 +3,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class LottoServiceImpl implements LottoService{
+public class UserInputServiceImpl implements UserInputService {
     List <Integer> winningNum = new ArrayList<>();
     @Override
     public int payForLotto() {
@@ -36,17 +35,16 @@ public class LottoServiceImpl implements LottoService{
         }
         winningNum.add(plusNum);
     }
-
     @Override
     public boolean isValidate(int num) {
-        if(num<1 && num>45){
+        if(num<1 || num>45){
             return false;
         }
         return true;
     }
-
     @Override
     public Lotto createLotto() {
+        userInputLottoNum();
         return new Lotto(winningNum);
     }
 }

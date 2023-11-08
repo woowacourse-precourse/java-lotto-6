@@ -17,7 +17,7 @@ class WinningNumberInputTest {
         converter = new Converter();
     }
 
-    @DisplayName("문자열을 넣으면 쉼표를 기준으로 토큰화")
+    @DisplayName("문자열을 넣으면 쉼표를 기준으로 토큰화한다")
     @Test
     void tokenizeByComma() {
         String[] result = winningNumberInput.makeWinningNumberStringList("1,3,5,13,17,18", converter);

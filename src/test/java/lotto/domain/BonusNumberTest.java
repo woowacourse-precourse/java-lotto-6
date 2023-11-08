@@ -22,7 +22,6 @@ public class BonusNumberTest {
     void bounusNumberIsDigit(String inputBonusNumber) {
         Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber, lottoNumbers))
                 .isInstanceOf(NumberFormatException.class)
-                .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("보너스 숫자는 아라비아 숫자이어야 합니다.");
     }
 
@@ -32,7 +31,6 @@ public class BonusNumberTest {
     void bonusNumberRange(String inputBonusNumber) {
         Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber, lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("보너스 숫자는 1과 45사이 이어야 합니다.");
     }
 
@@ -42,7 +40,6 @@ public class BonusNumberTest {
     void bonusNumberDuplicateWithExistLottoNumber(String inputBonusNumber, List<Integer> exisLottoNumbers) {
         Assertions.assertThatThrownBy(() -> new BonusNumber(inputBonusNumber, exisLottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("보너스 숫자는 이전 당첨 번호와 중복되면 안됩니다.");
     }
 

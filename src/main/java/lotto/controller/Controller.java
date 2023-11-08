@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import static lotto.InputReader.*;
-import static lotto.MessagePrinter.*;
+import static lotto.view.InputView.*;
+import static lotto.view.OutputView.*;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import static lotto.Validator.*;
 
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 
-public class InputReader {
+public class InputView {
     public static int inputPurchaseAmount() {
         int purchaseAmount = checkIsInteger(Console.readLine());
         validatePurchaseAmount(purchaseAmount);

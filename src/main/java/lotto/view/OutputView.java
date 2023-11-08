@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import static lotto.Util.formatCurrency;
 import static lotto.Util.getLottoCount;
@@ -8,7 +8,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
-public class MessagePrinter {
+public class OutputView {
     public static final String INPUT_FOR_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     public static final String COMPLETE_PURCHASE = "개를 구매했습니다.";
     public static final String INPUT_FOR_WINNING_LOTTO = "당첨 번호를 입력해 주세요.";

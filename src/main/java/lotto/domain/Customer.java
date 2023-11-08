@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Customer {
     public static final int TICKET_UNIT = 1000;
-    private final int budget;
+    public final int budget;
     public int numberOfTickets ;
 
     public Customer(Integer budget) {
@@ -25,11 +25,10 @@ public class Customer {
         return totalProfits;
     }
 
-    public double getRateOfReturn(HashMap<String, Integer> prizeCountsRecords) {
+    public double getRateOfReturn(HashMap<String, Integer> prizeCountsRecords, int customerBudget) {
         int totalProfits = getTotalProfits(prizeCountsRecords);
-        double rateOfReturn = (double) totalProfits / budget;
-        rateOfReturn = Math.round(rateOfReturn);
-        return rateOfReturn;
+        double rateOfReturn = (double) totalProfits / customerBudget;
+        return rateOfReturn * 100;
     }
 
     public String toString() {

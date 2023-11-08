@@ -56,7 +56,7 @@ public class Application {
         HashMap<String, Integer> prizeCountsRecords = prize.compareAllLottoTickets(customerTickets, winningNumbers, bonusNumber);
         prize.printResults(prizeCountsRecords);
 
-        double rateOfReturn = customer.getRateOfReturn(prizeCountsRecords);
+        double rateOfReturn = customer.getRateOfReturn(prizeCountsRecords, receivedMoney);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
 
     }

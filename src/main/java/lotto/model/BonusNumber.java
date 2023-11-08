@@ -3,15 +3,15 @@ package lotto.model;
 public class BonusNumber {
     private static final int BONUS_MIN_NUMBER = 1;
     private static final int BONUS_MAX_NUMBER = 45;
-    private final int bonusNumber;
+    private final int value;
 
     public BonusNumber(int bonusNumber) {
         validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
+        this.value = bonusNumber;
     }
 
-    public int getBonusNumber() {
-        return this.bonusNumber;
+    public int getValue() {
+        return this.value;
     }
 
     private void validate(int bonusNumber) {

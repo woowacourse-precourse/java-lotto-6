@@ -4,18 +4,18 @@ import java.util.List;
 
 public class LottoAnswer {
     private final Lotto winningNumbers;
-    private final int bounsNumber;
+    private final BonusNumber bounsNumber;
 
-    public LottoAnswer(Lotto winningNumbers, int bounsNumber) {
+    public LottoAnswer(Lotto winningNumbers, BonusNumber bonusNumber) {
         this.winningNumbers = winningNumbers;
-        this.bounsNumber = bounsNumber;
+        this.bounsNumber = bonusNumber;
     }
 
     public Lotto getWinningNumbers() {
         return winningNumbers;
     }
 
-    public int getBounsNumber() {
+    public BonusNumber getBounsNumber() {
         return bounsNumber;
     }
 }

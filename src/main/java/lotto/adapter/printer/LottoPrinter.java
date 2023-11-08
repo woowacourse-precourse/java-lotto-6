@@ -1,4 +1,4 @@
-package lotto.adapter;
+package lotto.adapter.printer;
 
 import java.util.List;
 import lotto.StringConstants;

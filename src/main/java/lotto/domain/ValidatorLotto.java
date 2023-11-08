@@ -4,21 +4,21 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
-public class LottoValidator {
-    public static void winningNumberValidate(List<Integer> winningNumbers, int bonusNumber) {
-        lottoValidate(winningNumbers);
+public class ValidatorLotto {
+    public static void validateWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
+        validateLottoNumbers(winningNumbers);
         validateNumberRange(bonusNumber);
         validateUniqueBonusNumber(winningNumbers, bonusNumber);
     }
 
-    public static void lottoValidate(List<Integer> numbers) {
+    public static void validateLottoNumbers(List<Integer> numbers) {
         validateNumbersLength(numbers);
         validateNumbersRange(numbers);
         validateUniqueNumber(numbers);
     }
 
     private static void validateNumbersLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != EnumLotto.LOTTO_LENGTH.getNumber()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 총 6개입니다.");
         }
     }
@@ -30,7 +30,7 @@ public class LottoValidator {
     }
 
     private static void validateNumberRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < EnumLotto.START_NUMBER.getNumber() || number > EnumLotto.END_NUMBER.getNumber()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }

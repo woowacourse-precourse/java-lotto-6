@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.LottoWinningNumber;
+import lotto.exception.ErrorMessage;
 
 public class WinningNumberService {
     private List<Integer> winningNumbers;
@@ -39,14 +40,14 @@ public class WinningNumberService {
 
     private void validateWinningNumbers(String winningNumbers) {
         if (winningNumbers == null || winningNumbers.trim().isEmpty()) {
-            throw new IllegalArgumentException("당첨 번호가 입력되지 않았습니다.");
+            throw new IllegalArgumentException(ErrorMessage.MISSING_WINNING_NUMBERS.getMessage());
         }
         String[] numbersStr = winningNumbers.split(",");
         for (String numberStr : numbersStr) {
             try {
                 Integer.parseInt(numberStr.trim());
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("로또 숫자는 정수만 입력 가능합니다.");
+                throw new IllegalArgumentException(ErrorMessage.NON_INTEGER_LOTTO_NUMBER.getMessage());
             }
         }
     }
@@ -55,7 +56,7 @@ public class WinningNumberService {
         try {
             Integer.parseInt(bonusNumbers.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("보너스 숫자는 정수만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NON_INTEGER_BONUS_NUMBER.getMessage());
         }
     }
 

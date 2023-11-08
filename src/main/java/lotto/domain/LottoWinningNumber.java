@@ -2,11 +2,11 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.domain.util.Validation;
+import lotto.exception.ErrorMessage;
 
 public class LottoWinningNumber {
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int NUMBER_PER_LOTTO = 6;
 
     private List<Integer> winningNumbers;
     private int bonusNumber;
@@ -35,11 +35,11 @@ public class LottoWinningNumber {
 
     private void validateBonusNumbers(int bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("로또 숫자는 1~45까지의 정수만 선택해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
 
         if (this.winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("로또 숫자는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 

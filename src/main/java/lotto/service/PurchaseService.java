@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
+import lotto.exception.ErrorMessage;
 
 public class PurchaseService {
     private static final int LOTTO_PRICE = 1000;
@@ -28,11 +29,11 @@ public class PurchaseService {
         try {
             amount = Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("구매 금액은 정수만 입력 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_FORMAT.getMessage());
         }
 
         if (amount < 0 || amount % 1000 != 0) {
-            throw new IllegalArgumentException("구매 금액은 0보다 크고 1,000원으로 나누어 떨어져야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_VALUE.getMessage());
         }
     }
 

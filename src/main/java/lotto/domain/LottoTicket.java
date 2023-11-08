@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.exception.ErrorMessage;
 
 public class LottoTicket {
     private final List<Lotto> tickets;
@@ -20,7 +21,7 @@ public class LottoTicket {
 
     private void validate(List<Lotto> lottoTicket) {
         if (lottoTicket == null || lottoTicket.isEmpty()) {
-            throw new IllegalArgumentException("로또를 생성할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_CREATION_ERROR.getMessage());
         }
     }
 

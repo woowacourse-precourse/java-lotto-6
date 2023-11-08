@@ -1,25 +1,61 @@
-## 기능 목록
+# 로또
 
-- [x] 구입 금액으로 로또 몇장을 구입할 수 있는지 계산한다.(로또 1장당 1,000원) - LottoManager#calculateNumberOfLottos()
-  - [x] 구입 금액이 1,000원단위로 나누어 떨어지는지 검사한다. - LottoManager#validatePurchaseAmount()
-- [x] 로또를 생성한다. - LottoFactory#createLotto()
-  - [x] 로또 번호에 중복된 값이 있는지 검사한다. - Lotto#validateDuplication()
-- [x] 매개변수로 들어온 장수만큼 로또를 생성한다. - Lottos#createLottos()
-- [x] 1 ~ 45까지의 중복하지 않는 난수 6개를 `List<Integer>`로 생성한다. - NumberGenerator#generateRandomNumbers()
-- [x] 몇개의 번호가 담청되었는지 알 수 있다. - WinnigLotto#countMatchingNumbers()
-- [x] 보너스 번호와 일치하는 번호가 있는지 검사한다. - BonusNumber#isContains()
-- [x] 당첨 번호를 맞춘 개수에 맞게 등수를 정한다. - Prize#determineRank()
-- [x] 당첨 기준에 맞게 해당 등수의 받을 상금 수량을 증가시킨다. Prizes#increasePrizeAmount()
-- [x] 각 등수별 상금 합계를 계산한다. Prizes#calculateTotalPrizeForRank()
-- [x] 총 상금을 계산한다. Prizes#calculateTotalPrize()
-- [x] 수익률을 계산한다. (수익률은 소수점 둘째 자리에서 반올림) - LottoManager#calculateProfitRate()
+## 구현 기능 목록
+
+### `Lotto` 
+- [x] 로또 번호의 개수가 6개인지 검사한다. - validate()
+- [x] 로또 번호에 중복된 값이 있는지 검사한다. - validateDuplication()
+- [x] 로또 번호가 1 ~ 45사이의 값인지 검사한다. - validateNumberRange()
+
+### `LottoFactory`
+- [x] 로또를 생성한다. - createLotto()
+
+### `Lottos`
+- [x] 원하는 만큼 로또를 생성한다. - createLottos()
+- [x] 발행한 로또들의 번호를 toString 해준다. - getIssuedLottoNumbers()
+
+### `WinningLotto`
+- [x] 보너스 번호와 로또 번호가 중복하는지 검사한다. - validateDuplication()
+- [x] 구매한 로또가 몇 개의 당첨 번호를 맞췄는지 알려준다. - countMatchingNumbers()
+- [x] 보너스 번호를 맞췄는지 알려준다. - isMatchBonusNumber()
+
+### `BonusNumber`
+- [x] 보너스 번호가 1 ~ 45사이의 숫자인지 검사한다. - validateNumberRange()
+- [x] 로또 번호에 보너스 번호가 포함되어있는지 알려준다. - isContains()
+
+### `Prize`
+- [x] 당첨된 번호 개수와 보너스 번호 당첨여부를 통해 당첨 순위(상금)을 알 수 있다. - determineRank()
+
+### `WinningDetails`
+- [x] 당첨 순위에 맞게 상금을 수여한다. - increasePrizeAmount()
+- [x] 등수별 당첨된 상금액의 합을 계산한다. - calculateTotalPrizeForRank()
+- [x] 모든 등수의 당첨된 상금액의 합을 계산한다. - calculateTotalPrize()
+
+### `LottoManager`
+- [x] 당첨 로또(`WinningLotto`)를 생성한다. - createWinningLotto()
+- [x] 로또의 등수를 책정햐여 상금을 수여한다. - awardPrize()
+- [x] 이번 로또 추첨의 상금내역을 통계한다. - statisticsPrize()
+- [x] 이번 로또 추첨의 수익률을 계산한다. - calculateProfitRate()
+
+### `LottoSeller`
+- [x] 받은 금액으로 몇장의 로또를 살 수 있는지 계산한다. - calculateNumberOfLottos()
+- [x] 받은 금액에 맞게 로또들을 생성해준다. - getLottos()
+
+### `PurchaseAmount`
+- [x] 1,000원 단위의 금액인지 검사한다. - validatePurchaseAmount()
+
+### `NumberGenerator`
+- [x] 로또 번호에 사용될 1 ~ 45사이의 난수를 생성해준다. - generateRandomNumbers()
+
+### 입력 예외처리
+- [x] 입력값이 양수의 숫자인지 검사한다. - validatePositiveNumber()
+- [x] 입력값이 비어있는지 검사한다. - validateEmptyInput()
+- [x] 당첨 번호입력 시 양쪽끝에 구분점(,)이 사용되었는지 검사한다. - validateNotSurroundedByDelimiters()
 
 ### 입력
 - [x] 로또 구입 금액을 입력 받을 수 있다. - InputView#askPurchaseAmount()
 - [x] 당첨 번호를 입력 받을 수 있다. - InputView#askWinnigNumbers()
 - [x] 보너스 번호를 입력 받을 수 있다. - InputView#askBonusNumber()
-    - [x] 입력 값이 양수인 숫자인지 검사한다. - InputValidator#validatePositiveNumber()
-    - [x] 입력 값이 비어있는지 검사한다. - InputValidator#validateEmptyInput()
       
 ### 출력
 - [x] 발행한 로또 수량을 출력한다. - OutputView#showLottoAmount()

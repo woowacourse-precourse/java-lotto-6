@@ -55,6 +55,11 @@ public class GameController {
         }
     }
 
+    public void requestBonusNumberInput() {
+        GameView.printBonusNumberInputPhrase();
+        inputBonusNumber();
+    }
+
     public void inputBonusNumber() {
         boolean validInput = false;
         while (!validInput) {

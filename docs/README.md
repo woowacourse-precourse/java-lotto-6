@@ -18,6 +18,7 @@
 
 - [ ] 금액을 입력받고 금액을 1000으로 나눈 몫 개수만큼의 로또를 List로 발행한다.
 - [ ] 1부터 45까지의 Unique Number를 고르기 위해 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 사용한다.
+- [ ] 로또 번호는 오름차순으로 정렬해서 보여준다.
 - [ ] 당첨 번호, 보너스 번호와 비교하기 위해 각각의 로또를 List에 저장한다.
 
 ### 로또 당첨 통계 기능에 대한 요구사항

@@ -32,9 +32,12 @@ public class LottoView {
         number = (int) tempNumber;
     }
 
-    public void printLottoList(List<Integer> randomNumbers){
+    public void printNumber(){
         System.out.println();
         System.out.println(number + "개를 구매했습니다.");
+    }
+
+    public void printLottoList(List<Integer> randomNumbers){
         System.out.println(randomNumbers);
     }
 

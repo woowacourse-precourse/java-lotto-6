@@ -7,7 +7,6 @@ public class Player {
 
     int purchaseCost;
     List<Lotto> lottos = new ArrayList<>();
-    List<Integer> winningStatics = new ArrayList<>();
 
     public int getPurchaseCost() {
         return purchaseCost;

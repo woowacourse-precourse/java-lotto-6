@@ -1,7 +1,6 @@
 package lotto.config;
 
 public enum ErrorMessage {
-    EMPTY("공백 문자열을 입력했습니다."),
     CONTAIN_IMPROPER_LETTER("부적절한 값을 입력했습니다."),
     EXIST_REMAINDER("구입금액은 " + LottoConfig.LOTTO_UNIT_PRICE.getNumber() + "원으로 나누어 떨어져야 합니다."),
     INVALID_FORMAT("당첨 번호는 " + LottoConfig.LOTTO_NUMBER_COUNT.getNumber() + "개의 숫자를 쉼표(,)로 구분하여 입력해야 합니다."),

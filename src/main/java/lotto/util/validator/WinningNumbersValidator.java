@@ -7,19 +7,20 @@ import lotto.util.Util;
 
 import java.util.List;
 
-public class WinningNumbersValidator extends InputValidator {
+public class WinningNumbersValidator {
+    private final String numbers;
 
     public WinningNumbersValidator(String numbers) {
-        super(numbers);
+        this.numbers = numbers;
         validateInputFormat();
 
-        List<String> winningNumbers = List.of(super.input.split(Constant.NUMBER_DELIMITER));
+        List<String> winningNumbers = List.of(numbers.split(Constant.NUMBER_DELIMITER));
         validateDuplicateNumber(winningNumbers);
         winningNumbers.forEach(this::validateNumberInRange);
     }
 
     private void validateInputFormat() {
-        if (!super.input.matches(Constant.PATTERN_NUMBERS)) {
+        if (!numbers.matches(Constant.PATTERN_NUMBERS)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT.getMessage());
         }
     }

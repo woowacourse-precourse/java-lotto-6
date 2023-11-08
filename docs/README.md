@@ -55,7 +55,7 @@
 
 4. LottoWinner
 
-- [ ] LottoResult Java Enum 생성
+- [x] LottoResult Java Enum 생성
 - rank: 로또 순위 저장
 - winnerCount: 등수별 당첨자 수 저장
 - prizeMoney: 등수별 당첨 금액 저장

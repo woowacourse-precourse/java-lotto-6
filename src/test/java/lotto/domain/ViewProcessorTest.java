@@ -36,17 +36,6 @@ class ViewProcessorTest {
         viewProcessor = new ViewProcessor();
     }
 
-//    @ParameterizedTest
-//    @CsvSource({
-//            "100,[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
-//            "-25,[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
-//    })
-//    void checkExceptionWinning_입력값_범위_판단(int winning, String expect) {
-//        assertThatThrownBy(() -> viewProcessor.checkExceptionWinning(winning))
-//                .isInstanceOf(IllegalArgumentException.class)
-//                .hasMessageContaining(expect);
-//    }
-
     @DisplayName("입력 값이 없으면 에러처리 한다.")
     @Test
     void checkIsNull() {
@@ -64,22 +53,23 @@ class ViewProcessorTest {
                 .hasMessageContaining("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
     }
 
-    @DisplayName("당첨 번호의 범위가 1~45 사이가 아닐경우 에러 처리한다.")
+    @DisplayName("로또 번호의 범위가 1~45 사이가 아닐경우 에러 처리한다.")
     @ParameterizedTest
     @CsvSource({"-10", "51"})
     void checkRangeWinning(int invalidNum) {
-        assertThatThrownBy(() -> viewProcessor.checkRangeWinning(invalidNum))
+        assertThatThrownBy(() -> viewProcessor.checkRange(invalidNum))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
-    @DisplayName("당첨 번호에 중복된 수가 있으면 예외처리 한다.")
+
+    @DisplayName("입력 값에 중복되는 숫자가 있으면 예외처리 한다.")
     @Test
-    void checkExistWinning() {
-        List<Integer> ExsistList = List.of(1, 2, 3, 4);
-        assertThatThrownBy(() -> viewProcessor.checkExistWinning(ExsistList, 4))
+    void checkExist() {
+        List<Integer> ExsistList = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> viewProcessor.checkExist(ExsistList, 4))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.");
+                .hasMessageContaining("[ERROR] 입력 값과 중복되는 숫자가 이미 존재합니다.");
     }
 
     @ParameterizedTest
@@ -133,6 +123,14 @@ class ViewProcessorTest {
         assertThat(viewProcessor.moneyEdit(reward)).isEqualTo(expect);
     }
 
+    @DisplayName("보너스 번호 처리가 성공하면 SUCESS, 예외 발생시 FAILDURE 반환한다.")
+    @ParameterizedTest
+    @CsvSource({"9,SUCESS", "0,FAILDURE", "-1,FAILDURE", "ten,FAILDURE",})
+    void bonusBall(String tempBonus, String state) {
+        boolean expect = state.equals("FAILDURE");
+        assertThat(viewProcessor.bonusBall(tempBonus)).isEqualTo(expect);
+    }
+
     @DisplayName("당첨 번호 처리가 성공하면 SUCESS, 예외 발생시 FAILDURE 반환한다.")
     @ParameterizedTest
     @MethodSource("parameterProviderWinnings")
@@ -143,13 +141,13 @@ class ViewProcessorTest {
 
     static Stream parameterProviderWinnings() {
         return Stream.of(
-                arguments("1,2,3,4,5,6","SUCESS"),
-                arguments("","FAILDURE"),
-                arguments("1,2,3,4,5","FAILDURE"),
-                arguments("1,2,three,4,5,6","FAILDURE"),
-                arguments("1,2,,4,5,6","FAILDURE"),
-                arguments("1,2,3,4,5,60","FAILDURE"),
-                arguments("1,2,3,4,5,5","FAILDURE")
+                arguments("1,2,3,4,5,6", "SUCESS"),
+                arguments("", "FAILDURE"),
+                arguments("1,2,3,4,5", "FAILDURE"),
+                arguments("1,2,three,4,5,6", "FAILDURE"),
+                arguments("1,2,,4,5,6", "FAILDURE"),
+                arguments("1,2,3,4,5,60", "FAILDURE"),
+                arguments("1,2,3,4,5,5", "FAILDURE")
         );
     }
 

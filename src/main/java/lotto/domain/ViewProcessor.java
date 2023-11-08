@@ -77,17 +77,11 @@ public class ViewProcessor {
         userView.totalResult(winningTable, computedRate);
     }
 
-    public void checkRangeBonus(int bonus) {
-        if (bonus < MagicNums.LOTTONUM_MIN_RANGE.getValue()
-                || bonus > MagicNums.LOTTONUM_MAX_RANGE.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-    }
 
-    public void checkRangeWinning(int winning) {
-        if (winning < MagicNums.LOTTONUM_MIN_RANGE.getValue()
-                || winning > MagicNums.LOTTONUM_MAX_RANGE.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    public void checkRange(int num) {
+        if (num < MagicNums.LOTTONUM_MIN_RANGE.getValue()
+                || num > MagicNums.LOTTONUM_MAX_RANGE.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
@@ -114,7 +108,7 @@ public class ViewProcessor {
         try {
             checkIsNull(tempBonus);
             int bonusNum = Integer.parseInt(tempBonus);
-            checkRangeBonus(bonusNum);
+            checkRange(bonusNum);
             checkExist(winningNums,bonusNum);
             this.bonusNum = bonusNum;
         } catch (NumberFormatException e) {
@@ -166,7 +160,7 @@ public class ViewProcessor {
         try {
             for (String element : parsedWinnings) {
                 int winning = Integer.parseInt(element);
-                checkRangeWinning(winning);
+                checkRange(winning);
                 checkExist(winningNums, winning);
                 winningNums.add(winning);
             }

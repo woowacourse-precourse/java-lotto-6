@@ -14,4 +14,10 @@ public class UserInputDataService {
         printLottoNumbers(user);
         return user;
     }
+
+    public int inputBuyingPrice() {
+        outputView.askBuyingPriceView();
+        int buyingPrice = inputView.inputBuyingPriceView();
+        return buyingPrice;
+    }
 }

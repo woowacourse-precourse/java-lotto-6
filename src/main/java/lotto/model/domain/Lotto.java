@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
     private static final int PRICE = 1000;
     private static final int MIN_RANGE = 1;
@@ -39,7 +40,8 @@ public class Lotto {
     }
 
     public static Lotto issue() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, NUMBER_COUNT);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE,
+            NUMBER_COUNT);
         return new Lotto(numbers);
     }
 

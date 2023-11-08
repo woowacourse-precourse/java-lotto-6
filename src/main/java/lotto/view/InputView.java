@@ -19,9 +19,9 @@ public class InputView {
         boolean validInput = false;
         List<Integer> numbers = new ArrayList<>();
 
-        while( !validInput ) {
+        while (!validInput) {
             try {
-                String input =  Console.readLine();
+                String input = Console.readLine();
 
                 InputValidator.validateStringInput(input);
 
@@ -35,8 +35,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-
-
         return numbers;
     }
 
@@ -46,7 +44,7 @@ public class InputView {
         boolean validInput = false;
         String input = "";
 
-        while( !validInput ) {
+        while (!validInput) {
             try {
 
                 input = Console.readLine();
@@ -56,7 +54,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-
         return Integer.parseInt(input);
     }
 
@@ -65,7 +62,7 @@ public class InputView {
         System.out.println(INPUT_PURCHASE_COST);
         String input = "";
 
-        while( !validInput ) {
+        while (!validInput) {
             try {
 
                 input = Console.readLine();
@@ -75,9 +72,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-
         return Integer.parseInt(input);
     }
-
-
 }

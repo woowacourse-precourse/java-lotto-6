@@ -28,15 +28,13 @@ public class Controller {
 
         WinningTicket winningTicket = gameHandler.createWinningTicket(winningNum, bonusNum);
 
-        EnumMap<Rank, Integer> winningStatics = gameHandler.checkWinningResult(player.getLottos(), winningTicket);
+        EnumMap<Rank, Integer> winningStatics = gameHandler.checkWinningResult(player.getLottos(),
+            winningTicket);
 
         outputView.winningRecords(winningStatics);
 
         float rateOfReturn = gameHandler.calculatePrizes(player.getPurchaseCost(), winningStatics);
 
         outputView.prizesSummary(rateOfReturn);
-
-
-
     }
 }

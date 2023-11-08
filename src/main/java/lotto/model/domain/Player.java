@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+
     int purchaseCost;
     List<Lotto> lottos = new ArrayList<>();
     List<Integer> winningStatics = new ArrayList<>();
@@ -20,7 +21,7 @@ public class Player {
         purchaseCost = purchaseCostInput;
         int lottoQuantity = Lotto.calculatePurchaseQuantity(purchaseCostInput);
 
-        for(int i=0; i<lottoQuantity; i++) {
+        for (int i = 0; i < lottoQuantity; i++) {
             lottos.add(Lotto.issue());
         }
         return lottos;

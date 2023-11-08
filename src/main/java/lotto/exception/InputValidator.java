@@ -39,7 +39,7 @@ public class InputValidator {
     }
 
     public static void validateNumSize(List<Integer> input) {
-        if(input.size() != 6) {
+        if (input.size() != 6) {
             throw new IllegalArgumentException(COUNT_EXCEPTION.getMessage());
         }
 
@@ -75,7 +75,7 @@ public class InputValidator {
 
     public static void isMultipleOf1000(String input) {
         int num = Integer.parseInt(input);
-        if(num % 1000 != 0) {
+        if (num % 1000 != 0) {
             throw new IllegalArgumentException(INVALID_AMOUNT_FORMAT.getMessage());
         }
     }

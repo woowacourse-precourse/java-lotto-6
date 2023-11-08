@@ -12,17 +12,15 @@ public class OutputView {
     private static final String SECOND_RANK_INFORMATION = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개 %n";
     private static final String RATE_OF_RETURN = "총 수익률은 %,.1f%%입니다.";
 
-    //발행한 로또 수량 및 번호를 출력하는 기능
     public void lottoTickets(List<Lotto> lottos) {
 
         System.out.printf("%d%s %n", lottos.size(), PURCHASE_INFORMATION);
 
-        for(int i=0; i<lottos.size(); i++) {
+        for (int i = 0; i < lottos.size(); i++) {
             System.out.println(lottos.get(i).getNumbers());
         }
     }
 
-    //당첨통계를 출력하는 기능
     public void winningRecords(EnumMap<Rank, Integer> winningStatics) {
         Rank[] ranks = Rank.values();
 
@@ -31,16 +29,14 @@ public class OutputView {
             int prize = rank.getPrize();
             int count = winningStatics.get(rank);
 
-            if( rank != Rank.SECOND_RANK) {
+            if (rank != Rank.SECOND_RANK) {
                 System.out.printf(RANK_INFORMATION, matchingNum, prize, count);
             }
             System.out.printf(SECOND_RANK_INFORMATION, matchingNum, prize, count);
         }
     }
 
-    //상금 수익율을 보여주는 기능
     public void prizesSummary(float rateOfReturn) {
         System.out.printf(RATE_OF_RETURN, rateOfReturn);
     }
-
 }

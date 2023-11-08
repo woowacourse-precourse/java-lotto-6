@@ -43,4 +43,6 @@ public enum RankingLotto {
     public int getPrizeMoney() {
         return prizeMoney;
     }
+
+    public String getMessage() {return message;}
 }

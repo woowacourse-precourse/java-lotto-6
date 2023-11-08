@@ -19,8 +19,6 @@ public class Validation {
     }
 
     public static void vaildateWinningNumbers(String winningNumbers) {
-        List<String> winningNumber;
-
         //입력된 문자열의 구성이 올바른지 판단
         isEmpty(winningNumbers);
         isNotNumbersOrComma(winningNumbers);
@@ -61,7 +59,6 @@ public class Validation {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessages.NOT_NUMBERS_AND_COMMA.getMessage());
         }
-
     }
 
     private static void isCommaAtImproperPosition(String winningNumbers) {

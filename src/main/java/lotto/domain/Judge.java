@@ -54,7 +54,9 @@ public class Judge {
     }
 
     private long calculatePrizeMoney() {
-        long prizeMoney = 0;
+        long prizeMoney = (2_000_000_000 * matchingSixNumbers) + (30_000_000 * matchingFiveAndBonusNumbers) + (1_500_000 * matchingFiveNumbers)
+                + (50_000 * matchingFourNumbers) + (5_000 * matchingThreeNumbers);
+        if (prizeMoney == 0) return 0;
         return prizeMoney;
     }
 }

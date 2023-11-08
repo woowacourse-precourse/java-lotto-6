@@ -24,6 +24,7 @@ public final class InputView extends ConsoleView {
     public int inputPurchaseAmount() {
         this.println(REQUEST_PURCHASE_AMOUNT);
         final String input = this.read();
+        this.lineBreak();
         validateNotEmpty(input, String.format(ERROR_MANDATORY_INPUT, PURCHASE_AMOUNT_STRING));
         return parse(input, Integer::parseInt);
     }
@@ -31,6 +32,7 @@ public final class InputView extends ConsoleView {
     public List<Integer> inputWinningNumbers() {
         this.println(REQUEST_WINNING_NUMBERS);
         final String input = this.read();
+        this.lineBreak();
         validateNotEmpty(input, String.format(ERROR_MANDATORY_INPUT, WINNING_NUMBERS_STRING));
         return parse(input, this::parseToList);
     }
@@ -38,6 +40,7 @@ public final class InputView extends ConsoleView {
     public int inputBonusNumber() {
         this.println(REQUEST_BONUS_NUMBER);
         final String input = this.read();
+        this.lineBreak();
         validateNotEmpty(input, String.format(ERROR_MANDATORY_INPUT, BONUS_NUMBER_STRING));
         return parse(input, Integer::parseInt);
     }

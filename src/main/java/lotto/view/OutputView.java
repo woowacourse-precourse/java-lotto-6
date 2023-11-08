@@ -20,6 +20,7 @@ public final class OutputView extends ConsoleView {
     public void displayLottos(List<Lotto> lottos) {
         println(String.format(LOTTO_COUNT_MESSAGE, lottos.size()));
         lottos.forEach(lotto -> println(lotto.numbers().toString()));
+        this.lineBreak();
     }
 
     public void displayResults(List<Rank> ranks, double roi) {

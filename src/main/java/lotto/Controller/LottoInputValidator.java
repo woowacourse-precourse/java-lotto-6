@@ -2,7 +2,9 @@ package lotto.Controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoInputValidator {
@@ -33,6 +35,12 @@ public class LottoInputValidator {
         return normalNumbers;
     }
 
+    public void validateNormalNumberCount(List<Integer> normalNumbers) {
+        if (normalNumbers.size() != 5) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호를 5개 입력해야합니다.");
+        }
+    }
+
     public int validateBonusNumberIsInteger(String bonusNumberStr) throws IllegalArgumentException {
         int bonusNumber;
         try {
@@ -52,6 +60,27 @@ public class LottoInputValidator {
         }
         if (!errorNumbers.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호가 1에서 45 사이의 숫자가 아닙니다 : " + errorNumbers);
+        }
+    }
+
+    public void validateNormalNumberDuplicated(List<Integer> normalNumbers) throws IllegalArgumentException {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        List<Integer> errorNumbers = new ArrayList<>();
+
+        for (Integer normalNumber : normalNumbers) {
+            if (!uniqueNumbers.add(normalNumber)) {
+                errorNumbers.add(normalNumber);
+            }
+        }
+        if (!errorNumbers.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 존재합니다: " + errorNumbers);
+        }
+    }
+
+    public void validateBonusNumberDuplicated(List<Integer> normalNumber, int bonusNumber)
+            throws IllegalArgumentException {
+        if (normalNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.: " + bonusNumber);
         }
     }
 }

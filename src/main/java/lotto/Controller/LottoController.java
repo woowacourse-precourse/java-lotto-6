@@ -48,13 +48,15 @@ public class LottoController {
         try {
             normalNumbers = lottoInputValidator.validateNormalNumbersIsInteger(normalNumbersStr);
             lottoInputValidator.validateNormalNumbersInRange(normalNumbers);
+            lottoInputValidator.validateNormalNumberCount(normalNumbers);
             bonusNumber = lottoInputValidator.validateBonusNumberIsInteger(bonusNumberStr);
+            lottoInputValidator.validateNormalNumberDuplicated(normalNumbers);
+            lottoInputValidator.validateBonusNumberDuplicated(normalNumbers, bonusNumber);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return true;
         }
         lottoDraw = new LottoDraw(new WinningLotto(normalNumbers, bonusNumber));
-
         lottoDraw.checkNumbers(human);
         return false;
     }

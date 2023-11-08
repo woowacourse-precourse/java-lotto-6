@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public enum Rank {
 
-    FIRST(2000000000, 6, null),
-    SECOND(30000000, 5, true),
-    THIRD(1500000, 5, false),
+    FIFTH(5000, 3, null),
     FOURTH(50000, 4, null),
-    FIFTH(5000, 3, null);
+    THIRD(1500000, 5, false),
+    SECOND(30000000, 5, true),
+    FIRST(2000000000, 6, null);
 
     private final long prizeMoney;
     private final int matchCount;

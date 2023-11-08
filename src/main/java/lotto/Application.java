@@ -81,7 +81,7 @@ public class Application {
                 return userNum;
             }
             catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+                System.out.println("[ERROR] " + ExceptionMessage.notInteger());
             }
             catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -95,6 +95,9 @@ public class Application {
                 int bonusNum = InputUI.inputBonusNum();
                 userNum.validateBonusDuplicate(userNum.getNumbers(), bonusNum);
                 return bonusNum;
+            }
+            catch (NumberFormatException e) {
+                System.out.println("[ERROR] " + ExceptionMessage.notInteger());
             }
             catch(IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());

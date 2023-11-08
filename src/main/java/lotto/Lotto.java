@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -8,6 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -19,7 +21,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("당첨 번호는 6개를 입력해야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.notLottoCount());
         }
     }
 
@@ -27,21 +29,21 @@ public class Lotto {
     private void validateDuplicate(List<Integer> numbers) {
         HashSet<Integer> duplicateCheck = new HashSet<>(numbers);
         if (numbers.size() != duplicateCheck.size()) {
-            throw new IllegalArgumentException("당첨 번호는 서로 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.lottoDuplicated());
         }
     }
 
     private void validateInRange(List<Integer> numbers) {
         for(int n : numbers) {
             if(n < 1 || n > 45) {
-                throw new IllegalArgumentException("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ExceptionMessage.outOfRange());
             }
         }
     }
 
     public void validateBonusDuplicate(List<Integer> numbers, int bonus) {
         if(numbers.contains(bonus)) {
-            throw new IllegalArgumentException("당첨 번호와 보너스 번호는 서로 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.bonusDuplicated());
         }
     }
 

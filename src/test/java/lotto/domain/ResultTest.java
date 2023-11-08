@@ -101,7 +101,7 @@ class ResultTest {
     public void getRewardWhenWinningLottoIsZero() {
         // given
         Lotto LOTTO = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Lottos LOTTOS = new Lottos(List.of(Arrays.asList(7,8,9,10,11,12)));
+        Lottos LOTTOS = new Lottos(List.of(Arrays.asList(7, 8, 9, 10, 11, 12)));
         Bonus BONUS = new Bonus(13, LOTTO);
 
         Result result = new Result(LOTTO, LOTTOS, BONUS);
@@ -112,7 +112,6 @@ class ResultTest {
         // then
         assertThat(actual).isZero();
     }
-
 
 
 }

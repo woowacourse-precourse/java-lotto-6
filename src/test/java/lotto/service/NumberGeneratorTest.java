@@ -10,9 +10,10 @@ import static org.assertj.core.api.Assertions.*;
 
 class NumberGeneratorTest {
 
-    NumberGenerator numberGenerator;
     private static final String ERROR_INPUT = "1000j";
     private static final String NORMAL_INPUT = "1000";
+
+    NumberGenerator numberGenerator;
 
     @BeforeEach
     void setUp() {

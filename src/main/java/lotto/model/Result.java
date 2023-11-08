@@ -46,10 +46,6 @@ public class Result {
         return matchCount;
     }
 
-    public int getCountByRank(PrizeRank rank) {
-        return prizeCounts.getOrDefault(rank, DEFAULT_VALUE);
-    }
-
     public Double calculateProfitRate() {
         int sum = sumPrizeAmounts();
         int purchaseAmount = getPurchaseAmount();
@@ -57,10 +53,6 @@ public class Result {
         profitRate = PROFIT_RATE_PERCENTAGE + (Math.round(profitRate) / PROFIT_RATE_BASE);
 
         return profitRate;
-    }
-
-    private int getPurchaseAmount() {
-        return purchase.getPurchaseCount() * PRICE_VALUE;
     }
 
     private int sumPrizeAmounts() {
@@ -71,5 +63,13 @@ public class Result {
             sum += (count * price);
         }
         return sum;
+    }
+
+    public int getCountByRank(PrizeRank rank) {
+        return prizeCounts.getOrDefault(rank, DEFAULT_VALUE);
+    }
+
+    private int getPurchaseAmount() {
+        return purchase.getPurchaseCount() * PRICE_VALUE;
     }
 }

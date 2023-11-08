@@ -9,6 +9,7 @@ public class Jackpot {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
+    // 당첨번호 및 보너스 번호 객체 생성
     public Jackpot(String inputWinningNumbers, String inputBonusNumber) {
         String[] splitWinningNumbers = getSplitWinningNumbers(inputWinningNumbers);
 
@@ -20,12 +21,14 @@ public class Jackpot {
         this.bonusNumber = Integer.parseInt(inputBonusNumber);
     }
 
+    // 보너스 번호 관련 Validate
     private static void validateBonusNumber(String inputBonusNumber, String[] splitWinningNumbers) {
         validateNumeric(inputBonusNumber);
         validateDuplicateBonusNumber(splitWinningNumbers, inputBonusNumber);
         checkNumberInRange(Integer.parseInt(inputBonusNumber));
     }
 
+    // 당첨 번호 관련 Validate
     private static void validateWinningNumbers(String[] splitWinningNumbers, List<Integer> winningNumbers) {
         validateDuplicateNumbers(splitWinningNumbers);
         addWinningNumber(splitWinningNumbers, winningNumbers);

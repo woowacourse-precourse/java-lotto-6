@@ -49,7 +49,6 @@ class ResultTest {
         Result result = new Result(results, money);
         String profitRate = String.format("%.1f",result.getProfitRate());
         // then
-        System.out.println(profitRate);
         assertThat(profitRate).isEqualTo(expectedProfitRate);
     }
 

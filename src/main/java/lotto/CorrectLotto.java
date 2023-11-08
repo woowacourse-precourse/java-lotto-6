@@ -66,7 +66,7 @@ public class CorrectLotto {
                 correct_lotto = new Lotto(converted_numbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage() + "\n");
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
@@ -102,7 +102,7 @@ public class CorrectLotto {
                 bonus = converted_number;
                 break;
             } catch(IllegalArgumentException e){
-                System.out.println("[ERROR] " + e.getMessage() + "\n");
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }

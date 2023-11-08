@@ -1,16 +1,11 @@
 package lotto.validate;
 
 import java.util.List;
+import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
+import lotto.constant.UtilsConstant;
 
 public class ValidateInput {
-
-    private static final String SINGLE_BLANK_INPUT = " ";
-    private static final int LOTTO_PRICE = 1000;
-    private static final String DELIMITER = ",";
-    private static final String NON_EMPTY_MESSAGE = "[ERROR] 값을 입력해주세요.";
-    private static final String NON_BLANK_MESSAGE = "[ERROR] 비어있는 값은 입력할 수 없습니다.";
-    private static final String WRONG_TYPE_INPUT_MESSAGE = "[ERROR] 정수형태로 입력해주세요";
-    private static final String CANNOT_DIVISIBLE_MESSAGE = "[ERROR] 금액을 " + LOTTO_PRICE + "원 단위로 나눌 수 없습니다.";
 
     public static void validatePurchaseAmount(final String purchaseAmount) {
         validateIsEmpty(purchaseAmount);
@@ -22,7 +17,7 @@ public class ValidateInput {
     public static void validateWinningNumber(String inputNumber) {
         validateIsEmpty(inputNumber);
         validateHasBlank(inputNumber);
-        List<String> inputString = List.of(inputNumber.split(DELIMITER));
+        List<String> inputString = List.of(inputNumber.split(UtilsConstant.DELIMITER.getString()));
         validateIsIntegerList(inputString);
     }
 
@@ -36,19 +31,19 @@ public class ValidateInput {
         try {
             inputString.forEach(Integer::parseInt);
         } catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException(WRONG_TYPE_INPUT_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE_INPUT_MESSAGE.getErrorMessage());
         }
     }
 
     private static void validateIsEmpty(String purchaseAmount) {
         if (purchaseAmount.isEmpty()) {
-            throw new IllegalArgumentException(NON_EMPTY_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.NON_EMPTY_MESSAGE.getErrorMessage());
         }
     }
 
     private static void validateHasBlank(final String purchaseAmount) {
         if (hasBlank(purchaseAmount)) {
-            throw new IllegalArgumentException(NON_BLANK_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.NON_BLANK_MESSAGE.getErrorMessage());
         }
     }
 
@@ -56,23 +51,22 @@ public class ValidateInput {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (final IllegalArgumentException error) {
-            throw new IllegalArgumentException(WRONG_TYPE_INPUT_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE_INPUT_MESSAGE.getErrorMessage());
         }
     }
 
     private static void validateDivisible(final String purchaseAmount) {
         int amount = Integer.parseInt(purchaseAmount);
-        if (remainDivide(amount) != 0) {
-            throw new IllegalArgumentException(CANNOT_DIVISIBLE_MESSAGE);
+        if (caculateRemainDivide(amount) != 0) {
+            throw new IllegalArgumentException(ErrorMessage.CANNOT_DIVISIBLE_MESSAGE.getErrorMessage());
         }
     }
 
     private static boolean hasBlank(String purchaseAmount) {
-        return purchaseAmount.contains(SINGLE_BLANK_INPUT);
+        return purchaseAmount.contains(UtilsConstant.SINGLE_BLANK.getString());
     }
 
-    private static int remainDivide(int amount) {
-        return amount % LOTTO_PRICE;
+    private static int caculateRemainDivide(int amount) {
+        return amount % LottoConstant.LOTTO_PRICE.getValue();
     }
-
 }

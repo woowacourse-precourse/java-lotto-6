@@ -19,7 +19,7 @@ public class MatchLottoNum {
         outputView.displayResults(matchCounts, profitPercentage);
     }
 
-    private int[] prizeCount(List<List<Integer>> ticketList, List<Integer> winningNumbers, int bonusNumber) {
+    public int[] prizeCount(List<List<Integer>> ticketList, List<Integer> winningNumbers, int bonusNumber) {
         int[] matchCounts = new int[5]; // 0: 3개 일치, 1: 4개 일치, ..., 4: 6개 일치
         for (List<Integer> ticket : ticketList) {
             int matched = countMatches(ticket, winningNumbers);

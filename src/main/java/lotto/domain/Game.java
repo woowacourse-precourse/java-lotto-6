@@ -1,15 +1,14 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.util.Reader;
 import lotto.util.Writer;
 
 public class Game {
-    private Validator validator;
+    private final Validator validator;
     private Integer purchaseAmount;
-    private Lottos lottos = new Lottos();
+    private final Lottos lottos = new Lottos();
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
     private Map<Grade, Integer> result;
@@ -54,19 +53,19 @@ public class Game {
     }
 
     private void setRateOfReturn() {
-        Integer revenue = 0;
+        int revenue = 0;
         for (Grade grade : result.keySet()) {
             revenue += result.get(grade) * grade.getPrice();
         }
         rateOfReturn = ((double) revenue / purchaseAmount) * 100;
     }
 
-    public void issuance(Integer purchaseAmount) {
+    private void issuance(Integer purchaseAmount) {
         validator.validatePurchaseAmount(purchaseAmount);
         lottos.inssuance(purchaseAmount);
     }
 
-    public void setResult() {
+    private void setResult() {
         result = lottos.grade(winningNumbers, bonusNumber);
     }
 

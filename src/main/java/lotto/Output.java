@@ -54,7 +54,7 @@ public class Output {
     }
 
     public static void printRateOfProfit(Profit profit) {
-        String rate = String.format("%.nf", 1);
+        String rate = String.format("%.1f", profit.getRate());
         System.out.println(RATE_START_MESSAGE + rate + RATE_END_MESSAGE);
     }
 }

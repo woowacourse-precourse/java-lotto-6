@@ -22,9 +22,9 @@ public class Profit {
         return ranking.getPrize() * (long) number;
     }
 
-    private double calculateRateOfProfit(long quantity, int ticketQuantity) {
-        double rate = (double) quantity / (double) ticketQuantity;
-        return Math.round(rate * 10) / 10;
+    private double calculateRateOfProfit(long profit, int ticketQuantity) {
+        double rate = (double) profit / (double) ticketQuantity;
+        return Math.round(rate) / 10d;
     }
 
     public double getRate() {

@@ -15,11 +15,8 @@ public class Money {
     private final int money;
 
     private Money(String inputMoney) {
-        hasBlank(inputMoney);
-        isInteger(inputMoney);
+        validate(inputMoney);
         this.money = convertStringToInteger(inputMoney);
-        isValidRange(money);
-        isDivisible(money);
     }
 
     public static Money from(String inputMoney) {
@@ -28,6 +25,16 @@ public class Money {
 
     public int getMoney() {
         return money;
+    }
+
+    private void validate(String inputMoney) {
+        int convertMoney;
+
+        hasBlank(inputMoney);
+        isInteger(inputMoney);
+        convertMoney = convertStringToInteger(inputMoney);
+        isValidRange(convertMoney);
+        isDivisible(convertMoney);
     }
 
     private void isValidRange(Integer money) {

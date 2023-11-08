@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.error.ErrorMessage;
 
 public class BonusNumber {
-    private int number;
+    private final int number;
 
     public BonusNumber(int number) {
         validate(number);

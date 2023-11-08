@@ -16,6 +16,7 @@ public class Output {
     private static final String RETURN_RATIO_MSG = "총 수익률은 %.1f%%입니다.";
     private static final String MATCHING_RESULT_MSG = "%d개 일치 (%,d원) - %d개%n";
     private static final String MATCHING_RESULT_WITH_BONUS_MSG = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
+    private static final String PURCHASER_MSG = "개를 구매했습니다.";
 
     public static void displayPurchaseAmountPrompt() {
         System.out.println(PURCHASE_AMOUNT_PROMPT_MSG);
@@ -23,7 +24,7 @@ public class Output {
 
     public static void displayLottoStoreNumbers(LottoStore lottoStore) {
         int lottoAmounts = lottoStore.getLottoAmounts();
-        System.out.println(lottoAmounts + "개를 구매했습니다.");
+        System.out.println(lottoAmounts + PURCHASER_MSG);
         for (Lotto lotto : lottoStore.getLottoTickets()) {
             System.out.println(lotto.getNumbers());
         }
@@ -45,12 +46,12 @@ public class Output {
         Map<LottoPrize, Integer> result = winningStatistics.getMatchingResult();
         List<LottoPrize> lottoPrizes = LottoPrize.getReverseLottoPrize();
         for (LottoPrize prize : lottoPrizes) {
-            int count = result.getOrDefault(prize,0);
+            int count = result.getOrDefault(prize, 0);
             long prizeAmount = prize.getPrize();
             int matchingNumbers = prize.getMatchingNumbers();
             String message = getMatchingResultMessage(prize);
             if (message.equals(MATCHING_RESULT_WITH_BONUS_MSG)) {
-                matchingNumbers --;
+                matchingNumbers--;
             }
             System.out.printf(message, matchingNumbers, prizeAmount, count);
         }

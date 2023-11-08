@@ -40,7 +40,7 @@ public class WinningStatistics {
         long totalPrize = getTotalPrize();
         int moneyAmount = money.getAmount();
 
-        double returnRate =  ((double) totalPrize / moneyAmount) * 100.0;
+        double returnRate = ((double) totalPrize / moneyAmount) * 100.0;
         return Math.round(returnRate * 10.0) / 10.0;
     }
 

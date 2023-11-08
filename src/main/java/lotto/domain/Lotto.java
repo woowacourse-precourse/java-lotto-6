@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final List<Integer> numbers;
     public static final int MAX_NUMBERS = 6;
     public static final int MIN_VALUE = 1;
     public static final int MAX_VALUE = 45;
     public static final int PRICE = 1_000;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

@@ -97,4 +97,20 @@ class LottoResultTest {
         // then
         assertThat(matchCounts.get(LottoRank.FOURTH)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("3개 번호가 일치할 경우 FIFTH 순위가 올바르게 계산되어야 한다.")
+    void shouldCalculateFifthRankCorrectly() {
+        // given
+        List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 7, 8, 9)));
+        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 10;  // Not relevant for FIFTH rank
+
+        // when
+        LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> matchCounts = lottoResult.getMatchCounts();
+
+        // then
+        assertThat(matchCounts.get(LottoRank.FIFTH)).isEqualTo(1);
+    }
 }

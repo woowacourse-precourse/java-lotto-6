@@ -2,8 +2,8 @@ package lotto.view.inputview;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.dto.DTO;
-import lotto.dto.WinningLottoDTO;
+import lotto.dto.Dto;
+import lotto.dto.WinningLottoInputDto;
 import lotto.view.InputView;
 import lotto.view.ParameterConfig;
 
@@ -16,16 +16,16 @@ public final class WinningLottoInputView implements InputView {
     private static final String DELIMITER = ",";
 
     @Override
-    public void read(Map<String, ? super DTO.Input> parameter) {
-        WinningLottoDTO input = (WinningLottoDTO) parameter.get(ParameterConfig.WINNING_LOTTO);
+    public void read(Map<String, ? super Dto.Input> parameter) {
+        WinningLottoInputDto input = (WinningLottoInputDto) parameter.get(ParameterConfig.WINNING_LOTTO);
         if (input.getLotto() == null) {
             inputLottoNumbers(input);
             return;
         }
-        input.setBonus(inputBonusNumber(input));
+        inputBonusNumber(input);
     }
 
-    private void inputLottoNumbers(WinningLottoDTO dto) {
+    private void inputLottoNumbers(WinningLottoInputDto dto) {
         if (dto.getLotto() != null) {
             return;
         }
@@ -46,12 +46,9 @@ public final class WinningLottoInputView implements InputView {
         return new Lotto(numbers);
     }
 
-    private Integer inputBonusNumber(WinningLottoDTO dto) {
-        if (dto.getBonus() != null) {
-            return dto.getBonus();
-        }
+    private void inputBonusNumber(WinningLottoInputDto dto) {
         String input = Console.readLine();
         InputValidator.validateIsNumber(input);
-        return Integer.parseInt(input);
+        dto.setBonus(Integer.parseInt(input));
     }
 }

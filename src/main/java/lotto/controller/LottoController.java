@@ -4,12 +4,12 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutPutView;
 
-import static lotto.view.InputView.userHaveMoney;
+import static lotto.view.InputView.inputMoney;
 
 public class LottoController {
 
     public void lottoStart() {
-        int userMoney = userHaveMoney();
+        int userMoney = inputMoney();
 
         Lottos lottos = new Lottos(userMoney);
         OutPutView outPutView = new OutPutView();

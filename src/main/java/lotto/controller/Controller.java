@@ -37,8 +37,26 @@ public class Controller {
         prize.calculateProfit(money);
     }
 
-    private  void showGameResult(){
+    private void showGameResult() {
+        Map<Rank, Integer> prizeResult = prize.getPrizeResult();
+        Set<Rank> keySet = prizeResult.keySet();
+        long totalPrize = prize.getTotalPrizeMoney();
+        outputView.resultStatistics();
+        double profit = prize.getProfit();
+        for (Rank key : keySet) {
+            String lottoPrize = key.getConvertPrize();
+            int count = key.getCount();
+            int lottoNum = prizeResult.get(key);
 
+            if (key == Rank.SECOND && count > 0) {
+                outputView.showBonusResult(count, lottoPrize, lottoNum);
+            }
+
+            if (count > 2) {
+                outputView.showLottoGameResult(count, lottoPrize, lottoNum);
+            }
+        }
+        outputView.showProfitResult(profit);
     }
 
 

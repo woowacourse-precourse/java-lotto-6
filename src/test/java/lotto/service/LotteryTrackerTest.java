@@ -10,6 +10,7 @@ import lotto.repository.BuyLottoRepository;
 import lotto.repository.WinningLottoRepository;
 import lotto.repository.rank.LottoNumbersPerRank;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,11 +20,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LotteryTrackerTest {
     LotteryTracker lotteryTracker = LotteryTracker.create();
-    BuyLottoRepository buyLottos = new BuyLottoRepository();
-    WinningLottoRepository winningLottoRepo;
+    static BuyLottoRepository buyLottos = new BuyLottoRepository();
+    static WinningLottoRepository winningLottoRepo;
 
-    @BeforeEach
-    void start(){
+    @BeforeAll
+    static void start(){
         // 당첨번호와 보너스 번호 정하기
         Lotto winningLotto = new Lotto(List.of(1, 3, 5, 7, 17, 26));
         int bonusNumer = 15;

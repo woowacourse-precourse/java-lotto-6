@@ -5,16 +5,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class BuyLottoRepositoryTest {
 
-    BuyLottoRepository buyLottos = new BuyLottoRepository();
+    static BuyLottoRepository buyLottos = new BuyLottoRepository();
 
-    @BeforeEach
-    void start(){
+    @BeforeAll
+    static void start(){
         Lotto lotto1 = new Lotto(Arrays.asList(2, 5, 6, 34, 12, 14));
         Lotto lotto2 = new Lotto(Arrays.asList(34, 2, 23, 5, 15, 4));
         Lotto lotto3 = new Lotto(Arrays.asList(7, 45, 6, 35, 23, 33));

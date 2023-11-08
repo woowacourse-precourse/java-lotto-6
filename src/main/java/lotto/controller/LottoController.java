@@ -29,10 +29,10 @@ public class LottoController {
         // 저장한 번호들 출력
         lottoService.printNumbers(buyLottosNumber);
         // 당첨번호(+보너스 번호) 입력
-        WinningLottoRepository winningLotto = lottoService.createWinningLotto();
+        WinningLottoRepository winningLottoRepo = lottoService.createWinningLotto();
 
         // 산 로또들과 당첨번호(+보너스 번호)가 몇개 맞는지 확인
-        resultService.checkLottoNumbers(buyLottos, winningLotto);
+        resultService.checkLottoNumbers(buyLottos, winningLottoRepo);
         // 각 등수에 해당하는 로또가 몇개인지 출력
         resultService.printResultByRank();
 

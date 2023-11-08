@@ -9,10 +9,10 @@ import lotto.view.View;
 public class ResultService {
     private final LotteryTracker lotteryTracker = LotteryTracker.create();
 
-    public void checkLottoNumbers(BuyLottoRepository buyLottos, WinningLottoRepository winningLotto){
+    public void checkLottoNumbers(BuyLottoRepository buyLottos, WinningLottoRepository winningLottoRepo){
         View.winningStatistics();
         // 로또추적기: 산 로또의 번호가 당첨 번호와 몇개 맞는 지 판단 && 등수안에 들면 해당등수의 인원 증가시킴
-        lotteryTracker.matching(buyLottos,winningLotto);
+        lotteryTracker.matching(buyLottos,winningLottoRepo);
     }
 
     public void printResultByRank() {

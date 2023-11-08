@@ -8,6 +8,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,11 +17,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class BonusNumberTest {
-    List<Integer> numbers;
-    Lotto lotto;
+    static List<Integer> numbers;
+    static Lotto lotto;
 
-    @BeforeEach
-    public void start(){
+    @BeforeAll
+    public static void start(){
         numbers = new ArrayList<>(Arrays.asList(4,36,2,6,7,11));
         lotto = new Lotto(numbers);
     }

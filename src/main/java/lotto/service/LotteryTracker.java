@@ -24,12 +24,12 @@ public class LotteryTracker {
         return new LotteryTracker();
     }
 
-    public void matching(BuyLottoRepository buyLottos, WinningLottoRepository winningLotto) {
+    public void matching(BuyLottoRepository buyLottos, WinningLottoRepository winningLottoRepo) {
         int correctNum =0;
-        int bonusNum = winningLotto.getBonusNumber();
+        int bonusNum = winningLottoRepo.getBonusNumber();
 
         for (Lotto buyLotto : buyLottos.getLotto()) {
-            correctNum = winningLotto.countMatchingNumber(buyLotto);
+            correctNum = winningLottoRepo.countMatchingNumber(buyLotto);
             increaseNumberPerRank(correctNum,buyLotto,bonusNum);
         }
     }

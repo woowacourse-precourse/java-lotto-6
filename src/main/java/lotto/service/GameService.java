@@ -4,11 +4,9 @@ import static java.lang.Math.round;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import lotto.View.OutputView;
 import lotto.constant.GameNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
@@ -18,28 +16,10 @@ public class GameService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < buyCount; i++) {
-            lottos.add(new Lotto(makeLotto()));
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         }
 
         return lottos;
-    }
-
-    private List<Integer> makeLotto() {
-        List<Integer> numbers = new ArrayList<>();
-        int count = GameNumber.NUMBERS_PER_LOTTO.getNumber();
-
-        while (count > 0) {
-            int number = Randoms.pickNumberInRange(1, 45);
-
-            if (numbers.contains(number)) {
-                continue;
-            }
-            numbers.add(number);
-            count--;
-        }
-        Collections.sort(numbers);
-
-        return numbers;
     }
 
     public HashMap<Rank, Integer> getResult(List<Lotto> buyList, Lotto winningNumber, int bonusNumber) {
@@ -68,23 +48,21 @@ public class GameService {
     }
 
     private Rank checkRank(List<Integer> numbers, Lotto winningNumber, int bonusNumber) {
+        List<Integer> copyNumbers = new ArrayList<>(numbers);
         List<Integer> answer = winningNumber.getNumbers();
         boolean haveBonus = false;
 
-        if (numbers.contains(bonusNumber)) {
+        if (copyNumbers.contains(bonusNumber)) {
             haveBonus = true;
         }
-
-        numbers.retainAll(answer);
-        Rank rank = Rank.values()[numbers.size()];
-
-        if (numbers.size() == 5 && haveBonus) {
+        copyNumbers.retainAll(answer);
+        Rank rank = Rank.values()[copyNumbers.size()];
+        if (copyNumbers.size() == 5 && haveBonus) {
             rank = Rank.values()[6];
         }
-        if (numbers.size() == 6) {
+        if (copyNumbers.size() == 6) {
             rank = Rank.values()[7];
         }
-
         return rank;
     }
 

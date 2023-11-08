@@ -11,7 +11,6 @@ public class Buyer {
     int buyCount;
     List<Lotto> buyList = new ArrayList<>();
     Validator validator = new Validator();
-    DrawMachine drawMachine = new DrawMachine();
     GameService gameService = new GameService();
 
     public void buyLotto() {

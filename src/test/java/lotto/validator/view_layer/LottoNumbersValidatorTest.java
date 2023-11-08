@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoNumbersValidatorTest {
+    //CommonValidator와 LottoValidator에서 전부 테스트 된 내용인데 이거를 테스트하는게 맞나?
 
     LottoNumbersValidator lottoNumbersValidator = new LottoNumbersValidator();
     @Test

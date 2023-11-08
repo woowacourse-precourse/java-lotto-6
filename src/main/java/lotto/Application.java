@@ -12,6 +12,12 @@ public class Application {
         lottoList.createLottoList();
         lottoList.printLottoList();
 
+        CorrectLotto correctLotto = new CorrectLotto();
+        correctLotto.printInputNumbersMessage();
+        correctLotto.inputCorrectLotto();
+        correctLotto.printInputBonusMessage();
+        correctLotto.inputBonus();
+
 
     }
 }

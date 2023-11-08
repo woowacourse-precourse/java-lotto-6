@@ -1,15 +1,16 @@
 package lotto.handler;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.LottoRankings;
 import lotto.domain.Lottos;
 import lotto.domain.Payment;
 import lotto.domain.WinningLotto;
 import lotto.dto.LottoDto;
 import lotto.manager.LottoManager;
-import lotto.view.*;
+import lotto.view.LottoGuideMessage;
+import lotto.view.LottoReader;
+import lotto.view.LottoViewResolver;
+import lotto.view.LottoWriter;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -54,31 +55,16 @@ public class LottoHandler {
 
     private int getBonusNumber(List<Integer> winningNumbers) {
         writer.write(LottoGuideMessage.INPUT_BONUS_NUMBER.getMessage());
-        return reader.read(() -> {
-            String inputBonusNumber = Console.readLine();
-            LottoReaderValidator.validateBonusNumber(inputBonusNumber);
-            int bonusNumber = Integer.parseInt(inputBonusNumber);
-            LottoReaderValidator.validateDuplicationWithWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
-
-            return bonusNumber;
-        });
+        return reader.readBonusNumber(winningNumbers);
     }
 
     private List<Integer> getWinningNumbers() {
         writer.write(LottoGuideMessage.INPUT_WINNING_NUMBERS.getMessage());
-        return reader.read(() -> {
-            String inputWinningNumbers = Console.readLine();
-            LottoReaderValidator.validateWinningNumbers(inputWinningNumbers);
-            return Arrays.stream(inputWinningNumbers.split(",")).map(Integer::parseInt).toList();
-        });
+        return reader.readWinningNumbers();
     }
 
     private Payment getPayment() {
         writer.write(LottoGuideMessage.INPUT_MONEY.getMessage());
-        return reader.read(() -> {
-            String inputMoney = Console.readLine();
-            LottoReaderValidator.validateMoney(inputMoney);
-            return new Payment(Integer.parseInt(inputMoney));
-        });
+        return reader.readPayment();
     }
 }

@@ -7,18 +7,22 @@ import lotto.service.InputLottoInfoService;
 import lotto.service.InputUserInfoService;
 
 public class LottoController {
+	private final InputUserInfoService inputUserInfoService = new InputUserInfoService();  
+	private final InputLottoInfoService inputLottoInfoService = new InputLottoInfoService();  
+	private final CalculateLottoService calculateLottoService = new CalculateLottoService();  
+	
 	public void startLotto() {
 		User user = setUserInfo();
 		Lotto lotto = setLottoInfo();
 		calculatingWinningLotto(user, lotto);
 	}
 	public User setUserInfo() {
-		return InputUserInfoService.inputUserInfo();
+		return inputUserInfoService.inputUserInfo();
 	}
 	public Lotto setLottoInfo() {
-		return InputLottoInfoService.inputLottoInfo();
+		return inputLottoInfoService.inputLottoInfo();
 	}
 	public void calculatingWinningLotto(User user, Lotto lotto) {
-		CalculateLottoService.calculatingWinning(user, lotto);
+		calculateLottoService.calculatingWinning(user, lotto);
 	}
 }

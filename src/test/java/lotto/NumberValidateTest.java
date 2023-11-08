@@ -3,13 +3,13 @@ package lotto;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import domain.AmountValidate;
+import domain.NumberValidate;
 import org.junit.jupiter.api.Test;
 
 
-public class AmountInputTest {
+public class NumberValidateTest {
 
-    AmountValidate amountValidate = new AmountValidate();
+    NumberValidate amountValidate = new NumberValidate();
 
     @Test
     void 금액_숫자_외_문자_입력_테스트() {

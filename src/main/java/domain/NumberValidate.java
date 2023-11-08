@@ -1,11 +1,16 @@
 package domain;
 
-public class AmountValidate {
+public class NumberValidate {
 
     public void validateAmount(String amount) {
         validateNumberFormat(amount);
         validateAmountUnder(amount);
         validateAmountUnit(amount);
+    }
+
+    public void validateBonusNumber(String bonusNumber) {
+        validateNumberFormat(bonusNumber);
+        validateBonusUnit(bonusNumber);
     }
 
     private void validateNumberFormat(String amount) {
@@ -23,6 +28,13 @@ public class AmountValidate {
     private void validateAmountUnit(String amount) {
         if (Integer.parseInt(amount) % 1000 != 0) {
             throw new IllegalArgumentException(ErrorConstants.INPUT_UNIT_1000.getMessage());
+        }
+    }
+
+    private void validateBonusUnit(String amount) {
+        int parsedAmount = Integer.parseInt(amount);
+        if (parsedAmount < 1 || parsedAmount > 10) {
+            throw new IllegalArgumentException(ErrorConstants.INPUT_UNDER_10.getMessage());
         }
     }
 }

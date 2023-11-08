@@ -17,6 +17,7 @@ public class LottoController {
     public void start() {
         requestLottoAmount();
         buyLottoCount();
+        requestWinningNumber();
     }
 
     private void requestLottoAmount() {
@@ -27,5 +28,10 @@ public class LottoController {
 
     private void buyLottoCount() {
         outputView.printLottoSheet(numberOfSheets);
+    }
+
+    private void requestWinningNumber() {
+        inputView.inputWinningNumber();
+        inputView.inputBonusNumber();
     }
 }

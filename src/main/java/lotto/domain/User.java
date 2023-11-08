@@ -14,7 +14,7 @@ public class User {
             int payment = Parser.toInteger(inputPayment);
             return new Market().issueLotto(payment);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            UIFunction.showErrorMessage(e);
             return buyLotto();
         }
     }
@@ -32,7 +32,7 @@ public class User {
             List<Integer> numbers = Parser.toIntegerList(inputLottoNumbers);
             lottoWinningNumber.setLotto(new Lotto(numbers));
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            UIFunction.showErrorMessage(e);
             createLotto(lottoWinningNumber);
         }
     }
@@ -43,7 +43,7 @@ public class User {
             int bonusNumber = Parser.toInteger(inputBonusNumber);
             lottoWinningNumber.setBonusNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            UIFunction.showErrorMessage(e);
             createBonusNumber(lottoWinningNumber);
         }
     }

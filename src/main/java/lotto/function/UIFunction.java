@@ -10,6 +10,10 @@ public class UIFunction {
         return userInput;
     }
 
+    public static void showErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
+
     private static void validateEmpty(String userInput) {
         if (userInput.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 공백을 입력할 수 없습니다.");

@@ -2,11 +2,12 @@ package lotto.service;
 
 import java.util.List;
 import java.util.Map;
+import lotto.constant.ConstantNumber;
 import lotto.constant.LottoPrize;
 
 public class CheckResultService {
     public int matchResult(List<Integer> lotto, List<Integer> winLottoNumber) {
-        int matched = 0;
+        int matched = ConstantNumber.INITIAL_VALUE;
         for (int i : lotto) {
             if (winLottoNumber.contains(i)) {
                 matched++;
@@ -28,7 +29,7 @@ public class CheckResultService {
     }
 
     public int calculateEarning(Map<LottoPrize, Integer> lottoResult) {
-        int earn = 0;
+        int earn = ConstantNumber.INITIAL_VALUE;
         for (LottoPrize lottoPrize : lottoResult.keySet()) {
             earn += lottoPrize.getPrize() * lottoResult.get(lottoPrize);
         }

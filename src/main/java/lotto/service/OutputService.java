@@ -8,6 +8,8 @@ import lotto.constant.PrintMessage;
 import lotto.model.Lotto;
 
 public class OutputService {
+    private static final String FORMAT = "%.1f";
+
     public List<String> boughtResult(List<Lotto> lottos) {
         List<String> list = new ArrayList<>();
         for (Lotto lotto : lottos) {
@@ -33,6 +35,6 @@ public class OutputService {
     }
 
     public String earningRateFormat(float earningRate) {
-        return String.format("%.1f", earningRate);
+        return String.format(FORMAT, earningRate);
     }
 }

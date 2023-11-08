@@ -1,12 +1,21 @@
 package lotto.util;
 
+import lotto.util.exception.BlankInputException;
+import lotto.util.exception.InvalidNumberException;
+
 public class Validator {
+
+    public static void validateInputEmpty(String input) {
+        if (input.isBlank()) {
+            throw new BlankInputException();
+        }
+    }
 
     public static int validateNumeric(String number) {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException();
+            throw new InvalidNumberException();
         }
     }
 

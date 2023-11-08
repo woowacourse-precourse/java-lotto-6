@@ -161,9 +161,9 @@
 
 ##
 
-#### 당첨 번호, 보너스 번호 관련 예외 메시지 관리 역할 (WinningInformationExceptionMessage)
+#### 입력 관련 예외 메시지 관리 역할 (InputExceptionMessage)
 
-- [x] 당첨 번호, 보너스 번호 관련 예외 메시지를 반환하는 기능
+- [x] 입력 관련 예외 메시지를 반환하는 기능
 
 ##
 

@@ -1,4 +1,6 @@
 package lotto.view;
+import lotto.exception.ErrorCode;
+
 import java.util.*;
 import javax.swing.plaf.synth.SynthSpinnerUI;
 
@@ -17,6 +19,7 @@ public class OutputView {
     private static final String COUNT = "개";
     private static final String TOTAL_RATE_OF_RETURN = "총 수익률은 ";
     private static final String PERCENT = "%입니다.";
+    private static final String ERROR_STRING = "[ERROR] ";
 
     public OutputView(){
 
@@ -57,6 +60,10 @@ public class OutputView {
         System.out.println(SIX_CORRECT+correctList.get(4)+COUNT);
         System.out.println(TOTAL_RATE_OF_RETURN+rateOfReturn+PERCENT);
         System.out.println();
+    }
+
+    public void errorComment(ErrorCode errorCode){
+        System.out.println(ERROR_STRING+errorCode.getMessage());
     }
 
 }

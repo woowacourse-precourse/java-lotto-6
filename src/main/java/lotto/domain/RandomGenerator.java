@@ -8,7 +8,7 @@ public class RandomGenerator {
 
     }
 
-    private void generate(){
+    public void generate(){
         numList = randomMachine();
     }
 

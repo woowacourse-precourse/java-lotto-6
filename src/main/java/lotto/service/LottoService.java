@@ -6,7 +6,10 @@ import lotto.domain.Lotto;
 import lotto.domain.RandomGenerator;
 import lotto.domain.RandomLotto;
 import lotto.domain.UserLotto;
+import lotto.exception.ErrorCode;
+import lotto.exception.errorzip.NotAllNumber;
 import lotto.parsing.Parsing;
+import lotto.validation.NumberValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,7 +21,7 @@ public class LottoService {
     private static UserLotto userLotto;
     private static ConsistencyService consistencyService;
     private static int capital;
-    private static final String ERROR_STRING = "[ERROR] ";
+    private static String purchaseNum;
 
     public LottoService() {
         outputView = new OutputView();
@@ -27,8 +30,19 @@ public class LottoService {
 
     public void purchase() {
         outputView.purchaseComment();
-        capital = Parsing.stringToInt(InputView.inputLine());
+        getString();
+        capital = Parsing.stringToInt(purchaseNum);
         number = Parsing.makeDivision(capital);
+    }
+
+    private static void getString() {
+        try{
+           purchaseNum = InputView.inputLine();
+           NumberValidation.isAllNumber(purchaseNum);
+        }catch(IllegalArgumentException e){
+            outputView.errorComment(ErrorCode.NOT_ALL_NUMBER);
+            getString();
+        }
     }
 
     public void lottoLists() {

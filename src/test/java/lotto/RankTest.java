@@ -4,33 +4,34 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import lotto.config.LottoRank;
 import lotto.model.Lotto;
 import lotto.model.User;
-import lotto.service.RankService;
+import lotto.service.LottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class RankServiceTest {
+public class RankTest {
 
-    RankService rankService;
+    private LottoService lottoService;
+
 
     @BeforeEach
     void setUp() {
-        User user = new User(1000, createFakeLottos());
+        lottoService = new LottoService();
+        lottoService.user = new User(1000, createFakeLottos());
         List<Integer> winningNumbers = Arrays.asList(1,2,3,4,5,6);
-        int bonusNumber = 7;
-        rankService = new RankService(user, winningNumbers, bonusNumber);
+        lottoService.initWinningNumbers(winningNumbers);
+        lottoService.bonusNumber = 7;
     }
 
     @DisplayName("로또 당첨 순위계산이 정상적으로 동작하는가?")
     @Test
     void testCalculateLottoRanks() {
-        int[] winningCount = rankService.calculateLottoRanks();
+        int[] winningCount = lottoService.calculateLottoRanks();
 
         assertEquals(1, winningCount[LottoRank.FIRST.getRank()]);
         assertEquals(1, winningCount[LottoRank.BONUS.getRank()]);
@@ -43,7 +44,7 @@ public class RankServiceTest {
     @Test
     void testCalculateLottoRank_FirstPrize() {
         Lotto firstPrizeLotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
-        LottoRank rank = rankService.calculateLottoRank(firstPrizeLotto);
+        LottoRank rank = lottoService.calculateLottoRank(firstPrizeLotto);
         assertEquals(LottoRank.FIRST, rank);
     }
 
@@ -51,7 +52,7 @@ public class RankServiceTest {
     @Test
     void testCalculateLottoRank_BonusPrize() {
         Lotto bonusPrizeLotto = new Lotto(Arrays.asList(1,2,3,4,5,7));
-        LottoRank rank = rankService.calculateLottoRank(bonusPrizeLotto);
+        LottoRank rank = lottoService.calculateLottoRank(bonusPrizeLotto);
         assertEquals(LottoRank.BONUS, rank);
     }
 
@@ -59,7 +60,7 @@ public class RankServiceTest {
     @Test
     void testCalculateLottoRank_Null() {
         Lotto noPrizeLotto = new Lotto(Arrays.asList(7,8,9,10,11,12));
-        LottoRank rank = rankService.calculateLottoRank(noPrizeLotto);
+        LottoRank rank = lottoService.calculateLottoRank(noPrizeLotto);
         assertNull(rank);
     }
 
@@ -69,8 +70,8 @@ public class RankServiceTest {
         BigDecimal expected = new BigDecimal("203300.0");
 
 
-        rankService.calculateLottoRanks();
-        BigDecimal result = rankService.rateOfReturn();
+        lottoService.calculateLottoRanks();
+        BigDecimal result = lottoService.rateOfReturn();
 
 
         assertEquals(expected, result);

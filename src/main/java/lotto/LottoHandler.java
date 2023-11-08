@@ -104,8 +104,9 @@ public class LottoHandler {
                 LOTTO_LAST_NUMBER,
                 LOTTO_NUMBER_COUNT
         );
-        numbers.sort(Comparator.naturalOrder());
-        return new Lotto(numbers);
+        List<Integer> lottoNumbers = new ArrayList<>(numbers);
+        lottoNumbers.sort(Comparator.naturalOrder());
+        return new Lotto(lottoNumbers);
     }
 
     public Lotto receiveWinningLotto(String receivedWinningLotto) {

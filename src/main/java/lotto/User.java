@@ -96,7 +96,7 @@ public class User {
     }
 
     private void printBenefit(){
-        double benefit = totalPrize/lottoPrice*100;
-        System.out.println("총 수익률은 "+Math.round(benefit*10)/10.0+"%입니다.");
+        double benefit = lottoPrice/totalPrize*100;
+        System.out.println("총 수익률은 "+Math.round(benefit*10.0)/10.0+"%입니다.");
     }
 }

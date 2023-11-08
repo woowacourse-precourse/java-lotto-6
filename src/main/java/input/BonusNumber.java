@@ -42,7 +42,7 @@ public class BonusNumber {
     }
 
     private void isValidCharacters(final String input) {
-        if(!input.matches("[1-9]+")) {
+        if(!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(buildErrorMessage(901));
         }
     }

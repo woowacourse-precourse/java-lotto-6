@@ -44,6 +44,24 @@ public class LottoGameController {
     }
 
 
+    private void calculateResults(GameData gameData) {
+        // 당첨 결과를 저장할 Map 초기화
+        Map<Rank, Integer> results = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            results.put(rank, 0);
+        }
+
+        // 각 로또에 대한 당첨 결과 계산
+        for (Lotto lotto : gameData.getLottos()) {
+            int matchedCount = lotto.countMatchedNumbers(gameData.getWinningNumbers().getNumbers());
+            boolean matchBonus = lotto.isContainedBonus(gameData.getBonusNumber());
+            Rank rank = Rank.calculateRank(matchedCount, matchBonus);
+            results.put(rank, results.get(rank) + 1);
+        }
+
+        // 결과를 GameData 객체에 설정
+        gameData.setResults(results);
+    }
 
 
 

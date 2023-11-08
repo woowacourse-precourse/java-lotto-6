@@ -10,12 +10,14 @@ import static lotto.view.LottoOutputView.printWinningNumber;
 import static lotto.view.LottoOutputView.printWinningStatistics;
 
 import java.util.List;
+import lotto.dto.DatabaseDto;
 import lotto.dto.LottosCalculateResult;
 import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
-import lotto.model.LottoWallet;
 import lotto.model.LottoWinningNumbers;
 import lotto.model.Money;
+import lotto.repository.LottoWinningRepository;
+import lotto.repository.UserLottoRepository;
 import lotto.service.LottoService;
 import lotto.service.LottoWalletService;
 import lotto.view.LottoInputView;
@@ -25,9 +27,12 @@ public class LottoController {
     private final LottoService lottoService;
     private final LottoWalletService lottoWalletService;
 
-    public LottoController() { // 초기화
-        this.lottoService = new LottoService();
-        this.lottoWalletService = new LottoWalletService();
+    public LottoController(DatabaseDto dto) { // 초기화
+        this.lottoService = new LottoService(dto.getUserLottoDataRepository());
+
+        UserLottoRepository userLottoRepository = dto.getUserLottoDataRepository();
+        LottoWinningRepository lottoWinningRepository = dto.getLottoWinningDataRepository();
+        this.lottoWalletService = new LottoWalletService(userLottoRepository, lottoWinningRepository);
     }
 
     /**
@@ -99,7 +104,6 @@ public class LottoController {
             try {
                 Money money = getAmount();
                 List<Lotto> lottos = lottoService.buyLottos(money);
-                lottoWalletService.saveLottos(new LottoWallet(lottos));
 
                 printPurchaseLotto(lottos);
                 return;

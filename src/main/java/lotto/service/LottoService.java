@@ -9,15 +9,25 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.LottoPriceUnitException;
 import lotto.model.Lotto;
+import lotto.model.LottoWallet;
 import lotto.model.Money;
+import lotto.repository.UserLottoRepository;
 
 public class LottoService {
+
+    private UserLottoRepository userLottoRepository;
+
+    public LottoService(UserLottoRepository userLottoRepository) {
+        this.userLottoRepository = userLottoRepository;
+    }
 
     public List<Lotto> buyLottos(Money money) {
         validateUnit(money);
         int count = money.getMoney() / LOTTO_PRICE;
+        List<Lotto> lottos = issuanceLotto(count);
+        userLottoRepository.saveLottoWallet(new LottoWallet(lottos));
 
-        return issuanceLotto(count);
+        return lottos;
     }
 
     /**

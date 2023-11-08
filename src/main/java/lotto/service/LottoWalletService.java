@@ -13,26 +13,23 @@ import lotto.model.LottoBonusNumber;
 import lotto.model.LottoRank;
 import lotto.model.LottoWallet;
 import lotto.model.LottoWinningNumbers;
+import lotto.repository.LottoWinningRepository;
+import lotto.repository.UserLottoRepository;
 
 public class LottoWalletService {
 
-    private LottoWallet lottoWallet = null;
-    private LottoWinningNumbers winningNumbers = null;
-    private LottoBonusNumber bonusNumber = null;
-    private Map<LottoRank, Integer> ranks;
+    private UserLottoRepository userLottoRepository;
+    private LottoWinningRepository lottoWinningRepository;
 
-    /**
-     * 사용자의 로또 지갑을 저장한다.
-     *
-     * @param wallet
-     */
-    public void saveLottos(LottoWallet wallet) {
-        this.lottoWallet = wallet;
+    public LottoWalletService(UserLottoRepository userLottoRepository,
+                              LottoWinningRepository lottoWinningRepository) {
+        this.userLottoRepository = userLottoRepository;
+        this.lottoWinningRepository = lottoWinningRepository;
     }
 
     public void saveRecentWinningNumbers(LottoWinningNumbers winningNumbers, LottoBonusNumber bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+        lottoWinningRepository.saveLottoWinningNumbers(winningNumbers);
+        lottoWinningRepository.saveLottoBonusNumber(bonusNumber);
     }
 
     /**
@@ -40,9 +37,8 @@ public class LottoWalletService {
      */
     public LottosCalculateResult winningStatistics() {
         readyCheck();
-        initializeRanks();
 
-        runAllCompare();
+        Map<LottoRank, Integer> ranks = runAllCompare();
         double rateOfReturn = rateOfReturnCalculation(ranks);
 
         return new LottosCalculateResult(ranks, rateOfReturn); // 받아온 정보 담아서 반환
@@ -70,12 +66,19 @@ public class LottoWalletService {
     /**
      * 지갑의 로또로 등수를 확인한다.
      */
-    private void runAllCompare() {
+    private Map<LottoRank, Integer> runAllCompare() {
+        Map<LottoRank, Integer> ranks = LottoRank.createRankMap();
+        LottoWallet lottoWallet = userLottoRepository.getLottoWallet();
+        LottoWinningNumbers winningNumbers = lottoWinningRepository.getLottoWinningNumbers();
+        LottoBonusNumber bonusNumber = lottoWinningRepository.getLottoBonusNumber();
+
         for (Lotto lotto :
                 lottoWallet.getLottos()) {
             LottoRank rank = lottoCompare(winningNumbers, bonusNumber, lotto);
-            increaseRank(rank); // 랭킹 결과로 카운트를 올린다.
+            increaseRank(ranks, rank); // 랭킹 결과로 카운트를 올린다.
         }
+
+        return ranks;
     }
 
     /**
@@ -83,7 +86,7 @@ public class LottoWalletService {
      *
      * @param rank
      */
-    private void increaseRank(LottoRank rank) {
+    private void increaseRank(Map<LottoRank, Integer> ranks, LottoRank rank) {
         int tempNumber = ranks.get(rank);
         ranks.put(rank, tempNumber + 1);
     }
@@ -117,23 +120,16 @@ public class LottoWalletService {
     }
 
     /**
-     * 랭킹 기록을 초기화한다.
-     */
-    private void initializeRanks() {
-        this.ranks = LottoRank.createRankMap();
-    }
-
-    /**
      * 로또 통계 계산에 필요한 데이터가 있는지 확인한다.
      */
     private void readyCheck() {
-        if (lottoWallet == null) {
+        if (userLottoRepository.getLottoWallet() == null) {
             throw new NonVariableException("lottoWallet");
         }
-        if (winningNumbers == null) {
+        if (lottoWinningRepository.getLottoWinningNumbers() == null) {
             throw new NonVariableException("winningNumbers");
         }
-        if (bonusNumber == null) {
+        if (lottoWinningRepository.getLottoBonusNumber() == null) {
             throw new NonVariableException("bonusNumber");
         }
     }

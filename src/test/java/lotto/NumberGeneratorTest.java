@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.model.NumberGenerator;
+import lotto.model.LottoNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +13,9 @@ class NumberGeneratorTest {
     @DisplayName("로또 번호 생성 테스트")
     @Test
     void generateLottoNumbers() {
-        NumberGenerator numberGenerator = new NumberGenerator();
+        LottoNumberGenerator numberGenerator = new LottoNumberGenerator();
 
-        List<Integer> lottoNumbers = numberGenerator.getNumber();
+        List<Integer> lottoNumbers = numberGenerator.generate();
 
         assertThat(lottoNumbers)
                 .isNotNull()

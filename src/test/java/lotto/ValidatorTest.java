@@ -14,7 +14,7 @@ public class ValidatorTest {
     void isValidWinningNumbersSize() {
         assertThatThrownBy(() -> Validator.isValidWinningNumbers(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Validator.LOTTO_NUMBERS_SIZE_ERROR_MESSAGE);
+                .hasMessage(Validator.LOTTO_NUMBERS_ERROR_MESSAGE);
     }
 
     @DisplayName("당첨 번호가 1부터 45 사이의 중복되지 않는 숫자 6개가 아니면 예외가 발생한다.")
@@ -22,7 +22,7 @@ public class ValidatorTest {
     void isValidWinningNumbersRangeAndDuplicated() {
         assertThatThrownBy(() -> Validator.isValidWinningNumbers(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Validator.LOTTO_NUMBERS_SIZE_ERROR_MESSAGE);
+                .hasMessage(Validator.LOTTO_NUMBERS_ERROR_MESSAGE);
     }
 
     @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")

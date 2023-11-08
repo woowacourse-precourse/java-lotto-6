@@ -2,116 +2,103 @@
 
 ## 🗂️ 패키지 구조 & 클래스 목록
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-color:#aabcfe;border-spacing:0;}
-.tg td{background-color:#e8edff;border-color:#aabcfe;border-style:solid;border-width:0px;color:#669;
-  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{background-color:#b9c9fe;border-color:#aabcfe;border-style:solid;border-width:0px;color:#039;
-  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-u479{background-color:#D2E4FC;border-color:#ffffff;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-km2t{border-color:#ffffff;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-zv4m{border-color:#ffffff;text-align:left;vertical-align:top}
-.tg .tg-q2ja{background-color:#D2E4FC;border-color:#ffffff;text-align:left;vertical-align:top}
-.tg .tg-9sg9{background-color:#ecf4ff;border-color:#ffffff;font-style:italic;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-rwdp{background-color:#D2E4FC;border-color:#efefef;text-align:left;vertical-align:top}
-</style>
-<table class="tg">
+<table>
 <thead>
   <tr>
-    <th class="tg-9sg9">패키지</th>
-    <th class="tg-9sg9">클래스 명</th>
-    <th class="tg-9sg9">역할 및 책임</th>
+    <th>패키지</th>
+    <th>클래스 명</th>
+    <th>역할 및 책임</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-u479">controller</td>
-    <td class="tg-u479">Game</td>
-    <td class="tg-q2ja">전체 게임의 흐름을 관리하는 컨트롤러 클래스</td>
+    <td ><b>controller</b></td>
+    <td ><b>Game</b></td>
+    <td >전체 게임의 흐름을 관리하는 컨트롤러 클래스</td>
   </tr>
   <tr>
-    <td class="tg-km2t" rowspan="9">domain</td>
-    <td class="tg-km2t">Cash</td>
-    <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">구매자가 지불할 금액 관련 로직을 담당하는 도메인 클래스</span></td>
+    <td rowspan="9"><b>domain</b></td>
+    <td><b>Cash</b></td>
+    <td><span style="font-weight:400;font-style:normal">구매자가 지불할 금액 관련 로직을 담당하는 도메인 클래스</span></td>
   </tr>
   <tr>
-    <td class="tg-u479">Customer</td>
-    <td class="tg-q2ja">로또 판매자에게 금액을 지불하고 로또를 구매하는 역할을 수행하는 도메인 클래스</td>
+    <td><b>Customer</b></td>
+    <td>로또 판매자에게 금액을 지불하고 로또를 구매하는 역할을 수행하는 도메인 클래스</td>
   </tr>
   <tr>
-    <td class="tg-km2t">Lotto</td>
-    <td class="tg-zv4m">로또 번호 관련 로직을 담당하는 도메인 클래스</td>
+    <td><b>Lotto</b></td>
+    <td>로또 번호 관련 로직을 담당하는 도메인 클래스</td>
   </tr>
   <tr>
-    <td class="tg-u479">LottoSeller</td>
-    <td class="tg-rwdp">로또를 생성하고 판매하는 로직을 담당하는 도메인 클래스</td>
+    <td><b>LottoSeller</b></td>
+    <td>로또를 생성하고 판매하는 로직을 담당하는 도메인 클래스</td>
   </tr>
   <tr>
-    <td class="tg-km2t">BonusNumber</td>
-    <td class="tg-zv4m">보너스 숫자 관련 로직을 담당하는 도메인 클래스</td>
+    <td><b>BonusNumber</b></td>
+    <td>보너스 숫자 관련 로직을 담당하는 도메인 클래스</td>
   </tr>
   <tr>
-    <td class="tg-u479">Profit</td>
-    <td class="tg-q2ja">수익 관련 로직을 담당하는 도메인 클래스</td>
+    <td><b>Profit</b></td>
+    <td>수익 관련 로직을 담당하는 도메인 클래스</td>
   </tr>
   <tr>
-    <td class="tg-km2t">Rank</td>
-    <td class="tg-zv4m">당첨 순위 관련 로직을 담당하는 도메인 클래스</td>
+    <td><b>Rank</b></td>
+    <td>당첨 순위 관련 로직을 담당하는 도메인 클래스</td>
   </tr>
   <tr>
-    <td class="tg-u479">WinningRanks</td>
-    <td class="tg-q2ja">당첨 순위를 계산하는 로직을 담당하는 도메인 클래스</td>
+    <td><b>WinningRanks</b></td>
+    <td>당첨 순위를 계산하는 로직을 담당하는 도메인 클래스</td>
   </tr>
   <tr>
-    <td class="tg-km2t">WinningYield</td>
-    <td class="tg-zv4m">수익률을 계산하는 로직을 담당하는 도메인 클래스</td>
+    <td><b>WinningYield</b></td>
+    <td>수익률을 계산하는 로직을 담당하는 도메인 클래스</td>
   </tr>
   <tr>
-    <td class="tg-u479" rowspan="3">dto</td>
-    <td class="tg-u479">Lottos</td>
-    <td class="tg-q2ja">로또 리스트를 저장하는 일급 컬렉션</td>
+    <td rowspan="3"><b>dto</b></td>
+    <td><b>Lottos</b></td>
+    <td>로또 리스트를 저장하는 일급 컬렉션</td>
   </tr>
   <tr>
-    <td class="tg-km2t">Ranks</td>
-    <td class="tg-zv4m">순위 리스트를 저장하는 일급 컬렉션</td>
+    <td><b>Ranks</b></td>
+    <td>순위 리스트를 저장하는 일급 컬렉션</td>
   </tr>
   <tr>
-    <td class="tg-u479">WinningNumbers</td>
-    <td class="tg-q2ja">당첨 로또 번호와 보너스 번호를 저장하는 클래스</td>
+    <td><b>WinningNumbers</b></td>
+    <td>당첨 로또 번호와 보너스 번호를 저장하는 클래스</td>
   </tr>
   <tr>
-    <td class="tg-km2t" rowspan="2">exception</td>
-    <td class="tg-km2t">ErrorMessage</td>
-    <td class="tg-zv4m">에러 원인에 해당하는 메시지를 관리하는 Enum 클래스</td>
+    <td rowspan="2"><b>exception</b></td>
+    <td><b>ErrorMessage</b></td>
+    <td>에러 원인에 해당하는 메시지를 관리하는 Enum 클래스</td>
   </tr>
   <tr>
-    <td class="tg-u479">LottoGameException</td>
-    <td class="tg-q2ja">로또 게임의 전체 에러를 관리하는 커스텀 에러 클래스</td>
+    <td><b>LottoGameException</b></td>
+    <td>로또 게임의 전체 에러를 관리하는 커스텀 에러 클래스</td>
   </tr>
   <tr>
-    <td class="tg-km2t" rowspan="2">util</td>
-    <td class="tg-km2t">LottoConstants</td>
-    <td class="tg-zv4m">로또 관련 상수를 관리하는 Enum 클래스</td>
+    <td rowspan="2"><b>util</b></td>
+    <td><b>LottoConstants</b></td>
+    <td>로또 관련 상수를 관리하는 Enum 클래스</td>
   </tr>
   <tr>
-    <td class="tg-u479">LottoNumberGenerator</td>
-    <td class="tg-q2ja">랜덤한 6개의 로또 번호를 생성하는 유틸 클래스</td>
+    <td><b>LottoNumberGenerator</b></td>
+    <td>랜덤한 6개의 로또 번호를 생성하는 유틸 클래스</td>
   </tr>
   <tr>
-    <td class="tg-km2t" rowspan="2">view</td>
-    <td class="tg-km2t">InputView</td>
-    <td class="tg-zv4m">사용자 입력 관련 로직을 담당하는 뷰 클래스</td>
+    <td rowspan="2"><b>view</b></td>
+    <td><b>InputView</b></td>
+    <td>사용자 입력 관련 로직을 담당하는 뷰 클래스</td>
   </tr>
   <tr>
-    <td class="tg-u479">OutputView</td>
-    <td class="tg-q2ja">결과 출력 관련 로직을 담당하는 뷰 클래스</td>
+    <td><b>OutputView</b></td>
+    <td>결과 출력 관련 로직을 담당하는 뷰 클래스</td>
   </tr>
 </tbody>
 </table>
 
 ## 🔗 클래스 다이어그램
 
-![클래스 다이어그램](./image/lotto.png)
+![lotto](https://github.com/woowacourse-precourse/java-lotto-6/assets/76910498/7c3cd57f-363f-44fe-80c1-1598cb5bf6b5)
 
 ## 📝 구현 기능 목록
 

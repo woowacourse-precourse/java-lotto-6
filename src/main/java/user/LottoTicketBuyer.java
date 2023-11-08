@@ -3,7 +3,7 @@ package user;
 import lottomachine.LottoAmountCalculator;
 
 public class LottoTicketBuyer {
-    public int LottoTicketAmout(int money){
+    public int LottoTicketAmount(int money) {
         LottoAmountCalculator lottoAmountCalculator = new LottoAmountCalculator();
         return lottoAmountCalculator.getLottoAmount(money);
     }

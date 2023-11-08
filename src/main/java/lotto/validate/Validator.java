@@ -3,6 +3,7 @@ package lotto.validate;
 import lotto.message.ErrorMessage;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,22 @@ public class Validator {
         if(!areNumbersUnique(numbers)){
             throw new IllegalArgumentException(NOT_UNIQUE_EXCEPTION.getMessage());
         }
+    }
+
+    public static void validateBonusNumber(String number, List<Integer> winningNumbers){
+        if(!isNumeric(number)){
+            throw new IllegalArgumentException(NOT_NUMERIC_EXCEPTION.getMessage());
+        }
+        if(!isInRange(number)){
+            throw new IllegalArgumentException(NOT_IN_RANGE_EXCEPTION.getMessage());
+        }
+        if(isBonusNumberInWinningNumbers(number, winningNumbers)){
+            throw new IllegalArgumentException(NOT_UNIQUE_EXCEPTION.getMessage());
+        }
+    }
+
+    public static boolean isBonusNumberInWinningNumbers(String bonusNumber, List<Integer> winningNumbers) {
+        return winningNumbers.contains(Integer.parseInt(bonusNumber));
     }
 
     public static boolean hasBlank(String input) {

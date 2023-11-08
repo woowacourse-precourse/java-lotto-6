@@ -20,7 +20,7 @@ class UtilsTest {
     }
     @DisplayName("특수 문자가 포함된 문자열이 들어온 경우")
     @Test
-    void normalNumberString() {
+    void specialWordStringisNumericTest() {
         assertThat(Utils.isNumeric("!1234")).isEqualTo(false);
         assertThat(Utils.isNumeric("12@34")).isEqualTo(false);
         assertThat(Utils.isNumeric("1234#")).isEqualTo(false);

@@ -47,12 +47,37 @@ public class Application {
         return lottoCount;
     }
 
+    public static List<Integer> getNumbers() {
+        List<Integer> numbers = new ArrayList<Integer>();
+
+        for (int i=0; i<NUM_OF_LOTTO_NUMBERS; i++){
+            numbers.add(Randoms.pickNumberInRange(1, 45));
+        }
+
+        return numbers;
+    }
+
+    public static Lotto[] getLottos(int lottoCount) {
+        Lotto[] lottos = new Lotto[lottoCount];
+
+        List<Integer> numbers;
+        for (int i=0; i<lottoCount; i++){
+            numbers = getNumbers();
+            numbers.sort(Comparator.naturalOrder());
+            lottos[i] = new Lotto(numbers);
+            System.out.println(numbers);
+        }
+
+        return lottos;
+    }
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int lottoCount;
+        Lotto[] lottos;
         
         lottoCount = buying();
+        lottos = getLottos(lottoCount);
 
     }
 }

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constant.ExceptionMessage;
+
 public class LottoNumber {
     private final Integer number;
 
@@ -11,7 +13,7 @@ public class LottoNumber {
 
     private void validateRange(Integer number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1~45까지여야 한다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE_EXCEPTION_MESSAGE);
         }
     }
 

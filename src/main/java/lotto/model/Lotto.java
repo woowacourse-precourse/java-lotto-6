@@ -4,6 +4,7 @@ package lotto.model;
 import java.util.*;
 import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.ExceptionMessage;
 
 
 public class Lotto {
@@ -31,14 +32,14 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자여야 한다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_COUNT_EXCEPTION_MESSAGE);
         }
     }
 
 
     private void validateDuplication(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 한다.");
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_LOTTO_EXCEPTION_MESSAGE);
         }
     }
 

@@ -1,12 +1,15 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.ExceptionMessage;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class InputView {
+    private static final String SEPERATOR = ",";
+    private static final int MINIMUM_PURCHASE_AMOUNT = 1;
     public static Integer inputPurchaseAmount() {
         try {
             return validatePositiveAmount(validateInteger(preprocessValidateIntegerAmount(Console.readLine())));
@@ -39,26 +42,26 @@ public class InputView {
 
     public static List<String> separateWinningNumber(String winningNumbers) {
         return Stream
-                .of(winningNumbers.split(","))
+                .of(winningNumbers.split(SEPERATOR))
                 .map(String::trim)
                 .collect(Collectors.toList());
     }
 
     public static String preprocessValidateIntegerAmount(String playerPurchaseAmount) {
-        return playerPurchaseAmount.trim().replace(",", "");
+        return playerPurchaseAmount.trim().replace(SEPERATOR, "");
     }
 
     public static Integer validateInteger(String playerPurchaseAmount) {
         try {
             return Integer.valueOf(playerPurchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력한 값은 정수형태여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_FORMAT_EXCEPTION_MESSAGE);
         }
     }
 
     public static Integer validatePositiveAmount(Integer playerPurchaseAmount) {
-        if (playerPurchaseAmount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 0보다 커야 합니다.");
+        if (playerPurchaseAmount < MINIMUM_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_POSITIVE_NUMBER_EXCEPTION_MESSAGE);
         }
         return playerPurchaseAmount;
     }

@@ -9,8 +9,8 @@ public enum Grade {
     FIVE_AND_BONUS(5, 30000000),
     SIX(6, 2000000000);
 
-    private Integer answer;
-    private Integer price;
+    private final Integer answer;
+    private final Integer price;
 
     Grade(Integer answer, Integer price) {
         this.answer = answer;
@@ -26,11 +26,11 @@ public enum Grade {
     }
 
     public static Grade from(Integer answer, Integer bonus) {
-        if (answer == FIVE_AND_BONUS.answer && bonus == 1) {
+        if (answer.equals(FIVE_AND_BONUS.answer) && bonus.equals(1)) {
             return FIVE_AND_BONUS;
         }
         for (Grade grade : Grade.values()) {
-            if (grade.answer.equals(answer) && bonus == 0) {
+            if (grade.answer.equals(answer) && bonus.equals(0)) {
                 return grade;
             }
         }

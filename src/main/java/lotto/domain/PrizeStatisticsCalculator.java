@@ -50,11 +50,6 @@ public enum PrizeStatisticsCalculator {
         System.out.println(message + matchCount + "개");
     }
 
-    public long calculateTotalProfit(List<Lotto> lottoList, Lotto winningLotto) {
-        long matchCount = getMatchCount(lottoList, winningLotto);
-        return matchCount * prizeMoney;
-    }
-
     public long getPrizeMoney() {
         return this.prizeMoney;
     }

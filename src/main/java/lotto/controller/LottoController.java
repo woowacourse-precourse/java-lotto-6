@@ -17,6 +17,7 @@ import lotto.view.LottoOutputView;
 public class LottoController {
 
 
+    public static final int LOTTO_PRICE = 1000;
     private final LottoInputView lottoInputView;
 
     private final LottoOutputView lottoOutputView;
@@ -27,7 +28,7 @@ public class LottoController {
     }
 
     // 가격을 입력받아 복권 갯수만큼 복권 출력
-    public List<Lotto> executePayment() {
+    private List<Lotto> executePayment() {
         final Price price = InputValidator.getValidInput(lottoInputView::priceInfoLog,
                 () -> new Price(Console.readLine()));
         final Quantity quantity = InputValidator.getValidInput(() -> new Quantity(price));
@@ -38,7 +39,7 @@ public class LottoController {
     }
 
     // 로또번호 + 보너스 번호 입력받기
-    public Lotto enterLottoNumber() {
+    private Lotto enterLottoNumber() {
         Lotto lotto = InputValidator.getValidInput(lottoInputView::initLottoNumberLog,
                 () -> LottoFactory.createLottoFrom(Console.readLine()));
         LottoBonusNumber lottoBonusNumber = InputValidator.getValidInput(lottoInputView::initLottoBonusNumberLog,
@@ -51,7 +52,7 @@ public class LottoController {
         List<Lotto> lottoList = executePayment();
         Lotto winningLotto = enterLottoNumber();
         long totalProfit = 0;
-        int investment = lottoList.size() * 1000;
+        int investment = lottoList.size() * LOTTO_PRICE;
         lottoOutputView.showStatisticLog();
 
         for (PrizeStatisticsCalculator prize : PrizeStatisticsCalculator.values()) {

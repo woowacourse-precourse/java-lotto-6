@@ -20,4 +20,18 @@ class PrizeTypeTest {
         assertThat(PrizeType.getMessage(prizeType, 0))
                 .contains(expectedMessage);
     }
+
+    @ParameterizedTest
+    @CsvSource(
+            value = {
+                    "MATCH3:5000", "MATCH4:50000", "MATCH5:1500000",
+                    "MATCH5_WITH_BONUS:30000000", "MATCH6:2000000000"
+            },
+            delimiter = ':'
+    )
+    @DisplayName("상금 금액 확인")
+    void prize(PrizeType prizeType, int expectedPrize) {
+        assertThat(prizeType.getPrize())
+                .isEqualTo(expectedPrize);
+    }
 }

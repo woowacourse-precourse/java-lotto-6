@@ -349,4 +349,18 @@ class LottoHandlerTest {
         //then
         assertThat(rateOfReturn).isEqualTo(100.0);
     }
+
+    @DisplayName("금액을 입력 받아 쉼표로 단위를 구분해서 반환한다.")
+    @Test
+    void formatPrice(){
+        //given
+        int price = 1000000;
+
+        //when
+        String formattedPrice = lottoHandler.formatPrice(price);
+
+        //then
+        assertThat(formattedPrice).isEqualTo("1,000,000");
+    }
+
 }

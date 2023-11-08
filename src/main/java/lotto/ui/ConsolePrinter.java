@@ -15,7 +15,6 @@ import lotto.domain.Lotto;
 import lotto.util.StringUtil;
 
 public class ConsolePrinter {
-
     public static void printPurchaseAmountMessage() {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
     }

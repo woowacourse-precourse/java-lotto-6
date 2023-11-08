@@ -6,7 +6,7 @@ public enum GameOptions {
     NUMBER_COUNT(6),
     PRICE(1000);
 
-    private int value;
+    private final int value;
 
     private GameOptions(int value) {
         this.value = value;

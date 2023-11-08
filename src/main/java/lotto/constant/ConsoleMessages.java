@@ -10,7 +10,7 @@ public enum ConsoleMessages {
     WINNING_BONUS_REWARD("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n"),
     RETURN_RATE("총 수익률은 %.1f%%입니다.");
 
-    private String value;
+    private final String value;
 
     private ConsoleMessages(String value) {
         this.value = value;

@@ -9,7 +9,7 @@ import java.util.List;
 import lotto.domain.WinningNumber;
 
 public class StringParser {
-    private static String DELIMITER = ",";
+    private static final String DELIMITER = ",";
 
     public static Integer parsePurchaseAmount(String str) {
         try {

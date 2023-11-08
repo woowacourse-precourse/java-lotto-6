@@ -7,7 +7,7 @@ import java.util.Map;
 import lotto.constant.Rewards;
 
 public class Lottos {
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
 
     public Lottos() {
     }

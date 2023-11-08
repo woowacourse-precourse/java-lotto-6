@@ -14,11 +14,11 @@ import lotto.util.NumberUtil;
 import lotto.util.StringParser;
 
 public class LottoGame {
+    private final Lottos lottos = new Lottos();
+    private final LottoGenerator lottoGenerator = new LottoGenerator();
     private Integer purchaseAmount;
-    private Lottos lottos = new Lottos();
     private WinningNumber winningNumber;
     private Integer bonus;
-    private LottoGenerator lottoGenerator = new LottoGenerator();
 
     public LottoGame() {
     }

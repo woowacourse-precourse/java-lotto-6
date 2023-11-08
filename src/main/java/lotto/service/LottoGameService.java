@@ -32,14 +32,14 @@ public class LottoGameService {
         return lottos;
     }
 
-    public Lotto winningNumber() {
+    public Lotto winningLotto() {
         try {
-            outputService.winningNumbers();
+            outputService.winningLotto();
             List<Integer> numbers = inputService.inputWinningNumbers();
             return new Lotto(numbers);
         }catch (IllegalArgumentException exception) {
             outputService.handleException(exception);
-            return winningNumber();
+            return winningLotto();
         }
     }
 }

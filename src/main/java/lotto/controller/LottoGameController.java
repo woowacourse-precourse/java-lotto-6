@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.money.Money;
 import lotto.service.LottoGameService;
@@ -14,5 +15,6 @@ public class LottoGameController {
     public void play() {
         Money money = lottoGameService.purchaseAmount();
         Lottos lottos = lottoGameService.makeLottos(money);
+        Lotto winningLotto = lottoGameService.winningLotto();
     }
 }

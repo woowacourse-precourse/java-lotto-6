@@ -19,7 +19,7 @@ public class OutputService {
         outputView.lottos(money.ticketCount(), lottos.printLottos());
     }
 
-    public void winningNumbers() {
+    public void winningLotto() {
         outputView.winningNumbers();
     }
 

@@ -1,16 +1,18 @@
 package lotto.lottosystem.presentation.printer;
 
+import lotto.lottosystem.bussiness.Lotto;
+
 import java.util.Collections;
 import java.util.List;
 
 public class Printer {
     public static void printTickets(TicketsVO ticketsVO) {
-        List<List<Integer>> tickets = ticketsVO.tickets();
+        List<Lotto> tickets = ticketsVO.tickets();
         int count = tickets.size();
         System.out.println(count + "개를 구매했습니다.");
-        for(List<Integer> ticket : tickets) {
-            Collections.sort(ticket);
-            System.out.println(ticket);
+        for(Lotto ticket : tickets) {
+            Collections.sort(ticket.getNumbers());
+            System.out.println(ticket.getNumbers());
         }
     }
 

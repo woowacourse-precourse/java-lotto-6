@@ -31,7 +31,7 @@ public class Lotto {
     }
 
     private void validateNumberBoundary (List<Integer> numbers) throws IllegalArgumentException {
-        if(numbers.stream().anyMatch(n -> n< LOTTO_MIN_VALUE || n > LOTTO_MAX_VALUE)){
+        if(numbers.stream().anyMatch(n -> n < LOTTO_MIN_VALUE || n > LOTTO_MAX_VALUE)){
             throw new IllegalArgumentException("[ERROR]로또 숫자의 범위는 1부터 45 사이야합니다.");
         }
     }

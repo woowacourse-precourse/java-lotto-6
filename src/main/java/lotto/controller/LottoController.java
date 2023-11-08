@@ -29,7 +29,7 @@ public class LottoController {
         Money money;
         try{
             money = new Money(inputView.requestMoney());
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askMoney();
         }
@@ -39,9 +39,9 @@ public class LottoController {
 
     private Lottos buyLottos(int count) {
         Lottos lottos;
-        try{
+        try {
             lottos = new Lottos(generateLottos(count));
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return buyLottos(count);
         }
@@ -62,17 +62,16 @@ public class LottoController {
     private Lotto askWinningNumbers() {
         try{
             return new Lotto(inputView.requestWinningNumbers());
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askWinningNumbers();
         }
     }
 
     private TotalWinningNumbers makeTotalWinningNumbers(Lotto lotto) {
-        int bonus = inputView.requestBonusNumber();
         try{
-            return new TotalWinningNumbers(lotto, bonus);
-        }catch (IllegalArgumentException e) {
+            return new TotalWinningNumbers(lotto, inputView.requestBonusNumber());
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return makeTotalWinningNumbers(lotto);
         }

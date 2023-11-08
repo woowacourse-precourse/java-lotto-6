@@ -13,9 +13,9 @@ public enum Rank {
     private static final int THIRD_COLLECT = 5;
 
     private final int collectCount;
-    private final long prize;
+    private final int prize;
 
-    Rank(int collectCount, long prize) {
+    Rank(int collectCount, int prize) {
         this.collectCount = collectCount;
         this.prize = prize;
     }
@@ -30,7 +30,7 @@ public enum Rank {
                 .orElse(NOTHING);
     }
 
-    public long getPrize() {
+    public int getPrize() {
         return prize;
     }
 }

@@ -21,13 +21,13 @@ public class TotalWinningNumbers {
 
     private void validateNumberBoundary(int bonusNumber) throws IllegalArgumentException{
         if(bonusNumber < LOTTO_MIN_VALUE || bonusNumber > LOTTO_MAX_VALUE){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1부터 45 사이여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1부터 45 사이어야 합니다.");
         }
     }
 
     private void validateDuplication(Lotto lotto, int bonusNumber) throws IllegalArgumentException{
         if(lotto.getNumbers().contains(bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 중복 됐습니다.");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 중복됐습니다.");
         }
     }
 

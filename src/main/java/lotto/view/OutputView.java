@@ -10,15 +10,14 @@ import static lotto.domain.Rank.*;
 
 public class OutputView {
 
+    private static final String DECIMAL_PATTERN = "###,###";
     private static final String LOTTO_COUNT_POSTFIX_MESSAGE = "개를 구매했습니다.";
     private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String LOTTO_NUMBERS_PREFIX_MESSAGE = "[";
     private static final String LOTTO_NUMBERS_POSTFIX_MESSAGE = "]";
     private static final String SEPARATION = ", ";
 
-
-
-    DecimalFormat decimalFormat = new DecimalFormat("###,###");
+    DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_PATTERN);
 
     public void printLottoCount(long lottoCount) {
         System.out.println(lottoCount + LOTTO_COUNT_POSTFIX_MESSAGE);

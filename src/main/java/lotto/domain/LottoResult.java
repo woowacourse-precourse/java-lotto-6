@@ -30,8 +30,8 @@ public class LottoResult {
     public double getRateOfReturn(Money money){
         double sumPrize = DEFAULT_VALUE;
         for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
-            sumPrize += entry.getKey().getPrize() * entry.getValue();
+            sumPrize += (double)entry.getKey().getPrize() * (double)entry.getValue();
         }
-        return sumPrize / money.getMoney() * PERCENT;
+        return (sumPrize / (double)money.getMoney()) * PERCENT;
     }
 }

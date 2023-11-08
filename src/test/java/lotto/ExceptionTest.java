@@ -11,6 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ExceptionTest {
+
     @DisplayName("돈이 1000원으로 나눠 떨어지지 않을 경우 예외가 발생한다.")
     @Test
     void 돈이_천원으로_나눠_떨어지지_않는_경우_테스트() {
@@ -69,4 +70,6 @@ public class ExceptionTest {
         assertThatThrownBy(() -> new TotalWinningNumbers(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
 }

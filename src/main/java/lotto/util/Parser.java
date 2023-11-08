@@ -5,14 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Parser {
-    public static long stringToLong(String str) throws IllegalArgumentException{
-        try {
-            return Long.parseLong(str);
-        }catch (NumberFormatException e){
-            System.out.println("[ERROR] 정수가 아닌 입력이 들어왔습니다.");
-            throw new IllegalArgumentException();
-        }
-    }
+
     public static int stringToInt(String str) throws IllegalArgumentException{
         try{
             return Integer.parseInt(str);

@@ -31,9 +31,7 @@ public class LottoController {
     public void playGame() {
         UserMoney userMoney = initUserMoney();
         Lottos userLottos = lottoService.createUserLottos(userMoney.getUserMoney());
-        outputView.printLine();
         printNumberOfLottos(userLottos.getNumberOfLottos());
-        outputView.printLine();
         printLottoContents(userLottos.getLottos());
 
         WinningLottoNumbers winningLottoNumbers = initWinningLottoNumbers();
@@ -62,6 +60,7 @@ public class LottoController {
     }
 
     private void printNumberOfLottos(final long numberOfLottos) {
+        outputView.printLine();
         outputView.printNumberOfLottos(numberOfLottos);
     }
 
@@ -104,6 +103,7 @@ public class LottoController {
 
     public void printUserLottoGameResult(final Map<LotteryRankConstant, Integer> userLottoRanks,
                                          final double rateOfReturn) {
+        outputView.printLine();
         outputView.printWinningStatistics(userLottoRanks, rateOfReturn);
     }
 

@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
+import static lotto.Constant.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -17,11 +19,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6 || numbers.stream().distinct().toList().size() != 6) {
+        if (numbers.size() != LOTTO_NUM_COUNT || numbers.stream().distinct().toList().size() != LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException("로또 번호는 6개의 정수로 이루어져야 합니다.");
         }
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_NUM || number > MAX_NUM) {
                 throw new IllegalArgumentException("로또 번호의 숫자 범위는 1~45 입니다.");
             }
         }
@@ -57,19 +59,19 @@ public class Lotto {
     }
 
     private Result getResult(int matchCount, boolean hitBonusNum) {
-        if (matchCount == 5 && hitBonusNum) {
+        if (matchCount == Result.FIVE_BONUS.getMatchCount() && hitBonusNum) {
             return Result.FIVE_BONUS;
         }
-        if (matchCount == 3) {
+        if (matchCount == Result.THREE.getMatchCount()) {
             return Result.THREE;
         }
-        if (matchCount == 4) {
+        if (matchCount == Result.FOUR.getMatchCount()) {
             return Result.FOUR;
         }
-        if (matchCount == 5) {
+        if (matchCount == Result.FIVE.getMatchCount()) {
             return Result.FIVE;
         }
-        if (matchCount == 6) {
+        if (matchCount == Result.SIX.getMatchCount()) {
             return Result.SIX;
         }
         return Result.LOSE;

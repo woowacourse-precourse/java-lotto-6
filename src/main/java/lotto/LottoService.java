@@ -6,15 +6,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.Constant.*;
+
 public class LottoService {
 
-    private final int LOTTO_PRICE = 1000;
 
     public List<Lotto> generateLottos(int purchaseAmount) {
         int lottoNum = purchaseAmount / LOTTO_PRICE;
         List<Lotto> lottos = new ArrayList<>();
         for(int i=0; i<lottoNum; i++) {
-            List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> lottoNums = Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, LOTTO_NUM_COUNT);
             lottos.add(new Lotto(lottoNums));
         }
         return lottos;

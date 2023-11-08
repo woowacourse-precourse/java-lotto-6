@@ -7,10 +7,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.Constant.*;
+
 public class LottoController {
 
     private final LottoView lottoView;
-
     private final LottoService lottoService;
 
     public LottoController(LottoView lottoView, LottoService lottoService) {
@@ -65,7 +66,7 @@ public class LottoController {
     }
 
     private void validateNumRange(int bonusNum) {
-        if (bonusNum < 1 || bonusNum > 45) {
+        if (bonusNum < MIN_NUM || bonusNum > MAX_NUM) {
             throw new IllegalArgumentException("로또 번호의 숫자 범위는 1~45 입니다.");
         }
     }
@@ -85,7 +86,7 @@ public class LottoController {
     }
 
     private void validateWinnerNums(List<Integer> winnerNums) {
-        if (winnerNums.stream().distinct().toList().size() != 6) {
+        if (winnerNums.stream().distinct().toList().size() != LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException("당첨 번호는 쉼표로 구분하여 6자리를 입력해야 합니다.");
         }
         for (Integer winnerNum : winnerNums) {

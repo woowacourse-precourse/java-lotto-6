@@ -57,7 +57,7 @@ public class LottoController {
             return;
         }
         if (isCountFive(countWinningLottoWithoutBonus) && isBonusLotto) {
-            winLotto(userLotto, 7);
+            winLotto(userLotto, WinningResult.SECOND.getValue());
             return;
         }
     }

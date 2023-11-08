@@ -39,7 +39,7 @@ public class Input {
                 String[] splitNumbers = winningNumbers.split(",");
 
                 if (!Exception.isValidWinningNumberSingle(splitNumbers)) {
-                    throw new IllegalArgumentException("당첨 숫자는 1~45 사이 정수여야 합니다.");
+                    throw new IllegalArgumentException("당첨 숫자는 1~45 사이 중복되지 않는 정수여야 합니다.");
                 }
 
                 for (int i = 0; i < Input.LOTTO_WINNING_NUMBER_COUNT; i++) {
@@ -50,10 +50,12 @@ public class Input {
                 }
                 validate(winningNumbersList);
                 break;
-            } catch (IllegalArgumentException e) {
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 당첨 숫자는 정수로 이루어져야 합니다. 다시 입력하세요.");
+            }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("[ERROR] 입력형식에 맞지 않습니다. 다시 입력하십시오.");
+                System.out.println("[ERROR] 입력형식에 맞지 않습니다. 다시 입력하세요.");
             }
         }
 
@@ -66,7 +68,7 @@ public class Input {
                 bonus = Integer.parseInt(Console.readLine());
                 break;
             } catch (NumberFormatException e) {
-                System.out.println();
+                System.out.println("[ERROR] 보너스 번호는 1~45 사이 정수 하나만 입력할 수 있습니다. 다시 입력하세요.");
             }
         }
         return bonus;

@@ -49,8 +49,8 @@ public class Lotto {
         return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, COUNT);
     }
 
-    List<Integer> getNumbers() {
-        return numbers;
+    protected List<Integer> getNumbers() {
+        return this.numbers;
     }
 
     public boolean contains(int bonus) {

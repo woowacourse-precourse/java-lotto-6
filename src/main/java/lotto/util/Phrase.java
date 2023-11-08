@@ -1,4 +1,5 @@
 package lotto.util;
+import java.util.Arrays;
 
 public class Phrase {
     public enum InputPhrase {
@@ -27,5 +28,33 @@ public class Phrase {
         }
     }
 
+    public enum DrawPhrase {
+        DRAW_STATISTIC("당첨 통계\n---"),
+        THREE_MATCHES("3개 일치 (5,000원) - %d개\n"),
+        FOUR_MATCHES("4개 일치 (50,000원) - %d개\n"),
+        FIVE_MATCHES("5개 일치 (1,500,000원) - %d개\n"),
+        FIVE_AND_BONUS_MATCHES("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
+        SIX_MATCHES("6개 일치 (2,000,000,000원) - %d개\n");
+
+        private final String message;
+
+        DrawPhrase(String message) {
+            this.message = message;
+        }
+        public String printMessage(){
+            return message;
+        }
+
+    }
+    public enum RevenuePhrase {
+        TOTAL_REVENUE_RATE("총 수익률은 %.1f%%입니다.\n");
+        private final String message;
+        RevenuePhrase(String message) {
+            this.message = message;
+        }
+        public String printMessage(){
+            return message;
+        }
+    }
 
 }

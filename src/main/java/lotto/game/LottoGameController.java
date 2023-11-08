@@ -25,19 +25,19 @@ public class LottoGameController {
         AmountToBuyLotto amountToBuyLotto = inputMoney();
         LottoGame lottoGame = new LottoGame(new LottoNumberGeneratorImpl());
         lottoGame.saleLotto(amountToBuyLotto);
-        display(lottoGame.getIssuedLottosMessage());
+        writer.write(lottoGame.getIssuedLottosMessage());
         WinningNumber winningNumber = inputWinningNumber();
         LottoNumber bonusNumber = inputBonusNumber(winningNumber);
         WinningStatistic winningStatistic = lottoGame.createWinningStatistic(winningNumber,
             bonusNumber);
         YieldRate yieldRate = lottoGame.calculateYieldRate(amountToBuyLotto, winningStatistic);
-        display(winningStatistic.getStatisticMessage());
-        display(yieldRate.getRateMessage());
+        writer.write(winningStatistic.getStatisticMessage());
+        writer.write(yieldRate.getRateMessage());
     }
 
 
     private LottoNumber inputBonusNumber(WinningNumber winningNumber) {
-        display(BONUS_NUMBER_INPUT_MESSAGE);
+        writer.write(BONUS_NUMBER_INPUT_MESSAGE);
         while (true) {
             try {
                 String input = reader.read();
@@ -51,7 +51,7 @@ public class LottoGameController {
     }
 
     private WinningNumber inputWinningNumber() {
-        display(WINNING_NUMBER_INPUT_MESSAGE);
+        writer.write(WINNING_NUMBER_INPUT_MESSAGE);
         while (true) {
             try {
                 String input = reader.read();
@@ -64,7 +64,7 @@ public class LottoGameController {
     }
 
     private AmountToBuyLotto inputMoney() {
-        display(AMOUNT_TO_BUY_LOTTO_INPUT_MESSAGE);
+        writer.write(AMOUNT_TO_BUY_LOTTO_INPUT_MESSAGE);
         while (true) {
             try {
                 String input = reader.read();
@@ -74,9 +74,4 @@ public class LottoGameController {
             }
         }
     }
-
-    private void display(String context) {
-        writer.write(context);
-    }
-
 }

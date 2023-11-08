@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +15,9 @@ public class LottoNumberValidatorTest {
 
     @Test
     @DisplayName("주어진 리스트의 길이가 6인지 확인합니다.")
-    void lengthTest(){
+    void lengthTest() {
         // given
-        List<Integer> numbers = Arrays.asList(new Integer[]{1,2,3,4,5,6});
+        List<Integer> numbers = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6});
 
         // when
         int length = numbers.size();
@@ -26,6 +25,7 @@ public class LottoNumberValidatorTest {
         // then
         assertThat(length).isEqualTo(6);
     }
+
     @Test
     @DisplayName("주어진 리스트에 중복 숫자가 있는지 확인합니다.")
     void duplicationTest() {
@@ -41,12 +41,12 @@ public class LottoNumberValidatorTest {
 
     @Test
     @DisplayName("숫자 범위 테스트")
-    void validateNumberRangeTest(){
+    void validateNumberRangeTest() {
         // given
         int value = 100;
 
         // when
-        boolean check = value>max || value<min;
+        boolean check = value > max || value < min;
 
         // then
         assertThat(check).isEqualTo(true);

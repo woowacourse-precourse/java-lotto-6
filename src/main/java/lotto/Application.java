@@ -20,8 +20,8 @@ public class Application {
         System.out.println("당첨번호를 입력해 주세요.");
         getWinningNumbers(Console.readLine());
         System.out.println("보너스 번호를 입력해주세요.");
-        getBonusNumber(Console.readLine());
-        compareLottoWithWinning();
+        Integer bonusNumber=getBonusNumber(Console.readLine());
+        compareLottoWithWinning(bonusNumber);
     }
 
     public static Integer convertMoneyFormat(String inputMoney) {
@@ -57,16 +57,16 @@ public class Application {
             winningNumbers.add(Integer.valueOf(winningNumber));
         }
     }
-    public static void getBonusNumber(String inputBonusNumber) {
+    public static Integer getBonusNumber(String inputBonusNumber) {
         Integer bonusNumber = Integer.valueOf(inputBonusNumber);
+        return bonusNumber;
     }
-    public static void compareLottoWithWinning() {
+    public static void compareLottoWithWinning(Integer bonusNumber) {
         for(Lotto lottoTicket : lottoTickets) {
             Integer matchNumber = (int) lottoTicket.getNumbers().stream()
                     .filter(winningNumbers::contains)
                     .count();
-            //5개면 보너스가 맞는지
-            //enum 어떻게 쓰지?
+            boolean matchBonus = lottoTicket.getNumbers().contains(bonusNumber);
         }
     }
 }

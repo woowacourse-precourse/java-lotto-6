@@ -7,7 +7,7 @@ import static lotto.constants.LottoConstants.MAXIMUM_NUM;
 import static lotto.constants.LottoConstants.MINIMUM_NUM;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -39,8 +39,9 @@ public class Lotto {
 
     private List<Integer> makeSixSortedLottoNum() {
         List<Integer> sixLottoNum = Randoms.pickUniqueNumbersInRange(MINIMUM_NUM, MAXIMUM_NUM, LOTTO_LENGTH);
-        Collections.sort(sixLottoNum);
-        return sixLottoNum;
+        List<Integer> sortedLottoNum = new ArrayList<>(sixLottoNum);
+        sortedLottoNum.sort((a, b) -> a - b);
+        return sortedLottoNum;
     }
 
     public List<Integer> getNumbers() {

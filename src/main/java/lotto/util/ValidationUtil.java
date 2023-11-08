@@ -32,5 +32,9 @@ public class ValidationUtil {
         }
     }
 
-
+    public static void isValidBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

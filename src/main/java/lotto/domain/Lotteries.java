@@ -59,7 +59,7 @@ public class Lotteries {
             int winCount = ranks.get(rank);
             result += rank.getMessage(winCount);
         }
-        result += String.format("총 수익률은 %.1f%%입니다.", returnRate);
+        result += String.format("총 수익률은 %,.1f%%입니다.", returnRate);
         return result;
     }
 }

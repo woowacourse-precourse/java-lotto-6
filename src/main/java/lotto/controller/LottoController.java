@@ -34,6 +34,7 @@ public class LottoController {
     private List<Lotto> purchaseLottos(int price) {
         List<Lotto> lottos = lottoService.publishLottos(price);
         outputView.printPurchaseLottos(lottos);
+        return lottos;
     }
 
 }

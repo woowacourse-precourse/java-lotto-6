@@ -22,6 +22,8 @@ public class Application {
 
         Lotto winningLotto = inputWinningNumbers();
         int bonusNumber = inputBonusNumber();
+
+        Map<Rank, Integer> results = calculateResults(lottos, winningLotto, bonusNumber);
     }
 
     private static int inputPurchaseAmount() {
@@ -83,6 +85,25 @@ public class Application {
     private static int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine().trim());
+    }
+
+    private static Map<Rank, Integer> calculateResults(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        Map<Rank, Integer> results = new EnumMap<>(Rank.class);
+
+        for (Lotto lotto : lottos) {
+            int matchCount = getMatchCount(lotto, winningLotto);
+            boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+            Rank rank = Rank.valueOf(matchCount, matchBonus);
+            results.put(rank, results.getOrDefault(rank, 0) + 1);
+        }
+
+        return results;
+    }
+
+    private static int getMatchCount(Lotto lotto, Lotto winningLotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningLotto.getNumbers()::contains)
+                .count();
     }
 
 }

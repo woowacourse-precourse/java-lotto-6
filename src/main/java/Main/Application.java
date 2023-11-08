@@ -1,3 +1,5 @@
+package Main;
+
 import Controller.ControllerFacade;
 import Controller.ControllerFacade;
 import View.BoardView;

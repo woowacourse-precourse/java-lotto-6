@@ -7,6 +7,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Budget;
 import lotto.domain.Lotto;
 import lotto.domain.LottoAnswer;
+import lotto.domain.Policy;
 import lotto.domain.Result;
 import lotto.domain.User;
 import lotto.service.LottoService;
@@ -124,7 +125,12 @@ public class LottoController {
     private void printResult(User user, LottoAnswer lottoAnswer) {
         OutputView.printResultDescription();
         Result result = resultService.addRankResult(user, lottoAnswer);
-        OutputView.printRank(result);
+        for (Policy p : result.getResults().keySet()) {
+            if (p == Policy.FAIL) {
+                continue;
+            }
+            OutputView.printEachRank(p.getMessage(), p.getMoney(), result.getResults().get(p));
+        }
         OutputView.printProfitRate(resultService.getProfitRate(user, result));
     }
 }

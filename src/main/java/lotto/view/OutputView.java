@@ -2,8 +2,6 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import lotto.domain.Policy;
-import lotto.domain.Result;
 
 public class OutputView {
     private static final String BUDGET_INPUT_DESC = "구입금액을 입력해 주세요.";
@@ -36,21 +34,16 @@ public class OutputView {
         System.out.println(RESULT_DESC);
     }
 
-    public static void printRank(Result result) {
-        DecimalFormat formatter = new DecimalFormat("###,###");
-        for (Policy rank : result.getResults().keySet()) {
-            if (rank == Policy.FAIL) {
-                continue;
-            }
-            String str = rank.getMessage()
-                    + String.format("(%s원)", formatter.format(rank.getMoney()))
-                    + String.format(" - %s개", result.getResults().get(rank));
-            System.out.println(str);
-        }
-    }
-
     public static void printProfitRate(double profitRate) {
         DecimalFormat formatter = new DecimalFormat("###,###.0");
         System.out.printf("총 수익률은 %s%%입니다.%n", formatter.format(profitRate));
+    }
+
+    public static void printEachRank(String message, int money, Integer count) {
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        String str = message
+                + String.format("(%s원)", formatter.format(money))
+                + String.format(" - %s개", count);
+        System.out.println(str);
     }
 }

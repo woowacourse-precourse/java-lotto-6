@@ -51,6 +51,5 @@ public class LottoSettingService {
                                   Runnable requestMessage, Consumer<String> errorMessage) {
         String validInput = getValidInput(validator, input, requestMessage, errorMessage);
         return IntParser.parseInt(validInput);
-
     }
 }

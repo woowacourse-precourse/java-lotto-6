@@ -1,12 +1,12 @@
 package lotto.service;
 
-import lotto.Enum.Rank;
+import lotto.enums.Rank;
 import lotto.model.Lotto;
 import lotto.model.Statistics;
 
 import java.util.*;
 
-import static lotto.Enum.Constant.*;
+import static lotto.enums.Constant.*;
 import static lotto.controller.InputController.*;
 import static lotto.service.IssueLotto.lottoTickets;
 

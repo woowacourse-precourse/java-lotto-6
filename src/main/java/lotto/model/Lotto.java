@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.List;
 
-import static lotto.Enum.Constant.*;
+import static lotto.enums.Constant.*;
 
 public class Lotto {
     private final List<Integer> numbers;

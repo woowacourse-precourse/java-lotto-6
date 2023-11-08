@@ -1,4 +1,4 @@
-package lotto.Enum;
+package lotto.enums;
 
 public enum Constant {
 

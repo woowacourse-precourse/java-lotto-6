@@ -5,7 +5,7 @@ import lotto.model.Statistics;
 
 import java.util.List;
 
-import static lotto.Enum.Message.*;
+import static lotto.enums.Message.*;
 import static lotto.service.DrawStatistics.lottoStatistics;
 import static lotto.service.IssueLotto.amountOfLottoTickets;
 import static lotto.service.IssueLotto.lottoTickets;

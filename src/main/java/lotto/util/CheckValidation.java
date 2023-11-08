@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static lotto.Enum.Constant.MONEY_UNIT;
-import static lotto.Enum.Constant.NUMBER_FOR_INITIALIZATION;
-import static lotto.Enum.Message.*;
+import static lotto.enums.Constant.MONEY_UNIT;
+import static lotto.enums.Constant.NUMBER_FOR_INITIALIZATION;
+import static lotto.enums.Message.*;
 import static lotto.controller.InputController.*;
 
 public class CheckValidation {

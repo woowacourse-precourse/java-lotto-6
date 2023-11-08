@@ -1,4 +1,4 @@
-package lotto.Enum;
+package lotto.enums;
 
 public enum Rank {
     FIFTH("3개 일치 (5,000원)", 5000, 3),

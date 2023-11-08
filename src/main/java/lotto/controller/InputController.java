@@ -1,15 +1,14 @@
 package lotto.controller;
 
-import lotto.Enum.Constant;
 import lotto.util.CheckValidation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.Enum.Constant.NUMBER_FOR_INITIALIZATION;
-import static lotto.Enum.Message.COMMA;
-import static lotto.Enum.Message.ERROR_MSG;
+import static lotto.enums.Constant.NUMBER_FOR_INITIALIZATION;
+import static lotto.enums.Message.COMMA;
+import static lotto.enums.Message.ERROR_MSG;
 
 public class InputController {
     public static int money;

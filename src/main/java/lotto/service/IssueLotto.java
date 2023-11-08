@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.Enum.Constant.MONEY_UNIT;
-import static lotto.Enum.Constant.NUMBER_FOR_INITIALIZATION;
+import static lotto.enums.Constant.MONEY_UNIT;
+import static lotto.enums.Constant.NUMBER_FOR_INITIALIZATION;
 import static lotto.controller.InputController.money;
-import static lotto.controller.InputController.validator;
 
 public class IssueLotto {
     public static int amountOfLottoTickets;

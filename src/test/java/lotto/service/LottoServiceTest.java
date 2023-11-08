@@ -182,10 +182,10 @@ class LottoServiceTest {
         Assertions.assertThat(result1).isEqualTo(Rank.FIRST);
         Assertions.assertThat(result2).isEqualTo(Rank.FIRST);
         Assertions.assertThat(result3).isEqualTo(Rank.SECOND);
-        Assertions.assertThat(result4).isEqualTo(Rank.SECOND);
+        Assertions.assertThat(result4).isEqualTo(Rank.THIRD);
         Assertions.assertThat(result5).isEqualTo(Rank.FOURTH);
         Assertions.assertThat(result6).isEqualTo(Rank.FOURTH);
         Assertions.assertThat(result7).isEqualTo(Rank.FIFTH);
-        Assertions.assertThat(result7).isEqualTo(Rank.FIFTH);
+        Assertions.assertThat(result8).isEqualTo(Rank.FIFTH);
     }
 }

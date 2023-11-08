@@ -67,7 +67,7 @@ public class View {
     }
 
     private void printRateOfReturn(double rateOfReturn) {
-        String format = String.format("%.1f", Math.round(rateOfReturn * 10) / 10.0);
+        double format = Math.round(rateOfReturn * 10.0) / 10.0;
         println("총 수익률은 " + format + "%입니다." );
     }
 

@@ -15,7 +15,8 @@ public class Application {
     private static final String MESSAGE_FOR_BONUS_NUMBERS_INPUT = "보너스 번호를 입력해 주세요.";
 
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
-    private static final String ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT = "구앱금액은 1000원 단위로 숫자를 입력해 주세요.";
+    private static final String ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_TYPE = "구앱금액은 숫자여야 합니다.";
+    private static final String ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_VALUE = "구앱금액은 1000원 단위여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_TYPE = "로또 번호는 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_FOR_WINNING_NUMBER_COUNT = "로또 번호는 6개 숫자여야 합니다.";
@@ -48,7 +49,6 @@ public class Application {
             try {
                 validatePurchaseAmountInput(purchaseAmountInput);
             } catch (IllegalArgumentException e) {
-                printErrorMessage(ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_INPUT);
                 continue;
             }
             return Integer.parseInt(purchaseAmountInput);
@@ -56,12 +56,23 @@ public class Application {
     }
 
     private static void validatePurchaseAmountInput(String purchaseAmountInput) {
+        validatePurchaseAmountType(purchaseAmountInput);
+        int purchaseAmount = Integer.parseInt(purchaseAmountInput);
+        validatePurchaseAmountMod1000IsZero(purchaseAmount);
+    }
+
+    private static void validatePurchaseAmountType(String purchaseAmountInput) {
         try {
-            int purchaseAmount = Integer.parseInt(purchaseAmountInput);
-            if (purchaseAmount % 1000 != 0) {
-                throw new IllegalArgumentException();
-            }
+            Integer.parseInt(purchaseAmountInput);
         } catch (NumberFormatException e) {
+            printErrorMessage(ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_TYPE);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validatePurchaseAmountMod1000IsZero (int purchaseAmount) {
+        if (purchaseAmount % 1000 != 0) {
+            printErrorMessage(ERROR_MESSAGE_FOR_PURCHASE_AMOUNT_VALUE);
             throw new IllegalArgumentException();
         }
     }
@@ -69,10 +80,9 @@ public class Application {
     private static List<Lotto> purchaseLottos(int purchaseAmount) {
         List<Lotto> purchasedLottos = new ArrayList<>();
         while (purchaseAmount > 0) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto;
             try {
-                lotto = new Lotto(numbers);
+                lotto = purchaseLotto();
             } catch (IllegalArgumentException e) {
                 continue;
             }
@@ -80,6 +90,11 @@ public class Application {
             purchaseAmount -= LOTTO_PRICE;
         }
         return purchasedLottos;
+    }
+
+    private static Lotto purchaseLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
     }
 
     private static void printPurchasedLottos() {
@@ -105,29 +120,42 @@ public class Application {
 
     private static void validateWinningNumbersInput(String winningNumbersInput) {
         List<String> winningNumbersStrings = Arrays.stream(winningNumbersInput.split(",")).toList();
-        List<Integer> winningNumbers = new ArrayList<>();
-        for (String numberString: winningNumbersStrings) {
+        validateWinningNumbersType(winningNumbersStrings);
+
+        List<Integer> winningNumbers = winningNumbersStrings.stream().map(Integer::parseInt).toList();
+        validateWinningNumbersSizeIs6(winningNumbers);
+        validateWinningNumbersRangeIn1To45(winningNumbers);
+        validateWinningNumbersNotDuplicate(winningNumbers);
+    }
+
+    private static void validateWinningNumbersType(List<String> winningNumbersString) {
+        for (String numberString: winningNumbersString) {
             try {
                 int number = Integer.parseInt(numberString);
-                winningNumbers.add(number);
             } catch (NumberFormatException e) {
                 printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_TYPE);
                 throw new IllegalArgumentException();
             }
         }
+    }
 
+    private static void validateWinningNumbersSizeIs6(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_COUNT);
             throw new IllegalArgumentException();
         }
+    }
 
+    private static void validateWinningNumbersRangeIn1To45(List<Integer> winningNumbers) {
         for (int number: winningNumbers) {
             if (number < 1 || number > 45) {
                 printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_RANGE);
                 throw new IllegalArgumentException();
             }
         }
+    }
 
+    private static void validateWinningNumbersNotDuplicate(List<Integer> winningNumbers) {
         Set<Integer> winningNumberSet = Set.copyOf(winningNumbers);
         if (winningNumberSet.size() != 6) {
             printErrorMessage(ERROR_MESSAGE_FOR_WINNING_NUMBER_DUPLICATE);

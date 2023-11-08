@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class LottoGame {
@@ -24,6 +25,7 @@ public class LottoGame {
         this.numLotto = lottoNum;
         for (int i = 0; i < lottoNum; i++) {
             List<Integer> lottoNumber = createLottoNumber();
+            lottoNumber.sort(Comparator.naturalOrder());
             Lotto lotto = new Lotto(lottoNumber);
             lottoGames.add(lotto);
         }

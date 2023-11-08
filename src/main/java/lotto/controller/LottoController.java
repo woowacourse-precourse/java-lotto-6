@@ -51,7 +51,7 @@ public final class LottoController {
      * 3. 로또 구매 결과를 출력한다.
      */
     private void buyLottos() {
-        final BuyLottosInput inputDto = inputView.inputBuyLottosDto();
+        final BuyLottosInput inputDto = inputView.inputBuyLottos();
         final LottosBuyingOutput outputDto = lottoService.buyLottos(inputDto);
         outputView.printLottosBuyingResult(outputDto);
     }
@@ -69,7 +69,7 @@ public final class LottoController {
      * 3. 로또 당첨 통계 결과를 출력한다.
      */
     private void drawLottos() {
-        final DrawLottosInput inputDto = inputView.inputDrawLottosDto();
+        final DrawLottosInput inputDto = inputView.inputDrawLottos();
         final LottosDrawingOutput outputDto = lottoService.drawLottos(inputDto);
         outputView.printLottosDrawingResult(outputDto);
     }

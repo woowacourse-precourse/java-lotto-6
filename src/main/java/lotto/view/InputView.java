@@ -36,18 +36,37 @@ public final class InputView {
      * <p>
      * retryUntilSuccess는 이름 그대로 콜백 함수에서 예외가 발생하지 않을 때까지 재호출합니다.
      */
-    public BuyLottosInput inputBuyLottosDto() {
+    public BuyLottosInput inputBuyLottos() {
         return retryUntilSuccess(() -> {
             new InputMoneyComponent().renderTo(writer);
             return BuyLottosInput.from(readLine());
         });
     }
 
+    /**
+     * 이렇게 작성하면 `inputLottoNumbers`, `inputBonusNumber` 메소드도 따로 작성할 필요가 없게 됨.
+     * <p>
+     * 주석 및 가독성을 위해 분리 적용하여 실제 사용하지는 않는 메소드입니다.
+     */
+    public DrawLottosInput inputDrawLottosDtoInline() {
+        final Builder builder = DrawLottosInput.builder();
+
+        retryUntilSuccess(() -> {
+            new InputLottoNumbersComponent().renderTo(writer);
+            return builder.lottoNumbers(readLine());
+        });
+        retryUntilSuccess(() -> {
+            new InputBonusNumberComponent().renderTo(writer);
+            return builder.bonusNumber(readLine());
+        });
+
+        return builder.build();
+    }
 
     /**
      * 로또 추첨을 위한 당첨 번호 및 보너스 번호를 입력 받아서 Dto로 변환합니다.
      */
-    public DrawLottosInput inputDrawLottosDto() {
+    public DrawLottosInput inputDrawLottos() {
         final Builder builder = DrawLottosInput.builder();
 
         retryUntilSuccess(() -> inputLottoNumbers(builder));
@@ -97,6 +116,7 @@ public final class InputView {
             return retryUntilSuccess(supplier);
         }
     }
+
 
     /**
      * 우아한 테크코스에서 제공하는 `Console` 객체로 한 줄을 읽어옵니다.

@@ -20,6 +20,11 @@ public class LottoWinning {
         this.bonusNumber = bonusNumber;
     }
 
+    public LottoWinning(List<Integer> winningNumbers) {
+        validateWinningNumbers(winningNumbers);
+        this.winningNumbers = winningNumbers;
+    }
+
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 " + LOTTO_WINNING_NUMS + " 자리입니다.");

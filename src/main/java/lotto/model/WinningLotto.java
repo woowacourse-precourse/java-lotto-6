@@ -1,7 +1,7 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.util.ErrorMessage;
+import lotto.util.validate.WinningLottoValidator;
 
 public class WinningLotto {
 
@@ -10,8 +10,7 @@ public class WinningLotto {
 
     public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
         this.lotto = lotto;
-
-        validateBonusNumber(bonusNumber.getBonusNumber());
+        WinningLottoValidator.validate(lotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -28,20 +27,5 @@ public class WinningLotto {
     public boolean hasBonusNumber(Lotto playerLotto) {
         return playerLotto.getNumbers()
                 .contains(bonusNumber.getBonusNumber());
-    }
-
-    private void validateBonusNumber(int bonusNumber) {
-        validateBonusNumberDuplicate(bonusNumber);
-    }
-
-    private void validateBonusNumberDuplicate(int bonusNumber) {
-        if (isContain(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
-        }
-    }
-
-    private boolean isContain(int bonusNumber) {
-        return lotto.getNumbers()
-                .contains(bonusNumber);
     }
 }

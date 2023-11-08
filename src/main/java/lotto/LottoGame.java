@@ -6,15 +6,15 @@ import lotto.io.UserOutput;
 
 public class LottoGame {
 
-    private final UserInput userInput;
-    private final UserOutput userOutput;
+    private final UserInput input;
+    private final UserOutput output;
     private final LottoMachine lottoMachine;
     private final LottoInputParser lottoInputParser;
 
-    public LottoGame(UserInput userInput, UserOutput userOutput, LottoMachine lottoMachine,
+    public LottoGame(UserInput input, UserOutput output, LottoMachine lottoMachine,
             LottoInputParser lottoInputParser) {
-        this.userInput = userInput;
-        this.userOutput = userOutput;
+        this.input = input;
+        this.output = output;
         this.lottoMachine = lottoMachine;
         this.lottoInputParser = lottoInputParser;
     }
@@ -27,33 +27,37 @@ public class LottoGame {
         WinningLotto winningLotto = createWinningLotto();
     }
 
-    private LottoPurchaseAmount createLottoPurchaseAmount() {
-        userOutput.print("구입금액을 입력해 주세요.\n");
+    public UserOutput getOutput() {
+        return output;
+    }
 
-        String purchaseAmount = userInput.input();
+    private LottoPurchaseAmount createLottoPurchaseAmount() {
+        output.print("구입금액을 입력해 주세요.\n");
+
+        String purchaseAmount = input.input();
 
         return new LottoPurchaseAmount(purchaseAmount);
     }
 
     private List<Lotto> createLottos(LottoPurchaseAmount lottoPurchaseAmount) {
-        userOutput.print(String.format("%n%d개를 구매했습니다.%n", lottoPurchaseAmount.getTicketsCount()));
+        output.print(String.format("%n%d개를 구매했습니다.%n", lottoPurchaseAmount.getTicketsCount()));
 
         List<Lotto> lottos = lottoMachine.issueAutomatically(lottoPurchaseAmount);
 
-        lottos.forEach(lotto -> userOutput.print(lotto.toString() + "\n"));
+        lottos.forEach(lotto -> output.print(lotto.toString() + "\n"));
 
         return lottos;
     }
 
     private WinningLotto createWinningLotto() {
-        userOutput.print("\n당첨 번호를 입력해 주세요.\n");
+        output.print("\n당첨 번호를 입력해 주세요.\n");
 
-        String inputWinningNumbers = userInput.input();
+        String inputWinningNumbers = input.input();
         List<Integer> winningNumbers = lottoInputParser.parseIntegerList(inputWinningNumbers);
 
-        userOutput.print("보너스 번호를 입력해 주세요.\n");
+        output.print("보너스 번호를 입력해 주세요.\n");
 
-        String inputBonusNumber = userInput.input();
+        String inputBonusNumber = input.input();
         int bonusNumber = lottoInputParser.parseInt(inputBonusNumber);
 
         return new WinningLotto(winningNumbers, bonusNumber);

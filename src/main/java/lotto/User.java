@@ -10,6 +10,7 @@ public class User {
     private int lottoPrice;
     private List<Lotto> lottos;
     private List<Integer> ratings;
+    private int totalPrize;
 
     public User() {
         lottos = new ArrayList<>();
@@ -17,6 +18,7 @@ public class User {
         for (int i = 0; i < 5; i++) {
             ratings.add(0);
         }
+        totalPrize = 0;
     }
 
     private void buyLotto() {
@@ -47,7 +49,15 @@ public class User {
         }
     }
 
-    public void calcPrize(List<Integer> targetNumbers, int bonusNumber) {
+    public void calculate(List<Integer> targetNumbers, int bonusNumber) {
+        for (int i = 0; i < lottoCount; i++) {
+            calcPrize(lottos.get(i),targetNumbers, bonusNumber);
+        }
+    }
 
+    private void calcPrize(Lotto lotto ,List<Integer> targetNumbers, int bonusNumber) {
+        for (int i = 0; i < 6; i++) {
+            targetNumbers.get(i)==lotto.
+        }
     }
 }

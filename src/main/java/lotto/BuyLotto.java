@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class BuyLotto {
-
     private final ValidateInputNumber validateInputNumber = new ValidateInputNumber();
 
     public int inputBuyLotto() {

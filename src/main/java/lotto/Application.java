@@ -5,16 +5,21 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        int price = getPrice();
+        try {
+            int price = getPrice();
 
-        Lottos lottos = new Lottos(price);
-        OutputConsole.print(lottos);
+            Lottos lottos = new Lottos(price);
+            OutputConsole.print(lottos);
 
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+            List<Integer> winningNumbers = getWinningNumbers();
+            int bonusNumber = getBonusNumber();
+            WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-        OutputConsole.printResult(lottos, winningLotto);
+            OutputConsole.printResult(lottos, winningLotto);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     public static int getPrice() {

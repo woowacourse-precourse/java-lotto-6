@@ -30,4 +30,8 @@ public enum LottoRank {
     private boolean isMatchRank(int matchCount, boolean needBonusNumber) {
         return this.matchCount == matchCount && this.needBonusNumber == needBonusNumber;
     }
+
+    public long getPrize(){
+        return this.prize;
+    }
 }

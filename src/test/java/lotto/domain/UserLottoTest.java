@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.system.Constant;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,6 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserLottoTest {
 
@@ -34,7 +34,7 @@ class UserLottoTest {
             int lottoNum = target / Constant.MONEY_UNIT;
             UserLotto userLotto = new UserLotto(lottoNum);
 
-            Assertions.assertAll(() -> {
+            assertAll(() -> {
                 for (int i = 0; i < size; i++) {
                     assertThat(userLotto.getIndexAt(i)).isInstanceOf(Lotto.class);
                 }

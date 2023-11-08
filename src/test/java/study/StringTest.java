@@ -18,12 +18,12 @@ public class StringTest {
         @DisplayName("1,2를 , 기준으로 split이 잘 되는지 테스트한다.")
         void split_했을떄_잘_분리되는지_테스트() {
             String input = "1,2";
-            Assertions.assertThat(input.split(",")).contains("1","2");
+            Assertions.assertThat(input.split(",")).contains("1", "2");
         }
 
         @Test
         @DisplayName(" 1을 ,로 split 했을 때, 1만을 포함하는지 테스트한다.")
-        void 기준점이없을때_잘_분리되는지_테스트(){
+        void 기준점이없을때_잘_분리되는지_테스트() {
             String input = "1";
             Assertions.assertThat(input.split(",")).containsExactly("1");
         }
@@ -35,9 +35,9 @@ public class StringTest {
 
         @Test
         @DisplayName("(1,2)값이 주어졌을떄, subString() 메소드를 활용 ()를 제거하고, 1,2 를 반환하는지 테스트한다.")
-        void subString_메소드_테스트(){
+        void subString_메소드_테스트() {
             String input = "(1,2)";
-            Assertions.assertThat(input.substring(input.indexOf("(")+1,input.indexOf(")"))).isEqualTo("1,2");
+            Assertions.assertThat(input.substring(input.indexOf("(") + 1, input.indexOf(")"))).isEqualTo("1,2");
         }
     }
 

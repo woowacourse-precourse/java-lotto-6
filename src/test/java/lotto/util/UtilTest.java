@@ -1,9 +1,10 @@
 package lotto.util;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.assertj.core.api.Assertions.*;
 
 
 class UtilTest {
@@ -19,7 +20,7 @@ class UtilTest {
                 "1500000, 1500000, 100"
         })
         void 수익률을_잘_계산하는지_테스트(float before, float after, float expected) {
-            Assertions.assertThat(Util.calculateYield(before, before + after)).isEqualTo(expected);
+            assertThat(Util.calculateYield(before, before + after)).isEqualTo(expected);
         }
     }
 
@@ -32,7 +33,7 @@ class UtilTest {
                 "123023.78: 1: 123,023.8"
         }, delimiter = ':')
         void 형식에_맞추어_소수_첫쨰자리에서_반환하는지_테스트(float target, int precision, String expected) {
-            Assertions.assertThat(Util.makeFloatFormattedYield(target, precision)).isEqualTo(expected);
+            assertThat(Util.makeFloatFormattedYield(target, precision)).isEqualTo(expected);
         }
     }
 }

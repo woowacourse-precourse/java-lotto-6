@@ -9,15 +9,18 @@ public class LottoController {
     private final static Integer START = 0;
     private Lottos lottos;
     private BuyAmount buyAmount;
+    private WinNumbers winNumbers;
+    private BonusNumber bonusNumber;
 
     public LottoController() {
         buyLotto();
         showLotto();
+        inputLottoNumber();
     }
 
-    protected void buyLotto() {
+    private void buyLotto() {
         Output.printBuyAmount();
-        buyAmount = new BuyAmount(Input.user());
+        this.buyAmount = new BuyAmount(Input.user());
         List<Lotto> lottos = new ArrayList<>();
         for(int i = START; i < buyAmount.getBuyCount(); i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
@@ -28,7 +31,7 @@ public class LottoController {
     }
 
     private void showLotto() {
-        Output.printBuyCount(buyAmount.getBuyCount());
+        Output.printBuyCount(this.buyAmount.getBuyCount());
         for(Lotto lotto : this.lottos.getLottos()) {
             List<Integer> lottoNumber = lotto.getLotto();
             Output.printLottoNumber(Arrays
@@ -37,6 +40,15 @@ public class LottoController {
                             .mapToInt(Integer::intValue)
                             .toArray()));
         }
+    }
+
+    private void inputLottoNumber() {
+        Output.printLottoWinNumber();
+        String winNumberInput = Input.user();
+        this.winNumbers = new WinNumbers(winNumberInput.split(","));
+        Output.printLottoBonusNumber();
+        String bonusNumberInput = Input.user();
+        this.bonusNumber = new BonusNumber(bonusNumberInput);
     }
 
 

@@ -19,7 +19,7 @@ public class PurchaseAmount {
 
     private static void validatePurchaseUnit(Integer purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("구입 금액은 1,000원 단위이어야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위이어야 합니다.");
         }
     }
 

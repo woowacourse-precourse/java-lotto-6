@@ -3,10 +3,10 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Answer;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
 import lotto.domain.Tickets;
 import lotto.domain.TotalResult;
 import lotto.util.InputHandler;
-import lotto.util.LottoMachine;
 import lotto.view.View;
 
 public class LottoController {
@@ -14,8 +14,8 @@ public class LottoController {
     private final InputHandler inputHandler = new InputHandler();
 
     public void run() {
-        int money = receiveInputAndGetMoney();
-        Tickets tickets = createTickets(money);
+        Money money = receiveInputAndGetMoney();
+        Tickets tickets = money.createTicket();
         view.printLottoInfo(tickets);
         view.winningNumberInputGuideMsg();
         Lotto hitNumbers = createHitNumbers();
@@ -25,18 +25,15 @@ public class LottoController {
         TotalResult totalResult = calcHitResult(tickets, answer);
         view.hitResultTitle();
         view.printHitResult(totalResult);
-        double rateOfReturn = totalResult.calcRateOfReturn(money);
+        long sumOfPrize = totalResult.calcPrize();
+        double rateOfReturn = money.calcRateOfReturn(sumOfPrize);
         view.printRateOfReturn(rateOfReturn);
     }
 
-    private int receiveInputAndGetMoney() {
+    private Money receiveInputAndGetMoney() {
         view.moneyInputGuideMsg();
-        return inputHandler.inputMoney();
-    }
-
-    private Tickets createTickets(int money) {
-        LottoMachine machine = new LottoMachine();
-        return machine.generateTickets(money);
+        int money = inputHandler.inputMoney();
+        return new Money(money);
     }
 
     private Answer createAnswer(Lotto hitNumbers) {

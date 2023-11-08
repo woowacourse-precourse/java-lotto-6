@@ -5,7 +5,6 @@ import lotto.enums.Reward;
 
 public class TotalResult {
     private static final long SUM_INIT_VAL = 0L;
-    private static final int MULTIPLE_VAL = 100;
 
     private final EnumMap<Reward, Integer> totalResult;
 
@@ -17,7 +16,7 @@ public class TotalResult {
         return totalResult;
     }
 
-    public double calcRateOfReturn(int money) {
+    public long calcPrize() {
         long sum = SUM_INIT_VAL;
 
         for (Reward reward : totalResult.keySet()) {
@@ -25,6 +24,6 @@ public class TotalResult {
             sum += rewardValue * totalResult.get(reward);
         }
 
-        return (double) sum / money * MULTIPLE_VAL;
+        return sum;
     }
 }

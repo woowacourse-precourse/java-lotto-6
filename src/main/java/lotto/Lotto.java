@@ -1,7 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static constants.Constant.*;
 
@@ -9,6 +8,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        Collections.sort(numbers);
         validateLengthLotto(numbers);
         validateRangeLotto(numbers);
         validateOrderLotto(numbers);

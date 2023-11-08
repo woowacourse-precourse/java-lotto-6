@@ -3,6 +3,8 @@ package lotto.controller;
 import lotto.domain.WinningNumber;
 
 public class WinningNumberController {
+
+    private final WinningNumber winningNumber = WinningNumber.getInstance();
     private WinningNumberController() {
     }
 
@@ -15,10 +17,10 @@ public class WinningNumberController {
     }
 
     public void putWinningNums(String winningNums){
-        WinningNumber.getInstance().putWinningNums(winningNums);
+        winningNumber.putWinningNums(winningNums);
     }
     public void putBonusNum(String bonusNum){
-        WinningNumber.getInstance().putBonusNum(bonusNum);
+        winningNumber.putBonusNum(bonusNum);
 
     }
 }

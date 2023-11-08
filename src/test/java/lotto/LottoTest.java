@@ -1,11 +1,12 @@
 package lotto;
 
+import lotto.element.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.*;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -23,5 +24,22 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("두 개의 로또 번호를 비교한다.")
+    @Test
+    void executeCountMatch() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto other = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int result = lotto.countMatch(other);
+
+        assertThat(result).isEqualTo(6);
+    }
+
+    @DisplayName("출력 형식을 확인한다.")
+    @Test
+    void executeToString() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        String result = lotto.toString();
+
+        assertThat(result).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }

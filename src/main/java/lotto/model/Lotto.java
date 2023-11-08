@@ -21,10 +21,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateRange(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ConsoleMessage.SIZE_MISMATCH_ERROR_MESSAGE);
         }
+    }
 
+    private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < LottoNumberRange.MIN.getValue() || number > LottoNumberRange.MAX.getValue()) {
                 throw new IllegalArgumentException(ConsoleMessage.LOTTO_OUT_OF_RANGE_ERROR_MESSAGE);

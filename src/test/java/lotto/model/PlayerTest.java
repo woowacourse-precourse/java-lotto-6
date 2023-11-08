@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.constant.LotteryRank;
-import lotto.utils.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,7 +14,6 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 

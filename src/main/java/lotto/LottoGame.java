@@ -6,7 +6,7 @@ import lotto.model.Lotto;
 import lotto.model.Capital;
 import lotto.model.Player;
 import lotto.model.WinningDetails;
-import lotto.utils.LottoMachine;
+import lotto.model.LottoMachine;
 
 public class LottoGame {
 
@@ -24,6 +24,4 @@ public class LottoGame {
 
         OutputConsole.printWinningDetails(winningDetails);
     }
-
-
 }

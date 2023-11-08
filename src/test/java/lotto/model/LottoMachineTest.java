@@ -1,7 +1,8 @@
-package lotto.utils;
+package lotto.model;
 
 import lotto.constant.LotteryRank;
 import lotto.model.Lotto;
+import lotto.model.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -11,18 +12,17 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoMachineTest {
     @DisplayName("당첨 등수를 계산하는 테스트")
     @ParameterizedTest
     @MethodSource("generateLotto")
-    void calculateLotteryRankTest(Lotto winningLotto, int bonusNumber, Lotto playerLotto, LotteryRank expected) {
+    void calculateLotteryRankTest(Lotto winningLotto, int bonusNumber, Lotto playerLotto, LotteryRank playerLotteryRank, boolean expected) {
         // given
         LottoMachine lottoMachine = new LottoMachine(winningLotto, bonusNumber);
 
         // when
-        LotteryRank result = lottoMachine.calculateLotteryRank(playerLotto);
+        boolean result = lottoMachine.checkLotteryRank(playerLotto, playerLotteryRank);
 
         // then
         assertThat(result).isEqualTo(expected);
@@ -36,37 +36,43 @@ class LottoMachineTest {
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         7,
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        LotteryRank.FIRST_PRIZE
+                        LotteryRank.FIRST_PRIZE,
+                        true
                 ),
                 Arguments.of(
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         7,
                         new Lotto(List.of(1, 2, 3, 4, 5, 7)),
-                        LotteryRank.SECOND_PRIZE
+                        LotteryRank.SECOND_PRIZE,
+                        true
                 ),
                 Arguments.of(
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         7,
                         new Lotto(List.of(1, 2, 3, 4, 5, 9)),
-                        LotteryRank.THIRD_PRIZE
+                        LotteryRank.THIRD_PRIZE,
+                        true
                 ),
                 Arguments.of(
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         7,
                         new Lotto(List.of(1, 2, 3, 4, 8, 9)),
-                        LotteryRank.FOURTH_PRIZE
+                        LotteryRank.FOURTH_PRIZE,
+                        true
                 ),
                 Arguments.of(
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         7,
                         new Lotto(List.of(1, 2, 3, 8, 9, 10)),
-                        LotteryRank.FIFTH_PRIZE
+                        LotteryRank.FIFTH_PRIZE,
+                        true
                 ),
                 Arguments.of(
                         new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                         7,
                         new Lotto(List.of(7, 8, 9, 10, 11, 12)),
-                        LotteryRank.ETC
+                        LotteryRank.ETC,
+                        true
                 )
         );
     }

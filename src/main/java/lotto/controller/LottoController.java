@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.Constants;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,18 +18,22 @@ public class LottoController {
         int bonusNumber;
 
         public void run(){
-               int count = buyingLotto();
-                OutputView.printLottoCount(count);
+                try {
+                        int count = buyingLotto();
+                        OutputView.printLottoCount(count);
 
-                makeLottos(count);
+                        makeLottos(count);
 
-                lottoNumbers = InputView.inputLottoNumbers();
-                Lotto winLotto = new Lotto(lottoNumbers);
+                        lottoNumbers = InputView.inputLottoNumbers();
+                        Lotto winLotto = new Lotto(lottoNumbers);
 
-                bonusNumber = InputView.inputBonusNumber();
+                        bonusNumber = InputView.inputBonusNumber();
 
-                calculateLotto = new CalculateLotto(winLotto,bonusNumber);
-                resultLottos(lottos,calculateLotto,payMoney);
+                        calculateLotto = new CalculateLotto(winLotto, bonusNumber);
+                        resultLottos(lottos, calculateLotto, payMoney);
+                }catch (IllegalArgumentException e){
+                        System.out.println("[ERROR] " + e.getMessage());
+                }
         }
         private int buyingLotto() {
                 payMoney = InputView.inputMoney();
@@ -75,13 +80,12 @@ public class LottoController {
         }
         private void printProfit(Map<WinLotto, Integer> result, int payMoney){
                 double profit = 0;
-
+                long totlaPrize = 0;
                 for( WinLotto winLotto: result.keySet()){
-                        profit = profit + ((double)(winLotto.getPrize()))/ payMoney * result.get(winLotto)*100;
+                        totlaPrize += (long) winLotto.getPrize() * result.get(winLotto);
                 }
+                profit = (double) totlaPrize / payMoney * Constants.PERCENTAGE;
                 OutputView.printProfit(profit);
         }
-
-
 
 }

@@ -16,10 +16,21 @@ public class InputView {
         }
         public static int inputMoney() {
                 OutputView.mentionInputPrice();
-               return Integer.parseInt(Console.readLine());
+                String inputMoney = Console.readLine();
+
+               return conventToInt(inputMoney);
         }
         public static int inputBonusNumber() {
                 OutputView.mentionInputBonusNumber();
-                return Integer.parseInt(Console.readLine());
+                String inputBonusNumber = Console.readLine();
+                return conventToInt(inputBonusNumber);
+        }
+
+        private static int conventToInt(String inputNumber) {
+                try {
+                        return Integer.parseInt(inputNumber);
+                } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("숫자만 입력하세요");
+                }
         }
 }

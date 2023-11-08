@@ -35,7 +35,8 @@ public class Lotto {
     }
 
     public static Lotto generate() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+                LOTTO_NUMBER_COUNT);
         return new Lotto(numbers);
     }
 

@@ -12,6 +12,7 @@ public class GenerateLotto {
 
     public List<Lotto> generateLottoList(int amount) {
         List<Lotto> lottoList = new ArrayList<>();
+        outputService.printAmount(amount);
         for (int i = 0; i < amount; i++) {
             Lotto lotto = new Lotto(generateNumbers());
             outputService.printLotto(lotto.getNumbers());

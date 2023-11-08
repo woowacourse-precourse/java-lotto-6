@@ -12,6 +12,11 @@ public class Money {
         this.money = money;
     }
 
+    public Money(String input) {
+        validate.IsRightFormatMoney(input);
+        this.money = Integer.parseInt(input);
+    }
+
 
     public int getMoney() {
         return this.money;

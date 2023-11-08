@@ -15,16 +15,16 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WalletTest {
-    static Integer lottoPrice;
+    static Integer maximumPurchaseAmount;
 
     @BeforeAll
     public static void getConstantValue() throws NoSuchFieldException, IllegalAccessException {
         Wallet wallet = new Wallet("1000");
 
-        Field privateLottoPrice = Wallet.class.getDeclaredField("LOTTO_PRICE");
-        privateLottoPrice.setAccessible(true);
+        Field privateMaximumPurchaseAmount = Wallet.class.getDeclaredField("MAXIMUM_PURCHASE_AMOUNT");
+        privateMaximumPurchaseAmount.setAccessible(true);
 
-        lottoPrice = (Integer) privateLottoPrice.get(wallet);
+        maximumPurchaseAmount = (Integer) privateMaximumPurchaseAmount.get(wallet);
     }
 
     @DisplayName("구입 금액에 숫자가 아닌 값이 있으면 예외가 발생 한다.")
@@ -43,18 +43,18 @@ public class WalletTest {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                        + lottoPrice + "원.");
+                        + maximumPurchaseAmount + "원.");
     }
 
     @DisplayName("구입 금액이 최대금액을 넘는 경우 예외가 발생한다.")
     @Test
     void createWalletByNullMoney() {
-        int inputMoney = lottoPrice + 1000;
+        int inputMoney = maximumPurchaseAmount + 1000;
 
         assertThatThrownBy(() -> new Wallet(String.valueOf(inputMoney)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                        + lottoPrice + "원.");
+                        + maximumPurchaseAmount + "원.");
     }
 
     @DisplayName("구입 금액이 1000으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
@@ -64,7 +64,7 @@ public class WalletTest {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                        + lottoPrice + "원.");
+                        + maximumPurchaseAmount + "원.");
     }
 
     @DisplayName("구입 금액이 정상적으로 들어온 경우.")

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.dto.LottoTicketDto;
 import lotto.domain.dto.WinningResultDto;
 import lotto.domain.lotto.*;
 import lotto.domain.result.WinningLotto;
@@ -13,15 +14,13 @@ public class Controller {
     public void run() {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         LottoTicket lottoTicket = buyTicket(purchaseAmount.getPurchaseCount());
-        printPurchaseLottoResult(lottoTicket);
+        printPurchaseLottoResult(LottoTicketDto.of(lottoTicket));
 
         WinningLotto winningLotto = new WinningLotto(getWinningLotto());
         getBonusNumber(winningLotto);
 
         WinningResult winningResult = getWinningResult(lottoTicket, winningLotto);
         printWinningResult(WinningResultDto.of(winningResult));
-
-
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -37,8 +36,8 @@ public class Controller {
         return LottoTicketFactory.generateTicket(purchaseLottoCount);
     }
 
-    private void printPurchaseLottoResult(LottoTicket ticket) {
-        OutputView.printPurchaseLottoResult(ticket);
+    private void printPurchaseLottoResult(LottoTicketDto lottoTicketDto) {
+        OutputView.printPurchaseLottoResult(lottoTicketDto);
     }
 
     private Lotto getWinningLotto() {

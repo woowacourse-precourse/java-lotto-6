@@ -9,8 +9,8 @@ import java.util.Map;
 public class WinningResultDto {
     private static final long ZERO_FOR_INVALID_KEY = 0L;
 
-    private Map<Ranking, Long> result;
-    private double rateOfReturnPercent;
+    private final Map<Ranking, Long> result;
+    private final double rateOfReturnPercent;
 
     private WinningResultDto(Map<Ranking, Long> result, double rateOfReturnPercent) {
         this.result = Collections.unmodifiableMap(result);

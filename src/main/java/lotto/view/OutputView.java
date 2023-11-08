@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.dto.LottoDto;
+import lotto.domain.dto.LottoTicketDto;
 import lotto.domain.dto.WinningResultDto;
 import lotto.domain.result.Ranking;
 import lotto.domain.result.WinningResult;
@@ -19,15 +21,15 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printPurchaseLottoResult(final LottoTicket ticket) {
-        List<Lotto> lottos = ticket.getLottos();
+    public static void printPurchaseLottoResult(final LottoTicketDto lottoTicketDto) {
+        List<LottoDto> lottos = lottoTicketDto.getLottos();
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            printLottoNumbers(lotto);
+        for (LottoDto lottoDto : lottos) {
+            printLottoNumbers(lottoDto);
         }
     }
-    public static void printLottoNumbers(Lotto lotto){
-        System.out.println(lotto.getLottoNumbers());
+    public static void printLottoNumbers(LottoDto lottoDto){
+        System.out.println(lottoDto.getLottoNumbers());
     }
 
     public static void printWinningResult(final WinningResultDto winningResultDto) {

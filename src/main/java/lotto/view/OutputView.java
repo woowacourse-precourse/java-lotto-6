@@ -52,6 +52,10 @@ public class OutputView {
         printPrizeResultDetail(prizeResult);
     }
 
+    private static void printPrizeResultMessage() {
+        System.out.println(SystemMessage.PRINT_WINNING_RESULT.getMessage());
+    }
+
     private static void printPrizeResultDetail(HashMap<LottoPrize, Integer> prizeResult) {
         StringBuilder sb = new StringBuilder();
         for (LottoPrize lottoPrize : prizeResult.keySet()) {
@@ -62,10 +66,6 @@ public class OutputView {
             sb.append(result).append("\n");
         }
         System.out.print(sb);
-    }
-
-    private static void printPrizeResultMessage() {
-        System.out.println(SystemMessage.PRINT_WINNING_RESULT.getMessage());
     }
 
     public void printRateOfReturn(String rateOfReturn) {

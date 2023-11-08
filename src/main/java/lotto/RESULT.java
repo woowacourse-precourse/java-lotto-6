@@ -9,4 +9,8 @@ public enum RESULT {
     RESULT(int profit) {
         this.profit = profit;
     }
+
+    public int getProfit(){
+        return this.profit;
+    }
 }

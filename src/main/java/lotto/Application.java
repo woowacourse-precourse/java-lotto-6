@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,8 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        lottoes = new ArrayList<>();
+        selectedNumbers = new ArrayList<>();
         price = getPurchasePrice();
         amount = price / 1000;
         getLottoes(amount);
@@ -26,17 +29,31 @@ public class Application {
         getBonusNumber();
         results = new HashMap<>();
         getResults();
+        printProfit();
+    }
+
+    private static void printProfit() {
+        getProfit();
+        int netProfit = profit - price;
+        double profitRatio = (double) profit / (double) price;
+        System.out.println("총 수익률은 " + String.format("%.1f", profitRatio * 100) + "%입니다.");
+    }
+
+    private static void getProfit() {
+        for (RESULT result : results.keySet()){
+            profit += results.get(result) * result.getProfit();
+        }
     }
 
     private static void getResults() {
         System.out.println("당첨 통계");
         System.out.println("---");
         getCount();
-        System.out.println("3개 일치 (5,000원) - " + results.get(RESULT.THREE_STRIKE) + "개");
-        System.out.println("4개 일치 (50,000원) - " + results.get(RESULT.FOUR_STRIKE) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + results.get(RESULT.FIVE_STRIKE) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + results.get(RESULT.FIVE_STRIKE_AND_BONUS) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + results.get(RESULT.SIX_STRIKE) + "개");
+        System.out.println("3개 일치 (5,000원) - " + results.getOrDefault(RESULT.THREE_STRIKE, 0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + results.getOrDefault(RESULT.FOUR_STRIKE, 0) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + results.getOrDefault(RESULT.FIVE_STRIKE, 0) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + results.getOrDefault(RESULT.FIVE_STRIKE_AND_BONUS, 0) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + results.getOrDefault(RESULT.SIX_STRIKE, 0) + "개");
     }
 
     private static void getCount() {
@@ -52,7 +69,8 @@ public class Application {
             try {
                 String input = Console.readLine();
                 bonusNumber = Integer.parseInt(input);
-            } catch (Exception e){
+                break;
+            } catch (IllegalArgumentException e){
                 System.out.println("[ERROR] 올바른 숫자를 입력해주세요.");
             }
         }
@@ -73,7 +91,7 @@ public class Application {
                         .collect(Collectors.toList());
                 validateNumbers(numbers);
                 break;
-            } catch (Exception e){
+            } catch (IllegalArgumentException e){
                 System.out.println("[ERROR] 6개의 번호를 입력해주세요.");
             }
         }
@@ -104,13 +122,14 @@ public class Application {
 
     public static int getPurchasePrice() {
         System.out.println("구입 금액을 입력해 주세요.");
+        int price;
         while (true){
             try {
                 String input = Console.readLine();
-                int price = Integer.parseInt(input);
+                price = Integer.parseInt(input);
                 isValidPrice(price);
                 break;
-            } catch (Exception e){
+            } catch (IllegalArgumentException e){
                 System.out.println("[ERROR] 구입 금액은 1,000원 단위로 나누어 떨어져야 합니다.");
             }
         }
@@ -119,7 +138,7 @@ public class Application {
 
     public static void isValidPrice(int price) {
         if (isPriceDividedByThousand(price)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 나누어 떨어져야 합니다.");
         }
     }
 

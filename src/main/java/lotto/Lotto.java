@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        DuplicationCheck.validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +17,21 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void printLotto() {
+        System.out.println(numbers.toString());
+    }
+
+    public int compareWinningNumber(List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : winningNumbers) {
+            if (numbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public boolean compareBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

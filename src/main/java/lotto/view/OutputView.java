@@ -15,8 +15,6 @@ public class OutputView {
     private static final String ONLY_SECOND = "개 일치, 보너스 볼 일치 (";
     private static final String OTHER_PRIZE = "개 일치 (";
     private static final String COUNT = "개";
-
-
     private static final String PRINT_FORMAT = ") - ";
 
     public static void printLottoCount(int lottoCount) {

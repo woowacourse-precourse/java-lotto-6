@@ -15,4 +15,18 @@ public enum WinnerPrize {
         this.correctCount = correctCount;
         this.prize = prize;
     }
+
+    public static WinnerPrize findWinnerPrize(float correctCount) {
+        WinnerPrize[] allWinnerPrize = getAllWinnerPrize();
+        for (WinnerPrize winnerPrize : allWinnerPrize) {
+            if (winnerPrize.correctCount == correctCount) {
+                return winnerPrize;
+            }
+        }
+        return null; // TODO: refactoring
+    }
+
+    public static WinnerPrize[] getAllWinnerPrize() {
+        return WinnerPrize.values();
+    }
 }

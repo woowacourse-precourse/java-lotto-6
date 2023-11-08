@@ -14,7 +14,28 @@ public class Game {
     public Game() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
+        GameResult.create();
         init();
+    }
+
+    public void run() {
+
+        List<Lotto> purchaseLotto = LottoStorage.getLotto();
+
+        for (Lotto lotto : purchaseLotto) {
+
+            float correctCount = LottoWinner.compareWinningLotto(lotto);
+            if (correctCount == 5) {
+                correctCount += LottoWinner.compareBonusLotto(lotto);
+            }
+
+            WinnerPrize winnerPrize = WinnerPrize.findWinnerPrize(correctCount);
+
+            GameResult.increaseWinnerPrizeCount(winnerPrize);
+
+            // 수익률 계산
+
+        }
     }
 
     private void init() {

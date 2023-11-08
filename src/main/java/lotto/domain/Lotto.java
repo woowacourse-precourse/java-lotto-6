@@ -1,34 +1,31 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.error.Error;
 import lotto.error.Error.ErrorType;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
         Set<Integer> setNumbers = new HashSet<>(numbers);
         boolean duplication = setNumbers.size() != numbers.size();
 
         if (numbers.size() != 6) {
-            Error.errorMessage(ErrorType.INVALID_LOTTO_INPUT);
+            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_SIZE.getMessage());
         } else if (duplication) {
-            Error.errorMessage(ErrorType.DUPLICATION);
+            throw new IllegalArgumentException(ErrorType.DUPLICATION.getMessage());
         } else if (!isInRange(numbers)) {
-            Error.errorMessage(ErrorType.INVALID_LOTTO_INPUT);
+            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_RANGE.getMessage());
         }
     }
 
-    private boolean isInRange(List<Integer> numbers) {
+    private static boolean isInRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < 1 || number > 45) {
                 return false;
@@ -37,17 +34,16 @@ public class Lotto {
         return true;
     }
 
-    private void validate(int bonusNumber) {
+    public void validate(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            Error.errorMessage(ErrorType.INVALID_LOTTO_INPUT);
+            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_RANGE.getMessage());
         } else if (numbers.contains(bonusNumber)) {
-            Error.errorMessage(ErrorType.DUPLICATION);
+            throw new IllegalArgumentException(ErrorType.DUPLICATION.getMessage());
         }
     }
 
     // TODO: 추가 기능 구현
     public void inputBonusNumber(int bonusNumber) {
-        validate(bonusNumber);
         this.numbers.add(bonusNumber);
     }
 

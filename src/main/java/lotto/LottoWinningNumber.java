@@ -19,6 +19,7 @@ public class LottoWinningNumber {
             throw new IllegalArgumentException();
         }
     }
+
     private void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("Bonus number must be between 1 and 45.");

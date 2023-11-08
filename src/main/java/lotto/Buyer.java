@@ -14,22 +14,22 @@ public class Buyer {
         this.money = money;
     }
 
-    public int getMoney(){
+    public int getMoney() {
         return money;
     }
 
-    public void setLottoCollection(List<Integer> lotto){
+    public void setLottoCollection(List<Integer> lotto) {
         List<Integer> sortedLotto = lotto.stream()
                 .sorted()
                 .collect(Collectors.toList());
         lottoCollection.add(sortedLotto);
     }
 
-    public List<Integer> getLottoCollection(int num){
+    public List<Integer> getLottoCollection(int num) {
         return lottoCollection.get(num);
     }
 
-    public List<List<Integer>> getAllLottoCollection(){
+    public List<List<Integer>> getAllLottoCollection() {
         return lottoCollection;
     }
 

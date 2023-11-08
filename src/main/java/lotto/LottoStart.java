@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class LottoStart {
 
     private static Buyer buyer;
+    private static Lotto lotto;
     private static LottoWinningNumber lottoWinningNumber;
     private static CalculateMachine calculateMachine;
     private static PrintWinningResult printWinningResult;
@@ -24,7 +25,6 @@ public class LottoStart {
         last_GameProgress();
 
     }
-
 
     public static void first_GameProgress() {
         System.out.println(Messages.lottoStartMessages.HOW_MUCH_BUY_MESSAGE.getMessage());
@@ -43,17 +43,19 @@ public class LottoStart {
         System.out.println();
     }
 
-    private static void second_GameProgress() {
+    public static void second_GameProgress() {
         System.out.println(Messages.lottoStartMessages.MAKE_WINNING_NUMBER.getMessage());
         List<Integer> inputWinningNumbers = second_InputWinningNumber();
+        System.out.println();
 
         System.out.println(Messages.lottoStartMessages.MAKE_BONUS_NUMBER.getMessage());
         int inputBonusNumbers = second_InputBonusNumber(inputWinningNumbers);
+        System.out.println();
 
         second_CreateLottoWinningNumber(inputWinningNumbers, inputBonusNumbers);
     }
 
-    private static void last_GameProgress() {
+    public static void last_GameProgress() {
         System.out.println(Messages.lottoStartMessages.WINNING_STATISTICS.getMessage());
         System.out.println(Messages.lottoStartMessages.BOARDER_LINE.getMessage());
 
@@ -69,7 +71,7 @@ public class LottoStart {
     }
 
     //로또 구입 결과 출력 까지
-    public static int first_InputProgress() {
+    private static int first_InputProgress() {
         while (true) {
             try {
                 String inputHowMuchBuy = Console.readLine();
@@ -95,7 +97,7 @@ public class LottoStart {
     private static void first_MakeLotto(Buyer buyer, int numberOfLotto) {
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto lotto = new Lotto(numbers);
+            lotto = new Lotto(numbers);
             buyer.setLottoCollection(lotto.getLottoSixNum());
         }
     }
@@ -108,19 +110,34 @@ public class LottoStart {
     }
 
     //당첨 번호와 보너스 번호 입력 까지
-    public static List<Integer> second_InputWinningNumber() {
+    private static List<Integer> second_InputWinningNumber() {
+        List<Integer> winningNumbers;
+
+        while (true) {
+            try {
+                winningNumbers = second_formattingWinningNumbers();
+                Lotto winningNumbersCheck = new Lotto(winningNumbers);
+
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 중복된 숫자가 있습니다. 다시 입력해 주세요.");
+            }
+        }
+
+        return winningNumbers;
+    }
+    private static List<Integer> second_formattingWinningNumbers() {
         String inputWinningNumbers = Console.readLine();
 
-        List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers.split(","))
+        return Arrays.stream(inputWinningNumbers.split(","))
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-
-        return winningNumbers;
     }
-
-    public static int second_InputBonusNumber(List<Integer> inputWinningNumbers) {
+    private static int second_InputBonusNumber(List<Integer> inputWinningNumbers) {
         while (true) {
             try {
                 String inputBonusNumbers = Console.readLine();

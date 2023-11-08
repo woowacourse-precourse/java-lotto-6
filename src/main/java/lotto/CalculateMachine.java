@@ -8,9 +8,9 @@ public class CalculateMachine {
     private static List<Integer> winningNumbers;
     private static int bonusNumber;
     public CalculateMachine(List<List<Integer>> allLottoCollection, List<Integer> winningNumbers, int bonusNumber) {
-        this.allLottoCollection = allLottoCollection;
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+        CalculateMachine.allLottoCollection = allLottoCollection;
+        CalculateMachine.winningNumbers = winningNumbers;
+        CalculateMachine.bonusNumber = bonusNumber;
     }
 
     private int matchingLottoNumbers(List<Integer> lotto, List<Integer> winningNumbers) {

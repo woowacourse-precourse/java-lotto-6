@@ -9,12 +9,11 @@ public class Application {
     private static final LottoGame lottoGame = new LottoGame();
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
+
     public static void main(String[] args) {
-        try{
-            LottoController lottoController = new LottoController(lottoGame, inputView, outputView);
-            lottoController.run();
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
+
+        LottoController lottoController = new LottoController(lottoGame, inputView, outputView);
+        lottoController.run();
+
     }
 }

@@ -50,6 +50,6 @@ public class Human {
     }
 
     public double getReturnRate() {
-        return this.reward / (this.lottos.size() * 1000);
+        return (double) this.reward / (this.lottos.size() * 1000);
     }
 }

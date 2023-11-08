@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.constants.ExceptionMessage;
+import lotto.constants.GameRule;
 import lotto.domain.WinningNumber;
 
 public class InputValidator {
@@ -62,7 +63,7 @@ public class InputValidator {
     }
 
     public static void checkLottoRange(String number) {
-        if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
+        if (Integer.parseInt(number) < GameRule.MIN_LOTTO_NUMBER  || Integer.parseInt(number) > GameRule.MAX_LOTTO_NUMBER) {
             throw LottoGameException.withMessage(ExceptionMessage.BONUS_DUPLICATE_ERROR);
         }
     }

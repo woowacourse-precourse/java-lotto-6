@@ -44,7 +44,6 @@ public class ResultCalculator {
                 .mapToInt(Result::getPrize)
                 .sum();
 
-        double profitRatio = (double) totalPrize / purchaseAmount.getAmount();
-        return profitRatio * 100;
+        return (double) totalPrize / purchaseAmount.getAmount() * 0.1;
     }
 }

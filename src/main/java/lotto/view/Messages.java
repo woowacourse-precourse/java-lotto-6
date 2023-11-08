@@ -9,7 +9,7 @@ public class Messages {
     public static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     public static final String WINNING_STATISTICS_HEADER = "당첨 통계\n---";
     public static final String WINNING_MESSAGE_FORMAT = "%s (%s원) - %d개";
-    public static final String TOTAL_PROFIT_MESSAGE_FORMAT = "총 수익률은 %.2f%%입니다.";
+    public static final String TOTAL_PROFIT_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static final String LOTTO_NUMBER_OUT_OF_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는"
             + LottoConstants.LOTTO_MIN_NUMBER

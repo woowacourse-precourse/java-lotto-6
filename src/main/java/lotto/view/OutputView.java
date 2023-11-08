@@ -47,11 +47,4 @@ public class OutputView {
         }
     }
 
-    public static void printWinningResults(long firstPrizeCount, long secondPrizeCount, long thirdPrizeCount, long fourthPrizeCount, long fifthPrizeCount) {
-        printLottoPrize(Rank.THIRD.getDescription(), Rank.THIRD.getPrize(), (int) thirdPrizeCount);
-        printLottoPrize(Rank.FOURTH.getDescription(), Rank.FOURTH.getPrize(), (int) fourthPrizeCount);
-        printLottoPrize(Rank.FIFTH.getDescription(), Rank.FIFTH.getPrize(), (int) fifthPrizeCount);
-        printLottoPrize(Rank.SECOND.getDescription(), Rank.SECOND.getPrize(), (int) secondPrizeCount);
-        printLottoPrize(Rank.FIRST.getDescription(), Rank.FIRST.getPrize(), (int) firstPrizeCount);
-    }
 }

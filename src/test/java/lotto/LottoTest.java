@@ -22,5 +22,11 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    
+
+    @DisplayName("로또 번호를 반환한다")
+    @Test
+    void getLottoNumber() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
+    }
 }

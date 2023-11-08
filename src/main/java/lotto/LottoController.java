@@ -1,20 +1,14 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LottoController {
 
     public static final OutputView OUTPUT_VIEW = new OutputView();
-    public final LottoPublisher LOTTO_PUBLISHER = new LottoPublisher();
-    public Statistics statistics;
-    public int price;
+    private final LottoPublisher LOTTO_PUBLISHER = new LottoPublisher();
+    private Statistics statistics;
+    private int price;
 
     public void run() {
         price = buyLotto();
@@ -42,7 +36,7 @@ public class LottoController {
         return price;
     }
 
-    public List<Lotto> userLotto(int lottoCount) {
+    private List<Lotto> userLotto(int lottoCount) {
         OUTPUT_VIEW.enterMessage();
         OUTPUT_VIEW.printBuyLottoMessage(lottoCount);
         List<Lotto> lottos = LOTTO_PUBLISHER.publishLotto(lottoCount);
@@ -51,7 +45,7 @@ public class LottoController {
         return lottos;
     }
 
-    public Lotto getWinNumber() {
+    private Lotto getWinNumber() {
         OUTPUT_VIEW.enterMessage();
         List<Integer> winnerNumbers = null;
         while (true) {
@@ -73,7 +67,7 @@ public class LottoController {
         return number.replace(" ", "");
     }
 
-    public int getBonusNumber(Lotto number) {
+    private int getBonusNumber(Lotto number) {
         OUTPUT_VIEW.enterMessage();
         int bonusNumber = 0;
         while (true) {
@@ -87,7 +81,7 @@ public class LottoController {
         return bonusNumber;
     }
 
-    public void winnerStatistics(List<Lotto> userLottos, Lotto winLotto, int bonusNumber) {
+    private void winnerStatistics(List<Lotto> userLottos, Lotto winLotto, int bonusNumber) {
         OUTPUT_VIEW.enterMessage();
         OUTPUT_VIEW.printWinningMessage();
         OUTPUT_VIEW.printDivisionMessage();

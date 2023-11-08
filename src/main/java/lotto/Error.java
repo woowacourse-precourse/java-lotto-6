@@ -1,7 +1,6 @@
 package lotto;
 
 import static lotto.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
-import static lotto.ErrorMessage.NUMBER_1_ESCAPE_ERROR_MESSAGE;
 import static lotto.ErrorMessage.NUMBER_6_ESCAPE_ERROR_MESSAGE;
 import static lotto.ErrorMessage.ONLY_INTEGER_ERROR_MESSAGE;
 import static lotto.ErrorMessage.RANGE_1_45_ERROR_MESSAGE;
@@ -65,13 +64,6 @@ public class Error {
         if (numbers.size() != 6) {
             NUMBER_6_ESCAPE_ERROR_MESSAGE.print();
             throw new IllegalArgumentException(NUMBER_6_ESCAPE_ERROR_MESSAGE.get());
-        }
-    }
-
-    public void isCollect1Number(List<Integer> numbers) {
-        if (numbers.size() != 1) {
-            NUMBER_1_ESCAPE_ERROR_MESSAGE.print();
-            throw new IllegalArgumentException(NUMBER_1_ESCAPE_ERROR_MESSAGE.get());
         }
     }
 

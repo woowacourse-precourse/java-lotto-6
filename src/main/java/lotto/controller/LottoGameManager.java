@@ -39,7 +39,7 @@ public class LottoGameManager {
                 consumer.setPurchaseAmount(purchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -58,7 +58,7 @@ public class LottoGameManager {
                 winning.setNumbers(numbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -70,7 +70,7 @@ public class LottoGameManager {
                 winning.setBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e){
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }

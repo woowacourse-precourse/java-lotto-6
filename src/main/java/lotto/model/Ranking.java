@@ -13,7 +13,7 @@ public enum Ranking {
     NONE(-1, 0, (count, isBonus) -> count < 3);
 
     private final int matchCount;
-    private final int reward;
+    private final long reward;
     private final BiFunction<Integer, Boolean, Boolean> isMatchFunction;
 
     Ranking(Integer matchCount, int reward, BiFunction<Integer, Boolean, Boolean> isMatchFunction) {
@@ -37,7 +37,7 @@ public enum Ranking {
         return this.equals(SECOND);
     }
 
-    public int getReward() {
+    public long getReward() {
         return reward;
     }
 

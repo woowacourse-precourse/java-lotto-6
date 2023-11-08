@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.BiPredicate;
+import java.util.stream.Collectors;
 
 public enum Ranking {
 
@@ -30,8 +32,18 @@ public enum Ranking {
                 .orElse(NONE);
     }
 
+    public static List<Ranking> rankingWithoutDefault(){
+        return Arrays.stream(values())
+                .filter(ranking -> ranking!=NONE)
+                .collect(Collectors.toList());
+    }
+
     public long calculatePrizeSum(long rankingCount) {
         return this.prize * rankingCount;
+    }
+
+    public int getCorrectCount() {
+        return correctCount;
     }
 
     public int getPrize() {

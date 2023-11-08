@@ -12,8 +12,14 @@ public class Controller {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         LottoTicket lottoTicket = buyTicket(purchaseAmount.getPurchaseCount());
         printPurchaseLottoResult(lottoTicket);
+
         WinningLotto winningLotto = new WinningLotto(getWinningLotto());
         getBonusNumber(winningLotto);
+
+        WinningResult winningResult = getWinningResult(lottoTicket, winningLotto);
+        printWinningResult(winningResult);
+
+
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -50,6 +56,15 @@ public class Controller {
             getBonusNumber(winningLotto);
         }
     }
+
+    private WinningResult getWinningResult(LottoTicket lottoTicket, WinningLotto winningLotto) {
+        return WinningResult.from(lottoTicket, winningLotto);
+    }
+
+    private void printWinningResult(WinningResult winningResult) {
+        OutputView.printWinningResult(winningResult);
+    }
+
 }
 
 

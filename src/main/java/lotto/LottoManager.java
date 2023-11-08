@@ -40,13 +40,21 @@ public class LottoManager {
 
     public void inputLottoPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        purchaseAmount = Integer.parseInt(Console.readLine());
+        try {
+            purchaseAmount = Integer.parseInt(Console.readLine());
+        }catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+        }
     }
 
     public void createLotties() {
         lotties = new ArrayList<>();
         NumberGenerator numberGenerator = new NumberGenerator();
         int lottoPrice = 1000;
+        if(this.purchaseAmount%lottoPrice != 0) {
+            System.out.println("[ERROR] 1000단위로 구매금액을 입력해주세요.");
+            throw new IllegalArgumentException();
+        }
         int lottoNum = this.purchaseAmount/lottoPrice;
         System.out.println(lottoNum+"개를 구매했습니다.");
         for(int i = 0; i < lottoNum; i++) {

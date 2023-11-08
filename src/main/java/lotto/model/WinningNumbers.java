@@ -12,13 +12,27 @@ public class WinningNumbers {
         this.bonus = bonus;
     }
 
+    public int getMatchCount(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+            .filter(this::isContain)
+            .count();
+    }
+
+    public Bonus getBonus() {
+        return bonus;
+    }
+
     private void validate(Lotto lotto, Bonus bonus) {
-        if (isDuplicated(lotto, bonus)) {
+        if (isContain(lotto, bonus)) {
             throw new IllegalArgumentException(BONUS_DUPLICATION_EXCEPTION);
         }
     }
 
-    private boolean isDuplicated(Lotto lotto, Bonus bonus) {
+    private boolean isContain(Integer number) {
+        return this.lotto.isContain(number);
+    }
+
+    private boolean isContain(Lotto lotto, Bonus bonus) {
         return lotto.isContain(bonus.getNumber());
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.model.LottoCount;
 import lotto.model.Lottos;
 import lotto.model.Money;

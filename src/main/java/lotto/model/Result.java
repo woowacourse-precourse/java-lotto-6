@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import lotto.Lotto;
 
 public class Result {
     private final Map<Rank, Integer> result = new LinkedHashMap<>();

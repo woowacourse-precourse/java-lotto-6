@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.Lotto;
-
 public class WinningLotto {
     private static final String BONUS_NUMBER_DOES_NOT_DUPLICATED_WITH_WINNING_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
     private static final String INVALID_NUMBER_RANGE = "[ERROR] 보너스 번호의 범위는 1 ~ 45까지 입니다.";

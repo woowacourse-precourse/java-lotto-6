@@ -1,8 +1,7 @@
-package lotto;
+package lotto.model;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.model.WinningLotto;
 
 public class Lotto {
     private static final String INVALID_LOTTO_SIZE = "[ERROR] 로또는 6개의 숫자로 이루어져야 합니다.";

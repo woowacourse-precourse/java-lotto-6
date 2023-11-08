@@ -1,7 +1,7 @@
 package lotto.util;
 
 import java.util.Arrays;
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 public class LottoConverter {
     private LottoConverter() {

@@ -7,12 +7,14 @@ import static lotto.OutputView.*;
 
 public class LottoController {
 
-    private int lottoProfit;
-    private int matchedThreeProfit;
-    private int matchedFourProfit;
-    private int matchedFiveProfit;
-    private int matchedFiveAndBonusNumber;
-    private int matchedSixProfit;
+    private float lottoProfit;
+    private float profitRate;
+    private float money;
+    private int matchedThreeProfit = 0 ;
+    private int matchedFourProfit = 0 ;
+    private int matchedFiveProfit = 0 ;
+    private int matchedFiveAndBonusNumber = 0 ;
+    private int matchedSixProfit = 0 ;
 
     private LottoPurchaseSystem lottoPurchase = new LottoPurchaseSystem();
     private LottoWinningSystem lottoWinning = new LottoWinningSystem();
@@ -26,7 +28,7 @@ public class LottoController {
         printRandomLottoNumbers();
         lottoWinning.winningNumber(inputWinningNumber());
         lottoWinning.bonusNumber(inputBonusNumber());
-        lottoWinning.winningStatics(lottoWinning.winningCheck());
+        lottoWinning.winningStatics(lottoWinning.winningCheck(lottoRandom.getRandomLottoNumbers()));
         printWinningStatics();
     }
 
@@ -37,7 +39,9 @@ public class LottoController {
         printMatchesFiveNumber(lottoWinning.matchesFiveNumber);
         printMatchesFiveAndBonusNumber(lottoWinning.matchesFiveAndBonusNumber);
         printMatchesSixNumber(lottoWinning.matchesSixNumber);
-        printProfitRate(calculateprofitRate());
+        sumLottoProfit();
+        calculateprofitRate();
+        printProfitRate(profitRate);
     }
 
     public void printRandomLottoNumbers() {
@@ -47,17 +51,19 @@ public class LottoController {
         }
     }
 
-    public int sumLottoProfit() {
+    public void sumLottoProfit() {
         matchedThreeProfit = lottoWinning.matchesThreeNumber * 5000;
         matchedFourProfit = lottoWinning.matchesFourNumber * 50000;
         matchedFiveProfit = lottoWinning.matchesFiveNumber * 1500000;
         matchedFiveAndBonusNumber = lottoWinning.matchesFiveAndBonusNumber * 30000000;
         matchedSixProfit = lottoWinning.matchesSixNumber * 2000000000;
-        return matchedThreeProfit + matchedFourProfit + matchedFiveProfit +
+
+        this.lottoProfit = matchedThreeProfit + matchedFourProfit + matchedFiveProfit +
                 matchedFiveAndBonusNumber + matchedSixProfit;
     }
-    public int calculateprofitRate() {
-        return sumLottoProfit() / lottoPurchase.getMoney();
+    public void calculateprofitRate() {
+        this.money = lottoPurchase.getMoney();
+        this.profitRate = (float)(lottoProfit/ money * 100);
     }
 
 }

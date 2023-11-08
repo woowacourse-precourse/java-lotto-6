@@ -10,14 +10,13 @@ public enum Constant {
     NUMBER_USED_TO_ROUND_FIRST_DIGIT("10"),
     NUMBER_USED_TO_MAKE_PERCENTAGE("100"),
     MONEY_UNITS("1000"),
-    LINE_FEED("\n"),
     DELIMITER(",");
 
     public static final Pattern PATTERN_NUMBER = Pattern.compile("(\\+|-)?[0-9]+");
     public static final Pattern PATTERN_FLOAT = Pattern.compile("(\\+|-)?[0-9]+(\\.[0-9]+)?");
     public static final Pattern PATTERN_POSITIVE_NUMBER_AND_1000_UNITS = Pattern.compile("(\\+?0)|(\\+?[1-9][0-9]*000)");
 
-    private String content;
+    private final String content;
 
     Constant(String content) {
         this.content = content;

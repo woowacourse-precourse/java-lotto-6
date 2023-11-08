@@ -39,6 +39,7 @@ public class LottoController {
         while(true) {
             try {
                 String inputMoney = InputView.getAmountOfMoney();
+                OutputView.printLineFeed();
                 money = new Money(inputMoney);
 
                 break;
@@ -57,11 +58,16 @@ public class LottoController {
         for (Lotto lotto : entireLotto) {
             OutputView.printLottoNumbers(lotto);
         }
+
+        OutputView.printLineFeed();
     }
 
     private void requestSelectWinningLotto() {
         Lotto lotto = requestLotto();
+        OutputView.printLineFeed();
+
         Bonus bonus = requestBonus();
+        OutputView.printLineFeed();
 
         selectWinningLottoService.select(new LottoAndBonusDTO(lotto, bonus));
     }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessage.AMOUNT_UNDER_THOUSAND_ERROR_MESSAGE;
+import static lotto.constants.ErrorMessage.NON_THOUSAND_MULTIPLE_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -14,7 +16,7 @@ class PurchaseAmountTest {
     void purchaseAmountBelowOne(int money) {
         assertThatThrownBy(() -> new PurchaseAmount(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액은 1000원 이상이어야 합니다.");
+                .hasMessage(AMOUNT_UNDER_THOUSAND_ERROR_MESSAGE);
     }
 
     @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")
@@ -23,7 +25,7 @@ class PurchaseAmountTest {
     void purchaseAmountIsNotMultipleOfThousand(int money) {
         assertThatThrownBy(() -> new PurchaseAmount(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("구입 금액이 1000원 단위이어야 합니다.");
+                .hasMessage(NON_THOUSAND_MULTIPLE_ERROR_MESSAGE);
     }
 
     @DisplayName("구입 금액이 1원 이상이고 1000원 단위일 경우 정상 생성한다.")

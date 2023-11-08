@@ -16,13 +16,13 @@ public class WinStatistics {
 
 
     public static String getStatisticsString(List<Integer> scores, long revenue) {
-        PrizeLevel[] prizeLevels = PrizeLevel.values();
         double payed = scores.size() * UNIT;
         BigDecimal winAmount = BigDecimal.valueOf(calculatePercentage(revenue, payed));
-        return toString(scores, prizeLevels, winAmount);
+        return toString(scores, winAmount);
     }
 
-    private static String toString(List<Integer> scores, PrizeLevel[] prizeLevels, BigDecimal percentage) {
+    private static String toString(List<Integer> scores, BigDecimal percentage) {
+        PrizeLevel[] prizeLevels = PrizeLevel.values();
         StringBuilder sb = new StringBuilder();
         sb.append(STATISTICS).append(DIVIDER);
         for (int i = 0; i < prizeLevels.length; i++) {

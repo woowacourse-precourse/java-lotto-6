@@ -3,7 +3,6 @@ package lotto.model;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.Optional;
 import java.util.TreeMap;
 
 public enum WiningType {
@@ -11,7 +10,8 @@ public enum WiningType {
     TWO("2등", 5, true, 30000000),
     THREE("3등", 5, false, 1500000),
     FOUR("4등", 4, false, 50000),
-    FIVE("5등", 3, false, 5000);
+    FIVE("5등", 3, false, 5000),
+    ZERO("미당첨", 0, false, 0);
 
     private String name;
     private int correctCount;
@@ -25,10 +25,11 @@ public enum WiningType {
         this.amount = amount;
     }
 
-    public static Optional<WiningType> findByWiningType(int correctCount, boolean hasBonus) {
+    public static WiningType findByWiningType(int correctCount, boolean hasBonus) {
         return Arrays.stream(values())
                 .filter(winingType -> winingType.isCorrectCount(correctCount) && winingType.hasBonus == hasBonus)
-                .findFirst();
+                .findFirst()
+                .orElse(ZERO);
     }
 
     public static Map<WiningType, Integer> winingCountToMap() {

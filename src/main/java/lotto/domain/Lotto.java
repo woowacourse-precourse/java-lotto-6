@@ -21,17 +21,17 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
         }
-
         for(int i = 0; i < numbers.size(); i++){
             for(int j = 0; j < numbers.size(); j++) {
                 checkDuplicatedError(i);
             }
 
-            if (1 > numbers.get(i) && numbers.get(i) > 45){
+            if (1 > numbers.get(i) || numbers.get(i) > 45){
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE.toString());
             }
         }
     }
+
 
     public void checkDuplicatedError(int firstfor) {
         for(int j = 0; j < numbers.size(); j++) {
@@ -43,6 +43,7 @@ public class Lotto {
             }
         }
     }
+
 
     public int checkNumber(List<Integer> numbers, Integer bonusNumber) {
         int number = (int) numbers.stream()

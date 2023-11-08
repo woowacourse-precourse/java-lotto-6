@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.Map;
 import lotto.Message.ErrorMessage;
 import lotto.Message.GameMessage;
-import lotto.util.MoneyCalculation;
 
 public class Money {
 
@@ -12,7 +11,7 @@ public class Money {
 
         public Money(int money) {
             this.money = money;
-
+            checkmoney();
         }
 
         public void checkmoney() {

@@ -8,6 +8,10 @@ public class Application {
         int purchaseAmount = purchaseAmountInput();
         System.out.println();
 
+        List<Lotto> boughtLottos = buyLotto(purchaseAmount);
+        printBoughtLottos(boughtLottos);
+        System.out.println();
+
         Lotto winningLotto = winningLottoInput();
         System.out.println();
 
@@ -48,6 +52,11 @@ public class Application {
         return lottos;
     }
 
+    public static void printBoughtLottos(List<Lotto> boughtLottos) {
+        for (Lotto lotto: boughtLottos) {
+            System.out.println(lotto.toString());
+        }
+    }
 
     private static List<Lotto> makeLottoNumbersToLotto(List<List<Integer>> LottoNumbers) {
         return LottoNumbers.stream().map(Lotto::new).collect(Collectors.toList());

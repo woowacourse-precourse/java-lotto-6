@@ -18,12 +18,12 @@ public class LottoController {
     }
 
     public LottoCollector publishLotto(String inputPurchaseAmount) throws IllegalArgumentException {
-        int purchaseAmount = validatePurchaseAmountType(inputPurchaseAmount);
+        int purchaseAmount = validateType(inputPurchaseAmount);
 
         return lottoPublishService.publish(purchaseAmount);
     }
 
-    private int validatePurchaseAmountType(String inputPurchaseAmount) {
+    private int validateType(String inputPurchaseAmount) {
         try {
             return Integer.parseInt(inputPurchaseAmount);
         } catch (NumberFormatException e) {
@@ -39,7 +39,7 @@ public class LottoController {
         String[] separatedWinningNumbers = winningNumber.split(",");
 
         return Arrays.stream(separatedWinningNumbers)
-                .map(this::validatePurchaseAmountType)
+                .map(this::validateType)
                 .toList();
     }
 }

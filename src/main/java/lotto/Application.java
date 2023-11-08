@@ -8,7 +8,13 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Player player = new Player();
-        Integer consumeMoney = player.payTicketPrice();
+        Integer consumeMoney = 0;
+        try {
+            consumeMoney = player.payTicketPrice();
+        } catch (IllegalArgumentException e){
+            e.printStackTrace();
+        }
+
 
         int myTicketCount = player.getMyTicketCount();
         player.printMyTicketCount();
@@ -17,8 +23,13 @@ public class Application {
         for (int index = 0; index < myTicketCount; index++){
             Random random = new Random();
             List<Integer> lottoNumbers = random.generateLottoNumbers();
+            Lotto lotto = null;
+            try {
+                lotto = new Lotto(lottoNumbers);
+            }catch (IllegalArgumentException e){
+                e.printStackTrace();
+            }
 
-            Lotto lotto = new Lotto(lottoNumbers);
             lottos.add(lotto);
         }
 
@@ -27,8 +38,20 @@ public class Application {
         }
 
         Picker picker = new Picker();
-        List<Integer> winNumbers = picker.generateWinNumbers();
-        Integer winBonusNumber = picker.generateWinBonusNumber();
+        List<Integer> winNumbers = null;
+        try {
+            winNumbers = picker.generateWinNumbers();
+        } catch (IllegalArgumentException e){
+            e.printStackTrace();
+        }
+
+        Integer winBonusNumber = 0;
+        try {
+            winBonusNumber = picker.generateWinBonusNumber();
+        }catch(IllegalArgumentException e){
+            e.printStackTrace();
+        }
+
 
         for (Lotto lotto : lottos) {
             lotto.compareWinNumbers(winNumbers);

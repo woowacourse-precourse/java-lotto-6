@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.response.Exception;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,14 +31,16 @@ class WinningLottoTest {
         List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 6);
         Integer bonusNumber = Integer.valueOf(3);
         assertThatThrownBy(() -> new WinningLotto(new Lotto(winningLotto), new LottoNumber(bonusNumber)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(Exception.ERROR_PREFIX.getMessage())
+                .hasMessageContaining(Exception.WINNING_NUMBERS_DUPLICATE.getMessage());
     }
 
     @DisplayName("다른 로또의 당첨 등수를 알 수 있다.")
     @ParameterizedTest
     @MethodSource("rankData")
     void compare(Lotto targetLotto, Rank rank) {
-        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)),new LottoNumber(7));
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(7));
         assertThat(winningLotto.compare(targetLotto)).isEqualTo(rank);
     }
 

@@ -2,7 +2,7 @@ package lotto.model;
 
 import lotto.constant.response.Exception;
 
-public class WinningLotto{
+public class WinningLotto {
     private final Lotto lotto;
     private final LottoNumber bonusNumber;
 
@@ -15,11 +15,11 @@ public class WinningLotto{
     private void validateDuplicate(Lotto lotto, LottoNumber bonusNumber) {
         if (lotto.hasNumber(bonusNumber)) {
             throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage()
-                    + Exception.WINNING_NUMBERS_DUPLICATE);
+                    + Exception.WINNING_NUMBERS_DUPLICATE.getMessage());
         }
     }
 
-    public Rank compare(Lotto targetLotto){
+    public Rank compare(Lotto targetLotto) {
         return Rank.findBy(lotto.matchCount(targetLotto),
                 targetLotto.hasNumber(bonusNumber));
     }

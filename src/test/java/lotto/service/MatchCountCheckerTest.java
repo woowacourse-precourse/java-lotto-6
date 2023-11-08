@@ -17,7 +17,7 @@ class MatchCountCheckerTest {
         put(1, new Lotto(List.of(45, 44, 43, 42, 41, 40)));
         put(2, new Lotto(List.of(1, 2, 3, 4, 5, 40)));
     }};
-    WinningNumber winningNumber = new WinningNumber(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+    WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
     BonusNumber bonusNumber = new BonusNumber(winningNumber, 40);
     MatchCountChecker matchCountChecker = new MatchCountChecker();
 

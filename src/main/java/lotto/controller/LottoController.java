@@ -71,8 +71,7 @@ public class LottoController {
         while (loop) {
             List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(LottoConfig.SPLIT_SYMBOL));
             try {
-                Lotto lotto = new Lotto(toNumber(inputWinningNumbers));
-                winningNumber = new WinningNumber(lotto);
+                winningNumber = new WinningNumber(toNumber(inputWinningNumbers));
                 loop = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

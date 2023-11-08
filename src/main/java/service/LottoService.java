@@ -11,8 +11,8 @@ import java.util.List;
 
 public class LottoService {
 
-    private int count = 0;
-    private List<Lotto> lottos = new ArrayList<>();
+    private static int count = 0;
+    private static List<Lotto> lottos = new ArrayList<>();
     private static LottoService instance = new LottoService();
     private LottoService(){}
 

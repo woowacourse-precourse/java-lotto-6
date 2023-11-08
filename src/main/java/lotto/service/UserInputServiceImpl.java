@@ -1,12 +1,14 @@
 package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.CustomerLotto;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserInputServiceImpl implements UserInputService {
-    List <Integer> winningNum = new ArrayList<>();
+    private List <Integer> winningNum = new ArrayList<>();
+    private int bonusNum;
     @Override
     public int payForLotto() {
         System.out.println("구매하실 금액을 입력해 주세요.");
@@ -33,7 +35,7 @@ public class UserInputServiceImpl implements UserInputService {
         if(!isValidate(plusNum)){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
-        winningNum.add(plusNum);
+        bonusNum = plusNum;
     }
     @Override
     public boolean isValidate(int num) {
@@ -43,9 +45,10 @@ public class UserInputServiceImpl implements UserInputService {
         return true;
     }
     @Override
-    public Lotto createLotto() {
+    public CustomerLotto createLotto() {
         userInputLottoNum();
-        return new Lotto(winningNum);
+        Lotto lotto = new Lotto(winningNum);
+        return new CustomerLotto(lotto,bonusNum);
     }
 }
 

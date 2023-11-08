@@ -39,7 +39,6 @@ public class Lotto {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        Collections.sort(numbers);
         sb.append(numbers);
         return sb.toString();
     }

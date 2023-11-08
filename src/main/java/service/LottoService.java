@@ -8,10 +8,7 @@ import model.Bonus;
 import model.Lotto;
 import model.Reward;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {

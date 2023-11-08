@@ -4,7 +4,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseLottos;
 import lotto.domain.WinningDetails;
-import lotto.domain.WinningCriteria;
+import lotto.config.WinningCriteria;
 
 import java.util.ArrayList;
 import java.util.List;

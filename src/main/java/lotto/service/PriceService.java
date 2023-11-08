@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.domain.PurchasePrice;
-import lotto.domain.WinningCriteria;
+import lotto.config.WinningCriteria;
 import lotto.domain.WinningDetails;
 import lotto.domain.WinningPrice;
 

@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import lotto.config.WinningCriteria;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import static lotto.domain.WinningCriteria.FIFTH_PRIZE;
-import static lotto.domain.WinningCriteria.FIRST_PRIZE;
+import static lotto.config.WinningCriteria.FIFTH_PRIZE;
+import static lotto.config.WinningCriteria.FIRST_PRIZE;
 
 public class WinningDetails {
 

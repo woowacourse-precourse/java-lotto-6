@@ -25,7 +25,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public static String input() {
+    private static String input() {
         return Console.readLine();
     }
 }

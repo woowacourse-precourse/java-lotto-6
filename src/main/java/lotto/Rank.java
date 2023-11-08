@@ -11,16 +11,22 @@ public class Rank {
             if (allTickets[i].contains(bonus)) {
                 includedBonus = 1;
             }
-            allTickets[i].retainAll(numbers);
-            if (allTickets[i].size() == 3) {
+            //자동 숫자에 당첨 숫자가 있는가
+            int includedWinning = 0;
+            for (int j = 0; j < numbers.size(); j++) {
+                if (allTickets[i].contains(numbers.get(j))) {
+                    includedWinning += 1;
+                }
+            }
+            if (includedWinning == 3) {
                 rank[5] += 1;
-            } else if (allTickets[i].size() == 4) {
+            } else if (includedWinning == 4) {
                 rank[4] += 1;
-            } else if (allTickets[i].size() == 5 && includedBonus == 1) {
+            } else if (includedWinning == 5 && includedBonus == 1) {
                 rank[2] += 1;
-            } else if (allTickets[i].size() == 5) {
+            } else if (includedWinning == 5) {
                 rank[3] += 1;
-            } else if (allTickets[i].size() == 6) {
+            } else if (includedWinning == 6) {
                 rank[1] += 1;
             }
         }

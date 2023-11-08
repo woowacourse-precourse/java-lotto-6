@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import lotto.domain.LottoResult;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -59,4 +60,27 @@ public class LottoService {
                 LOTTO_NUMBERS_COUNT
         );
     }
+
+    public List<LottoResult> calculateResult(List<Lotto> lottoTickets,
+                                             List<Integer> winningLottoNumbers,
+                                             int bonusNumber) {
+        List<LottoResult> results = new ArrayList<>();
+        for (Lotto ticket : lottoTickets) {
+            int matchCount = 0;
+            matchCount = getMatchCount(winningLottoNumbers, ticket, matchCount);
+            boolean bonusMatch = (matchCount == 5) && ticket.getNumbers().contains(bonusNumber);
+            results.add(LottoResult.valueOf(matchCount, bonusMatch));
+        }
+        return results;
+    }
+
+    private int getMatchCount(List<Integer> winningLottoNumbers, Lotto ticket, int matchCount) {
+        for (int number : ticket.getNumbers()) {
+            if (winningLottoNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
 }

@@ -19,7 +19,6 @@ public class LuckyNumber {
     }
 
     void getBonusNumber(String input) {
-
         int number = Change.stringToInt(input);
 
         Validator.isInRange(number);
@@ -27,5 +26,14 @@ public class LuckyNumber {
 
         this.bonusNumber = number;
     }
+
+    boolean has(int numberToCompare) {
+        return this.numbers.contains(numberToCompare);
+    }
+
+    boolean bonusIs(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(this.bonusNumber);
+    }
+
 
 }

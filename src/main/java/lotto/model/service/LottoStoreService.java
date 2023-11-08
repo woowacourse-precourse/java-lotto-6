@@ -7,13 +7,13 @@ import lotto.model.domain.vo.Lotto;
 import lotto.model.domain.vo.Lottos;
 import lotto.model.domain.vo.Money;
 
-public class LottoStore {
+public class LottoStoreService {
 
     private static final Integer LOTTO_PRICE = 1000;
     private static final int ZERO_COUNT_VALUE = 0;
     private NumberGenerateStrategy numberGenerateStrategy;
 
-    public LottoStore(NumberGenerateStrategy numberGenerateStrategy) {
+    public LottoStoreService(NumberGenerateStrategy numberGenerateStrategy) {
         this.numberGenerateStrategy = numberGenerateStrategy;
     }
 

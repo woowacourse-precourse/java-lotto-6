@@ -7,9 +7,9 @@ import lotto.model.domain.vo.Lottos;
 import lotto.model.domain.vo.Money;
 import lotto.model.domain.vo.WinNumber;
 
-public class LottoHeadQuarter {
+public class LottoGameService {
 
-    public LottoHeadQuarter() {
+    public LottoGameService() {
     }
 
     public LottoWinNumber pickNumber(WinNumber winNumber, BonusNumber bonusNumber) {

@@ -6,8 +6,8 @@ import lotto.controller.dto.WinningStatisticDto;
 import lotto.model.domain.LottoWinNumber;
 import lotto.model.domain.RankingBoard;
 import lotto.model.domain.vo.Lottos;
-import lotto.model.service.LottoHeadQuarter;
-import lotto.model.service.LottoStore;
+import lotto.model.service.LottoGameService;
+import lotto.model.service.LottoStoreService;
 import lotto.model.domain.vo.BonusNumber;
 import lotto.model.domain.vo.Money;
 import lotto.model.domain.vo.WinNumber;
@@ -18,17 +18,17 @@ public class LottoGameController {
 
     private OutputView outputView;
     private ErrorView errorView;
-    private LottoStore lottoStore;
-    private LottoHeadQuarter lottoHeadQuarter;
+    private LottoStoreService lottoStoreService;
+    private LottoGameService lottoGameService;
 
     public LottoGameController(OutputView outputView,
             ErrorView errorView,
-            LottoStore lottoStore,
-            LottoHeadQuarter lottoHeadQuarter) {
+            LottoStoreService lottoStoreService,
+            LottoGameService lottoGameService) {
         this.outputView = outputView;
         this.errorView = errorView;
-        this.lottoStore = lottoStore;
-        this.lottoHeadQuarter = lottoHeadQuarter;
+        this.lottoStoreService = lottoStoreService;
+        this.lottoGameService = lottoGameService;
     }
 
     public void run() {
@@ -66,7 +66,7 @@ public class LottoGameController {
     private Lottos buyLotto(Money money) {
         while (true) {
             try {
-                Lottos lottos = lottoStore.sellLotto(money);
+                Lottos lottos = lottoStoreService.sellLotto(money);
                 PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(lottos);
                 outputView.printPurchaseHistory(dto);
                 outputView.printLineSeparator();
@@ -105,10 +105,10 @@ public class LottoGameController {
 
     private void playLottoGame(Money money, Lottos lottos, WinNumber winNumber, BonusNumber bonusNumber) {
         try {
-            LottoWinNumber lottoWinNumber = lottoHeadQuarter.pickNumber(winNumber, bonusNumber);
-            RankingBoard rankingBoard = lottoHeadQuarter.drawWinner(lottoWinNumber, lottos);
+            LottoWinNumber lottoWinNumber = lottoGameService.pickNumber(winNumber, bonusNumber);
+            RankingBoard rankingBoard = lottoGameService.drawWinner(lottoWinNumber, lottos);
 
-            double yield = lottoHeadQuarter.calculateYield(money, rankingBoard);
+            double yield = lottoGameService.calculateYield(money, rankingBoard);
 
             WinningStatisticDto dto = WinningStatisticDto.from(rankingBoard, yield);
             outputView.printWinningStatistic(dto);

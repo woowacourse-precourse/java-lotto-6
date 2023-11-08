@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.domain.lotto.LottoCount;
+import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.Price;
 
 import static lotto.util.StringConverter.toLong;
@@ -25,6 +26,10 @@ public class ConsoleManager {
 
     public void printLottoCount(LottoCount count) {
         view.printLottoCountMessage(count);
+    }
+
+    public void printLottos(Lottos lottos) {
+        view.printPurchaseLottos(lottos.getLottos());
     }
 
 }

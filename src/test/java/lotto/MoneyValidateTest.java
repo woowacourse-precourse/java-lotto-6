@@ -6,7 +6,7 @@ import lotto.util.MoneyValidate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class MoneyValidatorTest {
+public class MoneyValidateTest {
     @DisplayName("1000원 이하의 값을 입력하면 예외가 발생한다.")
     @Test
     void testUnderThousand() {

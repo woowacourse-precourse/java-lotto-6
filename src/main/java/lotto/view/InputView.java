@@ -11,7 +11,7 @@ public class InputView {
     private static final String INTEGER_PATTERN_MISMATCH_ERROR_MESSAGE = "숫자를 입력해 주세요.";
     private static final String INTEGER_WITH_COMMA_MISMATCH_ERROR_MESSAGE = "숫자를 쉼표(,)로 구분하여 입력해 주세요.";
 
-    public Integer InputPurchaseAmount() {
+    public Integer inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         return readIntegerLine();
     }

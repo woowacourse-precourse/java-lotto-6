@@ -35,7 +35,6 @@ public class MainController {
     public void start() {
         lottos.getLotto();
         winningNumber = winningNumberController.setWinningNumber();
-        outputView.printInsertBonusNumber();
         bonusNumber = bonusNumberController.setBonusNumber();
     }
 

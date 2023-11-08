@@ -22,6 +22,7 @@ public class Store {
 
     public int countLotto(Money money) {
         int realMoney = Integer.parseInt(money.getMoney());
+
         return realMoney / ONE_LOTTO_PRICE;
     }
 

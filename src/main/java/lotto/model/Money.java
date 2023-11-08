@@ -31,6 +31,7 @@ public class Money {
 
     private void isPaperMoney(String money) {
         int realMoney = Integer.parseInt(money);
+
         if (realMoney % ONE_LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException(ERROR_NOT_PAPER_MONEY);
         }

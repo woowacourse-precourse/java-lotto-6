@@ -24,12 +24,12 @@ public class User {
                     (countCorrectNumber == SECOND_MATCH_COUNT) && lotto.isContain(winningLotto.getBonusNumber());
 
             WinningResult.countLottoResult(countCorrectNumber, checkBonus);
-
         }
     }
 
     public double calculateProfit(int money) {
         double totalPrice = (double) WinningResult.calculateTotalPrice();
+
         return totalPrice / money * CONVERT_PERCENT;
     }
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private Integer resultRank;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -22,7 +23,15 @@ public class Lotto {
         numbers.add(number);
     }
 
+    public void setResultRank(Integer rank) {
+        this.resultRank = rank;
+    }
+
     public void printNumbers() {
         System.out.println(numbers.toString());
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

@@ -4,13 +4,17 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class LottoGame {
-    private List<Integer> winningNumbers = new ArrayList<>();
-    private List<Lotto> lottoTickets = new ArrayList<>();
+    private List<Integer> winningNumbers;
+    private List<Lotto> lottoTickets;
+    private List<Integer> result;
     private Integer money;
+    private Integer winningBonusNumber;
 
     public LottoGame() {
     }
@@ -22,6 +26,11 @@ public class LottoGame {
             money = inputMoney();
             lottoTickets = generateLottoTickets(money);
             printTickets();
+            List<Integer> pickedWinningNumbers = pickWinningNumbers().subList(0, 6);
+            winningNumbers = pickedWinningNumbers.subList(0, 6);
+            winningBonusNumber = pickedWinningNumbers.get(pickedWinningNumbers.size() - 1);
+            setLottoRanks(lottoTickets, winningNumbers, winningBonusNumber);
+            isGaming = false;
         }
     }
 
@@ -112,8 +121,42 @@ public class LottoGame {
         return Randoms.pickUniqueNumbersInRange(1, 45, 7);
     }
 
-    private void getLottoRank() {
+    private void setLottoRanks(List<Lotto> lottoTickets, List<Integer> winningNumbers, Integer bonusNumber) {
+        for (Lotto lotto : lottoTickets) {
+            lotto.setResultRank(getLottoRank(lotto, winningNumbers, bonusNumber));
+        }
+    }
 
+    public Integer getLottoRank(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
+        int matchCount = getMatchCount(lotto, winningNumbers);
+
+        if (matchCount == 6) {
+            return 1;
+        }
+        if (matchCount == 5 && isBonusNumberMatch(lotto, bonusNumber)) {
+            return 2;
+        }
+        if (matchCount == 5) {
+            return 3;
+        }
+        if (matchCount == 4) {
+            return 4;
+        }
+        if (matchCount == 3) {
+            return 5;
+        }
+        return 0;
+    }
+
+    private Integer getMatchCount(Lotto lotto, List<Integer> winningNumbers) {
+        Set<Integer> winningNumberSet = new HashSet<>(winningNumbers);
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumberSet::contains)
+                .count();
+    }
+
+    public boolean isBonusNumberMatch(Lotto lotto, int bonusNumber) {
+        return lotto.getNumbers().contains(bonusNumber);
     }
 
     private void getMoneyForRank() {

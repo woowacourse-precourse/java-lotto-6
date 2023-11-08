@@ -39,7 +39,7 @@
     ```
 - [x] 발행된 티켓들의 번호는 오름차순으로 정렬되어 출력한다
     - Lotto 인스턴스 생성시에 정렬되도록 함
-- [ ] 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
+- [x] 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다. 당첨 번호에 따라 등수를 판별한다.
     ```
     1등: 6개 번호 일치 / 2,000,000,000원
     2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
@@ -47,8 +47,10 @@
     4등: 4개 번호 일치 / 50,000원
     5등: 3개 번호 일치 / 5,000원
     ```
-    - LottoGame.getLottoRank() : 당첨번호(로또 객체)를 받아 등수를 판별
-    - LottoGame.getMoneyForRank() : 등수를 입력받아 당첨금액을 반환
+    - LottoGame.setLottoRanks() : 당첨번호(로또 객체)를 받아 등수를 판별
+        - LottoGame.getLottoRank() : 로또 객체를 받아 랭크 반환
+            - LottoGame.getMatchCount() : 로또 객체와 당첨 번호를 받아 일치 갯수 반환
+            - LottoGame.isBonusNumberMatch() : 로또 객체와 보너스 번호를 받아 boolean 반환
 - [ ] 당첨 내역을 출력한다
     ```
     3개 일치 (5,000원) - 1개
@@ -62,17 +64,15 @@
     ```
     총 수익률은 62.5%입니다.
     ```
-- [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
+    - LottoGame.getMoneyForRank() : 등수를 입력받아 당첨금액을 반환
     - LottoGame.getRateOfReturn()
-    - LottoGame.getWinningHistory()
-    - LottoGame.end()
+- [ ] Enum을 사용하여 문자열, 숫자등의 값은 상수로 관리
+    - Constant Enum 생성
 - [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     ```
     Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
     ```
     - Lotto.validate() : LottoGame이 아닌 Lotto 객체가 입력받을때 직접 검증하고 출력
-- [ ] Enum을 사용하여 문자열, 숫자등의 값은 상수로 관리
-    - Constant Enum 생성
 
 ---
 

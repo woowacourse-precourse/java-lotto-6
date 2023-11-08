@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -46,7 +45,7 @@ public class Game {
         Integer input = null;
         try {
             input = inputView.readNumber();
-        } catch (IllegalArgumentException e) {
+        } catch (NumberTypeFormatException e) {
             outputView.print(e.getMessage());
             getMoney();
         }
@@ -97,18 +96,8 @@ public class Game {
         outputView.print(PrintMessage.WINNING_STATISTICS_HEADER);
 
         printStatistics(prizeResult);
-        outputView.print(PrintMessage.RATE_FORMAT, calculate(prizeResult, money.getMoney()));
-    }
-
-    private double calculate(Map<Prize, Integer> prizeResults, int money) {
-        return sum(prizeResults) * 0.1 / money;
-    }
-
-    private double sum(Map<Prize, Integer> prizeResults) {
-        return prizeResults.entrySet()
-                .stream()
-                .mapToDouble(prizeResult -> prizeResult.getKey().getReward() * prizeResult.getValue())
-                .sum();
+        Statistics statistics = new Statistics(prizeResult);
+        outputView.print(PrintMessage.RATE_FORMAT, statistics.calculate(money.getMoney()));
     }
 
     private void printStatistics(Map<Prize, Integer> prizeResult) {

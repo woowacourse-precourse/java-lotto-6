@@ -11,7 +11,7 @@ public enum PrintMessage {
     WINNING_FORMAT("%d개 일치 (%d원) - %d개"),
     WINNING_BONUS_FORMAT("%d개 일치, 보너스 볼 일치 (%d원) - %d개"),
 
-    RATE_FORMAT("총 수익률은 %.2f입니다.");
+    RATE_FORMAT("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

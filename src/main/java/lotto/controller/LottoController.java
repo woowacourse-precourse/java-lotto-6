@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import static lotto.global.constants.NumberType.COST_UNIT;
 import static lotto.view.View.requestBonusNumber;
 import static lotto.view.View.requestWinningNumbers;
 
@@ -38,6 +39,6 @@ public class LottoController {
     }
 
     private int getCountFrom(int cost) {
-        return cost / 1000;
+        return cost / COST_UNIT.getValue();
     }
 }

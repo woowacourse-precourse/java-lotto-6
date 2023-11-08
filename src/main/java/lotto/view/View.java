@@ -1,13 +1,14 @@
 package lotto.view;
 
+import static lotto.global.constants.NumberType.COST_UNIT;
 import static lotto.view.constants.MessageType.BONUS_NUMBER_REQUEST_MESSAGE;
-import static lotto.view.constants.MessageType.WINNING_RESULT_WITH_BONUS_INFORMATION;
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.EARNINGS_RATE_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
-import static lotto.view.constants.MessageType.WINNING_RESULT_INFORMATION;
 import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
+import static lotto.view.constants.MessageType.WINNING_RESULT_INFORMATION;
 import static lotto.view.constants.MessageType.WINNING_RESULT_NOTICE;
+import static lotto.view.constants.MessageType.WINNING_RESULT_WITH_BONUS_INFORMATION;
 import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
 import static lotto.view.constants.SymbolType.NEWLINE;
 import static lotto.view.constants.SymbolType.OUTPUT_SEPARATOR;
@@ -155,7 +156,7 @@ public final class View {
         }
 
         private static boolean isNotDivisible(String cost) {
-            return Integer.parseInt(cost) % 1000 != 0;
+            return Integer.parseInt(cost) % COST_UNIT.getValue() != 0;
         }
 
         private static String validateWinningNumbers(String message) {

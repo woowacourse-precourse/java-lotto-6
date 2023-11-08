@@ -14,7 +14,7 @@ public class Money {
     }
 
     private void inputZero(int input) {
-        if ( input == 0 ) throw new IllegalArgumentException("[ERROR] 구매 금액이 0보다 커야합니다. ");
+        if ( input <= 0 ) throw new IllegalArgumentException("[ERROR] 구매 금액이 0보다 커야합니다. ");
     }
 
     private void inputDivisible(int input) {

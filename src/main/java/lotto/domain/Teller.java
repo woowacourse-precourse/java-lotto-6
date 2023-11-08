@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -8,6 +9,11 @@ import camp.nextstep.edu.missionutils.Console;
 public class Teller {
   private InputValidation validate = new InputValidation();
   private final Integer INITIALSTATE = -1;
+  private final Integer THREEMATCH = 3;
+  private final Integer FOURMATCH = 4;
+  private final Integer FIVEMATCH = 5;
+  private final Integer FIVEMATCHANDBONUS = 7;
+  private final Integer SIXMATCH = 6;
 
   public Integer getMoneyAmount() {
     System.out.println(Speaker.PROMPTBUYAMOUNT.speak());
@@ -91,5 +97,29 @@ public class Teller {
       }
     }
     return bonusNumber;
+  }
+
+  public void showResult(HashMap<Integer, Integer> wins) {
+    System.out.println();
+    System.out.println(Speaker.RESULT.speak());
+    System.out.println(Speaker.DASHES.speak());
+    showEachWin(Speaker.MATCHEDTHREE.speak(), formatWins(wins.get(THREEMATCH)));
+    showEachWin(Speaker.MATCHEDFOUR.speak(), formatWins(wins.get(FOURMATCH)));
+    showEachWin(Speaker.MATCHEDFIVE.speak(), formatWins(wins.get(FIVEMATCH)));
+    showEachWin(Speaker.MATCHEDFIVEANDBONUS.speak(), formatWins(wins.get(FIVEMATCHANDBONUS)));
+    showEachWin(Speaker.MATCHEDSIX.speak(), formatWins(wins.get(SIXMATCH)));
+  }
+
+  public void showEachWin(String match, Integer win) {
+    System.out.print(match);
+    System.out.print(win);
+    System.out.println(Speaker.AMOUNT.speak());
+  }
+
+  public Integer formatWins(Integer win) {
+    if(win == null) {
+      return 0;
+    }
+    return win;
   }
 }

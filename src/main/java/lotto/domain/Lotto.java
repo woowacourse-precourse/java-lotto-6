@@ -17,6 +17,20 @@ public class Lotto {
         }
     }
 
+    public Integer matchedLottoCount(List<Integer> lottoNumbers) {
+        Integer match = 0;
+        for (Integer lottoNumber: lottoNumbers) {
+            if (numbers.contains(lottoNumber)) {
+                match++;
+            }
+        }
+        return match;
+    }
+
+    public Boolean didMatchBonus(Integer bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     public String toString() {
         Collections.sort(numbers);
         return numbers.toString();

@@ -50,33 +50,34 @@ public class Playing {
     public static void getWinningStatistics(List<Lotto> lottos){
         for (Lotto lotto : lottos) {
             if (lotto.getCorrectLottoCnt() == 3){
-                winningStatistics.add(0, winningStatistics.get(0)+1);
+                winningStatistics.set(0, winningStatistics.get(0)+1);
             } else if(lotto.getCorrectLottoCnt() == 4){
-                winningStatistics.add(1, winningStatistics.get(1)+1);
+                winningStatistics.set(1, winningStatistics.get(1)+1);
             } else if(lotto.getCorrectLottoCnt() == 5 && lotto.isBonus() == false){
-                winningStatistics.add(2, winningStatistics.get(2)+1);
+                winningStatistics.set(2, winningStatistics.get(2)+1);
             } else if(lotto.getCorrectLottoCnt() == 5 && lotto.isBonus() == true){
-                winningStatistics.add(3, winningStatistics.get(3)+1);
+                winningStatistics.set(3, winningStatistics.get(3)+1);
             } else if(lotto.getCorrectLottoCnt() == 6){
-                winningStatistics.add(4, winningStatistics.get(4)+1);
+                winningStatistics.set(4, winningStatistics.get(4)+1);
             }
         }
     }
 
-    public static String getRateOfReturn(Integer inputAmount){
-        List<Integer> amount = new ArrayList<>(Arrays.asList(5000,50000,1500000,30000000,2000000000));
+    public static String getRateOfReturn(Integer inputAmount) {
+        List<Integer> amount = Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000);
         int totalAmount = 0;
         for (int i = 0; i < 5; i++) {
-            totalAmount += (amount.get(i) * winningStatistics.get(i));
+            totalAmount += amount.get(i) * winningStatistics.get(i);
         }
-        double res = 0;
+        double rate = 0;
         if (inputAmount != 0) {
-            res = (totalAmount / inputAmount) * 100;
+            rate = (double) totalAmount / inputAmount * 100;
         }
-        String rateOfReturn = String.format("%.1f", res);
+        String rateOfReturn = String.format("%.1f", rate);
 
         return rateOfReturn;
     }
+
 
 
 

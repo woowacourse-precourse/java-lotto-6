@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoNumber {
-  public List<Integer> lottoNumber() {
+  public static List<Integer> lottoNumber() {
     while (true) {
       List<Integer> winningNumbers = readWinningNumbers();
       try {
@@ -36,7 +36,7 @@ public class LottoNumber {
     }
   }
 
-  private List<Integer> readWinningNumbers() {
+  private static List<Integer> readWinningNumbers() {
     System.out.println("당첨 번호를 입력해 주세요.");
     return readNumbers(Console.readLine());
   }
@@ -46,15 +46,13 @@ public class LottoNumber {
     return Integer.parseInt(Console.readLine());
   }
 
-  private void validateWinningNumbers(List<Integer> winningNumbers) {
+  private static void validateWinningNumbers(List<Integer> winningNumbers) {
     if (winningNumbers.size() != 6) {
       throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요.");
     }
-
     for (int number : winningNumbers) {
       validateNumberRange(number);
     }
-
     validateNoDuplicates(winningNumbers);
   }
 
@@ -73,13 +71,14 @@ public class LottoNumber {
         .collect(Collectors.toList());
   }
 
-  private void validateNumberRange(int number) {
+  private static void validateNumberRange(int number) {
     if (number < 1 || number > 45) {
       throw new IllegalArgumentException("[ERROR] 1에서 45 사이의 숫자를 입력해주세요.");
     }
   }
+ 
 
-  private void validateNoDuplicates(List<Integer> numbers) {
+  private static void validateNoDuplicates(List<Integer> numbers) {
     Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
     if (uniqueNumbers.size() != 6) {

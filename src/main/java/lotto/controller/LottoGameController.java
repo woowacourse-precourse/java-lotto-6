@@ -2,10 +2,9 @@ package lotto.controller;
 
 
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
-import lotto.domain.NumberType;
+import lotto.domain.enumerte.NumberType;
 import lotto.domain.PurchaseMoney;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningNumber;
@@ -27,11 +26,9 @@ public class LottoGameController {
         Lottos lottos = createLottos(purchaseMoney, lottoGenerator);
         List<WinningNumber> onlyWinningNumber = createWinningLotto();
 
-//        WinningNumber bonusNumber = getBonusNumber();
-        WinningLotto bonusNumber = getBonusNumber(onlyWinningNumber);
-//        WinningLotto winningLotto = WinningLotto.of(onlyWinningNumber, bonusNumber);
-    }
+        WinningLotto winningLotto = getBonusNumber(onlyWinningNumber);
 
+    }
 
     private List<WinningNumber> createWinningLotto() {
         String winningNumber = InputView.getWinningNumbers();
@@ -50,17 +47,6 @@ public class LottoGameController {
         return numbers.stream()
                 .map(number -> WinningNumber.of(number, NumberType.ORIGINAL)).toList();
     }
-
-
-//    private static WinningNumber getBonusNumber() {
-//        try{
-//            return WinningNumber.of(InputView.getBonusNumber(), NumberType.BONUS);
-//        } catch(IllegalArgumentException e) {
-//            OutputView.printErrorMessage(e.getMessage());
-//
-//            return getBonusNumber();
-//        }
-//    }
 
 
     private static WinningLotto getBonusNumber(List<WinningNumber> winningNumbers) {

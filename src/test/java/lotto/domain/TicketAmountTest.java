@@ -19,6 +19,15 @@ public class TicketAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구입 금액이 숫자가 아닌 경우 예외가 발생한다.")
+    @Test
+    void createTicketAmountByNotInteger() {
+        String input = "10000k";
+
+        assertThatThrownBy(() -> new TicketAmount(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("구입 금액이 자연수가 아닌 경우 예외가 발생한다.")
     @Test
     void createTicketAmountByNotNatural() {

@@ -121,18 +121,31 @@ public class GameService {
         int index = 0;
 
         for (Lotto lotto : lottos) {
-            for (int number : lotto.getLotto()) {
-                if (winningNumber.getLotto().contains(number)) {
-                    lottoResult[index]++;
-                }
-                if (winningNumber.getBonus() == number) {
-                    bonus[index]++;
-                }
-            }
+            countMatchingNumbersForLotto(lotto, winningNumber, lottoResult, bonus, index);
             index++;
         }
 
         int[] winningResult = new int[5];
+        countWinningResult(lottos, lottoResult, bonus, winningResult);
+
+        printWinningResultMessage(winningResult, price);
+
+    }
+
+
+    public void countMatchingNumbersForLotto(Lotto lotto, WinningNumber winningNumber, int[] lottoResult, int[] bonus,
+                                             int index) {
+        for (int number : lotto.getLotto()) {
+            if (winningNumber.getLotto().contains(number)) {
+                lottoResult[index]++;
+            }
+            if (winningNumber.getBonus() == number) {
+                bonus[index]++;
+            }
+        }
+    }
+
+    public void countWinningResult(List<Lotto> lottos, int[] lottoResult, int[] bonus, int[] winningResult) {
         for (int i = 0; i < lottos.size(); i++) {
             if (lottoResult[i] == 5 && bonus[i] == 1) {
                 winningResult[3]++;
@@ -146,7 +159,9 @@ public class GameService {
                 winningResult[lottoResult[i] - 3]++;
             }
         }
+    }
 
+    public void printWinningResultMessage(int[] winningResult, int price) {
         System.out.println(ConstantMessage.WINNING_RESULT_TITLE.getMessage());
         System.out.println(ConstantMessage.WINNING_RESULT_UNDERSCORE.getMessage());
         System.out.println(ConstantMessage.WINNING_RESULT_THREE.getMessage() + winningResult[0]

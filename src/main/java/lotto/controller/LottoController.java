@@ -25,7 +25,7 @@ public class LottoController {
         bonusLottoNumber = null;
     }
 
-    public int getLottoTicket(int money) {
+    public int getLottoTicket(String money) throws IllegalArgumentException {
         return lottoResultCalculation.caculateLottoTicket(money);
     }
 
@@ -47,6 +47,7 @@ public class LottoController {
         String[] splitedNumbers = numbers.split(",");
         List<Integer> intNumbers = new ArrayList<>();
         for(String str : splitedNumbers) {
+            str.replace(" ", "");       // 각각의 공백 제거
             intNumbers.add(Integer.parseInt(str));
         }
         inputLottoNumber = new Lotto(intNumbers);

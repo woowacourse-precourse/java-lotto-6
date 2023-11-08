@@ -20,7 +20,7 @@ class LottoResultCalculationTest {
     @Test
     void InputMoneyException() {
         assertThatThrownBy(() -> {
-            lottoResultCalculation.caculateLottoTicket(16500);})
+            lottoResultCalculation.caculateLottoTicket("16500");})
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,7 +44,7 @@ class LottoResultCalculationTest {
     @DisplayName("수익률 계산에 대한 정상 테스트")
     @Test
     void calculateReturnTest() {
-        lottoResultCalculation.caculateLottoTicket(15000);
+        lottoResultCalculation.caculateLottoTicket("15000");
         assertThat(lottoResultCalculation.calculateReturn(50000))
                 .isEqualTo(333.3);
     }

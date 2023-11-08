@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.type.ErrorMessageType;
+
 import java.util.List;
 
 public class LottoResultCalculation {
@@ -9,13 +11,24 @@ public class LottoResultCalculation {
         this.inputMoney = 0;
     }
 
-    public int caculateLottoTicket(int money) throws IllegalArgumentException {
-        if(money % 1000 != 0) {
-            throw new IllegalArgumentException();
-        }
-        this.inputMoney = money;
-        int ticket = money / 1000;
+    public int caculateLottoTicket(String money) throws IllegalArgumentException {
+        this.inputMoney = inputMoneyException(money);
+        int ticket = this.inputMoney / 1000;
         return ticket;
+    }
+
+    public int inputMoneyException(String money) throws IllegalArgumentException {
+        if (money.matches("[0-9]+") == false) {
+            throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.message());
+        }
+        int intMoney = Integer.parseInt(money);
+        if (intMoney % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessageType.NOT_DIVIDE_THOUSAND.message());
+        }
+        if (intMoney <= 0) {
+            throw new IllegalArgumentException(ErrorMessageType.NOT_POSITIVE_NUMBER.message());
+        }
+        return intMoney;
     }
 
     public int checkResult(List<Integer> target, List<Integer> tryLotto) {

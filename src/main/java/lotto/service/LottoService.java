@@ -12,8 +12,16 @@ public class LottoService {
         lottoController = new LottoController();
     }
     public void printRandomLotto() {
-        int money = InputService.inputMoney();
-        int ticket = lottoController.getLottoTicket(money);
+        int ticket;
+        while(true) {
+            try {
+                String money = InputService.inputMoney();
+                ticket = lottoController.getLottoTicket(money);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         lottoController.setRandomLottoNumber(ticket);
         System.out.println(ticket + "개를 구매했습니다.");
         System.out.println(lottoController.getLottoString());

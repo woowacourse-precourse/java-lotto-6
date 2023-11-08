@@ -23,19 +23,6 @@ public class Playing {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    public static List<Integer> inputWinningNumbers(){
-        String input = Console.readLine();
-        List<Integer> winningNumbers = Arrays.asList(input.split(","))
-                .stream().map(Integer::parseInt).collect(Collectors.toList());
-
-        return winningNumbers;
-    }
-
-    public static Integer inputBonusNumber(){
-        Integer bonus = Integer.parseInt(Console.readLine());
-        return bonus;
-    }
-
     public static void compareLottosAndWinningNumbers(List<Integer> winningNumbers, Integer bonus){
         for ( Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();

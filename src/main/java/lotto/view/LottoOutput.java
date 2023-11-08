@@ -33,10 +33,6 @@ public class LottoOutput {
     }
 
     public void printPrizeStatistics(Map<Integer, Integer> prizeCountMap) {
-        if (prizeCountMap == null || prizeCountMap.isEmpty()) {
-            System.out.println("당첨 통계가 없습니다.");
-            return;
-        }
 
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -51,8 +47,6 @@ public class LottoOutput {
                 System.out.printf("%s - %d개\n", prizeDescription, count);
             }
         }
-
-
     }
 
     public void printEarningsRate(double earningsRate) {

@@ -31,4 +31,16 @@ public class LottoController {
             }
         }
     }
+
+    public void putWinningNumbers() {
+        while (true) {
+            try {
+                String input = inputView.readWinningNumbers();
+                lottoService.putWinningNumbers(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

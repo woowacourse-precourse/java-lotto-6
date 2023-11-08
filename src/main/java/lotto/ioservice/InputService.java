@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class InputService {
 
-    public static Integer howMuchMoney(){
+    public static Integer howMuchMoney() {
         OutputService.requestMoney();
         String tempMoney = Console.readLine();
         ValidateService.validateNumber(tempMoney);
@@ -20,7 +20,7 @@ public class InputService {
         return money;
     }
 
-    public static List<Integer> winningNumbers(){
+    public static List<Integer> winningNumbers() {
         OutputService.requestWinningNums();
         List<String> tempWinningNumbers = Arrays.asList(
                 Console.readLine().split(",")
@@ -36,36 +36,36 @@ public class InputService {
         return winningNumbers;
     }
 
-    public static Integer bonusNumber(List<Integer> winningNumbers){
+    public static Integer bonusNumber(List<Integer> winningNumbers) {
         OutputService.requestBonusNum();
         String tempBonus = Console.readLine();
         ValidateService.validateNumber(tempBonus);
 
         Integer bonus = Integer.parseInt(tempBonus);
-        ValidateService.validateBonusInWinningNums(bonus,winningNumbers);
+        ValidateService.validateBonusInWinningNums(bonus, winningNumbers);
         ValidateService.validateNumberInRange(bonus);
-        ValidateService.validateDuplicatedNums(bonus,winningNumbers);
+        ValidateService.validateDuplicatedNums(bonus, winningNumbers);
         return bonus;
     }
 
-    public static  <T> T iterWhenException(Supplier<T> supplier){
+    public static <T> T iterWhenException(Supplier<T> supplier) {
         T input = null;
-        try{
+        try {
             input = supplier.get();
-        }catch (IllegalArgumentException illegalArgumentException){
+        } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return iterWhenException(supplier);
         }
         return input;
     }
 
-    public static  <T,R> R iterWhenException(Function<T,R> supplier,T t){
+    public static <T, R> R iterWhenException(Function<T, R> supplier, T t) {
         R input = null;
-        try{
+        try {
             input = supplier.apply(t);
-        }catch (IllegalArgumentException illegalArgumentException){
+        } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
-            return iterWhenException(supplier,t);
+            return iterWhenException(supplier, t);
         }
         return input;
     }

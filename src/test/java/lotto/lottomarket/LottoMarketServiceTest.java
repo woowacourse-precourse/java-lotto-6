@@ -14,8 +14,9 @@ import static org.mockito.Mockito.*;
 
 class LottoMarketServiceTest {
     LottoMarketService lottoMarketService;
+
     @BeforeEach
-    void setUp(){
+    void setUp() {
         lottoMarketService = new LottoMarketService();
     }
 
@@ -29,7 +30,7 @@ class LottoMarketServiceTest {
     void generateNonDuplicatedNums() {
         MockedStatic<Randoms> mock = mockStatic(Randoms.class);
         mock.when(() -> Randoms.pickUniqueNumbersInRange(anyInt(), anyInt(), anyInt()))
-                .thenReturn(List.of(1,2,3,4,5,6));
+                .thenReturn(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> lottoNums = lottoMarketService.generateNonDuplicatedNums();
         Assertions.assertThat(lottoNums.size()).isEqualTo(6);
         mock.close();

@@ -8,10 +8,12 @@ public enum ErrorMessage {
     NOT_NUMBER("[ERROR] 숫자를 입력해주세요."),
     BONUS_IN_WINNING_NUMBER("[ERROR] 보너스 번호는 중복되면 안됩니다.");
     private final String errorMessage;
-    ErrorMessage(String errorMessage){
+
+    ErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }
-    public String getErrorMessage(){
+
+    public String getErrorMessage() {
         return errorMessage;
     }
 }

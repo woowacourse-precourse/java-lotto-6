@@ -14,35 +14,36 @@ public class GamePlayer {
     private int paidMoney;
     private List<Integer> winningNumbers;
     private Integer bonus;
-    private Domain domain ;
-    public GamePlayer(Domain domain){
+    private Domain domain;
+
+    public GamePlayer(Domain domain) {
         this.domain = domain;
     }
 
-    public List<Lotto> issueLottoes(){
+    public List<Lotto> issueLottoes() {
         paidMoney = InputService.iterWhenException(InputService::howMuchMoney);
         LottoMarketService lottoMarketService = new LottoMarketService();
         int lottoCount = lottoMarketService.calculateLottoCount(paidMoney);
         return lottoMarketService.issueLottoes(lottoCount);
     }
 
-    public Map<Rank,Integer> ranking(List<Lotto> lottoes){
+    public Map<Rank, Integer> ranking(List<Lotto> lottoes) {
         winningNumbers = InputService.iterWhenException(InputService::winningNumbers);
-        bonus = InputService.iterWhenException(InputService::bonusNumber,winningNumbers);
-        return domain.allRanking(winningNumbers,bonus,lottoes);
+        bonus = InputService.iterWhenException(InputService::bonusNumber, winningNumbers);
+        return domain.allRanking(winningNumbers, bonus, lottoes);
     }
 
-    public double calculateRateOfReturn(Map<Rank,Integer> rankingResult){
+    public double calculateRateOfReturn(Map<Rank, Integer> rankingResult) {
         long profit = domain.calculateProfit(rankingResult);
-        return domain.calculatePercent(paidMoney,profit);
+        return domain.calculatePercent(paidMoney, profit);
     }
 
-    public void run(){
+    public void run() {
         List<Lotto> lottos = issueLottoes();
         OutputService.printLottoCount(lottos.size());
         OutputService.printIssuedLotto(lottos);
 
-        Map<Rank,Integer> rankingResult = ranking(lottos);
+        Map<Rank, Integer> rankingResult = ranking(lottos);
         OutputService.printAllWinRecord(rankingResult);
 
         double rateOfReturn = calculateRateOfReturn(rankingResult);

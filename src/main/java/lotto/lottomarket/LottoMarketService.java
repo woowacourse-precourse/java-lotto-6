@@ -14,9 +14,9 @@ public class LottoMarketService {
     private final static int MIN_LOTTO_NUM = 1;
     private final static int MAX_LOTTO_NUM = 45;
 
-    public List<Lotto> issueLottoes(int lottoCount){
+    public List<Lotto> issueLottoes(int lottoCount) {
         List<Lotto> lottoes = new ArrayList<>();
-        for(int i=0;i<lottoCount;i++){
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNums = new ArrayList<>(generateNonDuplicatedNums());
             Collections.sort(lottoNums);
             lottoes.add(new Lotto(lottoNums));
@@ -24,13 +24,13 @@ public class LottoMarketService {
         return lottoes;
     }
 
-    public List<Integer> generateNonDuplicatedNums(){
-        List<Integer> lottoesNums = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM,MAX_LOTTO_NUM,LOTTO_NUM_SIZE);
+    public List<Integer> generateNonDuplicatedNums() {
+        List<Integer> lottoesNums = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_NUM_SIZE);
         return lottoesNums;
     }
 
-    public int calculateLottoCount(int money){
-        int lottoCount = money/LOTTO_PRICE;
+    public int calculateLottoCount(int money) {
+        int lottoCount = money / LOTTO_PRICE;
         return lottoCount;
     }
 }

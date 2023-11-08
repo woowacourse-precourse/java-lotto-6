@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 class RankTest {
     @Test
-    void 올바른_상수를_반환하는지_확인(){
-        Rank secondPlace = Rank.getRank(5,1);
+    void 올바른_상수를_반환하는지_확인() {
+        Rank secondPlace = Rank.getRank(5, 1);
         Assertions.assertThat(secondPlace).isEqualTo(Rank.SECOND_PLACE);
     }
 
     @Test
-    void 적절한_상태를_반환하는지_확인(){
-        Rank secondPlace = Rank.getRank(5,1);
+    void 적절한_상태를_반환하는지_확인() {
+        Rank secondPlace = Rank.getRank(5, 1);
 
         String status = secondPlace.getState();
 

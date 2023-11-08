@@ -32,25 +32,25 @@ public class Validator {
         validateNoDuplicateBonusNumber(num, winningNumbers);
     }
 
-    private static void validatePurchaseAmountMultipleOf1000(int amountInteger) {
-        if (amountInteger % 1000 != 0) {
+    private static void validatePurchaseAmountMultipleOf1000(int amount) {
+        if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
 
-    private static void validatePurchaseAmountMinimumValue(int amountInteger) {
-        if (amountInteger < 1000) {
+    private static void validatePurchaseAmountMinimumValue(int amount) {
+        if (amount < 1000) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
         }
     }
 
-    private static void validatePurchaseAmountMaximumValue(int amountInteger) {
-        if (amountInteger >= Integer.MAX_VALUE - 1) {
+    private static void validatePurchaseAmountMaximumValue(int amount) {
+        if (amount >= Integer.MAX_VALUE - 1) {
             throw new IllegalArgumentException("[ERROR] 2,100,000,000 이하의 값만 입력 가능합니다.");
         }
     }
 
-    public static int validateDisit(String number) {
+    private static int validateDisit(String number) {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
@@ -64,7 +64,7 @@ public class Validator {
         }
     }
 
-    public static void validateNumberRange(int number) {
+    private static void validateNumberRange(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
         }

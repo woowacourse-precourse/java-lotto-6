@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class LottoService {
     private int lotto1st = 0;
@@ -38,21 +35,39 @@ public class LottoService {
     }
 
     public int moneyInput() {
-        System.out.print("구입금액을 입력해 주세요.");
-        System.out.println();
-        return Integer.parseInt(Console.readLine());
+        int moneyInput = 0;
+        while (moneyInput == 0) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                moneyInput = Integer.parseInt(Console.readLine());
+                do {
+                    if ((moneyInput % 1000) != 0) {
+                        System.out.println("[ERROR] 구입금액은 1000원 단위로 입력해주세요.");
+                        System.out.println("구입금액을 입력해 주세요.");
+                        moneyInput = Integer.parseInt(Console.readLine());
+                    }
+                } while ((moneyInput % 1000) != 0);
+            }catch (NumberFormatException e) {
+                moneyInput = 0;
+                System.out.println("[ERROR] 구입금액은 숫자로 입력해주세요.");
+                new IllegalArgumentException().printStackTrace();
+                moneyInput = 0;
+            }
+        }
+        return moneyInput;
     }
+
 
     public int lottoCount(int moneyInput) {
         int lottoCount = moneyInput / 1000;
         System.out.println();
-        System.out.printf("%d개를 구입했습니다.\n", lottoCount);
+        System.out.printf("%d개를 구매했습니다.\n", lottoCount);
         return lottoCount;
     }
 
     public List<Integer> randomNumber() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        numbers.sort(Comparator.naturalOrder());
+        List<Integer> numbers = new ArrayList<>();
+        numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return numbers;
     }
 
@@ -72,17 +87,48 @@ public class LottoService {
     }
 
     public int[] winningNumberInput() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String[] winningNumberStr = Console.readLine().split(",");
-        int[] winningNumberInt = Arrays.stream(winningNumberStr).mapToInt(Integer::parseInt).toArray();
+        int[] winningNumberInt = {};
+        boolean isRunning = true;
+        while (isRunning) {
+            try {
+                System.out.println();
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String[] winningNumberStr = Console.readLine().split(",");
+                winningNumberInt = Arrays.stream(winningNumberStr).mapToInt(Integer::parseInt).toArray();
+                int i = winningNumberInt[5];
+                isRunning = false;
+            }catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자로 입력해주세요.");
+                new IllegalArgumentException().printStackTrace();
+            }catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("[ERROR] 6개의 숫자를 입력해주세요.");
+                new IllegalArgumentException().printStackTrace();
+            }
+        }
         return winningNumberInt;
     }
 
     public int bonusNumberInput() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int bonusNum = 0;
+        while (bonusNum == 0) {
+            try {
+                System.out.println();
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNum = Integer.parseInt(Console.readLine());
+                if (bonusNum > 45 || bonusNum < 0) {
+                    throw new IllegalArgumentException();
+                }
+            }catch (NumberFormatException e) {
+                bonusNum = 0;
+                System.out.println("[ERROR] 숫자로 입력해주세요.");
+                new IllegalArgumentException().printStackTrace();
+            }catch (IllegalArgumentException e) {
+                bonusNum = 0;
+                System.out.println("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
+                e.printStackTrace();
+            }
+        }
+        return bonusNum;
     }
 
     // 숫자 비교기 제작
@@ -135,7 +181,7 @@ public class LottoService {
         System.out.printf("5개 일치 (1,500,000원) - %d개\n",lotto3st);
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",lotto2st);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n",lotto1st);
-        System.out.printf("총 수익률은 %.1f %%입니다.",profitRate(moneyInput));
+        System.out.printf("총 수익률은 %.1f%%입니다.",profitRate(moneyInput));
     }
 
 }

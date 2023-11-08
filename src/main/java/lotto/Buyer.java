@@ -8,9 +8,10 @@ public class Buyer {
     private int bonus;
 
     private Buyer(Lotto lotto, int bonus) {
+        this.lotto = lotto;
+
         validateExistence(bonus);
 
-        this.lotto = lotto;
         this.bonus = bonus;
     }
 

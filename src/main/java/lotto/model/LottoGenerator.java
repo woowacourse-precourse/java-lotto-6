@@ -3,7 +3,6 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.LottoConstants;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -25,6 +24,8 @@ public class LottoGenerator {
     }
 
     public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
+        return lottos.stream()
+                .map(lotto -> new Lotto(lotto.getNumbers()))
+                .collect(Collectors.toUnmodifiableList());
     }
 }

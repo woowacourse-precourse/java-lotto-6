@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.model.MatchStatus;
 import lotto.validator.LottoValidator;
 
 import java.util.Collections;

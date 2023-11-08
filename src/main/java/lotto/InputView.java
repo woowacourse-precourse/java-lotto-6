@@ -11,7 +11,7 @@ public class InputView {
         return Console.readLine();
     }
     
-    String inputBonusNumber() {
+    static String inputBonusNumber() {
         return Console.readLine();
     }
 }

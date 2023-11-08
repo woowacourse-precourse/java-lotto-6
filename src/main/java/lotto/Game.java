@@ -9,11 +9,14 @@ import org.assertj.core.util.Arrays;
 
 public class Game {
     int purchaseAmount;
+    List<Integer> winningNumbers;
+    int bonusNumber;
     
     void play() {
         calculateNumberOfPurchase();
         showPurchasedLottos();
         setWinningNumbers();
+        setBonusNumber();
     }
     
     void calculateNumberOfPurchase() {
@@ -56,7 +59,8 @@ public class Game {
     
     void setWinningNumbers() {
         OutputView.outputWinningNumbers();
-        List<Integer> winningNumbers = checkWinningNumbers(InputView.inputWinningNumbers());
+        winningNumbers = checkWinningNumbers(InputView.inputWinningNumbers());
+        System.out.println();
     }
     
     List<Integer> checkWinningNumbers(String inputWinningNumbers) {
@@ -91,6 +95,26 @@ public class Game {
     void checkDuplication(List<Integer> number) {
         if(number.size() != number.stream().distinct().count()){
             throw new IllegalArgumentException("[Error] 당첨 번호는 중복될 수 없습니다.");
+        }
+    }
+    
+    void setBonusNumber() {
+        OutputView.outputBonusNumber();
+        bonusNumber = checkBonusNumber(InputView.inputBonusNumber());
+        System.out.println();
+    }
+    
+    int checkBonusNumber(String inputBonusNumber) {
+        int convertedBonusNumber = checkInteger(inputBonusNumber);
+        checkLottoNumberRange(convertedBonusNumber);
+        checkDuplication(convertedBonusNumber);
+        
+        return convertedBonusNumber;
+    }
+    
+    void checkDuplication(int number) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException("[Error] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }

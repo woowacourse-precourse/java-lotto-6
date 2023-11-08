@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.LottoTicket;
@@ -25,23 +27,27 @@ public class LottoController {
     }
 
     public void runGame() {
-        // 구입금액 입력
-        inputCost();
+        try {
+            // 구입금액 입력
+            inputCost();
 
-        // 구입금액에 맞게 로또티켓 발행
-        createLottoTicket();
+            // 구입금액에 맞게 로또티켓 발행
+            createLottoTicket();
 
-        // 구매한 로또티켓 출력
-        printLottoTicket();
+            // 구매한 로또티켓 출력
+            printLottoTicket();
 
-        // 당첨 번호 입력
-        inputWiningLotto();
+            // 당첨 번호 입력
+            inputWiningLotto();
 
-        // 보너스 번호 입력
-        inputBonus();
+            // 보너스 번호 입력
+            inputBonus();
 
-        // 당첨 통계 출력
-        printWinStatistics();
+            // 당첨 통계 출력
+            printWinStatistics();
+        } finally {
+            Console.close();
+        }
     }
 
     private void inputCost() {

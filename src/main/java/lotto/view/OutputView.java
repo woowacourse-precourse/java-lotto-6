@@ -34,7 +34,7 @@ public class OutputView {
         stringBuffer.append(OUTPUT_WINING_HEADER);
         stringBuffer.append(OUTPUT_THREE_BAR);
         WiningTypeCount winingTypeCount = statistics.getWiningTypeCount();
-        for (WiningType winingType : WiningType.winingCountToMap().keySet()) {
+        for (WiningType winingType : WiningType.getWiningCountEmptyMap().keySet()) {
             addWiningCountString(winingType, stringBuffer, winingTypeCount);
         }
         stringBuffer.append(String.format(OUTPUT_RATE_OF_RETUN, statistics.getRateOfReturn()));

@@ -14,7 +14,7 @@ public class WiningNumbers {
     }
 
     public WiningTypeCount countWining(List<Lotto> lottos) {
-        Map<WiningType, Integer> winingCountMap = WiningType.winingCountToMap();
+        Map<WiningType, Integer> winingCountMap = WiningType.getWiningCountEmptyMap();
         lottos.forEach(lotto -> {
             int correctCount = lotto.countCorrectNumbers(numbers);
             boolean hasBonus = bonus.compareNumber(lotto);

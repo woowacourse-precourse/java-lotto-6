@@ -32,7 +32,7 @@ public enum WiningType {
                 .orElse(ZERO);
     }
 
-    public static Map<WiningType, Integer> winingCountToMap() {
+    public static Map<WiningType, Integer> getWiningCountEmptyMap() {
         Map<WiningType, Integer> winingCounterMap = new TreeMap<>(Comparator.reverseOrder());
         for (WiningType winingType : values()) {
             winingCounterMap.put(winingType, 0);

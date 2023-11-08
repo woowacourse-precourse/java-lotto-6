@@ -4,6 +4,7 @@ import lotto.utility.enums.ExceptionMessages;
 import lotto.utility.enums.RegularExpressionPatterns;
 import lotto.utility.enums.Standards;
 
+import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -53,10 +54,9 @@ public class Validation {
 
     //당첨금액 입력 예외처리
     private static void isNotNumbersOrComma(String winningNumbers) {
-        winningNumbers = winningNumbers.replaceAll(COMMA, EMPTY); //문자열에서 컴마 제거
-        try {
-            Integer.parseInt(winningNumbers);
-        } catch (NumberFormatException e) {
+        String WinningNumbersWithoutComma = winningNumbers.replaceAll(COMMA, EMPTY); //문자열에서 컴마 제거
+
+        if(!Pattern.matches(RegularExpressionPatterns.VALID_ONLY_NUMBERS.getPattern(),WinningNumbersWithoutComma)){
             throw new IllegalArgumentException(ExceptionMessages.NOT_NUMBERS_AND_COMMA.getMessage());
         }
     }

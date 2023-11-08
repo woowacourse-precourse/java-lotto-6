@@ -12,4 +12,21 @@ public class MyConstant {
     public static String MSG_STATISTIC_FIFTH_PLACE(Integer count) {
         return "3개 일치 (5,000원) - " + count + "개\n";
     }
+
+    public static String MSG_STATISTIC_FOURTH_PLACE(Integer count) {
+        return "4개 일치 (50,000원) - " + count + "개\n";
+    }
+
+    public static String MSG_STATISTIC_THIRD_PLACE(Integer count) {
+        return "5개 일치 (1,500,000원) - " + count + "개\n";
+    }
+
+    public static String MSG_STATISTIC_SECOND_PLACE(Integer count) {
+        return "5개 일치, 보너스 볼 일치 (30,000,000원) - " + count + "개\n";
+    }
+
+    public static String MSG_STATISTIC_FIRST_PLACE(Integer count) {
+        return "6개 일치 (2,000,000,000원) - " + count + "개\n";
+    }
+
 }

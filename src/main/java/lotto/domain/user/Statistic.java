@@ -42,10 +42,10 @@ public class Statistic {
         execution();
 
         resultString.append(MyConstant.MSG_STATISTIC_FIFTH_PLACE(getCount(LOTTO_FIFTH)));
-        resultString.append("4개 일치 (50,000원) - " + getCount(LOTTO_FOURTH) + "개\n");
-        resultString.append("5개 일치 (1,500,000원) - " + getCount(LOTTO_THIRD) + "개\n");
-        resultString.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + getCount(LOTTO_SECOND) + "개\n");
-        resultString.append("6개 일치 (2,000,000,000원) - " + getCount(LOTTO_FIRST) + "개\n");
+        resultString.append(MyConstant.MSG_STATISTIC_FOURTH_PLACE(getCount(LOTTO_FOURTH)));
+        resultString.append(MyConstant.MSG_STATISTIC_THIRD_PLACE(getCount(LOTTO_THIRD)));
+        resultString.append(MyConstant.MSG_STATISTIC_SECOND_PLACE(getCount(LOTTO_SECOND)));
+        resultString.append(MyConstant.MSG_STATISTIC_FIRST_PLACE(getCount(LOTTO_FIRST)));
 
         return resultString;
     }

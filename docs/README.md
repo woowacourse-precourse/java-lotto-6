@@ -49,3 +49,19 @@
 - 도메인 로직에 단위 테스트를 구현
   - 단, UI(System.out, System.in, Scanner) 로직은 제외
   - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현
+
+### **클래스 정리**
+
+controller
+- LottoController
+  domain
+  - Lotto
+  - LottoNumbers
+  - LottoAmount
+  - Ranking
+  - Results
+    view
+  - InputView
+  - OutputView
+
+Application(컨트롤러 실행)

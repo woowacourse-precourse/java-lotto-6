@@ -13,8 +13,8 @@ import lotto.view.OutputView;
 public class Control {
     public static void playLotto() {
         int lottoCost = startLotto();
-        LottoTicket ticket = generateLotto(calculateTicketCount(lottoCost));
-        resultLotto(ticket, lottoCost);
+        generateLotto(calculateTicketCount(lottoCost));
+        resultLotto(lottoCost);
     }
 
     private static int startLotto() {
@@ -24,17 +24,16 @@ public class Control {
         return lottoCost;
     }
 
-    private static LottoTicket generateLotto(int lottoTicketCount) {
+    private static void generateLotto(int lottoTicketCount) {
         LottoTicket ticket = LottoTicketGenerator.generateLottoTickets(lottoTicketCount);
         LottoTicketGenerator.printLottoTickets(ticket);
-        return ticket;
     }
 
-    private static void resultLotto (LottoTicket ticket, int lottoCost) {
+    private static void resultLotto (int lottoCost) {
         Lotto winningLotto = UserRequestService.requestWinningLotto();
         int bonusNumber = UserRequestService.requestBonusNumber(winningLotto.getNumbers());
 
-        Map<Prize, Integer> matchNumberCount = ticket.compilePrizeStatistics(winningLotto, bonusNumber);
+        Map<Prize, Integer> matchNumberCount = PrizeStatisticService.compilePrizeStatistics(winningLotto, bonusNumber);
         int totalPrize = PrizeStatisticService.processAndReportPrizeResults(matchNumberCount);
 
         OutputView.printProfitRate(totalPrize, lottoCost);

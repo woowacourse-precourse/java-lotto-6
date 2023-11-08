@@ -10,10 +10,8 @@ public class IssuedLottoDataService {
     public IssuedLottos create_issued_lottos(){
         int amount = purchaceAmount()/1000;
         IssuedLottos issuedLottos = new IssuedLottos(new ArrayList<>(), amount);
-        IssuedLotto issuedLotto;
-        int purchaseAmount = purchaceAmount();
-        for(int i = 0 ; i < purchaseAmount ; i++){
-            issuedLotto = create_issued_lotto_Numbers();
+        for(int i = 0 ; i < amount ; i++){
+            IssuedLotto issuedLotto = create_issued_lotto_Numbers();
             issuedLottos.add(issuedLotto);
         }
         return issuedLottos;
@@ -25,12 +23,9 @@ public class IssuedLottoDataService {
     }
 
     private IssuedLotto create_issued_lotto_Numbers(){
-        List<Integer> numbers = new ArrayList<>();
-        for(int i = 0 ; i < 6 ; i++){
-            numbers.add(Randoms.pickNumberInRange(1, 45));
-        }
-        return new IssuedLotto(numbers);
-
-
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lotto_numbers = new ArrayList<>(numbers);
+        Collections.sort(lotto_numbers);
+        return new IssuedLotto(lotto_numbers);
     }
 }

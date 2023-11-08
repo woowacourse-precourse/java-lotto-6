@@ -2,6 +2,7 @@ package lotto.util.constants;
 
 import static lotto.util.exception.ErrorMessage.INVALID_RANK;
 
+import java.util.Arrays;
 import java.util.Objects;
 import lotto.util.exception.LottoException;
 
@@ -22,12 +23,11 @@ public enum Reward {
     }
 
     public static Long fromRank(final Integer rank) {
-        for (Reward reward : Reward.values()) {
-            if (Objects.equals(reward.getRank(), rank)) {
-                return reward.getReward();
-            }
-        }
-        throw LottoException.of(INVALID_RANK);
+        return Arrays.stream(Reward.values())
+                .filter(reward -> Objects.equals(reward.getRank(), rank))
+                .findFirst()
+                .map(Reward::getReward)
+                .orElseThrow(() -> LottoException.of(INVALID_RANK));
     }
 
     public Integer getRank() {

@@ -19,6 +19,7 @@ public class UserInputAdapter implements InputPort {
     public Integer readBudget() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
 
+        System.out.println(INPUT_PURCHASE_AMOUNT);
         while (true) {
             String input = Console.readLine();
             try {

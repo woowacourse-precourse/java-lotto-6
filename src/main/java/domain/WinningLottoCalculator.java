@@ -73,10 +73,14 @@ public class WinningLottoCalculator {
 
 	public String createWinningLottoMessage(LottoPrize lottoPrize) {
 		if (lottoPrize == LottoPrize.SECOND_PRIZE) {
-			return String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", lottoPrize.getMatchCount(),
-					lottoPrize.getPrizeMoney(), lottoPrizes.get(lottoPrize));
+			return createWinningLottoSecondPrizeMessage(lottoPrize);
 		}
 		return String.format("%d개 일치 (%,d원) - %d개", lottoPrize.getMatchCount(), lottoPrize.getPrizeMoney(),
 				lottoPrizes.get(lottoPrize));
+	}
+
+	private String createWinningLottoSecondPrizeMessage(LottoPrize lottoPrize) {
+		return String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개", lottoPrize.getMatchCount(),
+				lottoPrize.getPrizeMoney(), lottoPrizes.get(lottoPrize));
 	}
 }

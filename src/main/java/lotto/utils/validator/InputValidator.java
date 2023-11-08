@@ -7,12 +7,6 @@ public class InputValidator {
         }
     }
 
-    public static void validBonusType(String number) {
-        if (digitCheck(number)) {
-            throw new IllegalArgumentException("숫자만 입력해주세요.");
-        }
-    }
-
     private static boolean digitCheck(String number) {
         String regex = "^[0-9]+$";
         return !number.matches(regex);

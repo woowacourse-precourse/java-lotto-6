@@ -40,7 +40,7 @@ public class InputConsoleView implements InputView {
         if(isNotSeparateWithComma(input)) {
             throw new IllegalArgumentException(INVALID_DELIMITER_ERROR.getMessage());
         }
-        validateEachElementOfWinningNumbers(input.split(NUMBER_REGEX.getRegex()));
+        validateEachElementOfWinningNumbers(input.split(DELIMITER_REGEX.getRegex()));
     }
 
     private void validateEachElementOfWinningNumbers(String[] elements) {

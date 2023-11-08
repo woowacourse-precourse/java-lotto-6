@@ -83,7 +83,6 @@ public class LottoGame {
 
     private static void afterGame() {
         GameResult gameResult = GameResult.of(playerLottos, winNumbers);
-        List<LottoRank> resultRank = gameResult.calculateRank();
 
         OutputView.printLottoResult(
                 gameResult.calculateLottoRankResult(),

@@ -29,15 +29,9 @@ public class GameResult {
         return new GameResult(playerLotto, winningLottoNumber);
     }
 
-    public List<LottoRank> calculateRank() {
-        for (Lotto eachLotto : playerLotto) {
-            lottoResult.add(winningLottoNumber.calculateLottoPrize(eachLotto));
-        }
-
-        return lottoResult;
-    }
-
     public int[] calculateLottoRankResult() {
+        calculateRank();
+
         for (LottoRank eachRank : lottoResult) {
             if (eachRank.getMatchNumbers() == LottoRank.SECOND_RANK.getMatchNumbers()) {
                 lottoRankResult[SECOND_RANK_INDEX.getIndex()]++;
@@ -47,6 +41,12 @@ public class GameResult {
         }
 
         return lottoRankResult;
+    }
+
+    private void calculateRank() {
+        for (Lotto eachLotto : playerLotto) {
+            lottoResult.add(winningLottoNumber.calculateLottoPrize(eachLotto));
+        }
     }
 
     public long calculateWinningMoney() {

@@ -117,7 +117,7 @@ public class LottoStore {
                 + (double) countRanking[FOURTH_PLACE] * (double) Value.FOURTH_PRIZE.get()
                 + (double) countRanking[THIRD_PLACE] * (double) Value.THIRD_PRIZE.get()
                 + (double) countRanking[SECOND_PLACE] * (double) Value.SECOND_PRIZE.get()
-                + (double) countRanking[FOURTH_PLACE] * (double) Value.FIFTH_PRIZE.get();
+                + (double) countRanking[FIRST_PLACE] * (double) Value.FIRST_PRIZE.get();
         return totalPrize / (double) this.money * RATE;
     }
 

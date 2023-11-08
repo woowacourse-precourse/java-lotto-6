@@ -1,16 +1,14 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class LottoStore {
     private List<Lotto> lottos;
-    private List<Integer>winCount;
+    private int[] winCount;
 
     LottoStore(List<Lotto> lottos) {
         this.lottos = lottos;
-        this.winCount = new ArrayList<>(Arrays.asList(0,0,0,0,0,0));
+        this.winCount = new int[] {0,0,0,0,0,0};
     }
 
     public static LottoStore createLottoStore(int numberOfLotto) {
@@ -19,5 +17,31 @@ public class LottoStore {
             lottos.add(Lotto.createLotto());
         }
         return new LottoStore(lottos);
+    }
+
+    public void judgeLotto(LottoWithBounusNumber userLotto) {
+        Set checkLotto;
+        Lotto lotto = userLotto.getLotto();
+        Integer bonusNumber = userLotto.getBonusNumber();
+        for (Lotto storeLotto : this.lottos) {
+            List<Integer> sumOfLotto = storeLotto.getNumbers();
+            sumOfLotto.addAll(lotto.getNumbers());
+            checkLotto = new HashSet<>(sumOfLotto);
+            if (checkLotto.size() == 6) {
+                this.winCount[1] += 1;
+            } else if (checkLotto.size() == 7) {
+                checkLotto.add(bonusNumber);
+                if (checkLotto.size() == 7) {
+                    this.winCount[2] += 1;
+                }
+                else if (checkLotto.size() == 8) {
+                    this.winCount[3] += 1;
+                }
+            } else if (checkLotto.size() == 8) {
+                this.winCount[4] += 1;
+            } else if (checkLotto.size() == 9) {
+                this.winCount[5] += 1;
+            }
+        }
     }
 }

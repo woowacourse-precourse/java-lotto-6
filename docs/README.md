@@ -56,7 +56,10 @@ check new branch
   - 보너스 번호 받아 bonus에 Integer 타입으로 저장
 - checkLottos()
   - input : null / return : void
-  - 로또 개수 만큼 for문 진행하여 맞춘 개수에 따라 correct 값 증가
+  - 로또 개수 만큼 for문 진행
+- checkLotto()
+  - input : int / return : void
+  - 정답 값 개수만큼 correct 값 변경
 - result()
   - input : null / return : double
   - checkLotto 실행 후 correct 값이 변경

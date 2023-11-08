@@ -7,7 +7,6 @@ public class LottoAmount {
     public LottoAmount(String stringCash) {
         validate(stringCash);
         this.lottoAmount = Integer.parseInt(stringCash) / LOTTO_PRICE;
-        System.out.println();
     }
 
     private void validate(String stringCash) {

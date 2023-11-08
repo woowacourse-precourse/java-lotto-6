@@ -20,8 +20,7 @@ public class OutputView {
         FIVE_MATCH_MESSAGE("5개 일치 (1,500,000원) - %d개"),
         FIVE_AND_BONUS_MATCH_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
         SIX_MATCH_MESSAGE("6개 일치 (2,000,000,000원) - %d개"),
-        PROFIT_PERCENTAGE_MESSAGE("총 수익률은 "),
-        END_MESSAGE("입니다.");
+        PROFIT_PERCENTAGE_MESSAGE("총 수익률은 %s%s입니다.");
 
         private final String message;
 
@@ -76,10 +75,9 @@ public class OutputView {
                 .append(OutputMessage.statisticsMessage(OutputMessage.FIVE_MATCH_MESSAGE, store, WinningMoney.FIVE_MATCH))
                 .append(OutputMessage.statisticsMessage(OutputMessage.FIVE_AND_BONUS_MATCH_MESSAGE, store, WinningMoney.FIVE_MATCH_BONUS))
                 .append(OutputMessage.statisticsMessage(OutputMessage.SIX_MATCH_MESSAGE, store, WinningMoney.SIX_MATCH))
-                .append(OutputMessage.PROFIT_PERCENTAGE_MESSAGE.message)
-                .append(lotteryResult.getProfitPercentage(purchaseMoney))
-                .append(SpecialSign.PERCENTAGE_MESSAGE.getSign())
-                .append(OutputMessage.END_MESSAGE.message)
+                .append(String.format(
+                        OutputMessage.PROFIT_PERCENTAGE_MESSAGE.message,
+                        lotteryResult.getProfitPercentage(purchaseMoney), SpecialSign.PERCENTAGE_MESSAGE.getSign()))
                 .toString();
     }
 

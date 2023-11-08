@@ -90,7 +90,7 @@
   - 발행받은 로또(DTO)를 받아 OutputView에 넘겨준다.
   - Lotto 결과(DTO)를 받아서 OutputView에 넘겨준다.
   - Calculator에게 계산된 수익률을 받아 OutputView에 넘겨준다.
-## domain
+## Domain
 - Calculator
   - 유저의 돈과 결과를 매개 변수로 받아 수익률을 계산한다.
 </br></br>
@@ -139,7 +139,7 @@
 - PurchasedLottoDTO
   - 구매한 로또를 OutputView로 보내기 위해 사용된다.
   - PurchasedLotto를 매개 변수로 받아 생성자로 생성한다.
-## service
+## Service
 - LottoService
   - 사용자가 입력한 금액을 받아 로또를 구매(생성)하고 GameController에 반환한다.
   - 로또 당첨 번호와 보너스 번호를 이용하여 당첨 결과를 확인하고, LottoResult를 반환한다.
@@ -150,7 +150,7 @@
   - LottoService의 메서드에서 호출한 곳으로 당첨 결과를 반환한다.
   - 구매한 로또 번호와 당첨 번호를 비교한다.
 
-## validator
+## Validator
 - InputPurchaseAmountValidator
   - 구매 금액 입력에 대한 예외 처리
 </br></br>
@@ -159,7 +159,7 @@
 </br></br>
 - InputWinningNumbersValidator
   - 당첨 번호에 대한 예외 처리
-## view
+## View
 - InputView
   - 구매 금액, 당첨 번호, 보너스 번호에 대한 입력을 받아 GameController에 반환된다.
 </br></br>
@@ -210,36 +210,36 @@
         - 구입한 금액이 0원이면 예외가 발생한다.
 </br></br>
 - **LottoWinningNumbersTest**
-  - public void 당첨_번호_정수_아닌_경우()
+  - public void 당첨_번호_정수_테스트()
     - 입력받은 당첨 번호에 정수가 아닌 입력이 있을 경우 예외가 발생한다.
 </br></br>
-  - public void 당첨_번호_공백_제외()
+  - public void 당첨_번호_공백_제외_테스트()
     - 입력받은 당첨 번호에 공백이 있을 경우 예외가 발생한다.
 </br></br>
-  - public void 당첨_번호_6개보다_많은_경우()
+  - public void 당첨_번호_6개보다_많은_경우_테스트()
     - 입력받은 당첨 번호가 6개보다 많으면 예외가 발생한다.
 </br></br>
-  - public void 당첨_번호_6개보다_적은_경우()
+  - public void 당첨_번호_6개보다_적은_경우_테스트()
     - 입력받은 당첨 번호가 6개보다 적으면 예외가 발생한다.
 </br></br>
-  - public void 당첨_번호_범위()
+  - public void 당첨_번호_범위_테스트()
     - 입력받은 당첨 번호의 범위가 1 ~ 45가 아니면 예외가 발생한다.
 </br></br>
-  - public void 당첨_번호_중복()
+  - public void 당첨_번호_중복_테스트()
     - 입력받은 당첨 범위에 중복이 있을 경우 예외가 발생한다.
 </br></br>
 - **LottoWinningBonusNumberTest**
-  - public void 보너스_번호_정수_아님()
+  - public void 보너스_번호_정수_테스트()
     - 입력받은 보너스 번호가 정수가 아닌 경우 예외가 발생한다.
 </br></br>
-  - public void 보너스_번호_범위()
+  - public void 보너스_번호_범위_테스트()
     - 입력받은 보너스 번호의 범위가 1 ~ 45가 아니면 예외가 발생한다.
 </br></br>
-  - public void 보너스_번호_중복()
+  - public void 보너스_번호_중복_테스트()
     - 입력받은 보너스 번호가 이미 당첨 번호에 있는 경우 예외가 발생한다.
 </br></br>
 - **LottoService**
   - public void 로또_구매_테스트()
     - 구입 금액만큼 로또가 생성되는지 검사한다.
-  - public void 로또_출력()
+  - public void 로또_출력_테스트()
     - 생성된 로또가 출력되는지 검사한다.

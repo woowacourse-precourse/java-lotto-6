@@ -15,6 +15,10 @@ public class IssuedLottoEvent {
     return new IssuedLottoEvent(lottos);
   }
 
+  public IssuedLottoPrintCommand toOutputCommand() {
+    return IssuedLottoPrintCommand.of(lottos);
+  }
+
   public int getIssuedNumber() {
     return lottos.size();
   }

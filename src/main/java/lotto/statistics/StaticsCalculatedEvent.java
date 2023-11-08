@@ -12,6 +12,10 @@ public class StaticsCalculatedEvent {
     return new StaticsCalculatedEvent(totalStaticRecord);
   }
 
+  public StatisticsPrintCommand toStatisticsPrintCommand() {
+    return StatisticsPrintCommand.of(totalStaticRecord);
+  }
+
   public TotalStaticRecord getTotalStaticRecord() {
     return totalStaticRecord;
   }

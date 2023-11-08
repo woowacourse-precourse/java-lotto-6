@@ -2,7 +2,7 @@ package lotto.statistics;
 
 import java.util.Objects;
 
-public record StaticsRecord(int winningNumber, int winningMoney, int matchCount) {
+public record StaticsRecord(int winningNumber, int prize, int matchCount) {
 
   public static StaticsRecord of(int win, int winningMoney, int matchCount) {
     return new StaticsRecord(win, winningMoney, matchCount);
@@ -16,11 +16,11 @@ public record StaticsRecord(int winningNumber, int winningMoney, int matchCount)
     if (!(o instanceof StaticsRecord that)) {
       return false;
     }
-    return winningNumber == that.winningNumber && winningMoney == that.winningMoney;
+    return winningNumber == that.winningNumber && prize == that.prize;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(winningNumber, winningMoney);
+    return Objects.hash(winningNumber, prize);
   }
 }

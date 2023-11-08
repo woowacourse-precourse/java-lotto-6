@@ -6,7 +6,7 @@ public class Money {
 
     public static final Money ZERO = new Money(0);
 
-    private static final Integer MINIMUM_AMOUNT = 1000;
+    public static final Integer MINIMUM_AMOUNT = 1000;
     private final Integer money;
     private Money(Integer money) {
         this.money = money;

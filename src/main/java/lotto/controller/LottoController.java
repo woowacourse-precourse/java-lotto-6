@@ -18,8 +18,6 @@ public class LottoController {
 
     private final ProfitCalculator calculator;
 
-    private Money purchaseAmount;
-
     public LottoController(ProfitCalculator calculator) {
         this.calculator = calculator;
     }
@@ -31,7 +29,7 @@ public class LottoController {
     private Lottos buyLotto() {
         try {
             NumberCandidateString numberCandidateString = new NumberCandidateString(InputView.collectionOfMoney());
-            purchaseAmount = numberCandidateString.toMoney();
+            Money purchaseAmount = numberCandidateString.toMoney();
             Lottos lottos = Lottos.from(purchaseAmount.calcBillCount());
 
             OutputView.renderingPurchaseHistory(lottos.getList());
@@ -47,7 +45,7 @@ public class LottoController {
         WinnerLotto winnerLotto = getWinnerLotto();
 
         List<Rank> confirmResult = lottos.chargeResult(winnerLotto);
-        Double profitRate = calculator.calcRate(calculator.calcProfit(confirmResult), purchaseAmount);
+        Double profitRate = calculator.calcRate(calculator.calcProfit(confirmResult), lottos.toMoney());
 
         OutputView.renderingResult(new ResultDto(confirmResult, profitRate));
     }
@@ -80,5 +78,4 @@ public class LottoController {
             return getLotto();
         }
     }
-
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 import lotto.domain.Rank;
+import lotto.domain.money.Money;
 import lotto.utils.RandomNumberGenerator;
 
 public class Lottos {
@@ -28,6 +29,10 @@ public class Lottos {
 
     public List<Lotto> getList() {
         return Collections.unmodifiableList(lottos);
+    }
+
+    public Money toMoney() {
+        return Money.from(lottos.size() * Money.MINIMUM_AMOUNT);
     }
 
     public static Lottos from(Integer count) {

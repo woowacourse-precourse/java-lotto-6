@@ -23,7 +23,7 @@ public class BonusNumberValidation {
         }
     }
 
-    public static void validateBonusNumberNotInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    private static void validateBonusNumberNotInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_NUMBER_ERROR.getMessage());
         }

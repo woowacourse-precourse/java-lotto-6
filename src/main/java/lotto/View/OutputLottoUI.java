@@ -26,8 +26,8 @@ public class OutputLottoUI {
         }
     }
 
-    public static void rankViewStart(){
-        System.out.println("\n당첨 통계\n---");
-    }
+    public static void rankViewStart(){ System.out.println("\n당첨 통계\n---"); }
+
+    public static void answerViewReInput(){ System.out.println("[ERROR] 당첨 숫자 6개를 입력해주세요."); }
 
 }

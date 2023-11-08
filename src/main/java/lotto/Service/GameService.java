@@ -42,7 +42,7 @@ public class GameService {
                 referee = new Referee(answerNumbers, InputLottoUI.inputBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 당첨 숫자 6개를 입력해주세요.");
+                OutputLottoUI.answerViewReInput();
             }
 
         }

@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.constants.ErrorMessage.ERROR_NOTICE;
+
 import java.util.ArrayList;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -34,7 +36,7 @@ public class LottoController {
             int input = inputView.inputPurchaseAmount();
             return new PurchaseAmount(input);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println(ERROR_NOTICE + e.getMessage());
             return getPurchaseAmount();
         }
     }
@@ -52,7 +54,7 @@ public class LottoController {
             int bonusNumber = inputView.inputBonusNumber();
             return new WinningLotto(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println(ERROR_NOTICE + e.getMessage());
             return getWinningLotto();
         }
     }

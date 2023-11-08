@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.ui.InputView;
 import lotto.util.LottoRank;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import static lotto.ui.OutputView.outputLottoList;
 public class User {
 
     private final int PURCHASE_AMOUNT;
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public User(int amount, List<Lotto> lottos) {
         this.PURCHASE_AMOUNT = amount;

@@ -53,7 +53,7 @@ public class LottoStore {
         sb.append(count);
         sb.append("개");
 
-        return sb.toString() + "\n";
+        return sb + "\n";
     }
 
     private boolean isSecondPrize(int rank) {

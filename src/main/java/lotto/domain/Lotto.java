@@ -25,10 +25,11 @@ public class Lotto {
                 .count();
     }
 
-    public LottoRank getLottoRank(List<Integer> winningNumbers, int bonusNumber){
+    public LottoRank getLottoRank(List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = checkWinningNumbers(winningNumbers);
-        return LottoRank.calculateRank(matchCount,checkBonusNumber(bonusNumber) );
+        return LottoRank.calculateRank(matchCount, checkBonusNumber(bonusNumber));
     }
+
     private int checkWinningNumbers(List<Integer> winningNumber) {
         int matchCount = 0;
 
@@ -40,14 +41,14 @@ public class Lotto {
         return matchCount;
     }
 
-    private boolean checkBonusNumber(int bonusNumber){
+    private boolean checkBonusNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 
 
     @Override
     public String toString() {
-        return numbers.toString()+"\n";
+        return numbers.toString() + "\n";
     }
 }
 

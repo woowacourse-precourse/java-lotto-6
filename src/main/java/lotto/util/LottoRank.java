@@ -22,16 +22,16 @@ public enum LottoRank {
     }
 
     public static LottoRank calculateRank(int matchCount, boolean isBonusNumbersMatch) {
-        if(matchCount==3){
+        if (matchCount == 3) {
             return FIFTH_PRIZE;
         }
-        if(matchCount==4){
+        if (matchCount == 4) {
             return FOURTH_PRIZE;
         }
-        if(matchCount==5){
+        if (matchCount == 5) {
             return checkForBonusMatch(isBonusNumbersMatch);
         }
-        if(matchCount==6){
+        if (matchCount == 6) {
             return FIRST_PRIZE;
         }
         return NO_PRIZE;

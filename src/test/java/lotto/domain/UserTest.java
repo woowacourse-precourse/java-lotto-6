@@ -1,14 +1,11 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class UserTest {
 
@@ -27,10 +24,10 @@ class UserTest {
         List<Lotto> lottos = List.of(new Lotto(lotto1), new Lotto(lotto2), new Lotto(lotto3));
 
         User user = new User(3000, lottos);
-        List<Integer> winningNumbers = List.of(1,2,3,41,32,26);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 41, 32, 26);
         int bonusNumber = 31;
 
-        assertThat(user.calculateRateOfReturn(winningNumbers,bonusNumber))
+        assertThat(user.calculateRateOfReturn(winningNumbers, bonusNumber))
                 .isEqualTo("166.7");
     }
 
@@ -44,11 +41,11 @@ class UserTest {
 
         User user = new User(3000, lottos);
 
-        List<Integer> winningNumbers = List.of(1,2,3,41,32,26);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 41, 32, 26);
         int bonusNumber = 31;
-        int[] result = {2,0,0,0,0,1};
-        
-        assertThat(user.getLottoResults(winningNumbers,bonusNumber))
+        int[] result = {2, 0, 0, 0, 0, 1};
+
+        assertThat(user.getLottoResults(winningNumbers, bonusNumber))
                 .isEqualTo(result);
     }
 

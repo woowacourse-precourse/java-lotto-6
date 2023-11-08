@@ -1,7 +1,6 @@
 package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.Validator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,10 +12,10 @@ public class InputView {
     public static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static int inputAmount(){
+    public static int inputAmount() {
         System.out.println(INPUT_AMOUNT_MESSAGE);
-        String amountStr ="";
-        while(true){
+        String amountStr = "";
+        while (true) {
             amountStr = Console.readLine();
             try {
                 validateAmount(amountStr);
@@ -28,10 +27,10 @@ public class InputView {
         return Integer.parseInt(amountStr);
     }
 
-    public static List<Integer> inputWinningNumbers(){
+    public static List<Integer> inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
         String numberStr = "";
-        while(true){
+        while (true) {
             numberStr = Console.readLine();
             try {
                 validateWinningNumber(numberStr);
@@ -44,10 +43,10 @@ public class InputView {
                 .map(Integer::parseInt).toList();
     }
 
-    public static int inputBonusNumbers(){
+    public static int inputBonusNumbers() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         String numberStr = "";
-        while(true){
+        while (true) {
             numberStr = Console.readLine();
             try {
                 validateBonusNumber(numberStr);
@@ -58,8 +57,6 @@ public class InputView {
         }
         return Integer.parseInt(numberStr);
     }
-
-
 
 
 }

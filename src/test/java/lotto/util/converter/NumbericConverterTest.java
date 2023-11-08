@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class NumbericConverterTest {
+class NumericConverterTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "12", "012"})
     void 문자에서_숫자로_변환한다 (String value) {

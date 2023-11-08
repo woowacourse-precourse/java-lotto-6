@@ -1,5 +1,9 @@
 package lotto.view;
 
+import static lotto.engine.LottoSystemConstant.LOTTO_MONEY_MAXIMUM_VALUE;
+import static lotto.engine.LottoSystemConstant.LOTTO_MONEY_MINIMUM_VALUE;
+import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_LENGTH;
+import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_SEPARATOR;
 import static lotto.engine.LottoSystemConstant.TextMessage.ERROR_PREFIX;
 import static lotto.engine.LottoSystemConstant.TextMessage.INPUT_BONUS_NUMBER;
 import static lotto.engine.LottoSystemConstant.TextMessage.INPUT_MONEY_FOR_BUYING_LOTTO;
@@ -12,9 +16,11 @@ import lotto.common.Validator;
 
 public class LottoGameViewer {
 
+    private final Validator validator;
     private final LottoGameViewerMapper lottoGameViewerMapper;
 
-    public LottoGameViewer(LottoGameViewerMapper lottoGameViewerMapper) {
+    public LottoGameViewer(Validator validator, LottoGameViewerMapper lottoGameViewerMapper) {
+        this.validator = validator;
         this.lottoGameViewerMapper = lottoGameViewerMapper;
     }
 
@@ -24,7 +30,7 @@ public class LottoGameViewer {
 
         while (isRetry) {
             try {
-                //todo: 유효성 검증
+                validMoney(money);
                 isRetry = false;
             } catch (IllegalArgumentException exception) {
                 println(() -> ERROR_PREFIX.getMessage() + exception.getMessage());
@@ -42,7 +48,7 @@ public class LottoGameViewer {
 
         while (isRetry) {
             try {
-                //todo: 유효성 검증
+                validWinningNumber(winningNumbers);
                 isRetry = false;
             } catch (IllegalArgumentException exception) {
                 println(() -> ERROR_PREFIX.getMessage() + exception.getMessage());
@@ -59,7 +65,7 @@ public class LottoGameViewer {
 
         while (isRetry) {
             try {
-                //todo: 유효성 검증
+                validBonusNumber(bonusNumber);
                 isRetry = false;
             } catch (IllegalArgumentException exception) {
                 println(() -> ERROR_PREFIX.getMessage() + exception.getMessage());
@@ -85,5 +91,40 @@ public class LottoGameViewer {
 
     protected String input() {
         return Console.readLine();
+    }
+
+    private void validMoney(String money) {
+        validator.verifyNullAndBlank(money);
+        validator.verifyNumber(money);
+        Integer verifiedNumber = lottoGameViewerMapper.toInt(money);
+        validator.verifyInRangeClosed(LOTTO_MONEY_MINIMUM_VALUE.value(), LOTTO_MONEY_MAXIMUM_VALUE.value(),
+                verifiedNumber);
+        validator.verifyDivisible(verifiedNumber, LOTTO_MONEY_MINIMUM_VALUE.value());
+    }
+
+    private void validBonusNumber(String bonusNumber) {
+        validator.verifyNullAndBlank(bonusNumber);
+        validator.verifyNumber(bonusNumber);
+        Integer number = lottoGameViewerMapper.toInt(bonusNumber);
+        validator.verifyInRangeClosed(
+                LOTTO_MONEY_MINIMUM_VALUE.value(),
+                LOTTO_MONEY_MAXIMUM_VALUE.value(),
+                number);
+    }
+
+    private void validWinningNumber(String winningNumbers) {
+        validator.verifyNullAndBlank(winningNumbers);
+        List<String> numbers = lottoGameViewerMapper.toList(LOTTO_NUMBER_SEPARATOR, winningNumbers);
+
+        if (numbers.size() != LOTTO_NUMBER_LENGTH.value()) {
+            throw new IllegalArgumentException("유효한 길이가 아닙니다.");
+        }
+
+        numbers.forEach(validator::verifyNumber);
+        numbers.stream().map(Integer::parseInt)
+                .forEach(number -> validator.verifyInRangeClosed(
+                        LOTTO_MONEY_MINIMUM_VALUE.value(),
+                        LOTTO_MONEY_MAXIMUM_VALUE.value(),
+                        number));
     }
 }

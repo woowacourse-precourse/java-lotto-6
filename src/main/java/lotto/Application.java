@@ -7,8 +7,9 @@ import lotto.view.LottoGameViewerMapper;
 
 public class Application {
     public static void main(String[] args) {
+        Validator validator = new Validator();
         LottoGameViewerMapper lottoGameViewerMapper = new LottoGameViewerMapper();
-        LottoGameViewer lottoGameViewer = new LottoGameViewer(lottoGameViewerMapper);
+        LottoGameViewer lottoGameViewer = new LottoGameViewer(validator, lottoGameViewerMapper);
         LottoGame lottoGame = new LottoGame(lottoGameViewer);
         lottoGame.start();
     }

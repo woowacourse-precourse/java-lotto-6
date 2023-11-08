@@ -8,8 +8,7 @@ public class Application {
         try {
             int price = getPrice();
 
-            Lottos lottos = new Lottos(price);
-            OutputConsole.print(lottos);
+            Lottos lottos = buyLottos(price);
 
             List<Integer> winningNumbers = getWinningNumbers();
             int bonusNumber = getBonusNumber();
@@ -35,6 +34,12 @@ public class Application {
     public static int getBonusNumber() {
         OutputConsole.printMessage(OutputConsole.INPUT_BONUS_NUMBER_MESSAGE);
         return InputConsole.inputBonusNumber();
+    }
+
+    public static Lottos buyLottos(int price) {
+        Lottos lottos = new Lottos(price);
+        OutputConsole.print(lottos);
+        return lottos;
     }
 
 }

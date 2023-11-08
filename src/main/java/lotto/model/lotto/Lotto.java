@@ -4,7 +4,6 @@ import static lotto.util.message.ErrorMessages.LOTTO_DUPLICATION_EXCEPTION;
 import static lotto.util.message.ErrorMessages.LOTTO_LENGTH_EXCEPTION;
 import static lotto.util.message.ErrorMessages.LOTTO_RANGE_EXCEPTION;
 
-import java.util.Comparator;
 import java.util.List;
 import lotto.util.generator.NumberGenerator;
 import lotto.util.validator.NumberRangeValidator;
@@ -18,7 +17,7 @@ public class Lotto {
 
     public Lotto(NumberGenerator numberGenerator) {
         numbers = generateNumbers(numberGenerator);
-        sortAscending();
+        numbers = sort(numbers);
     }
 
     public Lotto(List<Integer> numbers) {
@@ -38,8 +37,10 @@ public class Lotto {
         return numberGenerator.generate(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_LENGTH);
     }
 
-    private void sortAscending() {
-        numbers.sort(Comparator.naturalOrder());
+    private List<Integer> sort(List<Integer> list) {
+        return list.stream()
+                .sorted()
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {

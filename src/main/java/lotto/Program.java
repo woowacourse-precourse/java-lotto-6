@@ -43,6 +43,7 @@ public class Program {
         calculateWinnings();
         calculateStatistics();
         calculateRateOfReturn();
+        lottoTerminal.printWinningStatistics(statistics, rateOfReturn);
     }
 
     private void processPayment() {

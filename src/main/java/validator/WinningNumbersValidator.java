@@ -1,6 +1,8 @@
 package validator;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinningNumbersValidator {
     public static void winningNumbersValidate(String winningNumbers) {
@@ -10,6 +12,7 @@ public class WinningNumbersValidator {
         List<String> winningSixNumbers = List.of(winningNumbers.split(","));
         winningNumbersSix(winningSixNumbers);
         winningNumberNotNull(winningSixNumbers);
+        winningNumberUnique(winningSixNumbers);
     }
 
     private static void winningNumbersNotNull(String winningNumbers) {
@@ -42,5 +45,15 @@ public class WinningNumbersValidator {
                 throw new IllegalArgumentException("[ERROR] 쉼표를 올바르게 사용해주세요.");
             }
         }
+    }
+
+    public static void winningNumberUnique(List<String> winningSixNumbers) {
+        Set<String> uniqueWinningNumbers = new HashSet<>();
+        for (String name : winningSixNumbers) {
+            if (!uniqueWinningNumbers.add(name)) {
+                throw new IllegalArgumentException("[ERROR] 중복된 숫자를 사용하면 안됩니다");
+            }
+        }
+
     }
 }

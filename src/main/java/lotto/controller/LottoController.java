@@ -86,10 +86,10 @@ public class LottoController {
                 System.out.println(lottoOutput.requestBonusNumber());
                 String bonusNumberInput = lottoInput.getBonusNumber();
                 int bonusNumber = BonusNumberValidator.validateBonusNumber(bonusNumberInput, winningNumbers); // 입력 값을 int로 변환
-                BonusNumberValidator.validateBonusNumber(bonusNumberInput, winningNumbers); // 변환된 int 값을 검증
-                return bonusNumber; // 검증 후 변환된 값을 반환
+                BonusNumberValidator.validateBonusNumber(bonusNumberInput, winningNumbers);
+                return bonusNumber;
             } catch (IllegalArgumentException exception) {
-                System.out.println(lottoOutput.getErrorMessage(exception.getMessage())); // 에러 메시지를 출력
+                System.out.println(lottoOutput.getErrorMessage(exception.getMessage()));
             }
         }
     }

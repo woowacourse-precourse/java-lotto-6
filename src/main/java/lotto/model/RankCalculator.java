@@ -1,11 +1,18 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RankCalculator {
     private final HitNumberCalculator hitNumberCalculator = new HitNumberCalculator();
 
-    public Rank calculate(Lotto purchasedLotto, Lotto winningLotto, int bonusNumber) {
+    public List<Rank> calculateAllRanks(List<Lotto> purchasedLotto, Lotto winningLotto, int bonusNumber) {
+        return purchasedLotto.stream()
+                .map(lotto -> calculateOneRank(lotto, winningLotto, bonusNumber))
+                .collect(Collectors.toList());
+    }
+
+    private Rank calculateOneRank(Lotto purchasedLotto, Lotto winningLotto, int bonusNumber) {
         int hitCount = calculateHitWinningNumber(purchasedLotto, winningLotto);
         boolean isBonusIncluded = calculateHitBonusNumber(purchasedLotto, bonusNumber);
         return Rank.getRank(hitCount, isBonusIncluded);

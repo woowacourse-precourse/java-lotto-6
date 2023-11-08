@@ -28,4 +28,22 @@ public class LottoResult {
     public Integer getResult(LottoRanking key) {
         return results.getOrDefault(key, DEFAULT_VALUE);
     }
+
+    public double getProfitRate() {
+        Set<LottoRanking> lottoRanks = results.keySet();
+        double totalPrizeMoney = getTotalPrizeMoney(lottoRanks);
+        double purchaseAmonut = purchaseAmount.getAmount();
+
+        return calculationYield(totalPrizeMoney, purchaseAmonut);
+    }
+
+    private int getTotalPrizeMoney(Set<LottoRanking> lottoRanks) {
+        return (int) lottoRanks.stream()
+                .mapToLong(lottoRank -> lottoRank.getTotalPrizeMoney(results.get(lottoRank)))
+                .sum();
+    }
+
+    private double calculationYield(double totalPrizeMoney, double purchaseAmonut) {
+        return (totalPrizeMoney / purchaseAmonut) * PERCENT;
+    }
 }

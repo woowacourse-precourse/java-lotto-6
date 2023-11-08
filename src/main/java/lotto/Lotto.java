@@ -43,7 +43,7 @@ public class Lotto {
         Print.printLotto(numbers);
     }
 
-    public int calcMatchNumber(List<Integer> winningNumber, Integer bonumNumber){
+    public int calcMatchNumber(List<Integer> winningNumber, Integer bonusNumber){
         int[] lottoMap = new int[MAX_LOTTO_MAP_SIZE + 1]; // 배열의 index를 1부터 사용하므로 +1
         int matchNumber = 0;
 
@@ -55,7 +55,7 @@ public class Lotto {
                 matchNumber++;
             }
         }
-        if (matchNumber == RANK_3 && lottoMap[bonumNumber] == EXIST){
+        if (matchNumber == RANK_3 && lottoMap[bonusNumber] == EXIST){
             return RANK_2;
         }
         return matchNumber;

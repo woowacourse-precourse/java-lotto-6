@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.Constants.BONUS_BALL;
+import static lotto.constant.Constants.BONUS_BALL;
 
 import java.util.HashMap;
 import java.util.List;

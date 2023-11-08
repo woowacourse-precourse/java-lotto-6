@@ -1,8 +1,5 @@
 package lotto;
 
-import static lotto.Constants.*;
-
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,7 +32,6 @@ public class Lotto {
     public List<Integer> getLottoNumbers() {
         return this.numbers;
     }
-
 
 
 }

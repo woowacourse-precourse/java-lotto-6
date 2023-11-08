@@ -1,9 +1,8 @@
 package lotto;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.HashMap;
 import java.util.Map;
+import lotto.IO.Output;
 import org.junit.jupiter.api.Test;
 
 class OutputTest {

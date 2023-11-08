@@ -1,9 +1,9 @@
 package lotto;
 
-import static lotto.Constants.LOTTO_BONUS_NUMBERS_COUNTS;
-import static lotto.Constants.LOTTO_NUMBERS_COUNTS;
-import static lotto.Constants.LOTTO_NUMBER_END_EXCLUSIVE;
-import static lotto.Constants.LOTTO_NUMBER_START_INCLUSIVE;
+import static lotto.constant.Constants.LOTTO_BONUS_NUMBERS_COUNTS;
+import static lotto.constant.Constants.LOTTO_NUMBERS_COUNTS;
+import static lotto.constant.Constants.LOTTO_NUMBER_END_EXCLUSIVE;
+import static lotto.constant.Constants.LOTTO_NUMBER_START_INCLUSIVE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -25,7 +25,6 @@ public class RandomNumberGenerator {
                 LOTTO_BONUS_NUMBERS_COUNTS);
         return bonusNumbers;
     }
-
 
 
 }

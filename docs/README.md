@@ -1,33 +1,36 @@
 ## 🚀 기능 요구 사항
 
 입력
+
 - [x] 로또 구입 금액 입력
 - [x] 당첨 번호 입력
 - [x] 보너스 번호 입력
 - [x] 입력 검증
 
-출력
-
 Lotto
+
 - [x] 로또 발행(생성자)
 
 RandomNumberGenerator
+
 - [x] 중복되지 않는 숫자 6개 생성
 - [x] 보너스 번호 1개 생성
 
 WinnersCalculator
+
 - [x] 당첨자 선정
 
 LottoNumberComparator
+
 - [x] 몇개의 번호가 일치하는지 검증
 
 LottoGame
+
 - [ ] 로또 게임 시작
-- [ ] 로또 구매
-- [ ] 로또 게임 종료
 
+ProfitCalculator
 
-
+- [ ] 수익률 계산
 
 ## 🎯 프로그래밍 요구 사항
 
@@ -63,7 +66,6 @@ LottoGame
   API를 사용하여 구현해야 한다.
     - [ ] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
     - [ ] 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
-
 
 ### Lotto 클래스
 

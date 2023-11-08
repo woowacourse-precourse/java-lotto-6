@@ -20,4 +20,18 @@ public enum LottoRanking {
         this.prizeMoney = prizeMoney;
     }
 
+    public static LottoRanking getLottoRanking(int winningCount, boolean matchBonus) {
+        return Arrays.stream(LottoRanking.values())
+                .filter(lottoRanking -> lottoRanking.isMatchCount(winningCount) && lottoRanking.isMatchBonus(matchBonus))
+                .findFirst()
+                .orElse(LottoRanking.ZERO);
+    }
+
+    private boolean isMatchBonus(boolean matchBonus) {
+        return this.matchBonus == matchBonus;
+    }
+
+    private boolean isMatchCount(int winningCount) {
+        return this.winningCount == winningCount;
+    }
 }

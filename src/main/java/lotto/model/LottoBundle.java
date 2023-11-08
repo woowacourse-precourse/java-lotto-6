@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import lotto.util.enums.LottoResult;
+import lotto.util.exception.input.ConstructionErrorException;
 
 public class LottoBundle {
     private static final Long LONG_ZERO = 0L;
@@ -18,7 +19,7 @@ public class LottoBundle {
     private final Map<Lotto, Integer> bundles;
 
     private LottoBundle(){
-        throw new AssertionError(ERROR + "기본 생성자로 생성할 수 없습니다.");
+        throw new ConstructionErrorException();
     }
 
     public LottoBundle(Map<Lotto, Integer> bundles) {

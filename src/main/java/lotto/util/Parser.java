@@ -4,12 +4,13 @@ import static lotto.util.Constants.ERROR;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.util.exception.input.ConstructionErrorException;
 
 public class Parser {
     private static final String SPLIT_REGEX = ",";
 
     private Parser() {
-        throw new AssertionError(ERROR+"생성할 수 없는 클래스입니다.");
+        throw new ConstructionErrorException();
     }
 
     public static List<String> parseString(String numbers) {

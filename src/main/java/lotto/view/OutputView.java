@@ -4,6 +4,7 @@ import static lotto.util.Constants.LINE;
 
 import lotto.model.LottoDTO;
 import lotto.model.PurchaseAmount;
+import lotto.util.exception.input.ConstructionErrorException;
 
 public class OutputView {
     private static final String WINNING_STATISTICS = "당첨 통계";
@@ -12,6 +13,10 @@ public class OutputView {
     private static final String PURCHASE = "%d개를 구매했습니다.";
     private static final String COUNT = "개";
     private static final String HYPHEN = " - ";
+
+    private OutputView() {
+        throw new ConstructionErrorException();
+    }
 
     public static void displayPurchaseAmount(final PurchaseAmount amount) {
         System.out.println(LINE + formatPurchase(amount));

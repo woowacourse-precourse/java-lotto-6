@@ -2,6 +2,7 @@ package lotto.util.enums;
 
 public enum ErrorMessage {
 
+    ConstructionError("기본 생성자로 생성할 수 없습니다."),
     WINNING_NUMBER_LENGTH_NOT_SIX("당첨 번호는 6개여야합니다."),
     BONUS_NUMBER_IS_NOT_UNIQUE("보너스 번호가 당첨 번호에 존재합니다."),
 

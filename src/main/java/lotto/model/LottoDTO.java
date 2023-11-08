@@ -3,12 +3,13 @@ package lotto.model;
 import static lotto.util.Constants.ERROR;
 
 import java.util.List;
+import lotto.util.exception.input.ConstructionErrorException;
 
 public class LottoDTO {
     private final List<Integer> numbers;
 
     private LottoDTO(){
-        throw new AssertionError(ERROR + "기본 생성자로 생성할 수 없습니다.");
+        throw new ConstructionErrorException();
     }
 
     public LottoDTO(List<Integer> numbers) {

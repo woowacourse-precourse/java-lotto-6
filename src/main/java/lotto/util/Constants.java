@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.util.exception.input.ConstructionErrorException;
+
 public class Constants {
     public static final char LINE = '\n';
     public static final int ZERO = 0;
@@ -9,6 +11,6 @@ public class Constants {
     public static final int MAX_NUMBER = 45;
 
     private Constants(){
-        throw new AssertionError(ERROR+"생성할 수 없는 클래스입니다.");
+        throw new ConstructionErrorException();
     }
 }

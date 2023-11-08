@@ -5,10 +5,15 @@ import static lotto.util.Parser.parseString;
 import static lotto.util.validators.WinningNumbersValidator.validateWinningNumbers;
 
 import java.util.List;
+import lotto.util.exception.input.ConstructionErrorException;
 
 
 public class WinningNumbers {
     private final List<Integer> winning;
+
+    private WinningNumbers() {
+        throw new ConstructionErrorException();
+    }
 
     public WinningNumbers(String winning) {
         validateWinningNumbers(winning);

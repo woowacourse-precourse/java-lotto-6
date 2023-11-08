@@ -4,6 +4,7 @@ import static lotto.util.Constants.ERROR;
 import static lotto.util.enums.LottoResult.*;
 
 import java.util.Optional;
+import lotto.util.exception.input.ConstructionErrorException;
 
 
 public class ResultComparator {
@@ -13,7 +14,7 @@ public class ResultComparator {
     private final BonusNumber bonusNumber;
 
     private ResultComparator(){
-        throw new AssertionError(ERROR + "기본 생성자로 생성할 수 없습니다.");
+        throw new ConstructionErrorException();
     }
 
     public ResultComparator(WinningNumbers winningNumbers, BonusNumber bonusNumber) {

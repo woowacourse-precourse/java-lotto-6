@@ -9,6 +9,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.util.exception.input.ConstructionErrorException;
 
 
 public class BundleGenerator {
@@ -17,7 +18,7 @@ public class BundleGenerator {
     private final PurchaseAmount purchaseAmount;
 
     private BundleGenerator() {
-        throw new AssertionError(ERROR + "기본 생성자로 생성할 수 없습니다.");
+        throw new ConstructionErrorException();
     }
 
     public BundleGenerator(PurchaseAmount purchaseAmount) {

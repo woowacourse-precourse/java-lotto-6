@@ -1,22 +1,28 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class LottoResult {
-    private final Map<Rank, Integer> results = new HashMap<>();
+    private final Map<Rank, Integer> results;
 
+    public LottoResult() {
+        results = new HashMap<>();
+        Arrays.stream(Rank.values())
+                .forEach(rank -> results.put(rank, 0));
+    }
     public void addResult(Rank rank){
-        results.put(rank, results.getOrDefault(rank, -1) + 1);
+        results.put(rank, results.get(rank)+ 1);
     }
 
     public int getResult(Rank rank) {
         return results.get(rank);
     }
 
-    public long getRateOfReturn(){
-        long sumPrize = 0;
-        long lottoCount = 0;
+    public double getRateOfReturn(){
+        double sumPrize = 0;
+        double lottoCount = 0;
         for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
             sumPrize += entry.getKey().getPrize() * entry.getValue();
             lottoCount++;

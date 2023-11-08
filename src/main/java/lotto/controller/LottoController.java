@@ -19,8 +19,8 @@ public class LottoController {
         printBuyResult(lottos, count);
         WinningNumbers winningNumbers = makeWinningNumbers();
         LottoResult lottoResult = winningNumbers.checkLottos(lottos);
-        Arrays.stream(Rank.values()).forEach(rank->outputView.printLottosResult(rank, lottoResult.getResult(rank)));
-
+        (Arrays.stream(Rank.values())).forEach(rank->outputView.printLottosResult(rank, lottoResult.getResult(rank)));
+        outputView.printRateOfReturn(lottoResult.getRateOfReturn());
     }
 
     private Money askMoney() {

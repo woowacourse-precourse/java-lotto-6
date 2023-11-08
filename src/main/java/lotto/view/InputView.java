@@ -4,14 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
-import static lotto.util.Parser.stringToInt;
-import static lotto.util.Parser.stringToList;
+import static lotto.util.Parser.*;
 
 public class InputView {
 
-    public int requestMoney() {
+    public long requestMoney() {
         System.out.println("구입금액을 입력해 주세요");
-        return stringToInt(Console.readLine());
+        return stringToLong(Console.readLine());
     }
 
     public List<Integer> requestWinningNumbers() {

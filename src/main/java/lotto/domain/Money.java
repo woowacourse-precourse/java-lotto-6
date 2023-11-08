@@ -2,18 +2,18 @@ package lotto.domain;
 
 public class Money {
 
-    private final int money;
+    private final long money;
 
-    public Money(int money) {
+    public Money(long money) {
         validate(money);
         this.money = money;
     }
 
     public int getCount() {
-        return money/1000;
+        return (int)money/1000;
     }
 
-    private void validate(int money) {
+    private void validate(long money) {
         if(0 != money%1000)
             throw new IllegalArgumentException();
     }

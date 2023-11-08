@@ -1,15 +1,54 @@
-package lotto.model;
+package lotto.model.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ClientLottoData {
-    public int price;
-    public int lottoTicketCount;
-    public List<Lotto> lottos;
-    public List<RankTable> matchLottoCalculate;
+    private int price;
+    private int lottoTicketCount;
+    private List<Lotto> lottos = new ArrayList<>();
+    private List<RankTable> matchLottoCalculate;
 
-    public ClientLottoData(int price, int lottoTicketCount) {
+    public ClientLottoData() {
+    }
+
+    public void setLottoTicketNumber(int money) {
+        this.lottoTicketCount = money / 1000;
+    }
+
+    public void setLottoTicket(int ticketCount) {
+        for (int i = 0; i < ticketCount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(new ArrayList<>(numbers));
+            Lotto lotto = new Lotto(numbers);
+            this.lottos.add(lotto);
+        }
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
         this.price = price;
-        this.lottoTicketCount = lottoTicketCount;
+    }
+
+    public int getLottoTicketCount() {
+        return lottoTicketCount;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public List<RankTable> getMatchLottoCalculate() {
+        return matchLottoCalculate;
+    }
+
+    public void setMatchLottoCalculate(List<RankTable> matchLottoCalculate) {
+        this.matchLottoCalculate = matchLottoCalculate;
     }
 }

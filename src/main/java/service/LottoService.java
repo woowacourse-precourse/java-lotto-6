@@ -51,6 +51,7 @@ public class LottoService {
 
             setReward(sameCount, isSameBonus);
         }
+        return reward;
     }
 
     private void setReward(int sameCount, boolean isSameBouns){

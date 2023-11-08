@@ -5,6 +5,7 @@ import lotto.domain.lotto.WinningNumbers;
 import lotto.domain.money.Money;
 import lotto.domain.number.NumberUtil;
 import lotto.global.constant.LottoRank;
+import lotto.global.constant.message.GameMessage;
 import lotto.global.view.io.InputProcessor;
 import lotto.global.view.io.LottoInputView;
 import lotto.global.view.output.OutputView;
@@ -40,9 +41,10 @@ public class GameController {
     }
 
     private void generateLottos() {
+        OutputView.printMessageLine(GameMessage.INPUT_MONEY.getMessage());
+
         inputProcessor = (InputProcessor) Proxy.newProxyInstance(InputProcessor.class.getClassLoader(),
                 new Class[]{InputProcessor.class},lottoInputView);
-
         money = inputProcessor.inputMoney();
 
         lottos = new Lottos(money.getNumberOfTheLotto(), numberUtil);
@@ -55,7 +57,10 @@ public class GameController {
     }
 
     private void inputWinningResult() {
-        winningNumbers = inputProcessor.inputWinningNumbers();
+        OutputView.printMessageLine(GameMessage.INPUT_WINNING_NUMBERS.getMessage());
+        winningNumbers = inputProcessor.inputWinningNormalNumbers();
+        OutputView.printMessageLine(GameMessage.INPUT_BONUS_NUMBERS.getMessage());
+        winningNumbers = inputProcessor.inputBonusNumber();
     }
 
     private void generateWinningResult() {

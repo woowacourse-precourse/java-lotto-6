@@ -28,4 +28,11 @@ public class WinningNumbers {
         return bonusNumber.compareBonusNumberWithLotto(lotto, matchCount);
     }
 
+    public WinningNormalNumbers getWinningNormalNumbers() {
+        return winningNormalNumbers;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }

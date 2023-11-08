@@ -66,4 +66,8 @@ public class WinningNormalNumbers {
             }
         }
     }
+
+    public List<WinningNumber> getWinningNumbers() {
+        return winningNumbers;
+    }
 }

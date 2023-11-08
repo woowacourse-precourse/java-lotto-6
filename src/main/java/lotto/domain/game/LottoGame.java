@@ -9,13 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
-    private Lottos lottos;
-
-    private WinningNumbers winningNumbers;
-
-
-    public LottoGame() {
-    }
 
     public Map<LottoRank, Integer> calculateLottoResults(Lottos lottos, WinningNumbers winningNumbers) {
         Map<LottoRank, Integer> rankMap = new HashMap<>();

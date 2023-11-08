@@ -7,6 +7,7 @@ public enum ExceptionMessage {
     ,NUMBERS_COUNT_MUST_BE_SIX("당첨 숫자 개수는 6개입니다.")
     ,NUMBERS_OUT_OF_RANGE("숫자가 범위 밖입니다.")
     ,INPUT_CANNOT_BE_NULL("입력을 해주세요.")
+    ,INPUT_MUST_BE_NUMBER("숫자를 입력해주세요.")
     ,MONEY_LESS_THAN_TEN_BILLION("10억원 미만으로 구매해야 합니다.")
     ,MONEY_DIVIDED_INTO_THOUSAND("돈은 1000원 단위로 나누어 져야 합니다.")
     ,MONEY_MORE_THAN_THOUSAND("돈은 1000원 이상 입금해야 합니다.")
@@ -21,6 +22,6 @@ public enum ExceptionMessage {
     }
 
     public String getMessage() {
-        return EXCEPTION_PREFIX.message + message;
+        return message;
     }
 }

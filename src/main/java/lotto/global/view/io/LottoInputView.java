@@ -5,8 +5,10 @@ import lotto.domain.money.Money;
 import lotto.global.view.output.OutputView;
 
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import static lotto.global.constant.exception.ExceptionMessage.EXCEPTION_PREFIX;
 import static lotto.global.constant.exception.ExceptionMessage.MAX_INPUT_ATTEMPT_COUNT;
 
 public class LottoInputView implements InvocationHandler {
@@ -23,8 +25,8 @@ public class LottoInputView implements InvocationHandler {
         while (retry-- > 0) {
             try {
                 return method.invoke(inputProcessor, args);
-            } catch (Exception e) {
-                OutputView.printMessageLine(e.getMessage());
+            } catch (InvocationTargetException e) {
+                OutputView.printMessageLine(EXCEPTION_PREFIX.getMessage() + e.getTargetException().getMessage());
             }
         }
         throw new IllegalStateException(MAX_INPUT_ATTEMPT_COUNT.getMessage());

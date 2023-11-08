@@ -12,8 +12,6 @@ import lotto.global.view.output.OutputView;
 
 public class LottoInputProcessor implements InputProcessor {
 
-    Money money;
-
     WinningNumbers winningNumbers;
 
     public LottoInputProcessor(WinningNumbers winningNumbers) {
@@ -22,25 +20,12 @@ public class LottoInputProcessor implements InputProcessor {
 
     @Override
     public Money inputMoney() {
-        OutputView.printMessageLine(GameMessage.INPUT_MONEY.getMessage());
-        long inputMoney = InputView.inputInteger();
-        money = new Money(inputMoney);
-        return new Money(inputMoney);
+        return new Money(InputView.inputInteger());
     }
 
-
-    @Override
-    public WinningNumbers inputWinningNumbers() {
-        inputWinningNormalNumbers();
-        inputBonusNumber();
-
-        return winningNumbers;
-    }
 
     @Override
     public WinningNumbers inputWinningNormalNumbers() {
-        OutputView.printMessageLine(GameMessage.INPUT_WINNING_NUMBERS.getMessage());
-
         WinningNormalNumberDto winningNormalNumberDto = new WinningNormalNumberDto(InputView.input());
         winningNumbers.generateWinningNormalNumbers(winningNormalNumberDto.numbers());
 
@@ -49,7 +34,6 @@ public class LottoInputProcessor implements InputProcessor {
 
     @Override
     public WinningNumbers inputBonusNumber() {
-        OutputView.printMessageLine(GameMessage.INPUT_BONUS_NUMBERS.getMessage());
         BonusNumberDto bonusNumberDto = new BonusNumberDto(InputView.input());
 
         winningNumbers.generateBonusNumber(bonusNumberDto.number());

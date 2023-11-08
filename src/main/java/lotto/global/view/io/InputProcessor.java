@@ -13,6 +13,4 @@ public interface InputProcessor {
     WinningNumbers inputWinningNormalNumbers();
 
     WinningNumbers inputBonusNumber();
-
-    WinningNumbers inputWinningNumbers();
 }

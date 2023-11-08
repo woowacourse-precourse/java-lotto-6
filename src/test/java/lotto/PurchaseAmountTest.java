@@ -3,6 +3,7 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PurchaseAmountTest {
@@ -18,5 +19,18 @@ class PurchaseAmountTest {
         assertThrows(IllegalArgumentException.class, () -> {
             purchaseAmount.checkUnit1000(amount);
         });
+    }
+
+    @DisplayName("정상적으로 구입금액이 입력되는지 확인한다.")
+    @Test
+    void 구입금액_입력_정상_작동_확인() {
+        // given
+        String input_amount = "123000";
+
+        // when
+        purchaseAmount.inputAmount(input_amount);
+
+        // then
+        assertEquals(123000, purchaseAmount.getAmount());
     }
 }

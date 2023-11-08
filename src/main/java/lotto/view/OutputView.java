@@ -9,7 +9,6 @@ public class OutputView {
     private static final String LINE_SEPARATOR = "---";
 
     public void printUserLottos(List<String> lottoMessages, long buyAmount) {
-        System.out.println();
         System.out.println(String.format(BUY_AMOUNT_MESSAGE, buyAmount));
         lottoMessages.forEach(this::printLotto);
         System.out.println();

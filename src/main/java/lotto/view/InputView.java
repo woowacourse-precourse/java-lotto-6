@@ -23,8 +23,8 @@ public class InputView {
 
     private long inputNumericValue() {
         String input = readLine();
-
         Validator.INSTANCE.numberValidate(input);
+        System.out.println();
 
         return Long.parseLong(input);
     }
@@ -33,6 +33,7 @@ public class InputView {
         System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
         List<String> inputNumbers = split(readLine());
         inputNumbers.forEach(Validator.INSTANCE::numberValidate);
+        System.out.println();
 
         return toIntegerList(inputNumbers);
     }

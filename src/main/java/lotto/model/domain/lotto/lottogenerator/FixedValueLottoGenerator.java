@@ -5,6 +5,9 @@ import lotto.constance.GameConst;
 import lotto.exception.LottoGameException;
 import lotto.model.domain.lotto.Lotto;
 
+/**
+ * 고정된 값의 {@link Lotto}를 반복하여 생성합니다.
+ */
 public class FixedValueLottoGenerator extends LottoGenerator<Lotto> {
 
     private final List<Integer> numbers;

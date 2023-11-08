@@ -1,5 +1,9 @@
 package lotto.model.domain.result;
 
+/**
+ * 로또 당첨 결과를 나타내기 위한 클래스
+ * <p>정답 개수와 상금 정보를 가진다.</p>
+ */
 public enum LottoResult {
 
     FIRST(6, 2_000_000_000),

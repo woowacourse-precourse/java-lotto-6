@@ -26,13 +26,18 @@ public class Money {
     }
 
     /**
-     * 같은 패키지에 위치한 도메인 객체 (더 정확히는 `Revenue` 객체)에게만 해당 메서드를 제공하기 위해 `default` 제어자 사용 `Lotto` 를 포함한 다른 객체에게는 제공하지 않기 위해
-     * `protected` 가 아닌, `default` 사용
+     * 금액 정보를 반환합니다.
+     * <p>
+     * 같은 패키지에 위치한 도메인 객체 (더 정확히는 `Revenue` 객체)에게만 해당 메서드를 제공하기 위해 `default` 제어자 사용
+     * </p>
      */
     int getMoney() {
         return money;
     }
 
+    /**
+     * 현재의 금액 정보를 새로운 Money 객체로 반환합니다.
+     */
     public Money snapShot() {
         return new Money(this.money);
     }

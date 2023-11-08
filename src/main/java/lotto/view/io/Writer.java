@@ -1,5 +1,8 @@
 package lotto.view.io;
 
+/**
+ * 일반적인 출력에 대한 기능을 제공합니다.
+ */
 public class Writer {
 
     private Writer() {

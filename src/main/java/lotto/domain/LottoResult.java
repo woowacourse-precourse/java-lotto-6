@@ -16,10 +16,6 @@ public class LottoResult {
         calculateResult();
     }
 
-    public long getIncome() {
-        return this.income;
-    }
-
     public int getCount(int index) {
         return count[index];
     }
@@ -34,5 +30,9 @@ public class LottoResult {
 
     private void countResult(List<Integer> winningResult) {
         winningResult.forEach(winningIndex -> count[winningIndex]++);
+    }
+
+    public double calculateIncomeRate(int purchaseMoney) {
+        return (double) income / purchaseMoney * 100;
     }
 }

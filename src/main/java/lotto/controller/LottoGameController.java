@@ -1,72 +1,60 @@
 package lotto.controller;
 
-import static lotto.view.constants.OutputMessage.RESULT_MESSAGE;
-import static lotto.view.constants.OutputMessage.WINNING_BONUS_MESSAGE;
-import static lotto.view.constants.OutputMessage.WINNING_MESSAGE;
-import static lotto.view.constants.OutputMessage.WINNING_STATISTICS_MESSAGE;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import lotto.config.GamePrizeConfig;
+import lotto.controller.inputCreator.BonusNumberController;
+import lotto.controller.inputCreator.ObjectCreator;
+import lotto.controller.inputCreator.PurchaseAmountController;
+import lotto.controller.inputCreator.WinningLottoController;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.PurchasedLotto;
 import lotto.view.OutputView;
 
 public class LottoGameController {
-    private final PurchasedLottoService purchasedLottoService;
-    private final WinningLottoService winningLottoService;
-    private final BonusNumberService bonusNumberService;
+    private final LottoPurchaseService lottoPurchaseService;
+    private final LottoResultService lottoResultService;
 
-    public LottoGameController(PurchasedLottoService purchasedLottoService, WinningLottoService winningLottoService, BonusNumberService bonusNumberService) {
-        this.purchasedLottoService = purchasedLottoService;
-        this.winningLottoService = winningLottoService;
-        this.bonusNumberService = bonusNumberService;
+    public LottoGameController(
+            LottoPurchaseService lottoPurchaseService,
+            LottoResultService lottoResultService
+    ) {
+        this.lottoPurchaseService = lottoPurchaseService;
+        this.lottoResultService = lottoResultService;
     }
 
     public void run() {
-        int purchaseAmount = purchasedLottoService.inputPurchaseAmount();
-        PurchasedLotto purchasedLotto = purchasedLottoService.createPurchasedLotto(purchaseAmount);
-        Lotto winningLotto = winningLottoService.craeteWinningLotto();
-        BonusNumber bonusNumber = bonusNumberService.craeteBonusNumber(winningLotto);
 
-        LottoResult lottoResult = createLottoResult(purchasedLotto, winningLotto, bonusNumber);
-        printWinningStatistics(lottoResult, purchaseAmount);
+        PurchaseAmount purchaseAmount = createUntilInputSuccess(new PurchaseAmountController(), null);
+        PurchasedLotto purchasedLotto = purchaseLotto(purchaseAmount);
+        Lotto winningLotto = createUntilInputSuccess(new WinningLottoController(), null);
+        BonusNumber bonusNumber = createUntilInputSuccess(new BonusNumberController(), winningLotto);
+
+        LottoResult lottoResult = lottoResultService.createLottoResult(purchasedLotto, winningLotto, bonusNumber);
+        printResult(lottoResult, purchaseAmount);
     }
 
-    private LottoResult createLottoResult(PurchasedLotto purchasedLotto, Lotto winningLotto, BonusNumber bonusNumber) {
-        List<Integer> winningResult = purchasedLotto.getWinningResult(winningLotto, bonusNumber);
-        return new LottoResult(winningResult);
+    private PurchasedLotto purchaseLotto(PurchaseAmount purchaseAmount) {
+        lottoPurchaseService.printPurchasedLottoCount(purchaseAmount.getLottoCount());
+        PurchasedLotto purchasedLotto = lottoPurchaseService.createPurchasedLotto(purchaseAmount);
+        lottoPurchaseService.printPurchasedLotto(purchasedLotto);
+        return purchasedLotto;
     }
 
-    private void printWinningStatistics(LottoResult lottoResult, int purchaseAmount) {
-        OutputView.printNewLine();
-        OutputView.printMessage(WINNING_STATISTICS_MESSAGE.getMessage());
+    private void printResult(LottoResult lottoResult, PurchaseAmount purchaseAmount) {
+        lottoResultService.printMessageBeforeResult();
+        lottoResultService.printWinningStatistics(lottoResult, purchaseAmount);
+        lottoResultService.printIncomeRate(lottoResult, purchaseAmount);
+    }
 
-        List<GamePrizeConfig> prizes = Arrays.asList(GamePrizeConfig.values());
-        Collections.reverse(prizes);
-        int winningIndex = prizes.size() - 1;
-        for (GamePrizeConfig prize : prizes) {
-            String winningMessage = WINNING_MESSAGE.getMessage();;
-            if (prize.getCheckBonus()) {
-                winningMessage = WINNING_BONUS_MESSAGE.getMessage();
+    public <T, U> T createUntilInputSuccess(ObjectCreator<T, U> creator, U arg) {
+        do {
+            try {
+                return creator.createObjectByInput(arg);
+            } catch (IllegalArgumentException e) {
+                OutputView.printNewLine();
+                OutputView.printMessage(e.getMessage());
             }
-            OutputView.printMessage(String.format(
-                    winningMessage,
-                    prize.getCorrectCount(),
-                    prize.getPrizeText(),
-                    lottoResult.getCount(winningIndex)
-            ));
-            winningIndex--;
-        }
-
-        double incomeRate = calculateIncomeRate(lottoResult, purchaseAmount);
-        OutputView.printMessage(String.format(RESULT_MESSAGE.getMessage(), incomeRate));
-    }
-
-    private double calculateIncomeRate(LottoResult lottoResult, int purchaseAmount) {
-        return (double) lottoResult.getIncome() / purchaseAmount * 100;
+        } while (true);
     }
 }

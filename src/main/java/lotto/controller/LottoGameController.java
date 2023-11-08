@@ -21,6 +21,7 @@ public class LottoGameController implements GameController {
         while (playGame) {
             gameView.showInputRequiredMessage("purchasePrice");
             game.setLottoPurchaseAmount(Console.readLine());
+            game.createLottoTickets();
             gameView.showProgressOf(game);
             gameView.showInputRequiredMessage("winning-numbers");
             game.setWinningLotto(Console.readLine());

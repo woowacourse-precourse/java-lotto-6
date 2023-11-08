@@ -13,6 +13,7 @@ public enum Winning {
     private final int matchingNumbers;
 
     private final boolean isBonusNumberMatch;
+
     private final int winningAmount;
 
     Winning(int matchingNumbers, boolean isBonusNumberMatch, int winningAmount) {
@@ -27,6 +28,10 @@ public enum Winning {
 
     public int getMatchingNumbers() {
         return matchingNumbers;
+    }
+
+    public boolean isBonusNumberMatch() {
+        return isBonusNumberMatch;
     }
 
     public int getWinningAmount() {

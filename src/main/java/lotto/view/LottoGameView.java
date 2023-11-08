@@ -2,6 +2,8 @@ package lotto.view;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.Properties;
 import lotto.Lotto;
 import lotto.model.Game;
@@ -41,6 +43,7 @@ public class LottoGameView implements GameView {
         Winning currentRank = Winning.FIFTH;
 
         System.out.println(message.get("lottery-statistics"));
+        System.out.println("---");
         while (currentRank != Winning.LOSE) {
             System.out.println(matchingResult(currentRank, lottoGame));
             currentRank = currentRank.minus(1);
@@ -54,14 +57,19 @@ public class LottoGameView implements GameView {
     private StringBuilder matchingResult(Winning rank, LottoGame game) {
         StringBuilder resultMessage;
         resultMessage = new StringBuilder();
+        NumberFormat numberFormat;
+        numberFormat = NumberFormat.getNumberInstance(Locale.US);
 
-        return resultMessage.append(rank.getMatchingNumbers())
-                .append(message.get("matching"))
-                .append(" (")
-                .append(rank.getWinningAmount())
+        resultMessage.append(rank.getMatchingNumbers())
+                .append(message.get("matching"));
+        if (rank.isBonusNumberMatch()) {
+            resultMessage.append(", 보너스 볼 일치");
+        }
+        return resultMessage.append(" (")
+                .append(numberFormat.format(rank.getWinningAmount()))
                 .append(message.get("unit"))
                 .append(") - ")
-                .append(game.getWinningLottos().get(rank.getValue()))
+                .append(game.getWinningLottos()[rank.getValue()])
                 .append(message.get("count"))
                 .append("\n");
     }

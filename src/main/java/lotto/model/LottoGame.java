@@ -15,7 +15,7 @@ public class LottoGame implements Game {
 
     private final List<Lotto> purchasedLottos = new ArrayList<>();
 
-    private final List<Integer> winningLottos = new ArrayList<>();
+    private final int[] winningLottos = new int[5];
 
     private double returnOnInvestment;
 
@@ -26,7 +26,7 @@ public class LottoGame implements Game {
             Winning winning;
             winning = lotto.checkWinning(winningLotto, bonusNumber);
             if (winning != Winning.LOSE) {
-                winningLottos.add(winning.getValue(), 1);
+                winningLottos[winning.getValue()] += 1;
                 profit += winning.getWinningAmount();
             }
         }
@@ -36,7 +36,6 @@ public class LottoGame implements Game {
 
     @Override
     public void play() {
-        createLottoTickets();
         checkWinningLottos();
     }
 
@@ -49,6 +48,7 @@ public class LottoGame implements Game {
         for (int i = 0; i < lottoPurchaseAmount; i++) {
             List<Integer> purchasedLottoNumbers;
             purchasedLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            purchasedLottoNumbers = new ArrayList<>(purchasedLottoNumbers);
             Collections.sort(purchasedLottoNumbers);
             purchasedLottos.add(new Lotto(purchasedLottoNumbers));
         }
@@ -94,7 +94,7 @@ public class LottoGame implements Game {
         return purchasedLottos;
     }
 
-    public List<Integer> getWinningLottos() {
+    public int[] getWinningLottos() {
         return winningLottos;
     }
 

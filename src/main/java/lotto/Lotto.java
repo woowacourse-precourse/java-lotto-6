@@ -37,24 +37,22 @@ public class Lotto {
         if (this.numbers.equals(winningLotto.numbers)) {
             return Winning.FIRST;
         }
-        if (winningLotto.numbers.contains(numbers)) {
-            List<Integer> commonNumbers;
-            commonNumbers = winningLotto.numbers.stream()
-                    .filter(numbers::contains)
-                    .collect(Collectors.toList());
+        List<Integer> commonNumbers;
+        commonNumbers = winningLotto.numbers.stream()
+                .filter(numbers::contains)
+                .collect(Collectors.toList());
 
-            if (commonNumbers.size() == 5 && numbers.contains(bonusNumber)) {
-                return Winning.SECOND;
-            }
-            if (commonNumbers.size() == 5) {
-                return Winning.THIRD;
-            }
-            if (commonNumbers.size() == 4) {
-                return Winning.FOURTH;
-            }
-            if (commonNumbers.size() == 3) {
-                return Winning.FIFTH;
-            }
+        if (commonNumbers.size() == 5 && numbers.contains(bonusNumber)) {
+            return Winning.SECOND;
+        }
+        if (commonNumbers.size() == 5) {
+            return Winning.THIRD;
+        }
+        if (commonNumbers.size() == 4) {
+            return Winning.FOURTH;
+        }
+        if (commonNumbers.size() == 3) {
+            return Winning.FIFTH;
         }
 
         return Winning.LOSE;

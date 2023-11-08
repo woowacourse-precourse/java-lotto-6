@@ -31,14 +31,21 @@ public class Judge {
         int matchCount = winningLotto.numberMatches(lotto.getNumbers());
         System.out.println(matchCount);
         boolean isBonusMatch = winningLotto.isBonusMatches(lotto.getNumbers());
+        boolean isFinishedFlag = false;
 
         for (LottoWinningConstant lottoWinningConstant : LottoWinningConstant.values()) {
+            isFinishedFlag = false;
             if (matchCount == lottoWinningConstant.getWinningCount()
                     && isBonusMatch == lottoWinningConstant.isBonusNeeded()) {
                 statistics.put(lottoWinningConstant, statistics.get(lottoWinningConstant) + 1);
+                isFinishedFlag = true;
+                break;
             }
         }
-        statistics.put(NONE, statistics.get(NONE) + 1);
+
+        if (!isFinishedFlag) {
+            statistics.put(NONE, statistics.get(NONE) + 1);
+        }
     }
 
     public Map<LottoWinningConstant, Integer> getStatistics() {

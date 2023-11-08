@@ -12,12 +12,13 @@ public class Application {
         List<Lotto> lottos = lottoProcess.buyLotto(lottoQuantity);
         Lotto winningNumbers = runWinningNumbersStep();
         WinningLotto winningLotto = runWinningLottoStep(winningNumbers);
-        LottoResult lottoResult = lottoProcess.makeLottoResult(lottos, winningLotto);
+        List<Rank> ranks = lottoProcess.makeRanks(lottos, winningLotto);
+        LottoResult lottoResult = new LottoResult();
         double earningRate = lottoResult.calculateEarningRate(purchaseMoney.getAmount());
 
         OutputView.printLottoQuantity(lottoQuantity);
         OutputView.printLottos(lottos);
-        OutputView.printStatistics(lottoResult.getFinalResult());
+        OutputView.printStatistics(lottoResult.getFinalResult(ranks));
         OutputView.printEarningRate(earningRate);
     }
 

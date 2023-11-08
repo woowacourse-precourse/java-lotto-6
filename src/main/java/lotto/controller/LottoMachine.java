@@ -2,13 +2,13 @@ package lotto.controller;
 
 import lotto.service.LottoService;
 
-public class LottoGame {
+public class LottoMachine {
     private LottoService lottoService = new LottoService();
 
-    public LottoGame() {
+    public LottoMachine() {
         this.lottoService = new LottoService();
     }
 
-    public void gameStart() {
+    public void lotto() {
     }
 }

@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoPurchase;
 import lotto.domain.lotto.Lottos;
-import lotto.domain.roulette.Roulette;
 import lotto.domain.roulette.RouletteResult;
 import lotto.domain.roulette.WinningLotto;
 import lotto.service.LottoGameService;
@@ -15,7 +14,6 @@ import java.util.Map;
 
 public class LottoGameController {
     private LottoGameService lottoGameService;
-    private Roulette roulette;
     private InputView inputView;
     private OutputView outputView;
 

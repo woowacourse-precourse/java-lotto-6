@@ -99,7 +99,7 @@ public class Prize {
         MESSAGE_BOARD[1] =
                 MATCH_COUNT_BOARD[1] + "개 일치 (" + Utils.getFormattedMoney(MONEY_BOARD[1]) + "원)";
         MESSAGE_BOARD[2] =
-                MATCH_COUNT_BOARD[2] + "개 일치 보너스 볼 일치 (" + Utils.getFormattedMoney(MONEY_BOARD[2]) + "원)";
+                MATCH_COUNT_BOARD[2] + "개 일치, 보너스 볼 일치 (" + Utils.getFormattedMoney(MONEY_BOARD[2]) + "원)";
         MESSAGE_BOARD[3] =
                 MATCH_COUNT_BOARD[3] + "개 일치 (" + Utils.getFormattedMoney(MONEY_BOARD[3]) + "원)";
         MESSAGE_BOARD[4] =

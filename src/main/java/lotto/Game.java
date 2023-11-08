@@ -79,7 +79,6 @@ public class Game {
         int matchLotto = countMatchLotto(resultCase);
         result.change(resultCase, matchLotto);
         result.print();
-
     }
 
     private int countMatchLotto(ResultCase resultCase) {

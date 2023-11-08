@@ -6,29 +6,28 @@ public class Purchase {
     public static final int LOTTO_PRICE = 1000;
 
     public static int inputMoney() throws IllegalArgumentException {
-        System.out.println("구입금액을 입력해 주세요.");
-        int purchaseQuantity;
-        try {
-            purchaseQuantity = Integer.parseInt(Console.readLine());
-            checkInputMoney(purchaseQuantity);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입금액은 숫자만 입력 가능합니다.");
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                int purchaseQuantity = Integer.parseInt(Console.readLine());
+                checkInputMoney(purchaseQuantity);
+                return purchaseQuantity;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return purchaseQuantity;
     }
 
     private static void checkInputMoney(int purchaseQuantity) {
-        if (purchaseQuantity % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1000원 단위로 입력 가능합니다.");
-        }
-
         if (purchaseQuantity < LOTTO_PRICE) {
             throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1000원 이상 입력 가능합니다.");
         }
+        if (purchaseQuantity % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또 구입금액은 1000원 단위로 입력 가능합니다.");
+        }
     }
 
-    private static int calculateQuantity(int purchaseQuantity) {
+    public static int calculateQuantity(int purchaseQuantity) {
         return purchaseQuantity / LOTTO_PRICE;
     }
 

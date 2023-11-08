@@ -1,7 +1,6 @@
 package lotto.machine;
 
 import lotto.constant.LottoValue;
-import lotto.constant.Prize;
 import lotto.lotto.controller.LottoController;
 import lotto.statistic.controller.StatisticController;
 import lotto.view.controller.ViewController;

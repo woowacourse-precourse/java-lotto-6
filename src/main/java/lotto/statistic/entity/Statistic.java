@@ -2,8 +2,6 @@ package lotto.statistic.entity;
 
 import lotto.constant.Prize;
 
-import java.util.List;
-
 public class Statistic {
 
     private Prize prize;

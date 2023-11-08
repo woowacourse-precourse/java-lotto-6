@@ -1,7 +1,6 @@
 package lotto.validator;
 
 import lotto.constant.LottoValue;
-import lotto.constant.Prize;
 
 import java.util.Arrays;
 import java.util.List;

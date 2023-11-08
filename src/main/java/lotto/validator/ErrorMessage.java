@@ -1,6 +1,7 @@
 package lotto.validator;
 
 public class ErrorMessage {
+
     public static final String ERROR_MESSAGE_PREFIX = "[ERROR]";
     public static final String ERROR_PURCHASE_AMOUNT_UNIT = "구매 금액의 단위가 올바르지 않습니다. 재입력 해주세요";
     public static final String ERROR_NOT_NUMERIC = "숫자를 입력해야합니다. 재입력 해주세요";

@@ -21,18 +21,6 @@ public enum LottoRank {
         this.isCorrectBonus = isCorrectBonus;
     }
 
-    public int getCorrectCount() {
-        return correctCount;
-    }
-
-    public int getPrize() {
-        return prize;
-    }
-
-    public boolean isCorrectBonus() {
-        return isCorrectBonus;
-    }
-
     public static LottoRank getRank(Lotto lotto, WinningLotto winningLotto) {
         Set<Integer> lottoSet = new HashSet<>(lotto.getNumbers());
         Set<Integer> winningLottoSet = new HashSet<>(winningLotto.getLotto().getNumbers());
@@ -49,5 +37,17 @@ public enum LottoRank {
                         && lottoRank.isCorrectBonus == isCorrectBonus)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public int getCorrectCount() {
+        return correctCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public boolean isCorrectBonus() {
+        return isCorrectBonus;
     }
 }

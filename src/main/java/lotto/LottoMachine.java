@@ -25,7 +25,7 @@ public class LottoMachine {
     }
 
     private void printPurchaseResult(List<Lotto> lottos) {
-        System.out.println(String.format("%d개를 구매했습니다.", lottos.size()));
+        System.out.printf("%d개를 구매했습니다.%n", lottos.size());
         lottos.stream()
                 .map(Lotto::getNumbers)
                 .forEach(System.out::println);
@@ -41,7 +41,7 @@ public class LottoMachine {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(RANGE_MIN_VALUE, RANGE_MAX_VALUE, LOTTO_LENGTH);
         ArrayList<Integer> numberArray = new ArrayList<>(numbers);
         Collections.sort(numberArray);
-        
+
         return new Lotto(numberArray);
     }
 }

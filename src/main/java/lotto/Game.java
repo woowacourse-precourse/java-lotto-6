@@ -8,10 +8,12 @@ import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 public class Game {
     static final int LOTTO_PRICE = 1000;
     static final int LIMIT_LOTTO_NUMBER = 45;
+    static final int LOWEST_RANK = 5;
 
     int numOfLotto;
     Lotto publishedLotto[];
     int prizeWinNum[] = new int[LIMIT_LOTTO_NUMBER + 1];
+    int winStat[] = new int[LOWEST_RANK + 1];
 
     int inputCredit() { //로또 구매 금액 입력
         int credit;
@@ -102,5 +104,23 @@ public class Game {
         initPrizeWinNum();
         setNum(inputNum());
         setBounusNum(inputBonusNum());
+    }
+
+    void initStat(){ //통계 저장 초기화
+        for(int i = 0; i < winStat.length;i++) {
+            winStat[i] = 0;
+        }
+    }
+
+    void statistics(Lotto published){ //로또 순위 확인
+        published.checkLotto(prizeWinNum);
+
+        winStat[published.ranking]++;
+    }
+
+    void stareStat(){ // 로또 순위 통계 저장
+        for(int i = 0; i < publishedLotto.length; i++) {
+            statistics(publishedLotto[i]);
+        }
     }
 }

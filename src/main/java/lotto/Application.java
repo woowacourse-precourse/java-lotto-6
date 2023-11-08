@@ -10,6 +10,9 @@ public class Application {
 
         lottoGame.setPrizeWinNum();
 
+        lottoGame.initStat();
+        lottoGame.stareStat();
+
 
     }
 }

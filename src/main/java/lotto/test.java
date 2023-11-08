@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class test {
     Game testGame = new Game();
+    Lotto testLotto;
 
     @Test
     void 당첨번호_분리_입력_테스트() {
@@ -40,7 +41,6 @@ public class test {
         String testNum[] = testInput.split(",");
         String testBonus = "2";
         List<Integer> testLottoNum = new ArrayList<Integer>();
-        Lotto testLotto;
 
         testGame.initPrizeWinNum();
         testGame.setNum(testNum);
@@ -64,8 +64,6 @@ public class test {
         String testNum[] = testInput.split(",");
         String testBonus = "2";
         List<Integer> testLottoNum = new ArrayList<Integer>();
-        Lotto testLotto;
-        int i = 1;
 
         testGame.initPrizeWinNum();
         testGame.setNum(testNum);
@@ -89,7 +87,6 @@ public class test {
         String testNum[] = testInput.split(",");
         String testBonus = "2";
         List<Integer> testLottoNum = new ArrayList<Integer>();
-        Lotto testLotto;
 
         testGame.initPrizeWinNum();
         testGame.setNum(testNum);
@@ -105,5 +102,54 @@ public class test {
         testLotto = new Lotto(testLottoNum);
         testLotto.checkLotto(testGame.prizeWinNum);
         assertThat(testLotto.ranking).isEqualTo(2);
+    }
+
+
+    @Test
+    void 통계_저장_테스트1(){
+        String testInput = "1,3,5,7,9,11";
+        String testNum[] = testInput.split(",");
+        String testBonus = "2";
+        List<Integer> testLottoNum = new ArrayList<Integer>();
+
+        testGame.initPrizeWinNum();
+        testGame.setNum(testNum);
+        testGame.setBounusNum(testBonus);
+
+        testLottoNum.add(1);
+        testLottoNum.add(2);
+        testLottoNum.add(3);
+        testLottoNum.add(5);
+        testLottoNum.add(7);
+        testLottoNum.add(9);
+
+        testLotto = new Lotto(testLottoNum);
+        testGame.statistics(testLotto);
+
+        assertThat(testGame.winStat[2]).isEqualTo(1);
+    }
+
+    @Test
+    void 통계_저장_테스트2() {
+        String testInput = "1,3,5,7,9,11";
+        String testNum[] = testInput.split(",");
+        String testBonus = "2";
+        List<Integer> testLottoNum = new ArrayList<Integer>();
+
+        testGame.initPrizeWinNum();
+        testGame.setNum(testNum);
+        testGame.setBounusNum(testBonus);
+
+        testLottoNum.add(1);
+        testLottoNum.add(3);
+        testLottoNum.add(5);
+        testLottoNum.add(7);
+        testLottoNum.add(9);
+        testLottoNum.add(11);
+
+        testLotto = new Lotto(testLottoNum);
+        testGame.statistics(testLotto);
+
+        assertThat(testGame.winStat[1]).isEqualTo(1);
     }
 }

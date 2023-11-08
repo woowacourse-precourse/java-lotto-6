@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -30,5 +32,14 @@ public class BonusNumberTest {
         assertThatThrownBy(()->new BonusNumber("50",matchNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("보너스 숫자가 잘 생성되었는지 테스트")
+    @Test
+    void createBonusNumber() {
+        assertSimpleTest(() -> {
+            BonusNumber bonusNumber = new BonusNumber("7",matchNumber);
+            assertThat(bonusNumber.getBonusNumber()).isEqualTo(7);
+        });
     }
 }

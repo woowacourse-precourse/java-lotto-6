@@ -41,18 +41,18 @@ public class LottoManager {
         return totalMatchNumbers.get(totalMatchNumbers.size()-1);
     }
 
-    private List<Integer> compareToMatch(Lotto lotto, List<Integer> totalMatchNumbers){
+    public List<Integer> compareToMatch(Lotto lotto, List<Integer> totalMatchNumbers){
         List<Integer> compareNumbers = new ArrayList<>(lotto.getNumbers());
         compareNumbers.retainAll(totalMatchNumbers);
         return compareNumbers;
     }
 
-    private MatchRanking judgeLottoRanking(List<Integer> numberIntersection, Integer bonusNumber){
+    public MatchRanking judgeLottoRanking(List<Integer> numberIntersection, Integer bonusNumber){
         if(numberIntersection.size()==6){
-            return MatchRanking.FIRST_PLACE;
+            return judgeSecondAndThirdRanking(numberIntersection, bonusNumber);
         }
         if(numberIntersection.size()==5){
-            return judgeSecondAndThirdRanking(numberIntersection, bonusNumber);
+            return MatchRanking.THIRD_PLACE;
         }
         if(numberIntersection.size()==4){
             return MatchRanking.FOURTH_PLACE;
@@ -63,11 +63,11 @@ public class LottoManager {
         return MatchRanking.NO_MATCH;
     }
 
-    private MatchRanking judgeSecondAndThirdRanking(List<Integer> numberIntersection, Integer bonusNumber){
+    public MatchRanking judgeSecondAndThirdRanking(List<Integer> numberIntersection, Integer bonusNumber){
         if(numberIntersection.contains(bonusNumber)){
             return MatchRanking.SECOND_PLACE;
         }
-        return MatchRanking.THIRD_PLACE;
+        return MatchRanking.FIRST_PLACE;
     }
 
     private void rankingCount(MatchRanking ranking){

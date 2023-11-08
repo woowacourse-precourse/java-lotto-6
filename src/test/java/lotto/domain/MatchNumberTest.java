@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -11,9 +10,9 @@ import org.junit.jupiter.api.Test;
 
 public class MatchNumberTest {
 
-    @DisplayName("validate 테스트")
+    @DisplayName("당첨 숫자가 잘 생성되었는지 테스트")
     @Test
-    void validateTest(){
+    void createMatchNumberTest(){
         assertSimpleTest(()-> {
             MatchNumber matchNumber = new MatchNumber("1,2,3,4,5,6");
             assertThat(matchNumber.getMatchNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
@@ -52,5 +51,4 @@ public class MatchNumberTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
-
 }

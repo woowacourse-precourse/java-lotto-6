@@ -10,14 +10,14 @@ import org.junit.jupiter.api.Test;
 public class LottosTest {
 
     private final Lottos lottos = new Lottos();
-    @DisplayName("createLottos 테스트")
+    @DisplayName("로또 구입 갯수만큼 생성되었는지 테스트")
     @Test
     void createLottosTest(){
         List<Integer> expectedNumbers1 = List.of(8, 21, 23, 41, 42, 43);
         List<Integer> expectedNumbers2 = List.of(3, 5, 11, 16, 32, 38);
         assertRandomUniqueNumbersInRangeTest(
                 ()->{
-                    lottos.createLottos(2);
+                    Lottos lottos = new Lottos(2);
                     Lotto lotto1 = lottos.getLottos().get(0);
                     Lotto lotto2 = lottos.getLottos().get(1);
                     assertThat(lotto1.getNumbers()).isEqualTo(expectedNumbers1);

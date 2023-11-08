@@ -1,7 +1,12 @@
 package lotto.domain;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.HashMap;
+import java.util.Map;
+import lotto.util.MatchRanking;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +41,16 @@ public class LottoPriceTest {
         assertThatThrownBy(() -> new LottoPrice("1001"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 천 단위로 입력해 주세요.");
+    }
+
+    @DisplayName("로또 구입 금액이 정수 형태로 변환되었는지 테스트")
+    @Test
+    void isCorrectDataTypeConvert() {
+
+        assertSimpleTest(() -> {
+            LottoPrice lottoPrice = new LottoPrice("8000");
+            assertThat(lottoPrice.getLottoPrice()).isEqualTo(8000);
+        });
     }
 
 

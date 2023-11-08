@@ -21,7 +21,7 @@ public class MatchNumber {
         return matchNumbers;
     }
 
-    public List<Integer> validate(String userInput) {
+    private List<Integer> validate(String userInput) {
         List<String> inputNumbers = Arrays.asList(userInput.split(COMMA_DELIMITER));
         checkForInputSize(inputNumbers);
         List<Integer> matchNumbers = checkForDataType(inputNumbers);

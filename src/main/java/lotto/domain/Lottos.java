@@ -17,14 +17,13 @@ public class Lottos {
     }
 
     public Lottos(){
-        lottos = new ArrayList<>();
     }
 
     public List<Lotto> getLottos(){
         return lottos;
     }
 
-    public void createLottos(Integer numberOfLotto){
+    private void createLottos(Integer numberOfLotto){
         for(int i=0;i<numberOfLotto;i++){
             List<Integer> oneLotto = createLotto();
             oneLotto = oneLotto.stream()

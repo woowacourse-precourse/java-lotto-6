@@ -9,7 +9,8 @@ public class LottoPrice {
     public LottoPrice(String inputLottoPrice){
         Long dataTypeValidatePrice = dataTypeValidate(inputLottoPrice);
         buyNothingValidate(dataTypeValidatePrice);
-        int buyLimitValidatePrice = buyLimitValidate(dataTypeValidatePrice);
+        buyLimitValidate(dataTypeValidatePrice);
+        int buyLimitValidatePrice = dataTypeValidatePrice.intValue();;
         divisionByThousand(buyLimitValidatePrice);
 
         this.lottoPrice = buyLimitValidatePrice;
@@ -29,15 +30,14 @@ public class LottoPrice {
 
     private void buyNothingValidate(Long dataTypeValidatePrice){
         if(dataTypeValidatePrice==BUY_NOTHING){
-            throw  new IllegalArgumentException("[ERROR] 살 수 없는 금액입니다.");
+            throw new IllegalArgumentException("[ERROR] 살 수 없는 금액입니다.");
         }
     }
 
-    private int buyLimitValidate(Long dataTypeValidatePrice){
+    private void buyLimitValidate(Long dataTypeValidatePrice){
         if(dataTypeValidatePrice > MAXIMUM_PRICE){
             throw new IllegalArgumentException("[ERROR] 너무 많은 갯수를 구입할 수 없습니다.");
         }
-        return dataTypeValidatePrice.intValue();
     }
 
     private void divisionByThousand(Integer buyLimitValidatePrice){

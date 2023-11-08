@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.BonusNumber;
@@ -16,7 +15,6 @@ import lotto.view.LottoView;
 public class LottoController {
     private static int PRICE_OF_LOTTO = 1000;
     private final LottoView lottoView = new LottoView();
-    private Lottos lottos;
 
     public void init(){
         lottoView.startMessage();
@@ -24,16 +22,18 @@ public class LottoController {
     }
     public void run(){
         LottoPrice lottoPrice = new LottoPrice(userInput());
-        drawLottoNumbers(lottoPrice);
+        Lottos lottos = drawLottoNumbers(lottoPrice);
 
         lottoView.inputMatchNumberMessage();
         MatchNumber matchNumber = new MatchNumber(userInput());
         lottoView.inputBonusNumberMessage();
         BonusNumber bonusNumber = new BonusNumber(userInput(), matchNumber);
 
-        LottoManager lottoManager = matchResult(matchNumber, bonusNumber);
+        List<Integer> totalMatchNumbers = getTotalMatchNumbers(matchNumber,bonusNumber);
+        LottoManager lottoManager = matchResult(lottos, totalMatchNumbers);
         printMatchStatistics(lottoManager, lottoPrice);
     }
+
     public void printMatchStatistics(LottoManager lottoManager, LottoPrice lottoPrice){
         lottoView.matchResultMessage();
         Map<MatchRanking, Integer> rankingCount = lottoManager.getLottoResult();
@@ -43,17 +43,23 @@ public class LottoController {
         lottoView.totalReturnMessage(returnMoney.getReturnMoney());
     }
 
-    public LottoManager matchResult(MatchNumber matchNumber, BonusNumber bonusNumber){
+    public List<Integer> getTotalMatchNumbers(MatchNumber matchNumber, BonusNumber bonusNumber){
         List<Integer> totalMatchNumbers = matchNumber.getMatchNumbers();
         totalMatchNumbers.add(bonusNumber.getBonusNumber());
+        return totalMatchNumbers;
+    }
+
+    public LottoManager matchResult(Lottos lottos, List<Integer> totalMatchNumbers){
         return new LottoManager(lottos, totalMatchNumbers);
     }
 
-    public void drawLottoNumbers(LottoPrice lottoPrice){
+    public Lottos drawLottoNumbers(LottoPrice lottoPrice){
         int numberOfLotto = countLotto(lottoPrice);
         lottoView.buyMessage(numberOfLotto);
-        lottos = new Lottos(numberOfLotto);
+        Lottos lottos = new Lottos(numberOfLotto);
         lottoView.lottosMessage(lottos);
+
+        return lottos;
     }
 
     public int countLotto(LottoPrice lottoPrice){

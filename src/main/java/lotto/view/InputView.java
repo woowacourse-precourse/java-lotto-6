@@ -1,48 +1,34 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import lotto.validation.InputValidation;
 
 public class InputView {
-    private static final String DELIMITER = ",";
-    private final InputValidation inputValidation = new InputValidation();
+    public interface EachInput<T> {
+        T input();
+    }
 
-    public int purchaseCost() {
-        while(true) {
-            try {
-                String purchaseCost = Console.readLine();
-                inputValidation.validatePurchaseCost(purchaseCost);
-                return Integer.parseInt(purchaseCost);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    public static <T> T commonInput(EachInput<T> eachInput) {
+        try {
+            return eachInput.input();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return commonInput(eachInput);
         }
     }
 
-    public List<Integer> winningNumber() {
-        while(true) {
-            try {
-                String winningNumber = Console.readLine();
-                inputValidation.validateWinningNumber(winningNumber);
-                return Arrays.stream(winningNumber.split(DELIMITER)).map(Integer::valueOf).collect(Collectors.toList());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public static int paymentAmount() {
+        String paymentAmount = Console.readLine();
+        return InputValidation.validateDigitAndConvertToDigit(paymentAmount);
     }
 
-    public int bonusNumber(List<Integer> winningNumbers) {
-        while(true) {
-            try {
-                String bonusNumber = Console.readLine();
-                inputValidation.validateBonusNumber(bonusNumber, winningNumbers);
-                return Integer.parseInt(bonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public static int[] winningNumber() {
+        String winningNumber = Console.readLine();
+        return InputValidation.validateDigitsAndConvertToDigits(winningNumber);
+    }
+
+    public static int bonusNumber() {
+        String bonusNumber = Console.readLine();
+        return InputValidation.validateDigitAndConvertToDigit(bonusNumber);
     }
 }

@@ -22,10 +22,10 @@ public class User {
         MoneyValidate.validateMoney(money);
         userPrize.setCost(money);
         lottoWallet.clearWallet();
-        addLottos(money / LOTTO_PRICE);
+        addLotto(money / LOTTO_PRICE);
     }
 
-    private void addLottos(int amount) {
+    private void addLotto(int amount) {
         for (int i = 0; i < amount; i++) {
             addLotto();
         }
@@ -51,7 +51,7 @@ public class User {
         return lottoWallet.getLotto();
     }
 
-    public List<Integer> getPrizeCounts() {
+    public List<Integer> getPrizeCount() {
         return userPrize.getPrizeCounts();
     }
 }

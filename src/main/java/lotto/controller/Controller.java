@@ -1,9 +1,16 @@
 package lotto.controller;
 
+import static lotto.constant.Constant.INT_NULL;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoCompany;
+import lotto.domain.User;
+import lotto.util.NumberValidate;
+import lotto.util.StringUtil;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Controller {
     private boolean flag;
@@ -12,7 +19,7 @@ public class Controller {
     private final User user;
     private final LottoCompany lottoCompany;
 
-    public LottoController(User user, LottoCompany lottoCompany) {
+    public Controller(User user, LottoCompany lottoCompany) {
         this.user = user;
         this.lottoCompany = lottoCompany;
     }

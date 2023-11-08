@@ -34,8 +34,10 @@ public class LottoValidator {
         }
     }
 
-    public static void validateNoRemainderValue(int value) throws LottoGameException {
-        if (value % LOTTO_COST.getNumber() != 0) throw new LottoGameException(HAVE_CHANGE_ERROR_MESSAGE);
+    public static void validateNoRemainderValue(String value) throws LottoGameException {
+        if ((Integer.parseInt(value) % LOTTO_COST.getNumber()) != 0) {
+            throw new LottoGameException(HAVE_CHANGE_ERROR_MESSAGE);
+        }
     }
 
     public static void validateLottoLength(List<Integer> numbers) throws LottoGameException {

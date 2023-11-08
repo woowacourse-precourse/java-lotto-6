@@ -10,7 +10,7 @@ public class Payment {
 
     private Payment(String inputValue) throws LottoGameException {
         validateNullValue(inputValue);
-        validateNoRemainderValue(this.payment);
+        validateNoRemainderValue(inputValue);
         this.payment = Parser.parseStringToInt(inputValue);
     }
 

@@ -25,10 +25,6 @@ enum Statistic {
         this.prize = prize;
         this.count = count;
     }
-    public String getName() {
-        return name;
-    }
-
     public static Statistic getRank(int numberOfMatch, boolean bonusYes) {
         Statistic num =  Arrays.stream(values())
                 .filter(statistic -> statistic.matchingNumbers == numberOfMatch)
@@ -52,7 +48,7 @@ public class Application {
             catch (IllegalArgumentException e){
             }
         }
-        int bonus = inputBonus();
+        int bonus = inputBonus(numbers);
         calculateTotalprice(price, numbers, answers, bonus);
     }
     private static int inputPrice(){
@@ -64,7 +60,7 @@ public class Application {
                 validate(price);
                 return price;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+                System.out.println("[ERROR] 유효하지 않은 값입니다. 숫자를 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 유효하지 않는 값입니다. 가격은 1000원 단위로 입력할 수 있습니다.");
             }
@@ -84,16 +80,20 @@ public class Application {
             }
         }
     }
-    private static int inputBonus(){
+    private static int inputBonus(List<Integer> numbers){
         System.out.println("보너스 숫자를 입력해 주세요.");
         int bonus = 0;
-        try {
-            bonus = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자를 입력해 주세요.");
-            inputBonus();
+        while(true){
+            try {
+                bonus = Integer.parseInt(Console.readLine());
+                validateBonus(bonus, numbers);
+                return bonus;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 보너스 숫자는 중복되지 않아야 합니다.");
+            }
         }
-        return bonus;
     }
 
     public static List<List<Integer>> generateAnswers(int price){
@@ -113,8 +113,7 @@ public class Application {
         List<Integer> answerBuf = new ArrayList<>();
         answerBuf.addAll(answer);
         answerBuf.retainAll(numbers);
-        int match = answer.size();
-
+        int match = answerBuf.size();
         if (match < 3)
             return Statistic.FAIL;
         return Statistic.getRank(match, bonusYes);
@@ -128,7 +127,7 @@ public class Application {
         System.out.println("6개 일치 (2,000,000,000원) - "+prizes[5]+"개");
         System.out.println("총 수익률은 "+percent+"%입니다.");
     }
-    private static void calculateTotalprice(float price, List<Integer> numbers, List<List<Integer>>answers, int bonus){
+    private static void calculateTotalprice(int price, List<Integer> numbers, List<List<Integer>>answers, int bonus){
         float totalPrize = 0;
         int[] prizes={0,0,0,0,0,0};
         for(int i=0; i<price/1000; i++){
@@ -136,7 +135,7 @@ public class Application {
             totalPrize += prize.prize;
             prizes[prize.count]++;
         }
-        float percent = totalPrize/price * 100;
+        float percent = Math.round(totalPrize / price * 1000)/10;
         printResult(percent, prizes);
     }
 
@@ -145,7 +144,11 @@ public class Application {
             throw new IllegalArgumentException();
         }
     }
-
+    private static void validateBonus(int bonus, List<Integer> numbers) {
+        if (numbers.contains(bonus)) {
+            throw new IllegalArgumentException();
+        }
+    }
 
 
 }

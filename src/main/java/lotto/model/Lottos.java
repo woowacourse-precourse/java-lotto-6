@@ -30,7 +30,10 @@ public class Lottos {
         );
     }
 
-    public WinningResult getWinningResult(final String inputWinningNumber, final String inputBonusNumber) {
+    public WinningResult getWinningResult(
+            final String inputWinningNumber,
+            final String inputBonusNumber
+    ) {
         List<Integer> winningNumbers = Arrays.stream(inputWinningNumber.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -65,7 +68,11 @@ public class Lottos {
         }
     }
 
-    private WinningResult checkIfWin(final int winningCount, WinningResult winningResult, final boolean matchesBonusNumber) {
+    private WinningResult checkIfWin(
+            final int winningCount,
+            WinningResult winningResult,
+            final boolean matchesBonusNumber
+    ) {
         if (winningCount == FIRST_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedPlaceCount(0);
         }

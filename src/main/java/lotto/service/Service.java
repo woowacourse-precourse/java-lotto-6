@@ -10,7 +10,11 @@ public interface Service {
 
     LottosDto generateLotto(final int quantity);
 
-    WinningResultDto generateWinningResult(final String inputWinningNumber, final String inputBonusNumber, final LottosDto lottosDto);
+    WinningResultDto generateWinningResult(
+            final String inputWinningNumber,
+            final String inputBonusNumber,
+            final LottosDto lottosDto
+    );
 
     ReturnRateDto getReturnRate(LottoPurchaseDto lottoPurchaseDto, WinningResultDto winningResultDto);
 }

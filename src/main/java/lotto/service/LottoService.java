@@ -80,7 +80,6 @@ public class LottoService implements Service {
                 .map(this::getLotto)
                 .toList();
         return new Lottos(lottos);
-
     }
 
     private Lotto getLotto(final LottoDto lottoDto) {
@@ -88,9 +87,12 @@ public class LottoService implements Service {
     }
 
     @Override
-    public ReturnRateDto getReturnRate(final LottoPurchaseDto lottoPurchaseDto,
-                                       final WinningResultDto winningResultDto) {
-        ReturnRate returnRate = getWinningResult(winningResultDto)
+    public ReturnRateDto getReturnRate(
+            final LottoPurchaseDto lottoPurchaseDto,
+            final WinningResultDto winningResultDto
+    ) {
+        ReturnRate returnRate = getWinningResult(winningResultDto
+        )
                 .getTotalWinningAmount()
                 .calculateReturnRateFrom(lottoPurchaseDto.amount());
         return getReturnRateDto(returnRate);

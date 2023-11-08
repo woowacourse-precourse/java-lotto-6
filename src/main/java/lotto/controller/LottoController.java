@@ -59,7 +59,10 @@ public class LottoController extends AbstractRetry {
         });
     }
 
-    private void showWinningStats(final WinningResultDto winningResultDto, final LottoPurchaseDto lottoPurchaseDto) {
+    private void showWinningStats(
+            final WinningResultDto winningResultDto,
+            final LottoPurchaseDto lottoPurchaseDto
+    ) {
         view.printMessage(WINNING_STATS);
         view.printWinningResult(winningResultDto);
         ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto, winningResultDto);

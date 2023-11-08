@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
-import lotto.util.converter.IntegerListConverter;
+import lotto.util.converter.MultipleNumericConverter;
 import lotto.util.converter.NumericConverter;
 import lotto.util.validator.BlankValidator;
 import lotto.util.validator.DigitsOnlyValidator;
@@ -17,7 +17,7 @@ public class InputView {
     public Lotto readWinningNumbers() {
         String input = Console.readLine();
         validate(input);
-        return new Lotto(IntegerListConverter.convert(input));
+        return new Lotto(MultipleNumericConverter.convert(input));
     }
 
     public Integer readBonusNumber() {

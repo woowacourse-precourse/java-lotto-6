@@ -7,9 +7,10 @@ import lotto.util.validator.PurchaseAmountInputValidator;
 import lotto.util.validator.WinningInputValidator;
 
 public class InputView {
-    private static final InputValidator winningInputValidator = new WinningInputValidator()
+    private static final InputValidator winningInputValidator = new WinningInputValidator();
     private static final InputValidator purchaseAmountInputValidator = new PurchaseAmountInputValidator();
     private static final InputValidator bonusInputValidator = new BonusInputValidator();
+
     public String readPurchaseAmount() {
         String input = Console.readLine();
         purchaseAmountInputValidator.validate(input);

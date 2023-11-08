@@ -37,6 +37,7 @@ public class Program {
         Lotto winning = null;
         while (true) {
             try {
+                validateInsertLottoState();
                 List<Integer> winningNumbers = UI.inputWinningNumbers();
                 winning = new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
@@ -52,6 +53,7 @@ public class Program {
         Integer bonus = null;
         while (true) {
             try {
+                validateInsertWinningNumbersState();
                 bonus = UI.inputBonusNumber();
                 drawResult = BroadCastingStation.drawLotto(winning, bonus);
             } catch (IllegalArgumentException e) {
@@ -97,9 +99,21 @@ public class Program {
         winningFrequency.put(Grade.FIFTH, 0);
     }
 
+    private void validateInsertLottoState() {
+        if (consumerLottos == null) {
+            throw new IllegalStateException(LottoErrorMessage.SETTING_PURCHASE);
+        }
+    }
+
+    private void validateInsertWinningNumbersState() {
+        if (winning == null) {
+            throw new IllegalStateException(LottoErrorMessage.SETTING_WINNING);
+        }
+    }
+
     private void validateShowState() {
         if (drawResult == null) {
-            throw new IllegalStateException(LottoErrorMessage.SETTING_SEQUENCE);
+            throw new IllegalStateException(LottoErrorMessage.SETTING_BONUS);
         }
     }
 }

@@ -1,8 +1,10 @@
-package lotto.validator;
+package lotto.validator.view_layer;
+
+import lotto.validator.LottoValidator;
 
 import java.util.List;
 
-public class LottoNumbersValidator implements InputValidator{
+public class LottoNumbersValidator implements InputValidator {
     @Override
     public void validate(String input) {
         input = input.replaceAll("\\s", "");

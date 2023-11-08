@@ -2,10 +2,10 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.validator.BonusNumberValidator;
-import lotto.validator.InputValidator;
-import lotto.validator.LottoNumbersValidator;
-import lotto.validator.PurchaseMoneyValidator;
+import lotto.validator.view_layer.BonusNumberValidator;
+import lotto.validator.view_layer.InputValidator;
+import lotto.validator.view_layer.LottoNumbersValidator;
+import lotto.validator.view_layer.PurchaseMoneyValidator;
 
 import java.util.Arrays;
 import java.util.List;

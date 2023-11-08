@@ -23,10 +23,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         LottoValidator.validateIsProperSize(numbers);
         LottoValidator.validateDuplicatedNumber(numbers);
-
-        for (int number : numbers) {
-            LottoValidator.validateRangeOfNumber(number);
-        }
+        LottoValidator.validateRangeOfNumber(numbers);
     }
 
     public boolean contains(int number) {

@@ -1,9 +1,9 @@
-package lotto.validator;
+package lotto.validator.view_layer;
 
 import static lotto.constant.ErrorMessage.NOT_DIVISIBLE_BY_LOTTO_PRICE;
 import static lotto.constant.NumericConstant.LOTTO_PRICE;
 
-public class PurchaseMoneyValidator implements InputValidator{
+public class PurchaseMoneyValidator implements InputValidator {
     @Override
     public void validate(String input) {
         CommonValidator.validateIsNaturalNumber(input);

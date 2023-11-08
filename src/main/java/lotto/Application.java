@@ -68,7 +68,13 @@ public class Application {
         return numbers;
     }
 
-
+    private  static List<Integer> stringToList(String[] input){
+        List<Integer> List = new ArrayList<>();
+        List<Integer> integerList = Arrays.stream(input)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        return List;
+    }
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현

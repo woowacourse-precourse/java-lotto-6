@@ -1,14 +1,14 @@
 package lotto.model;
 
-import java.util.LinkedHashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class Statistics {
 
-    private Map<Prize, Integer> result;
+    private final Map<Prize, Integer> result;
 
     public Statistics(PlayerLottos playerLottos, WinningLotto winningLotto) {
-        initResult();
+        this.result = initResult();
         generateResult(playerLottos, winningLotto);
     }
 
@@ -24,15 +24,15 @@ public class Statistics {
             boolean hasBonusNumber = winningLotto.hasBonusNumber(playerLotto);
             Prize prize = Prize.findPrize(matchCount, hasBonusNumber);
 
-            result.replace(prize, result.get(prize) + 1);
+            result.merge(prize, 1, Integer::sum);
         }
     }
 
-    private void initResult() {
-        Map<Prize, Integer> result = new LinkedHashMap<>();
+    private Map<Prize, Integer> initResult() {
+        Map<Prize, Integer> result = new EnumMap<>(Prize.class);
         for (Prize prize : Prize.values()) {
             result.put(prize, 0);
         }
-        this.result = result;
+        return result;
     }
 }

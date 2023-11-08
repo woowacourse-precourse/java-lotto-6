@@ -14,6 +14,7 @@ public class GameManager {
     List<Integer> winningNumber;
     int bonusNumber;
     int[] countRankArray = {0, 0, 0, 0, 0};
+    Rank rank;
     public void start() {
         int inputPrice = user.inputPrice();
         System.out.println();
@@ -49,7 +50,7 @@ public class GameManager {
             List<Integer> winningLotto = winningNumber;
 
             int matchCnt = countMatchingNumber(userLotto, winningLotto);
-            Rank rank = getRank(lotto, matchCnt);
+            Rank rank = getRank(userLotto, matchCnt);
 
             countEachRank(rank, countRankArray);
         }
@@ -66,12 +67,12 @@ public class GameManager {
         return matchCnt;
     }
 
-    public Rank getRank(List<Lotto> lotto, int matchCnt) {
+    public Rank getRank(List<Integer> userLotto, int matchCnt) {
         if (matchCnt == 6)
             return Rank.FIRST;
-        if (matchCnt == 5 && lotto.contains(bonusNumber))
+        if (matchCnt == 5 && userLotto.contains(bonusNumber))
             return Rank.SECOND;
-        if (matchCnt == 5 && !lotto.contains(bonusNumber))
+        if (matchCnt == 5 && !userLotto.contains(bonusNumber))
             return Rank.THIRD;
         if (matchCnt == 4)
             return Rank.FOURTH;

@@ -17,7 +17,6 @@ public class BonusNumberValidator implements InputValidator {
         CommonValidator.validateIsNaturalNumber(input);
 
         int bonusNumber = Integer.parseInt(input);
-
         LottoValidator.validateRangeOfNumber(bonusNumber);
 
         if(winningLotto.contains(bonusNumber)) {

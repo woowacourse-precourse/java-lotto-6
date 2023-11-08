@@ -28,5 +28,18 @@ class LottoGameResultTest {
         double profitRate2 = lottoGameResult.calculateProfitRate(investAmount);
         assertThat(profitRate2).isEqualTo(600.0);
     }
+    
+    @DisplayName("로또 등수에 맞는 인원을 제대로 불러오는지 테스트")
+    @Test
+    void getNumberOfRank() {
+        LottoGameResult lottoGameResult = new LottoGameResult();
 
+        int count = 5;
+        for (int i = 0; i < count; i ++) {
+            lottoGameResult.add(LottoRank.FIFTH);
+        }
+
+        int numberOfFIFTH = lottoGameResult.getNumberOfRank(LottoRank.FIFTH);
+        assertThat(numberOfFIFTH).isEqualTo(count);
+    }
 }

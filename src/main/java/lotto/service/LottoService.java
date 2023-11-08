@@ -15,11 +15,9 @@ import static lotto.constant.NumericConstant.MIN_LOTTO_NUMBER;
 
 public class LottoService {
 
-    private long sellAmount = 0;
     private List<Lotto> userLottos = new ArrayList<>();
-
+    
     public List<Lotto> buyLotto(int money) {
-        sellAmount += money;
         int count = money / LOTTO_PRICE;
 
         userLottos = createLottos(count);

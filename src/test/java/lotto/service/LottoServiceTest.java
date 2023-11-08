@@ -20,4 +20,6 @@ class LottoServiceTest {
         List<Lotto> lottos = lottoService.buyLotto(5000);
         assertThat(lottos.size()).isEqualTo(money / LOTTO_PRICE);
     }
+
+
 }

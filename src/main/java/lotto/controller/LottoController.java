@@ -4,6 +4,7 @@ import static lotto.global.constants.NumberType.COST_UNIT;
 import static lotto.view.View.requestBonusNumber;
 import static lotto.view.View.requestWinningNumbers;
 
+import lotto.domain.Cost;
 import lotto.domain.DrawnNumbers;
 import lotto.domain.Lottos;
 import lotto.domain.WinningResult;
@@ -13,8 +14,8 @@ import lotto.view.View;
 
 public class LottoController {
     public void run() {
-        int cost = CostRequestView.request();
-        Lottos lottos = issue(getCountFrom(cost));
+        Cost cost = Cost.from(CostRequestView.request());
+        Lottos lottos = issue(cost.getCount());
         DrawnNumbers drawnNumbers = draw();
         conclude(lottos, drawnNumbers, cost);
     }

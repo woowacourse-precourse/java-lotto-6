@@ -20,5 +20,18 @@ public class Lotto {
     public void printLotto() {
         System.out.println(numbers.toString());
     }
-    // TODO: 추가 기능 구현
+
+    public int compareWinningNumber(List<Integer> winningNumbers) {
+        int matchCount = 0;
+        for (int number : winningNumbers) {
+            if (numbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public boolean compareBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

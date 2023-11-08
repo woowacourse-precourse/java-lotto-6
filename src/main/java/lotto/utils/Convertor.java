@@ -14,4 +14,9 @@ public class Convertor {
                 .distinct()
                 .collect(Collectors.toList());
     }
+
+
+    public static String numToStatus(int matchingNum) {
+        return Constant.lottoResult.get(matchingNum);
+    }
 }

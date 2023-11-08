@@ -5,10 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.exception.CustomException;
 import lotto.exception.constant.ErrorCode;
 import lotto.utils.Constant;
+import lotto.utils.Convertor;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Lottos {
     private List<Lotto> lottos;
@@ -52,5 +51,35 @@ public class Lottos {
         for (Lotto lotto : lottos) {
             System.out.println(Arrays.toString(lotto.convertArray()));
         }
+    }
+
+
+    public Map<String, Integer> calculateResult(Winning winning) {
+        Map<String, Integer> result = new HashMap<>();
+
+        for (String status : Constant.lottoResult.values()) {
+            result.put(status, 0);
+        }
+
+        Lotto winningLotto = winning.getWinningLotto();
+        int bonusNum = winning.getBonusNum();
+
+        for (Lotto lotto : lottos) {
+            int matchingNum = (int) lotto.getNumbers().stream()
+                    .filter(winningLotto.getNumbers()::contains)
+                    .count();
+
+            if (matchingNum == 5) {
+                if (lotto.contain(bonusNum)) {
+                    matchingNum = 7;
+                }
+            }
+
+            String lottoStatus = Constant.lottoResult.get(matchingNum);
+            if (lottoStatus != null) {
+                result.put(lottoStatus, result.get(lottoStatus) + 1);
+            }
+        }
+        return result;
     }
 }

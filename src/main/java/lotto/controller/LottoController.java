@@ -1,13 +1,12 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Winning;
 import lotto.utils.Convertor;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final InputView inputView;
@@ -24,5 +23,7 @@ public class LottoController {
         Winning winning = new Winning(Convertor.winningToList(inputView.requireWinning()));
         winning.setBonusNum(Integer.parseInt(inputView.requireBonus()));
 
+        Map<String, Integer> result = lottos.calculateResult(winning);
+        outputView.announceResult(result);
     }
 }

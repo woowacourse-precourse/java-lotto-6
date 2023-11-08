@@ -37,4 +37,12 @@ public class Winning {
             throw new CustomException(ErrorCode.INVALID_LOTTO_NUMBER);
         }
     }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNum() {
+        return bonusNum;
+    }
 }

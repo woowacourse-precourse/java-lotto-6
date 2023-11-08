@@ -35,7 +35,7 @@ public class LottoManager {
     }
 
     public double calculateProfitRate(PurchaseAmount purchaseAmount) {
-        return profitRateCalculator.calculate(purchaseAmount.getAmount(), calculateTotalReward());
+        return profitRateCalculator.calculate(purchaseAmount.amount(), calculateTotalReward());
     }
 
     private long calculateTotalReward() {

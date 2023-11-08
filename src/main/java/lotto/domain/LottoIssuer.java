@@ -17,7 +17,7 @@ public class LottoIssuer {
     }
 
     private int getLottoCount(PurchaseAmount purchaseAmount) {
-        return purchaseAmount.getAmount() / LottoConstants.LOTTO_PRICE;
+        return purchaseAmount.amount() / LottoConstants.LOTTO_PRICE;
     }
 
     private Lotto getLotto() {

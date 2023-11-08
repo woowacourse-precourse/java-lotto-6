@@ -3,17 +3,14 @@ package lotto.domain;
 import lotto.constants.ErrorMessage;
 import lotto.constants.LottoConstants;
 
-public class PurchaseAmount {
+public record PurchaseAmount(int amount) {
 
     private static final int MIN_PURCHASE_AMOUNT = 1_000;
     private static final int MAX_PURCHASE_AMOUNT = 100_000;
 
-    private int amount;
-
-    public PurchaseAmount(int amount) {
+    public PurchaseAmount {
         validateRange(amount);
         validateUnit(amount);
-        this.amount = amount;
     }
 
     private void validateRange(int amount) {
@@ -39,9 +36,5 @@ public class PurchaseAmount {
 
     private boolean isNotDividedByLottoPrice(int amount) {
         return amount % LottoConstants.LOTTO_PRICE != 0;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.Rank.getByCountAndBonus;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -44,22 +46,11 @@ public class Lotto {
     }
 
     public Rank compareResult(int count, int bonusNumber) {
-        if (count == 6) {
-            return Rank.FIRST_PLACE;
+        boolean bonus = false;
+        if (count == 5 && numbers.contains(bonusNumber)) {
+            bonus = true;
         }
-        if (count == 5) {
-            if (numbers.contains(bonusNumber)) {
-                return Rank.SECOND_PLACE;
-            }
-            return Rank.THIRD_PLACE;
-        }
-        if (count == 4) {
-            return Rank.FOURTH_PLACE;
-        }
-        if (count == 3) {
-            return Rank.FIFTH_PLACE;
-        }
-        return Rank.LAST_PLACE;
+        return getByCountAndBonus(count, bonus);
     }
 
     public static void lottoPrint(List<List<Integer>> lottoNumbers, int quantity) {

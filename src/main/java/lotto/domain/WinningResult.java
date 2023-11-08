@@ -37,14 +37,14 @@ public class WinningResult {
         String format;
         for (int i = 0; i < keys.size(); i++) {
             if (keys.get(i).equals(WinningAmountConstant.SECOND)) {
-                format = String.format("%d개 일치, 보너스 볼 일치 (%d)원 - %d개",
+                format = String.format("%d개 일치, 보너스 볼 일치 (%,d)원 - %d개",
                         keys.get(i).getCount(), keys.get(i).getValue(), values.get(i));
                 builder.append(format);
                 builder.append("\n");
                 continue;
             }
 
-             format = String.format("%d개 일치 (%d)원 - %d개",
+             format = String.format("%d개 일치 (%,d)원 - %d개",
                     keys.get(i).getCount(), keys.get(i).getValue(), values.get(i));
 
             builder.append(format).append("\n");

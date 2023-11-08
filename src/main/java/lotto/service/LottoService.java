@@ -27,9 +27,17 @@ public class LottoService {
 
     public Map<Rank, Integer> checkwin(String winningNumber, String bonusNumber, List<Lotto> lottos) {
         List<Integer> winningLottoNumbers = convertStringToList(winningNumber);
+        validateWinningNumbers(winningLottoNumbers);
         int bonusLottoNumber = convertToInt(bonusNumber);
 
         return checkRankCounts(lottos, winningLottoNumbers,bonusLottoNumber);
+    }
+
+    private void validateWinningNumbers(List<Integer> winningLottoNumbers) {
+        if(!winningLottoNumbers.stream()
+                .allMatch(number -> number >= 1 && number <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 
     private void isPurchasePriceCorrectType(String purchasePrice) {
@@ -43,6 +51,8 @@ public class LottoService {
             throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위입니다.");
         }
     }
+
+
 
     private Map<Rank, Integer> checkRankCounts(List<Lotto> lottos, List<Integer> winningLottoNumbers, int bonusLottoNumber) {
         Map<Rank, Integer> rankCounts = new HashMap<>();
@@ -64,8 +74,6 @@ public class LottoService {
         isPurchasePriceCorrectType(purchasePrice);
         return Integer.parseInt(purchasePrice);
     }
-
-
 
     private List<Integer> generateRandomNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

@@ -16,7 +16,7 @@ import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoGame {
+public class LottoGameController {
     public void start() {
         Money money = runMoneySavingProcess();
         printCountOfLotto(money.toString());

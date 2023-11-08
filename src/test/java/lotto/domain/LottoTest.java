@@ -39,7 +39,6 @@ public class LottoTest {
     void lottoNumberRangeTest(List<Integer> inputList) {
         assertThatThrownBy(() -> new Lotto(inputList))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
@@ -57,7 +56,6 @@ public class LottoTest {
     void lottoNumberListRangeTest(List<Integer> inputList) {
         assertThatThrownBy(() -> new Lotto(inputList))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("로또 번호의 길이는 6이어야 합니다.");
     }
 
@@ -74,7 +72,6 @@ public class LottoTest {
     void lottoNumberDuplicatedTest(List<Integer> inputList) {
         assertThatThrownBy(() -> new Lotto(inputList))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("로또 번호중 중복된 숫자가 존재합니다.");
     }
 

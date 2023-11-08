@@ -91,7 +91,7 @@ public class Controller {
 
         for (int i = 0; i < lottoNumbers.size(); i++) {
             int count = countWinning(winning, lottoNumbers.get(i));
-            boolean bonus = countBonus(bonusAnswer,lottoNumbers.get(i));
+            boolean bonus = countBonus(bonusAnswer, lottoNumbers.get(i));
             counts = getCounts(count, counts, bonus);
         }
         return counts;
@@ -134,4 +134,10 @@ public class Controller {
         return count;
     }
 
+    public static double profit(int price, List<Integer> counts) {
+        double sum = counts.get(0) * 5000 + counts.get(1) * 50000 + counts.get(2) * 1500000 + counts.get(3) * 30000000 + counts.get(4) * 2000000000;
+        return sum / (double) price * 100;
+    }
 }
+
+

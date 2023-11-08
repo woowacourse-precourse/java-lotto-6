@@ -12,7 +12,7 @@ public class BonusNumber extends LottoNumber {
     public static BonusNumber of(final int bonusNumber, final List<LottoNumber> lottoNumbers) {
         validate(bonusNumber);
         isNotDuplicatedWithWinningNumbers(LottoNumber.from(bonusNumber), lottoNumbers);
-        return new BonusNumber(generateBonusNumber(lottoNumbers));
+        return new BonusNumber(bonusNumber);
     }
 
     private static void isNotDuplicatedWithWinningNumbers(final LottoNumber bonusNumber,
@@ -21,9 +21,5 @@ public class BonusNumber extends LottoNumber {
             throw LottoInputException.of(
                     LottoInputExceptionMessage.BONUS_NUMBER_IS_DUPLICATED_WITH_WINNING_LOTTO_NUMBERS);
         }
-    }
-
-    private static int generateBonusNumber(final List<LottoNumber> lottoNumbers) {
-        return -1;
     }
 }

@@ -3,6 +3,7 @@ package lotto;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,13 +18,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
-    @Test
-    void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @DisplayName("로또 6자리를 입력하지 않으면 예외가 발생한다.")
     @Test
     void createLottoBySizeIsSix() {
@@ -31,9 +25,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByDuplicatedNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또의 범위가 1~45를 벗어나면 예외가 발생한다..")
     @Test
-    void createLottoBySsizeIsSix() {
+    void createLottoByRangeOneToFortyFive() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 49, 50)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -51,5 +52,4 @@ class LottoTest {
             new Lotto(numbers);
         }).isInstanceOf(IllegalArgumentException.class);
     }
-
 }

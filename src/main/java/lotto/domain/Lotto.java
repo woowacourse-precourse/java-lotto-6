@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.view.InputView;
-
 import java.util.List;
 
 public class Lotto {
@@ -44,5 +42,4 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
-
 }

@@ -6,6 +6,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

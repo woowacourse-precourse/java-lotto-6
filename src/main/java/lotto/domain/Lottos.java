@@ -37,5 +37,4 @@ public class Lottos {
                 .map(Lotto::toString)
                 .collect(Collectors.joining("\n"));
     }
-
 }

@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.view.InputView;
-
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,6 +64,4 @@ public class LottoResult {
 
         return true;
     }
-
-
 }

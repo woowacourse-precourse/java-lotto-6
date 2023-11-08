@@ -30,5 +30,4 @@ public class OutPutView {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.getOrDefault(Rank.MATCH_5_BONUS, 0) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + result.getOrDefault(Rank.MATCH_6, 0) + "개");
     }
-
 }

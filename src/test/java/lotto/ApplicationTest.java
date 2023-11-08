@@ -1,6 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.Application;
+import lotto.dataObjects.Lotto;
+import lotto.dataObjects.Money;
+import lotto.io.PrintGenerator;
+import lotto.io.PrintGeneratorImpl;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

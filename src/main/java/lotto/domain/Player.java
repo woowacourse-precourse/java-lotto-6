@@ -11,6 +11,7 @@ public class Player {
     private final NumberGenerator numberGenerator;
     private List<Lotto> lottos;
     private long count;
+    private Money money;
 
     public Player(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
@@ -20,6 +21,7 @@ public class Player {
         count = money.value() / 1_000;
         lottos = LongStream.range(0, count)
             .mapToObj(i -> new Lotto(pickSortedUniqueRandomNumbers())).toList();
+        this.money = money;
     }
 
     private List<Integer> pickSortedUniqueRandomNumbers() {
@@ -34,5 +36,9 @@ public class Player {
 
     public long getCount() {
         return count;
+    }
+
+    public Long getMoney() {
+        return money.value();
     }
 }

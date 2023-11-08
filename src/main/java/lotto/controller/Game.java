@@ -22,21 +22,59 @@ public class Game {
         this.player = new Player(numberGenerator);
     }
 
-    public void start() {
-        outputView.printInputMoneyMessage();
-        Money money = new Money(inputView.readMoney());
-        player.generateLottos(money);
+    public void run() {
+        generateLotto();
+        WinningNumber winningNumber = readWinningNumber();
+        judge(winningNumber);
+    }
 
+    private void generateLotto() {
+        while (true) {
+            try {
+                outputView.printInputMoneyMessage();
+                Long money = inputView.readMoney();
+                player.generateLottos(new Money(money));
+                break;
+            } catch (IllegalArgumentException ex) {
+                outputView.print(ex.getMessage());
+            }
+        }
         outputView.printBoughtLottos(player.getLottos(), player.getCount());
+    }
+
+    private WinningNumber readWinningNumber() {
+        WinningNumber winningNumber = readWinningNumbers();
+        readBonusNumber(winningNumber);
+        return winningNumber;
+    }
+
+    private WinningNumber readWinningNumbers() {
         outputView.printInputWinningNumberMessage();
-        WinningNumber winningNumber = new WinningNumber(inputView.readWinningNumbers());
+        while (true) {
+            try {
+                return new WinningNumber(inputView.readWinningNumbers());
+            } catch (IllegalArgumentException ex) {
+                outputView.print(ex.getMessage());
+            }
+        }
+    }
 
+    private void readBonusNumber(WinningNumber winningNumber) {
         outputView.printInputBonusNumberMessage();
-        winningNumber.setBonusNumber(inputView.readBonusNumber());
+        while (true) {
+            try {
+                winningNumber.setBonusNumber(inputView.readBonusNumber());
+                return;
+            } catch (IllegalArgumentException ex) {
+                outputView.print(ex.getMessage());
+            }
+        }
+    }
 
+    private void judge(WinningNumber winningNumber) {
         Referee referee = new Referee(winningNumber);
         WinningResult winningResult = referee.judgeRanks(player.getLottos());
         outputView.printStatistics(winningResult.getFormattedStatistics(),
-            winningResult.getFormattedProfit(money.value()));
+            winningResult.getFormattedProfit(player.getMoney()));
     }
 }

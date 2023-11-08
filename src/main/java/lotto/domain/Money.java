@@ -12,13 +12,13 @@ public record Money(Long value) {
 
     private void validateRange(Long value) {
         if (value < MIN_RANGE || value > MAX_RANGE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.MONEY_RANGE_ERROR.getValue());
         }
     }
 
     private void validateUnit(Long value) {
         if (value % UNIT != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.MONEY_UNIT_ERROR.getValue());
         }
     }
 }

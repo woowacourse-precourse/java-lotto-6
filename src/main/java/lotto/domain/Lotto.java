@@ -18,7 +18,7 @@ public record Lotto(List<Integer> numbers) {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR.getValue());
         }
     }
 
@@ -26,7 +26,7 @@ public record Lotto(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
             if (!set.add(number)) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATE_ERROR.getValue());
             }
         }
     }
@@ -34,7 +34,7 @@ public record Lotto(List<Integer> numbers) {
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MIN_RANGE || number > MAX_RANGE) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE_ERROR.getValue());
             }
         }
     }

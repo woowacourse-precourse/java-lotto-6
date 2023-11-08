@@ -12,7 +12,7 @@ public class WinningNumber {
 
     private void validateAlreadyPickedNumber(int bonusNumber) {
         if (values.numbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATE_ERROR.getValue());
         }
     }
 

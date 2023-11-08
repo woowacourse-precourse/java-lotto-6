@@ -65,6 +65,9 @@ public class ConsoleOutput {
         printErrorMessage(e.getMessage());
     }
 
+
+
+
     private static void printErrorMessage(String error) {
         System.out.println("[ERROR] " + error);
     }
@@ -74,10 +77,7 @@ public class ConsoleOutput {
         System.out.println("총 수익률은 " + decimalFormat.format(result) + "입니다.");
     }
 
-    private static void printRankResultMessage(
-            PrizeRankConstants rank,
-            Integer numOfRank
-    ) {
+    private static void printRankResultMessage(PrizeRankConstants rank, Integer numOfRank) {
         System.out.print(rank.getMessage());
         System.out.printf(" - %d개\n", numOfRank);
     }

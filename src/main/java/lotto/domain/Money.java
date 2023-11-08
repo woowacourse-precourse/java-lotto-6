@@ -17,6 +17,10 @@ public class Money {
         this.money = money;
     }
 
+    public Integer getMoney() {
+        return money;
+    }
+
     private void validateNull(Integer money) {
         if (isNull(money)) {
             throw new EmptyStringException();
@@ -47,7 +51,4 @@ public class Money {
         return (amount % LOTTO_PRICE == 0);
     }
 
-    public Integer getMoney() {
-        return money;
-    }
 }

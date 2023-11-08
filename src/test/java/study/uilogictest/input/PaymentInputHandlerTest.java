@@ -1,4 +1,4 @@
-package lotto.input;
+package study.uilogictest.input;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -7,6 +7,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.NoSuchElementException;
 import lotto.config.Constants;
+import lotto.input.PriceInputHandler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

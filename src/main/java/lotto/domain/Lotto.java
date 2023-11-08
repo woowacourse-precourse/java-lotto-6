@@ -10,7 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validate(distinct(numbers));
-        validate(filterRange(numbers));
+        validate(range(numbers));
         this.numbers = numbers;
     }
 
@@ -25,7 +25,7 @@ public class Lotto {
         return numbers.stream().distinct().toList();
     }
 
-    private List<Integer> filterRange(List<Integer> numbers) {
+    private List<Integer> range(List<Integer> numbers) {
         return numbers.stream().filter(integer -> integer <= Constants.LOTTO_NUMBER_MAX_RANGE)
                 .filter(integer -> integer >= Constants.LOTTO_NUMBER_MIN_RANGE)
                 .toList();

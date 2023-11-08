@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import lotto.config.Constants;
 
 public class LottoBuyer {
     private final List<Lotto> lottoTickets;
@@ -24,6 +22,7 @@ public class LottoBuyer {
         return result;
     }
 
+    //출력형식 순서를 지키기 위함.
     private Map<Rank, Integer> initMap() {
         Map<Rank, Integer> map = new LinkedHashMap<>();
         Arrays.stream(Rank.values())

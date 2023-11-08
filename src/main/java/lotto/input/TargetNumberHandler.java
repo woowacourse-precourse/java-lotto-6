@@ -11,8 +11,8 @@ public class TargetNumberHandler {
 
     public Lotto setTargetLottoByInput() {
         System.out.println(RequestPrompt.TARGET_REQUEST.message);
-        Lotto lotto = handleInputToLotto();
-        return lotto;
+        Lotto target = handleInputToLotto();
+        return target;
     }
 
     private Lotto handleInputToLotto() {
@@ -32,12 +32,12 @@ public class TargetNumberHandler {
     private Lotto parseInputToLotto() {
         String input = Console.readLine();
         String[] strings = input.split(INPUT_DELIMITER, Constants.LOTTO_SIZE);
-        List<Integer> list = convertToIntegerList(strings);
-        return new Lotto(list);
+        List<Integer> numbers = convertToIntegerList(strings);
+        return new Lotto(numbers);
     }
 
-    private List<Integer> convertToIntegerList(String[] split) {
-        return Arrays.stream(split)
+    private List<Integer> convertToIntegerList(String[] strings) {
+        return Arrays.stream(strings)
                 .map(String::trim)
                 .mapToInt(Integer::parseInt)
                 .boxed()
@@ -51,8 +51,8 @@ public class TargetNumberHandler {
     }
 
     private int handleInputToBonus(Lotto target) {
-        boolean isInputInvalid = true;
         int bonus = 0;
+        boolean isInputInvalid = true;
         do {
             try {
                 bonus = parseInputToBonus(target);

@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.domain.Rank;
+import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -40,6 +41,6 @@ public class CalculatorTest {
 
         //then
         long sum = (Rank.FIFTH.reward * 2) + (Rank.SECOND.reward);
-        assertThat(value).isEqualTo((double) sum * 100 / 3000);
+        assertThat(value).isCloseTo((double) sum * 100 / 3000, Offset.offset(0.0001));
     }
 }

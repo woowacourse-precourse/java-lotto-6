@@ -16,9 +16,8 @@ public class PriceInputHandler {
     }
 
     private int handleInputToPayment() {
-        boolean isInputInvalid = true;
         int result = 0;
-
+        boolean isInputInvalid = true;
         do {
             try {
                 result = parseInputToPayment();

@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 
 public class LottoShop {
     private final LottoNumberGenerator lottoNumberGenerator;
+
     public LottoShop(LottoNumberGenerator lottoNumberGenerator) {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }

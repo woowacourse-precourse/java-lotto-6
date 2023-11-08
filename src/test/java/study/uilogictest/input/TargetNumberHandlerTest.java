@@ -1,4 +1,4 @@
-package lotto.input;
+package study.uilogictest.input;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lotto.domain.Lotto;
+import lotto.input.TargetNumberHandler;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;

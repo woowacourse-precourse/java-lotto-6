@@ -1,4 +1,4 @@
-package lotto.view;
+package study.uilogictest.view;
 
 
 import static org.assertj.core.api.Assertions.*;
@@ -9,6 +9,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.Calculator;
+import lotto.view.LottoView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

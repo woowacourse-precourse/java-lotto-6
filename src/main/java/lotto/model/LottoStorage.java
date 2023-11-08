@@ -15,4 +15,8 @@ public class LottoStorage {
         return lottoStorage;
     }
 
+    public static void cleanLottoStorage() {
+        lottoStorage = new ArrayList<>();
+    }
+
 }

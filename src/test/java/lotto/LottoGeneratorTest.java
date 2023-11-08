@@ -3,6 +3,7 @@ package lotto;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoStorage;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,12 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoGeneratorTest {
+
+    @BeforeEach
+    void cleanStorage() {
+        LottoStorage.cleanLottoStorage();
+    }
+
     @DisplayName("구입금액만큼의 로또를 발행하여 LottoStorage 에 저장한다.")
     @Test
     void generateLottoAtLottoStorage() {

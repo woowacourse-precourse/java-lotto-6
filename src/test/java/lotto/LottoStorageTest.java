@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.model.Lotto;
 import lotto.model.LottoStorage;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,12 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoStorageTest {
+
+    @BeforeEach
+    void cleanStorage() {
+        LottoStorage.cleanLottoStorage();
+    }
+
     @DisplayName("로또 저장소에 저장한 로또는 변형없이 그대로 보관된다.")
     @Test
     void keepLottoInStorage() {

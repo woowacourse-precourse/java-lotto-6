@@ -9,7 +9,12 @@ public class Statics {
 
 
     public Statics(int c) {
-
+        count.add(0);
+        count.add(0);
+        count.add(0);
+        count.add(0);
+        count.add(0);
+        count.add(0);
     } // CHECK
 
     public void EvaluateProfit(Purchasing purchasing){

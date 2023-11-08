@@ -13,12 +13,12 @@ public class LottoFactory {
     }
 
     private static List<Integer> generateLottoNumber() {
-        List<Integer> lottoPlayerNumber = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
-        return sortLottoNumber(lottoPlayerNumber);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
+        return sortLottoNumber(lottoNumbers);
     }
 
-    private static List<Integer> sortLottoNumber(List<Integer> lottoPlayerNumber) {
-        return lottoPlayerNumber.stream()
+    private static List<Integer> sortLottoNumber(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
     }

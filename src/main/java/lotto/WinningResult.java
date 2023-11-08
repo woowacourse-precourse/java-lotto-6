@@ -1,38 +1,51 @@
 package lotto;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class WinningResult {
-    int resultLottoTree = 0;
-    int resultLottoFour = 0;
-    int resultLottoFive = 0;
-    int resultLottoBouns = 0;
-    int resultLottoSix = 0;
-    private final long moneyTree = 5000;
-    private final long moneyFour = 50000;
-    private final long moneyFive = 1500000;
-    private final long moneyBonus = 30000000;
-    private final long moneySix = 2000000000;
-    private final long resultsum = (resultLottoTree*moneyTree) + (resultLottoFour*moneyFour)+(resultLottoFive*moneyFive)+
-            (resultLottoBouns*moneyBonus)+(resultLottoSix*moneySix);
+    private final Map<Integer,Integer>matchCountToCount;
+    private final Map<Integer,Integer>prizeMap;
+    private int secondPrizeCount = 0;
 
+    public WinningResult() {
+        this.matchCountToCount = new HashMap<>(); //로또 승리 수당 map
+        this.prizeMap =Map.of(
+                6,2_000_000_000,
+                5, 1_500_000,
+                4, 50_000,
+                3, 5_000
+        );
+        this.secondPrizeCount =  0; //2등의 경우 보너스 참거짓을 확인해야하므로 따로 만듦
+    }
 
-    private void resultCheck(WinningCalcuation resultCalculation){
-        if (resultCalculation.checking == 3)resultLottoTree+=1;
-        if(resultCalculation.checking ==4) resultLottoFour+=1;
-        if(resultCalculation.checking ==5) resultLottoFive+=1;
-        if(resultCalculation.checking==5 && resultCalculation.bonuschk) resultLottoBouns+=1;
-        if(resultCalculation.checking==6) resultLottoSix+=1;
+    public void addResult(int matchCount,boolean bonusMatch){ //2등확인 함수
+        if(matchCount==5&&bonusMatch){
+            secondPrizeCount ++;
+        }
+        if(prizeMap.containsKey(matchCount)){ //그 외의 정답매칭 함수
+            matchCountToCount.put(matchCount,matchCountToCount.getOrDefault(matchCount,0)+1);
+        }
     }
-    private void resultPrint(){
-        System.out.println("당첨 통계\n");
-        System.out.println("---\n");
-        System.out.println("3개 일치(5,000원) - "+resultLottoTree+"개\n");
-        System.out.println("4개 일치(50,000원) - "+resultLottoFour+"개\n");
-        System.out.println("5개 일치(1,500,000원) - "+resultLottoFive+"개\n");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+resultLottoBouns+"개\n");
-        System.out.println("6개 일치(2,000,000,000원) - "+resultLottoSix+"개\n");
-    }
-    private void resultAvg(BuyLotto buyMoney){
-        long rateReturn = (resultsum/buyMoney.buyMoney)*100;
-        System.out.println("총 수익률은 "+rateReturn+"%입니다.");
+
+    public void printResult(int purchasedAmount){ //출력함수
+        double totalPrize = 0;
+        System.out.println("당첨 통계 : ");
+        System.out.println("--------");
+
+        for(int matchCount =6;matchCount>=3;matchCount--){
+            int count = matchCountToCount.getOrDefault(matchCount,0);
+            int prize = prizeMap.getOrDefault(matchCount,0);
+            if(matchCount==5) { //2등 출력
+                int secondPrize = 30_000_000;
+                totalPrize +=(double)secondPrize * secondPrizeCount;
+                System.out.printf("5개 번호 + 보너스 번호 일치 (2등, %d원)- %d개\n", secondPrize, secondPrizeCount);
+            }
+            totalPrize+=(double)prize*count;
+            System.out.printf("%d개 일치 (%d원)- %d개\n", matchCount, prize, count);
+        }
+
+        double profitRate = (totalPrize / purchasedAmount)/10; // 수익률을 퍼센트로 표시 + 수익률을 계산하였으나 제대로 출력되지 않은듯함
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 }

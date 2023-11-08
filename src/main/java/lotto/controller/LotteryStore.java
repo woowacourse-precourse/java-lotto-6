@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRepository;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
-import lotto.domain.WinningStatistics;
+import lotto.dto.WinningStatistics;
 import lotto.dto.PurchasedLottosDto;
 import lotto.service.LottoFactoryService;
 import lotto.service.RankCalculateService;

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.RateOfReturn;
+import lotto.dto.RateOfReturn;
 
 public class RateOfReturnOutputView {
 

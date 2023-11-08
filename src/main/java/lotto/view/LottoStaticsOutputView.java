@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.domain.Rank;
-import lotto.domain.WinningStatistics;
+import lotto.dto.WinningStatistics;
 
 public class LottoStaticsOutputView {
 

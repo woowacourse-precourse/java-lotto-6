@@ -4,12 +4,13 @@
 
 ### 1. 기능 요구 사항
 
-+ [ ] 로또 구입 금액을 입력 받는다.
-    + [ ] 숫자 형식이 맞는지 확인한다. 숫자 형식이 아니면 IllegalArgumentException을 발생시킨다.
-    + [ ] 입력한 금액이 0보다 작으면 IllegalArgumentException을 발생시킨다.
-    + [ ] 입력한 금액이 1,000으로 나누어 떨어지지 않으면 IllegalArgumentException을 발생시킨다.
-    + [ ] 입력한 금액을 수량으로 나눈다.
-    + [ ] 구매 수량을 화면에 표시한다.
++ [x] 로또 구입 금액을 입력 받는다.
+  + [x] 입력 메시지를 화면에 표시한다.
+  + [x] 숫자 형식이 맞는지 확인한다. 숫자 형식이 아니면 IllegalArgumentException을 발생시킨다.
+  + [x] 입력한 금액이 1,000보다 작으면 IllegalArgumentException을 발생시킨다.
+  + [x] 입력한 금액이 1,000으로 나누어 떨어지지 않으면 IllegalArgumentException을 발생시킨다.
+  + [x] 입력한 금액을 수량으로 나눈다.
+  + [x] 구매 수량을 화면에 표시한다.
 + [ ] 로또 번호를 생성한다.
     + [ ] camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용하여 랜덤값을 생성한다.
     + [ ] 생성한 랜덤값을 화면에 표시한다.

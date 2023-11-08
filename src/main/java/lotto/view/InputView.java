@@ -23,19 +23,11 @@ public class InputView {
         InputValidator.validateInputIsNumber(money);
     }
 
-    public List<Integer> inputWinningLottoNumbers() {
-        while (true) {
-            try {
-                System.out.println(INPUT_WINNING_LOTTO_NUMBER_MESSAGE);
-                String winningLottoNumbers = Console.readLine();
-                InputValidator.validateInputIsEmpty(winningLottoNumbers);
-                return splitWinningLottoNumbers(winningLottoNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            } catch (IllegalStateException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    public String inputWinningLottoNumbers() {
+        System.out.println(INPUT_WINNING_LOTTO_NUMBER_MESSAGE);
+        String winningLottoNumbers = Console.readLine();
+        InputValidator.validateInputIsEmpty(winningLottoNumbers);
+        return winningLottoNumbers;
     }
 
     public String inputBonusNumber(List<Integer> winningLotto) {
@@ -58,21 +50,5 @@ public class InputView {
         InputValidator.validateInputIsNumber(bonusLottoNumber);
         InputValidator.validateLottoNumberIsNotInRightRange(bonusLottoNumber);
         InputValidator.validateIsWinningLottoNumberContains(bonusLottoNumber, winningLotto);
-    }
-
-    private List<Integer> splitWinningLottoNumbers(String winningLottoNumbers) {
-        List<Integer> inputWinningLottoNumbers = new ArrayList<>();
-        for (String winningLottoNumber : winningLottoNumbers.split(",")) {
-            validateWinningLottoNumber(winningLottoNumber);
-            inputWinningLottoNumbers.add(Integer.parseInt(winningLottoNumber));
-        }
-        InputValidator.validateAmountOfWinningLottoNumber(inputWinningLottoNumbers);
-        InputValidator.validateDuplicatedWinningLottoNumber(inputWinningLottoNumbers);
-        return inputWinningLottoNumbers;
-    }
-
-    private static void validateWinningLottoNumber(String winningLottoNumber) {
-        InputValidator.validateInputIsNumber(winningLottoNumber);
-        InputValidator.validateLottoNumberIsNotInRightRange(winningLottoNumber);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.LottoNumberGenerator.LottoGenerator;
+import lotto.validator.InputValidator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,15 +24,36 @@ public class Game {
         this.bonusNumber = BonusNumber.create(bonusNumber);
     }
 
-    public void createWinningLotto(List<Integer> winningLotto) {
+    public void createWinningLotto(String inputWinningLotto) {
+        List<Integer> winningLotto = splitWinningLottoNumber(inputWinningLotto);
+        validateWinningLottoNumbers(winningLotto);
         this.winningLotto = new WinningLotto(winningLotto);
+    }
+
+    private List<Integer> splitWinningLottoNumber(String inputWinningLottoNumbers) {
+        List<Integer> winningLottoNumbers = new ArrayList<>();
+        for (String inputWinningLottoNumber : inputWinningLottoNumbers.split(",")) {
+            validateWinningLottoNumber(inputWinningLottoNumber);
+            winningLottoNumbers.add(Integer.parseInt(inputWinningLottoNumber));
+        }
+        return winningLottoNumbers;
+    }
+
+    private static void validateWinningLottoNumber(String winningLottoNumber) {
+        InputValidator.validateInputIsNumber(winningLottoNumber);
+        InputValidator.validateLottoNumberIsNotInRightRange(winningLottoNumber);
+    }
+
+    private void validateWinningLottoNumbers(List<Integer> winningLotto) {
+        InputValidator.validateAmountOfWinningLottoNumber(winningLotto);
+        InputValidator.validateDuplicatedWinningLottoNumber(winningLotto);
     }
 
     public void generateLottoNumber(LottoGenerator lottoGenerator) {
         for (int i = 0; i < amountOfLotto; i++) {
-            List<Integer> modifiableList = new ArrayList<>(lottoGenerator.pickLottoNumber());
-            sortLottoNumbers(modifiableList);
-            lottoNumbers.add(new Lotto(modifiableList));
+            List<Integer> modifiable = new ArrayList<>(lottoGenerator.pickLottoNumber());
+            sortLottoNumbers(modifiable);
+            lottoNumbers.add(new Lotto(modifiable));
         }
     }
 

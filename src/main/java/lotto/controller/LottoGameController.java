@@ -22,8 +22,9 @@ public class LottoGameController {
 
     public void game() {
         Money money = inputUserMoneyAmount();
-        Game game = new Game(money.amountOfLotto());
-        printLottoAmount(game);
+        int amountOfLotto = money.amountOfLotto();
+        Game game = new Game(amountOfLotto);
+        printLottoAmount(amountOfLotto);
         generateLottoNumber(game);
         printLottoNumber(game);
         inputWinningLottoNumbers(game);
@@ -74,8 +75,8 @@ public class LottoGameController {
         }
     }
 
-    private void printLottoAmount(Game game) {
-        outputView.printLottoAmount(game.getAmountOfLotto());
+    private void printLottoAmount(int amountOfLotto) {
+        outputView.printLottoAmount(amountOfLotto);
     }
 
     private void generateLottoNumber(Game game) {
@@ -89,8 +90,16 @@ public class LottoGameController {
     }
 
     private void inputWinningLottoNumbers(Game game) {
-        outputView.printEmptyLine();
-        game.createWinningLotto(inputView.inputWinningLottoNumbers());
+        while (true) {
+            try {
+                outputView.printEmptyLine();
+                game.createWinningLotto(inputView.inputWinningLottoNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void inputUserBonusNumber(Game game) {

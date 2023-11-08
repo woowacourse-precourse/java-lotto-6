@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.enums.Bound;
+import lotto.enums.Bounds;
 
 public class LottoGenerator {
     private final List<Lotto> lottoTickets = new ArrayList<>();
@@ -18,12 +18,12 @@ public class LottoGenerator {
     }
 
     private List<Integer> generateLottoNumbers() {
-        int lowerBound = Bound.LOWER_BOUND.getValue();
-        int upperBound = Bound.UPPER_BOUND.getValue();
-        int maxLottoSize = Bound.MAX_LOTTO_SIZE.getValue();
+        int lowerBound = Bounds.LOWER_BOUND.getValue();
+        int upperBound = Bounds.UPPER_BOUND.getValue();
+        int maxLottoSize = Bounds.MAX_LOTTO_SIZE.getValue();
 
-        List<Integer> lottoNumbers = Randoms
-                .pickUniqueNumbersInRange(lowerBound, upperBound, maxLottoSize);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms
+                .pickUniqueNumbersInRange(lowerBound, upperBound, maxLottoSize));
         Collections.sort(lottoNumbers);
 
         return Collections.unmodifiableList(lottoNumbers);

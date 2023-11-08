@@ -8,16 +8,13 @@ import static lotto.constant.ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.constant.ExceptionMessage;
+import lotto.checker.InputChecker;
 import lotto.view.OutputHandler;
 
 public class Converter {
 
     public static long pay(String paymentPrice) throws IllegalArgumentException {
-        if (paymentPrice.isEmpty()) {
-            OutputHandler.requireNonemptyInput();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
-        }
+        InputChecker.nonEmpty(paymentPrice);
         try {
             return Long.parseLong(paymentPrice);
         } catch (NullPointerException e) {
@@ -30,16 +27,12 @@ public class Converter {
     }
 
     public static List<Integer> winningNumbers(String numbersInput) throws IllegalArgumentException {
-        if (numbersInput.isEmpty()) {
-            OutputHandler.requireNonemptyInput();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
-        }
+        InputChecker.nonEmpty(numbersInput);
         try {
             String[] numbers = numbersInput.split(",");
             return Arrays.stream(numbers)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-            return winningNumbers;
         } catch (NullPointerException e) {
             OutputHandler.requireNonemptyInput();
             throw new IllegalArgumentException(REQUIRE_NONEMPTY_INPUT.getMessage());
@@ -50,10 +43,7 @@ public class Converter {
     }
 
     public static Integer bonusNumbers(String numberInput) throws IllegalArgumentException {
-        if (numberInput.isEmpty()) {
-            OutputHandler.requireNonemptyInput();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
-        }
+        InputChecker.nonEmpty(numberInput);
         try {
             return Integer.parseInt(numberInput);
         } catch (NullPointerException e) {

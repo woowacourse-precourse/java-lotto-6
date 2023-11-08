@@ -31,9 +31,16 @@ public class Lotto {
         }
     }
 
-    private void validate(List<Integer> numbers) throws IllegalArgumentException {
-        if (numbers.size() != Number.LOTTO_NUM_COUNT.getNumber()) {
-            throw new IllegalArgumentException();
+    private void checkUnique(List<Integer> numbers) {
+        HashSet<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (number < LOTTO_MIN_NUM.getNumber() || number > LOTTO_MAX_NUM.getNumber()) {
+                throw new IllegalArgumentException(REQUIRE_UNIQUE_NUMBERS.getMessage());
+            }
+            if (uniqueNumbers.contains(number)) {
+                throw new IllegalArgumentException(REQUIRE_UNIQUE_NUMBERS.getMessage());
+            }
+            uniqueNumbers.add(number);
         }
     }
 }

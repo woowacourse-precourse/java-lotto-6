@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import static lotto.constants.ErrorType.*;
+import static lotto.constants.RangeType.DIVISION_UNIT;
 import static lotto.constants.RangeType.PRIZE_NUMBER_MAX_RANGE;
 import static lotto.constants.RangeType.PRIZE_NUMBER_MIN_RANGE;
 import static lotto.constants.RegexType.*;
@@ -10,7 +11,6 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public class InputValidator {
-    private static final int DIVISION_UNIT = 1000;
 
     public static int validateAmount(String amount) {
         int validateAmount = validateStringToInteger(amount);
@@ -44,7 +44,7 @@ public class InputValidator {
     }
 
     private static void validateAmountFormat(int amount) {
-        if (amount % DIVISION_UNIT != 0) {
+        if (amount % DIVISION_UNIT.getRange() != 0) {
             throw new IllegalArgumentException(CAN_NOT_SATISFY_INTEGER_CONDITION.getErrorMessage());
         }
     }

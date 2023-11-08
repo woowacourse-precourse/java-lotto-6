@@ -3,7 +3,8 @@ package lotto.domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class UserInputTest {
     private UserInput userInput;
@@ -13,33 +14,17 @@ class UserInputTest {
         userInput = new UserInput();
     }
 
-    @Test
-    void 구입_금액_글자_입력() {
-        assertThatThrownBy(() -> userInput.validateMoney("글자"))
+    @ParameterizedTest
+    @CsvSource(value = {"389", "-1000", "글자"})
+    void 구입_금액_잘못된_값_입력(String invalidValue) {
+        assertThatThrownBy(() -> userInput.validateMoney(invalidValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 구입_금액_300원_단위_입력() {
-        assertThatThrownBy(() -> userInput.validateMoney("900"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 구입_금액_음수_입력() {
-        assertThatThrownBy(() -> userInput.validateMoney("-1000"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 당첨_번호_글자_입력() {
-        assertThatThrownBy(() -> userInput.validateNumber("글자"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 당첨_번호_100_입력() {
-        assertThatThrownBy(() -> userInput.validateMoney("100"))
+    @ParameterizedTest
+    @CsvSource(value = {"100", "-100", "글자"})
+    void 당첨_번호_잘못된_값_입력(String invalidValue) {
+        assertThatThrownBy(() -> userInput.validateNumber(invalidValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

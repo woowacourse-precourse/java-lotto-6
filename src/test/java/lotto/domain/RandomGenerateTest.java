@@ -4,20 +4,21 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class RandomGenerateTest {
     private RandomGenerate randomGenerate;
-    private static final int QUANTITY = 3;
 
     @BeforeEach
     void setUp() {
         randomGenerate = new RandomGenerate();
     }
 
-    @Test
-    void 로또_개수() {
-        List<List<Integer>> numbers = randomGenerate.createNumbers(QUANTITY);
-        assertThat(numbers.size()).isEqualTo(QUANTITY);
+    @ParameterizedTest
+    @CsvSource(value = {"1", "2", "3", "4", "5", "6"})
+    void 로또_개수(int quantity) {
+        List<List<Integer>> numbers = randomGenerate.createNumbers(quantity);
+        assertThat(numbers.size()).isEqualTo(quantity);
     }
 }

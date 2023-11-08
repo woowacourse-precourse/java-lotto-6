@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -22,5 +23,11 @@ public class WiningLottoTest {
                 () -> new WiningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 당첨 번호와 보너스 번호는 서로 중복된 숫자가 없어야 합니다.");
+    }
+
+    @DisplayName("당첨 숫자들을 전달한다.")
+    @Test
+    void createPassingWinNumbers() {
+        assertThat(new WiningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7).showWinNumber()).isInstanceOf(List.class);
     }
 }

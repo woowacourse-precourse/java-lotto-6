@@ -2,6 +2,7 @@ package lotto.v3.controller;
 
 import lotto.v3.model.LottoResult;
 import lotto.v3.view.LottoResultView;
+
 import java.util.List;
 import java.util.Set;
 
@@ -17,4 +18,5 @@ public class LottoResultController {
         view.displayResults(result.getMatchCounts());
     }
 }
+
 

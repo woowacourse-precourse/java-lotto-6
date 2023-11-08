@@ -16,10 +16,14 @@ public class LottoResult {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
         this.matchCounts = new EnumMap<>(LottoRank.class);
+        initializeMatchCounts();
+        calculateResults();
+    }
+
+    private void initializeMatchCounts() {
         for (LottoRank rank : LottoRank.values()) {
             matchCounts.put(rank, 0);
         }
-        calculateResults();
     }
 
     private void calculateResults() {
@@ -32,14 +36,12 @@ public class LottoResult {
 
             boolean bonusMatch = numbers.contains(bonusNumber) && matches == LottoRank.SECOND.getMatchCount();
 
-            LottoRank rank = null;
             try {
-                rank = LottoRank.valueOf(matches, bonusMatch);
+                LottoRank rank = LottoRank.valueOf(matches, bonusMatch);
+                matchCounts.put(rank, matchCounts.get(rank) + 1);
             } catch (IllegalArgumentException e) {
                 continue;
             }
-
-            matchCounts.put(rank, matchCounts.get(rank) + 1);
         }
     }
 
@@ -47,3 +49,4 @@ public class LottoResult {
         return matchCounts;
     }
 }
+

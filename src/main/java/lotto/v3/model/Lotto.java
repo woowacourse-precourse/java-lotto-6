@@ -1,6 +1,5 @@
 package lotto.v3.model;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -21,8 +20,6 @@ public class Lotto {
         if (hasDuplicates(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
-
-
     }
 
     private boolean hasDuplicates(List<Integer> numbers) {
@@ -32,5 +29,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
 }
+

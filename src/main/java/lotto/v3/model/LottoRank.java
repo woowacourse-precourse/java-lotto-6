@@ -2,10 +2,10 @@ package lotto.v3.model;
 
 public enum LottoRank {
     FIRST(6, 2_000_000_000L, false),
-    SECOND(5, 30_000_000L, true), // 보너스 번호 일치 가정
+    SECOND(5, 30_000_000L, true),
     THIRD(5, 1_500_000L, false),
     FOURTH(4, 50_000L, false),
-    FIFTH(3, 5_000L, false);;
+    FIFTH(3, 5_000L, false);
 
     private final int matchCount;
     private final long prizeMoney;
@@ -38,6 +38,6 @@ public enum LottoRank {
 
         throw new IllegalArgumentException("[ERROR] 일치하는 로또 순위가 없습니다.");
     }
-
 }
+
 

@@ -23,9 +23,9 @@ public class LottoYieldController {
         Map<LottoRank, Integer> matchCounts = result.getMatchCounts();
         double yield = yieldCalculatorService.calculateYield(matchCounts, purchasedNumbers.size());
         view.displayResults(matchCounts, yield);
-
     }
 }
+
 
 
 

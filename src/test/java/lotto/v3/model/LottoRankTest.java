@@ -67,7 +67,7 @@ class LottoRankTest {
     void shouldReturnFirstForMaxMatchingCount() {
         // given
         int matchCountForFirst = 6;
-        boolean bonusMatchForFirst = false; 
+        boolean bonusMatchForFirst = false;
 
         // when
         LottoRank result = LottoRank.valueOf(matchCountForFirst, bonusMatchForFirst);

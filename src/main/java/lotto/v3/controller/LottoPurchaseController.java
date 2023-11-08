@@ -13,15 +13,15 @@ public class LottoPurchaseController {
     }
 
     public int startPurchaseProcess() {
-        while (true){
-            try{
+        while (true) {
+            try {
                 int purchaseAmount = lottoPurchaseView.requestPurchaseAmount();
                 validatePurchaseAmount(purchaseAmount);
                 int numberOfLottoTickets = calculateLottoTicketsPurchasable(purchaseAmount);
                 lottoPurchaseView.displayNumberOfLottoTicketsPurchased(numberOfLottoTickets);
                 return numberOfLottoTickets;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
@@ -35,5 +35,5 @@ public class LottoPurchaseController {
     private int calculateLottoTicketsPurchasable(int purchaseAmount) {
         return purchaseAmount / LOTTO_PRICE.getValue();
     }
-
 }
+

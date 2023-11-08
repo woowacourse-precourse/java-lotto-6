@@ -15,14 +15,15 @@ public class LottoGenerationController {
     }
 
     public List<Lotto> generateLottoTickets(int numberOfTickets) {
-        while(true){
+        while (true) {
             try {
                 List<Lotto> tickets = machine.generateTickets(numberOfTickets);
                 generateView.displayLottoTickets(tickets);
                 return tickets;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR]" + e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
 }
+

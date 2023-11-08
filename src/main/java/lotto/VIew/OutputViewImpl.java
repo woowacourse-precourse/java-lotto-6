@@ -1,5 +1,6 @@
 package lotto.VIew;
 
+import static java.lang.System.out;
 import static lotto.Message.OutputViewMessage.EARNING_RATE;
 import static lotto.Message.OutputViewMessage.PURCHASED_LOTTO_COUNT;
 import static lotto.Message.OutputViewMessage.RESULT_WITHOUT_BONUS;
@@ -9,7 +10,6 @@ import static lotto.Message.OutputViewMessage.WINNING_STATS;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import lotto.Domain.LottoGroup;
 import lotto.Domain.LottoResult.LottoResult;
 import lotto.Domain.LottoResult.Prize;
@@ -25,7 +25,7 @@ public class OutputViewImpl implements OutputView {
 
     @Override
     public void printLottoCount(int lottoCount) {
-        System.out.println(PURCHASED_LOTTO_COUNT.getMessage(lottoCount));
+        out.println(PURCHASED_LOTTO_COUNT.getMessage(lottoCount));
     }
 
     @Override
@@ -36,13 +36,13 @@ public class OutputViewImpl implements OutputView {
                     .sorted()
                     .toList();
 
-            System.out.println(sortedNumbers);
+            out.println(sortedNumbers);
         }
     }
 
     @Override
     public void printLottoResult(LottoResult lottoResult) {
-        System.out.println(WINNING_STATS.getMessage());
+        out.println(WINNING_STATS.getMessage());
         List<Prize> allPrize = lottoResult.findAllPrize();
         Collections.reverse(allPrize);
         for (Prize prize : allPrize) {
@@ -56,15 +56,14 @@ public class OutputViewImpl implements OutputView {
 
     @Override
     public void printProfitRate(float profitRate) {
-        System.out.println(EARNING_RATE.getMessage(profitRate));
+        out.println(EARNING_RATE.getMessage(profitRate));
     }
 
     private static void resultWithOutBonus(Prize prize) {
-        System.out.println(RESULT_WITHOUT_BONUS.getMessage(prize.getNumberCount(), prize.getAward(), prize.getWinningCount()));
+        out.println(RESULT_WITHOUT_BONUS.getMessage(prize.getNumberCount(), prize.getAward(), prize.getWinningCount()));
     }
 
     private static void resultWithBonus(Prize prize) {
-        System.out.println(
-                RESULT_WITH_BONUS.getMessage(prize.getNumberCount(), prize.getAward(), prize.getWinningCount()));
+        out.println(RESULT_WITH_BONUS.getMessage(prize.getNumberCount(), prize.getAward(), prize.getWinningCount()));
     }
 }

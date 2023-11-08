@@ -1,28 +1,27 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.domain.entity.Purchase;
+import lotto.domain.entity.WinningTicket;
 
 public class LottoGame extends IndexModel {
 
-    private final ThousandUnitMoney purchaseAmount;
-    private final LottoNumber bonusNumber;
+    private final Purchase purchase;
+    private final WinningTicket winningTicket;
     private final WinningResult winningResult;
 
-    private LottoGame(ThousandUnitMoney purchaseAmount, Lottos automaticLottos, Lotto winningNumbers,
-                      LottoNumber bonusNumber, WinningResult winningResult) {
-        this.purchaseAmount = purchaseAmount;
-        this.automaticLottos = automaticLottos;
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+    private LottoGame(Purchase purchase,
+                      WinningTicket winningTicket,
+                      WinningResult winningResult) {
+        this.purchase = purchase;
+        this.winningTicket = winningTicket;
         this.winningResult = winningResult;
     }
 
-    public static LottoGame create(ThousandUnitMoney purchaseAmount, Lottos automaticLottos,
-                                   Lotto winningNumbers, LottoNumber bonusNumber,
+    public static LottoGame create(Purchase purchase,
+                                   WinningTicket winningTicket,
                                    WinningResult winningResult) {
-
-        return new LottoGame(purchaseAmount, automaticLottos, winningNumbers,
-                bonusNumber, winningResult);
+        return new LottoGame(purchase, winningTicket, winningResult);
     }
 
     public void setId(Long id) {
@@ -30,7 +29,7 @@ public class LottoGame extends IndexModel {
     }
 
     public List<List<Integer>> getPurchaseLottos() {
-        return automaticLottos.getLottos();
+        return purchase.getLottos();
     }
 
     public List<Integer> getRankings() {

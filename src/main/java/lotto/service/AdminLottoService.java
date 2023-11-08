@@ -1,26 +1,26 @@
 package lotto.service;
 
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Stat;
-import lotto.domain.Lotto;
+import lotto.domain.User;
 import lotto.validator.NumberValidator;
 import lotto.domain.Admin;
 
-
-
-
 public class AdminLottoService {
     List<Integer> winningNumber;
+    Admin admin;
+
+    public void setAdmin(List<Integer> winningNumbers, int bonusNumber) {
+        admin = new Admin(winningNumbers, bonusNumber);
+    }
 
     public List<Integer> initWinningNumber(String[] winningNumbers) {
-        winningNumber = new ArrayList<Integer>();
+        winningNumber = new ArrayList<>();
         NumberValidator.validateInputWinningNumber(winningNumbers);
-        for (int i = 0; i < winningNumbers.length; i++) {
-            int parseWinningNumber = Integer.parseInt(winningNumbers[i]);
+        for (String number : winningNumbers) {
+            int parseWinningNumber = Integer.parseInt(number);
             NumberValidator.validateNumberRange(parseWinningNumber);
             winningNumber.add(parseWinningNumber);
         }
@@ -29,26 +29,25 @@ public class AdminLottoService {
 
     public String[] splitWinningNumbers(String winningNumberStr) {
         String winningNumbers = winningNumberStr.replaceAll(" ", "");
-        String[] splitCarNameList = winningNumbers.split(",", -1);
-        return splitCarNameList;
+        return winningNumbers.split(",", -1);
     }
 
     public int parseIntBonusNumber(String bonusNumberStr) {
         int bonusNumber = Integer.parseInt(bonusNumberStr);
         NumberValidator.validateNumberRange(bonusNumber);
+        NumberValidator.validateInputBonusNumber(bonusNumberStr);
         NumberValidator.validateBonusNumberContainsWinningNumber(winningNumber, bonusNumber);
         return bonusNumber;
     }
 
-    public Admin setAdmin(List<Integer> winningNumbers, int bonusNumber) {
-        return new Admin(winningNumbers, bonusNumber);
-    }
-
-    public void compareCorrectLottoNumbers(List<Lotto> userLottos, List<Integer> winnerNumber, int index, Stat lottoCorrectStat, int bonusNumber) {
-        List<Integer> userNumbers = userLottos.get(index).getNumbers();
-        List<Integer> correctLottoNumbers = userNumbers.stream()
-                .filter(userNumber -> winnerNumber.contains(userNumber))
-                .collect(Collectors.toList());
-        lottoCorrectStat.findCorrectName(correctLottoNumbers, userNumbers, bonusNumber);
+    public void compareCorrectLottoNumbers(User user, Stat lottoCorrectStat) {
+        StatLottoService statLottoService = new StatLottoService();
+        for (int index = 0; index < user.getLottoList().size(); index++) {
+            List<Integer> userNumbers = user.getLottoList().get(index).getNumbers();
+            List<Integer> correctLottoNumbers = userNumbers.stream()
+                    .filter(admin.getWinnerNumber()::contains)
+                    .collect(Collectors.toList());
+            statLottoService.findCorrectName(correctLottoNumbers, userNumbers, admin.getBonusNumber(), lottoCorrectStat);
+        }
     }
 }

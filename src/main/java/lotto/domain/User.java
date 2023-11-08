@@ -2,15 +2,15 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.ArrayList;
-import lotto.util.RandomChoice;;
+import lotto.util.RandomChoice;
 
 public class User {
-    List<Lotto> lotto = new ArrayList<Lotto>();
-    private int ticketAmount;
-    private int purchaseAmount;
+    List<Lotto> lotto = new ArrayList<>();
+    private final int ticketCount;
+    private final int purchaseAmount;
 
-    public User(int ticketAmount, int purchaseAmount) {
-        this.ticketAmount = ticketAmount;
+    public User(int ticketCount, int purchaseAmount) {
+        this.ticketCount = ticketCount;
         this.purchaseAmount = purchaseAmount;
     }
 
@@ -22,11 +22,7 @@ public class User {
     }
 
     public int getTicketAmount() {
-        return ticketAmount;
-    }
-
-    public int getPurchaseAmount(){
-        return purchaseAmount;
+        return ticketCount;
     }
 
     public List<Lotto> getLottoList() {

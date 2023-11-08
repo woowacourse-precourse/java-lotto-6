@@ -4,8 +4,7 @@ import java.util.List;
 
 public class Admin {
     List<Integer> winnerNumber;
-    private int bonusNumber;
-    List<Integer> Stats;
+    private final int bonusNumber;
     public Admin(List<Integer> winnerNumber, int bonusNumber) {
         this.winnerNumber = winnerNumber;
         this.bonusNumber = bonusNumber;

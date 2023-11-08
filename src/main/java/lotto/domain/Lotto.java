@@ -11,7 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> choiceNumbers) {
         NumberValidator.validateNumberSize(choiceNumbers);
         NumberValidator.validateDuplicate(choiceNumbers);
-        this.numbers = new ArrayList<Integer>(choiceNumbers); 
+        this.numbers = new ArrayList<>(choiceNumbers);
         Collections.sort(numbers);
     }
 

@@ -3,26 +3,24 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 
 import lotto.service.AdminLottoService;
+import lotto.service.StatLottoService;
 import lotto.service.UserLottoService;
 import lotto.view.AdminInputOutputMessage;
 import lotto.view.UserInputMessage;
-import lotto.domain.Admin;
 import lotto.domain.Lotto;
 import lotto.domain.Stat;
-import lotto.domain.User;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.lang.Math;
 
 public class LottoController {
     private final AdminLottoService adminLottoService = new AdminLottoService();
     private final UserLottoService userLottoService = new UserLottoService();
-    private List<Integer> winningNumber = new ArrayList<Integer>();
-    private User user;
-    private Admin admin;
+    private final StatLottoService statLottoService = new StatLottoService();
+    private List<Integer> winningNumber = new ArrayList<>();
     private Stat stat;
-    private int createLottoNumbers;
+    private int lottoPurchaseCount;
+    private int purchaseAmount;
 
     public void run() {
         initLotto();
@@ -38,7 +36,6 @@ public class LottoController {
     }
 
     public void initInputPurchaseAmount() {
-        int purchaseAmount;
         while (true) {
             try {
                 String purchaseAmountStr = InputPurchaseAmount();
@@ -48,9 +45,8 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-        createLottoNumbers = userLottoService.createLottoCount(purchaseAmount);
-        user = userLottoService.setUser(createLottoNumbers, purchaseAmount);
-        user.setLotto();
+        lottoPurchaseCount = userLottoService.createLottoCount(purchaseAmount);
+        userLottoService.setUser(lottoPurchaseCount, purchaseAmount);
     }
 
     public void initInputWinningNumber() {
@@ -71,13 +67,14 @@ public class LottoController {
             try {
                 String bonusNumberStr = InputBonusNumber();
                 int bonusNumber = adminLottoService.parseIntBonusNumber(bonusNumberStr);
-                admin = adminLottoService.setAdmin(winningNumber, bonusNumber);
+                adminLottoService.setAdmin(winningNumber, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
     public String InputPurchaseAmount() {
         System.out.println(UserInputMessage.INPUT_LOTTO_PURCHASE_AMOUNT_MSG);
         return Console.readLine();
@@ -94,11 +91,8 @@ public class LottoController {
     }
 
     public void initStats() {
-        stat = new Stat();
-        for (int index = 0; index < user.getLottoList().size(); index++) {
-            adminLottoService.compareCorrectLottoNumbers(user.getLottoList(), admin.getWinnerNumber(), index, stat,
-                    admin.getBonusNumber());
-        }
+        stat = statLottoService.setStat();
+        adminLottoService.compareCorrectLottoNumbers(userLottoService.getUser(), stat);
     }
 
     public void printStats() {
@@ -107,9 +101,9 @@ public class LottoController {
     }
 
     public void printUserLottoNumbers() {
-        List<Lotto> userLottoList = user.getLottoList();
+        List<Lotto> userLottoList = userLottoService.getLottoList();
         System.out.println();
-        System.out.println(createLottoNumbers + AdminInputOutputMessage.OUTPUT_BUY_TICKETS);
+        System.out.println(lottoPurchaseCount + AdminInputOutputMessage.OUTPUT_BUY_TICKETS);
         for (Lotto lotto : userLottoList) {
             System.out.println(lotto.getNumbers());
         }
@@ -118,17 +112,18 @@ public class LottoController {
 
     public void printMatchResult() {
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + stat.getlottoCorrectStat().get("THREE") + "개");
-        System.out.println("4개 일치 (50,000원) - " + stat.getlottoCorrectStat().get("FOUR") + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + stat.getlottoCorrectStat().get("FIVE") + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + stat.getlottoCorrectStat().get("BONUS") + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + stat.getlottoCorrectStat().get("SIX") + "개");
+        System.out.println(AdminInputOutputMessage.WINNING_STATISTICS);
+        System.out.println(AdminInputOutputMessage.HORIZONTAL_LINE);
+        System.out.println("3개 일치 (5,000원) - " + stat.getLottoCorrectStat().get("THREE") + "개");
+        System.out.println("4개 일치 (50,000원) - " + stat.getLottoCorrectStat().get("FOUR") + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + stat.getLottoCorrectStat().get("FIVE") + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + stat.getLottoCorrectStat().get("BONUS") + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + stat.getLottoCorrectStat().get("SIX") + "개");
     }
 
     public void printProfit() {
-        double profit = stat.calculateProfit(user.getPurchaseAmount());
+        System.out.println(purchaseAmount);
+        double profit = statLottoService.calculateProfit(purchaseAmount);
         String roundProfit = String.format("%.1f", profit);
         System.out.print("총 수익률은 ");
         System.out.print(roundProfit);

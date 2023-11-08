@@ -31,8 +31,8 @@ public class NumberValidator {
 
     public static void validateInputWinningNumber(String[] winningNumber) {
         try {
-            for (int i = 0; i < winningNumber.length; i++) {
-                Integer.parseInt(winningNumber[i]);
+            for (String winningNumberStr : winningNumber) {
+                Integer.parseInt(winningNumberStr);
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_DIGIT);

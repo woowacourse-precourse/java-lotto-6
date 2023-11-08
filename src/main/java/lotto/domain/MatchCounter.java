@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.dto.MatchCountDto;
 import lotto.util.Validator;
-import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -13,11 +12,10 @@ public class MatchCounter {
     private final int NOT_EXIST = 0;
 
     private MatchCounter(List<Integer> answerNumbers) {
-        this.answerNumbers = answerNumbers;
+        this.answerNumbers = new ArrayList<>(answerNumbers);
     }
 
     public static MatchCounter from(List<Integer> answerNumbers) {
-        Collections.sort(answerNumbers);
         return new MatchCounter(answerNumbers);
     }
 
@@ -26,9 +24,9 @@ public class MatchCounter {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<MatchCountDto> getMatchCounts(List<Lotto> lottos) {
+    public List<MatchCountDto> getMatchCounts(LottoPaper lottos) {
         List<MatchCountDto> counting = new ArrayList<>();
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
             int matchCount = countNumberMatch(lotto.getNumbers());
             int bonusCount = countBonusMatch(lotto.getNumbers());
             counting.add(new MatchCountDto(matchCount, bonusCount));
@@ -36,17 +34,13 @@ public class MatchCounter {
         return counting;
     }
 
-    private int countNumberMatch(List<Integer> numbers) {
-        int count = 0;
-        for (int number : numbers) {
-            if (answerNumbers.contains(number)) {
-                count++;
-            }
-        }
-        return count;
+    int countNumberMatch(List<Integer> numbers) {
+        return (int) numbers.stream()
+                .filter(answerNumbers::contains)
+                .count();
     }
 
-    private int countBonusMatch(List<Integer> list) {
+    int countBonusMatch(List<Integer> list) {
         if (list.contains(bonusNumber)) {
             return EXIST;
         }

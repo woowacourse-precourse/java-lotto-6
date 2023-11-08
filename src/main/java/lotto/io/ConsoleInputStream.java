@@ -15,7 +15,7 @@ public class ConsoleInputStream implements InputStream {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_INTEGER.get());
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.get());
         }
     }
 }

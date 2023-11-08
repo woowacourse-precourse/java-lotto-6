@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.constant.ErrorMessage;
 import lotto.constant.Value;
+import lotto.util.Validator;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,8 +21,21 @@ public class Lotto {
         }
     }
 
+    // ------- 기존 것 아래에 추가 작성 --------
+
+    public static Lotto from(List<Integer> numbers) {
+        checkFormat(numbers);
+        return new Lotto(numbers);
+    }
+
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        List<Integer> copied = new ArrayList<>(numbers);
+        Collections.sort(copied);
+        return copied;
+    }
+
+    public static Lotto copy(Lotto lotto) {
+        return new Lotto(lotto.getNumbers());
     }
 
     @Override
@@ -32,6 +47,7 @@ public class Lotto {
         if (numbers.size() != Value.LOTTO_NUMBER_COUNT.get()) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_COUNT_OF_LOTTO.get());
         }
+        Validator.checkDuplicated(numbers);
         numbers.forEach(Lotto::checkRange);
         return numbers;
     }

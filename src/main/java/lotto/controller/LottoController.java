@@ -7,16 +7,16 @@ import lotto.domain.LottoSeller;
 import lotto.domain.MatchCounter;
 import lotto.domain.User;
 import lotto.domain.WinCounter;
-import lotto.domain.Lotto;
+import lotto.domain.LottoPaper;
 import lotto.dto.MatchCountDto;
 import lotto.io.InputStream;
 import lotto.io.OutputStream;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class LottoController {
-    private final int ZERO = 0;
     private final InputView inputView;
     private final OutputView outputView;
     private final User user;
@@ -27,15 +27,15 @@ public class LottoController {
     public LottoController(InputStream inputStream, OutputStream outputStream) {
         this.inputView = new InputView(inputStream);
         this.outputView = new OutputView(outputStream);
-        this.user = User.createByBudget(ZERO);
+        this.user = User.createByBudget(BigDecimal.ZERO);
         this.seller = LottoSeller.create();
     }
 
-    public void inputMoney() {
+    public LottoController inputMoney() {
         while (true) {
             try {
                 outputView.printMoneyInputMessage();
-                int money = inputView.inputMoney();
+                BigDecimal money = inputView.inputMoney();
                 user.setBudget(money);
                 break;
             } catch (IllegalArgumentException e) {
@@ -43,18 +43,19 @@ public class LottoController {
             }
         }
         outputView.printEmptyLine();
+        return this;
     }
 
-    public void buyLottos() {
-        int money = user.pay();
-        List<Lotto> lottos = seller.sellLottos(money);
-        user.setLottos(lottos);
-        outputView.printBuyMessage(lottos.size());
-        lottos.forEach(lotto -> outputView.print(lotto.toString()));
-        outputView.printEmptyLine();
+    public LottoController buyLottos() {
+        BigDecimal money = user.pay();
+        LottoPaper lottoPaper = seller.sellLottos(money);
+        user.setLottoPaper(lottoPaper);
+        outputView.printBuyMessage(lottoPaper.size());
+        outputView.print(lottoPaper.toString());
+        return this;
     }
 
-    public void inputWinNumbers() {
+    public LottoController inputWinNumbers() {
         while (true) {
             try {
                 outputView.printWinNumbersInputMessage();
@@ -66,26 +67,28 @@ public class LottoController {
                 outputView.print(e.getMessage());
             }
         }
+        return this;
     }
 
-    public void inputBonusNumber() {
+    public LottoController inputBonusNumber() {
         while (true) {
             try {
                 outputView.printBonusNumberInputMessage();
                 int bonusNumber = inputView.inputBonusNumber();
-                this.matchCounter.setBonusNumber(bonusNumber);
+                matchCounter.setBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
             }
         }
         outputView.printEmptyLine();
+        return this;
     }
 
-    public void getWinStatistics() {
+    public LottoController getWinStatistics() {
         outputView.printStatisticsMessage();
         winCounter = new WinCounter();
-        for (MatchCountDto counting : matchCounter.getMatchCounts(user.getLottos())) {
+        for (MatchCountDto counting : matchCounter.getMatchCounts(user.getLottoPaper())) {
             try {
                 WinType winType = WinType.get(counting.match(), counting.bonus());
                 int count = winCounter.getCount(winType);
@@ -95,10 +98,12 @@ public class LottoController {
             }
         }
         outputView.print(winCounter.toString());
+        return this;
     }
 
-    public void getRateOfReturn() {
+    public LottoController getRateOfReturn() {
         String rateOfReturn = winCounter.getRateOfReturn(user.getPayed());
         outputView.print(Message.RATE_OF_RETURN_START.get() + rateOfReturn + Message.RATE_OF_RETURN_END.get());
+        return this;
     }
 }

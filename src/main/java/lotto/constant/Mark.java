@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum Format {
+public enum Mark {
     DELIMITER(","),
     EMPTY_REGEX(""),
     SPACE(" "),
@@ -10,11 +10,12 @@ public enum Format {
     CLOSE_BRACKET(")"),
     WIN_COUNT_UNIT("개"),
     MONEY_UNIT("원"),
-    PERCENT("%");
+    PERCENT("%"),
+    MONEY_PATTERN("###,###");
 
     private final String format;
 
-    Format(String format) {
+    Mark(String format) {
         this.format = format;
     }
 

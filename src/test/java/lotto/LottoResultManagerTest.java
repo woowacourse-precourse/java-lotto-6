@@ -56,6 +56,6 @@ public class LottoResultManagerTest {
         checker.check(lotto);
 
         LottoResultManager resultManager = checker.getLottoResultManager();
-        assertThat(resultManager.calculateRateOfReturn(1)).isEqualTo("22,222,277.8");
+        assertThat(resultManager.calculateRateOfReturn()).isEqualTo("22,222,277.8");
     }
 }

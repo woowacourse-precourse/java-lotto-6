@@ -20,12 +20,14 @@ public class OutputHandler {
     }
 
     public static void printWinningStatistics(Map<WinningKind, Integer> winningResult) {
+        LottoHandler lottoHandler = new LottoHandler();
         printLineBreakMessage("당첨 통계");
         printMessage("---");
+
         for (WinningKind winningKind : WinningKind.values()) {
             printMessage(
                     winningKind.getExplanation()
-                            + " (" + String.format("%,d", winningKind.getPrice()) + "원) - "
+                            + " (" + lottoHandler.formatPrice(winningKind.getPrice()) + "원) - "
                             + winningResult.get(winningKind) + "개"
             );
         }

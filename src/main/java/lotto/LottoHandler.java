@@ -95,7 +95,7 @@ public class LottoHandler {
         }
 
         if (purchasePrice % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] " + LOTTO_PRICE + "원 단위로만 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] " + formatPrice(LOTTO_PRICE) + "원 단위로만 입력해 주세요.");
         }
         return purchasePrice / LOTTO_PRICE;
     }
@@ -213,5 +213,9 @@ public class LottoHandler {
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
         return lottoNumbers;
+    }
+
+    public String formatPrice(int price) {
+        return String.format("%,d", price);
     }
 }

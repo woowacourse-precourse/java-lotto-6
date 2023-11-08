@@ -10,6 +10,7 @@ import java.util.List;
 public class LottoManager {
     int buyMoney=0;
     int buyLottoAmount=0;
+    int bonusNumber=0;
     List<List<Integer>> lottoCandidateSets = new ArrayList<>();
     Lotto winLotto;
     public void insertMoney() {
@@ -100,4 +101,8 @@ public class LottoManager {
             insertLottoNumbers();
         }
     }
+
+
+
+
 }

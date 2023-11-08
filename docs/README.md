@@ -23,6 +23,7 @@
 
 - 보너스 번호로 숫자 한개를 입력받되, 에러메세지가 뜨면 다시 입력받는다. LottoManger#insertBonusNumber
     - 숫자가 1~45 범위 밖이면 에러메세지를 보낸다. LottoManager#checkBonusNumberRange
+    - 에러메세지가 뜨면 다시 입력받는다. LottoManger#insertBonusNumberErrorHandling
     - 보너스 번호가 당첨 번호에 속하면 에러메세지를 보낸다. LottoManger#checkBonusNumberInLottoNumbers
     
 - 생성한 각 로또 세트의 당첨 여부를 확인한다. LottoManager#loopJudgeLottoCandidateSetsResult

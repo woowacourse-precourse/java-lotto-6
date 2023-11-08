@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import lotto.service.dto.LottoResultDto;
+
 import java.util.List;
 
 public class Lotto {
@@ -10,11 +12,30 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public LottoResultDto matchWithWinningNumbersAndBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        int matchedAmount = getMatchedAmount(winningNumbers);
+        int bonusMatchedAmount = getBonusMatchedAmount(bonusNumber);
+
+        return new LottoResultDto(matchedAmount, bonusMatchedAmount);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자가 입력되지 않았습니다.");
+        }
+
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자로 구성되었습니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    private int getMatchedAmount(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    private int getBonusMatchedAmount(int bonusNumber) {
+        return numbers.contains(bonusNumber) ? 1 : 0;
+    }
 }

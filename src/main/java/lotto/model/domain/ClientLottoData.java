@@ -12,9 +12,6 @@ public class ClientLottoData {
     private List<Lotto> lottos = new ArrayList<>();
     private List<RankTable> matchLottoCalculate;
 
-    public ClientLottoData() {
-    }
-
     public void setLottoTicketNumber(int money) {
         this.lottoTicketCount = money / 1000;
     }

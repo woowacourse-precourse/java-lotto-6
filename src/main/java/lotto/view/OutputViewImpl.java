@@ -12,11 +12,11 @@ public class OutputViewImpl implements OutputView {
 
   @Override
   public void printPurchasedMessage(MyLotto myLotto) {
-    System.out.println(myLotto + PURCHASE_MESSAGE);
+    System.out.println(myLotto.getLottoTickets() + PURCHASE_MESSAGE);
   }
 
   @Override
   public void printPurchasedMyLottoList() {
-    System.out.println(MyLotto.printAllMyLotto());
+    System.out.println(MyLotto.getAllMyLottoAsString());
   }
 }

@@ -54,4 +54,12 @@ class LottoTest {
         Assertions.assertNotNull(lotto);
     }
 
+    @DisplayName("유효한 번호를 반환하는지 확인한다.")
+    @Test
+    void getValidNumbers() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+        Assertions.assertEquals(numbers, lotto.getNumbers());
+    }
+
 }

@@ -1,14 +1,18 @@
 package lotto;
 
+import java.util.function.Predicate;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
+    final LottoService lottoService = new LottoService();
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -27,10 +31,20 @@ class LottoTest {
     @DisplayName("로또 구입 금액이 1,000원 단위가 아니면 예외가 발생한다.")
     @Test
     void inputPurchasePriceByDifferentUnit() {
-        final LottoService lottoService = new LottoService();
         final String purchasePrice = "1500";
 
-        assertThatThrownBy(() -> lottoService.checkLottoNumber(purchasePrice))
+        assertThatThrownBy(() -> lottoService.checkLottoAmount(purchasePrice))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 구입 금액에 맞는 로또 수량 확인")
+    @Test
+    void correctLottoAmountByPurchasePrice() {
+        final String purchasePrice = "5000";
+        final int expectedLottoAmount = 5;
+
+        final int actualLottoAmount = lottoService.checkLottoAmount(purchasePrice);
+
+        assertEquals(expectedLottoAmount, actualLottoAmount,"구입 금액에 맞게 로또 수량이 정해져야 한다.");
     }
 }

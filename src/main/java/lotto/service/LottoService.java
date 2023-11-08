@@ -12,10 +12,10 @@ public class LottoService {
 	private Money userInputAmount;
 	private Lotto userLotto;
 
-	public Lotto perchaseLotto(int inputAmount) {
+	public Lotto purchaseLotto(int inputAmount) {
 		LottoKiosk lottoKiosk = new LottoKiosk(inputAmount);
 		userInputAmount = lottoKiosk.getInputAmount();
-		userLotto = lottoKiosk.perchaseLotto();
+		userLotto = lottoKiosk.purchaseLotto();
 		return userLotto;
 	}
 

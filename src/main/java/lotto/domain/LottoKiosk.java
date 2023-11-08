@@ -16,7 +16,7 @@ public class LottoKiosk {
 		this.inputAmount = new Money(money);
 	}
 
-	public Lotto perchaseLotto() {
+	public Lotto purchaseLotto() {
 		return new Lotto(lottoAmount());
 	}
 

@@ -12,10 +12,10 @@ class IntegerInputTest {
     @DisplayName("숫자 문자를 입력하면 숫자로 파싱되어 저장된다.")
     @ParameterizedTest
     @CsvSource({"-1,-1", "0,0", "1,1", "+1,1"})
-    void createByInteger(String input, int expected) {
+    void createByInteger(String input, int expectedValue) {
         IntegerInput integerInput = new IntegerInput(input);
 
-        assertThat(integerInput.value()).isEqualTo(expected);
+        assertThat(integerInput.value()).isEqualTo(expectedValue);
     }
 
     @DisplayName("숫자가 아닌 문자를 입력하면 예외가 발생한다.")

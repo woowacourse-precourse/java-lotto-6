@@ -23,6 +23,7 @@ public class Lotto {
                 filter(winningLotto::containNumber).
                 count();
     }
+
     public boolean containNumber(int number) {
         return numbers.contains(number);
     }
@@ -37,18 +38,18 @@ public class Lotto {
         Set<Integer> overlapCheck = new HashSet<>();
         overlapCheck.addAll(numbers);
 
-        if (overlapCheck.size() != 6){
+        if (overlapCheck.size() != 6) {
             throw new IllegalArgumentException(NOT_NUMBER_OVERLAP);
         }
     }
 
-    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber){
-        if(numbers.contains(bonusNumber)){
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(NOT_NUMBER_OVERLAP);
         }
     }
 
-    public List<Integer> getLottoNumbers(){
+    public List<Integer> getLottoNumbers() {
         return numbers;
     }
 }

@@ -19,7 +19,6 @@ public class PlayerLottoAmount {
     }
 
     private void validateAmount(int amount) {
-        validateNumber(amount);
         validateNatural(amount);
         validateDivisible(amount);
     }

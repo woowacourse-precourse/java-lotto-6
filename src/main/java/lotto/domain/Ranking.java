@@ -18,16 +18,16 @@ public enum Ranking {
     private String message;
 
     public static Ranking valueOf(int countOfMatch, boolean matchBonus) {
-        if (countOfMatch < WINNING_MIN_COUNT){
+        if (countOfMatch < WINNING_MIN_COUNT) {
             return MISS;
         }
 
-        if (SECOND.matchCount(countOfMatch) && matchBonus){
+        if (SECOND.matchCount(countOfMatch) && matchBonus) {
             return SECOND;
         }
 
         for (Ranking rank : values()) {
-            if (rank.matchCount(countOfMatch) && rank != SECOND){
+            if (rank.matchCount(countOfMatch) && rank != SECOND) {
                 return rank;
             }
         }

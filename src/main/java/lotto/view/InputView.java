@@ -14,13 +14,13 @@ public class InputView {
     private static List<Integer> winningNumberList;
 
     // 구입 금액 입력 메소드
-    public static String inputPurchaseAmount(){
+    public static String inputPurchaseAmount() {
         System.out.println(INPUT_LOTTO_AMOUT);
         return Console.readLine();
     }
 
     // 당첨 번호 입력 메소드
-    public static List<Integer> inputLottoWinningNumber(){
+    public static List<Integer> inputLottoWinningNumber() {
         System.out.println(INPUT_LOTTO_WINNING);
         return numberList(Console.readLine());
     }
@@ -31,7 +31,7 @@ public class InputView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public static List<Integer> numberList(String winningNumber){
+    public static List<Integer> numberList(String winningNumber) {
         String[] winning = winningNumber.split(",");
         winningNumberList = new ArrayList<>();
         for (String s : winning) {
@@ -43,7 +43,7 @@ public class InputView {
     private static int convertToInt(String input) {
         try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INPUT_TYPE_ERROR);
         }
     }

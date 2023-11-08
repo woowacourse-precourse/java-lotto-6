@@ -12,3 +12,6 @@
 4. 구현을 하였지만 요구사항을 확인 후 수정 예정
 5. enum을 활용하기 위해 LottoRank enum class 구현
 6. winStatistic메서드길이가 너무 길어서 쪼개기
+7. 사용할 winStatistic 메서드를 LottoRank 를 활용해서 여러개의 메서드로 나누기 
+8. initializePrizeCount 메서드를 구현하여 enum에 만들어 놓은 등수들의 당첨 횟수를 0으로 초기화
+9. 

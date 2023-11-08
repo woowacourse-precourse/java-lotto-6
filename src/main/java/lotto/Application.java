@@ -33,4 +33,25 @@ public class Application {
         winStatistic(lottos, winningNumberSet, bonusNumber, buyMoney);
         Console.close();
     }
+    static void winStatistic(List<Lotto> lottos, Set<Integer> winningNumberSet, int bonusNumber, int buyMoney) {
+        Map<LottoRank, Integer> prizeCount = initializePrizeCount();
+        long totalPrize = calculatePrizes(lottos, winningNumberSet, bonusNumber, prizeCount);
+        printStatistics(prizeCount, totalPrize, buyMoney);
+    }
+    private static Map<LottoRank, Integer> initializePrizeCount() {
+        Map<LottoRank, Integer> prizeCount = new EnumMap<>(LottoRank.class);
+        for (LottoRank rank : LottoRank.values()) {
+            prizeCount.put(rank, 0);
+        }
+        return prizeCount;
+    }
+    private static long calculatePrizes(List<Lotto> lottos, Set<Integer> winningNumberSet, int bonusNumber, Map<LottoRank, Integer> prizeCount){
+
+    }
+    private static LottoRank determineLottoRank(Lotto lotto, Set<Integer> winningNumberSet, int bonusNumber){
+
+    }
+    private static void printStatistics(Map<LottoRank, Integer> prizeCount, long totalPrize, int buyMoney){
+
+    }
 }

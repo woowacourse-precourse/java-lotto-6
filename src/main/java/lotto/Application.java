@@ -23,7 +23,7 @@ public class Application {
             OutputView.printLottoTicketNumbers(lottoTicket);
         }
 
-        List<Integer> winningNumbers = LottoNumbersMaker.generateWinningNumbers(InputView.getWinningNumbers());
+        Lotto winningNumbers = LottoNumbersMaker.generateWinningNumbers(InputView.getWinningNumbers());
 
         int bonusNumber=InputView.getBonusNumber();
         EnumMap<Rank, Integer> rankCounts=new EnumMap<>(Rank.class);
@@ -33,7 +33,7 @@ public class Application {
             int countForMatchingBonusNumbers=0;
             List<Integer> ticketNumbers=lottoTicket.getNumbers();
             for(int ticketNumber: ticketNumbers){
-                if(winningNumbers.contains(ticketNumber)){
+                if(winningNumbers.getNumbers().contains(ticketNumber)){
                     countForMatchingWinningNumbers++;
                 }
             }

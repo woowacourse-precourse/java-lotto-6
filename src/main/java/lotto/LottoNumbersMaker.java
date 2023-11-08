@@ -1,8 +1,7 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.sql.Array;
+import java.util.*;
 
 public class LottoNumbersMaker {
     public static List<Integer> generateRandomNumbers() {
@@ -14,12 +13,17 @@ public class LottoNumbersMaker {
         return numbers.subList(0, 6);
     }
 
-    public static List<Integer> generateWinningNumbers(String input) {
+    public static Lotto generateWinningNumbers(String input) {
         String[] winningNumbersInput = input.split(",");
-        List<Integer> winningNumbers = new ArrayList<>();
+        Set<Integer> winningNumbers = new HashSet<>();
         for (String winningNumber : winningNumbersInput) {
-            winningNumbers.add(Integer.parseInt(winningNumber));
+            try {
+                int number = Integer.parseInt(winningNumber);
+                winningNumbers.add(number);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("유효하지 않은 입력값입니다.");
+            }
         }
-        return winningNumbers;
+        return new Lotto(new ArrayList<>(winningNumbers));
     }
 }

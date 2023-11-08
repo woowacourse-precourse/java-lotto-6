@@ -16,8 +16,8 @@ public class OutputView {
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void showIssuedLottoResult(List<String> issuedLottos) {
-        Collections.sort(issuedLottos);
-        showLottoAmount(issuedLottos.size());
+        int issuedLottoAmount = issuedLottos.size();
+        showLottoAmount(issuedLottoAmount);
         showLottoNumbers(issuedLottos);
     }
 

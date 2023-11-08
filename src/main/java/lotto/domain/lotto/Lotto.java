@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.util.LottoConstants;
@@ -11,7 +12,7 @@ public class Lotto {
         validate(numbers);
         validateDuplication(numbers);
         validateNumberRange(numbers);
-        this.numbers = numbers;
+        this.numbers = sort(numbers);;
     }
 
     private void validate(List<Integer> numbers) {
@@ -43,6 +44,12 @@ public class Lotto {
 
     protected List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    private List<Integer> sort(List<Integer> numbers) {
+        List sortNumbers = new ArrayList(numbers);
+        Collections.sort(sortNumbers);
+        return sortNumbers;
     }
 
     @Override

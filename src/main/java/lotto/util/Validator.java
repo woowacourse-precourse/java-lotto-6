@@ -15,7 +15,7 @@ public class Validator {
 
     public static BigDecimal checkPositive(BigDecimal number) throws IllegalArgumentException {
         if (number.compareTo(BigDecimal.ZERO) < ZERO) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE_ERROR.get());
+            throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE.get());
         }
         return number;
     }
@@ -36,7 +36,7 @@ public class Validator {
     public static void checkThousandDivision(BigDecimal number) throws IllegalArgumentException {
         if (!number.remainder(new BigDecimal(THOUSAND)).equals(BigDecimal.ZERO)
                 || number.equals(BigDecimal.ZERO)) {
-            throw new IllegalArgumentException(ErrorMessage.THOUSAND_UNIT_ERROR.get());
+            throw new IllegalArgumentException(ErrorMessage.NOT_THOUSAND_UNIT.get());
         }
     }
 

@@ -59,13 +59,17 @@ public class WinCounter {
     }
 
     public String getRateOfReturn(BigDecimal paidMoney) {
-        BigDecimal sum = winCounts.entrySet().stream()
-                .map(entry -> entry.getKey().getReward().multiply(BigDecimal.valueOf(entry.getValue())))
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal sum = BigDecimal.ZERO;
+        for (Map.Entry<WinType, Integer> entry : winCounts.entrySet()) {
+            BigDecimal reward = entry.getKey().getReward();
+            int count = entry.getValue();
+            BigDecimal totalReward = reward.multiply(BigDecimal.valueOf(count));
+            sum = sum.add(totalReward);
+        }
 
         BigDecimal rate = sum.divide(paidMoney)
                 .multiply(BigDecimal.valueOf(Value.HUNDRED.get()))
                 .setScale(2, RoundingMode.HALF_UP);
-        return rate.stripTrailingZeros() + Mark.PERCENT.get();
+        return rate.stripTrailingZeros().toPlainString() + Mark.PERCENT.get();
     }
 }

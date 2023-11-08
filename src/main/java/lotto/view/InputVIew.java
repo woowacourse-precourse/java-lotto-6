@@ -15,7 +15,7 @@ public class InputVIew {
         while (!isValidInput) {
             try {
                 number = Integer.parseInt(Console.readLine());
-                isValidInput = true; // 유효한 입력을 받았을 때 반복문을 종료
+                isValidInput = true;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자만 입력해주십시오");
             }

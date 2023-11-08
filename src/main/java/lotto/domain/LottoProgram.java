@@ -2,24 +2,20 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import lotto.congin.LottoWinningAmount;
 import lotto.domain.generator.LottoGenerator;
 import lotto.domain.prizecalculator.LottoPrizeCalculator;
 import lotto.domain.prizecalculator.WinningNumbers;
-import lotto.domain.repository.UserLottoRepository;
 import lotto.dto.WinningStatisticsDto;
 
 public class LottoProgram {
     private final LottoGenerator lottoGenerator;
     private final LottoPrizeCalculator lottoPrizeCalculator;
-    private final UserLottoRepository userLottoRepository;
     private LottoMoney lottoMoney;
 
     public LottoProgram() {
         this.lottoGenerator = new LottoGenerator();
         this.lottoPrizeCalculator = new LottoPrizeCalculator();
-        this.userLottoRepository = new UserLottoRepository();
     }
 
     public List<Lotto> getLottoListByPrice(int price) {
@@ -28,20 +24,19 @@ public class LottoProgram {
     }
 
     public WinningStatisticsDto getWinningNumber(List<Integer> number, Integer bonus) {
-        WinningNumbers winningNumbers = new WinningNumbers(number, bonus);
-        lottoPrizeCalculator.setLottoPrizeCalculator(winningNumbers);
-        List<Lotto> userLotto = userLottoRepository.getUserLotto();
-        Map<LottoWinningAmount, Integer> winningAmount = lottoPrizeCalculator.countWinningNumbers(userLotto);
-
-        int investmentProfit = 0;
-        for (Entry<LottoWinningAmount, Integer> lottoWinningAmountIntegerEntry : winningAmount.entrySet()) {
-            investmentProfit +=
-                    lottoWinningAmountIntegerEntry.getKey().getWinningAmount() * lottoWinningAmountIntegerEntry.getValue();
+        if (lottoMoney == null) {
+            throw new IllegalStateException("[ERROR] 로또를 사기 위한 돈이 존재하지 않습니다.");
         }
-        float lottoYield = lottoMoney.getLottoYield(investmentProfit);
+        Map<LottoWinningAmount, Integer> winningAmount = lottoPrizeCalculator.setLottoPrizeCalculator(
+                new WinningNumbers(number, bonus));
+        return new WinningStatisticsDto(winningAmount, calculateProfitPercentage(winningAmount));
+    }
 
-        return new WinningStatisticsDto(winningAmount, lottoYield);
-
+    private float calculateProfitPercentage(Map<LottoWinningAmount, Integer> winningAmount) {
+        int investmentProfit = winningAmount.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getWinningAmount() * entry.getValue())
+                .sum();
+        return lottoMoney.getLottoYield(investmentProfit);
     }
 
 }

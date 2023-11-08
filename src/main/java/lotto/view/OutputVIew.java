@@ -28,19 +28,15 @@ public class OutputVIew {
 
     public void printWinningStatistics(WinningStatisticsDto winningStatisticsDto) {
         System.out.println("당첨 통계\n" + "---");
-        LottoWinningAmount[] values = LottoWinningAmount.values();
-        for (LottoWinningAmount value : values) {
-            int n = 0;
-            if (winningStatisticsDto.lottoWinningAmount().get(value) != null) {
-                n = winningStatisticsDto.lottoWinningAmount().get(value);
-            }
-            String s = "";
-            if (value.getBonus()) {
-                s = ", 보너스 볼 일치";
-            }
-            System.out.printf("%d개 일치%s (%s원) - %d개\n",value.getWinningNumber(),s, String.format("%,d",value.getWinningAmount()),n);
+
+        for (LottoWinningAmount value : LottoWinningAmount.values()) {
+            int numberOfMatches = winningStatisticsDto.lottoWinningAmount().getOrDefault(value, 0);
+            String bonusInfo = value.getBonus() ? ", 보너스 볼 일치" : "";
+            String formattedAmount = String.format("%,d", value.getWinningAmount());
+            System.out.printf("%d개 일치%s (%s원) - %d개%n", value.getWinningNumber(), bonusInfo, formattedAmount, numberOfMatches);
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", winningStatisticsDto.yield());
+
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", winningStatisticsDto.yield());
     }
 
 

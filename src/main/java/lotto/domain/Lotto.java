@@ -24,10 +24,6 @@ public class Lotto {
         }
     }
 
-    public void sortAscending() {
-        //numbers.sort(Comparator.naturalOrder());
-    }
-
     public int countMatching(List<Integer> numbers) {
     return (int) this.numbers.stream()
             .filter(numbers::contains)

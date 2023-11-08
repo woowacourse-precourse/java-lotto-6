@@ -3,12 +3,14 @@ package util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import lotto.Lotto;
 import lotto.LottoPrinciples;
 
 public class ValidationNumbers {
 
     private static final String COMMA = ",";
     private static final Integer REMOVE_LAST_SPACE_NUMBER = 0;
+    private static final Integer START_INDEX = 0;
 
     private ValidationNumbers() {
 
@@ -21,13 +23,26 @@ public class ValidationNumbers {
         validateDuplicateNumber(numbers);
     }
 
-    public static void validateDuplicateNumber(List<Integer> numberList) {
-        Integer filteredNumberListCount = (int) numberList.stream()
-                .distinct()
-                .count();
-        if (filteredNumberListCount != LottoPrinciples.LIMIT_NUMBER.getNumber()) {
-            throw new IllegalArgumentException(ValidationNumbersMessages.DUPLICATE_NUMBER.getMessage());
+    public static void validateNumbers(List<Integer> numberList) {
+        String numbers = listToString(numberList);
+        validateNumber(numbers);
+        validateLength(numbers);
+        validateNumberRange(numbers);
+        validateDuplicateNumber(numbers);
+    }
+
+    private static String listToString(List<Integer> numbers) {
+        StringBuilder numberString = new StringBuilder();
+        int endIndex = numbers.size() - 1;
+        for (int index = START_INDEX;index <= endIndex;index++) {
+            String number = Integer.toString(numbers.get(index));
+            if (index == endIndex) {
+                numberString.append(number);
+                break;
+            }
+            numberString.append(number).append(",");
         }
+        return numberString.toString();
     }
 
     private static void validateNumber(String numbers) {

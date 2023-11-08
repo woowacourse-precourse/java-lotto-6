@@ -16,7 +16,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
-        ValidationNumbers.validateDuplicateNumber(numbers);
+        ValidationNumbers.validateNumbers(numbers);
     }
 
     public void printLottoNumbers() {

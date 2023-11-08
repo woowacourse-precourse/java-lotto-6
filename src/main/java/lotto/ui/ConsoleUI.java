@@ -2,6 +2,7 @@ package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.service.LottoService;
 
 import java.util.ArrayList;
@@ -80,6 +81,17 @@ public class ConsoleUI {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    public static void printResult(List<List<Integer>> bought, List<Integer> winner, int bonus) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        List<Integer> matchCounts = LottoService.calculateMatches(bought, winner, bonus);
+        Rank[] ranks = Rank.values();
+        for (int i = 0; i < ranks.length; i++) {
+            int count = matchCounts.get(i);
+            System.out.println(ranks[i].getDescription() + " - " + count + "개");
         }
     }
 

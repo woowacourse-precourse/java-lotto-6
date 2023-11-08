@@ -14,5 +14,7 @@ public class GameService {
 
         List<Integer> winner = ConsoleUI.winnerInput();
         int bonus = ConsoleUI.bonusInput();
+
+        ConsoleUI.printResult(bought, winner, bonus);
     }
 }

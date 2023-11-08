@@ -8,24 +8,13 @@ public class RankCalculator {
 
     public List<Rank> calculateAllRanks(List<Lotto> purchasedLotto, Lotto winningLotto, int bonusNumber) {
         return purchasedLotto.stream()
-                .map(lotto -> calculateOneRank(lotto, winningLotto, bonusNumber))
+                .map(lotto -> calculateRank(lotto, winningLotto, bonusNumber))
                 .collect(Collectors.toList());
     }
 
-    private Rank calculateOneRank(Lotto purchasedLotto, Lotto winningLotto, int bonusNumber) {
-        int hitCount = calculateHitWinningNumber(purchasedLotto, winningLotto);
-        boolean isBonusIncluded = calculateHitBonusNumber(purchasedLotto, bonusNumber);
+    private Rank calculateRank(Lotto purchasedLotto, Lotto winningLotto, int bonusNumber) {
+        int hitCount = hitNumberCalculator.hitNumberCounter(purchasedLotto.getNumbers(), winningLotto.getNumbers());
+        boolean isBonusIncluded = hitNumberCalculator.isBonusNumberIncluded(purchasedLotto.getNumbers(), bonusNumber);
         return Rank.getRank(hitCount, isBonusIncluded);
-    }
-
-    private int calculateHitWinningNumber(Lotto purchasedLotto, Lotto winningLotto) {
-        List<Integer> purchasedLottoNumbers = purchasedLotto.getNumbers();
-        List<Integer> winningLottoNumbers = winningLotto.getNumbers();
-        return hitNumberCalculator.hitNumberCounter(purchasedLottoNumbers, winningLottoNumbers);
-    }
-
-    private boolean calculateHitBonusNumber(Lotto purchasedLotto, int bonusNumber) {
-        List<Integer> purchasedLottoNumbers = purchasedLotto.getNumbers();
-        return hitNumberCalculator.isBonusNumberIncluded(purchasedLottoNumbers, bonusNumber);
     }
 }

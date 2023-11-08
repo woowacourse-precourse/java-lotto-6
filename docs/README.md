@@ -72,12 +72,12 @@
     - [ ] 금액이 1,000원 단위로 입력되었는지 검증한다.
 
 ### WinningNumberValidator
-- [ ] 당첨 번호의 유효성을 검증한다.
-    - [ ] 숫자가 공백이 아닌지 검증한다.
-    - [ ] 6개의 숫자로 구성되었는지 검증한다.
-    - [ ] 숫자가 정수인지 검증한다.
-    - [ ] 숫자가 1부터 45 사이의 숫자인지 검증한다.
-    - [ ] 숫자가 중복되지 않는지 검증한다.
+- [x] 당첨 번호의 유효성을 검증한다.
+    - [x] 숫자가 공백이 아닌지 검증한다.
+    - [x] 6개의 숫자로 구성되었는지 검증한다.
+    - [x] 숫자가 정수인지 검증한다.
+    - [x] 숫자가 1부터 45 사이의 숫자인지 검증한다.
+    - [x] 숫자가 중복되지 않는지 검증한다.
 
 ## Exception
 - [ ] INVALID_BONUS_NUMBER_TYPE: 보너스 번호는 정수값
@@ -89,11 +89,11 @@
 - [ ] NULL_OR_EMPTY_PURCHASE_AMOUNT: 구매 금액은 null이나 공백일 수 없음
 - [ ] INVALID_PURCHASE_AMOUNT_FORMAT: 구입 금액은 1,000원 단위
 
-- [ ] INVALID_WINNING_NUMBER_RANGE: 당첨 번호는 1부터 45 사이의 숫자
-- [ ] DUPLICATE_WINNING_NUMBERS: 당첨 번호는 중복될 수 없음
-- [ ] INVALID_WINNING_NUMBER_FORMAT: 당첨 번호는 정수값
-- [ ] INVALID_WINNING_NUMBER_COUNT: 당첨 번호의 개수는 6개
-- [ ] NULL_OR_EMPTY_WINNING_NUMBERS: 당첨 번호는 null이나 공백이 들어갈 수 없음
+- [x] INVALID_WINNING_NUMBER_RANGE: 당첨 번호는 1부터 45 사이의 숫자
+- [x] DUPLICATE_WINNING_NUMBERS: 당첨 번호는 중복될 수 없음
+- [x] INVALID_WINNING_NUMBER_FORMAT: 당첨 번호는 정수값
+- [x] INVALID_WINNING_NUMBER_COUNT: 당첨 번호의 개수는 6개
+- [x] NULL_OR_EMPTY_WINNING_NUMBERS: 당첨 번호는 null이나 공백이 들어갈 수 없음
 
 - [x] INVALID_LOTTO_NUMBER_RANGE: 로또 번호는 1부터 45 사이의 숫자
 - [x] DUPLICATE_LOTTO_NUMBERS: 로또 번호는 중복될 수 없음

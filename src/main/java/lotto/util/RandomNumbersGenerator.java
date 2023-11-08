@@ -1,9 +1,9 @@
 package lotto.util;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static lotto.domain.LottoConstants.LOTTO_LENGTH_CONSTRAINT;
-import static lotto.domain.LottoConstants.LOTTO_NUMBER_RANGE_END;
-import static lotto.domain.LottoConstants.LOTTO_NUMBER_RANGE_START;
+import static lotto.constants.LottoConstants.LOTTO_LENGTH_CONSTRAINT;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_RANGE_END;
+import static lotto.constants.LottoConstants.LOTTO_NUMBER_RANGE_START;
 
 import java.util.List;
 

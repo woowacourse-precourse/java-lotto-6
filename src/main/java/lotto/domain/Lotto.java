@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import static lotto.domain.LottoConstants.LOTTO_LENGTH_CONSTRAINT;
+import static lotto.constants.LottoConstants.LOTTO_LENGTH_CONSTRAINT;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.constants.ErrorConstants;
 import lotto.util.RandomNumbersGenerator;
-import lotto.view.ErrorConstants;
 
 public class Lotto {
     private final List<LottoNumber> numbers;

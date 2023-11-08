@@ -1,9 +1,9 @@
 package lotto.domain;
 
-import static lotto.domain.LottoConstants.LOTTO_LENGTH_CONSTRAINT;
-import static lotto.view.ErrorConstants.DUPLICATED_BONUS_NUMBER_ERROR_MESSAGE;
-import static lotto.view.ErrorConstants.DUPLICATED_WINNING_NUMBERS_ERROR_MESSAGE;
-import static lotto.view.ErrorConstants.INVALID_LENGTH_ERROR_MESSAGE;
+import static lotto.constants.ErrorConstants.DUPLICATED_BONUS_NUMBER_ERROR_MESSAGE;
+import static lotto.constants.ErrorConstants.DUPLICATED_WINNING_NUMBERS_ERROR_MESSAGE;
+import static lotto.constants.ErrorConstants.INVALID_LENGTH_ERROR_MESSAGE;
+import static lotto.constants.LottoConstants.LOTTO_LENGTH_CONSTRAINT;
 
 import java.util.List;
 

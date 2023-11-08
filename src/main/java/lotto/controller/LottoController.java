@@ -42,11 +42,8 @@ public class LottoController {
         output.writeEmptyLine();
 
         output.writeBonusNumberInputMessage();
-        return readUntilValidInput(() ->
-            new WinningNumberAndBonusNumber(
-                winningNumberRequest.winningNumber(),
-                input.readBonusNumber().bonusNumber()
-            )
+        return readUntilValidInput(
+            () -> new WinningNumberAndBonusNumber(winningNumberRequest, input.readBonusNumber())
         );
     }
 

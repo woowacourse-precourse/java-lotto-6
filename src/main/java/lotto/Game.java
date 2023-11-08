@@ -5,8 +5,7 @@ public class Game {
     
     void play() {
         calculateNumberOfPurchase();
-        Lottos lottos = new Lottos(purchaseAmount);
-        lottos.printLottos();
+        showPurchasedLottos();
     }
     
     void calculateNumberOfPurchase() {
@@ -15,6 +14,7 @@ public class Game {
         int number = checkInteger(inputPurchaseAmount);
         checkNaturalNumber(number);
         purchaseAmount = checkMultiple(number);
+        System.out.println();
     }
     
     int checkInteger(String string) {
@@ -37,5 +37,12 @@ public class Game {
             throw new IllegalArgumentException("[Error] 1000의 배수가 아닌 입력입니다.");
         }
         return number / 1000;
+    }
+    
+    void showPurchasedLottos() {
+        System.out.println(purchaseAmount + "개를 구매했습니다.");
+        Lottos lottos = new Lottos(purchaseAmount);
+        lottos.printLottos();
+        System.out.println();
     }
 }

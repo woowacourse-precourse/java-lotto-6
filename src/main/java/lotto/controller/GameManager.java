@@ -21,10 +21,8 @@ public class GameManager {
         Amount amount = inputPurchaseAmountUntilNoError();
         Lottos lottos = publishLottosByAmountAndPrintLottos(amount);
         Lotto winningLotto = inputWinningNumbersUntilNoError();
-        Bonus bonus = inputView.inputBonusNumber();
-        WinningResult winningResult = new WinningResult(
-                lottos.determineWinningsCount(winningLotto, bonus));
-        outputView.printWinningResult(winningResult);
+        Bonus bonus = inputBonusNumbersUntilNoError();
+        WinningResult winningResult = getWinningResultAndPrint(lottos,winningLotto,bonus);
         long prize = winningResult.getTotalLotteryPrize();
         outputView.printROI(calculator.calculateROI(prize, amount));
     }
@@ -60,6 +58,24 @@ public class GameManager {
                 outputView.printErrorMessage(e);
             }
         }
+    }
+
+    private Bonus inputBonusNumbersUntilNoError(){
+        outputView.printLineBreak();
+        while(true){
+            try{
+                return inputView.inputBonusNumber();
+            }catch (IllegalArgumentException e){
+                outputView.printErrorMessage(e);
+            }
+        }
+    }
+
+    private WinningResult getWinningResultAndPrint(Lottos lottos,Lotto winningLotto, Bonus bonus) {
+        outputView.printLineBreak();
+        WinningResult winningResult = new WinningResult(lottos.determineWinningsCount(winningLotto, bonus));
+        outputView.printWinningResult(winningResult);
+        return winningResult;
     }
 
 }

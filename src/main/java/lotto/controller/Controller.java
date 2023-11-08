@@ -29,4 +29,10 @@ public class Controller {
         String input = Console.readLine().trim();
         return lottoService.integerList(input);
     }
+
+    private int getBonusNumber() {
+        int input = Integer.parseInt(Console.readLine().trim());
+        return input;
+    }
+
 }

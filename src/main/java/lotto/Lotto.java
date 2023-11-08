@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.model.LottoResult;
+import lotto.model.WinningNumbers;
+
 import java.util.List;
 
 public class Lotto {
@@ -14,6 +17,18 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public LottoResult toLottoResult(WinningNumbers winningNumbers){
+        int count = 0;
+        for (int number : numbers) {
+            if (winningNumbers.getSixNumbers().contains(number)) {
+                count++;
+            }
+        }
+        boolean bonus = numbers.contains(winningNumbers.getBonusNumber());
+
+        return LottoResult.of(count, bonus);
     }
 
     // TODO: 추가 기능 구현

@@ -1,6 +1,5 @@
 package lotto.validation;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;

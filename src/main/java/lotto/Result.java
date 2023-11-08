@@ -52,12 +52,8 @@ public class Result {
     }
 
     public void printProfitRate(double profitRate) {
-        String formattedProfitRate = formatProfitRate(profitRate);
-        System.out.printf("총 수익률은 %s%%입니다.\n", formattedProfitRate);
-    }
-
-    private String formatProfitRate(double profitRate) {
-        DecimalFormat profitRateFormat = new DecimalFormat("0.##");
-        return profitRateFormat.format(profitRate);
+        DecimalFormat df = new DecimalFormat("#.##");
+        String formattedProfitRate = df.format(profitRate);
+        System.out.println("총 수익률은 " + formattedProfitRate + "%입니다.");
     }
 }

@@ -60,3 +60,45 @@ class LottoGame {
         OutputView.printResults(matchCounts, prizeMoney, lottos.size() * PRICE_PER_LOTTO);
     }
 }
+
+class InputValidator {
+    public static int validateAmount(String input) {
+        try {
+            int amount = Integer.parseInt(input);
+            if (amount <= 0 || amount % LottoGame.PRICE_PER_LOTTO != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 양수여야 합니다.");
+            }
+            return amount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액이 숫자가 아닙니다.");
+        }
+    }
+
+    public static List<Integer> validateNumbers(String input) {
+        String[] tokens = input.split(",");
+        if (tokens.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+        }
+        List<Integer> numbers = new ArrayList<>();
+        for (String token : tokens) {
+            int number = Integer.parseInt(token.trim());
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            numbers.add(number);
+        }
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+        }
+        return numbers;
+    }
+
+    public static int validateBonusNumber(String input, List<Integer> winningNumbers) {
+        int bonusNumber = Integer.parseInt(input.trim());
+        if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자이며, 당첨 번호와 중복될 수 없습니다.");
+        }
+        return bonusNumber;
+    }
+}
+

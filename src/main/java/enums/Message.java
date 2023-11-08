@@ -8,6 +8,7 @@ public enum Message {
     WINNING_STATISTICS("당첨 통계"),
     PUBLISHED_LOTTO("개를 구매했습니다."),
     SPLIT_LINE("---"),
+    NUMERIC_REGEX("^[1-9]\\d*$"),
     NEW_LINE("\n");
     private final String message;
     Message(String message) {

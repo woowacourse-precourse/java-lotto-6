@@ -9,7 +9,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        List<Integer> sorted = lottoNumSort(numbers);
+        this.numbers = sorted;
     }
 
     private void validate(List<Integer> numbers) {
@@ -33,6 +34,12 @@ public class Lotto {
 
     public void printLotto() {
         System.out.println(numbers.stream().map(Objects::toString).collect(Collectors.joining(", ", "[", "]")));
+    }
+
+    public List<Integer> lottoNumSort(List<Integer> beforeSort) {
+        return beforeSort.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public List<Integer> getNumbers() {

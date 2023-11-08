@@ -43,6 +43,12 @@ public class InputView {
         return parseWinningNumbersOrThrowError(input);
     }
 
+    public static List<Integer> inputWinningBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = inputLine();
+        return parseWinningBonusNumberOrThrowError(input);
+    }
+
     private static long divideWithTicketPrice(String input) {
         long purchaseAmount = parseLongOrThrowError(input);
 
@@ -62,6 +68,20 @@ public class InputView {
     }
 
     private static List<Integer> parseWinningNumbersOrThrowError(String input) {
+        String[] inputNumbers = input.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        for (String inputNumber : inputNumbers) {
+            Integer parsedNumber = parseIntegerOrThrowError(inputNumber);
+            winningNumbers.add(parsedNumber);
+        }
+
+        new Lotto(winningNumbers);
+
+        return winningNumbers;
+    }
+
+    private static List<Integer> parseWinningBonusNumberOrThrowError(String input) {
         String[] inputNumbers = input.split(",");
         List<Integer> winningNumbers = new ArrayList<>();
 

@@ -1,6 +1,9 @@
 package lotto.exception;
 
 public enum ExceptionMessage {
+    DUPLICATE_LOTTO_NUMBER_NOT_ALLOWED("[ERROR] Duplicate lotto numbers are not allowed."),
+    REQUIRED_LOTTO_NUMBERS_COUNT("[ERROR] A Lotto ticket must contain exactly 6 numbers."),
+    LOTTO_NUMBER_OUT_OF_BOUNDS("[ERROR] The lotto number is out of bounds."),
     AMOUNT_NOT_DIVISIBLE("[ERROR] The amount is not divisible by the price of a single lottery ticket."),
     NEGATIVE_AMOUNT_NOT_ALLOWED("[ERROR] The purchase amount cannot be negative."),
     AMOUNT_CANNOT_BE_ZERO("[ERROR] The purchase amount cannot be zero."),

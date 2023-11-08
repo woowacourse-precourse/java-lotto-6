@@ -25,4 +25,8 @@ public class OutputView {
         System.out.println(lottoRate);
         System.out.println(LottoRateConstant.TOTAL_RETURN_MESSAGE.getMessage(winningAmountRate));
     }
+
+    public void printError(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
 }

@@ -36,7 +36,7 @@ public class LottoController {
             int purchaseAmount = readPurchaseAmount();
             makeLottoByPurchaseAmount(purchaseAmount);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e);
             generateLottoUsePurchaseAmount();
         }
     }
@@ -45,7 +45,7 @@ public class LottoController {
         try {
             return readWinningLotto();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e);
             return getWinningLotto();
         }
     }
@@ -54,7 +54,7 @@ public class LottoController {
         try {
             makeWinningLotto(winningLotto, readBonusNumber());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e);
             getBonusNumber(winningLotto);
         }
     }

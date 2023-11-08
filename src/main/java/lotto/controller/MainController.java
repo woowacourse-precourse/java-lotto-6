@@ -11,6 +11,9 @@ import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
 public class MainController {
+    private MainController() {
+    }
+
     public static void start() {
         LottoPurchaseAmount lottoPurchaseAmount = readLottoPurchaseAmount();
         Customer customer = Customer.of(lottoPurchaseAmount, new RandomLottoFactory());

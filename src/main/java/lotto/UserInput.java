@@ -36,7 +36,6 @@ public class UserInput {
         while (res == -1) {
             res = myParseInt(Console.readLine());
             res = vaildMoney(res);
-            System.out.println();
             if (res != -1)
                 break;
 

@@ -21,7 +21,6 @@ public class UserLotto {
 
     //setUser: 유저 로또 자동선택 매소드
     private List<Lotto> setUser(int ticketNum) {
-        System.out.println(String.format("%d개를 구매했습니다.", ticketNum));
         List<Lotto> res = new ArrayList<>();
         for (int index = 0; index < ticketNum; index++) {
             res.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));

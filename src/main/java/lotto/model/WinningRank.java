@@ -1,5 +1,9 @@
 package lotto.model;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Stream;
+
 public enum WinningRank {
     FIRST(6, false, "1등", 2000000000),   // 1등: 6개 일치
     SECOND(5, true, "2등", 30000000),   // 2등: 5개 + 보너스 번호 일치

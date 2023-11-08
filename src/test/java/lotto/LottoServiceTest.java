@@ -1,13 +1,13 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -50,7 +50,7 @@ class LottoServiceTest {
 
     @DisplayName("숫자가 1000으로 나눠 떨어지지 않을 경우 예외 발생.")
     @Test
-    void testIsPurchaseAmountDivideBy1000() {
+    void purchaseAmountNotDivideBy1000() {
         String input = "10001";
         assertThatThrownBy(() -> {
             lottoService.isPurchaseAmountDivideBy1000(input);
@@ -61,7 +61,7 @@ class LottoServiceTest {
 
     @DisplayName("숫자가 45를 넘을 경우 예외 발생.")
     @Test
-    void isNumberOverLimit() {
+    void isLottoNumberOverLimit() {
         String input = "46";
         assertThatThrownBy(() -> {
             lottoService.isNumberOverLimit(input);

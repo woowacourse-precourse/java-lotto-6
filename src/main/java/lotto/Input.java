@@ -14,6 +14,8 @@ public class Input {
     private static final String INPUT_USER_CASH = "구입 금액을 입력해 주세요.";
     private static final String INPUT_WIN_LOTTO_NUM = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_USER_BONUS_LOTTO_NUM = "보너스 번호를 입력해 주세요.";
+    private static final String ERROR_UNIT = "[ERROR] 입력 금액 단위는 1000단위입니다.";
+    private static final String ERROR_ONLY_NUM = "[ERROR] 숫자를 입력하십시오.";
 
     public int getUserCash() {
         System.out.println(INPUT_USER_CASH);
@@ -30,13 +32,13 @@ public class Input {
 
     public void checkCashUnit(int userCash) {
         if (userCash % 1000 != 0) {
-            System.out.println("[ERROR] 입력 금액 단위는 1000단위입니다.");
+            System.out.println(ERROR_UNIT);
             throw new IllegalArgumentException();
         }
     }
 
     public List<Integer> printWinnerNum() {
-       List<Integer>winnerNum = new ArrayList<>();
+        List<Integer> winnerNum = new ArrayList<>();
         try {
             System.out.println(INPUT_WIN_LOTTO_NUM);
             String[] winnerNumList = (Console.readLine()).split(",");
@@ -62,7 +64,7 @@ public class Input {
                 winnerNumList.add(Integer.parseInt(numList[i]));
             }
         } catch (NumberFormatException exception) {
-            System.out.println("[ERROR] 숫자를 입력하십시오.");
+            System.out.println(ERROR_ONLY_NUM);
             throw new IllegalArgumentException();
         }
         return winnerNumList;
@@ -73,7 +75,7 @@ public class Input {
         try {
             Num = Integer.parseInt(bonusNum);
         } catch (NumberFormatException exception) {
-            System.out.println("[ERROR] 숫자를 입력하십시오.");
+            System.out.println(ERROR_ONLY_NUM);
             throw new IllegalArgumentException();
         }
         return Num;
@@ -84,7 +86,7 @@ public class Input {
         try {
             Num = Integer.parseInt(userCash);
         } catch (NumberFormatException exception) {
-            System.out.println("[ERROR] 숫자를 입력하십시오.");
+            System.out.println(ERROR_ONLY_NUM);
             throw new IllegalArgumentException();
         }
         return Num;

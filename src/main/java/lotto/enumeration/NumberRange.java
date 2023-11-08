@@ -5,7 +5,7 @@ public enum NumberRange {
     MAX(45),
     LOTTO_NUMBER_COUNT(6);
 
-    private int value;
+    private final int value;
 
     private NumberRange(int value) {
         this.value = value;

@@ -5,22 +5,19 @@ import java.util.List;
 
 public class LottoResult {
     private long winningCount;
-    private Lottos lottos;
-    private WinningNumber winningNumber;
-    private List<Integer> result;
     private double earningRate;
+    private List<Integer> result;
 
     public LottoResult(Lottos lottos, WinningNumber winningNumber, UserAmount userAmount) {
         winningCount = 0;
-        this.lottos = lottos;
-        this.winningNumber = winningNumber;
         result = new ArrayList<>();
-        for(int i = 0; i < 5; i++) {
-            result.add(0);
-        }
 
-        // 결과 계산 로직
-        // lottos에서 하나씩 꺼내서 당첨번호와 비교 대조 진행
+        initializeResult();
+        insertResult(lottos, winningNumber);
+        calculateEarningRate(userAmount);
+    }
+
+    private void insertResult(Lottos lottos, WinningNumber winningNumber) {
         for (Lotto lotto : lottos.getBundleLotto()) {
             List<Integer> numbers = lotto.getNumbers();
             winningCount = numbers.stream()
@@ -50,7 +47,12 @@ public class LottoResult {
                 result.add(4, result.get(4) + 1);
             }
         }
-        calculateEarningRate(userAmount);
+    }
+
+    private void initializeResult() {
+        for(int i = 0; i < 5; i++) {
+            result.add(0);
+        }
     }
 
     public Integer getWinningResult(int place) {

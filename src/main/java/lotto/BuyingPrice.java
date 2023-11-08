@@ -3,6 +3,7 @@ package lotto;
 import static lotto.Constants.*;
 
 public class BuyingPrice extends InputNumber {
+
     private Integer price;
 
     public BuyingPrice() {
@@ -36,8 +37,8 @@ public class BuyingPrice extends InputNumber {
     }
 
     @Override
-    protected void checkDigit(String readLine) {
-        if (readLine.length() > 6) {
+    protected void checkDigit(String noEmptyReadLine) {
+        if (noEmptyReadLine.length() == 0) {
             throw new IllegalArgumentException(BUYING_PRICE_DIGIT_ERROR);
         }
     }

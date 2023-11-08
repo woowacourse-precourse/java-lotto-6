@@ -2,6 +2,7 @@ package lotto.domain;
 
 
 import static lotto.domain.constants.LottoConfig.LOTTO_UNIT_PRICE;
+import static lotto.domain.constants.LottoStatisticsConstants.getStatisticsPrefix;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,22 +40,34 @@ public class LottoStatistics {
     }
 
     public String generateLottoStatisticsForm() {
+        // 역순 저장되어 있는 결과값 뒤집기
         Collections.reverse(lottoResult);
+
+        // MISS 제거
         lottoResult.remove(0);
-        String prefix = "당첨 통계\n---\n";
-        String statistics = lottoResult.stream()
+
+        String prefix = getStatisticsPrefix();
+        String statistics = generateStatistics();
+        String profitRate = generateProfitRate();
+
+        return String.format(
+                "%s%s%s",
+                prefix, statistics, profitRate
+        );
+    }
+
+    private String generateStatistics() {
+        return lottoResult.stream()
                 .map(e -> String.format(
                         "%s%d개", e.getMessage(), e.getPrizeCount())
                 )
                 .collect(Collectors.joining("\n"));
+    }
 
-        String profitRate = String.format(
+    private String generateProfitRate() {
+        return String.format(
                 "\n총 수익률은 %.1f%%입니다.\n",
                 ((double) totalPrize / (this.purchaseCount * LOTTO_UNIT_PRICE.getValue()) * 100)
-        );
-        return String.format(
-                "%s%s%s",
-                prefix, statistics, profitRate
         );
     }
 }

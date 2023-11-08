@@ -20,7 +20,10 @@ public enum Rank {
 
     public static int prize(int rank) {
         List<Rank> ranks = List.of(Rank.values());
-        Rank winPrize = ranks.stream().filter(prize -> prize.RANK == rank).findFirst().orElse(NO_RANK);
+        Rank winPrize = ranks.stream()
+                .filter(prize -> prize.RANK == rank)
+                .findFirst()
+                .orElse(NO_RANK);
         return winPrize.MONEY;
     }
 }

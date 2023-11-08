@@ -1,11 +1,10 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
+import lotto.model.WinningStatics;
 import lotto.service.LottoService;
 import lotto.utils.BonusNumberValidator;
 import lotto.utils.PurchasePriceValidator;
@@ -29,6 +28,7 @@ public class LottoController {
         List<Lotto> lottos = purchaseLottos(purchasePrice);
         Lotto winningNumbers = getWinningNumbers();
         Bonus bonusNumber = getBonusNumber(winningNumbers);
+        WinningStatics winningStatics = getWinningStatics(lottos, winningNumbers, bonusNumber);
     }
 
     private int getPurchasePrice() {
@@ -67,6 +67,17 @@ public class LottoController {
         int bonusNumber = Integer.parseInt(input);
         BonusNumberValidator.validIsNotDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
         return new Bonus(bonusNumber);
+    }
+
+    private WinningStatics getWinningStatics(
+            List<Lotto> lottos, Lotto winningNumbers, Bonus bonusNumber) {
+        WinningStatics winningStatics = new WinningStatics();
+        for (Lotto lotto : lottos) {
+            int matchCount = lottoService.getMatchCount(lotto, winningNumbers);
+            boolean isMatchBonus = lottoService.getIsMatchBonus(lotto, bonusNumber);
+            winningStatics.applyLottoResult(matchCount, isMatchBonus);
+        }
+        return winningStatics;
     }
 
 }

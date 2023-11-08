@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 
 import static java.util.Arrays.stream;
 import static lotto.Error.*;
@@ -27,9 +24,10 @@ public class Input {
 
     public List<Integer> inputWinningNumbers() {
         String inputString = input();
-        List<Integer> winningNumbers = stream(inputString.split(","))
+        List<Integer> winningNumbers = new ArrayList<>(stream(inputString.split(","))
                 .map(Integer::valueOf)
-                .toList();
+                .toList());
+        Collections.sort(winningNumbers);
         validateWinningNumbersSize(winningNumbers);
         validateWinningNumbersVal(winningNumbers);
         validateDuplication(winningNumbers);

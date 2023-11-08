@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Payment;
@@ -18,6 +19,7 @@ public class LottoController {
         Payment userPayment = buyLottos();
         Lottos userLottos = lottoService.createUserLottos(userPayment.providePaymentStatus().get(1));
         Lotto answerLotto = setAnswerLotto();
+        BonusNumber bonusNumber = setBonusNumber();
     }
 
     private Payment buyLottos() {
@@ -42,6 +44,18 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setAnswerLotto();
+        }
+    }
+
+    private BonusNumber setBonusNumber() {
+        try {
+            String userBonusNumber = inputView.askBonusNumber();
+            String preprocessedBonusNumber = inputValidator.preprocessUserInput(userBonusNumber);
+            Integer validBonusNumber = inputValidator.convertInputToBonusNumber(preprocessedBonusNumber);
+            return new BonusNumber(validBonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setBonusNumber();
         }
     }
 }

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.converter.MessageConverter;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Result;

@@ -15,12 +15,12 @@ public class OutputView {
 
     public static void printResult(Result result) {
         System.out.println(RESULT_OF_LOTTOS);
-        printWinningStatistic(result.getNumOfRanks());
+        printWinningStatistic(result.writeResultsOfRanks());
         printProfits(result.getTotalProfit());
     }
 
-    private static void printWinningStatistic(String numOfRanks) {
-        System.out.println(numOfRanks);
+    private static void printWinningStatistic(String resultsOfRanks) {
+        System.out.println(resultsOfRanks);
     }
 
     public static void printProfits(double totalProfit) {

@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.consts.Constants;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,6 +38,6 @@ public class WinningLotto {
     }
 
     public List<Integer> getLotto() {
-        return lotto;
+        return Collections.unmodifiableList(lotto);
     }
 }

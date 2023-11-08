@@ -48,7 +48,7 @@ public class Purchace {
     }
 
     private static void printLottoNumbers(List<List<Integer>> purchaseLottoes) {
-        System.out.println(times + "개를 구입했습니다.");
+        System.out.println(times + "개를 구매했습니다.");
         for (int i = 0; i < times; i++) {
             System.out.println(purchaseLottoes.get(i));
         }

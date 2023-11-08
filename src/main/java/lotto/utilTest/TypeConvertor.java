@@ -1,10 +1,10 @@
-package lotto.util;
+package lotto.utilTest;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.util.Validator.*;
+import static lotto.utilTest.Validator.*;
 
 public class TypeConvertor {
     public static List<Integer> stringToIntegerList(String string) {

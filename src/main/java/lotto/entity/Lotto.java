@@ -2,9 +2,8 @@ package lotto.entity;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import static lotto.util.Validator.validateLottoNumbers;
+import static lotto.utilTest.Validator.validateLottoNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;

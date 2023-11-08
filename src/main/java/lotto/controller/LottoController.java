@@ -4,12 +4,11 @@ import lotto.entity.LottoResult;
 import lotto.entity.User;
 import lotto.service.LottoService;
 import lotto.view.Prompt;
-import java.util.ArrayList;
+
 import java.util.List;
-import static lotto.util.TypeConvertor.stringToInteger;
-import static lotto.util.TypeConvertor.stringToIntegerList;
-import static lotto.util.Validator.checkDuplcate;
-import static lotto.util.Validator.validateLottoNumbers;
+import static lotto.utilTest.TypeConvertor.stringToInteger;
+import static lotto.utilTest.TypeConvertor.stringToIntegerList;
+import static lotto.utilTest.Validator.checkDuplcate;
 import static lotto.view.Prompt.showResult;
 
 public class LottoController {

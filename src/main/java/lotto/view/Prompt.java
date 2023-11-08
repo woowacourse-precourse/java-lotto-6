@@ -7,7 +7,7 @@ import lotto.entity.User;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.util.Validator.validateBonusNumber;
+import static lotto.utilTest.Validator.validateBonusNumber;
 
 
 public class Prompt {

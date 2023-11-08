@@ -1,10 +1,10 @@
-package lotto.util;
+package lotto.utilTest;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.util.Validator.*;
+import static lotto.utilTest.Validator.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {

@@ -1,12 +1,8 @@
-package lotto.util;
+package lotto.utilTest;
 
-import lotto.entity.Lotto;
-import org.assertj.core.api.ThrowableAssert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

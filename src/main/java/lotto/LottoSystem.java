@@ -2,6 +2,9 @@ package lotto;
 
 import lotto.constant.LottoConstant;
 import lotto.constant.RottoResult;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
+import lotto.model.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

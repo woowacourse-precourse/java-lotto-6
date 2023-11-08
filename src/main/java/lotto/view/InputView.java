@@ -1,10 +1,9 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.BonusNumber;
+import lotto.model.BonusNumber;
 import lotto.CalculateLotto;
 import lotto.InputViewHandler;
-import lotto.Money;
+import lotto.model.Money;
 
 public class InputView {
 

@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.BonusNumber;
+import lotto.model.Money;
 
 public class InputViewHandler {
 

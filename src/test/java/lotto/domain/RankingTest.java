@@ -1,10 +1,14 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
 
 class RankingTest {
 
@@ -30,4 +34,16 @@ class RankingTest {
     void RankFromTest(int input1, boolean input2, Ranking expected) {
         assertThat(Ranking.from(input1, input2)).isEqualTo(expected);
     }
+
+
+    @Test
+    void calculatePrizeSumTest() {
+        for (Ranking ranking : Ranking.values()) {
+            assertThat(ranking.calculatePrizeSum(5))
+                    .isEqualTo(5L * ranking.getPrize());
+        }
+
+    }
+
+
 }

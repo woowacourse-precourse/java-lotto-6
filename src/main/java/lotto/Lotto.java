@@ -1,13 +1,16 @@
 package lotto;
-
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
         validate(numbers);
-        this.numbers = numbers;
+        if(set.size() == 6)
+            this.numbers = numbers;
+        else
+            throw new IllegalArgumentException();
     }
 
     private void validate(List<Integer> numbers) {
@@ -15,6 +18,12 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+    public void numberPrint(){
+        System.out.println(numbers);
+    } //해당 객체에 저장된 리스트 출력
 
-    // TODO: 추가 기능 구현
+    public List<Integer> returnNumbers() {
+        return numbers;
+    } //해당 객체에 저장된 리스트를 리턴
+
 }

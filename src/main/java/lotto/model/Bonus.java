@@ -4,6 +4,9 @@ import java.util.List;
 
 public class Bonus {
 
+    private static final int BONUS_START_NUMBER = 1;
+    private static final int BONUS_END_NUMBER = 45;
+
     private static final String INPUT_CONTENT_REGEX = "^[0-9]+$";
 
     private final int bonus;
@@ -28,7 +31,7 @@ public class Bonus {
     }
 
     private void validateRange(int bonus) {
-        if (bonus < 1 || bonus > 45) {
+        if (bonus < BONUS_START_NUMBER || bonus > BONUS_END_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 숫자 범위 오류입니다.");
         }
     }

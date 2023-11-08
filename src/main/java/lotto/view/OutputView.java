@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.constant.Rank;
 import lotto.domain.Lotto;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,11 +24,16 @@ public class OutputView {
         System.out.println();
     }
 
+    private String addComma(int number) {
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        return formatter.format(number);
+    }
+
     private String formatStatistics(Rank rank, int count){
         return String.format(
                 WINNING_STATISTICS_FORMAT,
                 rank.getStandard(),
-                rank.getMoney(),
+                addComma(rank.getMoney()),
                 count);
     }
 

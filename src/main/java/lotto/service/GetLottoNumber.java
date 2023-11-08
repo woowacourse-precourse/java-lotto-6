@@ -42,43 +42,34 @@ public class GetLottoNumber {
 
     public static Lotto winningTicketNumbers() {
         Lotto winningLotto = null;
-        try {
-            String input = InputView.inputWinNumber();
 
-            String [] numbers = input.split(",");
-            List<Integer> winningNumbers = new ArrayList<>();
+        String input = InputView.inputWinNumber();
 
-            for (String num : numbers) {
-                validateInput(num);
-                int number = Integer.parseInt(num);
-                winningNumbers.add(number);
-            }
+        String [] numbers = input.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
 
-            winningLotto = new Lotto(winningNumbers);
-
-            return winningLotto;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            winningTicketNumbers();
+        for (String num : numbers) {
+            validateInput(num);
+            int number = Integer.parseInt(num);
+            winningNumbers.add(number);
         }
+
+        winningLotto = new Lotto(winningNumbers);
+
         return winningLotto;
     }
 
     public static int bonusNumber() {
         int bonusNumber = 0;
-        try {
-            String input = InputView.inputBonusNumber();
-            validateInput(input);
-            bonusNumber = Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            bonusNumber();
-        }
+
+        String input = InputView.inputBonusNumber();
+        validateInput(input);
+        bonusNumber = Integer.parseInt(input);
+
         return bonusNumber;
     }
 
     public static void validateInput(String num) {
-        num.replace(" ", "");
         Validator.isEmpty(num);
         Validator.isNumericInput(num);
         Validator.isNumberInRange(num);

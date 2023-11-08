@@ -6,6 +6,8 @@ public class Calculator {
 
     private static final float PERCENTAGE = 100;
     private static final int TICKET_PRICE = 1000;
+    private static final int RANKING_FIRST = 1;
+    private static final int RANKING_FIFTH = 5;
 
     public static int numberOfLottoTickets(int purchasePrice) {
         return purchasePrice / TICKET_PRICE;
@@ -16,17 +18,18 @@ public class Calculator {
         return (totalPrize / (float) purchasePrice) * PERCENTAGE;
     }
 
-    public static int totalPrize(int[] rates) {
+    public static int totalPrize(int[] rankBoard) {
         int total = 0;
 
-        for (int i = 1; i < 6; i++) {
-            total += eachRankPrize(i, rates[i]);
+        for (int i = RANKING_FIRST; i <= RANKING_FIFTH; i++) {
+            total += eachRankPrize(i, rankBoard[i]);
         }
+
         return total;
     }
 
-    public static int eachRankPrize(int rate, int rateNum) {
-        switch (rate) {
+    public static int eachRankPrize(int rankNumber, int rateNum) {
+        switch (rankNumber) {
             case 5:
                 return getPrizeMoney(FIFTH) * rateNum;
             case 4:

@@ -57,7 +57,6 @@ public class LottoController {
         OutputView.printWinNumberMessage();
         try {
             winningTicket = GetLottoNumber.winningTicketNumbers();
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             getWinningLottoNumberFromUser();

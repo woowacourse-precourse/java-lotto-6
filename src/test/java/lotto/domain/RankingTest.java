@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 
 class RankingTest {
 
-    @DisplayName("로또 번호와 일치하는 값 개수와 보너스 번호 일치 여부에 따라 등수를 반환한다.")
+    @DisplayName("로또 번호와 일치하는 값의 개수와 보너스 번호와 일치하는지 여부에 따라 등수를 반환한다.")
     @ParameterizedTest(name = "일치 값 개수: {0}, 보너스 번호 일치 여부: {1}, 결과: {2}")
     @MethodSource("matchCountAndContainBonusNumber")
-    void getRankingTest(int matchCount, boolean containBonusNumber, Ranking ranking) {
+    void getRanking(int matchCount, boolean containBonusNumber, Ranking ranking) {
         Assertions.assertThat(Ranking.getRanking(matchCount, containBonusNumber)).isEqualTo(ranking);
     }
 

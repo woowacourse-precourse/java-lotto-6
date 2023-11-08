@@ -9,6 +9,7 @@ public class Lotto {
     // 생성자
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        duplicateTest(numbers);
         this.numbers = numbers;
     }
 
@@ -16,6 +17,15 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+    public void duplicateTest(List<Integer> numbers) {
+        for(int i = 0; i < numbers.size(); i++) {
+            for(int j = i+1; j <numbers.size(); j++) {
+                if(numbers.get(i).equals(numbers.get(j))){
+                    throw new IllegalArgumentException();
+                }
+            }
         }
     }
 
@@ -26,4 +36,6 @@ public class Lotto {
         return "[" + numbers.get(0) +","+ numbers.get(1) +","+ numbers.get(2) +","+ numbers.get(3) +","+ numbers.get(4) +","+ numbers.get(5)  +"]";
 
     }
+
+    public List<Integer> getNumbers(){return this.numbers;}
 }

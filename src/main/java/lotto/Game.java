@@ -23,6 +23,7 @@ public class Game {
         for(int i=0;i<this.count;i++){
             //로또 생성
             buy.add(new Lotto(random()));
+            buy.get(i).printInfo();
         }
     }
 

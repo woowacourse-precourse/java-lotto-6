@@ -3,7 +3,6 @@ package lotto.domain;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Objects;
 
 public class LottoResultMap {
     private static final int lottoPrice = 1000;
@@ -14,19 +13,6 @@ public class LottoResultMap {
         this.lottoResultMap = lottoResultMap;
         Arrays.stream(LottoResult.values())
                 .forEach(result -> lottoResultMap.put(result, lottoResultMap.getOrDefault(result, 0)));
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LottoResultMap that = (LottoResultMap) o;
-        return Objects.equals(lottoResultMap, that.lottoResultMap);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lottoResultMap);
     }
 
     @Override
@@ -41,12 +27,12 @@ public class LottoResultMap {
     }
 
     private String totalProfitMessage() {
-        return String.format("총 수익률은 %.2f입니다.", getTotalProfit());
+        return String.format("총 수익률은 %.1f%%입니다.", getTotalProfit());
     }
 
     private String resultToString(LottoResult result) {
         String amountString = formatter.format(result.getMoneyAmount());
-        return String.format("%s (%s원) - %개\n",
+        return String.format("%s (%s원) - %d개\n",
                 result.getDescription(),
                 amountString,
                 lottoResultMap.get(result));
@@ -58,7 +44,7 @@ public class LottoResultMap {
 
     private double getTotalProfit() {
         double purchasedMoney = getLottoCount() * lottoPrice;
-        return getTotalWinningMoney() / purchasedMoney;
+        return getTotalWinningMoney() / purchasedMoney * 100;
     }
 
     private long getTotalWinningMoney() {

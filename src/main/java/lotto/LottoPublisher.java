@@ -16,13 +16,13 @@ public class LottoPublisher {
     }
 
     public List<Lotto> publishLotto(final Long purchaseAmount) {
-        int purchasedLottoCount = calculateLottoAmount(purchaseAmount);
+        int purchasedLottoCount = calculateLottoCount(purchaseAmount);
         return IntStream.range(0, purchasedLottoCount)
                 .mapToObj(i -> generateLotto())
                 .toList();
     }
 
-    private int calculateLottoAmount(final Long purchaseAmount) {
+    private int calculateLottoCount(final Long purchaseAmount) {
         return (int) (purchaseAmount / 1000);
     }
 

@@ -19,8 +19,8 @@ public class User {
         String inputText = Console.readLine();
         try {
             Validator.buyCheck(inputText);
-            lottoPrice = Integer.parseInt(inputText) / 1000;
-            lottoCount = lottoPrice;
+            lottoPrice = Integer.parseInt(inputText);
+            lottoCount = lottoPrice / 1000;
         } catch (IllegalArgumentException e) {
             buyLotto();
         }
@@ -32,6 +32,7 @@ public class User {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottos.add(lotto);
         }
+        printLotto();
     }
 
     private void printLotto(){

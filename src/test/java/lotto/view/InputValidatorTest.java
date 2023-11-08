@@ -39,7 +39,7 @@ class InputValidatorTest {
     @ValueSource(strings = {"a,1", "1.2", "ㄱ,2", "~,!"})
     @DisplayName("사용자 입력 값이 숫자 또는 쉼표 아닐 경우 예외가 발생한다.")
     void inputNotNumberAndComma(String inputValue) {
-        assertThatThrownBy(() -> inputValidator.validateNumberAndDelimiterFormat(inputValue))
+        assertThatThrownBy(() -> inputValidator.validateDigitAndDelimiter(inputValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

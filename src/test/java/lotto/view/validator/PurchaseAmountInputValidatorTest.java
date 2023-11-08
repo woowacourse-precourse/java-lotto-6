@@ -1,7 +1,6 @@
-package lotto.utils.validator;
+package lotto.view.validator;
 
 import lotto.utils.message.InputExceptionMessage;
-import lotto.view.validator.PurchaseAmountInputValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

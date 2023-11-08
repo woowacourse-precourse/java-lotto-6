@@ -116,6 +116,19 @@ public class LottoController {
     public String printBonusNumber() {
         return "보너스 번호를 입력해 주세요.";
     }
+    public int inputBonusNumber() {
+        try {
+            int bonusNumber;
+            String confirmString = Console.readLine();
+            if(!isInRangeNumber(Integer.parseInt(confirmString))) {
+                throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자만 입력하실 수 있습니다.");
+            }
+            bonusNumber = Integer.parseInt(confirmString);
+            return bonusNumber;
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하실 수 있습니다.");
+        }
+    }
     public boolean isInRangeNumber(int confirmInteger) {
         return confirmInteger >= 1 && confirmInteger <= 45;
     }
@@ -128,6 +141,7 @@ public class LottoController {
         System.out.println(printPrizeNumbers());
         inputPrizeNumbers();
         System.out.println(printBonusNumber());
+        inputBonusNumber();
     }
 
 

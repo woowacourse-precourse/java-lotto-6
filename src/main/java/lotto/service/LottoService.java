@@ -7,6 +7,7 @@ import lotto.domain.RandomGenerator;
 import lotto.domain.RandomLotto;
 import lotto.domain.UserLotto;
 import lotto.parse.Parsing;
+import lotto.validation.NumberValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -27,7 +28,7 @@ public class LottoService {
     public void purchase() {
         outputView.purchaseComment();
         capital = Parsing.stringToInt(InputView.inputLine());
-        number = Parsing.isDivisible(capital);
+        number = NumberValidation.isDivisible(capital);
     }
 
     public void lottoLists() {

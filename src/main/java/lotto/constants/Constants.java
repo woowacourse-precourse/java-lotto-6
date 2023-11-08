@@ -12,6 +12,8 @@ public class Constants {
     public static final int FIVE = 5;
     public static final int MAX_LOTTO_NUMBER = 45;
     public static final int SIX = 6;
+    public static final int HUNDRED = 100;
+    public static final double DOUBLEHUNDRED = 100.0;
     public static final String COMMAS = ",";
     public static final Pattern INTEGER = Pattern.compile("^[\\d]*$");
 

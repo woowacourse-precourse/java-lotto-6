@@ -29,13 +29,19 @@ public class OutputView {
             if (reward.equals(Reward.MATCH_FIVE_BONUS)) {
                 System.out.println(
                         reward.getCount() + "개 일치, 보너스 볼 일치 " + "(" + decimalFormat.format(reward.getPrize()) + "원)"
-                                + " - " + prizes.get(reward) + " 개");
+                                + " - " + prizes.get(reward) + "개");
                 continue;
             }
             System.out.println(
                     reward.getCount() + "개 일치 " + "(" + decimalFormat.format(reward.getPrize()) + "원)" + " - "
-                            + prizes.get(reward) + " 개");
+                            + prizes.get(reward) + "개");
         }
     }
+    public void showEarningRate(int money, int prizeSum){
+        double earningRate = 0;
+        earningRate = Math.round((((double) prizeSum / money) * Constants.HUNDRED)* Constants.HUNDRED)/ Constants.DOUBLEHUNDRED;
+        System.out.println("총 수익률은 " + earningRate +"%입니다.");
+    }
+
 }
 

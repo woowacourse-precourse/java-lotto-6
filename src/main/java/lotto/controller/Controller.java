@@ -31,6 +31,7 @@ public class Controller {
         gatherWinningAndBonusLotto();
         compareLotto(customer, winningLotto);
         showPrizes(customer.getPrizes());
+        showEarningRate(customer);
 
     }
 
@@ -84,12 +85,17 @@ public class Controller {
 
     private void compareLotto(Customer customer, WinningLotto winningLotto) {
         winningLotto.compareLottos(customer, winningLotto);
-        System.out.println(customer.getPrizes());
     }
 
     private void showPrizes(EnumMap<Reward, Integer> prizes) {
         outputView.showWinning();
         outputView.showPrizes(prizes);
+    }
+    private void showEarningRate(Customer customer){
+        int money = customer.getMoney();
+        int prizeSum = customer.getTotalPrize();
+        outputView.showEarningRate(money,prizeSum);
+
     }
 }
 

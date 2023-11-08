@@ -19,7 +19,6 @@ public class Judge {
 
     //메서드
     public void calculateResult(List<Lotto> lotto, List<Integer> winningNumbers, int bonusNumber) {
-        Printer printer = new Printer();
         for (int count = 0; count < lotto.size(); count++) {
             int matchingCount = compareWinningNumber(lotto.get(count),winningNumbers);
 
@@ -27,8 +26,12 @@ public class Judge {
             if (matchingCount == 4) matchingFourNumbers++;
             //5개가 일치한다면, 보너스 번호와 비교
             if (matchingCount == 5) {
-                if(compareBonusNumber(lotto.get(count), bonusNumber)) matchingFiveAndBonusNumbers++;
+                if(compareBonusNumber(lotto.get(count), bonusNumber)) {
+                    matchingFiveAndBonusNumbers++;
+                }
+                matchingFiveNumbers++;
             }
+            if (matchingCount == 6) matchingSixNumbers++;
         }
         printer.showResult(matchingThreeNumbers, matchingFourNumbers, matchingFiveNumbers, matchingFiveAndBonusNumbers, matchingSixNumbers);
     }

@@ -1,13 +1,10 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.BonusNumber;
 import lotto.model.Customer;
-import lotto.model.Lotto;
-import lotto.model.LottoGenerator;
 import lotto.model.Money;
 import lotto.model.WinLotto;
 import lotto.model.WinNumbers;
@@ -34,10 +31,10 @@ public class LottoManager {
 
     private Money receiveMoney() {
         Money money = null;
-        do {
+        while (money == null) {
             OutPutView.printBuyTicket();
             money = Money.createMoney(InputView.readLine());
-        } while (money == null);
+        }
         return money;
     }
 

@@ -19,13 +19,7 @@ public class LottoChecker {
         }
     }
 
-    public List<LottoPrize> check(List<Lotto> lottos) {
-        return lottos.stream()
-                .map(this::getPrize)
-                .toList();
-    }
-
-    private LottoPrize getPrize(Lotto lotto) {
+    public LottoPrize check(Lotto lotto) {
         int hit = 0;
         for (int number : lotto.getNumbers()) {
             if (answerNumberSet.contains(number)) {

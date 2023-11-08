@@ -22,7 +22,8 @@ public class LottoGameController {
     }
 
     private static void playLottoGame(Lottos lottos) {
-        String winningNumbers = InputHandler.getWinningNumberInputMessage();
+        String winningNumbersInput = InputHandler.getWinningNumberInputMessage();
+        WinningNumbers winningNumbers = lottoGameService.parseWinningNumbers(winningNumbersInput);
 
         String bonusNumber = InputHandler.getBonusNumberInputMessage();
     }

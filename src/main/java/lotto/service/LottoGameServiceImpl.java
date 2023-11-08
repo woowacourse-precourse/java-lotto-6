@@ -3,6 +3,8 @@ package lotto.service;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
+import lotto.utility.FormatConverter;
 import lotto.utility.RandomNumberGenerator;
 import lotto.utility.TypeConverter;
 
@@ -25,6 +27,12 @@ public class LottoGameServiceImpl implements LottoGameService {
         }
 
         return lottos;
+    }
+
+    @Override
+    public WinningNumbers parseWinningNumbers(String winningNumbersInput) {
+        List<Integer> winningNumbers = FormatConverter.toIntegerListFromStringWithComma(winningNumbersInput);
+        return WinningNumbers.of(winningNumbers);
     }
 
     private Lotto generateLotto() {

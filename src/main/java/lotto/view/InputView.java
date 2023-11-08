@@ -11,7 +11,6 @@ public class InputView {
 
     private static final int WINNING_NUMBER_SIZE = 6;
 
-
     public int readPurchaseAmount() {
         while (true) {
             try {
@@ -21,7 +20,7 @@ public class InputView {
                 validatePurchaseAmount(purchaseAmount);
                 return purchaseAmount;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해주세요." );
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

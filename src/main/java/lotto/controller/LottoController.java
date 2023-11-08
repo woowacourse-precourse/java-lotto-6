@@ -1,4 +1,5 @@
 package lotto.controller;
+
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -9,9 +10,15 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    LottoService lottoService = new LottoService();
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    private final LottoService lottoService;
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
+        this.lottoService = lottoService;
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void playLotto() {
         int purchaseAmount = inputView.readPurchaseAmount();

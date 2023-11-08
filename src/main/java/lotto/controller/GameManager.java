@@ -10,12 +10,12 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.util.Message.LottoMessage;
 
-public class GameManger {
-    InputView inputView = new InputView();
-    LottoMaker lottoMaker = new LottoMaker();
-    public List<Lotto> lottos = new ArrayList<>();
-    HashMap<String, Integer> lottoResult = new HashMap<>();
-    OutputView outputView = new OutputView();
+public class GameManager {
+    InputView inputView;
+    LottoMaker lottoMaker;
+    public List<Lotto> lottos;
+    HashMap<String, Integer> lottoResult;
+    OutputView outputView;
     private int lottoBudgetCount;
     ArrayList<Integer> winningLotto;
     private int bonusNumber;
@@ -29,27 +29,31 @@ public class GameManger {
     }
 
 
-    public void initializeGame() { // 게임 초기화
+    public void startGame() { // 게임 초기화
         lottoBudgetCount = inputView.inputBudget();
-        for (int count = Constant.ZERO; count < lottoBudgetCount; count++) {
-            lottos.add(new Lotto(lottoMaker.getLotto()));
-        }
-
-        outputView.printBuyLotto(lottos.size(), lottos);
+        makeLotto();
+        outputView.printBuyLotto(lottos);
         winningLotto = inputView.inputWinningNumber();
         bonusNumber = inputView.inputBonusNumber(winningLotto);
         initializeResult();
-        updateWinningStatus();
-        outputView.printWinningStatics(lottoResult);
+        updateWinningStatistics();
+        outputView.printWinningStatistics(lottoResult);
+        outputView.printProfit(calculateLottoResult());
     }
 
-    private void initializeResult() {
-        for (int index = Constant.LOTTO_MIN_NUMBER; index <= 5; index++) {
-            lottoResult.put(String.format("%d등",index), Constant.ZERO);
+    private void makeLotto() {
+        for (int count = Constant.LOTTO_MIN_NUMBER; count <= lottoBudgetCount; count++) {
+            lottos.add(new Lotto(lottoMaker.getLotto()));
         }
     }
 
-    public void updateWinningStatus() {
+    private void initializeResult() {
+        for (LottoMessage rankPlace : LottoMessage.values()) {
+            lottoResult.put(rankPlace.getRank(), Constant.ZERO);
+        }
+    }
+
+    public void updateWinningStatistics() {
         for (Lotto lotto : lottos) {
             int count = Constant.LOTTO_MIN_NUMBER;
             String result = lotto.winningStatus(winningLotto, bonusNumber);
@@ -60,11 +64,10 @@ public class GameManger {
         }
     }
 
-    public double calculateLottoResult() { // 메소드 리팩토링
-        double winningAmount = 0;
+    public double calculateLottoResult() {
+        double winningAmount = Constant.ZERO;
         for (String result : lottoResult.keySet()) {
-
-             winningAmount += getPrizeByRank(result);
+            winningAmount += getPrizeByRank(result) * lottoResult.get(result);
         }
         return calculateProfit(winningAmount);
     }
@@ -79,8 +82,7 @@ public class GameManger {
     }
 
     private double calculateProfit(double winningAmount) {
-        double numerator = (winningAmount - lottoBudgetCount * Constant.LOTTO_PRICE);
-        double denominator = (lottoBudgetCount * Constant.LOTTO_PRICE);
-        return  (numerator / denominator) * Constant.ONE_HUNIT;
+        double denominator = lottoBudgetCount * Constant.LOTTO_PRICE;
+        return (winningAmount / denominator) * Constant.ONE_HUNIT;
     }
 }

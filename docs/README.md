@@ -54,7 +54,7 @@
 - [x] 당첨 번호와 보너스 번호를 입력받아 게임을 진행한다.
 - [x] 당첨 결과와 수익률을 계산하여 출력한다.
 - [x] 잘못된 입력값에 대한 예외 처리를 수행한다.
-- [ ] 부적절한 메서드가 불리는 것에 대한 예외 처리를 수행한다.
+- [x] 부적절한 메서드가 불리는 것에 대한 예외 처리를 수행한다.
 
 ## Validator
 ### BonusNumberValidator
@@ -99,7 +99,7 @@
 - [x] DUPLICATE_LOTTO_NUMBERS: 로또 번호는 중복될 수 없음
 - [x] INVALID_LOTTO_NUMBER_COUNT: 로또 번호의 개수는 6개
 
-- [ ] ILLEGAL_STATE_ERROR: ILLEGAL_STATE_ERROR 발생
+- [x] ILLEGAL_STATE_ERROR: ILLEGAL_STATE_ERROR 발생
 
 ## 프로그래밍 요구 사항
 - [ ] JDK 17 버전에서 실행 가능한지 확인

@@ -11,6 +11,8 @@ import lotto.view.OutputView;
 
 import java.util.List;
 
+import static lotto.util.exception.ErrorCode.ILLEGAL_STATE_ERROR;
+
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -24,6 +26,14 @@ public class LottoController {
         this.calculatorMatching = new CalculatorMatching();
         this.calculatorProfit = new CalculatorProfit();
         this.lottoGenerator = new LottoGenerator();
+    }
+
+    public void start() {
+        try {
+            play();
+        } catch (IllegalStateException e) {
+            outputView.printErrorCode(ILLEGAL_STATE_ERROR.getMessage());
+        }
     }
 
     public void play() {

@@ -26,7 +26,6 @@ public class valiator {
 
     }
 
-
     public static void checkIsNumberUnique(List<Integer> winningNumbers) {
         List<Integer> distinctWinningNumbers = winningNumbers
                 .stream()

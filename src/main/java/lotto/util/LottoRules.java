@@ -5,7 +5,8 @@ public enum LottoRules {
     START_NUMBER(1),
     END_NUMBER(45),
     LOTTO_NUMBER_COUNT(6),
-    BONUS_NUMBER_COUNT(1);
+    PRINT_RESULT_COUNT(5);
+
 
 
     private final int value;

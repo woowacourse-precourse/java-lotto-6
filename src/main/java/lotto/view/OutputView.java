@@ -8,9 +8,11 @@ public class OutputView {
         System.out.println(lottoCount+BUY_COUNT_MESSAGE);
     }
 
-
     public void printLottoNumber(List<Integer> numbers){
         System.out.println(numbers);
     }
-
+    public static void printLottoResultMessage(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+    }
 }

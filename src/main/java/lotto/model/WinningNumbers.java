@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.ErrorMessages;
 import lotto.validator.valiator;
 
 import java.util.ArrayList;
@@ -8,8 +9,9 @@ import java.util.List;
 
 public class WinningNumbers {
     List<Integer> winningNumbers;
-    private String ERROR_MESSAGE_COMMA_NUMBERS= "[ERROR] 올바른 형식(콤마 분리로 분리된 숫자형)으로 당첨 번호를 입력해 주세요";
-    private String ERROR_MESSAGE_BONUS_NUMBER = "[Error] 올바른 형식(하나의 숫자로 이뤄진 숫자형)으로 보너스 번호를 입력해 주세요.";
+    int bonusNumber;
+    private String ERROR_MESSAGE_COMMA_NUMBERS= ErrorMessages.ERROR_MESSAGE_COMMA_NUMBERS.getMessage();
+    private String ERROR_MESSAGE_BONUS_NUMBER = ErrorMessages.ERROR_MESSAGE_BONUS_NUMBER.getMessage();
 
 
     public WinningNumbers() {
@@ -17,6 +19,9 @@ public class WinningNumbers {
 
     public List<Integer> getWinningNumbers(){
         return winningNumbers;
+    }
+    public int getBonusNumber(){
+        return this.bonusNumber;
     }
 
     public void askCommonWinningNumbers() {
@@ -82,6 +87,7 @@ public class WinningNumbers {
         valiator.checkIsInRange(bonusNumber);
         checkBonusNumberIsUnique(bonusNumber);
         this.winningNumbers.add(bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public void checkBonusNumberIsUnique(int bonusNumber){

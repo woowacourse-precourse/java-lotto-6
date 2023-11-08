@@ -4,13 +4,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.util.LottoRules;
 import lotto.view.OutputView;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Lottos {
     int lottoCount;
+    int purchaseAmount;
+    public Map<Integer, Integer> winningResult;
 
     int lottoNumberCount = LottoRules.LOTTO_NUMBER_COUNT.getValue();
     int startNumber = LottoRules.START_NUMBER.getValue();
@@ -19,23 +18,38 @@ public class Lottos {
 
 
     public Lottos() {}
+    public List<Lotto> getLottos(){
+        return this.lottos;
+    }
+
+    public Map<Integer, Integer>  getWinningResult(){
+        return this.winningResult;
+    }
+
+    public void setWinningResult(Map<Integer, Integer> lottoResultCount){
+        this.winningResult = lottoResultCount;
+    }
+
+    public int getPurchaseAmount(){
+        return this.purchaseAmount;
+    }
 
     public void payForLottoGame(){
         PurchaseAmount purchaseAmount = new PurchaseAmount();
         purchaseAmount.generateLottoCount();
         this.lottoCount = purchaseAmount.purchaseCount;
+        this.purchaseAmount = purchaseAmount.purchaseAmount;
     }
 
-    public void howManyLottos() {
+    public void issueLottos() {
         OutputView.printBuyLottoCount(lottoCount);
-        issueLottos(lottoCount);
+        generateLottos(lottoCount);
     }
 
-    private void issueLottos(int lottoCount) {
+    private void generateLottos(int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> LottoNumber = generateRandomNumbersInOrder();
-            System.out.println(LottoNumber);
-            lottos.add(new Lotto(generateRandomNumbersInOrder()));
+            lottos.add(new Lotto(LottoNumber));
         }
     }
 
@@ -43,9 +57,9 @@ public class Lottos {
         List<Integer> RandomNumbers = new ArrayList<>();
 
         for (int i = 0; i < lottoNumberCount; i++) {
-            int uniqueNumber = pickUniqueNumber(RandomNumbers);
-            RandomNumbers.add(uniqueNumber);
+            RandomNumbers.add(pickUniqueNumber(RandomNumbers));
         }
+
         Collections.sort(RandomNumbers);
         return RandomNumbers;
     }
@@ -67,4 +81,9 @@ public class Lottos {
         return true;
     }
 
+    public void showLottos(){
+        for(Lotto lotto : lottos){
+            System.out.println(lotto.getNumbers());
+        }
+    }
 }

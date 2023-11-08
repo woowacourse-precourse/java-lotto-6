@@ -1,58 +1,43 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.ErrorMessages;
 import lotto.util.LottoRules;
 
 public class PurchaseAmount {
+
+    private String ERROR_MESSAGE_PURCHASE_AMOUNT = ErrorMessages.ERROR_MESSAGE_PURCHASE_AMOUNT.getMessage();
     int pricePerLotto = LottoRules.PRICE_PER_LOTTO.getValue();
+    int purchaseAmount;
     int purchaseCount;
 
     public PurchaseAmount() {
     }
 
     public void generateLottoCount(){
-        int inputPrice = tryToParseToInteger();
-        PurchaseAmountValidate(inputPrice);
-        this.purchaseCount = calculateLottoCount(inputPrice);
+        while(true){
+            try{
+                int inputPrice = Integer.parseInt(askPurchaseAmount());
+                validatePurchaseAmount(inputPrice);
+                this.purchaseAmount = inputPrice;
+                this.purchaseCount = calculateLottoCount(inputPrice);
+                break;
+            }catch(IllegalArgumentException e){
+                System.out.println(ERROR_MESSAGE_PURCHASE_AMOUNT);
+            }
+        }
     }
 
     private String askPurchaseAmount() {
         return Console.readLine();
     }
 
-    private int tryToParseToInteger() {
-        while(true) {
-            String purchaseAmount = askPurchaseAmount();
-            try {
-                return Integer.parseInt(purchaseAmount);
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 구매 금액은 숫자형으로 입력해주세요");
-            }
-        }
+
+    private void validatePurchaseAmount(int inputPrice) {
+        IsInputPriceDividedPurchasePrice(inputPrice);
+        IsNotZero(inputPrice);
     }
 
-    private void PurchaseAmountValidate(int inputPrice) {
-        tryToInputDividedPrice(inputPrice);
-        tryToInputNoneZeroPrice(inputPrice);
-    }
-
-    private void tryToInputDividedPrice(int inputPrice) {
-        try {
-            IsInputPriceDividedPurchasePrice(inputPrice);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 1000단위로 구매 금액을 입력해주세요 ");
-            generateLottoCount();
-        }
-    }
-
-    private void tryToInputNoneZeroPrice(int inputPrice) {
-        try {
-            IsNotZero(inputPrice);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 구매 금액은 0이 아닌 금액을 입력해주세요.");
-            generateLottoCount();
-        }
-    }
 
     public boolean IsInputPriceDividedPurchasePrice(int inputPrice) throws IllegalArgumentException {
         if (inputPrice % pricePerLotto != 0) {
@@ -72,4 +57,5 @@ public class PurchaseAmount {
     public int calculateLottoCount(int inputPrice) {
         return (inputPrice / pricePerLotto);
     }
+
 }

@@ -5,10 +5,24 @@ import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
+    int winningCount = 0;
+    boolean winningBounsNumber = false;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
+
+    public int getWinningCount(){
+        return this.winningCount;
+    }
+
+    public boolean getWinningBounsNumber(){
+        return this.winningBounsNumber;
     }
 
     private void validate(List<Integer> numbers) {
@@ -35,6 +49,4 @@ public class Lotto {
                 .collect(Collectors.toList());
         return distinctRandomNumbers.size();
     }
-
-
 }

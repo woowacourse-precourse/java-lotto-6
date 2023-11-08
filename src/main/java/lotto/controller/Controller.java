@@ -1,34 +1,41 @@
 package lotto.controller;
 
+import lotto.model.ConfirmationWinning;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
     List<Integer> winnings;
-    Lottos lottos = new Lottos();
+    int winningBonusNumber;
+    Lottos lottoGame = new Lottos();
     WinningNumbers winningNumbers = new WinningNumbers();
+    ConfirmationWinning confirmationWinning = new ConfirmationWinning(winningBonusNumber);
 
     public void lottoGame() {
-//        buyLottos();
-//        showHowmanyLottosBuy();
-        putWinningNumber();
-//        checkWinningList()
-//        calculateRate();
+        buyLottos();
+        showHowManyLottosBuy();
+//        putWinningNumber();
+//        showWinningsResult();
+//        showTotalRate();
     }
 
     public void buyLottos() {
         InputView.requestPurchaseAmount();
-        lottos.payForLottoGame();
+        lottoGame.payForLottoGame();
     }
 
-    public void showHowmanyLottosBuy(){
-        lottos.howManyLottos();
+    public void showHowManyLottosBuy() {
+        lottoGame.issueLottos();
+        lottoGame.showLottos();
     }
 
-    public void putWinningNumber(){
+    public void putWinningNumber() {
         InputView.requestWinningNumbers();
         winningNumbers.askCommonWinningNumbers();
 
@@ -36,5 +43,21 @@ public class Controller {
         winningNumbers.askBonusNumber();
 
         winnings = winningNumbers.getWinningNumbers();
+        winningBonusNumber = winningNumbers.getBonusNumber();
+    }
+
+    public void showWinningsResult() {
+        List<Lotto> lottos = lottoGame.getLottos();
+        Map<Integer, Integer> winningResult = confirmationWinning.checkWinnings(winnings,lottos);
+        lottoGame.setWinningResult(winningResult);
+
+        OutputView.printLottoResultMessage();
+        confirmationWinning.showLottoGameResult(lottoGame.getWinningResult());
+    }
+
+    public void showTotalRate(){
+        int purchaseAmount = lottoGame.getPurchaseAmount();
+        confirmationWinning.calculateRate(purchaseAmount);
+
     }
 }

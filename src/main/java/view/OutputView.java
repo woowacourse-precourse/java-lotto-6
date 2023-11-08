@@ -26,8 +26,14 @@ public class OutputView {
         System.out.println(WINNING_RESULT_TITLE);
     }
 
-    void printEarningRateResultMessage(int earningRate) {
-        this.earningRate = earningRate;
-        System.out.println(EARNING_RATE_RESULT_MESSAGE);
+    public static void printWinningResult(Map<Integer, Integer> winningResult) {
+        System.out.println("3개 일치 (5,000원) - " + winningResult.get(3) +"개");
+        System.out.println("4개 일치 (50,000원) - " + winningResult.get(4) +"개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningResult.get(5)+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResult.get(6) +"개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningResult.get(7) +"개");
+    }
+    public static void printEarningRateResultMessage(double earningRate) {
+        System.out.println("총 수익률은 " + earningRate + "% 입니다.");
     }
 }

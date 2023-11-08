@@ -52,14 +52,16 @@ class LottoNumberExceptionTest {
     }
 
     @Test
-    @DisplayName(" 예외가 발생 한다.")
-    void checkSixNumbers() {
-        assertThatThrownBy(() -> lottoNumberException.checkSixNumbers(List.of("1", "a", "3", "b", "5", "c")))
+    @DisplayName("리스트의 값이 모두 숫자가 아니면 예외가 발생한다.")
+    void checkNumbers() {
+        assertThatThrownBy(() -> lottoNumberException.checkNumbers(List.of("1", "a", "3", "b", "5", "c")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
+    @DisplayName("리스트의 값이 중복 되는 경우 예외가 발생 한다.")
     void checkDuplicate() {
-
+        assertThatThrownBy(() -> lottoNumberException.checkDuplicate(List.of("1", "1", "3", "4", "5", "6")))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

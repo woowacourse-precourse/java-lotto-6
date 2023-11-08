@@ -44,7 +44,7 @@ public class LottoNumberException {
         }
     }
 
-    public void checkSixNumbers(List<String> inputs) {
+    public void checkNumbers(List<String> inputs) {
         for (String input : inputs) {
             checkInteger(input.trim());
             checkLottoNumber(input.trim());

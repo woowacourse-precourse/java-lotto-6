@@ -79,6 +79,7 @@
 ## 게임 흐름
 
 ![lotto@4x](https://github.com/AidenRoh/wooteco-precourse/assets/124841119/4c263c3b-1620-4005-b5ec-c4de017b83bb)
+
 <br>
 
 ---

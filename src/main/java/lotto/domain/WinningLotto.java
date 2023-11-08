@@ -16,5 +16,8 @@ public class WinningLotto {
         if (bonusNumber < LottoNumbers.MIN_RANGE.getNumber() || bonusNumber > LottoNumbers.MAX_RANGE.getNumber()) {
             throw new IllegalArgumentException("[Error] 보너스 번호의 범위는 1~45 입니다.");
         }
+        if (lotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[Error] 보너스 번호는 로또 번호와 중복 불가 입니다.");
+        }
     }
 }

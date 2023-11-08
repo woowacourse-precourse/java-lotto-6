@@ -22,4 +22,11 @@ class WinningLottoTest {
         assertThatThrownBy(() -> new WinningLotto(lotto, Integer.parseInt(input))).isInstanceOf(
                 IllegalArgumentException.class);
     }
+
+    @CsvSource({"1", "2", "3", "4", "5", "6"})
+    @ParameterizedTest
+    void 보너스번호_중복_예외처리(String input) {
+        assertThatThrownBy(() -> new WinningLotto(lotto, Integer.parseInt(input))).isInstanceOf(
+                IllegalArgumentException.class);
+    }
 }

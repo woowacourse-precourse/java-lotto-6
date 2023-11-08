@@ -59,4 +59,30 @@ class UserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @DisplayName("buyLotto() 테스트")
+    @Test
+    void buyLotto() {
+        User user = new User();
+        assertEquals(1, user.buyLotto("1000"));
+    }
+
+    @DisplayName("buyLotto 금액이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void buyLottoThatIsNotNumber() {
+        User user = new User();
+        // error 메시지에 "[ERROR] 로또 구입 금액은 숫자만 가능합니다."가 포함되어 있는지 확인
+        assertThatThrownBy(() -> user.buyLotto("1000j"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("drawWinningLotto() 테스트")
+    @Test
+    void drawWinningLotto() {
+        User user = new User();
+        WinningLotto winningLotto = user.drawWinningLotto("1,2,3,4,5,6");
+        // 1,2,3,4,5,6의 winningLotto가 생성되었는지 확인
+        assertEquals(1, winningLotto.getWinningNumbers().get(0));
+    }
 }

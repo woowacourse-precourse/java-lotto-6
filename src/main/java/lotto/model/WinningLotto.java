@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.List;
+
 public class WinningLotto extends Lotto{
     private final Integer bonusNumber;
 
@@ -62,4 +64,48 @@ public class WinningLotto extends Lotto{
         }
         return convertBonusNumber;
     }
+
+    public Integer checkLottoRanking(Lotto lottoToCompare) {
+        Integer numberOfHitLottoNumbers = 0;
+        boolean hitBonusNumber = false;
+
+        numberOfHitLottoNumbers = checkLottoNumber(lottoToCompare.getNumbers());
+        hitBonusNumber = checkBonusNumber(lottoToCompare.getNumbers());
+        return searchLottoRanking(numberOfHitLottoNumbers, hitBonusNumber);
+    }
+
+    private Integer checkLottoNumber(List<Integer> lottoNumbersToCompare) {
+        Integer numberOfHitLottoNumbers = 0;
+
+        for (Integer currentLottoNumber : lottoNumbersToCompare) {
+            if (super.isInputNumberContainLottoNumbers(currentLottoNumber)) {
+                numberOfHitLottoNumbers++;
+            }
+        }
+        return numberOfHitLottoNumbers;
+    }
+
+    private boolean checkBonusNumber (List<Integer> lottoNumbersToCompare) {
+        return lottoNumbersToCompare.contains(bonusNumber);
+    }
+
+    private Integer searchLottoRanking (Integer numberOfHitLottoNumbers, boolean hitBonusNumber) {
+        if (numberOfHitLottoNumbers == 3) {
+            return 5;
+        }
+        if (numberOfHitLottoNumbers == 4) {
+            return 4;
+        }
+        if (numberOfHitLottoNumbers == 5) {
+            if (hitBonusNumber) {
+                return 2;
+            }
+            return 3;
+        }
+        if (numberOfHitLottoNumbers == 6) {
+            return 1;
+        }
+        return 0;
+    }
+
 }

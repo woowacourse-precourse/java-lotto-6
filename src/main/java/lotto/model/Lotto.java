@@ -94,4 +94,8 @@ public class Lotto {
         }
         return convertNumbers;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

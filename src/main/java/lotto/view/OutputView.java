@@ -32,29 +32,47 @@ public class OutputView {
     }
 
     public void printPurchasedLotto(List<Integer> lottoNumbers) {
-        String formattedLotto = lottoNumbers.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(PurchasedMessage.PURCHASED_LOTTO_DELIMITER));
-        String content = String.format("%s%s%s",
+        String formattedLotto = formatLottoNumbers(lottoNumbers);
+
+        System.out.printf("%s%s%s",
                 PurchasedMessage.PURCHASED_LOTTO_START,
                 formattedLotto,
-                PurchasedMessage.PURCHASED_LOTTO_END
-        );
-        System.out.println(content);
+                PurchasedMessage.PURCHASED_LOTTO_END);
+    }
+
+    private String formatLottoNumbers(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(PurchasedMessage.PURCHASED_LOTTO_DELIMITER));
+    }
+
+    public void printStatisticsIncludeBonusNumber(int hitCount, int prize, int rankCount) {
+        String formattedStatics
+                = formatStatistics(StatisticsMessage.CONTENT_INCLUDE_BONUS_NUMBER, hitCount, prize, rankCount);
+        System.out.println(formattedStatics);
     }
 
     public void printStatisticsContent(int hitCount, int prize, int rankCount) {
+        String formattedStatics
+                = formatStatistics(StatisticsMessage.CONTENT, hitCount, prize, rankCount);
+        System.out.println(formattedStatics);
+    }
+
+    private String formatStatistics(String message, int hitCount, int prize, int rankCount) {
         DecimalFormat df = new DecimalFormat("###,###");
-        String prizeWithComma = df.format(prize);
-        String content = String.format(StatisticsMessage.CONTENT,
+        String formattedPrize = df.format(prize);
+        return String.format(message,
                 hitCount,
-                prizeWithComma,
+                formattedPrize,
                 rankCount);
-        System.out.println(content);
+    }
+
+    public void printProfitRate(double profitRate) {
+        System.out.printf(StatisticsMessage.PROFIT_RATE, profitRate);
     }
 
     public void printErrorMessage(String errorMessage) {
-        System.out.printf("%s %s",
+        System.out.printf("%s %s\n",
                 Constants.ERROR_PREFIX,
                 errorMessage);
     }

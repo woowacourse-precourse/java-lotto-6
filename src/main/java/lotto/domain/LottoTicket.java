@@ -18,10 +18,11 @@ public class LottoTicket {
         this.purchaseQuantity = purchaseAmount / AppConstants.LOTTO_LENGTH;
         this.lottoList = publishLotto();
     }
+
     private List<Lotto> publishLotto() {
         // Lotto 객체 생성 및 저장
         List<Lotto> result = new ArrayList<>();
-        for (int i=0; i< purchaseQuantity; i++) {
+        for (int i = 0; i < purchaseQuantity; i++) {
             List<Integer> list = getUniqueNumbersList();
             Lotto lotto = new Lotto(list);
             result.add(lotto);
@@ -38,7 +39,12 @@ public class LottoTicket {
     public List<Lotto> getLottoList() {
         return lottoList;
     }
+
     public int getPurchaseQuantity() {
         return purchaseQuantity;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }

@@ -15,7 +15,7 @@ public final class MessageConstant {
 
     // Error Message
     public static final String ERROR_PREFIX = "[ERROR] ";
-    public static final String INPUT_NUMBER = "숫자를 입력해 주세요. (최대 금액은 2,147,483,000원)";
+    public static final String INPUT_NUMBER = "올바른 숫자를 입력해 주세요. (최대 입력은 2,147,483,647)";
     public static final String LOTTO_SIZE = "6개의 숫자를 입력해 주세요.";
     public static final String NUMBER_SIZE = "1개의 숫자를 입력해 주세요.";
     public static final String DUPLICATION = "중복된 숫자가 존재합니다.";

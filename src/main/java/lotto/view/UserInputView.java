@@ -20,11 +20,12 @@ public class UserInputView {
 
     public static LottoTicket inputPurchaseAmount() {
         int lottoTicketCount;
+        int purchaseAmount;
         while (true) {
             System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
             String input = Console.readLine();
             try {
-                int purchaseAmount = validateNumber(input);
+                purchaseAmount = validateNumber(input);
                 validateMinimumAmount(purchaseAmount);
                 lottoTicketCount = validateDivisible(purchaseAmount);
                 break;
@@ -32,7 +33,7 @@ public class UserInputView {
                 System.out.println(e.getMessage());
             }
         }
-        return new LottoTicket(lottoTicketCount);
+        return new LottoTicket(lottoTicketCount, purchaseAmount);
     }
 
     private static int validateDivisible(int purchaseAmount) {

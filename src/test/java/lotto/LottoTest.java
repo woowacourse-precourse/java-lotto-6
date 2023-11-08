@@ -67,7 +67,6 @@ class LottoTest {
         assertEquals(Rank.MATCH_5, rankMatch5);
         assertEquals(Rank.MATCH_5_BONUS, rankMatch5AndBonus);
         assertEquals(Rank.MATCH_6, rankMatch6);
-
     }
 
     @DisplayName("로또에 해당 숫자가 있는지 확인하고 여부를 알려준다")

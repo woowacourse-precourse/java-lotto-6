@@ -20,12 +20,11 @@ public class CommonFunction {
     }
 
     // 문자열 입력값이 정수인지 확인하여 변환
-    public static int convertToInt(String input_amount){
+    public static int convertToInt(String input_number){
         try {
-            return Integer.parseInt(input_amount);
+            return Integer.parseInt(input_number);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("입력값이 정수가 아닙니다.");
         }
     }
-
 }

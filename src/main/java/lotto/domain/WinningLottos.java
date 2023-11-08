@@ -1,7 +1,6 @@
 package main.java.lotto.domain;
 
 import lotto.Lotto;
-
 import java.util.List;
 
 public class WinningLottos {

@@ -3,12 +3,13 @@ package lotto.controller;
 import lotto.Lotto;
 import lotto.domain.*;
 import lotto.validator.Validator;
-import lotto.view.*;
+import lotto.view.SystemBonusInput;
+import lotto.view.SystemLottoInput;
+import lotto.view.SystemMoneyInput;
+import lotto.view.SystemOutput;
 import main.java.lotto.domain.WinningLottos;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 public class LottoController {

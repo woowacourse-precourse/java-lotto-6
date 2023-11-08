@@ -23,8 +23,10 @@ public class LottoController {
         List<Lotto> lottos = makeLotto.makeLottoList(lottoCount);
         OutputViewLottoCount.printLottoCount(lottoCount);
         OutputViewLotto.printLotto(lottos);
+
         List<Integer> winnerNum = setWinnerNum();
         int bonusNumber = setBonusNum();
+
         LottoMoneyPrize lottoMoneyPrize = new LottoMoneyPrize(lottos, winnerNum, bonusNumber);
         double rate = CalculateRate.getRate(lottoPurchaseAmount.getCount(), lottoMoneyPrize.getTotalReward());
         setLottoResult(lottoMoneyPrize, rate);

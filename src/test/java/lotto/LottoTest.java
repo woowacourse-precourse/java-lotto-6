@@ -74,7 +74,6 @@ class LottoTest {
         assertEquals(expected, actual);
     }
 
-
     static Stream<Arguments> provideTestNumber() {
         return Stream.of(
                 Arguments.of(1, false),
@@ -83,5 +82,13 @@ class LottoTest {
                 Arguments.of(10, true),
                 Arguments.of(34, false)
         );
+    }
+
+    @DisplayName("로또 구입 금액을 알려준다.")
+    @Test
+    void checkLottoPrice() {
+        long expected = 1000;
+        long actual = Lotto.getPrice();
+        assertEquals(expected, actual);
     }
 }

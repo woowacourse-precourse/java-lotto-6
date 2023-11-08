@@ -9,7 +9,7 @@ public class LottoWinningResult {
 
     private final EnumMap<LottoRanking, Integer> lottoResult;
 
-    protected LottoWinningResult(List<LottoRanking> lottoRankings) {
+    LottoWinningResult(List<LottoRanking> lottoRankings) {
         this.lottoResult = countRankings(lottoRankings);
     }
 

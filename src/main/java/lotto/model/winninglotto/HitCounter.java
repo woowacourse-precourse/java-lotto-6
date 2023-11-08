@@ -2,17 +2,9 @@ package lotto.model.winninglotto;
 
 import java.util.Set;
 
-public class HitCounter {
+record HitCounter(Set<Integer> winningNumbers, int bonusNumber) {
 
-    private final Set<Integer> winningNumbers;
-    private final int bonusNumber;
-
-    protected HitCounter(Set<Integer> winningNumbers, int bonusNumber) {
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
-
-    protected HitResult countHit(Set<Integer> numbers) {
+    HitResult countHit(Set<Integer> numbers) {
         int hitCount = (int) numbers.stream()
             .filter(winningNumbers::contains)
             .count();

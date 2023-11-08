@@ -4,9 +4,9 @@ import java.util.EnumMap;
 import java.util.Map.Entry;
 import lotto.model.LottoRanking;
 
-public class LottoProfitRateCalculator {
+class LottoProfitRateCalculator {
 
-    protected static double calculateLottoProfitRate(EnumMap<LottoRanking, Integer> lottoWinningResult, int purchaseAmount) {
+    static double calculateLottoProfitRate(EnumMap<LottoRanking, Integer> lottoWinningResult, int purchaseAmount) {
         int totalAmount = lottoWinningResult.entrySet()
             .stream()
             .mapToInt(LottoProfitRateCalculator::calculateRankingAmount)

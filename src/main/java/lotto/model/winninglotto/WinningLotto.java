@@ -56,6 +56,6 @@ public class WinningLotto {
             .map(LottoNumber::number)
             .collect(Collectors.toSet());
         HitResult hitResult = hitCounter.countHit(numbers);
-        return LottoRanking.getRanking(hitResult.getHitCount(), hitResult.getIsBonusBallHit());
+        return LottoRanking.getRanking(hitResult.hitCount(), hitResult.isBonusBallHit());
     }
 }

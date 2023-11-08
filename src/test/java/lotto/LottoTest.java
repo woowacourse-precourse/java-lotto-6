@@ -52,4 +52,29 @@ class LottoTest {
 
         assertThat(lottoService.getLottos().getAllLotto().size()).isEqualTo(14);
     }
+
+    @DisplayName("정확한 수익률을 계산해야한다.")
+    @Test
+    void calculateProfitRateTest() {
+        //given
+        LottoRepository lottoRepository = new LottoRepository();
+        LottoService lottoService = new LottoService(lottoRepository);
+        LottoDto lottoDto = new LottoDto();
+
+        //when
+        lottoDto.setLottoPurchaseAmount("3000");
+        lottoDto.setWinningNumbers("1,2,3,4,5,6");
+        lottoDto.setBonusNumber("10");
+        lottoService.createGame(lottoDto);
+
+        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 10)); // five match with bonus
+        lottoRepository.saveLottos(List.of(13, 14, 15, 16, 17, 18)); // No match
+        lottoRepository.saveLottos(List.of(1, 2, 3, 11, 12, 13)); // three match
+        lottoService.compareLottosWithWinningNumbers();
+
+        //then
+
+        assertThat(String.format("%.1f",lottoService.getProfitRate())).isEqualTo("1000166.7");
+
+    }
 }

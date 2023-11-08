@@ -18,7 +18,7 @@ public class Client {
         this.payAmount = payAmount;
     }
 
-    public static Client from(String payAmount) {
+    public static Client create(String payAmount) {
         PAY_AMOUNT_VALIDATOR.validate(payAmount);
         return new Client(Integer.parseInt(payAmount));
     }

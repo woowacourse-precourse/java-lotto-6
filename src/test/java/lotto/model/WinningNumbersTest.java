@@ -45,7 +45,7 @@ public class WinningNumbersTest {
     }
 
     private Client createClientForTest() {
-        Client client = Client.from("5000");
+        Client client = Client.create("5000");
         client.receiveLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         client.receiveLotto(new Lotto(List.of(1, 2, 3, 10, 15, 20)));
         client.receiveLotto(new Lotto(List.of(1, 2, 3, 4, 10, 35)));

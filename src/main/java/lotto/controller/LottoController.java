@@ -12,7 +12,6 @@ import lotto.view.View;
 public class LottoController {
     private static final AppConfig appConfig = new AppConfig();
     private static final View view = appConfig.view();
-    private static final LottoStore lottoStore = appConfig.lottoStore();
 
     public void run() {
         Client client = buyLottos();
@@ -26,7 +25,7 @@ public class LottoController {
         while (true) {
             try {
                 String payAmount = view.inputValue();
-                return Client.from(payAmount);
+                return Client.create(payAmount);
             } catch (IllegalArgumentException e) {
                 view.printExceptionMessage(e);
             }
@@ -34,6 +33,7 @@ public class LottoController {
     }
 
     private void issueLottos(Client client) {
+        LottoStore lottoStore = LottoStore.getInstance();
         int purchasedLottoAmount = lottoStore.calculatePurchasedLottoAmount(client.getPayAmount());
         view.printPurchasedLottoAmount(purchasedLottoAmount);
         for (int issuedLottoCount = 1; issuedLottoCount <= purchasedLottoAmount; issuedLottoCount++) {

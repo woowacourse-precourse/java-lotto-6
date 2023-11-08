@@ -6,7 +6,18 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class LottoStore {
+    private static LottoStore lottoStore;
     private static final int lottoPrice = LOTTO_PRICE.value();
+
+    private LottoStore() {
+    }
+
+    public static LottoStore getInstance() {
+        if (lottoStore == null) {
+            lottoStore = new LottoStore();
+        }
+        return lottoStore;
+    }
 
     public int calculatePurchasedLottoAmount(int purchaseAmount) {
         return purchaseAmount / lottoPrice;

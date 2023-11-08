@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.model.LottoStore;
 import lotto.model.ReturnCalculator;
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.PayAmountValidator;
@@ -16,10 +15,6 @@ public class AppConfig {
 
     public View view() {
         return new View();
-    }
-
-    public LottoStore lottoStore() {
-        return new LottoStore();
     }
 
     public Validator payAmountValidator() {

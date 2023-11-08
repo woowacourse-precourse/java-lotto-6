@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
@@ -23,7 +24,7 @@ public class OutputView {
 
     private static void printLotto(Lotto lotto) {
         // Lotto 객체의 toString() 메서드를 사용하여 출력
-        System.out.println(lotto);
+        System.out.println(lotto.getNumbers().toString());
     }
 
     public static void printLottos(List<Lotto> lottos) {

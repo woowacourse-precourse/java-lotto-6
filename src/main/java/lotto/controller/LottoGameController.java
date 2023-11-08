@@ -21,6 +21,7 @@ public class LottoGameController {
         new LottoPurchaseVerifier(purchaseAmout);
         int purchaseCount = Integer.parseInt(purchaseAmout);
         List<Lotto> lottos = purchaseLottos(purchaseCount);
+        OutputView.printLottos(lottos);
         String winningnumbers = InputView.receiveInputWinningNumberMsg();
         new LottoNumberVerifier(winningnumbers);
         Lotto winningLotto = new Lotto(parseWinningNumbers(winningnumbers));
@@ -85,6 +86,7 @@ public class LottoGameController {
 
         OutputView.printTotalProfitRate(profitRate);
     }
+
 
 
 }

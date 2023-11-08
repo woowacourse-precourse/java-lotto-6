@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Amount;
 import lotto.domain.Lotto;
+import lotto.domain.LottoMatchResult;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchasedLottos;
 import lotto.domain.Rank;
@@ -31,6 +32,9 @@ public class Controller {
 
     private void tryPrintLottoStatistics(PurchasedLottos purchasedLottos, WinningLotto winningLotto) {
         List<Rank> lottoRanks = purchasedLottos.matchLottos(winningLotto);
+        LottoMatchResult lottoMatchResult = LottoMatchResult.createLottoMatchResult(lottoRanks,
+                purchasedLottos.spendAmount());
+        outputView.outputLottoMatchResult(lottoMatchResult.toDto());
     }
 
     private LottoNumber tryBonusBall(Lotto lotto) {

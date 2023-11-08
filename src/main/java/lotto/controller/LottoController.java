@@ -1,11 +1,6 @@
 package lotto.controller;
 
-import static java.util.stream.Collectors.collectingAndThen;
-import static java.util.stream.Collectors.toList;
-
-import java.util.stream.Stream;
 import lotto.model.BonusNumber;
-import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.MainNumbers;
@@ -46,9 +41,7 @@ public class LottoController {
     }
 
     private Lottos issueLottos(NumberGenerator numberGenerator, int lottoCount) {
-        Lottos lottos = Stream.generate(() -> Lotto.issue(numberGenerator.generate()))
-                .limit(lottoCount)
-                .collect(collectingAndThen(toList(), Lottos::assemble));
+        Lottos lottos = Lottos.assemble(numberGenerator, lottoCount);
         outputView.printLottosIssued(DtoModelMapper.LottosToDto(lottos));
 
         return lottos;

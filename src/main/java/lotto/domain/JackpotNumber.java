@@ -1,12 +1,15 @@
 package lotto.domain;
 
+
+
+//보너스 넘버 수정
 public class JackpotNumber {
     private final Lotto jackpot;
     private Integer bonusNumber;
 
-    public JackpotNumber(Lotto jackpot, int bounusNumber) {
+    public JackpotNumber(Lotto jackpot) {
         this.jackpot = jackpot;
-        this.bonusNumber = bounusNumber;
+        this.bonusNumber = 0;
     }
     public Lotto getJackpot() {
         return jackpot;

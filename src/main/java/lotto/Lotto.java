@@ -30,14 +30,16 @@ public class Lotto {
         return randomNumbers;
     }
 
-    public static void startLotto(int numberOfLotto) {
+    public static void startLotto(int numberOfLotto, int purchaseAmount) {
         List<Lotto> lottos = createLotto(numberOfLotto);
         printLotto(lottos);
 
         List<Integer> winningNumbers = WinningNumber.inputWinningNumber();
         int bonusNumber = WinningNumber.inputBonusNumber(winningNumbers);
-        WinningNumber.compareToLotto(lottos, winningNumbers, bonusNumber);
+        List<MatchNumber> matchNumbers = WinningNumber.compareToLotto(lottos, winningNumbers, bonusNumber);
+        Prize.startPrizeStatistics(matchNumbers, purchaseAmount);
     }
+
 
     public static List<Lotto> createLotto(int numberOfLotto) {
         List<Lotto> lottos = new ArrayList<>();

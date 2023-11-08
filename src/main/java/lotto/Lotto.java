@@ -1,5 +1,4 @@
 package lotto;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,12 +28,15 @@ public class Lotto {
 
     public int LottoCheck(List<Integer> mylotto, int bonusNumber){
         int count = 0;
+
         for(int mynumber : mylotto){
             if (numbers.contains(mynumber))
                 count++;
         }
+
         if (mylotto.contains(bonusNumber))
             count += 10;
+            
         return count;
     }
 }

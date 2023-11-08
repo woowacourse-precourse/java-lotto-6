@@ -19,7 +19,7 @@ class LottoResultCheckServiceTest {
         Lotto lotto = new Lotto(List.of(1, 2, 4, 7, 9, 20));
         WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
         Bonus bonus = new Bonus(winningNumber.getNumbers(), "7");
-        Result result = lottoResultCheckService.getCommonResult(lotto, winningNumber, bonus);
+        Result result = lottoResultCheckService.computeResultAfterRemovingNonCommonNumbers(lotto, winningNumber, bonus);
 
         Ranking ranking = result.findMatchingRanking();
 

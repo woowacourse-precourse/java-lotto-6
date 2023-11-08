@@ -74,7 +74,7 @@ public class LottoGameController {
     }
 
     private List<Ranking> getLottoRanking(LottoMachine lottoMachine, WinningNumber winningNumber, Bonus bonus) {
-        return lottoResultCheckService.checkResult(lottoMachine, winningNumber, bonus);
+        return lottoResultCheckService.analyzeLottoResults(lottoMachine, winningNumber, bonus);
     }
 
     private void getLotteryStatistics(List<Ranking> rankings, Purchase purchase) {

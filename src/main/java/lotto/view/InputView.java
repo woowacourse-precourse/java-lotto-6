@@ -9,6 +9,7 @@ public class InputView {
     public int getUserInputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String userInput = Console.readLine();
+        System.out.println();
 
         InputValidator.validateNonSpaced(userInput);
         InputValidator.validateNonZeroLeadingParsableNumber(userInput);
@@ -20,6 +21,7 @@ public class InputView {
     public List<Integer> getUserInputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String userInput = Console.readLine();
+        System.out.println();
 
         InputValidator.validateNonSpaced(userInput);
         InputValidator.validateLottoNumbersPattern(userInput);
@@ -27,5 +29,17 @@ public class InputView {
                 .map(Integer::parseInt)
                 .peek(InputValidator::validateLottoNumber)
                 .collect(Collectors.toList());
+    }
+
+    public int getUserInputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String userInput = Console.readLine();
+        System.out.println();
+
+        InputValidator.validateNonSpaced(userInput);
+        InputValidator.validateNonZeroLeadingParsableNumber(userInput);
+        int bonusNumber = Integer.parseInt(userInput);
+        InputValidator.validateLottoNumber(bonusNumber);
+        return bonusNumber;
     }
 }

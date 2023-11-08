@@ -5,6 +5,7 @@ import lotto.dto.LottoGameResult;
 import lotto.dto.PurchaseResult;
 import lotto.dto.YieldResult;
 import lotto.service.LottoService;
+import lotto.util.ExceptionHandler;
 import lotto.view.InputViewProxy;
 import lotto.view.OutputView;
 
@@ -23,20 +24,42 @@ public class GameController {
     }
 
     public void gameStart() {
-        PurchasePrice money = inputView.getMoney();
-        List<PurchaseResult> purchaseResults = lottoService.purchaseLottos(money);
-        LottoTickets lottoTickets = LottoTickets.create(purchaseResults);
+        PurchasePrice money = getMoneyFromUser();
+        List<PurchaseResult> purchaseResults = purchaseLottoTickets(money);
         outputView.printPurchaseResult(purchaseResults);
 
-        Lotto lotto = inputView.getWinningNumbers(); //TODO: 네이밍 수정 필요
-        BonusNumber bonusNumber = inputView.getBonusNumber();
-        WinningNumbers winningNumbers = new WinningNumbers(lotto, bonusNumber);
-
-        LottoGameResult lottoGameResult = lottoService.calcRank(lottoTickets.getTickets(), winningNumbers);
+        WinningNumbers winningNumbers = getWinningNumbersFromUser();
+        LottoGameResult lottoGameResult = calculateGameResult(purchaseResults, winningNumbers);
         outputView.printLottoGameResult(lottoGameResult);
-        YieldResult yieldResult = lottoService.calcYield(money, lottoGameResult);
 
+        YieldResult yieldResult = calculateYield(money, lottoGameResult);
         outputView.printYield(yieldResult);
     }
 
+    private PurchasePrice getMoneyFromUser() {
+        return inputView.getMoney();
+    }
+
+    private List<PurchaseResult> purchaseLottoTickets(PurchasePrice money) {
+        return lottoService.purchaseLottos(money);
+    }
+
+    private WinningNumbers getWinningNumbersFromUser() {
+        Lotto lotto = inputView.getWinningNumbers();
+        return ExceptionHandler.handle(() -> getWinningNumbers(lotto));
+    }
+
+    private WinningNumbers getWinningNumbers(Lotto lotto) {
+        BonusNumber bonusNumber = inputView.getBonusNumber();
+        return new WinningNumbers(lotto, bonusNumber);
+    }
+
+    private LottoGameResult calculateGameResult(List<PurchaseResult> purchaseResults, WinningNumbers winningNumbers) {
+        LottoTickets lottoTickets = LottoTickets.create(purchaseResults);
+        return lottoService.calcRank(lottoTickets.getTickets(), winningNumbers);
+    }
+
+    private YieldResult calculateYield(PurchasePrice money, LottoGameResult lottoGameResult) {
+        return lottoService.calcYield(money, lottoGameResult);
+    }
 }

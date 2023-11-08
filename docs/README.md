@@ -8,7 +8,7 @@
 - [x] indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현
 - [x] 3항 연산자 사용 X
 - [x] 함수가 한 가지 일만 하도록 (SRP 원칙)
-- JUnit 5와 AssertJ를 이용하여 테스트 코드
+- [x] JUnit 5와 AssertJ를 이용하여 테스트 코드
 
 ### ➕ 추가된 요구 사항
 
@@ -16,9 +16,9 @@
 - [x] else 예약어 사용 X
     - [x] switch/case 사용 X
 - [x] Java Enum
-- 도메인 로직에 단위 테스트를 구현
-    - 단, UI(System.out, System.in, Scanner) 로직은 제외
-    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해서 구현
+- [x] 도메인 로직에 단위 테스트를 구현
+    - [x] 단, UI(System.out, System.in, Scanner) 로직은 제외
+    - [x] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해서 구현
 
 ### 📖 라이브러리
 

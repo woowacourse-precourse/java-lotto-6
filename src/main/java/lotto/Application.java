@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.*;
 import lotto.domain.enums.Rank;
 
-import java.security.cert.TrustAnchor;
 import java.util.*;
 
 
@@ -41,7 +40,7 @@ public class Application {
         System.out.printf("총 수익률은 %.1f%%입니다\n", Math.round(rateOfReturn * 100.) / 100.);
     }
 
-    static long getPurchaseAmount() {
+    static long getPurchaseAmountWithExceptionHandling() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             long purchaseAmount = Integer.parseInt(Console.readLine());
@@ -53,22 +52,50 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000의 배수인 숫자여야 합니다.");
         }
     }
-    static boolean isWinningNumberValid(List<Integer> winningNumber){
-     if(Collections.max(winningNumber) > 45)
-         return false;
-     if(Collections.min(winningNumber) < 1)
-         return false;
-     return true;
+
+    static long getPurchaseAmount() {
+        long purchaseAmount = 0;
+        while (true) {
+            try {
+                purchaseAmount = getPurchaseAmountWithExceptionHandling();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 구입 금액은 1000의 배수인 숫자여야 합니다.");
+                getPurchaseAmountWithExceptionHandling();
+            }
+        }
+        return purchaseAmount;
+    }
+
+    static boolean isWinningNumberValid(List<Integer> winningNumber) {
+        if (Collections.max(winningNumber) > 45)
+            return false;
+        if (Collections.min(winningNumber) < 1)
+            return false;
+        return true;
     }
 
     static List<Integer> getWinningNumber() {
+        List<Integer> winningNumber = new ArrayList<>();
+        while (true) {
+            try {
+                winningNumber = getWinningNumberWithExceptionHandling();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
+            }
+        }
+        return winningNumber;
+    }
+
+    static List<Integer> getWinningNumberWithExceptionHandling() {
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
             List<String> winningNumberOfString = List.of(Console.readLine().split(","));
             List<Integer> winningNumber = new ArrayList<>();
             for (int i = 0; i < 6; i++)
                 winningNumber.add(Integer.parseInt(winningNumberOfString.get(i)));
-            if(!isWinningNumberValid(winningNumber))
+            if (!isWinningNumberValid(winningNumber))
                 throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
             System.out.println(winningNumber);
             return winningNumber;
@@ -76,30 +103,46 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
         }
     }
 
-    static int getBonusNumber(){
-        try{
+
+    static int getBonusNumberWithExceptionHandling() {
+        try {
             System.out.println("보너스 번호를 입력해 주세요.");
             int bonusNumber = Integer.parseInt(Console.readLine());
             System.out.println(bonusNumber);
-            if ( bonusNumber < 1 || bonusNumber > 45 )
+            if (bonusNumber < 1 || bonusNumber > 45)
                 throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45인 숫자여야 합니다.");
             return bonusNumber;
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45인 숫자여야 합니다.");
         }
     }
 
+    static int getBonusNumber() {
+        int bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = getBonusNumberWithExceptionHandling();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 보너스 번호는 1 ~ 45인 숫자여야 합니다.");
+            }
+        }
+        return bonusNumber;
+    }
+
+
     public static void game() {
-        //이것들도 각각..메서드로 뺴서 딱 걔네들을 불러줘야할 듯
         long purchaseAmount = 0;
         try {
             purchaseAmount = getPurchaseAmount();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 로또 구입 금액은 1000의 배수인 숫자여야 합니다.");
-            game();
+            getPurchaseAmount();
         }
         List<Lotto> lottos = Lotto.createLottos(purchaseAmount / 1000);
         List<Integer> winningNumber = null;
@@ -107,16 +150,14 @@ public class Application {
             winningNumber = getWinningNumber();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 로또 당첨 번호는 1 ~ 45인 6개의 숫자여야 합니다.");
-            //이거..끊긴거부터해야하는데 ㅠ
-            game();
+            getWinningNumber();
         }
         int bonusNumber = 0;
         try {
             bonusNumber = getBonusNumber();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 보너스 번호는 1 ~ 45인 숫자여야 합니다.");
-            //이거..끊긴거부터해야하는데 ㅠ
-            game();
+            getBonusNumber();
         }
 
         Map<Rank, Integer> lottoRanks = createLottoRanksMap(winningNumber, lottos, bonusNumber);

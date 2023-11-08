@@ -16,4 +16,10 @@ public class ValidationUtil {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void isValidCount(List<Integer> numbers) {
+        if (numbers.size() != ConstVariable.LOTTO_COUNT.getValue()) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

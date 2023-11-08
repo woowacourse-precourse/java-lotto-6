@@ -12,7 +12,7 @@ public class ProfitRateTest {
     public void profitRate() {
         int deposit = 8_000;
         long total = 1_500_000;
-        double rate = ((double) total / deposit);
+        double rate = ((double) total / deposit) * 100;
 
         ProfitRate profitRate = new ProfitRate(total, deposit);
 

@@ -13,7 +13,7 @@ public class WinningNumbersInput {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(Constant.NUMBER_FORMAT_EXCEPTION);
+            throw new IllegalArgumentException(Constant.NUMBER_FORMAT_EXCEPTION);
         }
     }
 

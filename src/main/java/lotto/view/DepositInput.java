@@ -11,7 +11,7 @@ public class DepositInput {
             String deposit = Console.readLine();
             int amount = WinningNumbersInput.getNumber(deposit);
             return new Deposit(amount);
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(Constant.ERROR_ALARM + e.getMessage());
             return deposit();
         }

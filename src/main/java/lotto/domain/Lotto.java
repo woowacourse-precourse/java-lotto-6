@@ -18,7 +18,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    public List<Integer> lottoNumbers() {return numbers;}
+    public List<Integer> getNumbers() {return numbers;}
     public String toString() {
         List<String> numbersForPrint = new ArrayList<>();
         for (int i : numbers) {

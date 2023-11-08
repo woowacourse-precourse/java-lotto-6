@@ -3,10 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Manager {
     private static List<Lotto> customerTickets = new ArrayList<>();
@@ -38,6 +35,7 @@ public class Manager {
             winningNumbers.add(Integer.parseInt(winningNumber));
         }
         Validators.validateRedundance(winningNumbers);
+        Collections.sort(winningNumbers);
         return winningNumbers;
     }
     public int setBonusNumber(List<Integer> winningNumbers) {

@@ -1,11 +1,10 @@
 package lotto.domain;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Prize {
+    private static HashMap<String, Integer> prizeRecords = new HashMap<>();
 
     enum PrizeType {
         FIRST_PLACE(6, "2,000,000,000", false, "firstPlace"),
@@ -49,26 +48,25 @@ public class Prize {
         }
     }
 
-    private static int compare(List<Integer> lotto, List<Integer> winningNumbers) {
-        Set<Integer> winningNumbersSet = new HashSet<>(winningNumbers);
-        Set<Integer> lottoSet = new HashSet<>(lotto);
-        lottoSet.retainAll(winningNumbersSet);
-        System.out.println(lottoSet);
-        int matchCount = lottoSet.size();
-        return matchCount;
-
+    private static int compare(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        lottoNumbers.retainAll(winningNumbers);
+        int containingCount = 0;
+        for (int lottoNumber : lottoNumbers) {
+            if (winningNumbers.contains(lottoNumber)) {
+                containingCount++;
+            }
+        }
+        return containingCount;
     }
 
-    public static HashMap<String, Integer> compareAllLottoTickets(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+    public HashMap<String, Integer> compareAllLottoTickets(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
         HashMap<String, Integer> prizeCountsRecords = createPrizeCountsRecords();
         int matchCount;
-        boolean needToCheckBonus = false;
+        boolean needToCheckBonus;
         for (Lotto lotto : lottoTickets) {
-            List<Integer> numbers = lotto.lottoNumbers();
+            List<Integer> numbers = lotto.getNumbers();
             matchCount = compare(numbers, winningNumbers);
-            if (matchCount == 5 && numbers.contains(bonusNumber)) {
-                needToCheckBonus = true;
-            }
+            needToCheckBonus = checkNeedBonus(matchCount, bonusNumber, numbers);
             String placeType = returnPrizeType(matchCount, needToCheckBonus);
             int previousCount = prizeCountsRecords.get(placeType);
             prizeCountsRecords.put(placeType, previousCount + 1);
@@ -76,32 +74,53 @@ public class Prize {
         return prizeCountsRecords;
     }
 
-    public static HashMap<String, Integer> createPrizeCountsRecords() {
-        HashMap<String, Integer> prizeCountsRecords = new HashMap<>(5);
-        prizeCountsRecords.put("firstPlace", 0);
-        prizeCountsRecords.put("secondPlace", 0);
-        prizeCountsRecords.put("thirdPlace", 0);
-        prizeCountsRecords.put("fourthPlace", 0);
-        prizeCountsRecords.put("fifthPlace", 0);
-        prizeCountsRecords.put("noPlace", 0);
-        return prizeCountsRecords;
+    private static boolean checkNeedBonus(int matchCount, int bonusNumber, List<Integer> numbers) {
+        return matchCount == 5 && numbers.contains(bonusNumber);
     }
 
-    public static String returnPrizeType(int matchCount, boolean needToCheckBonus) {
+    public HashMap<String, Integer> createPrizeCountsRecords() {
+        prizeRecords.put("firstPlace", 0);
+        prizeRecords.put("secondPlace", 0);
+        prizeRecords.put("thirdPlace", 0);
+        prizeRecords.put("fourthPlace", 0);
+        prizeRecords.put("fifthPlace", 0);
+        prizeRecords.put("noPlace", 0);
+        return prizeRecords;
+    }
+
+    private static String returnPrizeType(int matchCount, boolean needToCheckBonus) {
         for (PrizeType prizeType : PrizeType.values()) {
-            if (matchCount == prizeType.match && needToCheckBonus == prizeType.needBonus) {
+            if (matchCount == 5) {
+                return checkSecondOrThirdPlace(matchCount, needToCheckBonus);
+            }
+            if (matchCount == prizeType.match) {
                 return prizeType.place;
             }
         }
         return "noPlace";
     }
 
-    public static void printResults(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
-        HashMap<String, Integer> prizeCountsRecord = compareAllLottoTickets(lottoTickets, winningNumbers, bonusNumber);
-        for (PrizeType p : PrizeType.values()) {
-            System.out.printf(
-                    "%d개 일치 (%s원) - %d개\n", p.match, p.rewards, prizeCountsRecord.get(p.place)
-            );
+    private static String checkSecondOrThirdPlace(int matchCount, boolean needToCheckBonus) {
+        String placeType = "noPlace";
+        if (needToCheckBonus && matchCount == 5) {
+            placeType = "secondPlace";
+        }
+        if (!needToCheckBonus && matchCount == 5) {
+            placeType = "thirdPlace";
+        }
+        return placeType;
+    }
+
+    public void printResults(HashMap<String, Integer> prizeCountsRecords) {
+        PrizeType[] prizeTypeValues = PrizeType.values();
+        for (int i = prizeTypeValues.length - 1; i >= 0; i--) {
+            PrizeType current = prizeTypeValues[i];
+            if (current.place.equals("secondPlace")) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", current.match, current.rewards, prizeCountsRecords.get(current.place));
+                continue;
+            }
+            System.out.printf("%d개 일치 (%s원) - %d개\n", current.match, current.rewards, prizeCountsRecords.get(current.place));
         }
     }
+
 }

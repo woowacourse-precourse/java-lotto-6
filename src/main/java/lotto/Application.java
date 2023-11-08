@@ -1,13 +1,13 @@
 package lotto;
 
 import lotto.domain.Customer;
+import lotto.domain.Lotto;
 import lotto.domain.Manager;
+import lotto.domain.Prize;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import lotto.domain.Lotto;
-import lotto.domain.Prize;
 
 public class Application {
     public static void main(String[] args) {
@@ -19,16 +19,15 @@ public class Application {
 
         List<Lotto> customerTickets = lottoManager.printTickets(customer.NUMBER_OF_TICKETS);
 
-        // TODO: 당첨 번호, 보너스 번호 입력
-        List<Integer> winningNumbers = new ArrayList<>();
         System.out.println("당첨 번호를 입력해 주세요.");
-        winningNumbers = lottoManager.setWinningNumbers();
+        List<Integer> winningNumbers = lottoManager.setWinningNumbers();
+        System.out.println(winningNumbers.toString());
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = lottoManager.setBonusNumber(winningNumbers);
 
-        // TODO: 로또 당첨 통계 출력
-        Prize.printResults(customerTickets, winningNumbers, bonusNumber);
-
+        Prize prize = new Prize();
+        HashMap<String, Integer> prizeCountsRecords = prize.compareAllLottoTickets(customerTickets, winningNumbers, bonusNumber);
+        prize.printResults(prizeCountsRecords);
 
         // TODO: 로또 수익률 출654
 

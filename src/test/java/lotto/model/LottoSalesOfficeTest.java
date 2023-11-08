@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("랜덤_로또_생성기_테스트")
-class RandomLottoGeneratorTest {
+class LottoSalesOfficeTest {
 
     @Test
     @DisplayName("랜덤_로또_생성_테스트")

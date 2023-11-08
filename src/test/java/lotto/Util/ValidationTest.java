@@ -15,9 +15,9 @@ public class ValidationTest {
     @ParameterizedTest
     @CsvSource(value = {"abcd:[ERROR] 숫자를 입력해주세요.", "10500:[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요."},
             delimiter = ':')
-    void checkPurchaseAmountException(String input, String exceptionMessage) {
+    void checkAvailableMoneyException(String input, String exceptionMessage) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Validation.validatePurchaseAmount(input);
+            Validation.validateAvailableMoney(input);
         });
 
         assertThat(exception.getMessage()).contains(exceptionMessage);

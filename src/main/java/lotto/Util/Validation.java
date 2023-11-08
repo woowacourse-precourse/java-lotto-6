@@ -35,8 +35,8 @@ public class Validation {
         }
     }
 
-    private static void validateUnit(int purchaseAmount) {
-        if (purchaseAmount % UNIT != ZERO) {
+    private static void validateUnit(int availableMoney) {
+        if (availableMoney % UNIT != ZERO) {
             throw new IllegalArgumentException(INPUT_UNIT_ERROR_MSG);
         }
     }
@@ -53,10 +53,10 @@ public class Validation {
         }
     }
 
-    public static int validatePurchaseAmount(String input) {
-        int purchaseAmount = parseInteger(input);
-        validateUnit(purchaseAmount);
-        return purchaseAmount;
+    public static int validateAvailableMoney(String input) {
+        int availableMoney = parseInteger(input);
+        validateUnit(availableMoney);
+        return availableMoney;
     }
 
     public static void validateNumbers(List<Integer> numbers) {

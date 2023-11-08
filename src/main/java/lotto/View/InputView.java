@@ -6,9 +6,9 @@ import lotto.Util.Validation;
 
 public class InputView {
 
-    public static int getPurchaseAmount() {
+    public static int getAvailableMoney() {
         String input = Console.readLine();
-        return Validation.validatePurchaseAmount(input);
+        return Validation.validateAvailableMoney(input);
     }
 
     public static List<Integer> getLottoNumbers() {

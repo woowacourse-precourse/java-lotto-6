@@ -12,7 +12,7 @@ class RaffleUtilTest {
     @Test
     void parseWinningNumbers() {
         String winningNumber = "1,2,3,4,5,6";
-        Integer[] array = new Integer[] {1,2,3,4,5,6};
+        Integer[] array = new Integer[]{1, 2, 3, 4, 5, 6};
 
         assertEquals(List.of(array), raffleUtil.parseWinningNumbers(winningNumber));
     }

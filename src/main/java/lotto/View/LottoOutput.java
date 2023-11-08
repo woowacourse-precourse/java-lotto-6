@@ -35,6 +35,7 @@ public class LottoOutput {
     public void printStatics(String message, int count) {
         System.out.printf(message + Message.LINE_BREAK.getMessage(), count);
     }
+
     public void printStatics(String message, float count) {
         System.out.printf(message + Message.LINE_BREAK.getMessage(), count);
     }

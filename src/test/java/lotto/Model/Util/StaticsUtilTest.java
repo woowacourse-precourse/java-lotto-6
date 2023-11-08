@@ -23,8 +23,8 @@ class StaticsUtilTest {
 
     @Test
     void drawResult() {
-        Lotto lotto = new Lotto(Arrays.stream(new Integer[] {1,2,3,4,5,6}).toList());
-        Raffle raffle = new Raffle(Arrays.stream(new Integer[] {1,2,3,4,5,6}).toList(), 7);
+        Lotto lotto = new Lotto(Arrays.stream(new Integer[]{1, 2, 3, 4, 5, 6}).toList());
+        Raffle raffle = new Raffle(Arrays.stream(new Integer[]{1, 2, 3, 4, 5, 6}).toList(), 7);
         int expectedResult = 6;
 
         assertEquals(expectedResult, staticsUtil.drawResult(lotto, raffle));
@@ -32,7 +32,7 @@ class StaticsUtilTest {
 
     @Test
     void drawBonusNumberResult() {
-        Lotto lotto = new Lotto(Arrays.stream(new Integer[] {1,2,3,4,5,7}).toList());
+        Lotto lotto = new Lotto(Arrays.stream(new Integer[]{1, 2, 3, 4, 5, 7}).toList());
         int bounsNumber = 7;
         boolean expectedResult = true;
 

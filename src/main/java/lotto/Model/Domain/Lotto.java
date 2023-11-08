@@ -18,7 +18,7 @@ public class Lotto {
             throw new IllegalArgumentException(Exception.LOTTO_SIZE_EXCEPTION.getMessage());
         }
 
-        if(!validateNumber(numbers)) {
+        if (!validateNumber(numbers)) {
             throw new IllegalArgumentException(Exception.LOTTO_WRONG_NUMBER_EXCEPTION.getMessage());
         }
 

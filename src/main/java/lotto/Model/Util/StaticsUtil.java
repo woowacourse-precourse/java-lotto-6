@@ -26,11 +26,12 @@ public class StaticsUtil {
 
     public Statics setResult(List<Lotto> lottos, Raffle raffle, int purchaseMoney) {
         checkResult(lottos, raffle);
-        return new Statics(fifthCount, fourthCount, thirdCount, secondCount, firstCount, calculateRevenue(purchaseMoney, totalPrize));
+        return new Statics(fifthCount, fourthCount, thirdCount, secondCount, firstCount,
+                calculateRevenue(purchaseMoney, totalPrize));
     }
 
     public void checkResult(List<Lotto> lottos, Raffle raffle) {
-        for(Lotto lotto: lottos) {
+        for (Lotto lotto : lottos) {
             int drawResult = drawResult(lotto, raffle);
             boolean bonusResult = drawBonusNumberResult(lotto, raffle.getBonusNumber());
 
@@ -39,38 +40,39 @@ public class StaticsUtil {
     }
 
     public float calculateRevenue(int purchaseMoney, int totalPrize) {
-        return ((float) (totalPrize) / purchaseMoney)*100;
+        return ((float) (totalPrize) / purchaseMoney) * 100;
     }
 
     public void setGradeResult(int drawResult, boolean bonusResult) {
-        if(drawResult == 3) { // 5등
+        if (drawResult == 3) { // 5등
             totalPrize += Constant.STATICS_FIFTH_PRIZE.getConstant();
-            fifthCount ++;
+            fifthCount++;
         }
 
-        if(drawResult == 4) { // 4등
+        if (drawResult == 4) { // 4등
             totalPrize += Constant.STATICS_FOURTH_PRIZE.getConstant();
-            fourthCount ++;
+            fourthCount++;
         }
 
-        if(drawResult == 5) { // 3등
+        if (drawResult == 5) { // 3등
             totalPrize += Constant.STATICS_THIRD_PRIZE.getConstant();
-            thirdCount ++;
+            thirdCount++;
         }
 
-        if(drawResult == 5 && bonusResult) {
+        if (drawResult == 5 && bonusResult) {
             totalPrize += Constant.STATICS_SECOND_PRIZE.getConstant();
-            secondCount ++;
+            secondCount++;
         }
 
-        if(drawResult == 6) {
+        if (drawResult == 6) {
             totalPrize += Constant.STATICS_FIRST_PRIZE.getConstant();
-            firstCount ++;
+            firstCount++;
         }
     }
 
     public int drawResult(Lotto lotto, Raffle raffle) {
-        return (int) lotto.getNumbers().stream().filter(raffle.getWinningNumbers()::contains).count();
+        return (int) lotto.getNumbers().stream().filter(raffle.getWinningNumbers()::contains)
+                .count();
     }
 
     public boolean drawBonusNumberResult(Lotto lotto, int bonusNumber) {

@@ -3,14 +3,13 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.GameData;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.verifier.LottoNumberVerifier;
 import lotto.verifier.LottoPurchaseVerifier;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 

@@ -1,6 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.errorMessage.ErrorMessage;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class InputView {
 
@@ -8,16 +12,28 @@ public class InputView {
     private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public String inputPurchaseAmount() {
+    public static String inputPurchaseAmount() {
         System.out.println(PURCHASE_MESSAGE);
-        return Console.readLine();
+        String input = Console.readLine();
+        checkBlank(input);
+        return input;
     }
-    public String inputWinningNum() {
+
+    private static void checkBlank(String input) {
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException(ErrorMessage.CHECK_BLANK.getMessage());
+        }
+    }
+    public String[] inputWinningNum() {
         System.out.println(WINNING_NUMBER_MESSAGE);
-        return Console.readLine();
+        String input = Console.readLine();
+        checkBlank(input);
+        return input.split(",");
     }
     public String inputBonusNum() {
         System.out.println(BONUS_NUMBER_MESSAGE);
-        return Console.readLine();
+        String input = Console.readLine();
+        checkBlank(input);
+        return input;
     }
 }

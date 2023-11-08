@@ -56,3 +56,29 @@
   - [x] 발행된 각 로또 번호들에 대해 계산
   - [x] 계산된 당첨 내역을 출력하는 기능
 - [x] 수익률을 계산하는 기능
+
+# 🔨 구조
+
+### constant
+`ErrorMessage` : 에러 메세지가 담긴 enum 클래스  
+`LottoConstant` : 애플리케이션에서 사용되는 상수들을 모아놓은 클래스
+
+### controller
+`LottoController` : View와의 연결을 위한 컨트롤러
+
+### domain
+`BonusNumber` : 보너스 번호를 저장하는 클래스  
+`Lotto` : 로또 번호를 저장하는 클래스  
+`LottoGenerator` : 무작위 로또 번호를 생성하는 클래스  
+`PurchaseAmount` : 구입 금액을 저장하는 클래스  
+`PurchasedLottos` : 구입한 로또 번호들을 저장하는 클래스  
+`WinningLotto` : 당첨 번호를 저장하는 클래스  
+`WinningRecord` : 당첨 결과에 대한 내용이 저장된 enum 클래스  
+`WinningStatistics` : 당첨 결과와 수익률을 계산하는 클래스
+
+### service
+`LottoService` : 도메인의 비즈니스 로직을 위한 서비스
+
+### view
+`InputView` : 입력을 담당하는 view  
+`OutputView` : 출력을 담당하는 view

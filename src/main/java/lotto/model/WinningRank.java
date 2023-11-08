@@ -29,6 +29,10 @@ public enum WinningRank {
         return prize;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public static WinningRank valueOf(int matchCount, boolean hasBonus) {
         for (WinningRank rank : WinningRank.values()) {
             if (rank.matchCount == matchCount && rank.hasBonus == hasBonus) {

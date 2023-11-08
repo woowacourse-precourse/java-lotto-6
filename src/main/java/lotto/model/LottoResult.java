@@ -52,4 +52,8 @@ public class LottoResult {
     public long getTotalReward() {
         return totalReward;
     }
+
+    public Map<WinningRank, Integer> getRankCounts() {
+        return rankCounts;
+    }
 }

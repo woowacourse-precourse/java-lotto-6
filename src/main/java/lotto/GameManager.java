@@ -20,10 +20,8 @@ public class GameManager {
         while(user.hasMoney()){
             user.buyLottery(machine);
         }
-
         gameView.lotteriesView(user.getLotteries());
         machine.setNumbers(gameView.winningNumberView());
         machine.setBonus(gameView.bonusView(machine.getLotto()));
-
     }
 }

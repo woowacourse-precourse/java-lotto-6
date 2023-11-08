@@ -23,4 +23,17 @@ public class OutputView {
     public void printGetBonusNumber(){
         System.out.println(Constant.VIEW_BONUS_NUMBER);
     }
+
+    public void printPrizes(HashMap<Prize, Integer> prizes) {
+        System.out.println(
+                String.format(
+                        Constant.VIEW_STATISTIC,
+                        prizes.get(ComparisonScore.THREE),
+                        prizes.get(ComparisonScore.FOUR),
+                        prizes.get(ComparisonScore.FIVE),
+                        prizes.get(ComparisonScore.FIVE_BONUS),
+                        prizes.get(ComparisonScore.SIX)
+                )
+        );
+    }
 }

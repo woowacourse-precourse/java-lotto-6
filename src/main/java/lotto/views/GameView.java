@@ -1,9 +1,11 @@
 package lotto.views;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.configs.Constant;
+import lotto.configs.Prize;
 import lotto.models.Lotto;
 
 public class GameView {
@@ -56,5 +58,9 @@ public class GameView {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void statisticView(HashMap<Prize, Integer> prizes){
+        outputView.printPrizes(prizes);
     }
 }

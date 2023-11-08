@@ -15,6 +15,7 @@ public class InputView {
     public static Integer inputPurchaseAmount() {
         String inputValue = null;
         Boolean flag = false;
+
         while(!flag) {
             System.out.println(MessageConstants.PURCHASE_AMOUNT_GUIDE);
             inputValue = Console.readLine();
@@ -22,7 +23,7 @@ public class InputView {
                 PurchaseAmountValidator.validateType(inputValue);
                 PurchaseAmountValidator.validateUnit(inputValue);
                 flag = true;
-            } catch (Exception e) {}
+            } catch (IllegalArgumentException e) {}
         }
         return Integer.parseInt(inputValue);
     }
@@ -30,14 +31,15 @@ public class InputView {
     public static List<Integer> inputWinningNumbers() {
         String[] inputValues = null;
         Boolean flag = false;
+
         while (!flag) {
             System.out.println(MessageConstants.WINNING_NUMBERS_GUIDE);
             inputValues = Console.readLine().split(",");
             try {
-                WinningNumbersValidator.validateLength(inputValues); // 개수
-                WinningNumbersValidator.validateType(inputValues); // 숫자
-                WinningNumbersValidator.validateRange(inputValues); // 범위
-                WinningNumbersValidator.validateDuplicate(inputValues); // 중복
+                WinningNumbersValidator.validateLength(inputValues);
+                WinningNumbersValidator.validateType(inputValues);
+                WinningNumbersValidator.validateRange(inputValues);
+                WinningNumbersValidator.validateDuplicate(inputValues);
                 flag = true;
             } catch (IllegalArgumentException e) {}
         }
@@ -57,7 +59,6 @@ public class InputView {
         while (!flag) {
             System.out.println(MessageConstants.BONUS_NUMBER_GUIDE);
             inputValue = Console.readLine();
-
             try {
                 BonusNumberValidator.validateType(inputValue);
                 BonusNumberValidator.validateRange(inputValue);

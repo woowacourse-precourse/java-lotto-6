@@ -20,6 +20,7 @@ public class WinningLotto {
                 List<Integer> parsedWinningNumbers = parseWinningNumbers(Input.getWinningNumbers());
                 validate(parsedWinningNumbers);
                 this.winningNumbers = new Lotto(parsedWinningNumbers);
+                return;
             } catch (IllegalArgumentException e){
                 System.out.println(Output.ERROR_MESSAGE_PREFIX + Output.LOTTO_WINNING_NUMBERS_ERROR_MESSAGE);
             }

@@ -25,6 +25,33 @@ public class Lotto {
         return compareNumbers.size() != numbers.size();
     }
 
+    public Integer getLottoRank(Lotto winningNumber, Integer bonusNumber) {
+        Integer matchingCount = compareLotto(winningNumber.getNumbers());
+        Boolean hasBonusNumber = this.numbers.contains(bonusNumber);
+        if (matchingCount == 6) {
+            return 1;
+        } else if (matchingCount == 5 && hasBonusNumber) {
+            return 2;
+        } else if (matchingCount == 5) {
+            return 3;
+        } else if (matchingCount == 4) {
+            return 4;
+        } else if (matchingCount == 3) {
+            return 5;
+        }
+        return 0;
+    }
+
+    private Integer compareLotto(List<Integer> winningLotto) {
+        Integer matchingCount = 0;
+        for (Integer userLottoNumber : this.numbers) {
+            if (winningLotto.contains(userLottoNumber)) {
+                matchingCount++;
+            }
+        }
+        return matchingCount;
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

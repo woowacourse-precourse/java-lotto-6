@@ -3,7 +3,6 @@ package lotto.View;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
@@ -11,7 +10,7 @@ public class InputView {
     private static final String INPUT_LOTTO_NUMS = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUM = "보너스 번호를 입력해 주세요.";
 
-    private static final List<String> lottoWinningNums = new ArrayList<>();
+    private static final List<Integer> lottoWinningNums = new ArrayList<>();
 
     public static String InputBuyCost() {
         System.out.println(INPUT_BUY_COST);
@@ -19,21 +18,27 @@ public class InputView {
         // 예외 처리
     }
 
-    public static List<String> InputLottoWinningNums() {
+    public static List<Integer> InputLottoWinningNums() {
         System.out.println(INPUT_LOTTO_NUMS);
         return SplitLottoWinningNums(Console.readLine());
     }
 
-    public static String InputBonusNum() {
+    public static int InputBonusNum() {
         System.out.println(INPUT_BONUS_NUM);
-        return Console.readLine();
+        return Integer.parseInt(Console.readLine());
         //예외 처리
     }
 
-    public static List<String> SplitLottoWinningNums(String lottoNums) {
+    public static List<Integer> SplitLottoWinningNums(String lottoNums) {
         String[] numResult = lottoNums.split(",");
-        lottoWinningNums.addAll(Arrays.asList(numResult));
 
+        for (String s : numResult) {
+            lottoWinningNums.add(conventToInt(s));
+        }
         return lottoWinningNums;
+    }
+
+    private static int conventToInt(String inputNumber) {
+        return Integer.parseInt(inputNumber);
     }
 }

@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class Initializer {
+public class WinningsInitializer {
 
-    public Lotto initWinningLotto(String userInput) {
+    public Lotto initWinningLotto(String userInput) throws IllegalArgumentException{
         validateFormat(userInput);
         List<Integer> winningNumbers = convertToList(userInput);
         return new Lotto(winningNumbers);

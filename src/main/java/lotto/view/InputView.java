@@ -8,4 +8,8 @@ public class InputView {
     public static void showInputWinningNumbersMessage() {
         System.out.println("당첨 번호를 입력해주세요.");
     }
+
+    public static void showInputBonusNumberMessage() {
+        System.out.println("보너스 번호를 입력해주세요.");
+    }
 }

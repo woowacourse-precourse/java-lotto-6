@@ -28,7 +28,7 @@ public class LottoGameController {
     public void run() {
         initGame();
         setWinningCondition();
-        result();
+        printResult();
     }
 
     private void initGame() {
@@ -43,7 +43,7 @@ public class LottoGameController {
         this.bonusNumber = inputView.requestBonusNumber(this.winningNumbers);
     }
 
-    private void result() {
+    private void printResult() {
         Map<WinningPrize, Integer> winningPrizes = lottoService.getWinningPrizes(lottos, winningNumbers, bonusNumber);
         double returnOnLotto = lottoService.getReturnOnLotto(lottos, this.winningNumbers, this.bonusNumber);
         outputView.printResult(winningPrizes, returnOnLotto);

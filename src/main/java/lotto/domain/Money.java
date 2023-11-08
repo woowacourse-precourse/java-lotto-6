@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.DivideMoneyException;
+import lotto.exception.ZeroMoneyException;
+
 public class Money {
     private static final int ZERO = 0;
     private static final int THOUSAND = 1000;

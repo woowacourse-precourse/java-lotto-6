@@ -11,6 +11,8 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
+    private static int TICKET_PRICE = 1000;
+
     public enum LottoType {
         LOTTO_1(2000000000),
         LOTTO_2(30000000),
@@ -30,14 +32,14 @@ public class Application {
     private static int getTickets() {
         try {
             Integer N = Integer.parseInt(Console.readLine().replace(" ", ""));
-            if (N % 1000 != 0) {
+            if (N % TICKET_PRICE != 0) {
                 throw new IllegalStateException();
             }
-            return N / 1000;
+            return N / TICKET_PRICE;
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자를 입력해주세요.");
         } catch (IllegalStateException e) {
-            System.out.println("[ERROR] 구입 금액은 1000원 단위로 입력해주세요.");
+            System.out.printf("[ERROR] 구입 금액은 %d원 단위로 입력해주세요.\n",TICKET_PRICE);
         }
         return -1;
     }
@@ -142,7 +144,7 @@ public class Application {
 
     private static void printResult(int[] result, int tickets) {
         double revenue = 0;
-        double price = tickets * 1000;
+        double price = tickets * TICKET_PRICE;
         revenue = LottoType.LOTTO_5.getPrice() * result[0] + LottoType.LOTTO_4.getPrice() * result[1] + LottoType.LOTTO_3.getPrice() * result[2] + LottoType.LOTTO_2.getPrice() * result[3]
                 + LottoType.LOTTO_1.getPrice() * result[4];
 

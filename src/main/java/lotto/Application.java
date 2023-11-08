@@ -9,6 +9,6 @@ public class Application {
 //        throw new IllegalArgumentException(LottoErrorMsg.UNABLE_TO_DIVIDE.getMessage());
         LottoController lottoController = new LottoController();
         lottoController.buyLotto();
-
+        lottoController.getWinningNumbers();
     }
 }

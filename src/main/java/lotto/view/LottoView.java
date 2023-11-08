@@ -1,6 +1,8 @@
 package lotto.view;
 
+import static lotto.view.LottoViewMessage.ASK_BONUS_NUM;
 import static lotto.view.LottoViewMessage.ASK_BUY_LOTTO;
+import static lotto.view.LottoViewMessage.ASK_WINNING_NUM;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -18,11 +20,23 @@ public class LottoView {
         for (Lotto lotto:lottoRepositoryDto.getLottos()){
             System.out.println(lotto.getNumbers());
         }
+        println();
+    }
+
+    public String requestWinningLotto(){
+        printMessage(ASK_WINNING_NUM);
+        return Console.readLine();
+    }
+    public String requestBonusNum(){
+        printMessage(ASK_BONUS_NUM);
+        return Console.readLine();
     }
 
     public void printMessage(LottoViewMessage lottoViewMessage) {
         System.out.println(lottoViewMessage.getViewMessage());
     }
 
-
+    public void println(){
+        System.out.println();
+    }
 }

@@ -6,8 +6,7 @@ public class EarningRate {
     private static double earningRate;
 
     public EarningRate(int startMoney, int winningMoney) {
-        double fullEarningRate = ((double) winningMoney / (double) startMoney) * PERCENT;
-        this.earningRate = round(fullEarningRate);
+        calculateEarningRate(startMoney,winningMoney);
     }
 
     public double getEarningRate() {
@@ -21,6 +20,6 @@ public class EarningRate {
     }
 
     public double round(double earningRate) {
-        return ((double) Math.round(earningRate * DIGIT) / DIGIT);
+        return ((double) Math.round(earningRate * DIGIT)) / DIGIT;
     }
 }

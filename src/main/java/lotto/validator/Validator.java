@@ -4,22 +4,20 @@ import java.math.BigInteger;
 import lotto.exception.ErrorMessage;
 
 public class Validator {
-    private static boolean isNumber(String inputMessage) {
+    private static void isNumber(String inputMessage) {
         try {
             new BigInteger(inputMessage);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_MESSAGE.getMessage());
         }
-        return true;
     }
-    public static boolean isInteger(String inputMessage) {
+    public static void isInteger(String inputMessage, ErrorMessage message) {
         isNumber(inputMessage);
         try {
             Integer.parseInt(inputMessage);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.PRICE_OUT_OF_RANGE_MESSAGE.getMessage());
+            throw new IllegalArgumentException(message.getMessage());
         }
-        return true;
     }
 
     public static boolean validateNumberRange(int value, int min, int max) {

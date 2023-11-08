@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoManager;
+import lotto.model.LottoResult;
 import lotto.service.LottoService;
 import lotto.service.InputValidator;
 import lotto.view.InputView;
@@ -17,6 +18,7 @@ public class LottoController {
     private final LottoService lottoService;
     private final InputValidator inputValidator;
 
+    private int purchaseAmount;
     private LottoManager lottoManager;
     private List<Lotto> lottoList;
 
@@ -33,19 +35,22 @@ public class LottoController {
         getLottoResult();
     }
 
-    private void getLottoResult() {
-
-    }
-
     private void buyLotto() {
-        int purchaseAmount = getPurchaseAmount();
-        showLottoTicketNumbers(purchaseAmount);
+        this.purchaseAmount = getPurchaseAmount();
+        showLottoTicketNumbers(this.purchaseAmount);
     }
 
     private void setLottoNumbers() {
         LottoManager winningNumbers = getWinningNumbersFromUser();
         addBonusNumberToWinningNumbers(winningNumbers);
         this.lottoManager = winningNumbers;
+    }
+
+    private void getLottoResult() {
+        LottoResult lottoResult = lottoService.calculateLottoResult(lottoManager, lottoList);
+        outputView.showLottoResult(lottoResult.getResultMap());
+        Double profitRate = lottoService.computeProfitRate(purchaseAmount, lottoResult.getProfit());
+        outputView.showProfitRate(profitRate);
     }
 
     private int getPurchaseAmount() {

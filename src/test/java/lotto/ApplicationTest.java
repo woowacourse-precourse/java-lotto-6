@@ -11,6 +11,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.Arrays;
 import java.util.List;
 import lotto.common.ErrorMessage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
@@ -94,16 +95,18 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("당첨 번호 입력: 숫자가 아닌 경우 예외 처리")
     @Test
-    void 예외_테스트_숫자가_아닌_당첨_번호_입력() {
+    void inputWinningNumbersNotNumeric() {
         assertSimpleTest(() -> {
             runException("8000", "1,2,3,4,5,a");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
+    @DisplayName("당첨 번호 입력: 6자리가 아닌 경우 예외 처리")
     @Test
-    void 예외_테스트_6자리가_아닌_당첨_번호_입력() {
+    void inputWinningNumbersOverSize() {
         assertSimpleTest(() -> {
             runException("8000", "1,2,3,4,5");
             assertThat(output()).contains(ERROR_MESSAGE);
@@ -111,6 +114,29 @@ class ApplicationTest extends NsTest {
 
         assertSimpleTest(() -> {
             runException("8000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호 입력: 1~45에서 벗어난 숫자인 경우 예외 처리")
+    @Test
+    void inputWinningNumbersOutOfRange() {
+        assertSimpleTest(() -> {
+            runException("8000", "0,2,3,4,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호 입력: 중복된 숫자인 경우 예외 처리")
+    @Test
+    void inputWinningNumbersDuplicated() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,5");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

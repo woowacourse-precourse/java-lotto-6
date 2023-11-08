@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.exception.ErrorCode;
+import lotto.exception.DuplicateLottoNumbersException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +28,7 @@ public class Lotto {
         boolean hasDuplicates = number.size() != new HashSet<>(number).size();
 
         if (hasDuplicates) {
-            throw new IllegalArgumentException(ErrorCode.DUPLICATE_LOTTO_NUMBERS.getMessage());
+            throw new DuplicateLottoNumbersException();
         }
     }
 

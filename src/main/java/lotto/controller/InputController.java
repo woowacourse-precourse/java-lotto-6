@@ -32,12 +32,16 @@ public class InputController {
         List<String> input = util.stringToList(Console.readLine(), ",");
 
         try {
+            validation.isNumber(input);
             validation.winNumber(input);
+
         } catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winNumbers();
         }
 
-        return util.stringListToIntegerList(input);
+        List<Integer> winNumber = util.stringListToIntegerList(input);
+
+        return winNumber;
     }
 }

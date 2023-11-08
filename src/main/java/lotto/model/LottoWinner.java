@@ -3,6 +3,8 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import lotto.util.Message;
 import lotto.util.ValidationCheck;
 import lotto.view.InputView;
@@ -11,8 +13,11 @@ public class LottoWinner {
     private Lotto winningNumber;
     private Integer bonusNumber;
 
+    private Map<ScoreBoard, Integer> scoreResult;
+
     public void createWinnerLotto() {
         this.winningNumber = inputWinningNumber();
+        this.bonusNumber = inputBonusNumber();
     }
 
     public Lotto inputWinningNumber() {
@@ -21,8 +26,25 @@ public class LottoWinner {
         return new Lotto(validatedCompleteNumbers);
     }
 
+    public Integer inputBonusNumber() {
+        String inputNumber = InputView.showInputBonusNumberMessage();
+
+        ValidationCheck validationCheck = new ValidationCheck();
+        // 1. 숫자 형식 여부 확인
+        int bonusNumber = validationCheck.checkNumericValidate(inputNumber);
+
+        // 2. 범위 확인
+        validationCheck.checkNumRange(bonusNumber);
+
+        // 3. 당첨 번호와 중복 여부 확인
+        if (this.winningNumber.existNumber(bonusNumber)) {
+            throw new IllegalArgumentException(Message.EXCPTION_ALREADY_EXIST);
+        }
+        return bonusNumber;
+    }
+
     private List<Integer> winningNumbersValidate(String givenNumbers) {
-        List<String> givenNumberStrings = Arrays.asList(givenNumbers.split(","));
+        List<String> givenNumberStrings = Arrays.asList(givenNumbers.replaceAll(" ", "").split(","));
 
         // 1. 숫자 형식 검증
         List<Integer> checkedNumbers = new ArrayList<>();
@@ -49,5 +71,13 @@ public class LottoWinner {
         }
 
         return checkedNumbers;
+    }
+
+    public void matchWinnerLotto(Set<Lotto> lottos) {
+        for (Lotto userLotto : lottos) {
+            ScoreBoard result = userLotto.matchNumbers(this.winningNumber, this.bonusNumber);
+            this.scoreResult = new HashMap<>();
+            scoreResult.put(result, scoreResult.getOrDefault(result, 0) + 1);
+        }
     }
 }

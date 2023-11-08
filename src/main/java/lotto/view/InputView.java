@@ -13,6 +13,13 @@ public class InputView {
         return number;
     }
 
+    public static String getWinningNumbers() {
+        System.out.println(ConsoleMessage.GET_WINNING_NUMBERS.getMessage());
+        String winningNumbers = Console.readLine();
+        System.out.println();
+        return winningNumbers;
+    }
+
 
     public static int validateNumber(String number) {
         try {

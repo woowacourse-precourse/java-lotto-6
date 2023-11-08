@@ -17,19 +17,18 @@ class CustomerServiceTest {
     private CustomerService customerService;
     private LottoService lottoService;
 
-
     @BeforeEach
     void setUp() {
         customer = new Customer(PRICE);
-        customerService = new CustomerService();
-        lottoService = new LottoService();
+        customerService = new CustomerService(customer);
+        lottoService = new LottoService(customer);
     }
 
     @DisplayName("로또 리스트 입력 받아 customer 내 lottos에 값 주입")
     @Test
     void setLottosWithInput() {
-        List<Lotto> lottos = lottoService.drawLots(customer);
-        customerService.buyLotto(customer, lottos);
+        List<Lotto> lottos = lottoService.drawLots();
+        customerService.buyLotto(lottos);
         assertThat(customer.getLottos()).isEqualTo(lottos);
     }
 }

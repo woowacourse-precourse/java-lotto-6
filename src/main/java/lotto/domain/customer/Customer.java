@@ -18,6 +18,10 @@ public class Customer {
         setQuantity(price);
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public int getQuantity() {
         return quantity;
     }

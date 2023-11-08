@@ -6,7 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
-    public List<Lotto> drawLots(Customer customer) {
+    public Customer customer;
+
+    public LottoService(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<Lotto> drawLots() {
         List<Lotto> lottos = new ArrayList<>();
         int quantity = customer.getQuantity();
         for (int count = 0; count < quantity; count++) {

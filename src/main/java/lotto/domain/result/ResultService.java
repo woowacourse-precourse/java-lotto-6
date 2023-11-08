@@ -3,6 +3,7 @@ package lotto.domain.result;
 import lotto.domain.lotto.Lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ResultService {
@@ -86,5 +87,9 @@ public class ResultService {
         float percentage = prizeF / priceF * 100f;
         String result = String.format("%,.1f", percentage);
         return result;
+    }
+
+    public int countGrade(Grade grade) {
+        return Collections.frequency(grades, grade);
     }
 }

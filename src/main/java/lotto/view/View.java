@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.result.Grade;
+
 import java.util.List;
 
 public class View {
@@ -33,8 +35,8 @@ public class View {
         System.out.println("---");
     }
 
-    public void notifyStatistics(List<String> result) {
-        System.out.println(result.get(0) + " (" + result.get(1) + ") - " + result.get(2) + "개");
+    public void notifyStatistics(Grade grade, int countGrade) {
+        System.out.println(grade.getCondition() + " (" + grade.getPrizeWon() + ") - " + countGrade + "개");
     }
 
     public void notifyEarningRate(String earningRate) {

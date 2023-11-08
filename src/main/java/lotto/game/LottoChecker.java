@@ -12,10 +12,11 @@ import lotto.dto.LottoResult;
 import lotto.dto.LottoResults;
 
 public class LottoChecker {
+    private static final int INITIAL_AMOUNT = 0;
+
     private final LottoDraw lottoDraw;
     private final List<Lotto> lottos;
-
-    private int totalPrizeAmount = 0;
+    private int totalPrizeAmount = INITIAL_AMOUNT;
     List<LottoPrize> prizes = new ArrayList<>();
 
     public LottoChecker(LottoDraw lottoDraw, List<Lotto> userLottos) {

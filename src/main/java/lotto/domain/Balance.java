@@ -2,10 +2,9 @@ package lotto.domain;
 
 import static lotto.constants.ErrorMessage.INSUFFICIENT_BALANCE;
 import static lotto.constants.ErrorMessage.INVALID_AMOUNT;
+import static lotto.constants.LottoOption.LOTTO_TICKET_PRICE;
 
 public class Balance {
-    private static final int LOTTO_TICKET_PRICE = 1000;
-
     private int amount;
     private final int purchaseAmount;
 
@@ -20,7 +19,7 @@ public class Balance {
     }
 
     public boolean hasSufficientBalance() {
-        return amount >= LOTTO_TICKET_PRICE;
+        return amount >= LOTTO_TICKET_PRICE.getValue();
     }
 
     public void deductTicketPrice() {
@@ -28,7 +27,7 @@ public class Balance {
             throw new IllegalStateException(INSUFFICIENT_BALANCE.getMessage());
         }
 
-        amount -= LOTTO_TICKET_PRICE;
+        amount -= LOTTO_TICKET_PRICE.getValue();
     }
 
     public int getPurchaseAmount() {
@@ -37,11 +36,12 @@ public class Balance {
 
     private void validatePurchaseWithoutChange(int amount) {
         if (isNotMultipleOfTicketPrice(amount)) {
-            throw new IllegalArgumentException(String.format(INVALID_AMOUNT.getMessage(), LOTTO_TICKET_PRICE));
+            throw new IllegalArgumentException(
+                    String.format(INVALID_AMOUNT.getMessage(), LOTTO_TICKET_PRICE.getValue()));
         }
     }
 
     private boolean isNotMultipleOfTicketPrice(int amount) {
-        return amount % LOTTO_TICKET_PRICE != 0;
+        return amount % LOTTO_TICKET_PRICE.getValue() != 0;
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Balance;
 import lotto.domain.Lotto;
-import strategy.IssuanceStrategy;
+import lotto.strategy.IssuanceStrategy;
 
 public class LottoMachine {
     private final IssuanceStrategy issuanceStrategy;

@@ -8,12 +8,12 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoDraw;
 import lotto.dto.LottoResults;
+import lotto.strategy.IssuanceStrategy;
+import lotto.strategy.QuickpickIssuanceStrategy;
 import lotto.utils.Parser;
 import lotto.utils.RetryExecutor;
 import lotto.view.Input;
 import lotto.view.Output;
-import strategy.IssuanceStrategy;
-import strategy.QuickpickIssuanceStrategy;
 
 public class LottoGame {
     public void play() {

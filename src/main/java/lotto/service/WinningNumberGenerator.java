@@ -23,16 +23,16 @@ public class WinningNumberGenerator {
         return bonusNumber;
     }
 
-    private List<Integer> inputAndValidateWinningNumbers(){
+    private List<Integer> inputAndValidateWinningNumbers() {
         List<Integer> winningNumbers = InputController.inputWinningNumber();
         NumberValidator.validate(winningNumbers);
 
         return winningNumbers;
     }
 
-    private Integer inputAndValidateBonusNumbers(List<Integer> winningNumbers){
+    private Integer inputAndValidateBonusNumbers(List<Integer> winningNumbers) {
         Integer bonusNumber = InputController.inputBonusNumber();
-        NumberValidator.validate(bonusNumber,winningNumbers);
+        NumberValidator.validate(bonusNumber, winningNumbers);
 
         return bonusNumber;
     }

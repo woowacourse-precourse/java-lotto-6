@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public class CorrectCount {
-    
+
     private int correctNumberCount;
     private int correctBonusNumberCount;
 
@@ -14,7 +14,7 @@ public class CorrectCount {
         return correctNumberCount;
     }
 
-    public int getCorrectBonusNumberCount(){
+    public int getCorrectBonusNumberCount() {
         return correctBonusNumberCount;
     }
 }

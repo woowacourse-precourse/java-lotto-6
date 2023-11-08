@@ -35,8 +35,8 @@ class ReturnRateCalculatorTest {
     }
 
     private void setLottos() {
-        setLotto(3,1);
-        setLotto(3,0);
+        setLotto(3, 1);
+        setLotto(3, 0);
     }
 
     private void setLotto(int correctNumberCount, int correctBonusCount) {

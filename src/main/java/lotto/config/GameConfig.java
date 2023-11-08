@@ -16,7 +16,8 @@ public class GameConfig {
     private static Player player;
 
     public static GameController getGameController() {
-        return new GameController(getPlayer(), getPlayerService(), getWinningNumberGenerator(), getOutputController(), getLottoCountGenerator());
+        return new GameController(getPlayer(), getPlayerService(), getWinningNumberGenerator(), getOutputController(),
+                getLottoCountGenerator());
     }
 
     private static PlayerService getPlayerService() {
@@ -30,19 +31,19 @@ public class GameConfig {
         return player;
     }
 
-    private static WinningNumberGenerator getWinningNumberGenerator(){
+    private static WinningNumberGenerator getWinningNumberGenerator() {
         return new WinningNumberGenerator();
     }
 
-    private static LottoCountGenerator getLottoCountGenerator(){
+    private static LottoCountGenerator getLottoCountGenerator() {
         return new LottoCountGenerator();
     }
 
-    private static LottoGenerator getLottoGenerator(){
+    private static LottoGenerator getLottoGenerator() {
         return new LottoGenerator();
     }
 
-    private static WinningLottoCalculator getWinningLottoCalculator(){
+    private static WinningLottoCalculator getWinningLottoCalculator() {
         return new WinningLottoCalculator();
     }
 
@@ -50,7 +51,7 @@ public class GameConfig {
         return new OutputController(getTotalStatCalculator());
     }
 
-    private static TotalStatCalculator getTotalStatCalculator(){
+    private static TotalStatCalculator getTotalStatCalculator() {
         return new TotalStatCalculator(getPlayer());
     }
 }

@@ -11,7 +11,7 @@ import lotto.util.LottoValues;
 
 public class InputController {
 
-    public static int inputPrice() throws IllegalArgumentException{
+    public static int inputPrice() throws IllegalArgumentException {
         int customerPrice;
 
         System.out.println(InputMessage.INPUT_PRICE_MESSAGE);
@@ -26,7 +26,7 @@ public class InputController {
         return customerPrice;
     }
 
-    public static List<Integer> inputWinningNumber() throws NumberFormatException{
+    public static List<Integer> inputWinningNumber() throws NumberFormatException {
         List<Integer> winningNumber;
 
         System.out.println();
@@ -41,7 +41,7 @@ public class InputController {
         return winningNumber;
     }
 
-    public static int inputBonusNumber() throws NumberFormatException{
+    public static int inputBonusNumber() throws NumberFormatException {
         Integer bonusNumber;
 
         System.out.println();
@@ -56,7 +56,7 @@ public class InputController {
         return bonusNumber;
     }
 
-    private static List<Integer> splitToParameter(String input) throws NumberFormatException{
+    private static List<Integer> splitToParameter(String input) throws NumberFormatException {
         return Arrays.stream(input.split(LottoValues.INPUT_SPLIT_PARAMETER))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -68,7 +68,8 @@ public class InputController {
             try {
                 T result = supplier.get();
                 return result;
-            } catch (IllegalArgumentException e) {}
+            } catch (IllegalArgumentException e) {
+            }
         }
     }
 }

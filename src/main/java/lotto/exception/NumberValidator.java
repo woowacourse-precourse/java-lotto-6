@@ -14,10 +14,11 @@ public class NumberValidator {
 
     public static void validate(int bonusNumber, List<Integer> winningNumbers) throws IllegalArgumentException {
         validateRange(bonusNumber);
-        validateInWinningNumbers(bonusNumber,winningNumbers);
+        validateInWinningNumbers(bonusNumber, winningNumbers);
     }
 
-    public static void validateInWinningNumbers(int bonusNumber, List<Integer> winningNumbers) throws IllegalArgumentException {
+    public static void validateInWinningNumbers(int bonusNumber, List<Integer> winningNumbers)
+            throws IllegalArgumentException {
         if (winningNumbers.contains(bonusNumber)) {
             System.out.println(ErrorMessage.ERROR_VALIDATE_BONUS_DUPLICATE_MESSAGE);
             throw new IllegalArgumentException();

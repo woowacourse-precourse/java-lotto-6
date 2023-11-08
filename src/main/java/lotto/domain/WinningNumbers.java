@@ -12,11 +12,11 @@ public class WinningNumbers {
         this.BONUS_NUMBER = bonusNumber;
     }
 
-    public int calculateWinningNumber(Lotto lotto){
+    public int calculateWinningNumber(Lotto lotto) {
         return lotto.getCorrectNumberCount(numbers);
     }
 
-    public int calculateBonusNumber(Lotto lotto){
+    public int calculateBonusNumber(Lotto lotto) {
         return lotto.getCorrectNumberCount(BONUS_NUMBER);
     }
 }

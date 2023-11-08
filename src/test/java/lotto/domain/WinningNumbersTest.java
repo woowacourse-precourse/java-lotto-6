@@ -26,8 +26,8 @@ class WinningNumbersTest {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
-        List<Integer> winningNumber = List.of(1,2,3,4,8,9);
-        WinningNumbers winningNumbers = new WinningNumbers(winningNumber,5);
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 8, 9);
+        WinningNumbers winningNumbers = new WinningNumbers(winningNumber, 5);
         //when
         int winningCount = winningNumbers.calculateWinningNumber(lotto);
         //then
@@ -40,8 +40,8 @@ class WinningNumbersTest {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
-        List<Integer> winningNumber = List.of(1,2,3,4,8,9);
-        WinningNumbers winningNumbers = new WinningNumbers(winningNumber,5);
+        List<Integer> winningNumber = List.of(1, 2, 3, 4, 8, 9);
+        WinningNumbers winningNumbers = new WinningNumbers(winningNumber, 5);
         //when
         int bonusCount = winningNumbers.calculateBonusNumber(lotto);
         //then
@@ -80,7 +80,7 @@ class WinningNumbersTest {
     @Test
     @DisplayName("보너스 번호는 추첨 번호들과 중복되면 안된다.")
     public void bonusNumberDuplicateTest() {
-        assertThatThrownBy(() -> NumberValidator.validateInWinningNumbers(1,List.of(1, 2, 3, 3, 5, 6, 7)))
+        assertThatThrownBy(() -> NumberValidator.validateInWinningNumbers(1, List.of(1, 2, 3, 3, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

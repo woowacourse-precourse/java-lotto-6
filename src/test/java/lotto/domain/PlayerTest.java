@@ -20,6 +20,7 @@ class PlayerTest {
     void beforeEach() {
         player = new Player(new CorrectLottoCalculator());
     }
+
     @Test
     @DisplayName("플레이어에 로또가 저장되어야 한다.")
     void addLotto() {
@@ -34,7 +35,7 @@ class PlayerTest {
     @Test
     @DisplayName("로또의 정답 개수를 설정할 수 있어야 한다.")
     void setLottoCorrectCountTest() {
-        setLotto(3,1);
+        setLotto(3, 1);
 
         List<CorrectCount> correctCounts = player.getCorrectCounts();
 
@@ -64,40 +65,40 @@ class PlayerTest {
         String message = rankingMessage.toString();
         int rankCount = Integer.parseInt(message.split(LottoValues.RANKING_SPLIT_PARAMETER)[0]);
 
-        if(message.contains(RankingMessage.FIRST_RANK.toString())){
+        if (message.contains(RankingMessage.FIRST_RANK.toString())) {
             assertThat(player.getNumberCount(message, rankCount)).isEqualTo(2);
         }
-        if(message.contains(RankingMessage.SECOND_RANK.toString())){
+        if (message.contains(RankingMessage.SECOND_RANK.toString())) {
             assertThat(player.getNumberCount(message, rankCount)).isEqualTo(2);
         }
-        if(message.contains(RankingMessage.THIRD_RANK.toString())){
+        if (message.contains(RankingMessage.THIRD_RANK.toString())) {
             assertThat(player.getNumberCount(message, rankCount)).isEqualTo(3);
         }
-        if(message.contains(RankingMessage.FOURTH_RANK.toString())){
+        if (message.contains(RankingMessage.FOURTH_RANK.toString())) {
             assertThat(player.getNumberCount(message, rankCount)).isEqualTo(4);
         }
-        if(message.contains(RankingMessage.FIFTH_RANK.toString())){
+        if (message.contains(RankingMessage.FIFTH_RANK.toString())) {
             assertThat(player.getNumberCount(message, rankCount)).isEqualTo(5);
         }
     }
 
     private void setLottos() {
-        setLotto(3,1);
-        setLotto(3,0);
-        setLotto(3,1);
-        setLotto(3,0);
-        setLotto(3,1);
-        setLotto(4,0);
-        setLotto(4,1);
-        setLotto(4,0);
-        setLotto(4,1);
-        setLotto(5,0);
-        setLotto(5,0);
-        setLotto(5,0);
-        setLotto(5,1);
-        setLotto(5,1);
-        setLotto(6,1);
-        setLotto(6,0);
+        setLotto(3, 1);
+        setLotto(3, 0);
+        setLotto(3, 1);
+        setLotto(3, 0);
+        setLotto(3, 1);
+        setLotto(4, 0);
+        setLotto(4, 1);
+        setLotto(4, 0);
+        setLotto(4, 1);
+        setLotto(5, 0);
+        setLotto(5, 0);
+        setLotto(5, 0);
+        setLotto(5, 1);
+        setLotto(5, 1);
+        setLotto(6, 1);
+        setLotto(6, 0);
     }
 
     private void setLotto(int correctNumberCount, int correctBonusCount) {

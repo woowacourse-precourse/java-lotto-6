@@ -10,7 +10,8 @@ public class CorrectLottoCalculator {
     }
 
     public Long getCorrectLottoCount(int rankCount, List<CorrectCount> correctLottoCounts) {
-        return correctLottoCounts.stream().filter(correctCount -> correctCount.getCorrectNumberCount() == rankCount).count();
+        return correctLottoCounts.stream().filter(correctCount -> correctCount.getCorrectNumberCount() == rankCount)
+                .count();
     }
 
     public Long getCorrectSecondLottoCount(int rankCount, List<CorrectCount> correctLottoCounts) {

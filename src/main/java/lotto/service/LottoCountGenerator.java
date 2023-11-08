@@ -20,7 +20,7 @@ public class LottoCountGenerator {
         return customerPrice / LottoValues.LOTTO_PRICE;
     }
 
-    private Integer inputAndValidateCustomerPrice(){
+    private Integer inputAndValidateCustomerPrice() {
         int customerPrice = InputController.inputPrice();
 
         NumberValidator.validateLottoCount(customerPrice);

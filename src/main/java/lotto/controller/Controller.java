@@ -30,7 +30,7 @@ public class Controller {
             }
         }
         service.purchaseLottos(buyer);
-        Output.printPurchasedLottos(buyer);
+        Output.printPurchasedLottos(buyer.getLottos());
     }
 
     private int getInputAmount() {
@@ -60,7 +60,10 @@ public class Controller {
     }
 
     private void endGame() {
-
+        service.checkLottoStats(buyer, game);
+        Output.printStatisticsMessage();
+        Output.printResults(buyer.getResult());
+        Output.printReturnRate(buyer.getReturnRate());
     }
 
 }

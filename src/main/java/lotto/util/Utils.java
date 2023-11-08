@@ -11,6 +11,8 @@ public class Utils {
     private static final int NUMBER_START_INCLUSIVE = 1;
     private static final int NUMBER_END_INCLUSIVE = 45;
     private static final int NUMBER_PICK_COUNT = 6;
+    private static final int INITIAL_COUNT = 0;
+    private static final int INCREASE_COUNT = 1;
     private static final String SPLIT_DELIMETER = ",";
 
     public static int stringToInt(String string) {
@@ -29,5 +31,15 @@ public class Utils {
                                                                       NUMBER_PICK_COUNT);
         lottoNumbers.sort(Comparator.naturalOrder());
         return lottoNumbers;
+    }
+
+    public static int countSameInteger(List<Integer> list1, List<Integer> list2) {
+        int count = INITIAL_COUNT;
+        for (int number : list2) {
+            if (list1.contains(number)) {
+                count += INCREASE_COUNT;
+            }
+        }
+        return count;
     }
 }

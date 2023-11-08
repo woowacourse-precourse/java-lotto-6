@@ -14,13 +14,13 @@ public class Game {
         this.bonusNumber = bonusNumber;
     }
 
-//    public List<Integer> getWinningNumbers() {
-//        return this.winningNumbers;
-//    }
-//
-//    public int getBonusNumber() {
-//        return this.bonusNumber;
-//    }
+    public List<Integer> getWinningNumbers() {
+        return this.winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
+    }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         Validation.validateListOutOfRangeNumber(winningNumbers);

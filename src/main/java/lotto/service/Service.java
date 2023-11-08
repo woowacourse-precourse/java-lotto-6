@@ -1,12 +1,19 @@
 package lotto.service;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.domain.Buyer;
+import lotto.domain.Game;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.util.Utils;
 
 public class Service {
     private static final int MINIMUM_AMOUNT = 1000;
+    private static final int BONUS_CONTAIN_COUNT = 1;
+    private static final int BONUS_VACANT_COUNT = 0;
+    private static final int INITIAL_COUNT = 0;
+    private static final int INCREASE_COUNT = 1;
 
     public void purchaseLottos(Buyer buyer) {
         int lottoCount = buyer.getAmount() / MINIMUM_AMOUNT;
@@ -23,5 +30,35 @@ public class Service {
     private Lotto createLottoNumbers() {
         List<Integer> generatedNumbers = Utils.createSortedLottoNumbers();
         return new Lotto(generatedNumbers);
+    }
+
+    public void checkLottoStats(Buyer buyer, Game game) {
+        HashMap<Rank, Integer> result = buyer.getResult();
+
+        for (Lotto lotto : buyer.getLottos()) {
+            Rank rank = compareLotto(lotto, game);
+            result.put(rank, result.getOrDefault(rank, INITIAL_COUNT) + INCREASE_COUNT);
+        }
+
+        calculateReturnRate(buyer);
+    }
+
+    public Rank compareLotto(Lotto lotto, Game game) {
+        int winningCount = Utils.countSameInteger(lotto.getNumbers(), game.getWinningNumbers());
+        int bonusCount = compareBonusNumber(lotto.getNumbers(), game.getBonusNumber());
+        return Rank.valueOfWinningBonusCount(List.of(winningCount, bonusCount));
+
+    }
+
+    private int compareBonusNumber(List<Integer> numbers, int bonusNumber) {
+        int bonusCount = BONUS_VACANT_COUNT;
+        if (numbers.contains(bonusNumber)) {
+            bonusCount = BONUS_CONTAIN_COUNT;
+        }
+        return bonusCount;
+    }
+
+    private void calculateReturnRate(Buyer buyer) {
+        
     }
 }

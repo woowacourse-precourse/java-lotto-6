@@ -18,4 +18,11 @@ public enum Rank {
         this.bonus = bonus;
         this.prize = prize;
     }
+
+    public boolean matchRank(int count, boolean bonus) {
+        if(count==5){
+            return this.count == count && this.bonus==bonus;
+        }
+        return this.count == count;
+    }
 }

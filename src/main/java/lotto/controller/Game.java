@@ -1,12 +1,15 @@
 package lotto.controller;
 
-import lotto.model.PrizeResultDto;
+import lotto.model.Lotto;
 import lotto.util.*;
 import lotto.view.InputView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
 
     private int lottoCount; // 구입한 로또 장 수
+    private List<Lotto> lottoList = new ArrayList<>(); // 구입한 로또 리스트
 
     public Game() {}
 
@@ -25,6 +28,10 @@ public class Game {
             setLottoCount();
         }
 
+    }
+
+    public void setLottoList(int lottoCount){
+        this.lottoList =  GenerateLotto.generateLottoList(lottoCount);
     }
 
 }

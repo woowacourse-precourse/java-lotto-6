@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 
-public class LottoService {
+public class LottoGenerateService {
 
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;

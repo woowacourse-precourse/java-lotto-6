@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,4 +25,10 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("정적팩토리 메서드가 작동하는지 확인한다.")
+    @Test
+    void createLottoByInputStream() {
+        Lotto testLotto = Lotto.createLotto();
+        assertThat(testLotto).isInstanceOf(Lotto.class);
+    }
 }

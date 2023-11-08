@@ -17,4 +17,17 @@ public enum LottoRank {
         this.needBonusNumber = needBonusNumber;
         this.prize = prize;
     }
+
+    public static LottoRank belongedToRank(int matchCount, boolean needBonusNumber) {
+        for (LottoRank lottoRank : values()) {
+            if (lottoRank.isMatchRank(matchCount, needBonusNumber)) {
+                return lottoRank;
+            }
+        }
+        return UNRANKED;
+    }
+
+    private boolean isMatchRank(int matchCount, boolean needBonusNumber) {
+        return this.matchCount == matchCount && this.needBonusNumber == needBonusNumber;
+    }
 }

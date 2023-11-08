@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class LottoServiceTest extends NsTest {
@@ -29,12 +31,12 @@ class LottoServiceTest extends NsTest {
 
     @DisplayName("로또 결과 계산 기능")
     @Test
-    void getLottoResult() throws Exception {
+    void getLottoResult() {
         // given
         // when
-        int[] expectedResult = {1, 0, 0, 0, 0};
+        int[] expectedResult = {0, 0, 0, 0, 1};
         // then
-        Assertions.assertArrayEquals(expectedResult, lottoService.calLottoResult());
+        assertArrayEquals(expectedResult, lottoService.calLottoResult());
     }
 
     @DisplayName("로또 수익률 계산 기능")
@@ -45,7 +47,7 @@ class LottoServiceTest extends NsTest {
         // when
         double expectedResult = lottoService.calProfitMargin(lottoResult);
         // then
-        Assertions.assertEquals(expectedResult, 500.0);
+        assertEquals(expectedResult, 500.0);
     }
     @Override
     protected void runMain() {

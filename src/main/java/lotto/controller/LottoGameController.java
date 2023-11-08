@@ -20,6 +20,7 @@ public class LottoGameController {
         OutputView.printPlayerLottoTicketInfo(player);
 
         Lotto winningBall = createLotto();
+        LottoBall bonusBall = createBonusBall();
     }
 
     private static Player inputAmount() {
@@ -45,6 +46,15 @@ public class LottoGameController {
         }catch (IllegalArgumentException e){
             OutputView.printException(e);
             return createLotto();
+        }
+    }
+
+    private LottoBall createBonusBall(){
+        try{
+            return new LottoBall(InputView.inputWiningBonusLottoNumber());
+        }catch (IllegalArgumentException e){
+            OutputView.printException(e);
+            return createBonusBall();
         }
     }
 }

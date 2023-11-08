@@ -6,27 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
-    public List<List<Integer>> tickets = new ArrayList<>();
-    public int inputPrice;
     private static final int TICKET_PRICE = 1000;
+    public List<List<Integer>> tickets = new ArrayList<>();
+    public int price;
     public int amount;
 
-    public Customer(int inputPrice) {
-        validate(inputPrice);
-        this.inputPrice = inputPrice;
+    public Customer(String inputPrice) {
+        this.price = validate(inputPrice);
         setAmount();
         purchaseTicket();
     }
 
-    private void validate(int inputPrice) {
-        if (inputPrice % TICKET_PRICE != 0 || inputPrice < TICKET_PRICE) {
+    private int validate(String inputPrice) {
+        int price;
+        price = Integer.parseInt(inputPrice);
+        if (price % TICKET_PRICE != 0 || price < TICKET_PRICE) {
             throw new IllegalArgumentException();
         }
-        this.inputPrice = inputPrice;
+        return price;
     }
 
     private void setAmount() {
-        this.amount = this.inputPrice / TICKET_PRICE;
+        this.amount = this.price / TICKET_PRICE;
     }
 
     private List<Integer> generateTicket() {

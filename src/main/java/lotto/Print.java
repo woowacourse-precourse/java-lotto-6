@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Print {
-    private static final String HEADER = "당첨 통계\n---";
+    private static final String HEADER = "\n당첨 통계\n---";
     private static final String TICKETS_PRINT = "\n%d개를 구매했습니다.\n";
     private static final String FIFTH_PRINT = "3개 일치 (5,000원) - %d개\n";
     private static final String FOURTH_PRINT = "4개 일치 (50,000원) - %d개\n";

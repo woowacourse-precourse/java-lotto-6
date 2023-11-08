@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Comparator {
     private final int match;
-    private final boolean bonus;
+    private final boolean isBonus;
 
     public Comparator(List<Integer> ticket, List<Integer> lotto, int bonusNumber) {
         this.match = compareLotto(ticket, lotto);
-        this.bonus = compareBonus(ticket, bonusNumber);
+        this.isBonus = compareBonus(ticket, bonusNumber);
     }
 
     private int compareLotto(List<Integer> user, List<Integer> lotto) {
@@ -29,7 +29,7 @@ public class Comparator {
         return match;
     }
 
-    public boolean getBonus() {
-        return bonus;
+    public boolean getIsBonus() {
+        return isBonus;
     }
 }

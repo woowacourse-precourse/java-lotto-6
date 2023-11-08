@@ -9,7 +9,7 @@ public class ExceptionHandler {
             InputFormatValidator.validateMoneyFormat(purchaseAmount);
             InputFormatValidator.validateMoneyIsMultipleOfLottoPrice(purchaseAmount);
         } catch (IllegalArgumentException e) {
-            Printer.printMoneyInputExceptionMessage();
+            Printer.printExceptionMessage(e.getMessage());
             return ExceptionStatus.OCCURRED;
         }
 

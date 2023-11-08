@@ -3,9 +3,8 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 
-import static lotto.message.ErrorMessage.ERROR_MESSAGE_HEAD;
-import static lotto.message.InfoMessage.*;
-import static lotto.message.ErrorMessage.INVALID_MONEY_INPUT_EXCEPTION;
+import static lotto.message.InfoMessage.PURCHASE_AMOUNT_CHOICE;
+import static lotto.message.InfoMessage.PURCHASE_COMPLETE;
 
 public class Printer {
     public static void printLineBreak() {
@@ -16,8 +15,8 @@ public class Printer {
         System.out.println(PURCHASE_AMOUNT_CHOICE);
     }
 
-    public static void printMoneyInputExceptionMessage() {
-        System.out.println(ERROR_MESSAGE_HEAD + INVALID_MONEY_INPUT_EXCEPTION);
+    public static void printExceptionMessage(String message) {
+        System.out.println(message);
     }
 
     public static void printLottoCount(LottoCount lottoCount) {

@@ -17,4 +17,16 @@ public class User {
     public void addLotto(Lotto lotto) {
         lottoTickets.add(lotto);
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
 }

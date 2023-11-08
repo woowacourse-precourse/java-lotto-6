@@ -25,9 +25,10 @@ public class RandomNumberGeneratorTest {
     @DisplayName("로또 번호 숫자가 중복 되면 예외 발생")
     @Test
     void duplicateNumbers() {
-
+        //given
         NumberGenerator generator = LottoFixtures::createDuplicateLotto;
 
+        //when then
         assertThatThrownBy(generator::generate)
                 .isInstanceOf(DuplicateNumberException.class);
     }
@@ -35,9 +36,10 @@ public class RandomNumberGeneratorTest {
     @DisplayName("로또 번호 개수가 6개가 아니라면 예외 발생")
     @Test
     void createOverOrUnderSize() {
-
+        //given
         NumberGenerator generator = LottoFixtures::createUnderSizeLotto;
 
+        //when then
         assertThatThrownBy(generator::generate)
                 .isInstanceOf(InvalidSizeException.class);
     }

@@ -22,10 +22,12 @@ public class LottoNumberTest {
     @DisplayName("보너스 번호와 6개 숫자 중에 중복되는 숫자가 있다면 예외 발생")
     @Test
     void duplicateBonusNumber() {
+        //given
         int duplicated = 5;
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, duplicated, 6));
         LottoNumber lottoNumber = new LottoNumber(duplicated);
 
+        //when then
         assertThatThrownBy(() -> new WinningLotto(lotto, lottoNumber))
                 .isInstanceOf(DuplicateNumberException.class);
     }

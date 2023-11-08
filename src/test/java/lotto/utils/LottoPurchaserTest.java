@@ -16,11 +16,14 @@ public class LottoPurchaserTest {
     @ParameterizedTest
     @CsvSource(value = {"8000,8", "2000,2", "7000,7", "9000,9"})
     void purchase(int input, int expected) {
-        // given
+        //given
         Money money = new Money(input);
         LottoPurchaser lottoPurchaser = new LottoPurchaser(money);
+
+        //when
         int lottoSize = lottoPurchaser.purchase();
 
+        //then
         assertThat(lottoSize).isEqualTo(expected);
     }
 

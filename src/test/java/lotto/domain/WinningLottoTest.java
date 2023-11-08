@@ -27,8 +27,13 @@ public class WinningLottoTest {
     @ParameterizedTest
     @MethodSource("createRankTestData")
     void getRankWithMatchedNumbers(Rank rank, Lotto lotto) {
+        //given
         WinningLotto winningLotto = WinningLottoFixtures.createWinningLotto();
+
+        //when
         Rank matchedRank = winningLotto.match(lotto);
+
+        //then
         assertThat(matchedRank).isEqualTo(rank);
     }
 }

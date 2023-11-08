@@ -25,8 +25,12 @@ public enum RankOutputTemplate {
         return String.format(template, rank.getCount(), rank.toPriceInt(), count);
     }
 
+    public boolean equals(Rank rank){
+        return this.rank.equals(rank);
+    }
+
     public static Optional<RankOutputTemplate> find(Rank rank) {
-        return Arrays.stream(values()).filter(rankOutputTemplate -> rankOutputTemplate.rank.equals(rank)).findFirst();
+        return Arrays.stream(values()).filter(rankOutputTemplate -> rankOutputTemplate.equals(rank)).findFirst();
     }
 
     public static List<RankOutputTemplate> toList() {

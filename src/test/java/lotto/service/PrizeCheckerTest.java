@@ -5,13 +5,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.utils.LottoConstant;
+import lotto.domain.WinningLotto;
 import lotto.utils.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class PrizeCheckerTest {
+class WinningLottoTest {
 
     @DisplayName("당첨 번호와 로또 번호를 비교하여 등수를 반환한다.")
     @ParameterizedTest
@@ -31,9 +31,9 @@ class PrizeCheckerTest {
         Lotto playerLotto = new Lotto(numbers);
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(7, winningLotto);
-        PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
+        WinningLotto prizeChecker = new WinningLotto(winningLotto, bonusNumber);
         // when
-        Prize prize = prizeChecker.calculatePrize(playerLotto);
+        Prize prize = prizeChecker.getPrize(playerLotto);
         // then
         assertThat(prize.name()).isEqualTo(expectedPrize);
     }

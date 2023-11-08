@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.domain;
 
 import static lotto.utils.ErrorMessages.WINNING_NUMBERS_CONTAINS_BONUS_NUMBER;
 

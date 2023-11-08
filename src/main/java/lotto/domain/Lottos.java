@@ -1,9 +1,12 @@
 package lotto.domain;
 
 import static lotto.utils.ConstantString.NEW_LINE;
+import static lotto.utils.ConstantValues.DEFAULT_COUNT;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 import lotto.domain.wrapper.PurchaseAmount;
 import lotto.service.WinningLotto;
@@ -28,15 +31,18 @@ public class Lottos {
     public int getLottoCount() {
         return lottos.size();
     }
-
-    public int getPrizeCount(Prize prize, WinningLotto winningLotto) {
-        int prizeCount = 0;
+    public Map<Prize, Integer> getLottosResult(PrizeChecker prizeChecker) {
+        Map<Prize, Integer> lottosResult = new HashMap<>();
         for (Lotto lotto : lottos) {
-            if (winningLotto.getPrize(lotto) == prize) {
-                prizeCount++;
+            Prize prize = prizeChecker.getPrize(lotto);
+            if (prize.equals(Prize.NO_PRIZE)) {
+                continue;
             }
+            Integer prizeCount = lottosResult.getOrDefault(prize, DEFAULT_COUNT);
+            prizeCount++;
+            lottosResult.put(prize, prizeCount);
         }
-        return prizeCount;
+        return lottosResult;
     }
 
     @Override

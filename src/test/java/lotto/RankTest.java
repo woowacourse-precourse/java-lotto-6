@@ -1,33 +1,19 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class RankTest {
 
-    @DisplayName("맞춘 번호 갯수와 보너스 번호로 등수 매칭 test")
-    @Test
-    void findRankTest() {
-        //Given
-        int matchNumberCnt = 5;
-        boolean isBonus = false;
+    @ParameterizedTest
+    @CsvSource({"6,false,FIRST", "5,true,SECOND", "5,false,THIRD", "4,false,FOURTH","3,false,FIFTH","0,true,NORANK"})
+    void findRankTest(int matchNumberCnt, boolean isBonus, String expected){
         //When
         Rank rank = Rank.findRank(matchNumberCnt, isBonus);
         //Then
-        assertThat(rank.name()).isEqualTo("THIRD");
-    }
+        assertThat(rank.name()).isEqualTo(expected);
 
-    @DisplayName("맞춘 번호 갯수가 5개이고, 보너스 번호도 맞으면 2등")
-    @Test
-    void findRankTest_SECOND() {
-        //Given
-        int matchNumberCnt = 5;
-        boolean isBonus = true;
-        //When
-        Rank rank = Rank.findRank(matchNumberCnt, isBonus);
-        //Then
-        assertThat(rank.name()).isEqualTo("SECOND");
     }
 
 }

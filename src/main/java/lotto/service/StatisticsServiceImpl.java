@@ -9,12 +9,17 @@ import java.util.List;
 import static lotto.utils.NumberConstant.PRICE_UNIT;
 
 public class StatisticsServiceImpl implements StatisticsService {
+    private static StatisticsService instance;
     private final List<Lotto> myLottos;
     private final Lotto winningNumbers;
     private final BonusNumber bonusNumber;
     private Result result = new Result();
-    private static StatisticsService instance;
 
+    private StatisticsServiceImpl(List<Lotto> myLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
+        this.myLottos = myLottos;
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+    }
     public static StatisticsService getInstance(List<Lotto> myLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
         if (instance == null) {
             instance = new StatisticsServiceImpl(myLottos, winningNumbers, bonusNumber);
@@ -22,11 +27,6 @@ public class StatisticsServiceImpl implements StatisticsService {
         return instance;
     }
 
-    private StatisticsServiceImpl(List<Lotto> myLottos, Lotto winningNumbers, BonusNumber bonusNumber) {
-        this.myLottos = myLottos;
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
     @Override
     public Result calculateResult() {
         for (Lotto myLotto : myLottos) {

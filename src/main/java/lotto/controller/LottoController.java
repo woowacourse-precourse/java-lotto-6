@@ -4,7 +4,6 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.service.*;
-import lotto.validate.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,13 +15,13 @@ public class LottoController {
     private final WinningLottoFactory winningLottoFactory = WinningLottoFactoryImpl.getInstance();
     private final LottoGeneratorService lottoGeneratorService = LottoGeneratorServiceImpl.getInstance();
 
+    private LottoController() {}
     private static class  LottoControllerHelper {
         private static final LottoController LOTTO_CONTROLLER = new LottoController();
     }
     public static LottoController getInstance() {
         return LottoControllerHelper.LOTTO_CONTROLLER;
     }
-    private LottoController() {}
 
     public void start() {
         List<Lotto> lottos = getMyLottos();
@@ -61,8 +60,7 @@ public class LottoController {
     private BonusNumber getBonusNumber(Lotto lotto) {
         try {
             String inputBonusNumber = inputView.inputBonusNumber();
-            BonusNumber bonusNumber = winningLottoFactory.bonusNumber(inputBonusNumber);
-            LottoValidator.bonusNumberValidate(lotto, bonusNumber);
+            BonusNumber bonusNumber = winningLottoFactory.bonusNumber(inputBonusNumber, lotto);
             return bonusNumber;
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());

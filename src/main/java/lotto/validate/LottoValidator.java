@@ -1,6 +1,5 @@
 package lotto.validate;
 
-import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.excpetion.DivedException;
 import lotto.excpetion.DuplicatedException;
@@ -24,9 +23,8 @@ public class LottoValidator {
         }
     }
 
-    private static void isInRange(BonusNumber bonusNumber) {
-        int number = bonusNumber.getBonusNumber();
-        if (number < MIN.getValue() || number > MAX.getValue())
+    private static void isInRange(int bonusNumber) {
+        if (bonusNumber < MIN.getValue() || bonusNumber > MAX.getValue())
             throw new NotInRageException();
     }
 
@@ -45,14 +43,14 @@ public class LottoValidator {
     }
 
 
-    public static void bonusNumberValidate(Lotto lotto, BonusNumber bonusNumber) {
+    public static void bonusNumberValidate(Lotto lotto, int bonusNumber) {
         isInRange(bonusNumber);
         bonusNumberDuplicated(lotto, bonusNumber);
     }
 
-    private static void bonusNumberDuplicated(Lotto lotto, BonusNumber bonusNumber) {
+    private static void bonusNumberDuplicated(Lotto lotto, int bonusNumber) {
         List<Integer> numbers = lotto.getNumbers();
-        if (numbers.contains(bonusNumber.getBonusNumber()))
+        if (numbers.contains(bonusNumber))
             throw new DuplicatedException();
     }
 

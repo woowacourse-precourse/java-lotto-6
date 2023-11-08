@@ -1,8 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
+import lotto.constants.WinningResult;
 import lotto.model.Lotto;
 import lotto.model.LottoStore;
+import lotto.model.WinLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,8 +17,8 @@ public class LottoController {
     public void start() {
         InputPurchaseAmount();
         OutputView.printLottoList(purchaseLottoList);
-        InputWinningNumbers();
-        InputBonusNumber();
+        inputNumbers();
+        printLottoResult();
     }
 
     public void InputPurchaseAmount() {
@@ -28,15 +31,29 @@ public class LottoController {
         }
     }
 
-    private void InputWinningNumbers() {
+    private void inputNumbers() {
         OutputView.askWinningNumbers();
-        List<Integer> winningNumbers = InputView.inputWinningNumbers();
-        lottoStore.setWinningNumbers(winningNumbers);
-    }
-
-    private void InputBonusNumber() {
+        Lotto lotto = new Lotto(InputView.inputWinningNumbers());
         OutputView.askBonusNumber();
         Integer bonusNumber = InputView.inputBonusNumber();
-        lottoStore.setBonusNumber(bonusNumber);
+        WinLotto compareResult = new WinLotto(lotto, bonusNumber);
+        lottoStore.setCompareList(compareResult);
     }
+
+    private void printLottoResult() {
+        Map<WinningResult, Integer> winningLottoResult = lottoStore.getLottoResult();
+        double profitRate = 0;
+        OutputView.printResult(winningLottoResult);
+        for (WinningResult winningResult : winningLottoResult.keySet()) {
+            profitRate
+                    += (
+                    (double) (winningResult.getPrize()) / lottoStore.getPurchaseAmount()
+                            * (winningLottoResult.get(
+                            winningResult)) * (100));
+
+        }
+        OutputView.printProfitRate(profitRate);
+    }
+
+
 }

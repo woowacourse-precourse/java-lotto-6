@@ -1,20 +1,28 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import lotto.constants.WinningResult;
 import lotto.validator.UserInputValidator;
+import lotto.view.OutputView;
 
 public class LottoStore {
     private static List<Lotto> lottoList;
     private static int lottoCount;
+    int purchaseAmount;
 
-    private List<Integer> winningNumbers;
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 
-    private Integer bonusNumber;
+    private WinLotto compareResult;
+
 
     public List<Lotto> buyLottos(String userInput) {
-        int amount = getPurchaseAmount(userInput);
-        lottoCount = calculateAttemptCount(amount);
+        purchaseAmount = getPurchaseAmount(userInput);
+        lottoCount = calculateAttemptCount(purchaseAmount);
         lottoList = generateLottoList();
         return lottoList;
     }
@@ -46,13 +54,29 @@ public class LottoStore {
         return lotto;
     }
 
-    public void setWinningNumbers(List<Integer> winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    public void setCompareList(WinLotto compareResult) {
+        this.compareResult = compareResult;
     }
 
-    public void setBonusNumber(Integer bonusNumber) {
-        this.bonusNumber = bonusNumber;
+    public Map<WinningResult, Integer> getLottoResult() {
+        Map<WinningResult, Integer> result = setResult();
+        WinningResult winningResult;
+
+        OutputView.printSuccessResult();
+        for (int i = 0; i < lottoList.size(); i++) {
+            winningResult = compareResult.compareNumbers(lottoList.get(i));
+            result.put(winningResult, result.get(winningResult) + 1);
+        }
+
+        return result;
     }
 
+    private Map<WinningResult, Integer> setResult() {
+        Map<WinningResult, Integer> result = new LinkedHashMap<>();
 
+        for (WinningResult winningResult : WinningResult.values()) {
+            result.put(winningResult, 0);
+        }
+        return result;
+    }
 }

@@ -55,14 +55,14 @@
 ## 클래스
 
 ## Model
-### LottoTicket
+### Lotto
 > 로또 한 장을 나타내는 클래스
 > 6개의 로또 번호를 담고 있다.
 
 ### WinningNumbers
 > 당첨 번호 6개와 보너스 번호 1개를 나타내는 클래스
 
-### NumberGenerator
+### LottoNumberGenerator
 > 6개의 로또 번호를 뽑는 클래스
 > 오름차순 정렬 기능을 담는다.
 
@@ -86,3 +86,6 @@
 
 
 ## Exception
+### Validator
+> 사용자 입력 예외처리 클래스
+> 구입금액, 당첨번호입력, 보너스번호입력 유효성 검사

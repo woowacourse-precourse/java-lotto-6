@@ -63,7 +63,6 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumberInput;
     }
 
-
     public List<Integer> getWinningNumbers() {
         return Collections.unmodifiableList(winningNumbers);
     }

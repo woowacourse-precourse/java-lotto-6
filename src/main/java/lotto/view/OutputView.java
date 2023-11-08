@@ -29,7 +29,6 @@ public class OutputView {
         prizeWinCount(Prize.FIRST, result.get(Prize.FIRST));
     }
 
-
     public void prizeWinCount(Prize prize, int count) {
         System.out.println(prizeInfo(prize) + LottoGameMessage.DASH.message
                 + count + LottoGameMessage.COUNT.message);

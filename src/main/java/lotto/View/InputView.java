@@ -7,8 +7,8 @@ import lotto.constant.GameMessage;
 import lotto.validation.Validator;
 
 public class InputView {
-    public String getPrice() {
-        System.out.println(GameMessage.INPUT_PRICE.getMessage());
+    public String getAmount() {
+        System.out.println(GameMessage.INPUT_AMOUNT.getMessage());
 
         String input = Console.readLine();
 

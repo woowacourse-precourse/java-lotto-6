@@ -4,11 +4,11 @@ import lotto.View.OutputView;
 import lotto.constant.ErrorMessage;
 
 public class Validator {
-    public boolean isPriceRight(String input) {
+    public boolean isAmountRight(String input) {
         try {
-            int price = Integer.parseInt(input);
+            int amount = Integer.parseInt(input);
 
-            if (!isDividedBy1000(price)) {
+            if (!isDividedBy1000(amount)) {
                 throw new IllegalArgumentException();
             }
 
@@ -20,8 +20,8 @@ public class Validator {
         }
     }
 
-    private boolean isDividedBy1000(int price) {
-        if (price % 1000 != 0)
+    private boolean isDividedBy1000(int amount) {
+        if (amount % 1000 != 0)
             return false;
 
         return true;

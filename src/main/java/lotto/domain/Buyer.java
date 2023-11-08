@@ -6,16 +6,16 @@ import lotto.View.InputView;
 import lotto.validation.Validator;
 
 public class Buyer {
-    int price;
+    int amount;
     List<Lotto> buyList = new ArrayList<>();
     InputView inputView = new InputView();
     Validator validator = new Validator();
 
     public void buyLotto() {
         while (true) {
-            String input = inputView.getPrice();
-            if (validator.isPriceRight(input)) {
-                price = Integer.parseInt(input);
+            String input = inputView.getAmount();
+            if (validator.isAmountRight(input)) {
+                amount = Integer.parseInt(input);
                 break;
             }
         }

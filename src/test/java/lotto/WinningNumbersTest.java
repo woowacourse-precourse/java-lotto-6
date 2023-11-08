@@ -1,12 +1,16 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningNumbersTest {
 
@@ -38,4 +42,13 @@ public class WinningNumbersTest {
         assertThatThrownBy(() -> new Lotto(List.of(10, 10, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호가 숫자와 쉼표(,)로 이루어져 있는지 검증한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,asdf,4,5,6", "1.2.3.4.5.6"})
+    void validateByNumericAndComma(String input) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> InputView.InputWinningNumbers(input));
+    }
+
 }

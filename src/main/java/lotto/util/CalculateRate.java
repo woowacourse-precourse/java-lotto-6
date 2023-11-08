@@ -5,14 +5,14 @@ import java.text.NumberFormat;
 
 public class CalculateRate {
 
-    public Double getRate(int purchaseAmount, int money) {
+    public static Double getRate(int purchaseAmount, int money) {
         double result = (double) money / purchaseAmount * 100;
         String rate = formatNumberWithComma(result);
         Double resultRate = Double.parseDouble(rate);
         return resultRate;
     }
 
-    private String formatNumberWithComma(double number) {
+    private static String formatNumberWithComma(double number) {
         NumberFormat format = new DecimalFormat("#,###.0#");
         return format.format(number);
     }

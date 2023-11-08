@@ -44,7 +44,7 @@ public class LottoController {
         ioController.notifyLottoNums(lottos);
         makeWinningNumber();
         ioController.notifyResult();
-        LottoRaffle();
+
         lottoResult();
     }
 
@@ -56,9 +56,7 @@ public class LottoController {
         winningNumberDTO = new WinningNumberDTO(winningNumber,bonusNum);
     }
 
-    public void LottoRaffle(){
-        lottos=lottoMachine.makeLottosByPurchaseAmount(lottoCount);
-    }
+
 
     public void lottoResult(){
         HashMap<String,Integer> prizeNum=lottoRefree.makePrizeNum(winningNumberDTO,lottos);

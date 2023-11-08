@@ -29,7 +29,7 @@ public enum OutputMessage {
 
     public String getIntroduceMessage(int num){
         String sNum=Integer.toString(num);
-        return GET_NEXT_LINE+sNum+PURCHASE_INTRODUCE_MESSAGE;
+        return sNum+PURCHASE_INTRODUCE_MESSAGE;
     }
 
     public String getWinningRateMessage(BigDecimal rate){

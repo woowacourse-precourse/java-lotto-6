@@ -75,6 +75,7 @@ public class LottoIOController {
     }
 
     public void getIntroducePurchaseNum(int lottoCount){
+        iovIew.showSingleMessage("");
         System.out.println(OutputMessage.PURCHASE_INTRODUCE_MESSAGE.getIntroduceMessage(lottoCount));
     }
 

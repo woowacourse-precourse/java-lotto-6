@@ -51,12 +51,12 @@ public class ConsolePrint {
         System.out.println(String.format("%s - %d개", SAME_NUMBER_4.getMessage(), num));
     }
 
-    public static void printBonusX(int num) {
-        System.out.println(String.format("%s - %d개", SAME_NUMBER_5_BONUSE_X.getMessageBonusX(), num));
+    public static void printBonusO(int num) {
+        System.out.println(String.format("%s - %d개", SAME_NUMBER_5_BONUSE_O.getMessageBonusO(num), num));
     }
 
-    public static void printBonusO(int num) {
-        System.out.println(String.format("%s - %d개", SAME_NUMBER_5_BONUSE_O.getMessage(), num));
+    public static void printBonusX(int num) {
+        System.out.println(String.format("%s - %d개", SAME_NUMBER_5_BONUSE_X.getMessage(), num));
     }
 
     public static void print6Same(int num) {

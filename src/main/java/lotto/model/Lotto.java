@@ -26,7 +26,6 @@ public class Lotto {
             validateWinningPositive(num);
             numbers.add(parstInt(num));
         }
-
 //        System.out.println("당첨번호" + numbers);
         validate(numbers);
         validateIs1_45(numbers);

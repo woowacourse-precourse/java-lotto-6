@@ -17,6 +17,7 @@ class LottoControllerTest {
 
     @BeforeEach
     public void setUp() {
+        controller = new LottoController();
 
     }
 
@@ -25,8 +26,7 @@ class LottoControllerTest {
     @ParameterizedTest
     @CsvSource(value = {"20,21,28,3,4,24:3", "42,36,1,24,27,39:1", "11,37,22,21,43,41:1"}, delimiter = ':')
     void countSameNumbers(String lottoEX, int expectedCount) {
-        Lotto winningLotto = new Lotto(WINNING_NUM_EX);
-        controller = new LottoController();
+        Lotto winningLotto = new Lotto(WINNING_NUM_EX); //WINNING_NUM_EX = {"1", "2", "3", "4", "5", "21"};
 
         List<Integer> lottos = parseStringToList(lottoEX);
 
@@ -43,6 +43,16 @@ class LottoControllerTest {
         return inputList;
     }
 
+    @DisplayName("총 수익률 계산하기(소수점 둘째자리에서 반올림 하기")
+    @ParameterizedTest
+    @CsvSource(value = {"10000,20000,30000:1200.0", "500,248,125:17.5", "123,345,456:18.5"}, delimiter = ':')
+    void calculateRevenue(String revenues, double expected) {
+
+        List<Integer> revenueBox = parseStringToList(revenues);
+        double result = controller.calculateRevenue(revenueBox, 5);//lotto 5개 구매(5000원)
+        assertThat(result).isEqualTo(expected);
+
+    }
 
 }
 

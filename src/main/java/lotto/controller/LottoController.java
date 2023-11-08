@@ -19,7 +19,6 @@ import lotto.view.ConsolePrint;
 public class LottoController {
     private LottosList lottosList;
     private Lotto winningNumber;
-
     private BonusNumber bonus;
 
     public LottoController() {
@@ -34,7 +33,8 @@ public class LottoController {
         readBonusNum(service, winningNumber);
         List<Integer> sames = compareNumbers();
         makeRank(sames);
-        printRevenue((float) sumRevenues(sames));
+        double revenue = calculateRevenue(sumRevenues(sames), lottosList.getLottosList().size());
+        printRevenue((float) revenue);
     }
 
     void readPrice(LottoService service) {
@@ -85,10 +85,10 @@ public class LottoController {
 
     void printLottos() {
         ConsolePrint.printPurchased(lottosList.getLottosList().size());
+
         for (Lotto lotto : lottosList.getLottosList()) {
             ConsolePrint.printLotto(lotto);
         }
-
     }
 
     public void makeRank(List<Integer> sames) {
@@ -109,7 +109,7 @@ public class LottoController {
         ConsolePrint.printRevenue(result);
     }
 
-    public double sumRevenues(List<Integer> sames) {
+    public List<Integer> sumRevenues(List<Integer> sames) {
         List<Integer> revenues = new ArrayList<>();
         revenues.add(Collections.frequency(sames, 3) * SAME_NUMBER_3.getPrice());
         revenues.add(Collections.frequency(sames, 4) * SAME_NUMBER_4.getPrice());
@@ -121,12 +121,11 @@ public class LottoController {
         revenues.add(bonusSame * SAME_NUMBER_5_BONUSE_O.getPrice());
         revenues.add(Collections.frequency(sames, 6) * SAME_NUMBER_6.getPrice());
 
-        return calculateRevenue(revenues);
+        return revenues;
     }
 
-    public double calculateRevenue(List<Integer> revenues) {
+    public double calculateRevenue(List<Integer> revenues, int num) {
         int sum = 0;
-        int num = lottosList.getLottosList().size();
 
         for (int price : revenues) {
             sum += price;

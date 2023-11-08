@@ -6,6 +6,7 @@ import lotto.view.Input;
 import lotto.view.Output;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoController {
@@ -26,7 +27,7 @@ public class LottoController {
         makeLotto(lottoBuyAmount);
         output.printLotteryNumber(lottos);
         List<Integer> lottoPrizeNums = input.requestLottoPrizeNums();
-
+        input.requestBonusNums(lottoPrizeNums);
     }
 
     public void makeLotto(int lottoBuyAmount) {

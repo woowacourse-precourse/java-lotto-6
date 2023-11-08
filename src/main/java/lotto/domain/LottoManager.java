@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.errors.ErrorMessage;
 import lotto.output.OutputView;
 
@@ -23,13 +25,19 @@ public class LottoManager {
     }
 
     public void setNumberOfLottos(String cost) {
-        int integerCost = parseIntCost(cost);
+        int integerCost = parseInt(cost);
         isSmallerthanZero(integerCost);
         calculateNumberOfLottos(integerCost);
         this.numberOfLottos = integerCost/1000;
     }
 
-    private int parseIntCost(String cost){
+    public List<Integer> setLuckyNumbers(String luckyNumber) {
+        return Arrays.stream(luckyNumber.trim().split("\\s*,\\s*"))
+                .map(this::parseInt)
+                .toList();
+    }
+
+    private int parseInt(String cost){
         try {
             return Integer.parseInt(cost);
         } catch (NumberFormatException e) {
@@ -56,4 +64,5 @@ public class LottoManager {
     public String printOutNumberOfLottos() {
         return this.numberOfLottos + OutputView.NUMBER_OF_LOTTOS.getMessage();
     }
+
 }

@@ -1,8 +1,5 @@
 package lotto;
 
-import java.util.HashSet;
-import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.LottoManager;
 import lotto.domain.Lottos;
 import lotto.output.OutputView;
@@ -21,8 +18,6 @@ public class Application {
         System.out.println(lottos);
 
         System.out.println(OutputView.INPUT_LUCKY_NUMBER.getMessage());
-////        List<Integer> luckyNumbers = lottoGame.getLuckyNumber();
-////        Lotto lotto = new Lotto(luckyNumbers);
-//        Lotto lotto = new Lotto(lottoGame.getLuckyNumber());
+        lottoGame.getRightLuckyNumbers();
     }
 }

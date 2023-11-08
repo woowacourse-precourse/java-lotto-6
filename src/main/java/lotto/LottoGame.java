@@ -11,6 +11,7 @@ import lotto.domain.LottoManager;
 public class LottoGame {
 
     LottoManager lottoManager = LottoManager.getInstance();
+    Lotto luckyNumbers = null;
 
     public void getRightCost() {
         do {
@@ -42,8 +43,19 @@ public class LottoGame {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-//    public List<Integer> getLuckyNumber() {
-//        List<Integer> luckyNumber = new ArrayList<>();
-//        String st = Console.readLine();
-//    }
+    public void getRightLuckyNumbers() {
+        do {
+            getLuckyNumbers();
+            System.out.println("wrong" + luckyNumbers);
+        } while (luckyNumbers==null);
+        System.out.println("right" + luckyNumbers);
+    }
+
+    private void getLuckyNumbers() {
+        try {
+            luckyNumbers = new Lotto(lottoManager.setLuckyNumbers(Console.readLine()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }

@@ -19,7 +19,7 @@ public class LottoController {
 
         WinningLotto winningLotto = inputWinningLotto();
         Statistic statistic = new Statistic(lottoTickets, winningLotto);
-        ;
+
         OutputView.showLottoResult(statistic, budget);
     }
 

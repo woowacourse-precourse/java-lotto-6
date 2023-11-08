@@ -7,14 +7,12 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class ConsoleReader {
 	public static Integer readNumber() {
-		Integer number = null;
 		try {
-			number = Integer.parseInt(Console.readLine());
-
+			return Integer.parseInt(Console.readLine());
 		} catch (NumberFormatException e) {
 			throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다!");
 		}
-		return number;
+
 	}
 
 	public static List<Integer> readNumberList() {

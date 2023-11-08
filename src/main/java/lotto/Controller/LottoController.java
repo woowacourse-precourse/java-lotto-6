@@ -15,6 +15,9 @@ public class LottoController {
     private final InputView inputView = diContainer.getInputView();
     private final OutputView outputView = diContainer.getOutputView();
 
+    protected LottoController() {
+    }
+
     public static LottoController of() {
         return new LottoController();
     }

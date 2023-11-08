@@ -27,4 +27,8 @@ public class Lotto {
         copyOfNumbers.retainAll(this.numbers);
         return copyOfNumbers.size();
     }
+    
+    boolean isContain(int number) {
+        return this.numbers.contains(number);
+    }
 }

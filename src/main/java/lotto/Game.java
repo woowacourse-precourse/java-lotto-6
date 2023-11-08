@@ -128,7 +128,36 @@ public class Game {
     void calculateRateOfReturn() {
         for (Lotto lotto : lottos.lottos) {
             int matchedCount = lotto.matchedCount(lotteryNumbers.winningNumbers);
-            //System.out.println(matchedCount);
+            calculateRankCounts(matchedCount, lotto);
         }
+        
+    }
+    
+    void calculateRankCounts(int matchedCount, Lotto lotto) {
+        if (matchedCount == 6) {
+            rankCounts[1]++;
+            return;
+        }
+        if (matchedCount == 5) {
+            determineRank(lotto);
+            return;
+        }
+        if (matchedCount == 4) {
+            rankCounts[4]++;
+            return;
+        }
+        if (matchedCount == 3) {
+            rankCounts[5]++;
+            return;
+        }
+    }
+    
+    void determineRank(Lotto lotto) {
+        if (lotto.isContain(lotteryNumbers.bonusNumber)) {
+            rankCounts[2]++;
+            return;
+        }
+        rankCounts[3]++;
+        return;
     }
 }

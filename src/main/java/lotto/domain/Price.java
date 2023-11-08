@@ -25,4 +25,8 @@ public class Price {
     public int calculateLottoCount() {
         return this.price / PRICE_UNIT;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

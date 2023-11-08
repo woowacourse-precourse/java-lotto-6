@@ -1,6 +1,5 @@
 package lotto.domain;
 
-
 import java.util.List;
 
 public class WinningLotto {
@@ -18,5 +17,13 @@ public class WinningLotto {
         if (winningLottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
         }
+    }
+
+    public List<Integer> getWinningLottoNumbers() {
+        return winningLotto.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

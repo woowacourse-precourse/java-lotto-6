@@ -7,7 +7,7 @@ import java.util.List;
 import lotto.LottoEnum.Prize;
 
 public class NumberComparing {
-    private final int SIZEOFLOTTONUMBERS = 6;
+//    private final int SIZEOFLOTTONUMBERS = 6;
 
     private final List<Integer> winningNumbers;
     private final int bonusWinningNumber;
@@ -23,7 +23,8 @@ public class NumberComparing {
 
         lottoNumberBundle.retainAll(winningNumbersBundle);
 
-        int result = SIZEOFLOTTONUMBERS - lottoNumberBundle.size();
+//        int result = SIZEOFLOTTONUMBERS - lottoNumberBundle.size();
+        int result = lottoNumberBundle.size();
 
         return result;
     }

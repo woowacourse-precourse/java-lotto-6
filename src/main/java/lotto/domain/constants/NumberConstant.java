@@ -12,6 +12,7 @@ public class NumberConstant {
     public static final int VALIDATE_LOTTO_SIZE = 6;
     public static final int ZERO = 0;
     public static final long LONG_TYPE_ZERO = 0L;
+    public static final long LONG_TYPE_ONE = 1L;
     public static final long START_LOTTO_COUNT = 3;
     
     private NumberConstant() {

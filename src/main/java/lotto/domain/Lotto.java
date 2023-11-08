@@ -19,6 +19,10 @@ public class Lotto {
 		this.numbers = numbers;
 	}
 
+	public List<Integer> getNumbers(){
+		return numbers;
+	}
+
 	private void validate(List<Integer> numbers) {
 		if (numbers.size() != LOTTO_SIZE) {
 			System.out.println("[ERROR] 숫자의 개수가 6개가 아닙니다.");

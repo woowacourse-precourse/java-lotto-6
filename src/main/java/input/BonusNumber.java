@@ -22,13 +22,13 @@ public class BonusNumber {
             System.out.println(ServiceMessage.getMessageByCode(104));
             this.input = scanner.nextLine();
             isValidInput = isValidate(input, winningNumbers);
+            System.out.println();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
     private boolean isValidate(final String input, List<Integer> winningNumbers) {
         isValidCharacters(input);
-        isValidLength(input);
         isDuplicated(winningNumbers, input);
         isValidBounds(input);
         return true;
@@ -40,14 +40,9 @@ public class BonusNumber {
             throw new IllegalArgumentException(buildErrorMessage(904));
         }
     }
-    private void isValidLength(final String input) {
-        if(input.length() != 1){
-            throw new IllegalArgumentException(buildErrorMessage(905));
-        }
-    }
 
     private void isValidCharacters(final String input) {
-        if(!input.matches("[0-9]+")) {
+        if(!input.matches("[1-9]+")) {
             throw new IllegalArgumentException(buildErrorMessage(901));
         }
     }

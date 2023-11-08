@@ -1,9 +1,9 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.controller.Validation;
 
 public class Util {
 
@@ -15,5 +15,9 @@ public class Util {
         return strList.stream()
                 .map(s -> Integer.parseInt(s))
                 .collect(Collectors.toList());
+    }
+
+    public void sortNaturalOrder(List<Integer> numbers) {
+        numbers.sort(Comparator.naturalOrder());
     }
 }

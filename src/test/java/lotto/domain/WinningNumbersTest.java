@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class WinningNumbersTest {
 
@@ -20,6 +19,13 @@ class WinningNumbersTest {
         winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
         lottoContainsBonusNumber = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         lottoNotContainsBonusNumber = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("당첨 번호와 보너스 번호가 있어야 한다.")
+    @Test
+    void createWinningNumbers() {
+        assertThatCode(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("당첨 번호 입력 시 보너스 번호가 로또 번호에 중복되면 예외가 발생한다.")

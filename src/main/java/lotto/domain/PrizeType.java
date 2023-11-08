@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum PrizeType {
-    FIRST_PRIZE(6, 2_000_000_000),
-    SECOND_PRIZE(5, 30_000_000),
-    THIRD_PRIZE(5, 1_500_000),
-    FOURTH_PRIZE(4, 50_000),
-    FIFTH_PRIZE(3, 5_000),
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000),
+    THIRD(5, 1_500_000),
+    FOURTH(4, 50_000),
+    FIFTH(3, 5_000),
     NONE(2, 0);
 
     private final int matchNumbers;
@@ -32,8 +32,8 @@ public enum PrizeType {
 
     public static List<PrizeType> getValues() {
         List<PrizeType> prizeTypeValues = Stream.of(PrizeType.values())
-                                                        .filter(rankType -> rankType.matchNumbers >= 3)
-                                                        .collect(Collectors.toList());
+                .filter(rankType -> rankType.matchNumbers >= 3)
+                .collect(Collectors.toList());
         Collections.reverse(prizeTypeValues);
         return prizeTypeValues;
     }
@@ -57,11 +57,11 @@ public enum PrizeType {
     }
 
     private boolean isSecondPrize(PrizeType rankData) {
-        return rankData == SECOND_PRIZE;
+        return rankData == SECOND;
     }
 
     private boolean isThirdPrize(PrizeType rankData) {
-        return rankData == THIRD_PRIZE;
+        return rankData == THIRD;
     }
 
     private boolean isMatchNumber(int rankMatchNumbers, int matchNumbers) {
@@ -77,6 +77,6 @@ public enum PrizeType {
     }
 
     private boolean isSecondPrize(int matchNumbers, int money) {
-        return matchNumbers == SECOND_PRIZE.getMatchNumbers() && money == SECOND_PRIZE.getMoney();
+        return matchNumbers == SECOND.getMatchNumbers() && money == SECOND.getMoney();
     }
 }

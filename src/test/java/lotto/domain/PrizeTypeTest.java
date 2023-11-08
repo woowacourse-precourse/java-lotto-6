@@ -11,7 +11,7 @@ class PrizeTypeTest {
     void sixMatch() {
         PrizeType prizeType = PrizeType.getPrizeType(LottoPolicy.LOTTO_SIZE, false);
 
-        assertEquals(PrizeType.FIRST_PRIZE, prizeType);
+        assertEquals(PrizeType.FIRST, prizeType);
     }
 
     @DisplayName("당첨 등수 확인 - 5개 일치 보너스 ( 2등 )")
@@ -19,7 +19,7 @@ class PrizeTypeTest {
     void fiveMatchWithBonus() {
         PrizeType prizeType = PrizeType.getPrizeType(5, true);
 
-        assertEquals(PrizeType.SECOND_PRIZE, prizeType);
+        assertEquals(PrizeType.SECOND, prizeType);
     }
 
     @DisplayName("당첨 등수 확인 - 5개 일치 ( 3등 )")
@@ -27,7 +27,7 @@ class PrizeTypeTest {
     void fiveMatch() {
         PrizeType prizeType = PrizeType.getPrizeType(5, false);
 
-        assertEquals(PrizeType.THIRD_PRIZE, prizeType);
+        assertEquals(PrizeType.THIRD, prizeType);
     }
 
     @DisplayName("당첨 등수 확인 - 4개 일치 보너스 ( 4등 )")
@@ -35,7 +35,7 @@ class PrizeTypeTest {
     void fourMatchWithBonus() {
         PrizeType prizeType = PrizeType.getPrizeType(4, true);
 
-        assertEquals(PrizeType.FOURTH_PRIZE, prizeType);
+        assertEquals(PrizeType.FOURTH, prizeType);
     }
 
     @DisplayName("당첨 등수 확인 - 4개 일치 ( 4등 )")
@@ -43,7 +43,7 @@ class PrizeTypeTest {
     void fourMatch() {
         PrizeType prizeType = PrizeType.getPrizeType(4, false);
 
-        assertEquals(PrizeType.FOURTH_PRIZE, prizeType);
+        assertEquals(PrizeType.FOURTH, prizeType);
     }
 
     @DisplayName("당첨 등수 확인 - 3개 일치 보너스 ( NONE )")
@@ -51,7 +51,7 @@ class PrizeTypeTest {
     void threeMatchWithBonus() {
         PrizeType prizeType = PrizeType.getPrizeType(3, true);
 
-        assertEquals(PrizeType.FIFTH_PRIZE, prizeType);
+        assertEquals(PrizeType.FIFTH, prizeType);
     }
 
     @DisplayName("당첨 등수 확인 - 3개 일치 보너스 ( NONE )")
@@ -59,7 +59,7 @@ class PrizeTypeTest {
     void threeMatch() {
         PrizeType prizeType = PrizeType.getPrizeType(3, false);
 
-        assertEquals(PrizeType.FIFTH_PRIZE, prizeType);
+        assertEquals(PrizeType.FIFTH, prizeType);
     }
 
     @DisplayName("당첨 등수 확인 - 2개 일치 보너스 ( NONE )")

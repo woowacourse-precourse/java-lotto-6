@@ -7,9 +7,9 @@ import static lotto.domain.enums.LottoConstants.MIN_LOTTO_NUM;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.util.exception.DuplicatedLottoNumberException;
-import lotto.util.exception.InvalidLottoNumberRangeException;
-import lotto.util.exception.InvalidLottoSizeException;
+import lotto.exception.DuplicatedLottoNumberException;
+import lotto.exception.InvalidLottoNumberRangeException;
+import lotto.exception.InvalidLottoSizeException;
 
 public class LottoValidator {
     public static void validateNumbersRange(List<Integer> numbers) {

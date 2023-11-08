@@ -1,7 +1,8 @@
 package lotto.util;
 
-import lotto.util.exception.BlankInputException;
-import lotto.util.exception.InvalidNumberException;
+import lotto.exception.BlankInputException;
+import lotto.exception.InvalidNumberException;
+import lotto.exception.NonDivisibleException;
 
 public class Validator {
 
@@ -19,9 +20,9 @@ public class Validator {
         }
     }
 
-    public static void validateDivisibleBy(int money, int divisor) {
+    public static void validateDivisible(int money, int divisor) {
         if (money % divisor != 0) {
-            throw new IllegalArgumentException();
+            throw new NonDivisibleException();
         }
     }
 }

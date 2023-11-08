@@ -4,7 +4,6 @@ import static lotto.constant.Magic.NUMBER_POSITIVE;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -18,22 +17,21 @@ public class Lotto {
         validateIs1_45(numbers);
         validate(numbers);
         validateDuplicated(numbers);
-        this.numbers = numbers;
-        sort();
+        this.numbers = sort(numbers);
     }
 
     public Lotto(String[] winningNumber) {//당첨번호 받기
-        numbers = new ArrayList<>();
+        List<Integer> numberList = new ArrayList<>();
         for (String num : winningNumber) {
             validateWinningPositive(num);
-            numbers.add(parstInt(num));
+            numberList.add(parstInt(num));
         }
 
 //        System.out.println("당첨번호" + numbers);
-        validate(numbers);
-        validateIs1_45(numbers);
-        validateDuplicated(numbers);
-        sort();
+        validate(numberList);
+        validateIs1_45(numberList);
+        validateDuplicated(numberList);
+        this.numbers = sort(numberList);
     }
 
     private void validate(List<Integer> numbers) throws IllegalArgumentException {
@@ -73,8 +71,8 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    private void sort() {
-        numbers.stream().sorted(Comparator.reverseOrder())
+    private List<Integer> sort(List<Integer> numbers) {
+        return numbers.stream().sorted()
                 .collect(Collectors.toList()); // 내림차순 정렬
     }
 

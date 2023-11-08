@@ -18,11 +18,7 @@ public class LottosList {
     private List<Boolean> bonusCheck;
 
     public LottosList() {
-    }
-
-    public LottosList(List<Lotto> lottos) throws IllegalArgumentException {
-        this.lottosList = lottos;
-
+        this.lottosList = new ArrayList<>();
     }
 
     public LottosList(String price) throws IllegalArgumentException {
@@ -44,7 +40,7 @@ public class LottosList {
 
     private void validatePrice1000(String input) throws IllegalArgumentException {
         int result = Integer.parseInt(input);
-        
+
         if (result % 1000 != 0) {
             throw new IllegalArgumentException();
         }

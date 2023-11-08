@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utils.constant.ErrorMessage;
+
 public class Money {
     private static final int MIN_COST = 1000;
     private static final int MAX_COST = 100000;
@@ -21,13 +23,13 @@ public class Money {
 
     private void validateCostOutOfSize(int cost) {
         if (cost < MIN_COST || cost > MAX_COST) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 이상 100,000원 이하로만 가능합니다");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_OUT_OF_SIZE_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateCostInUnit(int cost) {
         if (cost % MIN_COST != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로만 가능합니다");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_COST_IN_UNIT_ERROR_MESSAGE.getMessage());
         }
     }
 }

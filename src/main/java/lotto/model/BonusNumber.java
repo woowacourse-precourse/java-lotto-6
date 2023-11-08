@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.utils.constant.ErrorMessage;
 
 public class BonusNumber {
     private final static int MIN_RANGE = 1;
@@ -19,13 +20,13 @@ public class BonusNumber {
 
     private void validateDuplication(List<Integer> winningNumbers) {
         if (winningNumbers.contains(bonus)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않는 숫자만 가능합니다");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_DUPLICATION_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateOutOfRange(int bonus) {
         if (bonus < MIN_RANGE || bonus > MAX_RANGE) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45까지의 숫자 하나만 가능합니다");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_OUT_OF_RANGE.getMessage());
         }
     }
 }

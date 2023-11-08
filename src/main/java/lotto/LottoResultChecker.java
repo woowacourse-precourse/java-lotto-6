@@ -11,12 +11,12 @@ public class LottoResultChecker {
     private final static String SEPARATOR = ",";
 
 
-    private final List<Lotto> lottoBundle;
-    private List<Integer> winNumbers;
-    private Integer bonusNumber;
-    private Map<Winning, Integer> lottoResultMemo = new HashMap<>();
+    public List<Lotto> lottoBundle;
+    public List<Integer> winNumbers;
+    public Integer bonusNumber;
+    public Map<Winning, Integer> lottoResultMemo = new HashMap<>();
 
-    
+
     public LottoResultChecker(List<Lotto> lottoBundle) {
         this.lottoBundle = lottoBundle;
     }
@@ -26,7 +26,7 @@ public class LottoResultChecker {
         bonusNumberInput();
     }
 
-    private void winNumbersInput() {
+    public void winNumbersInput() {
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
             setWinNumbers(Console.readLine());
@@ -37,7 +37,7 @@ public class LottoResultChecker {
         }
     }
 
-    private void setWinNumbers(String input) {
+    public void setWinNumbers(String input) {
         Exception.validateSeparator(input);
         List<String> separatedNumbersInString = List.of(input.split(SEPARATOR));
 
@@ -51,7 +51,7 @@ public class LottoResultChecker {
         winNumbers = separatedNumbers;
     }
 
-    private void bonusNumberInput() {
+    public void bonusNumberInput() {
         try {
             System.out.println("보너스 번호를 입력해 주세요.");
             setBonusNumber(Console.readLine());
@@ -62,7 +62,7 @@ public class LottoResultChecker {
         }
     }
 
-    private void setBonusNumber(String input) {
+    public void setBonusNumber(String input) {
         Exception.notParsableNumber(input);
         bonusNumber = Integer.parseInt(input);
         Exception.validateBonusNumber(winNumbers, bonusNumber);
@@ -78,7 +78,7 @@ public class LottoResultChecker {
         System.out.printf("총 수익률은 %.1f%%입니다.", calculatePortfolio());
     }
 
-    private void checkLottoBundle() {
+    public void checkLottoBundle() {
         for (Lotto l : lottoBundle) {
             Integer label = l.compareWithWinNumbers(winNumbers, bonusNumber);
             Winning winning = Winning.getWinning(label);
@@ -86,7 +86,7 @@ public class LottoResultChecker {
         }
     }
 
-    private void printResultOfCheck() {
+    public void printResultOfCheck() {
         System.out.println("3개 일치 (5,000원) - " + lottoResultMemo.getOrDefault(Winning.THREE, 0) + "개");
         System.out.println("4개 일치 (50,000원) - " + lottoResultMemo.getOrDefault(Winning.FOUR, 0) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + lottoResultMemo.getOrDefault(Winning.FIVE, 0) + "개");
@@ -95,7 +95,7 @@ public class LottoResultChecker {
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoResultMemo.getOrDefault(Winning.SIX, 0) + "개");
     }
 
-    private float calculatePortfolio() {
+    public float calculatePortfolio() {
         float portfolio = 0;
         portfolio += lottoResultMemo.getOrDefault(Winning.THREE, 0) * Winning.THREE.getPrize();
         portfolio += lottoResultMemo.getOrDefault(Winning.FOUR, 0) * Winning.FOUR.getPrize();

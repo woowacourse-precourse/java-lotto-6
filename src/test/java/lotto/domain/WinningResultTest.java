@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WinningResultTest {
 
-    private LottoNumbers lottoNumbers;
     private WinningNumber winningNumber;
     private WinningResult winningResult;
 

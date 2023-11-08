@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -10,6 +12,8 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
+
+
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {

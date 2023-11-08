@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
 import lotto.enums.LottoPrize;
@@ -17,6 +19,7 @@ public class OutputView {
     private static final String SECOND_PRIZE_FORMAT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String FIRST_PRIZE_FORMAT = "6개 일치 (2,000,000,000원) - %d개\n";
     private static final String MONEY_RATE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
+    private static final int ROUND_SCALE = 1;
 
     public void println() {
         System.out.println();
@@ -56,6 +59,12 @@ public class OutputView {
     }
 
     public void printMoneyRate(double rate) {
-        System.out.printf(MONEY_RATE_FORMAT, rate);
+        System.out.printf(MONEY_RATE_FORMAT, round(rate));
+    }
+
+    private double round(double rate) {
+        BigDecimal decimal = BigDecimal.valueOf(rate);
+        decimal = decimal.setScale(ROUND_SCALE, RoundingMode.HALF_UP);
+        return decimal.doubleValue();
     }
 }

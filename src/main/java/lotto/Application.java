@@ -33,12 +33,11 @@ public class Application {
 
     private static int inputBuyAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int buyAmount = 0;
         while (true) {
             try {
                 String inputBuyAmount = Console.readLine();
                 LottoGameValidator.validateInputAmount(inputBuyAmount);
-                return buyAmount;
+                return Integer.parseInt(inputBuyAmount);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

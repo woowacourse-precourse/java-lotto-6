@@ -1,4 +1,4 @@
-package domain;
+package lotto;
 
 import lotto.domin.Bonus;
 import lotto.view.ExceptionMessage;

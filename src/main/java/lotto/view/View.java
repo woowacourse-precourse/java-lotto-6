@@ -32,11 +32,6 @@ import lotto.view.constants.MessageType;
 public final class View {
 
 
-    public static String requestWinningNumbers() {
-        printlnMessageWithNewLine(WINNING_NUMBERS_REQUEST_MESSAGE);
-        return Validator.validateWinningNumbers(enterMessage());
-    }
-
     public static String requestBonusNumber() {
         printlnMessageWithNewLine(BONUS_NUMBER_REQUEST_MESSAGE);
         return Validator.validateBonusNumber(enterMessage());
@@ -68,32 +63,7 @@ public final class View {
 
 
     private static class Validator {
-        private static String validateWinningNumbers(String message) {
-            validateInvalidSeparators(message);
-            return message;
-        }
 
-        private static void validateInvalidSeparators(String message) {
-            if (hasEdgeSeparator(message) || hasDuplicatedSeparator(message)) {
-                throw LottoException.from(ErrorMessage.INVALID_SEPARATOR_ERROR);
-            }
-        }
-
-        private static boolean hasEdgeSeparator(String message) {
-            return startsWithSeparator(message) || endsWithSeparator(message);
-        }
-
-        private static boolean startsWithSeparator(String message) {
-            return message.startsWith(INPUT_SEPARATOR.getSymbol());
-        }
-
-        private static boolean endsWithSeparator(String message) {
-            return message.endsWith(INPUT_SEPARATOR.getSymbol());
-        }
-
-        private static boolean hasDuplicatedSeparator(String message) {
-            return message.contains(INPUT_SEPARATOR.getSymbol().repeat(2));
-        }
 
         private static String validateBonusNumber(String message) {
             validateNumber(message);

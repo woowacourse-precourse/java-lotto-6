@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import static lotto.view.View.requestBonusNumber;
-import static lotto.view.View.requestWinningNumbers;
 
 import lotto.domain.Cost;
 import lotto.domain.DrawnNumbers;
@@ -11,6 +10,7 @@ import lotto.dto.DrawnNumbersDto;
 import lotto.view.CostRequestView;
 import lotto.view.LottoResultView;
 import lotto.view.View;
+import lotto.view.WinningRequestView;
 
 public class LottoController {
     public void run() {
@@ -27,7 +27,7 @@ public class LottoController {
     }
 
     private DrawnNumbers draw() {
-        DrawnNumbersDto dto = DrawnNumbersDto.of(requestWinningNumbers(), requestBonusNumber());
+        DrawnNumbersDto dto = DrawnNumbersDto.of(WinningRequestView.request(), requestBonusNumber());
         return DrawnNumbers.from(dto);
     }
 

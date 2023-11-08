@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.view.ExceptionMessage;
 
 public class WinningNumber {
@@ -30,5 +31,12 @@ public class WinningNumber {
         throw new IllegalArgumentException();
       }
     }
+  }
+
+  @Override
+  public String toString() {
+    return winningNum.stream()
+            .map(String::valueOf)
+            .collect(Collectors.joining(", ", "[", "]\n"));
   }
 }

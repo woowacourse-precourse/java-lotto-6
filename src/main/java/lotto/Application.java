@@ -1,10 +1,13 @@
 package lotto;
 
+import static lotto.service.CompareNumber.compareNumber;
+
 import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Payment;
 import lotto.model.WinningNumber;
+import lotto.service.CompareNumber;
 import lotto.service.CreateLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -57,5 +60,7 @@ public class Application {
             }
         }
 
+        int[] result = compareNumber(lottos, winning, bonus);
+        OutputView.printPrizeResult(result);
     }
 }

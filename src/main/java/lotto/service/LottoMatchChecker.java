@@ -17,9 +17,9 @@ public class LottoMatchChecker {
             int matchCount = ticket.countMatchingNumbers(winningNumbers);
             if (matchCount == 5 && ticket.contains(bonusNumber)) {
                 matchCounts[7]++;
-            } else {
-                matchCounts[matchCount]++;
+                continue;
             }
+                matchCounts[matchCount]++;
         }
 
         return matchCounts;

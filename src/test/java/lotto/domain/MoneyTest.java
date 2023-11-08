@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.assertj.core.api.Assertions;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,20 @@ class MoneyTest {
 
         // then
         assertThatCode(actual).doesNotThrowAnyException();
+    }
+
+    @DisplayName("Money 더하기 테스트")
+    @Test
+    void moneyPlusTest() {
+        // given
+        Money money1 = new Money(1000);
+        Money money2 = new Money(12500);
+
+        // when
+        Money result = money1.plus(money2);
+
+        // then
+        assertThat(result).isEqualTo(new Money(13500));
     }
 
     @DisplayName("음수의 숫자를 받을경우 예외가 발생한다.")

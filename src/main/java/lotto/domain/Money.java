@@ -16,6 +16,10 @@ public class Money {
         this.value = value;
     }
 
+    public Money plus(Money otherMoney) {
+        return new Money(this.value + otherMoney.value);
+    }
+
     public int quantityAvailableForPurchase(int lottoUnitPrice) {
         if(isDivisible(lottoUnitPrice)) {
             return (int) (this.value / lottoUnitPrice);

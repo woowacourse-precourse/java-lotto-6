@@ -17,6 +17,10 @@ public class LottoGame {
         LottoResult lottoResult = lotteries.countMatchNumbers(winNumbers);
         Output.printWinningStatistics(lottoResult);
 
+        Yield yield = new Yield(lottoResult, money);
+        Output.printProfit(yield.ceilYield());
+    }
+
     private Money inputUserMoney() {
                 String purchaseAmount = Input.purchaseAmount();
 

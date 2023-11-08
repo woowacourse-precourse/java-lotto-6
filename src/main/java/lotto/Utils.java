@@ -18,9 +18,9 @@ public class Utils {
         return true;
     }
 
-    public static boolean isNumeric(String str, List<Character> toExclude){
+    public static boolean isNumeric(String str, List<String> toExclude){
         for (int i = 0; i < str.length(); i++){
-            if (toExclude.contains(str.charAt(i))){
+            if (toExclude.contains(str.substring(i, i + 1))){
                 continue;
             }
             if (str.charAt(i) < '0' || '9' < str.charAt(i)){

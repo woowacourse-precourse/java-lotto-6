@@ -12,8 +12,8 @@ public class Bill {
         this.ticketSize = ticketSize;
     }
 
-    public static Bill createBill(int amount, int ticketSize) {
-        return new Bill(new Amount(amount), new TicketSize(ticketSize));
+    public static Bill createBill(Amount amount, int ticketSize) {
+        return new Bill(amount, new TicketSize(ticketSize));
     }
 
     public Amount getAmount() {

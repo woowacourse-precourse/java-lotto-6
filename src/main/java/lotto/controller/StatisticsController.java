@@ -26,6 +26,8 @@ public class StatisticsController {
         initStatistics();
         matchAllLottos();
         printAllMatchResult();
+        calculateRevenue();
+
     }
 
     public void initStatistics() {
@@ -54,22 +56,35 @@ public class StatisticsController {
             rankTable.replace(rank, rankTable.get(rank) + 1);
         }
     }
-    public void printAllMatchResult(){
+
+    public void printAllMatchResult() {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        rankTable.forEach((rank,count)->{
-            printMatchResult(rank,count);
+        rankTable.forEach((rank, count) -> {
+            printMatchResult(rank, count);
         });
     }
 
-    public void printMatchResult(Rank rank,Integer count){
+    public void printMatchResult(Rank rank, Integer count) {
 
-        if(rank==Rank.SECOND){
-            OutputView.printMatchResultBonus(rank.getCountOfMatch(),rank.getGettingMoney(),count);
+        if (rank == Rank.SECOND) {
+            OutputView.printMatchResultBonus(rank.getCountOfMatch(), rank.getGettingMoney(), count);
             return;
         }
-        OutputView.printMatchResult(rank.getCountOfMatch(),rank.getGettingMoney(),count);
+        OutputView.printMatchResult(rank.getCountOfMatch(), rank.getGettingMoney(), count);
+
+    }
+
+    public void calculateRevenue() {
+        List<Integer> sum = new ArrayList<>();
+        rankTable.forEach((rank, count) -> {
+            sum.add(count * rank.getGettingMoney());
+        });
+        int result = sum.stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public void printRevenue(){
 
     }
 

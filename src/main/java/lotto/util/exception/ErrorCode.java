@@ -14,7 +14,11 @@ public enum ErrorCode {
     DUPLICATE_WINNING_NUMBERS("당첨 번호는 중복될 수 없습니다."),
     INVALID_WINNING_NUMBER_FORMAT("당첨 번호는 정수값이어야 합니다."),
     INVALID_WINNING_NUMBER_COUNT("6개의 당첨 번호를 입력해주세요."),
-    NULL_OR_EMPTY_WINNING_NUMBERS("당첨 번호는 null이나 공백이 들어갈 수 없습니다.");
+    NULL_OR_EMPTY_WINNING_NUMBERS("당첨 번호는 null이나 공백이 들어갈 수 없습니다."),
+
+    INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    DUPLICATE_LOTTO_NUMBERS("로또 번호는 중복될 수 없습니다."),
+    INVALID_LOTTO_NUMBER_COUNT("6개의 로또 번호를 입력해주세요.");
 
     private final String message;
 

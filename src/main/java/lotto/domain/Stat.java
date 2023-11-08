@@ -32,11 +32,7 @@ public class Stat {
         public int getCorrectNumberCount() {
             return correctNumberCount;
         }
-
-        public int getCorrectCount() {
-            return correctNumberCount;
-        }
-
+        
         public String getMessage() {
             return message;
         }

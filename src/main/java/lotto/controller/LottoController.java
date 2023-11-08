@@ -19,7 +19,7 @@ public class LottoController {
     private final UserLottoService userLottoService = new UserLottoService();
     private final StatLottoService statLottoService = new StatLottoService();
     private List<Integer> winningNumber = new ArrayList<>();
-    private Stat stat = new Stat();
+    private final Stat stat = new Stat();
     private int lottoPurchaseCount;
     private int purchaseAmount;
 
@@ -47,7 +47,7 @@ public class LottoController {
             }
         }
         lottoPurchaseCount = userLottoService.createLottoCount(purchaseAmount);
-        userLottoService.setUser(lottoPurchaseCount, purchaseAmount);
+        userLottoService.setUser(lottoPurchaseCount);
     }
 
     public void initInputWinningNumber() {

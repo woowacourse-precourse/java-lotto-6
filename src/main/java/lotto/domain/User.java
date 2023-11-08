@@ -7,11 +7,9 @@ import lotto.util.RandomChoice;
 public class User {
     List<Lotto> lotto = new ArrayList<>();
     private final int ticketCount;
-    private final int purchaseAmount;
 
-    public User(int ticketCount, int purchaseAmount) {
+    public User(int ticketCount) {
         this.ticketCount = ticketCount;
-        this.purchaseAmount = purchaseAmount;
     }
 
     public void setLotto() {

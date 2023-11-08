@@ -48,7 +48,7 @@ class LottoTest {
         int purchase = 6000;
         int ticketCount = userLottoService.createLottoCount(purchase);
 
-        User user = new User(ticketCount, purchase);
+        User user = new User(ticketCount);
         user.setLotto();
         assertEquals(user.getLottoList().size(), 6);
     }

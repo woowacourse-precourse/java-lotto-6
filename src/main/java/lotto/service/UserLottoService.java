@@ -11,8 +11,8 @@ import lotto.domain.User;
 public class UserLottoService {
     User user;
 
-    public void setUser(int ticketCount, int purchaseAmount) {
-        user = new User(ticketCount, purchaseAmount);
+    public void setUser(int ticketCount) {
+        user = new User(ticketCount);
         user.setLotto();
     }
 

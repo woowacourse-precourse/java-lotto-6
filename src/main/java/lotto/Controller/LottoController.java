@@ -24,11 +24,15 @@ public class LottoController {
     private static int bonusNumber;
 
     public static void start() {
-        purchaseLotto();
-        printAllLottoNumbers();
-        validateDuplicationByWinningNumbersAndBonusNumber();
-        printStatisticsResult();
-        printLottoProfitResult();
+        try {
+            purchaseLotto();
+            printAllLottoNumbers();
+            validateDuplicationByWinningNumbersAndBonusNumber();
+            printStatisticsResult();
+            printLottoProfitResult();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void validateDuplicationByWinningNumbersAndBonusNumber() {

@@ -27,7 +27,7 @@ public class LottoRound {
         calculatePrize();
 
         OutputView.printLottoResult(lottoBatchResult.getValue());
-        OutputView.printLottoProfitRate(lottoBatchResult.calculateLottoProfitRate(lottoCount*1000));
+        OutputView.printLottoProfitRate(lottoBatchResult.calculateLottoProfitRate(lottoCount * 1000));
 
     }
 
@@ -52,7 +52,6 @@ public class LottoRound {
             System.out.println(e.getMessage());
             generateWinningNumbers();
         }
-
     }
 
     public void generateBonusNumber() {
@@ -63,7 +62,6 @@ public class LottoRound {
             System.out.println(e.getMessage());
             generateBonusNumber();
         }
-
     }
 
     public void calculatePrize() {

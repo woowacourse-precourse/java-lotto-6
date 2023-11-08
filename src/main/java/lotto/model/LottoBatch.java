@@ -10,29 +10,29 @@ public class LottoBatch {
     private List<Lotto> lottos;
 
 
-    public LottoBatch(Integer lottoCount){
+    public LottoBatch(Integer lottoCount) {
         lottos = new ArrayList<>();
-        while(lottos.size() < lottoCount){
+        while (lottos.size() < lottoCount) {
             Lotto lotto = new Lotto();
-            if(!checkDuplication(lotto)){
+            if (!checkDuplication(lotto)) {
                 lottos.add(lotto);
             }
         }
     }
 
-    public Boolean checkDuplication(Lotto lotto){
-        if(lottos.contains(lotto)){
+    public Boolean checkDuplication(Lotto lotto) {
+        if (lottos.contains(lotto)) {
             return true;
         }
         return false;
     }
 
 
-    public List<String> toStrings(){
+    public List<String> toStrings() {
         return lottos.stream().map(Lotto::toString).collect(Collectors.toList());
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return lottos;
     }
 

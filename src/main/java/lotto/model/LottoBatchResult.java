@@ -1,8 +1,6 @@
 package lotto.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class LottoBatchResult {
@@ -22,28 +20,24 @@ public class LottoBatchResult {
             lottoResults.add(LottoResult.determinePrize(
                     prizeNumbers.matchedWinningNumberCount(lotto),
                     prizeNumbers.matchedBonusNumber(lotto)));
-
         });
 
         LottoResult.sort(lottoResults);
 
         this.lottoResults = lottoResults;
-
     }
 
 
-
-    public Float calculateLottoProfitRate(Integer purchaseAmount){
-        Integer prizeMoney=0;
-        for(LottoResult lottoResult : lottoResults){
+    public Float calculateLottoProfitRate(Integer purchaseAmount) {
+        Integer prizeMoney = 0;
+        for (LottoResult lottoResult : lottoResults) {
             prizeMoney += lottoResult.getPrizeMoney();
         }
 
-        return (prizeMoney.floatValue()/purchaseAmount.floatValue())*100;
-
+        return (prizeMoney.floatValue() / purchaseAmount.floatValue()) * 100;
     }
 
-    public List<LottoResult> getValue(){
+    public List<LottoResult> getValue() {
         return lottoResults;
     }
 }

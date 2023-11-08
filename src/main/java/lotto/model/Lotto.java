@@ -3,7 +3,6 @@ package lotto.model;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
 import camp.nextstep.edu.missionutils.Randoms;
 
 
@@ -59,29 +58,27 @@ public class Lotto {
             return true;
         }
         return false;
-
-
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String singleLotto = String.join(", ", numbers.stream().map(LottoNumber::toString).collect(Collectors.toList()));
         return String.format("[%s]", singleLotto);
     }
 
 
-    public Boolean contains(LottoNumber lottoNumber){
-        for(LottoNumber number : numbers){
-            if(number.equals(lottoNumber)){
+    public Boolean contains(LottoNumber lottoNumber) {
+        for (LottoNumber number : numbers) {
+            if (number.equals(lottoNumber)) {
                 return true;
             }
         }
         return false;
     }
 
-    public Boolean contains(Integer lottoNumber){
-        for(LottoNumber number : numbers){
-            if(number.equals(lottoNumber)){
+    public Boolean contains(Integer lottoNumber) {
+        for (LottoNumber number : numbers) {
+            if (number.equals(lottoNumber)) {
                 return true;
             }
         }

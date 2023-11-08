@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.user.User;
+
 import java.util.List;
 
 public class Application {

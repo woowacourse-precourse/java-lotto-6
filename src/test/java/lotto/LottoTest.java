@@ -1,7 +1,9 @@
 package lotto;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoAmount;
 import lotto.domain.lotto.WinningLotto;
+import lotto.exception.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,7 +37,7 @@ class LottoTest {
     @MethodSource("generateWrongRangeNumber")
     void createLottoByWrongRangeNumber(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoNumRangeException.class);
     }
 
     static Stream<Arguments> generateWrongRangeNumber() {
@@ -49,7 +51,7 @@ class LottoTest {
     @Test
     void createBonusNumberByDuplicatedNumber() {
         assertThatThrownBy(() -> new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)),6))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(BonusNumDuplicateException.class);
     }
 
     @DisplayName("보너스 번호가 1미만, 45초 과인 수가 존재하면 예외가 발생한다.")
@@ -57,7 +59,7 @@ class LottoTest {
     @MethodSource("generateWrongRangeBonusNumber")
     void createBonusByWrongRangeNumber(List<Integer> numbers, int bonusNum) {
         assertThatThrownBy(() -> new WinningLotto(new Lotto(numbers), bonusNum))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoNumRangeException.class);
     }
 
     static Stream<Arguments> generateWrongRangeBonusNumber() {
@@ -67,9 +69,19 @@ class LottoTest {
         );
     }
 
+    @DisplayName("구입금액이 1,000 단위가 아닌 경우 예외가 발생한다.")
+    @Test
+    void divideLottoAmountIsWrongNumber() {
+        assertThatThrownBy(() -> new LottoAmount("2300"))
+                .isInstanceOf(LottoMoneyDivideException.class);
+    }
 
-
-
+    @DisplayName("구입금액이 1,000 단위가 아닌 경우 예외가 발생한다.")
+    @Test
+    void lottoAmountNotMultipleOf1000() {
+        assertThatThrownBy(() -> new LottoAmount("2300"))
+                .isInstanceOf(LottoMoneyDivideException.class);
+    }
 }
 
 

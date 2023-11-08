@@ -29,4 +29,9 @@ public class GameController {
         OutputView.printLottoNumbers(lottos);
         return lottos;
     }
+
+    private WinningNumbers receiveWinningNumbers() {
+        WinningNumbers winningNumbers = new WinningNumbers(InputView.WINNING_NUMBERS.scan(), InputView.BONUS_NUMBER.scan());
+        return winningNumbers;
+    }
 }

@@ -1,10 +1,13 @@
-package lotto;
+package lotto.controller;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
+import lotto.domain.LottoPrice;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LottoController {
         int payMoney;
@@ -41,7 +44,6 @@ public class LottoController {
                 System.out.println(lottoNumbers);
                 return new Lotto(lottoNumbers);
         }
-
         // lottoPrice.getLottoCount()에 따라 lottos를 생성하는 메서드
 
 }

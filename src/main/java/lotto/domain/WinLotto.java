@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum WinLotto {
     FIRST(6, 2_000_000_000, false,

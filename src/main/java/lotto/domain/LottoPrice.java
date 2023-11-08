@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.Constants;
 
 public class LottoPrice {
         private final int payMoney;
@@ -8,7 +10,7 @@ public class LottoPrice {
                 this.payMoney = payMoney;
         }
         private void validatePrice(int payMoney) {
-                if(payMoney%Constants.LOTTO_PRICE!=0){
+                if(payMoney% Constants.LOTTO_PRICE!=0){
                         throw new IllegalArgumentException();
                 }
         }

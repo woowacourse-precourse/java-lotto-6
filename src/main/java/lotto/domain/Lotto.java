@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 
 import java.util.Collections;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Constants;
 
 public class Lotto {
     private final List<Integer> numbers;

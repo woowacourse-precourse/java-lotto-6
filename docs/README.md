@@ -50,6 +50,10 @@
 
 ## Class
 
+**class** *Application*
+
+- [❌] 시스템 전체의 실행 흐름 관리
+
 **class** *LottoManager*
 
 - [✅] 사용자의 구입 금액 입력 받기
@@ -57,15 +61,18 @@
     - 이때, 번호는 오름차순으로 출력해야 한다
 - [✅] 구입 금액이 유효한지 검증
 
-
 **class** *Lotto*
 
 - [❌] 당첨 번호 입력 받기
-- [❌] 보너스 번호 입력 받기
 - [❌] 입력된 당첨 번호가 유효한지 검증
-- [❌] 보너스 번호가 유효한지 검증
+
+**class** *WinningNumber*
+
+- [❌] 보너스 번호 입력 받기
+- [❌] 보너스 번호의 유효성 검증
 
 **class** *Result*
+
 - [❌] 입력값들을 바탕으로 당첨 통계를 계산
 - [❌] 계산된 당첨 통계를 출력
 - [❌] 당첨 통계를 바탕으로 수익률 계산
@@ -73,8 +80,13 @@
 
 **test** *LottoManagerTest*
 - [✅] 대응하는 각 메서드에 대한 UnitTest
+- 
 **test** *LottoTest*
 - [❌] 대응하는 각 메서드에 대한 UnitTest
+- 
+- **test** *LottoTest*
+- [❌] 대응하는 각 메서드에 대한 UnitTest
+- 
 **test** *ResultTest*
 - [❌] 대응하는 각 메서드에 대한 UnitTest
 

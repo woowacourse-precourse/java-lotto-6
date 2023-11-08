@@ -9,6 +9,9 @@ public class MakeLottoCard {
 
     public MakeLottoCard(Integer number) {
         makeCard(number);
+        for (List<Integer> nums : numbers) {
+            System.out.println(nums);
+        }
     }
 
     public List<Integer> pickNumbers() {

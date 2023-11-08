@@ -17,6 +17,8 @@ public class Play {
         System.out.println("구입금액을 입력해 주세요.");
         String boughtAmount = Console.readLine();
         numberOfTicket = checkBoughtAmount(boughtAmount);
+        String s = String.format("%s개를 구매했습니다.", numberOfTicket);
+        System.out.println(s);
         MakeLottoCard lottoCard = new MakeLottoCard(numberOfTicket);
         StringBuilder jackpotNumber = new StringBuilder();
         System.out.println("당첨 번호를 입력해 주세요.");
@@ -76,7 +78,7 @@ public class Play {
                 matched++;
             }
         }
-        if (jackpotInts.get(6).equals(nums.get(6))) {
+        if (nums.contains(jackpotInts.get(6))) {
             bonusMatched++;
         }
         return List.of(matched, bonusMatched);

@@ -24,7 +24,7 @@ public class NumberGenerator {
             Collections.sort(numbers);
         } catch (IllegalArgumentException e) {
             ErrorView.printErrorMessage(e.getMessage());
-            createLottoNumbers();
+            return createLottoNumbers();
         }
         return numbers;
     }
@@ -40,7 +40,7 @@ public class NumberGenerator {
             validateNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
             ErrorView.printErrorMessage(e.getMessage());
-            createWinningNumbers(InputView.inputWinningNumbers());
+            return createWinningNumbers(InputView.inputWinningNumbers());
         }
         return winningNumbers;
     }
@@ -53,7 +53,7 @@ public class NumberGenerator {
             validateNumberAlreadyExistsInList(winningNumbers, bonus);
         } catch (IllegalArgumentException e) {
             ErrorView.printErrorMessage(e.getMessage());
-            createBonusNumber(winningNumbers, InputView.inputBonusNumber());
+            return createBonusNumber(winningNumbers, InputView.inputBonusNumber());
         }
         return bonus;
     }

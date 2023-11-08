@@ -43,6 +43,7 @@ public class PartialFunction {
     }
 
     public int getBonusNumber(String bonusLotto, List<Integer> winningNumbers) {
+        validation.checkNull(bonusLotto);
         try {
             int bonusNumber = convertStringToInteger(bonusLotto);
             validateNumber(bonusNumber, winningNumbers);

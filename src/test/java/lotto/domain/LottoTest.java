@@ -46,4 +46,11 @@ class LottoTest {
         Rank rank = lotto.compareResult(COUNT, BONUS);
         assertThat(rank).isEqualTo(Rank.SECOND_PLACE);
     }
+
+    @Test
+    void 로또_전체_비교_결과() {
+        List<Integer> result = lotto.allCompare(List.of(List.of(1, 2, 3, 4, 5, 45), List.of(1, 2, 3, 4, 5, 6)),
+                BONUS);
+        assertThat(result).isEqualTo(List.of(1, 1, 0, 0, 0, 0));
+    }
 }

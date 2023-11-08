@@ -14,12 +14,10 @@ public class NumberMatchingService {
 
     public EnumMap<LottoPrize, Integer> calculateWinCounts(
             List<Lotto> lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-
         Set<Integer> winningNumber = new HashSet<>(winningNumbers.getWinningNumbers());
         EnumMap<LottoPrize, Integer> winCounts = initializeWinCount();
-
         for (Lotto lotto : lottos) {
-            int matchCount = getMatchCount(lotto.getNumbers(), winningNumber);
+            int matchCount = singleGameMatchCount(lotto.getNumbers(), winningNumber);
             boolean bonusMatch = isBonusMatch(lotto.getNumbers(), bonusNumber.getBonusNumber(), matchCount);
             LottoPrize prize = determinePrize(matchCount, bonusMatch);
             if (prize != null) {
@@ -29,7 +27,7 @@ public class NumberMatchingService {
         return winCounts;
     }
 
-    private int getMatchCount(List<Integer> singleGameLottoNumbers, Set<Integer> winningNumbers) {
+    private int singleGameMatchCount(List<Integer> singleGameLottoNumbers, Set<Integer> winningNumbers) {
         int matchCount = 0;
         for (int number : singleGameLottoNumbers) {
             if (winningNumbers.contains(number)) {

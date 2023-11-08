@@ -107,4 +107,6 @@
   - 랜덤 복권의 번호와 당첨번호를 비교하는 기능
   - 랜덤 복권의 번호와 보너스 번호를 비교하는 기능
   - 비교한 데이터를 기반으로 Prize 값을 추출하여 Statistic 객체 생성
-  - StatisticDto를 통해 통계를 정산하는 기능
+  - StatisticDto를 통해 통계 데이터를 교환
+  - StatisticDtos 데이터를 처리하여 통계를 정산하는 기능
+  - ResultDto에 정산된 통계 데이터를 저장하여 View 레이어로 전달

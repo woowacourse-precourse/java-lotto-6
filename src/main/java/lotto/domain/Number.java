@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Objects;
+import lotto.exception.OverValueException;
 
 public class Number {
 
@@ -21,7 +22,7 @@ public class Number {
     private static void validRange(final int value) {
         boolean overRange = value > LOTTO_MAX_NUM;
         if (overRange) {
-            throw new IllegalArgumentException(ERROR_HEAD + "로또 번호의 범위는 45입니다!");
+            throw new OverValueException();
         }
     }
 

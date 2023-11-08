@@ -3,6 +3,8 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.InsideListDuplicatedException;
+import lotto.exception.InvalidNumberSizeException;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
@@ -29,7 +31,7 @@ public class Lotto {
 
     private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ERROR_HEAD + "로또 숫자는 6개입니다!");
+            throw new InvalidNumberSizeException();
         }
     }
 
@@ -63,7 +65,7 @@ public class Lotto {
     private static void validDuplicated(final List<Integer> list) {
         long uniqueCount = list.stream().distinct().count();
         if (uniqueCount < list.size()) {
-            throw new IllegalArgumentException(ERROR_HEAD + "중복된 숫자가 있습니다!");
+            throw new InsideListDuplicatedException();
         }
     }
 

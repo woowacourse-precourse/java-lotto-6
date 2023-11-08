@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import lotto.exception.AmountMinimumException;
+import lotto.exception.AmountUnitException;
+import lotto.exception.InputMoneyNotDigitException;
+import lotto.exception.InputMoneyOverflowException;
+
 public class MoneyManagement {
     private final int balance;
     private static final int PERCENT = 100;
@@ -20,13 +25,13 @@ public class MoneyManagement {
     private void validate(final String userInput) {
         validNumber(userInput);
         int userAmount = toInt(userInput);
-        validRange(userAmount);
-        validLottoAmount(userAmount);
+        validAmountMinimum(userAmount);
+        validLottoAmountUnit(userAmount);
     }
 
     private void validNumber(final String userInput) {
         if (!userInput.matches(NUMERIC_PATTERN)) {
-            throw new IllegalArgumentException(ERROR_HEAD + "금액은 숫자만 입력 가능합니다.");
+            throw new InputMoneyNotDigitException();
         }
     }
 
@@ -34,19 +39,19 @@ public class MoneyManagement {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_HEAD + "입력한 금액이 유효한 숫자 범위를 벗어났습니다.");
+            throw new InputMoneyOverflowException();
         }
     }
 
-    private void validRange(final int userAmount) {
+    private void validAmountMinimum(final int userAmount) {
         if (userAmount < LOTTO_AMOUNT) {
-            throw new IllegalArgumentException(ERROR_HEAD + "로또 최소 구입 가능 금액은 1000원입니다.");
+            throw new AmountMinimumException();
         }
     }
 
-    private void validLottoAmount(final int userAmount) {
+    private void validLottoAmountUnit(final int userAmount) {
         if (userAmount % LOTTO_AMOUNT != ZERO) {
-            throw new IllegalArgumentException(ERROR_HEAD + "로또 금액은 1000원 단위입니다.");
+            throw new AmountUnitException();
         }
     }
 

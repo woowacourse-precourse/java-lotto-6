@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.BonusNumberDuplicatedException;
+
 public class WinningLotto {
     private static final String ERROR_HEAD = "[ERROR] ";
     private final Lotto winningNumbers;
@@ -14,7 +16,7 @@ public class WinningLotto {
     private void validateDuplicated(final Lotto lotto, final Number bonusNumber) {
         boolean contains = lotto.contains(bonusNumber);
         if (contains) {
-            throw new IllegalArgumentException(ERROR_HEAD + "보너스 번호가 당첨 번호와 겹칩니다!");
+            throw new BonusNumberDuplicatedException();
         }
     }
 

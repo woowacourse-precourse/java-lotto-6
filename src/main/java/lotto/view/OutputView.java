@@ -15,15 +15,15 @@ public class OutputView {
     private static final String PRINT_PROFIT_RATE_MESSAGE_PREFIX = "총 수익률은 ";
     private static final String PRINT_PROFIT_RATE_MESSAGE_SUFFIX = "%입니다.";
 
-    public void printExceptionMessage(String exceptionMessage) {
+    public void printException(String exceptionMessage) {
         System.out.println(ERROR_PREFIX + exceptionMessage);
     }
 
-    public void requestPurchaseAmountMessage() {
+    public void requestPurchaseAmount() {
         System.out.println(REQUEST_PURCHASE_AMOUNT_MESSAGE);
     }
 
-    public void printPurchasedNumberMessage(int number) {
+    public void printPurchaseNumber(int number) {
         System.out.println(number + PRINT_LOTTO_PURCHASE_MESSAGE);
     }
 
@@ -31,11 +31,11 @@ public class OutputView {
         System.out.println(lottos);
     }
 
-    public void requestWinningLottoMessage() {
+    public void requestWinningLotto() {
         System.out.println(REQUEST_WINNING_LOTTO_MESSAGE);
     }
 
-    public void requestBonusNumberMessage() {
+    public void requestBonusNumber() {
         System.out.println(REQUEST_BONUS_NUMBER_MESSAGE);
     }
 

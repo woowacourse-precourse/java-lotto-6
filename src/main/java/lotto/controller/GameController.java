@@ -27,7 +27,7 @@ public class GameController {
     public void purchaseLottos() {
         String input;
         do {
-            outputView.requestPurchaseAmountMessage();
+            outputView.requestPurchaseAmount();
             input = inputView.scanPurchaseAmount();
         } while (isInvalidPurchaseAmount(input));
     }
@@ -36,10 +36,10 @@ public class GameController {
         try {
             numberService.initLottos();
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            outputView.printException(e.getMessage());
             throw e;
         }
-        outputView.printPurchasedNumberMessage(numberService.getPurchaseNumber());
+        outputView.printPurchaseNumber(numberService.getPurchaseNumber());
         outputView.printLottos(numberService.getLottosOutput());
     }
 
@@ -47,7 +47,7 @@ public class GameController {
         numberService.initWinningNumbers();
         String input;
         do {
-            outputView.requestWinningLottoMessage();
+            outputView.requestWinningLotto();
             input = inputView.scanWinningLotto();
         } while (isInvalidWinningLotto(input));
     }
@@ -55,7 +55,7 @@ public class GameController {
     public void inputBonusNumber() {
         String input;
         do {
-            outputView.requestBonusNumberMessage();
+            outputView.requestBonusNumber();
             input = inputView.scanBonusNumber();
         } while (isInvalidBonusNumber(input));
     }
@@ -73,7 +73,7 @@ public class GameController {
         try {
             numberService.initPurchaseAmount(input);
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            outputView.printException(e.getMessage());
             return true;
         }
         return false;
@@ -83,7 +83,7 @@ public class GameController {
         try {
             numberService.initWinningLotto(input);
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            outputView.printException(e.getMessage());
             return true;
         }
         return false;
@@ -93,7 +93,7 @@ public class GameController {
         try {
             numberService.initBonusNumber(input);
         } catch (IllegalArgumentException e) {
-            outputView.printExceptionMessage(e.getMessage());
+            outputView.printException(e.getMessage());
             return true;
         }
         return false;

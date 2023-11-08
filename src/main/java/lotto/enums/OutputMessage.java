@@ -14,7 +14,7 @@ public enum OutputMessage {
     ),
     RETURN_RATE("총 수익률은 %.1f%%입니다.");
 
-    private String message;
+    private final String message;
 
     OutputMessage(String message) {
         this.message = message;

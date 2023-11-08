@@ -4,16 +4,10 @@ import java.util.List;
 
 public class HitNumberCalculator {
 
-    public int hitNumberCounter(List<Integer> purchasedLottoNumbers,
-            List<Integer> winningLottoNumbers) {
-
-        int count = 0;
-        for (int purchasedLottoNumber : purchasedLottoNumbers) {
-            if (winningLottoNumbers.contains(purchasedLottoNumber)) {
-                count++;
-            }
-        }
-        return count;
+    public int hitNumberCounter(List<Integer> purchasedLottoNumbers, List<Integer> winningLottoNumbers) {
+        return (int) purchasedLottoNumbers.stream()
+                .filter(winningLottoNumbers::contains)
+                .count();
     }
 
     public boolean isBonusNumberIncluded(List<Integer> purchasedLottoNumbers, int bonusNumber) {

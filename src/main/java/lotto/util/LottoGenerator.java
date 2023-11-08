@@ -17,7 +17,7 @@ public class LottoGenerator {
     public static LottoTickets buyLottos(LottoPurchaseAmount amount) {
         List<Lotto> lottos = new ArrayList<>();
 
-        while (amount.isOverLottoPrice()) {
+        while (amount.isBuyable()) {
             List<Integer> integers = Randoms.pickUniqueNumbersInRange(
                     Lotto.VALID_MIN_NUMBER,
                     Lotto.VALID_MAX_NUMBER,
@@ -26,7 +26,7 @@ public class LottoGenerator {
 
             lottos.add(Lotto.of(integers));
 
-            amount.subtractOneLottoPrice();
+            amount.subtractOnePriceUnit();
         }
 
         return LottoTickets.of(lottos);

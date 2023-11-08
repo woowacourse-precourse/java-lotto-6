@@ -24,6 +24,14 @@ public enum LottoPrize {
         return findLottoPrizeByCondition(condition);
     }
 
+    public Integer amount() {
+        return amount;
+    }
+
+    public LottoPrizeCondition getLottoPrizeCondition() {
+        return lottoPrizeCondition;
+    }
+
     private static LottoPrizeCondition createLottoPrizeCondition(Lotto boughtLotto, WinningLotto winningLotto) {
         return LottoPrizeCondition.of(winningLotto.getMatchedCountCompareTo(boughtLotto), winningLotto.isBonusNumMatchedTo(boughtLotto));
     }
@@ -33,14 +41,6 @@ public enum LottoPrize {
                 .filter(e -> e.lottoPrizeCondition.equals(condition))
                 .findAny()
                 .orElse(LottoPrize.NONE);
-    }
-
-    public Integer amount() {
-        return amount;
-    }
-
-    public LottoPrizeCondition getLottoPrizeCondition() {
-        return lottoPrizeCondition;
     }
 
 }

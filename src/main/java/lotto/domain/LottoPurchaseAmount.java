@@ -31,11 +31,11 @@ public class LottoPurchaseAmount {
         }
     }
 
-    public boolean isOverLottoPrice() {
+    public boolean isBuyable() {
         return value >= Lotto.PRICE;
     }
 
-    public void subtractOneLottoPrice() {
+    public void subtractOnePriceUnit() {
         value -= Lotto.PRICE;
     }
 

@@ -7,4 +7,15 @@ import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {
 
+    @Test
+    void of() {
+    }
+
+    @Test
+    void getMatchedCountCompareTo() {
+    }
+
+    @Test
+    void isBonusNumMatchedTo() {
+    }
 }

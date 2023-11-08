@@ -202,3 +202,23 @@ rank가 무엇인지에 따라 map에서 1을 더함.
 LottoMaker와 LottoCompare을 통해
 각 로또별 rank가 무엇인지 열거형에서 찾고
 이를 map에 추가함.
+----
+8회차
+
+수정사항
+- 코딩 컨벤션 : 상수 소문자, 대문자로 변경
+- input, output, viewvalidation 구현
+
+input
+- bonus, money, winning 입력
+
+ouput
+- 입력받을때 , 각각 결과에 대한 출력
+
+viewvalidation
+- money, bonus, lotto 에 대한 예외 발생
+- interface로 추상화 완료
+
+추후 컨트롤러 추가, 단위 테스트 코드 작성, 추상화,
+예외 추가, type chage에 대한 책임을 가지는 추가 클래스
+생성이 필요.

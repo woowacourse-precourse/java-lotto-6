@@ -12,16 +12,16 @@ public class LottoResult {
                 .forEach(lottoRank -> lottoResult.put(lottoRank, 0));
     }
 
-    void addRank(LottoRank rank){
+    public void addRank(LottoRank rank){
         lottoResult.put(rank, lottoResult.get(rank)+1);
     }
-    void addLottos(LottoMaker lottos, LottoCompare compare){
+    public void addLottos(LottoMaker lottos, LottoCompare compare){
         lottos.getLottos().stream()
                 .map((lotto) -> { return LottoRank.getRank(compare.winningCompare(lotto),compare.bonusCompare(lotto));})
                 .forEach(this::addRank);
 
     }
-    Integer getRankCount(LottoRank rank){
+    public Integer getRankCount(LottoRank rank){
         return lottoResult.get(rank);
     }
 

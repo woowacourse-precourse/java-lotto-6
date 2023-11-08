@@ -41,6 +41,10 @@ public enum LottoRank {
         return winnigMoney;
     }
 
+    public int getMatchLottoNumber() {
+        return matchLottoNumber;
+    }
+
     public static LottoRank getRank(int matchLottoNumber, boolean containBonusNumber){
         return Arrays.stream(LottoRank.values())
                 .filter((rankStandard)

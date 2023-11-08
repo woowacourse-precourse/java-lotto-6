@@ -25,11 +25,11 @@ public class LottoMaker {
         return lottos;
     }
 
-    private int makeCount(int money){
+    private int makeCount(){
         return money / MONEYUNIT;
     }
     void addLotto(int money){
-        for(int i= 0 ; i< makeCount(money) ; i++) {
+        for(int i= 0 ; i< makeCount() ; i++) {
             lottos.add(new Lotto(makeLottoNumber()));
         }
     }

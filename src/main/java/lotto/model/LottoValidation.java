@@ -6,32 +6,32 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class LottoValidation implements LottoVaildationInterface{
-    final String duplicationError = "[ERROR] 로또 번호는 중복될 수 없습니다.";
-    final String lengthError = "[ERROR] 로또 번호의 크기는 6개여야 합니다.";
-    final String numberError = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    final int lottoLength = 6;
+    final String DUPLICATIONERROR = "[ERROR] 로또 번호는 중복될 수 없습니다.";
+    final String LENGTHERROR = "[ERROR] 로또 번호의 크기는 6개여야 합니다.";
+    final String NUMBERERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    final int LOTTOLENGHT = 6;
     final int MAXRANGE = 45;
     final int MINRANGE = 0;
 
     @Override
    public void lottoLengthError(List<Integer> numbers) throws IllegalArgumentException {
-        if (numbers.size() != lottoLength) {
-            throw new IllegalArgumentException(lengthError);
+        if (numbers.size() != LOTTOLENGHT) {
+            throw new IllegalArgumentException(LENGTHERROR);
         }
     }
     @Override
     public void lottoDuplictionError(List<Integer> numbers) throws IllegalArgumentException {
         Set<Integer> uniqeNumber = new HashSet<>(numbers);
         if (numbers.size() != uniqeNumber.size()) {
-            throw new IllegalArgumentException(duplicationError);
+            throw new IllegalArgumentException(DUPLICATIONERROR);
         }
     }
     @Override
     public void lottoNumberError(List<Integer> numbers) throws IllegalArgumentException {
         numbers.stream()
-                .filter((x) -> { return x < MINRANGE || x > MAXRANGE; })
+                .filter((number) -> { return number < MINRANGE || number > MAXRANGE; })
                 .findAny()
-                .ifPresent( (x) -> { throw new IllegalArgumentException(numberError); }
+                .ifPresent( (number) -> { throw new IllegalArgumentException(NUMBERERROR); }
                 );
     }
 

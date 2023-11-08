@@ -7,11 +7,10 @@ import lotto.StringConstants;
 import lotto.domain.Lotto;
 
 public class LottoWinningNumberService {
-    public List<Integer> addLottoNumberToWinningNumbers(String lottoNumbersString) {
+    public Lotto addLottoNumberToWinningNumbers(String lottoNumbersString) {
         List<Integer> winningNumbers = convertStringToWinningNumbers(lottoNumbersString);
-        Lotto lotto = new Lotto(winningNumbers);
 
-        return lotto.getNumbers();
+        return new Lotto(winningNumbers);
     }
 
     public List<Integer> convertStringToWinningNumbers(String lottoNumbersString) {
@@ -27,7 +26,7 @@ public class LottoWinningNumberService {
         return lottoNumbers;
     }
 
-    public void validateBonusNumber(List<Integer> lottoWinningNumbers, String bonusNumber) {
+    public void validateBonusNumber(Lotto lottoWinningNumbers, String bonusNumber) {
         if (bonusNumberNotDigit(bonusNumber)) {
             throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE);
         }
@@ -53,7 +52,7 @@ public class LottoWinningNumberService {
         return number < LottoConstants.NUMBER_MIN.getValue() || number > LottoConstants.NUMBER_MAX.getValue();
     }
 
-    public boolean bonusNumberDuplicateWinningNumbers(List<Integer> lottoWinningNumbers, String bonusNumber) {
+    public boolean bonusNumberDuplicateWinningNumbers(Lotto lottoWinningNumbers, String bonusNumber) {
         int bonusNumberInt = Integer.parseInt(bonusNumber);
         return lottoWinningNumbers.contains(bonusNumberInt);
     }

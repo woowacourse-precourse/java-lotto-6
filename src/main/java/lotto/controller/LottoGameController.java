@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 import lotto.StringConstants;
+import lotto.domain.Lotto;
 import lotto.port.InputPort;
 import lotto.port.OutputPort;
 import lotto.service.LottoNumberGenerationService;
@@ -34,15 +35,15 @@ public class LottoGameController {
     }
 
     public void playGame() {
-        List<List<Integer>> userLottoNumbers = buyLottoTickets();
-        List<Integer> winningNumbers = inputWinningNumber();
+        List<Lotto> userLottoNumbers = buyLottoTickets();
+        Lotto winningNumbers = inputWinningNumber();
         int bonusNumber = inputBonusNumber(winningNumbers);
         Map<Integer, Integer> matchingCounts = lottoResultCalculationService.calculateMatchingCounts(userLottoNumbers, winningNumbers, bonusNumber);
         lottoResultCalculationService.printStatistics(matchingCounts);
         lottoResultCalculationService.printReturnRate(matchingCounts, userLottoNumbers.size());
     }
 
-    private List<List<Integer>> buyLottoTickets() {
+    private List<Lotto> buyLottoTickets() {
         return getInputWithValidation(
                 () -> {
                     outputPort.printLine(StringConstants.INPUT_PURCHASEAMOUNT_MESSAGE);
@@ -54,7 +55,7 @@ public class LottoGameController {
         );
     }
 
-    private List<Integer> inputWinningNumber() {
+    private Lotto inputWinningNumber() {
         return getInputWithValidation(
                 () -> {
                     outputPort.printEmptyLine();
@@ -65,7 +66,7 @@ public class LottoGameController {
         );
     }
 
-    private int inputBonusNumber(List<Integer> winningNumbers) {
+    private int inputBonusNumber(Lotto winningNumbers) {
         return getInputWithValidation(
                 () -> {
                     outputPort.printEmptyLine();

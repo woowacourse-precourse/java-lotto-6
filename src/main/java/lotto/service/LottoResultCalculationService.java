@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.LottoConstants;
 import lotto.StringConstants;
+import lotto.domain.Lotto;
 import lotto.port.OutputPort;
 
 public class LottoResultCalculationService {
@@ -15,26 +16,16 @@ public class LottoResultCalculationService {
         this.outputPort =outputPort;
     }
 
-    public Map<Integer, Integer> calculateMatchingCounts(List<List<Integer>> userLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+    public Map<Integer, Integer> calculateMatchingCounts(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
         Map<Integer, Integer> matchingCounts = new HashMap<>();
-        for (List<Integer> lottoNumbers : userLottoNumbers) {
-            int count = countMatchedNumbers(lottoNumbers, winningNumbers);
-            if (count == LottoConstants.WINNING_FIVE_NUMBER.getValue() && isMatchedBonusNumber(lottoNumbers, bonusNumber)) {
+        for (Lotto userLotto : userLottos) {
+            int count = winningLotto.countMatchedNumbers(userLotto);
+            if (count == LottoConstants.WINNING_FIVE_NUMBER.getValue() && userLotto.getNumbers().contains(bonusNumber)) {
                 count = LottoConstants.WINNING_FIVE_NUMBER_WITH_BONUS_NUMBER.getValue();
             }
             matchingCounts.put(count, matchingCounts.getOrDefault(count, 0) + 1);
         }
         return matchingCounts;
-    }
-
-    public int countMatchedNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        int count = 0;
-        for (int number : lottoNumbers) {
-            if (winningNumbers.contains(number)) {
-                count++;
-            }
-        }
-        return count;
     }
 
     public boolean isMatchedBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {

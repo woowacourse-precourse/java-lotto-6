@@ -10,6 +10,7 @@ public class LottoMachine {
 
     private static final String PURCHASE_AMOUNT_GUIDE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBER_INPUT_GUIDE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT_GUIDE = "보너스 번호를 입력해 주세요.";
     private static final int PURCHASE_UNIT = 1000;
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;
@@ -57,5 +58,12 @@ public class LottoMachine {
         }
         Lotto winningLotto = new Lotto(winningNumbers);
         return winningLotto;
+    }
+
+    public int readBonusNumber() {
+        System.out.println(BONUS_NUMBER_INPUT_GUIDE);
+        String bonusNumberText = readLine();
+        int bonusNumber = Integer.parseInt(bonusNumberText);
+        return bonusNumber;
     }
 }

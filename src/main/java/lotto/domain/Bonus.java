@@ -16,7 +16,12 @@ public class Bonus {
         validateDuplication(winLotto);
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private int validateNumeral(String input) {
+
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

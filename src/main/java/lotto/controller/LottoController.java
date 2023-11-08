@@ -5,11 +5,11 @@ import java.util.function.Supplier;
 import lotto.model.Amount;
 import lotto.model.BonusNumber;
 import lotto.model.InputParser;
-import lotto.model.InputValidator;
 import lotto.model.Lotto;
 import lotto.model.LottoNumbersGenerator;
 import lotto.model.Lottos;
 import lotto.model.ResultCalculator;
+import lotto.model.StringToIntegerConvertor;
 import lotto.model.WinLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -70,14 +70,14 @@ public class LottoController {
     private Lotto inputWinNumbers() {
         String inputNumbers = InputView.requestWinningNumbers();
         List<String> parsedNumbers = InputParser.parseInput(inputNumbers);
-        List<Integer> parsedIntegerNumbers = InputValidator.validateInteger(parsedNumbers);
+        List<Integer> parsedIntegerNumbers = StringToIntegerConvertor.stringToInteger(parsedNumbers);
         return new Lotto(parsedIntegerNumbers);
     }
 
     // 보너스 번호 입력 및 반환
     private BonusNumber inputBonusNumber() {
         String inputNumber = InputView.requestBonusNumber();
-        int bonusInput = InputValidator.validateInteger(inputNumber);
+        int bonusInput = StringToIntegerConvertor.stringToInteger(inputNumber);
         return new BonusNumber(bonusInput);
     }
 

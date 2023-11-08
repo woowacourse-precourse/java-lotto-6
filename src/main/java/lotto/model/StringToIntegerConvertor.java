@@ -5,9 +5,9 @@ import java.util.List;
 import lotto.model.exceptions.NotCorrectInputException;
 import lotto.model.exceptions.NotIntegerException;
 
-public class InputValidator {
+public class StringToIntegerConvertor {
     // 정수 검증
-    public static List<Integer> validateInteger(List<String> input) {
+    public static List<Integer> stringToInteger(List<String> input) {
         List<Integer> integerNumbers = new ArrayList<>();
         input.forEach(number -> {
             try {
@@ -20,7 +20,7 @@ public class InputValidator {
     }
 
     // 보너스 번호 정수 검증
-    public static int validateInteger(String input) {
+    public static int stringToInteger(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

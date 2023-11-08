@@ -12,12 +12,12 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class InputValidatorTest {
+public class StringToIntegerConvertorTest {
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("notIntegerParameter")
     @DisplayName("정수가 아닐 시 예외 발생")
     void notIntegerNumbersInput(String testName, List<String> input) {
-        assertThatThrownBy(() -> InputValidator.validateInteger(input))
+        assertThatThrownBy(() -> StringToIntegerConvertor.stringToInteger(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NOT_CORRECT_INPUT_MESSAGE.getMessage());
     }
@@ -39,7 +39,7 @@ public class InputValidatorTest {
     @ValueSource(strings = {"", " ", "0.5", "안녕", "5+1"})
     @DisplayName("정수가 아닐 시 예외 발생")
     void notIntegerNumberInput(String input) {
-        assertThatThrownBy(() -> InputValidator.validateInteger(input))
+        assertThatThrownBy(() -> StringToIntegerConvertor.stringToInteger(input))
                 .isInstanceOf(NotIntegerException.class);
     }
 }

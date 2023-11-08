@@ -1,5 +1,5 @@
-## 의존관계 도식 
-- (그림 업로드)
+## 구성 그림 
+<img width="500" alt="스크린샷 2023-11-08 오후 11 50 08" src="https://github.com/woowacourse-precourse/java-lotto-6/assets/42943992/ca5e93e2-0baa-4142-b60a-c6c4b15a00c6">
 
 ## 구현할 기능 목록
 - 금액 입력

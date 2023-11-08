@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -17,4 +18,20 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public String toString() {
+        List<Integer> tmp = numbers.stream().sorted().toList();
+        StringBuilder sb = new StringBuilder("[");
+
+        for (int i = 0; i < tmp.size(); i++) {
+            sb.append(tmp.get(i));
+            if (i != tmp.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        return new String(sb + "]");
+    }
+
+    public int get(int index) {
+        return numbers.get(index);
+    }
 }

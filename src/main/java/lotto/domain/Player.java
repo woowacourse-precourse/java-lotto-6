@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -21,6 +23,16 @@ public class Player {
         return winningDetails.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
+    }
+
+    public double calculateRateOfReturn(int inputMoney) {
+        BigDecimal purchaseAmount = new BigDecimal(inputMoney);
+        BigDecimal totalPrizeMoney = new BigDecimal(calculatePrizeMoney());
+        BigDecimal percentage = new BigDecimal("0.01");
+
+        return totalPrizeMoney.divide(
+                purchaseAmount.multiply(percentage), 1, RoundingMode.HALF_UP)
+                .doubleValue();
     }
 
     public void checkWinning(Lotto winningNumber, int bonusNumber) {

@@ -85,4 +85,25 @@ class PlayerTest {
         assertThat(winningDetails.get(Rank._5TH)).isEqualTo(1);
         assertThat(winningDetails.get(Rank.BLANK)).isEqualTo(3);
     }
+
+    @DisplayName("구매 금액에 대한 수익률을 계산한다.")
+    @Test
+    void calculateRateOfReturn() {
+        lotto = Arrays.asList(
+                new Lotto(Arrays.asList(1,2,3,15,16,17)),   // 5등
+                new Lotto(Arrays.asList(1,2,19,20,25,30)),  // 당첨 x
+                new Lotto(Arrays.asList(1,2,25,27,28,35)),  // 당첨 x
+                new Lotto(Arrays.asList(1,2,10,22,33,44)),  // 당첨 x
+                new Lotto(Arrays.asList(1,2,20,25,35,45)),  // 당첨 x
+                new Lotto(Arrays.asList(1,2,30,40,41,42)),  // 당첨 x
+                new Lotto(Arrays.asList(1,2,15,17,22,42)),  // 당첨 x
+                new Lotto(Arrays.asList(1,2,20,30,40,45))   // 당첨 x
+        );
+        player = new Player(lotto);
+        player.checkWinning(winningNumber, bonusNumber);
+
+        double result = player.calculateRateOfReturn(8000);
+
+        assertThat(result).isEqualTo(62.5);
+    }
 }

@@ -2,21 +2,52 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-
-import lotto.domain.message.ErrorMessage;
-import lotto.domain.message.InputViewMessage;
+import lotto.domain.Lotto;
+import lotto.domain.message.InputMessage;
 import lotto.validator.LottoNumbersValidator;
+import lotto.validator.PriceValidator;
+import lotto.validator.Validator;
 
 public class InputView {
-    public List<Integer> inputLottoNumbers() {
-        System.out.println(InputViewMessage.INPUT_WINNING_NUMBER_NOTICE.getValue());
-        List<String> inputNumbers = Arrays.stream(readLine().split(InputViewMessage.INPUT_DELIMITER.getValue()))
+    public int inputBuyingPrice() {
+        while (true) {
+            try {
+                return Integer.parseInt(getBuyingPrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private String getBuyingPrice() {
+        System.out.println(InputMessage.INPUT_MONEY_NOTICE.getValue());
+        String buyingPrice = Console.readLine();
+        PriceValidator.validate(buyingPrice);
+        System.out.println();
+
+        return buyingPrice;
+    }
+    public Lotto inputWinningLottoNumbers() {
+        while (true) {
+            try {
+                return new Lotto(getLottoNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public List<Integer> getLottoNumbers() {
+        System.out.println(InputMessage.INPUT_WINNING_NUMBER_NOTICE.getValue());
+        List<String> inputNumbers = Arrays.stream(readLine().split(InputMessage.INPUT_DELIMITER.getValue()))
                 .map(String::trim)
                 .toList();
-        inputNumbers.forEach(InputView::validateNumber);
-        return LottoNumbersValidator.validate(convertToNumbers(inputNumbers));
+        inputNumbers.forEach(Validator::validateNumber);
+        LottoNumbersValidator.validate(convertToNumbers(inputNumbers));
+        return convertToNumbers(inputNumbers);
     }
 
     private static List<String> readLineAndSplitWith(final String delimiter) {
@@ -31,11 +62,5 @@ public class InputView {
                 .toList();
     }
 
-    private static void validateNumber(final String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw ErrorMessage.INVALID_NUMBER_FORMAT.createException();
-        }
-    }
 }
+

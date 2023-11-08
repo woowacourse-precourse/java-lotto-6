@@ -34,9 +34,9 @@ public class Lotto {
         List<Lotto> lottos = createLotto(numberOfLotto);
         printLotto(lottos);
 
-        WinningNumber winningNumber = new WinningNumber();
-        winningNumber.inputWinningNumber();
-        winningNumber.compareToLotto(lottos);
+        List<Integer> winningNumbers = WinningNumber.inputWinningNumber();
+        int bonusNumber = WinningNumber.inputBonusNumber(winningNumbers);
+        WinningNumber.compareToLotto(lottos, winningNumbers, bonusNumber);
     }
 
     public static List<Lotto> createLotto(int numberOfLotto) {

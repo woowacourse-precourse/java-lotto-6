@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.dto.LottoResultAndProfitResponseDto;
 import lotto.dto.LottoResultResponseDto;
 import lotto.dto.ValidateAmountDto;
@@ -11,6 +12,7 @@ import lotto.dto.ValidateAmountResponseDto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 
 public class LottoService {
@@ -63,92 +65,129 @@ public class LottoService {
         int bonusNum = validateBonusNum(inputStr);
         return bonusNum;
     }
-    public LottoResultAndProfitResponseDto getLottoResultResponse(List<Lotto> lottoNumbers, Lotto winningLottoNumbers, int bonusNum){
-        int threeMatchingPrizeCount = 0;
-        int fourMatchingPrizeCount = 0;
-        int fiveMatchingPrizeCount = 0;
-        int fiveMatchingWithBonusBallPrizeCount = 0;
-        int sixMatchingPrizeCount = 0;
-        int oneOrTwoMatchingPrizeCount = 0;
-        int matchingCount=0;
-        LottoResultResponseDto lottoResultResponseDto = new LottoResultResponseDto();
-        LottoResultResponseDto lottoResponseDto;
-        for (Lotto userLotto : lottoNumbers) {
-            matchingCount = countMatchingNumbers(userLotto, winningLottoNumbers);
-            lottoResponseDto = calculatePrizeCount(matchingCount,userLotto,bonusNum);
-            lottoResultResponseDto.setThreeMatchingPrizeCount(threeMatchingPrizeCount += lottoResponseDto.getThreeMatchingPrizeCount());
-            lottoResultResponseDto.setFourMatchingPrizeCount(fourMatchingPrizeCount+= lottoResponseDto.getFourMatchingPrizeCount());
-            lottoResultResponseDto.setFiveMatchingPrizeCount(fiveMatchingPrizeCount+= lottoResponseDto.getFiveMatchingPrizeCount());
-            lottoResultResponseDto.setFiveMatchingWithBonusBallPrizeCount(fiveMatchingWithBonusBallPrizeCount += lottoResponseDto.getFiveMatchingWithBonusBallPrizeCount());
-            lottoResultResponseDto.setSixMatchingPrizeCount(sixMatchingPrizeCount += lottoResponseDto.getSixMatchingPrizeCount());
-            lottoResponseDto.setOneOrTwoMatchingPrizeCount(oneOrTwoMatchingPrizeCount +=lottoResponseDto.getOneOrTwoMatchingPrizeCount());
+//    public LottoResultAndProfitResponseDto getLottoResultResponse(List<Lotto> lottoNumbers, Lotto winningLottoNumbers, int bonusNum){
+//        int threeMatchingPrizeCount = 0;
+//        int fourMatchingPrizeCount = 0;
+//        int fiveMatchingPrizeCount = 0;
+//        int fiveMatchingWithBonusBallPrizeCount = 0;
+//        int sixMatchingPrizeCount = 0;
+//        int oneOrTwoMatchingPrizeCount = 0;
+//        int matchingCount=0;
+//        LottoResultResponseDto lottoResultResponseDto = new LottoResultResponseDto();
+//        LottoResultResponseDto lottoResponseDto;
+//        for (Lotto userLotto : lottoNumbers) {
+//            matchingCount = countMatchingNumbers(userLotto, winningLottoNumbers);
+//            lottoResponseDto = calculatePrizeCount(matchingCount,userLotto,bonusNum);
+//            lottoResultResponseDto.setThreeMatchingPrizeCount(threeMatchingPrizeCount += lottoResponseDto.getThreeMatchingPrizeCount());
+//            lottoResultResponseDto.setFourMatchingPrizeCount(fourMatchingPrizeCount+= lottoResponseDto.getFourMatchingPrizeCount());
+//            lottoResultResponseDto.setFiveMatchingPrizeCount(fiveMatchingPrizeCount+= lottoResponseDto.getFiveMatchingPrizeCount());
+//            lottoResultResponseDto.setFiveMatchingWithBonusBallPrizeCount(fiveMatchingWithBonusBallPrizeCount += lottoResponseDto.getFiveMatchingWithBonusBallPrizeCount());
+//            lottoResultResponseDto.setSixMatchingPrizeCount(sixMatchingPrizeCount += lottoResponseDto.getSixMatchingPrizeCount());
+//            lottoResponseDto.setOneOrTwoMatchingPrizeCount(oneOrTwoMatchingPrizeCount +=lottoResponseDto.getOneOrTwoMatchingPrizeCount());
+//        }
+//
+//        double totalProfitRate = calculateTotalProfitRate(lottoResultResponseDto);
+//        return LottoResultAndProfitResponseDto.of(lottoResultResponseDto,totalProfitRate);
+//
+//    }
+    public LottoResultAndProfitResponseDto getLottoResultResponse(List<Lotto> lottoList, Lotto winningNumbers, int bonusNumber) {
+        int[] results = new int[Rank.values().length];
+        List<Integer> userNumbers = winningNumbers.getNumbers();
+        double count = 0;
+        double totalPrizeAmount = 0;
+        Rank rank = getRank(0,true);
+        for (Lotto userLotto : lottoList) {
+            int matchingCount = countMatchingNumbers(userLotto, winningNumbers);
+            rank = getRank(matchingCount, userNumbers.contains(bonusNumber));
+            results[rank.getResult()]++;
+            count ++;
+            totalPrizeAmount= totalPrizeAmount+rank.getPrizeAmount();
         }
-
-        double totalProfitRate = calculateTotalProfitRate(lottoResultResponseDto);
-        return LottoResultAndProfitResponseDto.of(lottoResultResponseDto,totalProfitRate);
-
+        double totalProfitRate = totalPrizeAmount/(1000 * count);
+        LottoResultResponseDto lottoResultResponseDto = LottoResultResponseDto.of(results,rank);
+        return LottoResultAndProfitResponseDto.of(lottoResultResponseDto,totalProfitRate*100);
     }
     public void PrintResult(LottoResultAndProfitResponseDto lottoResultAndProfitResponseDto){
-        System.out.println("3개 일치 (5,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getThreeMatchingPrizeCount()+"개");
-        System.out.println("4개 일치 (50,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getFourMatchingPrizeCount()+"개");
-        System.out.println("5개 일치 (1,500,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getFiveMatchingPrizeCount()+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getFiveMatchingWithBonusBallPrizeCount()+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+lottoResultAndProfitResponseDto.getLottoResultResponseDto().getSixMatchingPrizeCount()+"개");
-        System.out.println("총 수익률은 "+lottoResultAndProfitResponseDto.getTotalProfitRate()+"%입니다.");
-    }
-    private double calculateTotalProfitRate(LottoResultResponseDto lottoResultResponseDto) {
-        int totalPurchasedLottos = lottoResultResponseDto.getThreeMatchingPrizeCount()
-                + lottoResultResponseDto.getFourMatchingPrizeCount()
-                + lottoResultResponseDto.getFiveMatchingPrizeCount()
-                + lottoResultResponseDto.getFiveMatchingWithBonusBallPrizeCount()
-                + lottoResultResponseDto.getSixMatchingPrizeCount()
-                + lottoResultResponseDto.getOneOrTwoMatchingPrizeCount();
-        int totalPrizeAmount = 5000 * lottoResultResponseDto.getThreeMatchingPrizeCount()
-                + 50000 * lottoResultResponseDto.getFourMatchingPrizeCount()
-                + 1500000 * lottoResultResponseDto.getFiveMatchingPrizeCount()
-                + 30000000 * lottoResultResponseDto.getFiveMatchingWithBonusBallPrizeCount()
-                + 2000000000 * lottoResultResponseDto.getSixMatchingPrizeCount();;
-        int totalPurchasedAmount = totalPurchasedLottos * 1000;
-        double totalProfitRate = (double) totalPrizeAmount / totalPurchasedAmount;
-        return totalProfitRate * 100;
-    }
+        LottoResultResponseDto lottoResultResponseDto = lottoResultAndProfitResponseDto.getLottoResultResponseDto();
+        int[] results = lottoResultResponseDto.getResults();
+        System.out.println("3개 일치 (5,000원) - "+results[0]+"개");
+        System.out.println("4개 일치 (50,000원) - "+results[1]+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+results[2]+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+results[3]+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+results[4]+"개");
 
-    private LottoResultResponseDto calculatePrizeCount(int matchingCount,Lotto userLotto,int bonusNum){
-        List<Integer> userNumbers = userLotto.getNumbers();
-        int threeMatchingPrizeCount = 0;
-        int fourMatchingPrizeCount = 0;
-        int fiveMatchingPrizeCount = 0;
-        int fiveMatchingWithBonusBallPrizeCount = 0;
-        int sixMatchingPrizeCount = 0;
-        int oneOrTwoMatchingPrizeCount = 0;
-        if(matchingCount == 0 || matchingCount == 1 || matchingCount == 2){
-            oneOrTwoMatchingPrizeCount++;
-            return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+        System.out.println("총 수익률은"+lottoResultAndProfitResponseDto.getTotalProfitRate()+"% 입니다.");
+    }
+//    private double calculateTotalProfitRate(LottoResultResponseDto lottoResultResponseDto) {
+//        int totalPurchasedLottos = lottoResultResponseDto.getThreeMatchingPrizeCount()
+//                + lottoResultResponseDto.getFourMatchingPrizeCount()
+//                + lottoResultResponseDto.getFiveMatchingPrizeCount()
+//                + lottoResultResponseDto.getFiveMatchingWithBonusBallPrizeCount()
+//                + lottoResultResponseDto.getSixMatchingPrizeCount()
+//                + lottoResultResponseDto.getOneOrTwoMatchingPrizeCount();
+//        int totalPrizeAmount = 5000 * lottoResultResponseDto.getThreeMatchingPrizeCount()
+//                + 50000 * lottoResultResponseDto.getFourMatchingPrizeCount()
+//                + 1500000 * lottoResultResponseDto.getFiveMatchingPrizeCount()
+//                + 30000000 * lottoResultResponseDto.getFiveMatchingWithBonusBallPrizeCount()
+//                + 2000000000 * lottoResultResponseDto.getSixMatchingPrizeCount();;
+//        int totalPurchasedAmount = totalPurchasedLottos * 1000;
+//        double totalProfitRate = (double) totalPrizeAmount / totalPurchasedAmount;
+//        return totalProfitRate * 100;
+//    }
+    private static Rank getRank(int matchingCount, boolean hasBonusNumber) {
+        if (matchingCount == 6) {
+            return Rank.FIRST;
         }
-        if (matchingCount == 3) {
-            threeMatchingPrizeCount++;
-            return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
-        }
-        if (matchingCount == 4) {
-            fourMatchingPrizeCount++;
-            return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+        if (matchingCount == 5 && hasBonusNumber) {
+            return Rank.SECOND;
         }
         if (matchingCount == 5) {
-            if (userNumbers.contains(bonusNum)) {
-                fiveMatchingWithBonusBallPrizeCount++;
-                return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
-                }
-            if(!userNumbers.contains(bonusNum)){
-                fiveMatchingPrizeCount++;
-                return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
-            }
+            return Rank.THIRD;
         }
-        if (matchingCount == 6) {
-            sixMatchingPrizeCount++;
-            return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+        if (matchingCount == 4) {
+            return Rank.FOURTH;
         }
-        return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+        if (matchingCount == 3) {
+            return Rank.FIFTH;
+        }
+        return Rank.Null;
     }
+//    private LottoResultResponseDto calculatePrizeCount(int matchingCount,Lotto userLotto,int bonusNum){
+//        List<Integer> userNumbers = userLotto.getNumbers();
+//        int threeMatchingPrizeCount = 0;
+//        int fourMatchingPrizeCount = 0;
+//        int fiveMatchingPrizeCount = 0;
+//        int fiveMatchingWithBonusBallPrizeCount = 0;
+//        int sixMatchingPrizeCount = 0;
+//        int oneOrTwoMatchingPrizeCount = 0;
+//        if(matchingCount == 0 || matchingCount == 1 || matchingCount == 2){
+//            oneOrTwoMatchingPrizeCount++;
+//            return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+//        }
+//        if (matchingCount == 3) {
+//            threeMatchingPrizeCount++;
+//            return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+//        }
+//        if (matchingCount == 4) {
+//            fourMatchingPrizeCount++;
+//            return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+//        }
+//        if (matchingCount == 5) {
+//            if (userNumbers.contains(bonusNum)) {
+//                fiveMatchingWithBonusBallPrizeCount++;
+//                return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+//                }
+//            if(!userNumbers.contains(bonusNum)){
+//                fiveMatchingPrizeCount++;
+//                return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+//            }
+//        }
+//        if (matchingCount == 6) {
+//            sixMatchingPrizeCount++;
+//            return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+//        }
+//        return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount,oneOrTwoMatchingPrizeCount);
+//    }
     private int countMatchingNumbers(Lotto userLotto, Lotto winningLottoNumbers) {
         List<Integer> userNumbers = userLotto.getNumbers();
         List<Integer> winningNumbers = winningLottoNumbers.getNumbers();

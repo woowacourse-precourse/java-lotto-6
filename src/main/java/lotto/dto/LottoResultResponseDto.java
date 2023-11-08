@@ -1,28 +1,25 @@
 package lotto.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lotto.domain.Rank;
 
-@Builder
-@Getter
+import java.util.Map;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
+@Getter
+@Builder
 public class LottoResultResponseDto {
-    private int threeMatchingPrizeCount;
-    private int fourMatchingPrizeCount;
-    private int fiveMatchingPrizeCount;
-    private int fiveMatchingWithBonusBallPrizeCount;
-    private int sixMatchingPrizeCount;
-    private int oneOrTwoMatchingPrizeCount;
+    private  int[] results;
+    private Rank rank;
 
-    public static LottoResultResponseDto of(int threeMatchingPrizeCount, int fourMatchingPrizeCount, int fiveMatchingPrizeCount, int fiveMatchingWithBonusBallPrizeCount, int sixMatchingPrizeCount, int oneOrTwoMatchingPrizeCount){
+    public static LottoResultResponseDto of(int[] results, Rank rank){
         return LottoResultResponseDto.builder()
-                .threeMatchingPrizeCount(threeMatchingPrizeCount)
-                .fourMatchingPrizeCount(fourMatchingPrizeCount)
-                .fiveMatchingPrizeCount(fiveMatchingPrizeCount)
-                .fiveMatchingWithBonusBallPrizeCount(fiveMatchingWithBonusBallPrizeCount)
-                .sixMatchingPrizeCount(sixMatchingPrizeCount)
-                .oneOrTwoMatchingPrizeCount(oneOrTwoMatchingPrizeCount)
+                .results(results)
+                .rank(rank)
                 .build();
     }
 }

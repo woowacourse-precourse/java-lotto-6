@@ -3,7 +3,6 @@ package lotto.controller;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import lotto.Domain.LottoRate;
 import lotto.model.Lotto;
@@ -45,7 +44,6 @@ public class LottoController {
         List<Lotto> lottos = lottoShop.getLottos();
         for (Lotto lotto :
                 lottos) {
-            Collections.sort(lotto.getNumbers());
             lottoView.printLottoNumber(lotto.getNumbers());
         }
     }

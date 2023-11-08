@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +27,13 @@ public class LottoCal {
     public void count(List<Integer> lotto, List<Integer> userLotto, int userBonus) {
 
         boolean bonusCheck = lotto.contains(userBonus);
-        lotto.retainAll(userLotto);
-        int count = lotto.size();
+        List<Integer> temp = new ArrayList<>();
+        for (int num :
+                lotto) {
+            temp.add(num);
+        }
+        temp.retainAll(userLotto);
+        int count = temp.size();
         if (count == SECOND_REQUIRE && bonusCheck) {
 
             count = SECOND_REQUIRE_SUCCESS;

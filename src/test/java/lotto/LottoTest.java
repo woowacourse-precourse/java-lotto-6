@@ -1,8 +1,10 @@
 package lotto;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,4 +26,35 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 순위를 get,set 메서드가 잘 작동하는지 확인한다.")
+    @Test
+    void setAndGetLottoRankTest() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        lotto.setRank(LottoRank.FIRST);
+        LottoRank actual = lotto.getRank();
+        LottoRank expected = LottoRank.FIRST;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("로또를 생성하고 로또 랭크의 초기 값을 확인한다.")
+    @Test
+    void initialLottoRankTest() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        LottoRank actual = lotto.getRank();
+        LottoRank expected = LottoRank.NO_WIN;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @DisplayName("로또 랭크의 prize 값의 입출력을 확인한다.")
+    @Test
+    void lottoRankGetPrizeTest() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        lotto.setRank(LottoRank.FIRST);
+        String actual = lotto.getRank().getPrize();
+        String expected = "2000000000";
+
+        Assertions.assertEquals(expected, actual);
+    }
 }

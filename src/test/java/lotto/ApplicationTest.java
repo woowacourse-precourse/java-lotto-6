@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -50,6 +51,104 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입_금액이_1000원_단위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 숫자가 아닌 경우 예외 처리한다.")
+    @Test
+    void 당첨_번호_숫자_입력_예외_테스트1() {
+        assertSimpleTest(() -> {
+            runException("1000", "a,b,c,d,e,f");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호가 6개 이상 입력된 경우 예외 처리한다.")
+    @Test
+    void 당첨_번호_숫자_입력_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호에 45가 넘는 숫자를 입력하는 경우")
+    @Test
+    void 범위_외_숫자_입력_예외_테스트1() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호에 0을 입력하는 경우")
+    @Test
+    void 범위_외_숫자_입력_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호에 0보다 작은 수를 입력하는 경우")
+    @Test
+    void 범위_외_숫자_입력_예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,-50");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호에 45보다 큰 수를 입력하는 경우")
+    @Test
+    void 범위_외_숫자_입력_예외_테스트_보너스1() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호에 0을 입력하는 경우")
+    @Test
+    void 범위_외_숫자_입력_예외_테스트_보너스2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호에 0보다 작은 수를 입력하는 경우")
+    @Test
+    void 범위_외_숫자_입력_예외_테스트_보너스3() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "-100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 번호에 중복 입력된 숫자가 있는 경우 예외 처리한다.")
+    @Test
+    void 중복_입력_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호 입력 시에 중복 입력된 숫자가 있는 경우 예외 처리한다.")
+    @Test
+    void 중복_입력_예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

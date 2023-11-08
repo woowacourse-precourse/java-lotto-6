@@ -2,6 +2,7 @@ package lotto.utils;
 
 import static lotto.constant.ErrorMessage.INPUT_CONTAINS_WHITE_SPACE;
 import static lotto.constant.ErrorMessage.INPUT_EMPTY;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
@@ -30,5 +31,18 @@ public class StringUtilsTest {
         assertThatThrownBy(() -> StringUtils.validContainsWhiteSpace(inputWithWhiteSpace))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_CONTAINS_WHITE_SPACE);
+    }
+
+    @Test
+    @DisplayName("문자열로부터 정수를 추출한다.")
+    void getIntegerValue_정수_추출() {
+        // given
+        String input = "3";
+
+        // when
+        Integer result = StringUtils.getIntegerValue(input);
+
+        // then
+        assertThat(result).isEqualTo(3);
     }
 }

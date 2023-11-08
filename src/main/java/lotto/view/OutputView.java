@@ -16,7 +16,9 @@ public class OutputView {
     private static final String NEW_LINE = "\n";
     private static final String DASH = " - ";
 
-
+    private OutputView() {
+    }
+    
     public static void printQuantityOfLotteries(Quantity quantity) {
         System.out.printf(MSG_PURCHASE + NEW_LINE, quantity.getAmount());
     }

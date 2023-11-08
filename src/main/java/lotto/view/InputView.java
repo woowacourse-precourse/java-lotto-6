@@ -13,6 +13,9 @@ public class InputView {
     private static final String MSG_ASKING_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String DELIMITER = ",";
 
+    private InputView() {
+    }
+
     public static String getUserInput() {
         return Console.readLine().trim();
     }

@@ -16,17 +16,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-
         if (isValidNumbersSize(numbers)) {
-            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE+StringConstants.NUMBERS_SIZE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(
+                    StringConstants.FIRST_ERROR_MESSAGE+StringConstants.NUMBERS_SIZE_EXCEPTION_MESSAGE);
         }
-
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE+StringConstants.NUMBERS_DUPLICATE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(
+                    StringConstants.FIRST_ERROR_MESSAGE+StringConstants.NUMBERS_DUPLICATE_EXCEPTION_MESSAGE);
         }
-
         if (!isValidRange(numbers)) {
-            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE+StringConstants.NUMBERS_RANGE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(
+                    StringConstants.FIRST_ERROR_MESSAGE+StringConstants.NUMBERS_RANGE_EXCEPTION_MESSAGE);
         }
     }
 

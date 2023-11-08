@@ -26,8 +26,12 @@ public class LottoGameController {
     private final LottoPrinter lottoPrinter;
 
 
-    public LottoGameController(InputPort inputPort, OutputPort outputPort, LottoNumberGenerationService lottoNumberGenerationService,
-            LottoPurchaseService lottoPurchaseService, LottoResultCalculationService lottoResultCalculationService, LottoWinningNumberService lottoWinningNumberService,LottoPrinter lottoPrinter) {
+    public LottoGameController(InputPort inputPort, OutputPort outputPort,
+            LottoNumberGenerationService lottoNumberGenerationService,
+            LottoPurchaseService lottoPurchaseService,
+            LottoResultCalculationService lottoResultCalculationService,
+            LottoWinningNumberService lottoWinningNumberService,
+            LottoPrinter lottoPrinter) {
 
         this.inputPort = inputPort;
         this.outputPort =outputPort;

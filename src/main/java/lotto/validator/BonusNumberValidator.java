@@ -20,7 +20,7 @@ public class BonusNumberValidator implements Validator {
 
     private void checkValidRangeNumber(String bonusNumber) {
         if (isInvalidRangeNumber(bonusNumber)) {
-            throw new IllegalArgumentException(LOTTO_ERROR.message());
+            throw new IllegalArgumentException(BONUS_NUMBERS_RANGE_ERROR.message());
         }
     }
 

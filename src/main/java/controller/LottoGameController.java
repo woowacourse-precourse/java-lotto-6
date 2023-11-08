@@ -1,9 +1,12 @@
 package controller;
 
+import exception.Exception;
 import model.Lotto;
 import model.LottoGame;
 import model.Money;
 import model.WinningLotto;
+import service.LottoService;
+import service.MoneyService;
 import view.InputView;
 import view.OutputView;
 
@@ -11,51 +14,35 @@ import java.util.Map;
 
 public class LottoGameController {
 
-    public void playLotto() {
+    Money money;
+    MoneyService moneyService = new MoneyService();
+    LottoService lottoService = new LottoService();
+    LottoGame lottoGame = new LottoGame();
+    Map<Integer, Integer> gameResult;
 
-        boolean isSuccess = false;
-        Money money = null;
-        String cost = null;
-        while (!isSuccess) {
-            try {
-                OutputView.printMoneyInputRequestMessage();
-                cost = InputView.getMoneyForLottoPurchasing();
-                money = new Money(cost);
-                isSuccess = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        LottoGame lottoGame = new LottoGame();
+    void purchaseLottos() {
+        money = moneyService.requestValidLottoPurchaseAmount();
         lottoGame.purchaseLotto(money);
-        OutputView.printPurchasingResultMessage(Integer.parseInt(cost) / 1000, lottoGame.getLottos());
-        isSuccess = false;
-        while (!isSuccess) {
-            try {
-                OutputView.printWinningNumberInputRequestMessage();
-                String winningNumber = InputView.getWinningNumber();
-                Lotto lotto =  new Lotto(winningNumber);
-                isSuccess = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        OutputView.printPurchasingResultMessage(money.getCost() / 1000, lottoGame.getLottos());
+    }
 
-        isSuccess = false;
-        while (!isSuccess) {
-            try {
-                OutputView.printBonusNumberInputRequestMessage();
-                String bonusNumber = InputView.getBonusNumber();
-                WinningLotto winningLotto = new WinningLotto(winningLotto.getNumbers(), bonusNumber);
-                isSuccess = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    void makeLottoResult() {
+        Lotto lotto = lottoService.getValidateWinningNumber();
+        WinningLotto winningLotto = lottoService.getValidateBonusNumber(lotto);
+        gameResult = lottoGame.countWinningLottoResult(winningLotto);
+    }
+
+    public void playLotto() {
+        try {
+            purchaseLottos();
+        } catch (NullPointerException nullPointerException) {
+            Exception.raiseInvalidInputException();
         }
-        Map<Integer, Integer> gameResult = lottoGame.countWinningLottoResult(winningLotto);
-        OutputView.printWinningResultTitle();
-        OutputView.printWinningResult(gameResult);
-        System.out.println(lottoGame.calculateEarnings(gameResult));
-        OutputView.printEarningRateResultMessage(lottoGame.calculateEarningRate(lottoGame.calculateEarnings(gameResult) * 100, Integer.parseInt(cost)));
+        try {
+            makeLottoResult();
+        } catch (NullPointerException nullPointerException) {
+            Exception.raiseInvalidInputException();
+        }
+        OutputView.printEarningRateResultMessage(gameResult, lottoGame.calculateEarningRate(lottoGame.calculateEarnings(gameResult) * 100, money.getCost()));
     }
 }

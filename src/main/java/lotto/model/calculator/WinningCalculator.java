@@ -9,24 +9,25 @@ import java.util.List;
 import lotto.util.PrizeMoney;
 
 public class WinningCalculator {
+    private static final Integer PERCENT = 100;
     private static final Long MINIMUM_RATE_OF_RESULT = 0L;
     private static final Long MAXIMUM_RATE_OF_RESULT =
-            (PrizeMoney.getPrizeMoney(1).longValue() / LOTTO_PRICE.getPrice().longValue()) * 100;
+            (PrizeMoney.getPrizeMoney(1).longValue() / LOTTO_PRICE.getPrice().longValue()) * PERCENT;
 
-    public int comparingLottoAndWinningNumber(List<Integer> lottoNumber, List<Integer> winningNumber) {
+    public static int comparingLottoAndWinningNumber(List<Integer> lottoNumber, List<Integer> winningNumber) {
         return (int) lottoNumber.stream()
                 .filter(winningNumber::contains)
                 .count();
     }
 
-    public int comparingBonusAndWinningNumber(List<Integer> lottoNumber, Integer bonusNumber) {
+    public static int comparingBonusAndWinningNumber(List<Integer> lottoNumber, Integer bonusNumber) {
         if (lottoNumber.contains(bonusNumber)) {
             return 1;
         }
         return 0;
     }
 
-    public Double calculateRateOfReturn(Integer amountOfInvestment, Long totalPrizeMoney) {
+    public static Double calculateRateOfReturn(Integer amountOfInvestment, Long totalPrizeMoney) {
         checkAmountOfInvestment(amountOfInvestment);
 
         Double rateOfReturn = (totalPrizeMoney.doubleValue() / amountOfInvestment.doubleValue()) * 100;
@@ -36,30 +37,30 @@ public class WinningCalculator {
         return roundRateOfReturn(rateOfReturn);
     }
 
-    private void checkAmountOfInvestment(Integer amountOfInvestment) {
+    private static void checkAmountOfInvestment(Integer amountOfInvestment) {
         if (amountOfInvestment <= MINIMUM_AMOUNT_OF_LOTTO.getPrice()) {
             throw new IllegalArgumentException(INVALID_AMOUNT_OF_INVESTMENT.getMessage());
         }
     }
 
-    private void checkRangeOfRateOfReturn(Double rateOfReturn) {
+    private static void checkRangeOfRateOfReturn(Double rateOfReturn) {
         checkMinimum(rateOfReturn);
         checkMaximum(rateOfReturn);
     }
 
-    private void checkMinimum(Double rateOfReturn) {
+    private static void checkMinimum(Double rateOfReturn) {
         if (rateOfReturn < MINIMUM_RATE_OF_RESULT) {
             throw new IllegalArgumentException(INVALID_RATE_OF_RESULT.getMessage());
         }
     }
 
-    private void checkMaximum(Double rateOfReturn) {
+    private static void checkMaximum(Double rateOfReturn) {
         if (rateOfReturn > MAXIMUM_RATE_OF_RESULT) {
             throw new IllegalArgumentException(INVALID_RATE_OF_RESULT.getMessage());
         }
     }
 
-    private Double roundRateOfReturn(Double rateOfReturn) {
+    private static Double roundRateOfReturn(Double rateOfReturn) {
         return Math.round(rateOfReturn * 10.0) / 10.0;
     }
 }

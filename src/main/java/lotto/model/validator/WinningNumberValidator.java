@@ -12,41 +12,37 @@ import static lotto.util.LottoDetails.MINIMUM_OF_LOTTO_NUMBER;
 import java.util.HashSet;
 import java.util.List;
 
-public class LottoNumberValidatorImpl implements LottoNumberValidator {
-    @Override
-    public void checkNumberOfLottoNumbers(List<String> lottoNumbers) {
+public class WinningNumberValidator {
+    public static void checkNumberOfLottoNumbers(List<String> lottoNumbers) {
         if (lottoNumbers.size() != COUNT_OF_LOTTO_NUMBER.getDetails()) {
             throw new IllegalArgumentException(INVALID_NUMBER_OF_LOTTO_NUMBER.getMessage());
         }
     }
 
-    @Override
-    public void checkBlankOfLottoNumbers(List<String> lottoNumbers) {
+    public static void checkBlankOfLottoNumbers(List<String> lottoNumbers) {
         if (lottoNumbers.stream().anyMatch(String::isBlank)) {
             throw new IllegalArgumentException(BLANK_LOTTO_NUMBER.getMessage());
         }
     }
 
-    @Override
-    public void checkInRangeOfLottoNumbers(List<Integer> lottoNumbers) {
+    public static void checkInRangeOfLottoNumbers(List<Integer> lottoNumbers) {
         checkMinimum(lottoNumbers);
         checkMaximum(lottoNumbers);
     }
 
-    private void checkMinimum(List<Integer> lottoNumbers) {
+    private static void checkMinimum(List<Integer> lottoNumbers) {
         if (lottoNumbers.stream().anyMatch((num) -> num < MINIMUM_OF_LOTTO_NUMBER.getDetails())) {
             throw new IllegalArgumentException(SMALLER_THAN_MIN_LOTTO_NUMBER.getMessage());
         }
     }
 
-    private void checkMaximum(List<Integer> lottoNumbers) {
+    private static void checkMaximum(List<Integer> lottoNumbers) {
         if (lottoNumbers.stream().anyMatch((num) -> num > MAXIMUM_OF_LOTTO_NUMBER.getDetails())) {
             throw new IllegalArgumentException(BIGGER_THAN_MAX_LOTTO_NUMBER.getMessage());
         }
     }
 
-    @Override
-    public void checkDuplicateLottoNumbers(List<Integer> lottoNumbers) {
+    public static void checkDuplicateLottoNumbers(List<Integer> lottoNumbers) {
         HashSet<Integer> uniqueLottoNumbers = new HashSet<>(lottoNumbers);
         if (uniqueLottoNumbers.size() != lottoNumbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());

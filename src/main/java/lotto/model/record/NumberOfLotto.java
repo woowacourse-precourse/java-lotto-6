@@ -1,4 +1,4 @@
 package lotto.model.record;
 
-public record NumberOfLotto(int numberOfLotto) {
+public record NumberOfLotto(Integer numberOfLotto) {
 }

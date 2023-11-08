@@ -18,11 +18,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoNumberValidatorImplTest {
-    LottoNumberValidatorImpl lottoNumberValidator;
+    WinningNumberValidator lottoNumberValidator;
 
     @BeforeEach
     void beforeEach() {
-        lottoNumberValidator = new LottoNumberValidatorImpl();
+        lottoNumberValidator = new WinningNumberValidator();
     }
 
     static Stream<List> generateGoodLottoNumber() {

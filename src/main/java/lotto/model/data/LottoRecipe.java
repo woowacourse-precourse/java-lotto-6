@@ -17,7 +17,11 @@ public class LottoRecipe {
         return new LottoRecipe(money);
     }
 
+    public Money getMoney() {
+        return money;
+    }
+
     public NumberOfLotto purchaseLotto() {
-        return this.numberOfLotto = new NumberOfLotto(money.money() / LOTTO_PRICE.getPrice());
+        return this.numberOfLotto = new NumberOfLotto((int) (money.money() / LOTTO_PRICE.getPrice()));
     }
 }

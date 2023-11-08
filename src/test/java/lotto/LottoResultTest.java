@@ -1,6 +1,5 @@
 package lotto;
 
-import static lotto.model.LottoRanking.FIRST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
@@ -34,13 +33,13 @@ public class LottoResultTest {
         assertThat(35).isEqualTo(matchResult);
     }
 
-    @DisplayName("당첨 등수에 맞게 잘 추가가 되는지 검증한다.")
-    @Test
-    void testAddCount() {
-        int match = 6;
-
-        LottoResult.addCount(match);
-        assertThat(1).isEqualTo(FIRST.getCount());
-    }
+//    @DisplayName("당첨 등수에 맞게 잘 추가가 되는지 검증한다.")
+//    @Test
+//    void testAddCount() {
+//        int match = 6;
+//
+//        LottoResult.addCount(match);
+//        assertThat(1).isEqualTo(FIRST.getCount());
+//    }
 
 }

@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class InputManager {
 
@@ -21,7 +20,7 @@ public class InputManager {
         InputValidator.validateIsNumeric(input);
         int bonusNumber = Integer.parseInt(input);
         InputValidator.validateIsLottoNumber(bonusNumber);
-        InputValidator.validateBonusNumberNoDuplicate(winningLotto.getWinningNumber(), bonusNumber);
+        InputValidator.validateBonusNumberNoDuplicate(winningLotto.getLottoNumber(), bonusNumber);
 
         return bonusNumber;
     }

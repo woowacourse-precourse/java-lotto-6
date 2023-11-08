@@ -19,7 +19,7 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getWinningNumber() {
+    public List<Integer> getLottoNumber() {
         return numbers;
     }
 }

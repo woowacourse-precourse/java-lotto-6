@@ -15,13 +15,13 @@
   - [x] 당첨 번호와 중복된 숫자가 있으면 예외 처리한다. InputValidator#validateBonusNumberNoDuplicate
 - [x] 범위 1-45까지의 숫자를 중복되지 않게 6개 뽑아 로또를 발행한다. LottoNumberGenerator#generateLottoNumber
 - [x] 입력 받은 값만큼 로또를 만들어 발행한다. LottoNumberGenerator#generateLottoNumbers
-- [ ] 1등부터 5등까지의 금액을 나타낸다.
-- [ ] 해당 로또가 몇 등인지 체크한다.
-  - [ ] 1등: 6개 일치
-  - [ ] 2등: 5개 일치 + 보너스 번호 일치
-  - [ ] 3등: 5개 일치
-  - [ ] 4등: 4개 일치
-  - [ ] 5등: 3개 일치
+- [x] 1등부터 5등까지의 맞춘 개수와 금액을 나타낸다. LottoRank
+- [x] 해당 로또가 몇 등인지 체크한다. LottoNumberReader#checkRanking
+  - [x] 1등: 6개 일치
+  - [x] 2등: 5개 일치 + 보너스 번호 일치
+  - [x] 3등: 5개 일치
+  - [x] 4등: 4개 일치
+  - [x] 5등: 3개 일치
 - [ ] 당첨 내역을 출력한다.
 - [ ] 수익률을 계산한다.
   - [ ] 수익률은 소수점 둘째 자리에서 반올림한다.

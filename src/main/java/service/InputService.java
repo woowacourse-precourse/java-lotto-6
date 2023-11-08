@@ -17,7 +17,7 @@ public class InputService {
     }
 
     public static String inputBonusNumber(){
-        System.out.println(WINNING_NUMBER_STRING);
+        System.out.println(BONUS_NUMBER_STRING);
         return Console.readLine();
     }
 }

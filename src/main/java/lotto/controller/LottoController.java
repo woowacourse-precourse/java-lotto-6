@@ -15,7 +15,9 @@ public class LottoController {
     private static List<Result> results;
 
     private static final int LOTTO_PRICE = 1000;
-    private static final int PERCENTAGE = 100;
+    private static final double PERCENTAGE = 100.0;
+    private static final int MIN_CORRECT_CNT = 3;
+    private static final int SECOND_CORRECT_CNT = -5;
 
     private static int lottoCnt;
     private static int bonusNumber;
@@ -68,15 +70,17 @@ public class LottoController {
 
         for (Lotto lotto : lottos) {
             int correctCnt = lotto.getCorrectCount(answerlottoNumbers, bonusNumber);
-            price += getPrice(correctCnt);
+            if (correctCnt >= MIN_CORRECT_CNT || correctCnt == SECOND_CORRECT_CNT) {
+                price += getPrice(correctCnt);
+            }
         }
 
         OutputView.printResults(results);
-        OutputView.printBenefits(getBenefits());
+        OutputView.printBenefits(getBenefits(price, lottoCnt));
     }
 
-    private static double getBenefits() {
-        return ((double) price / (lottoCnt * LOTTO_PRICE)) * PERCENTAGE;
+    private static double getBenefits(int price, int lottoCnt) {
+        return (price / (double) (lottoCnt * LOTTO_PRICE)) * PERCENTAGE;
     }
 
     public static int getPrice(int correctCnt) {

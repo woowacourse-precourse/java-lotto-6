@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 import lotto.controller.Exception;
 import lotto.controller.Validator;
+import lotto.view.Message;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,11 +17,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (!Validator.isSizeSix(numbers)) {
-            Exception.isNotSixByComma();
+            throw new IllegalArgumentException(Message.ERROR_IS_NOT_SIX_BY_COMMMA.label());
         }
 
         if (!Validator.isDisticnt(numbers)) {
-            Exception.isNotDistinct();
+            throw new IllegalArgumentException(Message.ERROR_IS_NOT_SIX_BY_COMMMA.label());
         }
     }
 

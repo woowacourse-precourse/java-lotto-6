@@ -94,7 +94,7 @@
 
 ## 💵 로또 구매 금액
 
-### 💵 Cash
+### 💵 PurchasingMoney
 
 - ✔️ 단위 검증
 - ✔️ 양수 검증
@@ -108,10 +108,10 @@
 - 📄 `enum` : 당첨 종류
 - 🛠️ 일치 정보에 따른 당첨 종류 반환
 
-### 🏆 WinStatesCounter
+### 🏆 WinningStatistics
 
 - 📄 `Map<WinState, Integer>` : 당첨 종류와 횟수를 저장
-- 🛠️ 당첨 번호들과 로또들에 대한 당첨 여부들을 취합해서 반환
+- 🛠️ 당첨 정보들을 취합해서 반환
 
 ## 💰 당첨금
 

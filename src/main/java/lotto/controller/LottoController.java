@@ -10,9 +10,9 @@ import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
 import lotto.domain.message.Messenger;
 import lotto.domain.prize.Prize;
-import lotto.domain.win.WinStatesCounter;
+import lotto.domain.win.WinningStatistics;
 import lotto.dto.LottoNumbersDTO;
-import lotto.dto.WinStateInformationDTO;
+import lotto.dto.WinningStatisticDTO;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -37,9 +37,9 @@ public class LottoController {
 
         WinningLottoNumbers winningLottoNumbers = requestWinningLottoNumbers();
 
-        List<WinStateInformationDTO> winStateInformationDTOs = determineWinStates(winningLottoNumbers, lotteries);
-        printWinningStatistics(winStateInformationDTOs);
-        printYield(winStateInformationDTOs, purchasingMoney);
+        List<WinningStatisticDTO> winningStatisticDTOs = determineWinStates(winningLottoNumbers, lotteries);
+        printWinningStatistics(winningStatisticDTOs);
+        printYield(winningStatisticDTOs, purchasingMoney);
     }
 
     private PurchasingMoney requestPurchaseCash() {
@@ -94,21 +94,21 @@ public class LottoController {
         }
     }
 
-    private List<WinStateInformationDTO> determineWinStates(
+    private List<WinningStatisticDTO> determineWinStates(
             WinningLottoNumbers winningLottoNumbers,
             List<Lotto> lotteries
     ) {
-        WinStatesCounter winStatesCounter = new WinStatesCounter(winningLottoNumbers, lotteries);
-        return winStatesCounter.getWinStateInformationDTOs();
+        WinningStatistics winningStatistics = new WinningStatistics(winningLottoNumbers, lotteries);
+        return winningStatistics.getWinningStatisticsDTOs();
     }
 
-    private void printWinningStatistics(List<WinStateInformationDTO> winStateInformationDTOs) {
+    private void printWinningStatistics(List<WinningStatisticDTO> winningStatisticDTOs) {
         outputView.print(messenger.getWinningStatisticStartMessage());
-        outputView.print(messenger.getWinningStatisticsInformationMessage(winStateInformationDTOs));
+        outputView.print(messenger.getWinningStatisticsInformationMessage(winningStatisticDTOs));
     }
 
-    private void printYield(List<WinStateInformationDTO> winStateInformationDTOs, PurchasingMoney purchasingCash) {
-        Prize prize = Prize.from(winStateInformationDTOs);
+    private void printYield(List<WinningStatisticDTO> winningStatisticDTOs, PurchasingMoney purchasingCash) {
+        Prize prize = Prize.from(winningStatisticDTOs);
         double yield = prize.getYield(purchasingCash);
         outputView.print(messenger.getYieldMessage(yield));
     }

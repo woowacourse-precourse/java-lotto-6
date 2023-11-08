@@ -3,7 +3,7 @@ package lotto.domain.message;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.dto.LottoNumbersDTO;
-import lotto.dto.WinStateInformationDTO;
+import lotto.dto.WinningStatisticDTO;
 
 import static lotto.domain.message.MessageConstant.*;
 
@@ -44,18 +44,18 @@ public class Messenger {
         return WINNING_STATISTICS_START;
     }
 
-    public String getWinningStatisticsInformationMessage(List<WinStateInformationDTO> winStateInformationDTOs) {
-        return winStateInformationDTOs.stream()
+    public String getWinningStatisticsInformationMessage(List<WinningStatisticDTO> winningStatisticDTOs) {
+        return winningStatisticDTOs.stream()
                 .map(this::getWinningStatisticInformationMessage)
                 .collect(Collectors.joining(NEXT_LINE));
     }
 
-    private String getWinningStatisticInformationMessage(WinStateInformationDTO winStateInformationDTO) {
+    private String getWinningStatisticInformationMessage(WinningStatisticDTO winningStatisticDto) {
         return String.format(
                 WINNING_STATISTIC_INFORMATION_FORMAT,
-                winStateInformationDTO.description(),
-                PRIZE_FORMAT.format(winStateInformationDTO.prize()),
-                winStateInformationDTO.winningCount()
+                winningStatisticDto.description(),
+                PRIZE_FORMAT.format(winningStatisticDto.prize()),
+                winningStatisticDto.winningCount()
         );
     }
 

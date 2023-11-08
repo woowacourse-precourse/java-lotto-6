@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.global.SingletonRegistry;
 import lotto.model.Lottos;
+import lotto.model.Result;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,6 +26,7 @@ public class LottoController {
         Lottos lottos = buyLotto(money);
         setGoal(lottos);
         setBonus(lottos);
+        showResult(lottos,money);
     }
 
     private int inputPayment(){
@@ -80,5 +82,9 @@ public class LottoController {
                 System.out.println();
             }
         }
+    }
+    private void showResult(Lottos lottos,int money){
+        Result result = lottos.match();
+        outputView.outputResult(result,money);
     }
 }

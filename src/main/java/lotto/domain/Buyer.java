@@ -29,8 +29,7 @@ public class Buyer {
         }
     }
 
-    public void buyLotto(){
-        final LotteryGenerator generator = new LotteryGenerator();
+    public void buyLotto(LotteryGenerator generator){
         for(int i=0; i<lottoAmount; i++){
             this.lottos.add(generator.getLotto());
         }

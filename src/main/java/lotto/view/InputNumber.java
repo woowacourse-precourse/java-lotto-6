@@ -24,7 +24,7 @@ public class InputNumber {
         return userNumbers;
     }
 
-    private void checkValidate(String userNumList) {
+    public void checkValidate(String userNumList) {
         if (!PATTERN.matcher(userNumList).matches()) {
             throw new IllegalArgumentException("[ERROR] 올바른 구분자로 입력되어있지 않는 입력값입니다.");
         }

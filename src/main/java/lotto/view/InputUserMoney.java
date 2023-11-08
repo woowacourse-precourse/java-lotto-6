@@ -14,7 +14,7 @@ public class InputUserMoney {
         return Integer.parseInt(userMoney);
     }
 
-    private void checkValidate(String userMoney) {
+    public void checkValidate(String userMoney) {
         if (!PATTERN.matcher(userMoney).matches()) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 입력값입니다. ");
         }

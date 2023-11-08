@@ -16,6 +16,10 @@ public class LottoService {
     private Lotto winningNumbers;
     private int bonusNumber;
 
+    public ArrayList<Lotto> getLottos() {
+        return lottos;
+    }
+
     public int getPayment() {
         return payment;
     }

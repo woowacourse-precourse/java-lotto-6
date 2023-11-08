@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.INPUT_NUMBER_INCLUDE_STRING_WARNING;
+
 public class Money {
     private final int spendAmount;
 
@@ -15,6 +17,11 @@ public class Money {
     }
 
     private void validateIsDigit(String spendAmount) {
+        try{
+            Integer.parseInt(spendAmount);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException(INPUT_NUMBER_INCLUDE_STRING_WARNING);
+        }
     }
 
     private void validateRangeOfSpendAmount(String spendAmount) {

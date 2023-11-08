@@ -1,5 +1,6 @@
 package controller;
 
+import domain.CorrectNumbers;
 import domain.PrizeCalculate;
 import java.util.ArrayList;
 import domain.Judge;
@@ -14,39 +15,42 @@ public class LottoController {
     LottoService lottoService = new LottoService();
     Judge judge = new Judge();
     WinningNumber winningNumber;
+    CorrectNumbers correctNumbers;
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     PrizeCalculate prizeCalculate = new PrizeCalculate();
+    private int lottoPaper;
 
-    public LottoController(){
+    public LottoController() {
         startLotto();
         createWinningNumber();
         matchLotto();
     }
 
-    public void startLotto(){
+    public void startLotto() {
         outputView.printRequirelottoCost();
-        int lottoPaper = lottoService.buyLotto();
+        lottoPaper = lottoService.buyLotto();
         outputView.printNewLine();
         outputView.printPublishedLotto(lottoPaper);
         lottoService.getLottoNumber();
     }
 
-    public void createWinningNumber(){
+    public void createWinningNumber() {
         outputView.printRequireWinningNumber();
         winningNumber = new WinningNumber(inputView.getWinningNumber());
         outputView.printRequireBonusNumber();
         winningNumber.setBonusNumber(inputView.getBonusNumber());
     }
 
-    public void matchLotto(){
+    public void matchLotto() {
         outputView.printWinningStat();
         ArrayList<Lotto> myLotto = lottoService.getMyLottoNumber();
         ArrayList<Integer> winningNumber = this.winningNumber.getWinningNumber();
         int bonusNumber = this.winningNumber.getBonusNumber();
         ArrayList<Integer> rank = judge.matchNumbers(myLotto, winningNumber, bonusNumber);
+        correctNumbers = new CorrectNumbers(rank);
         int prize = prizeCalculate.calculate(rank);
-        outputView.printMatchResult();
+        outputView.printMatchResult(correctNumbers, prize, lottoPaper);
     }
 
 }

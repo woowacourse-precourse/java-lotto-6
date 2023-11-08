@@ -13,41 +13,41 @@ public class InputView {
     private String[] splitWinningData;
 
 
-    public int getLottoCostData(){
-        while(true){
-            try{
+    public int getLottoCostData() {
+        while (true) {
+            try {
                 inputData = Console.readLine();
                 dataValidator.validLottoCostInput(inputData);
                 break;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printIlligalLottoCostMessage();
             }
         }
         return Integer.parseInt(inputData);
     }
 
-    public String[] getWinningNumber(){
-        while(true){
-            try{
+    public String[] getWinningNumber() {
+        while (true) {
+            try {
                 inputData = Console.readLine();
                 splitWinningData = splitter.commaSplitter(inputData);
                 dataValidator.validWinningNumberInput(splitWinningData);
                 break;
-            }catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printIlligalWinningNumberMessage();
             }
         }
         return splitWinningData;
     }
 
-    public int getBonusNumber(){
-        while(true){
-            try{
+    public int getBonusNumber() {
+        while (true) {
+            try {
                 inputData = Console.readLine();
                 dataValidator.validBonusNumberInput(inputData, splitWinningData);
                 break;
-            }catch(IllegalArgumentException e){
-                outputView.printIlligalWinningNumberMessage();
+            } catch (IllegalArgumentException e) {
+                outputView.printIlligalBonusNumberMessage();
             }
         }
         return Integer.parseInt(inputData);

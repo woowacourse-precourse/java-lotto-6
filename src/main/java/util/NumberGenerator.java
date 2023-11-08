@@ -9,16 +9,18 @@ public class NumberGenerator {
 
     List<Integer> randomNumbers = new ArrayList<>();
 
-    public List<Integer> generateLottoNumber(){
+    public List<Integer> generateLottoNumber() {
         generateRandomNumber();
         sortRandomNumbers(randomNumbers);
         return randomNumbers;
     }
-    public void generateRandomNumber(){
-        randomNumbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER,Constants.MAX_LOTTO_NUMBER,Constants.LOTTO_NUMBER_SIZE);
+
+    public void generateRandomNumber() {
+        randomNumbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER,
+            Constants.MAX_LOTTO_NUMBER, Constants.LOTTO_NUMBER_SIZE);
     }
 
-    public void sortRandomNumbers(List<Integer> randomNumbers){
+    public void sortRandomNumbers(List<Integer> randomNumbers) {
         this.randomNumbers = randomNumbers.stream().sorted().toList();
     }
 }

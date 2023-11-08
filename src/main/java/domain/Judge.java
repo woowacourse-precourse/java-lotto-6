@@ -8,8 +8,9 @@ public class Judge {
     private int correctNumberCount;
     private ArrayList<Integer> rank = new ArrayList<>();
 
-    public ArrayList<Integer> matchNumbers(ArrayList<Lotto> myLotto, ArrayList<Integer> winningNumber,
-        int bonusNumber){
+    public ArrayList<Integer> matchNumbers(ArrayList<Lotto> myLotto,
+        ArrayList<Integer> winningNumber,
+        int bonusNumber) {
 
         List<Integer> lottoNumber;
 
@@ -26,7 +27,7 @@ public class Judge {
         return rank;
     }
 
-    public int matchWithSimpleNumber(int lottoNumber, ArrayList<Integer> winningNumber){
+    public int matchWithSimpleNumber(int lottoNumber, ArrayList<Integer> winningNumber) {
         for (Integer winNumber : winningNumber) {
             if (winNumber.equals(lottoNumber)) {
                 correctNumberCount += 1;
@@ -35,22 +36,22 @@ public class Judge {
         return correctNumberCount;
     }
 
-    public boolean matchWithBonusNumber(int number, int bonusNumber){
+    public boolean matchWithBonusNumber(int number, int bonusNumber) {
         return number == bonusNumber;
     }
 
-    public void countWin(int correctNumberCount, boolean isBonusCorrect){
-        if(correctNumberCount < 3){
+    public void countWin(int correctNumberCount, boolean isBonusCorrect) {
+        if (correctNumberCount < 3) {
             rank.add(0);
-        } else if(correctNumberCount == 3){
+        } else if (correctNumberCount == 3) {
             rank.add(5);
-        } else if(correctNumberCount == 4){
+        } else if (correctNumberCount == 4) {
             rank.add(4);
-        } else if(correctNumberCount == 5){
+        } else if (correctNumberCount == 5 && !isBonusCorrect) {
             rank.add(3);
-        } else if(correctNumberCount == 5 && isBonusCorrect){
+        } else if (correctNumberCount == 5 && isBonusCorrect) {
             rank.add(2);
-        } else if(correctNumberCount == 6){
+        } else if (correctNumberCount == 6) {
             rank.add(1);
         }
     }

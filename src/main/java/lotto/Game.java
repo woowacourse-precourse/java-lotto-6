@@ -10,12 +10,12 @@ import java.util.Map;
 public class Game {
 
     public void startGame() {
-        int price = Display.readPrice();
+        int price = Display.readUntilValidPrice();
         int issueCnt = price / 1000;
         List<Lotto> issuedLottos = issueLottos(issueCnt);
         Display.showIssuedLottos(issuedLottos);
-        Lotto winningNumbers = Display.readWinningNumbers();
-        Bonus bonus = Display.readBonusNumber(winningNumbers);
+        Lotto winningNumbers = Display.readUntilValidWinningNumbers();
+        Bonus bonus = Display.readUntilValidBonusNumber(winningNumbers);
         Map<Rank, Integer> resultRanks = assignEachRank(winningNumbers, bonus, issuedLottos);
         Display.showRanks(resultRanks);
         Display.showStatistics(getRevenueRate(price, resultRanks));
@@ -33,24 +33,27 @@ public class Game {
         Map<Rank, Integer> results = new HashMap<>();
         for(Lotto lotto : issuedLottos) {
             int matchCnt = winningNumbers.matchLotto(lotto);
-            if(matchCnt == 6) {
-                results.put(Rank.first, results.getOrDefault(Rank.first, 0) + 1);
-            }
-            if(matchCnt == 5 && lotto.getNumbers().contains(bonus.getNumber())) {
-                results.put(Rank.second, results.getOrDefault(Rank.second, 0) + 1);
-                continue;
-            }
-            if(matchCnt == 5) {
-                results.put(Rank.third, results.getOrDefault(Rank.third, 0) + 1);
-            }
-            if(matchCnt == 4) {
-                results.put(Rank.fourth, results.getOrDefault(Rank.fourth, 0) + 1);
-            }
-            if(matchCnt == 3) {
-                results.put(Rank.fifth, results.getOrDefault(Rank.fifth, 0) + 1);
-            }
+            putResult(matchCnt, bonus, results, lotto);
         }
         return results;
+    }
+
+    private void putResult(int matchCnt, Bonus bonus, Map<Rank, Integer> results, Lotto lotto) {
+        if(matchCnt == 6) {
+            results.put(Rank.first, results.getOrDefault(Rank.first, 0) + 1);
+        }
+        if(matchCnt == 5 && lotto.getNumbers().contains(bonus.getNumber())) {
+            results.put(Rank.second, results.getOrDefault(Rank.second, 0) + 1);
+        }
+        if(matchCnt == 5) {
+            results.put(Rank.third, results.getOrDefault(Rank.third, 0) + 1);
+        }
+        if(matchCnt == 4) {
+            results.put(Rank.fourth, results.getOrDefault(Rank.fourth, 0) + 1);
+        }
+        if(matchCnt == 3) {
+            results.put(Rank.fifth, results.getOrDefault(Rank.fifth, 0) + 1);
+        }
     }
 
     public List<Lotto> issueLottos(int issueCnt) {

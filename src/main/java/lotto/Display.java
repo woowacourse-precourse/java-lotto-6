@@ -13,7 +13,7 @@ public class Display {
         String input = readLine();
         try {
             int price = Integer.parseInt(input);
-            if(price % 1000 > 0) {
+            if(price <= 0 || price % 1000 > 0) {
                 throw new IllegalStateException();
             }
             System.out.println(price / 1000 + "개를 구매했습니다.");
@@ -66,5 +66,35 @@ public class Display {
 
     public static void showStatistics(double revenueRate) {
         System.out.println("총 수익률은 " + revenueRate + "%입니다.");
+    }
+
+    public static int readUntilValidPrice() {
+        while(true) {
+            try {
+                return readPrice();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 잘못된 구입금액을 입력하였습니다.");
+            }
+        }
+    }
+
+    public static Lotto readUntilValidWinningNumbers() {
+        while(true) {
+            try {
+                return readWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 잘못된 당첨 번호를 입력하였습니다.");
+            }
+        }
+    }
+
+    public static Bonus readUntilValidBonusNumber(Lotto winningNumbers) {
+        while(true) {
+            try {
+                return readBonusNumber(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 잘못된 보너스 번호를 입력하였습니다.");
+            }
+        }
     }
 }

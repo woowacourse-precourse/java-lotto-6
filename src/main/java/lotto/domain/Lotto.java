@@ -33,8 +33,7 @@ public class Lotto {
         return sameNum;
     }
 
-
-
+    
     public List<Integer> getNumbers(){
         return this.numbers;
     }

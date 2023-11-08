@@ -6,7 +6,7 @@
 - [x] 로또 구입 클래스 LottoGenerator
   - [x] 중복없는 로또 번호 발행 generateLotto()
 - [] 출력 클래스 ResultManager
-  - [x] 구입한 로또 출력 viewLottos()
+  - [x] 구입한 로또 오름차순으로 출력 viewLottos()
   - [] 당첨 통계 출력 calculatePrizes()
   - [x] 당첨 로또 번호와 일치하는 갯수 계산 calculateMatchCount()
   - [] 수익률 출력 displayResults()
@@ -14,7 +14,7 @@
   - [x] 구입 금액 1,000원 단위로 나누어 떨어지지 않는 경우
   - [x] 당첨번호 1~45 사이의 숫자가 아닌 경우
   - [x] 보너스번호 1~45 사이 숫자가 아닌 경우
-  - [ ] 
+  - [x] 로도 번호에 중복이 있으면 안된다.
 
 
 # 테스트 목록

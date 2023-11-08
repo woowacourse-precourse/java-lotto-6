@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constants.ExceptionMessage;
+import lotto.constants.GameRule;
+import lotto.utils.LottoGameException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,8 +17,8 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != GameRule.LOTTO_LENGTH) {
+            throw LottoGameException.withMessage(ExceptionMessage.LOTTO_LENGTH_ERROR);
         }
     }
 
@@ -25,7 +28,7 @@ public class Lotto {
                 .filter(number -> !unique.add(number))
                 .findAny()
                 .ifPresent(duplicate -> {
-                    throw new IllegalArgumentException();
+                    throw LottoGameException.withMessage(ExceptionMessage.LOTTO_DUPLICATE_ERROR);
                 });
     }
 

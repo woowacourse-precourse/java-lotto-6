@@ -1,7 +1,6 @@
 package lotto.model.winninglotto;
 
 import java.util.Set;
-import lotto.model.LottoRanking;
 
 public class HitCounter {
 
@@ -13,10 +12,10 @@ public class HitCounter {
         this.bonusNumber = bonusNumber;
     }
 
-    protected LottoRanking countHit(Set<Integer> numbers) {
+    protected HitResult countHit(Set<Integer> numbers) {
         int hitCount = (int) numbers.stream()
             .filter(winningNumbers::contains)
             .count();
-        return LottoRanking.getRanking(hitCount, numbers.contains(bonusNumber));
+        return new HitResult(hitCount, numbers.contains(bonusNumber));
     }
 }

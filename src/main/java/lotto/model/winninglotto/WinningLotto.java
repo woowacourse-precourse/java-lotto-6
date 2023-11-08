@@ -31,7 +31,8 @@ public class WinningLotto {
         Set<Integer> numbers = lottoNumbers.stream()
             .map(LottoNumber::number)
             .collect(Collectors.toSet());
-        return hitCounter.countHit(numbers);
+        HitResult hitResult = hitCounter.countHit(numbers);
+        return LottoRanking.getRanking(hitResult.getHitCount(), hitResult.getIsBonusBallHit());
     }
 
     private static void validateBonusNumberNotDuplicated(List<Integer> winningNumbers, int bonusNumber) {

@@ -9,7 +9,7 @@ public class LottoGenerator {
 	private static final int LOTTO_SIZE = 6;
 
 	public static List<Integer> makeLottoList() {
-		List<Integer> lottoList = Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, LOTTO_SIZE);
-		return lottoList;
+		List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, LOTTO_SIZE);
+		return lottoNumbers;
 	}
 }

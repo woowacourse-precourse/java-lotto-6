@@ -1,5 +1,6 @@
 package lotto.domain.lottoTicket;
 
+import lotto.domain.exception.lottoException.LottoNumberRangeException;
 import lotto.utils.NumberUtils;
 
 public record BonusNumber(int bonusNumber) {
@@ -11,7 +12,7 @@ public record BonusNumber(int bonusNumber) {
 
     private static void validateBonusNumber(int bonusNumber) {
         if (NumberUtils.isNotInRange(Lotto.START_INCLUSIVE, Lotto.END_INCLUSIVE, bonusNumber)) {
-            throw new IllegalArgumentException(Lotto.LOTTO_RANGE_EXCEPTION);
+            throw new LottoNumberRangeException();
         }
     }
 }

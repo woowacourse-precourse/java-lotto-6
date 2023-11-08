@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Optional;
+import lotto.view.ExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -83,7 +84,7 @@ class LottoTest {
         // then
         Assertions.assertThatThrownBy(() -> Lotto.of(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Lotto.LOTTO_RANGE_EXCEPTION);
+                .hasMessage(ExceptionMessage.LOTTO_RANGE_EXCEPTION.getErrorMessage());
     }
 
 }

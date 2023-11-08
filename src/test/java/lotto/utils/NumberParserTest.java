@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import lotto.domain.PurchaseAmount;
+import lotto.view.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +45,7 @@ class NumberParserTest {
         // then
         assertThatThrownBy(() -> NumberParser.parsePurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NumberParser.INPUT_BLANK_EXCEPTION);
+                .hasMessage(ExceptionMessage.INPUT_BLANK_EXCEPTION.getErrorMessage());
     }
 
     @Test
@@ -57,7 +58,7 @@ class NumberParserTest {
         // then
         assertThatThrownBy(() -> NumberParser.parsePurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NumberParser.INPUT_BLANK_EXCEPTION);
+                .hasMessage(ExceptionMessage.INPUT_BLANK_EXCEPTION.getErrorMessage());
     }
 
     @Test
@@ -70,6 +71,6 @@ class NumberParserTest {
         // then
         assertThatThrownBy(() -> NumberParser.parsePurchaseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NumberParser.INPUT_BLANK_EXCEPTION);
+                .hasMessage(ExceptionMessage.INPUT_BLANK_EXCEPTION.getErrorMessage());
     }
 }

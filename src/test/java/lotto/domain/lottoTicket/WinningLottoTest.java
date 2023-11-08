@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.view.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,7 @@ class WinningLottoTest {
         //then
         assertThatThrownBy(() -> WinningLotto.of(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(WinningLotto.CONTAINED_EXCEPTION);
+                .hasMessage(ExceptionMessage.CONTAINED_EXCEPTION.getErrorMessage());
     }
 
     @DisplayName("winningLotto 를 만들면 lotto 와 비교해 결과를 가져올 수 있다.")
@@ -48,6 +49,6 @@ class WinningLottoTest {
         //then
         assertThatThrownBy(() -> WinningLotto.of(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(WinningLotto.CONTAINED_EXCEPTION);
+                .hasMessage(ExceptionMessage.CONTAINED_EXCEPTION.getErrorMessage());
     }
 }

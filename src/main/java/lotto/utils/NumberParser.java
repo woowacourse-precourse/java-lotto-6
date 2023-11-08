@@ -3,12 +3,11 @@ package lotto.utils;
 import java.util.function.IntFunction;
 import java.util.stream.Stream;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.exception.inputException.InputBlankException;
 import lotto.domain.lottoTicket.BonusNumber;
 import org.junit.platform.commons.util.StringUtils;
 
 public class NumberParser {
-
-    public static final String INPUT_BLANK_EXCEPTION = "입력 값이 공백입니다.";
 
     public static PurchaseAmount parsePurchaseAmount(final String inputValue) {
         validateEmpty(inputValue);
@@ -22,7 +21,7 @@ public class NumberParser {
 
     private static void validateEmpty(final String inputValue) {
         if (StringUtils.isBlank(inputValue)) {
-            throw new IllegalArgumentException(INPUT_BLANK_EXCEPTION);
+            throw new InputBlankException();
         }
     }
 

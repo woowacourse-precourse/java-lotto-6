@@ -3,6 +3,7 @@ package lotto.domain.lottoTicket;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.view.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,6 +32,6 @@ class BonusNumberTest {
         //then
         assertThatThrownBy(() -> BonusNumber.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(Lotto.LOTTO_RANGE_EXCEPTION);
+                .hasMessage(ExceptionMessage.LOTTO_RANGE_EXCEPTION.getErrorMessage());
     }
 }

@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.view.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +32,7 @@ class PurchaseAmountTest {
         // then
         assertThatThrownBy(() -> PurchaseAmount.from(purchaseAmountValue))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(PurchaseAmount.PURCHASABILITY_EXCEPTION);
+                .hasMessage(ExceptionMessage.PURCHASE_NOT_AVAILABLE_EXCEPTION.getErrorMessage());
     }
 
     @Test
@@ -44,6 +45,6 @@ class PurchaseAmountTest {
         // then
         assertThatThrownBy(() -> PurchaseAmount.from(purchaseAmountValue))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(PurchaseAmount.LOTTO_PRICE_UNITS_EXCEPTION);
+                .hasMessage(ExceptionMessage.LOTTO_PRICE_UNITS_EXCEPTION.getErrorMessage());
     }
 }

@@ -1,10 +1,10 @@
 package lotto.domain.lottoTicket;
 
+import lotto.domain.exception.bonusNumberException.BonusNumberContainedException;
 import lotto.domain.lottoResult.LottoRank;
 
 public class WinningLotto {
 
-    public static final String CONTAINED_EXCEPTION = "보너스 번호가 당첨 번호에 포함되어 있습니다";
     private final Lotto winningNumbers;
     private final BonusNumber number;
 
@@ -20,7 +20,7 @@ public class WinningLotto {
 
     private void validateWinningLotto(final Lotto winningNumbers, final BonusNumber number) {
         if (winningNumbers.contains(number.bonusNumber())) {
-            throw new IllegalArgumentException(CONTAINED_EXCEPTION);
+            throw new BonusNumberContainedException();
         }
     }
 

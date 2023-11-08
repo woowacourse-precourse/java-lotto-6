@@ -4,6 +4,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import lotto.domain.lottoTicket.Lotto;
+import lotto.view.ExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,7 @@ class LottoParserTest {
         // then
         assertThatThrownBy(() -> LottoParser.parseLotto(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(LottoParser.NOT_INTEGER_EXCEPTION);
+                .hasMessage(ExceptionMessage.NOT_INTEGER_EXCEPTION.getErrorMessage());
     }
 
     @DisplayName("입력 값이 빈칸이면 예외를 발생")
@@ -46,7 +47,7 @@ class LottoParserTest {
         // then
         Assertions.assertThatThrownBy(() -> LottoParser.parseLotto(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NumberParser.INPUT_BLANK_EXCEPTION);
+                .hasMessage(ExceptionMessage.INPUT_BLANK_EXCEPTION.getErrorMessage());
     }
 
     @DisplayName("입력 값이 공백이면 예외를 발생")
@@ -59,7 +60,7 @@ class LottoParserTest {
         // then
         Assertions.assertThatThrownBy(() -> LottoParser.parseLotto(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NumberParser.INPUT_BLANK_EXCEPTION);
+                .hasMessage(ExceptionMessage.INPUT_BLANK_EXCEPTION.getErrorMessage());
     }
 
     @DisplayName("입력 값이 null이면 예외를 발생")
@@ -72,7 +73,6 @@ class LottoParserTest {
         // then
         Assertions.assertThatThrownBy(() -> LottoParser.parseLotto(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NumberParser.INPUT_BLANK_EXCEPTION);
+                .hasMessage(ExceptionMessage.INPUT_BLANK_EXCEPTION.getErrorMessage());
     }
-
 }

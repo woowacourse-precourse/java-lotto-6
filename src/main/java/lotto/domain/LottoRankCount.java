@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.exception.ErrorMessage.WRONG_RANK_STATE;
+import static lotto.message.ErrorMessage.WRONG_RANK_STATE;
 
 import java.util.HashMap;
 import java.util.Map;

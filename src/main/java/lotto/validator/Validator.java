@@ -1,10 +1,9 @@
 package lotto.validator;
 
 import static lotto.controller.LottoController.LOTTO_PRICE;
-import static lotto.exception.ErrorMessage.*;
+import static lotto.message.ErrorMessage.*;
 
 import java.util.List;
-import lotto.controller.LottoController;
 
 public class Validator {
     private Validator() {

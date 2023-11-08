@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.message;
 
 public class ErrorMessage {
     public static final String NO_INPUT_ERROR = "[ERROR] 정확한 값을 입력하세요.";

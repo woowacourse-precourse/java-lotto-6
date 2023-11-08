@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.exception.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR;
+import static lotto.message.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR;
 
 public class LottoBonus {
     private static final int LOTTO_START_NUMBER = 1;

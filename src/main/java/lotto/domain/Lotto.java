@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.exception.ErrorMessage.DUPLICATE_NUMBERS_ERROR;
-import static lotto.exception.ErrorMessage.INVALID_COUNT_OF_WINNING_NUMBERS_ERROR;
-import static lotto.exception.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR;
+import static lotto.message.ErrorMessage.DUPLICATE_NUMBERS_ERROR;
+import static lotto.message.ErrorMessage.INVALID_COUNT_OF_WINNING_NUMBERS_ERROR;
+import static lotto.message.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR;
 
 import java.util.ArrayList;
 import java.util.Collections;

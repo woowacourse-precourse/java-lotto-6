@@ -52,7 +52,9 @@ public class WinningLottoCalculator {
 
 	private void increaseLottoPrizes(long matchCount, boolean bonusNumberMatchLotto) {
 		LottoPrize lottoPrizeType = LottoPrize.getLottoPrizeType(matchCount, bonusNumberMatchLotto);
+
 		lottoPrizes.put(lottoPrizeType, lottoPrizes.get(lottoPrizeType) + 1);
+
 		plusTotalPrizeMoney(lottoPrizeType);
 	}
 
@@ -61,7 +63,7 @@ public class WinningLottoCalculator {
 	}
 
 	public double getRateOfReturn(PurchaseAmount purchaseAmount) {
-		return roundToTwoDecimalPlaces((((double) this.totalPrizeMoney) / purchaseAmount.getAmount()) * 100);
+		return roundToTwoDecimalPlaces((((double)this.totalPrizeMoney) / purchaseAmount.getAmount()) * 100);
 	}
 
 	public double roundToTwoDecimalPlaces(double rateOfReturn) {

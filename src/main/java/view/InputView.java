@@ -6,8 +6,12 @@ public class InputView {
 
     private InputView() {}
 
-    public static String inputMoney() {
+    public static int inputMoney() {
         System.out.println("구입할 금액을 입력해 주세요.");
-        return Console.readLine();
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해주세요.");
+        }
     }
 }

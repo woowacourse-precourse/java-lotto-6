@@ -15,9 +15,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
-    private Parser() {
-    }
-
     public static List<Integer> parseInputToWinningNumbers(String input) {
         validateEmpty(input);
         validateFormat(input);

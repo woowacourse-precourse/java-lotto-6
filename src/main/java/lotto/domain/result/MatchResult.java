@@ -11,6 +11,10 @@ public class MatchResult {
         this.bonusMatchCount = bonusMatchCount;
     }
 
+    public Map<Integer, Integer> getMatchCounts() {
+        return matchCounts;
+    }
+
     public int getMatchCounts(int count) {
         return matchCounts.getOrDefault(count, 0);
     }

@@ -23,12 +23,22 @@ public class LottoController {
         OrderView.printOrderLottos(randomLottos);
 
         String numbers = queryLottoNumbers();
-        int bonusNumber = queryLottoBonusNumber();
 
-        WinningLotto winningLotto = LottoGenerator.generateWinningLotto(numbers, bonusNumber);
+        WinningLotto winningLotto = tryGenerateWinningLotto(numbers);
 
         LottoStatistic lottoStatistic = CalculateWinning.generateStatistic(winningLotto, randomLottos);
         ResultView.printLottoStatistic(lottoStatistic);
+    }
+
+    private WinningLotto tryGenerateWinningLotto(String numbers) {
+        while (true) {
+            try {
+                int bonusNumber = queryLottoBonusNumber();
+                return LottoGenerator.generateWinningLotto(numbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+            }
+        }
     }
 
     private int queryLottoCount() {

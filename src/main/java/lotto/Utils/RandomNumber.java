@@ -4,12 +4,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
+import static lotto.Utils.LottoConstantNumbers.*;
+
 public class RandomNumber {
-    private static final int startNumber = 1;
-    private static int endNumber = 45;
-    private static final int count = 6;
 
     public static List<Integer> generator() {
-        return Randoms.pickUniqueNumbersInRange(startNumber, endNumber, count);
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getValue(),
+                MAX_LOTTO_NUMBER.getValue(), LOTTO_NUMBER_COUNT.getValue());
     }
 }

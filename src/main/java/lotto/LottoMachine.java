@@ -2,42 +2,67 @@ package lotto;
 
 import lotto.Utils.Input;
 import lotto.Utils.TypeChanger;
-import lotto.Utils.Validator;
+import lotto.Utils.ValidatorManager;
 
+import java.util.HashSet;
 import java.util.List;
-
-
-import static lotto.Utils.RandomNumber.generator;
+import java.util.Set;
 
 public class LottoMachine {
     Input userInput = new Input();
     TypeChanger changer = new TypeChanger();
-    Validator validator = new Validator();
+    ValidatorManager validatorManager = new ValidatorManager();
+
 
     private int userMoney() {
-        String moneyInput = userInput.purchaseAmount();
-        int money = Integer.parseInt(moneyInput);
-        try {
-            validator.moneyValidator(money);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return money;
+        String moneyInput;
+        boolean validFlag = false;
+        do {
+            moneyInput = userInput.purchaseAmount();
+            try {
+                validatorManager.validateAndParseMoneyManager(moneyInput);
+                validFlag = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
+            }
+        } while (!validFlag);
+        return Integer.parseInt(moneyInput);
     }
 
-    public int lottoAmount(int money) {
-        return money / 1000;
+    public int lottoAmount() {
+        return userMoney() / 1000;
     }
 
     private List<Integer> userLottoNumber() {
-        String userNumberInput = userInput.enterNumbers();
-        return changer.toIntegerList(userNumberInput);
+        String userNumberInput;
+        Set<Integer> lottoNumbersSet = new HashSet<>();
+        List<Integer> lottoNumbersList;
+        boolean validFlag = false;
+
+        do {
+            userNumberInput = userInput.enterLottoNumbers();
+            try {
+                validatorManager.validateLottoNumbersManager(userNumberInput, lottoNumbersSet);
+                validFlag = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+
+            }
+        } while (!validFlag);
+
+        lottoNumbersList = changer.toIntegerList(userNumberInput);
+        return lottoNumbersList;
     }
 
-
-    private Lotto makeLotto() {
+    public Lotto makeLotto() {
         Lotto lotto = new Lotto(userLottoNumber());
         return lotto;
     }
 
+    private ComputerLotto makecomputerLottos() {
+        int makeAmount = lottoAmount();
+        ComputerLotto computerLottos = new ComputerLotto(makeAmount);
+        return computerLottos;
+    }
 }

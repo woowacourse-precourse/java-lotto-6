@@ -10,12 +10,10 @@ public class Input {
 
     public String purchaseAmount() {
         Output.printPurchaseAmount();
-        Output.printLottoAmount();
-
         return input;
     }
 
-    public String enterNumbers() {
+    public String enterLottoNumbers() {
         Output.printEnterNumbers();
         return input;
     }

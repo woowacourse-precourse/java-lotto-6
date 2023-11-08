@@ -8,15 +8,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
     }
+    //Lotto 객체를 생성하기 전에 모든 검증을 완료하므로 validate 메소드 삭제
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
 
 
     // TODO: 추가 기능 구현

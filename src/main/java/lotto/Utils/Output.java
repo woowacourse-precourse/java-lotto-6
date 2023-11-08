@@ -5,8 +5,7 @@ public class Output {
         System.out.println(Message.PURCHASE_AMOUNT.getValue());
     }
 
-    public static void printLottoAmount() {
-        System.out.print(Message.LOTTO_AMOUNT.getValue());
+    public static void printLottoAmount() { System.out.println(Message.LOTTO_AMOUNT.getValue());
     }
 
     public static void printEnterNumbers() {

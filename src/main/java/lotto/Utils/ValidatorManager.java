@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 public class ValidatorManager {
+
+    //로또 번호를 입력 받았을 때 검증하는 메서드
     public void validateLottoNumbersManager(String input, Set<Integer> numbersSet) {
         Validator.validateNotEmpty(input);
         Validator.validateNumberCount(input);
@@ -26,7 +28,7 @@ public class ValidatorManager {
     }
 
     // 돈을 입력받았을 때 검증하는 메서드
-    public void validateMoneyManager(String input) {
+    public void validateAndParseMoneyManager(String input) {
         Validator.validateNotEmpty(input);
         int money = Integer.parseInt(input.trim());
         Validator.moneyValidator(money);

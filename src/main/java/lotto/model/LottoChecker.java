@@ -26,10 +26,10 @@ public class LottoChecker {
         return sameNumberCount.clone();
     }
 
-    public double getProfitPercentage(long money) {
+    public String getProfitPercentage(long money) {
         double totalProfit = getTotalProfit();
         double profitPercentage = (totalProfit / (double) money) * 100;
-        return profitPercentage;
+        return String.format("%.1f", profitPercentage);
     }
 
     private double getTotalProfit() {

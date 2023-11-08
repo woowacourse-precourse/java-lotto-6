@@ -15,6 +15,7 @@ public class LottoController {
     public LottoController() {
         buyLotto();
         compareLottos();
+        printResult();
     }
 
     private void buyLotto() {
@@ -32,5 +33,13 @@ public class LottoController {
     private LottoChecker getWinningLottos() {
         List<Integer> winningLotto = InputView.getWinningLotto();
         return new LottoChecker(lottos, winningLotto, InputView.getBonusLotto(winningLotto));
+    }
+
+    private void printResult() {
+        OutputView.printResultMessage();
+        String profitPercentage = checker.getProfitPercentage(money);
+        int[] result = checker.getSameNumberCount();
+        OutputView.printCountResult(result);
+        OutputView.printTotalPricePercentage(profitPercentage);
     }
 }

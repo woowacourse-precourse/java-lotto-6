@@ -39,17 +39,18 @@ public class InputView {
             return inputWinningNumbers();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputWinningNumbers();
+            return getWinningNumbers();
         }
     }
 
     public LottoNumber getBonusNumber(final Lotto lotto) {
         System.out.println(LottoGameMessage.INPUT_BONUS_NUMBER.message());
+
         try {
             return inputBonusNumber(lotto);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputBonusNumber(lotto);
+            return getBonusNumber(lotto);
         }
 
     }

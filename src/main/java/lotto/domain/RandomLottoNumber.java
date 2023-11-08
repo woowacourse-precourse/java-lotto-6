@@ -8,7 +8,7 @@ public class RandomLottoNumber {
     private List<Integer> numbers;
 
     public RandomLottoNumber() {
-        initRandomNumber();
+        this.numbers = null;
     }
 
     public List<Integer> getNumbers() {

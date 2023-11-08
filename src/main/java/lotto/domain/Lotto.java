@@ -3,15 +3,12 @@ package lotto.domain;
 import static lotto.LottoConstants.LOTTO_SIZE;
 
 import java.util.List;
-import java.util.StringJoiner;
 import lotto.util.ExceptionMessageGenerator;
+import lotto.util.LottoNumberMessageGenerator;
 
 public class Lotto {
     private static final String NOT_SIZE = String.format("로또 번호는 %d자리여야 합니다.", LOTTO_SIZE.getValue());
     private static final String NOT_UNIQUE = "로또번호는 중복되지 않아야 합니다.";
-    private static final String SEPERATOR = ", ";
-    private static final String FRONT = "[";
-    private static final String BACK = "]";
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -53,11 +50,7 @@ public class Lotto {
     }
 
     public String getNumbersMessage() {
-        StringJoiner numberMessage = new StringJoiner(SEPERATOR, FRONT, BACK);
-        numbers.stream()
-                .map(LottoNumber::getNumberMessage)
-                .forEach(numberMessage::add);
-
-        return numberMessage.toString();
+        LottoNumberMessageGenerator lottoNumberMessageGenerator = LottoNumberMessageGenerator.INSTANCE;
+        return lottoNumberMessageGenerator.generateNumberMessage(numbers);
     }
 }

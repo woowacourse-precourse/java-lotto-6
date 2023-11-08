@@ -33,6 +33,6 @@
 
 결과 당첨 통계
 
-- [ ] 일치 여부 결과 printResultBoard
+- [X] 일치 여부 결과 printResultBoard
 
-- [ ] 수익률 printIncome?Rate
+- [X] 수익률 printIncome?Rate

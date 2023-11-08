@@ -9,8 +9,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         ValidateLotto.validateLotto(numbers);
-        sortLottoNumbers(numbers);
-        this.numbers = numbers;
+        List<Integer> sortedNumber = sortLottoNumbers(numbers);
+        this.numbers = sortedNumber;
     }
 
     private List<Integer> sortLottoNumbers(List<Integer> numbers){

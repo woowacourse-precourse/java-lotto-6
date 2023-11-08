@@ -35,11 +35,15 @@ public class InputView {
         }
     }
 
-    public int readBonusNumber() {
-        System.out.println(MESSAGE_ENTER_BONUS_NUMBER);
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+    public int readBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                System.out.println(MESSAGE_ENTER_BONUS_NUMBER);
+                String input = Console.readLine();
+                return InputViewUtil.getValidBonusNumber(input, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
-
-
 }

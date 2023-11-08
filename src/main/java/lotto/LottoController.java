@@ -18,7 +18,7 @@ public class LottoController {
         List<Lotto> lottery = lottoManagement.buyLotto(amount);
         outputView.writePurchaseDetails(lottery);
         Lotto winningNumbers = new Lotto(inputView.readWinningLotto());
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, inputView.readBonusNumber());
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, inputView.readBonusNumber(winningNumbers.getNumbers()));
         LottoResult lottoResult = new LottoResult(lottery, winningLotto);
         LottoWinningResultSummary lottoWinningResultSummary = new LottoWinningResultSummary(lottoResult);
         outputView.writeLottoResult(lottoWinningResultSummary);

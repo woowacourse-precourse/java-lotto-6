@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoManagement {
-    private static final int PRICE_LOTTO = 1000;
+    static final int PRICE_LOTTO = 1000;
     private RandomNumberGenerator lottoGenerator;
 
     public LottoManagement() {

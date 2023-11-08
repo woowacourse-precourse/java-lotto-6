@@ -13,8 +13,6 @@ public class Application {
         lottoController.brag(lottoLover);
 
         DrawResult drawResult = lottoController.getDrawResult();
-        for (Lotto lotto : lottoLover.bragAboutMyLottoButYouAreNotAllowedToTouchIt()) {
-            System.out.println(drawResult.check(lotto));
-        }
+        lottoController.showResult(lottoLover, drawResult);
     }
 }

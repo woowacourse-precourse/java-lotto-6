@@ -64,7 +64,7 @@ public class PrizeRecord {
     }
 
     public double getProfitRatio() {
-        return ((double) getTotalPrize()) / moneySpent;
+        return (((double) getTotalPrize()) / moneySpent) * 100;
     }
 
     public int getFirstPlaceLottoCount() {

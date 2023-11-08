@@ -5,6 +5,9 @@ import lotto.DrawResult;
 import lotto.DrawResult.Builder;
 import lotto.Lotto;
 import lotto.LottoLover;
+import lotto.Prize;
+import lotto.PrizeRecord;
+import lotto.StatisticsDto;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -18,7 +21,7 @@ public class LottoController {
                 isFailed = false;
             } catch (IllegalArgumentException e) {
                 // 메시지 출력 후 다시 입력하도록 한다.
-                System.out.println("[Error] " + e);
+                System.out.println("[ERROR] " + e);
             }
         }
     }
@@ -43,7 +46,7 @@ public class LottoController {
                 return;
             } catch (IllegalArgumentException e) {
                 // 메시지 출력 후 다시 입력하도록 한다.
-                System.out.println("[Error] " + e);
+                System.out.println("[ERROR] " + e);
             }
         }
     }
@@ -56,8 +59,20 @@ public class LottoController {
                 return builder.build();
             } catch (IllegalArgumentException e) {
                 // 메시지 출력 후 다시 입력하도록 한다.
-                System.out.println("[Error] " + e);
+                System.out.println("[ERROR] " + e);
             }
         }
+    }
+
+    public void showResult(LottoLover lottoLover, DrawResult drawResult) {
+        PrizeRecord prizeRecord = lottoLover.beholdMyAccomplishment(drawResult);
+        StatisticsDto statisticsDto = new StatisticsDto(
+                prizeRecord.getFirstPlaceLottoCount(),
+                prizeRecord.getSecondPlaceLottoCount(),
+                prizeRecord.getThirdPlaceLottoCount(),
+                prizeRecord.getFourthPlaceLottoCount(),
+                prizeRecord.getFifthPlaceLottoCount(),
+                prizeRecord.getProfitRatio());
+        LottoView.printStatistics(statisticsDto);
     }
 }

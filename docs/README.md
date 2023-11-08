@@ -11,8 +11,8 @@
 - [x] 로또번호는 오름차순으로 정렬하여 보여준다.
 - [x] 당첨 내역을 출력한다.
 - [x] 수익률은 소수점 둘째 자리에서 반올림한다.
-- [ ] 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
-- [ ] 사용자가 잘못된 값을 입력하면 `IllegalArgumentException` 발생 (그냥 `Exception`이 아닌 `IllegalStateException`과 같은 명확한 유형을 처리)
+- [x] 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
+- [x] 사용자가 잘못된 값을 입력하면 `IllegalArgumentException` 발생 (그냥 `Exception`이 아닌 `IllegalStateException`과 같은 명확한 유형을 처리)
 
 ### 구현
 

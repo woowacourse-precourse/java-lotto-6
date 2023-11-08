@@ -14,9 +14,8 @@ public class InputController {
     public static int getMoneyInput() {
         moneyMessagePrint();
         while (true) {
+            String money = Console.readLine();
             try {
-                String money = Console.readLine();
-                Console.close();
                 moneyValidate(money);
                 int moneyNumber = Integer.parseInt(money);
                 return moneyNumber;
@@ -29,9 +28,8 @@ public class InputController {
     public static List<Integer> getWinningNumbersInput() {
         winningNumbersMessagePrint();
         while (true) {
+            String winningNumbers = Console.readLine();
             try {
-                String winningNumbers = Console.readLine();
-                Console.close();
                 List<Integer> lottoWinningNumbers = winningNumbersValidate(winningNumbers);
                 return lottoWinningNumbers;
             } catch (Exception e) {
@@ -43,9 +41,8 @@ public class InputController {
     public static int getBonusNumberInput(List<Integer> lottoWinningNumbers) {
         bonusNumbersMessagePrint();
         while (true) {
+            String BonusNumber = Console.readLine();
             try {
-                String BonusNumber = Console.readLine();
-                Console.close();
                 int lottoBonusNumber = bonusNumberValidate(BonusNumber, lottoWinningNumbers);
                 return lottoBonusNumber;
             } catch (Exception e) {

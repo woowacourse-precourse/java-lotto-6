@@ -7,7 +7,7 @@ public class MoneyValidator {
         int moneyNumber;
         try {
             moneyNumber = Integer.parseInt(money);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구매 한도를 벗어났습니다.");
         }
         moneyNotZero(moneyNumber);

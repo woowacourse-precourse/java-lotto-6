@@ -9,7 +9,7 @@ public class BonusNumberValidator {
         int lottoBonusNumber;
         try {
             lottoBonusNumber = Integer.parseInt(bonusNumber);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 1부터 45까지의 수를 입력해주세요.");
         }
         bonusNumberUnique(lottoBonusNumber, lottoWinningNumbers);

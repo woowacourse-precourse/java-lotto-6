@@ -25,7 +25,7 @@ public class WinningNumbersValidator {
             try {
                 int Num = Integer.parseInt(winningNumber);
                 lottoWinningNumbers.add(Num);
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
             }
         }

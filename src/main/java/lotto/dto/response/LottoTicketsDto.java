@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoTicketsDto {
-    private final Lottos lottoTickets;
+    private final Lottos lottos;
     private final Money lottoCost;
 
-    private LottoTicketsDto(Lottos lottoTickets, Money lottoCost) {
-        this.lottoTickets = lottoTickets;
+    private LottoTicketsDto(Lottos lottos, Money lottoCost) {
+        this.lottos = lottos;
         this.lottoCost = lottoCost;
     }
 
@@ -20,19 +20,19 @@ public class LottoTicketsDto {
     }
 
     public List<List<String>> getFormattedLottoTickets() {
-        return lottoTickets.getLottoTickets().stream()
+        return lottos.getLottoTickets().stream()
                 .map(lotto -> lotto.getNumbers().stream()
                         .map(Object::toString)
                         .collect(Collectors.toList()))
                 .collect(Collectors.toList());
     }
 
-    public Lottos getLottoTickets() {
-        return lottoTickets;
+    public Lottos getLottos() {
+        return lottos;
     }
 
     public int getLottoTicketCount() {
-        return lottoTickets.getLottoTickets().size();
+        return lottos.getLottoTickets().size();
     }
 
     public int getLottoCost() {

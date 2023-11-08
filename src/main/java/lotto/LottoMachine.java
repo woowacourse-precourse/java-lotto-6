@@ -25,7 +25,7 @@ public class LottoMachine {
 
     public void start() {
         int userLottoPurchaseCount = getUserLottoPurchaseCount();
-        LottoTicket lottoTicket = buyLottoTicket(userLottoPurchaseCount);
+        LottoTicket lottoTicket = purchaseLottoTicket(userLottoPurchaseCount);
         WinningLotto winningLotto = getWinningLotto();
         getLottoResult(winningLotto, lottoTicket, userLottoPurchaseCount);
     }
@@ -35,11 +35,12 @@ public class LottoMachine {
             int userInsertAmount = billAcceptor.acceptBill();
             return PurchaseCountCalculator.calculatePurchaseCount(userInsertAmount, LOTTO_PRICE);
         } catch (IllegalArgumentException illegalArgumentException) {
+            screen.printErrorMessage(illegalArgumentException.getMessage());
             return getUserLottoPurchaseCount();
         }
     }
 
-    private LottoTicket buyLottoTicket(int userLottoPurchaseCount) {
+    private LottoTicket purchaseLottoTicket(int userLottoPurchaseCount) {
         LottoTicket lottoTicket = LottoTicket.issueLottoTicket(userLottoPurchaseCount);
         screen.printLottoTicket(userLottoPurchaseCount, lottoTicket);
         return lottoTicket;
@@ -51,6 +52,7 @@ public class LottoMachine {
             Integer bonusNumber = getBonusNumber();
             return WinningLotto.createWinningLotto(winningNumbers, bonusNumber);
         } catch (IllegalArgumentException illegalArgumentException) {
+            screen.printErrorMessage(illegalArgumentException.getMessage());
             return getWinningLotto();
         }
     }

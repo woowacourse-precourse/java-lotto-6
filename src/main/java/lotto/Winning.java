@@ -32,12 +32,4 @@ public class Winning {
     private void validateNumberRange(int number) {
         new Exception().validateNumberRange(number);
     }
-
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
 }

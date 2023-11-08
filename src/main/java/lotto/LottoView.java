@@ -31,11 +31,11 @@ public class LottoView {
         DecimalFormat df = new DecimalFormat("###,###");
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (" + df.format(Result.THREE.getEarnings()) + "원) - " + results.get(Result.THREE.ordinal()) + "개");
-        System.out.println("4개 일치 (" + df.format(Result.FOUR.getEarnings()) + "원) - " + results.get(Result.FOUR.ordinal()) + "개");
-        System.out.println("5개 일치 (" + df.format(Result.FIVE.getEarnings()) + "원) - " + results.get(Result.FIVE.ordinal()) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (" + df.format(Result.FIVE_BONUS.getEarnings()) + "원) - " + results.get(Result.FIVE_BONUS.ordinal()) + "개");
-        System.out.println("6개 일치 (" + df.format(Result.SIX.getEarnings()) + "원) - " + results.get(Result.SIX.ordinal()) + "개");
+        System.out.println(Result.THREE.getMatchCount() + "개 일치 (" + df.format(Result.THREE.getEarnings()) + "원) - " + results.get(Result.THREE.ordinal()) + "개");
+        System.out.println(Result.FOUR.getMatchCount() + "개 일치 (" + df.format(Result.FOUR.getEarnings()) + "원) - " + results.get(Result.FOUR.ordinal()) + "개");
+        System.out.println(Result.FIVE.getMatchCount() + "개 일치 (" + df.format(Result.FIVE.getEarnings()) + "원) - " + results.get(Result.FIVE.ordinal()) + "개");
+        System.out.println(Result.FIVE_BONUS.getMatchCount() + "개 일치, 보너스 볼 일치 (" + df.format(Result.FIVE_BONUS.getEarnings()) + "원) - " + results.get(Result.FIVE_BONUS.ordinal()) + "개");
+        System.out.println(Result.SIX.getMatchCount() + "개 일치 (" + df.format(Result.SIX.getEarnings()) + "원) - " + results.get(Result.SIX.ordinal()) + "개");
         System.out.println("총 수익률은 " + earningRate + "%입니다.");
     }
 }

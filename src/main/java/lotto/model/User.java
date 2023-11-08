@@ -42,6 +42,7 @@ public class User {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_CHARACTER.getMessage());
         }
     }
+
     private void validateBonusNumber(List<Integer> lottoNumber, int bonusNumber){
         if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage());
@@ -51,6 +52,7 @@ public class User {
         }
 
     }
+
     private void validatePurchaseAmount(int money) {
         if (money < LOTTO_MIN_PURCHASE_AMOUNT || money > LOTTO_MAX_PURCHASE_AMOUNT) {// 1000원 미만, 100000원 초과의 값 입력시의 예외 처리
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_NUMBER.getMessage());

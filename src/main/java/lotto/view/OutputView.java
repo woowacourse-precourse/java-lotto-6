@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.constant.LottoConstant;
 import lotto.constant.LottoCount;
 import lotto.constant.OutputMessage;
 
@@ -19,11 +20,15 @@ public class OutputView {
     }
 
     public void printWinningStatistics(HashMap<Integer, Integer> winningResult) {
-        System.out.println(OutputMessage.OUTPUT_WINNING_STATISTICS.getMessage());
-        System.out.println(OutputMessage.OUTPUT_LINE.getMessage());
+        System.out.println(LottoConstant.OUTPUT_WINNING_STATISTICS);
+        System.out.println(LottoConstant.OUTPUT_LINE);
         for (LottoCount lottoCount : LottoCount.values()) {
             int count = winningResult.getOrDefault(lottoCount.getGrade(), 0);
             System.out.println(lottoCount.getMessage(count));
         }
+    }
+
+    public void printProfitMargin(double profitMargin) {
+        System.out.println(String.format(LottoConstant.PROFIT_MARGIN_MESSAGE, profitMargin));
     }
 }

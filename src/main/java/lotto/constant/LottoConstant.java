@@ -17,5 +17,7 @@ public class LottoConstant {
     public static final int LOTTO_NUMBER_SIZE = 6;
     public static final int LOTTO_MIN_PURCHASE_AMOUNT = 1000;
     public static final int LOTTO_MAX_PURCHASE_AMOUNT = 100000;
-
+    public static final String PROFIT_MARGIN_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    public static final String OUTPUT_WINNING_STATISTICS = "당첨 통계";
+    public static final String OUTPUT_LINE = "---";
 }

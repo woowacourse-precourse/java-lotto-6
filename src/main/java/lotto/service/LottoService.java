@@ -1,12 +1,13 @@
 package lotto.service;
 
-import static lotto.constants.LottoConstants.LOTTO_SIZE_MAX_LENGTH;
+import static lotto.constants.LottoConstants.COMMA;
+import static lotto.exception.Validator.validateBonusNumberCheck;
+import static lotto.exception.Validator.validateDuplicateWinningNumber;
+import static lotto.exception.Validator.validateWinningNumberLength;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -36,17 +37,16 @@ public class LottoService {
             }
             commonInput = Console.readLine();
         }
-
     }
 
-    public Map<Integer, Integer> findWinners(List<Integer> lottoWinningNumbers, int lottoBonusNumber,
+    public List<Map<Integer, Integer>> findWinners(List<Integer> lottoWinnerNumbers, int lottoBonusNumber,
             List<LottoDto> generateLottoNumbersDto) {
         List<Map<Integer, Integer>> lottoMatchCount = new ArrayList<>();
         for (LottoDto lottoDto : generateLottoNumbersDto) {
-//            Map<Integer, Integer> matchCount = lottoDto.matchCount(lottoWinningNumbers, lottoBonusNumber);
-//            lottoMatchCount.add(matchCount);
+            Map<Integer, Integer> matchCount = lottoDto.matchCount(lottoWinnerNumbers, lottoBonusNumber);
+            lottoMatchCount.add(matchCount);
         }
-        return topCount(lottoMatchCount);
+        return lottoMatchCount;
     }
 
     public List<Integer> duplicatesWinningNumbers(List<Integer> winningNumbers) {
@@ -67,41 +67,16 @@ public class LottoService {
     public List<Integer> winningNumberSplitter(String winningInputNumbers) {
         while (true) {
             try {
-                List<Integer> winningNumbers = Arrays.stream(winningInputNumbers.split(","))
+                List<Integer> winningNumbers = Arrays.stream(winningInputNumbers.split(COMMA))
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
                 validateWinningNumberLength(winningNumbers.size());
-
                 return winningNumbers;
             } catch (UserInputException e) {
                 System.out.println(ErrorMsg.ERROR_LOTTO_NUMBERS_SIZE_MAX.getMsg());
             }
             String retryUserInput = Console.readLine();
             winningInputNumbers = retryUserInput;
-        }
-    }
-
-    public Map<Integer, Integer> topCount(List<Map<Integer, Integer>> lottoMatchCount) {
-        return lottoMatchCount.stream()
-                .max(Comparator.comparing(map -> map.keySet().stream().max(Integer::compareTo).orElse(0)))
-                .orElse(Collections.emptyMap());
-    }
-
-    private void validateBonusNumberCheck(List<Integer> lottoNumbers, int commonInput) {
-        if (lottoNumbers.contains(commonInput)) {
-            throw new UserInputException(ErrorMsg.ERROR_LOTTO_DUPLICATES_NUMBERS.getMsg());
-        }
-    }
-
-    private void validateDuplicateWinningNumber(int originLength, int afterLength) {
-        if (originLength != afterLength) {
-            throw new UserInputException(ErrorMsg.ERROR_LOTTO_DUPLICATES_NUMBERS.getMsg());
-        }
-    }
-
-    private void validateWinningNumberLength(int lottoNumberLength) {
-        if (lottoNumberLength != LOTTO_SIZE_MAX_LENGTH) {
-            throw new UserInputException(ErrorMsg.ERROR_LOTTO_NUMBERS_SIZE_MAX.getMsg());
         }
     }
 }

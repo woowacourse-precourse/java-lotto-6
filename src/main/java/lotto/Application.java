@@ -9,7 +9,7 @@ public class Application {
         LottoService lottoService = new LottoService();
         LotteryDraw winnerCheck = new LotteryDraw(lottoService);
         winnerCheck.printDrawResult();
-        EarnRate earnRate = new EarnRate(lottoService.getAmount(), winnerCheck.getMatchCountLotto());
+        EarnRate earnRate = new EarnRate(lottoService.getAmount(), winnerCheck.getDrawResultTable());
         earnRate.printEarnRate();
     }
 }

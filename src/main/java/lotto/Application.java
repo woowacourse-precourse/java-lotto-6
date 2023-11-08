@@ -35,9 +35,9 @@ public class Application {
         System.out.printf("3개 일치 (5,000원) - %d개\n", lottoRanks.get(Rank.FIFTH));
         System.out.printf("4개 일치 (50,000원) - %d개\n", lottoRanks.get(Rank.FOURTH));
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", lottoRanks.get(Rank.THIRD));
-        System.out.printf("5개 일치, 보너스 불 일치 (30,000,000원) - %d개\n", lottoRanks.get(Rank.SECOND));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", lottoRanks.get(Rank.SECOND));
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", lottoRanks.get(Rank.FIRST));
-        System.out.printf("총 수익률은 %.1f%%입니다\n", Math.round(rateOfReturn * 100.) / 100.);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", Math.round(rateOfReturn * 100.) / 100.);
     }
 
     static long getPurchaseAmountWithExceptionHandling() {

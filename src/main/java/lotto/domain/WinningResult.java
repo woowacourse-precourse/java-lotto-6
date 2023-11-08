@@ -1,15 +1,14 @@
 package lotto.domain;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.constant.WinningAmountConstant;
 
 public class WinningResult {
     //key: 해당 당첨 금액 enum 객체, value: 해당 로또 개수
-    private final Map<WinningAmountConstant, Integer> result;
+    private final LinkedHashMap<WinningAmountConstant, Integer> result;
 
-    public WinningResult(HashMap<WinningAmountConstant, Integer> result) {
+    public WinningResult(LinkedHashMap<WinningAmountConstant, Integer> result) {
         this.result = result;
     }
 
@@ -27,5 +26,30 @@ public class WinningResult {
         }
 
         return sum;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        List<WinningAmountConstant> keys = result.keySet().stream().toList();
+        List<Integer> values = result.values().stream().toList();
+
+        String format;
+        for (int i = 0; i < keys.size(); i++) {
+            if (keys.get(i).equals(WinningAmountConstant.SECOND)) {
+                format = String.format("%d개 일치, 보너스 볼 일치 (%d)원 - %d개",
+                        keys.get(i).getCount(), keys.get(i).getValue(), values.get(i));
+                builder.append(format);
+                builder.append("\n");
+                continue;
+            }
+
+             format = String.format("%d개 일치 (%d)원 - %d개",
+                    keys.get(i).getCount(), keys.get(i).getValue(), values.get(i));
+
+            builder.append(format).append("\n");
+        }
+
+        return builder.toString();
     }
 }

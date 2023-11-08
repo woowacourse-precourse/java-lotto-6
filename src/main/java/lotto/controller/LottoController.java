@@ -82,5 +82,12 @@ public class LottoController {
                 .map(Integer::parseInt)
                 .sorted().toList();
     }
+    private void checkMyLottos() {
+        List<Lotto> lottos = lottoWallet.getLottos();
+        List<LottoResult> lottoResults = lottos.stream()
+                .map(lotto -> lottoManager.compare(lotto.getNumbers()))
+                .toList();
+        lottoWallet.setLottoResults(lottoResults);
+    }
 
 }

@@ -76,11 +76,9 @@ public class Game {
     }
 
     private void initHash(){
-        //System.out.println("initHash");
         corType[] arr = corType.values();
 
         for (corType rb : arr) {
-            //System.out.println(rb);
             this.correct.put(rb.toString(),0);
         }
     }
@@ -138,5 +136,29 @@ public class Game {
         userWinning();
         userBonus();
         printResult();
+    }
+
+    public void Test_DoIt(){
+        this.money = 8000;
+        this.count = 8;
+        this.buy.add( new Lotto( List.of(8, 21, 23, 41, 42, 43) ));
+        this.buy.add( new Lotto(List.of(3, 5, 11, 16, 32, 38)) );
+        this.buy.add( new Lotto( List.of(7, 11, 16, 35, 36, 44) ));
+        this.buy.add( new Lotto( List.of(1, 8, 11, 31, 41, 42)) );
+        this.buy.add( new Lotto( List.of(13, 14, 16, 38, 42, 45)) );
+        this.buy.add( new Lotto( List.of(7, 11, 30, 40, 42, 43) ));
+        this.buy.add( new Lotto( List.of(2, 13, 22, 32, 38, 45) ));
+        this.buy.add( new Lotto( List.of(1, 3, 5, 14, 22, 45)) );
+
+
+        userWinning();
+        userBonus();
+
+        try{
+            printResult();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
     }
 }

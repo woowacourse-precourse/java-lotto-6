@@ -11,7 +11,7 @@ import java.util.List;
 
 public class User {
     public static int lottoBoughtNum, userBonusNum;
-    public static List<Integer> userNumListInt = new ArrayList<>();
+    public static List<Integer> userNumListInt;
 
     public static int lottoBoughtNum() {
         lottoBoughtNum = lottoBoughtPrice / 1000;
@@ -21,6 +21,7 @@ public class User {
     public static void userNumListInt() {
         String[] userNumListStr = userNum.split(",");
 
+        userNumListInt = new ArrayList<>();
         for (String s : userNumListStr) {
             userNumListInt.add(Integer.parseInt(s));
         }

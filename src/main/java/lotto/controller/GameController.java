@@ -7,6 +7,8 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
+    Lotto lotto;
+
     public void run() {
         while (true) {
             try {
@@ -27,6 +29,7 @@ public class GameController {
                 OutputView.printUserNum();
                 InputView.inputUserNum();
                 userNumListInt();
+                lotto = new Lotto(userNumListInt);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -43,7 +46,7 @@ public class GameController {
             }
         }
 
-        Lotto.rank();
+        Lotto.rank(lotto);
 
         OutputView.printStats();
 

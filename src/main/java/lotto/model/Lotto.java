@@ -4,12 +4,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import static lotto.model.User.lottoBoughtNum;
 import static lotto.model.User.userBonusNum;
-import static lotto.model.User.userNumListInt;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.validator.LottoNumValidator;
 
 public class Lotto {
     public static int rank5th, rank4th, rank3rd, rank2nd, rank1st, prize;
@@ -18,14 +18,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        LottoNumValidator validator = new LottoNumValidator();
+        validator.validate(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public static List<List<Integer>> allLottoList() {
@@ -39,15 +34,13 @@ public class Lotto {
         return allLottoList;
     }
 
-    public static void rank() {
-        Lotto Lotto = new Lotto(userNumListInt);
-
+    public static void rank(Lotto lotto) {
         for (int i = 0; i < User.lottoBoughtNum(); i++) {
             int lottoCount = 0;
             boolean lottoBonusCount = false;
 
             for (int j = 0; j < 6; j++) {
-                if (allLottoList.get(i).contains(Lotto.numbers.get(j))) {
+                if (allLottoList.get(i).contains(lotto.numbers.get(j))) {
                     lottoCount++;
                 }
                 if (allLottoList.get(i).contains(userBonusNum)) {

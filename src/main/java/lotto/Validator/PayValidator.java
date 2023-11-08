@@ -4,12 +4,6 @@ import lotto.constant.ConfigurationNumbers;
 import lotto.constant.ExceptionMessage;
 
 public class PayValidator {
-    public static void isNegative(int num) {
-        if (num < 0) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NEGATIVE.getMessage());
-        }
-    }
-
     public static void lessThanPrice(int num) {
         if (num < ConfigurationNumbers.PRICE.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.LESS_THAN_PRICE.getMessage());

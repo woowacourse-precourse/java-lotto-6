@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.Validator.LottoValidator;
+import lotto.Validator.NumberValidator;
 import lotto.util.Parser;
 
 public class Lotto {
@@ -26,7 +27,9 @@ public class Lotto {
         LottoValidator.isUnvalidLength(numbers);
         LottoValidator.isDuplicated(numbers);
         for (int num : numbers) {
-            LottoValidator.isInRange(num);
+            NumberValidator.isWrongType(String.valueOf(num));
+            NumberValidator.isNegative(num);
+            NumberValidator.isOutRange(num);
         }
     }
 

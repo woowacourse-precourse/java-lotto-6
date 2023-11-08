@@ -8,7 +8,7 @@ import lotto.Validator.NumberValidator;
 public class Parser {
     public static int toInteger(String input) {
         NumberValidator.isBlank(input);
-        NumberValidator.isPositiveInteger(input);
+        NumberValidator.isWrongType(input);
         return Integer.parseInt(input);
     }
 
@@ -17,7 +17,7 @@ public class Parser {
         List<String> numbers = Arrays.asList(input.split(","));
         for (String number : numbers) {
             NumberValidator.isBlank(number);
-            NumberValidator.isPositiveInteger(number);
+            NumberValidator.isWrongType(number);
             result.add(Integer.parseInt(number));
         }
         return result;

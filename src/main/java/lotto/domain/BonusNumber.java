@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.Validator.LottoValidator;
+import lotto.Validator.NumberValidator;
 import lotto.util.Parser;
 
 public class BonusNumber {
@@ -8,7 +8,7 @@ public class BonusNumber {
 
     public BonusNumber(String input) {
         int bonus = Parser.toInteger(input);
-        LottoValidator.isInRange(bonus);
+        NumberValidator.isOutRange(bonus);
         this.bonus = bonus;
     }
 

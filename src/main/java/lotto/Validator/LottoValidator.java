@@ -19,10 +19,4 @@ public class LottoValidator {
             throw new IllegalArgumentException(ExceptionMessage.IS_DUPLICATED.getMessage());
         }
     }
-
-    public static void isInRange(int num) {
-        if (num > ConfigurationNumbers.MAX_NUMBER.getNumber() || num < ConfigurationNumbers.MIN_NUMBER.getNumber()) {
-            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE.getMessage());
-        }
-    }
 }

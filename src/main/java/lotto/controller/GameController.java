@@ -19,7 +19,7 @@ public class GameController {
         List<Integer> winNumbers = getWinNumbers();
         int bonusNumber = getBonusNumber();
         Judge judge = new Judge();
-        List<LottoResult> results = judge.countMatchingNumbers(lottoList, winNumbers);
+        List<LottoResult> results = judge.countMatchingNumbers(lottoList, winNumbers, bonusNumber);
         printWinningResults(judge, results, bonusNumber, lottoList);
         printProfitRate(userMoney, results);
     }
@@ -87,5 +87,4 @@ public class GameController {
         }
         return totalPrize;
     }
-
 }

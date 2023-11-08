@@ -40,7 +40,7 @@ public class LottoStatisticsView implements Output {
     private List<OutputConstants> getConstants() {
         return Arrays.stream(OutputConstants.values())
                 .sorted(Comparator.comparingInt(OutputConstants::getNumber).reversed())
-                .filter(c -> c.getNumber() > 0)
+                .filter(constants -> constants.getNumber() > 0 && constants.name().contains("RANK"))
                 .toList();
     }
 

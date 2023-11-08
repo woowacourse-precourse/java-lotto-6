@@ -19,4 +19,14 @@ public class LottoMachine {
     public List<Lotto> getPurchasedLottos() {
         return purchasedLottos;
     }
+    public LottoResults drawWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        LottoResults results = new LottoResults();
+        for (Lotto lotto : purchasedLottos) {
+            int matchCount = lotto.countMatches(winningNumbers);
+            boolean hasBonus = lotto.contains(bonusNumber);
+            LottoRank rank = LottoRank.valueOf(matchCount, hasBonus);
+            results.addResult(rank);
+        }
+        return results;
+    }
 }

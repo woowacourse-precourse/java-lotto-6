@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class Format {
-	public static float calculateYield(float profit, int purchaseAmount) {
+	public static float calculateYield(float profit, float purchaseAmount) {
 		return profit / purchaseAmount * 100 - 100;
 	}
 

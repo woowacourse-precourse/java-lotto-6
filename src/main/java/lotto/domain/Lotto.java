@@ -42,7 +42,7 @@ public class Lotto {
     }
 
     public void print() {
-        String message = numbers.stream().map(String::valueOf).collect(Collectors.joining(","));
+        String message = numbers.stream().map(String::valueOf).collect(Collectors.joining(", "));
         System.out.println("[" + message + "]");
 
     }

@@ -1,6 +1,6 @@
 package lotto.domain.model;
 
-import lotto.message.ErrorMessage;
+import lotto.constant.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +13,6 @@ class BonusNumberTest {
     void createBonusNumberByOutOfRangeNumber() {
         assertThatThrownBy(() -> new BonusNumber(48))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.ERROR_OUT_OF_RANGES.getMessage());
+                .hasMessage(ErrorMessage.ERROR_OUT_OF_RANGES);
     }
 }

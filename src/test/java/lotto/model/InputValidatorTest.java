@@ -44,25 +44,6 @@ public class InputValidatorTest {
         );
     }
 
-    @ParameterizedTest(name = "{index}: {0}")
-    @MethodSource("outOfRangeParameter")
-    @DisplayName("범위 밖의 숫자 예외 발생")
-    void outOfRangeNumbersInput(String testName, List<String> input) {
-        assertThatThrownBy(() -> inputValidator.validateInput(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(OUT_OF_RANGE_NUMBER_MESSAGE.getMessage());
-    }
-
-    private static Stream<Arguments> outOfRangeParameter() {
-        return Stream.of(
-                // 최댓값 초과 시 오류 발생
-                Arguments.of("Null 예외 발생", List.of("1", "2", "3", "4", "46")),
-
-                // 최솟값 미만 시 오류 발생
-                Arguments.of("소수 입력 예외 발생", List.of("1", "2", "3", "4", "0"))
-        );
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "0.5", "안녕", "5+1"})
     @DisplayName("정수가 아닐 시 예외 발생")

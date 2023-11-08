@@ -12,9 +12,7 @@ import lotto.model.exceptions.OutOfRangeNumberException;
 public class InputValidator {
     // 당첨 번호 검증
     public List<Integer> validateInput(List<String> input) {
-        List<Integer> inputNumbers = validateInteger(input);
-        validateInRangeNumber(inputNumbers);
-        return inputNumbers;
+        return validateInteger(input);
     }
 
     // 정수 검증
@@ -28,15 +26,6 @@ public class InputValidator {
             }
         });
         return integerNumbers;
-    }
-
-    // 범위 밖 숫자 검증
-    private void validateInRangeNumber(List<Integer> numbers) {
-        numbers.stream()
-                .filter(number -> number > MAX_NUMBER.getValue() || number < MIN_NUMBER.getValue())
-                .forEach(number -> {
-                    throw new OutOfRangeNumberException();
-                });
     }
 
     // 보너스 번호 검증

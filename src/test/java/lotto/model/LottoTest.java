@@ -24,7 +24,25 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(DuplicatedNumberException.class);
+    }
+
+    @ParameterizedTest(name = "{index}: {0}")
+    @MethodSource("outOfRangeParameter")
+    @DisplayName("범위 밖의 숫자 예외 발생")
+    void createLottoByOutOfRangeNumbers(String testName, List<Integer> input) {
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(input))
+                .isInstanceOf(OutOfRangeNumberException.class);
+    }
+
+    private static Stream<Arguments> outOfRangeParameter() {
+        return Stream.of(
+                // 최댓값 초과 시 오류 발생
+                Arguments.of("45 초과", List.of(1, 2, 3, 4, 5, 46)),
+
+                // 최솟값 미만 시 오류 발생
+                Arguments.of("1 미만", List.of(0, 1, 2, 3, 4, 5))
+        );
     }
 
     @ParameterizedTest(name = "{index}: {0}")

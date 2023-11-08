@@ -61,12 +61,12 @@ public class LottoPrize {
             messageUtil.printEarningRate(earningRate);
         }
 
-        private int getTotalWinningAmount() {
-            return THREE_COUNT.getMatchCount() * THREE_COUNT.getPrice()
-                    + FOUR_COUNT.getMatchCount() * FOUR_COUNT.getPrice()
-                    + FIVE_COUNT.getMatchCount() * FIVE_COUNT.getPrice()
-                    + FIVE_COUNT_WITH_BONUS.getMatchCount() * FIVE_COUNT_WITH_BONUS.getPrice()
-                    + SIX_COUNT.getMatchCount() * SIX_COUNT.getPrice();
+        private long getTotalWinningAmount() {
+            return (long) THREE_COUNT.getMatchCount() * THREE_COUNT.getPrice()
+                    + (long) FOUR_COUNT.getMatchCount() * FOUR_COUNT.getPrice()
+                    + (long) FIVE_COUNT.getMatchCount() * FIVE_COUNT.getPrice()
+                    + (long) FIVE_COUNT_WITH_BONUS.getMatchCount() * FIVE_COUNT_WITH_BONUS.getPrice()
+                    + (long) SIX_COUNT.getMatchCount() * SIX_COUNT.getPrice();
 
         }
     }

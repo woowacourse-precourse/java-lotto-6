@@ -1,12 +1,13 @@
 package lotto.util;
 
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import static lotto.constant.message.InputMessage.*;
+import static lotto.constant.LottoPrice.FIVE_COUNT_WITH_BONUS;
 import static lotto.constant.message.OutputMessage.*;
-
 
 public class MessageUtil {
 
@@ -27,14 +28,18 @@ public class MessageUtil {
     }
 
     public void printPurchaseInfo(List<Integer> lottoNums) {
-        lottoNums.sort(Comparator.naturalOrder());
-        StringBuilder lottoNum = new StringBuilder(" ");
+        // 테스트 시 받은 리스트는 불변 객체이기 때문에 정렬을 위해 따로 받아서 처리
+        List<Integer> sortLottoNums = new ArrayList<>(lottoNums);
+        sortLottoNums.sort(Comparator.naturalOrder());
+
+        StringBuilder lottoNum = new StringBuilder("");
 
         lottoNum.append("[");
-        for (Integer number : lottoNums) {
-            lottoNum.append(number).append(",");
+        for (Integer number : sortLottoNums) {
+            lottoNum.append(number).append(", ");
         }
-        lottoNum.deleteCharAt(lottoNum.lastIndexOf(",")).append("]");
+        lottoNum.delete(lottoNum.length()-2, lottoNum.length()).append("]");
+
         System.out.println(lottoNum);
     }
 

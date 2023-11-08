@@ -22,6 +22,4 @@ class WinningNumbersTest {
 				//then
 				.isInstanceOf(LottoException.class);
 	}
-
-
 }

@@ -34,7 +34,7 @@ public class Game {
                 Integer input = Integer.parseInt(inputMoney.getUserInput());
                 money = new Money(input);
                 break;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -63,10 +63,17 @@ public class Game {
     }
 
     public void renderWinningLotto() {
-        InputLotto inputLotto = new InputLotto();
-        String lotto = inputLotto.getUserInput();
-        Integer[] lottos = convertStringToInteger(splitNumber(lotto));
-        winningLotto = new Lotto(convertArrayToList(lottos));
+        while (true) {
+            try {
+                InputLotto inputLotto = new InputLotto();
+                String lotto = inputLotto.getUserInput();
+                Integer[] lottos = convertStringToInteger(splitNumber(lotto));
+                winningLotto = new Lotto(convertArrayToList(lottos));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> convertArrayToList(Integer[] inputs) {

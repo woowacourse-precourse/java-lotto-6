@@ -6,8 +6,8 @@ import lotto.constant.ErrorMessage;
 
 public class WinningLotto {
 
-    private Lotto winningNumbers;
-    private int bonusNumber;
+    private final Lotto winningNumbers;
+    private final int bonusNumber;
 
     public WinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         validateBonusNumber(winningNumbers, bonusNumber);

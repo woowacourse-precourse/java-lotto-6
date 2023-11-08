@@ -53,7 +53,8 @@ public class Lotto {
     }
 
     public String toSortedString() {
-        Collections.sort(numbers);
-        return numbers.toString();
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        Collections.sort(mutableNumbers);
+        return mutableNumbers.toString();
     }
 }

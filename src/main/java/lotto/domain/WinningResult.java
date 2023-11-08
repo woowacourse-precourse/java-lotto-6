@@ -18,4 +18,13 @@ public class WinningResult {
         }
         return map;
     }
+
+    public long getTotalPrizeMoney(Map<PrizeCategory, Integer> map) {
+        long totalPrizeMoney = 0;
+        for (PrizeCategory prize : PrizeCategory.values()) {
+            long multipliedPrizeMoney = prize.getPrizeMoney() * map.get(prize);
+            totalPrizeMoney += multipliedPrizeMoney;
+        }
+        return totalPrizeMoney;
+    }
 }

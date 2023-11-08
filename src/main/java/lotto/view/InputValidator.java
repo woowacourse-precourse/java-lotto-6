@@ -3,8 +3,10 @@ package lotto.view;
 public class InputValidator {
 
     private static final String EMPTY_EXCEPTION = "값을 입력해주세요.";
-    private static final String NUMBER_FORMAT_EXCEPTION = "숫자를 입력해주세요.";
+    private static final String DIGIT_EXCEPTION = "숫자를 입력해주세요.";
     private static final String NUMBER_AND_DELIMITER_FORMAT_EXCEPTION = "숫자와 %c로 입력해주세요.";
+    private static final String DIGIT_REGEX = "\\d";
+    private static final String EMPTY = "";
     private static final char SPACE = ' ';
     private static final char DELIMITER = ',';
 
@@ -15,13 +17,11 @@ public class InputValidator {
         return inputValue;
     }
 
-    public String validateNumberFormat(String inputValue) {
-        try {
-            Integer.parseInt(inputValue);
-            return inputValue;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION);
+    public String validateDigit(String inputValue) {
+        if (0 < inputValue.replaceAll(DIGIT_REGEX, EMPTY).length()) {
+            throw new IllegalArgumentException(DIGIT_EXCEPTION);
         }
+        return inputValue;
     }
 
     public String validateNumberAndDelimiterFormat(String inputValue) {

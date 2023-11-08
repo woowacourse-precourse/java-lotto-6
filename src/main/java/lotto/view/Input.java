@@ -7,7 +7,7 @@ public class Input {
     private final InputValidator inputValidator = new InputValidator();
 
     public String readMoney() {
-        return inputValidator.validateNumberFormat(read());
+        return inputValidator.validateDigit(read());
     }
 
     public String readWinningNumbers() {
@@ -15,7 +15,7 @@ public class Input {
     }
 
     public String readBonusNumber() {
-        return inputValidator.validateNumberFormat(read());
+        return inputValidator.validateDigit(read());
     }
 
     private String read() {

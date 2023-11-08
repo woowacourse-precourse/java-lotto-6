@@ -22,7 +22,7 @@ class InputValidatorTest {
     @ValueSource(strings = {"a", "가", "!"})
     @DisplayName("사용자 입력 값이 숫자가 아닐 경우 예외가 발생한다.")
     void inputNotNumberEx(String inputValue) {
-        assertThatThrownBy(() -> inputValidator.validateNumberFormat(inputValue))
+        assertThatThrownBy(() -> inputValidator.validateDigit(inputValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.controller.LottoController;
 import lotto.model.Lotto;
 import lotto.model.PrizeRank;
 import lotto.model.WinningLotto;
@@ -14,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,7 +40,6 @@ class LottoControllerTest {
     @Test
     @DisplayName("구입 금액에 맞게 로또를 구매하고 결과를 출력해야 한다")
     void validatePurchaseAmountAndDisplayResult() {
-        // Arrange
         int purchaseAmount = 5000;
         List<Lotto> purchasedLottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
@@ -58,21 +55,19 @@ class LottoControllerTest {
         when(inputView.promptForPurchaseAmount()).thenReturn(purchaseAmount);
         when(lottoService.purchaseLottos(purchaseAmount)).thenReturn(purchasedLottos);
         when(inputView.promptForWinningNumbers()).thenReturn(winningNumbers);
-        when(inputView.promptForBonusNumber()).thenReturn(bonusNumber);
+        when(inputView.promptForBonusNumber(winningNumbers)).thenReturn(bonusNumber);
         when(lottoService.generateWinningLotto(winningNumbers, bonusNumber)).thenReturn(winningLotto);
         when(lottoService.determinePrizeRank(purchasedLottos, winningLotto)).thenReturn(prizeRanks);
         when(lottoService.calculateTotalPrize(prizeRanks)).thenReturn(totalPrize);
         when(lottoService.calculateRateOfReturn(purchaseAmount, totalPrize)).thenReturn(rateOfReturn);
 
-        // Act
         lottoController.run();
 
-        // Assert
         verify(inputView).promptForPurchaseAmount();
         verify(lottoService).purchaseLottos(purchaseAmount);
         verify(resultView).displayPurchasedLottos(purchasedLottos);
         verify(inputView).promptForWinningNumbers();
-        verify(inputView).promptForBonusNumber();
+        verify(inputView).promptForBonusNumber(winningNumbers);
         verify(lottoService).generateWinningLotto(winningNumbers, bonusNumber);
         verify(lottoService).determinePrizeRank(purchasedLottos, winningLotto);
         verify(resultView).displayWinningStatistics(prizeRanks);
@@ -80,5 +75,4 @@ class LottoControllerTest {
         verify(lottoService).calculateRateOfReturn(purchaseAmount, totalPrize);
         verify(resultView).displayRateOfReturn(rateOfReturn);
     }
-
 }

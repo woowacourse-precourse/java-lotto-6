@@ -21,55 +21,84 @@ public class InputView {
     }
 
     public static Integer getMoney() {
-        try {
-            return parseStringToMoney();
-        } catch (NumberFormatException e) {
-            OutputView.printError(NOT_NUMBER);
-            return getMoney();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return getMoney();
+        Integer money = null;
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                money = parseStringToMoney();
+                validInput = true;
+            } catch (NumberFormatException e) {
+                OutputView.printError(NOT_NUMBER);
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
+        return money;
     }
 
-    public static Lotto getLottoInput(){
-        try {
-            return convertStringInputToLotto();
-        } catch (IllegalArgumentException e){
-            OutputView.printError(e.getMessage());
-            return getLottoInput();
+    public static Lotto getLottoInput() {
+        Lotto lotto = null;
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                lotto = convertStringInputToLotto();
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
+        return lotto;
     }
 
     public static Integer getBonusNumberByUser(Lotto lotto) {
-        try{
-            return getBonusNumber(lotto);
-        } catch (NumberFormatException e){
-            OutputView.printError(NOT_NUMBER);
-            return getBonusNumberByUser(lotto);
-        } catch (IllegalArgumentException e){
-            OutputView.printError(e.getMessage());
-            return getBonusNumberByUser(lotto);
+        Integer bonusNumber = null;
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                bonusNumber = getBonusNumber(lotto);
+                validInput = true;
+            } catch (NumberFormatException e) {
+                OutputView.printError(NOT_NUMBER);
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
+        return bonusNumber;
     }
 
     private static int getBonusNumber(Lotto lotto) {
-        String userInput = Console.readLine();
-        int bonusNumber = getIntegerInput(userInput);
-        if (lotto.containsBonusNumber(bonusNumber)){
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED);
+        int bonusNumber = -1;
+        boolean validInput = false;
+        while (!validInput) {
+            String userInput = Console.readLine();
+            bonusNumber = getIntegerInput(userInput);
+            if (lotto.containsBonusNumber(bonusNumber)) {
+                OutputView.printError(BONUS_NUMBER_DUPLICATED);
+            } else {
+                validInput = true;
+            }
         }
         return bonusNumber;
     }
 
     public static Lotto convertStringInputToLotto() {
-        String userInput = Console.readLine();
-        String[] split = userInput.split(DELIMITER);
-        List<Integer> lottoNumberList = Arrays.stream(split)
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
-        return new Lotto(lottoNumberList);
+        Lotto lotto = null;
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                String userInput = Console.readLine();
+                String[] split = userInput.split(DELIMITER);
+                List<Integer> lottoNumberList = Arrays.stream(split)
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .toList();
+                lotto = new Lotto(lottoNumberList);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+        return lotto;
     }
 
     private static int getIntegerInput(String userInput) {

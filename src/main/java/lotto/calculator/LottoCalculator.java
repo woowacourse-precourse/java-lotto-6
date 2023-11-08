@@ -7,6 +7,8 @@ import lotto.domain.LottoRank;
 
 public final class LottoCalculator implements Calculator<Integer, EnumMap<LottoRank, Integer>> {
 
+	private static final int PERCENTAGE = 100;
+
 	@Override
 	public Integer calculateSum(EnumMap<LottoRank, Integer> lottoRanks) {
 		int priceSum = 0;
@@ -15,7 +17,7 @@ public final class LottoCalculator implements Calculator<Integer, EnumMap<LottoR
 			LottoRank lottoRank = entry.getKey();
 			int number = entry.getValue();
 
-			priceSum += lottoRank.getPrice() * number;
+			priceSum += lottoRank.getLottoPrice() * number;
 		}
 
 		return priceSum;
@@ -23,6 +25,6 @@ public final class LottoCalculator implements Calculator<Integer, EnumMap<LottoR
 
 	@Override
 	public Double calculateRate(Integer money, Integer priceSum) {
-		return (double) priceSum / (double) money * 100;
+		return (double) priceSum / (double) money * PERCENTAGE;
 	}
 }

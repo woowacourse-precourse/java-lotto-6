@@ -2,6 +2,7 @@ package lotto.model;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static lotto.type.LottoProperty.LOTTO_PRICE;
 
 import java.util.List;

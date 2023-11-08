@@ -1,6 +1,6 @@
 package lotto.controller.handler;
 
-import lotto.constant.Error;
+import lotto.constant.ErrorText;
 import lotto.controller.user.BonusDraw;
 import lotto.controller.user.LottoDraw;
 import lotto.domain.Lotto;
@@ -34,7 +34,7 @@ public class DrawHandler {
 
                 winningNumber = new WinningNumber(lotto, bonusNumber);
             } catch (IllegalArgumentException exception) {
-                inputView.showInputErrorMessage(Error.DUPLICATE_NUMBER.getMessage());
+                inputView.showInputErrorMessage(ErrorText.DUPLICATE_NUMBER.getMessage());
                 continue;
             }
             break;

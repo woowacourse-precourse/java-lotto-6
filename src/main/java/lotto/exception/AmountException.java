@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import lotto.constant.Error;
+import lotto.constant.ErrorText;
 import lotto.constant.LottoRule;
 
 public class AmountException {
@@ -10,14 +10,14 @@ public class AmountException {
 
     public void checkBlank(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException(Error.BLANK.getMessage());
+            throw new IllegalArgumentException(ErrorText.BLANK.getMessage());
         }
     }
 
     public void checkPositiveInteger(String input) {
         for(int index = 0; index < input.length(); index++) {
             if(input.charAt(index) < '0' || input.charAt(index) > '9') {
-                throw new IllegalArgumentException(Error.NOT_INTEGER.getMessage());
+                throw new IllegalArgumentException(ErrorText.NOT_INTEGER.getMessage());
             }
         }
     }
@@ -25,7 +25,7 @@ public class AmountException {
     public void checkOutOfIntegerRange(String input) {
         if (input.length() >= BILLION_DIGITS
                 && input.compareTo(MAX_INTEGER) > SAME) {
-            throw new IllegalArgumentException(Error.OUT_OF_INTEGER_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorText.OUT_OF_INTEGER_RANGE.getMessage());
         }
     }
 
@@ -34,13 +34,13 @@ public class AmountException {
 
         if (amount < LottoRule.MIN_AMOUNT.getValue()
                 || amount > LottoRule.MAX_AMOUNT.getValue()) {
-            throw new IllegalArgumentException(Error.OUT_OF_MAX_AMOUNT.getMessage());
+            throw new IllegalArgumentException(ErrorText.OUT_OF_MAX_AMOUNT.getMessage());
         }
     }
 
     public void checkEmptySpace(String input) {
         if(input.contains(" ")) {
-            throw new IllegalArgumentException(Error.EMPTY_SPACE.getMessage());
+            throw new IllegalArgumentException(ErrorText.EMPTY_SPACE.getMessage());
         }
     }
 
@@ -48,7 +48,7 @@ public class AmountException {
         int amount = Integer.parseInt(input);
 
         if (amount % LottoRule.PRICE.getValue() != 0) {
-            throw new IllegalArgumentException(Error.THOUSAND_UNITS.getMessage());
+            throw new IllegalArgumentException(ErrorText.THOUSAND_UNITS.getMessage());
         }
     }
 }

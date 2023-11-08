@@ -1,20 +1,56 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static lotto.Constants.LOTTERY_DIGIT_LENGTH;
+import static lotto.Validator.validateIsElementUnique;
+import static lotto.Validator.validateListLength;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        this.numbers = sortedNumbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        validateListLength(numbers, LOTTERY_DIGIT_LENGTH);
+        validateIsElementUnique(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public Prize check(WinningNumbers winningNumbers) {
+        int count = 0;
+
+        for (int number : winningNumbers.getNumbers()) {
+            if (numbers.contains(number)) {
+                count++;
+            }
+        }
+
+        return getPrize(count, winningNumbers.getBonus());
+    }
+
+    private Prize getPrize(int count, int bonusNumber) {
+        if (count == Prize.First.getCount())
+            return Prize.First;
+        if (count == Prize.Second.getCount() && numbers.contains(bonusNumber))
+            return Prize.Second;
+        if (count == Prize.Third.getCount())
+            return Prize.Third;
+        if (count == Prize.Forth.getCount())
+            return Prize.Forth;
+        if (count == Prize.Fifth.getCount())
+            return Prize.Fifth;
+        return Prize.None;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

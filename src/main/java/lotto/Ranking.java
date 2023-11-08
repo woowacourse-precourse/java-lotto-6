@@ -22,7 +22,7 @@ public enum Ranking {
         return matchCount;
     }
 
-    public int getMoney() {
+    public int getPrizeMoney() {
         return prizeMoney;
     }
 
@@ -34,13 +34,14 @@ public enum Ranking {
         if (matchCount == SECOND.matchCount && matchBonus) {
             return SECOND;
         }
-
+        if (matchCount == SECOND.matchCount) {
+            return THIRD;
+        }
         for (Ranking ranking : Ranking.values()) {
-            if (ranking.matchCount == matchCount && ranking != SECOND) {
+            if (ranking.matchCount == matchCount) {
                 return ranking;
             }
         }
-
         return NONE;
     }
 }

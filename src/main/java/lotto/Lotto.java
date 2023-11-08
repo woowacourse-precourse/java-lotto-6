@@ -41,4 +41,10 @@ public class Lotto {
                 .sorted()
                 .collect(Collectors.toList());
     }
+
+    public int countMatch(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                 .filter(winningNumbers::contains)
+                .count();
+    }
 }

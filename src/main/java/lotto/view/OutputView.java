@@ -19,4 +19,8 @@ public class OutputView {
     public static void printWinningNumberMessage() {
         System.out.println(GameMessage.WINNING_NUMBER_MESSAGE.getMessage());
     }
+
+    public static void printBonusNumberMessage() {
+        System.out.println(GameMessage.BONUS_NUMBER_MESSAGE.getMessage());
+    }
 }

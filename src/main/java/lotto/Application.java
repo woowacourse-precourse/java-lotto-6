@@ -1,16 +1,18 @@
     package lotto;
 
     import lotto.Controller.Controller;
-    import lotto.Factory.LottoContainer;
+    import lotto.LottoFactory.LottoContainer;
+    import lotto.LottoFactory.LottoController;
 
     public class Application {
         public static void main(String[] args) {
 
             LottoContainer lottoContainer = new LottoContainer();
-            Controller controller = new Controller(lottoContainer);
+            LottoController lottoController = new LottoController();
+            Controller controller = new Controller(lottoContainer, lottoController);
 
             controller.SettingLotto();
             controller.RunLotto();
-            controller.PrintResult();
+
         }
     }

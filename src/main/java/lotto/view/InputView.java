@@ -9,4 +9,11 @@ public class InputView {
         String purchaseAmountString = Console.readLine();
     }
 
+    public void input winningNumbers() {
+        System.out.println("당첨 번호를 입력해주세요.");
+
+        String winningNumbersString = Console.readLine();
+    }
+
+    
 }

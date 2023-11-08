@@ -12,6 +12,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoResultCalculationTest {
     LottoResultCalculation lottoResultCalculation;
+
     @BeforeEach
     void initLottoResultCaculation() {
         lottoResultCalculation = new LottoResultCalculation();
@@ -19,9 +20,10 @@ class LottoResultCalculationTest {
 
     @DisplayName("로또 구입 금액이 1,000원 단위로 나누어 떨어지지 않을 때 예외 발생")
     @Test
-    void InputMoneyException() {
+    void inputMoneyException() {
         assertThatThrownBy(() -> {
-            lottoResultCalculation.caculateLottoTicket("16500");})
+            lottoResultCalculation.caculateLottoTicket("16500");
+        })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessageType.NOT_DIVIDE_THOUSAND.message());
     }
@@ -29,9 +31,8 @@ class LottoResultCalculationTest {
     @DisplayName("로또 결과에 대한 정상 테스트")
     @Test
     void checkResultTest() {
-        assertThat(lottoResultCalculation.checkResult
-                (List.of(20, 30, 24, 1, 3, 4)
-                , List.of(30, 24, 5, 8, 10, 20)))
+        assertThat(lottoResultCalculation.checkResult(
+                List.of(20, 30, 24, 1, 3, 4), List.of(30, 24, 5, 8, 10, 20)))
                 .isEqualTo(3);
     }
 

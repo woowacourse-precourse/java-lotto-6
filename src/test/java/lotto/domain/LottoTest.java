@@ -26,7 +26,7 @@ class LottoTest {
                 .hasMessage(ErrorMessageType.DUPLICATE_NUMBER.message());
     }
 
-    @DisplayName("로또 번호에 범위에 맞지 않은 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("로또 번호에 범위에 맞지 않은 숫자가 있으면 예외 발생")
     @Test
     void createLottoByNotInRangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(5, 6, 7, 8, 9, 46)))

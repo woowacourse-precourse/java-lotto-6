@@ -11,6 +11,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoControllerTest {
     LottoController lottoController;
+
     @BeforeEach
     void initLottoGetter() {
         lottoController = new LottoController();
@@ -34,8 +35,9 @@ class LottoControllerTest {
     @DisplayName("당첨 번호를 입력할 때 숫자가 아닌 문자가 있으면 예외 처리")
     @Test
     void notNumberException() {
-        assertThatThrownBy(()-> {
-            lottoController.setInputLottoNumber("a, 2, 14, 10, 23, 32");})
+        assertThatThrownBy(() -> {
+            lottoController.setInputLottoNumber("a, 2, 14, 10, 23, 32");
+        })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessageType.NOT_NUMBER.message());
     }
@@ -43,8 +45,9 @@ class LottoControllerTest {
     @DisplayName("당첨 번호를 입력할 때 범위에 벗어난 문자가 있으면 예외 처리")
     @Test
     void outOfNumberException() {
-        assertThatThrownBy(()-> {
-            lottoController.setInputLottoNumber("1, 2, 14, 10, 23, 47");})
+        assertThatThrownBy(() -> {
+            lottoController.setInputLottoNumber("1, 2, 14, 10, 23, 47");
+        })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessageType.OUT_OF_LOTTO_NUMERICAL_RANGE.message());
     }

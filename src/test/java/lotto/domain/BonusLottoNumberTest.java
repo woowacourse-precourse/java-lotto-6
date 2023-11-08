@@ -13,7 +13,8 @@ class BonusLottoNumberTest {
     @Test
     void notNumberException() {
         assertThatThrownBy(() -> {
-            new BonusLottoNumber("a");})
+            new BonusLottoNumber("a");
+        })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessageType.NOT_NUMBER.message());
     }
@@ -22,7 +23,8 @@ class BonusLottoNumberTest {
     @Test
     void outOfRangeException() {
         assertThatThrownBy(() -> {
-            new BonusLottoNumber("47");})
+            new BonusLottoNumber("47");
+        })
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessageType.OUT_OF_LOTTO_NUMERICAL_RANGE.message());
     }

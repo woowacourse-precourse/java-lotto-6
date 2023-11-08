@@ -36,12 +36,14 @@ public class Lotto {
 
     private void validateNumberRangeException(List<Integer> numbers) throws IllegalArgumentException {
         long result = numbers.stream()
-                .filter(num -> num < ConstNumberType.LOTTO_START_NUMBER.number() || num > ConstNumberType.LOTTO_END_NUMBER.number())
+                .filter(num -> num < ConstNumberType.LOTTO_START_NUMBER.number()
+                        || num > ConstNumberType.LOTTO_END_NUMBER.number())
                 .count();
         if (result != 0) {
             throw new IllegalArgumentException(ErrorMessageType.OUT_OF_LOTTO_NUMERICAL_RANGE.message());
         }
     }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

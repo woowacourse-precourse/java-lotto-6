@@ -22,6 +22,7 @@ public class BonusLottoNumber {
         }
         return bonusNum;
     }
+
     public int getBounsNum() {
         return this.bonusNum;
     }

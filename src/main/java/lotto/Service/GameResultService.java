@@ -11,7 +11,6 @@ public class GameResultService {
     private int matchFiveWithoutBonus = 0;
     private int matchFiveWithBonus = 0;
     private int matchSix = 0;
-
     private int totalAmount = 0;
 
     private void incrementThreeMatch(){
@@ -52,7 +51,11 @@ public class GameResultService {
         }
     }
 
-    public void printResult(){
+    private double getRateOfReturn(int input, int output){
+        return (double)output/input * 100;
+    }
+
+    public void printResult() {
         GameResultOutputService.printOutputStatement();
         GameResultOutputService.printThreeMatch(this.matchThree);
         GameResultOutputService.printFourMatch(this.matchFour);

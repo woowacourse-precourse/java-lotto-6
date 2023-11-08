@@ -49,10 +49,10 @@
 
 ### ⛳️  GameResult
 - [x]  당첨 내역을 검증한다.
-  - [x] 3,4,5,6개가 일치하는 로또의 개수를 각각 센다. (5개가 일치하는 로또의 경우, 보너스 번호가 같은지도 센다.)  -> calculateResult()
+  - [x] 3,4[GameResultOutputService.java](..%2Fsrc%2Fmain%2Fjava%2Flotto%2FService%2FGameResultOutputService.java),5,6개가 일치하는 로또의 개수를 각각 센다. (5개가 일치하는 로또의 경우, 보너스 번호가 같은지도 센다.)  -> calculateResult()
      - Lotto.howManySameNumbers(), Lotto.hasBonus()
      - [x] Enum 구현
-- [ ] 수익을 계산한다. ->  getRateOfReturn() 
+- [x] 수익을 계산한다. ->  getRateOfReturn() 
 - [x]  당첨 내역을 출력한다. -> printResult()
   - [ ] 수익률 출력 -> printRateOfReturn() 
       - 수익률은 소수점 둘쨰자리에서 반올림한다.

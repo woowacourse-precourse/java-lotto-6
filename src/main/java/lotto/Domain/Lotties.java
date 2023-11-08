@@ -12,7 +12,9 @@ public class Lotties {
         lotties = new ArrayList<>();
         int nowCount = 1;
         do {
-            lotties.add(LottoGenerator.generate());
+            Lotto lotto = LottoGenerator.generate();
+            lotto.sortNumbers();
+            lotties.add(lotto);
         } while (nowCount++ < count);
     }
 

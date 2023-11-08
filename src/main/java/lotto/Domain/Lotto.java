@@ -22,6 +22,10 @@ public class Lotto {
         isDuplicate(numbers);
     }
 
+    public void sortNumbers() {
+        this.numbers.stream().sorted();
+    }
+
     //6개인지 확인
     private void sizeValidate(List<Integer> numbers) {
         if (numbers.size() != 6) {

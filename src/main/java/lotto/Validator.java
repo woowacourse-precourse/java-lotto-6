@@ -28,7 +28,7 @@ public class Validator {
             throw new IllegalArgumentException(prefix + "숫자가 아닙니다.");
         }
         if (price % MONEY_UNIT != 0 || price <= 0) {
-            throw new IllegalArgumentException(prefix + "잘못된 입력입니다.");
+            throw new IllegalArgumentException(prefix + "1000원 단위의 양수 금액을 입력해야 합니다.");
         }
         return price;
     }

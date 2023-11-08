@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
-    //public Lottos();
 
     public static List<Lotto> createLotto(Integer lottoCount, Lotto lotto) {
         List<Lotto> lottoLst = new ArrayList<>();

@@ -19,7 +19,6 @@ public enum WinningAmounts {
 
     public int getValue(){
         return value;
-        // return count;
     }
 
     public int getCount(){

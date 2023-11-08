@@ -28,7 +28,7 @@ public class LottoController {
         System.out.println();
         inputAmountValidator(amount);
         lottoReady(amount);
-        //OutputView.winningStatistics(Integer.parseInt(amount));
+
     }
 
     public static void inputAmountValidator(String amount){
@@ -37,7 +37,7 @@ public class LottoController {
         OutputView.purchaseLottoNumber(lottoCounts);
     }
 
-    public static List<Integer> inputWinningNumbers(){ // 문자형 당첨볼을 정수형 당첨볼로 바꾸기
+    public static List<Integer> inputWinningNumbers(){
         InputView.requestWinningNumber();
         List<String> selectedNumbers = Arrays.asList(Console.readLine().split(","));
         Validator.validateLottoIsNum(selectedNumbers);
@@ -63,15 +63,13 @@ public class LottoController {
 
     public static void lottoReady(String amount){
         int lottoCounts = (Integer.parseInt(amount)) / 1000;
-        // 당첨볼 생성, lottoRun에 값 전달, lottoRun에서 로또볼과 당첨볼 전달
         for(int i=0; i< lottoCounts; i++){
-            lottoRun(lottoCounts);// 로또 발행
-             // 로또볼과 당첨볼을 넘겨야 함
+            lottoRun(lottoCounts);
         }
-        winningBalls = inputWinningNumbers(); // 당첨볼
-        bonusBall = inputBonusNumber(); // 보너스 볼
+        winningBalls = inputWinningNumbers();
+        bonusBall = inputBonusNumber();
         Validator.validateWinningAndBonus(bonusBall, winningBalls);
-        CompareLottoValue.compareValueStart(winningBalls, LottoRepository.getLottoRepo(), bonusBall, Integer.parseInt(amount)); // 로또볼과 당첨볼을 넘겨야 함
+        CompareLottoValue.compareValueStart(winningBalls, LottoRepository.getLottoRepo(), bonusBall, Integer.parseInt(amount));
     }
 
     public static void lottoRun(Integer lottoCounts){

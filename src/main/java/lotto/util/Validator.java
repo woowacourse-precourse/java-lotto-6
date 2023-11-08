@@ -64,9 +64,6 @@ public class Validator {
         }
     }
 
-    // 보너스 숫자와 당첨 숫자 인자로 받아 보너스 숫자가 중복되지 않았는지 검증하는 함수
-        // 당첨숫자 정수 형변환
-        // 반복하며 정수와 비교
     public static void validateWinningAndBonus(Integer bonusBall, List<Integer> winningBalls){
         for(int winningBall : winningBalls){
             if (bonusBall == winningBall){

@@ -15,10 +15,13 @@ public class OutputView {
     public void printTotalPrize(Map<Prize, Integer> totalPrize){
         StringBuilder sb = new StringBuilder();
 
+        sb.append("당첨 통계\n"
+                + "---\n");
         totalPrize.keySet().forEach( prize -> {
             sb.append(prize.getMessage());
             sb.append(" - " + totalPrize.get(prize) + "개\n");
         });
+        
         System.out.println(sb);
     }
 

@@ -1,7 +1,10 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.domain.message.ErrorMessage;
 
 public class Lotto {
 
@@ -16,9 +19,27 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicates(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private static void validateDuplicates(final List<Integer> numbers) {
+        if (isDuplicate(numbers)) {
+            throw ErrorMessage.DUPLICATES_LOTTO_NUMBERS.createException();
+        }
+    }
+
+    private static boolean isDuplicate(final List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .toList()
+                .size() != numbers.size();
     }
 
     public boolean contains(final int number) {

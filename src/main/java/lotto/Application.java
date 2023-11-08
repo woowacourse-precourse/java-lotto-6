@@ -1,18 +1,23 @@
-    package lotto;
+package lotto;
 
-    import lotto.Controller.Controller;
-    import lotto.LottoFactory.LottoContainer;
-    import lotto.LottoFactory.LottoController;
+import lotto.Controller.*;
+import lotto.LottoFactory.LottoContainer;
+import lotto.LottoFactory.LottoController;
 
-    public class Application {
-        public static void main(String[] args) {
+public class Application {
+    public static void main(String[] args) {
+        LottoContainer lottoContainer = new LottoContainer();
+        LottoController lottoController = new LottoController();
 
-            LottoContainer lottoContainer = new LottoContainer();
-            LottoController lottoController = new LottoController();
-            Controller controller = new Controller(lottoContainer, lottoController);
+        LottoConfiguration lottoConfiguration = new LottoConfiguration(lottoContainer,lottoController);
 
-            controller.SettingLotto();
-            controller.RunLotto();
+        Setting setting = new SettingLotto(lottoConfiguration);
+        setting.SettingLotto();
 
-        }
+        Running running = new RunningLotto(lottoConfiguration, setting.returnCount(), setting.returnBonus());
+        running.RunLotto();
+
+        Printing printing = new PrintResult(running.ReturnRate());
+        printing.PrintResult();
     }
+}

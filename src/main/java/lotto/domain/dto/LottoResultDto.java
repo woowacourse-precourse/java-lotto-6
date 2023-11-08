@@ -5,18 +5,14 @@ import java.util.Map;
 import lotto.domain.LottoResult;
 import lotto.domain.Rank;
 
-public class LottoResultDto {
-    private final Map<Rank, Integer> result;
-
-    public LottoResultDto(final Map<Rank, Integer> result) {
-        this.result = result;
-    }
+public record LottoResultDto(Map<Rank, Integer> result) {
 
     public static LottoResultDto from(final LottoResult lottoResult) {
         return new LottoResultDto(lottoResult.getResult());
     }
 
-    public Map<Rank, Integer> getResult() {
+    @Override
+    public Map<Rank, Integer> result() {
         return new HashMap<>(result);
     }
 }

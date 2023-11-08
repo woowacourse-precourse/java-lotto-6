@@ -37,7 +37,7 @@ public class OutputView {
         outputWriter.writeLine(LottoGameMessage.OUTPUT_WINNING_RESULTS.message());
         outputWriter.writeLine(LottoGameMessage.OUTPUT_WINNING_RESULTS_LINES.message());
 
-        Map<Rank, Integer> result = resultDto.getResult();
+        Map<Rank, Integer> result = resultDto.result();
         Arrays.stream(Rank.values())
                 .sorted(Comparator.comparing(Rank::prize))
                 .filter(rank -> rank != Rank.MISS)
@@ -47,10 +47,10 @@ public class OutputView {
     private String createRankMessage(final Rank rank, final int count) {
         if (rank == Rank.SECOND) {
             return LottoGameMessage.OUTPUT_MATCHED_BONUS_NUMBER.message().
-                    formatted(rank.getMatched(), formattedAmount(rank.prize()), count);
+                    formatted(rank.matched(), formattedAmount(rank.prize()), count);
         }
         return LottoGameMessage.OUTPUT_MATCHED.message().
-                formatted(rank.getMatched(), formattedAmount(rank.prize()), count);
+                formatted(rank.matched(), formattedAmount(rank.prize()), count);
     }
 
     public void printProfitRate(final double profitRate) {

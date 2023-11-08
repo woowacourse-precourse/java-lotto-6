@@ -29,6 +29,13 @@ public class LottoStore {
         }
     }
 
+    public void printLottos() {
+        System.out.println(myLottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : myLottos) {
+            lotto.printLotto();
+        }
+    }
+
     private void issueLotto(int input) {
         int number = input / Value.LOTTO_PRICE.get();
         for (int i = Value.ZERO.get(); i < number; ++i) {

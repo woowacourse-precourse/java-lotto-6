@@ -7,5 +7,6 @@ public class Application {
         LottoStore lottoStore = new LottoStore();
 
         lottoStore.purchaseLotto();
+        lottoStore.printLottos();
     }
 }

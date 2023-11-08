@@ -10,6 +10,19 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public void printLotto() {
+        System.out.print("[");
+        boolean flag = false;
+        for (Integer i : numbers) {
+            if (flag) {
+                System.out.print(", ");
+            }
+            System.out.print(i);
+            flag = true;
+        }
+        System.out.println("]");
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != Value.LOTTO_NUMBER.get()) {
             throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개여야 합니다.");

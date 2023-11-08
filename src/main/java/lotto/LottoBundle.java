@@ -8,4 +8,8 @@ public class LottoBundle {
     public LottoBundle(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
+    public List<Lotto> getLottos() {
+        return List.copyOf(lottos);
+    }
 }

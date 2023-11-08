@@ -2,9 +2,8 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Playing {
@@ -20,7 +19,9 @@ public class Playing {
     }
 
     private static List<Integer> getLottoNumbers(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottos = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(lottos);
+        return lottos;
     }
 
     public static void compareLottosAndWinningNumbers(List<Integer> winningNumbers, Integer bonus){

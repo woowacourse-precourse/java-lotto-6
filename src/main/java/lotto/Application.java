@@ -1,8 +1,10 @@
 package lotto;
 
 import java.util.List;
-import view.InputHandler;
-import view.OutputHandler;
+import lotto.model.Lotto;
+import lotto.model.LottoTickets;
+import lotto.view.InputHandler;
+import lotto.view.OutputHandler;
 
 public class Application {
     public static void main(String[] args) {

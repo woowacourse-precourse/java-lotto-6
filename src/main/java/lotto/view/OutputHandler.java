@@ -1,9 +1,9 @@
-package view;
+package lotto.view;
 
 import java.text.NumberFormat;
 import java.util.List;
-import lotto.LotteryStatistics;
-import lotto.Prize;
+import lotto.service.LotteryStatistics;
+import lotto.model.Prize;
 
 public class OutputHandler {
 

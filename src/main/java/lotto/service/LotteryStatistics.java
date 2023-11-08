@@ -1,6 +1,7 @@
-package lotto;
+package lotto.service;
 
 import java.util.List;
+import lotto.model.Prize;
 
 public class LotteryStatistics {
     public static int countMatchedNumbers(List<Integer> userLotto, List<Integer> winningNums) {

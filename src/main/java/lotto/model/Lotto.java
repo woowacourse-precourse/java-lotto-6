@@ -1,6 +1,6 @@
-package lotto;
+package lotto.model;
 import java.util.List;
-import view.InputHandler;
+import lotto.view.InputHandler;
 
 public class Lotto {
     private final List<Integer> numbers;

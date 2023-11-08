@@ -1,11 +1,11 @@
 package lotto;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -24,4 +24,19 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @DisplayName("무작위의 값 6개를 반환")
+    @Test
+    void randomNumber() {
+        //given
+        List<Integer> randomNumbers;
+
+        //when
+        randomNumbers = Lotto.randomNumber();
+
+        //then
+        assertThat(randomNumbers.size()).isEqualTo(6);
+    }
+
+
 }

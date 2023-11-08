@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
-    public static int purchaseAmountInput(){
-        System.out.println("구입금액을 입력해 주세요.");
-        int purchaseAmount = Integer.parseInt(Console.readLine());
-        System.out.println();
+    private static final int MIN_UNIT_OF_AMOUNT = 1000;
 
-        return purchaseAmount;
+    public static String purchaseAmountInput() {
+        System.out.println("구입금액을 입력해 주세요.");
+        String input = Console.readLine();
+        return input;
     }
 
     public static List<Integer> winningNumberInput(){

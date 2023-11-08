@@ -3,13 +3,23 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class LottoGame {
     private static final int PERCENTAGE = 100;
     public void playGame(){
 
         final int lottoAmount = 1000;
-        int purchaseAmount = InputHandler.purchaseAmountInput();
+        String purchaseAmountString = InputHandler.purchaseAmountInput();
+
+        int purchaseAmount;
+        try {
+             purchaseAmount = Integer.parseInt(purchaseAmountString);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 정수만 입력 가능합니다.");
+            return;
+        }
+
         int purchaseNumber = purchaseAmount/lottoAmount;
 
         Lotto[] lottos = new Lotto[purchaseNumber];

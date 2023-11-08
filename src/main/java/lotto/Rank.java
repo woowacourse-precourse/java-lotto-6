@@ -42,7 +42,7 @@ public enum Rank {
             }
         }
 
-        throw new IllegalArgumentException( "유효값이 아닙니다.");
+        throw new IllegalArgumentException("[ERROR] 맞힌 숫자 개수가 유효한 값이 아닙니다.");
     }
 
 

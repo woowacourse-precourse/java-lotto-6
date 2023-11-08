@@ -7,10 +7,10 @@ public enum Winning {
     SECOND("5개 일치, 보너스 볼 일치 (30,000,000원)", MatchNumber.FIVE, BonusMatchType.MATCH, 30000000),
     FIRST("6개 일치 (2,000,000,000원)", MatchNumber.SIX, BonusMatchType.NOT_APPLICABLE, 2000000000);
 
-    private String prizeMessage;
-    private MatchNumber matchNumber;
-    private BonusMatchType bonus;
-    private int money;
+    private final String prizeMessage;
+    private final MatchNumber matchNumber;
+    private final BonusMatchType bonus;
+    private final int money;
 
     Winning(String message, MatchNumber number, BonusMatchType bonus, int money) {
         this.prizeMessage = message;

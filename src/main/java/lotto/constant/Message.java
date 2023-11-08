@@ -16,7 +16,7 @@ public enum Message {
     RATE_OF_RETURN_VERB("입니다."),
     LINE_BREAK("\n");
 
-    private String message;
+    private final String message;
 
     Message(String message) {
         this.message = message;

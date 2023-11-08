@@ -3,7 +3,6 @@ package lotto.model.generator;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.UnitNumber;
-import lotto.model.player.WinningNumber;
 
 public class Lotto {
     private final List<Integer> numbers;

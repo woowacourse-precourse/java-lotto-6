@@ -9,7 +9,7 @@ public class BonusNumber {
     private static List<Integer> winningNumber;
 
     public BonusNumber(List<Integer> winningNumber, String number) {
-        this.winningNumber = winningNumber;
+        BonusNumber.winningNumber = winningNumber;
         validate(number);
         bonusNumber = Integer.parseInt(number);
     }

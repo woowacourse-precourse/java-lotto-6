@@ -9,8 +9,8 @@ public class CheckWinning {
     private static Integer bonusNumber;
 
     public CheckWinning(List<Integer> winningNumber, Integer bonusNumber) {
-        this.winningNumber = winningNumber;
-        this.bonusNumber = bonusNumber;
+        CheckWinning.winningNumber = winningNumber;
+        CheckWinning.bonusNumber = bonusNumber;
     }
 
     public Integer winningNumberCounter(List<Integer> purchaseNumber) {

@@ -10,7 +10,7 @@ public enum UnitNumber {
     ROUNDED_HELPER_NUMBER(100);
 
 
-    private int number;
+    private final int number;
 
     UnitNumber(int number) {
         this.number = number;

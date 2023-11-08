@@ -6,7 +6,7 @@ public enum MatchNumber {
     FIVE(5),
     SIX(6);
 
-    private int number;
+    private final int number;
 
     MatchNumber(int number) {
         this.number = number;

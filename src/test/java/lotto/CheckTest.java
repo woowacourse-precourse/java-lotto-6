@@ -19,7 +19,7 @@ public class CheckTest {
         List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        BonusMatchType bonus = BonusMatchType.NOT_APPLICABLE;
+        BonusMatchType bonus;
 
         CheckWinning checkWinning = new CheckWinning(winningNumber, bonusNumber);
         int count = checkWinning.winningNumberCounter(purchaseNumber);
@@ -36,7 +36,7 @@ public class CheckTest {
         List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 7);
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        BonusMatchType bonus = BonusMatchType.NOT_APPLICABLE;
+        BonusMatchType bonus;
 
         CheckWinning checkWinning = new CheckWinning(winningNumber, bonusNumber);
         int count = checkWinning.winningNumberCounter(purchaseNumber);
@@ -53,7 +53,7 @@ public class CheckTest {
         List<Integer> purchaseNumber = Arrays.asList(1, 2, 3, 4, 5, 8);
         List<Integer> winningNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        BonusMatchType bonus = BonusMatchType.NOT_APPLICABLE;
+        BonusMatchType bonus;
 
         CheckWinning checkWinning = new CheckWinning(winningNumber, bonusNumber);
         int count = checkWinning.winningNumberCounter(purchaseNumber);

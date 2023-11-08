@@ -7,7 +7,7 @@ import lotto.constant.MatchNumber;
 import lotto.constant.Winning;
 
 public class WinningRank {
-    private static Map<Winning, Integer> prizeCount = new HashMap<>();
+    private static final Map<Winning, Integer> prizeCount = new HashMap<>();
     private static int firstPrizeCount = 0;
     private static int secondPrizeCount = 0;
     private static int thirdPrizeCount = 0;

@@ -43,4 +43,8 @@ public class UserView {
     }
 
 
+    private static long countMatchingResults(List<LottoResult> results, LottoResult result) {
+        return results.stream().filter(r -> r == result).count();
+    }
+
 }

@@ -1,4 +1,4 @@
-package lotto;
+package domain;
 
 import lotto.domain.Lotto;
 import lotto.util.Utils;
@@ -46,15 +46,10 @@ class LottoTest {
     @DisplayName("로또 번호는 오름차순으로 정렬되어야 한다.")
     @Test
     void createLottoByUnorderedNumbers() {
-        //given
-        List<Integer> case1 = List.of(9, 1, 41, 15, 38, 24);
-
-        //when
-        Lotto result1 = new Lotto(case1);
-
+        Lotto result = new Lotto(List.of(9, 1, 41, 15, 38, 24));
         List<Integer> naturalOrder = List.of(1, 9, 15, 24, 38, 41);
-        //then
-        assertThat(result1.toString()).contains(Utils.integerListToStringList(naturalOrder));
+
+        assertThat(result.toString()).contains(Utils.integerListToStringList(naturalOrder));
     }
 
 }

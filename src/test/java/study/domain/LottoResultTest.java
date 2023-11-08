@@ -8,10 +8,12 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoWallet;
 import lotto.domain.WinningLotto;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoResultTest {
 
+    @DisplayName("countPrizes를 통해 결과가 LottoResult에 잘 저장되는지 테스트 해본다")
     @Test
     void countPrizes() {
         LottoWallet wallet = new LottoWallet(
@@ -29,6 +31,7 @@ public class LottoResultTest {
         assertThat(lottoResult.getCount(LottoPrize.NO_PLACE)).isEqualTo(0);
     }
 
+    @DisplayName("상금 총합을 잘 계산하는지 테스트 해본다.")
     @Test
     void getTotalPrizeAmount() {
         LottoWallet wallet = new LottoWallet(

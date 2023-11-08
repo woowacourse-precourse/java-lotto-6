@@ -13,19 +13,19 @@ import lotto.view.OutputView;
 // 3. 당첨 보너스 번호를 입력 받고 예외를 불러와 검증을 시작하는 메서드
 
 public class UserRequestService {
-    public static int requestLottoCost() {
+    public static int requestLottoCostWithException() {
         OutputView.printRequestLottoPrice();
         String input = InputView.requestPrice();
         return Exception.lottoCostException(input);
     }
 
-    public static Lotto requestWinningLotto() {
+    public static Lotto requestWinningLottoWithException() {
         OutputView.printRequestWinningNumbers();
         List<Integer> winningNumbers = Converter.toIntegerList(InputView.requestWinningNumber());
         return Exception.winningLottoException(winningNumbers);
     }
 
-    public static int requestBonusNumber(List<Integer> winningNumbers) {
+    public static int requestBonusNumberWithException(List<Integer> winningNumbers) {
         OutputView.printRequestBonusNumber();
         int bonusNumber = InputView.requestWinningBonusNumber();
         return Exception.bonusNumberException(bonusNumber, winningNumbers);

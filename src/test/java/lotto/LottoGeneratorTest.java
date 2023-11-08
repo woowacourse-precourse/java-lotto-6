@@ -7,7 +7,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoGeneratorTest {
     @DisplayName("구입 금액이 1,000원보다 적으면 예외가 발생한다")
@@ -29,7 +28,7 @@ class LottoGeneratorTest {
     void generateLotto() {
         int amount = 5000;
 
-        List<Lotto> lottos = LottoGenerator.from(amount);
+        List<Lotto> lottos = LottoGenerator.generateFrom(amount);
 
         lottos.stream().map(lotto -> assertThat(lotto.getClass()).isInstanceOf(Lotto.class));
     }
@@ -39,7 +38,7 @@ class LottoGeneratorTest {
     void generateCorrectNumbersOfLottos() {
         int amount = 5000;
 
-        List<Lotto> lottos = LottoGenerator.from(amount);
+        List<Lotto> lottos = LottoGenerator.generateFrom(amount);
 
         assertThat(lottos.size()).isEqualTo(amount / 1000);
     }

@@ -6,8 +6,8 @@ import java.util.List;
 public class WinningNumber {
 
 
-    int bonus;
-    List<Integer> winning_number;
+    private int bonus;
+    private List<Integer> winning_number;
 
     public WinningNumber(List<Integer> numbers, int bonus) {
         this.winning_number = numbers;
@@ -22,8 +22,5 @@ public class WinningNumber {
         return this.winning_number;
     }
 
-    public void validate(){
-
-    }
 
 }

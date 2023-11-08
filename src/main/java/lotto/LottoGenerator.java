@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
+    private final int LOTTO_PRICE = 1000;
     PlayerInput input = new PlayerInput();
-    private final int time = input.inputMoney() / 1000;
+    private final int time = input.inputMoney() / LOTTO_PRICE;
 
     public int getTime() {
         return this.time;

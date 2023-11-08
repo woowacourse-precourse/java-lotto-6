@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerInput {
+    private static final int Lotto_PRICE = 1000;
     //금액 입력받기
     public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -21,7 +22,7 @@ public class PlayerInput {
             inputMoney();
         }
         int money = Integer.parseInt(input);
-        System.out.println("\n" + (money / 1000) + "개를 구매했습니다.");
+        System.out.println("\n" + (money / Lotto_PRICE) + "개를 구매했습니다.");
         return money;
     }
 

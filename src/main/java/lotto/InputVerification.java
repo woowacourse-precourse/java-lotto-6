@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.Set;
 
 public class InputVerification {
+    private static String ERROR_MESSAGE_INPUT_SIZE = "[ERROR] 입력 개수가 옳지 않습니다.";
+    private static String ERROR_MESSAGE_NUMBER_RANGE = "[ERROR] 숫자범위가 옳지 않습니다.";
+    private static String ERROR_MESSAGE_WINNING_NUMBER_DUP = "[ERROR] 당첨번호가 중복됩니다.";
+    private static String ERROR_MESSAGE_BONUS_NUMBER_DUP = "[ERROR] 당첨번호와 보너스번호가 중복됩니다.";
+
 
     public boolean isMultipleOfThousand(int amount) {
         return amount % 1000 == 0;
@@ -60,15 +65,15 @@ public class InputVerification {
         boolean isValid = true;
 
         if(!isInputSizeCorrect(numbers)) {
-            System.out.println("[ERROR] 입력 개수가 옳지 않습니다.");
+            System.out.println(ERROR_MESSAGE_INPUT_SIZE);
             isValid = false;
         }
         if(!isNumbersInRange(numbers)) {
-            System.out.println("[ERROR] 숫자범위가 옳지 않습니다.");
+            System.out.println(ERROR_MESSAGE_NUMBER_RANGE);
             isValid = false;
         }
         if(isNumbersDuplicated(numbers)) {
-            System.out.println("[ERROR] 당첨번호가 중복됩니다.");
+            System.out.println(ERROR_MESSAGE_WINNING_NUMBER_DUP);
             isValid = false;
         }
         return isValid;
@@ -78,11 +83,11 @@ public class InputVerification {
         boolean isValid = true;
 
         if(!isNumberInRange(bonusNumber)) {
-            System.out.println("[ERROR] 숫자범위가 옳지 않습니다.");
+            System.out.println(ERROR_MESSAGE_NUMBER_RANGE);
             isValid = false;
         }
         if(isBonusNumbersDuplicated(winningNumbers, bonusNumber)) {
-            System.out.println("[ERROR] 당첨번호와 보너스번호가 중복됩니다.");
+            System.out.println(ERROR_MESSAGE_BONUS_NUMBER_DUP);
             isValid = false;
         }
         return isValid;

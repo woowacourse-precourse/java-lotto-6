@@ -20,7 +20,7 @@ public class ViewInput {
                 purchaseAmount = Integer.parseInt(Console.readLine());
                 isValid = inputVerification.isMultipleOfThousand(purchaseAmount);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1000 단위 수가 아닙니다.");
+                System.out.println("[ERROR] 올바른 입력이 아닙니다.");
             }
         }
         return purchaseAmount;

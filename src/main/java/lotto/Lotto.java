@@ -14,7 +14,13 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        //리스트 내의 중복된 요소 확인
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException();
+        }
     }
 
-    // TODO: 추가 기능 구현
+    int getNumber(int index){
+        return numbers.get(index);
+    }
 }

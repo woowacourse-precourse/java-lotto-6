@@ -1,20 +1,34 @@
 package lotto;
 
 import java.util.List;
+import lotto.enums.ErrorMessage;
+import lotto.enums.LottoNumberRange;
+import lotto.util.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkNumber(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != LottoNumberRange.MIN_SELECT_COUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_COUNT_MISMATCH.getMessage());
         }
     }
 
     // TODO: 추가 기능 구현
+    public void checkNumber(List<Integer> numbers) {
+        LottoException.checkDuplicationNumber(numbers);
+        for (int number : numbers) {
+            LottoException.checkRangeLottoNumber(number);
+        }
+    }
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
 }

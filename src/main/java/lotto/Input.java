@@ -6,7 +6,7 @@ import java.util.List;
 public class Input {
     private final Validater validater = new Validater();
     private Lotto winningNumber;
-    public static enum InputType{
+    public enum InputType{
         PURCHASE_AMOUNT, WINNING_NUMBERS, BONUS_NUMBER;
     }
 

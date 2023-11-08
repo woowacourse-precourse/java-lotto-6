@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 
 public class WinningNumbers {
+    public static final int WINNING_NUMBER_COUNT = 6;
     private final Lotto lotto;
     private final int bonusNumber;
 

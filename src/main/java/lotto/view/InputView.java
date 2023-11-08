@@ -21,17 +21,22 @@ public class InputView {
 
     public static List<Integer> inputWinningNumbers() {
         System.out.println(INPUT_LOTTO_WINNING_NUMBERS);
-        List<Integer> numbers = parseNumbers(Console.readLine());
-        System.out.println();
+        return parseNumbers(Console.readLine());
+    }
+
+    public static int inputBonusNumber() {
         System.out.println(INPUT_LOTTO_BONUS_NUMBER);
-        int bonusNumber = convertToIntegerValue(Console.readLine());
-        numbers.add(bonusNumber);
-        return numbers;
+        return convertToIntegerValue(Console.readLine());
     }
 
     private static int convertToIntegerValue(String inputStringValue) {
         try {
-            return Integer.parseInt(inputStringValue);
+            long parsedValue = Long.parseLong(inputStringValue);
+            if (parsedValue < Integer.MIN_VALUE || parsedValue > Integer.MAX_VALUE) {
+                throw new IllegalArgumentException(
+                        "[ERROR] 구입 금액은 " + Integer.MIN_VALUE + "에서 " + Integer.MAX_VALUE + " 사이의 값이어야 합니다.");
+            }
+            return (int) parsedValue;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT);
         }

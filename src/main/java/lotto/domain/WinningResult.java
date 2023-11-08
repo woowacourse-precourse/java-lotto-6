@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class WinningResult {
     private final Map<Prize, Integer> result = new EnumMap<>(Prize.class);
-    private final int purchaseAmount;
+    private final long purchaseAmount;
 
-    public WinningResult(int purchaseAmount) {
+    public WinningResult(long purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
     }
 

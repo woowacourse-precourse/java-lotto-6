@@ -15,7 +15,7 @@ public class Profit {
 
     private Profit(WinningMoney winningMoney, int purchaseCount) {
         this.percentage =
-                (winningMoney.getMoney().doubleValue() / (purchaseCount * PURCHASE_AMOUNT_UNIT * PROFIT_MULTIPLY));
+                (winningMoney.getMoney().doubleValue() / (purchaseCount * PURCHASE_AMOUNT_UNIT)) * PROFIT_MULTIPLY;
     }
 
     public double getPercentage() {

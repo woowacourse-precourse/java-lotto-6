@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.List;
+import lotto.dto.ResultsDto;
 
 public enum Result {
     FIFTH(3, 5_000, 0),
@@ -19,21 +21,21 @@ public enum Result {
         this.status = status;
     }
 
-    public static Result[] getAllLottoResult(
-        Lottos lottos,
+    public static ResultsDto getAllLottoResult(
+        List<Lotto> lottos,
         Lotto userLottoNumbers,
         int BonusNumber
     ) {
-        getLottoResults(lottos, userLottoNumbers, BonusNumber);
-        return Result.values();
+        setLottoResults(lottos, userLottoNumbers, BonusNumber);
+        return new ResultsDto(Result.values());
     }
 
-    private static void getLottoResults(
-        Lottos lottos,
+    private static void setLottoResults(
+        List<Lotto> lottos,
         Lotto userLottoNumbers,
         int BonusNumber
     ) {
-        for (Lotto lotto : lottos.getLottos()) {
+        for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCount(userLottoNumbers);
             boolean isBonusNumber = lotto.checkDuplicate(BonusNumber);
             findprize(matchCount, isBonusNumber);
@@ -58,13 +60,11 @@ public enum Result {
         }
     }
 
-
     public static double getProfitRate(Result[] results, int userMoney) {
         return (double) Arrays.stream(results)
             .mapToInt(result -> result.getWinningMoney() * result.getStatus())
             .sum() / userMoney * 100;
     }
-
 
     public int getStatus() {
         return status;

@@ -3,8 +3,9 @@ package lotto.view;
 import java.text.NumberFormat;
 import java.util.Locale;
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
 import lotto.domain.Result;
+import lotto.dto.LottosDto;
+import lotto.dto.ResultsDto;
 
 public class OutputView {
 
@@ -20,20 +21,20 @@ public class OutputView {
         System.out.printf(NumberOfTicketsFormat, purchaseNumber);
     }
 
-    public static void printLottoNumbers(Lottos lottos) {
-        lottos.getLottos().stream()
+    public static void printLottoNumbers(LottosDto lottosDto) {
+        lottosDto.lottos().stream()
             .map(Lotto::toString)
             .forEach(System.out::println);
     }
 
-    public static void printWinningStatistics(Result[] results) {
+    public static void printWinningStatistics(ResultsDto resultsDto) {
         System.out.println(winningStatistics);
         System.out.println(line);
-        printResult(results);
+        printResult(resultsDto);
     }
 
-    private static void printResult(Result[] results) {
-        for(Result r : results) {
+    private static void printResult(ResultsDto resultsDto) {
+        for(Result r : resultsDto.results()) {
             System.out.printf(winningStatisticsFormat, r.getMatchCount());
             if(r == Result.SECOND) {
                 System.out.printf(winningStatisticsBonusFormat);
@@ -46,6 +47,7 @@ public class OutputView {
     private static String formatMoney(int money) {
         return NumberFormat.getNumberInstance(Locale.getDefault()).format(money);
     }
+
     public static void printProfitRate(double profitRate) {
         String formattedProfitRate = String.format(profitRateFormat, profitRate);
         System.out.println(formattedProfitRate);

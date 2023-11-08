@@ -1,16 +1,18 @@
 package lotto.domain;
 
+import static lotto.global.Validator.validateLotto;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.IntStream;
+import lotto.dto.LottosDto;
 
 public class Lotto {
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        validateNumberRange(numbers);
-        validateDuplicatedNumber(numbers);
+        validateLotto(numbers);
         this.numbers = numbers;
     }
 
@@ -26,23 +28,17 @@ public class Lotto {
         return Lotto.of(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR]로또 번호는 6개여야 합니다.");
-        }
+    public static List<Lotto> buyLottos(Tickets tickets) {
+        return IntStream.range(0, tickets.getNumberOfTickets())
+            .mapToObj(i -> Lotto.generateRandomLottoNumbers())
+            .toList();
     }
 
-    private void validateDuplicatedNumber(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR]로또 번호는 중복될 수 없습니다.");
-        }
+    public static LottosDto toLottosDto(Tickets tickets) {
+        List<Lotto> lottos = buyLottos(tickets);
+        return new LottosDto(lottos);
     }
 
-    private void validateNumberRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR]로또 번호는 1~45 사이여야 합니다.");
-        }
-    }
 
     public String toString() {
         return numbers.toString();

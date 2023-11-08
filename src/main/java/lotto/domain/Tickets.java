@@ -1,8 +1,9 @@
 package lotto.domain;
 
-public class Tickets {
+import static lotto.global.Constants.LOTTO_PRICE;
+import static lotto.global.Validator.validateTickets;
 
-    private static final int LOTTO_PRICE = 1000;
+public class Tickets {
 
     private final int numberOfTickets;
 
@@ -14,18 +15,9 @@ public class Tickets {
         return new Tickets(numberOfTickets);
     }
 
-    private static void validatePurchaseAmount(int purchaseAmount) throws IllegalArgumentException {
-        if (purchaseAmount < LOTTO_PRICE) {
-            throw new IllegalArgumentException("구입 금액은 1000원 이상이어야 합니다.");
-        }
-        if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("구입 금액은 1000원 단위로 입력 가능합니다.");
-        }
-
-    }
 
     public static Tickets buyTickets(int purchaseAmount) {
-        validatePurchaseAmount(purchaseAmount);
+        validateTickets(purchaseAmount);
         int numberOfTickets = purchaseAmount / LOTTO_PRICE;
         return Tickets.of(numberOfTickets);
     }

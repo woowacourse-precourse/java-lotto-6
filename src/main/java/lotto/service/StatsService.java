@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Player;
+import lotto.view.OutputView;
 
 public class StatsService {
     private static final Integer THREE_MATCH_AMOUNT = 5000;
@@ -64,6 +65,8 @@ public class StatsService {
         int totalWinnings = calculateTotalWinnings();
         double profitRatePercent = (totalWinnings - player.getPayment()) / (double) player.getPayment() * 100;
         profitRate = formatProfitRate(profitRatePercent);
+
+        printStats();
     }
 
     public int calculateTotalWinnings() {
@@ -79,5 +82,15 @@ public class StatsService {
     public String formatProfitRate(double profitRate) {
         double roundedProfitRate = Math.round(profitRate * 10.0) / 10.0;
         return String.format("%.1f%%", roundedProfitRate);
+    }
+
+    public void printStats() {
+        OutputView.printStatsMessage();
+        System.out.println("3개 일치 (5,000원): " + player.getThreeMatch() + "개");
+        System.out.println("4개 일치 (50,000원): " + player.getFourMatch() + "개");
+        System.out.println("5개 일치 (1,500,000원): " + player.getFiveMatch() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원): " + player.getFiveMatchWithBonus() + "개");
+        System.out.println("6개 일치 (2,000,000,000원): " + player.getSixMatch() + "개");
+        System.out.println("총 수익률은 " + profitRate + " 입니다.");
     }
 }

@@ -33,11 +33,4 @@ public class Lottos {
     public int getLottoCount() {
         return lottoCount;
     }
-
-    @Override
-    public String toString() {
-        return "Lottos{" +
-                "lottos=" + lottos +
-                '}';
-    }
 }

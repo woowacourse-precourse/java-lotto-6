@@ -23,11 +23,4 @@ public class Lotto {
     public boolean isInNumber(int target) {
         return numbers.contains(target);
     }
-
-    @Override
-    public String toString() {
-        return "Lotto{" +
-                "numbers=" + numbers +
-                '}';
-    }
 }

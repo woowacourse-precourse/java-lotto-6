@@ -1,6 +1,6 @@
 package lotto.model;
 
-import java.util.List;
+import java.util.Set;
 
 public class WinningNumbers {
     private final WinningNumber winningNumber;
@@ -11,7 +11,7 @@ public class WinningNumbers {
         this.bonusNumber = new BonusNumber(bonusNumber, winningNumber.getNumbers());
     }
 
-    public List<Integer> getWinningNumber() {
+    public Set<Integer> getWinningNumber() {
         return winningNumber.getNumbers();
     }
 

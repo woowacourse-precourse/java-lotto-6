@@ -37,45 +37,45 @@ public class LottoGameController {
     }
 
     private MoneyLottosDto buyLotto() {
-        MoneyLottosDto moneyLottosDto = null;
-        try {
-            outputView.printPurchaseInput();
-            Money money = new Money(input());
-            moneyLottosDto = lottoStore.sellLotto(money);
-            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(moneyLottosDto);
-            outputView.printPurchaseHistory(dto);
-        } catch (IllegalArgumentException e) {
-            errorView.printErrorMessage(e.getMessage());
-            moneyLottosDto = buyLotto();
+        while (true) {
+            try {
+                outputView.printPurchaseInput();
+                Money money = new Money(input());
+                MoneyLottosDto moneyLottosDto = lottoStore.sellLotto(money);
+                PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(moneyLottosDto);
+                outputView.printPurchaseHistory(dto);
+                outputView.printLineSeparator();
+                return moneyLottosDto;
+            } catch (IllegalArgumentException e) {
+                errorView.printErrorMessage(e.getMessage());
+            }
         }
-        outputView.printLineSeparator();
-        return moneyLottosDto;
     }
 
     private WinNumber setWinNumber() {
-        WinNumber winNumber = null;
-        try {
-            outputView.printWinNumberInput();
-            winNumber = WinNumber.of(input());
-        } catch (IllegalArgumentException e) {
-            errorView.printErrorMessage(e.getMessage());
-            winNumber = setWinNumber();
+        while (true) {
+            try {
+                outputView.printWinNumberInput();
+                WinNumber winNumber = WinNumber.of(input());
+                outputView.printLineSeparator();
+                return winNumber;
+            } catch (IllegalArgumentException e) {
+                errorView.printErrorMessage(e.getMessage());
+            }
         }
-        outputView.printLineSeparator();
-        return winNumber;
     }
 
     private BonusNumber setBonusNumber() {
-        BonusNumber bonusNumber = null;
-        try {
-            outputView.printBonusNumberInput();
-            bonusNumber = BonusNumber.of(input());
-        } catch (IllegalArgumentException e) {
-            errorView.printErrorMessage(e.getMessage());
-            bonusNumber = setBonusNumber();
+        while (true) {
+            try {
+                outputView.printBonusNumberInput();
+                BonusNumber bonusNumber = BonusNumber.of(input());
+                outputView.printLineSeparator();
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                errorView.printErrorMessage(e.getMessage());
+            }
         }
-        outputView.printLineSeparator();
-        return bonusNumber;
     }
 
     private void playLottoGame(MoneyLottosDto moneyLottosDto, WinNumber winNumber, BonusNumber bonusNumber) {

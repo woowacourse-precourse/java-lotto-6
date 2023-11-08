@@ -1,7 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.dto.WinningResultDto;
 import lotto.domain.lotto.*;
+import lotto.domain.result.WinningLotto;
+import lotto.domain.result.WinningResult;
 import lotto.utils.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,7 +19,7 @@ public class Controller {
         getBonusNumber(winningLotto);
 
         WinningResult winningResult = getWinningResult(lottoTicket, winningLotto);
-        printWinningResult(winningResult);
+        printWinningResult(WinningResultDto.of(winningResult));
 
 
     }
@@ -61,8 +63,8 @@ public class Controller {
         return WinningResult.from(lottoTicket, winningLotto);
     }
 
-    private void printWinningResult(WinningResult winningResult) {
-        OutputView.printWinningResult(winningResult);
+    private void printWinningResult(WinningResultDto winningResultDto) {
+        OutputView.printWinningResult(winningResultDto);
     }
 
 }

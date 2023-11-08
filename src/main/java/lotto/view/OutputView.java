@@ -1,7 +1,8 @@
 package lotto.view;
 
-import lotto.domain.Ranking;
-import lotto.domain.WinningResult;
+import lotto.domain.dto.WinningResultDto;
+import lotto.domain.result.Ranking;
+import lotto.domain.result.WinningResult;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoTicket;
 
@@ -29,14 +30,14 @@ public class OutputView {
         System.out.println(lotto.getLottoNumbers());
     }
 
-    public static void printWinningResult(final WinningResult winningResult) {
+    public static void printWinningResult(final WinningResultDto winningResultDto) {
         printHeader();
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         for (Ranking ranking : Ranking.rankingWithoutDefault()) {
             System.out.printf(RESULT_RANK_MESSAGE, ranking.getCorrectCount(), printIfSecond(ranking),
-                    decimalFormat.format(ranking.getPrize()), winningResult.getWinningCount(ranking));
+                    decimalFormat.format(ranking.getPrize()), winningResultDto.getWinningCount(ranking));
         }
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", winningResult.getRateOfReturnPercent());
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", winningResultDto.getRateOfReturnPercent());
     }
 
     private static String printIfSecond(Ranking ranking) {

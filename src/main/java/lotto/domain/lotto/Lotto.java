@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<LottoNumber> lottoNumbers;
+    private final int LOTTO_SIZE = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -24,14 +25,14 @@ public class Lotto {
     }
 
     private void validateNumberCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 숫자는 6개여야 합니다 : " + numbers.size() + "개");
         }
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {
         int distinctCount = calculateDistinctCount(numbers);
-        if (distinctCount != 6) {
+        if (distinctCount != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 숫자는 중복될 수 없습니다");
         }
     }

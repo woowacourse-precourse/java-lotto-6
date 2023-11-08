@@ -9,11 +9,11 @@ public class RandomNumbersGenerator {
 
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;
-    private static final int COUNT = 6;
+    private static final int LOTTO_SIZE = 6;
 
     public List<Integer> generate() {
         try {
-            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, LOTTO_SIZE);
             validate(randomNumbers);
             return Collections.unmodifiableList(randomNumbers);
         } catch (IllegalArgumentException e) {
@@ -35,7 +35,7 @@ public class RandomNumbersGenerator {
     }
 
     private void validateNumbersCount(List<Integer> randomNumbers) {
-        if (randomNumbers.size() != 6) {
+        if (randomNumbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }

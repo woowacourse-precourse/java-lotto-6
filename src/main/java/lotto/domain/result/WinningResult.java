@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.result;
 
 import lotto.domain.lotto.LottoTicket;
 
@@ -32,9 +32,6 @@ public class WinningResult {
                 .collect(groupingBy(ranking -> ranking, () -> new EnumMap<>(Ranking.class), counting()));
     }
 
-    public Long getWinningCount(Ranking ranking) {
-        return result.getOrDefault(ranking, ZERO_FOR_INVALID_KEY);
-    }
 
     private void saveRateOfReturnPercent(LottoTicket lottoTicket){
         int purchaseAmount = lottoTicket.getLottos().size() * LOTTO_PRICE;
@@ -49,5 +46,9 @@ public class WinningResult {
 
     public double getRateOfReturnPercent() {
         return rateOfReturnPercent;
+    }
+
+    public Map<Ranking, Long> getResult() {
+        return result;
     }
 }

@@ -1,8 +1,12 @@
 package lotto.domain;
 
+import lotto.domain.dto.WinningResultDto;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoTicket;
+import lotto.domain.result.Ranking;
+import lotto.domain.result.WinningLotto;
+import lotto.domain.result.WinningResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +16,7 @@ import org.junit.jupiter.params.provider.EnumSource;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.domain.WinningResult.PERCENT_FACTOR;
+import static lotto.domain.result.WinningResult.PERCENT_FACTOR;
 import static lotto.domain.lotto.PurchaseAmount.LOTTO_PRICE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -44,7 +48,7 @@ class WinningResultTest {
     @ParameterizedTest
     @EnumSource(Ranking.class)
     void WinningResultTest(Ranking ranking) {
-        assertThat(winningResult.getWinningCount(ranking)).isEqualTo(1);
+        assertThat(WinningResultDto.of(winningResult).getWinningCount(ranking)).isEqualTo(1);
         //모든 Ranking이 1개씩 저장
     }
 

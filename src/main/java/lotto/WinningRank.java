@@ -3,7 +3,7 @@ package lotto;
 import java.util.Arrays;
 
 public enum WinningRank {
-    NO_LUCK(0, 0, false, "꽝.."),
+    NO_LUCK(0, 0, false, "꽝..\n"),
     FIFTH_WINNER(3, 5_000, false, "3개 일치 (5,000원) - %d개\n"),
     FOURTH_WINNER(4, 50_000, false, "4개 일치 (50,000원) - %d개\n"),
     THIRD_WINNER(5, 1_500_000, false, "5개 일치 (1,500,000원) - %d개\n"),

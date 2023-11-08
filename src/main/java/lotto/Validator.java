@@ -32,10 +32,4 @@ public class Validator {
         }
     }
 
-    public static void validateNumberCount(Integer... numbers){
-        if(numbers.length != LOTTO_NUMBER_COUNT){
-            throw new IllegalArgumentException(NOT_VALID_LENGTH);
-        }
-    }
-
 }

@@ -26,4 +26,17 @@ public class LottoResultManager {
         return numberCount;
     }
 
+    public static void showWinningResults(int[] matchCounts){ // 당첨내역 출력
+        String[] money = {"5,000","50,000","1,500,000","2,000,000,000","30,000,000"};
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for(int i=0; i<matchCounts.length-1; i++) {
+            System.out.println(i+3+"개 일치 ("+money[i]+"원) - "+matchCounts[i]+"개");
+            if(i==2){
+                System.out.println("5개 일치, 보너스 볼 일치 ("+money[i+2]+"원) - "+matchCounts[4]+"개");
+            }
+        }
+    }
+
 }

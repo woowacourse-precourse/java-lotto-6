@@ -23,8 +23,8 @@ public class DrawController {
     }
 
     public void draw() {
-        Integer purchaseAmount = inputPort.readPurchaseAmount();
-        lottoDraw.createLottos(purchaseAmount, TICKET_PRICE);
+        Integer budget = inputPort.readBudget();
+        lottoDraw.createLottos(budget, TICKET_PRICE);
         outputPort.printLottos(lottoDraw.getLottos());
 
 
@@ -36,7 +36,7 @@ public class DrawController {
 
 
         List<Rank> ranks = lottoDraw.getRanks();
-        RankStatistics rankStatistics = new RankStatistics(ranks, purchaseAmount);
+        RankStatistics rankStatistics = new RankStatistics(ranks, budget);
         outputPort.printRankStatistics(rankStatistics.getRankInfos());
 
         outputPort.printProfitRate(rankStatistics.getProfitRate());

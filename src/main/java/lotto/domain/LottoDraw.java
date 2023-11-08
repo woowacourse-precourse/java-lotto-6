@@ -8,8 +8,8 @@ public class LottoDraw {
     private List<Integer> drawNumbers;
     private Integer bonusNumber;
 
-    public void createLottos(Integer amount, Integer ticketPrice) {
-        for (int i = 0; i < amount / ticketPrice; i++) {
+    public void createLottos(Integer budget, Integer ticketPrice) {
+        for (int i = 0; i < budget / ticketPrice; i++) {
             lottos.add(Lotto.create());
         }
     }

@@ -15,7 +15,7 @@ public class UserInputAdapter implements InputPort {
 
 
     @Override
-    public Integer readPurchaseAmount() {
+    public Integer readBudget() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
         String input = Console.readLine();
 

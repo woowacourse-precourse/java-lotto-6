@@ -2,7 +2,10 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -23,6 +26,22 @@ class LottoRankTest {
     })
     void testGetWinningRank(int match, boolean bonus, long expected) {
         long actual = LottoRank.getWinningRank(match, bonus).getReward();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testCompare(){
+        List<LottoRank> expected = List.of(
+                LottoRank.THIRD_PLACE,
+                LottoRank.SECOND_PLACE,
+                LottoRank.FIRST_PLACE
+        );
+        List<LottoRank> actual = new ArrayList<>();
+        actual.add(LottoRank.SECOND_PLACE);
+        actual.add(LottoRank.THIRD_PLACE);
+        actual.add(LottoRank.FIRST_PLACE);
+        actual.sort(LottoRank::compare);
+
         assertEquals(expected, actual);
     }
 }

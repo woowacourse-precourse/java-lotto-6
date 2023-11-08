@@ -24,6 +24,7 @@ public class UserController {
                     validationInputPrice(purchasePrice);
                 }
                 isValidInput = true;
+                System.out.println();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -45,6 +45,7 @@ public class LottoController {
             if (correctCount == 5) {
                 bonusCount = isThereBonusNumber(lottoNumbers, bonusNumber);
             }
+            System.out.println(correctCount + " " + bonusCount);
             if (correctCount < 3) {
                 continue;
             }
@@ -59,11 +60,9 @@ public class LottoController {
         } else if (correctCount == 4) {
             results.put(FOURTH, results.getOrDefault(FOURTH, 0) + 1);
         } else if (correctCount == 5) {
-            if (bonusCount == 1) {
-                results.put(BONUS, results.getOrDefault(BONUS, 0) + 1);
-            } else if (bonusCount != 1) {
-                results.put(THIRD, results.getOrDefault(THIRD, 0) + 1);
-            }
+            results.put(THIRD, results.getOrDefault(THIRD, 0) + 1);
+        } else if (correctCount == 5 && bonusCount == 1) {
+            results.put(BONUS, results.getOrDefault(BONUS, 0) + 1);
         } else if (correctCount == 6) {
             results.put(FIRST, results.getOrDefault(FIRST, 0) + 1);
         }

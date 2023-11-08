@@ -1,33 +1,40 @@
 package lotto.domain;
 
-import static lotto.view.ExceptionMessage.divisibleException;
-import static lotto.view.InputView.inputLottoAmount;
+
+import static lotto.view.InputView.printLottoAmount;
 
 public class LottoAmount {
-    private static final int AMOUNT_UNIT=1000;
     private static int price=0;
-
+    public LottoAmount(){
+        purchaseAmountValidate();
+        System.out.println(howManyLotto());
+    }
     private static void lottoPrice() {
-        price = Integer.parseInt(inputLottoAmount());
+        price = printLottoAmount();
         System.out.println();
         purchaseAmount(price);
     }
 
+
     public static void purchaseAmount(int amount) throws IllegalArgumentException{
-        if (amount % AMOUNT_UNIT != 0){
+        if (amount % 1000 != 0){
             throw new IllegalArgumentException();
         }
     }
 
-    public static void purchaseAmountValidate(){
+    private static void purchaseAmountValidate(){
         try{
             lottoPrice();
         }catch(IllegalArgumentException e){
-            divisibleException();
+            System.out.println("[ERROR] 로또 금액은 1000원 단위로 사용해야 합니다.");
             lottoPrice();
         }
     }
-    public static Integer priceCalculation(){
+    public static int priceCalculation(){
         return price/1000;
+    }
+
+    public static String howManyLotto(){
+        return priceCalculation()+"개를 구매했습니다.";
     }
 }

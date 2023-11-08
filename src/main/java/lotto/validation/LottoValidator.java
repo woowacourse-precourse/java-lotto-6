@@ -7,26 +7,14 @@ import java.util.stream.Collectors;
 
 import static lotto.constant.LottoConstant.*;
 
-public class Validator {
-    public static boolean checkIsNotNumber(String pay) {
+public class LottoValidator {
+    public static boolean checkIsNotNumber(String number) {
         try {
-            Integer.parseInt(pay);
+            Integer.parseInt(number);
             return false;
         } catch (NumberFormatException error) {
             return true;
         }
-    }
-    public static boolean checkIsPositive(int pay) {
-        if (pay <= 0) {
-            return true;
-        }
-        return false;
-    }
-    public static boolean checkMultipleOf1000(int pay) {
-        if (pay % 1000 != 0) {
-            return true;
-        }
-        return false;
     }
 
     public static boolean checkIsNotNumberList(List<String> _lotto) {

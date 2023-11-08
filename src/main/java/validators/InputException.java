@@ -29,9 +29,7 @@ public class InputException {
 
 	public static void checkNumberListRange(List<Integer> numbers) {
 		for(int number : numbers) {
-			if(number < MIN || number > MAX) {
-				throw new IllegalArgumentException(Error.WRONG_RANGE.getMessage());
-			}
+			checkNumberRange(number);
 		}
 	}
 	

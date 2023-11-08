@@ -80,7 +80,7 @@ public class BuyLottoBonusDto {
 			for(int j = 0; j < numbers.size(); j++) {
 				matchNumber = overLap(numbers.get(j), matchNumber);
 			}
-			boolean isBonus = bonusMatch(i);
+			boolean isBonus = bonusMatch(numbers);
 			checkWinning(matchNumber, isBonus);
 		}
 	}
@@ -101,8 +101,7 @@ public class BuyLottoBonusDto {
 		sixMatch(matchNumber);
 	}
 	
-	private boolean bonusMatch(int i) {
-		List<Integer> numbers = buyLottoDto.getNumberList().get(i).getNumbers();
+	private boolean bonusMatch(List<Integer> numbers) {
 		for(int j = 0; j < numbers.size(); j++) {
 			if(bonus.getBonusNumber() == numbers.get(j)) {
 				return true;

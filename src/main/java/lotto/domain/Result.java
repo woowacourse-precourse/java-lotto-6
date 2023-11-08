@@ -18,4 +18,16 @@ public class Result {
         Rank rank = Rank.getRank(matchCount, isContainBonusNumber);
         result.put(rank, result.get(rank) + 1);
     }
+
+    public double calculateBenefitRate(Amount amount) {
+        long totalPrize = calculateTotalPrize();
+        return amount.getBenefitRate(totalPrize);
+    }
+
+    private long calculateTotalPrize() {
+        return result.keySet()
+            .stream()
+            .mapToLong(rank -> (long) rank.getPrize() * result.get(rank))
+            .sum();
+    }
 }

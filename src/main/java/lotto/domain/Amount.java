@@ -32,4 +32,8 @@ public class Amount {
     public int getLottoCount() {
         return value / ONE_LOTTO_PRICE;
     }
+
+    public double getBenefitRate(long totalPrize) {
+        return ((double) totalPrize / value) * 100;
+    }
 }

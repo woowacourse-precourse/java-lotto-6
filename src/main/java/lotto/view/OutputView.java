@@ -59,8 +59,7 @@ public class OutputView {
 
         System.out.println(STATISTICS_MESSAGE);
         printDivider();
-        ranks.stream()
-            .forEach(rank -> printRankMessage(rank, lottoResult.getNumberOfRankByMap().get(rank)));
+        ranks.forEach(rank -> printRankMessage(rank, lottoResult.getNumberOfRankByMap().get(rank)));
     }
 
     public static void printDivider() {

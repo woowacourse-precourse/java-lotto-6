@@ -1,4 +1,4 @@
-package lotto.util.exception;
+package lotto.exception;
 
 public enum ErrorCode {
     INVALID_BONUS_NUMBER_TYPE("보너스 번호는 정수값이어야 합니다."),

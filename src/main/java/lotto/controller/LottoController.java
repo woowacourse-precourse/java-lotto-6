@@ -11,7 +11,7 @@ import lotto.view.OutputView;
 
 import java.util.List;
 
-import static lotto.util.exception.ErrorCode.ILLEGAL_STATE_ERROR;
+import static lotto.exception.ErrorCode.ILLEGAL_STATE_ERROR;
 
 public class LottoController {
     private final InputView inputView;

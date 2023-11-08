@@ -1,6 +1,6 @@
 package lotto.util.validator;
 
-import lotto.util.exception.ErrorCode;
+import lotto.exception.ErrorCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

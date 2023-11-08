@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.util.exception.ErrorCode;
+import lotto.exception.ErrorCode;
 
 import java.util.HashSet;
 import java.util.List;

@@ -18,7 +18,7 @@ public class LottoResultService {
         }
 
         BigDecimal totalProfit = lottoResult.createTotalProfit(lottoResult);
-        Double profitRate = lottoResult.createProfitRate(totalProfit ,userLotto.getAmount());
+        BigDecimal profitRate = lottoResult.createProfitRate(totalProfit ,userLotto.getAmount());
 
         lottoResult.setTotalProfitAndProfitRate(totalProfit, profitRate);
 

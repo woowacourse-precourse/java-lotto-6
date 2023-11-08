@@ -17,7 +17,7 @@ public class LottoResult {
     private boolean isBonusLotto;
 
     private BigDecimal totalProfit;
-    private Double profitRate;
+    private BigDecimal profitRate;
 
 
     public int getEqualsLottoCount(List<Integer> lottoNumbers, UserLotto userLotto){
@@ -80,11 +80,11 @@ public class LottoResult {
     }
 
 
-    public Double createProfitRate(BigDecimal totalProfit, int amount){
+    public BigDecimal createProfitRate(BigDecimal totalProfit, int amount){
         BigDecimal ratio = totalProfit.divide(new BigDecimal(amount), 3, BigDecimal.ROUND_HALF_UP);
         BigDecimal profitRate = ratio.multiply(new BigDecimal(100));
 
-        return profitRate.doubleValue();
+        return profitRate.stripTrailingZeros();
     }
 
 
@@ -128,11 +128,11 @@ public class LottoResult {
         return isBonusLotto;
     }
 
-    public Double getProfitRate() {
+    public BigDecimal getProfitRate() {
         return profitRate;
     }
 
-    public void setTotalProfitAndProfitRate(BigDecimal totalProfit, Double profitRate) {
+    public void setTotalProfitAndProfitRate(BigDecimal totalProfit, BigDecimal profitRate) {
         this.totalProfit = totalProfit;
         this.profitRate = profitRate;
     }

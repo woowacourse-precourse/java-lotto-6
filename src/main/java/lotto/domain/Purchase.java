@@ -3,7 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Purchase {
-    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
 
     public static int inputMoney() throws IllegalArgumentException {
         System.out.println("구입금액을 입력해 주세요.");

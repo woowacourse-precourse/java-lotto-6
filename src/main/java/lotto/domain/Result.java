@@ -16,6 +16,9 @@ public class Result {
 
     public void printResult() {
         int[] winningCount = checkWinning();
+        int totalPrize = calculateTotalPrize(winningCount);
+        int totalCost = purchasedLotto.size() * Purchase.LOTTO_PRICE;
+
 
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -23,6 +26,20 @@ public class Result {
         Arrays.stream(ResultType.values())
                 .filter(resultType -> resultType != ResultType.NONE)
                 .forEach(resultType -> resultType.printWinningResult(winningCount[resultType.ordinal()]));
+
+        double profitRate = ((double) totalPrize - totalCost) / totalCost * 100;
+        profitRate = Math.round(profitRate * 10) / 10.0;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
+    }
+
+    private int calculateTotalPrize(int[] winningCount) {
+        int totalPrize = 0;
+
+        for (ResultType resultType : ResultType.values()) {
+            totalPrize += resultType.prize * winningCount[resultType.ordinal()];
+        }
+
+        return totalPrize;
     }
 
     public int[] checkWinning() {
@@ -35,25 +52,21 @@ public class Result {
     }
 
     enum ResultType {
-        FIRST(6, false),
-        SECOND(5, true),
-        THIRD(5, false),
-        FOURTH(4, false),
-        FIFTH(3, false),
-        NONE(0, false);
+        FIRST(6, false, 2_000_000_000),
+        SECOND(5, true, 30_000_000),
+        THIRD(5, false, 1_500_000),
+        FOURTH(4, false, 50_000),
+        FIFTH(3, false, 5_000),
+        NONE(0, false, 0);
 
         private final int matchCount;
         private final boolean hasBonusBall;
         private final int prize;
 
-        ResultType(int matchCount, boolean hasBonusBall) {
+        ResultType(int matchCount, boolean hasBonusBall, int prize) {
             this.matchCount = matchCount;
             this.hasBonusBall = hasBonusBall;
-            this.prize = calculatePrize();
-        }
-
-        private int calculatePrize() {
-            return 0;
+            this.prize = prize;
         }
 
         public static ResultType getResultType(Lotto lotto, List<Integer> winningNumber, int bonusBall) {

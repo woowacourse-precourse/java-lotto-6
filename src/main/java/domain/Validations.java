@@ -79,9 +79,4 @@ public class Validations {
             validateParseInt(string);
         }
     }
-
-    // 모든 입력에는 null이 올 수 없다.
-    public static void validateNotNull() {
-        throw new NullPointerException();
-    }
 }

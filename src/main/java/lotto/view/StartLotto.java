@@ -2,7 +2,7 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.control.ControlLotto;
 import lotto.string.LottoString;
 
@@ -12,6 +12,8 @@ public class StartLotto {
     private long money;
     private long countOfLotto;
     private ControlLotto controlLotto;
+    private ArrayList<Integer> winningNumbers = new ArrayList<>();
+    private int bonusNumber;
 
     public void run() {
         initLotto();
@@ -20,8 +22,11 @@ public class StartLotto {
 
         inputWinningNumber();
 
+        inputBonusNumber();
+
         printResult();
     }
+
 
     private void initLotto() {
         System.out.println(LottoString.beforePurchaseLotto());
@@ -54,8 +59,25 @@ public class StartLotto {
     }
 
     private void inputWinningNumber() {
+        System.out.println(LottoString.winningNumbers());
+        convertNumbers(readLine());
+        System.out.println();
+    }
+
+    private void convertNumbers(String s) {
+        String[] temp = s.split(",");
+        for (String tmp: temp) {
+            this.winningNumbers.add(Integer.parseInt(tmp));
+        }
+    }
+
+    private void inputBonusNumber() {
+        System.out.println(LottoString.bonusNumber());
+        this.bonusNumber = Integer.parseInt(readLine());
+        System.out.println();
     }
 
     private void printResult() {
+        System.out.println(LottoString.announceresult());
     }
 }

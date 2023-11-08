@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CommaSeparatedStringParser {
-        public static List<Integer> parse(String input) {
+    public static List<Integer> parse(String input) {
         List<Integer> numbers = Stream.of(input.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)

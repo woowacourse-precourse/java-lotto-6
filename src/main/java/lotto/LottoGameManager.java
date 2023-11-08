@@ -28,6 +28,7 @@ public class LottoGameManager {
     private final LottoService lottoService;
     private final WinningCalculationService winningCalculationService;
     private final RateOfReturnCalculationService rateOfReturnCalculationService;
+
     public LottoGameManager(LottoService lottoService, WinningCalculationService winningCalculationService,
                             RateOfReturnCalculationService rateOfReturnCalculationService) {
         this.lottoService = lottoService;
@@ -97,12 +98,12 @@ public class LottoGameManager {
     }
 
     private void calculatePrizes() {
-        statistics = winningCalculationService.calculateWinningStatistics(winningNumbers,bonusNumber);
+        statistics = winningCalculationService.calculateWinningStatistics(winningNumbers, bonusNumber);
         OutputView.printWinningStatistics(statistics);
     }
 
     private void calculateRateOfReturn() {
-        rateOfReturn = rateOfReturnCalculationService.calculateRateOfReturn(totalPrice,statistics);
+        rateOfReturn = rateOfReturnCalculationService.calculateRateOfReturn(totalPrice, statistics);
         OutputView.printRateOfReturn(rateOfReturn);
     }
 }

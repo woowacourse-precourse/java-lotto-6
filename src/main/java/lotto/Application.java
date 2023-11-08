@@ -15,7 +15,8 @@ public class Application {
         LottoService lottoService = new LottoServiceImpl(lottoRepository);
         WinningCalculationService winningCalculationService = new WinningCalculationServiceImpl(lottoRepository);
         RateOfReturnCalculationService rateOfReturnCalculationService = new RateOfReturnCalculationServiceImpl();
-        LottoGameManager lottoGameManager = new LottoGameManager(lottoService, winningCalculationService, rateOfReturnCalculationService);
+        LottoGameManager lottoGameManager = new LottoGameManager(lottoService, winningCalculationService,
+                rateOfReturnCalculationService);
         lottoGameManager.run();
     }
 }

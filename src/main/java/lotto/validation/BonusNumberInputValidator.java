@@ -10,7 +10,7 @@ public class BonusNumberInputValidator {
     public static void validate(String bonusNumber, List<Integer> winningNumbers) {
         checkInputZero(bonusNumber);
         checkInputDigit(bonusNumber);
-        checkBonusNumberEqualToWinningNumbers(bonusNumber,winningNumbers);
+        checkBonusNumberEqualToWinningNumbers(bonusNumber, winningNumbers);
     }
 
     private static void checkBonusNumberEqualToWinningNumbers(String bonusNumber, List<Integer> winningNumbers) {

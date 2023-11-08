@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 public class MemoryLottoRepositoryTest {
     private MemoryRandomLottoRepository memoryLottoRepository;
 
@@ -29,6 +30,6 @@ public class MemoryLottoRepositoryTest {
         List<Lotto> lottoList = memoryLottoRepository.getLottoList();
 
         //then
-        assertThat(lottoList).contains(lotto1,lotto2);
+        assertThat(lottoList).contains(lotto1, lotto2);
     }
 }

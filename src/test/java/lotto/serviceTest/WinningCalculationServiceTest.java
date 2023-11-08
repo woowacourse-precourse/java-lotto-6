@@ -17,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class WinningCalculationServiceTest {
     private LottoRepository lottoRepository;
     private WinningCalculationService winningCalculationService;
+
     @BeforeEach
     public void setUp() {
         lottoRepository = new MemoryRandomLottoRepository();
@@ -29,9 +30,11 @@ public class WinningCalculationServiceTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
-        Map<WinningStatus, Integer> statistics = winningCalculationService.calculateWinningStatistics(winningNumbers, bonusNumber);
+        Map<WinningStatus, Integer> statistics = winningCalculationService.calculateWinningStatistics(winningNumbers,
+                bonusNumber);
 
         assertThat(statistics).isNotNull();
-        assertThat(statistics).containsKeys(WinningStatus.FIRST, WinningStatus.SECOND, WinningStatus.THIRD, WinningStatus.FOURTH, WinningStatus.FIFTH);
+        assertThat(statistics).containsKeys(WinningStatus.FIRST, WinningStatus.SECOND, WinningStatus.THIRD,
+                WinningStatus.FOURTH, WinningStatus.FIFTH);
     }
 }

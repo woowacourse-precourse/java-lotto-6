@@ -22,7 +22,7 @@ public class RandomNumbersGeneratorTest {
         assertThat(lottoNumbers)
                 .hasSize(LOTTO_SIZE)
                 .doesNotHaveDuplicates()
-                .allSatisfy(number -> assertThat(number).isBetween(MIN_NUMBER,MAX_NUMBER))
+                .allSatisfy(number -> assertThat(number).isBetween(MIN_NUMBER, MAX_NUMBER))
                 .isSorted();
     }
 }

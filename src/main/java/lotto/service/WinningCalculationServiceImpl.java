@@ -9,12 +9,13 @@ import lotto.domain.Lotto;
 import lotto.domain.WinningStatus;
 import lotto.repository.LottoRepository;
 
-public class WinningCalculationServiceImpl implements WinningCalculationService{
+public class WinningCalculationServiceImpl implements WinningCalculationService {
     private final LottoRepository lottoRepository;
 
     public WinningCalculationServiceImpl(LottoRepository lottoRepository) {
         this.lottoRepository = lottoRepository;
     }
+
     @Override
     public Map<WinningStatus, Integer> calculateWinningStatistics(List<Integer> winningNumbers, int bonusNumber) {
         Map<WinningStatus, Integer> statistics = initializeStatistics();
@@ -45,13 +46,15 @@ public class WinningCalculationServiceImpl implements WinningCalculationService{
                 .count();
     }
 
-    private void updateStatistics(Map<WinningStatus, Integer> statistics, int matchingCount, boolean isBonusNumberMatch) {
+    private void updateStatistics(Map<WinningStatus, Integer> statistics, int matchingCount,
+                                  boolean isBonusNumberMatch) {
         for (WinningStatus status : WinningStatus.values()) {
             updateSingleStatistic(statistics, status, matchingCount, isBonusNumberMatch);
         }
     }
 
-    private void updateSingleStatistic(Map<WinningStatus, Integer> statistics, WinningStatus status, int matchingCount, boolean isBonusNumberMatch) {
+    private void updateSingleStatistic(Map<WinningStatus, Integer> statistics, WinningStatus status, int matchingCount,
+                                       boolean isBonusNumberMatch) {
         if (matchingCount != status.getMatchingCount()) {
             return;
         }

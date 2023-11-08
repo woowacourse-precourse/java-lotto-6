@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -35,6 +36,7 @@ class LottoGameTest {
         assertThat(issuedLottos.size()).isEqualTo(5);
 
     }
+
     @ParameterizedTest
     @MethodSource("lottoMatchArguments")
     @DisplayName("올바른 당첨 결과가 나오는지 테스트")

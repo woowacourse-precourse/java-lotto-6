@@ -10,11 +10,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        try {
-            LottoValidator.validateLottoNumber(numbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
+        LottoValidator.validateLottoNumber(numbers);
         this.numbers = numbers;
     }
 

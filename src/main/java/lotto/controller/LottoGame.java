@@ -3,10 +3,8 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.view.LottoUI;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class LottoGame {
 
@@ -30,7 +28,7 @@ public class LottoGame {
 
     public List<Lotto> getRandomLottos(int lottoCnt) {
         List<Lotto> lottos = new ArrayList<>();
-        for(int i=0;i<lottoCnt;i++){
+        for (int i = 0; i < lottoCnt; i++) {
             lottos.add(Lotto.generateRandomLotto());
         }
         return lottos;
@@ -38,7 +36,7 @@ public class LottoGame {
 
     public List<Rank> checkRanks(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
         List<Rank> ranks = new ArrayList<>();
-        for(Lotto userLotto : userLottos){
+        for (Lotto userLotto : userLottos) {
             int matchCount = getMatchCount(userLotto.getNumbers(), winningLotto.getNumbers());
             boolean matchBonus = winningLotto.getNumbers().contains(bonusNumber);
             ranks.add(Rank.valueOf(matchCount, matchBonus));

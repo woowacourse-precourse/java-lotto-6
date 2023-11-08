@@ -1,5 +1,5 @@
 ### 다이어 그램
-<img src="https://github.com/OiKimiO/java-lotto-6/assets/53805469/a09312e2-8e22-4416-84a5-e9144d996032" style="width:70%;" />
+<img src="https://github.com/OiKimiO/java-lotto-6/assets/53805469/23fbc637-b184-4390-9852-04a85ab00c5f" style="width:70%;" />
 
 ### 패키지 구조
 <table>
@@ -53,18 +53,22 @@
             <td>View의 요청을 받아 Domain, Model에게 행동을 지시합니다.</td>
         </tr>
         <tr>
-            <td rowspan="8">domain</td>
-            <td>constant</td>
+            <td rowspan="9">domain</td>
+            <td rowspan="2">constant</td>
             <td>LottoConstant</td>
             <td>도메인 중 상수로 처리되는 클래스의 모음입니다.</td>
         </tr>
         <tr>
-            <td>rule</td>
             <td>PrizeAmount</td>
             <td>당첨 수익금을 관리합니다.
                 <br />
                 (<b>AppConfig 생성자로 관리*</b>)    
             </td>
+        </tr>
+        <tr>
+            <td>util</td>
+            <td>RandomNumber</td>
+            <td>외부 랜덤 숫자를 관리합니다.</td>
         </tr>
         <tr>
             <td rowspan="6">X</td>
@@ -190,4 +194,39 @@
 출력 예시: [ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.
 ```
 
+### 3차 과제 적용 
+1. MVC 패턴 적용
+
+    이번 3차 과제에선 MVC 패턴을 적용해보았습니다.
+
+    제가 생각한 MVC 패턴은 각 역할을 맡고 있는 Model, View, Controller
+    
+     
+
+<br />
+
+2. 필수 의존성 관리 클래스
+
+<br />
+
+3. 도메인 최소 단위로
+
+<br />
+
+4. 메서드명은 15자 이하
+
+<br />
+
+5. Custom Exception 관리
+
+<br />
+
+6. 디미터 법칙 적용
+
+<br />
+
+7. 랜덤 숫자 클래스 분리
+
+### 생각해보기
+1. 또 다시 어려운 테스트.. ㅠㅜ
 

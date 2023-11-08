@@ -5,6 +5,7 @@ import static lotto.constant.GameMessage.INPUT_BUY_PRICE;
 import static lotto.constant.GameMessage.INPUT_WIN_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.conversion.Convert;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
@@ -30,7 +31,8 @@ public class Input {
             System.out.println(INPUT_WIN_NUMBERS.getMessage());
             try {
                 String input = Console.readLine();
-                return new Lotto(input);
+                List<Integer> numbers = Convert.toNumbers(input);
+                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

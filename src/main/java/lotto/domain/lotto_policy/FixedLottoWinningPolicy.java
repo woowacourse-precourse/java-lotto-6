@@ -27,7 +27,9 @@ public class FixedLottoWinningPolicy {
                 .filter(winningNumbers::contains)
                 .count();
 
-        if(prizeStandard.equals(FIVE_NUMBER_WITH_BONUS) && matchCount.equals(FIVE_NUMBER_WITH_BONUS.getMatchCount())){
+        if(prizeStandard.equals(FIVE_NUMBER_WITH_BONUS)
+                && matchCount.equals(FIVE_NUMBER_WITH_BONUS.getMatchCount())
+                && lottoNumbers.contains(bonusNumber)){
             return true;
         }
 

@@ -1,9 +1,7 @@
-package lotto.controller.validation;
+package lotto.controller.validation.money;
 
-import static lotto.domain.MoneyUnit.MONEY_UNIT;
-import static lotto.domain.MoneyUnit.WANTED_REMAINDER;
+import static lotto.model.constant.IntegerSymbolicConstantEnum.*;
 
-import lotto.domain.MoneyUnit;
 import lotto.view.ErrorOutputView;
 
 public class LottoPurchaseMoneyValidator {

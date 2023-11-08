@@ -1,59 +1,22 @@
 package lotto.winning;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.Settings.MAXIMUM;
+import static lotto.Settings.MINIMUM;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import lotto.Askable;
-import lotto.Settings;
+import java.util.stream.Collectors;
 
-public class WinningNumbers extends Numbers implements Askable<List<Integer>> {
-    @Override
-    public List<Integer> ask() {
-        System.out.println(INPUT_WINNING_NUMBERS);
-
-        String input;
-        List<Integer> convertedInput;
-        do {
-            input = readLine();
-            convertedInput = convertInput(input);
-
-        } while (validate(convertedInput));
-
-        System.out.println();
-
-        return convertedInput;
+public abstract class WinningNumbers {
+    protected List<Integer> convertInput(String input) {
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
-    @Override
-    protected boolean validate(List<Integer> convertedInput) {
-        boolean isIncorret = false;
-
-        try {
-            checkValidity(convertedInput);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            isIncorret = true;
-        }
-
-        return isIncorret;
-    }
-
-    private void checkValidity(List<Integer> convertedInput) {
-        if (!isCorrectRange.test(convertedInput)) {
-            throw new IllegalArgumentException(NUMBER_RANGE_ERROR);
-        }
-        if (!isNoDuplicate.test(convertedInput)) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBERS_ERROR);
-        }
-        if (!isCorrectAmount.test(convertedInput)) {
-            throw new IllegalArgumentException(WINNING_NUMBER_SIZE_ERROR);
-        }
-    }
-
-    private final Predicate<List<Integer>> isNoDuplicate = input ->
-            input.stream().distinct().count() == input.size();
-
-    private final Predicate<List<Integer>> isCorrectAmount = input -> input.size() == Settings.SIZE.getNumber();
+    protected final Predicate<List<Integer>> isCorrectRange = input ->
+            input.stream().mapToInt(Integer::intValue).min().orElse(Integer.MIN_VALUE) >= MINIMUM.getNumber() &&
+                    input.stream().mapToInt(Integer::intValue).max().orElse(Integer.MAX_VALUE) <= MAXIMUM.getNumber();
 }

@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class WinningNumbersTest {
+class MainNumbersTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    WinningNumbers winningNumbers = new WinningNumbers();
+    MainNumbers mainNumbers = new MainNumbers();
 
     @BeforeEach
     public void setUpStreams() {
@@ -36,7 +36,7 @@ class WinningNumbersTest {
         System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
 
         try {
-            winningNumbers.ask();
+            mainNumbers.ask();
         } catch (NoSuchElementException ignored) {
         }
 
@@ -50,7 +50,7 @@ class WinningNumbersTest {
 
         String input = "null";
         try {
-            input = winningNumbers.ask().stream()
+            input = mainNumbers.ask().stream()
                     .map(String::valueOf)
                     .collect(Collectors.joining(","));
         } catch (NoSuchElementException ignored) {

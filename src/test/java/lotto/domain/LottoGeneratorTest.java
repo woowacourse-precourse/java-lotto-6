@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.test.Assertions;
 import lotto.configure.DomainConfiguration;
 import lotto.configure.ErrorMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +37,7 @@ class LottoGeneratorTest {
 
     @DisplayName("파라미터로 전달된 값에 따라 다른 길이의 리스트가 반환된다.")
     @Test
-    void generateLotto() {
+    void testGenerateLotto_lengthOfLotto() {
         Map<Integer, Integer> testCases = Map.of(
                 0, 0,
                 1, 1,
@@ -47,5 +49,26 @@ class LottoGeneratorTest {
             Integer numOfLotto = testCases.get(k);
             assertThat(LottoGenerator.generate(k).size()).isEqualTo(numOfLotto);
         });
+    }
+
+    @Test
+    void testGenerateLotto_generation() {
+        Integer[][] testCases = {
+                { 1, 2, 3, 4, 5, 6 },
+                { 3, 4, 5, 6, 7, 8 },
+                { 10, 12, 14, 16, 18, 20 }
+        };
+        Assertions.assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    List<Lotto> generated = LottoGenerator.generate(3);
+                    for (int i = 0; i < testCases.length; i++) {
+                        Lotto expected = new Lotto(Arrays.asList(testCases[i]));
+                        assertThat(generated.get(i)).isEqualTo(expected);
+                    }
+                },
+                List.of(testCases[0]),
+                List.of(testCases[1]),
+                List.of(testCases[2])
+        );
     }
 }

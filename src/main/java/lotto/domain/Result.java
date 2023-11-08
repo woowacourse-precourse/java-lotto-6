@@ -21,7 +21,7 @@ public class Result {
     /**
      * lottoToProcess의 등수를 파악하고, 해당 등수의 카운트를 1 증가시킨다.
      * @param lottoToProcess 등수를 파악할 Lotto.
-     * @param winningNumbers 당첨 번호.햐
+     * @param winningNumbers 당첨 번호.
      */
     public void addCount(Lotto lottoToProcess, WinningNumbers winningNumbers) {
         processLotto(lottoToProcess, winningNumbers);

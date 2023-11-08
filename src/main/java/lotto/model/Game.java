@@ -63,4 +63,12 @@ public class Game {
         }
         return false;
     }
+
+    public void checkMatchResult(List<Integer> matchResult, int checkCount, List<Integer> numbers) {
+        if (checkCount == 5 && checkBonusNumber(numbers)) {
+            matchResult.set(7, matchResult.get(7) + 1);
+            return;
+        }
+        matchResult.set(checkCount, matchResult.get(checkCount) + 1);
+    }
 }

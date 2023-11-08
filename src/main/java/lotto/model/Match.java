@@ -15,7 +15,6 @@ public class Match {
     }
 
     public MatchResult calculate() {
-
         int matchCount = countLotto();
         boolean bonusMatch = isBonusNumberContained();
         MatchResult matchResult = new MatchResult(matchCount, bonusMatch);

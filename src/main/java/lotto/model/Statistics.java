@@ -39,37 +39,19 @@ public class Statistics {
             .sum();
     }
 
-    public void evaluateTotalProfit() {
+    public float evaluateTotalProfit() {
         Map<MatchResult, Integer> counts = calculateMatchCounts();
-        float totalWinnings = calculateTotalWinnings(counts);
 
-        // 결과 출력
-        System.out.println("당첨 통계\n---");
-        for (int matchCount = 3; matchCount <= 6; matchCount++) {
-            MatchResult matchResultWithoutBonus = new MatchResult(matchCount, false);
-            MatchResult matchResultWithBonus = new MatchResult(matchCount, true);
-
-            int countWithoutBonus = counts.getOrDefault(matchResultWithoutBonus, 0);
-            int countWithBonus = counts.getOrDefault(matchResultWithBonus, 0);
-
-            System.out.printf("%d개 일치 (%s원) - %d개\n", matchCount,
-                formatPrize(PRIZE_MONEY.get(matchResultWithoutBonus)), countWithoutBonus);
-
-            // 5개 일치하고 보너스 볼이 일치하는 경우 별도 출력
-            if (matchCount == 5) {
-                System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n",
-                    formatPrize(PRIZE_MONEY.get(matchResultWithBonus)), countWithBonus);
-            }
+        for (Map.Entry<MatchResult, Integer> entry : counts.entrySet()) {
+            System.out.println(entry.getKey().toString() + entry.getValue());
         }
 
-        // 총 수익률 계산 및 출력
-        float profitRate = getProfitRate(totalWinnings);
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+        float totalWinnings = calculateTotalWinnings(counts);
+        System.out.println("totalWinnings = " + totalWinnings);
+        float totalProfit = getProfitRate(totalWinnings);
+        return totalProfit;
     }
 
-    private String formatPrize(Integer prize) {
-        return String.format("%,d", prize);
-    }
 
     private float getProfitRate(float totalWinnings) {
         float profitRate = (totalWinnings / totalAmount) * 100;

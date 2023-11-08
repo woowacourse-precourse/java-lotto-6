@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Amount;
+import lotto.model.EntireMatchResult;
 import lotto.model.InputBonusNumber;
 import lotto.model.InputLottoNumber;
 import lotto.model.Lotto;
@@ -44,9 +45,13 @@ public class LottoController {
         List<MatchResult> matchResults = calculateMatchResults(lottos, inputNumber,
             inputBonusNumber);
 
+        EntireMatchResult entireMatchResult = new EntireMatchResult(matchResults);
+        entireMatchResult.print();
+
         // 통계 계산 및 결과 출력
         Statistics statistics = new Statistics(amount.getAmount(), matchResults);
-        statistics.evaluateTotalProfit();
+        float totalprofit = statistics.evaluateTotalProfit();
+        lottoView.printTotalProfit(String.valueOf(totalprofit));
     }
 
     private Amount promptForAmount() {

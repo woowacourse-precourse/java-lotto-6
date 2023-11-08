@@ -34,7 +34,7 @@ public class LottoView {
         System.out.printf(LOTTO_NUMBER_MESSAGE, lottoNumber);
     }
 
-    public void printTotalProfitRate(String totalProfitRate) {
-        System.out.println("총 수익률은 " + totalProfitRate + "%입니다.");
+    public void printTotalProfit(String totalProfit) {
+        System.out.println("총 수익률은 " + totalProfit + "%입니다.");
     }
 }

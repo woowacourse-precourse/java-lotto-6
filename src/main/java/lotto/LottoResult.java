@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -19,5 +20,9 @@ public class LottoResult {
             LottoRank lottoRank = winningLotto.makeRank(lotto);
             rankResult.put(lottoRank, rankResult.get(lottoRank) + 1);
         }
+    }
+
+    public Map<LottoRank, Integer> getRankResult() {
+        return Collections.unmodifiableMap(rankResult);
     }
 }

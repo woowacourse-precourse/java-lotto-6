@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.constants.pattern;
 
 import java.util.regex.Pattern;
 

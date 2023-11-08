@@ -1,6 +1,6 @@
 package lotto.io;
 
-import lotto.constants.ViewElement;
+import lotto.constants.lotto.ViewElement;
 import lotto.constants.message.ProgressMessage;
 import lotto.formatter.GameResultFormatter;
 import lotto.formatter.PlayerLottosFormatter;

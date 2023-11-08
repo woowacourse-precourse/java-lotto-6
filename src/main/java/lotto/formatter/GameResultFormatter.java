@@ -1,6 +1,6 @@
 package lotto.formatter;
 
-import lotto.constants.ViewElement;
+import lotto.constants.lotto.ViewElement;
 import lotto.constants.lotto.WinningFactor;
 import lotto.constants.message.ProgressMessage;
 

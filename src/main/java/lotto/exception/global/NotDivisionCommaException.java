@@ -1,6 +1,6 @@
 package lotto.exception.global;
 
-import lotto.constants.ViewElement;
+import lotto.constants.lotto.ViewElement;
 import lotto.constants.message.ErrorMessage;
 
 public class NotDivisionCommaException extends IllegalArgumentException {

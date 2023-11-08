@@ -1,5 +1,6 @@
 package lotto.constants;
 
+import lotto.constants.pattern.InputPattern;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.constants.InputPattern;
+import lotto.constants.pattern.InputPattern;
 import lotto.exception.global.NotDivisionCommaException;
 import lotto.exception.global.NotNumericException;
 

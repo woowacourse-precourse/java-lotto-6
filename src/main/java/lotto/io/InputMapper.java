@@ -1,6 +1,6 @@
 package lotto.io;
 
-import lotto.constants.ViewElement;
+import lotto.constants.lotto.ViewElement;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.PurchasePrice;

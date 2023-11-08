@@ -1,4 +1,4 @@
-package lotto.constants;
+package lotto.constants.lotto;
 
 public class ViewElement {
     public static final String SPACE = " ";

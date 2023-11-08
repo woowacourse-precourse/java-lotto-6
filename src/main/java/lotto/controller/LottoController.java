@@ -23,7 +23,7 @@ public class LottoController {
         createLotteryTicket();
         checkMyLotteryTicket();
         makeWinningTicket();
-        claculateMyRate();
+        calculateMyRate();
         checkResult();
     }
 
@@ -49,7 +49,7 @@ public class LottoController {
         bonusNumber = inputDeviceForBonusNumber.enterBonusNumber(bonusNumber);
     }
 
-    private void claculateMyRate() {
+    private void calculateMyRate() {
         List<Integer> answer = winningNumber.getWinningLotto();
         calc = new Calculate(lottos, answer, bonusNumber);
         calc.countAll();

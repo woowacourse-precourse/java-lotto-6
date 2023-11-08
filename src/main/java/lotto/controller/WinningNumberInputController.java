@@ -14,7 +14,7 @@ public class WinningNumberInputController {
     InputValidator inputValidator = new InputValidator();
     WinningNumberInputValidator winningNumberInputValidator = new WinningNumberInputValidator();
     LottoException lottoException = new LottoException();
-    
+
     public Lotto inputWinningNumber() {
         String winningNumber = "";
         Lotto lotto;
@@ -42,11 +42,21 @@ public class WinningNumberInputController {
         String[] number = winningNumber.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < number.length; i++) {
+            if (!inputValidator.isNumber(number[i])) {
+                lottoException.notNumber();
+            }
             int oneNumber = Integer.parseInt(number[i]);
+            numbers.add(oneNumber);
+        }
+        return checkWinningNumberLottoNumber(numbers);
+    }
+
+    public Lotto checkWinningNumberLottoNumber(List<Integer> numbers) throws IllegalArgumentException {
+        for (int i = 0; i < numbers.size(); i++) {
+            int oneNumber = numbers.get(i);
             if (!winningNumberInputValidator.isLottoNumber(oneNumber)) {
                 lottoException.notLottoNumber();
             }
-            numbers.add(oneNumber);
         }
         return new Lotto(numbers);
     }

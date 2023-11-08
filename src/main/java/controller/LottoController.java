@@ -5,10 +5,12 @@ import dto.Purchase;
 import model.Amount;
 import model.Bonus;
 import model.Lotto;
+import model.Reward;
 import service.LottoService;
 import view.InputView;
 import view.OutputView;
 
+import java.util.EnumMap;
 import java.util.List;
 
 public class LottoController {
@@ -24,6 +26,10 @@ public class LottoController {
         Lotto lotto = new Lotto(numbers);
         int bonusNum = Converter.stringToInteger(InputView.bonusNumber());
         Bonus bonus = new Bonus(numbers, bonusNum);
-        lottoService.pick(lotto, bonus);
+        EnumMap<Reward, Integer> reward = lottoService.pick(lotto, bonus);
+        OutputView.showResult(reward);
+
+        Double rateOfReturn = lottoService.calRateOfReturn(amount);
+        OutputView.showRateOfReturn(rateOfReturn);
     }
 }

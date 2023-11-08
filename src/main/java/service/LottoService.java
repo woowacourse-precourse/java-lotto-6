@@ -40,6 +40,13 @@ public class LottoService {
     }
 
     public EnumMap<Reward, Integer> pick(Lotto lotto, Bonus bonus) {
+        // 어디서 초기화를 해야 되지.. ?
+        reward.put(Reward.FIRST, 0);
+        reward.put(Reward.SECOND, 0);
+        reward.put(Reward.THIRD, 0);
+        reward.put(Reward.FOURTH, 0);
+        reward.put(Reward.FIFTH, 0);
+
         for(Lotto l : lottos){
             List<Integer> duplication = new ArrayList<>();
             duplication = l.getNumbers().stream().filter(s -> lotto.getNumbers().contains(s))

@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoNumber;
@@ -9,7 +8,6 @@ import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.NumbersCreator;
 import lotto.domain.winning.WinningNumbers;
-import lotto.domain.winning.WinningResult;
 import lotto.domain.winning.WinningStatistics;
 
 public class GameService {
@@ -20,20 +18,18 @@ public class GameService {
         this.numbersCreator = numbersCreator;
     }
 
-    public List<List<Integer>> purchaseLottos(int purchaseMoney) {
+    public List<List<Integer>> purchaseLottos(Money purchaseMoney) {
         LottoMachine lottoMachine = new LottoMachine(numbersCreator);
-        userLottos = lottoMachine.purchaseLotto(new Money(purchaseMoney));
+        userLottos = lottoMachine.purchaseLotto(purchaseMoney);
 
         return userLottos.getLottos().stream()
                 .map(Lotto::getSortedNumbers)
                 .toList();
     }
 
-    public Map<WinningResult, Integer> determineWinningStatistics(List<Integer> drawNumbers, int bonusNumber) {
+    public WinningStatistics determineWinningStatistics(List<Integer> drawNumbers, int bonusNumber) {
         WinningNumbers winningNumbers = createWinningNumbers(drawNumbers, bonusNumber);
-        WinningStatistics statistics = WinningStatistics.of(winningNumbers, userLottos);
-
-        return statistics.getStatistics();
+        return WinningStatistics.of(winningNumbers, userLottos);
     }
 
     private WinningNumbers createWinningNumbers(List<Integer> drawNumbers, int bonusNumber) {

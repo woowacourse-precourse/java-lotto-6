@@ -15,6 +15,7 @@ public class OutputView {
     public static final String WINNING_MONEY_MESSAGE = "(%,d원) - %d개";
     public static final String WINNING_STATISTICS_DELIMITER = " ";
     public static final String MATCH_COUNT_DELIMITER = ", ";
+    public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void printLottos(List<List<Integer>> lottos) {
         System.out.println();
@@ -55,5 +56,9 @@ public class OutputView {
         }
 
         return stringJoiner.toString();
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println(String.format(RATE_OF_RETURN_MESSAGE, rateOfReturn * 100));
     }
 }

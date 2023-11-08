@@ -3,11 +3,11 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lottos;
 import lotto.domain.Player;
+import lotto.util.Util;
 import lotto.validation.LottoValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -52,8 +52,8 @@ public class LottoController {
     private int getAmount() {
         try {
             InputView.inputAmount();
-            int amount = convertStringToInt(getInputAndCheckIsNumber());
-            validateAmount(amount);
+            int amount = Util.convertStringToInt(getInputAndCheckIsNumber());
+            Util.validateAmount(amount);
             return amount;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
@@ -65,8 +65,8 @@ public class LottoController {
         try {
             InputView.inputWinningNumber();
             String input = Console.readLine();
-            List<Integer> number = convertStringToIntList(input);
-            validateWinningNumber(number);
+            List<Integer> number = Util.convertStringToIntList(input);
+            Util.validateWinningNumber(number);
             return number;
         }
         catch (IllegalArgumentException e) {
@@ -78,8 +78,8 @@ public class LottoController {
     private int getBonusNumber() {
         try {
             InputView.inputBonusNumber();
-            int number = convertStringToInt(getInputAndCheckIsNumber());
-            validateBonusNumber(number);
+            int number = Util.convertStringToInt(getInputAndCheckIsNumber());
+            Util.validateBonusNumber(number);
             return number;
         } catch (IllegalArgumentException e) {
             System.out.println(e);
@@ -89,40 +89,7 @@ public class LottoController {
 
     private String getInputAndCheckIsNumber() {
         String input = Console.readLine();
-        validateIsNumber(input);
+        Util.validateIsNumber(input);
         return input;
-    }
-
-    private void validateWinningNumber(List<Integer> winningNumber) {
-        LottoValidation.validateIsSize(winningNumber.size());
-        LottoValidation.validateIsDuplicated(winningNumber);
-        for (Integer num : winningNumber) {
-            LottoValidation.validateInRange(num);
-        }
-    }
-
-    private void validateAmount(int amount) {
-        LottoValidation.validateOverStandardUnit(amount);
-        LottoValidation.validateIsStandardUnit(amount);
-    }
-
-    private void validateIsNumber(String input) {
-        LottoValidation.validateIsNumber(input);
-    }
-
-    private void validateBonusNumber(int number) {
-        LottoValidation.validateInRange(number);
-    }
-
-    private int convertStringToInt(String input) {
-        return Integer.parseInt(input);
-    }
-
-    private List<Integer> convertStringToIntList(String input) {
-        List<Integer> result = new ArrayList<>();
-        for (String num : input.split(",")) {
-            result.add(Integer.parseInt(num));
-        }
-        return result;
     }
 }

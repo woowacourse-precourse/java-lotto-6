@@ -42,6 +42,10 @@ public class GameController {
         }
     }
 
+    public void requestPurchaseCountOutput() {
+        GameView.printPurchaseCountOutputPhrase(game.getAmount() / game.getOneForPrice());
+    }
+
     public void requestLottoNumbers() {
         game.generateLottoNumbers(game.getAmount() / game.getOneForPrice());
         for (List<Integer> numbers : game.getUserLottoNumbers()) {

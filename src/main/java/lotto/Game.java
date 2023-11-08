@@ -35,4 +35,14 @@ public class Game {
         Lotto lotto = new Lotto(winningNumber);
     }
 
+    void printStatistics(){
+        OutputView outputView = new OutputView();
+        PrizeCalculaor prizeCalculaor = new PrizeCalculaor();
+        List<Integer> winningNumbersExceptBonus = prizeCalculaor.combineWinningNumbersAndBonusNumber(winningNumber,bonusNumber);
+        List<Integer> countsOfWonNumber = prizeCalculaor.makeWinningCountCollection(lottoNumbersCollection,winningNumber,winningNumbersExceptBonus,bonusNumber);
+        int totalPrize = prizeCalculaor.calculateTotalPrize(countsOfWonNumber);
+        float profitRate = prizeCalculaor.calculateProfitRate(totalPrize, purchasingPrice);
+        outputView.printWinningStatistics(countsOfWonNumber,profitRate);
+    }
+
 }

@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -11,6 +12,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
+
+    @Test
+    void 테스트고(){
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains(
+                    "8개를 구매했습니다.");
+        });
+    }
+    @Test
+    void 테스트고2(){
+        assertRandomUniqueNumbersInRangeTest(() -> {
+            run("1000", "1,2,3,4,5,6", "7");
+            assertThat(output()).contains("1개를 구매했습니다.");
+        }, List.of(1,2,3,4,5,6));
+    }
 
     @Test
     void 기능_테스트() {

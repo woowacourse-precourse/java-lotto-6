@@ -20,7 +20,7 @@ public class PrizeMessage {
         winnings.put(Prize.FOUR_MATCH, result.get("Four"));
         winnings.put(Prize.FIVE_MATCH, result.get("Five"));
         winnings.put(Prize.FIVE_MATCH_WITH_BONUS, result.get("Five_WITH_BONUS"));
-        winnings.put(Prize.SIX_MATCH,result.get("SIX"));
+        winnings.put(Prize.SIX_MATCH,result.get("Six"));
 
 
         for (Prize prize : Prize.values()) {
@@ -34,8 +34,9 @@ public class PrizeMessage {
            resultOutput.add(prize.generatePrizeString(numberOfWinners));
         }
         return resultOutput;
-
     }
+
+
 
 
 }

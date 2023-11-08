@@ -2,16 +2,19 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
 import lotto.WinningNumberDTO;
 import lotto.validator.InputValidator;
 import lotto.view.IOVIew;
 import lotto.view.OutputMessage;
+import lotto.view.PrizeMessage;
 
 public class LottoIOController {
     private IOVIew iovIew;
     private InputValidator inputValidator;
+    private PrizeMessage prizeMessage = new PrizeMessage();
 
 
     public LottoIOController() {
@@ -88,8 +91,17 @@ public class LottoIOController {
         System.out.println(OutputMessage.GET_NEXT_LINE.toString()+OutputMessage.GET_BONUS_NUMBER_MESSAGE);
     }
 
+    public void printPrizeNum(HashMap<String,Integer> prizeNum){
+        List<String> result=prizeMessage.makePrizeMessage(prizeNum);
+        iovIew.showMessages(result);
+    }
+
+    public void printWinningRate(double winningRate){
+        iovIew.showSingleMessage(OutputMessage.RESULT_MESSAGE.getWinningRateMessage(winningRate));
+    }
     public void notifyResult(){
         System.out.println(OutputMessage.GET_NEXT_LINE.toString()+OutputMessage.RESULT_MESSAGE);
     }
+
 
 }

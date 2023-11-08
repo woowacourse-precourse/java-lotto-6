@@ -8,6 +8,8 @@ public enum OutputMessage {
     RESULT_MESSAGE("당첨 통계\n---"),
     GET_NEXT_LINE("\n");
 
+
+
     private String message;
 
     OutputMessage(String message) {
@@ -26,5 +28,10 @@ public enum OutputMessage {
     public String getIntroduceMessage(int num){
         String sNum=Integer.toString(num);
         return GET_NEXT_LINE+sNum+PURCHASE_INTRODUCE_MESSAGE;
+    }
+
+    public String getWinningRateMessage(double rate){
+        String resultForm = String.format("%.1f",rate);
+        return "총 수익률은 "+resultForm+"%입니다.";
     }
 }

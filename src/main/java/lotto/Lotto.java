@@ -32,8 +32,14 @@ public class Lotto {
         return;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public void printNum(){
         Collections.sort(numbers);
         System.out.println(numbers.toString());
     }
+
+
 }

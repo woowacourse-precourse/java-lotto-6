@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.LottoAnswerSheet;
+import Model.PrizeResult;
 import Model.RandomLottoGenerator;
 import Util.InputValidator;
 import View.InputView;
@@ -15,6 +16,7 @@ public class LottoController {
     private InputValidator inputValidator;
     private RandomLottoGenerator randomLottoGenerator;
     private LottoAnswerSheet lottoAnswerSheet;
+    private LottoCashier lottoCashier;
 
 
     public LottoController() {
@@ -23,6 +25,7 @@ public class LottoController {
         this.inputValidator = new InputValidator();
         this.randomLottoGenerator = new RandomLottoGenerator();
         this.lottoAnswerSheet = new LottoAnswerSheet();
+        this.lottoCashier = new LottoCashier();
     }
 
     private int receiveUserMoneyAndGetAmount() {
@@ -57,11 +60,18 @@ public class LottoController {
         }
     }
 
+    private void endLottoGame(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
+        PrizeResult prizeResult = lottoCashier.calculateLottoResult(userLottos, winningLotto, bonusNumber);
+        double rate = lottoCashier.calculateReturnRate(userLottos.size(), prizeResult);
+        outputView.printLottoResult(prizeResult);
+        outputView.printReturnRate(rate);
+    }
 
     public void start() {
         int lottoAmount = receiveUserMoneyAndGetAmount();
         List<Lotto> userLottos = randomLottoGenerator.generateLottos(lottoAmount);
         Lotto winningLotto = receiveWinningLottoNumbers();
         int bonusNumber = receiveBonusLottoNumber(winningLotto);
+        endLottoGame(userLottos, winningLotto, bonusNumber);
     }
 }

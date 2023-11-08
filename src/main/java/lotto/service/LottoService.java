@@ -25,6 +25,7 @@ public class LottoService {
     static final int LOTTO_CNT = 6;
     static final int SIZE_OF_RESULT = 7;
     static final int LOTTO_PRICE = 1000;
+    static final LottoRank[] ranks = LottoRank.values();
 
     static int lottoAmount;
     static int[] lottoNums;
@@ -115,8 +116,6 @@ public class LottoService {
     }
 
     private void getresultOfLotto(int[] resultOfLotto, int[] cntOfWinWithBonus){
-        LottoRank[] ranks = LottoRank.values();
-
         for(int i = 0; i < numberOfLottoPurchased; i++) {
             cntOfWinWithBonus = getLottoResult(i);
 
@@ -146,7 +145,6 @@ public class LottoService {
     }
 
     private String getAmountOfRevenue(int[] resultOfLotto, StringBuilder sb){
-        LottoRank[] ranks = LottoRank.values();
         for(int i = START_NUMBER_FOR_WINNING_LOTTO; i <= SIZE_OF_RESULT; i++) {
             LottoRank curRank = LottoRank.valueOf(ranks[i].toString());
 
@@ -168,7 +166,6 @@ public class LottoService {
     private void getRateOfBenefit(int[] resultOfLotto){
         BigInteger rate = new BigInteger("0");
 
-        LottoRank[] ranks = LottoRank.values();
         for(int i = START_NUMBER_FOR_WINNING_LOTTO; i <=SIZE_OF_RESULT; i++){
             if(resultOfLotto[i] == 0) continue;
 

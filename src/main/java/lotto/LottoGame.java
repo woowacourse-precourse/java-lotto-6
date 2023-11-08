@@ -3,6 +3,8 @@ package lotto;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
@@ -48,21 +50,11 @@ public class LottoGame {
         }
     }
 
-    private void checkPurchaseAmount() {
-        if (this.purchaseAmount % 10 != 0) {
-            throw new IllegalArgumentException("1000원 단위로만 입력이 가능합니다.");
-        }
-    }
 
     private int getNumberOfPurchase() {
         return this.numberOfPurchase;
     }
 
-    public void setNumberOfPurchase() {
-        if (this.purchaseAmount % 10 == 0) {
-            this.numberOfPurchase = purchaseAmount / 1000;
-        }
-    }
 
     private void printNumberOfPurchase() {
         System.out.println(getNumberOfPurchase() + "개를 구매했습니다.");
@@ -75,7 +67,8 @@ public class LottoGame {
 
     private void setRandomLottoNumber(int numberOfPurchase) {
         for (int i = 0; i < numberOfPurchase; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(numbers);
             setLotto(numbers);
         }
     }
@@ -90,13 +83,16 @@ public class LottoGame {
         String winningNumber;
         winningNumber = readLine();
         winningNumbers = winningNumber.split(",");
-        System.out.println();
     }
 
     private void inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNumber = Integer.parseInt(readLine());
-        System.out.println();
+        try {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            bonusNumber = Integer.parseInt(readLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 숫자만 입력주세요.");
+            inputBonusNumber();
+        }
     }
 
     private void compareLottoNumber(String[] winningNumbers, int bonusNumber) {

@@ -13,8 +13,7 @@ import static lotto.LottoRank.*;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
-        int purchaseAmount = Integer.parseInt(Console.readLine());
+        int purchaseAmount = requestPurchaseAmount();
         LottoMachine lottoMachine = new LottoMachine(purchaseAmount);
         List<Lotto> lottos = lottoMachine.purchaseLottos();
         
@@ -23,13 +22,8 @@ public class Application {
             System.out.println(lotto);
         }
         
-        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
-            .map(Integer::parseInt)
-            .collect(Collectors.toList());
-        
-        System.out.println("보너스 볼을 입력해 주세요.");
-        int bonusBall = Integer.parseInt(Console.readLine());
+        List<Integer> winningNumbers = requestWinningNumbers();
+        int bonusBall = requestBonusBall();
         
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusBall);
         
@@ -41,6 +35,41 @@ public class Application {
         }
         
         printResult(result);
+    }
+    
+    private static int requestPurchaseAmount() {
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                return Integer.parseInt(Console.readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+            }
+        }
+    }
+    
+    private static List<Integer> requestWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+                return Arrays.stream(Console.readLine().split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+            }
+        }
+    }
+    
+    private static int requestBonusBall() {
+        while (true) {
+            try {
+                System.out.println("보너스 볼을 입력해 주세요.");
+                return Integer.parseInt(Console.readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력 가능합니다.");
+            }
+        }
     }
     
     private static void printResult(Map<LottoRank, Integer> result) {
@@ -77,5 +106,4 @@ public class Application {
         DecimalFormat df = new DecimalFormat("0.#");
         return df.format(profitRate);
     }
-    
 }

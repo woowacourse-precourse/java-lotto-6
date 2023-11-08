@@ -68,5 +68,33 @@ public class LottoWinningNumberInput {
         }
     }
 
+    public int requestBonusNumber(Set<Integer> winningNumbers) {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                int bonusNumber = parseAndValidateBonusNumber(input, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int parseAndValidateBonusNumber(String input, Set<Integer> winningNumbers) {
+        int bonusNumber = parseInt(input);
+        validateBonusNumber(bonusNumber, winningNumbers);
+        return bonusNumber;
+    }
+
+    private void validateBonusNumber(int bonusNumber, Set<Integer> winningNumbers) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다: " + bonusNumber);
+        }
+        validateNumberRange(bonusNumber);
+    }
+
+
+
 
 }

@@ -13,6 +13,7 @@ public class Application {
 
         LottoWinningNumberInput lottoWinningNumberInput = new LottoWinningNumberInput();
         Set<Integer> winningNumbers = lottoWinningNumberInput.requestLottoWinningNumbers();
+        int bonusNumber = lottoWinningNumberInput.requestBonusNumber(winningNumbers);
 
     }
 }

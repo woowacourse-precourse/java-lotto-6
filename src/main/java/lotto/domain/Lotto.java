@@ -24,24 +24,6 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        validateSize(numbers);
-        validateDuplicate(numbers);
-    }
-
-    private void validateDuplicate(List<Integer> numbers) {
-        int numbersCount = new HashSet<>(numbers).size();
-        if (numbersCount != LOTTO_SIZE) {
-            throw new IllegalArgumentException(INVALID_DUPLICATE);
-        }
-    }
-
-    private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(INVALID_SIZE);
-        }
-    }
-
     public int compareNumbers(List<Integer> winningNumbers) {
         return (int) numbers.stream().flatMap(
                 number -> winningNumbers
@@ -52,6 +34,24 @@ public class Lotto {
 
     public boolean compareNumber(int number) {
         return numbers.contains(number);
+    }
+
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(INVALID_SIZE);
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        int numbersCount = new HashSet<>(numbers).size();
+        if (numbersCount != LOTTO_SIZE) {
+            throw new IllegalArgumentException(INVALID_DUPLICATE);
+        }
     }
 
     @Override

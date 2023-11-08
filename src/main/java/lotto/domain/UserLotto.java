@@ -11,7 +11,6 @@ import java.util.Map;
 public class UserLotto {
     private static final int RANK_FIRST_PLACE = 0;
     private static final int RANK_LAST_PLACE = 5;
-    private static final int ONE_HUNDRED_FOR_PERCENTAGE = 100;
 
     private List<Lotto> userLottos;
     private int lottoCount;
@@ -59,6 +58,6 @@ public class UserLotto {
     }
 
     public float getRateOfReturn(int purchaseAmount) {
-        return (float) revenue / purchaseAmount * ONE_HUNDRED_FOR_PERCENTAGE;
+        return (float) revenue / purchaseAmount * 100;
     }
 }

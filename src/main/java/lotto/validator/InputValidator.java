@@ -1,11 +1,9 @@
 package lotto.validator;
 
 import static lotto.message.ErrorMessages.*;
+import static lotto.util.Util.*;
 
 public class InputValidator {
-    private static final int START_RANGE = 1;
-    private static final int END_RANGE = 45;
-    private static final int LOTTO_PRICE = 1000;
 
     public static int checkIsInteger(String input) {
         try {

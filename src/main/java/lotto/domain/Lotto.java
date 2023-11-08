@@ -1,14 +1,11 @@
 package lotto.domain;
 import static lotto.message.ErrorMessages.*;
+import static lotto.util.Util.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private static final int START_RANGE = 1;
-    private static final int END_RANGE = 45;
-    private static final int LOTTO_SIZE = 6;
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

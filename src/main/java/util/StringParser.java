@@ -14,4 +14,15 @@ public class StringParser {
         }
     }
 
+    public static List<Integer> toIntegers(String commaSeperatedValues) throws IllegalArgumentException {
+        List<Integer> result = new ArrayList<>();
+        try {
+            for (String value : commaSeperatedValues.split(",")) {
+                result.add(toInteger(value));
+            }
+            return result;
+        } catch (PatternSyntaxException e) {
+            throw new IllegalArgumentException("[ERROR] " + e);
+        }
+    }
 }

@@ -28,7 +28,7 @@ public class Order {
     }
 
     public LottoTicket buy() {
-
+        return LottoTicket.createLottoTicket(this.buyCount);
     }
 
     public void validate(int cost) {

@@ -11,7 +11,14 @@ public class LottoTicket {
     }
 
     protected static LottoTicket createLottoTicket(int count) {
+        List<Lotto> lottoTicket = new ArrayList<>();
 
+        for (int index = 0; index < count; index++) {
+            Lotto lotto = Lotto.createLotto();
+            lottoTicket.add(lotto);
+        }
+
+        return new LottoTicket(lottoTicket);
     }
 
     public WinStatistics getRank(Lotto winLotto, Bonus bonus) {

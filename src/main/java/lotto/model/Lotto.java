@@ -31,7 +31,13 @@ public class Lotto {
     }
 
     public static Lotto createLotto() {
+        List<Integer> result = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                Number.MIN_NUMBER,
+                Number.MAX_NUMBER,
+                Number.LOTTO_SIZE
+        ));
 
+        return new Lotto(result);
     }
 
     public Rank getRank(Lotto winNumbers, Bonus bonus) {

@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.domain.LottoUtils.getMatchCount;
+
 public class LottoService {
     private int numOfFirstPlace = 0;
     private int numOfSecondPlace = 0;
@@ -16,25 +18,10 @@ public class LottoService {
         }
     }
 
-    private void compare(List<Integer> winnerNumbers, int bonusNumber, Lotto lotto) {
+    private void compare(List<Integer> winningNumbers, int bonusNumber, Lotto lotto) {
         List<Integer> list = lotto.getNumbers();
-        int matchCount = getMatchCount(winnerNumbers, list);
+        int matchCount = getMatchCount(winningNumbers, list);
         checkIfWinFirstPlace(matchCount, list, bonusNumber);
-    }
-
-    private int getMatchCount(List<Integer> winnerNumbers, List<Integer> lotto) {
-        int matchCount = 0;
-        for (int num : winnerNumbers) {
-            if (lotto.contains(num)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
-    }
-
-    public LottoRank getLottoRank(Lotto lotto, WinningNumbers winningNumbers) {
-
-        return LottoRank.FIRST_PLACE;
     }
 
     public int calculateLottoCount(int purchaseAmount) {

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -88,5 +89,49 @@ class JackpotTest {
         assertThatThrownBy(() -> new Jackpot(inputWinningNumbers, inputBonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+
+    @DisplayName("당첨 번호가 1 보다 작은 숫자인 경우 Exception 발생한다. ")
+    @Test
+    void validateNumberInRange1() {
+        // given
+
+        // when // then
+        assertThatThrownBy(() -> new Jackpot("0,2,3,4,5,6", "1"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호/보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("당첨 번호가 45 보다 큰 숫자인 경우 Exception 발생한다. ")
+    @Test
+    void validateNumberInRange2() {
+        // given
+
+        // when // then
+        assertThatThrownBy(() -> new Jackpot("1,2,3,4,5,46", "1"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호/보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 1 보다 작은 숫자인 경우 Exception 발생한다. ")
+    @Test
+    void validateNumberInRange3() {
+        // given
+
+        // when // then
+        assertThatThrownBy(() -> new Jackpot("1,2,3,4,5,6", "0"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호/보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("보너스 번호가 45 보다 큰 숫자인 경우 Exception 발생한다. ")
+    @Test
+    void validateNumberInRange4() {
+        // given
+
+        // when // then
+        assertThatThrownBy(() -> new Jackpot("1,2,3,4,5,6", "46"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호/보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.");
     }
 }

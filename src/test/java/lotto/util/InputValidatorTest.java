@@ -50,23 +50,23 @@ class InputValidatorTest {
     }
 
     @Test
-    void parseValidatedNumbers는_쉼표를_기준으로_숫자를_변환해서_리스트에_저장한다() {
+    void 당첨번호를_입력받을_때_쉼표를_기준으로_숫자를_변환해서_리스트에_저장한다() {
         String numbersMessage = "1,2,3,4,5,6";
-        assertThat(inputValidator.parseValidatedNumbers(numbersMessage))
+        assertThat(inputValidator.validateWinNumbers(numbersMessage))
                 .isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 
     @Test
-    void parseValidatedNumbers는_공백도_제거해서_숫자만을_리스트에_저장한다() {
+    void 당첨번호를_입력받을_때__공백도_제거해서_숫자만을_리스트에_저장한다() {
         String numbersMessage = "     1       ,      2     ,      3      ,      4      ,    5   ,    6";
-        assertThat(inputValidator.parseValidatedNumbers(numbersMessage))
+        assertThat(inputValidator.validateWinNumbers(numbersMessage))
                 .isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
     }
 
     @Test
-    void parseValidatedNumbers는_쉼표_사이의_공백을_입력받을_경우_IllegalArgumentException_발생() {
+    void 당첨번호를_입력받을_때_쉼표_사이의_공백을_입력받을_경우_IllegalArgumentException_발생() {
         String numbersMessage = "1,,3,4,5,6";
-        assertThatThrownBy(() -> inputValidator.parseValidatedNumbers(numbersMessage))
+        assertThatThrownBy(() -> inputValidator.validateWinNumbers(numbersMessage))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
     }
 
@@ -88,7 +88,7 @@ class InputValidatorTest {
                 .hasMessageContaining(ERROR_CODE);
 
         String numbersMessage = "1,,3,4,5,6";
-        assertThatThrownBy(() -> inputValidator.parseValidatedNumbers(numbersMessage))
+        assertThatThrownBy(() -> inputValidator.validateWinNumbers(numbersMessage))
                 .hasMessageContaining(ERROR_CODE);
     }
 }

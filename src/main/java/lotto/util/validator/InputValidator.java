@@ -30,13 +30,18 @@ public class InputValidator extends Validator {
         }
     }
 
-    public List<Integer> parseValidatedNumbers(String numbersMessage) {
+    public List<Integer> validateWinNumbers(String numbersMessage) {
+        List<Integer> validatedWinNumbers = parseValidatedNumbers(numbersMessage);
+        new Lotto(validatedWinNumbers); // 로또 번호 검증 역할 로또 도메인에게 위임
+        return validatedWinNumbers;
+    }
+
+    private List<Integer> parseValidatedNumbers(String numbersMessage) {
         List<Integer> validatedNumbers = new ArrayList<>();
         Arrays.stream(numbersMessage.split(NUMBER_SPLITTER))
                 .map(String::trim)
                 .mapToInt(this::parseValidatedInt)
                 .forEach(validatedNumbers::add);
-        new Lotto(validatedNumbers); // 로또 번호 검증 역할 로또 도메인에게 위임
         return validatedNumbers;
     }
 }

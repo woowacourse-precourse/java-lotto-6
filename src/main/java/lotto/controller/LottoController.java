@@ -25,11 +25,8 @@ public class LottoController {
     }
 
     private void purchaseLottoes() {
-        validatingLoopTemplate.execute(() -> {
-            MoneyDto moneyDto = getMoneyFromClient();
-            createLottoes(moneyDto);
-            return null;
-        });
+        MoneyDto moneyDto = validatingLoopTemplate.execute(this::getMoneyFromClient);
+        createLottoes(moneyDto);
     }
 
     private MoneyDto getMoneyFromClient() {
@@ -43,16 +40,14 @@ public class LottoController {
     }
 
     private WinNumbersDto createWinNumbers() {
-        List<Integer> winNumbers = getWinNumbers();
+        List<Integer> winNumbers = validatingLoopTemplate.execute(this::getWinNumbers);
         return validatingLoopTemplate.execute(()
                 -> new WinNumbersDto(winNumbers, getBonusNumber()));
     }
 
     private List<Integer> getWinNumbers() {
-        return validatingLoopTemplate.execute(() -> {
-            outputView.beforeInputWinNumbers();
-            return inputView.inputNumbers();
-        });
+        outputView.beforeInputWinNumbers();
+        return inputView.inputNumbers();
     }
 
     private int getBonusNumber() {

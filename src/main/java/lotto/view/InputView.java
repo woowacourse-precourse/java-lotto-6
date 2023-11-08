@@ -15,7 +15,7 @@ public class InputView {
 
     public List<Integer> inputNumbers() {
         String inputtedNumbers = Console.readLine().trim();
-        return validator.parseValidatedNumbers(inputtedNumbers);
+        return validator.validateWinNumbers(inputtedNumbers);
     }
 
     public int inputBonusNumber() {

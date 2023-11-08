@@ -2,11 +2,10 @@ package lotto;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static lotto.Constant.*;
-import static lotto.Message.*;
+import static lotto.ErrorMessage.*;
 
 public class Validator {
 

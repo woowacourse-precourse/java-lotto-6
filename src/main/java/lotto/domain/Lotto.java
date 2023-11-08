@@ -3,8 +3,8 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.Message.NOT_COMPOSED_OF_UNIQUE_NUMBERS;
-import static lotto.Message.NOT_VALID_LENGTH;
+import static lotto.ErrorMessage.NOT_COMPOSED_OF_UNIQUE_NUMBERS;
+import static lotto.ErrorMessage.NOT_VALID_LENGTH;
 import static lotto.Validator.validateNumberInRange;
 import static lotto.Validator.validatePositiveNumber;
 

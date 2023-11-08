@@ -3,7 +3,7 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.Message.NOT_COMPOSED_OF_UNIQUE_NUMBERS;
+import static lotto.ErrorMessage.NOT_COMPOSED_OF_UNIQUE_NUMBERS;
 import static lotto.Validator.validateNumberInRange;
 
 public class BonusNumber {

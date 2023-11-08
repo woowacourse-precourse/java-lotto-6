@@ -14,7 +14,7 @@ public class Application {
         generateLottos(purchaseAmount, purchaseNumbers); // 구매한 개수만큼 로또 번호를 생성
         // 사용자에게 당첨 번호와 보너스 번호를 입력받음
         Lotto winningNumbers = askWiningNumber();
-        int bonusNumber = askBonusNumber();
+        int bonusNumber = askBonusNumber(winningNumbers);
         // 입력받은 당첨번호를 바탕으로 사용자가 구매한 로또 번호들의 당첨 결과를 계산
         Lotto[] userLotto = getLottos(purchaseAmount, purchaseNumbers);
         LottoResultChecker lottoResultChecker = new LottoResultChecker(winningNumbers, userLotto, bonusNumber);
@@ -42,7 +42,7 @@ public class Application {
                 System.err.println("[ERROR] 구매금액을 입력하셔야 합니다.\n");
             } catch (NumberFormatException e) {
                 System.err.println("[ERROR] 구매금액은 숫자형식이어야 합니다.\n");
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.err.println("[ERROR] 구매금액은 1,000원 단위로 입력하셔야 합니다.\n");
             }
         }
@@ -56,21 +56,24 @@ public class Application {
             } catch (NullPointerException e) {
                 System.err.println("[ERROR] 당첨번호를 입력하셔야 합니다.\n");
             } catch (NumberFormatException e) {
-                System.err.println("[ERROR] 당첨번호들은 숫자형식이어야 합니다.\n");
-            }catch (IllegalArgumentException ignored){
+                System.err.println("[ERROR] 당첨번호들은 쉼표로 구분된 숫자형식이어야 합니다.\n");
+            } catch (IllegalArgumentException ignored) {
             }
         }
     }
 
-    private static int askBonusNumber() {
+    private static int askBonusNumber(Lotto winningNumbers) {
         while (true) {
             System.out.println("\n보너스 번호를 입력해 주세요.");
             try {
-                return Integer.parseInt(camp.nextstep.edu.missionutils.Console.readLine());
+                int bonusNumber = Integer.parseInt(camp.nextstep.edu.missionutils.Console.readLine());
+                checkValidBonusNumber(winningNumbers, bonusNumber);
+                return bonusNumber;
             } catch (NullPointerException e) {
                 System.err.println("[ERROR] 보너스 번호를 입력하셔야 합니다.\n");
             } catch (NumberFormatException e) {
                 System.err.println("[ERROR] 보너스 번호는 숫자형식이어야 합니다.\n");
+            } catch (IllegalArgumentException ignored) {
             }
         }
     }
@@ -114,6 +117,14 @@ public class Application {
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", lottoResultChecker.ranks[2]);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", lottoResultChecker.ranks[1]);
         System.out.println("총 수익률은 " + lottoResultChecker.returnRatio + "%입니다.");
-
     }
+
+    private static void checkValidBonusNumber(Lotto winningNumbers, int bonusNumber) {
+        List<Integer> numbers = winningNumbers.getNumbers();
+        if (numbers.contains(bonusNumber)) {
+            System.err.println("[ERROR] 보너스 번호는 당첨번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

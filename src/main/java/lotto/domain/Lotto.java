@@ -1,9 +1,13 @@
 package lotto.domain;
 
+import static lotto.message.ErrorMessages.INVALID_DUPLICATION_LOTTO_BALLS;
+import static lotto.message.ErrorMessages.INVALID_LOTTO_BALL_SIZE;
+
 import java.util.List;
 import lotto.util.RandomUtils;
 
 public class Lotto {
+    private static final int LOTTO_BALL_COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,8 +20,23 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        validateLength(numbers);
+        validateDifferentNumber(numbers);
+    }
+
+    private void validateLength(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_BALL_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_BALL_SIZE.getMessage());
+        }
+    }
+
+    private void validateDifferentNumber(List<Integer> numbers) {
+        long distinctCount = numbers.stream()
+                .distinct()
+                .count();
+
+        if (distinctCount != LOTTO_BALL_COUNT) {
+            throw new IllegalArgumentException(INVALID_DUPLICATION_LOTTO_BALLS.getMessage());
         }
     }
 

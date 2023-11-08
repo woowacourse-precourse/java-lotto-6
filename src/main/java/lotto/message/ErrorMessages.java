@@ -8,7 +8,9 @@ public enum ErrorMessages {
     INVALID_AMOUNT_UNIT("[ERROR] 구입 금액은 1,000원 단위로 입력해주세요."),
     INVALID_LOTTO_BALL_FORMAT("[ERROR] 로또 공에는 숫자만 입력 가능합니다."),
     INVALID_LOTTO_BALL_RANGE("[ERROR] 로또 공은 1~45 사이의 숫자만 입력해주세요."),
-    INVALID_LOTTO_BALL_EMPTY("[ERROR] 로또 공에 숫자를 입력해주세요.");
+    INVALID_LOTTO_BALL_EMPTY("[ERROR] 로또 공에 숫자를 입력해주세요."),
+    INVALID_LOTTO_BALL_SIZE("[ERROR] 로또 공 개수가 6개가 아닙니다."),
+    INVALID_DUPLICATION_LOTTO_BALLS("[ERROR] 로또 공들 중 중복된 숫자가 있습니다.");
 
     private String message;
 

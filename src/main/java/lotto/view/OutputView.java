@@ -26,15 +26,19 @@ public class OutputView {
     }
 
     public void printWinningNumbersGuide() {
+        printEmptyLine();
         println(INPUT_WINNING_NUMBERS);
     }
 
     public void printBonusNumberGuide() {
+        printEmptyLine();
         println(INPUT_BONUS_NUMBER);
     }
 
     public void printLottoAmount(UserMoney userMoney) {
-        printf(OUTPUT_LOTTO_AMOUNT_MESSAGE + "\n", userMoney.getLottoAmount());
+        printEmptyLine();
+        printf(OUTPUT_LOTTO_AMOUNT_MESSAGE, userMoney.getLottoAmount());
+        printEmptyLine();
     }
 
     public void printUserLotto(UserLotto userLotto) {
@@ -42,6 +46,7 @@ public class OutputView {
     }
 
     public void printResultGuide() {
+        printEmptyLine();
         println(OUTPUT_RESULT_GUIDE);
     }
 
@@ -62,7 +67,7 @@ public class OutputView {
     }
 
     private void printLottoNumbers(Lotto lotto) {
-        printf(OUTPUT_LOTTO_NUMBERS + "\n", lotto.getNumbers().toArray());
+        printf(OUTPUT_LOTTO_NUMBERS + "%n", lotto.getNumbers().toArray());
     }
 
     private void printLottoRank(UserLottoRank userLottoRank, LottoRank lottoRank) {
@@ -95,5 +100,9 @@ public class OutputView {
 
     private void printf(String format, Object... args) {
         System.out.printf(format, args);
+    }
+
+    private void printEmptyLine() {
+        System.out.println();
     }
 }

@@ -12,4 +12,23 @@ public class ResultCalculator {
         }
         return result;
     }
+
+    public double calculateEarningsRate(WinningResult result, int lottoCount) {
+        long totalPrize = calculateTotalPrize(result);
+        long investMoney = calculateInvestMoney(lottoCount);
+        return (double) totalPrize / investMoney;
+    }
+
+    private long calculateTotalPrize(WinningResult result) {
+        long totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.MISS) continue;
+            totalPrize += rank.getWinningMoney() * result.getCount(rank);
+        }
+        return totalPrize;
+    }
+
+    private long calculateInvestMoney(int lottoCount) {
+        return 1000 * lottoCount;
+    }
 }

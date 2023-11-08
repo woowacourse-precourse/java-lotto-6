@@ -2,12 +2,11 @@ package lotto.domain.lotteryCommittee.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.buyer.model.Buyer;
+import lotto.domain.lotteryCommittee.model.LotteryCommittee;
+import lotto.domain.lotto.model.Lotto;
 import org.assertj.core.util.Arrays;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LotteryCommitteeService {
 
@@ -15,44 +14,42 @@ public class LotteryCommitteeService {
     static final String ERROR_MSG_HEADER = "[ERROR]";
     static final int START_NUMBER = 1;
     static final int END_NUMBER = 45;
+    static final int LOTTO_SIZE = 6;
 
     public void getWeeklyNumber() {
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String WeeklyNumber = Console.readLine();
 
-        if(!checkResult(checkNumber(WeeklyNumber).get("Result").toString())) {
+        Map<String, Object> checkResult = checkNumber(WeeklyNumber);
+
+        if (!checkResult(checkResult.get("Result").toString())) {
             failWorks(checkNumber(WeeklyNumber).get("Result").toString());
             getWeeklyNumber();
             return;
         }
+
+        return;
     }
 
     public Map<String, Object> checkNumber(String numbers) {
 
-        Map<String, Object> finalResultMap = new HashMap<>();
-
-        /*
-        체크해야 하는 것
-        1. 쉼표로 구분된 **6개**의
-        2. **숫자**인가?
-        3. 1~45 사이의 값인가? (Arange 체크)
-        4. 중복된 값이 들어있지는 않은가?
-        */
-
         Map<String, Object> splitResult = splitNumbers(numbers);
-        if(!checkResult(splitResult.get("Result").toString())) {
+        if (!checkResult(splitResult.get("Result").toString())) {
             return splitResult;
         }
 
         Map<String, Object> parsingResult = parsingNumbers((String[]) splitResult.get("Data"));
-        if(!checkResult(parsingResult.get("Result").toString())) {
+        if (!checkResult(parsingResult.get("Result").toString())) {
             return parsingResult;
         }
 
-        finalResultMap.put("Result", SUCCESE_CODE);
-        finalResultMap.put("Data", "");
-        return finalResultMap;
+        Map<String, Object> dupCheckResult = duplicationCheck((List<Integer>) parsingResult.get("Data"));
+        if (!checkResult(dupCheckResult.get("Result").toString())) {
+            return dupCheckResult;
+        }
+
+        return checkArange((List<Integer>) parsingResult.get("Data"));
     }
 
     public Map<String, Object> splitNumbers(String numbers) {
@@ -61,7 +58,7 @@ public class LotteryCommitteeService {
 
         String[] splitNumbers = numbers.split(",");
 
-        if(splitNumbers.length != 6) {
+        if (splitNumbers.length != LOTTO_SIZE) {
             resultMap.put("Result", ERROR_MSG_HEADER + "쉼표로 구분된 6개의 숫자가 입력되어야 합니다.");
             return resultMap;
         }
@@ -77,10 +74,10 @@ public class LotteryCommitteeService {
         Map<String, Object> resultMap = new HashMap<>();
         List<Integer> parsedNums = new ArrayList<>();
 
-        for(String number : splitNumbers) {
+        for (String number : splitNumbers) {
             try {
-                 parsedNums.add(Integer.parseInt(number));
-            } catch(NumberFormatException e) {
+                parsedNums.add(Integer.parseInt(number));
+            } catch (NumberFormatException e) {
                 resultMap.put("Result", ERROR_MSG_HEADER + "숫자 이외의 값은 입력할 수 없습니다.");
                 return resultMap;
             }
@@ -92,9 +89,51 @@ public class LotteryCommitteeService {
         return resultMap;
     }
 
+    public Map<String, Object> duplicationCheck(List<Integer> numbers) {
+
+        Map<String, Object> resultMap = new HashMap<>();
+
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            int target = numbers.get(i);
+            for (int j = i + 1; j < numbers.size(); j++) {
+                if (target == numbers.get(j)) {
+                    resultMap.put("Result", ERROR_MSG_HEADER + "중복된 숫자는 입력할 수 없습니다.");
+                    return resultMap;
+                }
+            }
+        }
+
+        resultMap.put("Result", SUCCESE_CODE);
+        return resultMap;
+    }
+
+    public Map<String, Object> checkArange(List<Integer> numbers) {
+
+        Map<String, Object> resultMap = new HashMap<>();
+
+        Collections.sort(numbers);
+
+        int max = numbers.get(0);
+        int min = numbers.get(LOTTO_SIZE - 1);
+
+        if (min < START_NUMBER) {
+            resultMap.put("Result", ERROR_MSG_HEADER + "입력할 수 있는 번호는 최소 1 입니다.");
+            return resultMap;
+        }
+
+        if (max > END_NUMBER) {
+            resultMap.put("Result", ERROR_MSG_HEADER + "입력할 수 있는 번호는 최대 45 입니다.");
+            return resultMap;
+        }
+
+        resultMap.put("Result", SUCCESE_CODE);
+        resultMap.put("Data", numbers);
+        return resultMap;
+    }
+
     public boolean checkResult(String resultMsg) {
 
-        if(resultMsg.startsWith(ERROR_MSG_HEADER)) {
+        if (resultMsg.startsWith(ERROR_MSG_HEADER)) {
             return false;
         }
 
@@ -105,7 +144,7 @@ public class LotteryCommitteeService {
 
         try {
             throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(errorMsg);
             getWeeklyNumber();
         }

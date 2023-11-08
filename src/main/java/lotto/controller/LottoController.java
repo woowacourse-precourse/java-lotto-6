@@ -5,7 +5,6 @@ import lotto.model.MyLotto;
 import lotto.model.WinLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
-import lotto.view.InputViewImpl;
 import lotto.view.OutputView;
 
 public class LottoController {

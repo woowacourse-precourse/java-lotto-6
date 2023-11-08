@@ -33,7 +33,6 @@ public class Validator {
             System.out.println("[ERROR] 정수만 입력해 주세요.");
             throw new IllegalArgumentException("[ERROR] 정수만 입력해 주세요.");
         }
-
     }
 
     private static void checkLength(String[] splitInputData) {
@@ -51,16 +50,33 @@ public class Validator {
     }
 
     private static void checkLange(int number) {
-        if (number < 1 || number > 45){
+        if (number < 1 || number > 45) {
             System.out.println("[ERROR] 1~45 사이의 수를 입력하세요.");
             throw new IllegalArgumentException("[ERROR] 1~45 사이의 수를 입력하세요.");
         }
     }
 
-    public static void checkBonusNumber(String inputText,List<Integer> targetNumbers){
-        try{
+    public static void checkBonusNumber(String inputText, List<Integer> targetNumbers) {
+        try {
             int bonusNumber = Integer.parseInt(inputText);
-        }catch (NumberFormatException e)
+            checkLange(bonusNumber);
+            isBonusDuplicateTarget(bonusNumber,targetNumbers);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 정수만 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 정수만 입력해 주세요.");
+        }
+    }
+
+    private static void isBonusDuplicateTarget(int bonusNumber, List<Integer> targetNumbers) {
+        HashSet<Integer> set = new HashSet<>();
+        set.add(bonusNumber);
+        for (int i = 0; i < 6; i++) {
+            set.add(targetNumbers.get(i));
+        }
+        if (set.size() != 7){
+            System.out.println("[ERROR] 중복된 수 입니다.");
+            throw new IllegalArgumentException("[ERROR] 중복된 수 입니다.");
+        }
     }
 
 

@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoSystem;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningResult;
+import lotto.utils.system.LottoException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -58,8 +59,17 @@ public class LottoSystemController {
     }
 
     private static LottoSystem buyLotto() {
-        String money = inputMoney();
-        inputMoneyValidate(money);
+        String money = "";
+
+        try {
+            printEmptyLine();
+
+            money = inputMoney();
+            inputMoneyValidate(money);
+        } catch (LottoException e) {
+            System.out.println(e.getMessage());
+            return buyLotto();
+        }
 
         return new LottoSystem(Long.parseLong(money));
     }

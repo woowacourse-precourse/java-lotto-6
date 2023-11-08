@@ -1,6 +1,6 @@
 package lotto.utils.system;
 
-public class LottoException extends RuntimeException {
+public class LottoException extends IllegalArgumentException {
 
     public LottoException() {
 

@@ -19,6 +19,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 번호 6개를 입력해주세요.");
         }
 
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) > 49){
+                throw new IllegalArgumentException("[ERROR] 번호는 49이하로 입력해주세요.");
+            }
+        }
+
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != numbers.size()) {

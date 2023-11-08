@@ -25,8 +25,9 @@ public class Validate {
         }
     }
 
-    public static int checkBonusNumberValidate(String bonusNumber) {
+    public static int checkBonusNumberValidate(String bonusNumber, Lotto lotto) {
         int result = checkIntegerAndSpace(bonusNumber);
+        checkDuplicateWinningNumber(result, lotto);
         return result;
     }
 
@@ -65,5 +66,12 @@ public class Validate {
         }
     }
 
+    private static void checkDuplicateWinningNumber(int bonusNumber, Lotto lotto) {
+        for (int num : lotto.getNumbers()) {
+            if (bonusNumber == num) {
+                throw new LottoGameException(ExceptionEnum.CONTAIN_DUPLICATE_BONUS_NUMBER_EXCEPTION);
+            }
+        }
+    }
 
 }

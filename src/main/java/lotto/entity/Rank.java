@@ -44,7 +44,7 @@ public enum Rank {
 
     private static void validate(int number) {
         if (number < 0 || number > 5) {
-            throw new IllegalArgumentException("순위는 1등부터 4등이어야 합니다.");
+            throw new IllegalArgumentException("순위는 1등부터 5등이어야 합니다.");
         }
     }
 

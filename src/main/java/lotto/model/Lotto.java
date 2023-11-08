@@ -43,12 +43,12 @@ public class Lotto {
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {
-        if (isDuplicate(numbers)) {
+        if (hasDuplicate(numbers)) {
             throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER);
         }
     }
 
-    private boolean isDuplicate(List<Integer> numbers) {
+    private boolean hasDuplicate(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();
     }
 

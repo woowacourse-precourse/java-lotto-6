@@ -9,30 +9,30 @@ import static lotto.configuration.InputFormatConfig.LOTTO_PRICE;
 import static lotto.message.ErrorMessage.*;
 
 public class InputFormatValidator {
-    public static void validateMoneyFormat(String input) {
-        if (input.matches("[1-9][0-9]*")) {
+    public static void validateMoneyFormat(String purchaseAmountInput) {
+        if (purchaseAmountInput.matches("[1-9][0-9]*")) {
             return;
         }
 
         throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + INVALID_MONEY_INPUT_EXCEPTION);
     }
 
-    public static void validateMoneyIsMultipleOfLottoPrice(String input) {
-        if (TypeConverter.convertStringToInt(input) % LOTTO_PRICE == 0) {
+    public static void validateMoneyIsMultipleOfLottoPrice(String purchaseAmountInput) {
+        if (TypeConverter.convertStringToInt(purchaseAmountInput) % LOTTO_PRICE == 0) {
             return;
         }
 
         throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + INVALID_MONEY_INPUT_EXCEPTION);
     }
 
-    public static void validateWinningNumbers(String input) {
-        String[] winningNumbers = input.split(",");
+    public static void validateWinningNumbers(String winningNumbersInput) {
+        String[] winningNumbers = winningNumbersInput.split(",");
 
         validateNumberFormat(winningNumbers);
         validateCountOfNumbers(winningNumbers);
 
         List<Integer> convertedWinningNumbers
-                = FormatConverter.toIntegerListFromStringWithComma(input);
+                = FormatConverter.toIntegerListFromStringWithComma(winningNumbersInput);
 
         LottoNumberValidator.validateDuplicateNumbers(convertedWinningNumbers);
         LottoNumberValidator.validateNumberRange(convertedWinningNumbers);

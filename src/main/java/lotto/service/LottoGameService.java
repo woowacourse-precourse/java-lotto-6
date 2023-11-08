@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.lotto.Lottos;
 import lotto.domain.money.Money;
 
 public class LottoGameService {
@@ -19,5 +20,10 @@ public class LottoGameService {
             outputService.handleException(exception);
             return purchaseAmount();
         }
+    }
+
+    public Lottos makeLottos(Money money) {
+        int ticketCount = money.ticketCount();
+        return new Lottos(ticketCount);
     }
 }

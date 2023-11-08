@@ -4,8 +4,11 @@ import lotto.domain.*;
 import lotto.dto.LottoBundle;
 import lotto.dto.LottoResult;
 import lotto.service.LottoService;
+import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import static lotto.util.ExceptionHandler.*;
 
 public class LottoController {
 
@@ -30,14 +33,20 @@ public class LottoController {
     }
 
     private LottoBundle buyLottoBundle() {
-        LottoMoney money = inputView.getLottoMoney();
+        LottoMoney money = handle(inputView::getLottoMoney);
         return lottoService.buyLottoBundle(money);
     }
 
     private WinningLotto getAnswerLotto() {
-        Lotto answerLotto = inputView.getAnswerLotto();
-        BonusNumber bonusNumber = inputView.getBonusNumber(answerLotto);
+        Lotto answerLotto = handle(inputView::getAnswerLotto);
+        BonusNumber bonusNumber = handle(() -> getBonusNumber(answerLotto));
         return new WinningLotto(answerLotto, bonusNumber);
+    }
+
+    private BonusNumber getBonusNumber(Lotto answerLotto) {
+        BonusNumber bonusNumber = handle(inputView::getBonusNumber);
+        Validator.checkAlreadyContains(answerLotto, bonusNumber);
+        return bonusNumber;
     }
 
 }

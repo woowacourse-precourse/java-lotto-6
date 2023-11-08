@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMoney;
-import lotto.util.Validator;
 import lotto.util.converter.ConverterHolder;
 
 public class InputView {
@@ -16,36 +15,19 @@ public class InputView {
     public LottoMoney getLottoMoney() {
         System.out.println(LOTTO_MONEY_INPUT);
         String input = Console.readLine();
-        try {
-            return ConverterHolder.convert(input, LottoMoney.class);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getLottoMoney();
-        }
+        return ConverterHolder.convert(input, LottoMoney.class);
     }
 
     public Lotto getAnswerLotto() {
         System.out.println(ANSWER_LOTTO_INPUT);
         String input = Console.readLine();
-        try {
-            return ConverterHolder.convert(input, Lotto.class);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getAnswerLotto();
-        }
+        return ConverterHolder.convert(input, Lotto.class);
     }
 
-    public BonusNumber getBonusNumber(Lotto answerNumber) {
+    public BonusNumber getBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT);
         String input = Console.readLine();
-        try {
-            BonusNumber bonusNumber = ConverterHolder.convert(input, BonusNumber.class);
-            Validator.checkAlreadyContains(answerNumber, bonusNumber);
-            return bonusNumber;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getBonusNumber(answerNumber);
-        }
+        return ConverterHolder.convert(input, BonusNumber.class);
     }
 
 }

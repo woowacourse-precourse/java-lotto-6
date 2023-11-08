@@ -1,8 +1,9 @@
 package lotto.model;
 
-public class Validator {
-    private final String REGULAR_NUMBER = "\\d+";
+import lotto.constants.Constants;
+import lotto.constants.Message;
 
+public class Validator {
     public void validateCost(String cost, Integer lottoPrice) {
         if (notNumeric(cost)) {
             throw new IllegalArgumentException();
@@ -35,7 +36,7 @@ public class Validator {
     }
 
     private boolean notNumeric(String number) {
-        return !number.matches(REGULAR_NUMBER);
+        return !number.matches(Message.REGULAR_NUMBER);
     }
 
     private boolean outOfRange(String number, Integer start, Integer end) {

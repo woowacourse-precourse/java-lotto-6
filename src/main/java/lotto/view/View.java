@@ -1,23 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constants.Message;
 
 public class View {
-    private final String INPUT_COST_MESSAGE = "구입금액을 입력해주세요.";
-    private final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
-    private final String INPUT_ANSWER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private final String INPUT_BONUS_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private final String RESULT_MESSAGE = "당첨 통계";
-    private final String RETURN_RATE = "총 수익률은 ";
-    private final String PERCENT = "%입니다.";
-    private final String SEPARATOR = "---";
-    private final String LEFT_BRACKET = "[";
-    private final String RIGHT_BRACKET = "]";
-    private final String DELIMITER = ", ";
-    private final String ONE_DECIMAL_FORMAT = "%.1f";
-
     public String inputCost() {
-        System.out.println(INPUT_COST_MESSAGE);
+        System.out.println(Message.INPUT_COST);
 
         return Console.readLine();
     }
@@ -25,37 +13,37 @@ public class View {
     public void printLottoCount(Integer lottoCount) {
         System.out.println();
         System.out.print(lottoCount);
-        System.out.println(LOTTO_COUNT_MESSAGE);
+        System.out.println(Message.LOTTO_COUNT);
     }
 
     public void printLotto(String[] lottoString) {
-        System.out.print(LEFT_BRACKET);
-        System.out.print(String.join(DELIMITER, lottoString));
-        System.out.println(RIGHT_BRACKET);
+        System.out.print(Message.LEFT_BRACKET);
+        System.out.print(String.join(Message.DELIMITER, lottoString));
+        System.out.println(Message.RIGHT_BRACKET);
     }
 
     public String inputString() {
         System.out.println();
-        System.out.println(INPUT_ANSWER_MESSAGE);
+        System.out.println(Message.INPUT_ANSWER);
         return Console.readLine();
     }
 
     public String inputBonus() {
         System.out.println();
-        System.out.println(INPUT_BONUS_MESSAGE);
+        System.out.println(Message.INPUT_BONUS);
         return Console.readLine();
     }
 
     public void printResult(String resultMessage) {
         System.out.println();
-        System.out.println(RESULT_MESSAGE);
-        System.out.println(SEPARATOR);
+        System.out.println(Message.RESULT);
+        System.out.println(Message.SEPARATOR);
         System.out.print(resultMessage);
     }
 
     public void printReturnRate(Double returnRate) {
-        System.out.print(RETURN_RATE);
-        System.out.printf(ONE_DECIMAL_FORMAT, returnRate);
-        System.out.print(PERCENT);
+        System.out.print(Message.RETURN_RATE);
+        System.out.printf(Message.ONE_DECIMAL_FORMAT, returnRate);
+        System.out.print(Message.PERCENT);
     }
 }

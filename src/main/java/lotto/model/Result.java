@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constants.Message;
 import lotto.constants.Prize;
 
 import java.text.NumberFormat;
@@ -8,16 +9,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class Result {
-    private final String EMPTY = "";
-    private final String COUNT = "개";
-    private final String EQUAL = " 일치";
-    private final String BONUS = ", 보너스 볼 일치";
-    private final String LEFT_PARENTHESES = " (";
-    private final String RIGHT_PARENTHESES = ") ";
-    private final String HYPHEN = "- ";
-    private final String WON = "원";
-    private final String LINEBREAK = "\n";
-
     private final List<Integer> equalCount;
     private Integer bonusCount;
 
@@ -59,7 +50,7 @@ public class Result {
 
     private String resultLine(Prize prize) {
         if (prize.getPayout() == 0) {
-            return EMPTY;
+            return Message.EMPTY;
         }
         return buildLine(prize);
     }
@@ -68,16 +59,16 @@ public class Result {
         String line;
 
         line = matchMessage(prize) + payoutMessage(prize) + countMessage(prize);
-        return (line + LINEBREAK);
+        return (line + Message.LINEBREAK);
     }
 
     private String matchMessage(Prize prize) {
         String result;
         Integer match = prize.getMatch();
 
-        result = match + COUNT + EQUAL;
+        result = match + Message.COUNT + Message.EQUAL;
         if (prize == Prize.BONUS) {
-            result += BONUS;
+            result += Message.BONUS;
         }
         return result;
     }
@@ -86,13 +77,15 @@ public class Result {
         Integer payout = prize.getPayout();
         NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
 
-        return (LEFT_PARENTHESES + formatter.format(payout) + WON + RIGHT_PARENTHESES);
+        return (Message.LEFT_PARENTHESES
+                + formatter.format(payout)+ Message.WON
+                + Message.RIGHT_PARENTHESES);
     }
 
     private String countMessage(Prize prize) {
         Integer count = findCount(prize);
 
-        return (HYPHEN + count + COUNT);
+        return (Message.HYPHEN + count + Message.COUNT);
     }
 
     private Integer findCount(Prize prize) {

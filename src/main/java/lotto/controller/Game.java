@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constants.Constants;
 import lotto.model.Lotto;
 import lotto.model.Result;
 import lotto.model.Validator;
@@ -11,16 +12,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game {
-    private final Integer LOTTO_PRICE = 1000;
-    private final Integer START = 1;
-    private final Integer END = 45;
-    private final Integer NUMBER_COUNT = 6;
-
-    private final View message;
+    private final View view;
     private final Validator validator;
 
     public Game() {
-        this.message = new View();
+        this.view = new View();
         this.validator = new Validator();
     }
 
@@ -35,16 +31,16 @@ public class Game {
 
     private Integer buyLotto() {
         Integer lottoCount;
-        String cost = message.inputCost();
+        String cost = view.inputCost();
 
-        validator.validateCost(cost, LOTTO_PRICE);
+        validator.validateCost(cost, Constants.LOTTO_PRICE);
         lottoCount = countLotto(cost);
-        message.printLottoCount(lottoCount);
+        view.printLottoCount(lottoCount);
         return lottoCount;
     }
 
     private Integer countLotto(String cost) {
-        return (Integer.parseInt(cost) / LOTTO_PRICE);
+        return (Integer.parseInt(cost) / Constants.LOTTO_PRICE);
     }
 
     private List<Lotto> generateLottos(Integer lottoCount) {
@@ -64,8 +60,7 @@ public class Game {
     private List<Integer> pickNumbers() {
         List<Integer> numbers;
 
-        numbers = Randoms.pickUniqueNumbersInRange(START, END, NUMBER_COUNT);
-        Collections.sort(numbers);
+        numbers = Randoms.pickUniqueNumbersInRange(Constants.START, Constants.END, Constants.NUMBER_COUNT);
         return numbers;
     }
 
@@ -78,7 +73,7 @@ public class Game {
     private void showOneLotto(Lotto lotto) {
         String[] lottoNumbers = lotto.stringLotto();
 
-        message.printLotto(lottoNumbers);
+        view.printLotto(lottoNumbers);
     }
 
     private Lotto generateAnswer() {
@@ -92,7 +87,7 @@ public class Game {
     }
 
     private String[] inputNumbers() {
-        String numbers = message.inputString();
+        String numbers = view.inputString();
 
         return numbers.split(",");
     }
@@ -101,7 +96,7 @@ public class Game {
         List<Integer> result = new ArrayList<>();
 
         for (String number : numbers) {
-            validator.validateAnswer(number, START, END);
+            validator.validateAnswer(number, Constants.START, Constants.END);
             result.add(Integer.parseInt(number));
         }
         Collections.sort(result);
@@ -109,9 +104,9 @@ public class Game {
     }
 
     private Integer generateBonus() {
-        String bonus = message.inputBonus();
+        String bonus = view.inputBonus();
 
-        validator.validateBonus(bonus, START, END);
+        validator.validateBonus(bonus, Constants.START, Constants.END);
         return Integer.parseInt(bonus);
     }
 
@@ -123,13 +118,13 @@ public class Game {
     }
 
     private Result countResult(List<Lotto> lottos, Lotto answer, Integer bonus) {
-        Result result = new Result(NUMBER_COUNT);
+        Result result = new Result(Constants.NUMBER_COUNT);
         Integer count;
 
         for (Lotto lotto : lottos) {
             count = lotto.compareAnswer(answer);
             result.addResult(count);
-            if (count == NUMBER_COUNT - 1) {
+            if (count == Constants.NUMBER_COUNT - 1) {
                 bonusCheck(lotto, bonus, result);
             }
         }
@@ -138,20 +133,20 @@ public class Game {
 
     private void bonusCheck(Lotto lotto, Integer bonus, Result result) {
         if (lotto.compareBonus(bonus)) {
-            result.addBonus(NUMBER_COUNT);
+            result.addBonus(Constants.NUMBER_COUNT);
         }
     }
 
     private void showResult(Result result) {
         String resultMessage = result.generateResultMessage();
 
-        message.printResult(resultMessage);
+        view.printResult(resultMessage);
     }
 
     private void showReturnRate(Integer lottoCount, Result result) {
-        Integer cost = lottoCount * LOTTO_PRICE;
+        Integer cost = lottoCount * Constants.LOTTO_PRICE;
         Double returnRate = result.calculateReturnRate(cost);
 
-        message.printReturnRate(returnRate);
+        view.printReturnRate(returnRate);
     }
 }

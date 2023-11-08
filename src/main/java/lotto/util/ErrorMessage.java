@@ -10,7 +10,8 @@ public enum ErrorMessage {
     IS_NOT_LAST_INDEX("입력 형태를 확인해 주세요 [입력 예시 : 1,2,3,4,5,6]"),
     IS_NOT_LOTTO_SIZE("로또는 6개의 숫자가 필요합니다."),
     IS_NOT_LOTTO_NUMBER_RANGE("로또 번호는 1 ~ 45 사이의 숫자 이어야 합니다."),
-    IS_NOT_UNIQUE_LOTTO_NUMBER("로또 번호는 서로 중복될 수 없습니다.");
+    IS_NOT_UNIQUE_LOTTO_NUMBER("로또 번호는 서로 중복될 수 없습니다."),
+    IS_NOT_VALID("는 유효하지 않은 값입니다.");
 
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private final String message;

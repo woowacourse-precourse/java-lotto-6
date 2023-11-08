@@ -72,17 +72,17 @@ public class Validator {
         }
     }
 
-    private void check_LottoNumberInteger(List<String> input){
-        if(!isInteger(input)){
+    private void check_LottoNumberInteger(List<String> input) {
+        if (!isInteger(input)) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER.getMessage());
         }
     }
 
-    private boolean isInteger(List<String> input){
-        for(String num : input){
-            try{
+    private boolean isInteger(List<String> input) {
+        for (String num : input) {
+            try {
                 Integer.parseInt(num);
-            }catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 return false;
             }
         }

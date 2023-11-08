@@ -22,133 +22,135 @@ public class Game {
     private PrizeLotto prizeLotto;
 
 
-    public Game(){
+    public Game() {
         view = new View();
         validator = new Validator();
     }
 
-    public void play(){
+    public void play() {
         getMoney();
 
-        purchaseLotto(money/LOTTO_PRICE);
+        purchaseLotto(money / LOTTO_PRICE);
 
         getPrizeLotto();
 
         showResult();
     }
 
-    private void getMoney(){
+    //----------구입 금액 입력----------
+    private void getMoney() {
         money = Integer.parseInt(inputMoney());
     }
 
-    private String inputMoney(){
+    private String inputMoney() {
         view.request_InputMoney();
         return check_ValidationInputMoney(Console.readLine());
     }
 
-    private String check_ValidationInputMoney(String input){
-        try{
+    private String check_ValidationInputMoney(String input) {
+        try {
             validator.check_InputMoney(input);
             return input;
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             view.print_Exception(e.getMessage());
             return inputMoney();
         }
     }
 
-    private void purchaseLotto(int purchaseNumber){
+    //----------로또 생성----------
+    private void purchaseLotto(int purchaseNumber) {
         view.print_PurchasedLottoNumbers(purchaseNumber);
 
-        List<Lotto> createdLotto= new ArrayList<>();
-
-        for(int i=0;i<purchaseNumber;i++){
-            createdLotto.add(GameUtil.createLotto());
+        List<Lotto> newLotto = new ArrayList<>();
+        for (int i = 0; i < purchaseNumber; i++) {
+            newLotto.add(GameUtil.createLotto());
         }
-
-        purchasedLotto = createdLotto;
+        purchasedLotto = newLotto;
 
         view.print_purchasedLotto(purchasedLotto);
     }
 
-    private void getPrizeLotto(){
+    //----------당첨 번호 & 보너스 번호 입력----------
+    private void getPrizeLotto() {
         List<Integer> inputWinLotto = getIntegerWinLotto(inputWinLotto());
 
         Lotto winLotto = new Lotto(inputWinLotto);
 
         int bonusNum = getBonusNum();
 
-        prizeLotto = new PrizeLotto(winLotto,bonusNum);
+        prizeLotto = new PrizeLotto(winLotto, bonusNum);
     }
 
-    private List<Integer> getIntegerWinLotto(String input){
+    private List<Integer> getIntegerWinLotto(String input) {
         List<String> winLotto = GameUtil.converseStringToStringList(input);
 
         return GameUtil.converseStringListToIntegerList(winLotto);
     }
 
-    private String inputWinLotto(){
+    private String inputWinLotto() {
         view.request_InputWinLottoNumbers();
 
         return check_ValidationInputWinLotto(Console.readLine());
     }
 
-    private String check_ValidationInputWinLotto(String input){
-        try{
+    private String check_ValidationInputWinLotto(String input) {
+        try {
             validator.check_InputWinLotto(input);
             return input;
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             view.print_Exception(e.getMessage());
             return inputWinLotto();
         }
     }
 
-    private int getBonusNum(){
+    private int getBonusNum() {
         return Integer.parseInt(inputBonusNum());
     }
 
-    private String inputBonusNum(){
+    private String inputBonusNum() {
         view.request_InputBonusNumbers();
 
         return check_ValidationInputBonusNum(Console.readLine());
     }
 
-    private String check_ValidationInputBonusNum(String input){
-        try{
+    private String check_ValidationInputBonusNum(String input) {
+        try {
             validator.check_BonusNum(input);
             return input;
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             view.print_Exception(e.getMessage());
             return inputBonusNum();
         }
     }
 
-    private void showResult(){
+    //----------결과 출력----------
+    private void showResult() {
         List<Rank> rankList = createRankList();
         HashMap<Rank, Integer> rankIntegerHashMap = getRankIntegerHashMap(rankList);
-        GameUtil.printHittingResult(rankIntegerHashMap);
+        view.printHittingResult(rankIntegerHashMap);
 
         int totalHitMOney = caculateTotalHitMoney(rankIntegerHashMap);
-        GameUtil.printProfitResult(totalHitMOney,money);
+        view.printProfitResult(totalHitMOney, money);
     }
 
-    private List<Rank> createRankList(){
+    private List<Rank> createRankList() {
         List<Rank> rankList = new ArrayList<>();
         purchasedLotto.forEach(lotto -> rankList.add(prizeLotto.match(lotto)));
         return rankList;
     }
 
-    private HashMap<Rank, Integer> getRankIntegerHashMap(List<Rank> rankList){
+    private HashMap<Rank, Integer> getRankIntegerHashMap(List<Rank> rankList) {
         HashMap<Rank, Integer> rankIntegerHashMap = new LinkedHashMap<>();
-        calculateLottoHit(rankList,rankIntegerHashMap);
+        calculateLottoHit(rankList, rankIntegerHashMap);
         return rankIntegerHashMap;
     }
 
-    private void calculateLottoHit(List<Rank> rankList, HashMap<Rank, Integer> rankIntegerHashMap){
+    private void calculateLottoHit(List<Rank> rankList, HashMap<Rank, Integer> rankIntegerHashMap) {
         Arrays.stream(Rank.values()).forEach(rank -> rankIntegerHashMap.put(rank, 0));
-        rankList.forEach(rank -> rankIntegerHashMap.put(rank, rankIntegerHashMap.get(rank)+1));
+        rankList.forEach(rank -> rankIntegerHashMap.put(rank, rankIntegerHashMap.get(rank) + 1));
     }
 
-    private int caculateTotalHitMoney(HashMap<Rank, Integer> rankIntegerHashMap){
+    private int caculateTotalHitMoney(HashMap<Rank, Integer> rankIntegerHashMap) {
         return rankIntegerHashMap.entrySet().stream()
                 .mapToInt(e -> e.getKey().getWinningMoney() * e.getValue()).sum();
     }

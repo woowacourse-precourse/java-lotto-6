@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.util.ErrorMessage;
+
 import java.text.DecimalFormat;
 
 public enum Rank {
@@ -49,18 +51,10 @@ public enum Rank {
             }
         }
 
-        throw new IllegalArgumentException(countOfMatch + "는 유효하지 않은 값입니다.");
+        throw new IllegalArgumentException(countOfMatch + ErrorMessage.IS_NOT_VALID.getMessage());
     }
 
-    public void printResult(int totalCount){
-        System.out.print(countOfMatch + "개 일치");
-        if(winningMoney == 30000000){
-            System.out.print(", 보너스 볼 일치");
-        }
-        System.out.println(" (" + formatter.format(winningMoney) + "원) - " + totalCount + "개");
-    }
-
-    private boolean matchCount(int countOfMatch){
+    private boolean matchCount(int countOfMatch) {
         return this.countOfMatch == countOfMatch;
     }
 }

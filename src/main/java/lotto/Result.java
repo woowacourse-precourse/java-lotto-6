@@ -18,7 +18,13 @@ public class Result {
         result.put(resultCase, matchLotto);
     }
 
-    public int getWinningPrice() {
+    public double getCalculateRateOfReturn(int buyingPrice) {
+        double rateOfReturn = ((double) getWinningPrice() / buyingPrice) * 100;
+        double refinedRateOfReturn = (double) Math.round(rateOfReturn * Math.pow(10, 2)) / Math.pow(10, 2);
+        return refinedRateOfReturn;
+    }
+
+    private int getWinningPrice() {
         int winningPrice = 0;
         for (Map.Entry<ResultCase, Integer> entry : result.entrySet()) {
             ResultCase resultCase = entry.getKey();

@@ -107,9 +107,7 @@ public class Game {
     }
 
     private double calculateRateOfReturn() {
-        double rateOfReturn = ((double) result.getWinningPrice() / buyingPrice.getPrice()) * 100;
-        double refinedRateOfReturn = (double) Math.round(rateOfReturn * Math.pow(10, 2)) / Math.pow(10, 2);
-        return refinedRateOfReturn;
+        return result.getCalculateRateOfReturn(buyingPrice.getPrice());
     }
 
     private void saveValue(String informComment, Input input) {

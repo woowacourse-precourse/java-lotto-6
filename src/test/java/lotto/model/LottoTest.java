@@ -38,7 +38,7 @@ class LottoTest {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         // when
-        String selectedNumbers = lotto.getSelectedNumbers();
+        String selectedNumbers = lotto.writePurchasedLotto();
         // then
         Assertions.assertThat(selectedNumbers).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }

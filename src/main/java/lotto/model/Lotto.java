@@ -1,15 +1,13 @@
 package lotto.model;
 
-import static lotto.constants.LottoConstants.NUMBER_OF_LOTTOS;
+import static lotto.constants.LottoConstants.NUMBER_OF_LOTTO_NUMBERS;
 
 import java.util.List;
 import lotto.constants.LottoConstants;
+import lotto.converter.MessageConverter;
 import lotto.model.dto.WinningNumDTO;
 
 public class Lotto {
-    private static final String START_TAG = "[";
-    private static final String SEPARATOR = ", ";
-    private static final String END_TAG = "]";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -18,7 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != NUMBER_OF_LOTTOS) {
+        if (numbers.size() != NUMBER_OF_LOTTO_NUMBERS) {
             throw new IllegalArgumentException();
         }
         if (isDuplicated(numbers)) {
@@ -30,13 +28,8 @@ public class Lotto {
         return numbers.stream().distinct().count() < numbers.size();
     }
 
-    public String getSelectedNumbers() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(START_TAG);
-        List<String> nums_str = numbers.stream().map(String::valueOf).toList();
-        sb.append(String.join(SEPARATOR, nums_str));
-        sb.append(END_TAG);
-        return sb.toString();
+    public String writePurchasedLotto() {
+        return MessageConverter.writePurchasedLotto(numbers);
     }
 
     public Ranking checkResult(WinningNumDTO winningNumDTO) {

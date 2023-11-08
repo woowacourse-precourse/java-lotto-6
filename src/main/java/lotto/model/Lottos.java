@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.converter.MessageConverter;
 import lotto.model.dto.WinningNumDTO;
 
 public class Lottos {
@@ -13,11 +14,8 @@ public class Lottos {
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
-
-    public String getPurchasedLottos() {
-        StringBuilder sb = new StringBuilder();
-        lottos.forEach(lotto -> sb.append(lotto.getSelectedNumbers()).append("\n"));
-        return sb.toString();
+    public String writePurchasedLottos() {
+        return MessageConverter.writePurchasedLottos(lottos);
     }
 
     public Result checkResult(WinningNumDTO winningNumDTO) {

@@ -20,7 +20,6 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private final Lottos lottos;
-    private final MessageConverter messageConverter;
 
     public LottoController() {
         List<Lotto> newLottos = buyLottos();
@@ -39,10 +38,9 @@ public class LottoController {
     }
 
     public void checkPurchasedLottos() {
-        String response = messageConverter.writePurchasedLottos(lottos);
-        String resultOfPurchasedLottos = lottos.getPurchasedLottos();
         int numberOfLotto = lottos.getNumberOfLotto();
-        OutputView.printPurchasedLottos(numberOfLotto, resultOfPurchasedLottos);
+        String purchasedLottos = lottos.writePurchasedLottos();
+        OutputView.printPurchasedLottos(numberOfLotto, purchasedLottos);
     }
 
     public void checkResult() {

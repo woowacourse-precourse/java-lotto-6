@@ -5,6 +5,7 @@ public enum ErrorMessage {
 	INVALID_LOTTO_NUMBER("로또 번호는 1부터 45사이의 숫자여야 합니다."),
 	INVALID_AMOUNT("금액은 1000원 단위로 설정해야 합니다."),
 	INVALID_MONEY("금액은 음수가 될 수 없습니다."),
+	UNAFFORDABLE_STATUS("금액이 작아 로또를 살 수 없습니다."),
 	STRING_NOT_ALLOWED("숫자만 입력 가능합니다."),
 	WINNING_NUMBERS_FORMAT("당첨 번호는 쉼표(,)로 구분된 숫자 조합여야합니다."),
 	INVALID_WINNING_NUMBERS_SIZE("당첨 번호는 6개의 숫자여야 합니다."),

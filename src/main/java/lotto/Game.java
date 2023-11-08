@@ -54,6 +54,13 @@ public class Game {
         }
     }
 
+    private double result(){
+        double res_result=0;
+        checkLotto();
+        res_result = (correct[0]*5000)+(correct[1]*50000)+(correct[2]*1500000)+(correct[3]*30000000)+(correct[4]*2000000000);
+        return res_result;
+    }
+
     public void DoIt(){
         start();
         generate();

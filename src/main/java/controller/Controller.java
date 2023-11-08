@@ -20,6 +20,7 @@ public class Controller {
     public void run() {
         setupLottoGame();
         playLottoGame();
+        showLottoGameResult();
     }
 
     private void setupLottoGame() {
@@ -64,4 +65,7 @@ public class Controller {
         lottoResult = lottoGame.checkYourLottoNumbers(lottoMachine, buyer);
     }
 
+    private void showLottoGameResult() {
+        OutputView.printLottoResult(lottoResult);
+    }
 }

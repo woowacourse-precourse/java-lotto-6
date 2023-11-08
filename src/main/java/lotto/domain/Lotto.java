@@ -9,8 +9,23 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        isUniqueNumber(numbers);
         numbers = sortNumbers(numbers);
         this.numbers = numbers;
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isUniqueNumber(List<Integer> numbers) {
+        long uniqueCount = numbers.stream().distinct().count();
+        if (uniqueCount != (long) (numbers.size())) {
+            throw new IllegalArgumentException("고유한 숫자만 입력 가능");
+        }
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

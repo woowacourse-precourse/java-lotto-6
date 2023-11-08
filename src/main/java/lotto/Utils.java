@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Utils {
-
     public static List<Integer> convertStringToIntegerList(String source, String delimiter) {
         return convertListStringToListInteger(splitStringAsList(source, delimiter));
     }

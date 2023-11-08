@@ -1,8 +1,10 @@
 package lotto.model;
 
+import static lotto.model.Lotto.LOTTO_MAX_NUMBER;
+import static lotto.model.Lotto.LOTTO_MIN_NUMBER;
+import static lotto.model.Lotto.LOTTO_SIZE;
+
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -15,11 +17,9 @@ public class LottoSalesOffice {
     }
 
     private Lotto generate() {
-        List<Integer> RandomNums = new ArrayList<>(
-                Randoms.pickUniqueNumbersInRange(Lotto.LOTTO_MIN_NUMBER, Lotto.LOTTO_MAX_NUMBER, Lotto.LOTTO_SIZE)
-        );
+        List<Integer> randomNums =
+                Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
 
-        Collections.sort(RandomNums);
-        return new Lotto(RandomNums);
+        return new Lotto(randomNums.stream().sorted().toList());
     }
 }

@@ -199,6 +199,14 @@
     * int matchNumbers - 일치하는 번호의 갯수
     * boolean isBonusMatch - 보너스 번호와 일치하는지 여부
 
+#### LottoStatistic
+
+* 책임:
+    * 당첨 목록을 통계로 저장한다.
+* 필드:
+    * Map<LottoResult, Integer> - 당첨 결과와 그 갯수
+    * 
+
 ### 📁 Repository Layer
 
 * DB 저장 등의 기능이 필요하지 않으므로 구현하지 않는다.

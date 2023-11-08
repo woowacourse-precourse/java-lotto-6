@@ -1,57 +1,23 @@
-package lotto;
+package lotto.global;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
+import lotto.Rank;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Global {
-    private List<Lotto> issuedLottos;
+public class Statistics {
     private HashMap<Rank, Integer>  rankStatistics;
 
-    public Global() {
-        this.issuedLottos = new ArrayList<>();
+    public Statistics() {
         this.rankStatistics = new HashMap<>();
-    }
-
-    public void setIssuedLottos(List<Lotto> issuedLottos) {
-        this.issuedLottos = issuedLottos;
     }
 
     public void setRankStatistics(HashMap<Rank, Integer> rankStatistics) {
         this.rankStatistics = rankStatistics;
     }
 
-    public int getLottoCount(int money) {
-        return money / 1000;
-    }
-
-    public List<Lotto> getIssuedLottos(int lottoCount) {
-        for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = getRandomNumber();
-            Collections.sort(lottoNumbers);
-            Lotto lotto = new Lotto(lottoNumbers);
-            issuedLottos.add(lotto);
-        }
-        return issuedLottos;
-    }
-
-    private List<Integer> getRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    }
-
-    public void printIssuedLottoCountAndNumbers() {
-        int lottoCount = issuedLottos.size();
-        System.out.println("\n" + lottoCount + "개를 구매했습니다.");
-
-        for (Lotto lotto : issuedLottos) {
-            lotto.printLottoNumbers();
-        }
-    }
-
-    public HashMap<Rank, Integer> calculateRanking(List<Integer> winningLotto) {
+    public HashMap<Rank, Integer> calculateRanking(List<Integer> winningLotto, List<Lotto> issuedLottos) {
         initRankStatistics();
         for (Lotto lotto : issuedLottos) {
             Rank rank = lotto.compareWithWinningNumbers(winningLotto);

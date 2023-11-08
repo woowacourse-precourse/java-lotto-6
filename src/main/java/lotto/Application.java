@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.text.DecimalFormat;
 
 public class Application {
     public static void main(String[] args) {
@@ -39,6 +40,8 @@ public class Application {
         printStatistics(winningResults);
 
         long winnings = calculateWinnings(winningResults);
+
+        calculateProfit(lottoCnt*1000, winnings);
     }
 
     private static int getInputFir() {
@@ -224,12 +227,18 @@ public class Application {
     private static long calculateWinnings(int[] winningResults){
         long tempMoney = 0;
 
-        tempMoney += 5000 * winningResults[4];
-        tempMoney += 50000 * winningResults[3];
-        tempMoney += 1500000 * winningResults[2];
-        tempMoney += 30000000 * winningResults[1];
-        tempMoney += 2000000000 * winningResults[0];
+        tempMoney += (long) 5000 * winningResults[4];
+        tempMoney += (long) 50000 * winningResults[3];
+        tempMoney += (long) 1500000 * winningResults[2];
+        tempMoney += (long) 30000000 * winningResults[1];
+        tempMoney += (long) 2000000000 * winningResults[0];
 
         return tempMoney;
+    }
+
+    private static void calculateProfit(long income, long outcome){
+        double returnRate = Math.round((double)(outcome*100)/income);
+
+        System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }
 }

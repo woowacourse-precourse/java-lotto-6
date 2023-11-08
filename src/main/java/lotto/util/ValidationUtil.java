@@ -39,14 +39,14 @@ public class ValidationUtil {
 
     private void validateAmount(int number) throws ArithmeticException {
         if (number == ZERO) {
-            throwDivisionExceptionMessage(ExceptionMessage.IS_NOT_ZERO.getMessage());
+            throwAriExceptionMessage(ExceptionMessage.IS_NOT_ZERO.getMessage());
         }
     }
 
     private int validateDivision(String input) throws ArithmeticException {
         int purchase = Integer.parseInt(input);
         if (purchase % PURCHASE_AMOUNT_COND.getNumber() != ZERO) {
-            throwDivisionExceptionMessage(ExceptionMessage.PURCHASE_ERROR.getMessage());
+            throwAriExceptionMessage(ExceptionMessage.PURCHASE_ERROR.getMessage());
         }
         return purchase;
     }
@@ -90,11 +90,11 @@ public class ValidationUtil {
                 .anyMatch(s -> s == null || s.trim().isEmpty() || s.contains(" "));
 
         if (hasBlank) {
-            throwNumFormatExceptionMessage(ExceptionMessage.NUMBER_BLANK.getMessage());
+            throwArgExceptionMessage(ExceptionMessage.NUMBER_BLANK.getMessage());
         }
     }
 
-    private void validateDuplicate(List<String> inputNums) throws IllegalArgumentException {
+    private void validateDuplicate(List<String> inputNums) throws IllegalStateException {
         if (inputNums.stream().distinct().count() != MAX_COUNT.getNumber()) {
             throwStateExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
         }
@@ -149,7 +149,7 @@ public class ValidationUtil {
         throw new NumberFormatException(errorMessage);
     }
 
-    private void throwDivisionExceptionMessage(String errorMessage) {
+    private void throwAriExceptionMessage(String errorMessage) {
         throw new ArithmeticException(errorMessage);
     }
 

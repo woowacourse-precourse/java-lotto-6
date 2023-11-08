@@ -21,6 +21,11 @@ public class ConsoleInputView implements InputView {
                 .toList();
     }
 
+    @Override
+    public int enterBonusLottoNumber() {
+        return parseInt(readLine());
+    }
+
     private Integer parseInt(String text) {
         try {
             return Integer.parseInt(text);

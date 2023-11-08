@@ -169,13 +169,13 @@ BUILD SUCCESSFUL in 0s
 
 ### 추가된 요구 사항
 
-- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
     - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
-- else 예약어를 쓰지 않는다.
+- [x] else 예약어를 쓰지 않는다.
     - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
     - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
-- Java Enum을 적용한다.
-- 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [x] Java Enum을 적용한다.
+- [x] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
     - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다. 
     - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
 
@@ -227,3 +227,36 @@ public class Lotto {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+
+## 구현할 기능 정리
+
+### 입력
+- [x] 로또 구입 금액을 입력받는다. InputView#getLottoPrice
+  - [x] 금액은 1000원 이상이어야 한다. Validator#LottoPrice
+  - [x] 1000원 단위로 입력받아야 한다. Validator#LottoPrice
+  - [x] 위의 형식이 지켜지지 않을 경우 CustomException
+
+### 핵심
+- [x] 로또 구입 금액/1000 만큼 로또 번호를 생성한다. LottoNumberCreator#createLottoTickets(int numberForGenerateLottos)
+- [x] 당첨번호와 보너스 번호를 입력받는다. WinningNumber, BonusNumber
+  - [x] 번호는 1-45 사이이다. WinningNumber#validate, BonusNumber#validateIsCorrectNumberFormat, BonusNumber#validateIsCorrectNumberRange
+  - [x] 위의 형식이 지켜지지 않을 경우 CustomException
+
+- [x] 로또를 순회하며 각 회차당, MainController#checkResult
+  - [x] 당첨 번호와 3개가 일치하면 5등, 5000 MainController#checkWhoIs5
+  - [x] 당첨 번호와 4개가 일치하면 4등, 50,000 MainController#checkWhoIs4
+  - [x] 당첨 번호와 5개가 일치하면 3등, 1,500,000 MainController#checkWhoIs3
+  - [x] 당첨 번호와 5개가 일치 +  보너스 번호 일치 2등, 30,000,000 MainController#checkWhoIs2
+  - [x] 당첨 번호와 6개가 일치 1등, 2,000,000,000 MainController#checkWhoIs1
+
+- [x] Winners에 따라 수익률을 계산한다. MainController#checkProfit
+
+### 출력
+- [x] Winners 결과를 각 등수마다 출력한다. 
+  - OutputView#printLotteryStatisticsFor_1
+  - OutputView#printLotteryStatisticsFor_2
+  - OutputView#printLotteryStatisticsFor_3
+  - OutputView#printLotteryStatisticsFor_4
+  - OutputView#printLotteryStatisticsFor_5
+- [x] 수익률을 출력한다. OutputView#printTotalProfitPercentage

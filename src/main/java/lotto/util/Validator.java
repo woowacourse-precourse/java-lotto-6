@@ -31,7 +31,6 @@ public class Validator {
     }
 
     public static Boolean hasDuplicatedNumber(List<Integer> lottoNumberList) {
-
         Set<Integer> numberSet = lottoNumberList.stream().collect(Collectors.toSet());
         if(numberSet.size() != lottoNumberList.size())
             return true;

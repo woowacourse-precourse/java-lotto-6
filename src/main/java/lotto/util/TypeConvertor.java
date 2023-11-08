@@ -8,7 +8,6 @@ import static lotto.util.Validator.*;
 
 public class TypeConvertor {
     public static List<Integer> stringToIntegerList(String string) {
-
         List<Integer> lottoNumberList = null;
         try {
             lottoNumberList = Arrays.stream(string.strip().split(","))
@@ -24,7 +23,6 @@ public class TypeConvertor {
     }
 
     public static Integer stringToInteger(String string) {
-
         validateStringMoney(string);
 
         Integer money = Integer.parseInt(string);

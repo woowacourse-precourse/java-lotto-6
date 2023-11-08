@@ -16,7 +16,6 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
     private static final String ERROR_TAG = "[ERROR] ";
     public void play() {
-
         Integer money = getMoneyFromUser();
         List<Lotto> boughtLotto = lottoService.buyLotto(money);
 
@@ -28,7 +27,6 @@ public class LottoController {
 
         LottoResult lottoResult = lottoService.matchResult(user, boughtLotto);
         showResult(lottoResult, user);
-
     }
 
     public Integer getMoneyFromUser() {
@@ -49,7 +47,6 @@ public class LottoController {
     private List<Integer> getLottoNumbersFromUser() {
         boolean isDoneToValidateInput = false;
         List<Integer> lottoNumberList = null;
-
         while (!isDoneToValidateInput) {
             String NumberString = Prompt.forInputLottoNumbers();
             try {
@@ -58,7 +55,6 @@ public class LottoController {
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_TAG + e.getMessage());
             }
-
         }
         return lottoNumberList;
     }

@@ -14,15 +14,12 @@ public class LottoService {
     private final int COUNT_NUMBER = 6;
 
     public List<Lotto> buyLotto(Integer money) {
-
         int lottoCount = money / 1000;
-
         List<Lotto> boughtLotto = new ArrayList<>();
         while (lottoCount > 0){
             boughtLotto.add(new Lotto(getRandomLottoNumbers()));
             lottoCount--;
         }
-
         return boughtLotto;
     }
 
@@ -40,27 +37,15 @@ public class LottoService {
 
     private LottoResult matchLottoNumber(List<Integer> inputLottoNumber, List<Lotto> boughtLottoList, Integer bonusNumber) {
         LottoResult lottoResult = new LottoResult();
-
         for (Lotto boughtLotto : boughtLottoList) {
-            List<Integer> numbers = boughtLotto.getNumbers();
-            int matchCount = getMatchCount(inputLottoNumber, numbers);
-            Boolean matched = matchBonusNumber(bonusNumber, numbers);
+            int matchCount = getMatchCount(inputLottoNumber, boughtLotto.getNumbers());
+            Boolean matched = matchBonusNumber(bonusNumber, boughtLotto.getNumbers());
 
-            if (matchCount == 3) {
-                lottoResult.plusOne_3Correction();
-            }
-            if (matchCount == 4) {
-                lottoResult.plusOne_4Correction();
-            }
-            if (matchCount == 5 && matched == false) {
-                lottoResult.plusOne_5Correction();
-            }
-            if (matchCount == 6) {
-                lottoResult.plusOne_6Correction();
-            }
-            if (matchCount == 5 && matched == true) {
-                lottoResult.plusOne_5CorrectionAndBonus();
-            }
+            if (matchCount == 3) lottoResult.plusOne_3Correction();
+            if (matchCount == 4) lottoResult.plusOne_4Correction();
+            if (matchCount == 5 && matched == false) lottoResult.plusOne_5Correction();
+            if (matchCount == 6) lottoResult.plusOne_6Correction();
+            if (matchCount == 5 && matched == true) lottoResult.plusOne_5CorrectionAndBonus();
         }
         return lottoResult;
     }

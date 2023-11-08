@@ -30,4 +30,11 @@ public class Parser {
         }
         return Integer.parseInt(arg);
     }
+
+    /**
+     * Description: Parse comma separated String to List&lt;Integer&gt;<br> ex) "1,2,3,4,5,6" -&gt; [1, 2, 3, 4, 5, 6]
+     */
+    public static List<Integer> parseCommaStringToIntList(String arg) {
+        return parseStringArrToIntList(Arrays.stream(arg.split(",")).toArray(String[]::new));
+    }
 }

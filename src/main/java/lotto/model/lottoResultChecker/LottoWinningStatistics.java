@@ -10,7 +10,9 @@ public class LottoWinningStatistics {
     public LottoWinningStatistics() {
         this.rankChecker = new LottoRankChecker();
     }
-
+    public LottoWinningStatistics(LottoRankChecker rankChecker) {
+        this.rankChecker = rankChecker;
+    }
     public Map<LottoRank, Integer> calculateStatistics(List<Lotto> lottos, Lotto winningLotto, LottoBonus bonus) {
         LottoMatchingData matchingData = new LottoMatchingData();
 

@@ -17,8 +17,8 @@
 1) 로또 구입 금액을 입력 한다. 
 2) 금액에 맞게 로또가 발행 된다. 
 3) 당첨 번호와 보너스 번호를 입력 한다.
-5) 당첨 결과를 확인해 당첨 통계를 출력해 준다.
-6) 최종 수익률을 출력해 준다.
+4) 당첨 결과를 확인해 당첨 통계를 출력해 준다.
+5) 최종 수익률을 출력해 준다.
 
 ## 요구사항
 
@@ -41,14 +41,14 @@
 
 ### 구현,사용
 - [o] Java 코드 컨벤션 가이드를 준수하며 프로그래밍한다. 
-- [ ] 커밋 메시지 컨벤션 가이드를 참고해 커밋 메시지를 작성한다.
+- [o] 커밋 메시지 컨벤션 가이드를 참고해 커밋 메시지를 작성한다.
 - [o] 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
 - [o] camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console API를 사용하여 구현해야 한다.
 - [o] Java Enum을 적용한다
 - [o] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다
 - [o] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
-- [ ] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
-- [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [o] JUnit 5와 AssertJ를 이용하여 본인이 정리한 기능 목록이 정상 동작함을 테스트 코드로 확인한다.
+- [o] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
 
 ### 입력
 - [o] 첫번째 입력 : 로또 구입 금액을 입력 받는다 (구입 금액은 1,000원 단위로 입력 받는다)
@@ -127,4 +127,4 @@
 - [o] LottoRankCheckerTest
 - [o] LottoReturnsCalculatorTest
 - [o] LottoTotalWinningsTest
-- [ ] LottoWinningStatisticsTest 
+- [o] LottoWinningStatisticsTest 

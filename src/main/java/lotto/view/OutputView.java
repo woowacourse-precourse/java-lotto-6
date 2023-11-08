@@ -22,11 +22,13 @@ public class OutputView {
     }
 
     public static void printTicketCount(int ticketCount) {
+        System.out.println();
         System.out.println(ticketCount + TICKET_COUNT);
     }
 
     public static void printLottoList(Lottos lottos) {
         lottos.getLottos().forEach(System.out::println);
+        System.out.println();
     }
 
     public static void printWinningNumber() {
@@ -35,10 +37,6 @@ public class OutputView {
 
     public static void printBonusNumber() {
         System.out.println(REQUEST_BONUS_NUMBERS);
-    }
-
-    public static void printBlankLine() {
-        System.out.println();
     }
 
     public static void printStatistics(Prize prize, ProfitRate profitRate) {

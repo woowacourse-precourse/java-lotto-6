@@ -32,8 +32,6 @@ public class RandomLottos {
         List<Integer> numbers = pickUniqueNumbersInRange(LOTTONUMBERSTART.getIntValue(), LOTTONUMBEREND.getIntValue(),
                 NUMBERSPERLOTTO.getIntValue());
         List<Integer> lottoNumbers = new ArrayList<>(numbers);
-        System.out.println(lottoNumbers.toString());
-        lottoNumbers.sort(Comparator.naturalOrder());
         Lotto lotto = new Lotto(lottoNumbers);
         return lotto;
     }

@@ -8,13 +8,15 @@ import static lotto.constant.Numbers.LOTTONUMBEREND;
 import static lotto.constant.Numbers.LOTTONUMBERSTART;
 import static lotto.constant.Numbers.NUMBERSPERLOTTO;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validate(numbers); //sort 여기서
+        numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
 

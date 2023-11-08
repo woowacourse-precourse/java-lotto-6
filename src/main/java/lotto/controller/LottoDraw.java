@@ -43,7 +43,6 @@ public class LottoDraw {
     }
 
     private void payLottoAmount() {
-        // 로또 구입 금액을 입력
         OutputView.printConstantMessage(PAY_MONEY);
         String pay = InputView.requestPayMoney();
 
@@ -57,7 +56,6 @@ public class LottoDraw {
     }
 
     private void issueLotto() {
-        // 로또 발행
         numOfLotto = customer.getMoney() / LOTTO_PRICE.getNumber();
         OutputView.printBuyLotto(BUY_LOTTO, numOfLotto);
 
@@ -68,7 +66,6 @@ public class LottoDraw {
     }
 
     private void inputBonusNumber() {
-        // 보너스 번호 입력
         try {
             OutputView.printConstantMessage(BONUS_NUMBER);
             String _input = InputView.requestBonusNumber();
@@ -82,7 +79,6 @@ public class LottoDraw {
 
     private void inputWinningNumber() {
         try {
-            // 당첨 번호 입력
             OutputView.printConstantMessage(WINNING_NUMBER);
             String _winningNumber = InputView.requestWinningNumber();
 

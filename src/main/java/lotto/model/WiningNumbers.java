@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class WiningNumbers {
 
-    private Lotto numbers;
-    private Bonus bonus;
+    private final Lotto numbers;
+    private final Bonus bonus;
 
     public WiningNumbers(final Lotto numbers, final Bonus bonus) {
         this.numbers = numbers;

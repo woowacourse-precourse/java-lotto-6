@@ -8,7 +8,7 @@ import lotto.exception.ClientException;
 
 public class Bonus {
 
-    private int bonus;
+    private final int bonus;
 
     public Bonus(final int bonus) {
         validateRange(bonus);

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.utils.Constants.LOTTO_PRICE;
+
 import lotto.validation.ModelValidation;
 
 public class LottoMoney {

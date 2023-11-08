@@ -1,9 +1,12 @@
 package lotto.view;
 
+import lotto.LottoWinningCase;
 import lotto.domain.Lotto;
 
 import java.util.List;
 import java.util.Map;
+
+import static lotto.LottoWinningCase.*;
 
 public class OutputView {
 
@@ -31,14 +34,15 @@ public class OutputView {
         }
     }
 
-    public static void printWinningStatistics(Map<> winningResult) {
+    public static void printWinningStatistics(Map<LottoWinningCase, Integer> winStatisticMap, String incomeRate) {
         System.out.println(WINNING_STATISTICS);
         System.out.println(DIVIDED_LINE);
-        System.out.println(THREE_MATCHES + HYPHEN + COUNT_UNIT);
-        System.out.println(FOUR_MATCHES + HYPHEN + COUNT_UNIT);
-        System.out.println(FIVE_MATCHES + HYPHEN + COUNT_UNIT);
-        System.out.println(FIVE_AND_BONUS_MATCHES + HYPHEN + COUNT_UNIT);
-        System.out.println(SIX_MATCHES + HYPHEN + COUNT_UNIT);
+        System.out.println(THREE_MATCHES + HYPHEN + winStatisticMap.get(FIFTH_PLACE) + COUNT_UNIT);
+        System.out.println(FOUR_MATCHES + HYPHEN + winStatisticMap.get(FOURTH_PLACE) + COUNT_UNIT);
+        System.out.println(FIVE_MATCHES + HYPHEN + winStatisticMap.get(THRID_PLACE) + COUNT_UNIT);
+        System.out.println(FIVE_AND_BONUS_MATCHES + HYPHEN + winStatisticMap.get(SECONND_PLACE) + COUNT_UNIT);
+        System.out.println(SIX_MATCHES + HYPHEN + winStatisticMap.get(FIRST_PLACE) + COUNT_UNIT);
+        printIncomeRate(incomeRate);
     }
 
     public static void printIncomeRate(String incomeRate) {

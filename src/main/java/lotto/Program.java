@@ -3,17 +3,18 @@ package lotto;
 import lotto.validator.InputValidator;
 
 public class Program {
-    private Customer customer = new Customer();
     private LottoTerminal lottoTerminal = new LottoTerminal();
+    private Customer customer = new Customer(lottoTerminal);
     private InputValidator inputValidator = new InputValidator();
 
     private long purchaseAmount;
 
     public void start() {
-        payMoney();
+        processPayment();
+        lottoTerminal.LottoIssuance();
     }
 
-    private void payMoney() {
+    private void processPayment() {
         boolean isValidAmount = false;
 
         while (!isValidAmount) {

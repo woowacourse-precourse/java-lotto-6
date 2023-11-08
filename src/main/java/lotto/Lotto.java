@@ -6,15 +6,32 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumbersSize(numbers);
+        validateNumbersDuplication(numbers);
+        validateNumbersRange(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validateNumbersSize(List<Integer> numbers) {
+        new Exception().validateNumbersSize(numbers);
+    }
+
+    private void validateNumbersDuplication(List<Integer> numbers) {
+        new Exception().validateDuplicateNumber(numbers);
+    }
+
+    private void validateNumbersRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            new Exception().validateNumberRange(number);
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

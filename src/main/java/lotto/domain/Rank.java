@@ -33,4 +33,13 @@ public enum Rank {
     public boolean isMatchBonus() {
         return matchBonus;
     }
+
+    public static Rank valueOf(int matchCount, boolean matchBonus) {
+        for (Rank rank : Rank.values()) {
+            if (rank.matchCount == matchCount && (matchBonus == rank.matchBonus || !rank.matchBonus)) {
+                return rank;
+            }
+        }
+        return NONE;
+    }
 }

@@ -32,14 +32,14 @@ public class WinningResult {
         int[] matchCounts = new int[7];
         //매치 수에 따라 배열에 저장
         matchCounts[numberOfMatches]++;
+        //2등인 경우
         if (numberOfMatches == 5 && bonusNumberMatches) {
-            matchCounts[5]--; // 보너스 번호 일치시 5 매치 중복 감소
-            matchCounts[6]++; // 6 매치 증가
+            numberOfSecond += matchCounts[5];
+            matchCounts[5]--;
         }
-        numberOfFirst = matchCounts[6];
-        numberOfSecond = matchCounts[5] - matchCounts[6];
-        numberOfThird = matchCounts[5];
-        numberOfFourth = matchCounts[4];
-        numberOfFifth = matchCounts[3];
+        numberOfFirst += matchCounts[6];
+        numberOfThird += matchCounts[5];
+        numberOfFourth += matchCounts[4];
+        numberOfFifth += matchCounts[3];
     }
 }

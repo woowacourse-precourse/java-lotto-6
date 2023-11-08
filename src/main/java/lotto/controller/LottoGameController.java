@@ -13,7 +13,6 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     public void run() {
-
         LottoPlayer lottoPlayer = createLottoPlayer();
 
         int numberOfLottoTickets = lottoPlayer.getNumberOfLottoTickets();

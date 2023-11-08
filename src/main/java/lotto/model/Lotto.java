@@ -27,7 +27,6 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-
     private void validateDuplicate(List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());

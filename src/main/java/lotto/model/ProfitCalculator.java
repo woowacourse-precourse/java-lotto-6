@@ -7,7 +7,6 @@ public class ProfitCalculator {
 
     private final double profitRatio;
 
-
     public ProfitCalculator(double purchaseMoney, Statistics statistics) {
         double totalPrize = calculateTotalPrize(statistics);
         this.profitRatio = calculateProfitRatio(purchaseMoney, totalPrize);
@@ -37,5 +36,4 @@ public class ProfitCalculator {
         }
         return totalPrize;
     }
-
 }

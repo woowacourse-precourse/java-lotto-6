@@ -40,6 +40,4 @@ public class LottoPlayer {
     private boolean isNotDivisibleWithLottoPrice(String purchaseMoney) {
         return Integer.parseInt(purchaseMoney) % LOTTO_PRICE != 0;
     }
-
-
 }

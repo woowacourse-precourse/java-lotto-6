@@ -18,17 +18,13 @@ public class LottoController {
     private LottoService lottoService = new LottoService();
 
     public void run() {
-        // 구입 금액 입력
         insertMoneyTo(lottoMachine);
 
-        // 로또 생성
         lottoMachine.generateLottos();
         outputView.printBoughtLottos(lottoMachine);
 
-        // 정답 입력
         WinningCondition winningCondition = generateWinningCondition();
 
-        // 결과 출력
         Result result = lottoService.calculateResult(lottoMachine, winningCondition);
         outputView.printLottoResult(result);
     }
@@ -36,16 +32,23 @@ public class LottoController {
     private WinningCondition generateWinningCondition() {
         WinningCondition winningCondition = new WinningCondition();
         try {
-            String winningNumber = inputReader.readInput(INPUT_WINNING_NUMBER);
-            winningCondition.inputWinningNumbers(winningNumber);
-
-            String bonusNumber = inputReader.readInput(INPUT_BONUS_NUMBER);
-            winningCondition.inputBonusNumbers(bonusNumber);
+            inputWinningNumber(winningCondition);
+            inputBonusNumber(winningCondition);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winningCondition = generateWinningCondition();
         }
         return winningCondition;
+    }
+
+    private void inputBonusNumber(WinningCondition winningCondition) {
+        String bonusNumber = inputReader.readInput(INPUT_BONUS_NUMBER);
+        winningCondition.inputBonusNumbers(bonusNumber);
+    }
+
+    private void inputWinningNumber(WinningCondition winningCondition) {
+        String winningNumber = inputReader.readInput(INPUT_WINNING_NUMBER);
+        winningCondition.inputWinningNumbers(winningNumber);
     }
 
     private void insertMoneyTo(LottoMachine lottoMachine) {

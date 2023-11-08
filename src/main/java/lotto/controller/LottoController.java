@@ -13,9 +13,9 @@ import java.util.List;
 
 public class LottoController {
     private static final String LOTTO_NUMBER_SPLIT = ",";
-    LottoService lottoService;
-    OutputView outputView;
-    InputView inputView;
+    final LottoService lottoService;
+    final OutputView outputView;
+    final InputView inputView;
     List<Integer> winningNumbers;
     Integer bonusNumber;
     Statistics statistics;

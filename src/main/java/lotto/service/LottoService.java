@@ -15,7 +15,7 @@ import static lotto.enums.StatisticsInfo.RANK_2;
 import static lotto.enums.StatisticsInfo.RANK_5;
 
 public class LottoService {
-    ArrayList<Lotto> lottos;
+    final ArrayList<Lotto> lottos;
 
     public LottoService() {
         this.lottos = new ArrayList<>();

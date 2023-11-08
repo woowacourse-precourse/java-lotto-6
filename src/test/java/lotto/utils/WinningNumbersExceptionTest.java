@@ -55,4 +55,12 @@ public class WinningNumbersExceptionTest {
 
         assertEquals("[ERROR]쉼표로 구분해주세요.", exception.getMessage());
     }
+
+    @Test
+    void 쉼표_마지막에_있는_경우 () {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+                winningNumbersException.lastComma("1,2,3,4,5,6,"));
+
+        assertEquals("필요하지 않은 콤마는 지워주세요.", exception.getMessage());
+    }
 }

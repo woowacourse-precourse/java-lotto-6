@@ -132,7 +132,7 @@ public class LottoManager {
 
     public void loopJudgeLottoCandidateSetsResult(){
         winLottoCount=Arrays.asList(0, 0, 0, 0, 0);
-        winLottoMoney=Arrays.asList(0, 0, 0, 0, 0);
+        winLottoMoney=Arrays.asList(2000000000, 30000000, 1500000, 50000, 5000);
 
         for(List<Integer> lottoCandidateSet : lottoCandidateSets){
             judgeLottoCandiateSetResult(lottoCandidateSet);
@@ -143,18 +143,40 @@ public class LottoManager {
 
     }
 
-    private int countCorrectNumbers(List<Integer> lottoCandidateSet){
+    private void countCorrectNumbers(List<Integer> lottoCandidateSet){
         int count=0;
+        int bonusCount=0;
         List<Integer> winNumbers=winLotto.getNumbers();
 
         for(int number : lottoCandidateSet){
             for(int winNumber : winNumbers){
-                if(number==winNumber){
+                if(number==winNumber || number==bonusNumber){
                     count++;
+                    bonusCount++;
                     break;
                 }
             }
         }
-        return count;
+        addWinNumbers(count, bonusCount);
+    }
+
+    private void addWinNumbers(int count, int bonusCount){
+        if(count==6){
+            winLottoCount.set(0,winLottoCount.get(0)+1);
+        }
+        else if(count==5 && bonusCount==1){
+            winLottoCount.set(1,winLottoCount.get(1)+1);
+        }
+        else if(count==5){
+            winLottoCount.set(2,winLottoCount.get(2)+1);
+        }
+        else if(count==4){
+            winLottoCount.set(3,winLottoCount.get(3)+1);
+        }
+        else{
+            if(count==3){
+                winLottoCount.set(4,winLottoCount.get(4)+1);
+            }
+        }
     }
 }

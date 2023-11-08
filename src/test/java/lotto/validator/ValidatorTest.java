@@ -32,7 +32,8 @@ public class ValidatorTest {
 	@ValueSource(strings = { "", " ", "     " })
 	@ParameterizedTest
 	void checkIsEmpty(String param) {
-		assertThatThrownBy(() -> Validator.validateIsEmpty(param, message)).isInstanceOf(IllegalArgumentException.class)
+		assertThatThrownBy(() -> Validator.validateIsEmpty(param, message))
+				.isInstanceOf(IllegalArgumentException.class)
 				.hasMessageContaining(message);
 	}
 

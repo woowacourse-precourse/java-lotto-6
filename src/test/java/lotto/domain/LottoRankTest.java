@@ -26,7 +26,7 @@ public class LottoRankTest {
 		AnswerLotto answerLotto = new AnswerLotto(answerLottoNumbers, new BonusNumber(answerLottoNumbers, 7));
 
 		return Stream.of(
-				Arguments.of(answerLotto, new Lotto(List.of(8, 9, 10, 11, 12, 13)), LottoRank.NOTHING.getLottoPrice()),
+				Arguments.of(answerLotto, new Lotto(List.of(8, 9, 7, 11, 12, 13)), LottoRank.NOTHING.getLottoPrice()),
 				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 9, 10, 11, 12)), LottoRank.NOTHING.getLottoPrice()),
 				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 10, 11, 12)), LottoRank.FIFTH.getLottoPrice()),
 				Arguments.of(answerLotto, new Lotto(List.of(1, 2, 3, 4, 11, 12)), LottoRank.FOURTH.getLottoPrice()),

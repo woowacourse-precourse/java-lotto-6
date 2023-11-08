@@ -54,7 +54,7 @@ public class LottoController {
     }
 
     private void createLottoTicket() {
-
+        this.lottoTicket = this.order.buy();
     }
 
     private void printLottoTicket() {

@@ -11,14 +11,7 @@ public class LottoWinning {
     private static int LOTTO_WINNING_NUMS = 6;
 
     private List<Integer> winningNumbers;
-    private int bonusNumber;
-
-    public LottoWinning(List<Integer> winningNumbers, int bonusNumber) {
-        validateWinningNumbers(winningNumbers);
-        this.winningNumbers = winningNumbers;
-        validateBonusNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
-    }
+    private Integer bonusNumber;
 
     public LottoWinning(List<Integer> winningNumbers) {
         validateWinningNumbers(winningNumbers);
@@ -65,11 +58,18 @@ public class LottoWinning {
 
     public LottoRank assignRank(Lotto ticket) {
         int match = ticket.countMatchingNumbers(winningNumbers);
-        boolean bonusMatch = ticket.numbersContain(bonusNumber);
+        boolean bonusMatch = checkIfTicketContainsBonusNumber(ticket);
         LottoRank wonRank = LottoRank.getWinningRank(match, bonusMatch);
         if (wonRank == LottoRank.NO_WINNING) {
             return null;
         }
         return wonRank;
+    }
+
+    private boolean checkIfTicketContainsBonusNumber(Lotto ticket) {
+        if (bonusNumber == null) {
+            return false;
+        }
+        return ticket.numbersContain(bonusNumber);
     }
 }

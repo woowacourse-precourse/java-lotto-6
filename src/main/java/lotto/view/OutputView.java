@@ -1,10 +1,6 @@
 package lotto.view;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import lotto.domain.lottoresult.LottoResult;
+import lotto.util.LottoResultData;
 import lotto.util.ModelAndViewConverter;
 
 public class OutputView {
@@ -33,32 +29,24 @@ public class OutputView {
 
     public void printLottoResultsData() {
         System.out.println(WINNING_STATISTICS_MESSAGE);
-        Map<LottoResult, Integer> lottoResultsData = modelAndViewConverter.getLottoResultsData();
-        List<LottoResult> sortedLottoResultsByKey = getSortedLottoResultsWithoutNone(lottoResultsData);
-        for (LottoResult lottoResult : sortedLottoResultsByKey) {
-            int numberOfSame = lottoResult.getNumberOfSame();
-            long prizeMoney = lottoResult.getPrizeMoney();
-            int count = lottoResultsData.get(lottoResult);
-
-            String winningStatisticMessage = makeWinningStatisticsMessage(lottoResult);
+        while(modelAndViewConverter.hasLottoResultsData()) {
+            LottoResultData lottoResultsData = modelAndViewConverter.getLottoResultsData();
+            int numberOfSame = lottoResultsData.getNumberOfSame();
+            long prizeMoney = lottoResultsData.getPrizeMoney();
+            int count = lottoResultsData.getCount();
+            boolean isSecond = lottoResultsData.isSecond();
+            String winningStatisticMessage = makeWinningStatisticsMessage(isSecond);
             System.out.printf(winningStatisticMessage, numberOfSame, prizeMoney, count);
         }
     }
 
-    private List<LottoResult> getSortedLottoResultsWithoutNone(Map<LottoResult, Integer> lottoResultsData) {
-        List<LottoResult> lottoResultsByKey = new ArrayList<>(lottoResultsData.keySet());
-        Collections.sort(lottoResultsByKey);
-        lottoResultsByKey.remove(LottoResult.NONE);
-        return lottoResultsByKey;
-    }
-
-    private String makeWinningStatisticsMessage(LottoResult lottoResult) {
-        String bonusBallMessage = getBonusBallMessage(lottoResult);
+    private String makeWinningStatisticsMessage(boolean isSecond) {
+        String bonusBallMessage = getBonusBallMessage(isSecond);
         return STATISTICS_NUMBER_OF_SAME + bonusBallMessage + STATISTICS_PRIZE_AND_COUNT;
     }
 
-    private String getBonusBallMessage(LottoResult lottoResult) {
-        if (lottoResult.isSecond()) {
+    private String getBonusBallMessage(boolean isSecond) {
+        if (isSecond) {
             return STATISTICS_BONUS_BALL_MATCH;
         }
         return "";

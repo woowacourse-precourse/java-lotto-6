@@ -4,7 +4,7 @@ import lotto.util.ConvertUtil;
 
 import java.util.Arrays;
 
-import static lotto.model.constant.LottoConstant.*;
+import static lotto.model.constant.LottoConstants.*;
 import static lotto.util.validator.constant.ErrorMessageConstant.*;
 
 public class WinningInputValidator implements InputValidator{

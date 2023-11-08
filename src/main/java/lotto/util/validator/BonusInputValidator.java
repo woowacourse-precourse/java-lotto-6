@@ -1,6 +1,6 @@
 package lotto.util.validator;
 
-import lotto.model.constant.LottoConstant;
+import lotto.model.constant.LottoConstants;
 import lotto.util.validator.constant.ErrorMessageConstant;
 
 public class BonusInputValidator implements InputValidator{
@@ -21,7 +21,7 @@ public class BonusInputValidator implements InputValidator{
 
     private static void validateNumberRange(String checkValue) {
         int number = Integer.parseInt(checkValue);
-        if(number < LottoConstant.LOTTO_NUMBER_MIN_RANGE.getNumber() || number > LottoConstant.LOTTO_NUMBER_MAX_RANGE.getNumber()) {
+        if(number < LottoConstants.LOTTO_NUMBER_MIN_RANGE.getNumber() || number > LottoConstants.LOTTO_NUMBER_MAX_RANGE.getNumber()) {
             throw new IllegalArgumentException(ErrorMessageConstant.BONUS_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
         }
     }

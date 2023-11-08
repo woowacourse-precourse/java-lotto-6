@@ -1,5 +1,6 @@
 package lotto.util.validator;
 
+import lotto.model.constant.ParchaseAmountConstants;
 import lotto.util.validator.constant.ErrorMessageConstant;
 
 public class ParchaseAmountInputValidator implements InputValidator{
@@ -19,13 +20,13 @@ public class ParchaseAmountInputValidator implements InputValidator{
     }
 
     private static void validateDivisibleThousand(String checkValue) {
-        if(Integer.parseInt(checkValue) % 1000 != 0) {
+        if(Integer.parseInt(checkValue) % ParchaseAmountConstants.PARCHASE_AMOUNT_UNIT.getNumber() != ParchaseAmountConstants.DIVISIBLE_THOUSAND.getNumber()) {
             throw new IllegalArgumentException(ErrorMessageConstant.PARCHASE_AMOUNT_IS_NOT_DIVISIBLE_BY_THOUSAND.getMessage());
         }
     }
 
     private static void validatePositiveNumber(String checkValue) {
-        if(Integer.parseInt(checkValue) < 0) {
+        if(Integer.parseInt(checkValue) < ParchaseAmountConstants.POSITIVE_BENCHMARK.getNumber()) {
             throw new IllegalArgumentException(ErrorMessageConstant.PARCHASE_AMOUNT_IS_NOT_POSITIVE_NUMBER.getMessage());
         }
     }

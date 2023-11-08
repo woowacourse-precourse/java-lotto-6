@@ -11,10 +11,12 @@ public class Validator {
 
     private static final String NOT_INPUT_FORM = "[ERROR] 입력 형식에 올바르게 입력되지 않았습니다.";
 
+    private static final String INVALID_UNIT_PRICE = "[ERROR] 1,000 단위로 입력 해주세요";
+
 
     public static void checkAmount(Integer purchaseAmount) throws IllegalArgumentException{
         if((purchaseAmount % 1000) != 0 || purchaseAmount <= 0){
-            throw new IllegalArgumentException("[ERROR] 1,000 단위로 입력 해주세요");
+            throw new IllegalArgumentException(INVALID_UNIT_PRICE);
         }
     }
 

@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DecimalFormat;
 import java.util.stream.Collectors;
 
 
@@ -16,7 +17,7 @@ public class Application {
 }
 
 class LottoGame {
-    private static final int PRICE_PER_LOTTO = 1000;
+    public static final int PRICE_PER_LOTTO = 1000;
     private final List<Lotto> lottos = new ArrayList<>();
     private final List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
@@ -111,9 +112,12 @@ class InputValidator {
 }
 
 class OutputView {
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,##0");
+    private static final DecimalFormat PROFIT_RATE_FORMAT = new DecimalFormat("0.00");
+
     public static void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        lottos.forEach(System.out::println);
+        lottos.forEach(lotto -> System.out.println(lotto.toString()));
     }
 
     public static void printResults(int[] matchCounts, List<Integer> prizeMoney, int purchaseAmount) {
@@ -121,15 +125,16 @@ class OutputView {
         System.out.println("---------");
         int totalPrize = 0;
         for (int i = 3; i < matchCounts.length; i++) {
+            String prizeFormat = DECIMAL_FORMAT.format(prizeMoney.get(i));
+            String matchCountMessage = String.format("%d개 일치 (%s원) - %d개", i, prizeFormat, matchCounts[i]);
             if (i == 7) {
-                System.out.println("5개 일치, 보너스 볼 일치 (" + prizeMoney.get(i) + "원)- " + matchCounts[i] + "개");
-            } else {
-                System.out.println(i + "개 일치 (" + prizeMoney.get(i) + "원)- " + matchCounts[i] + "개");
+                matchCountMessage = "5개 일치, 보너스 볼 일치 (" + prizeFormat + "원) - " + matchCounts[i] + "개";
             }
+            System.out.println(matchCountMessage);
             totalPrize += prizeMoney.get(i) * matchCounts[i];
         }
         double profitRate = (totalPrize / (double) purchaseAmount) * 100;
-        System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f",profitRate) + "%입니다.");
     }
 }
 

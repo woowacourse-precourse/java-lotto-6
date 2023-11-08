@@ -14,7 +14,7 @@ public class LottoCalculatorTest {
                 .calculate(new LottoTicket(new LottoTicketMaker().make(3)),
                         new WiningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7))
                 .keySet())
-                .containsOnly("3", "4", "5", "6", "7");
+                .containsOnly(3, 4, 5, 6, 7);
     }
 
 }

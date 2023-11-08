@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Application {
-    private Output output;
-    private Input input;
-    private Lotto lotto;
-    private Analyzer analyzer;
+    private final Output output;
+    private final Input input;
+    private final Lotto lotto;
+    private final Analyzer analyzer;
 
     public static void main(String[] args) {
         Application application = new Application();

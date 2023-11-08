@@ -1,9 +1,13 @@
-package lotto;
+package lotto.controller;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+import lotto.View.OutputView;
+import lotto.domain.IssuedLottos;
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.service.IssuedLottoDataService;
+import lotto.service.LottoCalculation;
+import lotto.service.LottoDataService;
 
 public class LottoController {
     private LottoDataService lottoDataService = new LottoDataService();

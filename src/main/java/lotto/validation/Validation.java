@@ -1,12 +1,11 @@
-package lotto;
+package lotto.validation;
 
-import static lotto.ErrorMessage.*;
+import static lotto.constant.ErrorMessage.*;
 
-import java.nio.file.attribute.AclEntryPermission;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 
 public class Validation {
 

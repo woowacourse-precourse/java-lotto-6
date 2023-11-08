@@ -1,14 +1,17 @@
-package lotto;
+package lotto.service;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
+import lotto.View.OutputView;
+import lotto.constant.LottoRank;
+import lotto.domain.IssuedLottos;
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 
 public class LottoCalculation {
     private Map<Integer, Integer> lottoResultstat = new LinkedHashMap<>();

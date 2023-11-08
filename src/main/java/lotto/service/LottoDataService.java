@@ -1,10 +1,13 @@
-package lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.validation.Validation;
+import lotto.View.InputView;
+import lotto.domain.Lotto;
 
 public class LottoDataService {
     public Lotto create_official_Lotto() {

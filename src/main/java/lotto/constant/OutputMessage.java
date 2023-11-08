@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum OutputMessage {
     AMOUNT_COUNT("\n%d개를 구매했습니다.\n")

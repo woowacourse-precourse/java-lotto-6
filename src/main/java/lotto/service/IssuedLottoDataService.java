@@ -1,9 +1,14 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.validation.Validation;
+import lotto.View.InputView;
+import lotto.View.OutputView;
+import lotto.domain.IssuedLotto;
+import lotto.domain.IssuedLottos;
 
 public class IssuedLottoDataService {
     public IssuedLottos create_issued_lottos(){

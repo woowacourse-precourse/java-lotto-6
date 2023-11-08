@@ -1,9 +1,9 @@
-package lotto;
+package lotto.View;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import static lotto.OutputMessage.*;
+import static lotto.constant.OutputMessage.*;
 
 public class OutputView {
     public static void printIssuedLottoNumbers(List<Integer> numbers){

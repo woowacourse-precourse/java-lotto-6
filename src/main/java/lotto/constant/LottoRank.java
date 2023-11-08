@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum LottoRank {
     FIVE_RANK(3, 5_000)

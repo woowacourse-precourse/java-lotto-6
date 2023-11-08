@@ -61,13 +61,13 @@
     ```
     - LottoGmae.countRanks() : int 배열에 랭크를 카운트하여 출력하에러
     - LottoGame.printResult()
-- [ ] 수익률은 소수점 둘째 자리에서 반올림하여 출력한다
+- [x] 수익률은 소수점 둘째 자리에서 반올림하여 출력한다
     ```
     총 수익률은 62.5%입니다.
     ```
     - LottoGame.getMoneyForRank() : 등수를 입력받아 당첨금액을 반환
-    - LottoGame.getRateOfReturn()
-- [ ] Enum을 사용하여 문자열, 숫자등의 값은 상수로 관리
+    - LottoGame.printRoundedTotalIncome()
+- [] Enum을 사용하여 문자열, 숫자등의 값은 상수로 관리
     - Constant Enum 생성
 - [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
     ```

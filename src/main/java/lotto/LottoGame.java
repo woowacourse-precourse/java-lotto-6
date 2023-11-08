@@ -13,7 +13,7 @@ public class LottoGame {
     private List<Integer> winningNumbers;
     private List<Lotto> lottoTickets;
     private List<Integer> result;
-    private Integer money;
+    private Integer inputMoney;
     private Integer winningBonusNumber;
 
     public LottoGame() {
@@ -23,9 +23,9 @@ public class LottoGame {
         boolean isGaming = true;
 
         while (isGaming) {
-            money = inputMoney();
+            inputMoney = inputMoney();
 
-            lottoTickets = generateLottoTickets(money);
+            lottoTickets = generateLottoTickets(inputMoney);
             printTickets();
 
             List<Integer> pickedWinningNumbers = pickWinningNumbers().subList(0, 6);
@@ -34,6 +34,9 @@ public class LottoGame {
 
             setLottoRanks(lottoTickets, winningNumbers, winningBonusNumber);
             printResult(lottoTickets);
+
+            Integer totalIncome = getMoneyForRank(lottoTickets);
+            printRoundedTotalIncome(inputMoney, totalIncome);
 
             isGaming = false;
         }
@@ -189,8 +192,21 @@ public class LottoGame {
         System.out.println("6개 일치 (2,000,000,000원) - " + rankCounts[1] + "개");
     }
 
-    private void getMoneyForRank() {
+    private Integer getMoneyForRank(List<Lotto> lottoTickets) {
+        Integer totalIncome;
+        int[] countRanks = countRanks(lottoTickets);
 
+        totalIncome =
+                countRanks[1] * 2000000000 + countRanks[2] * 30000000 + countRanks[3] * 1500000 + countRanks[4] * 50000
+                        + countRanks[5] * 5000;
+
+        return totalIncome;
+    }
+
+    private void printRoundedTotalIncome(Integer inputMoney, Integer totalIncome) {
+        double rateOfReturn = ((totalIncome - inputMoney) / (double) inputMoney) * 100;
+
+        System.out.printf("총 수익률은 %.1f입니다.", rateOfReturn);
     }
 
     private void getRateOfReturn() {

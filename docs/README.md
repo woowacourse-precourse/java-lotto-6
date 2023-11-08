@@ -67,6 +67,9 @@
 - Lottos: 로또 클래스의 일급 컬렉션
 - LottoRepository: Lottos의 조회 및 저장 로직 담당
 - LottoService: 게임의 비즈니스 로직 담당
+  - issueLottos: 구입 횟수만큼 Lotto 생성하여 저장
+  - createWinningResult: 구입한 로또들과 당첨 번호를 비교하여 WinningResult에 저장
+  - getReturnRate: 수익률 계산하여 반환
 - PurChaseCount: 구입횟수 클래스
 - WinningLotto: 당첨 로또 클래스(로또 클래스 상속)
 - WinningResult: 당첨 결과 클래스

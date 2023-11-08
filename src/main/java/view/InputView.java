@@ -38,6 +38,12 @@ public class InputView {
 
     public static int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        } finally {
+            System.out.println();
+        }
     }
 }

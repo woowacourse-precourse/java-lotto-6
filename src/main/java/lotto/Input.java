@@ -6,13 +6,16 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class Input {
 
     private int amount;
-    List<List<Integer>> lottos;
+    private List<List<Integer>> lottos;
     private String inputSpeech = "구입금액을 입력해 주세요.";
     private String amountSpeech = "개를 구매했습니다.";
+    private String winningInputSpeech = "당첨 번호를 입력해 주세요.";
+    private String bonusInputSpeech = "보너스 번호를 입력해 주세요.";
     private String amountError = "[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.";
 
     public Input() {
@@ -45,6 +48,7 @@ public class Input {
         }
 
         outputLottos();
+        winningInput();
     }
 
     private List<Integer> getLottoNumber() {
@@ -60,9 +64,24 @@ public class Input {
     private void outputLottos() {
         StringBuilder lottosNumber = new StringBuilder();
         for (List<Integer> lotto : lottos) {
-            lottosNumber.append(lotto+"\n");
+            lottosNumber.append(lotto + "\n");
         }
         System.out.println(lottosNumber);
+    }
+
+    private void winningInput() {
+        String winningInput = Console.readLine();
+        winningDivision(winningInput);
+    }
+
+    private void winningDivision(String winningInput) {
+        List<Integer> winningNumber = new ArrayList<>();
+        StringTokenizer st = new StringTokenizer(winningInput,",");
+        while(st.hasMoreTokens()){
+            winningNumber.add(Integer.parseInt(st.nextToken()));
+        }
+
+        new Lotto(winningNumber);
     }
 
 

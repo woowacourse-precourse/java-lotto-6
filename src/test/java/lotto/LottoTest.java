@@ -86,4 +86,14 @@ class LottoTest {
         assertThat(3).isEqualTo(case2.getCount());
         assertThat(true).isEqualTo(case2.isBonus());
     }
+
+    @Test
+    void 결괏값_확인_테스트() {
+        Amount amount = new Amount(8000);
+        WinningNumber winningNumber1 = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
+        winningNumber1.setBonusNumber(7);
+        Result result = new Result(List.of(new Checker((new Lotto(List.of(11, 2, 33, 4, 55, 6))), winningNumber1)));
+        assertThat(List.of(1, 0, 0, 0, 0)).isEqualTo(result.getResults());
+        assertThat(62.5).isEqualTo(result.getEarningRate(amount.getAmount()));
+    }
 }

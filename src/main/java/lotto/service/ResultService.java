@@ -11,17 +11,22 @@ public class ResultService {
 
     public void checkLottoNumbers(BuyLottoRepository buyLottos, WinningLottoRepository winningLotto){
         View.winningStatistics();
-
         // 로또추적기: 산 로또의 번호가 당첨 번호와 몇개 맞는 지 판단 && 등수안에 들면 해당등수의 인원 증가시킴
         lotteryTracker.matching(buyLottos,winningLotto);
+    }
+
+    public void printResultByRank() {
         lotteryTracker.printResultByRank();
     }
 
-    public void calculateRateOfReturn(int purchaseCount){
+    public double calculateRateOfReturn(int purchaseCount){
         double totalBuyLottos = purchaseCount * (ONE_lOTTO_PRICE.getNumber());
         double totalRevenue = lotteryTracker.calculateTotalRevenue();
 
-        double rateOfReturn = (totalRevenue/totalBuyLottos) * 100;
+        return (totalRevenue/totalBuyLottos) * 100;
+    }
+
+    public void printRateOfReturn(double rateOfReturn) {
         View.rateOfReturn(rateOfReturn);
     }
 }

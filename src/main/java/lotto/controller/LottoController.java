@@ -29,10 +29,15 @@ public class LottoController {
         // 당첨번호(+보너스 번호) 입력
         WinningLottoRepository winningLotto = lottoService.createWinningLotto();
 
-        // 산 로또와 당첨번호(+보너스 번호)가 몇개 맞는지 확인하고 결과 출력
+        // 산 로또들과 당첨번호(+보너스 번호)가 몇개 맞는지 확인
         resultService.checkLottoNumbers(buyLottos, winningLotto);
-        // 수익률 계산하고 결과 출력
-        resultService.calculateRateOfReturn(purchaseCount);
+        // 각 등수에 해당하는 로또가 몇개인지 출력
+        resultService.printResultByRank();
+
+        // 수익률 계산
+        double rateOfReturn = resultService.calculateRateOfReturn(purchaseCount);
+        // 수익률 출력
+        resultService.printRateOfReturn(rateOfReturn);
     }
 
     private int calculatePurchaseCount(PurchaseAmount purchaseAmount) {

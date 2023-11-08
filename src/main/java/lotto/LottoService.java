@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class LottoService {
+
+    public List<List<Integer>> numbersList = new ArrayList<>();
 
     public void saveWinNumber(String winNumber){
         List<String> tempNumbers = Arrays.asList(winNumber.split(","));
@@ -19,12 +22,53 @@ public class LottoService {
     }
 
     public List<Integer> createLottoList(){
-        List<List<Integer>> numbersList = new ArrayList<>();
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
         Collections.sort(randomNumbers);
         numbersList.add(randomNumbers);
         return randomNumbers;
     }
 
+    public void compareWinNumber(List<Integer> numbers, int bonusNumber){
+        for(List<Integer> randomNumbers: numbersList){
+            compare(randomNumbers, numbers, bonusNumber);
+        }
+    }
+
+    public void compare(List<Integer> numberList, List<Integer> numbers, int bonusNumber){
+        int number = 0;
+        boolean bonus = false;
+        for(int i=0; i<6; i++){
+            for(int j=0; j<6; j++){
+                number = compareEach(numberList, numbers, i, j, number);
+            }
+        }
+        for(int i=0; i<6; i++){
+            if(numbers.get(i) == bonusNumber){
+                bonus = true;
+            }
+        }
+        setWinStatistic(number, bonus);
+    }
+
+    public int compareEach(List<Integer> numberList, List<Integer> numbers, int i, int j, int number){
+        if(numberList.get(i).equals(numbers.get(j))){
+            number++;
+        }
+        return number;
+    }
+
+    public void setWinStatistic(int number, boolean bonus){
+        if(number == 3){
+            Ranking.FIFTH.setRankingNumber(1);
+        } else if(number == 4){
+            Ranking.FOURTH.setRankingNumber(1);
+        } else if(number == 5 && !bonus){
+            Ranking.THIRD.setRankingNumber(1);
+        } else if(number == 5 && bonus){
+            Ranking.SECOND.setRankingNumber(1);
+        } else if(number ==6){
+            Ranking.FIRST.setRankingNumber(1);
+        }
+    }
 
 }

@@ -4,8 +4,8 @@ import static lotto.view.constant.OutputMessage.LOTTO_PURCHASE_COUNT;
 import static lotto.view.constant.OutputMessage.LOTTO_STATUS;
 import static lotto.view.constant.OutputMessage.STATS_MESSAGE;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_FIRST_RANK;
-import static lotto.view.constant.OutputMessage.WINNING_STATS_FIVE_RANK;
-import static lotto.view.constant.OutputMessage.WINNING_STATS_FOUR_RANK;
+import static lotto.view.constant.OutputMessage.WINNING_STATS_FIFTH_RANK;
+import static lotto.view.constant.OutputMessage.WINNING_STATS_FOURTH_RANK;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_PROFIT_RATE;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_SECOND_RANK;
 import static lotto.view.constant.OutputMessage.WINNING_STATS_THIRD_RANK;
@@ -41,8 +41,8 @@ public class OutputView {
 
     public void createLottoPrizeStats(LottoPrize lottoPrize, StringBuilder lottoPrizeResult) {
         lottoPrizeResult.append(STATS_MESSAGE.getMessage());
-        lottoPrizeResult.append(String.format(WINNING_STATS_FIVE_RANK.getMessage(), lottoPrize.getFiveRankCount()));
-        lottoPrizeResult.append(String.format(WINNING_STATS_FOUR_RANK.getMessage(), lottoPrize.getFourRankCount()));
+        lottoPrizeResult.append(String.format(WINNING_STATS_FIFTH_RANK.getMessage(), lottoPrize.getFifthRankCount()));
+        lottoPrizeResult.append(String.format(WINNING_STATS_FOURTH_RANK.getMessage(), lottoPrize.getFourthRankCount()));
         lottoPrizeResult.append(String.format(WINNING_STATS_THIRD_RANK.getMessage(), lottoPrize.getThirdRankCount()));
         lottoPrizeResult.append(String.format(WINNING_STATS_SECOND_RANK.getMessage(), lottoPrize.getSecondRankCount()));
         lottoPrizeResult.append(String.format(WINNING_STATS_FIRST_RANK.getMessage(), lottoPrize.getFirstRankCount()));

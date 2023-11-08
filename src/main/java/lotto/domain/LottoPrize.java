@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import static lotto.domain.constant.LottoPrizeConstant.FIRST_PRIZE_COUNT;
-import static lotto.domain.constant.LottoPrizeConstant.FIVE_PRIZE_COUNT;
-import static lotto.domain.constant.LottoPrizeConstant.FOUR_PRIZE_COUNT;
+import static lotto.domain.constant.LottoPrizeConstant.FIFTH_PRIZE_COUNT;
+import static lotto.domain.constant.LottoPrizeConstant.FOURTH_PRIZE_COUNT;
 import static lotto.domain.constant.LottoPrizeConstant.SECOND_PRIZE_COUNT;
 import static lotto.domain.constant.LottoPrizeConstant.THIRD_PRIZE_COUNT;
 
@@ -15,16 +15,16 @@ public class LottoPrize {
 
     private int thirdRankCount;
 
-    private int fourRankCount;
+    private int fourthRankCount;
 
-    private int fiveRankCount;
+    private int fifthRankCount;
 
     private LottoPrize() {
         this.firstRankCount = 0;
         this.secondRankCount = 0;
         this.thirdRankCount = 0;
-        this.fourRankCount = 0;
-        this.fiveRankCount = 0;
+        this.fourthRankCount = 0;
+        this.fifthRankCount = 0;
     }
 
     public static LottoPrize create() {
@@ -46,11 +46,11 @@ public class LottoPrize {
     }
 
     public void updateRankCount(int winningRankCount, boolean hasBonusNumber) {
-        if (winningRankCount == FIVE_PRIZE_COUNT.getNumber()) {
-            fiveRankCount++;
+        if (winningRankCount == FIFTH_PRIZE_COUNT.getNumber()) {
+            fifthRankCount++;
         }
-        if (winningRankCount == FOUR_PRIZE_COUNT.getNumber()) {
-            fourRankCount++;
+        if (winningRankCount == FOURTH_PRIZE_COUNT.getNumber()) {
+            fourthRankCount++;
         }
         if (winningRankCount == THIRD_PRIZE_COUNT.getNumber() && !hasBonusNumber) {
             thirdRankCount++;
@@ -79,11 +79,11 @@ public class LottoPrize {
         return thirdRankCount;
     }
 
-    public int getFourRankCount() {
-        return fourRankCount;
+    public int getFourthRankCount() {
+        return fourthRankCount;
     }
 
-    public int getFiveRankCount() {
-        return fiveRankCount;
+    public int getFifthRankCount() {
+        return fifthRankCount;
     }
 }

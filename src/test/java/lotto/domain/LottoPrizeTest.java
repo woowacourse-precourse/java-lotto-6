@@ -55,6 +55,6 @@ class LottoPrizeTest {
 
         lottoPrize.countCommonNumber(lotto, lottoWinningNumbers);
 
-        assertThat(lottoPrize.getFiveRankCount()).isEqualTo(1);
+        assertThat(lottoPrize.getFifthRankCount()).isEqualTo(1);
     }
 }

@@ -30,8 +30,8 @@ public class LottoProfit {
 
     public int createTotalWinningAmount(LottoPrize lottoPrize) {
         int totalWinningAmount = 0;
-        totalWinningAmount += lottoPrize.getFiveRankCount() * FIFTH_PRIZE_AMOUNT.getNumber();
-        totalWinningAmount += lottoPrize.getFourRankCount() * FOURTH_PRIZE_AMOUNT.getNumber();
+        totalWinningAmount += lottoPrize.getFifthRankCount() * FIFTH_PRIZE_AMOUNT.getNumber();
+        totalWinningAmount += lottoPrize.getFourthRankCount() * FOURTH_PRIZE_AMOUNT.getNumber();
         totalWinningAmount += lottoPrize.getThirdRankCount() * THIRD_PRIZE_AMOUNT.getNumber();
         totalWinningAmount += lottoPrize.getSecondRankCount() * SECOND_PRIZE_AMOUNT.getNumber();
         totalWinningAmount += lottoPrize.getFirstRankCount() * FIRST_PRIZE_AMOUNT.getNumber();

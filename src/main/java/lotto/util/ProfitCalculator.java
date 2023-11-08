@@ -1,10 +1,8 @@
 package lotto.util;
 
-import java.text.DecimalFormat;
-
 public class ProfitCalculator {
 
-    public static double calculateProfitPercentage(double purchaseAmount, double winningAmount) {
+    public static double calculateProfitPercentage(double purchaseAmount, long winningAmount) {
         double profitPercentage = (winningAmount / purchaseAmount) * 100.0;
         return roundToTwoDecimalPlaces(profitPercentage);
     }

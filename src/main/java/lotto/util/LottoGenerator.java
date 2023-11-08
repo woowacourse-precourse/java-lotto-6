@@ -14,20 +14,22 @@ public class LottoGenerator {
     }
 
     public static Lottos generateLottos(LottoCount lottoCount) {
-        return generateLotto(lottoCount);
+        List<Lotto> lottos = generateRandomLottos(lottoCount.getLottoCount());
+        return new Lottos(lottos);
     }
 
-    public static Lottos generateLotto(LottoCount lottoCount) {
-        int count = lottoCount.getLottoCount();
-        List<Lotto> lottoList = new ArrayList<>();
-        Lottos lottos = new Lottos(lottoList);
-
-        while (count > 0) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(LottoNumber.MIN_RANGE, LottoNumber.MAX_RANGE,
-                    LottoNumber.LOTTO_SIZE));
-            lottos.addLotto(lotto);
-            count--;
+    private static List<Lotto> generateRandomLottos(int count) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = generateLotto();
+            lottos.add(lotto);
         }
         return lottos;
+    }
+
+    private static Lotto generateLotto() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
+                LottoNumber.MIN_RANGE, LottoNumber.MAX_RANGE, LottoNumber.LOTTO_SIZE);
+        return new Lotto(randomNumbers);
     }
 }

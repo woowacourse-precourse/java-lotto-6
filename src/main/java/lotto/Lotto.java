@@ -32,7 +32,7 @@ public class Lotto {
 
     private void exceeding(List<Integer> numbers){
         for (int n : numbers){
-            if (n > 45){
+            if (n > 45 || n < 1){
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자입니다.");
             }
         }

@@ -3,8 +3,6 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class Lottos {
     private final List<Integer> winningNumber;
@@ -20,17 +18,17 @@ public class Lottos {
         this.player = player;
     }
 
-    public void classifyLottoGrade() {
+    public int classifyLottoGrade() {
         for (int i = 0; i < player.getLotteries().size(); i++) {
-            List<Integer> result = calculateMatchNumbers(i);
-            int size = result.size();
-            if (size == 5 && isBonusNumberIncluded(i)) {
-                size += 5;
+            int match = calculateMatchNumbers(i);
+            if (match == 5 && isBonusNumberIncluded(i)) {
+                match += 5;
             }
-            this.lottoResult = LottoResult.initiateLottoResult(size);
+            this.lottoResult = LottoResult.initiateLottoResult(match);
             addCount(lottoResult);
             this.total += lottoResult.getGrade();
         }
+        return this.total;
     }
 
     private void addCount(LottoResult lottoResult) {
@@ -45,14 +43,15 @@ public class Lottos {
         return this.lottoResultWithCount;
     }
 
-    private List<Integer> calculateMatchNumbers(int index) {
-        return winningNumber.stream()
-                .filter(num -> player.getLotteries()
-                .get(index)
-                        .getNumbers()
-                        .stream()
-                .anyMatch(Predicate.isEqual(num)))
-                .collect(Collectors.toList());
+    public int calculateMatchNumbers(int index) {
+        int count = 0;
+        List<Integer> lotto = player.getLotteries().get(index).getNumbers();
+        for (Integer number : winningNumber) {
+            if (lotto.contains(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     private boolean isBonusNumberIncluded(int index) {

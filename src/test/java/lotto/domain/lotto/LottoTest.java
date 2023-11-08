@@ -21,7 +21,7 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersOutOfSizeException")
+    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersOutOfSizeExceptionTest")
     @DisplayName("로또 번호는 6개의 숫자로 구성되어야 한다.")
     void lottoOutOfSizeExceptionTest(final List<Integer> numbers) {
         String message = LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_SIZE.getMessage();
@@ -29,7 +29,7 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersOutOfRangeException")
+    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersOutOfRangeExceptionTest")
     @DisplayName("로또 번호는 1부터 45 사이의 숫자로 구성되어야 한다.")
     void lottoOutOfRangeExceptionTest(final List<Integer> numbers) {
         String message = LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_RANGE.getMessage();
@@ -37,7 +37,7 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersDuplicatedException")
+    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersDuplicatedExceptionTest")
     @DisplayName("로또 번호는 중복 값이 존재할 수 없다.")
     void lottoNumbersDuplicatedExceptionTest(final List<Integer> numbers) {
         String message = LottoExceptionStatus.LOTTO_NUMBER_IS_DUPLICATED.getMessage();
@@ -45,10 +45,18 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersContainsTargetNumber")
+    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersContainsTargetNumberTrueTest")
     @DisplayName("로또 번호는 타겟값을 가지고 있으면 참을 반환한다.")
-    void containsTrueTest(final List<Integer> numbers, final int targetNumber) {
+    void lottoNumbersContainsTrueTest(final List<Integer> numbers, final int targetNumber) {
         final Lotto lotto = new Lotto(numbers);
         assertThat(lotto.isContains(targetNumber)).isTrue();
+    }
+
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersContainsTargetNumberFalseTest")
+    @DisplayName("로또 번호는 타겟값을 가지고 있지 않으면 거짓을 반환한다.")
+    void lottoNumbersContainsFalseTest(final List<Integer> numbers, final int targetNumber) {
+        final Lotto lotto = new Lotto(numbers);
+        assertThat(lotto.isContains(targetNumber)).isFalse();
     }
 }

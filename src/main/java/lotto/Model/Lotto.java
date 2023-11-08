@@ -20,7 +20,7 @@ public class Lotto {
         }
     }
 
-    private void validateNumbers(List<Integer> numbers){
+    private void validateNumbers(List<Integer> numbers) {
         Set<Integer> numSet = new HashSet<>(numbers);
         if (numSet.size() != numbers.size()) {
             throw new IllegalArgumentException();

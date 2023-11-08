@@ -52,7 +52,7 @@ public class LottoController {
     }
 
     public void inputBonus() {
-        view.printBonusNum();
+        view.printBonusNum(winning);
         bonus = view.getBonus();
         view.enter();
     }

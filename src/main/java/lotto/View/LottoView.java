@@ -41,8 +41,8 @@ public class LottoView {
     }
 
     public void printLottos(List<Integer> lotto) {
-       List<Integer> sortedLotto = new ArrayList<>(lotto);
-       Collections.sort(sortedLotto);
+        List<Integer> sortedLotto = new ArrayList<>(lotto);
+        Collections.sort(sortedLotto);
         System.out.println(sortedLotto);
     }
 
@@ -67,16 +67,20 @@ public class LottoView {
         return winningNumber;
     }
 
-    public void printBonusNum() {
+    public void printBonusNum(List<Integer> winningNumber) {
         System.out.println("보너스 번호를 입력해 주세요.");
-        try {
-            bonus = Integer.parseInt(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 보너스 입력값은 정수 여야 합니다.");
+        while (true) {
+            try {
+                bonus = Integer.parseInt(Console.readLine());
+                if (winningNumber.contains(bonus)) {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 보너스 입력값은 정수 이거나 당첨 번호와 중복되면 안됩니다.");
+            }
         }
-
     }
-
 
     public int getBonus() {
         return bonus;

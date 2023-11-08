@@ -24,17 +24,25 @@ public class LottoController {
         this.inputValidator = inputValidator;
     }
 
+    public static LottoResult getResult(Lottos buyLottos, WinningLotto winningLotto) {
+        return LottoResult.determineWinnings(buyLottos, winningLotto);
+    }
+
     public void start() {
         MoneyManagement amount = initAmount();
         showAmount(amount);
-        Lottos buyLottos = buyLotto(amount);
-        outputView.showLottoList(buyLottos);
+        Lottos buyLottos = getBuyLottos(amount);
 
         WinningLotto winningLotto = initWinningLotto();
-        LottoResult lottoResult = LottoResult.determineWinnings(buyLottos, winningLotto);
+        LottoResult lottoResult = getResult(buyLottos, winningLotto);
 
-        double yield = getYield(amount, lottoResult);
-        outputView.showYield(yield);
+        printResult(amount, lottoResult);
+    }
+
+    public Lottos getBuyLottos(MoneyManagement amount) {
+        Lottos buyLottos = buyLotto(amount);
+        outputView.showLottoList(buyLottos);
+        return buyLottos;
     }
 
     public double getYield(MoneyManagement amount, LottoResult lottoResult) {
@@ -91,5 +99,20 @@ public class LottoController {
         Lotto lotto = askWinningNumbers();
         Number number = askWinningBonusNumber();
         return new WinningLotto(lotto, number);
+    }
+
+    public void printCurrent(LottoResult lottoResult) {
+        String description = lottoResult.description();
+        outputView.showResults(description);
+    }
+
+    public void printYield(MoneyManagement amount, LottoResult lottoResult) {
+        double yield = getYield(amount, lottoResult);
+        outputView.showYield(yield);
+    }
+
+    public void printResult(MoneyManagement amount, LottoResult lottoResult) {
+        printCurrent(lottoResult);
+        printYield(amount, lottoResult);
     }
 }

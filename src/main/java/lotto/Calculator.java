@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
@@ -72,5 +73,15 @@ public class Calculator {
                         return Application.LottoResult.FIFTH_PRIZE;
                 }
                 return Application.LottoResult.NO_PRIZE;
+        }
+
+        public static void printResult(
+                List<Lotto> lottoList,List<Integer> winningNumbers,int bonusNumber, int coin) {
+                List<Application.LottoResult> results = new ArrayList<>();
+                for (Lotto lotto : lottoList) {
+                        Application.LottoResult result = checkLottoResults(lotto.getNumbers(), winningNumbers, bonusNumber);
+                        results.add(result);
+                }
+                displayResults(results, coin);
         }
 }

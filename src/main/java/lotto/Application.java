@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.Calculator.*;
-import static lotto.Calculator.displayResults;
 import static lotto.Lotto.*;
 import static lotto.Lotto.inputBonusNumber;
 
@@ -16,6 +15,8 @@ public class Application {
         List<Integer> winningNumbers = inputWinningNumbers();   //당첨번호 입력
         int bonusNumber = inputBonusNumber();   //보너스 번호 입력
         checkLottoResultsAndDisplay(lottoList, winningNumbers, bonusNumber);
+
+        printResult(lottoList,winningNumbers,bonusNumber,coin);
     }
 
     public enum LottoResult {

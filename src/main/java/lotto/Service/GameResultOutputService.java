@@ -6,11 +6,14 @@ import lotto.Lotto;
 public class GameResultOutputService {
     private static final String LOTTO_RESULT_SEPERATOR = " - ";
     private static final String UNIT_STATEMENT = "개";
+    private static final String OUTPUT_STATEMENT = "당첨 통계\n" + "---";
 
-    private int totalAmount = 0;
-
-    private static String getResultMessage(LottoResult lottoResult) {
+    private static Str력ing getResultMessage(LottoResult lottoResult) {
         return lottoResult.getDescription().concat(LOTTO_RESULT_SEPERATOR);
+    }
+
+    public static void printOutputStatement(){
+        System.out.println(OUTPUT_STATEMENT);
     }
 
     public static void printThreeMatch(int three) {

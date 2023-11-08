@@ -27,7 +27,7 @@ public class LottoViewController {
         }
     }
 
-    long receivePurchaseAmount() {
+    Long receivePurchaseAmount() {
         final PurchaseAmountInputView purchaseAmountInputView = new PurchaseAmountInputView();
         return retryInputOnException(AMOUNT, purchaseAmountInputView);
     }
@@ -37,7 +37,7 @@ public class LottoViewController {
         return retryInputOnException(WINNING_NUMBER, winningNumberInputView);
     }
 
-    int receiveBonusNumber(final String winningNumber) {
+    Integer receiveBonusNumber(final String winningNumber) {
         final BonusNumberInputView bonusNumberInputView = new BonusNumberInputView(winningNumber);
         return retryInputOnException(BONUS_NUMBER, bonusNumberInputView);
     }

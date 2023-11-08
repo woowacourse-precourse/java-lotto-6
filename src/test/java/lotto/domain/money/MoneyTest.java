@@ -31,7 +31,7 @@ class MoneyTest {
     @Test
     void multiplyByCount() {
         Money expected = new Money(1_000_000_000L);
-        Money actual = money.multiplyByCount(10);
+        Money actual = money.multiplyByCount(10L);
 
         assertThat(actual).isEqualTo(expected);
     }

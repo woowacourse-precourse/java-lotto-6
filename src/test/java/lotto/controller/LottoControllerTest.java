@@ -75,7 +75,7 @@ class LottoControllerTest extends NsTest {
 
         // 유저의 로또 번호 임의 설정
         LottoGenerator lottoGenerator = spy(new LottoGenerator());
-        when(lottoGenerator.createLottoByPrice(new Money(5000)))
+        when(lottoGenerator.createLottoByPrice(new Money(5000L)))
                 .thenReturn(List.of(
                                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                                 new Lotto(List.of(1, 3, 4, 5, 6, 7)),

@@ -83,8 +83,8 @@ class LottoGeneratorTest {
 
     static Stream<Arguments> provideInvalidPrice() {
         return Stream.of(
-                arguments("1000원 단위가 아닌 금액", new Money(8156), "금액은 1000원 단위로 입력해야 합니다."),
-                arguments("1000원 미만의 금액", new Money(500), "최소 1000원의 금액을 입력해야 합니다.")
+                arguments("1000원 단위가 아닌 금액", new Money(8156L), "금액은 1000원 단위로 입력해야 합니다."),
+                arguments("1000원 미만의 금액", new Money(500L), "최소 1000원의 금액을 입력해야 합니다.")
         );
     }
 }

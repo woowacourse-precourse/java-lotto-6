@@ -43,7 +43,7 @@ public class LottoOutputView {
         System.out.println(BONUS_NUMBER_MESSAGE);
     }
 
-    public void printUserLotto(final long lottoCount, final String lotto) {
+    public void printUserLotto(final Long lottoCount, final String lotto) {
         System.out.printf(PURCHASE_MESSAGE + NEW_LINE, lottoCount);
         System.out.println(lotto);
         printNewLine();

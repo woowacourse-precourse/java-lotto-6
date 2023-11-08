@@ -30,7 +30,7 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
         this(new LottoNumberGenerator());
     }
 
-    public WinningLotto createWinningLottoFromInput(final String numbers, final int bonusNumber) {
+    public WinningLotto createWinningLottoFromInput(final String numbers, final Integer bonusNumber) {
         validateNumbers(numbers);
         validateBonusNumber(numbers, bonusNumber);
         return new WinningLotto(lottoNumberGenerator.createByInput(numbers), bonusNumber);
@@ -43,7 +43,7 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
         return createLottoByCount(lottoCount);
     }
 
-    private List<Lotto> createLottoByCount(final long lottoCount) {
+    private List<Lotto> createLottoByCount(final Long lottoCount) {
         validateCount(lottoCount);
         return LongStream.rangeClosed(START_ORDER, lottoCount)
                 .mapToObj(order -> createOneLotto())
@@ -75,7 +75,7 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
         return numbers.split(COMMA).length != SIX;
     }
 
-    private void validateBonusNumber(final String numbers, final int bonusNumber) {
+    private void validateBonusNumber(final String numbers, final Integer bonusNumber) {
         if (bonusNumber < MIN_RANGE || bonusNumber > MAX_RANGE) {
             throw new IllegalArgumentException(OVER_RANGE.getErrorMessage());
         }
@@ -84,7 +84,7 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
         }
     }
 
-    private boolean isBonusNumberDuplicated(final String numbers, final int bonusNumber) {
+    private boolean isBonusNumberDuplicated(final String numbers, final Integer bonusNumber) {
         return Arrays.stream(numbers.split(COMMA))
                 .mapToInt(Integer::parseInt)
                 .anyMatch(number -> number == bonusNumber);
@@ -99,7 +99,7 @@ public record LottoGenerator(LottoNumberGenerator lottoNumberGenerator) {
         }
     }
 
-    private void validateCount(final long lottoCount) {
+    private void validateCount(final Long lottoCount) {
         if (lottoCount < ZERO) {
             throw new IllegalArgumentException(NEGATIVE_COUNT.getErrorMessage());
         }

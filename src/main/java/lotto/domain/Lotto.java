@@ -42,7 +42,7 @@ public class Lotto {
         return !distinctNumbers.equals(numbers);
     }
 
-    public boolean isContain(final int number) {
+    public boolean isContain(final Integer number) {
         return numbers.contains(number);
     }
 

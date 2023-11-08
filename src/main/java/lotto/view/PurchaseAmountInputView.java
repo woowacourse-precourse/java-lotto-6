@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 public class PurchaseAmountInputView implements LottoInputViewable, Supplier<Long> {
     @Override
     public Long get() {
-        return Long.parseLong(receiveInput());
+        return Long.valueOf(receiveInput());
     }
 
     @Override

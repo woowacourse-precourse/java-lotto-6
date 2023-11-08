@@ -15,7 +15,7 @@ public record LottoResult(Map<LottoPrizes, Long> prizesAndWinCount) {
     }
 
     private Money getRevenue(final LottoPrizes lottoPrizes) {
-        final long winCount = prizesAndWinCount.get(lottoPrizes);
+        final Long winCount = prizesAndWinCount.get(lottoPrizes);
         final Money winAmount = lottoPrizes.getWinningAmount();
 
         return winAmount.multiplyByCount(winCount);

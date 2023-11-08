@@ -8,7 +8,7 @@ import static lotto.domain.constant.DomainConstant.THREE;
 import java.util.List;
 import lotto.domain.constant.LottoPrizes;
 
-public record WinningLotto(List<Integer> numbers, int bonusNumber) {
+public record WinningLotto(List<Integer> numbers, Integer bonusNumber) {
     public LottoPrizes compare(final Lotto lotto) {
         long matchCount = getMatchCount(lotto);
         if (matchCount == THREE) {

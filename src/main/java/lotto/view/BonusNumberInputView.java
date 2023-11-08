@@ -14,7 +14,7 @@ public class BonusNumberInputView implements LottoInputViewable, Supplier<Intege
 
     @Override
     public Integer get() {
-        return Integer.parseInt(receiveInput());
+        return Integer.valueOf(receiveInput());
     }
 
     @Override

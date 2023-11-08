@@ -23,8 +23,8 @@ public record UserLotto(List<Lotto> lottos) {
         return new LottoResult(prizesCountMap);
     }
 
-    public long getLottoCount() {
-        return lottos.size();
+    public Long getLottoCount() {
+        return (long)lottos.size();
     }
 
     @Override

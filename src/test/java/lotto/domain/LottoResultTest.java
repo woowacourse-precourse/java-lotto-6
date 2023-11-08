@@ -39,12 +39,12 @@ class LottoResultTest {
 
     static Stream<Arguments> argumentsProvider() {
         return Stream.of(
-                arguments("전체 로또 중 하나만 5등인 경우", 1L, 0L, 0L, 0L, 0L, new Money(5000)),
-                arguments("전체 로또 중 하나만 4등인 경우", 0L, 1L, 0L, 0L, 0L, new Money(50000)),
-                arguments("전체 로또 중 하나만 3등인 경우", 0L, 0L, 1L, 0L, 0L, new Money(1500000)),
-                arguments("전체 로또 중 하나만 2등인 경우", 0L, 0L, 0L, 1L, 0L, new Money(30000000)),
-                arguments("전체 로또 중 하나만 1등인 경우", 0L, 0L, 0L, 0L, 1L, new Money(2000000000)),
-                arguments("1,2,3,4,5등 결과를 모두 가지는 경우", 1L, 1L, 1L, 1L, 1L, new Money(2031555000))
+                arguments("전체 로또 중 하나만 5등인 경우", 1L, 0L, 0L, 0L, 0L, new Money(5000L)),
+                arguments("전체 로또 중 하나만 4등인 경우", 0L, 1L, 0L, 0L, 0L, new Money(50000L)),
+                arguments("전체 로또 중 하나만 3등인 경우", 0L, 0L, 1L, 0L, 0L, new Money(1500000L)),
+                arguments("전체 로또 중 하나만 2등인 경우", 0L, 0L, 0L, 1L, 0L, new Money(30000000L)),
+                arguments("전체 로또 중 하나만 1등인 경우", 0L, 0L, 0L, 0L, 1L, new Money(2000000000L)),
+                arguments("1,2,3,4,5등 결과를 모두 가지는 경우", 1L, 1L, 1L, 1L, 1L, new Money(2031555000L))
         );
     }
 }

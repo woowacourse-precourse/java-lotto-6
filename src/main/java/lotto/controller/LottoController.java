@@ -50,7 +50,7 @@ public class LottoController {
 
     private WinningLotto getWinningLotto() {
         final String winningNumbers = lottoViewController.receiveWinningNumber();
-        final int bonusNumber = lottoViewController.receiveBonusNumber(winningNumbers);
+        final Integer bonusNumber = lottoViewController.receiveBonusNumber(winningNumbers);
 
         return lottoGenerator.createWinningLottoFromInput(winningNumbers, bonusNumber);
     }

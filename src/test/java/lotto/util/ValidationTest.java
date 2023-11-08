@@ -12,9 +12,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidationTest {
 
-    private static final boolean VALID = true;
-    private static final boolean INVALID = false;
-
     @ParameterizedTest
     @DisplayName("isNumericValue: 숫자 형식의 String이 주어지면 true를 반환한다")
     @ValueSource(strings = {"1", "123", "-123", "-12345"})

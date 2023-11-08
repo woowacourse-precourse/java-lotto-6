@@ -26,14 +26,15 @@ public class LottoResult {
     }
 
     private BigDecimal calculateROI(final int investmentCost) {
-        BigDecimal investmentGain = new BigDecimal(calculateInvestmentReturn());
+        BigDecimal investmentGain = calculateInvestmentReturn();
         return investmentGain.multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(investmentCost), 1, RoundingMode.HALF_UP);
     }
 
-    private int calculateInvestmentReturn() {
+    private BigDecimal calculateInvestmentReturn() {
         return counter.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
-                .sum();
+                .map(entry -> BigDecimal.valueOf(entry.getKey().getPrizeMoney())
+                        .multiply(BigDecimal.valueOf(entry.getValue())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

@@ -17,7 +17,7 @@ public class LottoMachine {
         while (true) {
             System.out.println("구입 금액을 입력해 주세요.");
             String input = Console.readLine();
-            if (validateMoney(input) && validateFormat(input)) {
+            if (validateFormat(input) && validateMoney(input)) {
                 break;
             }
         }
@@ -36,10 +36,10 @@ public class LottoMachine {
 
     static boolean validateMoney(String input) {           // 구입 금액의 유효성을 검증하는 메소드
         try {
-            if (money % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
-            } else if (money < 0) {
+            if (money < 0) {
                 throw new IllegalArgumentException("[ERROR] 구입 금액은 양수여야 합니다.");
+            } else if (money % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

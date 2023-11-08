@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 
 public class WinningLotto {
 
@@ -18,24 +19,8 @@ public class WinningLotto {
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(s -> Integer.parseInt(s))
                 .collect(Collectors.toList());
-        validateWinningNumbers(winningNumbers);
-        winningLotto = new Lotto(winningNumbers);
-    }
-
-    static public void validateWinningNumbers(List<Integer> winningNumbers) {
         try {
-            for (int num: winningNumbers) {
-                if (num < 1 | num > 45) { // depth 수정 필요
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                }
-            }
-            Set<Integer> numSet = new HashSet<Integer>(winningNumbers);
-            if (numSet.size() != winningNumbers.size()) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되어서는 안 됩니다.");
-            }
-            if (winningNumbers.size() != 6) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호의 개수는 6개여야 합니다.");
-            }
+            winningLotto = new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             gettingWinningNumbers();

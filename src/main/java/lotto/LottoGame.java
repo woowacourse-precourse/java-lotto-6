@@ -32,9 +32,6 @@ public class LottoGame {
         return price / 1000;
     }
 
-    /**
-     * @param ranks 당첨금 받는 rank만 들어온다.
-     */
     public void printResult(List<Rank> ranks) {
         Map<Rank, Integer> rankCount = getRankCount(ranks);
 
@@ -54,17 +51,10 @@ public class LottoGame {
         return rankCount;
     }
 
-    /**
-     * @param ranks 당첨금 받는 rank만 들어온다.
-     */
     public void printEarningRate(List<Rank> ranks, int price) {
         System.out.println("총 수익률은 " + getEarningRate(ranks, price) +"입니다.");
     }
 
-
-    /**
-     * @param ranks 당첨금 받는 rank만 들어온다.
-     */
     public String getEarningRate(List<Rank> ranks, int price) {
         Integer prizeSum = ranks.stream()
                 .map(rank -> rank.name())

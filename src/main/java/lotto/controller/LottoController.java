@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.function.Supplier;
-import lotto.domain.BonusNumber;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Ticket;
@@ -28,8 +27,7 @@ public class LottoController {
         final PurchaseAmount purchaseAmount = readLottoAmount();
         final Lottos lottos = buyRandomLotto(purchaseAmount);
         final WinningLotto winningLotto = readWinningLotto();
-        final BonusNumber bonusNumber = readBonusNumber();
-        winningLotto.updateBonusNumber(bonusNumber.toValue());
+        readBonusNumber(winningLotto);
         final WinningStatistic winningStatistic = lottoService.compareLotto(lottos, winningLotto);
         printResult(purchaseAmount, winningStatistic);
     }
@@ -56,11 +54,13 @@ public class LottoController {
         });
     }
 
-    private BonusNumber readBonusNumber() {
-        return retryUntilSuccess(() -> {
+    private void readBonusNumber(WinningLotto winningLotto) {
+        Supplier<Void> supplier = () -> {
             outputView.printBonusNumberRequset();
-            return inputManager.readBonusNumber();
-        });
+            winningLotto.updateBonusNumber(inputManager.readBonusNumber().toValue());
+            return null;
+        };
+        retryUntilSuccess(supplier);
     }
 
     private void printResult(final PurchaseAmount purchaseAmount, final WinningStatistic winningStatistic) {

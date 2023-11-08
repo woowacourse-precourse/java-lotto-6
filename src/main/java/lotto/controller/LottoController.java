@@ -26,4 +26,9 @@ public class LottoController {
                 = lottoLover.bragAboutMyLottoButYouAreNotAllowedToTouchIt();
         LottoView.printPurchaseList(lookAtThis);
     }
+
+    public void drawResult() {
+        List<Integer> winningNumbers = LottoView.requestWinningNumbers();
+        int bonusNumber = LottoView.requestBonusNumber();
+    }
 }

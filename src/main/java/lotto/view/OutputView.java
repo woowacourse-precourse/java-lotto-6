@@ -1,6 +1,8 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.constant.ExceptionMessage;
+import lotto.constant.ViewMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.util.StringHandler;
@@ -13,7 +15,6 @@ public class OutputView {
     private static final String RESULT_COUNT = "%d개";
     private static final double PERCENT_CHANGER = 100.0;
     private static final double LOTTO_AMOUNT = 1000.0;
-    private static final String START_ERROR_MESSAGE = "[ERROR] ";
 
     public void printLottos(List<Lotto> lottos, int lottosCount) {
         printBuyMessage(lottosCount);
@@ -24,11 +25,11 @@ public class OutputView {
     }
 
     public void printBuyMessage(int lottosCount) {
-        System.out.printf("%d개를 구매했습니다." + System.lineSeparator(), lottosCount);
+        System.out.printf(ViewMessage.BUY_MESSAGE.getMessage() + System.lineSeparator(), lottosCount);
     }
 
     public void printResultStatistics(List<Integer> result) {
-        printResultStatisticsPhrases();
+        printStatisticsResultPhrases();
         int i = 0;
         for(Rank rank : Rank.values()) {
             if(rank == Rank.ZERO) {
@@ -39,13 +40,13 @@ public class OutputView {
         }
     }
 
-    private void printResultStatisticsPhrases() {
-        System.out.print("당첨 통계" + System.lineSeparator() + "---" + System.lineSeparator());
+    private void printStatisticsResultPhrases() {
+        System.out.print(ViewMessage.STATISTICS_RESULT_MESSAGE.getMessage());
     }
 
     public void printRateOfReturn(int lottoCount, long totalPrize) {
         double rateOfReturn = calculateRateOfReturn(lottoCount, totalPrize);
-        System.out.printf("총 수익률은 %,.1f%%입니다.",rateOfReturn);
+        System.out.printf(ViewMessage.RATE_OF_RETURN_MESSAGE.getMessage(), rateOfReturn);
     }
 
     public double calculateRateOfReturn(int lottoCount, long totalPrize) {
@@ -54,6 +55,6 @@ public class OutputView {
     }
 
     public void printError(String errorMessage) {
-        System.out.println(START_ERROR_MESSAGE + errorMessage);
+        System.out.println(ExceptionMessage.ERROR_FORMAT_MESSAGE.getMessage() + errorMessage);
     }
 }

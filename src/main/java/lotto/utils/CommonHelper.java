@@ -25,8 +25,10 @@ public class CommonHelper {
         return Randoms.pickUniqueNumbersInRange(LottoEnum.LOTTO_MIN_NUMBER.getValue(), LottoEnum.LOTTO_MAX_NUMBER.getValue(), LottoEnum.LOTTO_SIZE.getValue());
     }
 
-    public static List<String> splitComma(String input) {
+    public static List<Integer> splitComma(String input) {
         List<String> splited = List.of(input.split(","));
-        return splited;
+        return splited.stream()
+                .map(Integer::parseInt)
+                .toList();
     }
 }

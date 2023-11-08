@@ -19,4 +19,16 @@ check new branch
 - user : [6개의 값 입력]
   - 로또 번호는 1~45 
   - 중복 되지 않는 6개의 숫자
-  - 입력 값이 오류일 경우 > IllegalArgumentException 발생 > ERROR 시작하는 에러 메시지 출력 후 다시 입력 받기 
+  - 입력 값이 오류일 경우 > IllegalArgumentException 발생 > ERROR 시작하는 에러 메시지 출력 후 다시 입력 받기
+
+
+### 개발 흐름
+1. 로또 Class
+- 6개의 값 랜덤선택
+- 예외 처리
+  - 구간 내 번호
+  - 중복 되지 않는 값
+2. 게임 Class
+- MC 말 출력 함수
+- 사용자 값 받는 함수
+- 수익률 함수

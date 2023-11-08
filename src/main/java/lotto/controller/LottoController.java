@@ -34,7 +34,6 @@ public class LottoController {
         int lottoBuyAmount = buyPrice / LottoConstant.LOTTO_PRICE.getConstant();
 
         makeLotto(lottoBuyAmount);
-
         output.printLotteryNumber(lottos);
 
         prizeNum = input.requestLottoPrizeNums();

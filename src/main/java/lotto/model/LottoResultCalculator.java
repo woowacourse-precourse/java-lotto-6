@@ -15,7 +15,6 @@ public class LottoResultCalculator {
         lottoPrizeMoney[5] = LottoConstant.STATICS_THIRD_PRIZE.getConstant();
         lottoPrizeMoney[6] = LottoConstant.STATICS_FOURTH_PRIZE.getConstant();
         lottoPrizeMoney[7] = LottoConstant.STATICS_FIFTH_PRIZE.getConstant();
-
     }
 
     public int [] getWinningLottoSameSize(ArrayList<Lotto> lottos, ArrayList<Integer> prizeNum, int bonusNum) {

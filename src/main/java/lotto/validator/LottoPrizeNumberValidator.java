@@ -20,7 +20,6 @@ public class LottoPrizeNumberValidator {
     }
 
     public boolean validate(String prizeNum) {
-
        if(!validPrizeNumOtherString(prizeNum)) {
            return false;
        }

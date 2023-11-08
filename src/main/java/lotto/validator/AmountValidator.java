@@ -3,8 +3,6 @@ package lotto.validator;
 import lotto.constants.ErrorMessage;
 import lotto.constants.LottoConstant;
 
-import java.util.ArrayList;
-
 public class AmountValidator {
 
     private ErrorMessage errorMessage;
@@ -17,7 +15,6 @@ public class AmountValidator {
     }
 
     public boolean validate(String buyAmount) {
-
         if (!validAmountOtherString(buyAmount)) {
             return false;
         }

@@ -3,7 +3,6 @@ package lotto.validator;
 import lotto.constants.ErrorMessage;
 import lotto.constants.LottoConstant;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BounsNumberValidator {
@@ -19,7 +18,6 @@ public class BounsNumberValidator {
     }
 
     public boolean validate(String num, List<Integer> prizeNums) {
-
         if (!validOtherString(num)) {
             return false;
         }
@@ -72,7 +70,6 @@ public class BounsNumberValidator {
             nums.remove(nums.size()-1);
             return false;
         }
-
         nums.remove(nums.size()-1);
         return true;
     }

@@ -45,4 +45,8 @@ public class OutputView {
         System.out.println(ROI_OUTPUT_PREFIX.message()+roi+ROI_OUTPUT_SUFFIX.message());
     }
 
+    public void printErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
+
 }

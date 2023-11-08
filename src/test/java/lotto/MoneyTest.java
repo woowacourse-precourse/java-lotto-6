@@ -21,4 +21,15 @@ public class MoneyTest {
         assertThat(money).isNotNull().isInstanceOf(Money.class);
         assertThat(money.getTicket()).isEqualTo(5);
     }
+
+    @DisplayName("구입 금액이 1,000원 단위로 나누어지지 않는다면 예외가 발생한다.")
+    @Test
+    void countTicketByRemainderExists() {
+        // given
+        int payMoney = 100;
+
+        // when & then
+        assertThatThrownBy(() -> new Money(payMoney))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

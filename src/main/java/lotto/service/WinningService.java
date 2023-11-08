@@ -10,4 +10,5 @@ public interface WinningService {
     void createBonusNumber(int bonusNumber);
 
     String calculateWinningDetail(LottoCollector lottoCollector);
+
 }

@@ -14,8 +14,8 @@ public class LottoApp {
     public LottoApp() {
         lottoController = new LottoController(
                 LottoConfig.lottoPublishService(),
-                LottoConfig.winningService()
-        );
+                LottoConfig.winningService(),
+                LottoConfig.yieldRateService());
     }
 
     public void run() {
@@ -23,6 +23,7 @@ public class LottoApp {
         requestWinningNumber();
         requestBonusNumber();
         requestPrizeMoney();
+        requestYieldRate();
 
         Console.close();
     }
@@ -70,6 +71,11 @@ public class LottoApp {
 
     private void requestPrizeMoney() {
         String winningDetail = lottoController.getWinningDetail(lottoCollector);
-        OutputView.winningDetail(winningDetail);
+        OutputView.printWinningDetail(winningDetail);
+    }
+
+    private void requestYieldRate() {
+        String yieldRate = lottoController.getYieldRate();
+        OutputView.printYieldRate(yieldRate);
     }
 }

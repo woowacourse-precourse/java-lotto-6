@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.service.LottoPublishServiceImpl;
 import lotto.service.WinningServiceImpl;
+import lotto.service.YieldRateServiceImpl;
 import lotto.utils.ExceptionMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,11 @@ class LottoControllerTest {
 
     @BeforeEach
     void init() {
-        lottoController = new LottoController(new LottoPublishServiceImpl(), new WinningServiceImpl());
+        lottoController = new LottoController(
+                new LottoPublishServiceImpl(),
+                new WinningServiceImpl(),
+                new YieldRateServiceImpl()
+        );
     }
 
     @Test

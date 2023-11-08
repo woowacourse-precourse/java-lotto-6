@@ -1,7 +1,9 @@
 package domain.result;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Set;
 
 public class TotalWinningResult {
     private final Map<WinningResult, Integer> results = new EnumMap<>(WinningResult.class);
@@ -18,5 +20,9 @@ public class TotalWinningResult {
 
     public int get(WinningResult result) {
         return results.get(result);
+    }
+
+    public Set<Map.Entry<WinningResult, Integer>> entrySet() {
+        return results.entrySet();
     }
 }

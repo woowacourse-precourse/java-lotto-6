@@ -2,6 +2,8 @@ package domain;
 
 import domain.result.WinningResult;
 
+import java.util.ArrayList;
+
 public class LottoTicket {
     public static final int NO_BONUS_NUMBER = -1;
     public static final int MIN_NUMBER = 1;
@@ -13,6 +15,11 @@ public class LottoTicket {
         this.lotto = lotto;
         validateBonus(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    @Override
+    public String toString() {
+        return lotto.toString();
     }
 
     public static LottoTicket normalTicketFrom(Lotto lotto) {
@@ -44,11 +51,11 @@ public class LottoTicket {
             return;
         }
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
-            throw new IllegalArgumentException("bonus 번호는, " + MIN_NUMBER + "이상, " + MAX_NUMBER + "이하 여야 합니다!");
+            throw new IllegalArgumentException("[ERROR] bonus 번호는, " + MIN_NUMBER + "이상, " + MAX_NUMBER + "이하 여야 합니다!");
         }
 
         if (this.lotto.isMatch(bonusNumber)) {
-            throw new IllegalArgumentException("bonus 번호는 lotto 번호와 중복될 수 없습니다!");
+            throw new IllegalArgumentException("[ERROR] bonus 번호는 lotto 번호와 중복될 수 없습니다!");
         }
     }
 

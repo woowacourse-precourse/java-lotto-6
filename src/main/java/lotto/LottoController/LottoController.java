@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.LottoModel.Lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.LottoModel.LottoRank.*;

@@ -1,6 +1,6 @@
 package lotto.view;
 
-public class ParameterConfig {
+public final class ParameterConfig {
     private ParameterConfig() {
     }
 

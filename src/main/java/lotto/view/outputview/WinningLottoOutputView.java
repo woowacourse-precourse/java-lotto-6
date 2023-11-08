@@ -6,7 +6,7 @@ import lotto.view.ParameterConfig;
 
 import java.util.Map;
 
-public class WinningLottoOutputView implements OutputView {
+public final class WinningLottoOutputView implements OutputView {
     private final Map<String, Runnable> methods = Map.ofEntries(
             Map.entry(ParameterConfig.WINNING_LOTTO_NUMBERS, this::viewWinningNumberText),
             Map.entry(ParameterConfig.BONUS_NUMBER, this::viewBonusNumberText)

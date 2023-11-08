@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.controllers;
 
 import lotto.dto.DTO;
 

@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.controllers;
 
 import lotto.dto.BuyLottoDTO;
 import lotto.dto.DTO;
@@ -9,7 +9,7 @@ import lotto.view.ParameterConfig;
 
 import java.util.Map;
 
-public class LottoBuyController implements Controller {
+public final class LottoBuyController implements Controller {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoBuyService service;

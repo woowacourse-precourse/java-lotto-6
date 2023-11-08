@@ -1,5 +1,9 @@
 package lotto.controller;
 
+import lotto.controller.controllers.Controller;
+import lotto.controller.controllers.LottoBuyController;
+import lotto.controller.controllers.LottoResultController;
+import lotto.controller.controllers.WinningLottoController;
 import lotto.domain.AutoLottoCreateModel;
 import lotto.domain.LottoMachine;
 import lotto.service.LottoBuyService;
@@ -9,20 +13,20 @@ import lotto.view.outputview.LottoBuyOutputView;
 import lotto.view.outputview.LottoResultOutputView;
 import lotto.view.outputview.WinningLottoOutputView;
 
-public class ControllerConfig {
+public final class ControllerConfig {
     private ControllerConfig() {
     }
 
-    public static Controller createLottoBuyController() {
+    static Controller createLottoBuyController() {
         return new LottoBuyController(new LottoBuyInputView(), new LottoBuyOutputView(),
                 new LottoBuyService(new LottoMachine(new AutoLottoCreateModel())));
     }
 
-    public static Controller createWinningLottoController() {
+    static Controller createWinningLottoController() {
         return new WinningLottoController(new WinningLottoInputView(), new WinningLottoOutputView());
     }
 
-    public static Controller createLottoResultController() {
+    static Controller createLottoResultController() {
         return new LottoResultController(new LottoResultOutputView());
     }
 }

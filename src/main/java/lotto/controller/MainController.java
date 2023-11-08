@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.controller.controllers.Controller;
 import lotto.domain.ProgramFlow;
 import lotto.dto.DTO;
 

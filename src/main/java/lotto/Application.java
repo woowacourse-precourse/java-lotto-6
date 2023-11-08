@@ -1,17 +1,27 @@
 package lotto;
 
+import java.util.List;
 import lotto.Model.Lotto.Lotto;
+import lotto.Model.LottoSet.LottoSet;
 import lotto.Service.LottoNumberService.LottoNumberService;
+import lotto.Service.LottoTicketService.LottoTicketService;
 
 public class Application {
 
 
     public static void main(String[] args) {
-        LottoNumberService number = new LottoNumberService();
-        Lotto lotto = number.getUniqueLottoNumber();
+        LottoTicketService number = new LottoTicketService();
+        LottoSet lottoList = number.GenerateLottoSet();
 
         // 생성된 로또 번호 출력
-        System.out.println("로또 번호: " + lotto.getNumbers());
+        for ( Lotto lotto : lottoList.getLottoSet()) {
+            System.out.print("로또번호 : ");
+            for( Integer a : lotto.getNumbers()) {
+                System.out.print(a + ",");
+            }
+            System.out.println();
+        }
+
 
 
 

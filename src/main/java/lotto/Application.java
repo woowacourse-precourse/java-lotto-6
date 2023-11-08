@@ -7,6 +7,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoReceipt;
 import lotto.service.Input;
+import lotto.service.Output;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
@@ -16,6 +17,7 @@ public class Application {
         validateDivisible(amount);
         List<Lotto> lottoTickets = generateLottoTicket(amount);
         LottoReceipt lottoReceipt = new LottoReceipt(lottoTickets);
+        Output.printLottoReceipt(lottoReceipt);
     }
 
     public static int validateAmount(String amount) {

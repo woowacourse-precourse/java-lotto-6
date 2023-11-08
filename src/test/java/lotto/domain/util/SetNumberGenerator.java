@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.domain.numbergenerator.NumberGenerator;
 
 public class SetNumberGenerator implements NumberGenerator {
-    private List<Integer> setNumbers;
+    private final List<Integer> setNumbers;
     public SetNumberGenerator(List<Integer> setNumbers) {
         this.setNumbers = setNumbers;
     }

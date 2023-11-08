@@ -37,11 +37,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            ExceptionMessage.sizeException();
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
     private void validateOverlap(List<Integer> numbers) {
         Set<Integer> overlapCheck = new HashSet<>();
         for (int i = 0; i < numbers.size(); i++) {
@@ -64,4 +64,10 @@ public class Lotto {
         }
     }
 
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            ExceptionMessage.overlapException();
+            throw new IllegalArgumentException();
+        }
+    }
 }

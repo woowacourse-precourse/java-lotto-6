@@ -15,8 +15,6 @@ public class LottoWinning {
     }
 
     public LottoWinning(Lotto numbers, LottoNumber bonusNum) {
-        validateDuplicate(numbers, bonusNum);
-
         this.winningNum = numbers;
         this.bonusNum = bonusNum;
     }
@@ -27,12 +25,5 @@ public class LottoWinning {
 
     public LottoNumber getBonusNum() {
         return bonusNum;
-    }
-
-    // 보너스 숫자가 중복된 값이면 예외 발생
-    private void validateDuplicate(Lotto winningNum, LottoNumber bonusNum) {
-        if (winningNum.getNumbers().stream().anyMatch(s -> s.getNumber() == bonusNum.getNumber())) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUM.getMessage());
-        }
     }
 }

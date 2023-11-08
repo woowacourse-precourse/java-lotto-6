@@ -13,11 +13,9 @@ public class FinalGrade {
     }
 
     public BigDecimal getPlayerTotalPrize() {
-        BigDecimal totalPrize = BigDecimal.ZERO;
-        for (Rank rank : playerLottoResults) {
-            totalPrize = totalPrize.add(rank.getPrize());
-        }
-        return totalPrize;
+        return playerLottoResults.stream()
+                .map(Rank::getPrize)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getPlayerTotalPurchaseAmount() {
@@ -26,9 +24,7 @@ public class FinalGrade {
 
     public EnumMap<Rank, Integer> getEachRankCounts() {
         EnumMap<Rank, Integer> eachRankCounts = initializeEachRankCounts();
-        for (Rank playerLottoResult : playerLottoResults) {
-            eachRankCounts.put(playerLottoResult, eachRankCounts.getOrDefault(playerLottoResult, 0) + 1);
-        }
+        updateEachRankCounts(eachRankCounts);
         return eachRankCounts;
     }
 
@@ -39,5 +35,10 @@ public class FinalGrade {
         }
         return eachRankCounts;
     }
-}
 
+    private void updateEachRankCounts(EnumMap<Rank, Integer> eachRankCounts) {
+        for (Rank playerLottoResult : playerLottoResults) {
+            eachRankCounts.put(playerLottoResult, eachRankCounts.getOrDefault(playerLottoResult, 0) + 1);
+        }
+    }
+}

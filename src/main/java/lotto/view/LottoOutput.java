@@ -5,14 +5,21 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class LottoOutput {
+
+    private static final String REQUEST_AMOUNT_MESSAGE = "구매금액을 입력해 주세요.";
+    private static final String PRINT_NUMBER_OF_TICKETS_MESSAGE = "%n%d개를 구매했습니다.";
+    private static final String REQUEST_WINNING_NUMBER = "\n당첨 번호를 입력해 주세요.";
+    private static final String REQUEST_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
+    private static final String PRIZE_STATISTICS_HEADER = "\n당첨 통계\n---";
+    private static final String TOTAL_EARNINGS_RATE_MESSAGE = "총 수익률은 %s입니다.";
     private static final DecimalFormat EARNINGS_RATE_FORMAT = new DecimalFormat("0.0%");
 
     public String requestAmountMessage() {
-        return "구매금액을 입력해 주세요.";
+        return REQUEST_AMOUNT_MESSAGE;
     }
 
     public String printNumberOfTicketsMessage(int count) {
-        return "\n" + count + "개를 구매했습니다.";
+        return String.format(PRINT_NUMBER_OF_TICKETS_MESSAGE, count);
     }
 
     public String getLottoNumbersMessage(List<Integer> lottoNumbers) {
@@ -24,11 +31,11 @@ public class LottoOutput {
     }
 
     public String requestWinningNumber() {
-        return "\n당첨 번호를 입력해 주세요.";
+        return REQUEST_WINNING_NUMBER;
     }
 
     public String requestBonusNumber() {
-        return "\n보너스 번호를 입력해 주세요.";
+        return REQUEST_BONUS_NUMBER;
     }
 
     public void printPrizeStatistics(List<String > statisticsLines) {
@@ -38,14 +45,11 @@ public class LottoOutput {
     }
 
     public void printPrizeStatisticsHeader() {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
+        System.out.println(PRIZE_STATISTICS_HEADER);
     }
 
-
-
     public void printEarningsRate(BigDecimal earningsRate) {
-        System.out.println("총 수익률은 " + formatEarningsRate(earningsRate) + "입니다.");
+        System.out.println(String.format(TOTAL_EARNINGS_RATE_MESSAGE, formatEarningsRate(earningsRate)));
     }
 
     private String formatEarningsRate(BigDecimal earningsRate) {

@@ -28,10 +28,14 @@ public class RandomNumbersGenerator {
 
 
     private void validateDuplicateNumber(List<Integer> randomNumbers) {
-        int distinctCount = (int) randomNumbers.stream().distinct().count();
+        int distinctCount = getDistinctCount(randomNumbers);
         if (distinctCount != randomNumbers.size()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private int getDistinctCount(List<Integer> randomNumbers){
+        return (int)randomNumbers.stream().distinct().count();
     }
 
     private void validateNumbersCount(List<Integer> randomNumbers) {

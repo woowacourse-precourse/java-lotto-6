@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.view.Messages.BLANK;
 import static lotto.view.Messages.COUNT_UNIT;
 import static lotto.view.Messages.DASH;
+import static lotto.view.Messages.PROFIT_RATE_MESSAGE;
 import static lotto.view.Messages.RESULT_MESSAGE;
 
 import lotto.domain.Ranking;
@@ -24,7 +25,8 @@ public class OutputView {
         }
     }
 
-    public static void printProfitRate() {
-
+    public static void printProfitRate(final double profitRate) {
+        String message = String.format(PROFIT_RATE_MESSAGE, profitRate);
+        System.out.println(message);
     }
 }

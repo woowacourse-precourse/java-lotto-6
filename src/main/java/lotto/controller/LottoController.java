@@ -35,6 +35,11 @@ public class LottoController {
         winningLotto = readWinningLotto();
         RankingResult result = calculateCountOfRankings();
         OutputView.printResult(result);
+        OutputView.printProfitRate(calculateProfitRate(result));
+    }
+
+    private float calculateProfitRate(final RankingResult result) {
+        return result.calculateProfit() / budget;
     }
 
     private RankingResult calculateCountOfRankings() {

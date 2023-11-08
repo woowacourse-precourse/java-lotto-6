@@ -21,4 +21,15 @@ public class RankingResult {
     public int findCountByRanking(final Ranking ranking) {
         return result.get(ranking);
     }
+
+    public int calculateProfit() {
+        int profit = 0;
+
+        for (Ranking ranking : Ranking.values()) {
+            int count = result.get(ranking);
+            profit += Ranking.calculateProfitByRanking(ranking, count);
+        }
+
+        return profit;
+    }
 }

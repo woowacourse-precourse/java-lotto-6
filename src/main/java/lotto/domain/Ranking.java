@@ -43,4 +43,8 @@ public enum Ranking {
     public String getMessage() {
         return this.message;
     }
+
+    public static int calculateProfitByRanking(final Ranking ranking, final int count) {
+        return ranking.winningMoney * count;
+    }
 }

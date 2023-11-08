@@ -8,12 +8,18 @@ import lotto.vo.WinningResult;
 import java.util.List;
 
 public class WinningController {
+
     public WinningController(WinningResult result, int wastedMoney) {
         List<Integer> winning = result.getWinning();
         Output output = new Output();
         output.printResult();
         output.printWinning(winning);
 
+        EarningCalculator calculator = new EarningCalculator(wastedMoney, sumEarning(winning));
+        output.printEarnings(calculator.compute());
+    }
+
+    private double sumEarning(List<Integer> winning){
         double earnings = 0;
         for (int i = 0; i < winning.size(); i++) {
             int countWinning = winning.get(i);
@@ -21,7 +27,6 @@ public class WinningController {
                 earnings += (countWinning * EarningInformation.values()[i].getValue());
             }
         }
-        EarningCalculator calculator = new EarningCalculator(wastedMoney, earnings);
-        output.printEarnings(calculator.compute());
+        return earnings;
     }
 }

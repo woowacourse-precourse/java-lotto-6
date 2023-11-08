@@ -25,7 +25,7 @@ public class PurchaseMoney {
         }
     }
 
-    public int getLottoQuantity() {
+    public int calculateLottoQuantity() {
         return amount / LOTTO_PRICE;
     }
 

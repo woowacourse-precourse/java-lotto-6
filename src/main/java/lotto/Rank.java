@@ -16,7 +16,7 @@ public enum Rank {
         this.checked = checked;
         this.prize = prize;
     }
-    public static Rank getRank(int count, boolean check) {
+    public static Rank decideRank(int count, boolean check) {
         Rank[] ranks = Rank.values();
         for (Rank rank : ranks) {
             if (rank.getCounted() == count && rank.getChecked() == check) {

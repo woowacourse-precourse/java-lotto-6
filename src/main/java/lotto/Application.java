@@ -7,7 +7,7 @@ import lotto.ui.OutputView;
 public class Application {
     public static void main(String[] args) {
         PurchaseMoney purchaseMoney = runPurchaseMoneyStep();
-        int lottoQuantity = purchaseMoney.getLottoQuantity();
+        int lottoQuantity = purchaseMoney.calculateLottoQuantity();
         LottoProcess lottoProcess = new LottoProcess();
         List<Lotto> lottos = lottoProcess.buyLotto(lottoQuantity);
         Lotto winningNumbers = runWinningNumbersStep();

@@ -15,14 +15,14 @@ public class Converter {
         }
     }
 
-    public static List<Integer> convertWinningNumber(String winningNumber) {
-        String[] seperatedWinningNumber = winningNumber.split(NUMBER_DELIMITER);
-        List<Integer> convertedWinningNumber = new ArrayList<>();
+    public static List<Integer> convertWinningNumber(String winningNumbers) {
+        String[] seperatedWinningNumbers = winningNumbers.split(NUMBER_DELIMITER);
+        List<Integer> convertedWinningNumbers = new ArrayList<>();
 
-        for (String number : seperatedWinningNumber) {
-            convertedWinningNumber.add(convertToNumeric(number));
+        for (String number : seperatedWinningNumbers) {
+            convertedWinningNumbers.add(convertToNumeric(number));
         }
 
-        return convertedWinningNumber;
+        return convertedWinningNumbers;
     }
 }

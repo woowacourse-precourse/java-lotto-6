@@ -27,7 +27,7 @@ public class LottoResult {
 
     public Map<Rank, Integer> getFinalResult() {
         Map<Rank, Integer> finalResult = initFinalResult();
-        List<Rank> ranks = getRanks();
+        List<Rank> ranks = makeRanks();
 
         for (Rank rank : ranks) {
             finalResult.put(rank, finalResult.getOrDefault(rank, 0) + 1);
@@ -47,10 +47,10 @@ public class LottoResult {
         return finalResult;
     }
 
-    public List<Rank> getRanks() {
+    public List<Rank> makeRanks() {
         List<Rank> ranks = new ArrayList<>();
         for (int i = 0; i < counted.size(); i++) {
-            ranks.add(Rank.getRank(counted.get(i), checked.get(i)));
+            ranks.add(Rank.decideRank(counted.get(i), checked.get(i)));
         }
         return ranks;
     }

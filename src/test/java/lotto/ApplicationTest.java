@@ -3,10 +3,16 @@ package lotto;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+import static org.mockito.Mockito.mockStatic;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.Arrays;
 import java.util.List;
+import lotto.common.ErrorMessage;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 class ApplicationTest extends NsTest {
 
@@ -85,6 +91,27 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             run("8000");
             assertThat(output()).contains("8개를 구매했습니다.");
+        });
+    }
+
+    @Test
+    void 예외_테스트_숫자가_아닌_당첨_번호_입력() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_6자리가_아닌_당첨_번호_입력() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 

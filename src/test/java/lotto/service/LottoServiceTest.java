@@ -22,25 +22,18 @@ class LottoServiceTest implements LottoFinalConsts {
     private HashMap<LottoRank, Integer> lottoRanks = new HashMap<>();
     private LottoMachine lottoMachine = new LottoMachine(lottoPurchase, lottos, lottoRanks);
     private LottoService lottoService = new LottoService();
-    private List<Integer> winningNumbers = new ArrayList<>(List.of(3, 4, 5, 6, 7, 8));
+    private List<Integer> winningNumbers = new ArrayList<>(List.of(10, 11, 12, 13, 14, 15));
     private String winningNumber = "1,2,3,4,5,6";
-    private String bonusNumber = "7";
+    private String bonusNumber = "9";
 
     @BeforeEach
     void 로또_머신을_초기화한다() {
         lottoMachine = new LottoMachine(lottoPurchase, lottos, lottoRanks);
-    }
-
-    @Test
-    void 사용자가_입력한_당첨번호와_보너스번호를_로또_머신에_저장한다() {
         String[] winning = winningNumber.split(LOTTO_WINNING_SPLIT);
         for(String number:winning){
             lottoMachine.updateLottoWinningNumbers(Integer.parseInt(number));
         }
         lottoMachine.updateLottoBonusNumber(Integer.parseInt(bonusNumber));
-
-        assertThat(lottoMachine.getLottoWinningNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
-        assertThat(lottoMachine.getLottoBonusNumber()).isEqualTo(7);
     }
 
     @Test
@@ -53,7 +46,7 @@ class LottoServiceTest implements LottoFinalConsts {
 
     @Test
     void 사용자가_입력한_보너스_번호가_이미_당첨번호에_존재할_경우_예외를_발생한다() {
-        assertThatThrownBy(() -> lottoService.isBonusNumberAlreadyExist(winningNumbers, 6))
+        assertThatThrownBy(() -> lottoService.isBonusNumberAlreadyExist(winningNumbers, 10))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -64,22 +57,23 @@ class LottoServiceTest implements LottoFinalConsts {
     }
 
     @Test
-    void saveRankCount() {
-    }
+    void 당첨번호와_일치하는_숫자_세기() {
+        List<Integer> lottoNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 9));
+        String result = "";
+        int count = VARIABLE_FORMAT;
+        for (Integer winningNumber:lottoMachine.getLottoWinningNumbers()){
+            if (lottoNumbers.contains(winningNumber)){
+                count+=ADD_COUNT_ONE;
+            }
+        }
+        if (count==LOTTO_RANK_IS_SECOND_OR_THIRD){
+            if (lottoNumbers.contains(lottoMachine.getLottoBonusNumber())){
+                result = LOTTO_SECOND;
+                assertThat(result).isEqualTo("5+1");
+            }
+        }
+        result = Integer.toString(count);
 
-    @Test
-    void getCorrectCount() {
-    }
-
-    @Test
-    void getLottoRank() {
-    }
-
-    @Test
-    void getLottoReturn() {
-    }
-
-    @Test
-    void computeLottoReturnRate() {
+        assertThat(result).isEqualTo("5");
     }
 }

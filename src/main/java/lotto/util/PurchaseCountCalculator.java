@@ -12,7 +12,7 @@ public class PurchaseCountCalculator {
         return purchaseAmount / itemPrice;
     }
 
-    static void validateRemainderIsZero(int purchaseAmount, int itemPrice) {
+    private static void validateRemainderIsZero(int purchaseAmount, int itemPrice) {
         int remainder = purchaseAmount % itemPrice;
         if (remainder != 0) {
             throw new IllegalArgumentException(

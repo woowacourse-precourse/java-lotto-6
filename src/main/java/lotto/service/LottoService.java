@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.repository.LottoRepository;
 import lotto.utils.Parser;
 import lotto.view.InputView;
@@ -57,5 +58,20 @@ public class LottoService {
 
     public void setBonusNum() {
         lottoRepository.setBounsNum(parser.parseBonusNum(inputView.inputBounsNum(), lottoRepository.getWinningLotto().getNumbers()));
+    }
+
+    public void getRank() {
+        lottoRepository.initMap();
+        for(Lotto lotto : lottoRepository.getUserLottoList()) {
+                lottoRepository.increaseResult(Rank.getRank(lotto, lottoRepository.getWinningLotto(), lottoRepository.getBonusNum()));
+            }
+    }
+
+    public void getResult() {
+        outputView.printResult(lottoRepository.getResultMap());
+    }
+
+    public void getProfit() {
+        outputView.printProfit(lottoRepository.getProfit()*1.0 / (lottoCount * 1000) * 100);
     }
 }

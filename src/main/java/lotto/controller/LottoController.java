@@ -12,6 +12,9 @@ public class LottoController {
         getUserLotto();
         setWinningLotto();
         setBonusNum();
+        getRank();
+        getResult();
+        getProfit();
     }
 
     public void setLottoCount() {
@@ -32,5 +35,17 @@ public class LottoController {
 
     public void setBonusNum() {
         lottoService.setBonusNum();
+    }
+
+    public void getRank() {
+        lottoService.getRank();
+    }
+
+    public void getResult() {
+        lottoService.getResult();
+    }
+
+    public void getProfit() {
+        lottoService.getProfit();
     }
 }

@@ -21,7 +21,7 @@ public class Parser {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 숫자여야합니다.");
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 

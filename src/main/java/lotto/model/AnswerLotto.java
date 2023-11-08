@@ -26,6 +26,6 @@ public class AnswerLotto extends Lotto {
     @Override
     public Score contains(Lotto lotto) {
         return super.contains(lotto)
-                .canSecond(lotto.contains(bonusNo));
+                .convertSecondIfPossible(lotto.contains(bonusNo));
     }
 }

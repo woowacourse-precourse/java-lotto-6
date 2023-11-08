@@ -34,7 +34,7 @@ public enum Score {
                 .orElse(Nothing);
     }
 
-    public Score canSecond(boolean hasBonusNo) {
+    public Score convertSecondIfPossible(boolean hasBonusNo) {
         if (isThird() && hasBonusNo) {
             return Second;
         }

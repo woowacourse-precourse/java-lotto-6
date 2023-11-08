@@ -29,27 +29,8 @@ public class LottoManager {
      */
     public Result processLotto() {
         Result result = new Result();
-        this.lottoPurchased.forEach((lotto) -> processALotto(result, lotto));
+        this.lottoPurchased.forEach((lotto) -> result.addCount(lotto, this.winningNumbers));
         return result;
-    }
-
-    private void processALotto(Result result, Lotto lotto) {
-        int numOfMatches = lotto.compare(this.winningNumbers);
-        if (!DomainConfiguration.RANK_PER_NUM_OF_MATCHES.containsKey(numOfMatches)) {
-            return;
-        }
-        Integer rank = DomainConfiguration.RANK_PER_NUM_OF_MATCHES.get(numOfMatches);
-        if (rank == DomainConfiguration.RANK_FOR_CHECK_BONUS_NUMBER) {
-            rank += getOneIfBonusNumberMatches(lotto, this.winningNumbers.getBonusNumber());
-        }
-        result.addCount(rank);
-    }
-
-    private int getOneIfBonusNumberMatches(Lotto lotto, int bonusNumber) {
-        if (lotto.contains(bonusNumber)) {
-            return 1;
-        }
-        return 0;
     }
 
     /**

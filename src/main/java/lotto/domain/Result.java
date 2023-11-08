@@ -19,11 +19,31 @@ public class Result {
     }
 
     /**
-     * rank에 해당하는 등수를 달성한 횟수를 1회 증가시킨다.
-     * @param rank 증가시킬 등수.
+     * lottoToProcess의 등수를 파악하고, 해당 등수의 카운트를 1 증가시킨다.
+     * @param lottoToProcess 등수를 파악할 Lotto.
+     * @param winningNumbers 당첨 번호.햐
      */
-    public void addCount(int rank) {
+    public void addCount(Lotto lottoToProcess, WinningNumbers winningNumbers) {
+        processLotto(lottoToProcess, winningNumbers);
+    }
+
+    private void processLotto(Lotto lotto, WinningNumbers winningNumbers) {
+        int numOfMatches = lotto.compare(winningNumbers);
+        if (!DomainConfiguration.RANK_PER_NUM_OF_MATCHES.containsKey(numOfMatches)) {
+            return;
+        }
+        Integer rank = DomainConfiguration.RANK_PER_NUM_OF_MATCHES.get(numOfMatches);
+        if (rank == DomainConfiguration.RANK_FOR_CHECK_BONUS_NUMBER) {
+            rank += getOneIfBonusNumberMatches(lotto, winningNumbers.getBonusNumber());
+        }
         this.countsOfEachRank[rank - 1]++;
+    }
+
+    private int getOneIfBonusNumberMatches(Lotto lotto, int bonusNumber) {
+        if (lotto.contains(bonusNumber)) {
+            return 1;
+        }
+        return 0;
     }
 
     /**

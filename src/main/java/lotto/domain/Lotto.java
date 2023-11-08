@@ -10,11 +10,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateNumbers(numbers);
+        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validateNumbers(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         lottoException.validateLottoNumbers(numbers);
     }
 

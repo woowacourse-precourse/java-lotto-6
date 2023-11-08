@@ -4,10 +4,13 @@ import static lotto.view.OutputMessage.*;
 import static lotto.domain.LottoRank.*;
 import static lotto.constant.LottoResultIndex.*;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.domain.Lotto;
 
 public class OutputView {
+    private static final DecimalFormat formatter = new DecimalFormat("###,###");
+
     public static void askPurchaseAmount() {
         System.out.println(ENTER_PURCHASE_AMOUNT.getMessage());
     }
@@ -60,7 +63,9 @@ public class OutputView {
 
     private static void printMatchedLotto(int[] rankResult, int matchedNumber) {
         System.out.printf(SHOW_LOTTO_PRIZE.getMessage(),
-                matchedNumber, getLottoRank(matchedNumber).getWinningAmount(), rankResult[matchedNumber]);
+                matchedNumber,
+                formatter.format(getLottoRank(matchedNumber).getWinningAmount()),
+                rankResult[matchedNumber]);
         printNewLine();
 
         if (matchedNumber == THIRD_RANK.getMatchNumbers()) {
@@ -70,7 +75,9 @@ public class OutputView {
 
     private static void printMatchedLottoWithBonus(int[] rankResult, int matchedNumber) {
         System.out.printf(SHOW_LOTTO_PRIZE_WITH_BONUS.getMessage(),
-                matchedNumber, SECOND_RANK.getWinningAmount(), rankResult[SECOND_RANK_INDEX.getIndex()]);
+                matchedNumber,
+                formatter.format(SECOND_RANK.getWinningAmount()),
+                rankResult[SECOND_RANK_INDEX.getIndex()]);
         printNewLine();
     }
 

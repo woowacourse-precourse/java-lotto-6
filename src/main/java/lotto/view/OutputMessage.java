@@ -8,9 +8,9 @@ public enum OutputMessage {
     SHOW_LOTTO_GAME_COUNT("%d개를 구매했습니다."),
     SHOW_LOTTO_STATISTIC_INTRODUCTION("당첨 통계"),
     SHOW_LOTTO_SEPARATOR_LINE("---"),
-    SHOW_LOTTO_PRIZE("%d개 일치 (%d)원 - %개"),
-    SHOW_LOTTO_PRIZE_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%d원) - %d개"),
-    SHOW_LOTTO_RESULT_YIELD("총 수익률은 %s입니다.");
+    SHOW_LOTTO_PRIZE("%d개 일치 (%s원) - %d개"),
+    SHOW_LOTTO_PRIZE_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
+    SHOW_LOTTO_RESULT_YIELD("총 수익률은 %s%%입니다.");
 
     private final String message;
 

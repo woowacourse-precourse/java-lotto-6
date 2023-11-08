@@ -30,16 +30,16 @@
 - [x] controller) 입력된 보너스 번호 확인및 생성
     - [x] domain) 보너스 번호 입력값 검사 Lotto.validateBonusNumber()
     - [x] domain) 보너스 번호 반환 Lotto.createBonusNumber()
-- [ ] controller) 사용자가 구매한 로또 번호와 당첨 번호를 비교 요청
-    - [ ] domain) 사용자가 구매한 로또 번호와 당첨 번호를 비교
-        - [ ] domain) 각 로또 번호당 일치 갯수 확인
-        - [ ] domain) 각 로또 번호당 2등 확인
-    - [ ] domain) 비교한 자료를 토대로 수익률계산
-    - [ ] domain) 결과들을 토대로 문자열 생성
-    - [ ] view) 생성된 문자열 출력
+- [x] controller) 사용자가 구매한 로또 번호와 당첨 번호를 비교 요청
+    - [x] domain) 사용자가 구매한 로또 번호와 당첨 번호를 비교
+        - [x] domain) 각 로또 번호당 일치 갯수 확인
+        - [x] domain) 각 로또 번호당 2등 확인
+    - [x] domain) 비교한 자료를 토대로 수익률계산
+    - [x] domain) 결과들을 토대로 문자열 생성
+    - [x] view) 생성된 문자열 출력
 
 - 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-    - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+    - [x] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## 개발 진행 중 고민과 결정
 

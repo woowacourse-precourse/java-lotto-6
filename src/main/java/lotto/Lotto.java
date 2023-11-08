@@ -30,14 +30,16 @@ public class Lotto {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
-    //TODO: 기능 구
     public int matches(Lotto lotto) {
         List<Integer> lotto1 = new ArrayList<>(this.numbers);
-        
-        return 0;
+        List<Integer> lotto2 = new ArrayList<>(lotto.numbers);
+        lotto1.retainAll(lotto2);
+        return lotto1.size();
     }
 
     public boolean matches(int bonus) {
-
+        List<Integer> lotto1 = new ArrayList<>(this.numbers);
+        lotto1.remove(bonus);
+        return lotto1.size() < 6;
     }
 }

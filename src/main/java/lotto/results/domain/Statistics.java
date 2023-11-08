@@ -27,7 +27,7 @@ public class Statistics {
     }
 
     public void printStatistics() {
-        System.out.println("당첨 통계\n" + "---");
+        System.out.println("\n당첨 통계\n" + "---");
         for (int i = 5; i > 0; i--) {
             System.out.println(getStatistics(i) + " - " + counts.get(i) + "개");
         }

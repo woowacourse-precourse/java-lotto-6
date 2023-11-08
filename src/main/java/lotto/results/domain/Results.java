@@ -21,7 +21,7 @@ public class Results {
 
     public void insultWinningNumbers() {
         try {
-            System.out.println("당첨 번호를 입력해 주세요.");
+            System.out.println("\n당첨 번호를 입력해 주세요.");
             String numbers = readLine();
             winningNumbers = parseToIntegers(numbers);
             validate(winningNumbers);
@@ -32,7 +32,7 @@ public class Results {
 
     public void insultBonus() {
         try {
-            System.out.println("보너스 번호를 입력해 주세요.");
+            System.out.println("\n보너스 번호를 입력해 주세요.");
             String number = readLine();
             bonus = parseToInteger(number);
             validateNumberRange(bonus);

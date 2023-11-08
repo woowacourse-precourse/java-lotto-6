@@ -11,9 +11,13 @@ public class PurchaseService {
     }
 
     public Lotteries process() throws IllegalArgumentException {
-        purchase.insult();
-        purchase.calculate();
-        System.out.println(purchase.getPurchaseAmount() + "개를 구매했습니다.");
+        try {
+            purchase.insult();
+            purchase.calculate();
+        } catch (IllegalArgumentException e) {
+            return process();
+        }
+        System.out.println("\n" + purchase.getPurchaseAmount() + "개를 구매했습니다.");
         Lotteries lotteries = new Lotteries();
         lotteries.publishLotteries(purchase.getPurchaseAmount());
         return lotteries;

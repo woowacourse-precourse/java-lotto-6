@@ -28,6 +28,7 @@ public class Purchase {
 
     public void calculate() throws IllegalArgumentException {
         if (this.money % price != 0) {
+            System.out.println("[ERROR] money must be dividable by price");
             throw new IllegalArgumentException("[ERROR] money must be dividable by 1000");
         }
         this.purchaseAmount = this.money / price;

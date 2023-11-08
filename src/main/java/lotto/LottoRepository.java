@@ -19,7 +19,7 @@ public class LottoRepository {
             return true;
         }
         else {
-            if (winningLotto.getNumbers().stream().anyMatch(number -> number == bonusNum)) {
+            if (lotto.getNumbers().stream().anyMatch(number -> number == bonusNum)) {
                 System.out.println("[ERROR] 당첨 로또 번호와 보너스 번호 중 중복되는 것이 있습니다.");
                 return false;
             } else {

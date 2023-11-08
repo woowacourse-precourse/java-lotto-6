@@ -1,4 +1,4 @@
-package lotto.Controller;
+package lotto.gameStarter;
 
 import lotto.outputPrint.GameGuidePrint;
 import lotto.outputPrint.PurchasedLottoNumbersPrint;
@@ -9,7 +9,7 @@ import lotto.readUserInput.WinningNumbers;
 import lotto.service.PurchasedLottoTickets;
 import lotto.service.RateOfReturn;
 
-public class LottoGameController {
+public class LottoGame {
 
     public void run() {
         GameGuidePrint gameGuidePrint = new GameGuidePrint();

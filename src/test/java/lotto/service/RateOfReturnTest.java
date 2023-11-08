@@ -30,14 +30,15 @@ class RateOfReturnTest {
 
         PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
 
-        double benefit = 0;
+        double benefit = RateOfReturn.BENEFIT_ZERO_INITIAL_VALUE;
         benefit += purchasedLottoTickets.eachRankCount().get(Reward.FIRST_PLACE) * Reward.FIRST_PLACE.getReward();
         benefit += purchasedLottoTickets.eachRankCount().get(Reward.SECOND_PLACE) * Reward.SECOND_PLACE.getReward();
         benefit += purchasedLottoTickets.eachRankCount().get(Reward.THIRD_PLACE) * Reward.THIRD_PLACE.getReward();
         benefit += purchasedLottoTickets.eachRankCount().get(Reward.FOURTH_PLACE) * Reward.FOURTH_PLACE.getReward();
         benefit += purchasedLottoTickets.eachRankCount().get(Reward.FIFTH_PLACE) * Reward.FIFTH_PLACE.getReward();
 
-        double result = benefit / (purchasedLottoTickets.allTicketCount() * 1000) * 100;
+        double result = benefit / (purchasedLottoTickets.allTicketCount() * PurchaseAmount.MIN_PURCHASE_LOTTO)
+                * RateOfReturn.HUNDRED_TO_GET_PERCENTAGE;
 
         RateOfReturn rateOfReturn = new RateOfReturn(purchasedLottoTickets);
         Assertions.assertThat(rateOfReturn.calculate()).isEqualTo(String.format("%.1f", result));

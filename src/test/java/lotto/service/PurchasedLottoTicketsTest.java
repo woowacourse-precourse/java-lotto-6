@@ -29,9 +29,12 @@ class PurchasedLottoTicketsTest {
         winningNumbers.read();
 
         PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
-        Integer count = purchasedLottoTickets.eachRankCount().get(Reward.LOSE);
+        int count = 0;
+        for (Reward reward : Reward.values()) {
+            count += purchasedLottoTickets.eachRankCount().get(reward);
+        }
 
-        Assertions.assertThat(count).isLessThan(101);
+        Assertions.assertThat(count).isEqualTo(100);
 
     }
 }

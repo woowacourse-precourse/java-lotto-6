@@ -1,7 +1,5 @@
 package lotto.readUserInput;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import org.assertj.core.api.Assertions;
@@ -18,7 +16,7 @@ class BonusNumbersTest {
         BonusNumbers.number = 0;
         Console.close();
     }
-
+    
     @AfterEach
     void afterEach() {
         Console.close();

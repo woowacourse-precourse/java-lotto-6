@@ -2,7 +2,6 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.validator.BonusNumberValidator;
-import lotto.controller.validator.UserAmountValidator;
 import lotto.controller.validator.WinningNumbersValidator;
 import lotto.domain.*;
 import lotto.io.Input;
@@ -37,23 +36,14 @@ public class LottoController {
 
     private Money generateMoney() {
         Money money;
-        int amount;
         try {
             output.printInputPurchaseAmountMessage();
-            amount = getUserAmount();
-            money = new Money(amount);
+            money = new Money(input.getUserAmount());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             money = generateMoney();
         }
         return money;
-    }
-
-    private int getUserAmount() {
-        UserAmountValidator userAmountValidator = new UserAmountValidator();
-        String userInput = input.getUserAmount();
-        userAmountValidator.validateUserAmout(userInput);
-        return Integer.parseInt(userInput);
     }
 
     private List<Lotto> buyLottos(LottoQuantity lottoQuantity) {

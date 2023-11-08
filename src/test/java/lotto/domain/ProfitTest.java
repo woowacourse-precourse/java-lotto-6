@@ -24,7 +24,7 @@ class ProfitTest {
         BonusNumber bonusNumber = new BonusNumber(45);
 
         WinningLottoCounts winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);
-        Profit profit = new Profit(winningLottoCounts, new Money(8000));
+        Profit profit = new Profit(winningLottoCounts, new Money("8000"));
 
         //when
         double profitTest = profit.calculate();

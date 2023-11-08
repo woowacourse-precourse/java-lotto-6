@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import lotto.controller.validator.UserAmountValidator;
-
+import org.assertj.core.api.ThrowableAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,12 +12,10 @@ import static org.assertj.core.api.Assertions.*;
 public class MoneyTest {
 
     Money money;
-    UserAmountValidator userAmountValidator;
 
     @BeforeEach
     void setUp() {
-        userAmountValidator = new UserAmountValidator();
-        money = new Money(1000);
+        money = new Money("1000");
     }
 
     @Test
@@ -54,7 +51,7 @@ public class MoneyTest {
         //when
 
         //then
-        assertThatThrownBy(() -> userAmountValidator.validateUserAmout(userInput))
+        assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -67,7 +64,7 @@ public class MoneyTest {
         //when
 
         //then
-        assertThatThrownBy(() -> userAmountValidator.validateUserAmout(userInput))
+        assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -80,7 +77,7 @@ public class MoneyTest {
         //when
 
         //then
-        assertThatThrownBy(() -> userAmountValidator.validateUserAmout(userInput))
+        assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

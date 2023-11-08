@@ -227,3 +227,79 @@ public class Lotto {
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+- 
+
+---
+# 과제 진행 요구사항 
+## 🔍 기능목록
+
+### 사용자 
+- [ ] 구입 금액을 입력한다
+- [ ] 당첨 번호와 보너스 번호를 입력받는다.(당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.)
+- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+
+
+### 로또 
+- [ ] 6 개의 랜던 번호목록을 갖는다 ( 6개의 랜던 번호 목록은 오른차순이여한다 )
+- [ ] 로또를 생성한다
+
+
+### 로또목록
+- [ ] 로또 목록을 생성한다
+
+### 당첨결과
+- [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다
+- [ ] 수익률을 계산한다
+
+### 게임 실행 
+- [ ] 사용자 
+	- [ ] 구입 금액을 입력한다
+        - [ ]  로또 목록을 생성한다
+        - [ ]  로또를 생성한다
+
+- [ ] 사용자  
+	- [ ] 당첨번호 보너스 번호 입력 
+- [ ]  랭킹  
+	- [ ]  사용자 구매한 로또 번호와 당첨 번호 비교 
+	- [ ]  3개부터 각각 비교 후 출력 
+	
+- [ ]  수익률 출력
+
+
+### mvc model 
+### domain 
+- [ ] Lotto
+- [ ] LottoTickets
+- [ ] WinningLotto
+- [ ] WinningNumber
+- [ ] WinningMoney (enum)
+
+      
+### view 
+- [ ] UserInputView
+- [ ] UserOutputView
+- [ ] ExceptionMessage(enum)
+- [ ] RunLotto
+
+### controller
+- [ ] LottoController
+- [ ] LottoCompareController
+- [ ] WinningNumberController
+
+
+
+
+## 추가된 요구사항 
+- 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+    - 함수(또는 메서드)가 한 가지 일만 잘 하도록 구현한다.
+- else 예약어를 쓰지 않는다.
+    - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
+    - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
+- Java Enum을 적용한다.
+- 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
+- 단위 테스트 작성이 익숙하지 않다면 test/java/lotto/LottoTest를 참고하여 학습한 후 테스트를 구현한
+
+
+
+

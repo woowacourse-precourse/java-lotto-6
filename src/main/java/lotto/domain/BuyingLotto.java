@@ -11,7 +11,7 @@ public class BuyingLotto {
         validatePlusSign(buyingPrice);
         validateDivision(buyingPrice);
         this.buyingPrice = buyingPrice;
-        this.ticketNumber = calculateTicketNumber(LOTTO_PRICE);
+        this.ticketNumber = calculateTicketNumber();
     }
 
     public int getBuyingPrice() {
@@ -21,7 +21,7 @@ public class BuyingLotto {
         return this.ticketNumber;
     }
 
-    private int calculateTicketNumber(int ticketPrice) {
-        return buyingPrice / ticketPrice;
+    private int calculateTicketNumber() {
+        return buyingPrice / LOTTO_PRICE;
     }
 }

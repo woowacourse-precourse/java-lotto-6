@@ -5,14 +5,15 @@ import static lotto.globar.GlobalConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoWinningCombination;
 import lotto.generator.RandomNumberGenerator;
 
 public class LottoService {
-    public static List<Lotto> issueLottoTickets(int purchasePrice) {
-        int lottoAmount = purchasePrice / SINGLE_LOTTO_PRICE;
+    public static List<Lotto> issueLottoTickets(long purchasePrice) {
+        int lottoAmount = (int) (purchasePrice / SINGLE_LOTTO_PRICE);
 
         List<Lotto> lottos = new ArrayList<>(lottoAmount);
         for (int i = 0; i < lottoAmount; i++) {
@@ -24,14 +25,16 @@ public class LottoService {
 
     private static Lotto createLotto() {
         List<Integer> uniqueRandomNums = RandomNumberGenerator.generateUniqueRandomValues();
+
         return new Lotto(uniqueRandomNums);
     }
 
-    public static List<LottoResult> detemineLottoResults(List<Lotto> lottos, LottoWinningCombination lottoWinningCombination) {
+    public static List<LottoResult> determineLottoResults(List<Lotto> lottos, LottoWinningCombination lottoWinningCombination) {
         List<LottoResult> lottoResults = new ArrayList<>();
 
         lottos.stream()
                 .map(lotto -> createLottoResult(lotto, lottoWinningCombination))
+                .filter(Objects::nonNull)
                 .forEach(lottoResults::add);
 
         return lottoResults;

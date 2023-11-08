@@ -3,8 +3,6 @@ package lotto.exception;
 import static lotto.message.ErrorMessage.INVALID_COUNT_FORMAT;
 import static lotto.message.ErrorMessage.INVALID_PARSE_INT;
 
-import lotto.message.ErrorMessage;
-
 public class ParseIntException extends UserInputException {
 
     public ParseIntException() {

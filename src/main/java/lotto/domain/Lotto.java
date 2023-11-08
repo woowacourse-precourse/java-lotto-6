@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.PrimitiveIterator;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,8 +12,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateUnique(numbers);
-        sortedNums(numbers);
-        this.numbers = numbers;
+        this.numbers = sortedNums(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -29,8 +30,10 @@ public class Lotto {
         }
     }
 
-    public static void sortedNums(List<Integer> numbers) {
-        Collections.sort(numbers);
+    private List<Integer> sortedNums(List<Integer> nums) {
+        return nums.stream()
+                .sorted()
+                .toList();
     }
 
     @Override

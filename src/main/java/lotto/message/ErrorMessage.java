@@ -10,8 +10,6 @@ public enum ErrorMessage implements MessageProvider{
     INVALID_WINNING_NUMS_COUNT("[ERROR] 당첨 번호는 6개 입력이 필요합니다."),
     INVALID_WINNING_NUMS_VALUE("[ERROR] 당첨 번호는 유효한 범위의 숫자여야 합니다.");
 
-
-
     private final String message;
     ErrorMessage(String message) {
         this.message = message;

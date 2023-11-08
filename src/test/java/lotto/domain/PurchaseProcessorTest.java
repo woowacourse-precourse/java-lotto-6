@@ -59,5 +59,13 @@ class PurchaseProcessorTest {
                 .hasMessageContaining(ExceptionMessage.INPUT_NOT_ZERO.getMessage());
     }
 
+    @DisplayName("입력 가격 내부에 공백이 있을 경우 예외 발생")
+    @Test
+    void validateEnsureNotBlank() {
+        assertThatThrownBy(() -> new PurchaseProcessor("80 00"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.PLEASE_NOT_INPUT_BETWEEN_NUMBER_BLANK.getMessage());
+    }
+
 }
 

@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import lotto.constant.ExceptionMessage;
 
 public class PurchaseProcessor {
+    private static final String BLANK = " ";
     private static final long TICKET_PRICE = 1000;
     private static final BigInteger LONG_MAX_VALUE = BigInteger.valueOf(Long.MAX_VALUE);
     private static final BigInteger LONG_MIN_VALUE = BigInteger.valueOf(Long.MIN_VALUE);
@@ -11,12 +12,20 @@ public class PurchaseProcessor {
     private final long lottoCount;
 
     public PurchaseProcessor(String price) {
-        long convertedPirce = convertNumber(trim(price));
+        String trimedPrice = ensureNotBlank(trim(price));
+        long convertedPirce = convertNumber(trimedPrice);
         this.lottoCount = convertCount(convertedPirce);
     }
 
     private String trim(String price) {
         return price.trim();
+    }
+
+    private String ensureNotBlank(String bonusNumber) {
+        if (bonusNumber.contains(BLANK)) {
+            throw new IllegalArgumentException(ExceptionMessage.PLEASE_NOT_INPUT_BETWEEN_NUMBER_BLANK.getMessage());
+        }
+        return bonusNumber;
     }
 
     private long convertNumber(String price) {

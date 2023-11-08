@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.validator.LottoNumberValidator;
 import lotto.validator.UserInputValidator;
 
 public class InputView {
@@ -15,11 +16,15 @@ public class InputView {
 
     public static List<Integer> inputWinningNumbers() {
         String userInput = Console.readLine();
-        return Arrays.stream(userInput.split(",")).map(Integer::parseInt).toList();
+        List<Integer> numbers = Arrays.stream(userInput.split(",")).map(Integer::parseInt).toList();
+        return numbers;
     }
 
-    public static Integer inputBonusNumber() {
+    public static Integer inputBonusNumber(List<Integer> numbers) {
         String userInput = Console.readLine();
+        LottoNumberValidator.validateBonusNumber(numbers, userInput);
         return Integer.parseInt(userInput);
     }
+
+
 }

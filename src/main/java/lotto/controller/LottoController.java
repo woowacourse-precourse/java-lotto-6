@@ -35,7 +35,7 @@ public class LottoController {
         OutputView.askWinningNumbers();
         Lotto lotto = new Lotto(InputView.inputWinningNumbers());
         OutputView.askBonusNumber();
-        Integer bonusNumber = InputView.inputBonusNumber();
+        Integer bonusNumber = InputView.inputBonusNumber(lotto.getNumbers());
         WinLotto compareResult = new WinLotto(lotto, bonusNumber);
         lottoStore.setCompareList(compareResult);
     }

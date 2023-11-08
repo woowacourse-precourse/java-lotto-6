@@ -66,6 +66,4 @@ public class UserInputValidatorTest {
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessages.PURCHASE_AMOUNT_RANGE_ERROR_MESSAGE.getErrorMessage());
     }
-
-
 }

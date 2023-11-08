@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.config.ConstantNum;
-import lotto.view.InputView;
 
 public class SiteUser {
     private UserMoney userMoney;
@@ -26,8 +25,7 @@ public class SiteUser {
         return lottoCnt;
     }
 
-    public static SiteUser createSiteUser() {
-        int money = (int) InputView.INPUT_MONEY.activateView();
+    public static SiteUser createSiteUser(int money) {
         int cnt = money / ConstantNum.PER_PRICE.getNum();
         return new SiteUser(UserMoney.createMoney(money), UserLotto.makeRandomLotto(cnt), cnt);
     }

@@ -29,4 +29,15 @@ public class WinningResultTest {
 
         Assertions.assertEquals(1, winningResult.getNumberOfSecond());
     }
+
+    @DisplayName("보너스 번호는 2등일 때만 유효하다.")
+    @Test
+    void increaseFourthPlaceNumber(){
+        int numberOfMatches = 4;
+        boolean bonusNumberMatches = true;
+
+        winningResult.addResults(numberOfMatches, bonusNumberMatches);
+
+        Assertions.assertEquals(1, winningResult.getNumberOfFourth());
+    }
 }

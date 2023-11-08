@@ -24,7 +24,6 @@ class Money {
             }
         }
     }
-
     public static int CorrectMoney(int money) {
         if (money % 1000 == 0) {
             return money / 1000;
@@ -43,7 +42,6 @@ class MyLotto{
         }
         PrintLottoPaper(cnt, mylotto);
     }
-
     public static void PrintLottoPaper(int cnt, ArrayList<List<Integer>> mylotto){
         System.out.println();
         System.out.println(cnt+"개를 구매했습니다.");
@@ -60,12 +58,17 @@ class WinnigNum {
         String winningnum = Console.readLine(); // 문자열로 입력 받기
         return winningnum;
     }
-
     public static int ExceptMoney(String money){
         try {
             return Integer.parseInt(money);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
+    }
+    public static int CorrectMoney(int money) {
+        if (money % 1000 == 0) {
+            return money / 1000;
+        }
+        throw new IllegalArgumentException("[ERROR] 100원 단위로 입력해주세요.");
     }
 }

@@ -10,7 +10,7 @@ public class LottoPlayer {
     private final int numberOfLottoTickets;
 
     public LottoPlayer(String purchaseMoney) {
-        PurchaseMoneyValidator.validatePurchaseMoney(purchaseMoney);
+        PurchaseMoneyValidator.validate(purchaseMoney);
 
         this.purchaseMoney = Integer.parseInt(purchaseMoney);
         this.numberOfLottoTickets = calculateNumberOfLottoTickets();

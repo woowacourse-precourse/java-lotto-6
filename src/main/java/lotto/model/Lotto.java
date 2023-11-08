@@ -20,7 +20,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_OF_LOTTO_NUMBERS.getMessage());
         }
-        LottoValidator.validateLotto(numbers);
+        LottoValidator.validate(numbers);
     }
 
     // TODO: 추가 기능 구현

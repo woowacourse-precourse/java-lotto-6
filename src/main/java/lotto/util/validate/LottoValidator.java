@@ -7,7 +7,7 @@ import lotto.util.Constant;
 import lotto.util.ErrorMessage;
 
 public class LottoValidator {
-    public static void validateLotto(List<Integer> numbers) {
+    public static void validate(List<Integer> numbers) {
         checkDuplicate(numbers);
         checkValidRangeNumber(numbers);
     }

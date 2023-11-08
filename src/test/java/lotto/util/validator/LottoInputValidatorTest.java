@@ -45,9 +45,20 @@ class LottoInputValidatorTest {
 
     @DisplayName("당첨 번호들이 45보다 큰 경우 예외가 발생한다.")
     @Test
-    void inputWinningNUmbersOverByRange() {
+    void inputWinningNumbersOverByRange() {
         //given
         String values = "1,2,3,4,5,67";
+
+        //when,then
+        Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))
+                .isInstanceOf(IllegalArgumentException.class).hasMessage(ErrorMessageConstant.LOTTO_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
+    }
+
+    @DisplayName("당첨 번호들이 1보다 작은 경우 예외가 발생한다.")
+    @Test
+    void inputWinningNumbersUnderByRange() {
+        //given
+        String values = "1,2,3,4,5,0";
 
         //when,then
         Assertions.assertThatThrownBy(() -> lottoInputValidator.validate(values))

@@ -1,10 +1,10 @@
 package lotto.model;
 
-import lotto.validation.LottoValidator;
 import lotto.view.OutputView;
 import lotto.view.constant.ErrorMessage;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.constant.LottoConstant.LOTTO_SIZE;
 
@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (LottoValidator.checkDuplicateValue(numbers)) {
+        if (validateDuplicateValue(numbers)) {
             OutputView.printError(ErrorMessage.DUPLICATE_NUMBER.getMessage());
             throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage() + ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }
@@ -39,5 +39,13 @@ public class Lotto {
                     return _winning.contains(_number);
                 }).toList();
         return _same.size();
+    }
+
+    public static boolean validateDuplicateValue(List<Integer> _lotto) {
+        _lotto = _lotto.stream().distinct().collect(Collectors.toList());
+        if (_lotto.size() != LOTTO_SIZE.getNumber()) {
+            return true;
+        }
+        return false;
     }
 }

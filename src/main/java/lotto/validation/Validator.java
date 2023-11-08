@@ -1,6 +1,5 @@
 package lotto.validation;
 
-import lotto.utils.Parser;
 import lotto.view.ErrorMessage;
 
 import java.util.HashSet;

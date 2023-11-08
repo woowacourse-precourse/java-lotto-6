@@ -2,9 +2,6 @@ package lotto.view;
 
 public final class ErrorMessage {
 
-    public static void exitMessage(){
-        System.out.println("[ERROR] 프로그램을 종료합니다.");
-    }
     public static void outOfRangeErrorMessage(int start, int end) {
         System.out.printf("[ERROR] 입력 값의 범위는 %d부터 %d 사이의 숫자여야 합니다.\n",start,end);
     }

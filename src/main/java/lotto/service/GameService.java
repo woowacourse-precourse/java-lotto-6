@@ -4,25 +4,18 @@ import lotto.domain.Game;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.User;
-import lotto.repository.LottoRepository;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 
 public class GameService {
-    private final LottoRepository lottoRepository = new LottoRepository();
 
     private final LottoService lottoService = new LottoService();
 
-    private User user;
     private  HashMap<Rank, Integer> lottoResult = new HashMap<>();
 
     private static final int ZERO = 0;
     private static final int ONE = 1;
-
-    public HashMap<Rank, Integer> getLottoResult() {
-        return lottoResult;
-    }
 
     public void checkUserLotteries(User user, Game game){
         HashMap<Rank, Integer> result = user.getLottoResult();
@@ -48,16 +41,6 @@ public class GameService {
             return Rank.SECOND;
         }
         return rank;
-    }
-    public void initLottoResult() {
-        lottoResult.put(Rank.FIRST, 0);
-        lottoResult.put(Rank.SECOND, 0);
-        lottoResult.put(Rank.THIRD, 0);
-        lottoResult.put(Rank.FOURTH, 0);
-        lottoResult.put(Rank.FIFTH, 0);
-        lottoResult.put(Rank.NO_RANK_TWO, 0);
-        lottoResult.put(Rank.NO_RANK_ONE, 0);
-        lottoResult.put(Rank.NO_RANK_ZERO, 0);
     }
 
 }

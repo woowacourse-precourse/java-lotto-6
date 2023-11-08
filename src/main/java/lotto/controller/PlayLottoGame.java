@@ -3,32 +3,24 @@ package lotto.controller;
 import lotto.domain.Game;
 import lotto.domain.Lotto;
 import lotto.domain.User;
-import lotto.repository.GameRepository;
-import lotto.repository.LottoRepository;
 import lotto.service.GameService;
 import lotto.service.LottoService;
-import lotto.service.UserService;
 import lotto.utils.Parser;
 import lotto.validation.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlayLottoGame {
 
     private final GameService gameService = new GameService();
     private final LottoService lottoService = new LottoService();
-
     private final InputView inputView = new InputView();
     private final Validator validator = new Validator();
     private final OutputView outputView = new OutputView();
     private final Parser parser = new Parser();
     private List<Integer> winningNumbers;
-
     private User user;
-
     private Game game;
 
     private static final int LEAST_AMOUNT = 1000;
@@ -46,7 +38,7 @@ public class PlayLottoGame {
         showPurchaseResult();
     }
 
-    private void createNewGame(){
+    public void createNewGame(){
         game = new Game(inputWinningNumbers(), inputBonusNumber());
 
     }

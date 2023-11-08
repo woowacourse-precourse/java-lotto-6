@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.User;
-import lotto.repository.LottoRepository;
 import lotto.utils.Utils;
 
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.List;
 
 public class LottoService {
 
-    private final LottoRepository lottoRepository = new LottoRepository();
 
 
     private static final int LEAST_AMOUNT = 1000;
@@ -24,9 +22,6 @@ public class LottoService {
             count--;
             buyOneLotto(user);
         }
-    }
-    public void saveLotto(Lotto lotto){
-        lottoRepository.save(lotto);
     }
 
     public void buyOneLotto(User user){

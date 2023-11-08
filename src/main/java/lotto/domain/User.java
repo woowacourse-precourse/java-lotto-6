@@ -1,10 +1,5 @@
 package lotto.domain;
 
-import lotto.repository.LottoRepository;
-import lotto.service.GameService;
-import lotto.service.LottoService;
-import lotto.validation.Validator;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

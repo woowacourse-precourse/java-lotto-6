@@ -1,12 +1,8 @@
 package lotto.domain;
 
-import lotto.validation.Validator;
-
 import java.util.List;
 
 public class Game {
-
-    private final Validator validator = new Validator();
 
     private final List <Integer> winningNumbers;
     private final int bonusNumber;

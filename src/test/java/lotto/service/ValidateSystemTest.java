@@ -15,10 +15,22 @@ class ValidateSystemTest {
 
     @DisplayName("구매금액이 1000단위로 안떨어질때 예외발생")
     @Test
-    void validatePaymentAccount() {
+    void validatePaymentAccount1() {
         //given
         ValidateSystem validateSystem = new ValidateSystem();
         int paymentAccount = 1200;
+
+        //when & then
+        assertThatThrownBy(() -> validateSystem.validatePaymentAccount(paymentAccount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구매금액이 0원일 때 안떨어질때 예외발생")
+    @Test
+    void validatePaymentAccount2() {
+        //given
+        ValidateSystem validateSystem = new ValidateSystem();
+        int paymentAccount = 0;
 
         //when & then
         assertThatThrownBy(() -> validateSystem.validatePaymentAccount(paymentAccount))

@@ -51,6 +51,10 @@ public class InputView {
 
     public static int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int bonus = Integer.parseInt(Console.readLine());
+        if (bonus < 1 || bonus > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        return bonus;
     }
 }

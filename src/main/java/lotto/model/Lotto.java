@@ -1,7 +1,8 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.message.LottoExceptionMessage;
+import lotto.exception.LottoException;
+import lotto.exception.LottoExceptionMessage;
 
 /**
  * 로또 번호를 저장하는 클래스
@@ -21,7 +22,7 @@ public class Lotto {
      */
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(LottoExceptionMessage.INVALID_LOTTO_LENGTH.getMessage());
+            throw new LottoException(LottoExceptionMessage.INVALID_LOTTO_LENGTH);
         }
     }
 
@@ -32,7 +33,7 @@ public class Lotto {
     private void duplicateValidate(List<Integer> numbers) {
         long uniqueCount = numbers.stream().distinct().count();
         if (numbers.size() != uniqueCount) {
-            throw new IllegalArgumentException(LottoExceptionMessage.INVALID_LOTTO_DUPLICATED.getMessage());
+            throw new LottoException(LottoExceptionMessage.INVALID_LOTTO_DUPLICATED);
         }
     }
 

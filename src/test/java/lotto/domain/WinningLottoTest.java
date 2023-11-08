@@ -16,6 +16,12 @@ class WinningLottoTest {
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     }
 
+    @CsvSource({"7", "12", "22", "45"})
+    @ParameterizedTest
+    void 유효한_보너스번호(String input) {
+        new WinningLotto(lotto, Integer.parseInt(input));
+    }
+
     @CsvSource({"-1", "0", "46", "1000"})
     @ParameterizedTest
     void 보너스번호_범위_밖_예외처리(String input) {

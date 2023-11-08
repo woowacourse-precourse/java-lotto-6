@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.message.ErrorMessages.INVALID_AMOUNT_FORMAT;
 import static lotto.message.ErrorMessages.INVALID_AMOUNT_RANGE;
+import static lotto.message.ErrorMessages.INVALID_AMOUNT_UNIT;
 
 public record PlayerBuyPrice(String amount) {
 
@@ -11,6 +12,7 @@ public record PlayerBuyPrice(String amount) {
     public PlayerBuyPrice {
         validateCharacterFromAmount(amount);
         validateRangeFromAmount(amount);
+        validateUnitFromAmount(amount);
     }
 
     private void validateCharacterFromAmount(String input) {
@@ -25,6 +27,13 @@ public record PlayerBuyPrice(String amount) {
         int buyAmount = Integer.parseInt(input);
         if (buyAmount < MIN_AMOUNT || buyAmount > MAX_AMOUNT){
             throw new IllegalArgumentException(INVALID_AMOUNT_RANGE.getMessage());
+        }
+    }
+
+    private void validateUnitFromAmount(String input) {
+        int buyAmount = Integer.parseInt(input);
+        if (buyAmount % 1_000 != 0){
+            throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 }

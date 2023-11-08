@@ -7,24 +7,33 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.model.Lotto;
+import lotto.repository.LottoRepository;
 
 
-public class AutoLottoService {
+public class LottoService {
+
+    LottoRepository lottoRepository;
 
     private static class SingletonAutoLottoService {
-        private static final AutoLottoService AUTO_LOTTO_SERVICE = new AutoLottoService();
+        private static final LottoService AUTO_LOTTO_SERVICE = new LottoService();
     }
 
-    public static AutoLottoService getInstance() {
+    public static LottoService getInstance() {
         return SingletonAutoLottoService.AUTO_LOTTO_SERVICE;
     }
 
-    private AutoLottoService() {
+    private LottoService() {
+        lottoRepository = LottoRepository.getInstance();
     }
 
-    public List<Integer> generateLottoNumbers() {
+    public List<Integer> generateLottos() {
         List<Integer> randomNumbers = generateRandomNumbers();
         List<Integer> lottoNumbers = sortNumbers(randomNumbers);
+
+        Lotto newLotto = new Lotto(lottoNumbers);
+        lottoRepository.addLotto(newLotto);
+
         return lottoNumbers;
     }
 

@@ -109,6 +109,13 @@ public class Application {
 
         System.out.println("당첨 통계");
         System.out.println("---");
+        // 모든 당첨 결과를 출력합니다. 실제로 매칭된 경우가 없어도 0개로 표시합니다.
+        System.out.println("3개 일치 (5,000원) - " + winCounts[0] + "개");
+        System.out.println("4개 일치 (50,000원) - " + winCounts[1] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winCounts[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winCounts[3] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winCounts[4] + "개");
+
         for (int i = winCounts.length - 1; i >= 0; i--) {
             if (winCounts[i] > 0) {
                 System.out.println(getMatchMessage(i) + " - " + winCounts[i] + "개");
@@ -118,49 +125,54 @@ public class Application {
 
         // 총 수익률 계산 시 구입 금액이 0인 경우를 방지
         double profitRate = purchaseAmount > 0 ? (double) totalPrize / purchaseAmount * 100 : 0;
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
     private static void updateWinCounts(int[] winCounts, int matchCount, boolean bonusMatch) {
-        // 매칭된 번호의 수에 따라 당첨 카운트를 업데이트
-        if (matchCount < 3) {
-            return;
-        }
+        if (matchCount < 3) return; // no prize for less than 3 matches
         if (matchCount == 5 && bonusMatch) {
-            winCounts[1]++; // 2등
+            winCounts[3]++; // index 3 is for 5+bonus
         } else if (matchCount == 5) {
-            winCounts[2]++; // 3등
+            winCounts[2]++; // index 2 is for 5 matches without bonus
         } else {
-            winCounts[matchCount]++; // 나머지 등수
+            winCounts[matchCount - 3]++; // subtract 3 to get the index for 3 or 4 matches
+        }
+        if (matchCount == 6) {
+            winCounts[4]++; // index 4 is for 6 matches
         }
     }
 
     private static int getPrizeMoney(int matchIndex) {
-        // 매칭된 번호의 수에 따라 상금을 반환
+        // matchIndex is from 0 to 5 where 5 indicates 5+bonus matches
         switch (matchIndex) {
-            case 0: return 2000000000; // 1등
-            case 1: return 30000000;   // 2등
-            case 2: return 1500000;    // 3등
-            case 3: return 50000;      // 4등
-            case 4: return 5000;       // 5등
+            case 0: return 5000;       // 3개 일치
+            case 1: return 50000;      // 4개 일치
+            case 2: return 1500000;    // 5개 일치
+            case 3: return 30000000;   // 5개 번호 + 보너스 볼 일치
+            case 4: return 2000000000; // 6개 일치
             default: return 0;
         }
     }
 
-    private static String getMatchMessage(int matchIndex) {
-        // 매칭된 번호의 수에 따라 출력 메시지를 반환
-        switch (matchIndex) {
-            case 0: return "6개 일치 (2,000,000,000원)";
-            case 1: return "5개 번호 + 보너스 볼 일치 (30,000,000원)";
-            case 2: return "5개 번호 일치 (1,500,000원)";
-            case 3: return "4개 일치 (50,000원)";
-            case 4: return "3개 일치 (5,000원)";
+    private static String getMatchMessage(int matchCount) {
+        // matchCount is expected to be from 0 to 5 where 5 indicates 5+bonus matches
+        switch (matchCount) {
+            case 0: return "3개 일치 (5,000원)";
+            case 1: return "4개 일치 (50,000원)";
+            case 2: return "5개 일치 (1,500,000원)";
+            case 3: return "5개 번호 + 보너스 볼 일치 (30,000,000원)";
+            case 4: return "6개 일치 (2,000,000,000원)";
             default: return "";
         }
     }
 
     private static double calculateProfitRate(int totalPrize, int purchaseAmount) {
-        // 수익률을 계산
-        return (double) (totalPrize - purchaseAmount) / purchaseAmount * 100;
+        if (purchaseAmount <= 0) {
+            return 0.0;
+        }
+        // 총 상금에서 구입 금액을 뺀 다음, 구입 금액으로 나눠서 수익률을 계산합니다.
+        double profit = (totalPrize - purchaseAmount) / (double) purchaseAmount;
+        // 수익률을 퍼센트로 변환합니다.
+        return profit * 100;
     }
 
 }

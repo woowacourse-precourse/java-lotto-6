@@ -64,6 +64,11 @@ public class GameController {
         GameView.printRevenue(game.getPrice(), game.getAmount());
     }
 
+    public void requestMatchResultOutput() {
+        List<Integer> matchList = game.getMatchResult(lotto.getNumbers());
+        GameView.printMatchNumbers(matchList);
+    }
+
     public void inputBonusNumber() {
         boolean validInput = false;
         while (!validInput) {

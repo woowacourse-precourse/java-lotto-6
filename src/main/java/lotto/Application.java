@@ -22,5 +22,6 @@ public class Application {
         Map<WinnerRating, Integer> winners = new HashMap<>();
         WinnerJudgementer.judgeWinners(lottoNumbers, winningNumbers, bonusNumber, winners);
 
+        OutputView.printWinningStatistics(winners, lottoPurchaseAmount);
     }
 }

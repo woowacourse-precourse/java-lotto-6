@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,8 +61,26 @@ public class InputView {
             return money;
 
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자여야 합니다.");
+            System.out.println("[ERROR] 금액은 숫자여야 합니다.");
         }
+        return moneyInput();
+
     }
 
+    public static int bunusInput(Lotto winLotto) {
+        try {
+            System.out.println();
+            System.out.print("보너스 번호를 입력해 주세요: ");
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            if (!winLotto.isContain(bonusNumber)) {
+                return bonusNumber;
+            } else {
+                System.out.println("[ERROR] 당첨 번호와 중복되는 숫자입니다. 다른 숫자를 입력해 주세요.");
+                return bunusInput(winLotto); // 중복된 경우 재귀 호출
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+            return bunusInput(winLotto); // 입력 형식 오류 시 재귀 호출
+        }
+    }
 }

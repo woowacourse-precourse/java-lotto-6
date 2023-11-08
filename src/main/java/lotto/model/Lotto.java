@@ -21,10 +21,29 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
+    public boolean isContain(int bonusNum){
+        return numbers.contains(bonusNum);
+    }
+
     @Override
     public String toString() {
         return "[" + numbers.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", ")) + "]";
+    }
+
+    public int getMatchCount(Lotto winLotto) {
+        int matchCount = 0;
+        for (int number : numbers) {
+            if (winLotto.numbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    // 보너스 번호가 있는지 확인하는 메소드
+    public boolean contains(int bonusNum) {
+        return numbers.contains(bonusNum);
     }
 }

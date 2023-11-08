@@ -3,7 +3,7 @@ package lotto.view;
 import static lotto.exception.ErrorMessage.INPUT_IS_NULL;
 import static lotto.exception.ErrorMessage.INPUT_IS_EMPTY;
 
-import lotto.exception.Exception;
+import lotto.exception.InputException;
 
 public class InputValidator {
 
@@ -14,13 +14,13 @@ public class InputValidator {
 
     private static void checkNull(String input) {
         if (isNull(input)) {
-            throw Exception.from(INPUT_IS_NULL);
+            throw InputException.from(INPUT_IS_NULL);
         }
     }
 
     private static void checkEmpty(String input) {
         if (!hasValue(input)) {
-            throw Exception.from(INPUT_IS_EMPTY);
+            throw InputException.from(INPUT_IS_EMPTY);
         }
     }
 

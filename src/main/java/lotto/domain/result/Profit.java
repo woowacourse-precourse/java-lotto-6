@@ -3,8 +3,6 @@ package lotto.domain.result;
 import static lotto.utils.LottoConstant.PROFIT_MULTIPLY;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 
-import lotto.service.LottoMessagePrinter;
-
 public class Profit {
 
     private double percentage;
@@ -20,9 +18,5 @@ public class Profit {
 
     public double getPercentage() {
         return this.percentage;
-    }
-
-    public void print(LottoMessagePrinter writer) {
-        writer.printProfit(this.percentage);
     }
 }

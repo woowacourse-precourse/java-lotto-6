@@ -29,7 +29,7 @@
 - [ ] 총 수익률을 계산한다.
 
 ### LottoGenerator
-- [ ] 로또 구매 금액에 맞는 Lotto를 생성한다.
+- [x] 로또 구매 금액에 맞는 Lotto를 생성한다.
 
 ### RandomListGenerator
 - [x] 무작위 로또 번호 리스트를 생성한다.

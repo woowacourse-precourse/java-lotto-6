@@ -25,7 +25,7 @@ class BonusValidationTest {
     }
 
     @Nested
-    @DisplayName("check 검증 테스트")
+    @DisplayName("숫자가 아닌 값이 오는 검증 테스트")
     class CheckNumeric {
         @ParameterizedTest(name = "{0}가 입력되었을 때")
         @ValueSource(strings = {" ", "jj","    "})

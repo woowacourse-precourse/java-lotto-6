@@ -5,6 +5,7 @@ public class Value {
     public static final int LOTTO_START_NUMBER = 1;
     public static final int LOTTO_END_NUMBER = 45;
     public static final int LOTTO_NUMBER_SIZE = 6;
+    public static final int HUNDRED_PERCENT = 100;
 
     public static final int LOTTO_1_RANK_PRIZE_MONEY = 2_000_000_000;
     public static final int LOTTO_2_RANK_PRIZE_MONEY = 30_000_000;

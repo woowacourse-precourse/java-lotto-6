@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.constants.ErrorMessage.*;
+import static lotto.constants.Value.HUNDRED_PERCENT;
 
 public class LottoManager {
 
@@ -105,7 +106,7 @@ public class LottoManager {
                 .mapToDouble(rank -> rank.getValue() * rank.getKey().getPrize())
                 .sum();
 
-        double profitRate = profit / payMoney * 100;
+        double profitRate = profit / payMoney * HUNDRED_PERCENT;
 
         DecimalFormat decimalFormat = new DecimalFormat("#.#");
         return decimalFormat.format(profitRate);

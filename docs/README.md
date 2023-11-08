@@ -85,3 +85,6 @@ check new branch
 - containNum()
   - input : int / return : boolean
   - 특정 값이 존재하는지에 대한 여부 확인
+
+## (Enum) corType
+- 합계에 따른 Enum 생성

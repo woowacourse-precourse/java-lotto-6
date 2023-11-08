@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.prize.Prize;
+
 public class OutputView {
     private static final String ERROR = "[ERROR] ";
     public void purchaseAmount() {
@@ -22,5 +24,17 @@ public class OutputView {
 
     public void bonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
+    public void winningStats() {
+        System.out.println("당첨 통계\n---\n");
+    }
+
+    public void prizeResult(Prize prize, int resultCount) {
+        System.out.printf("%s - %d개\n", prize.getMessage(), resultCount);
+    }
+
+    public void earningsRate(float earningsRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", earningsRate);
     }
 }

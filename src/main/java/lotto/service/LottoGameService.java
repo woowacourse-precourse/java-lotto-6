@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.domain.committee.Committee;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.WinningLotto;
@@ -58,5 +59,11 @@ public class LottoGameService {
             outputService.handleException(exception);
             return bonusNumber();
         }
+    }
+
+    public void winningStats(Money money, Lottos lottos, WinningLotto winningLotto) {
+        Committee committee = new Committee();
+        committee.match(lottos, winningLotto);
+        outputService.winningStats(money, committee);
     }
 }

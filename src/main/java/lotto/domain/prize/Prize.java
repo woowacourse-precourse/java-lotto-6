@@ -31,6 +31,10 @@ public enum Prize {
         return winningAmount;
     }
 
+    public boolean isNothing() {
+        return this == Prize.NOTHING;
+    }
+
     public static Prize of(int matchCount, boolean hasBonus) {
         return Arrays.stream(Prize.values())
                 .filter(prize -> prize.matchCount == matchCount)

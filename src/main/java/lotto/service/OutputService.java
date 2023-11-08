@@ -1,7 +1,9 @@
 package lotto.service;
 
+import lotto.domain.committee.Committee;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.money.Money;
+import lotto.domain.prize.Prize;
 import lotto.view.OutputView;
 
 public class OutputService {
@@ -29,5 +31,18 @@ public class OutputService {
 
     public void handleException(IllegalArgumentException exception) {
         outputView.printExceptionMessage(exception.getMessage());
+    }
+
+    public void winningStats(Money money, Committee committee) {
+        outputView.winningStats();
+        for (Prize prize : Prize.values()) {
+            if (prize.isNothing()) {
+                continue;
+            }
+            int resultCount = committee.getResultCount(prize);
+            outputView.prizeResult(prize, resultCount);
+        }
+        float earningsRate = committee.calculateEarningsRate(money);
+        outputView.earningsRate(earningsRate);
     }
 }

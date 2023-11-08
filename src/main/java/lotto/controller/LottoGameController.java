@@ -17,5 +17,6 @@ public class LottoGameController {
         Money money = lottoGameService.purchaseAmount();
         Lottos lottos = lottoGameService.makeLottos(money);
         WinningLotto winningLotto = lottoGameService.winningLotto();
+        lottoGameService.winningStats(money, lottos, winningLotto);
     }
 }

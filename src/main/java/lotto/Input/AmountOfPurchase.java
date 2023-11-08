@@ -1,7 +1,6 @@
 package lotto.Input;
 
 public class AmountOfPurchase {
-
     private static int amount;
 
     public static int takeInput() {

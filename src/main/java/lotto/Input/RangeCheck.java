@@ -1,7 +1,6 @@
 package lotto.Input;
 
 public class RangeCheck {
-
     static final int LOWER_BOUND = 1;
     static final int UPPER_BOUND = 45;
 

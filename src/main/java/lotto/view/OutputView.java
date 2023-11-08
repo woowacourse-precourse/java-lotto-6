@@ -39,9 +39,13 @@ public class OutputView {
     private String makeLottoPurchases(List<Lotto> lottos) {
         return lottos.stream().map(lotto -> {
             StringJoiner stringJoiner = new StringJoiner(DELIMITER_FOR_PURCHASES, PREFIX, SUFFIX);
-            lotto.getNumbers().forEach(number -> stringJoiner.add(number.toString()));
+            sortLottoNumbers(lotto.getNumbers()).forEach(number -> stringJoiner.add(number.toString()));
             return stringJoiner.toString();
         }).collect(Collectors.joining(NEW_LINE));
+    }
+
+    private List<Integer> sortLottoNumbers(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream().sorted().toList();
     }
 
     public void printDrawStatistics(Map<String, Long> winningResult, double profitRate) {

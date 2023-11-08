@@ -14,7 +14,7 @@ public class BonusNumberTest {
     void normalBonusNumberTest() {
         int number = 3;
         BonusNumber bonusNumber = new BonusNumber(number);
-        assertThat(bonusNumber.getBonusNumber()).isEqualTo(3);
+        assertThat(bonusNumber.getValue()).isEqualTo(3);
     }
 
     @ParameterizedTest

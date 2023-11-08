@@ -86,6 +86,6 @@ public class LottoGame {
     }
 
     private static void printRate(long sum, int pay) {
-        System.out.println("총 수익률은 " + Math.round(((double) sum) / pay * 10) / 10 + "%입니다.");
+        System.out.println("총 수익률은 " + Math.round(((double) pay) / sum * 10) / 10 + "%입니다.");
     }
 }

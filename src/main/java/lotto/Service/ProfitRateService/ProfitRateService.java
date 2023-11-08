@@ -2,10 +2,11 @@ package lotto.Service.ProfitRateService;
 
 import java.util.List;
 import java.util.Map;
+import lotto.Common.LottoValue;
 import lotto.Model.Lotto.Lotto;
 import lotto.Model.LottoWinningResult.LottoWinningResult;
 import lotto.Model.ProfitRate.ProfitRate;
-import lotto.Model.WinningNumber.WinningNumber;
+import static lotto.Common.LottoValue.*;
 
 import static lotto.Common.LottoValue.*;
 
@@ -38,28 +39,11 @@ public class ProfitRateService {
                 .map(entry -> {
                     int matchingNumbers = entry.getKey();
                     List<Lotto> lottoList = entry.getValue();
-                    return lottoList.size() *  getMultiplier(matchingNumbers);
+                    return lottoList.size() * LottoValue.getMultiplier(matchingNumbers);
                 })
                 .mapToInt(Integer::intValue)
                 .sum();
     }
 
-    private int getMultiplier( int matchingNumber){
-        if( matchingNumber == 3) {
-            return 5000;
-        }
-        if( matchingNumber == 4) {
-            return 50000;
-        }
-        if( matchingNumber == 5) {
-            return 1500000;
-        }
-        if( matchingNumber == 6) {
-            return 2000000000;
-        }
-        if( matchingNumber == 7) {
-            return 30000000;
-        }
-        return 0;
-    }
+
 }

@@ -1,7 +1,6 @@
 package lotto.domain.constants;
 
 public enum LottoRule {
-
     PRICE(1000),
     LOTTO_SIZE(6),
     LOTTO_MIN_NUMBER(1),

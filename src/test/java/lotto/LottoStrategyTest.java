@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import lotto.model.Budget;
 import lotto.model.lotto.BonusNumber;
 import lotto.model.lotto.RankCount;
+import lotto.model.machine.FixedLottoMachine;
 import lotto.model.machine.LottoMachine;
 import lotto.model.lotto.LottoRank;
 import lotto.model.lotto.LottoTicket;
@@ -38,7 +39,7 @@ public class LottoStrategyTest {
         winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         bonusNumber = new BonusNumber(7, winningLotto);
         lottoStrategy = new MyLottoStrategy();
-        expectedCounts =  new RankCount();
+        expectedCounts = new RankCount();
     }
 
     @DisplayName("6개 번호 일치 시 RANK1 출력 테스트")
@@ -105,7 +106,7 @@ public class LottoStrategyTest {
     @Test
     void testRank5() {
         //given
-        List<Integer> testNumbers = Arrays.asList(1, 2, 3, 8, 9, 10);
+        List<Integer> testNumbers = Arrays.asList(1, 2, 3, 7, 9, 10);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
         expectedCounts.incrementCount(LottoRank.RANK5);
@@ -140,4 +141,5 @@ public class LottoStrategyTest {
                 Arguments.of(Arrays.asList(8, 9, 10, 11, 12, 13))
         );
     }
+
 }

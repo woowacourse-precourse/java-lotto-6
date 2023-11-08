@@ -45,7 +45,7 @@ public class InputValidator {
     }
 
     private static void validateAmountFormat(int amount) {
-        if (amount % DIVISION_UNIT.getRange() != 0) {
+        if (amount % DIVISION_UNIT.getRange() != 0 || amount == 0) {
             throw new IllegalArgumentException(CAN_NOT_SATISFY_INTEGER_CONDITION.getErrorMessage());
         }
     }

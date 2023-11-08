@@ -16,16 +16,6 @@ public class LottoService {
     private final User user = new User();
     private WinningNumbers winningNumbers;
 
-
-    public void buyLotto(){
-        List<Lotto> lottoDrawn = new ArrayList<>();
-        for (int i = 0; i < (user.getPayed() / Constants.CURRENCY_UNITS); i++){
-            Lotto lotto = new Lotto(lotteryMachine.draw());
-            lottoDrawn.add(lotto);
-        }
-        user.setLottos(lottoDrawn);
-    }
-
     public void setMoney(String money){
         if (!money.matches("[0-9]+")){
             throw new IllegalArgumentException(LottoExceptions.InputTypeError.getErrorMessage());
@@ -37,8 +27,25 @@ public class LottoService {
         user.setPayed(payed);
     }
 
+    public void buyLotto(){
+        List<Lotto> lottoDrawn = new ArrayList<>();
+        for (int i = 0; i < (user.getPayed() / Constants.CURRENCY_UNITS); i++){
+            Lotto lotto = new Lotto(lotteryMachine.draw());
+            lottoDrawn.add(lotto);
+        }
+        user.setLottos(lottoDrawn);
+    }
+
     public User getUser(){
         return user;
+    }
+
+    public void setWinningNumbers(String promptedNumbers) {
+        winningNumbers = new WinningNumbers(promptedNumbers.split(","));
+    }
+
+    public void setBonusNumber(String bonus){
+        winningNumbers.setBonus(bonus);
     }
 
     public HashMap<Prizes, Integer> getNumberMatches(){
@@ -63,11 +70,4 @@ public class LottoService {
         return ((double)(firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize) * 100 / user.getPayed());
     }
 
-    public void setWinningNumbers(String promptedNumbers) {
-       winningNumbers = new WinningNumbers(promptedNumbers.split(","));
-    }
-
-    public void setBonusNumber(String bonus){
-        winningNumbers.setBonus(bonus);
-    }
 }

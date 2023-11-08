@@ -26,7 +26,7 @@ public class LotteryMachineTest {
     @Test
     void generateNumbers(){
         LotteryMachine lotteryMachine = LotteryMachine.getInstance();
-        assertThat(lotteryMachine.draw().size()).isEqualTo(6);
+        assertThat(lotteryMachine.draw().size()).isEqualTo(Constants.DRAW_COUNT);
     }
 
 }

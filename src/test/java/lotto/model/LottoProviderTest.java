@@ -1,6 +1,7 @@
 package lotto.model;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +16,13 @@ class LottoProviderTest {
     );
 
     @Test
+    @DisplayName("로또_당첨금액_테스트")
     void winningsPayments() {
-
         Assertions.assertEquals(lottoProvider.winningsPayments(lottoRanks), WIN_FIRST_AND_FIFTH_MONEY);
     }
 
     @Test
+    @DisplayName("로또_당첨_이력_테스트")
     void lottoHistory() {
 
         Map<String, Integer> lottoHistory = lottoProvider.lottoHistory(lottoRanks);

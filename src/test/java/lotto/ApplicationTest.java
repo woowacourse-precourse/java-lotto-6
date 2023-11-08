@@ -43,11 +43,55 @@ class ApplicationTest extends NsTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
+    @Test
+    void 입력_예외_테스트_보너스번호_중복() {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6", "6");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
+    @Test
+    void 입력_예외_테스트_로또번호_범위초과() {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,55");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
+    @Test
+    void 입력_예외_테스트_로또번호_초과입력() {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6,7");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
 
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_단위1000() {
+        assertSimpleTest(() -> {
+            runException("100");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 예외_테스트_구매제한() {
+        assertSimpleTest(() -> {
+            runException("600000");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

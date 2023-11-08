@@ -66,4 +66,13 @@ class LottoTest {
 
         assertThat(result).isEqualTo(expect);
     }
+
+    @DisplayName("로또 번호는 오름차순으로 정렬되어야 한다.")
+    @Test
+    void createLottoByAscendingOrder() {
+        Lotto result = new Lotto(List.of(3,1,4,2,6,5));
+        Lotto expect = new Lotto(List.of(1,2,3,4,5,6));
+
+        assertThat(result.getLottoNumber()).isEqualTo(expect.getLottoNumber());
+    }
 }

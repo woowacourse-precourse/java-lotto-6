@@ -12,6 +12,10 @@ public class LottoGameService {
 
     }
 
+    public int sumWinningAmount(WinningResult result) {
+        return result.calculateWinningAmount();
+    }
+
     public WinningResult calculateWinningResult(
             List<Lotto> lotties, List<Integer> winningNumbers, BonusNumber bonusNumber) {
 
@@ -34,7 +38,7 @@ public class LottoGameService {
                     result.put(byCount, 1);
                     continue;
                 }
-                result.put(byCount, result.get(byCount));
+                result.put(byCount, result.get(byCount) + 1);
             }
         }
 

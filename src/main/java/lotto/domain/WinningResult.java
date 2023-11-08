@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import lotto.constant.WinningAmountConstant;
 
@@ -14,5 +15,17 @@ public class WinningResult {
 
     public Integer getCountByRank(String rank) {
         return result.get(rank);
+    }
+
+    public int calculateWinningAmount() {
+        List<WinningAmountConstant> keys = result.keySet().stream().toList();
+        List<Integer> values = result.values().stream().toList();
+        int sum = 0;
+
+        for (int i = 0; i < keys.size(); i++) {
+            sum += keys.get(i).getValue() * values.get(i);
+        }
+
+        return sum;
     }
 }

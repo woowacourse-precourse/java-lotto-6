@@ -4,6 +4,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotties;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
+import lotto.domain.WinningResult;
 import lotto.service.LottoGameService;
 
 public class LottoGameController {
@@ -14,7 +15,11 @@ public class LottoGameController {
     }
 
     public void run(PurchaseAmount amount, WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotties lotties) {
-        service.calculateWinningResult(lotties.getLotties(), winningNumbers.getWinningNumbers(), bonusNumber);
+        WinningResult winningResult = service.calculateWinningResult(lotties.getLotties(),
+                winningNumbers.getWinningNumbers(), bonusNumber);
+        int sum = service.sumWinningAmount(winningResult);
+        System.out.println(sum);
+
     }
 
     private void playGame() {

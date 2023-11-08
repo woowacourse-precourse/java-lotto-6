@@ -39,9 +39,9 @@ public class Exception {
         return true;
     }
     // 중복이 없는지
-    boolean checkDuplication(int number, List<Integer> lotto){
-        if(lotto.contains(number)){
-            System.out.println("[ERROR] 중복된 숫자가 입력되었습니다.");
+    boolean checkDuplication(int number, Lotto lotto){
+        if(lotto.contain(number)){
+            System.out.println("[ERROR] 당첨 로또와 중복된 숫자가 입력되었습니다.");
             return true;
         }
         return false;

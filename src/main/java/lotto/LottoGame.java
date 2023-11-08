@@ -69,10 +69,6 @@ public class LottoGame {
             if(!exception.checkInputIsNumber(here) || !exception.checkInputInRange(here)) {
                 inputWinningNumber();
             }
-            int number = Integer.valueOf(here);
-            if(exception.checkDuplication(number,splitNumber)){
-                inputWinningNumber();
-            }
             splitNumber.add(Integer.valueOf(here));
         }
         if(!exception.checkSizeIsSix(splitNumber.size())){
@@ -87,6 +83,9 @@ public class LottoGame {
             inputBonusNumber();
         }
         bonusNumber = Integer.valueOf(input);
+        if(exception.checkDuplication(bonusNumber,winningLotto)){
+            inputBonusNumber();
+        }
     }
 
     void calculateReward(){

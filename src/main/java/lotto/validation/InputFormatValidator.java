@@ -1,11 +1,13 @@
 package lotto.validation;
 
+import lotto.domain.WinningNumbers;
 import lotto.utility.FormatConverter;
 import lotto.utility.TypeConverter;
 
 import java.util.List;
 
 import static lotto.configuration.InputFormatConfig.LOTTO_PRICE;
+import static lotto.configuration.RandomNumberConfig.COUNT;
 import static lotto.message.ErrorMessage.*;
 
 public class InputFormatValidator {
@@ -39,6 +41,12 @@ public class InputFormatValidator {
         LottoNumberValidator.validateNumbersOrder(convertedWinningNumbers);
     }
 
+    public static void validateBonusNumber(String bonusNumberInput, WinningNumbers winningNumbers) {
+        validateNumberFormat(bonusNumberInput);
+        LottoNumberValidator.validateDuplicateNumbers(bonusNumberInput, winningNumbers);
+        LottoNumberValidator.validateNumberRange(TypeConverter.convertStringToInt(bonusNumberInput));
+    }
+
     private static void validateCountOfNumbers(String[] winningNumbers) {
         if (winningNumbers.length == COUNT) {
             return;
@@ -53,5 +61,13 @@ public class InputFormatValidator {
                 throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + INVALID_WINNING_NUMBER_INPUT_EXCEPTION);
             }
         }
+    }
+
+    private static void validateNumberFormat(String bonusNumber) {
+        if (bonusNumber.matches("[1-9][0-9]*")) {
+            return;
+        }
+
+        throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + INVALID_BONUS_NUMBER_INPUT_EXCEPTION);
     }
 }

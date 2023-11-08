@@ -1,5 +1,8 @@
 package lotto.validation;
 
+import lotto.domain.WinningNumbers;
+import lotto.utility.TypeConverter;
+
 import java.util.List;
 
 import static lotto.configuration.RandomNumberConfig.END_INCLUSIVE;
@@ -13,11 +16,28 @@ public class LottoNumberValidator {
         }
     }
 
+    public static void validateDuplicateNumbers(String bonusNumber, WinningNumbers winningNumbers) {
+        int parsedBonusNumber = TypeConverter.convertStringToInt(bonusNumber);
+        for (int i = 0; i < winningNumbers.size(); i++) {
+            if (parsedBonusNumber == winningNumbers.get(i)) {
+                throw new IllegalArgumentException(
+                        ERROR_MESSAGE_HEAD + DUPLICATE_NUMBER_EXCEPTION + (i + 1) + NUMBER_INDICATION + bonusNumber
+                );
+            }
+        }
+    }
+
     public static void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < START_INCLUSIVE || number > END_INCLUSIVE) {
                 throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + NUMBER_OUT_OF_RANGE_EXCEPTION + number);
             }
+        }
+    }
+
+    public static void validateNumberRange(int number) {
+        if (number < START_INCLUSIVE || number > END_INCLUSIVE) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + NUMBER_OUT_OF_RANGE_EXCEPTION + number);
         }
     }
 

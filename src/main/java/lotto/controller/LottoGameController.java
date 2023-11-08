@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoCount;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoGameService;
 import lotto.service.LottoGameServiceImpl;
 import lotto.view.InputHandler;
@@ -25,6 +26,6 @@ public class LottoGameController {
         String winningNumbersInput = InputHandler.getWinningNumberInputMessage();
         WinningNumbers winningNumbers = lottoGameService.parseWinningNumbers(winningNumbersInput);
 
-        String bonusNumber = InputHandler.getBonusNumberInputMessage();
+        String bonusNumber = InputHandler.getBonusNumberInputMessage(winningNumbers);
     }
 }

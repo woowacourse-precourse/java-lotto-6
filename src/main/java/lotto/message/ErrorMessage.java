@@ -18,6 +18,8 @@ public class ErrorMessage {
     public static final String INVALID_WINNING_NUMBER_INPUT_EXCEPTION
             = "로또 번호는 " + COUNT + "개의 양의 정수를 쉼표로 구분하여 입력해야 합니다. 예 : "
             + generateSequenceBySizeOfCountWithComma();
+    public static final String INVALID_BONUS_NUMBER_INPUT_EXCEPTION
+            = "보너스 번호는 양의 정수를 입력해야 합니다. 예 : 1";
 
     public static String generateSequenceBySizeOfCountWithComma() {
         StringBuilder sb = new StringBuilder();

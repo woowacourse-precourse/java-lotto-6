@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.type.ConstNumberType;
 
 import java.util.List;
 
@@ -16,7 +17,11 @@ public class RandomLottoNumber {
     }
 
     public void initRandomNumber() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        this.numbers = Randoms.pickUniqueNumbersInRange(
+                ConstNumberType.LOTTO_START_NUMBER.number(),
+                ConstNumberType.LOTTO_END_NUMBER.number(),
+                ConstNumberType.LOTTO_SIZE.number()
+        );
     }
 
     public void showRandomNumber() {

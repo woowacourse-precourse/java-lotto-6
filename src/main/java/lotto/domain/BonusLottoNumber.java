@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.type.ConstNumberType;
 import lotto.type.ErrorMessageType;
 
 import java.util.regex.Pattern;
@@ -16,7 +17,7 @@ public class BonusLottoNumber {
             throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.message());
         }
         int bonusNum = Integer.parseInt(bonus);
-        if (bonusNum < 1 || bonusNum > 45) {
+        if (bonusNum < ConstNumberType.LOTTO_START_NUMBER.number() || bonusNum > ConstNumberType.LOTTO_END_NUMBER.number()) {
             throw new IllegalArgumentException(ErrorMessageType.OUT_OF_LOTTO_NUMERICAL_RANGE.message());
         }
         return bonusNum;

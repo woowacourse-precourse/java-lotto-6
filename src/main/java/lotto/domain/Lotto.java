@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.type.ConstNumberType;
 import lotto.type.ErrorMessageType;
 
 import java.util.HashSet;
@@ -21,7 +22,7 @@ public class Lotto {
     }
 
     private void validateSizeException(List<Integer> numbers) throws IllegalArgumentException {
-        if (numbers.size() != 6) {
+        if (numbers.size() != ConstNumberType.LOTTO_SIZE.number()) {
             throw new IllegalArgumentException(ErrorMessageType.NOT_SIZE_SIX.message());
         }
     }
@@ -35,7 +36,7 @@ public class Lotto {
 
     private void validateNumberRangeException(List<Integer> numbers) throws IllegalArgumentException {
         long result = numbers.stream()
-                .filter(num -> num < 1 || num > 45)
+                .filter(num -> num < ConstNumberType.LOTTO_START_NUMBER.number() || num > ConstNumberType.LOTTO_END_NUMBER.number())
                 .count();
         if (result != 0) {
             throw new IllegalArgumentException(ErrorMessageType.OUT_OF_LOTTO_NUMERICAL_RANGE.message());

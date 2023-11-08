@@ -11,18 +11,22 @@ import java.util.List;
 import lotto.config.GamePrizeConfig;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
+import lotto.domain.Income;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.PurchasedLotto;
 import lotto.view.OutputView;
 
 public class LottoResultService {
-    public LottoResult createLottoResult(PurchasedLotto purchasedLotto, Lotto winningLotto, BonusNumber bonusNumber) {
-        List<Integer> winningResult = purchasedLotto.getWinningResult(winningLotto, bonusNumber);
-        return new LottoResult(winningResult);
+    public Income createLottoIncome(
+            PurchasedLotto purchasedLotto,
+            Lotto winningLotto,
+            BonusNumber bonusNumber
+    ) {
+        List<Integer> gamePrizeIndexValues = purchasedLotto.createGamePrizeIndexValues(winningLotto, bonusNumber);
+        return new Income(gamePrizeIndexValues);
     }
 
-    public void printWinningStatistics(LottoResult lottoResult, PurchaseAmount purchaseAmount) {
+    public void printWinningStatistics(Income income, PurchaseAmount purchaseAmount) {
         List<GamePrizeConfig> prizes = Arrays.asList(GamePrizeConfig.values());
         Collections.reverse(prizes);
         int winningIndex = prizes.size();
@@ -34,7 +38,7 @@ public class LottoResultService {
                     winningMessage,
                     prize.getCorrectCount(),
                     prize.getPrizeText(),
-                    lottoResult.getCount(winningIndex)
+                    income.getCount(winningIndex)
             ));
         }
     }
@@ -46,8 +50,8 @@ public class LottoResultService {
         return WINNING_MESSAGE.getMessage();
     }
 
-    public void printIncomeRate(LottoResult lottoResult, PurchaseAmount purchaseAmount) {
-        double incomeRate = lottoResult.calculateIncomeRate(purchaseAmount.getMoney());
+    public void printIncomeRate(Income income, PurchaseAmount purchaseAmount) {
+        double incomeRate = income.calculateIncomeRate(purchaseAmount.getMoney());
         OutputView.printMessage(String.format(RESULT_MESSAGE.getMessage(), incomeRate));
     }
 

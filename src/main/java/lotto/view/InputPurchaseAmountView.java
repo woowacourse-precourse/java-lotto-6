@@ -16,7 +16,6 @@ public class InputPurchaseAmountView {
         OutputView.printMessage(INPUT_PURCHASE_AMOUNT_MESSAGE.getMessage());
 
         String input = Console.readLine();
-        validatePurchaseAmount(input);
         return parsePurchaseAmount(input);
     }
 
@@ -39,6 +38,8 @@ public class InputPurchaseAmountView {
     }
 
     private static int parsePurchaseAmount(String input) {
+        validatePurchaseAmount(input);
+
         int price = parseInt(input);
         return price;
     }

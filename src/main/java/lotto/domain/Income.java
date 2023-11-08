@@ -3,16 +3,16 @@ package lotto.domain;
 import java.util.List;
 import lotto.config.GamePrizeConfig;
 
-public class LottoResult {
-    private static final int COUNT_LENGTH = GamePrizeConfig.values().length + 1;
+public class Income {
+    private static final int GAME_PRIZE_NUMBER = GamePrizeConfig.values().length + 1;
 
     private long income;
     private int[] count;
 
-    public LottoResult(List<Integer> winningResult) {
+    public Income(List<Integer> gamePrizeIndexValues) {
         this.income = 0;
-        this.count = new int[COUNT_LENGTH];
-        countResult(winningResult);
+        this.count = new int[GAME_PRIZE_NUMBER];
+        countGamePrizeIndexValues(gamePrizeIndexValues);
         calculateResult();
     }
 
@@ -28,7 +28,7 @@ public class LottoResult {
         }
     }
 
-    private void countResult(List<Integer> winningResult) {
+    private void countGamePrizeIndexValues(List<Integer> winningResult) {
         winningResult.forEach(winningIndex -> count[winningIndex]++);
     }
 

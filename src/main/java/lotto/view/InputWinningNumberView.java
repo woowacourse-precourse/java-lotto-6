@@ -23,7 +23,6 @@ public class InputWinningNumberView {
         OutputView.printMessage(INPUT_WINNING_NUMBER_MESSAGE.getMessage());
 
         String input = Console.readLine();
-        validateWinningNumber(input);
         return parseWinningNumber(input);
     }
 
@@ -46,6 +45,8 @@ public class InputWinningNumberView {
     }
 
     private static List<Integer> parseWinningNumber(String input) {
+        validateWinningNumber(input);
+
         List<String> splitInput = splitBySeparator(input);
         List<Integer> numbers = parseIntList(splitInput);
         return numbers;

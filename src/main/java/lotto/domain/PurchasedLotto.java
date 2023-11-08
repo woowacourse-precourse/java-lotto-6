@@ -13,7 +13,7 @@ public class PurchasedLotto {
         return lottos;
     }
 
-    public List<Integer> getWinningResult(Lotto winningLotto, BonusNumber number) {
+    public List<Integer> createGamePrizeIndexValues(Lotto winningLotto, BonusNumber number) {
         return lottos.stream()
                 .map(lotto -> lotto.compareWinningNumber(winningLotto, number))
                 .toList();

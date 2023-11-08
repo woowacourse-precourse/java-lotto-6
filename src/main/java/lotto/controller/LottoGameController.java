@@ -6,7 +6,7 @@ import lotto.controller.inputCreator.PurchaseAmountController;
 import lotto.controller.inputCreator.WinningLottoController;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
+import lotto.domain.Income;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.PurchasedLotto;
 import lotto.view.OutputView;
@@ -30,8 +30,8 @@ public class LottoGameController {
         Lotto winningLotto = createUntilInputSuccess(new WinningLottoController(), null);
         BonusNumber bonusNumber = createUntilInputSuccess(new BonusNumberController(), winningLotto);
 
-        LottoResult lottoResult = lottoResultService.createLottoResult(purchasedLotto, winningLotto, bonusNumber);
-        printResult(lottoResult, purchaseAmount);
+        Income income = lottoResultService.createLottoIncome(purchasedLotto, winningLotto, bonusNumber);
+        printResult(income, purchaseAmount);
     }
 
     private PurchasedLotto purchaseLotto(PurchaseAmount purchaseAmount) {
@@ -41,10 +41,10 @@ public class LottoGameController {
         return purchasedLotto;
     }
 
-    private void printResult(LottoResult lottoResult, PurchaseAmount purchaseAmount) {
+    private void printResult(Income income, PurchaseAmount purchaseAmount) {
         lottoResultService.printMessageBeforeResult();
-        lottoResultService.printWinningStatistics(lottoResult, purchaseAmount);
-        lottoResultService.printIncomeRate(lottoResult, purchaseAmount);
+        lottoResultService.printWinningStatistics(income, purchaseAmount);
+        lottoResultService.printIncomeRate(income, purchaseAmount);
     }
 
     public <T, U> T createUntilInputSuccess(ObjectCreator<T, U> creator, U arg) {

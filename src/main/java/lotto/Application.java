@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +12,12 @@ public class Application {
     public static void main(String[] args) {
         int purchaseAmount = getValidPurchaseAmount();
         int lottoAmount = getLottoAmount(purchaseAmount);
+        System.out.println("\n" + lottoAmount + "개를 구매했습니다.");
+
+        List<Lotto> lottoTickets = generateLottoTickets(lottoAmount);
+        for (Lotto lotto : lottoTickets) {
+            System.out.println(lotto.getNumbers());
+        }
 
         List<Integer> winnigNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber(winnigNumbers);
@@ -41,10 +49,18 @@ public class Application {
         return purchaseAmount / 1000;
     }
 
+    private static List<Lotto> generateLottoTickets(int lottoAmount) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        for (int i = 0; i < lottoAmount; i++) {
+            lottoTickets.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        return lottoTickets;
+    }
+
     public static List<Integer> getWinningNumbers(){
         List<Integer> winnigNumbers = new ArrayList<>();
         while(true){
-            System.out.println("당첨 번호를 입력해 주세요.");
+            System.out.println("\n당첨 번호를 입력해 주세요.");
             try{
                 String[] input = sc.nextLine().split(",");
                 if(isGoodWinningNumbers(input)){
@@ -77,7 +93,7 @@ public class Application {
     public static int getBonusNumber(List<Integer> winnigNumbers){
         int bonusNumber = 0;
         while(true){
-            System.out.println("보너스 번호를 입력해 주세요.");
+            System.out.println("\n보너스 번호를 입력해 주세요.");
             try{
                 bonusNumber = sc.nextInt();
                 if(isGoodBonusNumber(bonusNumber, winnigNumbers)){

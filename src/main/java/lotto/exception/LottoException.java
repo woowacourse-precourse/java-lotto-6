@@ -1,13 +1,16 @@
 package lotto.exception;
 
+import static lotto.utility.Constants.ERROR_MESSAGE_1;
 import static lotto.utility.Constants.ERROR_MESSAGE_2;
 
+import static lotto.utility.Constants.ERROR_MESSAGE_3;
 import static lotto.utility.Constants.LOTTO_LENGTH;
 import static lotto.utility.Constants.MAX_LOTTO_NUMBER;
 import static lotto.utility.Constants.MIN_LOTTO_NUMBER;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.model.User;
 
 public class LottoException {
     private LottoException() {}
@@ -15,6 +18,12 @@ public class LottoException {
         validateLottoLength(numbers);
         validateLottoNumberRange(numbers);
         validateLottoDuplicate(numbers);
+    }
+
+    public static void validateBonusAll(String number) {
+        validateBonusNumberType(number);
+        validateBonusNumberRange(Integer.parseInt(number));
+        validateBonusNumberDuplicate(Integer.parseInt(number));
     }
 
     private static void validateLottoLength(List<Integer> numbers) {
@@ -34,6 +43,26 @@ public class LottoException {
     private static void validateLottoDuplicate(List<Integer> numbers) {
         if (numbers.size() != (new HashSet<>(numbers).size())) {
             throw new IllegalArgumentException(ERROR_MESSAGE_2);
+        }
+    }
+
+    private static void validateBonusNumberType(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_3);
+        }
+    }
+
+    private static void validateBonusNumberRange(Integer number) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_3);
+        }
+    }
+
+    private static void validateBonusNumberDuplicate(Integer number) {
+        if (User.getWinningNumbers().contains(number)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_3);
         }
     }
 }

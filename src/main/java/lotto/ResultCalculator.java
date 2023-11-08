@@ -19,7 +19,7 @@ public class ResultCalculator {
         return (double) totalPrize / investMoney;
     }
 
-    private long calculateTotalPrize(WinningResult result) {
+    public long calculateTotalPrize(WinningResult result) {
         long totalPrize = 0;
         for (Rank rank : Rank.values()) {
             if (rank == Rank.MISS) continue;
@@ -28,7 +28,7 @@ public class ResultCalculator {
         return totalPrize;
     }
 
-    private long calculateInvestMoney(int lottoCount) {
+    public long calculateInvestMoney(int lottoCount) {
         return 1000 * lottoCount;
     }
 }

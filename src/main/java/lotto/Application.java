@@ -11,6 +11,8 @@ public class Application {
 
     public static final int LOTTO_SIZE = 6;
     public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_MIN_NUMBER = 1;
+    public static final int LOTTO_MAX_NUMBER = 45;
 
     public static void main(String[] args) {
         int buyAmount = inputBuyAmount();
@@ -48,7 +50,7 @@ public class Application {
         int randomNumber;
         for (int i = 0; i < LOTTO_SIZE; i++) {
             do {
-                randomNumber = Randoms.pickNumberInRange(1, 45);
+                randomNumber = Randoms.pickNumberInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
             } while (numbers.contains(randomNumber));
             numbers.add(randomNumber);
         }

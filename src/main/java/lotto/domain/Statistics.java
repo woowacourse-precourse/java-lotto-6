@@ -5,7 +5,7 @@ import java.util.Map;
 public class Statistics {
     private final Map<Prize, Integer> prizeResults;
 
-    public Statistics(Map<Prize, Integer> prizeResults) {
+    public  Statistics(Map<Prize, Integer> prizeResults) {
         this.prizeResults = prizeResults;
     }
 

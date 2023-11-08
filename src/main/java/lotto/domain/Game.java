@@ -23,21 +23,8 @@ public class Game {
     public void start() {
         Money money = getMoney();
         LottoTicket lottoTicket = generateLottoTicket(money);
-        Results results = compare(lottoTicket);
-        end(results, money);
-    }
-
-    private LottoTicket generateLottoTicket(Money money) {
-        LottoTicket buyLottoTicket = lottoMachine.buy(money, new AutoLottoGenerator());
-        List<Lotto> lottos = buyLottoTicket.getLottos();
-
-        outputView.print(PrintMessage.BUY_AMOUNT_FORMAT, lottos.size());
-        for (Lotto lotto : lottos) {
-            outputView.print(lotto.toString());
-        }
-        outputView.print(PrintMessage.EMPTY);
-
-        return buyLottoTicket;
+        Map<Prize, Integer> result = compare(lottoTicket);
+        end(result, money);
     }
 
     private Money getMoney() {
@@ -55,10 +42,23 @@ public class Game {
         return money;
     }
 
-    private Results compare(LottoTicket lottoTicket) {
+    private LottoTicket generateLottoTicket(Money money) {
+        LottoTicket buyLottoTicket = lottoMachine.buy(money, new AutoLottoGenerator());
+        List<Lotto> lottos = buyLottoTicket.getLottos();
+
+        outputView.print(PrintMessage.BUY_AMOUNT_FORMAT, lottos.size());
+        for (Lotto lotto : lottos) {
+            outputView.print(lotto.toString());
+        }
+        outputView.print(PrintMessage.EMPTY);
+
+        return buyLottoTicket;
+    }
+
+    private Map<Prize, Integer> compare(LottoTicket lottoTicket) {
         AnswerLottos answerLottos = getAnswerLottos();
-        List<Result> result = answerLottos.match(lottoTicket);
-        return new Results(result);
+        WinningAnalyzer winningAnalyzer = new WinningAnalyzer(answerLottos);
+        return winningAnalyzer.compare(lottoTicket);
     }
 
     private AnswerLottos getAnswerLottos() {
@@ -90,8 +90,7 @@ public class Game {
         return new BonusBall(input);
     }
 
-    private void end(Results results, Money money) {
-        Map<Prize, Integer> prizeResult = results.getPrizeResult();
+    private void end(Map<Prize, Integer> prizeResult, Money money) {
         outputView.print(PrintMessage.WINNING_STATISTICS);
         outputView.print(PrintMessage.WINNING_STATISTICS_HEADER);
 

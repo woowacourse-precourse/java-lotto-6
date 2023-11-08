@@ -4,6 +4,8 @@ import static lotto.model.constant.LottoMessageConstant.END_BRACKET;
 import static lotto.model.constant.LottoMessageConstant.NUMBER_DELIMITER;
 import static lotto.model.constant.LottoMessageConstant.START_BRACKET;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.util.LottoValidator;
@@ -17,7 +19,11 @@ public class Lotto {
 
     public Lotto(List<Integer> lottoNumberInput) {
         isValidLottoNumbers(lottoNumberInput);
-        this.numbers = lottoNumberInput.stream().map(LottoNumber::new).toList();
+        numbers = new ArrayList<>();
+        for (Integer integer : lottoNumberInput) {
+            numbers.add(new LottoNumber(integer));
+        }
+        numbers.sort(Comparator.comparingInt(LottoNumber::getNumber));
     }
 
     public void isValidLottoNumbers(List<Integer> lottoNumberInput) {

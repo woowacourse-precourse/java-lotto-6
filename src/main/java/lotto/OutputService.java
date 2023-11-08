@@ -8,7 +8,7 @@ public class OutputService {
     private static final String informIssuedLottoCount = "%d개를 구매했습니다.";
     private static final String informRankCount =  " - %d개";
     public static void printLottoCount(int lottoCount){
-        System.out.println(String.format("%d"+informIssuedLottoCount));
+        System.out.println(String.format(informIssuedLottoCount,lottoCount));
     }
 
     public static void printIssuedLotto(List<Lotto> lottoes){
@@ -18,11 +18,11 @@ public class OutputService {
     }
 
     public static void printRankStatus(Rank rank){
-        System.out.println(rank.getStatus());
+        System.out.print(rank.getStatus());
     }
 
     public static void printRankCount(int count){
-        System.out.print(String.format(informRankCount,count));
+        System.out.println(String.format(informRankCount,count));
     }
 
     public static void printAllWinRecord(Map<Rank,Integer> rankingResult){
@@ -32,7 +32,7 @@ public class OutputService {
                 });
     }
 
-    public static void printProfitRate(double profitRate){
+    public static void printReturnOfRate(double profitRate){
         System.out.println(String.format("총 수익률은 %f입니다.",profitRate));
     }
 }

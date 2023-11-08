@@ -63,7 +63,6 @@ public class Lottos {
         return lottoResult;
     }
 
-
     public Map<String, Integer> calculateResult(Winning winning) {
         Map<String, Integer> result = new HashMap<>();
 

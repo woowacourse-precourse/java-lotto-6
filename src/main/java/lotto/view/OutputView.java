@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    private static final String REQUIRE_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String RESULT_MESSAGE = "\n당첨 통계\n---\n";
     private static final String THREE_MESSAGE = "3개 일치 (5,000원) - %d개\n";
@@ -40,5 +39,4 @@ public class OutputView {
     public void printError(String message) {
         System.out.println(message);
     }
-
 }

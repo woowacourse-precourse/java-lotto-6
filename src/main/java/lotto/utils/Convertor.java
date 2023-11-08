@@ -13,7 +13,6 @@ public class Convertor {
         return winningNumbers;
     }
 
-
     public static String numToStatus(int matchingNum) {
         return Constant.lottoResult.get(matchingNum);
     }

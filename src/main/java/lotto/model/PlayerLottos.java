@@ -5,22 +5,22 @@ import java.util.List;
 
 public class PlayerLottos {
 
-    private final List<LottoFactory> lottoFactories;
+    private final List<Lotto> playerLottos;
 
     public PlayerLottos(int numberOfLottoTickets) {
-        this.lottoFactories = generateLottoPlayerNumbers(numberOfLottoTickets);
+        this.playerLottos = generatePlayerLottos(numberOfLottoTickets);
     }
 
     public List<LottoFactory> getLottoPlayerNumbers() {
-        return lottoFactories;
+        return playerLottos;
     }
 
-    private List<LottoFactory> generateLottoPlayerNumbers(int numberOfLottoTickets) {
-        List<LottoFactory> lottoFactories = new ArrayList<>();
+    private List<Lotto> generatePlayerLottos(int numberOfLottoTickets) {
+        List<Lotto> playerLottos = new ArrayList<>();
 
         for (int count = 0; count < numberOfLottoTickets; count++) {
-            lottoFactories.add(new LottoFactory());
+            playerLottos.add(LottoFactory.generateLotto());
         }
-        return lottoFactories;
+        return playerLottos;
     }
 }

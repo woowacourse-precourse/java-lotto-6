@@ -13,7 +13,7 @@ public class Lotto {
 
     private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
         this.numbers = convertToLottoNumber(numbers);

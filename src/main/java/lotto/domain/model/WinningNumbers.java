@@ -12,7 +12,7 @@ public class WinningNumbers {
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
 
-    private WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    private WinningNumbers(final List<Integer> winningNumbers,final int bonusNumber) {
         this.winningLotto = new Lotto(winningNumbers);
         this.bonusNumber = new LottoNumber(bonusNumber);
         validateBonusNumberDuplication();

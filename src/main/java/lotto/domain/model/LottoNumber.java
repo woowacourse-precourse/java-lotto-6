@@ -10,7 +10,7 @@ public class LottoNumber {
 
     private final int number;
 
-    public LottoNumber(int number) {
+    public LottoNumber(final int number) {
         validateRange(number);
         this.number = number;
     }

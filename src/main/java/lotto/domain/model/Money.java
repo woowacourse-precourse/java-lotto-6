@@ -10,7 +10,7 @@ public class Money {
 
     private final int amount;
 
-    public Money(int amount) {
+    public Money(final int amount) {
         validatePositive(amount);
         validateDivisibility(amount);
         this.amount = amount;

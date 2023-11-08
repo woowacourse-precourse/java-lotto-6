@@ -2,7 +2,6 @@ package lotto;
 
 import lotto.domain.RewardCalculator;
 import lotto.domain.WinningLotto;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,10 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RwdCalcTest {
     private RewardCalculator calc;
     private List<Lotto> lottos = new ArrayList<>();
-
-//    @BeforeEach
-//    void setUp() {
-//    }
 
     @Test
     void countNumOfMatchTest() {
@@ -32,7 +27,7 @@ public class RwdCalcTest {
     }
 
     @Test
-    void calculateWinCountTest() {
+    void getResultsTest() {
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 6, 8)));
@@ -41,5 +36,6 @@ public class RwdCalcTest {
         calc.getResults();
 
         assertThat(calc.getWinCount()).isEqualTo(List.of(1, 1, 1, 0, 0, 0));
+        assertThat(calc.getReward()).isEqualTo(2_031_500_000);
     }
 }

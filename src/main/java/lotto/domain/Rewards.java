@@ -37,7 +37,7 @@ public enum Rewards {
 
     private String getMatchText() {
         String COUNT_OF_MATCH_TEXT = "개 일치";
-        return String.valueOf(this.countOfMatch) + COUNT_OF_MATCH_TEXT;
+        return this.countOfMatch + COUNT_OF_MATCH_TEXT;
     }
 
     private String getBonusText() {

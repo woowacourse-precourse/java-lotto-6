@@ -46,6 +46,10 @@ public class RewardCalculator {
         return this.winCount;
     }
 
+    public int getReward() {
+        return this.reward;
+    }
+
     private void calculateWinCount() {
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();

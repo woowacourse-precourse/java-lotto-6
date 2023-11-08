@@ -13,11 +13,15 @@ public class LottoMachine {
 
     public LottoMachine(int money) {
         lottos = new ArrayList<>();
-        setLottos(getLottosCount(money));
+        setLottos(getLottoCount(money));
     }
 
-    public int getLottosCount(int money) {
+    private int getLottoCount(int money) {
         return money / LottoConfig.LOTTO_UNIT_PRICE.getNumber();
+    }
+
+    public int getLottoCount() {
+        return lottos.size();
     }
 
     private void setLottos(int lottosCount) {

@@ -21,7 +21,7 @@ public class LottoController {
         money = InputController.getMoney();
         lottoMachine = new LottoMachine(money.getMoney());
 
-        OutputView.printLottoCount(lottoMachine.getLottosCount(money.getMoney()));
+        OutputView.printLottoCount(lottoMachine.getLottoCount());
         OutputView.printLottos(lottoMachine.getLottos());
 
         winningNumbers = InputController.getWinningNumbers();

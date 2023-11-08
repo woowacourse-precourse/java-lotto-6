@@ -15,7 +15,7 @@ import lotto.common.validate.Validate;
 public class View {
     public String inputConsole() {
         String input = Console.readLine();
-        Validate.consoleBlank(input);
+        Validate.consoleBlankValidate(input);
         return input;
     }
 

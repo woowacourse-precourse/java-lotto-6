@@ -14,7 +14,7 @@ public class Buy {
 
     private int validate(String inputPrice) {
         try {
-            Validate.buyPriceValidate(inputPrice);
+            Validate.buyDomainValidate(inputPrice);
             return Integer.parseInt(inputPrice);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();

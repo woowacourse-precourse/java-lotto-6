@@ -8,11 +8,11 @@ import lotto.common.constants.Symbol;
 public class Validate {
     private static final int ZERO = 0;
 
-    public static void consoleBlank(String input) {
+    public static void consoleBlankValidate(String input) {
         inBlank(input);
     }
 
-    public static void buyPriceValidate(String price) {
+    public static void buyDomainValidate(String price) {
         notNumber(price);
         underThousand(price);
         notThousandUnit(price);

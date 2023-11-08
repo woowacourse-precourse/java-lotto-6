@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
 
     public static final String OUT_OF_LOTTO_VALUE_RANGE = "[ERROR] 로또 입력 값은 1이상 45이하의 값만 가능합니다.";
     public static final int LOTTO_RANGE_IN_START_VALUE = 1;
@@ -8,7 +8,7 @@ public class LottoNumber {
 
     private final Integer LottoNumber;
 
-    public LottoNumber(Integer lottoNumber) {
+    public LottoNumber(int lottoNumber) {
         validationInRange(lottoNumber);
         LottoNumber = lottoNumber;
     }
@@ -38,5 +38,10 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return LottoNumber;
+    }
+
+    @Override
+    public int compareTo(LottoNumber other) {
+        return Integer.compare(this.LottoNumber, other.LottoNumber);
     }
 }

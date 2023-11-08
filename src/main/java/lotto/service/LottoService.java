@@ -106,9 +106,10 @@ public class LottoService {
     public List<Integer> parseInput(String input) {
         List<Integer> numbers = new ArrayList<>();
         String[] parts = input.split(",");
+        InputValidation.validateDuplicateNumbers(parts);
 
         for (String part : parts) {
-            String trimmedPart = part.trim(); // 앞뒤 공백 제거
+            String trimmedPart = part.trim();
             int validPart = checkNumber(trimmedPart);
             InputValidation.validateNumberInRange(validPart);
             numbers.add(validPart);

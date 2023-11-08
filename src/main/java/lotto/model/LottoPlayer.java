@@ -17,4 +17,8 @@ public class LottoPlayer {
     public void lottoGeneration(List<Integer> lottoNumbers) {
         lottoList.add(new Lotto(lottoNumbers));
     }
+
+    public int getLottoCount() {
+        return lottoCount;
+    }
 }

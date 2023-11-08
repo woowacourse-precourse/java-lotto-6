@@ -1,20 +1,25 @@
 package lotto.domain;
 
-import lotto.vo.MoneyNumber;
+import lotto.validator.MoneyValidator;
 
 public class Money {
-    private final MoneyNumber moneyNumber;
+    private final String money;
 
-    public Money(String money){
-        this.moneyNumber = new MoneyNumber(money);
+    public Money(String money) {
+        validate(money);
+        this.money = money;
     }
 
-    public int getTryNumber(){
-        return Integer.parseInt(moneyNumber.value()) / 1000;
+    private void validate(String input) {
+        MoneyValidator.validate(input);
     }
 
-    public int getMoney(){
-        return Integer.parseInt(moneyNumber.value());
+    public int getTryNumber() {
+        return Integer.parseInt(this.money) / 1000;
+    }
+
+    public int getMoney() {
+        return Integer.parseInt(this.money);
     }
 
 

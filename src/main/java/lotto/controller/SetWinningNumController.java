@@ -7,8 +7,10 @@ import lotto.vo.WinningNumber;
 
 public class SetWinningNumController {
     WinningNumber winningNumber;
+    SetWinningNumService service;
 
-    public SetWinningNumController() {
+    public SetWinningNumController(SetWinningNumService service) {
+        this.service = service;
         setWinningNum();
     }
 
@@ -20,15 +22,10 @@ public class SetWinningNumController {
             output.printWinningNumberPrompt();
             String numbers = input.get();
             try {
-                SetWinningNumService service = new SetWinningNumService();
                 this.winningNumber = service.generateWinningNumber(numbers);
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }
         }
-    }
-
-    public WinningNumber getWinningNumber() {
-        return winningNumber;
     }
 }

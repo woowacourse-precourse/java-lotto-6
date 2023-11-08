@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeliverService {
+    List<Lotto> lottoPackage;
     public List<Lotto> generateLotto(int num) {
         List<Lotto> lottoPackage = new ArrayList<>();
         LottoGenerator generator = new LottoGenerator();
@@ -18,6 +19,11 @@ public class DeliverService {
             i++;
         }
 
+        this.lottoPackage = lottoPackage;
+        return lottoPackage;
+    }
+
+    public List<Lotto> noticeLottoPackageForCheckWinning(){
         return lottoPackage;
     }
 

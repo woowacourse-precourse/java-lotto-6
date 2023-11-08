@@ -63,7 +63,6 @@ public class WinningNumber {
 
     public CorrectNumber selectPlace(Lotto lotto) {
         int count = lotto.countWinning(this.numbers);
-
         for(CorrectNumber c : CorrectNumber.values()){
             if(c.getValue() == count) return c;
         }

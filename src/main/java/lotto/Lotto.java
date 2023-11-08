@@ -49,6 +49,7 @@ public class Lotto {
         return (checkNum>0)&(checkNum<46);
     }
     public void printInfo(){
+        Collections.sort(numbers);
         System.out.println(numbers);
     }
 

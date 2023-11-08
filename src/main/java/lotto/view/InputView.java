@@ -1,5 +1,9 @@
 package lotto.view;
 
+import static lotto.domain.ErrorMessage.BONUS_INPUT_ERROR;
+import static lotto.domain.ErrorMessage.BUDGET_INPUT_ERROR;
+import static lotto.domain.ErrorMessage.WINNING_INPUT_ERROR;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -7,8 +11,6 @@ import java.util.stream.Collectors;
 import lotto.utils.Validator;
 
 public class InputView {
-    private static final String INPUT_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-
     public static int inputBudget() {
         while (true) {
             try {
@@ -17,7 +19,7 @@ public class InputView {
                 Validator.validateBudgetInput(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(INPUT_ERROR_MESSAGE);
+                System.out.println(BUDGET_INPUT_ERROR.getMessage() + '\n');
             }
         }
     }
@@ -30,7 +32,7 @@ public class InputView {
                 Validator.validateWinningNumbersInput(input);
                 return Arrays.stream(input.split(",")).map(Integer::valueOf).collect(Collectors.toList());
             } catch (IllegalArgumentException e) {
-                System.out.println(INPUT_ERROR_MESSAGE);
+                System.out.println(WINNING_INPUT_ERROR.getMessage());
             }
         }
     }
@@ -43,7 +45,7 @@ public class InputView {
                 Validator.validateBonusNumber(winningNumbers, input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(INPUT_ERROR_MESSAGE);
+                System.out.println(BONUS_INPUT_ERROR.getMessage());
             }
         }
     }

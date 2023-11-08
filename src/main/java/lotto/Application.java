@@ -1,9 +1,9 @@
 package lotto;
 
+import lotto.domain.Calculator;
 import lotto.domain.Lotto;
 import lotto.domain.Numbers;
 import lotto.domain.Purchase;
-
 import java.util.List;
 
 public class Application {
@@ -11,18 +11,23 @@ public class Application {
 
         Numbers numbers = new Numbers();
         Purchase purchase = new Purchase();
+        Calculator calculator = new Calculator();
 
         int inputPurchaseAmount = purchase.inputPurchaseAmount();
         int round = purchase.calculateRound(inputPurchaseAmount);
 
-        for (int i = 0; i < round; i++) {
-            numbers.createLottoNumbers();
-        }
+        List<Integer> lottoNumbers = numbers.addLottoNumbers(round);
         System.out.println();
 
-        List<Integer> luckyNumbers= numbers.inputLuckyNumbers();
+        List<Integer> luckyNumbers = numbers.inputLuckyNumbers();
         Lotto lotto = new Lotto(luckyNumbers);
 
         int bonusNumber = numbers.inputBonusNumber();
+
+        List<Integer> counts = calculator.countCorrectLuckyNumbers(lottoNumbers, luckyNumbers, bonusNumber);
+
+        calculator.printResult(counts);
+
+        calculator.rateOfReturn();
     }
 }

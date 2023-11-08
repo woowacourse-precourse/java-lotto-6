@@ -90,6 +90,7 @@
 >- [ ] 당첨번호 입력 Numbers #inputLuckyNumbers
 >- [ ] 보너스번호 입력 Numbers #inputBonusNumber
 >- [ ] 갯수 찾기 Calculator #countCorrectLuckyNumbers
+>- [ ] 로또 결과 출력 Calculator #printResult
 >- [ ] 수익률 계산 Calculator #rateOfReturn
 >- [ ] 유효성 검사 (`IllegalArgumentException`를 발생 / `[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`) Lotto #validate
 >- [ ] Lotto 작동 Lotto #run
@@ -101,6 +102,7 @@
 >  - `inputBonusNumber`
 >- Calculator
 >  - `countCorrectLuckyNumbers`
+>  - `printResult`
 >  - `rateOfReturn`
 >- Purchase
 >  - `inputPurchaseAmount`
@@ -109,7 +111,6 @@
 >- Lotto
 >  - `run`
 >  - `validate`
-
 
 ## 7. 테스트 코드 설계
 

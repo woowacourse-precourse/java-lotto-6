@@ -39,7 +39,7 @@ public enum OutputMessage {
         return message + " (" + commaNum + "원) - " + value + "개";
     }
 
-    public static String printTotalRateOfReturn(double totalRateOfReturn){
+    public static String printTotalRateOfReturn(double totalRateOfReturn) {
         return TOTAL_RATE_OF_RETURN.getMessage() + totalRateOfReturn + "%입니다.";
     }
 

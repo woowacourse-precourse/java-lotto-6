@@ -10,7 +10,8 @@ import java.util.List;
 
 public class LottoProcess {
     private static List<Integer> createRandomLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getNumber(), MAX_LOTTO_NUMBER.getNumber(), LOTTO_SIZE.getNumber());
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER.getNumber(), MAX_LOTTO_NUMBER.getNumber(),
+                LOTTO_SIZE.getNumber());
     }
 
     public static List<Lotto> publishLotto(int lottoSize) {

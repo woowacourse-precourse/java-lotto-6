@@ -25,7 +25,7 @@ public class Statistics {
     }
 
     private void initCountCorrect() {
-        for (int i = 3; i <= 5; i++){
+        for (int i = 3; i <= 5; i++) {
             countWinningLotto.put(i, 0);
         }
         countWinningLotto.put(7, 0);
@@ -47,10 +47,10 @@ public class Statistics {
             int total = checkWinningNumbers(lotto.getLottoNumbers());
             boolean ifBonusCorrect = checkIfBonusNumberExist(lotto.getLottoNumbers());
             if (total == 5 && ifBonusCorrect) {
-                this.countWinningLotto.replace(total+2, this.countWinningLotto.get(total)+1);
+                this.countWinningLotto.replace(total + 2, this.countWinningLotto.get(total) + 1);
             }
             if (total >= 3 && !ifBonusCorrect) {
-                this.countWinningLotto.replace(total, this.countWinningLotto.get(total)+1);
+                this.countWinningLotto.replace(total, this.countWinningLotto.get(total) + 1);
             }
         }
     }

@@ -32,7 +32,7 @@ public class Exception {
         }
     }
 
-    private static void validateInputStartAndEndWithNumber(String input){
+    private static void validateInputStartAndEndWithNumber(String input) {
         checkIfNumber(String.valueOf(input.charAt(input.length() - 1)));
         checkIfNumber(String.valueOf(input.charAt(0)));
     }

@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.Rewords;
+
 public class RateOfReturn {
 
     private static final String PRINT_5ST = "3개 일치 (5,000원) - ";
@@ -8,21 +10,9 @@ public class RateOfReturn {
     private static final String PRINT_2ST = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     private static final String PRINT_1ST = "6개 일치 (2,000,000,000원) - ";
 
-
-    private static final int REWORD_1ST = 2000000000;
-    private static final int REWORD_2ST = 30000000;
-    private static final int REWORD_3ST = 1500000;
-    private static final int REWORD_4ST = 50000;
-    private static final int REWORD_5ST = 5000;
     private static final int RANK_SIZE = 5;
 
-
-    int[] Rewords = {REWORD_1ST,REWORD_2ST,REWORD_3ST,REWORD_4ST,REWORD_5ST};
-
     int[][] totalMatch;
-    static int[] countRank = new int[RANK_SIZE]; // 0: 1등 , 1: 2등, 2: 3등, ... , 4: 5등
-
-
 
     public RateOfReturn(int[][] totalMatch, int totalPayment){
         this.totalMatch = totalMatch;
@@ -35,47 +25,41 @@ public class RateOfReturn {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("----------------");
-        System.out.println(PRINT_5ST + countRank[4] +"개");
-        System.out.println(PRINT_4ST + countRank[3] + "개");
-        System.out.println(PRINT_3ST + countRank[2] + "개");
-        System.out.println(PRINT_2ST + countRank[1] + "개");
-        System.out.println(PRINT_1ST + countRank[0] + "개");
+        System.out.println(PRINT_5ST + Rewords.REWORDS_5ST.getCnt() +"개");
+        System.out.println(PRINT_4ST + Rewords.REWORDS_4ST.getCnt() + "개");
+        System.out.println(PRINT_3ST + Rewords.REWORDS_3ST.getCnt() + "개");
+        System.out.println(PRINT_2ST + Rewords.REWORDS_2ST.getCnt() + "개");
+        System.out.println(PRINT_1ST + Rewords.REWORDS_1ST.getCnt() + "개");
         System.out.println("총 수익률은 "+ RoR +"%입니다.");
 
     }
 
     private void setRankCount(int[][] totalMatch) {
         for(int i = 0; i<totalMatch.length; i++){
-            int rank = checkRank(totalMatch[i]);
-            setRank(rank);
+            checkRank(totalMatch[i]);
         }
     }
 
-    private void setRank(int rank) {
-        if (rank > 0) countRank[rank-1]++;
-    }
 
-    private int checkRank(int[] totalMatch) {//[0] 전체 맞은 개수, [1] 보너스 번호 체크
-        if (totalMatch[0] == 6 && totalMatch[1] == 0) return 1;
-        if (totalMatch[0] == 6 && totalMatch[1] == 1) return 2;
-        if (totalMatch[0] == 5 && totalMatch[1] == 0) return 3;
-        if (totalMatch[0] == 4 && totalMatch[1] == 0) return 4;
-        if (totalMatch[0] == 3 && totalMatch[1] == 0) return 5;
-        return 0;
-
+    private void checkRank(int[] totalMatch) {//[0] 전체 맞은 개수, [1] 보너스 번호 체크
+        if (totalMatch[0] == 6 && totalMatch[1] == 0) Rewords.REWORDS_1ST.addCnt();
+        if (totalMatch[0] == 6 && totalMatch[1] == 1) Rewords.REWORDS_2ST.addCnt();
+        if (totalMatch[0] == 5 && totalMatch[1] == 0) Rewords.REWORDS_3ST.addCnt();
+        if (totalMatch[0] == 4 && totalMatch[1] == 0) Rewords.REWORDS_4ST.addCnt();
+        if (totalMatch[0] == 3 && totalMatch[1] == 0) Rewords.REWORDS_5ST.addCnt();
     }
 
 
     public double setROR(int payment){
         int totalReword = setTotalReword();
         double temp = totalReword*100.0 / payment;
-        return Math.round( temp * 100) /100.0;
+        return Math.round(temp * 100) /100.0;
     }
 
     public int setTotalReword() {
         int totalReword = 0;
-        for(int i = 0; i <RANK_SIZE; i++){
-            totalReword += countRank[i] * Rewords[i];
+        for(Rewords rewords : Rewords.values()){
+            totalReword += rewords.calcReword();
         }
         return totalReword;
     }

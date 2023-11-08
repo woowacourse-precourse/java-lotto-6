@@ -31,7 +31,7 @@ public class RateOfReturnTest extends NsTest {
         assertThat(rateOfReturn.setTotalReword()).isEqualTo(5000);
     }
 
-    @DisplayName("총상금 계산 테스트.")
+    @DisplayName("출력 테스트.")
     @Test
     void RORprintReulstTest() {
         //given

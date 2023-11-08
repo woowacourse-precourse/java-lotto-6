@@ -5,6 +5,10 @@ public class Money {
     private final int price;
     private final int priceUnit = 1_000;
 
+    public Money (){
+        price = 0;
+    }
+
     public Money(int price) {
         vaildateNegativeRange(price);
         vaildateLowRange(price);

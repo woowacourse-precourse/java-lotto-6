@@ -18,22 +18,8 @@ public class WinningResult {
         this.rewardMoney = calculateRewardMoney();
     }
 
-    private Money calculateRewardMoney() {
-        List<Money> winningMoney = new ArrayList<>();
-        for (Rank rank : ranks.keySet()) {
-            winningMoney.add(sumUnitRankReward(rank));
-        }
-        return calculateEarning(winningMoney);
-    }
-
-    private Money sumUnitRankReward(Rank rank) {
-        return rank.getReward().multiply(ranks.get(rank));
-    }
-
-    private Money calculateEarning(List<Money> winningMoney) {
-        return winningMoney.stream()
-                .reduce(Money::plus)
-                .orElse(new Money(0));
+    public Money getRewardMoney() {
+        return rewardMoney;
     }
 
     public Map<Rank, Integer> getRanks() {
@@ -51,5 +37,23 @@ public class WinningResult {
     @Override
     public int hashCode() {
         return Objects.hash(ranks);
+    }
+
+    private Money calculateRewardMoney() {
+        List<Money> winningMoney = new ArrayList<>();
+        for (Rank rank : ranks.keySet()) {
+            winningMoney.add(sumUnitRankReward(rank));
+        }
+        return calculateEarning(winningMoney);
+    }
+
+    private Money sumUnitRankReward(Rank rank) {
+        return rank.getReward().multiply(ranks.get(rank));
+    }
+
+    private Money calculateEarning(List<Money> winningMoney) {
+        return winningMoney.stream()
+                .reduce(Money::plus)
+                .orElse(new Money(0));
     }
 }

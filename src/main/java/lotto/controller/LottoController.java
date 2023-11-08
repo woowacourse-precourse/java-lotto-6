@@ -48,7 +48,7 @@ public class LottoController {
             try {
                 return new PurchasingMoney(inputView.inputNumber());
             } catch (IllegalArgumentException e) {
-                outputView.print(e);
+                outputView.printError(e);
             }
         }
     }
@@ -79,7 +79,7 @@ public class LottoController {
                 LottoNumber bonusNumber = new LottoNumber(inputView.inputNumber());
                 return new WinningLottoNumbers(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
-                outputView.print(e);
+                outputView.printError(e);
             }
         }
     }
@@ -89,7 +89,7 @@ public class LottoController {
             try {
                 return new Lotto(inputView.inputNumbers());
             } catch (IllegalArgumentException e) {
-                outputView.print(e);
+                outputView.printError(e);
             }
         }
     }

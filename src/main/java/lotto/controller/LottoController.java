@@ -13,18 +13,21 @@ import lotto.view.LottoStatistics;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private final InputView inputView;
+    private final OutputView outputView;
+
+    public LottoController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void run() {
-        InputView inputView = new InputView();
         Money money = new Money(inputView.askPrice());
         LottoStore lottoStore = new LottoStore();
-        OutputView outputView = new OutputView();
-        RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
-        int lottoQuantity = lottoStore.getLottoQuantity(money);
-        outputView.printPurchaseQuantity(lottoQuantity);
+        outputView.printPurchaseQuantity(lottoStore.getLottoQuantity(money));
         List<Lotto> lottos = lottoStore.generateLotto();
         outputView.printLottos(lottos);
-        Lotto lotto = randomLottoGenerator.inputToGenerateLotto(inputView.askWinningNumber());
+        Lotto lotto = new RandomLottoGenerator().inputToGenerateLotto(inputView.askWinningNumber());
         LottoNumber lottoNumber = new LottoNumber(inputView.askBonusWinningNumber());
         MatchedNumber matchedNumber = new MatchedNumber(lotto, lottoNumber);
         List<LottoRank> lottoRanks = matchedNumber.getLottoRanks(lottos);
@@ -33,6 +36,5 @@ public class LottoController {
         LottoStatistics lottoStatistics = new LottoStatistics(lottoRanks);
         lottoStatistics.printStatistics();
         outputView.printRateOfReturn(returnOfRate);
-
     }
 }

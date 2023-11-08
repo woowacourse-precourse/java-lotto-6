@@ -19,7 +19,7 @@ public class LottoShop {
         List<Lotto> tickets = new ArrayList<>();
 
         for (int i = 0; i < numOfTickets; i++) {
-            Lotto lotto = Lotto.createRandomLotto();
+            Lotto lotto = Lotto.createRandomNumber();
             tickets.add(lotto);
         }
 

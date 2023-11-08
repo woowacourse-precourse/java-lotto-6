@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     public static final int TICKET_PRICE = 1000;
@@ -29,12 +30,19 @@ public class Lotto {
     public static Lotto createRandomLotto() {
         List<Integer> pickedNumbers = new ArrayList<>();
         for (int i = 0; i < LOTTO_SIZE; i++) {
-            int number = (int) (Math.random() * MAX_NUMBER) + 1; // Random number between 1 and 45
+            int number = (int) (Math.random() * MAX_NUMBER) + 1;
             while (pickedNumbers.contains(number)) {
                 number = (int) (Math.random() * MAX_NUMBER) + 1;
             }
             pickedNumbers.add(number);
         }
+        Collections.sort(pickedNumbers);
+        return new Lotto(pickedNumbers);
+    }
+
+    public static Lotto createRandomNumber(){
+        List<Integer> pickedNumbers = new ArrayList<>();
+        pickedNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
         Collections.sort(pickedNumbers);
         return new Lotto(pickedNumbers);
     }

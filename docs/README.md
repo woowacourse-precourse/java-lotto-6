@@ -53,6 +53,21 @@
 - [x] get 메서드 생성
 - [x] 에러 메시지 Java Enum 적용
 
+4. LottoWinner
+
+- [ ] LottoResult Java Enum 생성
+- rank: 로또 순위 저장
+- winnerCount: 등수별 당첨자 수 저장
+- prizeMoney: 등수별 당첨 금액 저장
+- message: 등수별 출력 메시지 저장
+
+- updateWinnerAndPrize()
+  - [ ] 로또 당첨자 수와 당첨 금액 증가
+- printLottoResult()
+  - [ ] 로또 통계 결과 출력
+- getPrizeMoney()
+  - [ ] 로또 당첨 금액 반환
+
 **View**
 
 1. InputView
@@ -72,9 +87,6 @@
   - [x] 발행한 로또 수량 및 번호 출력
 - printLottoResultMessage()
   - [x] 로또 당첨 내역 안내 메시지 출력
-- printLottoResult()
-  - [x] 로또 당첨 내역 출력
-    - 6등부터 1등 순서로 일치개수, 상금, 당첨자 명수로 출력
 - printRevenuePercentage()
   - [x] 수익률 출력
   - [x] 소수점 둘째 자리에서 반올림
@@ -116,14 +128,7 @@
          - [x] 당첨번호 개수가 5개이면서 보너스 번호가 포함된 경우 보너스 당첨자 수 증가
          - [x] 보너스 번호 당첨 아니면서 당첨번호 개수가 2개이상이면 당첨자수 증가
      - infoLottoWinner()
-       - isBonusMessage()
-         - [x] 보너스 번호 당첨 순서이면 보너스 볼 일치 문자열을 추가한다.
-       - isBoounusMatchNumber()
-         - [x] 보너스 번호 당첨 순서이면 로또 일치 개수를 하나 줄인다.(5인 경우이므로)
-       - [x] 로또 당첨 내역 출력 함수 호출
-       - checkBonusLottoTime()
-         - [x] 보너스 번호 당첨 순서이면서 한 번도 보너스 번호 당첨 순서가 안온 경우인지 확인
-       - [x] 상금 배열 인덱스 증가
+       - [ ] 로또 통계 결과 출력하는 함수 호출
      - decideRevenuePercentage()
        - getInvestRevenue()
          - [x] 순투자 수익 계산

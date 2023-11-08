@@ -52,6 +52,21 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 1미만, 45초 과인 수가 존재하면 예외가 발생한다.")
+    @ParameterizedTest
+    @MethodSource("generateWrongRangeBonusNumber")
+    void createBonusByWrongRangeNumber(List<Integer> numbers, int bonusNum) {
+        assertThatThrownBy(() -> new WinningLotto(new Lotto(numbers), bonusNum))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    static Stream<Arguments> generateWrongRangeBonusNumber() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 0),
+                Arguments.of(List.of(10, 11, 12, 43, 37, 23), 46)
+        );
+    }
+
 
 
 

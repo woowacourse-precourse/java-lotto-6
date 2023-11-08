@@ -7,7 +7,7 @@ import lotto.domain.WinningNumber;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalculatorMatching {
+public class MatchingCalculator {
     public List<Rank> calculateRanks(List<Lotto> tickets, WinningNumber winningNumber, int bonusNumber) {
         List<Rank> ranks = new ArrayList<>();
         for (Lotto ticket : tickets) {

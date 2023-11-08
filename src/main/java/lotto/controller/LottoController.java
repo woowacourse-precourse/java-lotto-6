@@ -3,8 +3,8 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
-import lotto.domain.calculator.CalculatorMatching;
-import lotto.domain.calculator.CalculatorProfit;
+import lotto.domain.calculator.MatchingCalculator;
+import lotto.domain.calculator.ProfitCalculator;
 import lotto.domain.generator.LottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,15 +16,15 @@ import static lotto.util.exception.ErrorCode.ILLEGAL_STATE_ERROR;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private CalculatorMatching calculatorMatching;
-    private CalculatorProfit calculatorProfit;
+    private MatchingCalculator calculatorMatching;
+    private ProfitCalculator profitCalculator;
     private LottoGenerator lottoGenerator;
 
     public LottoController() {
         this.inputView = new InputView();
         this.outputView = new OutputView();
-        this.calculatorMatching = new CalculatorMatching();
-        this.calculatorProfit = new CalculatorProfit();
+        this.calculatorMatching = new MatchingCalculator();
+        this.profitCalculator = new ProfitCalculator();
         this.lottoGenerator = new LottoGenerator();
     }
 
@@ -98,8 +98,8 @@ public class LottoController {
     }
 
     private void calculateLottoProfit(List<Rank> ranks, long purchaseAmount) {
-        int totalPrize = calculatorProfit.calculateTotalPrize(ranks);
-        double totalProfitRate = calculatorProfit.calculateTotalProfitRate(totalPrize, purchaseAmount);
+        int totalPrize = profitCalculator.calculateTotalPrize(ranks);
+        double totalProfitRate = profitCalculator.calculateTotalProfitRate(totalPrize, purchaseAmount);
         outputView.printTotalProfit(totalProfitRate);
     }
 }

@@ -4,7 +4,7 @@ import lotto.domain.Rank;
 
 import java.util.List;
 
-public class CalculatorProfit {
+public class ProfitCalculator {
     public int calculateTotalPrize(List<Rank> ranks) {
         int totalPrize = 0;
         for (Rank rank : ranks) {

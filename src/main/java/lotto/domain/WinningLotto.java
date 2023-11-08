@@ -42,7 +42,6 @@ public class WinningLotto {
     }
 
     private void validate(String winningNumbers, String bonusNumber) {
-
         validateNullOrBlank(winningNumbers);
         validateIsNumber(winningNumbers);
         validateNullOrBlank(bonusNumber);

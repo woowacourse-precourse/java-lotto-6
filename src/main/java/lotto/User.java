@@ -64,7 +64,7 @@ public class User {
         System.out.println("[ERROR] " + message);
     }
 
-    private static List<Integer> getWinningNumbers(String winningLotto) {
+    public List<Integer> getWinningNumbers(String winningLotto) {
         try {
             List<Integer> winnerNumbers = convertStringToIntegerList(winningLotto);
             validateNumbers(winnerNumbers);

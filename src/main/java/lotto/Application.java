@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,8 @@ public class Application {
     public static final int LOTTO_PRICE = 1000;
     public static final int LOTTO_MIN_NUMBER = 1;
     public static final int LOTTO_MAX_NUMBER = 45;
+    private static final List<Integer> prizeMoneys
+            = new ArrayList<>(Arrays.asList(0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000));
 
     public static void main(String[] args) {
         int buyAmount = inputBuyAmount();
@@ -19,8 +22,52 @@ public class Application {
         List<Lotto> lottos = generateRandomLottoTickets(buyAmount);
         printLottoTickets(lottos);
 
-        LottoResult result = playLottoGame(lottos);
-        printGameResults(result);
+//        LottoResult result = playLottoGame(lottos);
+//        LottoResult result = new LottoResult();
+
+        Lotto winningLotto = inputWinningNumbers();
+        String bonusLottoNumber = inputBonusNumber(winningLotto);
+
+        Map<Integer, Integer> matchCounts = new HashMap<>();
+        for (int i = 3; i < 8; i++) {
+            matchCounts.put(i, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            int count = winningCheck(winningLotto.getNumbers(), lotto.getNumbers());
+            List<Integer> bonusNumbers = new ArrayList<>();
+            bonusNumbers.add(Integer.valueOf(bonusLottoNumber));
+            if (count == 5 && winningCheck(bonusNumbers, winningLotto.getNumbers()) == 1) {
+                count = 6;
+            }
+            matchCounts.put(count, matchCounts.getOrDefault(count, 0) + 1);
+        }
+
+        DecimalFormat df = new DecimalFormat("#,###.##");
+
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        for (int i = 3; i < 8; i++) {
+            if (i < 6) {
+                System.out.println(i + "개 일치 (" + df.format(prizeMoneys.get(i)) + "원) - " + matchCounts.get(i) + "개");
+            }
+            if (i == 6) {
+                System.out.println((i - 1) + "개 일치, 보너스 볼 일치 (" + df.format(prizeMoneys.get(i)) + "원) - " + matchCounts.get(i) + "개");
+            }
+            if (i == 7) {
+                System.out.println((i - 1) + "개 일치 (" + df.format(prizeMoneys.get(i)) + "원) - " + matchCounts.get(i) + "개");
+            }
+        }
+
+        double result = 0;
+        // 수익률 확인
+        for (int i = 3; i < 7; i++) {
+            result += matchCounts.get(i) * prizeMoneys.get(i);
+        }
+        double profitPercentage = (result / buyAmount * 100.0);
+        System.out.println("총 수익률은 " + String.format("%.1f%%", profitPercentage)+"입니다.");
+
+//        printGameResults(result);
     }
 
     private static Lotto inputWinningNumbers() {
@@ -46,7 +93,16 @@ public class Application {
     }
 
     public static void printGameResults(LottoResult result) {
+    }
 
+    private static int winningCheck(List<Integer> winningLottoNumber, List<Integer> randomLottoNumber) {
+        int count = 0;
+        for (Integer winningLotto : winningLottoNumber) {
+            if (randomLottoNumber.contains(winningLotto)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public static LottoResult playLottoGame(List<Lotto> lottos) {

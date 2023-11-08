@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.model.Result;
 import lotto.model.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -80,5 +81,23 @@ class LottoTest {
         Validator validator = new Validator();
         assertThatThrownBy(() -> validator.validateBonus("46", 1, 45))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 결과 계산")
+    @Test
+    void calculateResult() {
+        int numberCount = 6;
+        Result result = new Result(numberCount);
+        result.addResult(1);
+        result.addResult(3);
+        for (int i = 0; i < 3; i++) {
+            result.addResult(numberCount - 1);
+            result.addResult(numberCount);
+        }
+        result.addBonus(numberCount);
+        result.addBonus(numberCount);
+        assertThat(result.generateResultMessage())
+                .contains("3개 일치 (5,000원) - 1개", "4개 일치 (50,000원) - 0개", "5개 일치 (1,500,000원) - 1개",
+                        "5개 일치, 보너스 볼 일치 (30,000,000원) - 2개", "6개 일치 (2,000,000,000원) - 3개");
     }
 }

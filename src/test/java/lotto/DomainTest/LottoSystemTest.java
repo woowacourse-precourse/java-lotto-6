@@ -38,4 +38,15 @@ public class LottoSystemTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호의 각 자리수는 서로 달라야합니다.");
     }
+
+    @DisplayName("(예외처리) 당첨번호와 보너스번호가 겹치는가?")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3","4","5","6"})
+    void storeLottoBonusNumberTest_중복체크(String lottoBonusNumber) {
+        LottoSystem lottoSystem = new LottoSystem();
+        lottoSystem.storeLottoWinningNumber("1,2,3,4,5,6");
+        assertThatThrownBy(() -> lottoSystem.storeLottoBonusNumber(lottoBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호의 각 자리수는 서로 달라야합니다.");
+    }
 }

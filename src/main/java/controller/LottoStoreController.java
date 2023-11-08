@@ -1,10 +1,12 @@
 package controller;
 
+import domain.BonusNumber;
 import domain.Lotto;
 import domain.PurchaseAmount;
 import domain.PurchaseLotto;
 import domain.WinningLotto;
 import domain.WinningLottoCalculator;
+import service.LottoService;
 import view.InputView;
 import view.OutputView;
 
@@ -14,23 +16,18 @@ public class LottoStoreController {
 	private PurchaseAmount purchaseAmount;
 	private PurchaseLotto purchaseLotto;
 	private WinningLotto winningLotto;
-	private WinningLottoCalculator winningLottoCalculator;
+	private WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
+	private LottoService lottoService = new LottoService();
 
 	public void runLottoGame() {
-		try {
-			buyLotto();
-			showPurchaseLotto();
-			initWinningLotto();
-			showWinningLotto();
-		} catch (NumberFormatException exception) {
-			System.out.println(exception.getMessage());
-		} catch (IllegalArgumentException exception) {
-			System.out.println(exception.getMessage());
-		}
+		buyLotto();
+		showPurchaseLotto();
+		initWinningLotto();
+		showWinningLotto();
 	}
 
 	private void buyLotto() {
-		purchaseAmount = new PurchaseAmount(inputView.enterAmount());
+		purchaseAmount = lottoService.setPurchaseAmount();
 		outputView.printBlank();
 
 		purchaseLotto = new PurchaseLotto(purchaseAmount);
@@ -46,16 +43,16 @@ public class LottoStoreController {
 	}
 
 	private void initWinningLotto() {
-		String inputWinningLotto = inputView.enterWinningLotto();
+		Lotto lotto = lottoService.setWinningLotto();
 		outputView.printBlank();
-		String inputBonusNumber = inputView.enterBonusNumber();
+		BonusNumber bonusNumber = lottoService.setBonusNumber(lotto);
 		outputView.printBlank();
 
-		winningLotto = new WinningLotto(inputWinningLotto, inputBonusNumber);
+		winningLotto = new WinningLotto(lotto, bonusNumber);
 	}
 
 	private void showWinningLotto() {
-		winningLottoCalculator.calculateLottoPrizeCount(purchaseLotto,winningLotto);
+		winningLottoCalculator.calculateLottoPrizeCount(purchaseLotto, winningLotto);
 		outputView.printLottoPrizes(winningLottoCalculator);
 		outputView.printRateOfReturn(winningLottoCalculator, purchaseAmount);
 	}

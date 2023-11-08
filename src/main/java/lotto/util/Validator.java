@@ -40,7 +40,7 @@ public class Validator {
 
     public static void validBonusNumber(String input) {
         validNumber(input);
-
+        validOutOfRangeNumber(Integer.parseInt(input));
     }
 
     private static void validNumber(String number) {

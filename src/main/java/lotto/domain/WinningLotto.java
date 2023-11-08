@@ -13,4 +13,12 @@ public class WinningLotto {
     public void storeBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.Purchasing;
-import lotto.domain.Payment;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -11,7 +8,7 @@ import java.util.List;
 
 public class LottoController {
     private Purchasing purchasing = new Purchasing();
-    private WinningLotto winingLotto = new WinningLotto();
+    private WinningLotto winningLotto = new WinningLotto();
     private Payment payment = new Payment();
 
     public void startLottoGame() {
@@ -43,14 +40,24 @@ public class LottoController {
     private void storeWinningLotto() {
         OutputView.askWinningLottoNumbers();
         List<Integer> winningLottoNumbers = InputView.getWinningLottoNumbers();
-        winingLotto.storeWinningLottos(winningLottoNumbers);
+        winningLotto.storeWinningLottos(winningLottoNumbers);
 
         OutputView.askBonusNumber();
         int bonusNumber = InputView.getBonusNumber();
-        winingLotto.storeBonusNumber(bonusNumber);
+        winningLotto.storeBonusNumber(bonusNumber);
     }
 
     private void getWinningResult() {
+        Lotto lotto = winningLotto.getWinningLotto();
+        int bonusNumber = winningLotto.getBonusNumber();
+        List<Lotto> purchasedLottos = purchasing.getPurchasedLottos();
 
+        Result result = new Result(lotto, bonusNumber, purchasedLottos);
+        List<Integer> matches = result.getMatchCount();
+        Double profitMargin = result.getProfitMargin();
+
+        OutputView.printResultTitle();
+        OutputView.printMathCount(matches);
+        OutputView.printProfitMargin(profitMargin);
     }
 }

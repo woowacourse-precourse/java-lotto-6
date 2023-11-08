@@ -38,5 +38,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 중복되면 예외가 발생한다.")
+    @Test
+    void createLottoWithDuplicateNumbers() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
 }

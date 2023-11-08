@@ -39,38 +39,38 @@ public class Validator {
 
     public void validateMoney(int money) {
         if (money % Constant.MONEY_UNIT != 0 || money == 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MONEY_WRONG_UNIT);
         }
     }
 
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(num -> num < Constant.NUMBER_MIN || num > Constant.NUMBER_MAX)) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1이상 45이하 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_WRONG_RANGE);
         }
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != Constant.NUMBERS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NUMBERS_WRONG_SIZE);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != Constant.NUMBERS_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NUMBERS_DUPLICATE);
         }
     }
 
     private void validateDuplicateBonusNumber(int number, List<Integer> winningNumbers) {
         if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복 됩니다.");
+            throw new IllegalArgumentException(ErrorMessage.BONUS_AND_WINNING_DUPLICATE);
         }
     }
 
     private void validateRangeBonusNumber(int number) {
         if (number < Constant.NUMBER_MIN || number > Constant.NUMBER_MAX) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1이상 45이하 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_WRONG_RANGE);
         }
     }
 

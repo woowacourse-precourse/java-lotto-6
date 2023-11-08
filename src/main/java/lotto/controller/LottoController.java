@@ -21,12 +21,12 @@ public class LottoController {
     }
 
     private void showPurchaseLotto() {
-        int quantity = getQuantity();
+        int quantity = calculateQuantity();
         OutputView.printNumberOfLottoPurchase(quantity);
         OutputView.printLottoList(purchaseLotto(quantity));
     }
 
-    private int getQuantity() {
+    private int calculateQuantity() {
         String quantity = inputController.getQuantityInput();
         amount = Integer.parseInt(quantity);
         return amount / 1000;

@@ -90,7 +90,7 @@ public class LottoService implements Service {
                 .stream()
                 .map(this::getLotto)
                 .toList();
-        return new Lottos(lottos);
+        return Lottos.from(lottos);
     }
 
     private Lotto getLotto(final LottoDto lottoDto) {

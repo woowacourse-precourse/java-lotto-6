@@ -9,7 +9,6 @@ import java.util.Objects;
 public record TotalWinningAmount(
         BigDecimal totalWinningAmount
 ) {
-
     public ReturnRate calculateReturnRateFrom(final BigDecimal amount) {
         Objects.requireNonNull(amount);
         BigDecimal returnRate = totalWinningAmount

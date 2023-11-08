@@ -19,9 +19,13 @@ import java.util.stream.IntStream;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    public Lottos(final List<Lotto> lottos) {
+    private Lottos(final List<Lotto> lottos) {
         Objects.requireNonNull(lottos);
         this.lottos = lottos;
+    }
+
+    public static Lottos from(final List<Lotto> lottos) {
+        return new Lottos(lottos);
     }
 
     public static Lottos from(final int quantity) {

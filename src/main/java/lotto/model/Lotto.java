@@ -19,6 +19,10 @@ public class Lotto {
                 .count();
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         if (Objects.isNull(numbers)
                 || numbers.size() != LottoGameNumber.COUNT

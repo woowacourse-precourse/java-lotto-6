@@ -33,11 +33,15 @@ public class LottoNumberTest {
     }
 
     @Test
-    @DisplayName("LottoNumber는 1에서 45 사이의 무작위 숫자를 생성할 수 있다.")
+    @DisplayName("LottoNumber는 1에서 45 사이의 무작위 숫자를 정해진 갯수만큼 생성할 수 있다.")
     void createRandomLottoNumberTest() {
-        LottoNumber randomLottoNumber = LottoNumber.createRandomLottoNumber();
+        Set<LottoNumber> randomLottoNumbers = LottoNumber.createRandomLottoNumbers(6);
+        LottoNumber randomLottoNumber = randomLottoNumbers.stream()
+            .findAny()
+            .get();
 
         assertAll(
+            () -> assertThat(randomLottoNumbers.size()).isEqualTo(6),
             () -> assertThat(randomLottoNumber.number()).isGreaterThanOrEqualTo(1),
             () -> assertThat(randomLottoNumber.number()).isLessThanOrEqualTo(45)
         );

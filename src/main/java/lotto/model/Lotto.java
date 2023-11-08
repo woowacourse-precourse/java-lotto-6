@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,12 +16,9 @@ public class Lotto {
     }
 
     public static Lotto issueAutoPickNumbersLotto() {
-        Set<LottoNumber> lottoNumbers = new HashSet<>();
-        while (lottoNumbers.size() < LOTTO_NUMBERS_SIZE) {
-            LottoNumber randomLottoNumber = LottoNumber.createRandomLottoNumber();
-            lottoNumbers.add(randomLottoNumber);
-        }
-        return new Lotto(lottoNumbers);
+        Set<LottoNumber> randomLottoNumbers = LottoNumber.createRandomLottoNumbers(
+            LOTTO_NUMBERS_SIZE);
+        return new Lotto(randomLottoNumbers);
     }
 
     public static Lotto issueChooseNumbersLotto(List<Integer> userChoosedNumbers) {

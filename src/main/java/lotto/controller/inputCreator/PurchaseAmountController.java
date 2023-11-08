@@ -6,7 +6,7 @@ import lotto.view.InputPurchaseAmountView;
 public class PurchaseAmountController implements ObjectCreator<PurchaseAmount, String> {
     @Override
     public PurchaseAmount createObjectByInput(String x) {
-        int purchaseAmount =  InputPurchaseAmountView.inputPurchaseAmount();
+        int purchaseAmount = InputPurchaseAmountView.inputPurchaseAmount();
         return new PurchaseAmount(purchaseAmount);
     }
 }

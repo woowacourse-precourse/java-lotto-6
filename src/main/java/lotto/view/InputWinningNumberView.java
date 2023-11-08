@@ -14,7 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputWinningNumberView {
-    private static final int INPUT_SEPARATOR_COUNT = (LOTTO_NUMBER_COUNT.getValue() - 1) * LOTTO_NUMBER_SEPARATOR.getValue().length();
+    private static final int INPUT_SEPARATOR_COUNT =
+            (LOTTO_NUMBER_COUNT.getValue() - 1) * LOTTO_NUMBER_SEPARATOR.getValue().length();
 
     private InputWinningNumberView() {
     }
@@ -56,7 +57,7 @@ public class InputWinningNumberView {
         return Arrays.asList(input.split(LOTTO_NUMBER_SEPARATOR.getValue()));
     }
 
-    private static List<Integer> parseIntList(List<String> input){
+    private static List<Integer> parseIntList(List<String> input) {
         try {
             return new ArrayList<>(input.stream()
                     .map(Integer::parseInt)

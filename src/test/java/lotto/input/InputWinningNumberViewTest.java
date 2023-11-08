@@ -44,5 +44,5 @@ public class InputWinningNumberViewTest {
         assertThatThrownBy(InputWinningNumberView::inputWinningNumber)
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    
+
 }

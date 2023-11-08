@@ -5,6 +5,9 @@ import lotto.controller.LottoPurchaseService;
 import lotto.controller.LottoResultService;
 
 public class AppConfig {
+    private AppConfig() {
+    }
+
     public static LottoGameController lottoGame() {
         return new LottoGameController(lottoPurchaseService(), lottoResultService());
     }

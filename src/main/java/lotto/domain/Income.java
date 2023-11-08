@@ -7,7 +7,7 @@ public class Income {
     private static final int GAME_PRIZE_NUMBER = GamePrizeConfig.values().length + 1;
 
     private long income;
-    private int[] count;
+    private final int[] count;
 
     public Income(List<Integer> gamePrizeIndexValues) {
         this.income = 0;

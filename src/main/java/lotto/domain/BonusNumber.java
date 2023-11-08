@@ -5,7 +5,6 @@ import static lotto.config.GameNumberConfig.LOTTO_RANGE_MIN;
 import static lotto.exception.ErrorMessage.VALIDATE_DUPLICATE;
 import static lotto.exception.ErrorMessage.VALIDATE_RANGE;
 
-
 public class BonusNumber {
     private final int number;
 

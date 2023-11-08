@@ -32,8 +32,8 @@ public class PurchaseAmount {
     public PurchasedLotto purchaseLotto() {
         return new PurchasedLotto(
                 IntStream.range(START_INCLUSIVE, lottoCount)
-                .mapToObj(i -> new Lotto(RandomNumbersGenerator.generateSortedRandomNumbers()))
-                .collect(Collectors.toList())
+                        .mapToObj(i -> new Lotto(RandomNumbersGenerator.generateSortedRandomNumbers()))
+                        .collect(Collectors.toList())
         );
     }
 

@@ -24,7 +24,6 @@ public class LottoGameController {
     }
 
     public void run() {
-
         PurchaseAmount purchaseAmount = createUntilInputSuccess(new PurchaseAmountController(), null);
         PurchasedLotto purchasedLotto = purchaseLotto(purchaseAmount);
         Lotto winningLotto = createUntilInputSuccess(new WinningLottoController(), null);
@@ -47,7 +46,7 @@ public class LottoGameController {
         lottoResultService.printIncomeRate(income, purchaseAmount);
     }
 
-    public <T, U> T createUntilInputSuccess(ObjectCreator<T, U> creator, U arg) {
+    private <T, U> T createUntilInputSuccess(ObjectCreator<T, U> creator, U arg) {
         do {
             try {
                 return creator.createObjectByInput(arg);

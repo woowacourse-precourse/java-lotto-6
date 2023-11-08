@@ -22,6 +22,7 @@ public class LottoPurchaseService {
     public void printPurchasedLotto(PurchasedLotto purchasedLotto) {
         purchasedLotto.getLottos()
                 .forEach(lotto -> OutputView.printNumbers(lotto.getLotto()));
+
         OutputView.printNewLine();
     }
 

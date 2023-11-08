@@ -1,6 +1,10 @@
 package lotto.model.strategy;
 
+import java.util.Arrays;
+import java.util.Deque;
 import java.util.EnumMap;
+import java.util.List;
+import lotto.model.Budget;
 import lotto.model.lotto.BonusNumber;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoTicket;
@@ -25,8 +29,8 @@ public class MyLottoStrategy implements LottoStrategy {
     @Override
     public LottoRank determineLottoRank(Lotto lotto, WinningLotto winningLotto, BonusNumber bonusNumber) {
         int matchCount = getmatchingNumbers(lotto, winningLotto);
-        boolean matchBonus = hasBonusNumber(lotto, bonusNumber);
-        return LottoRank.valueOf(matchCount, matchBonus);
+        boolean isBonusMatch = hasBonusNumber(lotto, bonusNumber);
+        return LottoRank.valueOf(matchCount, isBonusMatch);
     }
 
     private int getmatchingNumbers(Lotto lotto, WinningLotto winningLotto) {

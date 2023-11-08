@@ -1,5 +1,8 @@
 package lotto.model.lotto;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public enum LottoRank {
     FAIL(0, false, 0, ""),
     RANK5(3, false, 5_000, "3개 일치 (5,000원) - "),
@@ -10,24 +13,30 @@ public enum LottoRank {
 
 
     private final int matchCount;
-    private final boolean bonusMatch;
-    private final int amount;
+    private final boolean isBonusMatch;
+    private final int price;
+
     private final String message;
 
-    LottoRank(int matchCount, boolean bonusMatch, int amount, String message) {
+    LottoRank(int matchCount, boolean isBonusMatch, int price, String message) {
         this.matchCount = matchCount;
-        this.bonusMatch = bonusMatch;
-        this.amount = amount;
+        this.isBonusMatch = isBonusMatch;
+        this.price = price;
         this.message = message;
     }
 
-    public static LottoRank valueOf(int matchCount, boolean matchBonus) {
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank.getMatchCount() == matchCount && rank.isBonusMatch() == matchBonus) {
-                return rank;
-            }
+    public static LottoRank valueOf(int matchCount, boolean isBonusMatch) {
+        if (matchCount == RANK2.matchCount && isBonusMatch){
+            return RANK2;
         }
-        return FAIL;
+        return Arrays.stream(values())
+                .filter(rank -> rank.isSameMatchCount(matchCount))
+                .findAny()
+                .orElse(FAIL);
+    }
+
+    public boolean isSameMatchCount(final int matchCount) {
+        return this.matchCount == matchCount;
     }
 
     public int getMatchCount() {
@@ -35,14 +44,14 @@ public enum LottoRank {
     }
 
     public boolean isBonusMatch() {
-        return bonusMatch;
+        return isBonusMatch;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getPrice() {
+        return price;
     }
 
-    public String getMsg() {
+    public String getMessage() {
         return message;
     }
 

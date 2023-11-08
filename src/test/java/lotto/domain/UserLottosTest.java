@@ -29,5 +29,7 @@ class UserLottosTest {
     @Test
     @DisplayName("사용자의 로또 구매 금액과 다른 값을 반환 시 실패")
     void getAmount() {
+        UserLottos userLottos = new UserLottos(10000);
+        assertEquals(userLottos.getAmount(), 10000);
     }
 }

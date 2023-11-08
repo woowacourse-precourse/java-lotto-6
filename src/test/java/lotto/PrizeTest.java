@@ -1,5 +1,6 @@
-package lotto.domain.;
+package lotto;
 
+import lotto.domain.Prize;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

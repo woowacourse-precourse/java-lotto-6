@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoResult;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoPaymentService;
 import lotto.view.InputView;
@@ -33,8 +34,16 @@ public class LottoController {
 
         Lotto drawNumbers = askValidWinningLotto();
         WinningLotto drawWithBonus = askValidBonusBall(drawNumbers);
-        
+
         LottoResult lottoResult = new LottoResult(purchasedLottos, drawWithBonus);
+        displayWinStats(lottoResult);
+    }
+
+    private void displayWinStats(final LottoResult lottoResult) {
+        resultView.println("\n당첨 통계\n---");
+        List<Rank> ranks = Rank.getReversedValues();
+        ranks.forEach(rank -> resultView.displayRankCount(rank, lottoResult.countRank(rank)));
+        resultView.displayProfitRate(lottoResult.sumTotalPrizeMoney(), lottoResult.sumTotalLottoCount());
     }
 
 

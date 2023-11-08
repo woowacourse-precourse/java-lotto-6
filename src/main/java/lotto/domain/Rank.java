@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public enum Rank {
@@ -29,6 +30,20 @@ public enum Rank {
                 .filter(rank -> !rank.matchBonus || lotto.contains(winningLotto.getBonusBall()))
                 .findFirst()
                 .orElse(Rank.NONE);
+    }
+
+    public static List<Rank> getReversedValues() {
+        return VALUES.stream()
+                .sorted(Collections.reverseOrder())
+                .toList();
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isMatchBonus() {
+        return matchBonus;
     }
 
     public long getPrizeMoney() {

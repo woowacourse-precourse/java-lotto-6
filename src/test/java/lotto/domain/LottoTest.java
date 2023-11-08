@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.global.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
 import static lotto.global.enums.ErrorMessage.EXCEED_LENGTH_ERROR_MESSAGE;

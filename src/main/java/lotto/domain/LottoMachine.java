@@ -11,6 +11,7 @@ public class LottoMachine {
     private static final String PURCHASE_AMOUNT_GUIDE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBER_INPUT_GUIDE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_GUIDE = "보너스 번호를 입력해 주세요.";
+    private static final String SPLIT_COMMA = ",";
     private static final int PURCHASE_UNIT = 1000;
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;
@@ -26,6 +27,7 @@ public class LottoMachine {
         System.out.println(PURCHASE_AMOUNT_GUIDE);
         String purchaseAmountText = readLine();
         int purchaseAmount = Integer.parseInt(purchaseAmountText);
+        validatePurchaseAmount(purchaseAmount);
         return purchaseAmount;
     }
 
@@ -53,7 +55,7 @@ public class LottoMachine {
 
     public Lotto textToLotto(String winningNumberText) {
         List<Integer> winningNumbers = new ArrayList<>();
-        for (String number : winningNumberText.split(",")) {
+        for (String number : winningNumberText.split(SPLIT_COMMA)) {
             winningNumbers.add(Integer.parseInt(number));
         }
         Lotto winningLotto = new Lotto(winningNumbers);
@@ -65,5 +67,11 @@ public class LottoMachine {
         String bonusNumberText = readLine();
         int bonusNumber = Integer.parseInt(bonusNumberText);
         return bonusNumber;
+    }
+
+    private void validatePurchaseAmount(int purchaseAmount) {
+        if (!(purchaseAmount % PURCHASE_UNIT==0)) {
+            throw new IllegalArgumentException();
+        }
     }
 }

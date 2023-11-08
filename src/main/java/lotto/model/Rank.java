@@ -4,11 +4,11 @@ import java.util.List;
 
 public enum Rank {
 
-    FIFTH(3, false, 5_000, "3개 일치 (5,000원) - %s개%s"),
-    FOURTH(4, false, 50_000, "4개 일치 (50,000원) - %s개%s"),
-    THIRD(5, false, 1_500_000, "5개 일치 (1,500,000원) - %s개%s"),
-    SECOND(5, true, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - %s개%s"),
-    FIRST(6, false, 2_000_000_000, "6개 일치 (2,000,000,000원) - %s개%s");
+    FIFTH(3, false, 5_000, "3개 일치"),
+    FOURTH(4, false, 50_000, "4개 일치"),
+    THIRD(5, false, 1_500_000, "5개 일치"),
+    SECOND(5, true, 30_000_000, "5개 일치, 보너스 볼 일치"),
+    FIRST(6, false, 2_000_000_000, "6개 일치");
 
     private final Integer match;
     private final Boolean isSameBonus;
@@ -38,6 +38,10 @@ public enum Rank {
         return ranks.stream()
                 .mapToLong(lotto -> lotto.prize)
                 .sum();
+    }
+
+    public Integer getPrize() {
+        return prize;
     }
 
     public String getMessage() {

@@ -74,7 +74,9 @@ public class Validator {
     }
 
     private static void isBonusDuplicate(int bonusNumber, List<Integer> winningNumber){
-        winningNumber.add(bonusNumber);
-        isIntListDuplicate(winningNumber);
+        if (winningNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_LOTTO_DUPLICATE.getMessage());
+
+        }
     }
     }

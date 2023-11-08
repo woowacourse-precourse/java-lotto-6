@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.constants.PrizeEnum;
+import lotto.io.OutputHandler;
 
 import java.util.HashMap;
 
@@ -9,26 +10,32 @@ public class EarnRate {
     double EarnRate;
     int inputAmount;
     int totalEarning;
-    public EarnRate(int inputAmount) {
+    HashMap<String, Integer> drawResult;
+    public EarnRate(int inputAmount, HashMap<String, Integer> drawResult) {
         this.EarnRate = 1;
         this.inputAmount = inputAmount;
         this.totalEarning = 0;
+        this.drawResult = drawResult;
+        sumTotalEarning();
     }
 
-    public int getTotalEarning(HashMap<String, Integer> checkMatchCount) {
-        if (checkMatchCount == null) {
+    private void sumTotalEarning() {
+        if (drawResult == null) {
             throw new NullPointerException();
         }
-        checkMatchCount.forEach((key, value) -> {
+        drawResult.forEach((key, value) -> {
             totalEarning += PrizeEnum.valueOf(key).getAmount() * value;
         });
-        return totalEarning;
     }
 
-    public double getEarnRate(){
+    private double getEarnRate(){
         if (inputAmount == 0) {
             throw new ArithmeticException("");
         }
         return (double) totalEarning / (double) inputAmount;
+    }
+
+    public void printEarnRate(){
+        OutputHandler.printReturnRate(this.getEarnRate());
     }
 }

@@ -3,6 +3,7 @@ package lotto.domain;
 
 import lotto.constants.ConstNums;
 import lotto.constants.PrizeEnum;
+import lotto.io.OutputHandler;
 
 import java.util.HashMap;
 
@@ -26,6 +27,10 @@ public class LotteryDraw {
 
     public HashMap<String, Integer> getMatchCountLotto() {
         return matchCountLotto;
+    }
+
+    public void printDrawResult() {
+        OutputHandler.printPrizeStat(this.getMatchCountLotto());
     }
 
     private void setMatchCountLotto() {

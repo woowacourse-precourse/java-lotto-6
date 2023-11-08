@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.condition.NumberConditions;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

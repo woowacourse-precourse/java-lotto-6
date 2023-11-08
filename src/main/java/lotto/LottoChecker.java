@@ -17,7 +17,9 @@ public class LottoChecker {
                     + LottoEnum.NUMBER_MAX.getValue()
                     + " 사이의 숫자여야 합니다.");
         }
-
+        if (winner.getNumbers().contains(winnerBonus)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.");
+        }
         this.winner = winner;
         this.winnerBonus = winnerBonus;
     }

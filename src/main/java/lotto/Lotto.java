@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Lotto {
+    private static final String DUPLICATE_NUMBER = "중복되는 숫자가 있습니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,7 +27,7 @@ public class Lotto {
             }
         }
         if (proveNumber.size() != 6)
-            throw new IllegalArgumentException("중복되는 숫자가 있습니다");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER);
     }
     // TODO: 추가 기능 구현
 }

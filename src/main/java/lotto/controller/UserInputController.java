@@ -40,13 +40,13 @@ public class UserInputController {
         }
         return winNumbers;
     }
-    public static int getBonusNumbers() {
+    public static int getBonusNumbers(List<Integer> winNumbers) {
         int bonusNumber = 0;
         boolean exceptionThrown = true;
         while (exceptionThrown) {
             String userInput = Console.readLine();
             try {
-                bonusNumber = isValidBonusNumbers(userInput);
+                bonusNumber = isValidBonusNumbers(userInput, winNumbers);
                 exceptionThrown = false;
             } catch (IllegalArgumentException e) {
                 System.out.print("[Error]" + e.getMessage());

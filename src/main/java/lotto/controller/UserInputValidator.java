@@ -25,7 +25,7 @@ public class UserInputValidator {
         Collections.sort(numbers);
         return numbers;
     }
-    public static int isValidBonusNumbers(String input) {
+    public static int isValidBonusNumbers(String input, List<Integer> numbers) {
         int bonusNumber;
         if (!isPositiveInteger(input)) {
             throw new IllegalArgumentException("로또 번호는 양의 정수여야 합니다.");
@@ -33,6 +33,9 @@ public class UserInputValidator {
         bonusNumber = Integer.parseInt(input);
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 일치하지 않아야 합니다.");
         }
         return bonusNumber;
     }

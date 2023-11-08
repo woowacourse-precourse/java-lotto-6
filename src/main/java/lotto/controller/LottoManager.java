@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import static lotto.view.LottoNumbersDisplay.displayLottos;
-
 import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.controller.UserInputController;
@@ -17,7 +15,7 @@ public class LottoManager {
     int bonusNumber;
     public LottoManager() {
         getUserLotto();
-        displayLottos(user.getUserLottos());
+        LottoNumbersDisplay.displayAllLottos(user.getUserLottos());
         winNumbers = new ArrayList<>();
         setWinNumbers();
         setBonusNumber();
@@ -35,7 +33,7 @@ public class LottoManager {
     }
     private void setBonusNumber() {
         MessageDisplay.enterBonusNumber();
-        this.bonusNumber = UserInputController.getBonusNumbers();
+        this.bonusNumber = UserInputController.getBonusNumbers(this.winNumbers);
         System.out.print("\n");
     }
 }

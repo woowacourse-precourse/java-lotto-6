@@ -5,7 +5,7 @@ import java.util.List;
 
 /* 유저가 구매한 로또들의 목록을 출력 */
 public class LottoNumbersDisplay {
-    public static void displayLottos(List<Lotto> lottos) {
+    public static void displayAllLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             displayLotto(lotto.getLottoNumbers());
         }

@@ -14,10 +14,11 @@ public class User {
         this.buyingPrice = buyingPrice;
         this.lottoCount = buyingPrice / 1000;
         lottos = new ArrayList<Lotto>();
+        buyLotto();
     }
     /* getter */
     public List<Lotto> getUserLottos() {
-        return lottos;
+        return this.lottos;
     }
     /* 구매 금액 상 가능한 만큼의 로또를 구매 */
     public void buyLotto() {
@@ -30,7 +31,7 @@ public class User {
                 i--;
                 continue;
             }
-            lottos.add(lotto);
+            this.lottos.add(lotto);
         }
     }
 }

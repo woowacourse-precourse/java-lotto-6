@@ -1,6 +1,9 @@
 package lotto.Util;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validation {
 
@@ -18,6 +21,24 @@ public class Validation {
         }
     }
 
+    private static void isValidRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1 이상 45 이하의 정수로 입력해주세요.");
+        }
+    }
+
+    private static void isValidNumbers(List<Integer> numbers) {
+        Set<Integer> sample = new HashSet<>(numbers);
+
+        if (sample.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 중 중복되는 번호가 있습니다.");
+        }
+
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 총 6개의 당첨 번호를 입력해주세요.");
+        }
+    }
+
     public static int validatePurchaseAmount(String input) {
         int purchaseAmount = parseInteger(input);
         isValidUnit(purchaseAmount);
@@ -25,7 +46,17 @@ public class Validation {
     }
 
     public static List<Integer> validateWinnerNumbers(String input) {
+        String[] numbers = input.split(",");
+        List<Integer> winnerNumbers = new ArrayList<>();
 
+        for (String elem : numbers) {
+            int number = parseInteger(elem);
+            isValidRange(number);
+            winnerNumbers.add(number);
+        }
+
+        isValidNumbers(winnerNumbers);
+        return winnerNumbers;
     }
 
     public static int validateBonusNumber(String input) {

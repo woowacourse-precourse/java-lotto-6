@@ -50,9 +50,12 @@ public class Lotto {
         return winningNumber;
     }
 
+    boolean isInvalidInputArguments(Character argument) {
+        return !(Character.isDigit(argument) || argument == ',');
+    }
     void validateWinningNumberNumeric(String winningNumber) {
         for (int winningNumberIndex = 0; winningNumberIndex < winningNumber.length(); winningNumberIndex++) {
-            if (!(Character.isDigit(winningNumber.charAt(winningNumberIndex)) || winningNumber.charAt(winningNumberIndex) == ',')) {
+            if (isInvalidInputArguments(winningNumber.charAt(winningNumberIndex))) {
                 Exception.raiseInvalidWinningNumberArgumentException();
             }
         }

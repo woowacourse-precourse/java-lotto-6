@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -47,6 +48,44 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void testGenerateLotto() {
+        assertSimpleTest(() -> {
+            int purchaseAmount = 8000;
+            List<Lotto> lottos = Application.generateLotto(purchaseAmount);
+            assertThat(lottos).hasSize(8); // Assuming 8000 / 1000 = 8 lottos
+            assertThat(output()).contains("8개를 구매했습니다.");
+        });
+    }
+
+    @Test
+    void testCountMatchingNumbers() {
+        assertSimpleTest(() -> {
+            List<Integer> numbers=List.of(1,2,3,4,5,6);
+            List<Integer> winningNumbers=List.of(3,4,5,6,7,8);
+            int matchingCount=Application.countMatchingNumbers(numbers,winningNumbers);
+            assertThat(matchingCount).isEqualTo(4);
+        });
+    }
+
+    @Test
+    void testCalculatePrize() {
+        assertSimpleTest(()-> {
+            int prize=Application.calculatePrize(5,new int[]{0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000});
+        });
+    }
+
+    @Test
+    void testPrintWinningStatistics() {
+        assertSimpleTest(() -> {
+            List<Lotto> lottos=List.of(new Lotto(List.of(1,2,3,4,5,6)));
+            List<Integer> winningNumbers=List.of(3,4,5,6,7,8);
+            int bonusNumber=9;
+            Application.printWinningStatistics(lottos,winningNumbers,bonusNumber);
+            assertThat(output()).contains("4개 일치 (50,000원) - 1개");
+        });
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
@@ -59,3 +98,4 @@ class ApplicationTest extends NsTest {
         Application.main(new String[]{});
     }
 }
+

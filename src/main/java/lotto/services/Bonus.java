@@ -23,7 +23,8 @@ public class Bonus {
     }
 
     private void validateBonusLength(String bonus) {
-        if (bonus.length() != 1) {
+        int length = bonus.length();
+        if (length > 2) {
             noLengthOfOne();
         }
     }

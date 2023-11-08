@@ -1,4 +1,4 @@
-package lotto.domain.enums;
+package lotto.domain.lotto;
 
 import static org.junit.jupiter.api.Assertions.*;
 

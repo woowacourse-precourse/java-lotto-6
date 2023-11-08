@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.controller.calculation.Calculation;
+import lotto.controller.lottery.Lottery;
+import lotto.controller.lottery.lotteryCheckUsingSet;
 import lotto.controller.lottomainservice.LottoService;
 import lotto.controller.lottomaker.LottoMaker;
 import lotto.controller.lottomaker.lottoMakerByRandom;
@@ -12,19 +14,20 @@ import lotto.view.Output;
 
 public class AppConfig {
     private final Repository repository = new LottoRepository();
-    public Input getInput(){
+    private Input getInput(){
         return new Input(repository);
     }
-    public Output getOutput(){
+    private Output getOutput(){
         return new Output();
     }
-    public Calculation getCalculation(){
+    private Calculation getCalculation(){
         return new profitMarginCalculation();
     }
-    public LottoMaker getLottoMaker(){
+    private LottoMaker getLottoMaker(){
         return new lottoMakerByRandom();
     }
+    private Lottery getLottery(){return new lotteryCheckUsingSet(); }
     public LottoService getLottoService(){
-        return new LottoService(getOutput(), getInput(),repository , getCalculation(), getLottoMaker());
+        return new LottoService(getOutput(), getInput(),repository , getCalculation(), getLottoMaker(), getLottery());
     }
 }

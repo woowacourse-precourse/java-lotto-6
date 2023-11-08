@@ -1,6 +1,7 @@
 package lotto.controller.lottomainservice;
 
 import lotto.controller.calculation.Calculation;
+import lotto.controller.lottery.Lottery;
 import lotto.controller.lottomaker.LottoMaker;
 import lotto.domain.Lotto;
 import lotto.lottoenum.LottoRanking;
@@ -20,12 +21,15 @@ public class LottoService {
     Repository repository;
     Calculation calculation;
     LottoMaker lottoMaker;
-    public LottoService(Output output, Input input, Repository repository, Calculation calculation, LottoMaker lottoMaker) {
+    Lottery lottery;
+    public LottoService(Output output, Input input, Repository repository,
+                        Calculation calculation, LottoMaker lottoMaker, Lottery lottery) {
         this.output = output;
         this.input = input;
         this.repository = repository;
         this.calculation = calculation;
         this.lottoMaker = lottoMaker;
+        this.lottery = lottery;
     }
 
     public void game(){
@@ -39,8 +43,9 @@ public class LottoService {
     private void makeCalculateAndPrintResult() {
         List<LottoRanking> lottoRankings = new ArrayList<>();
         for(Lotto lotto : repository.getLottoNumbers()){
-            lottoRankings.add(lotto.lotteryCheck(repository.getAnswerLotto().getLottoDetail(),
-                    repository.getBonusNumber()));
+            lottoRankings.add(
+                    lottery.lotteryCheck(repository.getAnswerLotto(), lotto, repository.getBonusNumber())
+            );
         }
         output.printResult(lottoRankings);
         output.printCalculation(calculation.getCalculation(lottoRankings));

@@ -24,10 +24,6 @@ public class InputValidateAnswer extends InputValidate{
     }
 
     private String[] getLottoByString(String lottoNum) {
-        String[] splitLottoAnswer = lottoNum.split(",");
-        if(splitLottoAnswer.length != 6){
-            throw new IllegalArgumentException("[ERROR] 로또 개수는 6개 입니다.");
-        }
-        return splitLottoAnswer;
+        return lottoNum.split(",");
     }
 }

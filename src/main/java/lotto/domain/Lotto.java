@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.utils.LottoNumbersValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,13 +14,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        numbers.forEach(LottoNumbersValidator::validateRange);
+        LottoNumbersValidator.validateDuplicateNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public boolean isInNumber(int target) {
+        return numbers.contains(target);
     }
 
     @Override

@@ -16,11 +16,11 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Lotto getWinningLotto() {
-        return winningLotto;
+    public boolean isInWinningNumber(int number) {
+        return winningLotto.isInNumber(number);
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean isSameBonusNumber(int number) {
+        return bonusNumber == number;
     }
 }

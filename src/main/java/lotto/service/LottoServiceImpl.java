@@ -3,11 +3,15 @@ package lotto.service;
 import static lotto.enums.ViewMessageType.INPUT_SEPARATOR;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 
-import lotto.enums.ViewMessageType;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
+import lotto.enums.WinningRankType;
 import lotto.utils.LottoNumbersValidator;
 import lotto.utils.PaymentValidator;
 import lotto.utils.RandomNumberGenerator;
@@ -62,5 +66,32 @@ public class LottoServiceImpl implements LottoService {
     public int drawBonusNumber(String number) {
         LottoNumbersValidator.validateInteger(number);
         return Integer.parseInt(number);
+    }
+
+    @Override
+    public WinningResult calculateWinning(Lottos lottos, WinningLotto winningLotto) {
+        Map<WinningRankType, Integer> rankingCounts = new HashMap<>();
+        for (Lotto lotto : lottos.getLottos()) {
+            updateRankingCounts(lotto, winningLotto, rankingCounts);
+        }
+        return new WinningResult(rankingCounts);
+    }
+
+    private void updateRankingCounts(Lotto lotto, WinningLotto winningLotto, Map<WinningRankType, Integer> rankingCounts) {
+        int winningCount = 0;
+        int bonusCount = 0;
+        for (Integer number : lotto.getNumbers()) {
+            if (winningLotto.isInWinningNumber(number)) {
+                winningCount++;
+            }
+            else if (winningLotto.isSameBonusNumber(number)) {
+                bonusCount++;
+            }
+        }
+        WinningRankType rankingType = WinningRankType.selectRankingType(winningCount, bonusCount);
+        rankingCounts.put(
+                rankingType,
+                rankingCounts.getOrDefault(rankingType, 0) + 1
+        );
     }
 }

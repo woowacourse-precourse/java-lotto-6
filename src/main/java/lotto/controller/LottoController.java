@@ -7,6 +7,7 @@ import static lotto.view.OutputView.printBuyLottoCount;
 
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 import lotto.service.LottoService;
 import lotto.service.LottoServiceImpl;
 
@@ -19,7 +20,7 @@ public class LottoController {
         buyLottos();
         drawWinningNumbers();
         drawBonusNumber();
-//        calculateLotto();
+        calculateLotto();
     }
 
     private void buyLottos() {
@@ -54,5 +55,9 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void calculateLotto() {
+        WinningResult winningResult = lottoService.calculateWinning(lottos, winningLotto);
     }
 }

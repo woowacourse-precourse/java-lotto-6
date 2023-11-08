@@ -1,6 +1,5 @@
 package lotto.utils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,11 +19,11 @@ public class Utils {
     }
 
     public static List<Integer> convertIntegerList(String winnerNumber) {
-        List<Integer> list = new ArrayList<>();
         List<String> strings = Utils.splitStringToList(winnerNumber);
-        for (String string : strings) {
-            list.add(Integer.parseInt(string));
-        }
+        List<Integer> list = strings.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
         return list;
     }
 }

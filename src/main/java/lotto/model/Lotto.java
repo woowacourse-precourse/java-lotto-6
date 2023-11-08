@@ -4,9 +4,10 @@ import static lotto.utils.Constants.END_LOTTO_NUMBER;
 import static lotto.utils.Constants.LOTTO_SIZE;
 import static lotto.utils.Constants.START_LOTTO_NUMBER;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final String ERROR_NOT_CORRECT_SIZE = "[ERROR] 로또 넘버는 6개여야 합니다.";
@@ -45,13 +46,13 @@ public class Lotto {
     }
 
     private void isDuplicate(List<Integer> numbers) {
-        List<Integer> duplicate = new ArrayList<>();
-        for (Integer number : numbers) {
-            if (duplicate.contains(number)) {
-                throw new IllegalArgumentException(ERROR_NOT_DUPLICATE);
-            }
-            duplicate.add(number);
-        }
+        Set<Integer> duplicateSet = new HashSet<>();
+        numbers.stream()
+                .filter(number -> !duplicateSet.add(number))
+                .findFirst()
+                .ifPresent(number -> {
+                    throw new IllegalArgumentException(ERROR_NOT_DUPLICATE);
+                });
     }
 
     public List<Integer> getNumbers() {

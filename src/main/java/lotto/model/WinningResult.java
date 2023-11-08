@@ -31,17 +31,16 @@ public enum WinningResult {
     }
 
     public static void showResult() {
-        for (WinningResult value : WinningResult.values()) {
-            String singleMessage = String.format(value.message, value.countResult);
-            System.out.println(singleMessage);
-        }
+        Arrays.stream(WinningResult.values())
+                .map(value -> String.format(value.message, value.countResult))
+                .forEach(System.out::println);
     }
 
     public static int calculateTotalPrice() {
-        int totalPrice = 0;
-        for (WinningResult value : WinningResult.values()) {
-            totalPrice = totalPrice + (value.countResult * value.price);
-        }
+        int totalPrice = Arrays.stream(WinningResult.values())
+                .map(value -> value.countResult * value.price)
+                .reduce(0, Integer::sum);
+
         return totalPrice;
     }
 }

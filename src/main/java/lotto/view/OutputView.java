@@ -1,7 +1,5 @@
 package lotto.view;
 
-import java.util.List;
-import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.model.WinningResult;
 import lotto.utils.Utils;
@@ -18,11 +16,9 @@ public class OutputView {
     public static void printUserLotto(User user) {
         System.out.println(user.getCount() + PURCHASE_COUNT_LOTTO);
 
-        for (Lotto lotto : user.getLottoList()) {
-            List<String> userLottos = Utils.convertIntegerToString(lotto.getNumbers());
-            String userLotto = String.join(", ", userLottos);
-            System.out.println(OPEN_BRACKET + userLotto + CLOSE_BRACKET);
-        }
+        user.getLottoList().stream()
+                .map(lotto -> String.join(", ", Utils.convertIntegerToString(lotto.getNumbers())))
+                .forEach(lottoString -> System.out.println(OPEN_BRACKET + lottoString + CLOSE_BRACKET));
     }
 
     public static void printResult() {

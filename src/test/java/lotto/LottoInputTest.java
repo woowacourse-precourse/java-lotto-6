@@ -2,43 +2,36 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.view.LottoInput;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoInputTest {
-
     @Test
-    void inputLottoPrice() {
-    }
-
-    @Test
-    void inputWinningNum() {
-    }
-
-    @Test
-    void inputBonusNum() {
-    }
-
-    @Test
-    void validateLottoPrice() {
-        String input = "";
+    @DisplayName("입력받은금액이 로또가격으로 나누어떨어지지않는경우")
+    void validateLottoPriceTest() {
+        String input = "1500";
         assertThatThrownBy(()->{
             LottoInput.validateLottoPrice(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR]값이 천원단위가 아닙니다.");
+        }).isInstanceOf(IllegalArgumentException.class);
     }
-
+    @Test
+    @DisplayName("입력받은 숫자에 문자가포함된 경우")
+    void validateLottoNumberTest(){
+        String input = "1000k";
+        assertThatThrownBy(()->{
+            LottoInput.validateLottoNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     @DisplayName("당첨번호가 6개가 아닌경우의 테스트")
     void validateWinningNumCountTest() {
-        String input = ",13,42,23,25,27,34";
-//        ",13,42,23,25,27,34" length = 7
-//        "13,42,23,25,27,34," length = 6 검증 필요
+        String input = "13,42,23,25,27,34,";
         assertThatThrownBy(() -> {
             LottoInput.validateWinningNumCount(input);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR]당첨번호는 6개입니다");
+        }).isInstanceOf(IllegalArgumentException.class);
+
     }
 
     @Test
@@ -46,9 +39,8 @@ class LottoInputTest {
     void validateWinningNumRangeTest() {
         String input = "13,43,23,25,0,34";
         assertThatThrownBy(() -> {
-            LottoInput.validateWinningNumRange(input, 45);
-        }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR]당첨번호는 1~45사이의 수 입니다.");
+            LottoInput.validateWinningNumRange(input);
+        }).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

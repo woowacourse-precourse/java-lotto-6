@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.message.InputMessage;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoNumbersValidator;
 import lotto.validator.PriceValidator;
 import lotto.validator.Validator;
@@ -22,14 +23,6 @@ public class InputView {
         }
     }
 
-    private String getBuyingPrice() {
-        System.out.println(InputMessage.INPUT_MONEY_NOTICE.getValue());
-        String buyingPrice = Console.readLine();
-        PriceValidator.validate(buyingPrice);
-        System.out.println();
-
-        return buyingPrice;
-    }
     public Lotto inputWinningLottoNumbers() {
         while (true) {
             try {
@@ -40,6 +33,25 @@ public class InputView {
         }
     }
 
+    public int inputBonusNumber(Lotto lotto) {
+        while (true) {
+            try {
+                return getBonusNumber(lotto);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private String getBuyingPrice() {
+        System.out.println(InputMessage.INPUT_MONEY_NOTICE.getValue());
+        String buyingPrice = Console.readLine();
+        PriceValidator.validate(buyingPrice);
+        System.out.println();
+
+        return buyingPrice;
+    }
+
     public List<Integer> getLottoNumbers() {
         System.out.println(InputMessage.INPUT_WINNING_NUMBER_NOTICE.getValue());
         List<String> inputNumbers = Arrays.stream(readLine().split(InputMessage.INPUT_DELIMITER.getValue()))
@@ -48,6 +60,15 @@ public class InputView {
         inputNumbers.forEach(Validator::validateNumber);
         LottoNumbersValidator.validate(convertToNumbers(inputNumbers));
         return convertToNumbers(inputNumbers);
+    }
+
+    public int getBonusNumber(Lotto lotto) {
+        System.out.println(InputMessage.INPUT_BONUS_NUMBER_NOTICE.getValue());
+        String inputNumber = readLine();
+        Validator.validateNumber(inputNumber);
+
+        BonusNumberValidator.validate(lotto,Integer.parseInt(inputNumber));
+        return Integer.parseInt(inputNumber);
     }
 
     private static List<String> readLineAndSplitWith(final String delimiter) {
@@ -63,4 +84,5 @@ public class InputView {
     }
 
 }
+
 

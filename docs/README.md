@@ -3,7 +3,7 @@
 # 프리코스 3주차 미션: 로또
 
 ![Generic badge](https://img.shields.io/badge/precourse-week3-blue.svg)
-![Generic badge](https://img.shields.io/badge/unitTest-6-green.svg)
+![Generic badge](https://img.shields.io/badge/unitTest-10-green.svg)
 
 > 우아한테크코스 6기 3주차 미션, 로또를 구현한 저장소입니다.
 
@@ -18,6 +18,10 @@
 - [패키지 구조](#패키지-구조)
 - [게임 흐름](#게임-흐름)
 - [기능 목록](#기능-목록)
+    - [로또 번호](#1-로또-번호의-숫자-범위는-1부터-45까지이다)
+    - [로또 구입](#2-구입-금액을-정하면-해당-구입-금액만큼-로또를-발행한다)
+    - [당첨 번호](#3-당첨-번호와-보너스-번호를-설정한다)
+    - [당첨 통계](#4-당첨-통계를-출력한다)
 
 <br>
 
@@ -29,12 +33,52 @@
 
 ```
 
-
+📦 lotto
+├─ 📁controller
+│  └─————————————— 🕹️ GameController
+├─ 📁 domain
+│  ├─————————————— 🎫 Lotto
+│  ├─————————————— 🪙 LottoKiosk
+│  ├─————————————— 📜 LottoResult(Enum)
+│  ├─————————————— 🔖 WinningNumbers
+│  ├─————————————— 📄 WinningStatistic
+│  ├─📁 constant
+│  │ └─—————————————  LottoValue
+│  └─📁 vo
+│   ├─————————————— 📎 LottoNumber
+│   ├─————————————— 🖇️ LottoNumbers
+│   └─————————————— 💵 Money(Record)
+├─ 📁 exception
+│  ├─—————————————  ErrorMessage(Enum)
+│  └─————————————— 🚫 LottoException
+├─ 📁 service
+│  └─————————————— ✨ LottoService
+├─ 📁 util
+│  ├─————————————— ✏️ NumberGenerator(Interface)
+│  ├─————————————— ✏️ RandomNumberGenerator
+│  └─————————————— 🔬 Parser
+├─ 📁 validat
+│  ├─—————————————✅ Validator
+│  └─📁 validators
+│   ├─—————————————  LottoGameValidator(Interface)
+│   ├─—————————————  DuplicateNumber
+│   ├─—————————————  EmptyInput
+│   ├─—————————————  InvalidBonusNumber
+│   ├─—————————————  InvalidInputAmount
+│   ├─—————————————  InvalidLottoNumber
+│   ├─—————————————  InvalidMoneyValue
+│   ├─—————————————  NonIntegerInput
+│   ├─—————————————  WinningNumbersFormat
+│   └─—————————————  WinningNumbersSize
+└─ 📁 view 
+  ├─————————————— ⌨️ InputView 
+  └─————————————— 🖨 OutputView
 
 ```
 
 ## 게임 흐름
 
+![lotto@4x](https://github.com/AidenRoh/wooteco-precourse/assets/124841119/4c263c3b-1620-4005-b5ec-c4de017b83bb)
 <br>
 
 ---
@@ -126,8 +170,6 @@
     - **[잘못된 형식의 당첨 번호]** : 당첨 번호의 입력값이 숫자와 쉼표(,)로 이루어지지 않은 경우
     - **[6개의 당첨 번호가 아님]** : 당첨 번호가 로또 번호 개수(6)에 벗어난 경우
     - **[당첨 번호에 같은 숫자가 존재]** : 6개의 당첨 번호에 겹치는 번호가 있는 경우
-    - **[로또 번호가 아닌 당첨 번호]** : 당첨 번호가 로또 번호의 범위에 벗어난 경우
-    - **[로또 번호가 아닌 보너스 번호]** : 보너스 번호가 로또 번호의 범위에 벗어난 경우
     - **[당첨 번호와 보너스 번호가 겹침]** : 보너스 번호에 당첨 번호와 겹치는 숫자가 있는 경우
 
 <br>
@@ -140,8 +182,6 @@
     - **[WINNING_NUMBERS_FORMAT]** : ``LottoException``을 호출하고 `당첨 번호는 쉼표(,)로 구분된 숫자 조합여야합니다.`를 출력한다.
     - **[INVALID_WINNING_NUMBERS_SIZE]** : ``LottoException``을 호출하고 `당첨 번호는 6개의 숫자여야 합니다.`를 출력한다.
     - **[DUPLICATED_NUMBER]** : ``LottoException``을 호출하고 `중복된 번호가 있습니다.`를 출력한다.
-    - **[INVALID_LOTTO_NUMBER]** : ``LottoException``을 호출하고 `로또 번호는 1부터 45사이의 숫자여야 합니다.`를 출력한다.
-    - **[INVALID_LOTTO_NUMBER]** : ``LottoException``을 호출하고 `로또 번호는 1부터 45사이의 숫자여야 합니다.`를 출력한다.
     - **[INVALID_BONUS_NUMBER]** : ``LottoException``을 호출하고 `보너스 번호는 당첨 번호와 겹칠 수 없습니다.`를 출력한다.
     - **[입력 재요청]** : 예외가 발생한 입력 지점으로 돌아와 입력 재요청한다.
 

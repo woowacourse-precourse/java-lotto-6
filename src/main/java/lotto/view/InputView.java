@@ -23,6 +23,7 @@ public class InputView {
     private String input() {
         String input = Console.readLine();
         validate(input);
+        System.out.println();
         return input;
     }
 

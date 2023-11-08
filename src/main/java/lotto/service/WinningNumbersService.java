@@ -37,6 +37,10 @@ public class WinningNumbersService {
 
     private void validateBonusNumber(String bunsNum) {
         // 보너스 번호 유효성 검사
+        StringUtil.checkNotNull(bunsNum);
+        StringUtil.checkNumeric(bunsNum);
+        int bonusNum = Integer.parseInt(bunsNum);
+        checkRange(bonusNum);
     }
 
     public void checkNumeric(String[] arr) {
@@ -62,6 +66,12 @@ public class WinningNumbersService {
     public void checkWinningNumDuplicate(List<Integer> numList) {
         if (!ListUtil.checkDuplicateValue(numList)) {
             throw new IllegalArgumentException(ErrorConstants.INVALID_WINNING_DUPLICATE.getData());
+        }
+    }
+
+    public void checkRange(int num) {
+        if (num < AppConstants.RANDOM_RANGE_MIN || num > AppConstants.RANDOM_RANGE_MAX) {
+            throw new IllegalArgumentException(ErrorConstants.INVALID_BONUS_NUMBER_RANGE.getData());
         }
     }
 }

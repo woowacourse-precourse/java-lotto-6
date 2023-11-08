@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ public class LottoMachine {
         this.lottos = lottos;
         this.lottoRanks = lottoRanks;
         this.lottoReturnRate = "";
+        this.lottoWinningNumbers = new ArrayList<>();
     }
 
     public List<Lotto> getLottos(){

@@ -22,7 +22,7 @@ public class LottoView implements LottoFinalConsts {
 
     public void printPublishedLotto(List<Lotto> lottos){
         for (Lotto lotto:lottos) {
-            System.out.println(lotto.toString());
+            System.out.println(lotto.getNumbers().toString());
         }
     }
 

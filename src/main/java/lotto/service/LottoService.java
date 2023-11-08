@@ -109,7 +109,7 @@ public class LottoService implements LottoFinalConsts {
         int lottoReturn = getLottoReturn(keys, lottoRanks);
         int lottoPurchase = lottoMachine.getLottoPurchase();
         double returnRate = (double)lottoReturn/lottoPurchase*100;
-        lottoMachine.returnLottoReturnRate(String.format("%2.f", returnRate));
+        lottoMachine.returnLottoReturnRate(String.format("%.1f", returnRate)+"%");
     }
 
 }

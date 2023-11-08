@@ -154,14 +154,11 @@ public class Application {
     }
 
     private static String formatPrize(int prize) {
-        if(prize>=10000) {
+
             DecimalFormat decimalFormat = new DecimalFormat("#,###");
             return decimalFormat.format(prize) + "원";
-        }
-        else
-        {
-            return prize + "원";
-        }
+
+
     }
 
     private static String formatPercentage(double percentage) {

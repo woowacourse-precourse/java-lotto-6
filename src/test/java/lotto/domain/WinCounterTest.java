@@ -11,7 +11,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WinCounterTest {
-
     private WinCounter winCounter;
     private List<WinType> winTypes;
     private List<Integer> winCounts;
@@ -52,6 +51,7 @@ class WinCounterTest {
     @Test
     void getRateOfReturn() {
         BigDecimal paidMoney = new BigDecimal(10000);
-        System.out.println(winCounter.getRateOfReturn(paidMoney));
+        assertThat(winCounter.getRateOfReturn(paidMoney))
+                .isEqualTo("80930500%");
     }
 }

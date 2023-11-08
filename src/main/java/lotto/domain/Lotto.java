@@ -21,7 +21,7 @@ public class Lotto {
         }
     }
 
-    // ------- 기존 것 아래에 추가 작성 --------
+    // ------- 기존 것 건들지 않고 아래에 추가 작성 --------
 
     public static Lotto from(List<Integer> numbers) {
         checkFormat(numbers);

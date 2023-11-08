@@ -14,10 +14,14 @@ public class Validator {
     private static final int DELIMITER_COUNT = Value.LOTTO_NUMBER_COUNT.get() - Value.ONE.get();
 
     public static BigDecimal checkPositive(BigDecimal number) throws IllegalArgumentException {
-        if (number.compareTo(BigDecimal.ZERO) < ZERO) {
+        if (isNegative(number)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE.get());
         }
         return number;
+    }
+
+    private static boolean isNegative(BigDecimal number) {
+        return number.compareTo(BigDecimal.ZERO) < ZERO;
     }
 
     public static void checkDuplicated(List<Integer> numbers, int number) throws IllegalArgumentException {
@@ -56,5 +60,4 @@ public class Validator {
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");
     }
-
 }

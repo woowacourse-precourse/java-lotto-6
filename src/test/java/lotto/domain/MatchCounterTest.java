@@ -6,8 +6,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,7 +24,7 @@ class MatchCounterTest {
     @Test
     void unModifiableAnswerNumbersTest() {
         // modifiable List가 MatchCounter의 answerNumbers 필드로 존재할 가능성을 막아야 한다.
-        List<Integer> answerNubmers = new ArrayList<>(Arrays.asList(11, 23, 24, 1, 7, 8)); // modifiable list
+        List<Integer> answerNubmers = Arrays.asList(11, 23, 24, 1, 7, 8); // modifiable list
         MatchCounter matchCounter = MatchCounter.from(answerNubmers);
 
         Lotto myLotto = Lotto.from(List.of(45, 44, 43, 42, 41, 40)); // 번호 일치 0개
@@ -80,8 +78,6 @@ class MatchCounterTest {
         int counting = matchCounter.countNumberMatch(myLotto);
         assertThat(counting).isEqualTo(4);
     }
-
-
 
     @DisplayName("[기능]MatchCounter_매칭세기__보너스 및 숫자 일치 개수 센다")
     @Test

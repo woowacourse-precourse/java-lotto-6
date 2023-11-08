@@ -14,7 +14,6 @@ public class LottoApp {
     }
 
     public void run() {
-
         //First Step Get Budgets
         lottoView.inputBudgets();
         lottoController.gameStart(lottoConsole.inputBudgets());
@@ -35,5 +34,7 @@ public class LottoApp {
         bonusNumber = lottoConsole.inputWinningBonusNumber();
         lottoController.raffleLotto(normalNumbers, bonusNumber);
 
+        lottoView.printWinningResults(lottoController.getWinningResult());
+        lottoView.printReturnRate(lottoController.getReturnRate());
     }
 }

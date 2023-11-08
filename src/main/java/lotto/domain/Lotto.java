@@ -3,6 +3,8 @@ package lotto.domain;
 import static lotto.domain.policy.LottoSizePolicy.LOTTO_SIZE;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,7 +25,7 @@ public class Lotto {
     private void verifyDuplicatedNumber(List<Integer> numbers) throws IllegalArgumentException {
         for (int i = 0; i < numbers.size(); i++) {
             for (int j = i + 1; j < numbers.size(); j++) {
-                if (numbers.get(i) == numbers.get(j)) {
+                if (Objects.equals(numbers.get(i), numbers.get(j))) {
                     throw new IllegalArgumentException();
                 }
             }
@@ -39,5 +41,22 @@ public class Lotto {
         return this.numbers.size();
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 
+    public int getMatchNumberCount(Lotto thatLotto) {
+        List<Integer> thatLottoNumbers = thatLotto.getNumbers();
+        AtomicInteger matchCount = new AtomicInteger();
+        this.numbers.forEach(number -> {
+            if (thatLottoNumbers.contains(number)) {
+                matchCount.addAndGet(1);
+            }
+        });
+        return matchCount.get();
+    }
+
+    public boolean hasBonusNumber(int bonus) {
+        return this.numbers.contains(bonus);
+    }
 }

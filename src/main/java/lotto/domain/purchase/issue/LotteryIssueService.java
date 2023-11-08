@@ -11,7 +11,7 @@ public class LotteryIssueService {
         // 로또 티켓 발행
         List<Lotto> lottos = issueLottoAmountOf(ticketCount);
         // 로또 티켓 출력 뷰
-        String lottosState = lottos.stream().map(Lotto::toString).collect(Collectors.joining());
+        String lottosState = lottos.stream().map(lotto -> lotto.toString() + "\n").collect(Collectors.joining());
         OutputView.printLottos(lottosState);
         return lottos;
     }

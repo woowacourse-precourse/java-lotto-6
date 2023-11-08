@@ -5,7 +5,6 @@ import lotto.domain.User;
 import lotto.domain.answer.check.LotteryAnswerCheckService;
 import lotto.domain.answer.number.LotteryAnswerNumberService;
 import lotto.domain.answer.number.LotteryBonusNumberService;
-import lotto.domain.answer.number.LottoAnswer;
 import lotto.domain.answer.rate.LotteryRateService;
 import lotto.domain.view.InputView;
 
@@ -32,6 +31,9 @@ public class LotteryAnswerController {
     }
 
     public void getResult(User user, LottoAnswer lottoAnswer) {
-
+        // 상금 계산
+        Integer winningPrice = lotteryAnswerCheckService.getWinningPrice(user, lottoAnswer);
+        // ROI(이익률) 계산
+        // lotteryRateService.getReturnOnInvestment();
     }
 }

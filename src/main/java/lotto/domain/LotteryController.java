@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.answer.LotteryAnswerController;
-import lotto.domain.answer.number.LottoAnswer;
+import lotto.domain.answer.LottoAnswer;
 import lotto.domain.purchase.LotteryPurchaseController;
 
 public final class LotteryController {

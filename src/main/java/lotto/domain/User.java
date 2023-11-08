@@ -18,4 +18,8 @@ public class User {
                 .map(lotto -> lotto.toString() + "\n")
                 .collect(Collectors.joining());
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

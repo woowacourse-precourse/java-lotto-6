@@ -11,8 +11,8 @@ public class LottoSalesman {
 
     public static int lottoCount(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 돈은 오백원, 백원, 십원은 받지 않습니다.");
-        }
+            throw new IllegalArgumentException("");
+    }
         return money / 1000;
     }
 
@@ -47,5 +47,11 @@ public class LottoSalesman {
         return totalPrize;
     }
 
-
+    public static int bonusValidate(int bonusNumber) {
+        bonusNumber = InputLottoUI.inputBonusNumber();
+        if (bonusNumber > 0 && bonusNumber < 46) {
+            return bonusNumber;
+        }
+        throw new IllegalArgumentException();
+    }
 }

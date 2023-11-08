@@ -10,12 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.View.OutputLottoUI.lottoCountView;
+import static lotto.View.InputLottoUI.lottoCountView;
 
 public class GameService {
     int money;
     int lottoCount;
+    int bonusNumber;
     List<List<Integer>> lottos;
+    List<Integer> answerNumbers;
     Referee referee;
 
     public void setGame() {
@@ -26,25 +28,33 @@ public class GameService {
                 lottoCount = LottoSalesman.lottoCount(money);
                 lottoCountView(lottoCount);
                 lottos = LottoSalesman.buyLotto(lottoCount);
-                OutputLottoUI.lottoSalse(lottos);
+                InputLottoUI.lottoSalse(lottos);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputLottoUI.moneyViewReInput();
             }
         }
 
         while (true) {
             OutputLottoUI.answerLottoView();
             try {
-                List<Integer> answerNumbers = InputLottoUI.inputAnswerLottoPrint();
+                answerNumbers = InputLottoUI.inputAnswerLottoPrint();
                 Lotto.validate(answerNumbers);
-                OutputLottoUI.answerBonusNumberView();
-                referee = new Referee(answerNumbers, InputLottoUI.inputBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
                 OutputLottoUI.answerViewReInput();
             }
 
+        }
+
+        while (true) {
+            try {
+                OutputLottoUI.answerBonusNumberView();
+                bonusNumber = LottoSalesman.bonusValidate(bonusNumber);
+                referee = new Referee(answerNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                OutputLottoUI.bonusViewReInput();
+            }
         }
     } // setGame() END
 

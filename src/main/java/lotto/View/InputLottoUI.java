@@ -14,6 +14,8 @@ public class InputLottoUI {
     public static int inputBonusNumber() {
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
+
+
     }
 
     public static List<Integer> inputAnswerLottoPrint() {
@@ -39,5 +41,15 @@ public class InputLottoUI {
 
     public static void rankViewTotal(String resultDescription, int count){
         System.out.println(resultDescription + " - " + count + "개");
+    }
+
+    public static void lottoSalse(List<List<Integer>> lottos) {
+        for(List<Integer> lotto : lottos) {
+            System.out.println(lotto);
+        }
+    }
+
+    public static void lottoCountView(int lottoCount) {
+        System.out.println("\n" +lottoCount + "개를 구매했습니다.");
     }
 }

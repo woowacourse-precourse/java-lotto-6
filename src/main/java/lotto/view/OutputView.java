@@ -3,10 +3,7 @@ package lotto.view;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottoTicketDto;
 import lotto.domain.dto.WinningResultDto;
-import lotto.domain.result.Ranking;
-import lotto.domain.result.WinningResult;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoTicket;
+import lotto.domain.Ranking;
 
 import java.text.DecimalFormat;
 import java.util.List;

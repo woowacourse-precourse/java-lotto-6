@@ -1,5 +1,6 @@
 package lotto.domain.result;
 
+import lotto.domain.Ranking;
 import lotto.domain.lotto.LottoTicket;
 
 import java.util.EnumMap;

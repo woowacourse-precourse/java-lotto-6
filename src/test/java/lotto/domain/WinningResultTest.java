@@ -4,7 +4,6 @@ import lotto.domain.dto.WinningResultDto;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.LottoTicket;
-import lotto.domain.result.Ranking;
 import lotto.domain.result.WinningLotto;
 import lotto.domain.result.WinningResult;
 import org.junit.jupiter.api.BeforeEach;

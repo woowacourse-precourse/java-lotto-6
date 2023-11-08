@@ -22,5 +22,13 @@ public class LottoSystemTest {
         assertThatThrownBy(() -> lottoSystem.buyLottoTicket(money))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 구입한_금액이_잘못된_경우(){
+        LottoSystem lottoSystem = new LottoSystem();
+        String money = "1000j";
+        assertThatThrownBy(() -> lottoSystem.buyLottoTicket(money))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 

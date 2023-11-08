@@ -1,5 +1,6 @@
 package lotto.Service;
 
+import java.text.DecimalFormat;
 import lotto.Enum.LottoResult;
 import lotto.Lotto;
 
@@ -8,7 +9,7 @@ public class GameResultOutputService {
     private static final String UNIT_STATEMENT = "개";
     private static final String OUTPUT_STATEMENT = "당첨 통계\n" + "---";
 
-    private static Str력ing getResultMessage(LottoResult lottoResult) {
+    private static String getResultMessage(LottoResult lottoResult) {
         return lottoResult.getDescription().concat(LOTTO_RESULT_SEPERATOR);
     }
 
@@ -41,4 +42,10 @@ public class GameResultOutputService {
         System.out.println(statement);
     }
 
+    public static void printRateOfReturn(double rate){
+        DecimalFormat decimalFormat = new DecimalFormat("###,##0.0");
+        String str = decimalFormat.format(rate);
+        System.out.println("총 수익률은 " + str + "%입니다.");
+
+    }
 }

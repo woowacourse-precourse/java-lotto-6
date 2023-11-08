@@ -54,7 +54,7 @@
      - [x] Enum 구현
 - [x] 수익을 계산한다. ->  getRateOfReturn() 
 - [x]  당첨 내역을 출력한다. -> printResult()
-  - [ ] 수익률 출력 -> printRateOfReturn() 
+  - [x] 수익률 출력 -> printRateOfReturn() 
       - 수익률은 소수점 둘쨰자리에서 반올림한다.
 
 예시출력

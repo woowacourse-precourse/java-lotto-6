@@ -55,13 +55,16 @@ public class GameResultService {
         return (double)output/input * 100;
     }
 
-    public void printResult() {
+    public void printResult(int input) {
         GameResultOutputService.printOutputStatement();
         GameResultOutputService.printThreeMatch(this.matchThree);
         GameResultOutputService.printFourMatch(this.matchFour);
         GameResultOutputService.printFiveWithoutBonus(this.matchFiveWithoutBonus);
         GameResultOutputService.printFiveWithBonus(this.matchFiveWithBonus);
+
+        GameResultOutputService.printRateOfReturn(this.getRateOfReturn(input, this.totalAmount));
     }
+
 
 
 }

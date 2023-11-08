@@ -22,7 +22,10 @@ public class LottoGame {
     }
 
     public List<Integer> generateLottoNums() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                .stream()
+                .sorted()
+                .toList();
     }
 
     public int getLottoCounts(int price) {

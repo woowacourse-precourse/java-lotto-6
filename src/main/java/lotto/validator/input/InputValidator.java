@@ -10,17 +10,20 @@ import java.util.regex.Pattern;
 public class InputValidator {
     public void validateInputBudgetIsNumber(String budget){
         if(!isNumber(budget)){
+            BudgetInputErrorMessage.NOT_NUMBER.displayMessage();
             throw new IllegalArgumentException(BudgetInputErrorMessage.NOT_NUMBER.getMessage());
         }
     }
     public void validateInputBonusNumber(String bonusNumber){
         if(!isNumber(bonusNumber)){
+            WinningCombinationInputErrorMessage.NOT_NUMBER_BONUS_NUMBER.displayMessage();
             throw new IllegalArgumentException(WinningCombinationInputErrorMessage.NOT_NUMBER_BONUS_NUMBER.getMessage());
         }
     }
 
     public void validateInputWinningNumbers(String winningNumbers){
         if(isWrongInputWinningNumbers(winningNumbers)){
+            WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.displayMessage();
             throw new IllegalArgumentException(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
         }
     }

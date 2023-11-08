@@ -10,27 +10,21 @@ public class InputView {
     public String InputBudget(){
         //문장 출력
         System.out.print(ProcessMessage.PLEASE_INPUT_BUDGET.getMessage());
-        String budget = Console.readLine();
-        Console.close();
-        //유효성 검사
+        String budget = input();
         inputValidator.validateInputBudgetIsNumber(budget);
         return budget;
     }
 
     public String InputWinningNumbers(){
         System.out.print(ProcessMessage.PLEASE_INPUT_WINNING_NUMBERS.getMessage());
-        String winningNumbers = Console.readLine();
-        Console.close();
-        //유효성 검사
+        String winningNumbers = input();
         inputValidator.validateInputWinningNumbers(winningNumbers);
         return winningNumbers;
     }
 
     public String InputBonusNumber(){
         System.out.print(ProcessMessage.PLEASE_INPUT_BONUS_NUMBER.getMessage());
-        String bonusNumber = Console.readLine();
-        Console.close();
-        //유효성 검사
+        String bonusNumber = input();
         inputValidator.validateInputBonusNumber(bonusNumber);
         return bonusNumber;
     }
@@ -40,5 +34,9 @@ public class InputView {
         sb.append(String.format(ProcessMessage.PURCHASE_LOTTO.getMessage(),lottosSize));
         sb.append(lottosForDisplay);
         System.out.print(sb);
+    }
+
+    public String input(){
+        return Console.readLine();
     }
 }

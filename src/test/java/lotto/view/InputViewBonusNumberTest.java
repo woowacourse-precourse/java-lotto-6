@@ -1,5 +1,6 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.view.message.exception.WinningCombinationInputErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,7 @@ class InputViewBonusNumberTest {
         String testResult = inputView.InputBonusNumber();
         assertThat(testResult)
                 .isEqualTo(expectedBudget);
+        Console.close();
     }
 
     @DisplayName("InputBonusNumber에서 숫자를 넣지 않았을 경우 예외출력 확인")
@@ -37,6 +39,7 @@ class InputViewBonusNumberTest {
         assertThatThrownBy(inputView::InputBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.NOT_NUMBER_BONUS_NUMBER.getMessage());
+        Console.close();
 
     }
 
@@ -49,6 +52,7 @@ class InputViewBonusNumberTest {
         assertThatThrownBy(inputView::InputBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.NOT_NUMBER_BONUS_NUMBER.getMessage());
+        Console.close();
 
     }
 
@@ -61,5 +65,6 @@ class InputViewBonusNumberTest {
         assertThatThrownBy(inputView::InputBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.NOT_NUMBER_BONUS_NUMBER.getMessage());
+        Console.close();
     }
 }

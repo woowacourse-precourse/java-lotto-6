@@ -16,4 +16,8 @@ public enum WinningCombinationInputErrorMessage {
     public String getMessage(){
         return message;
     }
+
+    public void displayMessage(){
+        System.out.println(message);
+    }
 }

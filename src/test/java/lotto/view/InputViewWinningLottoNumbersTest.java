@@ -1,5 +1,6 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.view.message.exception.WinningCombinationInputErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,7 @@ class InputViewWinningLottoNumbersTest {
         String testResult = inputView.InputWinningNumbers();
         assertThat(testResult)
                 .isEqualTo(expectedWinningNumbers);
+        Console.close();
     }
 
     @DisplayName("숫자를 넣지 않았을 때")
@@ -39,6 +41,7 @@ class InputViewWinningLottoNumbersTest {
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+        Console.close();
     }
 
     @DisplayName("아무것도 입력하지 않았을 때")
@@ -50,6 +53,7 @@ class InputViewWinningLottoNumbersTest {
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+        Console.close();
     }
 
     @DisplayName("소수를 적었을 때")
@@ -61,6 +65,7 @@ class InputViewWinningLottoNumbersTest {
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+        Console.close();
     }
 
     @DisplayName("콤마 입력 형식이 잘못되었을 때")
@@ -72,6 +77,7 @@ class InputViewWinningLottoNumbersTest {
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+        Console.close();
     }
 
     @DisplayName("콤마 입력 형식이 잘못되었을 때")
@@ -83,6 +89,7 @@ class InputViewWinningLottoNumbersTest {
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+        Console.close();
     }
 
     @DisplayName("콤마 입력 형식이 잘못되었을 때")
@@ -94,6 +101,7 @@ class InputViewWinningLottoNumbersTest {
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+        Console.close();
     }
 
     @DisplayName("콤마 입력 형식이 잘못되었을 때")
@@ -105,5 +113,6 @@ class InputViewWinningLottoNumbersTest {
         assertThatThrownBy(inputView::InputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
+        Console.close();
     }
 }

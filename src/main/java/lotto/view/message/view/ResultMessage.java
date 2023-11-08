@@ -18,4 +18,8 @@ public enum ResultMessage {
     public String getMessage() {
         return message;
     }
+
+    public void displayMessage(){
+        System.out.println(message);
+    }
 }

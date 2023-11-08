@@ -1,5 +1,7 @@
 package lotto.view.message.view;
 
+import javax.sound.midi.Soundbank;
+
 public enum ProcessMessage {
     PLEASE_INPUT_BUDGET("구입금액을 입력해 주세요.\n"),
     PURCHASE_LOTTO("\n%d개를 구매했습니다.\n"),
@@ -14,5 +16,9 @@ public enum ProcessMessage {
 
     public String getMessage() {
         return message;
+    }
+
+    public void displayMessage(){
+        System.out.println(message);
     }
 }

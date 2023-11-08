@@ -10,7 +10,6 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class LottoVender {
@@ -43,7 +42,7 @@ public class LottoVender {
         payPrice(inputPrice);
         OutputView.showCount(lottoCount);
         boughtTickets = getLotto(lottoCount);
-        OutputView.showLottoTickets(boughtTickets);
+        OutputView.showLottoTickets(setLottoList(boughtTickets));
     }
 
     public void setWinningNumber(){
@@ -55,8 +54,19 @@ public class LottoVender {
         List<Integer> result = checkResult(boughtTickets, winningNumber, bonusNumber);
         int totalProfit = getTotalProfit(result);
         ProfitCalculator calculator = new ProfitCalculator(inputPrice,totalProfit);
-        String profit = calculator.calculate();
-        OutputView.showLottoResult(result, profit);
+        String profitPer = calculator.calculate();
+        List<String> messageList = makeMessageList();
+        OutputView.showLottoResult(result, profitPer, messageList);
+    }
+
+    public List<String> makeMessageList(){
+        String[] matchArray = WinningPrize.matchArray;
+        List<String> messageArray = new ArrayList<>();
+        for(int i=0; i<5; i++){
+            String message = WinningPrize.valueOf(matchArray[i]).getMessage();
+            messageArray.add(message);
+        }
+        return messageArray;
     }
 
     public void payPrice(int inputPrice){
@@ -75,6 +85,16 @@ public class LottoVender {
         return lottoticekts;
     }
 
+    public List<String> setLottoList(List<Lotto> lottos){
+        List<String> lottoList = new ArrayList<>();
+
+        for(Lotto lotto : lottos){
+            lottoList.add(lotto.toString());
+        }
+
+        return lottoList;
+    }
+
     public List<Integer> checkResult(List<Lotto> lottos, String winningNumber, String bonusNumber){
         LottoChecker checker = new LottoChecker(lottos, winningNumber, bonusNumber);
         List<Integer> result = checker.checkResult();
@@ -82,9 +102,11 @@ public class LottoVender {
     }
 
     public int getTotalProfit(List<Integer> result){
+        String[] matchArray = WinningPrize.matchArray;
         int totalProfit = 0;
         for(int i=0; i<5; i++){
-            totalProfit += result.get(i) * WinningPrize.priceArray[i];
+            int price = WinningPrize.valueOf(matchArray[i]).getPrice();
+            totalProfit += result.get(i) * price;
         }
         return totalProfit;
     }

@@ -1,4 +1,4 @@
-package lottovender;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.view.InputView;

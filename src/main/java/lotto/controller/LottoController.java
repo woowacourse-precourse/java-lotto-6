@@ -26,6 +26,7 @@ public class LottoController {
         ArrayList<Lotto> lottos = generateLottoAndPrint(purchaseAmount);
         WinningLotto winningLotto = getWinningLotto();
         Map<Rank, Integer> winningRankCount = getStatisticsMapAndPrint(lottos, winningLotto);
+        getProfitRateAndPrint(purchaseAmount, winningRankCount);
     }
 
     private PurchaseAmount getPurchaseAmount() {
@@ -65,4 +66,9 @@ public class LottoController {
         return winningRankCount;
     }
 
+    private void getProfitRateAndPrint(PurchaseAmount purchaseAmount, Map<Rank, Integer> winningRankCount) {
+        double profitRate = lottoService.calculateProfitRate(winningRankCount, purchaseAmount);
+
+        outputView.printProfitRate(profitRate);
+    }
 }

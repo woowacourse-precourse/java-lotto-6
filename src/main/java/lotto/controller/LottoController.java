@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
 import lotto.domain.User;
 import lotto.ui.InputView;
@@ -18,7 +19,9 @@ public class LottoController {
         runLottoGame();
     }
     public static LottoController startProgram(){
-        return new LottoController(User.buyLotto(),new LottoStore());
+        int amount = InputView.inputAmount();
+        List<Lotto> lottos = LottoStore.lottoIssuance(amount);
+        return new LottoController(new User(amount,lottos),new LottoStore());
     }
 
     private void runLottoGame(){

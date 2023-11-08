@@ -11,8 +11,8 @@ public class LottoNumberGenerator {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    public static List<List<Integer>> generateLottoNumbers(int ticketNumber) {
-        return Stream.generate(() -> generateLottoNumber()).limit(ticketNumber)
+    public static List<List<Integer>> generateLottoNumbers(int purchaseAmount) {
+        return Stream.generate(() -> generateLottoNumber()).limit(purchaseAmount)
                 .collect(Collectors.toList());
     }
 }

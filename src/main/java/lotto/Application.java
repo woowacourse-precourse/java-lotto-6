@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -37,5 +38,18 @@ public class Application {
         int bonusNumber = InputManager.bonusNumberInput(winningLotto);
 
         return bonusNumber;
+    }
+
+    public static List<Lotto> buyLotto(int purchaseAmount) {
+        System.out.println(purchaseAmount + "개를 구매했습니다.");
+        List<List<Integer>> lottoNumbers = LottoNumberGenerator.generateLottoNumbers(purchaseAmount);
+        List<Lotto> lottos = makeLottoNumbersToLotto(lottoNumbers);
+
+        return lottos;
+    }
+
+
+    private static List<Lotto> makeLottoNumbersToLotto(List<List<Integer>> LottoNumbers) {
+        return LottoNumbers.stream().map(Lotto::new).collect(Collectors.toList());
     }
 }

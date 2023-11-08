@@ -2,7 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,5 +31,4 @@ class BonusNumberTest {
         assertThatThrownBy(() -> new BonusNumber(number, lotto))
                 .isInstanceOf(IllegalArgumentException.class);
 	}
-
 }

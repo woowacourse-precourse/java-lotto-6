@@ -12,7 +12,6 @@ class MatchLottoTest {
 
     @Test
     void 당첨_번호_확인() {
-        MatchLotto matchLotto = new MatchLotto();
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
         List<Lotto> purchaseHistory = new ArrayList<>();
@@ -21,8 +20,9 @@ class MatchLottoTest {
         purchaseHistory.add(new Lotto(List.of(1, 2, 3, 4, 5, 8)));
         purchaseHistory.add(new Lotto(List.of(1, 2, 3, 4, 7, 8)));
 
-        matchLotto.matchLotto(winningNumbers, bonusNumber, purchaseHistory);
+        List<LottoRankings> matchResult = MatchLotto.createMatchLotto()
+                .matchLotto(winningNumbers, bonusNumber, purchaseHistory);
 
-        assertThat(matchLotto.getMatchResult()).isEqualTo(List.of(FIRST, SECOND, THIRD, FOURTH));
+        assertThat(matchResult).isEqualTo(List.of(FIRST, SECOND, THIRD, FOURTH));
     }
 }

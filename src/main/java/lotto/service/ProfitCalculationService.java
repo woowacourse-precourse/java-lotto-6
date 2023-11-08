@@ -1,16 +1,23 @@
 package lotto.service;
+import java.util.List;
+import lotto.constant.Prize;
 
 public class ProfitCalculationService {
 
-  private static final int[] PRIZE_MONEY = {0, 0, 5000, 50000, 1500000, 30000000, 2000000000};
-
-  public double calculateProfitRate(int countOfPurchase, int countOfWinning) {
-    int expenditure = countOfPurchase * 1000;
-    int prize = PRIZE_MONEY[countOfWinning];
-    return calculateRate(expenditure, prize);
+  public double calculateProfitRate(int purchaseAmount, List<Integer> winningRanks) {
+    int totalPrize = calculateTotalPrize(winningRanks);
+    return calculateProfit(purchaseAmount, totalPrize);
   }
 
-  private double calculateRate(int expenditure, int prize) {
-    return ((double) prize - expenditure) / expenditure * 100;
+  private int calculateTotalPrize(List<Integer> winningRanks) {
+    int totalPrize = 0;
+    for (int rank : winningRanks) {
+      totalPrize += Prize.values()[rank - 1].getPrizeMoney();
+    }
+    return totalPrize;
+  }
+
+  private double calculateProfit(int purchaseAmount, int totalPrize) {
+    return (double) totalPrize / purchaseAmount;
   }
 }

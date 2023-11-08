@@ -15,4 +15,11 @@ public class BonusTest {
         assertThatThrownBy(() -> new Bonus(1, new Lotto(List.of(1, 2, 3, 4, 5, 6))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호는 1~45 사이의 숫자여야 합니다.")
+    @Test
+    void InRangeBonus() {
+        assertThatThrownBy(() -> new Bonus(1, new Lotto(List.of(1, 2, 3, 4, 5, 66))))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

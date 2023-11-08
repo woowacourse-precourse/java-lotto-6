@@ -24,11 +24,11 @@ public class OutputView {
     public static void printResultOfLottery(WinningStatisticDTO winningStatisticDTO) {
         System.out.println(String.format(
                 OutputMessage.RESULT_OF_LOTTERY.getMessage(),
-                winningStatisticDTO.getMatched3(),
-                winningStatisticDTO.getMatched4(),
-                winningStatisticDTO.getMatched5(),
-                winningStatisticDTO.getMatched5AndBonusNumber(),
-                winningStatisticDTO.getMatched6()
+                winningStatisticDTO.getMatchedThree(),
+                winningStatisticDTO.getMatchedFour(),
+                winningStatisticDTO.getMatchedFive(),
+                winningStatisticDTO.getMatchedFiveAndBonus(),
+                winningStatisticDTO.getMatchedSix()
         ));
     }
 

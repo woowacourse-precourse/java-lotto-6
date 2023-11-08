@@ -59,11 +59,11 @@ public class CalculateLotteryServiceImpl implements CalculateLotteryService {
 
     private Long getEarn(WinningStatisticDTO winningStatisticDTO) {
         Long earn = ZERO;
-        earn += returnsOfThreeMatched * winningStatisticDTO.getMatched3();
-        earn += returnsOfFourMatched * winningStatisticDTO.getMatched4();
-        earn += returnsOfFiveMatched * winningStatisticDTO.getMatched5();
-        earn += returnsOfFiveAndBonusMatched * winningStatisticDTO.getMatched5AndBonusNumber();
-        earn += returnsOfSixMatched * winningStatisticDTO.getMatched6();
+        earn += returnsOfThreeMatched * winningStatisticDTO.getMatchedThree();
+        earn += returnsOfFourMatched * winningStatisticDTO.getMatchedFour();
+        earn += returnsOfFiveMatched * winningStatisticDTO.getMatchedFive();
+        earn += returnsOfFiveAndBonusMatched * winningStatisticDTO.getMatchedFiveAndBonus();
+        earn += returnsOfSixMatched * winningStatisticDTO.getMatchedSix();
 
         return earn;
     }

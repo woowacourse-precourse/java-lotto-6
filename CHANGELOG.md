@@ -7,6 +7,7 @@
 ##### Documentation Changes
 
 * **CHANGELOG:**
+  *  update CHANGELOG for recent changes (09ea7f4f)
   *  Update CHANGELOG for recent changes (dbcaa9c7)
   *  update CHANGELOG for recent changes (14db64b8)
 * **README:**
@@ -39,10 +40,12 @@
 
 ##### Refactors
 
+* **Game:**
+  *  change amount data type from Integer to Long (cd20cb3a)
+  *  copy unsorted List to ArrayList (5fc8e41b)
 * **Constants:**  replace numberCount with Constants.NUMBER_COUNT (227c0d64)
 * **Message:**  declare a constant for comma separator (874df6b9)
 * **Errors:**  consolidate error messages in Errors class (64909ad9)
-* **Game:**  copy unsorted List to ArrayList (5fc8e41b)
 * **constants:**  collect code strings and constants in the 'constants' package (b51b69b8)
 * **View:**  rename Message class to View for clarity (961b1d5c)
 * **Validator:**  consolidate duplicate validation logic (3e3a4b74)

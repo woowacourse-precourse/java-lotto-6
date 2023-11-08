@@ -45,7 +45,7 @@ public class Validator {
     }
 
     public static boolean isNumberOnly(String userInput) {
-        if (userInput.equals("")) {
+        if (userInput.isEmpty()) {
             return false;
         }
         try {

@@ -22,7 +22,7 @@ public class UserIoManager {
                 int userMoney = inputView.readUserMoney();
                 return new UserMoney(userMoney);
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                printErrorMessage(e.getMessage());
             }
         }
     }
@@ -33,7 +33,7 @@ public class UserIoManager {
                 outputView.printWinningNumbersGuide();
                 return inputView.readWinningNumbers();
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                printErrorMessage(e.getMessage());
             }
         }
     }
@@ -44,7 +44,7 @@ public class UserIoManager {
                 outputView.printBonusNumberGuide();
                 return new Bonus(inputView.readBonusNumber());
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                printErrorMessage(e.getMessage());
             }
         }
     }
@@ -62,5 +62,9 @@ public class UserIoManager {
         outputView.printHorizontalLine();
         outputView.printUserLottoRank(userLottoRank);
         outputView.printRevenueRate(userMoney, userLottoRank);
+    }
+
+    private void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }

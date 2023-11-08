@@ -19,8 +19,9 @@
 
 ## util
 - Verify
-  - verifyDuplicate : 입력받은 당첨번호 중복 확인하는 함수
-  - verifyNumber : 입력받은 당첨번호 숫자인지 확인하는 함수
+  - verifyDuplicate : 입력받은 당첨번호 중복 확인하는 함수.
+  - verifyNumber : 입력받은 당첨번호 숫자인지 확인하는 함수.
+  - verifyAmount : 입력받은 로또 구입 금액이 1000원 이상인지 확인하는 함수.
 - Generator : 
   - GenerateNumbers : 랜덤으로 로또 발행하는 함수
 

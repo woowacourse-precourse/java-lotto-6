@@ -30,8 +30,13 @@ public class InputView {
         return winningNumberList;
     }
 
-    public static int inputBonusNumber() {
+    public static int inputBonusNumber() throws IllegalArgumentException {
         System.out.println(INPUT_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            ExceptionMessage.numberException();
+            throw new IllegalArgumentException();
+        }
     }
 }

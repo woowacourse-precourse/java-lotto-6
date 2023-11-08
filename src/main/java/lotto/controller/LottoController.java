@@ -33,10 +33,9 @@ public class LottoController {
         OutputView.printPurchaseCount(ticketCount);
 
         initializeLottos(ticketCount);
-
-        List<Integer> randomNumbers = null;
+        
         for (int i = 0; i < ticketCount; ++i) {
-            randomNumbers = setRandomLottoNumbers();
+            List<Integer> randomNumbers = setRandomLottoNumbers();
             randomLottos.add(randomNumbers);
             OutputView.printRandomLottoNumbers(randomNumbers);
         }

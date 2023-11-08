@@ -58,12 +58,12 @@
   - hasBonus(): 로또 번호 중 보너스 번호 유무를 확인하여 반환한다.
   - 유효성 검증
     - validateLottoSize(): 로또가 6자리가 아니라면 IllegalArgumentException을 발생시킨다.
-    - alidateDuplicateNumber(): 로또 번호가 중복된다면 IllegalArgumentException을 발생시킨다.
+    - validateDuplicateNumber(): 로또 번호가 중복된다면 IllegalArgumentException을 발생시킨다.
 - LottoAmount: 로또 구매 금액을 추상화한 클래스
   - getLottoCount(): 로또 구매 갯수를 반환한다.
   - 유효성 검증
-    - [ ] 로또 금액 입력 시, 숫자가 아닌 문자가 입력된다면 IllegalArgumentException을 발생시킨다.
-    - [ ] 로또 금액 입력 시, 음수가 입력된다면 IllegalArgumentException을 발생시킨다.
+    - validateIsNumber(): 로또 금액 입력 시, 숫자가 아닌 문자가 입력된다면 IllegalArgumentException을 발생시킨다.
+    - validateIsPositive(): 로또 금액 입력 시, 음수가 입력된다면 IllegalArgumentException을 발생시킨다.
     - validateAmount(): 로또 금액이 1000원으로 나누어 떨어지지 않는다면, IllegalArgumentException을 발생시킨다.
 
 - LottoTickets: 구매한 로또들을 추상화한 클래스

@@ -37,4 +37,49 @@ class LottoAmountTest {
         assertThatCode(() -> new LottoAmount(amount))
                 .doesNotThrowAnyException();
     }
+
+    @Test
+    @DisplayName("숫자가 아닌 문자가 포함된 입력이 주어지면 예외가 발생시킨다.")
+    void validateIsNumber_throwException() {
+        /**
+         * given : 숫자가 아닌 문자(1000j)가 주어진다.
+         * when : LottoAmount 객체를 생성한다.
+         * then : IllegalArgumentException 예외가 발생한다.
+         */
+        String amount = "1000j";
+
+        assertThatThrownBy(() -> new LottoAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("로또 금액에 숫자 외의 문자와 공백은 포함될 수 없습니다. 구입 금액을 1000원 단위로 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("공백이 포함된 입력이 주어지면 예외가 발생시킨다.")
+    void validateIsNumber_Blank_throwException() {
+        /**
+         * given : 입력으로 공백이 주어진다.
+         * when : LottoAmount 객체를 생성한다.
+         * then : IllegalArgumentException 예외가 발생한다.
+         */
+        String amount = " ";
+
+        assertThatThrownBy(() -> new LottoAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("로또 금액에 숫자 외의 문자와 공백은 포함될 수 없습니다. 구입 금액을 1000원 단위로 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("로또 금액이 음수라면, 예외를 발생시킨다.")
+    void validateIsPositive_throwException() {
+        /**
+         * given : 입력으로 음수가 주어진다.
+         * when : LottoAmount 객체를 생성한다.
+         * then : IllegalArgumentException 예외가 발생한다.
+         */
+        String amount = "-1000";
+
+        assertThatThrownBy(() -> new LottoAmount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("로또 금액은 음수일 수 없습니다. 구입 금액을 1000원 단위로 금액을 입력해주세요.");
+    }
 }

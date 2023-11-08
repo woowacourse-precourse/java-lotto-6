@@ -46,6 +46,10 @@ public class OutputView {
                 .collect(Collectors.joining(PurchasedMessage.PURCHASED_LOTTO_DELIMITER));
     }
 
+    public void printPurchasedAmount(int amount){
+        System.out.printf(PurchasedMessage.PURCHASE_AMOUNT, amount);
+    }
+
     public void printStatisticsIncludeBonusNumber(int hitCount, int prize, int rankCount) {
         String formattedStatics
                 = formatStatistics(StatisticsMessage.CONTENT_INCLUDE_BONUS_NUMBER, hitCount, prize, rankCount);

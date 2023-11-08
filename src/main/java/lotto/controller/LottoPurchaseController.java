@@ -13,6 +13,7 @@ public class LottoPurchaseController {
     public List<Lotto> purchase(int userPayment) {
         List<Lotto> purchasedLotto = purchaseLotto(userPayment);
         purchasedLotto.forEach(this::printPurchasedLotto);
+        printPurchasedAmount(purchasedLotto.size());
         return purchasedLotto;
     }
 
@@ -28,5 +29,9 @@ public class LottoPurchaseController {
     private void printPurchasedLotto(Lotto purchasedLotto) {
         List<Integer> lottoNumbers = purchasedLotto.getNumbers().stream().toList();
         outputView.printPurchasedLotto(lottoNumbers);
+    }
+
+    private void printPurchasedAmount(int amount) {
+        outputView.printPurchasedAmount(amount);
     }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -22,6 +23,83 @@ public class Application {
             System.out.println(lotto.getNumbers());
         }
 
+        //2. 사용자로부터 당첨번호, 보너스번호를 입력받아 저장한다.
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        Lotto winningLotto = getWinningLotto();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = getBonusNumber();
+
+
+    }
+
+    public static int getBonusNumber(){
+        String userInput;
+        while(true) {
+            try {
+                userInput = readLine().trim();
+                bonusNumberValidate(userInput);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
+            }
+        }
+
+        return Integer.parseInt(userInput);
+    }
+
+    public static void bonusNumberValidate(String bonusNumber){
+        if(!isNumeric(bonusNumber)){
+            throw new IllegalArgumentException();
+        }
+    }
+    public static Lotto getWinningLotto() {
+        Lotto winningLotto;
+        while(true) {
+            try {
+                winningLotto = new Lotto(getWinningNumbers());
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 6개의 당첨 번호를 입력해주세요.");
+            }
+        }
+
+        return winningLotto;
+    }
+
+    public static List<Integer> getWinningNumbers() {
+        String userInput;
+        String[] splittedNumber;
+        while(true) {
+            try {
+                userInput = readLine().trim();
+                splittedNumber = userInput.split(",");
+                splittedNumberValidate(splittedNumber);
+                break;
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 당첨 번호를 숫자로 입력해주세요.");
+            }
+        }
+
+        return stringArrayToIntegerList(splittedNumber);
+    }
+
+    public static List<Integer> stringArrayToIntegerList(String[] numbers){
+        List<Integer> winningNumbers = new ArrayList<>();
+        for(String number : numbers){
+            winningNumbers.add(Integer.parseInt(number));
+        }
+
+        return winningNumbers;
+    }
+
+    public static void splittedNumberValidate(String[] splittedNumber){
+        for(String number : splittedNumber){
+            if(!isNumeric(number)){
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     public static long getUserInputAmount() {

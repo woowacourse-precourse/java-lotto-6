@@ -29,6 +29,7 @@ public class WinningLotto {
                     if (strLottoNumber.isEmpty()) {
                         return false;
                     }
+                    Validation.onlyNumberCheck(strLottoNumber);
                     return true;
                 })
                 .map(Integer::parseInt)

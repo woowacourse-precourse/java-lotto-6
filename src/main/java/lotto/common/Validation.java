@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 public final class Validation {
 
+    private static final String ONLY_NUMBER_CHECK = "[-+]?\\d*\\.?\\d+";
+
     public static void lottoSize(List<Integer> numbers) {
         if (numbers.size() != SIZE.getNumber()) {
             throw new IllegalArgumentException();
@@ -60,6 +62,12 @@ public final class Validation {
 
     public static void lottoPriceCheck(Integer buyPrice) {
         if (buyPrice % THOUSAND.getNumber() != ZERO.getNumber()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void onlyNumberCheck(String inputData) {
+        if (!(inputData != null && inputData.matches(ONLY_NUMBER_CHECK))) {
             throw new IllegalArgumentException();
         }
     }

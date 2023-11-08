@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.stream.Collectors;
+import lotto.common.Validation;
 import lotto.domain.Buyer;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
@@ -15,9 +16,7 @@ public class LottoController {
     private final LottoService lottoService;
     private Buyer buyer;
     private WinningLotto winningLotto;
-
     private Rank rank;
-
     private Integer buyPrice;
     private Integer buyLottoCount;
 
@@ -73,7 +72,9 @@ public class LottoController {
 
     private String inputBonus() {
         outputView.inputBonusNumber();
-        return inputView.inputBonus();
+        String bonus = inputView.inputBonus();
+        Validation.onlyNumberCheck(bonus);
+        return bonus;
     }
 
     private void lottoResult() {

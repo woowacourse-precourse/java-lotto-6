@@ -1,15 +1,16 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.common.Validation;
 
 public class InputView {
 
-    private static final String ONLY_NUMBER = "[^0-9]";
-
     public Integer inputPrice() {
         String strPrice = Console.readLine()
-                .trim()
-                .replaceAll(ONLY_NUMBER, "");
+                .trim();
+
+        Validation.onlyNumberCheck(strPrice);
+
         return Integer.parseInt(strPrice);
     }
 

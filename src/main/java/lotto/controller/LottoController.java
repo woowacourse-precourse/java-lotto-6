@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoWinningResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -28,7 +29,10 @@ public class LottoController {
         Lotto winningNumber = inputView.inputWinningNumber();
         int bonusNumber = inputView.inputBonusNumber();
 
+        LottoWinningResult winningResult = lottoService.getWinningResult(winningNumber, bonusNumber);
+        outputView.showWinningResult(winningResult);
 
-
+        double earningRate = winningResult.calculateEarningRate(purchaseAmount);
+        outputView.showEarningRate(earningRate);
     }
 }

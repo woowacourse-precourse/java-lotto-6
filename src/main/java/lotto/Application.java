@@ -13,27 +13,26 @@ public class Application {
     static Committee committee = Committee.getInstance();
 
     public static void main(String[] args) {
-
         int price = setPrice();
-
         int count = price / 1000;
-
         List<Integer>[] issueNumbers = setIssueNumbers(count);
         outputView.printIssueNumbers(issueNumbers, count);
-
-        Set<Integer> winningNumbers = setWinningNumbers();
-        int bonusNumber = setBonusNumber();
-
+        Lotto lotto = setWinningNumbers();
+        int bonusNumber = setBonusNumber(lotto);
+        int[] sameNumberCount = committee.calculateResult(issueNumbers, lotto, bonusNumber);
+        outputView.printResult(sameNumberCount);
+        float rate = committee.calculateRate(sameNumberCount, price);
+        outputView.printRate(rate);
     }
 
-    private static int setBonusNumber() {
+    private static int setBonusNumber(Lotto lotto) {
         boolean askAgain = true;
-        int bonusNumber =0;
+        int bonusNumber = 0;
         while (askAgain) {
             askAgain = false;
             String bonusNumberInput = inputView.inputBonusNumber();
             try {
-                bonusNumber = validator.validateBonusNumber(bonusNumberInput);
+                bonusNumber = validator.validateBonusNumber(bonusNumberInput, lotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 askAgain = true;
@@ -42,26 +41,28 @@ public class Application {
         return bonusNumber;
     }
 
-    private static Set<Integer> setWinningNumbers() {
+    private static Lotto setWinningNumbers() {
         boolean askAgain = true;
-        Set<Integer> winningNumbers = new HashSet<>();
+        List<Integer> winningNumbers = new ArrayList<>();
+        Lotto lotto = null;
         while (askAgain) {
             askAgain = false;
             String winningNumbersInput = inputView.inputWinningNumbers();
             try {
                 winningNumbers = validator.validateWinningNumbers(winningNumbersInput);
+                lotto = new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 askAgain = true;
             }
         }
-        return winningNumbers;
+        return lotto;
     }
 
     private static List<Integer>[] setIssueNumbers(int count) {
-        List<Integer>[] issueNumbers = new ArrayList[count];
+        List<Integer> issueNumbers[] = new ArrayList[count];
         for (int i = 0; i < count; i++) {
-            List<Integer> list = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> list = new ArrayList(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(list);
             issueNumbers[i] = list;
         }

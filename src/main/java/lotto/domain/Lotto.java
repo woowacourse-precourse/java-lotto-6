@@ -3,7 +3,6 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoValue;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

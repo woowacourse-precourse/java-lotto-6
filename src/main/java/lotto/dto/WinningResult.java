@@ -21,19 +21,19 @@ public class WinningResult {
     private Money calculateRewardMoney() {
         List<Money> winningMoney = new ArrayList<>();
         for (Rank rank : ranks.keySet()) {
-            for (Integer i = 0; i < ranks.get(rank); i++) {
-                winningMoney.add(rank.getReward());
-            }
+            winningMoney.add(sumUnitRankReward(rank));
         }
         return calculateEarning(winningMoney);
     }
 
-    private static Money calculateEarning(List<Money> winningMoney) {
-        Money earning = new Money(0);
-        for (Money money : winningMoney) {
-            earning = earning.plus(money);
-        }
-        return earning;
+    private Money sumUnitRankReward(Rank rank) {
+        return rank.getReward().multiply(ranks.get(rank));
+    }
+
+    private Money calculateEarning(List<Money> winningMoney) {
+        return winningMoney.stream()
+                .reduce(Money::plus)
+                .orElse(new Money(0));
     }
 
     public Map<Rank, Integer> getRanks() {

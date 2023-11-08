@@ -23,7 +23,7 @@ public class GameController {
     public void proceedGame() {
         setUp();
         receiveUserNumbers();
-        decideOutcome();
+        handleOutcome();
     }
 
     private void setUp() {
@@ -35,11 +35,11 @@ public class GameController {
 
     private void receiveUserNumbers() {
         Lotto winningTicket = getWinningTicket();
-        WinningNumbers winningNumbers = askBonusNumber(winningTicket);
+        WinningNumbers winningNumbers = getBonusNumber(winningTicket);
         gameService.storeUserInput(winningNumbers);
     }
 
-    private void decideOutcome() {
+    private void handleOutcome() {
         Map<Rankings, Integer> statistics = gameService.getStatistics();
         outputView.printWinningResult(statistics);
         String yield = gameService.getCalculatedYield();
@@ -56,14 +56,13 @@ public class GameController {
         }
     }
 
-    //    private BonusNumber askBonusNumber(Lotto winningTicket) {
-    private WinningNumbers askBonusNumber(Lotto winningTicket) {
+    private WinningNumbers getBonusNumber(Lotto winningTicket) {
         try {
             int userInputBonusNumber = inputView.readBonusNumber();
             return new WinningNumbers(winningTicket, userInputBonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return askBonusNumber(winningTicket);
+            return getBonusNumber(winningTicket);
         }
     }
 }

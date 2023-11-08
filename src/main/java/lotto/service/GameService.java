@@ -15,7 +15,7 @@ public class GameService {
     private final int userPurchaseAmount;
     private LotteryOffice lotteryOffice;
 
-    public GameService(List<Lotto> issuedLotto, int userPurchaseAmount) {
+    private GameService(List<Lotto> issuedLotto, int userPurchaseAmount) {
         this.issuedLotto = issuedLotto;
         this.userPurchaseAmount = userPurchaseAmount;
     }

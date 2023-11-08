@@ -15,9 +15,24 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if(!checkAll(numbers)){
+            throw new IllegalArgumentException();
+        }
+
+    }
+
+    private boolean checkAll(List<Integer> numbers){
+        boolean res = true;
+        for(int i=0;i<6;i++){
+            res = res & checkRange(numbers.get(i));
+        }
+        return res;
     }
 
     // TODO: 추가 기능 구현
+    private boolean checkRange(int checkNum){
+        return (checkNum>0)&(checkNum<46);
+    }
     public void printInfo(){
         System.out.println(numbers);
     }

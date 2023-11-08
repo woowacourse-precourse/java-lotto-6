@@ -32,13 +32,18 @@ public class Game {
     }
 
     private void userWinning(){
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> list = Arrays.stream(Console.readLine().split(","))
-                .mapToInt(Integer::parseInt)
-                .boxed().collect(Collectors.toList());
-        this.answer = new Lotto(list);
-
+        try{
+            List<Integer> list = new ArrayList<>();
+            System.out.println();
+            System.out.println("당첨 번호를 입력해 주세요.");
+            list = Arrays.stream(Console.readLine().split(","))
+                    .mapToInt(Integer::parseInt)
+                    .boxed().collect(Collectors.toList());
+            this.answer = new Lotto(list);
+        }catch (IllegalArgumentException e){
+            System.out.println("[ERROR] "+e);
+            userWinning();
+        }
     }
 
     private void userBonus(){

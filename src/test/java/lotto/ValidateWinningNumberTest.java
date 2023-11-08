@@ -24,6 +24,14 @@ public class ValidateWinningNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
-    
+
+    @DisplayName("당첨 번호에 1~45 사이의 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createWinningNumberByNotRange() {
+
+        Assertions.assertThatThrownBy(() -> ValidateWinningNumber.validateWinningNumber("1, 2, 3, 4, 5, 46"))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
 
 }

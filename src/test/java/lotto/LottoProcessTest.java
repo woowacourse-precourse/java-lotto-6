@@ -30,12 +30,12 @@ class LottoProcessTest {
         Lotto one = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto two = new Lotto(List.of(4, 5, 6, 7, 8, 9));
         Lotto three = new Lotto(List.of(5, 6, 7, 8, 9, 10));
-        List<Lotto> lottos = List.of(one, two, three);
-        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(4, 5, 6, 7, 8, 9)), 10);
-        List<Rank> ranks = lottoProcess.makeRanks(lottos, winningLotto);
+        List<Lotto> inputLottos = List.of(one, two, three);
+        WinningLotto inputWinningLotto = new WinningLotto(new Lotto(List.of(4, 5, 6, 7, 8, 9)), 10);
+        List<Rank> result = lottoProcess.makeRanks(inputLottos, inputWinningLotto);
 
-        assertThat(ranks.get(0)).isEqualTo(Rank.THREE_MATCH);
-        assertThat(ranks.get(1)).isEqualTo(Rank.SIX_MATCH);
-        assertThat(ranks.get(2)).isEqualTo(Rank.FIVE_MATCH_AND_BONUS);
+        assertThat(result.get(0)).isEqualTo(Rank.THREE_MATCH);
+        assertThat(result.get(1)).isEqualTo(Rank.SIX_MATCH);
+        assertThat(result.get(2)).isEqualTo(Rank.FIVE_MATCH_AND_BONUS);
     }
 }

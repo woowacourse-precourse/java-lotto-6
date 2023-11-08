@@ -27,7 +27,7 @@ public class WinningResult {
                 .sum();
     }
 
-    public double calculateYield(int totalPurchaseAmount) {
-        return 100 * (double) calculateTotalPrizeMoney() / totalPurchaseAmount;
+    public double calculateYield(int purchaseAmount) {
+        return 100. * (double) calculateTotalPrizeMoney() / purchaseAmount;
     }
 }

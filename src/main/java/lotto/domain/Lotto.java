@@ -30,8 +30,8 @@ public class Lotto {
 
     private void validateOutOfRange(List<Integer> lottoNumbers) {
         for (int lottoNumber : lottoNumbers) {
-            if (lottoNumber < Constant.MINMUM_LOTTO_NUMBER.getValue()
-                    || lottoNumber > Constant.MAXMUM_LOTTO_NUMBER.getValue()) {
+            if (lottoNumber < Constant.MINIMUM_LOTTO_NUMBER.getValue()
+                    || lottoNumber > Constant.MAXIMUM_LOTTO_NUMBER.getValue()) {
                 throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
             }
         }

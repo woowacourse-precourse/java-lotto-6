@@ -15,8 +15,8 @@ public class WinningLotto extends Lotto {
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < Constant.MINMUM_LOTTO_NUMBER.getValue()
-                || bonusNumber > Constant.MAXMUM_LOTTO_NUMBER.getValue()) {
+        if (bonusNumber < Constant.MINIMUM_LOTTO_NUMBER.getValue()
+                || bonusNumber > Constant.MAXIMUM_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }

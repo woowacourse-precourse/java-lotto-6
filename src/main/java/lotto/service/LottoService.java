@@ -11,7 +11,7 @@ import lotto.domain.Lotto;
 public class LottoService {
     public List<Lotto> purchaseLottoTickets(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
-        int numberOfLottoTickets = purchaseAmount / Constant.UNIT_OF_LOTTO_PURCHASE_AMOUNT.getValue();
+        int numberOfLottoTickets = purchaseAmount / Constant.LOTTO_PRICE.getValue();
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < numberOfLottoTickets; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
@@ -22,13 +22,13 @@ public class LottoService {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount < Constant.MINMUM_LOTTO_PURCHASE_AMOUNT.getValue()) {
+        if (purchaseAmount < Constant.LOTTO_PRICE.getValue()) {
             throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_UNDER_MINIMUM.getMessage());
         }
-        if (purchaseAmount > Constant.MAXMUM_LOTTO_PURCHASE_AMOUNT.getValue()) {
+        if (purchaseAmount > Constant.MAXIMUM_PURCHASE_AMOUNT.getValue()) {
             throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_OVER_MAXIMUM.getMessage());
         }
-        if (purchaseAmount % Constant.UNIT_OF_LOTTO_PURCHASE_AMOUNT.getValue() != 0) {
+        if (purchaseAmount % Constant.LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_INVALID_UNIT.getMessage());
         }
     }

@@ -39,20 +39,20 @@ final class InputValidator {
     }
 
     static void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount < Constant.MINMUM_LOTTO_PURCHASE_AMOUNT.getValue()) {
+        if (purchaseAmount < Constant.LOTTO_PRICE.getValue()) {
             throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_UNDER_MINIMUM.getMessage());
         }
-        if (purchaseAmount > Constant.MAXMUM_LOTTO_PURCHASE_AMOUNT.getValue()) {
+        if (purchaseAmount > Constant.MAXIMUM_PURCHASE_AMOUNT.getValue()) {
             throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_OVER_MAXIMUM.getMessage());
         }
-        if (purchaseAmount % Constant.UNIT_OF_LOTTO_PURCHASE_AMOUNT.getValue() != 0) {
+        if (purchaseAmount % Constant.LOTTO_PRICE.getValue() != 0) {
             throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_INVALID_UNIT.getMessage());
         }
     }
 
     static void validateLottoNumber(int lottoNumber) {
-        if (lottoNumber < Constant.MINMUM_LOTTO_NUMBER.getValue()
-                || lottoNumber > Constant.MAXMUM_LOTTO_NUMBER.getValue()) {
+        if (lottoNumber < Constant.MINIMUM_LOTTO_NUMBER.getValue()
+                || lottoNumber > Constant.MAXIMUM_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }

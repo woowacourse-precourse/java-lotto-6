@@ -2,7 +2,9 @@ package lotto.domain;
 
 import static lotto.domain.Rank.FIFTH;
 import static lotto.domain.Rank.FIRST;
-import static lotto.domain.Rank.NOTHING;
+import static lotto.domain.Rank.FOURTH;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
@@ -41,9 +43,11 @@ public class WinnerReaderTest {
 
     private Map<Rank, Integer> createResultTable() {
         Map<Rank, Integer> rankTable = new HashMap<>();
-        rankTable.put(FIRST, 1);
         rankTable.put(FIFTH, 1);
-        rankTable.put(NOTHING, 1);
+        rankTable.put(FOURTH, 0);
+        rankTable.put(THIRD, 0);
+        rankTable.put(SECOND, 0);
+        rankTable.put(FIRST, 1);
         return rankTable;
     }
 }

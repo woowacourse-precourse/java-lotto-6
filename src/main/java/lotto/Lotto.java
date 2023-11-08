@@ -94,6 +94,10 @@ public class Lotto {
         return this.numbers.contains(bonusNumber);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

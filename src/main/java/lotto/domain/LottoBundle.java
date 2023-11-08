@@ -1,9 +1,20 @@
 package lotto.domain;
 
+import static lotto.domain.Rank.FIFTH;
+import static lotto.domain.Rank.FIRST;
+import static lotto.domain.Rank.FOURTH;
+import static lotto.domain.Rank.NOTHING;
+import static lotto.domain.Rank.SECOND;
+import static lotto.domain.Rank.THIRD;
+
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.Lotto;
 
 public class LottoBundle {
@@ -18,12 +29,17 @@ public class LottoBundle {
     }
 
     public Map<Rank, Integer> checkRankings(Lotto winnerLotto, Bonus bonus) {
-        Map<Rank, Integer> winningLottoTable = new HashMap<>();
+        Map<Rank, Integer> winningLottoTable = initWinningLottoTable();
         for (Lotto lotto : lotteries) {
             Rank rank = findRank(winnerLotto, bonus, lotto);
             addNumberOfRankings(winningLottoTable, rank);
         }
         return winningLottoTable;
+    }
+
+    private Map<Rank, Integer> initWinningLottoTable() {
+        return Stream.of(FIFTH, FOURTH, THIRD, SECOND, FIRST)
+                .collect(Collectors.toMap(rank -> rank, rank -> 0, (a, b) -> b, LinkedHashMap::new));
     }
 
     private Rank findRank(Lotto winnerLotto, Bonus bonus, Lotto lotto) {
@@ -33,7 +49,17 @@ public class LottoBundle {
     }
 
     private void addNumberOfRankings(Map<Rank, Integer> winningLottoTable, Rank rank) {
-        winningLottoTable.put(rank, winningLottoTable.getOrDefault(rank, 0) + 1);
+        if (rank != NOTHING) {
+            winningLottoTable.put(rank, winningLottoTable.get(rank) + 1);
+        }
+    }
+
+    public int size() {
+        return lotteries.size();
+    }
+
+    public List<Lotto> getLotteries() {
+        return lotteries;
     }
 
     @Override

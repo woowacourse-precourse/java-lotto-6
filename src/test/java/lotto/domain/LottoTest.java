@@ -106,4 +106,17 @@ class LottoTest {
         assertThat(rank).isEqualTo(Rank.FIFTH);
     }
 
+    @Test
+    void 불변의_로또_숫자_리스트를_반환한다() {
+        // given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        List<Integer> numbers = lotto.getNumbers();
+
+        // then
+        assertThatThrownBy(() -> numbers.add(7))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
+
 }

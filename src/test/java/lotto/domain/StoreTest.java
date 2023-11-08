@@ -51,4 +51,21 @@ class StoreTest {
         assertThat(lottoCount).isEqualTo(2);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {2_100_000_001, 2_100_001_000, 2_100_003_000})
+    void 로또_구매_가격이_21억을_초과하면_예외를_발생한다() {
+        // given
+        int price = 2_100_000_001;
+
+        // when, then
+        assertThatThrownBy(() -> new Store(price))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest(name = "로또 가격이 {0}원이면 예외를 발생하지 않는다")
+    @ValueSource(ints = {1000, 2000, 3000, 10000000, 2_100_000_000})
+    void 로또_구매_가격이_21억_이하면_예외를_발생하지_않는다(int price) {
+        // when, then
+        assertThatNoException().isThrownBy(() -> new Store(price));
+    }
 }

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -28,6 +29,17 @@ class RankTest {
 
         // then
         assertThat(result).isEqualTo(rank);
+    }
+
+    @Test
+    void 일치하는_번호_개수와_우승_상금을_반환한다() {
+        // given
+        final int matchCount = 6;
+        Rank firstRank = Rank.valueOf(matchCount, false);
+
+        // when, then
+        assertThat(firstRank.getWinningMoney()).isEqualTo(2_000_000_000);
+        assertThat(firstRank.getMatchCount()).isEqualTo(matchCount);
     }
 
 }

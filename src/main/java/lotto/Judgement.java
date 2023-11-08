@@ -25,4 +25,13 @@ public class Judgement {
         totalMoney = totalMoney / (inputMoney * 10);
         System.out.print("총 수익률은 " + totalMoney + "%입니다.");
     }
+
+    public void statics(List<Integer> result) {
+        System.out.println("당첨 통계\n" +
+                "---\n3개 일치 (5,000원) - " + result.get(4) + "개\n" +
+                "4개 일치 (50,000원) - " + result.get(3) + "개\n" +
+                "5개 일치 (1,500,000원) - " + result.get(2) + "개\n" +
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(1) + "개\n" +
+                "6개 일치 (2,000,000,000원) - " + result.get(0) + "개");
+    }
 }

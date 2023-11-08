@@ -30,7 +30,8 @@ public class LottoController {
         initWinnerNumber();
         initBonusNumber();
         generateResult();
-        displayResult();
+        displayStatistic();
+        displayRateOfReturn();
     }
 
     private void initPurchaseAmount() {
@@ -86,9 +87,13 @@ public class LottoController {
         rankResult.add(calculator.countRank());
     }
 
-    private void displayResult() {
+    private void displayStatistic() {
+        OutputView.displayStatistic(rankResult);
+    }
+
+    private void displayRateOfReturn() {
         float rateOfReturn = calculator.calculateRateOfReturn(rankResult);
-        OutputView.displayResult(rankResult, rateOfReturn);
+        OutputView.displayRateOfReturn(rateOfReturn);
     }
 
 }

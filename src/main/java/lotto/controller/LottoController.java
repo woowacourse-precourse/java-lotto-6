@@ -8,12 +8,10 @@ import lotto.service.ConfirmWinningService;
 import lotto.service.InputService;
 import lotto.service.PublishLottoService;
 import lotto.service.Service;
-import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 import lotto.view.View;
 
 public class LottoController implements Controller {
-    private final LottoInputView lottoInputView;
     private final LottoOutputView lottoOutputView;
     private final InputService inputService;
     private final PublishLottoService publishLottoService;
@@ -21,9 +19,8 @@ public class LottoController implements Controller {
     private final CalculateProfitService calculateProfitService;
 
     LottoController(View lottoInputView, View lottoOutputView) {
-        this.lottoInputView = (LottoInputView) lottoInputView;
         this.lottoOutputView = (LottoOutputView) lottoOutputView;
-        inputService = (InputService) Service.generateInputService();
+        inputService = (InputService) Service.generateInputService(lottoInputView);
         publishLottoService = (PublishLottoService) Service.generatePublishLottoService();
         confirmWinningService = (ConfirmWinningService) Service.generateConfirmWinningService();
         calculateProfitService = (CalculateProfitService) Service.generateCalculateProfitService();
@@ -42,7 +39,7 @@ public class LottoController implements Controller {
     }
 
     private Integer getMoneyInput() {
-        return inputService.getInputMoney(lottoInputView);
+        return inputService.getInputMoney();
     }
 
     private PublishedLotto getPublishedLotto(Integer money) {
@@ -50,8 +47,8 @@ public class LottoController implements Controller {
     }
 
     private LottoBonusPair getWinnerNumberPair() {
-        Lotto winnerNumber = inputService.getInputWinnerNumbers(lottoInputView);
-        return inputService.getLottoBonusPair(winnerNumber, lottoInputView);
+        Lotto winnerNumber = inputService.getInputWinnerNumbers();
+        return inputService.getLottoBonusPair(winnerNumber);
     }
 
     private Long getTotalReward(PublishedLotto publishedLotto, LottoBonusPair winnerNumberPair) {

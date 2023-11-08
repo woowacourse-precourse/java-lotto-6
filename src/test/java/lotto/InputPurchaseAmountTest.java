@@ -1,6 +1,7 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,6 +28,15 @@ public class InputPurchaseAmountTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(NUMBER_FORMAT_MONEY.errorMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("1000원 단위가 아닌 구입금액 입력 시 예외 테스트")
+    void validatePurchaseAmountDivisibleBy1000_test(){
+        assertSimpleTest(() -> {
+            runException("2500");
+            assertThat(output()).contains(DIVISIBLE_BY_1000.errorMessage());
         });
     }
 

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -29,5 +30,11 @@ class LottoTest {
     void 로또구매_금액_0원_Null_값_예외처리() {
         assertThatThrownBy(() ->
                 Assertions.assertThat("").isInstanceOf(IllegalArgumentException.class));
+    }
+
+    @Test
+    void 로또구매_금액_1000원_단위_예외처리() {
+        assertThatThrownBy(() ->
+                assertThat(1100).isInstanceOf(IllegalArgumentException.class));
     }
 }

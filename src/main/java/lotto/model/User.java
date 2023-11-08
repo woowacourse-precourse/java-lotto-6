@@ -2,6 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,13 @@ public class User {
     }
 
     public void pickLottoNumber() {
-        Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-        lottoes.add(lotto);
+        List<Integer> sortedNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(sortedNumbers);
+        addLotto(sortedNumbers);
+    }
+
+    private void addLotto(List<Integer> numbers) {
+        lottoes.add(new Lotto(numbers));
     }
 
     public Map<Integer, Integer> checkLottoesRanking (WinningLotto winningLotto) {

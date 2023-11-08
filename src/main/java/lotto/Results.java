@@ -14,7 +14,7 @@ public class Results {
 
         for (Lotto lotto : lottoTickets) {
             int matchCount = lotto.countMatch(winningLotto.getNumbers());
-            boolean matchBonus = matchCount == 5 && lotto.getNumbers().contains(bonusNumber);
+            boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
             Ranking ranking = Ranking.getRank(matchCount, matchBonus);
             results.put(ranking, results.getOrDefault(ranking, 0) + 1);
         }

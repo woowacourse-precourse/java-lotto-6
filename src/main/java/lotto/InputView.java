@@ -7,39 +7,60 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static final String PURCHASE_AMOUNT_MESSAGE = "구입 금액을 입력해 주세요.";
-    private static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
     public static int inputPurchaseAmount() {
-        System.out.println(PURCHASE_AMOUNT_MESSAGE);
-        String input = Console.readLine();
-        int amount = Integer.parseInt(input);
-        validateAmount(amount);
-        return amount;
+        while (true) {
+            System.out.println(PURCHASE_AMOUNT_MESSAGE);
+            String input = Console.readLine();
+            try {
+                int amount = Integer.parseInt(input);
+                validateAmount(amount);
+                return amount;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
+                // continue the loop for another attempt
+            }
+        }
     }
 
     public static List<Integer> inputWinningNumbers() {
-        System.out.println(WINNING_NUMBERS_MESSAGE);
-        String input = Console.readLine();
-        List<Integer> winningNumbers = parseToIntList(input);
-        validateWinningNumbers(winningNumbers);
-        return winningNumbers;
+        while (true) {
+            System.out.println(WINNING_NUMBERS_MESSAGE);
+            String input = Console.readLine();
+            try {
+                List<Integer> winningNumbers = parseToIntList(input);
+                validateWinningNumbers(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                // continue the loop for another attempt
+            }
+        }
     }
 
     public static int inputBonusNumber() {
-        System.out.println(BONUS_NUMBER_MESSAGE);
-        String input = Console.readLine();
-        int bonusNumber = parseToInt(input);
-        validateBonusNumber(bonusNumber);
-        return bonusNumber;
+        while (true) {
+            System.out.println(BONUS_NUMBER_MESSAGE);
+            String input = Console.readLine();
+            try {
+                int bonusNumber = parseToInt(input);
+                validateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                // continue the loop for another attempt
+            }
+        }
     }
 
     private static int parseToInt(String input) {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 올바르게 입력해 주세요.");
         }
     }
 
@@ -61,7 +82,6 @@ public class InputView {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위이어야 합니다.");
         }
-
     }
 
     private static void validateWinningNumbers(List<Integer> numbers) {

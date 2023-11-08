@@ -63,4 +63,17 @@ public class LottoController {
         settingBonusNumber();
     }
 
+
+    private void settingBonusNumber() {
+        String inputBonusNumber = UserView.inputBonusNumber();
+        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        lottoManager.setBonusNum(bonusNumber);
+    }
+
+    private void settingWinningNumbers() {
+        String inputWinNumbers = UserView.inputWinNumbers();
+        List<Integer> numbers = parseWinningNumbers(inputWinNumbers);
+        lottoManager.setWinningNumbers(numbers);
+    }
+
 }

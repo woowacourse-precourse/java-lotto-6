@@ -60,8 +60,8 @@ public class ShowLottoProcess {
     }
 
     public void printStatisticResult() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(MyConstant.MSG_START_WIN_STATISTIC());
+        System.out.println(MyConstant.MSG_SEPARATOR_DASH());
         System.out.println(process.showStatisticResult());
     }
 

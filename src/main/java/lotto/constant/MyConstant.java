@@ -40,4 +40,13 @@ public class MyConstant {
     public static String MSG_INPUT_BONUS_NUMBER() {
         return "보너스 번호를 입력해 주세요.";
     }
+
+    public static String MSG_START_WIN_STATISTIC() {
+        return "당첨 통계";
+    }
+
+    public static String MSG_SEPARATOR_DASH() {
+        return "---";
+    }
+
 }

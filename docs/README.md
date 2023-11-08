@@ -34,7 +34,7 @@ check new branch
 - 수익률 함수
 
 ## (Class) Game
-- money(int,구입 금액), buy(List<Lotto>,로또 번호), answer(List<Integer>, 당첨 번호+보너스 번호)
+- money(int,구입 금액), count(int, 로또 개수), buy(List<Lotto>,로또 번호), answer(List<Integer>, 당첨 번호+보너스 번호)
 - start()
     - input : null / return : void
     - 구입 금액을 받고 Int 변환 후 Game class의 money 값으로 지정

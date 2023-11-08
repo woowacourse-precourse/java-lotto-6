@@ -15,5 +15,4 @@ public class BonusNumber {
     public boolean isBonusNumber(int number) {
         return bonus == number;
     }
-
 }

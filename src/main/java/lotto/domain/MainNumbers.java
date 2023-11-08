@@ -20,5 +20,4 @@ public class MainNumbers {
     public List<Integer> toList() {
         return Collections.unmodifiableList(this.mainNumbers);
     }
-
 }

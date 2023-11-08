@@ -8,6 +8,7 @@ import lotto.Prize;
 
 public class RankingCounter {
     private final static int INIT_ZERO = 0;
+    private final static int INCREMENT = 1;
     private final Map<String, Integer> counter;
 
     public RankingCounter() {
@@ -18,7 +19,7 @@ public class RankingCounter {
 
     public void addCount(Ranking ranking) {
         if (ranking.inRanking()) {
-            counter.put(ranking.name(), counter.get(ranking.name()) + 1);
+            counter.put(ranking.name(), counter.get(ranking.name()) + INCREMENT);
         }
     }
 

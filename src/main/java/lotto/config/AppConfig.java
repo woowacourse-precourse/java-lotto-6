@@ -1,4 +1,4 @@
-package lotto;
+package lotto.config;
 
 import lotto.controller.LottoController;
 import lotto.service.LottoService;

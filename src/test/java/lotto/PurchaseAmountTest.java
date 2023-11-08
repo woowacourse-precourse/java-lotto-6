@@ -20,19 +20,19 @@ class PurchaseAmountTest {
 
         // then
         assertThrows(IllegalArgumentException.class, () -> {
-            purchaseAmount.convertToInt(amount1);
+            CommonFunction.convertToInt(amount1);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            purchaseAmount.convertToInt(amount2);
+            CommonFunction.convertToInt(amount2);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            purchaseAmount.convertToInt(amount3);
+            CommonFunction.convertToInt(amount3);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            purchaseAmount.convertToInt(amount4);
+            CommonFunction.convertToInt(amount4);
         });
         assertThrows(IllegalArgumentException.class, () -> {
-            purchaseAmount.convertToInt(amount5);
+            CommonFunction.convertToInt(amount5);
         });
     }
 

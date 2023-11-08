@@ -1,8 +1,8 @@
 package lotto.controller.lotto;
 
-import lotto.controller.InputController;
-import lotto.controller.validation.LottoPurchaseMoneyValidator;
-import lotto.domain.lotto.LottoPurchaseMoney;
+import lotto.controller.input.InputController;
+import lotto.controller.validation.money.LottoPurchaseMoneyValidator;
+import lotto.model.lotto.LottoPurchaseMoney;
 import lotto.view.MessageOutputView;
 
 public class LottoPurchaseMoneyScanController {

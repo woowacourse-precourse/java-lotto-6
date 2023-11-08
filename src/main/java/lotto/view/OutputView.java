@@ -1,7 +1,7 @@
 package lotto.view;
 
+import static lotto.domain.Lotto.getLottoCount;
 import static lotto.util.Util.formatCurrency;
-import static lotto.util.Util.getLottoCount;
 
 import java.util.List;
 import java.util.Map;

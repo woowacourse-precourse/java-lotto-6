@@ -56,4 +56,8 @@ public class Lotto {
     public Rank getRankResult(WinningLotto winningLotto) {
         return winningLotto.match(this);
     }
+
+    public static int getLottoCount(int totalAmount) {
+        return totalAmount / LOTTO_PRICE;
+    }
 }

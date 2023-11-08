@@ -8,10 +8,6 @@ public class Util {
     public static final int END_RANGE = 45;
     public static final int LOTTO_SIZE = 6;
 
-    public static int getLottoCount(int totalAmount) {
-        return totalAmount / LOTTO_PRICE;
-    }
-
     public static String formatCurrency(int amount) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
 

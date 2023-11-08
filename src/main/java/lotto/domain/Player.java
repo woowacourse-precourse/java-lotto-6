@@ -5,8 +5,15 @@ public class Player {
     private final Lottos lottos;
 
     public Player(Money money, Lottos lottos) {
+        validateMoneyMatchesLottos(money, lottos);
         this.money = money;
         this.lottos = lottos;
+    }
+
+    private void validateMoneyMatchesLottos(Money money, Lottos lottos) {
+        if (money.getAmount() / LottoMachine.getLottoPrice() != lottos.getSize()) {
+            throw new IllegalStateException();
+        }
     }
 
     public Money getMoney() {

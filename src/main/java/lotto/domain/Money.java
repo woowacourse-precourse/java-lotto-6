@@ -16,7 +16,7 @@ public class Money {
     }
 
     private void validateNegative(int amount) {
-        if (amount < 0) {
+        if (amount <= 0) {
             throw new IllegalArgumentException();
         }
     }

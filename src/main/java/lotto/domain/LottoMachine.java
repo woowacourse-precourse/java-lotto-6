@@ -27,14 +27,15 @@ public class LottoMachine {
 
         Lotto winningNumbers = winningLotto.getLotto();
         int bonusNumber = winningLotto.getBonusNumber();
+        Lottos issuedLottos = player.getLottos();
 
-        for (Lotto lotto : player.getLottos()) {
+        for (Lotto lotto : issuedLottos) {
             int corrects = lotto.findCorrects(winningNumbers);
             boolean bonus = lotto.contains(bonusNumber);
             Ranking ranking = Ranking.findRanking(corrects, bonus);
             rankingCounts.put(ranking, rankingCounts.get(ranking) + 1);
         }
 
-        return new LottoResult(Map.copyOf(rankingCounts));
+        return new LottoResult(Map.copyOf(rankingCounts), issuedLottos.getSize());
     }
 }

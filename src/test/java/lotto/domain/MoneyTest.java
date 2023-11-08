@@ -22,10 +22,10 @@ class MoneyTest {
         assertThatThrownBy(() -> new Money(invalidAmount)).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액이 음수면 에러 발생")
+    @DisplayName("구입 금액이 0 또는 음수면 에러 발생")
     @ParameterizedTest
-    @ValueSource(ints = {-1_000, -42_000, -752_000})
-    void validation_음수일때(int invalidAmount) {
+    @ValueSource(ints = {0, -1_000, -42_000, -752_000})
+    void validation_0또는음수일때(int invalidAmount) {
         assertThatThrownBy(() -> new Money(invalidAmount)).isInstanceOf(IllegalArgumentException.class);
     }
 

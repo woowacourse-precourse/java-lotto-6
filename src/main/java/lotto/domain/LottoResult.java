@@ -9,8 +9,29 @@ import java.util.Map;
 public class LottoResult {
     private final Map<Ranking, Integer> rankingCounts;
 
-    public LottoResult(Map<Ranking, Integer> rankingCounts) {
+    public LottoResult(Map<Ranking, Integer> rankingCounts, int lottosSize) {
+        validateKeys(rankingCounts);
+        validateValues(rankingCounts);
+        validateValuesSum(rankingCounts, lottosSize);
         this.rankingCounts = rankingCounts;
+    }
+
+    private void validateKeys(Map<Ranking, Integer> rankingCounts) {
+        if (rankingCounts.keySet().size() != Ranking.values().length) {
+            throw new IllegalStateException();
+        }
+    }
+
+    private void validateValues(Map<Ranking, Integer> rankingCounts) {
+        if (rankingCounts.values().stream().anyMatch(value -> value < 0)) {
+            throw new IllegalStateException();
+        }
+    }
+
+    private void validateValuesSum(Map<Ranking, Integer> rankingCounts, int lottoSize) {
+        if (rankingCounts.values().stream().mapToInt(value -> value).sum() > lottoSize) {
+            throw new IllegalStateException();
+        }
     }
 
     public BigDecimal calculatePrizeRate(Money money, int scale, RoundingMode roundingMode) {

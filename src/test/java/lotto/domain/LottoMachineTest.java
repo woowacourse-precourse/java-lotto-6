@@ -32,7 +32,7 @@ class LottoMachineTest {
         Arrays.stream(Ranking.values()).forEach(key -> rankingCounts.put(key, 0));
         rankingCounts.put(Ranking.BLANK, 7);
         rankingCounts.put(Ranking.FIFTH, 1);
-        LOTTO_RESULT = new LottoResult(rankingCounts);
+        LOTTO_RESULT = new LottoResult(rankingCounts, LOTTOS.getSize());
     }
 
     private LottoMachine lottoMachine;

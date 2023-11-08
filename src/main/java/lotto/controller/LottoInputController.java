@@ -17,9 +17,9 @@ public class LottoInputController {
     }
 
     public LottoGameInfo createLottoGame() {
-        Cash amount = inputView.requestLottoCash();
-        Lottos lottos = LottoShop.buyLottos(amount);
-        return new LottoGameInfo(amount, lottos);
+        Cash cash = inputView.requestLottoCash();
+        Lottos lottos = LottoShop.buyLottos(cash);
+        return new LottoGameInfo(cash, lottos);
     }
 
     public LottoResult requestLottoResult() {

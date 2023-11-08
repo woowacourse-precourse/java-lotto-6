@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import static lotto.message.ErrorMessage.INVALID_LOTTO_MONEY;
 import static lotto.message.ErrorMessage.AMOUNT_LESS_THAN_ZERO;
 
 public class Cash {
@@ -10,20 +11,19 @@ public class Cash {
         this.cash = cash;
     }
 
-    public void validatePositiveNumber(long number) {
+    private void validatePositiveNumber(long number) {
         if (number <= 0) {
             throw new IllegalArgumentException(AMOUNT_LESS_THAN_ZERO.getMessage());
         }
     }
 
     public boolean isPurchaseLottoPossible(int price) {
-        return cash % price != 0;
+        return cash % price == 0;
     }
 
     public long countPurchasableItems(int price) {
-        if (isPurchaseLottoPossible(price)){
-            //에러 메시지 추가하기
-            throw new IllegalArgumentException();
+        if (!isPurchaseLottoPossible(price)){
+            throw new IllegalArgumentException(INVALID_LOTTO_MONEY.getMessage());
         }
         return cash / price;
     }

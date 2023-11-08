@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.constants.LottoRule.STANDARD;
-import static lotto.message.ErrorMessage.INVALID_LOTTO_AMOUNT;
+import static lotto.message.ErrorMessage.INVALID_LOTTO_MONEY;
 import static lotto.view.input.message.LottoBuyInputMessage.PURCHASE_AMOUNT_PROMPT_MESSAGE;
 import static lotto.view.input.message.LottoBuyInputMessage.WINNING_NUMBERS_PROMPT_MESSAGE;
 import static lotto.view.input.message.LottoBuyInputMessage.BONUS_NUMBER_PROMPT_MESSAGE;
@@ -41,8 +41,8 @@ public class LottoGameInputView implements ConsoleInput {
     }
 
     private void validateLottoPurchase(Cash cash) {
-        if (cash.isPurchaseLottoPossible(STANDARD.getLottoPrice())) {
-            throw new IllegalArgumentException(INVALID_LOTTO_AMOUNT.getMessage());
+        if (!cash.isPurchaseLottoPossible(STANDARD.getLottoPrice())) {
+            throw new IllegalArgumentException(INVALID_LOTTO_MONEY.getMessage());
         }
     }
 

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static lotto.constants.LottoRule.STANDARD;
-import static lotto.message.ErrorMessage.INVALID_LOTTO_AMOUNT;
 
 public class LottoShop {
 
@@ -16,7 +15,6 @@ public class LottoShop {
     }
 
     public static Lottos buyLottos(Cash cash) {
-        validateLottoPurchase(cash);
         return new Lottos(createLottos(cash));
     }
 
@@ -24,12 +22,6 @@ public class LottoShop {
         return Stream.generate(LottoFactory::createLotto)
                 .limit(amount.countPurchasableItems(STANDARD.getLottoPrice()))
                 .toList();
-    }
-
-    private static void validateLottoPurchase(Cash amount) {
-        if (amount.isPurchaseLottoPossible(STANDARD.getLottoPrice())) {
-            throw new IllegalStateException(INVALID_LOTTO_AMOUNT.getMessage());
-        }
     }
 
 }

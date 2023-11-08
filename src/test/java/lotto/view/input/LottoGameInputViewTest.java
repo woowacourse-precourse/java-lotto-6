@@ -74,7 +74,7 @@ public class LottoGameInputViewTest {
         // when // then
         assertThatThrownBy(() -> lottoGameInputView.requestLottoCash())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
+                .hasMessage(ErrorMessage.INVALID_LOTTO_MONEY.getMessage());
     }
 
     @ParameterizedTest(name = "{index}: 숫자가 아닌 입력으로 {0}이 들어오면 예외가 발생한다.")

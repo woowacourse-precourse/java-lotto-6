@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Map;
 import java.util.Set;
 
 public class LottoResultCalculator {
@@ -22,18 +23,15 @@ public class LottoResultCalculator {
         return new LottoResult(matchCount, bonusMatch);
     }
 
-    public void printResultSummary(int[] matchCounts, boolean isBonusMatchIncluded) {
+    public void printResultSummary(Map<LottoRank, Integer> rankCount) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.printf("3개 일치 (5,000원) - %d개\n", matchCounts[3]);
-        System.out.printf("4개 일치 (50,000원) - %d개\n", matchCounts[4]);
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", matchCounts[5]);
 
-        if (isBonusMatchIncluded) {
-            System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", matchCounts[5 + 1]); // Assuming 5+1 represents 5 numbers + bonus match.
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank != LottoRank.NONE) {
+                System.out.printf("%s - %d개\n", rank.getResultText(), rankCount.getOrDefault(rank, 0));
+            }
         }
-
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", matchCounts[6]);
     }
 
 

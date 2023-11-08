@@ -4,6 +4,7 @@
 - [ ] 구입 금액 입력 (OrderView.askOrderPrice)
 - [ ] 개수만큼 로또 생성
 - [ ] 랜덤으로 만들어진 로또 보여줌 (OrderView.printOrderLottos)
+  - [ ] 로또를 출력할 때, 형식을 잡아줌 (Lotto.toString)
 - [ ] 당첨 번호 입력
 - [ ] 보너스 번호 입력
 - [ ] 생성된 로또의 결과 계산

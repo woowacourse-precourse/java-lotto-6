@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class StatisticsResult {
     private final int purchaseAmount;
-    private int lottoPrice;
+    private final int lottoPrice;
     private List<Result> results;
 
     public StatisticsResult(int purchaseAmount, int lottoPrice) {
@@ -18,7 +18,7 @@ public class StatisticsResult {
     }
 
     public double getFinalReturnRate() {
-        double winningAmount = caculateWinningAmount();
+        double winningAmount = caculateTotalWinningAmount();
         double rawReturnRate = (winningAmount / (double) purchaseAmount) * 100;
         return Math.round(rawReturnRate * 100.0) / 100.0;
     }
@@ -30,7 +30,7 @@ public class StatisticsResult {
         return resultsMap;
     }
 
-    private int caculateWinningAmount() {
+    private int caculateTotalWinningAmount() {
         return results.stream()
                 .mapToInt(Result::getPrize)
                 .sum();

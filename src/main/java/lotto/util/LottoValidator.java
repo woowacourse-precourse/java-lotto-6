@@ -1,7 +1,7 @@
 package lotto.util;
 
-import static lotto.util.constant.ValidatorStatus.DUPLICATE_WINNING_NUMBER;
 import static lotto.util.constant.ValidatorStatus.DUPLICATE_BONUS_NUMBER_INPUT;
+import static lotto.util.constant.ValidatorStatus.DUPLICATE_WINNING_NUMBER;
 import static lotto.util.constant.ValidatorStatus.INVALID_NUMBER_RANGE;
 import static lotto.util.constant.ValidatorStatus.INVALID_WINNING_NUMBER_COUNT;
 

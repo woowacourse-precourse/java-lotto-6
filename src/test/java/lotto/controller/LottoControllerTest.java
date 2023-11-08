@@ -39,4 +39,13 @@ class LottoControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessageType.NOT_NUMBER.message());
     }
+
+    @DisplayName("당첨 번호를 입력할 때 범위에 벗어난 문자가 있으면 예외 처리")
+    @Test
+    void outOfNumberException() {
+        assertThatThrownBy(()-> {
+            lottoController.setinputLottoNumber("1, 2, 14, 10, 23, 47");})
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessageType.OUT_OF_LOTTO_NUMERICAL_RANGE.message());
+    }
 }

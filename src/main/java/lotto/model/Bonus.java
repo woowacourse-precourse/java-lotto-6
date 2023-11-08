@@ -1,13 +1,13 @@
 package lotto.model;
 
 public class Bonus {
-    private final Integer bonusNumber;
+    private final int bonusNumber;
 
-    public Bonus(Integer bonusNumber) {
+    public Bonus(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
-    public Integer getBonusNumber() {
+    public int getBonusNumber() {
         return this.bonusNumber;
     }
 }

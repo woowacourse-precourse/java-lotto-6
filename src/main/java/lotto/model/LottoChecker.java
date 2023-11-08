@@ -15,7 +15,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import lotto.constant.Rank;
-import org.mockito.internal.matchers.Null;
 
 public class LottoChecker {
     private final List<Lotto> randomLottos;
@@ -31,15 +30,6 @@ public class LottoChecker {
         Arrays.stream(Rank.values()).forEach( rank -> {
             winningStatics.put(rank.getValue(), 0);
         });
-    }
-
-    public  LottoChecker(){
-        // 테스트용 빈 생성자
-        randomLottos = null;
-        answerLotto = null;
-        bounsNumber = null;
-        winningStatics = null;
-
     }
 
     public HashMap<String, Integer> checkLottoNumbers() {

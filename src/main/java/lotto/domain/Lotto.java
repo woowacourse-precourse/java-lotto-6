@@ -43,16 +43,16 @@ public class Lotto {
         }
     }
 
-    public Grade grade(List<Integer> winningNumbers, Integer bonusNumber) {
+    public Grade grade(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         Integer answer = 0;
         Integer bonus = 0;
-        for (Integer number : winningNumbers) {
-            if (numbers.contains(number)) {
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
                 answer++;
             }
-        }
-        if (numbers.contains(bonusNumber)) {
-            bonus++;
+            if (bonusNumber.equals(number)) {
+                bonus++;
+            }
         }
         return Grade.from(answer, bonus);
     }

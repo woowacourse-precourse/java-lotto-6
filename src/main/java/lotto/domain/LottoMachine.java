@@ -13,7 +13,7 @@ public class LottoMachine {
         return new LottoTicket(lottoCount, lottoGenerator);
     }
 
-    public int getLottoCount(Money money) {
+    private int getLottoCount(Money money) {
         int requestMoney = money.getMoney();
         return requestMoney / PURCHASE_LOTTO_MONEY;
     }

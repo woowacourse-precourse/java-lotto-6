@@ -8,7 +8,7 @@ import lotto.validate.LottoValidator;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.utils.NumberConstant.PRICE_UNIT;
+import static lotto.utils.NumberConstant.*;
 
 public class LottoGeneratorServiceImpl implements LottoGeneratorService {
     @Override
@@ -23,8 +23,7 @@ public class LottoGeneratorServiceImpl implements LottoGeneratorService {
     }
 
     private Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//        Collections.sort(numbers);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN.getValue(), MAX.getValue(), SIZE.getValue());
         return new Lotto(numbers);
     }
 

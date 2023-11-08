@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.Result;
-import lotto.view.constant.OutputMessage;
 
 import java.util.List;
 

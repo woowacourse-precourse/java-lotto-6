@@ -9,7 +9,7 @@ import lotto.excpetion.SizeException;
 
 import java.util.List;
 
-import static lotto.utils.NumberConstant.PRICE_UNIT;
+import static lotto.utils.NumberConstant.*;
 
 public class LottoValidator {
     public static void lottoValidate(List<Integer> numbers) {
@@ -19,19 +19,19 @@ public class LottoValidator {
     }
     private static void isInRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45)
+            if (number < MIN.getValue() || number > MAX.getValue())
                 throw new NotInRageException();
         }
     }
 
     private static void isInRange(BonusNumber bonusNumber) {
         int number = bonusNumber.getBonusNumber();
-        if (number < 1 || number > 45)
+        if (number < MIN.getValue() || number > MAX.getValue())
             throw new NotInRageException();
     }
 
     private static void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE.getValue()) {
             throw new SizeException();
         }
     }

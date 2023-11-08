@@ -15,19 +15,19 @@ public class Validation {
         }
     }
 
-    private static void isValidUnit(int purchaseAmount) {
+    private static void validateUnit(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해주세요.");
         }
     }
 
-    private static void isValidRange(int number) {
+    private static void validateRange(int number) {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1 이상 45 이하의 정수로 입력해주세요.");
         }
     }
 
-    private static void isValidNumbers(List<Integer> numbers) {
+    private static void validateNumbers(List<Integer> numbers) {
         Set<Integer> sample = new HashSet<>(numbers);
 
         if (sample.size() != numbers.size()) {
@@ -39,7 +39,7 @@ public class Validation {
         }
     }
 
-    private static void isDuplicatedBonusNumber(List<Integer> winnerNumbers, int bonusNumber) {
+    private static void validateDuplicatedBonusNumber(List<Integer> winnerNumbers, int bonusNumber) {
         if (winnerNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 중 보너스 번호와 중복되는 번호가 존재합니다.");
         }
@@ -47,7 +47,7 @@ public class Validation {
 
     public static int validatePurchaseAmount(String input) {
         int purchaseAmount = parseInteger(input);
-        isValidUnit(purchaseAmount);
+        validateUnit(purchaseAmount);
         return purchaseAmount;
     }
 
@@ -57,18 +57,18 @@ public class Validation {
 
         for (String elem : numbers) {
             int number = parseInteger(elem);
-            isValidRange(number);
+            validateRange(number);
             winnerNumbers.add(number);
         }
 
-        isValidNumbers(winnerNumbers);
+        validateNumbers(winnerNumbers);
         return winnerNumbers;
     }
 
     public static int validateBonusNumber(List<Integer> winnerNumbers, String input) {
         int bonusNumber = parseInteger(input);
-        isValidRange(bonusNumber);
-        isDuplicatedBonusNumber(winnerNumbers, bonusNumber);
+        validateRange(bonusNumber);
+        validateDuplicatedBonusNumber(winnerNumbers, bonusNumber);
         return bonusNumber;
     }
 }

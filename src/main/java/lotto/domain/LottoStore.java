@@ -3,6 +3,8 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.view.message.ErrorMessage;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.LongStream;
 
@@ -44,11 +46,9 @@ public class LottoStore {
     }
 
     public Lotto generateLottoNumbers() {
-        final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, NUM_COUNT)
-                .stream()
-                .sorted()
-                .toList();
+        final List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, NUM_COUNT));
 
+        numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);
     }
 

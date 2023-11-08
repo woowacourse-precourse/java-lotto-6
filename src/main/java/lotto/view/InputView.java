@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 public class InputView {
 
     private static final String WINNING_NUMBERS_REGEX = "^([0-9]{1,2},){5}[0-9]{1,2}$";
+    private static final int WINNING_NUMBERS_COUNT = 6;
     private static final String REGEX = ",";
 
     public static int inputPurchaseMoney() {
@@ -31,15 +32,10 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumbers() {
-        try {
-            printWinningNumbersMessage();
-            String input = Console.readLine();
-            validateWinningNumber(input);
-            return translateWinningNumbers(input);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return inputWinningNumbers();
-        }
+        printWinningNumbersMessage();
+        String input = Console.readLine();
+        validateWinningNumber(input);
+        return translateWinningNumbers(input);
     }
 
     private static void printWinningNumbersMessage() {
@@ -47,8 +43,22 @@ public class InputView {
     }
 
     private static void validateWinningNumber(String input) {
+        validateWinningNumbersForm(input);
+        validateDuplicateWinningNumbers(input);
+    }
+
+    private static void validateWinningNumbersForm(String input) {
         if (!input.matches(WINNING_NUMBERS_REGEX)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호의 입력 값이 올바르지 않습니다.");
+        }
+    }
+
+    private static void validateDuplicateWinningNumbers(String input) {
+        long count = Arrays.stream(input.split(REGEX))
+                .distinct()
+                .count();
+        if (count != WINNING_NUMBERS_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호의 숫자를 중복되지 않게 입력해야 합니다.");
         }
     }
 
@@ -59,15 +69,10 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
-        try {
-            printBonusNumberMessage();
-            String input = Console.readLine();
-            validateBonusNumber(input);
-            return Integer.parseInt(input);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
-            return inputBonusNumber();
-        }
+        printBonusNumberMessage();
+        String input = Console.readLine();
+        validateBonusNumber(input);
+        return Integer.parseInt(input);
     }
 
     private static void printBonusNumberMessage() {

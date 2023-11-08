@@ -71,8 +71,8 @@ public class GameController {
         restart = true;
         while (restart) {
             try {
-                String luckeyBonusNumber = inputView.enterBonusLottoNumber();
-                luckeyLotto = new LuckeyLotto(lotto.getNumbers(), luckeyBonusNumber);
+                String inputBonusNumber = inputView.enterBonusLottoNumber();
+                luckeyLotto = new LuckeyLotto(lotto.getNumbers(), inputBonusNumber);
                 restart = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

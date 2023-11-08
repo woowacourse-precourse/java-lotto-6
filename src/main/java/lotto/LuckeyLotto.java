@@ -23,17 +23,16 @@ public class LuckeyLotto {
     private static final int LOTTO_NUMBER_RANGE_END = 45;
     private int luckeyBonusNumber;
 
-    public LuckeyLotto(List<Integer> luckeyNumbers, String inputBonusNumber) {
-        validate(luckeyNumbers, inputBonusNumber);
+    public LuckeyLotto(List<Integer> lottoNumbers, String inputBonusNumber) {
+        validate(lottoNumbers, inputBonusNumber);
         int luckeyBonusNumber = Integer.valueOf(inputBonusNumber);
-        luckeyNumbers.add(luckeyBonusNumber);
         this.luckeyBonusNumber = luckeyBonusNumber;
     }
 
-    private void validate(List<Integer> luckeyNumbers, String inputBonusNumber) {
+    private void validate(List<Integer> lottoNumbers, String inputBonusNumber) {
         if (!inputBonusNumber.matches("\\d+")) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_TYPE.getMessage());
-        } else if (luckeyNumbers.contains(Integer.valueOf(inputBonusNumber))) {
+        } else if (lottoNumbers.contains(Integer.valueOf(inputBonusNumber))) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_SAME.getMessage());
         } else if (!isWithValidRange(Integer.valueOf(inputBonusNumber))) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE.getMessage());

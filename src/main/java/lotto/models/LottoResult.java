@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LottoResult {
 
-    private final HashMap<LottoGrade, Integer> lottoResult = new HashMap<>();
+    private final HashMap<LottoGrade, Integer> lottoResultMap = new HashMap<>();
     private final int lottoAmount;
 
     public LottoResult(int lottoAmount) {
@@ -13,7 +13,7 @@ public class LottoResult {
     }
 
     public void addLottoResult(LottoGrade lottoGrade) {
-        lottoResult.put(lottoGrade, lottoResult.getOrDefault(lottoGrade, 0) + 1);
+        lottoResultMap.put(lottoGrade, lottoResultMap.getOrDefault(lottoGrade, 0) + 1);
     }
 
     public void addLottoResult(List<LottoGrade> lottoGrades) {
@@ -33,7 +33,7 @@ public class LottoResult {
 
             content.append(lottoGrade.toString())
                     .append(" - ")
-                    .append(lottoResult.getOrDefault(lottoGrade, 0))
+                    .append(lottoResultMap.getOrDefault(lottoGrade, 0))
                     .append("개\n");
         }
 
@@ -49,14 +49,14 @@ public class LottoResult {
         double totalPrizeMoney = 0;
 
         for (LottoGrade lottoGrade : LottoGrade.values()) {
-            totalPrizeMoney += lottoGrade.getPrizeMoney() * lottoResult.getOrDefault(lottoGrade, 0);
+            totalPrizeMoney += lottoGrade.getPrizeMoney() * lottoResultMap.getOrDefault(lottoGrade, 0);
         }
 
         return Math.round(totalPrizeMoney / initialMoney * 100 * 100) / 100.0;
     }
 
-    public HashMap<LottoGrade, Integer> getLottoResult() {
-        return lottoResult;
+    public HashMap<LottoGrade, Integer> getLottoResultMap() {
+        return lottoResultMap;
     }
 
     public int getLottoAmount() {

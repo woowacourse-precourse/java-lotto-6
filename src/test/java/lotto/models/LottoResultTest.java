@@ -30,7 +30,7 @@ class LottoResultTest {
         lottoResult.addLottoResult(lotto3.calcRank(winNumber));
 
         // then
-        HashMap<LottoGrade, Integer> lottoResultMap = lottoResult.getLottoResult();
+        HashMap<LottoGrade, Integer> lottoResultMap = lottoResult.getLottoResultMap();
         assertEquals(1, lottoResultMap.get(LottoGrade.FIRST));
         assertEquals(1, lottoResultMap.get(LottoGrade.SECOND));
         assertEquals(1, lottoResultMap.get(LottoGrade.FOURTH));
@@ -56,7 +56,7 @@ class LottoResultTest {
         lottoResult.addLottoResult(lottos.stream().map(lotto -> lotto.calcRank(winNumber)).toList());
 
         // then
-        HashMap<LottoGrade, Integer> lottoResultMap = lottoResult.getLottoResult();
+        HashMap<LottoGrade, Integer> lottoResultMap = lottoResult.getLottoResultMap();
         assertEquals(2, lottoResultMap.get(LottoGrade.FIRST));
         assertEquals(1, lottoResultMap.get(LottoGrade.SECOND));
         assertEquals(1, lottoResultMap.get(LottoGrade.FIFTH));

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class LottoWinningChecker {
     private static final int BONUS_NUMBER_PARTNER = 5;
-    private static final int WINNING_CATEGORY_5_MATCH_WITH_BONUS = 7;
+    private static final int FIVE_MATCH_WITH_BONUS = 7;
 
     public static int checkWinningNumbers(Lotto lotto, WinningNumber winningNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
@@ -14,7 +14,7 @@ public class LottoWinningChecker {
         int matchingCount = countMatchingNumbers(lottoNumbers, winningNumbers);
 
         if (matchingCount == BONUS_NUMBER_PARTNER && lottoNumbers.contains(bonusNumber)) {
-            return WINNING_CATEGORY_5_MATCH_WITH_BONUS;
+            return FIVE_MATCH_WITH_BONUS;
         } else {
             return matchingCount;
         }
@@ -40,12 +40,11 @@ public class LottoWinningChecker {
     public static long calculateTotalPrize(List<Lotto> lottos, WinningNumber winningNumber) {
         int[] matchCounts = calculateMatchCounts(lottos, winningNumber);
 
-        int totalPrize = 0;
-        totalPrize += matchCounts[3] * 5000;
-        totalPrize += matchCounts[4] * 50000;
-        totalPrize += matchCounts[5] * 1500000;
-        totalPrize += matchCounts[7] * 30000000;
-        totalPrize += matchCounts[6] * 2000000000;
+        long totalPrize = 0;
+
+        for (int i = 3; i <= 7; i++) {
+            totalPrize += matchCounts[i] * Prize.values()[i - 3].getPrizeAmount();
+        }
 
         return totalPrize;
     }

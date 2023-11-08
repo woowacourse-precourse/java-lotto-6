@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import lotto.exception.InvalidLottoPurchaseException;
 
 public class LottoPurchaseInputView {
+    private static final int LOTTO_PRICE = 1000;
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
     private static final String LOTTO_PURCHASE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
 
@@ -31,7 +32,7 @@ public class LottoPurchaseInputView {
 
     private static void validateLottoPurchaseAmount(String input) {
         int inputValue = Integer.parseInt(input);
-        if (inputValue % 1000 != 0) {
+        if (inputValue % LOTTO_PRICE != 0) {
             throw new InvalidLottoPurchaseException();
         }
     }

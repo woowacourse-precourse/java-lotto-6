@@ -9,7 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static lotto.configuration.GameConfiguration.INPUT_SEPARATOR;
-import static lotto.exception.errorcode.InputErrorCode.INVALID_BONUS_NUMBER;
+import static lotto.configuration.GameConfiguration.LOTTO_NUMBER_SIZE;
+import static lotto.exception.errorcode.InputErrorCode.INPUT_NOT_NUMERIC;
 
 public class ConsoleInputView implements InputView {
     @Override
@@ -43,7 +44,7 @@ public class ConsoleInputView implements InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new InputException(INVALID_BONUS_NUMBER);
+            throw new InputException(INPUT_NOT_NUMERIC);
         }
     }
 

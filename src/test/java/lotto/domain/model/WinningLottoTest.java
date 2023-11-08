@@ -1,13 +1,12 @@
 package lotto.domain.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.constant.IllegalArgumentExceptionType;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {
@@ -22,15 +21,17 @@ class WinningLottoTest {
         winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), new LottoBonusNumber(winningBonusNumber));
     }
 
+    @DisplayName("보너스_번호_중복_테스트")
     @Test
-    void 보너스_번호_중복_테스트() {
+    void createWinningLottoByDuplicatedBonusNumber() {
         assertThatThrownBy(() -> new WinningLotto(new Lotto(winningLottoNumbers), new LottoBonusNumber(6)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(IllegalArgumentExceptionType.WINNING_LOTTO_CONTAINS_BONUS_NUMBER.getMessage());
     }
 
+    @DisplayName("로또_번호_일치_테스트")
     @Test
-    void 로또_번호_일치_테스트() {
+    void compareLottoMatchCount() {
         Lotto matched0 = new Lotto(List.of(40, 41, 42, 43, 44, 45));
         Lotto matched1 = new Lotto(List.of(1, 41, 42, 43, 44, 45));
         Lotto matched2 = new Lotto(List.of(1, 2, 42, 43, 44, 45));
@@ -51,8 +52,9 @@ class WinningLottoTest {
         softAssertions.assertAll();
     }
 
+    @DisplayName("로또_보너스_번호_일치_테스트")
     @Test
-    void 로또_보너스_번호_일치_테스트() {
+    void compareLottoWithBonusNumber() {
         Lotto lottoHasBonus = new Lotto(List.of(40, 41, 42, 7, 44, 45));
         Lotto LottoNotHaveBonus = new Lotto(List.of(40, 41, 42, 43, 44, 45));
 

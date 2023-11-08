@@ -2,12 +2,14 @@ package lotto.domain.model;
 
 import lotto.constant.IllegalArgumentExceptionType;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoBonusNumberTest {
 
+    @DisplayName("번호_범위_검증_성공_테스트")
     @Test
-    void 번호_범위_검증_성공_테스트() {
+    void createBonusNumberByNumberInRange() {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThatCode(() -> new LottoBonusNumber(1)).doesNotThrowAnyException();
         softAssertions.assertThatCode(() -> new LottoBonusNumber(20)).doesNotThrowAnyException();
@@ -16,8 +18,9 @@ class LottoBonusNumberTest {
         softAssertions.assertAll();
     }
 
+    @DisplayName("번호_범위_검증_실패_테스트")
     @Test
-    void 번호_범위_검증_실패_테스트() {
+    void createBonusNumberByNumberOutOfRange() {
         SoftAssertions softAssertions = new SoftAssertions();
 
         softAssertions.assertThatThrownBy(() -> new LottoBonusNumber(-1))

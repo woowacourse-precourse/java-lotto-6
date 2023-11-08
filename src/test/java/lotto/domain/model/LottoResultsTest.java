@@ -1,17 +1,14 @@
 package lotto.domain.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Stream;
 import lotto.constant.LottoRank;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoResultsTest {
@@ -35,8 +32,9 @@ class LottoResultsTest {
         lottoResults = new LottoResults(lottoRanks, lottoPurchaseCost);
     }
 
+    @DisplayName("랭크_개수_테스트")
     @Test
-    void 랭크_개수_테스트() {
+    void createRankCounts() {
         Map<LottoRank, Integer> rankCounts = lottoResults.getRankCounts();
         Set<LottoRank> lottoRanks = rankCounts.keySet();
 
@@ -49,8 +47,9 @@ class LottoResultsTest {
         softAssertions.assertAll();
     }
 
+    @DisplayName("수익률_테스트")
     @Test
-    void 수익률_테스트() {
+    void createRateOfReturn() {
         double rateOfReturn = lottoResults.getRateOfReturn();
 
         Map<LottoRank, Integer> rankCounts = lottoResults.getRankCounts();

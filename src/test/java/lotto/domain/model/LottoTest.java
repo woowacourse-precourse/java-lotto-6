@@ -25,8 +25,9 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또_숫자_개수_검증_실패_테스트")
     @Test
-    void 로또_숫자개수_검증_실패_테스트() {
+    void createLottoByInvalidSize() {
         SoftAssertions softAssertions = new SoftAssertions();
 
         softAssertions.assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -39,8 +40,9 @@ class LottoTest {
 
     }
 
+    @DisplayName("로또_중복숫자_검증_실패_테스트")
     @Test
-    void 로또_중복숫자_검증_실패_테스트() {
+    void createLottoByDuplicatedNumber2() {
         SoftAssertions softAssertions = new SoftAssertions();
 
         softAssertions.assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 3, 5, 6)))
@@ -52,8 +54,9 @@ class LottoTest {
         softAssertions.assertAll();
     }
 
+    @DisplayName("로또_정렬_테스트")
     @Test
-    void 로또_정렬_테스트() {
+    void validIsLottoSorted() {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         List<Integer> numbers1 = lotto1.getNumbers();
@@ -66,8 +69,9 @@ class LottoTest {
         softAssertions.assertAll();
     }
 
+    @DisplayName("로또_원소_테스트")
     @Test
-    void 로또_원소_테스트() {
+    void checkLottoNumbers() {
         List<Integer> input1 = List.of(1, 2, 3, 4, 5, 6);
         List<Integer> input2 = List.of(6, 5, 4, 3, 2, 1);
         Lotto lotto1 = new Lotto(input1);
@@ -82,8 +86,9 @@ class LottoTest {
         softAssertions.assertAll();
     }
 
+    @DisplayName("로또_숫자_범위_테스트")
     @Test
-    void 로또_숫자_범위_테스트() {
+    void createLottoByInvalidNumberRange() {
         SoftAssertions softAssertions = new SoftAssertions();
 
         softAssertions.assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))

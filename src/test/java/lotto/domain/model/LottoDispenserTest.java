@@ -6,6 +6,7 @@ import lotto.domain.LottoGenerateStrategy;
 import lotto.domain.LottoManualGenerator;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoDispenserTest {
@@ -22,8 +23,9 @@ class LottoDispenserTest {
         lottoDispenser = new LottoDispenser(lottoManualGenerator, lottoPurchaseCost);
     }
 
+    @DisplayName("로또_발행_테스트")
     @Test
-    void 로또_발행_테스트() {
+    void dispenseLottosOnce() {
         List<Lotto> dispensedLottos = lottoDispenser.dispense();
         List<List<Integer>> dispensedLottosNumbers = dispensedLottos.stream().map(Lotto::getNumbers).toList();
 
@@ -35,8 +37,9 @@ class LottoDispenserTest {
         softAssertions.assertAll();
     }
 
+    @DisplayName("로또_재발행_실패_테스트")
     @Test
-    void 로또_재발행_실패_테스트() {
+    void dispenseLottosTwice() {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThatCode(() -> lottoDispenser.dispense()).doesNotThrowAnyException();
         softAssertions.assertThatThrownBy(() -> lottoDispenser.dispense())

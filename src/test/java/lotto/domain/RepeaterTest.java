@@ -2,12 +2,14 @@ package lotto.domain;
 
 import lotto.constant.IllegalArgumentExceptionType;
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class RepeaterTest {
 
+    @DisplayName("반복작업_테스트")
     @Test
-    void 반복작업_테스트() {
+    void checkRepeatProcess() {
         String repeatCompletedMessage = "반복완료";
 
         StringBuilder stringBuilder = new StringBuilder();

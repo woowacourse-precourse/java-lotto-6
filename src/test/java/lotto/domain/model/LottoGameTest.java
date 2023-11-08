@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.constant.LottoRank;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoGameTest {
@@ -44,8 +44,9 @@ class LottoGameTest {
         lottoGame = new LottoGame(purchasedLottos, winningLotto);
     }
 
+    @DisplayName("로또_추첨_결과_생성_테스트")
     @Test
-    void 로또_랭크_생성_테스트() {
+    void createWinningLottoRanks() {
         assertThat(lottoGame.createWinningLottoRanks()).containsExactly(
                 LottoRank.SIX,
                 LottoRank.FIVE_WITH_BONUS,

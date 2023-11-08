@@ -1,16 +1,16 @@
 ## 구현할 기능 목록
 - [] 로또 구입 금액을 입력받는다. InputView#inputLottoPrice()
-- [] 로또 1개당 1000원으로 계산하여 로또 수량을 계산한다. InputView#calculateNumberOfLotto()
-- [] 계산한 로또의 개수를 출력한다. OutputView#printNumberOfLotto()
-- [] 1000원으로 나누어떨어지지 않으면 예외처리를 한다. validator#checkDividability()
+  - [] 로또 1개당 1000원으로 계산하여 로또 수량을 계산한다. InputView#calculateNumberOfLotto()
+  - [] 계산한 로또의 개수를 출력한다. OutputView#printNumberOfLotto()
+  - [] 1000원으로 나누어떨어지지 않으면 예외처리를 한다. Validator#checkDividability()
 - [] 로또 1개당 중복되지 않는 6개의 숫자를 랜덤으로 생성한다. NumberGenerator#gererateRandomNumber()
-- [] 생성한 숫자들을 출력한다. OutputView#printRandomNumber
+  - [] 생성한 숫자들을 출력한다. OutputView#printRandomNumber()
 - [] 당첨 번호를 입력받는다. InputView#inputWinningNumber()
-- [] 보너스 번호를 입력받는다. InputView#inputBonusNumber()
+  - [] 보너스 번호를 입력받는다. InputView#inputBonusNumber()
 - [] 로또 개수만큼 일치하는 수를 확인한다. LottoChecker#checkWinningDetails()
     - [] 로또 1개당 일치하는 수가 몇 개 있는지 확인한다.LottoChecker#countMatchingLottoNumbers()
 - [] 당첨 내역을 출력한다. OutputView#printWinningDetails()
-- [] 당천 된 돈의 수익률을 출력한다. OutputView#printProfit()
+- [] 당첨 된 돈의 수익률을 출력한다. OutputView#printProfit()
     - [] 당첨 된 돈을 합산한다. ProfitCalculator#sumWinningPrice()
     - [] 합산한 돈을 구입 금액으로 나누어 소수점 둘째 자리에서 반올림 하여 출력한다. ProfitCalculator#calculateRoundedProfit()
 

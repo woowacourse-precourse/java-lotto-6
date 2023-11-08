@@ -31,7 +31,7 @@ public class Validator {
                 int number = Integer.parseInt(stringNumber);
 
                 if (!isValidateOutOfRange(number)) {
-                    throw new IllegalArgumentException(ErrorType.WRONG_LOTTO_COUNT_MESSAGE.getValue());
+                    throw new IllegalArgumentException(ErrorType.OUT_OF_RANGE_NUMBER_MESSAGE.getValue());
                 }
 
                 userInputWinningNumberList.add(number);
@@ -62,6 +62,6 @@ public class Validator {
     }
 
     public boolean isValidateOutOfRange(int targetNumber) {
-        return targetNumber >= 1 && targetNumber <= 9;
+        return targetNumber >= 1 && targetNumber <= 45;
     }
 }

@@ -14,7 +14,6 @@ public class Application {
         System.out.println(lottoCount + OutputType.PURCHASE_COMPLETE_MESSAGE.getValue());
         List<Lotto> lottos = mainController.generateLottos(lottoCount);
         outputView.printLottoNumbers(lottos);
-        // List<int> LottoWinningNumber = inputWinningNumber();
-        // checkWinningDetails(LottoWinningNumber, LottoNumbers);
+        mainController.checkWinningResult(lottos);
     }
 }

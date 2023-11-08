@@ -3,6 +3,7 @@ package lotto.domain.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.model.Lotto;
+import lotto.domain.service.LottoChecker;
 import lotto.domain.view.InputView;
 import lotto.domain.service.LottoCalculator;
 import lotto.domain.service.LottoGenerator;
@@ -28,10 +29,14 @@ public class MainController {
         return lottos;
     }
 
-    public void checkWinningResult() {
+    public void checkWinningResult(List<Lotto> lottos) {
         InputView inputView = new InputView();
+        LottoChecker lottoChecker = new LottoChecker();
+
         Lotto winningNumber = inputView.inputWinningNumber();
         int bonusNumber = inputView.inputBonusNumber();
+
+        lottoChecker.checkNumberOfWinningLotto(lottos,winningNumber,bonusNumber);
     }
 
 

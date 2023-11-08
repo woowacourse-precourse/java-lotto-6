@@ -10,6 +10,22 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int checkWinningNumber(Lotto winningNumbers) {
+        int matchingCount = 0;
+        for (int number:this.numbers) {
+            for (int winningNumber: winningNumbers.numbers) {
+                if (number == winningNumber) {
+                    matchingCount++;
+                }
+            }
+        }
+        return matchingCount;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -20,6 +36,4 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
-
-    // TODO: 추가 기능 구현
 }

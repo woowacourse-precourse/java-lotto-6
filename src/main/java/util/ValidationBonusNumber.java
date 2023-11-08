@@ -14,6 +14,12 @@ public class ValidationBonusNumber {
         validateNumberRange(bonusNumberString);
     }
 
+    public static void validateDuplicateBonusNumber(List<Integer> numbers, Integer bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ValidationBonusNumberMessages.DUPLICATE_NUMBER.getMessage());
+        }
+    }
+
     private static void validateNumber(String bonusNumberString) {
         try {
             Integer price = Integer.parseInt(bonusNumberString);

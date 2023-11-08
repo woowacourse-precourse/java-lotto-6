@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.enumerte.Rank;
+import lotto.domain.enumerate.Rank;
 import lotto.util.LottoNumberGenerator;
 
 public class Lottos {

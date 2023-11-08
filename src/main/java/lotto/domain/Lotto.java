@@ -1,13 +1,11 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import lotto.domain.enumerte.NumberType;
-import lotto.domain.enumerte.Rank;
+import lotto.domain.enumerate.NumberType;
+import lotto.domain.enumerate.Rank;
 import lotto.message.ConsoleMessage;
-import lotto.util.LottoNumberGenerator;
 
 public class Lotto {
     private final List<Integer> numbers;

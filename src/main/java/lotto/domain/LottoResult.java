@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.Map;
 import java.util.Set;
-import lotto.domain.enumerte.Rank;
+import lotto.domain.enumerate.Rank;
 
 public class LottoResult {
     private final Map<Rank, Integer> ranks;

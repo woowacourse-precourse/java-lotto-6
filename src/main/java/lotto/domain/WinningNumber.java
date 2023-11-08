@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.enumerte.NumberType;
+import lotto.domain.enumerate.NumberType;
 import lotto.message.ConsoleMessage;
 
 public class WinningNumber {

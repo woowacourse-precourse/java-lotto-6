@@ -1,15 +1,14 @@
 package lotto.view;
 
-import static lotto.domain.enumerte.Rank.*;
+import static lotto.domain.enumerate.Rank.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
-import lotto.domain.enumerte.Rank;
+import lotto.domain.enumerate.Rank;
 import lotto.message.ConsoleMessage;
 
 public class OutputView {

@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
-import lotto.domain.enumerte.NumberType;
+import lotto.domain.enumerate.NumberType;
 import lotto.domain.PurchaseMoney;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningNumber;

@@ -53,8 +53,8 @@ class GameControllerTest {
     public void startGame_구입금액_입력받아_발행된_로또번호_출력(){
         //given
         String input = "2000";
-        List<Integer> lotto1 = Arrays.stream(new int[]{1,2,3,4,5,6}).boxed().collect(Collectors.toList());
-        List<Integer> lotto2 = Arrays.stream(new int[]{7,8,9,10,11,12}).boxed().collect(Collectors.toList());
+        List<Integer> lotto1 = List.of(1,2,3,4,5,6);
+        List<Integer> lotto2 = List.of(7,8,9,10,11,12);
 
 
         //when
@@ -113,8 +113,8 @@ class GameControllerTest {
     public void playGame_당첨번호_보너스번호_입력받아_당첨통계_계산(){
         //given
         String lottoMoneyInput = "2000\n";
-        List<Integer> lotto1 = Arrays.stream(new int[]{1,2,3,4,5,6}).boxed().collect(Collectors.toList());
-        List<Integer> lotto2 = Arrays.stream(new int[]{7,8,9,10,11,12}).boxed().collect(Collectors.toList());
+        List<Integer> lotto1 = List.of(1,2,3,4,5,6);
+        List<Integer> lotto2 = List.of(7,8,9,10,11,12);
 
         //when
         String lottoNumbersInput = "1,2,3,4,5,6\n7";

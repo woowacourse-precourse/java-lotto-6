@@ -26,6 +26,9 @@ public class Lotto {
         if (existsDuplicateNumber(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
+        for (Integer number : numbers){
+            new LottoNumber(number);
+        }
     }
 
     private boolean existsDuplicateNumber(List<Integer> numbers) {

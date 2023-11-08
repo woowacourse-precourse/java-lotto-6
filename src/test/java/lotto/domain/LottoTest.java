@@ -33,7 +33,8 @@ public class LottoTest {
     @Test
     void createLottoByUnderSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorCode.INVALID_LOTTO_SIZE.getMessage());
     }
 
     @DisplayName("로또 번호가 45를 넘어가면 예외가 발생한다.")

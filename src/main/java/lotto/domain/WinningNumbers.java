@@ -1,16 +1,15 @@
 package lotto.domain;
 
+import static lotto.domain.constants.LottoConstatants.LOTTO_MAX_NUMBER;
+import static lotto.domain.constants.LottoConstatants.LOTTO_MIN_NUMBER;
+import static lotto.domain.constants.LottoConstatants.LOTTO_NUMBERS_SIZE;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class WinningNumbers {
-    private static final int LOTTO_NUMBERS_SIZE = 6;
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
 
     private final List<Integer> winningNumbers;
 
@@ -46,7 +45,7 @@ public class WinningNumbers {
     }
 
     private void validateSize(List<Integer>winningNumber){
-        if(winningNumber.size() != LOTTO_NUMBERS_SIZE)
+        if(winningNumber.size() != LOTTO_NUMBERS_SIZE.getValue())
             throw new IllegalArgumentException("[ERROR] 로또 번호가 6개가 아닙니다.");
     }
     private void validateDuplicateNumber(List<Integer>winningNumber){
@@ -58,7 +57,7 @@ public class WinningNumbers {
 
     private void validateRange(List<Integer>winningNumber){
         for(Integer i : winningNumber){
-            if(i < LOTTO_MIN_NUMBER || i > LOTTO_MAX_NUMBER)
+            if(i < LOTTO_MIN_NUMBER.getValue() || i > LOTTO_MAX_NUMBER.getValue())
                 throw new IllegalArgumentException("[ERROR] 로또 숫자 범위는 1 ~ 45 입니다.");
         }
     }

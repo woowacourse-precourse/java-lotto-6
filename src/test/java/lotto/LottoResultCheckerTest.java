@@ -17,7 +17,8 @@ class LottoResultCheckerTest {
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         Lotto lotto3 = new Lotto(List.of(11, 22, 33, 44, 5, 45));
         List<Lotto> lottos = new ArrayList<>(List.of(lotto1, lotto2, lotto3));
-        WinningLotto winningLotto = WinningLotto.of(List.of(1, 2, 3, 4, 5, 6), 7);
+        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningLotto winningLotto = WinningLotto.of(winningNumbers, 7);
 
         LottoResultChecker lottoResultChecker = new LottoResultChecker(winningLotto);
         List<Result> results = lottoResultChecker.getResults(lottos);

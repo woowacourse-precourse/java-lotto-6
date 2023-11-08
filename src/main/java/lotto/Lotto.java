@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import static lotto.LottoHandler.LOTTO_LAST_NUMBER;
+import static lotto.LottoHandler.LOTTO_START_NUMBER;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -33,7 +36,7 @@ public class Lotto {
                 .filter(number -> number < 1 || number > 45)
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
+                    throw new IllegalArgumentException("[ERROR] " + LOTTO_START_NUMBER + " 이상 " + LOTTO_LAST_NUMBER + " 이하의 숫자를 입력해 주세요.");
                 });
     }
 

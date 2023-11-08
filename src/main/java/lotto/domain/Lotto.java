@@ -5,6 +5,8 @@ import static lotto.validator.LottoValidator.validateLotto;
 import java.util.Collections;
 import java.util.List;
 
+import lotto.view.ExceptionMessage;
+
 public class Lotto {
 
 	private final List<Integer> numbers;
@@ -29,6 +31,7 @@ public class Lotto {
 
 	public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
 		if (numbers.contains(bonusNumber)) {
+			ExceptionMessage.overlapException();
 			throw new IllegalArgumentException();
 		}
 	}

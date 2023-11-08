@@ -70,9 +70,7 @@ public class LottoController {
     private WinningLotto getWinningLottoFromInput() {
         try {
             Lotto winningLotto = getWinningNumbersFromInput();
-            System.out.println();
             BonusNumber bonusNumber = getBonusNumberFromInput();
-            System.out.println();
             validateDuplication(winningLotto, bonusNumber);
             return WinningLotto.create(winningLotto, bonusNumber);
         } catch (IllegalArgumentException e) {
@@ -90,6 +88,7 @@ public class LottoController {
     private Lotto getWinningNumbersFromInput() {
         try {
             String inputLottoNumbers = inputView.requestLottoWinningNumbers();
+            System.out.println();
             return Parser.parseLottoWiningNumbers(inputLottoNumbers);
         } catch (IllegalArgumentException e) {
             outputView.displayErrorMessage(e);
@@ -100,6 +99,7 @@ public class LottoController {
     private BonusNumber getBonusNumberFromInput() {
         try {
             String inputBonusNumber = inputView.requestLottoBonusNumber();
+            System.out.println();
             return Parser.parseLottoBonusNumber(inputBonusNumber);
         } catch (IllegalArgumentException e) {
             outputView.displayErrorMessage(e);

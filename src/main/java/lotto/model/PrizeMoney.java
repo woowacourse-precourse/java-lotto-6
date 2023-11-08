@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum PrizeMoney {
     PRIZE_FIRST(2000000000, 6, 0),
     PRIZE_SECOND(30000000, 5, 1),
@@ -16,5 +18,14 @@ public enum PrizeMoney {
         this.matchingNumbers = matchingNumbers;
         this.matchingBonusNumber = matchingBonusNumber;
     }
+
+    public static PrizeMoney valueOf(int matchingNumbers, int matchingBonusNumber) {
+        return Arrays.stream(values())
+                .filter(prizeMoney -> prizeMoney.matchingNumbers == matchingNumbers &&
+                        prizeMoney.matchingBonusNumber == matchingBonusNumber)
+                .findAny()
+                .orElse(null);
+    }
+
 
 }

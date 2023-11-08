@@ -88,7 +88,7 @@ public class Application {
     }
 
     public static void totalPrint(List<Integer> staticList,int prize) {
-        System.out.println("3개 일치 (5,000원) -" + staticList.get(0) + "개");
+        System.out.println("3개 일치 (5,000원) - " + staticList.get(0) + "개");
         System.out.println("4개 일치 (50,000원) - " + staticList.get(1) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + staticList.get(2) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + staticList.get(3) + "개");
@@ -109,7 +109,7 @@ public class Application {
     }
 
     public static void makeLotto(List<Lotto> lottos) {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         Lotto firstLottoList = new Lotto(numbers);
         lottos.add(firstLottoList);

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.lang.reflect.Proxy;
 import java.util.List;
 import lotto.controller.dto.ResultDto;
 import lotto.domain.lotto.Lottos;
@@ -14,10 +13,9 @@ public class LottoController {
     private final ProfitCalculator calculator;
     private final Counter lottoCounter;
 
-    public LottoController(ProfitCalculator calculator) {
+    public LottoController(ProfitCalculator calculator,Counter counter) {
         this.calculator = calculator;
-        lottoCounter = (Counter)Proxy.newProxyInstance(Counter.class.getClassLoader(), new Class[]{Counter.class},
-                new ExceptionHandler(new LottoCounter()));
+        lottoCounter = counter;
     }
 
     public void run() {

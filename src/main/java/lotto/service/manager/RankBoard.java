@@ -1,10 +1,11 @@
 package lotto.service.manager;
 
+import lotto.domain.entity.Lotto;
+
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.service.generator.LottoGenerator;
 
 public class RankBoard {
 
@@ -13,7 +14,7 @@ public class RankBoard {
 
     public RankBoard() {
         this.totalPrize = 0L;
-        this.board = new LinkedHashMap<>(LottoGenerator.COUNT);
+        this.board = new LinkedHashMap<>(Lotto.COUNT);
 
         for (Rank rank : Rank.values()) {
             board.put(rank, new Count());
@@ -34,7 +35,7 @@ public class RankBoard {
      * @return unmodifiable LinkHashMap
      */
     public Map<Rank, Long> getResultBoard() {
-        Map<Rank, Long> resultBoard = new LinkedHashMap<>(LottoGenerator.COUNT);
+        Map<Rank, Long> resultBoard = new LinkedHashMap<>(Lotto.COUNT);
         board.keySet()
                 .forEach(r ->
                         putCountTo(resultBoard, r)

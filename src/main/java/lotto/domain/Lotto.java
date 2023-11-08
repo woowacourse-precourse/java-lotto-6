@@ -21,9 +21,14 @@ public class Lotto {
         if (numberSet.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
         }
+
+        for (int number : numbers) {
+            if (!(1 <= number && number <= 45)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
     }
 
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
     }

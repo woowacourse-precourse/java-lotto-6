@@ -3,10 +3,13 @@ package lotto;
 import static lotto.message.Message.BONUS_NUMBER_REQUEST;
 import static lotto.message.Message.COUNT;
 import static lotto.message.Message.DIVIDING_LINE;
+import static lotto.message.Message.END_EXPLAINE;
 import static lotto.message.Message.LINE_BREAK;
 import static lotto.message.Message.PAYMENT_COMPLETE;
 import static lotto.message.Message.PAYMENT_REQUEST;
+import static lotto.message.Message.PERCENT_SIGN;
 import static lotto.message.Message.SPACE;
+import static lotto.message.Message.TOTAL_RETURN;
 import static lotto.message.Message.WINNING_NUMBER_REQUEST;
 import static lotto.message.Message.WINNING_STATISTICS_RESULT;
 
@@ -29,7 +32,7 @@ public class LottoGame {
         printLottoTicket(lottoTicket.makeLottoToString());
 
         WiningLotto win = saveWiningData(runWiningNumberSavingProcess(), receiveBonusNumber());
-        printLottoWinResult(lottoTicket, win);
+        printLottoWinResult(lottoTicket, win, money.calculatePurchasedLotto());
 
     }
 
@@ -109,7 +112,7 @@ public class LottoGame {
         }
     }
 
-    private void printLottoWinResult(LottoTicket lottoTicket, WiningLotto win) {
+    private void printLottoWinResult(LottoTicket lottoTicket, WiningLotto win, int lottoCount) {
         OutputView.print(LINE_BREAK.getMessage());
         OutputView.print(WINNING_STATISTICS_RESULT.getMessage());
         OutputView.print(LINE_BREAK.getMessage());
@@ -124,6 +127,8 @@ public class LottoGame {
                     + winResult.get(result.getCount()) + COUNT.getMessage());
             OutputView.print(LINE_BREAK.getMessage());
         }
+        OutputView.print(TOTAL_RETURN.getMessage() + new StatisticsCalculator().getRate(winResult, lottoCount)
+                + PERCENT_SIGN.getMessage() + END_EXPLAINE.getMessage());
     }
 
 

@@ -41,7 +41,18 @@ public class OutputView {
             }
         }
     }
-    
+
+    private static String makeRankMessage(Rank rank, int count) {
+        String bonusMatch = rank.isMatchBonus() ? ", 보너스 볼 일치" : "";
+        return String.format(
+                "%d개 일치%s (%s원) - %d개",
+                rank.getMatchCount(),
+                bonusMatch,
+                PRIZE_FORMAT.format(rank.getPrizeMoney()),
+                count
+        );
+    }
+
     public static void printProfitRate(double profitRate) {
         System.out.println(String.format(PROFIT_RATE_FORMAT, profitRate));
     }

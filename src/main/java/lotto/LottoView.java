@@ -17,6 +17,10 @@ public class LottoView {
         System.out.println(numberOfLotto + "개를 구매했습니다.");
     }
 
+    /**
+     * 로또 번호 출력
+     * @param purchasedLotto 구매한 로또 번호
+     */
     public void showAlertMessageOfLottoNumber(List<Lotto> purchasedLotto){
         StringBuilder lottoNumbers = new StringBuilder();
         purchasedLotto.forEach(lotto-> lottoNumbers.append(lotto.toString()+"\n"));
@@ -43,9 +47,13 @@ public class LottoView {
         System.out.println("당첨 통계\n---");
     }
 
-    public void showWinningStaticsDetailMessage(Map<WinningPrice, List<Lotto>> winningPrices) {
+    /**
+     * 로또 당첨 통계 출력
+     * @param purchasedLotto 구매한 로또
+     */
+    public void showWinningStaticsDetailMessage(Map<WinningPrice, List<Lotto>> purchasedLotto) {
         StringBuilder sb = new StringBuilder();
-        winningPrices.forEach((winningPrice, lottos) -> {
+        purchasedLotto.forEach((winningPrice, lottos) -> {
             Optional<String> info = WinningPrice.getInfo(winningPrice);
             sb.append(createOneRowResult(info, lottos));
         });
@@ -65,6 +73,11 @@ public class LottoView {
         System.out.println("총 수익률은 " + parseEarningsRateToString(earningsRate) + "%입니다.");
     }
 
+    /**
+     * 수익률에 구분자 추가
+     * @param earningsRate 구분자 없는 수익률
+     * @return 구분자가 포함되어 있는 수익률
+     */
     private String parseEarningsRateToString(Double earningsRate) {
         String earningsRateStr = earningsRate.toString();
         String[] earningsRateArr = earningsRateStr.split("\\.");

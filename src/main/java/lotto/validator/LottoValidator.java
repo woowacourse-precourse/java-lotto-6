@@ -24,7 +24,7 @@ public class LottoValidator {
 
     private void validateUnique() {
         if (hasDuplicateNumber()){
-            throw new IllegalArgumentException("로또 숫자는 중복을 허락하지 않습니다.");
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
     }
 
@@ -48,7 +48,7 @@ public class LottoValidator {
         }
 
         if (lottoList.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 숫자는 로또 정답 숫자와 중복될 수 없습니다.");
+            throw new IllegalArgumentException("보너스 번호는 로또 번호와 중복될 수 없습니다.");
         }
     }
 

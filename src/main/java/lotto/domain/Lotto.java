@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.validator.LottoValidator;
 
 public record Lotto(List<Integer> numbers) {
 
@@ -9,9 +10,8 @@ public record Lotto(List<Integer> numbers) {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        LottoValidator lottoValidator = new LottoValidator(numbers);
+        lottoValidator.validateAll();
     }
 
     public boolean hasMatchedNumber(int bonusNumber) {

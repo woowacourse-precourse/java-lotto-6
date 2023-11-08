@@ -1,6 +1,9 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.List;
+import lotto.domain.winning.LottoNumbers;
+import lotto.domain.winning.Rank;
+import lotto.domain.winning.WinningNumbers;
 
 public class Lotto {
     public static final String LOTTO_PRIFIX = "[";

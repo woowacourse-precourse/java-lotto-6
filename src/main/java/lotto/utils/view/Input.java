@@ -1,8 +1,8 @@
 package lotto.utils.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.BonusNumber;
-import lotto.domain.LottoNumbers;
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.LottoNumbers;
 import lotto.utils.constant.BuyPrice;
 
 public class Input {

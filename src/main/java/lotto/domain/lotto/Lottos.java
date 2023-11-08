@@ -1,8 +1,10 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.domain.winning.WinningNumbers;
+import lotto.domain.winning.WinningResult;
 import lotto.utils.constant.BuyPrice;
 import lotto.utils.generator.LottoGenerator;
 import lotto.utils.view.Messages;

@@ -2,8 +2,8 @@ package lotto.utils.generator;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumbers;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.winning.LottoNumbers;
 
 public class LottoGenerator {
     public static final int START_INCLUSIVE = 1;

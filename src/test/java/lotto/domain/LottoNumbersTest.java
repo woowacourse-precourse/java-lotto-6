@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.LottoNumbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

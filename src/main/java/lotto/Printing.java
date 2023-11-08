@@ -32,6 +32,8 @@ public class Printing {
             if (win == WinningDetails.MISS) continue;
             System.out.println(getString(win, key));
         }
+        double result = getRate(rank)/money;
+        System.out.printf((RATE_OF_RETURN) + "\n", result);
     }
 
     private String getString(WinningDetails win, int key) {
@@ -45,5 +47,13 @@ public class Printing {
                 , win.getCount()
                 , String.format("%,d", win.getPrize())
                 , key);
+    }
+
+    private long getRate(Map<WinningDetails, Integer> rank) {
+        long result = 0;
+        for (WinningDetails win : WinningDetails.values()) {
+            result += win.getPrize() * rank.get(win);
+        }
+        return result;
     }
 }

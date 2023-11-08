@@ -50,7 +50,7 @@ public class LottoMachine {
                 printBonusNumEnterGuideStatement();
                 String input = Console.readLine();
                 bonusNum = iv.toInt(input);
-                bonusNumValidation();
+                bonusNumValidation(bonusNum);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -59,7 +59,7 @@ public class LottoMachine {
         return bonusNum;
     }
 
-    private void bonusNumValidation() {
+    private void bonusNumValidation(int bonusNum) {
         iv.isWithinRange(bonusNum);
         iv.isBonusDuplicateOfLotto(winningLotto, bonusNum);
     }

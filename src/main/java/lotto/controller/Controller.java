@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.LottoTicket;
-import lotto.model.LottoTickets;
-import lotto.model.NumberOfLottoTickets;
-import lotto.model.WinningNumbers;
+import lotto.model.*;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -37,9 +34,10 @@ public class Controller {
         output.printLottoTickets(tickets);
 
         // 당첨 번호 입력받기
-        List<Integer>winningNumbers = input.inputWinningNumbers();
-        new WinningNumbers(winningNumbers);
+        WinningNumbers winningNumbers = new WinningNumbers(input.inputWinningNumbers());
 
+        // 보너스 당첨 번호
+        BonusWinningNumber bonusNumber = new BonusWinningNumber(input.inputBonusNumber());
 
 
     }

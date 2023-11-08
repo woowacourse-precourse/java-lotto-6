@@ -82,6 +82,5 @@ public class LottoController {
     private Map<Rank, Integer> getRankOfLottos(List<Integer> winningNumbers, List<Lotto> lottos) {
         LottoManager lottoManager = generateLottoManager(winningNumbers, getBonusNumber());
         return lottoManager.calculateLottosRanks(lottos);
-
     }
 }

@@ -23,7 +23,7 @@ public class OutputView {
         System.out.println(String.format("4개 일치 (50,000원) - %d개", result.getRankingCount(Ranking.FOURTH)));
         System.out.println(String.format("5개 일치 (1,500,000원) - %d개", result.getRankingCount(Ranking.THIRD)));
         System.out.println(
-                String.format("5개 일치, 보너스 볼 일치(30,000,000원) - %d개", result.getRankingCount(Ranking.SECOND)));
+                String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", result.getRankingCount(Ranking.SECOND)));
         System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", result.getRankingCount(Ranking.FIRST)));
         System.out.println(String.format("총 수익률은 %.1f%%입니다.", result.getRevenue()));
     }

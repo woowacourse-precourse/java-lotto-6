@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoBundle;
@@ -27,15 +26,14 @@ public class LottoGameController {
 
     private static LottoResult calculateRanking(LottoBundle lottoBundle, Lotto winningLotto,
                                                 Integer bonusNumber) {
-        List<Lotto> lottos = lottoBundle.getLottoBundle();
         Map<Ranking, Integer> result = new EnumMap<>(Ranking.class);
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottoBundle.getLottoBundle()) {
             int matchCounts = lotto.match(winningLotto);
             boolean hasBonusNumber = lotto.contains(bonusNumber);
             Ranking ranking = Ranking.checkRanking(matchCounts, hasBonusNumber);
             result.put(ranking, result.getOrDefault(ranking, 0) + 1);
         }
-        return new LottoResult(result, Revenue.from(result, lottos.size()));
+        return new LottoResult(result, Revenue.from(result, lottoBundle.getLottoBundle().size()));
     }
 
 }

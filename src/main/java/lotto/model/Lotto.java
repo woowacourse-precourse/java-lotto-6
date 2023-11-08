@@ -7,15 +7,13 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sort(numbers);
         this.numbers = numbers;
     }
 
-    private void sort(List<Integer> numbers) {
-        numbers.sort(Integer::compareTo);
-    }
-
     private void validate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException();
+        }
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }

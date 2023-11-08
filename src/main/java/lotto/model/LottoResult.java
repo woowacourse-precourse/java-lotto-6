@@ -6,12 +6,16 @@ import java.util.Map;
 
 public class LottoResult {
 
+    private final static String NEW_LINE = "\n";
+    private final static int RANK_COUNTS_INITIALIZE = 0;
+    private final static long PROFITS_INITIALIZE = 0;
+
     private final Map<Rank, Integer> rankCounts;
 
     public LottoResult() {
         rankCounts = new HashMap<>();
         for (Rank rank : Rank.values()) {
-            rankCounts.put(rank, 0);
+            rankCounts.put(rank, RANK_COUNTS_INITIALIZE);
         }
     }
 
@@ -24,7 +28,7 @@ public class LottoResult {
 
         for (Rank rank : Rank.getReverseOrderValues()) {
             builder.append(RankMessage.getMessage(rank, rankCounts.get(rank)));
-            builder.append("\n");
+            builder.append(NEW_LINE);
         }
 
         return builder.toString();
@@ -33,6 +37,6 @@ public class LottoResult {
     public long getProfits() {
         return Arrays.stream(Rank.values())
                 .mapToLong(rank -> RankReward.getRewardOf(rank) * (long) rankCounts.get(rank))
-                .reduce(0L, Long::sum);
+                .reduce(PROFITS_INITIALIZE, Long::sum);
     }
 }

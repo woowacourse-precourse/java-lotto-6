@@ -2,8 +2,6 @@ package lotto.domain;
 
 import lotto.exception.InvalidDuplicatedNumberException;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {

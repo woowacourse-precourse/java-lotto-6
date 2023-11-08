@@ -34,7 +34,7 @@ public class IOHandler {
 
         try {
             String input = Console.readLine();
-            winningNumbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
+            winningNumbers = Arrays.stream(input.split(",")).map(s -> Integer.parseInt(s.trim())).toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER.getMessage());
         }
@@ -79,6 +79,6 @@ public class IOHandler {
     }
 
     public void printProfitRate(double profitRate) {
-        System.out.printf("총 수익률은 %f%%입니다.\n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 }

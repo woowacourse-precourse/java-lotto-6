@@ -2,6 +2,8 @@ package lotto.util.convert;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +32,13 @@ class ConvertUtilTest {
             .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> ConvertUtil.stringToInt("1,2,a,3,4,5"))
             .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("입력된 ','로 구분되어 있는 String을 List<Integer>로 변환이 가능하면 성공")
+    @Test
+    void 문자열_정수_배열_변환_성공(){
+        List<Integer> numbers = ConvertUtil.stringToIntArr("1,2,3,4,5,6");
+        assertThat(numbers).isEqualTo(List.of(1,2,3,4,5,6));
     }
 
 }

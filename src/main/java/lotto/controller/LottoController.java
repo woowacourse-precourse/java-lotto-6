@@ -129,7 +129,7 @@ public class LottoController {
         }
     }
 
-    private void printResult(HashMap<String, Integer> countByPrize, int lottoCost) {
+    public void printResult(HashMap<String, Integer> countByPrize, int lottoCost) {
         System.out.println(output.printResultMessage());
         printFifthPrizeCount(countByPrize);
         printFourthPrizeCount(countByPrize);

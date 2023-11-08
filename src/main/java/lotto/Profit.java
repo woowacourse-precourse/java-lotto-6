@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.text.DecimalFormat;
+
 public class Profit {
 
 	public static void calculate(List<WinningRank> rankingList, String money) {
@@ -11,7 +12,7 @@ public class Profit {
 		int totalWinnings = calculateWinningMoney(rankingList);
 
 		double profit = calculateProfitPercentage(totalWinnings, userMoney);
-		
+
 		printResult(profit);
 	}
 
@@ -34,10 +35,14 @@ public class Profit {
 	}
 
 	private static void printResult(double profit) {
-		
-	    DecimalFormat df = new DecimalFormat("###,###,###.0");
-	    String formattedProfit = df.format(profit);
 
-	    System.out.println("총 수익률은 " + formattedProfit + "%입니다.");
+		if (profit != 0) {
+			DecimalFormat df = new DecimalFormat("###,###,###.0");
+			String formattedProfit = df.format(profit);
+			
+			System.out.println("총 수익률은 " + formattedProfit + "%입니다.");
+		}
+		
+		System.out.println("총 수익률은 0.0%입니다.");
 	}
 }

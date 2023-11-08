@@ -12,7 +12,7 @@ public class ProfitCalculator {
         List<LottoRank> ranks = LottoResultRepository.findLottoRankResults();
 
         long profitAmount = calculateTotalProfitAmount(ranks);
-        int purchaseAmount = PurchaseAmountRepository.findAmount();
+        long purchaseAmount = PurchaseAmountRepository.findAmount();
 
         return calculateTotalProfitRate(profitAmount, purchaseAmount);
     }

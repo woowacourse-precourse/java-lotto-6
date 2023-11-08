@@ -17,7 +17,7 @@ public class PurchaseAmountRepository {
         purchaseAmounts.clear();
     }
 
-    public static int findAmount() {
+    public static long findAmount() {
         return findByIndex(DEFAULT).getAmount();
     }
 

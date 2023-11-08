@@ -17,6 +17,14 @@ public class OutputView {
     public static final String TOTAL_PROFIT_RATE_MESSAGE = "총 수익률은 {0}입니다.";
     public static final String TOTAL_PROFIT_PRINT_PATTERN = "###,###.0%";
 
+    public static void showStatistics(List<Lotto> generatedLottos, WinLotto winLotto) {
+        System.out.println(STATISTIC_MESSAGE);
+        System.out.println(BARS);
+        List<Result> results = getResults(generatedLottos, winLotto);
+        ResultStatistics statistics = printResultStatistics(results);
+        System.out.println(printTotalProfit(statistics, generatedLottos.size()));
+    }
+
     protected static List<Result> getResults(List<Lotto> generatedLottos, WinLotto winLotto) {
         List<Result> results = new ArrayList<>();
 

@@ -17,8 +17,8 @@ public class Statistics {
 
     public double calculateRateOfReturn(Money purchaseMoney){
         double winningAmount = Arrays.stream(Rank.values())
-            .mapToInt(rank -> winningResult.get(rank) * rank.getWinningMoney())
-            .sum();
+                .mapToInt(rank -> winningResult.get(rank) * rank.getWinningMoney())
+                .sum();
         double rateOfReturn = (winningAmount / purchaseMoney.amount()) * PERCENTAGE_MULTIPLIER;
         return rateOfReturn;
     }

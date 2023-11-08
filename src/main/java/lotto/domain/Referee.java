@@ -23,4 +23,12 @@ public class Referee {
         }
         return winNumberMatchCount;
     }
+
+    public int getBonusNumberMatchCount(Lotto lotto) {
+        int bonusNumberMatchCount = 0;
+        if (lotto.getNumbers().contains(bonusNumber)) {
+            bonusNumberMatchCount++;
+        }
+        return bonusNumberMatchCount;
+    }
 }

@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -123,20 +120,71 @@ public class LottoController {
 
     private int moneyInput() {
         System.out.println("구입금액을 입력해 주세요.");
-        int Money = Integer.parseInt(readLine());
+        int Money = moneyInputValidTest();
         int LottoNum = Money / 1000;
         System.out.println(LottoNum + "개를 구매했습니다.");
         return LottoNum;
     }
 
+    private int moneyInputValidTest() {
+        while (true) {
+            try {
+                int Money = Integer.parseInt(readLine());
+                if (Money % 1000 != 0) throw new IllegalArgumentException();
+                return Money;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR]유효한 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]1000원 단위로 입력해 주세요.");
+            }
+        }
+    }
+
+
     private int bonusNumInput() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(readLine());
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            try {
+                int bonusNum = Integer.parseInt(readLine());
+                if (bonusNum > 45 || bonusNum < 1) throw new IllegalArgumentException();
+                return bonusNum;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR]유효한 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]보너스 번호는 1~45 사이의 숫자만 가능합니다.");
+            }
+        }
     }
 
     private List<Integer> winningNumInput() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return Arrays.stream(readLine().split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+            while (true) {
+                try {
+                    System.out.println("당첨 번호를 입력해 주세요.");
+                    List<Integer> WinningNum = Arrays.stream(readLine().split(","))
+                            .map(Integer::parseInt)
+                            .collect(Collectors.toList());
+
+                    if (WinningNum.size() != 6) {
+                        throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+                    }
+
+                    Set<Integer> checkSameNum = new HashSet<>(WinningNum);
+                    if (checkSameNum.size() != 6) {
+                        throw new IllegalArgumentException("[ERROR]동일한 로또 번호가 있으면 안됩니다.");
+                    }
+
+                    for (int number : WinningNum) {
+                        if (number < 1 || number > 45) {
+                            throw new IllegalArgumentException("[ERROR]로또 번호는 1~45 사이의 숫자만 가능합니다.");
+                        }
+                    }
+
+                    return WinningNum;
+                } catch (IllegalArgumentException e) {
+                    System.out.println("[ERROR]로또 번호는 숫자만 가능합니다.");
+                }
+            }
+        }
     }
 
-}
+

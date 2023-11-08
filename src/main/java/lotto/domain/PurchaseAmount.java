@@ -16,6 +16,7 @@ public class PurchaseAmount {
 
     private void validate(long amount) {
         validateRange(amount);
+        validateUnit(amount);
     }
 
     private void validateRange(long amount) {
@@ -28,5 +29,9 @@ public class PurchaseAmount {
         if (amount % LOTTO_PRICE_UNIT != 0) {
             throw new IllegalArgumentException(PurchaseAmountExceptionMessage.INVALID_AMOUNT_UNIT.getError());
         }
+    }
+
+    public long getPurchaseLottoCount() {
+        return amount / LOTTO_PRICE_UNIT;
     }
 }

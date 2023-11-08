@@ -6,11 +6,8 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class LottoTicketsGeneratingMachine {
-    private LottoTicketsGeneratingMachine() {
 
-    }
-
-    public static LottoTickets generateRandomLottoTickets(TicketSize ticketSize) {
+    public LottoTickets generateRandomLottoTickets(TicketSize ticketSize) {
         List<Lotto> lottoTickets = IntStream.range(0, ticketSize.getTicketSize())
                 .mapToObj(cnt -> Lotto.randomPick())
                 .toList();

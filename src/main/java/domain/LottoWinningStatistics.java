@@ -9,11 +9,8 @@ import java.util.Map.Entry;
 import java.util.Optional;
 
 public class LottoWinningStatistics {
-    private LottoWinningStatistics() {
 
-    }
-
-    public static LottoStatisticsResult calculateStatistics(Amount purchaseAmount, List<LottoWinningTier> tiers) {
+    public LottoStatisticsResult calculateStatistics(Amount purchaseAmount, List<LottoWinningTier> tiers) {
         Map<LottoWinningTier, Integer> winningTierCountStatistics = createWinningTierCountStatistics();
         calculateWinningTierCount(winningTierCountStatistics, tiers);
 
@@ -23,7 +20,7 @@ public class LottoWinningStatistics {
         return new LottoStatisticsResult(winningTierCountStatistics, percentOfTotalWinningAmount);
     }
 
-    private static Map<LottoWinningTier, Integer> createWinningTierCountStatistics() {
+    private Map<LottoWinningTier, Integer> createWinningTierCountStatistics() {
         Map<LottoWinningTier, Integer> winningTierCountStatistics = new EnumMap<>(LottoWinningTier.class);
         Arrays.stream(LottoWinningTier.values())
                 .forEach(tier -> winningTierCountStatistics.put(tier, 0));
@@ -31,30 +28,30 @@ public class LottoWinningStatistics {
         return winningTierCountStatistics;
     }
 
-    private static void calculateWinningTierCount(Map<LottoWinningTier, Integer> winningTierCountStatistics,
+    private void calculateWinningTierCount(Map<LottoWinningTier, Integer> winningTierCountStatistics,
                                                   List<LottoWinningTier> tiers) {
         tiers.forEach(tier -> increaseWinningTierCount(winningTierCountStatistics, tier));
     }
 
-    private static void increaseWinningTierCount(Map<LottoWinningTier, Integer> winningTierCountStatistics,
+    private void increaseWinningTierCount(Map<LottoWinningTier, Integer> winningTierCountStatistics,
                                                  LottoWinningTier winningTier) {
         winningTierCountStatistics.put(winningTier, addOneToBeforeValue(winningTierCountStatistics, winningTier));
     }
 
-    private static int addOneToBeforeValue(Map<LottoWinningTier, Integer> winningTierCountStatistics,
+    private int addOneToBeforeValue(Map<LottoWinningTier, Integer> winningTierCountStatistics,
                                            LottoWinningTier winningTier) {
         return winningTierCountStatistics.get(winningTier) + 1;
     }
 
-    private static Amount calculateTotalWinningAmount(Map<LottoWinningTier, Integer> winningTierCountStatistics) {
+    private Amount calculateTotalWinningAmount(Map<LottoWinningTier, Integer> winningTierCountStatistics) {
         return winningTierCountStatistics.entrySet()
                 .stream()
-                .map(LottoWinningStatistics::calculateTotalTierAmount)
+                .map(this::calculateTotalTierAmount)
                 .reduce(Amount::plusAmount)
                 .orElseGet(Amount::createZeroAmount);
     }
 
-    private static Amount calculateTotalTierAmount(Entry<LottoWinningTier, Integer> tierCountEntry) {
+    private Amount calculateTotalTierAmount(Entry<LottoWinningTier, Integer> tierCountEntry) {
         LottoWinningTier tier = tierCountEntry.getKey();
         Integer count = tierCountEntry.getValue();
         return tier.getPrizeAmount()

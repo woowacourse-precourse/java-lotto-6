@@ -31,7 +31,7 @@ public class LottoValidator {
     }
 
     public void checkRange(List<Integer> numbers) {
-        if(isNotInRange(numbers)){
+        if (isNotInRange(numbers)) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR.getErrorMessage());
         }
     }
@@ -42,7 +42,7 @@ public class LottoValidator {
     }
 
     public void checkDuplicateWinningNumbers(List<Integer> numbers) {
-        if(isDuplicateWinningNumbers(numbers)){
+        if (isDuplicateWinningNumbers(numbers)) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER_IN_WINNING_LOTTO.getErrorMessage());
         }
     }

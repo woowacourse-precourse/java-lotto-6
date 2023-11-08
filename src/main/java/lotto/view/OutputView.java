@@ -35,7 +35,7 @@ public class OutputView {
     }
 
     public void printWinResult(WinResult winResult) {
-        for(WinnerRank winnerRank : WinnerRank.values()){
+        for (WinnerRank winnerRank : WinnerRank.values()) {
             int key = winnerRank.getRankKey();
 
             System.out.printf(returnWinResultByRankKey(key),
@@ -46,7 +46,7 @@ public class OutputView {
     }
 
     private String returnWinResultByRankKey(int rankKey) {
-        if(rankKey == LOTTO_SAME_NUMBER_FIVE_WITH_BONUS_KEY.getValue()){
+        if (rankKey == LOTTO_SAME_NUMBER_FIVE_WITH_BONUS_KEY.getValue()) {
             return WIN_RESULT_WITH_BONUS.getMessage();
         }
         return WIN_RESULT_WITHOUT_BONUS.getMessage();

@@ -18,11 +18,11 @@ public class WinningLottoValidator {
         }
     }
 
-    private boolean isDuplicateWinningNumbers(Lotto winLotto, int bonusNum){
+    private boolean isDuplicateWinningNumbers(Lotto winLotto, int bonusNum) {
         return winLotto.hasSameNumber(bonusNum);
     }
 
-    public void checkDuplicateWinningNumbers(Lotto winLotto, int bonusNum){
+    public void checkDuplicateWinningNumbers(Lotto winLotto, int bonusNum) {
         if (isDuplicateWinningNumbers(winLotto, bonusNum)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_WITH_WIN_LOTTO.getErrorMessage());
         }

@@ -19,13 +19,13 @@ public class LottoWinResultServiceTest {
     @BeforeEach
     void setUpWinResult() {
         List<Lotto> lottos = List.of(
-                new Lotto(List.of(1,2,3,4,5,6)),
-                new Lotto(List.of(2,6,12,34,36,41)),
-                new Lotto(List.of(1,2,3,12,34,41)),
-                new Lotto(List.of(1,2,6,12,34,41)),
-                new Lotto(List.of(1,2,11,24,33,41))
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(2, 6, 12, 34, 36, 41)),
+                new Lotto(List.of(1, 2, 3, 12, 34, 41)),
+                new Lotto(List.of(1, 2, 6, 12, 34, 41)),
+                new Lotto(List.of(1, 2, 11, 24, 33, 41))
         );
-        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1,2,6,12,34,41)));
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 6, 12, 34, 41)));
         winningLotto.setBonusLottoNum(3);
         winResult = lottoWinResultService.getWinResult(lottos, winningLotto);
     }

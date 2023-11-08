@@ -26,8 +26,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
-
     @DisplayName("해당 번호가 현재 확인하는 로또 번호에 포함 되어 있는지 확인한다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 6})

@@ -12,7 +12,7 @@ public class InputValidatorTest {
 
     @DisplayName("정수인지 확인하는 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"-1", "+1", "1", })
+    @ValueSource(strings = {"-1", "+1", "1"})
     void checkInteger(String number) {
         assertThatCode(() -> inputValidator.checkInteger(number))
                 .doesNotThrowAnyException();
@@ -20,7 +20,7 @@ public class InputValidatorTest {
 
     @DisplayName("정수 예외 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"1.1", "String", " ", })
+    @ValueSource(strings = {"1.1", "String", " "})
     void checkNotInteger(String number) {
         assertThatThrownBy(() -> inputValidator.checkInteger(number))
                 .isInstanceOf(IllegalArgumentException.class)

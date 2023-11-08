@@ -19,7 +19,7 @@ public class Controller {
         int money = getMoneyByUserInput();
         List<Lotto> lottos = purchaseLotto(money);
         Lotto winningLotto = getWinNumbersByUserInput();
-        WinningNumber winningNumber  = getBonusNumberByUserInput(winningLotto);
+        WinningNumber winningNumber = getBonusNumberByUserInput(winningLotto);
         LinkedHashMap<Rank, Integer> lottoResult = getLottoResult(lottos, winningNumber);
         getRateOfReturn(lottoResult, money);
     }

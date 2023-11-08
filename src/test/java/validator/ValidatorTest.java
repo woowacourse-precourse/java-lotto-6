@@ -5,7 +5,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class ValidatorTest {
+class ValidatorTest {
     private final String ERROR_MESSAGE = "[ERROR] ";
     Validator validator = new Validator();
 

@@ -40,7 +40,7 @@ public class WinningNumber {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    public int getBonusNumber(){
+    public int getBonusNumber() {
         return bonusNumber;
     }
 }

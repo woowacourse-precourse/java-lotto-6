@@ -8,6 +8,7 @@ public class Random {
     static private int start = 1;
     static private int end = 45;
     static private int count = 6;
+
     public Random() {
 
     }

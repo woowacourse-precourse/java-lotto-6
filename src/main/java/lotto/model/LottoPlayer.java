@@ -11,7 +11,11 @@ public class LottoPlayer {
 
     public LottoPlayer(int initialAmount) {
         this.initialAmount = initialAmount;
-        this.lottoCount = initialAmount / LOTTO_PRICE;
+        this.lottoCount = calculateLottoCount(initialAmount);
+    }
+
+    private int calculateLottoCount(int initialAmount) {
+        return initialAmount / LOTTO_PRICE;
     }
 
     public void lottoGeneration(List<Integer> lottoNumbers) {

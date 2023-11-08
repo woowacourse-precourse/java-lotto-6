@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+    private static final int COMBINE_MAX_SIZE = 12;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -31,10 +32,13 @@ public class Lotto {
         return numbers.contains(value);
     }
 
-    public int matchCount(Lotto otherLotto) {
-        final var lottoSet = new HashSet<>(this.numbers);
-        lottoSet.addAll(otherLotto.numbers);
 
-        return 12 - lottoSet.size();
+    // 로또 번호 6개 다른 로또 번호 6개를 합치면 12개가 나옵니다.
+    // 즉 중복되지 않는 경우라면 12개가 나오기 때문에 일치하는 숫자는 0개이며 모두 일치하면 6개가 나오게 됩니다.
+    public int matchCount(Lotto otherLotto) {
+        final var combineLotto = new HashSet<>(this.numbers);
+        combineLotto.addAll(otherLotto.numbers);
+
+        return COMBINE_MAX_SIZE - combineLotto.size();
     }
 }

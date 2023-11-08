@@ -12,9 +12,15 @@ public class LottoRepository {
     private Money payment;
     private AnswerLotto answerLotto;
 
+    /**
+     * 순서상 문제가 발생하는 경우
+     *
+     * @param object
+     * @param <T>
+     */
     private static <T> void requireNonNull(T object) {
         if (Objects.isNull(object)) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("해당 값이 존재하지 않습니다.");
         }
     }
 

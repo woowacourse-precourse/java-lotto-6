@@ -5,10 +5,10 @@ import static java.util.stream.Collectors.toMap;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 
 public class PurchasedLottoBundle {
+
     private final List<Lotto> lottoBundle;
 
     public PurchasedLottoBundle(List<Lotto> lottoBundle) {
@@ -29,7 +29,7 @@ public class PurchasedLottoBundle {
         return lottoBundle.stream()
                 .map(answerLotto::match)
                 .map(LottoMatchingTable::of)
-                .filter(lottoMatchingTable -> Objects.equals(lottoRewardTable.getLottoMatchingTable(), lottoMatchingTable))
+                .filter(lottoRewardTable::hasSameRank)
                 .count();
     }
 
@@ -42,4 +42,5 @@ public class PurchasedLottoBundle {
                 .map(function)
                 .toList();
     }
+
 }

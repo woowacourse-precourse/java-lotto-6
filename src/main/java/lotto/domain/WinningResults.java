@@ -21,8 +21,7 @@ public record WinningResults(Map<LottoRewardTable, Long> value) {
     }
 
     public List<MessagePerCount> getWinningMessages() {
-        return value.entrySet()
-                .stream()
+        return value.entrySet().stream()
                 .map(this::getWinningMessage)
                 .toList();
     }

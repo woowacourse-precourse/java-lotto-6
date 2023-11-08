@@ -14,9 +14,9 @@ public record WinningStatisticsState(double profit, List<MessagePerCount> messag
     }
 
     public String getProfitResult() {
-        return String.format("%,.1f%%", BigDecimal.valueOf(profit).setScale(1, RoundingMode.HALF_UP));
+        return String.format("%,.1f%%", BigDecimal.valueOf(profit)
+                .setScale(1, RoundingMode.HALF_UP));
     }
-
 
     public record MessagePerCount(String message, long count) {
 

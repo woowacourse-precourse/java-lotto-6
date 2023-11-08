@@ -1,6 +1,8 @@
 package lotto.domain;
 
 
+import java.util.Objects;
+
 public enum LottoRewardTable {
     FIFTH(LottoMatchingTable.FIFTH, "3개 일치", 5_000),
     FOURTH(LottoMatchingTable.FOURTH, "4개 일치", 50_000),
@@ -19,15 +21,15 @@ public enum LottoRewardTable {
         this.reward = reward;
     }
 
-    public LottoMatchingTable getLottoMatchingTable() {
-        return lottoMatchingTable;
-    }
-
     public String getMessage() {
         return String.format("%s (%,d원)", message, reward);
     }
 
     public int getReward() {
         return reward;
+    }
+
+    public boolean hasSameRank(LottoMatchingTable lottoMatchingTable) {
+        return Objects.equals(this.lottoMatchingTable, lottoMatchingTable);
     }
 }

@@ -110,6 +110,165 @@ https://user-images.githubusercontent.com/122594223/280687804-57158e77-0dfb-41ed
         - 보너스 번호 입력을 요청하는 `printInputBonusLottoMessage` 메서드 구현
         - 당첨 통계를 보여주는 `printLottoResult` 메서드 구현
         - 수익률을 보여주는 `printProfit` 메서드 구현
+  
+```mermaid
+classDiagram
+    class Application {
+        - inputHandler: InputHandler
+        - outputHandler: OutputHandler
+        +main(args: String[]): void
+    }
+
+    class LottoController {
+        -inputHandler: InputHandler
+        -outputHandler: OutputHandler
+        +LottoController(inputHandler: InputHandler, outputHandler: OutputHandler)
+        +run(): void
+        -loadTicket(): Money
+        -buyLotto(money: Money): BuyLottos
+        -loadWinningLotto(): Lotto
+        -loadBonusNumber(winningLotto: Lotto): WinLottoWithBonus
+        -lottoStatistics(buyLottos: BuyLottos, winLottoWithBonus: WinLottoWithBonus): LottoResult
+        -lottoProfit(lottoResults: LottoResult): void
+    }
+
+    class InputHandler {
+        <<interface>>
+        +inputValue(): String
+    }
+
+    class OutputHandler {
+        <<interface>>
+        +printInputMoneyMessage(): void
+        +printBuyLottoList(buyLottos: List<Lotto>): void
+        +printInputWinningLottoMessage(): void
+        +printInputBonusLottoMessage(): void
+        +printLottoResult(lottoResults: LottoResult): void
+        +printProfit(lottoResults: LottoResult): void
+    }
+
+    class ConsoleInput {
+        +inputValue(): String
+    }
+
+    class ConsoleOutput {
+        +printInputMoneyMessage(): void
+        +printBuyLottoList(buyLottos: List<Lotto>): void
+        +printInputWinningLottoMessage(): void
+        +printInputBonusLottoMessage(): void
+        +printLottoResult(lottoResults: LottoResult): void
+        +printProfit(lottoResults: LottoResult): void
+    }
+
+    class Money {
+        +create(money: String): Money
+        -validateType(money: String): int
+        -validateMoney(purchaseAmount: int): void
+        -validateDivision(purchaseAmount: int): void
+        +getTicket(): int
+    }
+
+    class GenerateLotto {
+        +create(money: Money): GenerateLotto
+        -generateBuyLottos(money: Money): List<Lotto>
+        +getBuyLottos(): List<Lotto>
+    }
+
+    class BuyLottos {
+        +create(buyLottos: List<Lotto>): BuyLottos
+        +getBuyLottos(): List<Lotto>
+    }
+
+    class Lotto {
+        +create(numbers: List<Integer>): Lotto
+        +from(inputValues: String): Lotto
+        -validateType(inputValues: String): List<Integer>
+        -validateSize(numbers: List<Integer>): void
+        -validateDuplicate(numbers: List<Integer>): void
+        -validateRange(numbers: List<Integer>): void
+        +sortLottoNumbers(): List<Integer>
+    }
+
+    class WinLottoWithBonus {
+        +create(winningLotto: List<Integer>, bonusNumber: String): WinLottoWithBonus
+        -validateType(bonusNumber: String): int
+        -validateDuplicate(bonusNumber: int): void
+        -validateRange(bonusNumber: int): void
+        +getBonusNumber(): int
+        +getWinningLotto(): List<Integer>
+    }
+
+    class LottoJudge {
+        +create(buyLottos: BuyLottos, winLottoWithBonus: WinLottoWithBonus): LottoJudge
+        +matchLottoHandler(): Map<LottoHandler, Integer>
+        -compareLotto(sortBuyLotto: List<Integer>, winningLotto: List<Integer>): int
+        -checkBonus(sortBuyLotto: List<Integer>, bonusNumber: int): LottoHandler
+    }
+
+    class LottoResult {
+        +create(lottoResult: Map<LottoHandler, Integer>): LottoResult
+        +getProfit(): double
+        +getLottoResult(): Map<LottoHandler, Integer>
+        -totalPurchaseAmount(): int
+        -totalPrize(): long
+    }
+
+    class LottoHandler {
+        <<enumeration>>
+        +getCount(): int
+        +getMessage(): String
+        +getPrize(): int
+        +getLottoHandler(matchingCount: int): LottoHandler
+    }
+
+    class ConstantsHandler {
+        <<enumeration>>
+        +MIN_PURCHASE_AMOUNT: int
+        +REMAINDER: int
+        +UNIT_OF_AMOUNT: int
+        +LOTTO_SIZE: int
+        +COMMA_DELIMITER: String
+        +MIN_LOTTO_NUMBER: int
+        +MAX_LOTTO_NUMBER: int
+        +TOTAL_PERCENTAGE: int
+        +DEFAULT_VALUE: int
+        +INIT_LONG_VALUE: long
+        +INIT_INT_VALUE: int
+        +PLUS_NUMBER: int
+    }
+
+    class ErrorHandler {
+        <<enumeration>>
+        -errorMessage: String
+        +getException(): RuntimeException
+    }
+
+    InputHandler <|-- ConsoleInput
+    OutputHandler <|-- ConsoleOutput
+
+    Application --> LottoController : Creates
+    Application --> InputHandler
+    Application --> OutputHandler
+    LottoController --> InputHandler 
+    LottoController --> OutputHandler
+    LottoController --> Money 
+    LottoController --> GenerateLotto 
+    LottoController --> BuyLottos 
+    LottoController --> Lotto 
+    LottoController --> WinLottoWithBonus 
+    LottoController --> LottoJudge 
+    LottoController --> LottoResult
+    BuyLottos --> Lotto
+    LottoResult --> LottoHandler
+    GenerateLotto --> Money 
+    GenerateLotto --> Lotto 
+    LottoJudge --> Lotto
+    LottoJudge --> BuyLottos
+    LottoJudge --> WinLottoWithBonus 
+    ConsoleOutput --> Lotto
+    ConsoleOutput --> LottoResult
+    ConsoleOutput --> LottoHandler
+```
 
 ---
 

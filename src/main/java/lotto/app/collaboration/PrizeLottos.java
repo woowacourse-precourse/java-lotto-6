@@ -1,7 +1,8 @@
-package lotto.app.collaboration.dto;
+package lotto.app.collaboration;
 
 import java.util.List;
 import java.util.Map;
+import lotto.app.collaboration.dto.PlayerLotto;
 import lotto.app.collaboration.enums.Prize;
 
 public class PrizeLottos {
@@ -9,7 +10,7 @@ public class PrizeLottos {
     private final Map<Prize, List<PlayerLotto>> lottosWithPrize;
 
     public PrizeLottos(final Map<Prize, List<PlayerLotto>> lottosWithPrize) {
-        this.lottosWithPrize = lottosWithPrize;
+        this.lottosWithPrize = Map.copyOf(lottosWithPrize);
     }
 
     public String getMessageCountOfPrizeLottosBy(final Prize prize) {

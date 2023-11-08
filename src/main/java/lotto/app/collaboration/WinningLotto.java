@@ -5,7 +5,6 @@ import static lotto.app.collaboration.enums.WinningLottoMessage.EXCEPTION_DUPLIC
 
 import java.util.List;
 import lotto.app.collaboration.dto.PlayerLotto;
-import lotto.app.collaboration.dto.PrizeLottos;
 import lotto.app.collaboration.enums.Prize;
 
 public class WinningLotto {

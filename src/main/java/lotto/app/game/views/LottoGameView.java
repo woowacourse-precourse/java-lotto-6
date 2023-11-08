@@ -1,8 +1,8 @@
 package lotto.app.game.views;
 
 import java.util.List;
+import lotto.app.collaboration.PrizeLottos;
 import lotto.app.collaboration.dto.PlayerLotto;
-import lotto.app.collaboration.dto.PrizeLottos;
 
 public class LottoGameView {
 

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.app.collaboration.Lotto;
+import lotto.app.collaboration.PrizeLottos;
 import lotto.app.collaboration.enums.Prize;
 import org.junit.jupiter.api.Test;
 

@@ -31,17 +31,21 @@ public class OutputView {
     public static void printResultMessage(HashMap<LottoRankings, Integer> lottoResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
+        printResult(lottoResult);
+    }
 
+    private static void printResult(HashMap<LottoRankings, Integer> lottoResult) {
         for (LottoRankings rank : LottoRankings.values()) {
+            if (rank == LottoRankings.NONE) {
+                continue;
+            }
             if (lottoResult.get(rank) != null) {
                 System.out.println(String.format(rank.getMessage(),
                         formatWinningAmount(rank.getWinningAmount()), lottoResult.get(rank)));
                 continue;
             }
-            if (rank != LottoRankings.NONE) {
-                System.out.println(String.format(rank.getMessage(),
-                        formatWinningAmount(rank.getWinningAmount()), NOTHING));
-            }
+            System.out.println(String.format(rank.getMessage(),
+                    formatWinningAmount(rank.getWinningAmount()), NOTHING));
         }
     }
 

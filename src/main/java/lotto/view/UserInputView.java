@@ -6,6 +6,9 @@ import lotto.controller.WinningNumberController;
 
 public class UserInputView {
 
+    private final  WinningNumberController winningNumberController = WinningNumberController.getInstance();
+    private final LottoController lottoController = LottoController.getInstance();
+
     private UserInputView() {
     }
     private static class UserInputViewHolder{
@@ -18,7 +21,7 @@ public class UserInputView {
 
     public void inputPurchaseAmount(){
         try{
-            LottoController.getInstance().buyLottoTickets(Long.parseLong(Console.readLine()));
+            lottoController.buyLottoTickets(Long.parseLong(Console.readLine()));
 
         }catch (IllegalArgumentException e){
             exceptionTypeMessage(e);
@@ -28,7 +31,7 @@ public class UserInputView {
 
     public void inputWinningNums(){
         try{
-            WinningNumberController.getInstance().putWinningNums(Console.readLine());
+            winningNumberController.putWinningNums(Console.readLine());
 
         }catch (IllegalArgumentException e){
             exceptionTypeMessage(e);
@@ -38,7 +41,7 @@ public class UserInputView {
 
     public void inputBonusNum(){
         try{
-            WinningNumberController.getInstance().putBonusNum(Console.readLine());
+            winningNumberController.putBonusNum(Console.readLine());
         }catch (IllegalArgumentException e){
             exceptionTypeMessage(e);
             inputBonusNum();

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.Domain.Lotto;
+import lotto.Domain.LottoNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,4 +26,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호 생성 시 오름차순 정렬이 아니면 예외가 발생한다.")
+    @Test
+    void createLottoNumberByNotAscendingNumber() {
+        assertThatThrownBy(() -> new LottoNumbers())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }

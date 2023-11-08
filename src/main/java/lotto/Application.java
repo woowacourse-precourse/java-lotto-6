@@ -4,7 +4,7 @@ import lotto.domain.LottoNumbersGenerator;
 import lotto.handler.LottoHandler;
 import lotto.manager.LottoManager;
 import lotto.view.LottoReader;
-import lotto.view.LottoViewResolver;
+import lotto.view.LottoViewParser;
 import lotto.view.LottoWriter;
 
 public class Application {
@@ -14,9 +14,9 @@ public class Application {
         LottoManager lottoManager = new LottoManager(lottoNumbersGenerator);
         LottoReader lottoReader = new LottoReader();
         LottoWriter lottoWriter = new LottoWriter();
-        LottoViewResolver lottoViewResolver = new LottoViewResolver();
+        LottoViewParser lottoViewParser = new LottoViewParser();
 
-        LottoHandler lottoHandler = new LottoHandler(lottoManager, lottoReader, lottoWriter, lottoViewResolver);
+        LottoHandler lottoHandler = new LottoHandler(lottoManager, lottoReader, lottoWriter, lottoViewParser);
         lottoHandler.run();
     }
 }

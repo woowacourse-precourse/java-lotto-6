@@ -7,7 +7,7 @@ import lotto.dto.LottoDto;
 import lotto.manager.LottoManager;
 import lotto.view.LottoGuideMessage;
 import lotto.view.LottoReader;
-import lotto.view.LottoViewResolver;
+import lotto.view.LottoViewParser;
 import lotto.view.LottoWriter;
 
 import java.util.List;
@@ -18,15 +18,15 @@ public class LottoHandler {
     private final LottoManager lottoManager;
     private final LottoReader reader;
     private final LottoWriter writer;
-    private final LottoViewResolver lottoViewResolver;
+    private final LottoViewParser lottoViewParser;
 
     public LottoHandler(
-            LottoManager lottoManager, LottoReader reader, LottoWriter writer, LottoViewResolver lottoViewResolver
+            LottoManager lottoManager, LottoReader reader, LottoWriter writer, LottoViewParser lottoViewParser
     ) {
         this.lottoManager = lottoManager;
         this.reader = reader;
         this.writer = writer;
-        this.lottoViewResolver = lottoViewResolver;
+        this.lottoViewParser = lottoViewParser;
     }
 
     public void run() {
@@ -45,13 +45,13 @@ public class LottoHandler {
     }
 
     private void showPaidLottos(Lottos lottos) {
-        writer.write(lottoViewResolver.parsePaidLottoLog(lottos.size()));
-        writer.write(lottoViewResolver.parseLottosDetail(LottoDto.Information.from(lottos)));
+        writer.write(lottoViewParser.parsePaidLottoLog(lottos.size()));
+        writer.write(lottoViewParser.parseLottosDetail(LottoDto.Information.from(lottos)));
     }
 
     private void showResult(LottoRankings winningRankings, double profitPercentage) {
-        writer.write(lottoViewResolver.parseLottoResult(LottoDto.Result.from(winningRankings)));
-        writer.write(lottoViewResolver.parseProfit(profitPercentage));
+        writer.write(lottoViewParser.parseLottoResult(LottoDto.Result.from(winningRankings)));
+        writer.write(lottoViewParser.parseProfit(profitPercentage));
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {

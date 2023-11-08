@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LottoViewResolver {
+public class LottoViewParser {
 
     private static final String WON_FORMAT_PATTERN = "#,###";
 

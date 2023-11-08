@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Judge {
@@ -31,9 +32,9 @@ public class Judge {
     }
 
     public int compareWinningNumber(Lotto lotteryNumbers, List<Integer> winningNumbers) {
-        int countMatchingNumber = 0;
-        // 몇개의 번호가 일치하는지 비교하는 코드 구현
-        return countMatchingNumber;
+        List<Integer> matchingNumbers = new ArrayList<>(winningNumbers);
+        matchingNumbers.retainAll(lotteryNumbers.getLotteryNumbers());
+        return matchingNumbers.size();
     }
 
     public boolean compareBonusNumber(Lotto lotteryNumbers, int bonusNumber) {

@@ -2,15 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplicateNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -32,5 +31,11 @@ public class Lotto {
         return this.numbers.get(index);
     }
 
+    private void checkDuplicateNumber(List<Integer> numbers){
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if(numbers.size()!=numberSet.size()){
+            throw new IllegalArgumentException();
+        }
+    }
     // TODO: 추가 기능 구현
 }

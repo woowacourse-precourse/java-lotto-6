@@ -8,6 +8,18 @@ import static lotto.constant.ErrorMessage.*;
 
 public class GameView {
 
+    public void lottoPriceInputStartView() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    public void winNumbersInputStartView() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public void bonusNumberInputStartView() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
+
     public void errorMessageView(String errorMessage) {
         System.out.println(ERROR_MESSAGE_FRONT + errorMessage);
     }
@@ -28,5 +40,9 @@ public class GameView {
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", result[2]);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", result[1]);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+    }
+
+    public void gapView() {
+        System.out.println();
     }
 }

@@ -55,5 +55,5 @@ public class LottoService {
         }
         return matchCount;
     }
-    
+
 }

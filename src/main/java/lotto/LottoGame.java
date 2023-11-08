@@ -47,17 +47,17 @@ public class LottoGame {
     }
 
     private void calculateResult() {
-        result = lottoService.calculateResult(lottos,winNumbers,bonusNumber);
+        result = lottoService.calculateResult(lottos, winNumbers, bonusNumber);
         totalWinPrice = lottoService.calculateTotalWinPrice(result);
         rateOfReturn = calculateRateOfReturn();
     }
 
     private double calculateRateOfReturn() {
-        double num = ((double)totalWinPrice/ buyPrice) * 100;
-        return num;
+        return ((double) totalWinPrice / buyPrice) * 100;
     }
 
     private void buyLottoInput() {
+        gameView.lottoPriceInputStartView();
         boolean correctInputFlag;
         do {
             try {
@@ -69,6 +69,7 @@ public class LottoGame {
                 correctInputFlag = false;
             }
         } while (!correctInputFlag);
+        gameView.gapView();
     }
 
     private void publishLotto() {
@@ -85,6 +86,7 @@ public class LottoGame {
     }
 
     private void winNumbersInput() {
+        gameView.winNumbersInputStartView();
         boolean correctInputFlag;
         do {
             try {
@@ -96,9 +98,11 @@ public class LottoGame {
                 correctInputFlag = false;
             }
         } while (!correctInputFlag);
+        gameView.gapView();
     }
 
     private void bonusNumberInput() {
+        gameView.bonusNumberInputStartView();
         boolean correctInputFlag;
         do {
             try {
@@ -110,5 +114,6 @@ public class LottoGame {
                 correctInputFlag = false;
             }
         } while (!correctInputFlag);
+        gameView.gapView();
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import static lotto.constant.Constant.*;
 import static lotto.constant.ErrorMessage.*;
+
 public class ValidateService {
     public int validateBuyLottoInput(String buyPriceInput) {
         int buyPrice = parseIntPrice(buyPriceInput);
@@ -45,13 +46,13 @@ public class ValidateService {
     }
 
     private void isSize6(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_SIZE){
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ERROR_WIN_NUMBERS_SIZE_IS_NOT_6);
         }
     }
 
     private void isDuplicates(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream().distinct().count()){
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ERROR_WIN_NUMBERS_DUPLICATES);
         }
     }

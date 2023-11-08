@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.model.constant.LottoResultConstants;
 import lotto.model.constant.PrizeConstants;
 import lotto.model.constant.RankConstants;
 
@@ -10,8 +11,6 @@ public class LottoResult {
     private final Lottos lottos;
     private final BonusNumber bonusNumber;
     private final Rank rank = new Rank();
-
-    private int totalRevenue;
 
     public LottoResult(WinningNumber winningNumber, Lottos lottos, BonusNumber bonusNumber) {
         this.winningNumber = winningNumber;
@@ -38,12 +37,16 @@ public class LottoResult {
         rank.addThirdPlace();
     }
 
-    private void calcurateTotalRevenue() {
-        totalRevenue += rank.getFifthPlace() * PrizeConstants.FIFTH_PRIZE.getPrice()
-        + rank.getFourthPlace() * PrizeConstants.FOURTH_PRIZE.getPrice()
-        + rank.getThirdPlace() * PrizeConstants.THIRD_PRIZE.getPrice()
-        + rank.getSecondPlace() * PrizeConstants.SECOND_PRIZE.getPrice()
-        + rank.getFirstPlace() * PrizeConstants.FIRST_PRIZE.getPrice();
+    public double caclurateReturnOfRate(int purchaseAmount) {
+        return ((double) calcurateTotalRevenue() / purchaseAmount * LottoResultConstants.PERCENTAGE_CARCULATOR.getNumber());
+    }
+
+    private long calcurateTotalRevenue() {
+        return (long) rank.getFifthPlace() * PrizeConstants.FIFTH_PRIZE.getPrice()
+        + (long) rank.getFourthPlace() * PrizeConstants.FOURTH_PRIZE.getPrice()
+        + (long) rank.getThirdPlace() * PrizeConstants.THIRD_PRIZE.getPrice()
+        + (long) rank.getSecondPlace() * PrizeConstants.SECOND_PRIZE.getPrice()
+        + (long) rank.getFirstPlace() * PrizeConstants.FIRST_PRIZE.getPrice();
     }
 
     public Rank getRank() {

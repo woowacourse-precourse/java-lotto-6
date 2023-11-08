@@ -26,7 +26,13 @@ public class LottoController {
 
         LottoResult lottoResult = createLottoResult(winningNumber, lottos, bonusNumber);
         printWinningResult(lottoResult);
+        printRateOfReturn(lottoResult.caclurateReturnOfRate(purchaseAmount.getAmount()));
     }
+
+    private void printRateOfReturn(double returnOfRate) {
+        outputView.printRateOfReturnMessage(returnOfRate);
+    }
+
     private void printWinningResult(LottoResult lottoResult) {
         outputView.printNewLine();
         outputView.printResultMessage();

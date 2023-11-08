@@ -41,4 +41,8 @@ public class OutputView {
         System.out.println(OutputMessageConstants.WINNING_RESULT_OUTPUT_MESSAGE.getMessage());
         System.out.println(OutputMessageConstants.DIVIDER_OUTPUT_MESSAGE.getMessage());
     }
+
+    public void printRateOfReturnMessage(double rate) {
+        System.out.print(String.format(OutputMessageConstants.RATE_OF_RETURN_OUTPUT_MESSAGE.getMessage(),rate));
+    }
 }

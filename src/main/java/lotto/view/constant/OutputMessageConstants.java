@@ -9,7 +9,7 @@ public enum OutputMessageConstants {
     DIVIDER_OUTPUT_MESSAGE("---"),
     WINNING_RANK_AND_COUNT_OUTPUT_MESSAGE("%d개 일치 (%,d원) - %d개"),
     SECOND_RANK_AND_COUNT_OUTPUT_MESSAGE("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    RATE_OF_RETURN_OUTPUT_MESSAGE("총 수익률은 %f%입니다.");
+    RATE_OF_RETURN_OUTPUT_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

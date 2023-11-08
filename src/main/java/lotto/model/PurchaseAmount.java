@@ -14,4 +14,8 @@ public class PurchaseAmount {
     public int getLottoCount() {
         return lottoCount;
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }

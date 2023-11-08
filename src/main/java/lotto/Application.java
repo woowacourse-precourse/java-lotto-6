@@ -13,7 +13,12 @@ public class Application {
         OutputView.printLottos(lottoList);
         List<Integer> winningLottoNumbers = InputView.inputWinningLotto();
         int bonusNumber = InputView.inputBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(new Lotto(winningLottoNumbers), bonusNumber);
 
+        for (Lotto lotto : lottoList) {
+            int matchCount = winningLotto.matchCount(lotto);
+            boolean isBonus = winningLotto.isBonus(lotto);
+        }
     }
 
     private static List<Lotto> createdLottos(Money money) {

@@ -32,4 +32,17 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
+    }
+
+    public int get(int index) {
+        return numbers.get(index);
+    }
+
 }

@@ -6,7 +6,7 @@ import java.util.Comparator;
 public enum LottoRank {
 
     FIRST_PLACE(6, 2000000000, 5),
-    SECOND_PLACE(5, true, 300000000, 4),
+    SECOND_PLACE(5, true, 30000000, 4),
     THIRD_PLACE(5, false, 1500000, 3),
     FOURTH_PLACE(4, 50000, 2),
     FIFTH_PLACE(3, 5000, 1),

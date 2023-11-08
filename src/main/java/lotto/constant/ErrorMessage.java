@@ -21,4 +21,7 @@ public class ErrorMessage {
     public static final String INPUT_WINNING_NUMBER_COUNT_IS_INCORRECT = "당첨 번호는 6개를 입력해 주세요.";
     public static final String INPUT_WINNING_NUMBER_VALUE_OUT_OF_RANGE = "당첨 번호 값은 1 ~ 45 사이의 값을 입력해 주세요.";
     public static final String INPUT_WINNING_NUMBER_DUPLICATED = "당첨 번호 값은 중복될 수 없습니다.";
+
+    // 보너스 번호 입력
+    public static final String INPUT_BONUS_NUMBER_IN_WINNING_NUMBERS = "보너스 번호 값은 당첨 번호와 다른 값을 입력해 주세요.";
 }

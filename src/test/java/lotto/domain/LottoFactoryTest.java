@@ -13,6 +13,7 @@ public class LottoFactoryTest {
     private static final int LOTTO_NUMBER_MAX = 45;
     private static final long TICKET_COUNT = 5;
     private static final long SINGLE_TICKET = 1;
+    private static final int TICEKT_LENGTH = 6;
 
     @DisplayName("올바른 개수의 로또 티켓이 생성되어야 한다.")
     @Test
@@ -78,7 +79,7 @@ public class LottoFactoryTest {
         Lotto ticket = lottoFactory.getTickets().get(0);
 
         // then
-        assertThat(ticket.getNumbers().size()).isEqualTo(6);
+        assertThat(ticket.getNumbers().size()).isEqualTo(TICEKT_LENGTH);
     }
 }
 

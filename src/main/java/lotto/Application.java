@@ -18,6 +18,9 @@ public class Application {
         correctLotto.printInputBonusMessage();
         correctLotto.inputBonus();
 
-
+        DrawLotto drawLotto = new DrawLotto(lottoList, correctLotto);
+        drawLotto.draw();
+        drawLotto.calculateProfitPercentage(purchaseAmount.getAmount());
+        drawLotto.printResult();
     }
 }

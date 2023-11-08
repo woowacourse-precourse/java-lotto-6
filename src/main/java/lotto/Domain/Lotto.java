@@ -16,10 +16,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_MSG_LENGTH);
+            throw new IllegalArgumentException(EntireMessage.ERROR_MSG_LENGTH);
         }
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_MSG_DUPLICATED);
+            throw new IllegalArgumentException(EntireMessage.ERROR_MSG_DUPLICATED);
         }
     }
 

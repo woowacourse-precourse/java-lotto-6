@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.dto.LottoResultAndProfitResponseDto;
 import lotto.dto.LottoResultResponseDto;
 import lotto.dto.ValidateAmountDto;
 import lotto.dto.ValidateAmountResponseDto;
@@ -54,7 +55,63 @@ public class LottoService {
         int bonusNum = validateBonusNum(inputStr);
         return bonusNum;
     }
+    public LottoResultAndProfitResponseDto getLottoResultResponse(List<List<Integer>> lottoNumbers, List<Integer> winningLottoNumbers, int bonusNum){
+        int threeMatchingPrizeCount = 0;
+        int fourMatchingPrizeCount = 0;
+        int fiveMatchingPrizeCount = 0;
+        int fiveMatchingWithBonusBallPrizeCount = 0;
+        int sixMatchingPrizeCount = 0;
+        int matchingCount=0;
+        LottoResultResponseDto lottoResultResponseDto = new LottoResultResponseDto();
+        for (List<Integer> userLotto : lottoNumbers) {
+            matchingCount = countMatchingNumbers(userLotto, winningLottoNumbers);
+            lottoResultResponseDto.plus(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount, calculatePrizeCount(matchingCount,userLotto,bonusNum));
+        }
 
+        double totalProfitRate = calculateTotalProfitRate(lottoResultResponseDto);
+        return LottoResultAndProfitResponseDto.of(lottoResultResponseDto,totalProfitRate);
+    }
+    public void PrintResult(LottoResultAndProfitResponseDto lottoResultAndProfitResponseDto){}
+    private double calculateTotalProfitRate(LottoResultResponseDto lottoResultResponseDto) {
+        int totalPurchasedLottos = lottoResultResponseDto.getThreeMatchingPrizeCount() + lottoResultResponseDto.getFourMatchingPrizeCount() + lottoResultResponseDto.getFiveMatchingPrizeCount() +
+                lottoResultResponseDto.getFiveMatchingWithBonusBallPrizeCount() + lottoResultResponseDto.getSixMatchingPrizeCount();
+        int totalPrizeAmount = 5000 * lottoResultResponseDto.getThreeMatchingPrizeCount() + 50000 * lottoResultResponseDto.getFourMatchingPrizeCount() +
+                1500000 * lottoResultResponseDto.getFiveMatchingPrizeCount() + 30000000 * lottoResultResponseDto.getFiveMatchingWithBonusBallPrizeCount() +
+                2000000000 * lottoResultResponseDto.getSixMatchingPrizeCount();;
+        int totalPurchasedAmount = totalPurchasedLottos * 1000;
+        double totalProfitRate = (double) totalPrizeAmount / totalPurchasedAmount;
+        return totalProfitRate * 100;
+    }
+    private LottoResultResponseDto calculatePrizeCount(int matchingCount,List<Integer> userLotto,int bonusNum){
+
+        int threeMatchingPrizeCount = 0;
+        int fourMatchingPrizeCount = 0;
+        int fiveMatchingPrizeCount = 0;
+        int fiveMatchingWithBonusBallPrizeCount = 0;
+        int sixMatchingPrizeCount = 0;
+        for (int i = 0; i < 8; i++) {
+            if (matchingCount == 3) {
+                threeMatchingPrizeCount++;
+            } else if (matchingCount == 4) {
+                fourMatchingPrizeCount++;
+            } else if (matchingCount == 5) {
+                if (userLotto.contains(bonusNum)) {
+                    fiveMatchingWithBonusBallPrizeCount++;
+                } else {
+                    fiveMatchingPrizeCount++;
+                }
+            } else if (matchingCount == 6) {
+                sixMatchingPrizeCount++;
+            }
+        }
+
+        return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount);
+    }
+    private int countMatchingNumbers(List<Integer> userLotto, List<Integer> winningLottoNumbers) {
+        return (int) userLotto.stream()
+                .filter(winningLottoNumbers::contains)
+                .count();
+    }
     private int validateBonusNum(String inputStr){
         int number = 0;
         try {

@@ -10,7 +10,6 @@ public enum ConfigNumber {
     ConfigNumber(int value){
         this.value = value;
     }
-
     public int getValue() {
         return value;
     }

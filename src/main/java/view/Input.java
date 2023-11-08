@@ -5,13 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 public class Input {
     public Input(){};
 
-//    public static int getInputForLottoCost(){
-//        String inputData;
-//        LottoCostValidator lottoCostValidator = new LottoCostValidator();
-//
-
-//    }
-
     public String getInputForLottoMoney(){
         Output.printPurchaseCostRequestMessage();
         return reanLineValidateNull();
@@ -38,7 +31,6 @@ public class Input {
         }
         return input;
     }
-
 
     private boolean validateNull(String input){
         try{

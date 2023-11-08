@@ -1,10 +1,9 @@
 package domain;
 
 import constant.ConfigNumber;
-import util.RandomNumberGenerator;
 
+import util.RandomNumberGenerator;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Lottos {

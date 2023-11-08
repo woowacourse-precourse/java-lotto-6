@@ -36,30 +36,22 @@ public class Output {
         System.out.println("---");
     }
 
+    /* Error message */
+    public static void errorMessage(Exception error) {
+        System.out.println(error.getMessage());
+    }
 
     public static void printErrorNullMessage(){
         System.out.println(ErrorMessage.NULL_MESSAGE);
     }
 
-    public static void printErrorNumbericMessage(){
-        System.out.println(ErrorMessage.NUMBERIC_MESSAGE);
-    }
-
-    public static void printErrorFitLottoCostMessage(){
-        System.out.println(ErrorMessage.FIT_LOTTO_COST_MESSAGE);
-    }
 
     public static void printLotto(Lotto lotto){
         System.out.println(lotto);
     }
-    public static void errorMessage(Exception error) {
-        System.out.println(error.getMessage());
-    }
 
-    public static void print(){
-        System.out.println();
-    }
 
+    /* function message */
     public static void printStatistics(HashMap<Rank, Integer> rankCounts) {
         System.out.printf((FIFTH_MATCH.getValue()) + "%n", rankCounts.get(Rank.FIFTH));
         System.out.printf((FOURTH_MATCH.getValue()) + "%n", rankCounts.get(Rank.FOURTH));
@@ -70,5 +62,9 @@ public class Output {
 
     public static void printProfitRate(ProfitRate profitRate){
         System.out.printf(TOTAL_RATE_OF_RETURN.getValue() + "%n", profitRate.getRate());
+    }
+
+    public static void print(){
+        System.out.println();
     }
 }

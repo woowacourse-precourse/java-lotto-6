@@ -45,10 +45,12 @@ public class LottoController {
 
     private LottoMoney getLottoMeney() {
         LottoMoney tempLottoMoney;
+
         while (true) {
             try {
                 tempLottoMoney = new LottoMoney(input.getInputForLottoMoney());
                 return tempLottoMoney;
+
             } catch (NumberFormatException error) {
                 Output.errorMessage(error);
             } catch (IllegalArgumentException error) {
@@ -64,6 +66,7 @@ public class LottoController {
     private void printIssueLottos() {
         Output.print();
         Output.printLottoPurchaseMessage(lottos.getLottos().size());
+
         for (Lotto lotto : lottos.getLottos()) {
             Output.printLotto(lotto);
         }
@@ -71,6 +74,7 @@ public class LottoController {
 
     private Lotto getWinningNumber() {
         Lotto tempWinningNumber;
+
         while (true) {
             try {
                 String userInputData = input.getInputForWinningNumber();
@@ -88,13 +92,14 @@ public class LottoController {
 
     private BonusNumber getBonusNumber() {
         BonusNumber bonusNumber;
+
         while (true) {
             try {
-                int userInputBonusNumber = BonusNumberValidator.validNumberic(input.getInputForBonusNumber());
-                BonusNumberValidator.validDuplicate(winningNumber.getNumbers(), userInputBonusNumber);
-
-                bonusNumber = new BonusNumber(userInputBonusNumber);
+                int inputBonusNumber = BonusNumberValidator.validNumberic(input.getInputForBonusNumber());
+                BonusNumberValidator.validDuplicate(winningNumber.getNumbers(), inputBonusNumber);
+                bonusNumber = new BonusNumber(inputBonusNumber);
                 return bonusNumber;
+
             } catch (NumberFormatException error) {
                 Output.errorMessage(error);
             } catch (IllegalArgumentException error) {

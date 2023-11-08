@@ -20,14 +20,16 @@ public class LottoMoney {
        this.money = Integer.parseInt(money);
     }
 
+    public long getAvaliablePurcahaseCount(){
+        return money/ ConfigNumber.COST.getValue();
+    }
+
     private void validate(String money){
         LottoMoneyValidator.validNumberic(money);
         LottoMoneyValidator.validFitLottoCost(money);
         LottoMoneyValidator.validNotZero(money);
     }
 
-    public long getAvaliablePurcahaseCount(){
-       return money/ ConfigNumber.COST.getValue();
-    }
+
 
 }

@@ -20,10 +20,6 @@ public enum Rank {
         return prize;
     }
 
-    public int getCorrectCount() {
-        return correctCount;
-    }
-
     public static Rank getRank(int correctCount, boolean correctBonusNumber){
         for(Rank rank : values()){
             if(rank.correctCount == correctCount

@@ -1,18 +1,18 @@
 package lotto.domain;
 
-import lotto.configuration.Constants;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static lotto.configuration.Constants.Config.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MoneyTest {
 
-    private static final int ERROR_INPUT = Constants.Rule.PRICE + 1;
+    private static final int ERROR_INPUT = PRICE + 1;
 
     private static final int LOTTO_COUNT = 8;
-    private static final int PURCHASE_AMOUNT = LOTTO_COUNT * Constants.Rule.PRICE;
+    private static final int PURCHASE_AMOUNT = LOTTO_COUNT * PRICE;
 
     @Test
     @DisplayName("로또 가격으로 나누어 떨어지지 않으면 에러가 발생한다.")

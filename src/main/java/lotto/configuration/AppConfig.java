@@ -1,7 +1,7 @@
 package lotto.configuration;
 
 import lotto.controller.GameController;
-import lotto.domain.NumberGenerator;
+import lotto.service.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

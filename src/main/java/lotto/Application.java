@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Collections;
 public class Application {
     public static void main(String[] args) {
         //가격 입력
@@ -20,12 +20,30 @@ public class Application {
 
         ArrayList<Lotto> lottoList = new ArrayList<>();
 
-        for(int i=0; i<realAmount; i++) {
-            //한 횟수당 랜덤하게 6개씩 뽑을 것
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
-            Lotto lottoInstance = new Lotto(numbers);
-            System.out.println(numbers);
-            lottoList.add(lottoInstance);
+        RandomLotto(realAmount, lottoList);
+    }
+
+    public static void RandomLotto(int realAmount, ArrayList<Lotto> lottoList) {
+        try {
+            for(int i=0; i<realAmount; i++) {
+                //한 횟수당 랜덤하게 6개씩 뽑을 것
+                List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+                Collections.sort(numbers);
+                CheckNumbers(numbers);
+                Lotto lottoInstance = new Lotto(numbers);
+                lottoInstance.printNumbers();
+                lottoList.add(lottoInstance);
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."+ e.getMessage());
+        }
+    }
+
+    public static void CheckNumbers(List<Integer> numbers) {
+        for(int num: numbers) {
+            if(num < 1 || num > 45) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 
@@ -38,7 +56,7 @@ public class Application {
                 System.out.println("구입금액을 입력해 주세요.");
                 amountLotto = Integer.parseInt(Console.readLine());
                 if(amountLotto % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해야 합니다.");
+                    throw new IllegalArgumentException();
                 }
 
                 validInput = true;

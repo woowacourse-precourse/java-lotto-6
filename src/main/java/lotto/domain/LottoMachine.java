@@ -13,21 +13,21 @@ public class LottoMachine {
 
     private final List<Integer> randomNumbers;
 
-    public LottoMachine(){
+    public LottoMachine() {
         this.randomNumbers = sortRandomNumbers(generateRandomNumbers());
     }
 
-    private static List<Integer> generateRandomNumbers(){
-        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER,LOTTO_MAX_NUMBER,LOTTO_NUMBER_COUNT);
+    private static List<Integer> generateRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER,
+            LOTTO_NUMBER_COUNT);
     }
 
-    private static List<Integer> sortRandomNumbers(List<Integer> numbers){
+    private static List<Integer> sortRandomNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
 
-    public List<Integer> getRandomNumbers(){
+    public List<Integer> getRandomNumbers() {
         return randomNumbers;
     }
-
 
 }

@@ -121,7 +121,7 @@ public class InputValidationTest {
 
         @BeforeEach
         void 로또_설정() {
-            lottoNumbers = Arrays.asList(1,2,3,4,5,6);
+            lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         }
 
 

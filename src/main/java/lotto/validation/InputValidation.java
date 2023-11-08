@@ -12,6 +12,7 @@ public class InputValidation {
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_NUMBER_COUNT = 6;
     private static final int ONE_LOTTO_TICKET_PRIZE = 1000;
+
     public static void validatePurchaseAmountInput(String input) {
         isExist(input);
         isDigit(input);
@@ -45,7 +46,7 @@ public class InputValidation {
         }
     }
 
-    private static boolean existCheck(String input){
+    private static boolean existCheck(String input) {
         return input != null && !input.isEmpty();
     }
 

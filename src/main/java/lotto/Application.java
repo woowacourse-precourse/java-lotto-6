@@ -13,11 +13,11 @@ public class Application {
     public static final int MAX_LOTTO_NUMBER = 45;
 
     public static class Winner {
-        List<Integer> winnigNums = new ArrayList<Integer>();
+        List<Integer> winNums = new ArrayList<Integer>();
         int bonusNum = 0;
 
         public Winner() {
-            this.winnigNums = new ArrayList<Integer>();
+            this.winNums = new ArrayList<Integer>();
             this.bonusNum = 0;
         }
     }
@@ -117,12 +117,16 @@ public class Application {
         Winner winner = new Winner();
         
         System.out.println("당첨 번호를 입력해 주세요.");
-        winner.winnigNums = isWinnersValid(camp.nextstep.edu.missionutils.Console.readLine());
+        winner.winNums = isWinnersValid(camp.nextstep.edu.missionutils.Console.readLine());
 
         System.out.printf("\n보너스 번호를 입력해 주세요.\n");
         winner.bonusNum = isLottoNumValid(camp.nextstep.edu.missionutils.Console.readLine());
 
         return winner;
+    }
+
+    public static void lottery(Lotto[] lottos, Winner winner) {
+         System.out.printf("\n당첨 통계\n---\n");
     }
 
     public static void main(String[] args) {
@@ -135,5 +139,6 @@ public class Application {
         lottos = getLottos(lottoCount);
         winner = getWinner();
 
+        lottery(lottos, winner);
     }
 }

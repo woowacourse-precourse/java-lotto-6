@@ -88,4 +88,17 @@ public class Controller {
         OutputView.printPurchase(userLotto.size());
         OutputView.printLotto(userLotto);
     }
+
+    private void matchLottoByCompany() {
+        for (Lotto lotto : userLotto) {
+            int rank = lottoCompany.matchPrize(lotto.getNumbers());
+            receivePrize(rank);
+        }
+    }
+
+    private void receivePrize(int rank) {
+        if (rank != INT_NULL) {
+            user.winningTheLotto(rank);
+        }
+    }
 }

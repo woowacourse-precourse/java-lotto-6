@@ -1,4 +1,5 @@
 package lotto.controller;
+import lotto.service.LottoService;
 import lotto.view.Prompt;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,12 +8,18 @@ import static lotto.util.TypeConvertor.stringToIntegerList;
 import static lotto.util.Validator.validateLottoNumbers;
 
 public class LottoController {
+    private final LottoService lottoService = new LottoService();
     private static final String ERROR_TAG = "[ERROR] ";
     public void play() {
 
         Integer money = getMoneyFromUser();
 
-        getLottoNumbersFromUser();
+        List<Integer> lottoNumbers = getLottoNumbersFromUser();
+
+
+
+        lottoService.buyLotto(money, lottoNumbers);
+
     }
 
     private List<Integer> getLottoNumbersFromUser() {

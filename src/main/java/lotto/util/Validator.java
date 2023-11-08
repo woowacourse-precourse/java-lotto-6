@@ -1,7 +1,10 @@
 package lotto.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Validator {
     public static void validateStringMoney(String money) {
@@ -18,14 +21,23 @@ public class Validator {
     }
     public static void validateLottoNumbers(List<Integer> lottoNumberList) {
 
-        // 중복이 있으면 exception
-//        boolean hasNumberBiggerThan45 = lottoNumberList.stream().anyMatch(a -> a > 45);
-
+        if(hasDuplicatedNumber(lottoNumberList))
+            throw new IllegalArgumentException("로또 번호는 중복되면 안됩니다");
         if (lottoNumberList.stream().anyMatch(a -> a > 45))
             throw new IllegalArgumentException("로또 번호는 45이하 이어야 합니다");
         if (lottoNumberList.stream().anyMatch(a -> a < 1))
-            throw new IllegalArgumentException("로또 번호는 1이상 이어야 합니다 ");
+            throw new IllegalArgumentException("로또 번호는 1이상 이어야 합니다");
 
+    }
+
+    public static Boolean hasDuplicatedNumber(List<Integer> lottoNumberList) {
+
+
+        Set<Integer> numberSet = lottoNumberList.stream().collect(Collectors.toSet());
+        if(numberSet.size() != lottoNumberList.size())
+            return true;
+
+        return false;
     }
 }
 

@@ -4,7 +4,7 @@ import lotto.model.lotto.BonusNumber;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.WinningNumber;
 import lotto.model.user.LottoResults;
-import lotto.model.user.LottoTickets;
+import lotto.model.lotto.LottoTickets;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

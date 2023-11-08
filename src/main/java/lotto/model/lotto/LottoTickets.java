@@ -1,9 +1,7 @@
-package lotto.model.user;
+package lotto.model.lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.model.lotto.BonusNumber;
-import lotto.model.lotto.Lotto;
-import lotto.model.lotto.WinningNumber;
+import lotto.model.user.LottoResults;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,12 +33,10 @@ public class LottoTickets {
             int hit = ticket.countSameNumber(winningNumber);
             if (hit == FIFTH_PLACE_HIT.get()) fifthPlace++;
             if (hit == FOURTH_PLACE_HIT.get()) forthPlace++;
-
             if (isHitSecondPlace(hit, ticket, bonusNumber)) {
                 secondPlace++;
                 continue;
             }
-
             if (hit == SECOND_AND_THIRD_PLACE_HIT.get()) thirdPlace++;
             if (hit == FIRST_PLACE_HIT.get()) firstPlace++;
         }

@@ -70,7 +70,7 @@ public class InputValidator {
 
     public static void checkDuplicateWithWinning(String number, WinningNumber winningNumber) {
         if (winningNumber.contain(Integer.parseInt(number))) {
-            throw LottoGameException.withMessage(ExceptionMessage.LOTTO_DUPLICATE_ERROR);
+            throw LottoGameException.withMessage(ExceptionMessage.BONUS_DUPLICATE_ERROR);
         }
     }
 }

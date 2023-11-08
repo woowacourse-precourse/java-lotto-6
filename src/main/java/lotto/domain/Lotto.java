@@ -19,25 +19,25 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateNumbersSize(numbers);
-        validateDuplicate(numbers);
-        validateOutOfRange(numbers);
+        checkNumbersSize(numbers);
+        checkNumbersDuplicate(numbers);
+        checkNumbersRange(numbers);
     }
 
-    private void validateNumbersSize(List<Integer> numbers) {
+    private void checkNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(WRONG_LENGTH.getMessage());
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    private void checkNumbersDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
         }
     }
 
-    private void validateOutOfRange(List<Integer> numbers) {
+    private void checkNumbersRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < START_NUM || number > END_NUM) {
                 throw new IllegalArgumentException(OUT_OF_NUMBER_RANGE.getMessage());

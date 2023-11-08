@@ -10,14 +10,14 @@ public class PurchaseTest {
     @DisplayName("1000으로 나누어지지 않는 경우")
     @Test
     void divisionError() {
-        assertThatThrownBy(() -> new Purchase(1200))
+        assertThatThrownBy(() -> new LottoPurchase(1200))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("0보다 작은 경우")
     @Test
     void underZero() {
-        assertThatThrownBy(() -> new Purchase(0))
+        assertThatThrownBy(() -> new LottoPurchase(0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 
 public class CalculateResultTest {
 
-    List<ComPareNumber> comPareNumbers = Arrays.asList(
-            new ComPareNumber(Arrays.asList(1, 2, 3, 4, 5, 6),
-                    Arrays.asList(1, 2, 3, 4, 40, 45), 10).calculateResults(),
-            new ComPareNumber(Arrays.asList(7, 8, 9, 10, 11, 12),
-                    Arrays.asList(7, 8, 9, 41, 42, 43), 10).calculateResults(),
-            new ComPareNumber(Arrays.asList(13, 14, 15, 16, 17, 18),
-                    Arrays.asList(1, 2, 3, 4, 5, 6), 10).calculateResults()
+    List<LottoResultCalculator> comPareNumbers = Arrays.asList(
+            new LottoResultCalculator(Arrays.asList(1, 2, 3, 4, 5, 6),
+                    Arrays.asList(1, 2, 3, 4, 40, 45), 10).calculateResult(),
+            new LottoResultCalculator(Arrays.asList(7, 8, 9, 10, 11, 12),
+                    Arrays.asList(7, 8, 9, 41, 42, 43), 10).calculateResult(),
+            new LottoResultCalculator(Arrays.asList(13, 14, 15, 16, 17, 18),
+                    Arrays.asList(1, 2, 3, 4, 5, 6), 10).calculateResult()
     );
 
     @DisplayName("총 당첨금액 계산")

@@ -26,7 +26,7 @@ public class CompareNumberTest {
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 8, 9);
         int testBonusNumber = 10;
 
-        List<ComPareNumber> compareNumbers = ComPareNumber.generateCompareNumbers(testNumbers,
+        List<LottoResultCalculator> compareNumbers = LottoResultCalculator.generateResultCalculators(testNumbers,
                 testBonusNumber, testAllRandomNumbers);
 
         assertThat(compareNumbers.get(0).getMoneySum()).isEqualTo(Fourth.getPrize());
@@ -48,8 +48,8 @@ public class CompareNumberTest {
         List<Integer> randomNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
-        ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
-        comPareNumber.calculateResults();
+        LottoResultCalculator comPareNumber = new LottoResultCalculator(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResult();
 
         assertEquals(WinPriceMessage.First.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(0));
@@ -62,8 +62,8 @@ public class CompareNumberTest {
         List<Integer> randomNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
-        ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
-        comPareNumber.calculateResults();
+        LottoResultCalculator comPareNumber = new LottoResultCalculator(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResult();
 
         assertEquals(WinPriceMessage.Second.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(1));
@@ -77,8 +77,8 @@ public class CompareNumberTest {
         List<Integer> randomNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 8;
 
-        ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
-        comPareNumber.calculateResults();
+        LottoResultCalculator comPareNumber = new LottoResultCalculator(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResult();
 
         assertEquals(Third.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(2));
@@ -92,8 +92,8 @@ public class CompareNumberTest {
         List<Integer> randomNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 5;
 
-        ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
-        comPareNumber.calculateResults();
+        LottoResultCalculator comPareNumber = new LottoResultCalculator(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResult();
 
         assertEquals(WinPriceMessage.Fourth.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(3));
@@ -107,8 +107,8 @@ public class CompareNumberTest {
         List<Integer> randomNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNumber = 5;
 
-        ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
-        comPareNumber.calculateResults();
+        LottoResultCalculator comPareNumber = new LottoResultCalculator(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResult();
 
         assertEquals(WinPriceMessage.Fifth.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(4));

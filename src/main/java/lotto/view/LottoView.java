@@ -20,7 +20,7 @@ import lotto.constant.LottoNumberMessage;
 public class LottoView {
 
 
-    public List<Integer> numbers() {
+    public List<Integer> requestAndParseLottoNumbers() {
         List<Integer> lottoNumbers;
         printLottoNumberMessage(ASK_Lotto_NUMBER);
         String input = Console.readLine();
@@ -32,10 +32,10 @@ public class LottoView {
 
 
     private void validate(String input) {
-        validateNotNull(input);
-        validateSequenceComma(input);
-        validateIncorrectDelimiter(input);
-        validateContainBlank(input);
+        ensureNotNull(input);
+        ensureNoSequentialCommas(input);
+        ensureCommaAsDelimiter(input);
+        ensureNoBlanks(input);
 
     }
 
@@ -55,7 +55,7 @@ public class LottoView {
         System.out.println(lottoNumberMessage.getMessage());
     }
 
-    private void validateSequenceComma(String input) {
+    private void ensureNoSequentialCommas(String input) {
         IntStream.range(1, input.length())
                 .filter(i -> input.charAt(i) == ',' && input.charAt(i - 1) == ',')
                 .findFirst()
@@ -65,20 +65,20 @@ public class LottoView {
     }
 
 
-    private void validateNotNull(String input) {
+    private void ensureNotNull(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException(EMPTY.getMessage());
         }
     }
 
 
-    private void validateIncorrectDelimiter(String input) {
+    private void ensureCommaAsDelimiter(String input) {
         if (input.contains(".")) {
             throw new IllegalArgumentException(ANOTHER_COMMA.getMessage());
         }
     }
 
-    private void validateContainBlank(String input) {
+    private void ensureNoBlanks(String input) {
         Pattern pattern = Pattern.compile("\\s");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {

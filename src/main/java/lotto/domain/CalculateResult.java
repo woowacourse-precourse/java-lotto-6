@@ -6,13 +6,13 @@ import java.util.stream.IntStream;
 
 public class CalculateResult {
 
-    public static long calculateTotalMoneySum(List<ComPareNumber> compareNumbers) {
+    public static long calculateTotalMoneySum(List<LottoResultCalculator> compareNumbers) {
         return compareNumbers.stream()
-                .mapToLong(ComPareNumber::getMoneySum)
+                .mapToLong(LottoResultCalculator::getMoneySum)
                 .sum();
     }
 
-    public static List<Integer> calculateTotalWinCounts(List<ComPareNumber> compareNumbers) {
+    public static List<Integer> calculateTotalWinCounts(List<LottoResultCalculator> compareNumbers) {
         List<Integer> totalWinCount = Arrays.asList(0, 0, 0, 0, 0);
         compareNumbers.forEach(compareNumber ->
                 addWinCounts(totalWinCount, compareNumber.getWinCount())

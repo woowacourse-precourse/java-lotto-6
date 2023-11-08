@@ -8,11 +8,11 @@ import static lotto.view.OutputView.printStatistic;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.CalculateResult;
-import lotto.domain.ComPareNumber;
-import lotto.domain.Purchase;
-import lotto.domain.RandomNumber;
-import lotto.domain.Ticket;
-import lotto.validator.CheckValidator;
+import lotto.domain.LottoResultCalculator;
+import lotto.domain.LottoPurchase;
+import lotto.domain.RandomNumberGenerator;
+import lotto.domain.TicketPurchase;
+import lotto.validator.InputValidator;
 import lotto.view.BonusNumberView;
 import lotto.view.LottoView;
 import lotto.view.OutputView;
@@ -22,75 +22,77 @@ import lotto.view.RandomNumberView;
 
 public class Game {
 
-    private CheckValidator checkValidator;
+    private InputValidator inputValidator;
     private PurchaseView purchaseView = new PurchaseView();
     private LottoView lottoView = new LottoView();
     private BonusNumberView bonusNumberView = new BonusNumberView();
-    private Purchase purchase;
+    private LottoPurchase purchase;
     private List<List<Integer>> allRandomNumbers = new ArrayList<>();
-    private RandomNumber randomNumber = new RandomNumber();
+    private RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
     private RandomNumberView randomNumberView = new RandomNumberView();
     private List<Integer> numbers;
     private int bonusNumber;
-    private Ticket ticket;
+    private TicketPurchase ticketCount;
 
 
     public Game() {
-        this.checkValidator = new CheckValidator(this.purchaseView, this.lottoView,
+        this.inputValidator = new InputValidator(this.purchaseView, this.lottoView,
                 this.bonusNumberView);
     }
 
     public void start() {
-        purchaseMethod();
-        lottoMethod();
-        allCalculator();
+        processPurchase();
+        processLottoSelection();
+        calculateAndPrintResults();
 
     }
 
-    private void allRandomNumbers() {
-        allRandomNumbers = randomNumber.generateAllRandomNumbers(ticket.getTicket());
+    private void generateAllRandomNumbers() {
+        allRandomNumbers = randomNumberGenerator.generateMultipleLottoSets(ticketCount.getTicket());
         randomNumberView.printAllRandomNumbers(allRandomNumbers);
     }
 
 
-    private void purchaseMethod() {
-        this.purchase = checkValidator.validatePurchase();
-        ticket = new Ticket(purchase.getMoney());
-        printReceipt(ticket.getTicket());
+    private void processPurchase() {
+        this.purchase = inputValidator.validatePurchase();
+        this.ticketCount = new TicketPurchase(purchase.getPayment());
+        printReceipt(ticketCount.getTicket());
         OutputView.printSpace();
 
-        allRandomNumbers();
+        generateAllRandomNumbers();
     }
 
-    private void lottoMethod() {
-        this.numbers = checkValidator.validateLotto().getNumbers();
-        this.bonusNumber = checkValidator.validateBonusNumber(numbers).getBonusNumber();
+    private void processLottoSelection() {
+        this.numbers = inputValidator.validateLotto().getNumbers();
+        this.bonusNumber = inputValidator.validateBonusNumber(numbers).getBonusNumber();
         OutputView.printSpace();
     }
 
 
-    private void allCalculator() {
-        List<ComPareNumber> compareNumbers = generateCompareNumbers(numbers, bonusNumber);
+    private void calculateAndPrintResults() {
+        List<LottoResultCalculator> compareNumbers = generateResultCalculators(numbers, bonusNumber);
         long totalMoneySum = CalculateResult.calculateTotalMoneySum(compareNumbers);
         List<Integer> totalWinCount = CalculateResult.calculateTotalWinCounts(compareNumbers);
 
         printCalculationResults(totalWinCount, totalMoneySum);
+
     }
 
     private void printCalculationResults(List<Integer> totalWinCount, long totalMoneySum) {
         printStatistic();
         printTotalResults(totalWinCount);
-        printProfit(totalMoneySum, purchase.getMoney());
+        printProfit(totalMoneySum, purchase.getPayment());
     }
 
-    private List<ComPareNumber> generateCompareNumbers(List<Integer> winningNumbers,
+    private List<LottoResultCalculator> generateResultCalculators(List<Integer> numbers,
             int bonusNumber) {
-        return ComPareNumber.generateCompareNumbers(winningNumbers, bonusNumber, allRandomNumbers);
+        return LottoResultCalculator.generateResultCalculators(numbers, bonusNumber,
+                allRandomNumbers);
     }
 
 
     private void printTotalResults(List<Integer> totalWinCount) {
-        OutputView.printAllWinPrices(totalWinCount);
+        OutputView.printWinningCountsByPrize(totalWinCount);
     }
 
 

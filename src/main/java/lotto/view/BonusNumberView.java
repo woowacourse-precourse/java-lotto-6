@@ -10,41 +10,41 @@ import lotto.constant.LottoNumberMessage;
 
 public class BonusNumberView {
 
-    public int bonusNumber() {
+    public int requestAndValidateBonusNumber() {
 
-        BonusNumberMessage(ASK_BONUS_NUMBER);
-        String input = inputBonusNumber();
+        printBonusNumberMessage(ASK_BONUS_NUMBER);
+        String input = readBonusNumberInput();
         validateBonusNumber(input);
-        return conversion(input);
+        return convertToNumber(input);
     }
 
-    private String inputBonusNumber() {
+    private String readBonusNumberInput() {
         return Console.readLine();
     }
 
-    private void BonusNumberMessage(LottoNumberMessage lottoNumberMessage) {
+    private void printBonusNumberMessage(LottoNumberMessage lottoNumberMessage) {
         System.out.println(lottoNumberMessage.getMessage());
 
     }
 
     private void validateBonusNumber(String input) {
-        validateNotNull(input);
-        validateNotNumber(input);
+        checkNull(input);
+        checkNumber(input);
     }
 
-    private void validateNotNumber(String input) {
+    private void checkNumber(String input) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException(INPUT_STRING.getMessage());
         }
     }
 
-    private void validateNotNull(String input) {
+    private void checkNull(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException(EMPTY.getMessage());
         }
     }
 
-    private int conversion(String input) {
+    private int convertToNumber(String input) {
         int num = Integer.parseInt(input);
         return num;
     }

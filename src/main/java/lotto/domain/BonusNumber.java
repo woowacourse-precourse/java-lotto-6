@@ -13,11 +13,11 @@ public class BonusNumber {
     }
 
     private void validate(int bonusNumber) {
-        validateOutOfRange(bonusNumber);
+        checkBonusNumberRange(bonusNumber);
     }
 
 
-    private void validateOutOfRange(int bonusNumber) {
+    private void checkBonusNumberRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(OUT_OF_NUMBER_RANGE.getMessage());
         }

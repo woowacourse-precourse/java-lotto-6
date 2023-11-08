@@ -38,7 +38,7 @@ public class OutputView {
         return Math.round(profit * 1000.0) / 1000.0;
     }
 
-    public static void printAllWinPrices(List<Integer> winCounts) {
+    public static void printWinningCountsByPrize(List<Integer> winCounts) {
         for (WinPriceMessage winPrice : WinPriceMessage.values()) {
             String message = formatWinPriceMessage(winPrice, winCounts.get(winPrice.getIndex()));
             System.out.println(message);

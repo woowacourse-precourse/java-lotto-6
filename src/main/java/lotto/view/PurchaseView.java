@@ -14,10 +14,10 @@ public class PurchaseView {
         printPurchaseMessage(ASK_PURCHASE_PRICE);
         String input = Console.readLine();
         validateMoney(input);
-        return createFromInput(input);
+        return parseMoneyAmount(input);
     }
 
-    public int createFromInput(String input) {
+    public int parseMoneyAmount(String input) {
         int money = Integer.parseInt(input);
         return money;
     }
@@ -27,24 +27,24 @@ public class PurchaseView {
     }
 
     private void validateMoney(String input) {
-        validateNotNull(input);
-        validateNotNumber(input);
-        validateEnterComma(input);
+        checkIsNumber(input);
+        checkNotNull(input);
+        checkNoCommas(input);
     }
 
-    private void validateNotNumber(String input) {
+    private void checkIsNumber(String input) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException(INPUT_STRING.getMessage());
         }
     }
 
-    private void validateNotNull(String input) {
+    private void checkNotNull(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException(EMPTY.getMessage());
         }
     }
 
-    private void validateEnterComma(String input) {
+    private void checkNoCommas(String input) {
         if (input.contains(",")) {
             throw new IllegalArgumentException(NOT_CONTAIN_COMMA.getMessage());
         }

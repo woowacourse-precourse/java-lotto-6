@@ -8,9 +8,9 @@ public class StringUtils {
         return String.format("%,d", number);
     }
 
-    public static List<Integer> asListByDelimiter(String winingNumbers, String delimiter) {
+    public static List<Integer> asListByDelimiter(String numbers, String delimiter) {
         List<Integer> list = new ArrayList<>();
-        for (String str : winingNumbers.split(delimiter)) {
+        for (String str : numbers.split(delimiter)) {
             list.add(Integer.valueOf(str));
         }
         return list;

@@ -12,10 +12,14 @@ public class Game {
     private Lotto answer; private int bonus;
     private HashMap<String, Integer> correct = new HashMap<>();
 
+
     private void start(){
-        System.out.println("구입 금액을 입력해 주세요.");
-        this.money = Integer.parseInt(Console.readLine());
-        this.count = this.money/1000;
+        do {
+            System.out.println("구입 금액을 입력해 주세요.");
+            this.money = Integer.parseInt(Console.readLine());
+            this.count = this.money / 1000;
+        }while((this.money%1000) !=0);
+
     }
 
     private void generate(){
@@ -41,7 +45,10 @@ public class Game {
                     .boxed().collect(Collectors.toList());
             this.answer = new Lotto(list);
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR] "+e);
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다." );
+            userWinning();
+        }catch (IllegalStateException e){
+            System.out.println("[ERROR] 서로 다른 값이 어야 합니다." );
             userWinning();
         }
     }

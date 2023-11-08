@@ -17,10 +17,6 @@ public class LottoStore {
         return this.lottoes;
     }
 
-    public List<Rank> getRanks(WinningNumbers winningNumbers) {
-        return lottoes.stream().map(winningNumbers::announceRank).toList();
-    }
-
     private Lotto publishLotto() {
         return new Lotto(Collections.unmodifiableList(generateRandomNumbers()));
     }

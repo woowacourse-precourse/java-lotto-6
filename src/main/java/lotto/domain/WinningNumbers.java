@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.List;
+
 public class WinningNumbers {
 
     private final Lotto winningNumber;
@@ -15,6 +17,10 @@ public class WinningNumbers {
         int matchingNumberCounts = lotto.compareLottoWithWinningNumber(this.winningNumber);
         boolean hasBonusNumber = lotto.contains(this.bonusNumber);
         return Rank.of(matchingNumberCounts, hasBonusNumber);
+    }
+
+    public List<Rank> getRanks(List<Lotto> lottoes) {
+        return lottoes.stream().map(this::announceRank).toList();
     }
 
     private void validateDuplicated(Lotto winningNumber, int bonusNumber) {

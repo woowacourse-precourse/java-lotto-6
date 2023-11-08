@@ -20,8 +20,8 @@ public class LottoController {
         OutputView.printLottos(lottoStore.getLottoes());
 
         WinningNumbers winningNumbers = generateWinningNumbers();
-
-        WinningStatistic winningStatistic = generateWinningStatistic(lottoStore.getRanks(winningNumbers));
+        
+        WinningStatistic winningStatistic = generateWinningStatistic(winningNumbers.getRanks(lottoStore.getLottoes()));
 
         OutputView.printWinningStatistic(winningStatistic.getResult());
 

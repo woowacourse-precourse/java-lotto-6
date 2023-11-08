@@ -122,6 +122,7 @@ public class LottoService {
             try {
                 String input = InputView.bonusNumber();
                 int validPart = checkNumber(input);
+                InputValidation.validateDuplicateNumbers(winningNumbers, validPart);
                 setBonusNumber(validPart);
                 break;
             } catch (IllegalArgumentException e) {

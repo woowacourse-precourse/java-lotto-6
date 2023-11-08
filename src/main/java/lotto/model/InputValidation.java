@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class InputValidation {
@@ -11,6 +12,7 @@ public class InputValidation {
     private static final String INVALID_RANGE_MESSAGE = "[ERROR] 1~45 사이의 숫자를 입력해야 합니다.";
     private static final String INVALID_NUMBER_MESSAGE = "[ERROR] 숫자이여야 합니다.";
     private static final String INVALID_DUPLICATE_MESSAGE = "[ERROR] 중복된 숫자가 없어야 합니다.";
+    private static final String INVALID_DUPLICATE_LOTTO_BONUS = "[ERROR] 보너스 번호가 당첨 번호에 중복됩니다.";
 
     public static void validateNumber(String amount) {
         try {
@@ -38,6 +40,14 @@ public class InputValidation {
             if (!uniqueNumbers.add(part)) {
                 throw new IllegalArgumentException(INVALID_DUPLICATE_MESSAGE);
             }
+        }
+    }
+
+    public static void validateDuplicateNumbers(Lotto lotto, int bonusNumber) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+
+        if (lottoNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(INVALID_DUPLICATE_LOTTO_BONUS);
         }
     }
 }

@@ -53,7 +53,7 @@ public class GameController {
         return Integer.parseInt(input);
     }
 
-    private void checkAmountValid(int amount) {
+    public void checkAmountValid(int amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 게임 금액은 1000의 배수여야 합니다.");
         }

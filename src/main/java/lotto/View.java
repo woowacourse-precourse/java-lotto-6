@@ -70,7 +70,7 @@ public class View {
             } catch (NumberFormatException e){
                 throw new IllegalArgumentException("[ERROR] int로 정의 될 수 없습니다.");
             }
-            if(Integer.parseInt(winningnum)<1 && Integer.parseInt(winningnum)>45){
+            if(Integer.parseInt(winningnum)<1 || Integer.parseInt(winningnum)>45){
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
             if (Collections.frequency(Arrays.asList(winningNumber.split(",")), winningnum) > 1) {
@@ -107,7 +107,7 @@ public class View {
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] int로 정의 될 수 없습니다.");
         }
-        if(Integer.parseInt(bonusNumber)<1 && Integer.parseInt(bonusNumber)>45){
+        if(Integer.parseInt(bonusNumber)<1 || Integer.parseInt(bonusNumber)>45){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         if(Arrays.asList(winningNumber.split(",")).contains(bonusNumber)){

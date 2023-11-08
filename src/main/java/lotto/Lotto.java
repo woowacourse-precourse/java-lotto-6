@@ -17,7 +17,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         for(Integer number:numbers){
-            if(number<1 && number>45){
+            if(number<1 || number>45){
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
             if (Collections.frequency(numbers, number) > 1) {

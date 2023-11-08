@@ -16,7 +16,7 @@ public class PrizeResult {
     public void calcPrizeResult(WinningLotto winningLotto, Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             Prize prize = Prize.getPrize(lotto.getMatchLottoNumber(winningLotto),
-                    lotto.isContain(winningLotto.getBousNumber()));
+                    lotto.isContain(winningLotto.getBonusNumber()));
             updatePrizeCount(prize);
         }
     }

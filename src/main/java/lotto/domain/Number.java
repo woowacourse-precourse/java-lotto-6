@@ -7,6 +7,9 @@ import java.util.Objects;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 
+/**
+ * 로또의 단일 번호를 저장하는 클래스
+ */
 public class Number {
     private int value;
 
@@ -14,6 +17,12 @@ public class Number {
         this.value = value;
     }
 
+    /**
+     * 로또의 단일 번호를 저장하는 객체를 생성하는 메서드
+     *
+     * @param value 로또의 단일 번호
+     * @return Number 객체
+     */
     public static Number valueOf(final int value) {
         return new Number(value);
     }

@@ -9,28 +9,29 @@ import java.util.List;
 
 public class InputView {
 
-    public int getNumber() {
+    public static int getNumber() {
         String input = getTrimInputFromConsole();
         validateInteger(input);
         return Integer.parseInt(input);
     }
 
-    public List<Integer> getNumbers() {
+    public static List<Integer> getNumbers() {
         String input = getTrimInputFromConsole();
-        List<Integer> winningNumbers = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<>();
         for (String splittedInput : input.split(DELIMITER)) {
-            validateInteger(splittedInput);
-            winningNumbers.add(Integer.parseInt(splittedInput));
+            String splittedTrimInput = splittedInput.trim();
+            validateInteger(splittedTrimInput);
+            numbers.add(Integer.parseInt(splittedTrimInput));
         }
-        return winningNumbers;
+        return numbers;
     }
 
-    private String getTrimInputFromConsole() {
+    private static String getTrimInputFromConsole() {
         String input = Console.readLine();
         return input.trim();
     }
 
-    private void validateInteger(String input) {
+    private static void validateInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {

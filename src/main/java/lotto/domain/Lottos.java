@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 import lotto.domain.wrapper.PurchaseAmount;
-import lotto.service.WinningLotto;
-import lotto.utils.LottoConstantValue;
-import lotto.utils.Prize;
 
 public class Lottos {
     private final List<Lotto> lottos;

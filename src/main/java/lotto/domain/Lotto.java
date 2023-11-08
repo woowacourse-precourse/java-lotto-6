@@ -50,7 +50,7 @@ public class Lotto {
         for (Integer number : numbers) {
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(
-                        String.format(LOTTO_NUMBER_OUT_OF_RANGE, MIN_LOTTO_NUMBER, MAX_NUMBER_OF_LOTTOS));
+                        String.format(LOTTO_NUMBER_OUT_OF_RANGE, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER));
             }
         }
     }

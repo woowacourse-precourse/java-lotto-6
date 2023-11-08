@@ -10,4 +10,5 @@ public class ConstantValues {
     public static final int LOTTO_NUMBERS_LENGTH = 6;
     public static final int LOTTO_PRICE = 1000;
     public static final int MAX_NUMBER_OF_LOTTOS = 100;
+    public static final int PRIZE_CATEGORY_COUNT = 5;
 }

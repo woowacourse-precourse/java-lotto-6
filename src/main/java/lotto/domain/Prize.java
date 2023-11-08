@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.domain;
 
 public enum Prize {
     NO_PRIZE(0, 0),

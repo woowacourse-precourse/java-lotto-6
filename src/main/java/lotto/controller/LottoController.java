@@ -17,7 +17,7 @@ public class LottoController {
     InputController inputController = new InputController();
     MakeLotto makeLotto = new MakeLotto();
 
-    public void Lotto() {
+    public void lotto() {
         LottoPurchaseAmount lottoPurchaseAmount = setPurchaseAmount();
 
         int lottoCount = MakeLottoCount.getLottoCount(lottoPurchaseAmount.getCount());

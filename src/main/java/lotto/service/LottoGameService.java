@@ -20,6 +20,10 @@ import lotto.view.OutputView;
 
 public class LottoGameService {
     private static final LottoMachine lottoMachine = new LottoMachine(new LottoNumberGeneratorImpl());
+    public static final int PRIZE_INCREMENT = 1;
+    public static final int INITIAL_TOTAL_RATE_OF_RETURN = 0;
+    public static final int NOT_CONSUMED = 0;
+    public static final int PERCENTAGE = 100;
     private static WinningLotto winningLotto;
 
     public static void purchaseLotto() {
@@ -95,7 +99,7 @@ public class LottoGameService {
 
         winningResult.prizes().forEach((prize, i) -> {
             if (prize.getWinningHit() == winningHit && prize.getBonusHit().contains(bonusHit)) {
-                winningResult.prizes().replace(prize, i + 1);
+                winningResult.prizes().replace(prize, i + PRIZE_INCREMENT);
             }
         });
     }
@@ -119,12 +123,17 @@ public class LottoGameService {
     public static void calculateTotalRateOfReturn() {
         int consumedMoney = User.getConsumedMoney();
         int receivedMoney = User.getReceivedMoney();
-        float totalRateOfReturn = 0;
-        if (consumedMoney != 0) {
-            totalRateOfReturn = (float) receivedMoney * 100 / (float) consumedMoney;
+        float totalRateOfReturn = INITIAL_TOTAL_RATE_OF_RETURN;
+
+        if (isConsumed(consumedMoney)) {
+            totalRateOfReturn = (float) receivedMoney * PERCENTAGE / (float) consumedMoney;
         }
 
         OutputView.notifyTotalRateOfReturn(totalRateOfReturn);
+    }
+
+    private static boolean isConsumed(int consumedMoney) {
+        return consumedMoney != NOT_CONSUMED;
     }
 
     public static void endLottoGame() {

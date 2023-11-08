@@ -62,6 +62,7 @@ public class LottoGame {
             System.out.println(prize.getWinInformation() + " - " + winningResult.get(prize) + "개");
             sum += prize.getPrizeMoney() * winningResult.get(prize);
         }
-        System.out.println("총 수익률은 " + String.format("%.2f", (double)sum / buyMoney * 100) + "%입니다.");
+        double profitPercentage = (double) sum / buyMoney * 100;
+        System.out.println("총 수익률은 " + Math.round(profitPercentage * 100.0) / 100.0 + "%입니다.");
     }
 }

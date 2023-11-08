@@ -11,7 +11,7 @@ public class LottoGenerator {
 
     private void setGenerateCount(int money) {
         this.generateCount = money / 1000;
-        System.out.println(generateCount + "개를 구매했습니다");
+        System.out.println(generateCount + "개를 구매했습니다.");
     }
 
     public List<Lotto> buyLotto(int money) {
@@ -24,7 +24,7 @@ public class LottoGenerator {
     }
 
     private Lotto createLotto () {
-        List<Integer> lottoNumber = createLottoNumber();
+        List<Integer> lottoNumber = new ArrayList<>(createLottoNumber());
         Collections.sort(lottoNumber);
         System.out.println(lottoNumber);
         return new Lotto(lottoNumber);

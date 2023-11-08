@@ -12,7 +12,7 @@ public class InputResolver {
                 System.out.println("구입금액을 입력해 주세요.");
                 return inputValidator.validateAndReturnLottoInput(Console.readLine());
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] " + e);
+                System.out.println("[ERROR] " + e);
             }
         } while (true);
     }
@@ -23,7 +23,7 @@ public class InputResolver {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 return inputValidator.validateAndReturnWinningNumber(Console.readLine());
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] " + e);
+                System.out.println("[ERROR] " + e);
             }
         } while (true);
     }
@@ -35,7 +35,7 @@ public class InputResolver {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 return inputValidator.validateAndReturnBonusNumber(Console.readLine(), winningNumber);
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] " + e);
+                System.out.println("[ERROR] " + e);
             }
         } while (true);
 

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +10,13 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LottoResultTest {
+class LottoMoneyPrizeTest {
     private LottoMoneyPrize lottoMoneyPrize;
+    private List<Lotto> lottos;
 
-    @Test
-    @DisplayName("로또 결과 확인 테스트")
-    void checkLottoResult() {
-        //given
-        List<Lotto> lottos = Arrays.asList(
+    @BeforeEach
+    void setUp(){
+        lottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 1등
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)), // 2
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 45)), // 3
@@ -25,6 +25,12 @@ class LottoResultTest {
                 new Lotto(Arrays.asList(13, 17, 23, 25, 28, 44))  //6
         );
 
+    }
+
+    @Test
+    @DisplayName("로또 결과 확인 테스트")
+    void checkLottoResult() {
+        //given
         List<Integer> randomWin = Arrays.asList(1, 2, 3, 4, 5, 6);
         int bonusNum = 7;
 

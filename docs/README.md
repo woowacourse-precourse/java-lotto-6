@@ -50,7 +50,7 @@ lotto
 │   │   단일 로또의 올바른 정보를 저장
 │   ├── LottoGenerator.java
 │   │   로또 인스턴스 생성
-│   ├── LottoWinningChecker.java
+│   ├── LottoMatchChecker.java
 │   │   당첨 번호와 보너스 번호를 저장하고 입력받은 로또의 등수를 반환
 │   ├── LottoRank.java
 │   │   로또 당첨 등수 정보를 나타내는 열거형
@@ -59,11 +59,14 @@ lotto
 │   │   │   숫자 생성을 위한 인터페이스
 │   │   └── RandomNumberGenerator.java
 │   │       무작위 숫자를 생성하는 구현 클래스
-│   └── util
-│       ├── Constant.java
-│       │   상수를 저장
-│       └── LottoParser.java
-│           입력 데이터 변환 및 검증
+│   ├── util
+│   │   ├── Constant.java
+│   │   │   상수를 저장
+│   │   └── LottoParser.java
+│   │       입력 데이터 변환
+│   └── validation
+│       └── Validator.java
+│           입력 데이터 검증
 ├── exception
 │   ├── ErrorMessage.java
 │   │   에러 메시지를 나타내는 열거형

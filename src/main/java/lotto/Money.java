@@ -46,7 +46,7 @@ public class Money {
         double price2 = price;
         double allReward2 = allReward;
         double revenue = (allReward2 / price2) * 100;
-        double result = Math.round(revenue);
+        double result = Math.round(revenue * 10) / 10.0;
 
         return result;
     }

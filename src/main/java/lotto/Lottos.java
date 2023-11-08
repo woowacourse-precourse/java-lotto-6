@@ -44,4 +44,16 @@ public class Lottos {
         return result;
     }
 
+    public double calculateEarnings(Result result) {
+        int sum = 0;
+        for (Score score : Score.values()) {
+            sum += result.getCount(score) * score.getPrice();
+        }
+
+        if (sum != 0) {
+            return Math.round((double) sum * 10 * 100 / price) / 10.0;
+        }
+        return 0;
+    }
+
 }

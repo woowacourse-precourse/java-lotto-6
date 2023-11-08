@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.config.LottoConstants;
 import lotto.model.*;
 import lotto.util.RandomNumberGenerator;
+import lotto.util.ResultCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -15,16 +15,16 @@ public class LottoController {
     private Amount amount;
     private Lotto lotto;
     private WinningLotto winningLotto;
-    private Result result;
     private List<Result> results;
     private UserLotto userLotto;
-    private Profit profit;
     private Bonus bonus;
 
     private final RandomNumberGenerator randomNumberGenerator;
+    private final ResultCalculator resultCalculator;
 
-    public LottoController(RandomNumberGenerator randomNumberGenerator) {
+    public LottoController(RandomNumberGenerator randomNumberGenerator, ResultCalculator resultCalculator) {
         this.randomNumberGenerator = randomNumberGenerator;
+        this.resultCalculator = resultCalculator;
     }
 
     public void run() {
@@ -48,8 +48,7 @@ public class LottoController {
     }
 
     private void printLottoAmount() {
-        int count = amount.calculateLottosAmount(this.amount.toString());
-        OutputView.printPurchaseLottoCount(count);
+        OutputView.printPurchaseLottoCount(amount.getAmount());
     }
 
     private void enterWinningLotto() {
@@ -78,13 +77,13 @@ public class LottoController {
     }
 
     private void printUserLottos() {
-        List<Lotto> userLottos = userLotto.getUserLotto();
-        OutputView.printLottos(userLottos);
+        OutputView.printLottos(userLotto);
     }
 
     private void enterBonusNumber() {
         try {
             this.bonus = new Bonus(InputView.getBonusNumber().trim(), lotto);
+            this.winningLotto = new WinningLotto(lotto, bonus);
         } catch (IllegalArgumentException e) {
             OutputView.print(e.getMessage());
             enterBonusNumber();
@@ -93,21 +92,20 @@ public class LottoController {
 
     private void printResult() {
         OutputView.printLottoPrizeHeader();
-        this.results = result.calculateWinningResults(userLotto, winningLotto);
-        long firstPrizeCount = result.countMatchingResults(results, Rank.FIRST);
-        long secondPrizeCount = result.countMatchingResults(results, Rank.SECOND);
-        long thirdPrizeCount = result.countMatchingResults(results, Rank.THIRD);
-        long fourthPrizeCount = result.countMatchingResults(results, Rank.FOURTH);
-        long fifthPrizeCount = result.countMatchingResults(results, Rank.FIFTH);
+        results = resultCalculator.calculateWinningResults(userLotto, winningLotto);
+        Rank[] ranks = Rank.values();
 
-        OutputView.printWinningResults(firstPrizeCount, secondPrizeCount, thirdPrizeCount, fourthPrizeCount, fifthPrizeCount);
+        for (Rank rank : ranks) {
+            String description = rank.getDescription();
+            long count = resultCalculator.countMatchingResults(results, rank);
+            String prize = rank.getPrize();
+            OutputView.printLottoPrize(description, prize, (int) count);
+        }
     }
 
     private void printProfit() {
-        double profitRatio = profit.calculateProfit(results, amount);
+        double profitRatio = resultCalculator.calculateProfit(results, amount);
         OutputView.printProfit(profitRatio);
     }
-
-
 
 }

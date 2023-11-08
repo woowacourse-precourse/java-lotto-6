@@ -1,11 +1,9 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Result {
     private final int matchCount;
     private final boolean hasBonus;
+
 
     public Result(int matchCount, boolean hasBonus) {
         this.matchCount = matchCount;
@@ -47,32 +45,6 @@ public class Result {
         if (rank == Rank.FOURTH) { prize = Rank.FOURTH.getReward(); }
         if (rank == Rank.FIFTH) { prize = Rank.FIFTH.getReward(); }
         return prize;
-    }
-    public List<Result> calculateWinningResults(UserLotto userLotto, WinningLotto winningLotto) {
-        List<Result> results = new ArrayList<>();
-        for (Lotto lotto : userLotto.getUserLotto()) {
-            int matchCount = countMatchNumbers(lotto, winningLotto);
-            boolean hasBonus = lotto.contains(winningLotto.getBonusNumber());
-
-            if (hasBonus) {
-                matchCount++;
-            }
-
-            results.add(Result.of(matchCount, hasBonus));
-        }
-        return results;
-    }
-
-    private int countMatchNumbers(Lotto userLotto, WinningLotto winningLotto) {
-        return (int) userLotto.getNumbers().stream()
-                .filter(winningLotto::contains)
-                .count();
-    }
-
-    public long countMatchingResults(List<Result> winningResults, Rank rank) {
-        return winningResults.stream()
-                .filter(result -> result.getRank() == rank)
-                .count();
     }
 
 }

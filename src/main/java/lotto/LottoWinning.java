@@ -60,7 +60,7 @@ public class LottoWinning {
         return winningCounts;
     }
 
-    public LottoRank assignRank(Lotto ticket) {
+    private LottoRank assignRank(Lotto ticket) {
         int match = ticket.countMatchingNumbers(winningNumbers);
         boolean bonusMatch = checkIfTicketContainsBonusNumber(ticket);
         LottoRank wonRank = LottoRank.getWinningRank(match, bonusMatch);

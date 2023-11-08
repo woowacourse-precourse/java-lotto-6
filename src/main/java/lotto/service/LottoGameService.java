@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.LottoNumbersGenerator;
+import lotto.domain.Lotto;
 import lotto.enums.LottoRank;
-import lotto.model.Lotto;
+import lotto.util.LottoNumbersGenerator;
 
 public class LottoGameService {
     private final List<List<Integer>> purchasedLottoNumbers = new ArrayList<>();

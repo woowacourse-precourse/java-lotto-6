@@ -20,7 +20,7 @@ public class LottoGame {
 
     }
 
-    public double getEarningRate(List<Rank> ranks, int price) {
-        return 0;
+    public String getEarningRate(List<Rank> ranks, int price) {
+        return null;
     }
 }

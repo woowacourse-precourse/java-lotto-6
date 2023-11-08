@@ -24,8 +24,7 @@ public class InputGuide {
 
     private static void priceValidation(int totalPrice) {
         if (totalPrice % 1000 != 0){
-            System.out.println(PrintError.priceError());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PrintError.priceError());
         }
     }
 
@@ -36,15 +35,13 @@ public class InputGuide {
 
     private static void decimalValidate(String inputprice) {//유효한 정수 확인
         if (!inputprice.matches("\\d+")) {
-            System.out.println(PrintError.decimalException());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PrintError.decimalException());
         }
     }
 
     private static void nullValidate(String inputprice) {
         if(inputprice.isEmpty()){
-            System.out.println(PrintError.nullException());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PrintError.nullException());
         }
 
     }
@@ -60,8 +57,7 @@ public class InputGuide {
 
     private static void bonusValidation(int bonus) {
         if(bonus > 45 && bonus < 1){
-            System.out.println(PrintError.rangeError());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PrintError.rangeError());
         }
     }
 

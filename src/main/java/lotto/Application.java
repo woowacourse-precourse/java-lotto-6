@@ -25,6 +25,7 @@ public class Application {
                totalPayment = InputGuide.inputPrice(); // 사용자 구입금액 입력
                 break;
             }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
         }
         while(true){
@@ -32,6 +33,7 @@ public class Application {
                 makeLottoList(totalPayment); // 로또번호 생성
                 break;
             } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
         }
 
@@ -43,6 +45,7 @@ public class Application {
                 winningNumber = new WinningNumber(InputGuide.inputWinningNum());
                 break;
             }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
         }
 
@@ -53,7 +56,7 @@ public class Application {
                 bonusNum = InputGuide.inputBonusNum();
                 break;
             } catch(IllegalArgumentException e){
-                System.out.println(bonusNum);
+                System.out.println(e.getMessage());
             }
         }
 

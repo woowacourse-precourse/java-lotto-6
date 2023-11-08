@@ -21,21 +21,26 @@ public class Lotto {
 
 
     private void validate(List<Integer> numbers) {
+        nullValidate(numbers);
         sizeValidate(numbers);
         duplicateValidate(numbers);
     }
 
+    private void nullValidate(List<Integer> numbers) {
+        if (numbers.isEmpty()){
+            throw new IllegalArgumentException(PrintError.nullException());
+        }
+    }
+
     private void sizeValidate(List<Integer> numbers){
         if (numbers.size() != 6) {
-            System.out.println(PrintError.countERROR());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PrintError.countERROR());
         }
     }
     private void duplicateValidate(List<Integer> numbers) {
         Set<Integer> numSet = new HashSet<>(numbers);
         if(numSet.size() != numbers.size()){
-            System.out.println(PrintError.duplicateError());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(PrintError.duplicateError());
         }
     }
 

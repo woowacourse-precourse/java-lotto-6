@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.constant.Prize;
+import lotto.domain.Prize;
 import lotto.domain.dto.WinningResult;
 
 public class OutputView {

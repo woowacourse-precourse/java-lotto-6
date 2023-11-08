@@ -1,10 +1,10 @@
 package lotto.service;
 
-import static lotto.constant.Prize.FIFTH;
-import static lotto.constant.Prize.FIRST;
-import static lotto.constant.Prize.FOURTH;
-import static lotto.constant.Prize.SECOND;
-import static lotto.constant.Prize.THIRD;
+import static lotto.domain.Prize.FIFTH;
+import static lotto.domain.Prize.FIRST;
+import static lotto.domain.Prize.FOURTH;
+import static lotto.domain.Prize.SECOND;
+import static lotto.domain.Prize.THIRD;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;

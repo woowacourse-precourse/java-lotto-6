@@ -4,11 +4,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
-    static final int prize1=2000000000;
-    static final int prize2=30000000;
-    static final int prize3=1500000;
-    static final int prize4=50000;
-    static final int prize5=5000;
+
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -32,13 +28,13 @@ public class Lotto {
     }
 
     public int calculateReward(int score,int bonusScore){
-        if(score==6) return prize1;
+        if(score==6) return 2000000000;
         if(score==5){
-            if(bonusScore==1)return prize2;
-            return prize3;
+            if(bonusScore==1)return 30000000;
+            return 1500000;
         }
-        if(score==4) return prize4;
-        if(score==3) return prize5;
+        if(score==4) return 50000;
+        if(score==3) return 5000;
         return 0;
     }
 

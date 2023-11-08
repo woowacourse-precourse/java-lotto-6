@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import lotto.exception.LottoNumDuplicateException;
+import lotto.exception.LottoNumRangeException;
 import lotto.exception.LottoSizeException;
 
 import java.util.HashSet;
@@ -12,6 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateNumRange(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
     }
@@ -30,6 +32,14 @@ public class Lotto {
         }
         if (hashNumbers.size() != numbers.size()) {
             throw new LottoNumDuplicateException();
+        }
+    }
+
+    private void validateNumRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number <= 0 || number > 45) {
+                throw new LottoNumRangeException();
+            }
         }
     }
 

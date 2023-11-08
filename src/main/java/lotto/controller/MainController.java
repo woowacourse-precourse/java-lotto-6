@@ -8,7 +8,7 @@ import lotto.model.Prize;
 import lotto.model.PrizeStorage;
 import lotto.model.UserLotto;
 import lotto.model.WinningLotto;
-import lotto.util.Constants;
+import lotto.utils.Constants;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

@@ -4,9 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
-import lotto.util.Constants;
-import lotto.util.ErrorMessage;
-import lotto.util.Util;
+import lotto.utils.Constants;
+import lotto.utils.ErrorMessage;
+import lotto.utils.Util;
 
 public class InputView {
     private static final String NEW_LINE = System.lineSeparator();

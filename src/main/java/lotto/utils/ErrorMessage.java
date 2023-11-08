@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.utils;
 
 public enum ErrorMessage {
      INVALID_LOTTO_SIZE("[ERROR] 6자리의 숫자를 입력해 주세요."),

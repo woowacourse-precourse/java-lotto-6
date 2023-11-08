@@ -65,12 +65,10 @@ public class Judgment {
     }
 
     public void showRateOfReturn(int purchaseAmount, OutputView outputView) {
-        BigDecimal profit = calcProfit();
+        BigDecimal profit = calcProfit().multiply(new BigDecimal("100"));
         BigDecimal rate = profit.divide(new BigDecimal(purchaseAmount))
                 .setScale(1, RoundingMode.HALF_UP);
 
-        System.out.println("수익금: " + profit);
-        System.out.println("결과: " + rate);
         outputView.showRateOfReturn(rate.toString());
     }
 }

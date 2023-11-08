@@ -9,12 +9,33 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplicate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isDuplicate(int currentIndex, List<Integer> numbers) {
+        Integer currentNumber = numbers.get(currentIndex);
+
+        for (int index = currentIndex + 1; index < numbers.size(); index++) {
+            if (currentNumber.equals(numbers.get(index))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void checkDuplicate(List<Integer> numbers) {
+        for (int index = 0; index < numbers.size() - 1; index++) {
+            if (isDuplicate(index, numbers)) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

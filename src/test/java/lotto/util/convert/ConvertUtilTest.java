@@ -16,4 +16,11 @@ class ConvertUtilTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력된 String이 int로 변환이 가능하면 성공")
+    @Test
+    void 문자열_정수_변환_성공(){
+        int number = ConvertUtil.stringToInt("1000");
+        assertThat(number).isEqualTo(1000);
+    }
+
 }

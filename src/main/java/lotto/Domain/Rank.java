@@ -41,4 +41,13 @@ public enum Rank {
     public boolean isBonusNumberMatch() {
         return description.contains("보너스 볼");
     }
+
+    public static Rank matchingNumbersToRank(int matchingNumbers, boolean bonusNumberMatch) {
+        if (matchingNumbers == 6) { return Rank.SIX_MATCH; }
+        if (matchingNumbers == 5 && bonusNumberMatch) { return Rank.FIVE_MATCH_WITH_BONUS; }
+        if (matchingNumbers == 5) { return Rank.FIVE_MATCH; }
+        if (matchingNumbers == 4) { return Rank.FOUR_MATCH; }
+        if (matchingNumbers == 3) { return Rank.THREE_MATCH; }
+        return Rank.NO_MATCH;
+    }
 }

@@ -59,7 +59,7 @@ public class GameService {
         for (List<Integer> playerLotto : lottos) {
             int matchingNumbers = referee.compare(playerLotto);
             boolean bonusNumberMatch = referee.getBonusNumber();
-            Rank rank = matchingNumbersToRank(matchingNumbers, bonusNumberMatch);
+            Rank rank = Rank.matchingNumbersToRank(matchingNumbers, bonusNumberMatch);
 
             if (rank != Rank.NO_MATCH) {
                 matchingCounts.put(rank, matchingCounts.get(rank) + 1);
@@ -69,12 +69,4 @@ public class GameService {
         LottoSalesman.rankTotal(matchingCounts, totalPrize, money);
     }
 
-    private Rank matchingNumbersToRank(int matchingNumbers, boolean bonusNumberMatch) {
-        if (matchingNumbers == 6) { return Rank.SIX_MATCH; }
-        if (matchingNumbers == 5 && bonusNumberMatch) { return Rank.FIVE_MATCH_WITH_BONUS; }
-        if (matchingNumbers == 5) { return Rank.FIVE_MATCH; }
-        if (matchingNumbers == 4) { return Rank.FOUR_MATCH; }
-        if (matchingNumbers == 3) { return Rank.THREE_MATCH; }
-        return Rank.NO_MATCH;
-    }
 }

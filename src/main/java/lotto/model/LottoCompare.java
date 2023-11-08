@@ -25,7 +25,7 @@ public class LottoCompare {
         return lotto.getNumbers().contains(getBonusNumber());
     }
 
-    int WinningCompare(Lotto lotto){
+    int winningCompare(Lotto lotto){
         return (int) winningNumbers.stream()
                 .filter(x -> lotto.getNumbers().contains(x))
                 .count();

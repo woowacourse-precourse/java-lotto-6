@@ -190,6 +190,15 @@ LottoCompare
 
 lottoRank 정의
 1. 등수, 가격, 매치 수, 비교 람다식
-
 2. getRank : static method를 사용해 어떠한 열거형에 해당하는지
 객체를 반환함.
+----
+7회차
+
+LottoResult 구현
+EnumMap을 사용.
+rank가 무엇인지에 따라 map에서 1을 더함.
+
+LottoMaker와 LottoCompare을 통해
+각 로또별 rank가 무엇인지 열거형에서 찾고
+이를 map에 추가함.

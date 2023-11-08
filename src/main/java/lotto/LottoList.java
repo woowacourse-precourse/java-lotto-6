@@ -16,9 +16,8 @@ public class LottoList {
     public int getNumber_of_lotto() {
         return number_of_lotto;
     }
-
-    public int getLottoListSize() {
-        return lottoList.size();
+    public List<Lotto> getLottoList() {
+        return lottoList;
     }
 
     public void printNumberOfLotto(){

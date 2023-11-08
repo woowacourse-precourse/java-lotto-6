@@ -19,6 +19,6 @@ class LottoListTest {
 
         // then
         assertEquals(10, lottoList.getNumber_of_lotto());
-        assertEquals(10, lottoList.getLottoListSize());
+        assertEquals(10, lottoList.getLottoList().size());
     }
 }

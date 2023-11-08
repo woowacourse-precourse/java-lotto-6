@@ -13,6 +13,10 @@ import lotto.view.OutputView;
 
 public class LottoService {
 
+    static final int PERCENTAGE = 100;
+    static final int WINNING_PRICE_ZERO=0;
+
+
 
     public WinningNumber setWinningNumber(Lotto winningNumber,int bonusNumber){
         WinningNumber winningNumbers=new WinningNumber(winningNumber,bonusNumber);
@@ -67,15 +71,13 @@ public class LottoService {
         return count;
     }
 
-
-
     public double calculateRevenue(int purchaseAmount,List<LottoResult>results){
         int winningPrize=results.stream()
                 .mapToInt(LottoResult::getPrize)
                 .sum();
-        if(winningPrize==0){
-            return 0;
+        if(winningPrize==WINNING_PRICE_ZERO){
+            return WINNING_PRICE_ZERO;
         }
-        return ((double) winningPrize/purchaseAmount)*100;
+        return ((double) winningPrize/purchaseAmount)*PERCENTAGE;
     }
 }

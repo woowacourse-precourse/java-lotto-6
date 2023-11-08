@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 public class Application {
     public static void main(String[] args) {
-        LottoMachine tryIt = new LottoMachine(new DecimalFormat("#.##"));
-        tryIt.run();
+        LottoMachine lottoMachine = new LottoMachine(new DecimalFormat("#.##"));
+        lottoMachine.run();
     }
 }

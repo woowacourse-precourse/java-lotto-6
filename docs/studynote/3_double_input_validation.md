@@ -391,6 +391,113 @@ Dto 파일만 보고도 Builder를 사용할 수 있다는 사실을 인지할 �
 
 단점은 Dto에 빌더 코드가 너무 많아져서 배보다 배꼽이 더 커진다는 것이다.
 
-우아한 테크코스를 진행하면서 클래스 당 역할을 최소화 해보기로 했으니,
+Lombok을 사용하면 `@Builder` 어노테이션을 붙이는 것으로 장황한 코드를 자동으로 완성해주기 때문에
 
-실제 3주차 미션 코드는 클래스를 나누는 방식을 선택했다. 
+실제 빌더 사용 시에는 문제가 되지 않을 것 같다.
+
+## 예외 처리 재사용성 높이기
+
+`InputView` 내의 `inputLottoNumbers`와 `inputBonusNumber`는 모두 예외가 발생하면,
+
+예외 메세지를 출력하고 재입력을 시도한다.
+
+호출할 메소드만 다르고, 로직은 완전히 동일한 것이다.
+
+```java
+private DrawLottosDtoBuilder inputLottoNumbers(final DrawLottosDtoBuilder builder) {
+    // "로또 번호를 입력해주세요" 출력
+    new InputLottoNumbersComponent().renderTo(writer);
+
+    try {
+        // 사용자의 입력을 받아서 빌더에 저장
+        builder.lottoNumbers(readLine());
+    } catch (final Exception e) {
+        // 예외 발생 시, 메세지 출력
+        System.out.println("[ERROR] 유효하지 않은 로또 번호입니다.");
+        // 그리고 재입력을 받음
+        return inputLottoNumbers(builder);
+    }
+
+    // 빌더 반환
+    return builder;
+}
+```
+
+이런 메소드가 100개 존재한다고 생각하면, 매우 비효율적이다.
+
+내부 로직이 조금만 변경되어도 100개의 메소드를 변경해야 할 것이다.
+
+공통 로직 부분을 메소드로 추출하면 반복을 줄여 재사용성을 올릴 수 있을 것 같아서 한번 시도해봤다.
+
+```java
+private <T> T retryUntilSuccess(final Supplier<T> supplier) {
+    try {
+        return supplier.get();
+    } catch (final IllegalArgumentException e) {
+        new ErrorMessageComponent(e.getMessage())
+                .renderTo(writer);
+        return retryUntilSuccess(supplier);
+    }
+}
+```
+
+`Supplier<T>`는 리턴 타입이 `T`인 메소드를 뜻한다.
+
+어떤 메소드라도 인자로 받아서 호출해주고,
+
+만약 예외가 발생하면 메세지를 출력한 뒤, 재호출하여 반환값을 받을 때까지 재귀 호출하는 로직이다.
+
+```java   
+private Builder inputLottoNumbers(final Builder builder) {
+    new InputLottoNumbersComponent().renderTo(writer);
+    return builder.lottoNumbers(readLine());
+}
+
+private Builder inputBonusNumber(final Builder builder) {
+    new InputBonusNumberComponent().renderTo(writer);
+    return builder.bonusNumber(readLine());
+}
+```
+
+이제 `inputLottoNumbers`, `inputBonusNumber`는 더 이상 예외 처리 및 재귀 호출 로직을 직접 작성할 필요가 없다.
+
+UI를 위한 텍스트를 출력하고, 로또 번호, 보너스 번호를 입력 받는 로직만 작성하면,
+
+나머지는 `retryUntilSuccess`에 위임하면 된다.
+
+```java
+public DrawLottosInput inputDrawLottosDto() {
+    final Builder builder = DrawLottosInput.builder();
+
+    retryUntilSuccess(() -> inputLottoNumbers(builder));
+    retryUntilSuccess(() -> inputBonusNumber(builder));
+
+    return builder.build();
+}
+```
+
+중복 로직을 사용하는 메소드가 2개밖에 없기 때문에 효용이 크지 않지만,
+
+100개가 있다고 상상하면 엄청난 생산성 증대라고 생각한다.
+
+만약 `inputLottoNumbers`, `inputBonusNumber` 메소드를 따로 작성하고 싶지 않다면,
+
+```java
+public DrawLottosInput inputDrawLottosDto() {
+    final Builder builder = DrawLottosInput.builder();
+
+    retryUntilSuccess(() -> {
+        new InputLottoNumbersComponent().renderTo(writer);
+        return builder.lottoNumbers(readLine());
+    });
+    retryUntilSuccess(() -> {
+        new InputBonusNumberComponent().renderTo(writer);
+        return builder.bonusNumber(readLine());
+    });
+
+    return builder.build();
+}
+```
+
+이렇게 인라인으로 작성하면 될 것이다.
+

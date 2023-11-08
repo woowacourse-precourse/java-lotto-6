@@ -20,10 +20,19 @@ public class LottoGameController {
     public  LottoGameDto.CreateResponse createBudget() {
         IO.printNoticeln(SystemMessage.AMOUNT_INPUT.getMessage());
 
-        Integer budget=IO.inputBudget();
-        LottoGameDto.CreateResponse response = lottoGameService.createLottoGame(budget);
+        LottoGameDto.CreateResponse response = inputBudget();
+
         IO.printNoticeln(response.getAmount()+ SystemMessage.PURCHASE_NIO.getMessage());
         return response;
+    }
+    private LottoGameDto.CreateResponse inputBudget(){
+        try{
+            String budget=IO.inputBudget();
+           return lottoGameService.createLottoGame(budget);
+        }catch (IllegalArgumentException e) {
+            IO.printNoticeln(e.getMessage());
+            return inputBudget();
+        }
     }
 
     public LottoGameDto.Response createLottoGame( LottoGameDto.InitRequest request) {
@@ -37,10 +46,29 @@ public class LottoGameController {
 
     public LottoGameDto.Result processLottoGame(Long requestId) {
         IO.printNoticeln(SystemMessage.ANSWER_INPUT.getMessage());
-        List<Integer> integers = IO.inputWinningNumber();
+
+        List<Integer> integers = inputWinningNumber();
         IO.printNoticeln(SystemMessage.BONUS_INPUT.getMessage());
-        Integer integer = IO.BonusNumber();
+        Integer integer = inputBonusNumber(integers);
         return lottoGameService.doLottoGame(new LottoGameDto.Request(requestId,integers,integer));
+    }
+
+    private Integer inputBonusNumber( List<Integer> integers) {
+        try{
+            return IO.BonusNumber(integers);
+        }catch (IllegalArgumentException e) {
+            IO.printNoticeln(e.getMessage());
+            return inputBonusNumber(integers);
+        }
+    }
+
+    private List<Integer> inputWinningNumber() {
+        try{
+            return IO.inputWinningNumber();
+        }catch (IllegalArgumentException e) {
+            IO.printNoticeln(e.getMessage());
+            return inputWinningNumber();
+        }
     }
 
 }

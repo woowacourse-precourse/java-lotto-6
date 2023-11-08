@@ -15,7 +15,7 @@ public enum SystemMessage {
     SIX("6개 일치 (2,000,000,000원) - "),
     EA("개"),
     TOTAL1("총 수익률은 "),
-    TOTAL2("% 입니다.");
+    TOTAL2("%입니다.");
 
     private final String message;
 

@@ -1,7 +1,6 @@
 package lotto.entity;
 
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,9 +11,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        validateSize(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 로또 번호로 이용할 수 없습니다.");
         }
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호의 개수가 6개가 아닙니다.");
+        }
+
     }
 
     public int checkLottoScore(List<Integer> winningNumbers) {

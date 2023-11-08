@@ -16,10 +16,10 @@ public class LottoGameService {
         this.lottoGameRepository = lottoGameRepository;
     }
 
-    public LottoGameDto.CreateResponse createLottoGame(Integer budget) {
+    public LottoGameDto.CreateResponse createLottoGame(String budget) throws IllegalArgumentException {
         LottoGame saveLottoGame = new LottoGame(budget);
-        Long lottoGameId=lottoGameRepository.save(saveLottoGame);
-        return new LottoGameDto.CreateResponse(lottoGameId,saveLottoGame.getAmount());
+        Long lottoGameId = lottoGameRepository.save(saveLottoGame);
+        return new LottoGameDto.CreateResponse(lottoGameId, saveLottoGame.getAmount());
     }
 
     public LottoGameDto.Response initLottoGame( LottoGameDto.InitRequest request) {

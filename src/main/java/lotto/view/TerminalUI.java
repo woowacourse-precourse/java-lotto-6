@@ -14,6 +14,9 @@ import lotto.model.domain.result.LottoResultAndCount;
 import lotto.view.io.Reader;
 import lotto.view.io.Writer;
 
+/**
+ * Lotto 어플리케이션에서 필요한 입,출력 기능들을 기능 단위로 묶어 제공합니다.
+ */
 public class TerminalUI {
     private static final Pattern answerNumbersPattern =
             Pattern.compile(GameConst.FORMAT_INPUT_ANSWERS);

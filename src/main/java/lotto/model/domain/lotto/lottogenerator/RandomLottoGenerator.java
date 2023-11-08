@@ -5,6 +5,9 @@ import java.util.List;
 import lotto.constance.GameConst;
 import lotto.model.domain.lotto.Lotto;
 
+/**
+ * 랜덤한 값을 사용하여 {@link Lotto}를 생성합니다.
+ */
 public class RandomLottoGenerator extends LottoGenerator<Lotto> {
 
     private List<Integer> generateList() {

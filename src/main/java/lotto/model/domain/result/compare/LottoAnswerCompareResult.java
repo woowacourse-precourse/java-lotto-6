@@ -2,6 +2,9 @@ package lotto.model.domain.result.compare;
 
 import java.util.Objects;
 
+/**
+ * Lotto와 보너스 숫자를 가진 LottoAnswer를 비교한 결과를 나타내기 위한 클래스
+ */
 public class LottoAnswerCompareResult extends LottoCompareResult {
 
     boolean collectBonus;
@@ -9,10 +12,6 @@ public class LottoAnswerCompareResult extends LottoCompareResult {
     public LottoAnswerCompareResult(int collectCount, boolean collectBonus) {
         super(collectCount);
         this.collectBonus = collectBonus;
-    }
-
-    private LottoAnswerCompareResult(int collectCount) {
-        super(collectCount);
     }
 
     @Override

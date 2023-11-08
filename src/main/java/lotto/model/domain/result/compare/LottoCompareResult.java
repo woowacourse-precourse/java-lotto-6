@@ -2,6 +2,9 @@ package lotto.model.domain.result.compare;
 
 import java.util.Objects;
 
+/**
+ * Lotto 클래스들의 비교 결과를 나타내기 위한 클래스
+ */
 public class LottoCompareResult {
     protected final int collectCount;
 

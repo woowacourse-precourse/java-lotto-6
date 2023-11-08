@@ -1,24 +1,31 @@
 package lotto.controller;
 
 
-import java.util.List;
-import lotto.domain.InputNumber;
+import lotto.parser.ParserLotto;
+import lotto.domain.GenerateLotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.view.OutputMoney;
-import lotto.view.OutputView;
 import lotto.view.Request;
 
 public class Lottogame {
-    private List<Lottos> lotto;
     public void start(){
-        Integer lottomoney = InputNumber.InputMoney(Request.requestNubmer());
-        Integer count = Money.countMoney(lottomoney);
-        System.out.print(count);
+        Money money = getLottoMoney();
+        Integer count = money.countMoney();
         OutputMoney.resultMoney(count);
 
-        for(Lottos lottos : lotto){
-            OutputView.displayLotto(lottos);
-        }
+        Lottos lottos = getLottos(money, count);
+
+    }
+
+    private Money getLottoMoney(){
+        Request request = new Request();
+        int money = ParserLotto.lottoParser(request.requestNubmer());
+        return new Money(money);
+    }
+
+    private Lottos getLottos(Money money, int count) {
+        GenerateLotto lottoGenerator = new GenerateLotto();
+        return new Lottos(lottoGenerator.generateLottoGroup(count));
     }
 }

@@ -8,12 +8,6 @@ import lotto.validator.Validate;
 
 public class InputNumber {
 
-
-    public static int InputMoney(String money) {
-        Validate.moneyValidate(money);
-        return Integer.parseInt(money);
-    }
-
     // 기능 분리 예정
     public List<Integer> InputLottos() {
         String userInput = Console.readLine();

@@ -5,17 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
-    private final List<Integer> randomLottos;
+    private final List<Lotto> lottos;
 
-    public Lottos(final List<Integer> randomLottos){
-        this.randomLottos = randomLottos;
+    public Lottos(final List<Lotto> lottos){
+        this.lottos = lottos;
     }
 
-    public List<Integer> getRandomLottos(){
-        return randomLottos;
+    public List<Lotto> getLottos(){
+        return lottos;
     }
 
-    public static void displayLottos(Lottos lottos){
-        System.out.println(lottos.getRandomLottos());
-    }
 }

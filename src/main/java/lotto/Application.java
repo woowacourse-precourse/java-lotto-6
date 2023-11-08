@@ -13,8 +13,8 @@ public class Application {
         // TODO: 프로그램 구현
         LottoService lottoService = new LottoService();
         int lottoCount = lottoService.inputAmountAndGetLottoCount();
-        List<Integer> lottoNum = lottoService.inputLottoNum();
         List<List<Integer>> userLottoNum = lottoService.getUserLottoNum(lottoCount);
+        List<Integer> lottoNum = lottoService.inputLottoNum();
         int bonusNum = lottoService.getBonusNum();
         LottoResultAndProfitResponseDto lottoResultAndProfitResponseDto = lottoService.getLottoResultResponse(userLottoNum, lottoNum,bonusNum);
         lottoService.PrintResult(lottoResultAndProfitResponseDto);

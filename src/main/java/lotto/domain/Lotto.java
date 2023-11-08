@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +39,16 @@ public class Lotto {
         return numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    public int matchCount(Lotto other) {
+        Set<Integer> matchNumbers = new HashSet<>(this.numbers);
+        matchNumbers.retainAll(other.numbers);
+        return matchNumbers.size();
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(this.numbers);
     }
 
     @Override

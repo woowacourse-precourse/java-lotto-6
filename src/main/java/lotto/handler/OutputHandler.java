@@ -14,15 +14,6 @@ public class OutputHandler {
         OutputView.printMessagesWithBlankLine(lottos);
     }
 
-    public static void outputWinningNums(List<Integer> winnerNums){
-        OutputView.printMessage(OUTPUT_WINNING_NUMBERS);
-        OutputView.printWithBlankLine(formatNumsToString(winnerNums));
-    }
-    public static void outputBonusNumber(int bonusNum){
-        OutputView.printMessage(OUTPUT_BONUS_NUMBER);
-        OutputView.printWithBlankLine(bonusNum);
-    }
-
     private static void printLottosAmount(List<Lotto> lottos) {
         OutputView.print(formatSystemMessageWithNumber(OUTPUT_PURCHASE_LOTTO_AMOUNT, lottos.size()));
     }

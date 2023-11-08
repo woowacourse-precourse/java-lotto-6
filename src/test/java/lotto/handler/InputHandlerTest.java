@@ -10,9 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.message.ErrorMessage.INVALID_COUNT_FORMAT;
-import static lotto.message.ErrorMessage.INVALID_PURCHASE_AMOUNT;
-import static lotto.message.SystemMessage.INPUT_PURCHASE_PRICE;
+import static lotto.message.ErrorMessage.*;
+import static lotto.message.SystemMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class InputHandlerTest {
@@ -72,7 +71,7 @@ class InputHandlerTest {
         String InvalidCountFormatMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
                 + INVALID_COUNT_FORMAT.getMessage() + "\n";
         String InvalidPurchaseAmountMessage = INPUT_PURCHASE_PRICE.getMessage() + "\n"
-                + INVALID_PURCHASE_AMOUNT.getMessage() + "\n";
+                + INVALID_PURCHASE_AMOUNT_UNIT.getMessage() + "\n";
 
         assertThat(output()).isEqualTo(
                 InvalidCountFormatMessage +

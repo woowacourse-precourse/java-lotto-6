@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,6 +18,8 @@ public class Lotto {
         }
         if(isDuplicated(numbers))
             throw new IllegalArgumentException();
+        if(!isAllInRange(numbers))
+            throw new IllegalArgumentException();
     }
 
     // TODO: 추가 기능 구현
@@ -27,6 +31,18 @@ public class Lotto {
         }
 
         return false;
+    }
+
+    private boolean isAllInRange(final List<Integer> numbers){
+        for (Integer number : numbers) {
+            if(!isRange(number)) return false;
+        }
+
+        return true;
+    }
+
+    private boolean isRange(int number){
+        return MIN_NUMBER <= number && number <= MAX_NUMBER;
     }
     @Override
     public String toString() {

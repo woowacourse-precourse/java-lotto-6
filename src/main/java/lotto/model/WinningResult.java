@@ -23,16 +23,10 @@ public class WinningResult {
         }
     }
 
-    public void displayProfitRate() {
-        ProfitRate profitRate = calculateProfitRate(
+    public ProfitRate calculateProfitRate() {
+        return new ProfitRate(
                 calculateTotalWinningMoney(),
                 calculateTotalPurchaseAmount());
-
-        OutputView.printProfitRate(profitRate);
-    }
-
-    private ProfitRate calculateProfitRate(int totalWinningMoney, int totalPurchaseAmount) {
-        return new ProfitRate(totalWinningMoney, totalPurchaseAmount);
     }
 
     private int calculateTotalPurchaseAmount() {

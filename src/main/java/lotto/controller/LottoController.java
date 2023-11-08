@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lottos;
+import lotto.model.ProfitRate;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningLotto;
 import lotto.model.WinningResult;
@@ -20,7 +21,9 @@ public class LottoController {
 
         WinningResult winningResult = lottos.calculateWinningResult(winningLotto);
         winningResult.displayWinningResult();
-        winningResult.displayProfitRate();
+
+        ProfitRate profitRate = winningResult.calculateProfitRate();
+        profitRate.displayProfitRate();
 
         Console.close();
     }

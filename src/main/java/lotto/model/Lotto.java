@@ -1,5 +1,8 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import lotto.constant.Number;
@@ -10,7 +13,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+
+        this.numbers = new ArrayList<>(numbers);
+        this.numbers.sort(Comparator.naturalOrder()); // 오름차순 정렬
     }
 
     private void validate(List<Integer> numbers) {
@@ -25,7 +30,7 @@ public class Lotto {
 
     }
 
-    public static List<Integer> createLotto() {
+    public static Lotto createLotto() {
 
     }
 

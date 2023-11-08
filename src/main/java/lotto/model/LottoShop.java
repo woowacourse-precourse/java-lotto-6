@@ -18,7 +18,8 @@ public class LottoShop {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 LottoConstant.LOTTO_FIRST_NUMBER,
                 LottoConstant.LOTTO_LAST_NUMBER,
-                LottoConstant.LOTTO_NUMBER_COUNT);
+                LottoConstant.LOTTO_NUMBER_COUNT)
+                .stream().sorted().toList();
         return new Lotto(numbers);
     }
 }

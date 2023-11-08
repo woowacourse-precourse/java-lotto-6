@@ -41,129 +41,50 @@
 # 객체의 역할
 
 ```text
-lotto/
-├── controller/
-│   └── LottoController.java
-├── domain/
+lotto
+├── Application.java
+├── LottoController.java
+│   모델과 뷰 사이의 메시지 전달과 입력 값의 예외 처리를 담당
+├── domain
 │   ├── Lotto.java
-│   ├── LottoMachine.java
-│   └── exceptions/
-│       ├── InputException.java
-│       └── LottoException.java
-│   └── numbergenerator
-│       ├── NumberGenerator.java
-│       └── RandomNumberGenerator.java
-
-├── service/
-│   └── LottoService.java
-├── utils/
-│   ├── validator/
-│   │   ├── Validator.java
-│   │   ├── MoneyValidator.java
-│   │   └── LottoNumbersValidator.java
-│   └── parser/
-│       ├── Parser.java
-│       ├── MoneyParser.java
-│       └── LottoNumbersParser.java
-└── view/
+│   │   단일 로또의 올바른 정보를 저장
+│   ├── LottoGenerator.java
+│   │   로또 인스턴스 생성
+│   ├── LottoRank.java
+│   │   로또 당첨 등수 정보를 나타내는 열거형
+│   ├── LottoWinningChecker.java
+│   │   당첨 번호와 보너스 번호를 저장하고 입력받은 로또의 등수를 반환
+│   ├── numbergenerator
+│   │   ├── NumberGenerator.java
+│   │   │   숫자 생성을 위한 인터페이스
+│   │   └── RandomNumberGenerator.java
+│   │       무작위 숫자를 생성하는 구현 클래스
+│   └── util
+│       ├── Constant.java
+│       │   상수를 저장
+│       └── LottoParser.java
+│           입력 데이터 변환 및 검증
+├── exception
+│   ├── ErrorMessage.java
+│   │   에러 메시지를 나타내는 열거형
+│   ├── InputException.java
+│   │   입력 관련 기본 예외 클래스
+│   └── LottoException.java
+│       로또 관련 예외 클래스
+└── view
+    ├── InputUtil.java
+    │   사용자 입력의 기본 파싱과 검증 처리
     ├── InputView.java
+    │   사용자 입력 받기
     └── OutputView.java
+        받은 데이터를 적절한 형태로 출력
 ```
-
-## controller
-
-**모델과 뷰의 메세지 전달을 돕고, 모든 입력값의 검증과 예외처리 (재입력)을 수행한다..**
-
-뷰에서 데이터를 전달받으면, 도메인 에서 사용 가능하도록 검증하고 변환한다.
-
-마찬가지로 도메인에서 데이터를 전달받으면 데이터를 뷰가 사용 가능하도록(정렬) 변환해서 전달한다.
-
-## view
-
-데이터를 화면에 보여주거나 입력받는 역할을 한다.
-
-### - InputView
-
-사용자의 입력을 받는다. 아무런 검증도 진행하지 않는다.
-
-### - OutputView
-
-결과를 받고 알맞은 형식으로 바꿔서 출력한다.
-
-## domain
-
-비즈니스 로직에 대한 모든 책임이 있다.
-
-### - Lotto
-
-로또 하나의 정보를 저장한다.
-
-로또 번호의 유효성 보증 책임이 있다.
-
-### - WinningNumbers
-
-당첨 번호와 보너스 번호를 저장한다.
-
-또한, 로또 객체를 받아서 몇등인지 계산하고 반환해야 한다.
-
-### - LottoMachine
-
-금액을 받아 로또를 발행하고, 결과를 취합하는 역할을 한다.
-
-### Validator
-
-기본적인 검증, 비즈니스 로직 검증 등 모든 검증과정을 책임진다.
-
-### NumberGenerator
-
-숫자 생성 인터페이스
-
-### RandomNumberGenerator
-
-NumberGenerator 구현체, 무작위 숫자 반환
-
-### SettedNumberGenerator
-
-NumberGenerator 구현체, 매개변수로 받은 숫자 반환
-
-### - LottoRank
-
-당첨 등수의 정보를 열거형으로 저장한다.
-
-### - LottoException
-
-발생할 수 있는 예외들의 정보를 열거형으로 저장한다.
 
 # 코드 작성 규칙
 
 작은 기능부터 테스트를 작성 (도메인 로직만 단위 테스트 해도 된다. ui는 안해도됨)
 함수(또는 메서드)가 한 가지 일만 하도록 최대한 작게 만들어라.
 Java Enum을 적용한다.
-
-### Lotto 클래스 정의
-
-- numbers의 접근 제어자인 private을 변경할 수 없다.
-- Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
-- Lotto의 패키지 변경은 가능하다.
-
-```java
-public class Lotto {
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    // TODO: 추가 기능 구현
-}
-```
 
 # 프로그래밍 전략
 
@@ -174,6 +95,11 @@ public class Lotto {
 5. 테스트 코드가 통과하면 다음 객체의 테스트를 작성한다.
 6. 모든 테스트 통과 시 리팩토링을 시작한다.
 
+## 리팩토링 과정
+
+1. 요구사항이 전부 맞는지 점검한다.
+2. 테스트 코드가 모든 기능을 테스팅 하는지 점검한다.
+3. 객체지향 생활체조 원칙을 지킨다.
 
 ## 생각정리
 

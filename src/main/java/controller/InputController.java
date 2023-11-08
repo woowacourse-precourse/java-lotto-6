@@ -1,6 +1,7 @@
 package controller;
 
 import static validator.MoneyValidator.moneyValidate;
+import static validator.WinningNumbersValidator.winningNumbersValidate;
 import static view.View.moneyMessagePrint;
 import static view.View.winningNumbersMessagePrint;
 
@@ -23,6 +24,14 @@ public class InputController {
 
     public static void getWinningNumbersInput() {
         winningNumbersMessagePrint();
-        String winningNumbers = Console.readLine();
+        while (true) {
+            try {
+                String winningNumbers = Console.readLine();
+                winningNumbersValidate(winningNumbers);
+                return;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

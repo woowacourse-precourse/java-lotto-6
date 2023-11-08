@@ -27,7 +27,10 @@ public class LottoMachine {
 
     private static List<Integer> createLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(
-                LOTTO_MINIMUM_BOUND.getValue(), LOTTO_MAXIMUM_BOUND.getValue(), TOTAL_NUMBERS_OF_LOTTO.getValue());
+                LOTTO_MINIMUM_BOUND.getValue(),
+                LOTTO_MAXIMUM_BOUND.getValue(),
+                TOTAL_NUMBERS_OF_LOTTO.getValue()
+        );
     }
 
     private static boolean publishAllLotto(int publishCount, int gameCount) {

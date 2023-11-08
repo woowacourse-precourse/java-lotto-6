@@ -21,6 +21,7 @@ public class Game {
         for (Lotto l : numberTickets){
             System.out.println(l.getNumbers());
         }
+        String WinningNumber = inputUser.inputWinningNumber();
     }
     private void makeNumberTicket(Integer lottoMoney){
         this.totalLottoCount = lottoMoney/1000;
@@ -37,5 +38,9 @@ public class Game {
 
     private void sortAscNumber(List<Integer> numbers){
         Collections.sort(numbers);
+    }
+
+    private void makeWinningLotto(String inputWinningNumber){
+
     }
 }

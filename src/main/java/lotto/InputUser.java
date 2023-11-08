@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 public class InputUser {
     private String inputMoney;
@@ -12,6 +14,11 @@ public class InputUser {
         lottoMoney = Integer.parseInt(inputMoney);
         validateMoneyIsMultipleOfThousand(lottoMoney);
         return Integer.parseInt(inputMoney);
+    }
+    public String inputWinningNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String inputRawWinningNumber = camp.nextstep.edu.missionutils.Console.readLine();
+        return inputRawWinningNumber;
     }
 
     private void validateInputMoneyIsInteger(String inputMoney){

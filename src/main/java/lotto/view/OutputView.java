@@ -11,13 +11,13 @@ public class OutputView {
         player.getLottos().forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
-    public static void showPlayerWinningStatistics(Player player, int inputAmount) {
+    public static void showPlayerWinningStatistics(Player player, int amount) {
         System.out.printf("%n당첨 통계%n");
         System.out.println("---");
 
         showPrizeMoney(player.getWinningDetails());
 
-        System.out.printf("총 수익률은 %.1f%%입니다.", player.calculateRateOfReturn(inputAmount));
+        System.out.printf("총 수익률은 %.1f%%입니다.", player.calculateRateOfReturn(amount));
     }
 
     private static void showPrizeMoney(Map<Rank, Integer> winningDetails) {

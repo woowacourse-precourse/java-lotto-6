@@ -12,13 +12,13 @@ public class LottoMachine {
     public LottoMachine() {
     }
 
-    public LottoMachine(int inputAmount) {
-        validateUnitOfMoney(inputAmount);
-        amount = inputAmount;
+    public LottoMachine(int amount) {
+        validateUnitOfMoney(amount);
+        this.amount = amount;
     }
 
-    private void validateUnitOfMoney(int inputAmount) {
-        if (inputAmount % LottoConstant.defaultSalePrice != 0) {
+    private void validateUnitOfMoney(int amount) {
+        if (amount % LottoConstant.defaultSalePrice != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위입니다.");
         }
     }

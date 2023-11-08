@@ -27,8 +27,8 @@ public class LottoGame {
         OutputView.showPlayerWinningStatistics(player, inputAmount);
     }
 
-    private Player purchaseLotto(int inputAmount) {
-        lottoMachine = new LottoMachine(inputAmount);
+    private Player purchaseLotto(int amount) {
+        lottoMachine = new LottoMachine(amount);
         return lottoMachine.generatePlayerLotto();
     }
 }

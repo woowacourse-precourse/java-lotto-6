@@ -25,8 +25,8 @@ public class Player {
                 .sum();
     }
 
-    public double calculateRateOfReturn(int inputAmount) {
-        BigDecimal purchaseAmount = new BigDecimal(inputAmount);
+    public double calculateRateOfReturn(int amount) {
+        BigDecimal purchaseAmount = new BigDecimal(amount);
         BigDecimal totalPrizeMoney = new BigDecimal(calculatePrizeMoney());
         BigDecimal percentage = new BigDecimal("0.01");
 

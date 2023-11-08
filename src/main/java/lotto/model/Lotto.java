@@ -3,33 +3,38 @@ package lotto.model;
 import lotto.constant.ErrorConstants;
 import lotto.constant.GameConstants;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sortNumbers(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     public boolean containsNumber(int number) {
         return numbers.contains(number);
     }
 
+    public int matchLottoNumbers(Lotto lotto) {
+        int matchCount = 0;
+
+        for (int number : lotto.numbers) {
+            if (containsNumber(number)) {
+                matchCount += 1;
+            }
+        }
+
+        return matchCount;
+    }
+
     private void validate(List<Integer> numbers) {
         validateLottoSize(numbers);
         validateLottoRange(numbers);
         validateLottoDuplication(numbers);
-    }
-
-    private void sortNumbers(List<Integer> numbers){
-        Collections.sort(numbers);
     }
 
     private void validateLottoSize(List<Integer> numbers) {
@@ -51,6 +56,11 @@ public class Lotto {
         if (checkNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorConstants.DUPLICATE_LOTTO_NUMBER);
         }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 
 }

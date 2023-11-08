@@ -1,14 +1,15 @@
 package lotto.domain;
 
-public class EarningCalculator{
-
+public class EarningCalculator {
     double earn;
     double money;
-    public EarningCalculator(int money, double earn){
+
+    public EarningCalculator(int money, double earn) {
         this.earn = earn;
         this.money = money;
     }
+
     public double compute() {
-        return earn/money*100;
+        return earn / money * 100;
     }
 }

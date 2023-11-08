@@ -36,9 +36,9 @@ public class Lotto {
     public StringBuilder getNumbersForPrint() {
         StringBuilder sb = new StringBuilder();
 
-        int min= LAST_LOTTO_NUMBER.getValue();
-        int i=0;
-        while (i<TOTAL_LOTTO_NUMBER.getValue()){
+        int min = LAST_LOTTO_NUMBER.getValue();
+        int i = 0;
+        while (i < TOTAL_LOTTO_NUMBER.getValue()) {
             for (Integer number : this.numbers) {
                 if (min < number) min = number;
             }

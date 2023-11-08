@@ -13,6 +13,7 @@ public class OrderController {
         this.service = orderService;
         output = new Output();
         output.printPurchasedResult(getMoney());
+
     }
 
     private int getMoney() {

@@ -8,11 +8,12 @@ public enum EarningInformation {
     EARNING_FIRST(2000000000);
 
     private final double value;
-    EarningInformation(double value){
+
+    EarningInformation(double value) {
         this.value = value;
     }
 
-    public double getValue(){
+    public double getValue() {
         return value;
     }
 }

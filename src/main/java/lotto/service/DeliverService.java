@@ -9,9 +9,11 @@ import java.util.List;
 
 public class DeliverService {
     List<Lotto> lottoPackage;
-    public DeliverService(int lottoNumber){
+
+    public DeliverService(int lottoNumber) {
         DeliverController controller = new DeliverController(lottoNumber, this);
     }
+
     public List<Lotto> generateLotto(int num) {
         List<Lotto> lottoPackage = new ArrayList<>();
         LottoGenerator generator = new LottoGenerator();
@@ -27,7 +29,7 @@ public class DeliverService {
         return lottoPackage;
     }
 
-    public List<Lotto> noticeLottoPackageForCheckWinning(){
+    public List<Lotto> noticeLottoPackageForCheckWinning() {
         return lottoPackage;
     }
 

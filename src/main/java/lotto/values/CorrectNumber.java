@@ -9,7 +9,7 @@ public enum CorrectNumber {
 
     private final int value;
 
-    CorrectNumber(int value){
+    CorrectNumber(int value) {
         this.value = value;
     }
 

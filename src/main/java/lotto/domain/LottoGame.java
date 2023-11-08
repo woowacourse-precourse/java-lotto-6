@@ -16,29 +16,34 @@ public class LottoGame {
     List<Lotto> lottoPackage;
     WinningNumber winningNumber;
     BonusNumber bonusNumber;
-    public void start(){
+
+    public void start() {
         order();
         deliver();
         setWinningNumAndBonusNum();
         checkWinning();
     }
-    private void order(){
+
+    private void order() {
         OrderService orderService = new OrderService();
         lottoNumber = orderService.noticeLottoNumForDeliveryLotto();
         money = orderService.noticeMoneyForComputeEarning();
     }
-    private void deliver(){
+
+    private void deliver() {
         DeliverService deliverService = new DeliverService(lottoNumber);
         lottoPackage = deliverService.noticeLottoPackageForCheckWinning();
     }
-    private void setWinningNumAndBonusNum(){
+
+    private void setWinningNumAndBonusNum() {
         SetWinningNumService setWinningNumService = new SetWinningNumService();
         winningNumber = setWinningNumService.noticeWinningNumberCompareWinning();
 
         SetBonusNumService setBonusNumService = new SetBonusNumService(winningNumber);
         bonusNumber = setBonusNumService.noticeBonusNumberForCompareWinning();
     }
-    private void checkWinning(){
+
+    private void checkWinning() {
         new WinningChecker(winningNumber, bonusNumber, lottoPackage, money);
     }
 }

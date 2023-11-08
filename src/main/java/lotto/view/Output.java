@@ -3,7 +3,6 @@ package lotto.view;
 import lotto.vo.Lotto;
 import lotto.values.WinningMessage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.values.ExceptionMessage.ERROR;

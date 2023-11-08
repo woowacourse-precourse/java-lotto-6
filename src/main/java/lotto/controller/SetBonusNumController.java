@@ -4,11 +4,13 @@ import lotto.service.SetBonusNumService;
 import lotto.view.Input;
 import lotto.view.Output;
 import lotto.vo.BonusNumber;
+
 import lotto.vo.WinningNumber;
 
 public class SetBonusNumController {
     BonusNumber bonusNumber;
     SetBonusNumService service;
+
     public SetBonusNumController(WinningNumber winningNumber, SetBonusNumService service) {
         this.service = service;
         setBonusNum(winningNumber);
@@ -22,7 +24,7 @@ public class SetBonusNumController {
             output.printBonusNumberPrompt();
             String number = input.get();
             try {
-                bonusNumber = service.generateBonusNum(number,winningNumber);
+                bonusNumber = service.generateBonusNum(number, winningNumber);
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }

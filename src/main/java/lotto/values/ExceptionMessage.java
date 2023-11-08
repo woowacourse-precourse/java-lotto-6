@@ -13,7 +13,7 @@ public enum ExceptionMessage {
     DUPLICATE_NUMBER("중복된 수를 뽑을 수 없습니다."),
     NOT_NUMBER("숫자만 입력할 수 있습니다."),
     CAN_NOT_PURCHASE("1000원 단위로만 구매할 수 있습니다."),
-    TOO_MUCH_MONEY("로또는 최대 "+MAX_VALUE.getValue()+"원까지 구매할 수 있습니다."),
+    TOO_MUCH_MONEY("로또는 최대 " + MAX_VALUE.getValue() + "원까지 구매할 수 있습니다."),
     ONLY_NUMBER("^[0-9]*$"),
     PARTITION(","),
     ERROR("[ERROR] ");

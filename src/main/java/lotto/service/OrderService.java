@@ -9,7 +9,7 @@ public class OrderService {
     int lottoNumber;
     int money;
 
-    public OrderService(){
+    public OrderService() {
         OrderController controller = new OrderController(this);
     }
 
@@ -37,11 +37,11 @@ public class OrderService {
         lottoNumber = calculator.compute();
     }
 
-    public int noticeLottoNumForDeliveryLotto(){
+    public int noticeLottoNumForDeliveryLotto() {
         return lottoNumber;
     }
 
-    public int noticeMoneyForComputeEarning(){
+    public int noticeMoneyForComputeEarning() {
         return money;
     }
 

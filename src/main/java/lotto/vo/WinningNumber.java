@@ -57,14 +57,14 @@ public class WinningNumber {
         numbers.add(tempNumber);
     }
 
-    public boolean checkDuplication(int num){
+    public boolean checkDuplication(int num) {
         return numbers.contains(num);
     }
 
     public CorrectNumber selectPlace(Lotto lotto) {
         int count = lotto.countWinning(this.numbers);
-        for(CorrectNumber c : CorrectNumber.values()){
-            if(c.getValue() == count) return c;
+        for (CorrectNumber c : CorrectNumber.values()) {
+            if (c.getValue() == count) return c;
         }
         return null;
     }

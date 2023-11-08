@@ -35,9 +35,11 @@ class IncomeCalculatorTest {
     @Test
     @DisplayName("총 상금의 계산을 테스트")
     void getTotalWinning() {
+        IncomeCalculator.clear();
         IncomeCalculator.addCount(Prize.FIRST);
         IncomeCalculator.addCount(Prize.FIRST);
 
-        assertThat(IncomeCalculator.getTotalIncome()).isEqualTo(Prize.FIRST.getWinning() * 2);
+        long totalIncome = IncomeCalculator.getTotalIncome();
+        assertThat(totalIncome).isEqualTo(Prize.FIRST.getWinning() * 2L);
     }
 }

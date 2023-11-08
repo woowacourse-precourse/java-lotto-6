@@ -14,6 +14,12 @@ public class IncomeCalculator { // 상금 계산기. 이상한 영어인가?
         }
     }
 
+    public static void clear(){
+        for (Prize prize : Prize.values()) {
+            prizeCountMap.put(prize, 0);
+        }
+    }
+
     private IncomeCalculator() {
         throw new UnsupportedOperationException();
     }
@@ -27,9 +33,11 @@ public class IncomeCalculator { // 상금 계산기. 이상한 영어인가?
     }
 
     public static long getTotalIncome() {
-        return prizeCountMap.entrySet().stream()
-                .map(entry -> entry.getKey().getWinning() * entry.getValue())
+        long totalIncome = prizeCountMap.entrySet().stream()
+                .map(entry -> (long) entry.getKey().getWinning() * entry.getValue())
                 .mapToLong(Long::valueOf)
                 .sum();
+        clear();
+        return totalIncome;
     }
 }

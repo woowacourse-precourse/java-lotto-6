@@ -13,6 +13,8 @@ public class Application {
 
         Winning winning = new Winning(); //당첨 번호 입력, 저장하는 객체
 
+        Result checkedResult; //통계 결과 객체
+
         System.out.println("구입금액을 입력해 주세요.");
         price.inputPrice();
 
@@ -29,6 +31,10 @@ public class Application {
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         winning.inputBonusNumber();
+
+        checkedResult = winning.checkWinning(allLotto, winning);
+
+        printWinningStatistics();
     }
 
     private static void printBoughtLotto(List<Lotto> allLotto) {
@@ -37,4 +43,12 @@ public class Application {
         }
     }
 
+    private static void printWinningStatistics() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Result result : Result.values()) {
+            System.out.println(result.getMessage() + " - " + result.getCount() + "개");
+        }
+    }
 }

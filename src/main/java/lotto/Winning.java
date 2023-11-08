@@ -34,6 +34,18 @@ public class Winning {
         }
     }
 
+    public Result checkWinning(List<Lotto> allLotto, Winning winning) {
+        Result result = null;
+        for (Lotto lotto : allLotto) {
+            int matchedCount = getMatchedCount(lotto);
+
+            boolean matchedBonus = isMatchedBonus(lotto);
+
+            result = getWinningCount(matchedCount, matchedBonus);
+        }
+        return result;
+    }
+
     //사용자가 입력한 당첨 번호가 구매한 로또 번호 중에 있는지 확인하는 메서드
     private int getMatchedCount(Lotto lotto) {
         return ((int) lotto.getSortedNumbers().stream()
@@ -43,6 +55,17 @@ public class Winning {
 
     private boolean isMatchedBonus(Lotto lotto) {
         return lotto.getSortedNumbers().contains(bonus);
+    }
+
+    //사용자가 입력한 당첨 번호가 구매한 로또 중에 '몇 개가 있는지' 확인하는 메서드
+    private Result getWinningCount(int matchedCount, boolean isMatchedBonus) {
+        for (Result result : Result.values()){
+            if (result.isMatching(matchedCount, isMatchedBonus)) {
+                result.plusCount();
+                return result;
+            }
+        }
+        return null;
     }
 
     private void parseAndSetNumbers(String input) {

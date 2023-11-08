@@ -24,9 +24,10 @@
   - 보너스 번호가 구매한 로또 번호 중에 있는지 확인한다. - Winning#isMatchedBonus()
 
 
-- 당첨 통계를 출력한다.
-  - Enum 타입의 클래스로 통계를 생성한다.
-  - 모든 로또와 당첨 번호를 비교해 3개 이상 일치하는 로또 갯수를 저장한다.
+- 당첨 통계를 출력한다. - Application#printWinningStatistics()
+  - Enum 타입의 클래스로 통계를 생성한다. - Result
+  - 사용자가 구입한 로또 중 당첨된 로또가 있는지 확인한다. - Winning#checkWinning()
+    - 당첨된 로또가 구매한 로또 중에 몇 개가 있는지 확인한다. - Winning#getWinningCount()
 
 
 - 총 수익률을 출력한다.

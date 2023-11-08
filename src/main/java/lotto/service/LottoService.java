@@ -107,6 +107,13 @@ public class LottoService {
     public void validateOneNumber(String input) {
         containsNonNumericCharacters(input);
         isNumberOverLimit(input);
+        isNumberBelowZero(input);
+    }
+
+    public void isNumberBelowZero(String input) {
+        if (Integer.parseInt(input) <= 0) {
+            throw new IllegalArgumentException(ErrorMessage.CONTAINS_ZERO.getMessage());
+        }
     }
 
     public void isWinningNumbersContainBonusNumber(List<Integer> winningNumbers, String bonusNumber) {

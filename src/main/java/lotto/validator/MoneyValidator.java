@@ -13,17 +13,17 @@ public class MoneyValidator {
     }
 
     private void validateRange() {
-        int money = Integer.parseInt(moneyString);
+        long money = Long.parseLong(moneyString);
         if (isWrongRange(money) || isWrongMoneyUnit(money)) {
-            throw new IllegalArgumentException("투입 금액은 1000원이상, 1000단위의 숫자를 입력하세요.");
+            throw new IllegalArgumentException("1000 이상, 1000 단위의 금액을 입력하세요.");
         }
     }
 
-    private boolean isWrongRange(int money) {
+    private boolean isWrongRange(long money) {
         return money < 1000;
     }
 
-    private boolean isWrongMoneyUnit(int money) {
+    private boolean isWrongMoneyUnit(long money) {
         return money % 1000 > 0;
     }
 

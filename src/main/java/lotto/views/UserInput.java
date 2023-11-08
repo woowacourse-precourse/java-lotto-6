@@ -10,17 +10,21 @@ public class UserInput {
     public static Integer readPurchasePrice() {
         while (true) {
             try {
-                String inputLottoPurchasePrice = readLine();
-                validEmptyString(inputLottoPurchasePrice);
-                validContainsWhiteSpace(inputLottoPurchasePrice);
-
-                Integer purchasePrice = getIntegerValue(inputLottoPurchasePrice);
-                validPurchasePrice(purchasePrice);
-
-                return purchasePrice;
+                return inputLottoPurchasePrice();
             } catch (IllegalArgumentException e) {
                 ErrorOutput.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private static Integer inputLottoPurchasePrice() {
+        String inputLottoPurchasePrice = readLine();
+        validEmptyString(inputLottoPurchasePrice);
+        validContainsWhiteSpace(inputLottoPurchasePrice);
+
+        Integer purchasePrice = getIntegerValue(inputLottoPurchasePrice);
+        validPurchasePrice(purchasePrice);
+
+        return purchasePrice;
     }
 }

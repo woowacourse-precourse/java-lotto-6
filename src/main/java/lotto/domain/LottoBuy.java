@@ -15,8 +15,8 @@ public class LottoBuy {
     private final ValidationUtil validationUtil = new ValidationUtil();
     private final NumberUtil numberUtil = new NumberUtil();
 
-    public LottoBuy lottoBuyInfo(){
-        int buyAmount = getAmount();
+    public LottoBuy lottoBuyInfo(String input){
+        int buyAmount = getAmount(input);
         int buyCount = getCount(buyAmount);
         List<Lotto> lottos = new ArrayList<>();
 
@@ -26,11 +26,11 @@ public class LottoBuy {
         }
         this.lottos = lottos;
         this.amount = buyAmount;
+        // print() 부분 필요 몇 개 구매, 각각의 당첨번호들
         return this;
     }
 
-    public int getAmount(){
-        String amount = inputUtil.getInput();
+    public int getAmount(String amount){
         return validationUtil.validateBuy(amount);
     }
     private int getCount(int amount){

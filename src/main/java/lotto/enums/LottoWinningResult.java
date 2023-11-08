@@ -14,4 +14,10 @@ public enum LottoWinningResult {
         this.number = number;
         this.price = price;
     }
+    public int getNumber(){
+        return number;
+    }
+    public int getPrice(){
+        return price;
+    }
 }

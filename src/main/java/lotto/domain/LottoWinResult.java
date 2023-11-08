@@ -5,6 +5,7 @@ public class LottoWinResult {
     private int threeWinCount;
     private int fourWinCount;
     private int fiveWinCount;
+    private int fiveWithBonusCount;
     private int sixWinCount;
 
     public int getThreeWin(){
@@ -15,6 +16,9 @@ public class LottoWinResult {
     }
     public int getFiveWin(){
         return fiveWinCount;
+    }
+    public int getFiveWithBonusCount(){
+        return fiveWithBonusCount;
     }
     public int getSixWin(){
         return sixWinCount;
@@ -27,6 +31,9 @@ public class LottoWinResult {
     }
     public void addFiveWinCount(){
         this.fiveWinCount += 1;
+    }
+    public void addFiveWithBonusWinCount(){
+        this.fiveWithBonusCount += 1;
     }
     public void addSixWinCount() {
         this.sixWinCount += 1;

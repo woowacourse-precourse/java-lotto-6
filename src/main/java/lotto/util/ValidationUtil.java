@@ -78,7 +78,7 @@ public class ValidationUtil {
             }
         }
     }
-    private void validateBonusNumberRange(int number){
+    public void validateBonusNumberRange(int number){
         if(isNotInRange(number)){
             throw new IllegalArgumentException();
         }

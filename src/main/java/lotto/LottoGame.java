@@ -19,6 +19,7 @@ public class LottoGame {
     PrintStream printStream = System.out;
     private List<Lotto> lottos;
     private Lotto winnerNumbers;
+    private int bonusWinnerNumber;
     private int price;
 
     public LottoGame() {
@@ -105,6 +106,24 @@ public class LottoGame {
         }
         printStream.println();
     }
+
+    public void enterBonusWinnerNumber() {
+        while (true) {
+            try {
+                printStream.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                int bonusWinnerNumber = this.validateNumber(input);
+
+                this.bonusWinnerNumber = bonusWinnerNumber;
+                break;
+            } catch (IllegalArgumentException e) {
+                printStream.println(e.getMessage() + " 다시 입력해주세요.\n");
+                continue;
+            }
+        }
+        printStream.println();
+    }
+
     private void resultPut(Map<Integer, List<List<Integer>>> map, int key, List<Integer> value) {
         if (map.containsKey(key)) {
             map.get(key).add(value);

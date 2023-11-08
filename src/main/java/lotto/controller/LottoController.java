@@ -6,7 +6,6 @@ import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
 import lotto.dto.ReturnRateDto;
 import lotto.dto.WinningResultDto;
-import lotto.service.LottoService;
 import lotto.service.Service;
 import lotto.view.View;
 
@@ -14,13 +13,13 @@ public class LottoController {
     private final View view;
     private final Service service;
 
-    public LottoController(final View view, final Service service) {
+    private LottoController(final View view, final Service service) {
         this.view = view;
         this.service = service;
     }
 
-    public static LottoController from(final View view) {
-        return new LottoController(view, LottoService.create());
+    public static LottoController from(final View view, final Service service) {
+        return new LottoController(view, service);
     }
 
     public void start() {

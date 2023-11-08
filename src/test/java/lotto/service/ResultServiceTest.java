@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.domain.LottoResultCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ResultServiceTest {
@@ -32,7 +33,6 @@ class ResultServiceTest {
         resultCount.addFiveWithBonusCount();
         ResultService resultService = new ResultService();
         resultService.createResultService(resultCount, 5000); // 5000원을 구매했다고 가정
-
 
         // Act
         Double profitRate = resultService.getLottoProfitRate();

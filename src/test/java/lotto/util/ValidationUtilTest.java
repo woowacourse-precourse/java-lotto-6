@@ -1,7 +1,6 @@
 package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -16,7 +15,7 @@ class ValidationUtilTest {
     ValidationUtil validationUtil;
 
     @BeforeEach
-    void init(){
+    void init() {
         validationUtil = new ValidationUtil();
     }
 

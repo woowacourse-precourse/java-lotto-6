@@ -33,7 +33,7 @@ public class LottoController {
             winningLottoNumber();
             winningLottoResult();
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR.getMessage()+e.getMessage());
+            System.out.println(ERROR.getMessage() + e.getMessage());
         }
     }
 

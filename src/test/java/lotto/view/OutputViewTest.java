@@ -22,6 +22,7 @@ class OutputViewTest {
     void setUp() {
         outputView = new OutputView();
     }
+
     @Test
     @DisplayName("구매 내역 출력 테스트")
     void testPrintAboutPurchase() {
@@ -70,7 +71,7 @@ class OutputViewTest {
         System.setOut(System.out);
 
         String expectedOutput = """
-                
+                                
                 당첨 통계
                 ---
                 3개 일치 (5,000원) - 0개

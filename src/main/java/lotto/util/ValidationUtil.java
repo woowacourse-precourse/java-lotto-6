@@ -137,7 +137,7 @@ public class ValidationUtil {
     private int isValidNumber(String input) throws NumberFormatException {
         try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new NumberFormatException(ExceptionMessage.IS_NOT_NUMBER.getMessage());
         }
     }

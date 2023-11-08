@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WinningNumberServiceTest {
@@ -22,6 +23,7 @@ class WinningNumberServiceTest {
     void setUp() {
         winningNumberService = new WinningNumberService();
     }
+
     @Test
     @DisplayName("당첨 번호 및 보너스 번호 입력 및 로또 당첨 결과 계산 테스트")
     void testCalculateLottoWinningResult() {
@@ -206,11 +208,9 @@ class WinningNumberServiceTest {
         Method method = validationUtil.getClass().getDeclaredMethod("isExistedNumber", int.class, List.class);
         method.setAccessible(true);
 
-
         //when
         int bonus = 6;
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-
 
         // then
         try {

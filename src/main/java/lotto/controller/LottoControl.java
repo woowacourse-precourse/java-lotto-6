@@ -41,8 +41,6 @@ public class LottoControl {
         OutputView.printLottoStates(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST());
         printTotalReturnPercentage();
 
-
-
     }
     private void mappingMatchedLottos(){
         BONUS_FLAG = new boolean[PIECE_OF_LOTTO];
@@ -71,11 +69,17 @@ public class LottoControl {
     private void getBonusNumber(){
         try{
             bonusNumber = new BonusNumber(getBonusNumberFromUser());
+            isDuplicateWithWinNumbers();
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             getBonusNumber();
         }
         BONUS_NUMBER = bonusNumber.getBonusNumber();
+    }
+    private void isDuplicateWithWinNumbers() throws IllegalArgumentException{
+        if(lottoWinNumbers.getLottoWinNumbers().contains(bonusNumber.getBonusNumber())){
+            throw new IllegalArgumentException("보너스 번호는 당첨번호와 중복될 수 없습니다.");
+        }
     }
     private String getBonusNumberFromUser(){
         return InputView.getBonusNumberFromUserInput();

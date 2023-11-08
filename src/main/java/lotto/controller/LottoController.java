@@ -8,6 +8,7 @@ import lotto.model.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class LottoController {
@@ -36,7 +37,13 @@ public class LottoController {
         inputView.getBonusNumber(winningLotto);
         calculateWinningPrice(userLotto, winningLotto);
 
-        outputView.printLottoResult(userLotto, countOfWinningResult);
+        outputView.printLottoResult(countOfWinningResult);
+        outputView.printRateOfReturn(calculateRateOfReturn(userLotto));
+    }
+
+    private double calculateRateOfReturn(UserLotto userLotto) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return Double.parseDouble(decimalFormat.format((double) userLotto.getWinningPrice() / userLotto.getPurchasePrice() * 100));
     }
 
     private void calculateWinningPrice(UserLotto userLotto, WinningLotto winningLotto) {

@@ -21,7 +21,7 @@ public class OutputView {
         }
     }
 
-    public void printLottoResult(UserLotto userLotto, Map<WinningResult, Integer> countOfWinningResult) {
+    public void printLottoResult(Map<WinningResult, Integer> countOfWinningResult) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -37,12 +37,9 @@ public class OutputView {
             }
             System.out.println(" " + "(" + decimalFormat.format(winningResult.getPrice()) + "원)" + " - " + countOfWinningResult.getOrDefault(winningResult, 0) + "개");
         }
-        System.out.println("총 수익률은 " + calculateRateOfReturn(userLotto) + "%입니다.");
     }
 
-    private double calculateRateOfReturn(UserLotto userLotto) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        return Double.parseDouble(decimalFormat.format((double) userLotto.getWinningPrice() / userLotto.getPurchasePrice() * 100));
+    public void printRateOfReturn(double rateOfReturn) {
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
-
 }

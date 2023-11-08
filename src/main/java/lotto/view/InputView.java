@@ -1,8 +1,9 @@
 package lotto.view;
 
-import static lotto.view.MessageConstants.INPUT_MESSAGE_FOR_BONUS_NUMBER;
-import static lotto.view.MessageConstants.INPUT_MESSAGE_FOR_BUY_AMOUNT;
-import static lotto.view.MessageConstants.INPUT_MESSAGE_FOR_WINNING_NUMBERS;
+import static lotto.constants.ErrorConstants.INTEGER_CONVERSION_ERROR_MESSAGE;
+import static lotto.constants.MessageConstants.INPUT_MESSAGE_FOR_BONUS_NUMBER;
+import static lotto.constants.MessageConstants.INPUT_MESSAGE_FOR_BUY_AMOUNT;
+import static lotto.constants.MessageConstants.INPUT_MESSAGE_FOR_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -10,6 +11,14 @@ public class InputView {
 
     public String getUserInput() {
         return Console.readLine().trim();
+    }
+
+    public int getNumberInput() {
+        try {
+            return Integer.parseInt(getUserInput());
+        } catch (Exception e) {
+            throw new IllegalArgumentException(INTEGER_CONVERSION_ERROR_MESSAGE.getMessage());
+        }
     }
 
     public void printBuyAmountInput() {

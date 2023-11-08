@@ -8,7 +8,7 @@ public class Money {
     private static final int CAN_DIVIDE_MONEY = 0;
     private static final int MIN_MONEY = 0;
 
-    public final int money;
+    private final int money;
 
     public Money(int money) {
         validate(money);

@@ -31,8 +31,8 @@ public enum WinningRank {
     }
 
     public boolean isMatch(long matchCount, boolean bonusMatch) {
-        if (this == SECOND) {
-            return matchCount == this.matchCount && bonusMatch;
+        if (this == THIRD) {
+            return matchCount == this.matchCount && !bonusMatch;
         }
 
         return matchCount == this.matchCount;
@@ -47,5 +47,5 @@ public enum WinningRank {
     public int getPrizeMoney() {
         return prizeMoney;
     }
-    
+
 }

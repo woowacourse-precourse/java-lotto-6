@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbersGenerator;
-import lotto.domain.LottoWinningRank;
 
 public class LottoGameService {
     private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";

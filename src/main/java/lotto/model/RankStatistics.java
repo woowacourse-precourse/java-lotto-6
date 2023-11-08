@@ -22,7 +22,11 @@ public class RankStatistics {
         return this.rankStatistics;
     }
 
-    public int getTotalPrize() {
+    public double getProfitRate(int userPayment) {
+        return this.getTotalPrize() / (double) userPayment;
+    }
+
+    private int getTotalPrize() {
         return this.rankStatistics.keySet().stream()
                 .mapToInt(Rank::getPrize)
                 .sum();

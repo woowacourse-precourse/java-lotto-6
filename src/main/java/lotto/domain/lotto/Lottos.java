@@ -8,10 +8,10 @@ import java.util.List;
 
 public class Lottos {
 
-    private final NumberGenerator numberGenerator;
+    private final NumberGenerator<List<Integer>> numberGenerator;
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(NumberGenerator numberGenerator, int purchasePrice) {
+    public Lottos(NumberGenerator<List<Integer>> numberGenerator, int purchasePrice) {
         this.numberGenerator = numberGenerator;
         generateLottos(purchasePrice / LottoCondition.PRICE.getValue());
     }

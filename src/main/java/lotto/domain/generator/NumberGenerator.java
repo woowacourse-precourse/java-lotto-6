@@ -1,8 +1,7 @@
 package lotto.domain.generator;
 
-import java.util.List;
+@FunctionalInterface
+public interface NumberGenerator<T> {
 
-public interface NumberGenerator {
-
-    List<Integer> generateNumbers();
+    T generateNumbers();
 }

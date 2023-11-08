@@ -6,7 +6,7 @@ import java.util.List;
 
 import static lotto.domain.lotto.LottoCondition.*;
 
-public class LottoNumberGenerator implements NumberGenerator {
+public class LottoNumberGenerator implements NumberGenerator<List<Integer>> {
 
     private LottoNumberGenerator() {
     }

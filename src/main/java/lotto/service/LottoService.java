@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Ranking;
 import lotto.domain.generator.LottoNumberGenerator;
+import lotto.domain.generator.NumberGenerator;
 import lotto.domain.lotto.AnswerLotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.PurchasePrice;
@@ -23,7 +24,8 @@ public class LottoService {
 
     public void buyLottos(int purchasePrice) {
         this.purchasePrice = new PurchasePrice(purchasePrice);
-        this.lottos = new Lottos(LottoNumberGenerator.getInstance(), purchasePrice);
+        NumberGenerator<List<Integer>> numberGenerator = LottoNumberGenerator.getInstance();
+        this.lottos = new Lottos(numberGenerator, purchasePrice);
     }
 
     public List<LottoDto> getLottoDtos() {

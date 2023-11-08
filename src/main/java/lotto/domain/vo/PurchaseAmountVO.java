@@ -7,13 +7,25 @@ public class PurchaseAmountVO {
     private final int amount;
 
     public PurchaseAmountVO(String input) {
+        this.amount = parseValidate(input);
+    }
+
+    private int parseValidate(String input) {
+        validateInput(input);
+        int parsedAmount = ParserUtil.parseLottoNumber(input);
+        validateParsedAmount(parsedAmount);
+        return parsedAmount;
+    }
+
+    private void validateInput(String input) {
         ValidationUtil.validateBlank(input);
         ValidationUtil.validateSpecialCharacters(input);
         ValidationUtil.validateOutOfRange(input);
-        int parsedAmount = ParserUtil.parseLottoNumber(input);
-        ValidationUtil.validatePurchaseAmountRange(parsedAmount);
-        ValidationUtil.validateThousandUnit(parsedAmount);
-        this.amount = parsedAmount;
+    }
+
+    private void validateParsedAmount(int amount) {
+        ValidationUtil.validatePurchaseAmountRange(amount);
+        ValidationUtil.validateThousandUnit(amount);
     }
 
     public int getAmount() {

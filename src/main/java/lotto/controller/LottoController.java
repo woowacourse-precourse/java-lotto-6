@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.domain.LotteryCommission;
-import lotto.domain.Lotto;
 import lotto.domain.User;
 import lotto.type.LottoResult;
 import lotto.utils.ConsoleReader;
@@ -57,20 +56,14 @@ public class LottoController {
 		Double resultMoney = 0.0;
 		System.out.println("당첨 통계");
 		System.out.println("---");
-		for (Lotto lotto : user.getLottos()) {
-			lotto.setResult(lotteryCommission.getWinningNumbers(), lotteryCommission.getBonusNumber());
-		}
-
+		lotteryCommission.setLottoPaperResult(user.getLottoPaper());
+		
 		for (LottoResult result : resultCheckList) {
-			int count = 0;
-			for (Lotto lotto : user.getLottos()) {
-				if (result.equals(lotto.getResult())) {
-					count++;
-				}
-			}
+			Integer count = user.getLottoPaper().getResults().get(result);
 			System.out.println(result.getMessage() + " - " + count + "개");
 			resultMoney += result.getMoney() * count;
 		}
+
 		System.out.printf("총 수익률은 %.1f%%입니다.%n", resultMoney / user.getMoney() * 100);
 	}
 }

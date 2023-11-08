@@ -28,6 +28,16 @@ class ViewTest extends NsTest {
         });
     }
 
+    @DisplayName("구입금액에 공백만 입력하면 예외가 발생한다.")
+    @Test
+    void inputCostOnlyBlank() {
+        assertSimpleTest(() -> {
+            runException("   ");
+            assertThat(output()).contains("[ERROR] 20억 이하의 숫자를 입력해주세요.");
+        });
+    }
+
+
     @Test
     void inputAndValidateWinningLotto() {
     }

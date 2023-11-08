@@ -14,6 +14,7 @@ public class Rules {//예외처리
             }
 
         }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
             return true;
         }
         return false;
@@ -26,6 +27,7 @@ public class Rules {//예외처리
             if(!isNumeric(str))
                 throw new IllegalArgumentException(not_number);
         }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
             return true;
         }
         return false;
@@ -45,6 +47,7 @@ public class Rules {//예외처리
             if(price%1000!=0)
                 throw new IllegalArgumentException(remainder_is_not_0);
         }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
             return true;
         }
         return false;
@@ -57,6 +60,7 @@ public class Rules {//예외처리
             if(price<=0)
                 throw new IllegalArgumentException(number_is_negative_number);
         }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
             return true;
         }
         return false;
@@ -71,9 +75,9 @@ public class Rules {//예외처리
             if(number<1||number>45)
                 throw new IllegalArgumentException(number_is_not_between_1and45);
         }catch(IllegalArgumentException e){
-             return true;
+            System.out.println(e.getMessage());
+            return true;
         }
-
         return false;
     }
 
@@ -87,6 +91,7 @@ public class Rules {//예외처리
             if(arrayList.contains(number))
                 throw new IllegalArgumentException(number_is_already_exist);
         }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
             return true;
         }
         return false;
@@ -98,16 +103,15 @@ public class Rules {//예외처리
     static String amount_is_not_6="[ERROR] 번호가 6개가 아닙니다.";
     public static boolean amountIsNot6(String str){
         String[] arr=str.split(",");
-
         try{
             if(arr.length!=6)
                 throw new IllegalArgumentException(amount_is_not_6);
         }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
             return true;
         }
         return false;
     }
-
 }
 
 /*

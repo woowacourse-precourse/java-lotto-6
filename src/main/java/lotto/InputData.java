@@ -10,14 +10,21 @@ import static lotto.Rules.*;
 
 public class InputData {
     //입력을 받기 위한 함수들의 집합
+
+
     static long amount;//티켓의 수량
     static ArrayList<Integer> number_list;//입력받은 번호의 리스트
     static int bonus_number;//보너스 번호
 
+
+    static {
+        amount=0;
+        number_list=new ArrayList<>();
+        bonus_number=0;
+    }
+
+
     InputData(){
-        this.amount=amount;
-        this.number_list=number_list;
-        this.bonus_number=bonus_number;
     }
 
 
@@ -44,7 +51,7 @@ public class InputData {
 
 
     public static void inputNumbers(){//로또 번호 6개 입력
-        while(number_list==null||number_list.size()!=6){
+        while(number_list.size()!=6){
             System.out.println("\n당첨 번호를 입력해 주세요.");
             String numbers=readLine();
 
@@ -53,19 +60,18 @@ public class InputData {
                 continue;
 
         }
-        //Lotto lotto=new Lotto(number_list);
     }
 
 
     //두 개의 리스트를 비교해
     public static boolean compareSixNumbers(List<String> numbers_split){
-        number_list.add(Integer.parseInt(numbers_split.get(0)));
+        number_list.add(Integer.parseInt(numbers_split.get(0).trim()));
         for(int i=1;i<6;i++){
-            if(numberIsAlreadyExist(number_list,Integer.parseInt(numbers_split.get(i)))) {
+            if(numberIsAlreadyExist(number_list,Integer.parseInt(numbers_split.get(i).trim()))) {
                 number_list.clear();
                 return true;
             }
-            number_list.add(Integer.parseInt(numbers_split.get(0)));
+            number_list.add(Integer.parseInt(numbers_split.get(0).trim()));
         }
         return false;
     }
@@ -76,7 +82,7 @@ public class InputData {
     public static boolean eachNumberIsStandard(List<String> numbers_split){
         for(int i=0;i<6;i++){
             //각 원소들이 비어있거나 1과 45의 수가 아닐 경우 다시 시작
-            if(notNumber(numbers_split.get(i))||numberIsNotBetween1And45(Integer.parseInt(numbers_split.get(i))))
+            if(notNumber(numbers_split.get(i).trim())||numberIsNotBetween1And45(Integer.parseInt(numbers_split.get(i).trim())))
                 return true;
         }
         return false;

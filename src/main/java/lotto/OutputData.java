@@ -2,13 +2,16 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.InputData.amount;
+import static lotto.InputData.number_list;
+
 public class OutputData {
-
-
     static int[] tickets_count=new int[5];
+    Lotto lotto=new Lotto(number_list);
 
     //amount만큼의 배열 출력
     public static void printTickets(long amount){
@@ -22,14 +25,15 @@ public class OutputData {
     //새로운 티켓을 발급하고 출력함수를 사용해 출력 후 일치비교함수 사용
     public static void getTicketAndCount(){
         List<Integer> random_numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        printTicket(random_numbers);
-        //compareNumbers(Lotto.numbers,random_numbers,InputData.bonus_number);
+        random_numbers=printTicket(random_numbers);
+        //compareNumbers(Lotto.getNumbers(),random_numbers,InputData.bonus_number);
     }
 
     //랜덤으로 뽑힌 티켓 오름차순 후 출력
-    public static void printTicket(List<Integer> random_numbers){
+    public static List<Integer> printTicket(List<Integer> random_numbers){
         Collections.sort(random_numbers);
         System.out.println(random_numbers);
+        return random_numbers;
     }
 
     //일치 비교 함수
@@ -49,13 +53,15 @@ public class OutputData {
 
     //당첨 통계 출력
     public static void winStats(int[] tickets_count){
+        System.out.println("\n당첨 통계\n---");
+
         System.out.println(Rank.FIFTH.getMent()+tickets_count[0]+Rank.FIFTH.getLastMent());
         System.out.println(Rank.FOURTH.getMent()+tickets_count[1]+Rank.FOURTH.getLastMent());
         System.out.println(Rank.THIRD.getMent()+tickets_count[2]+Rank.THIRD.getLastMent());
         System.out.println(Rank.SECOND.getMent()+tickets_count[3]+Rank.SECOND.getLastMent());
         System.out.println(Rank.FIRST.getMent()+tickets_count[4]+Rank.FIRST.getLastMent());
 
-        System.out.printf("총 수익률은 %f%%입니다.",profitRate(tickets_count));
+        System.out.printf("총 수익률은 %.2f%%입니다.",profitRate(tickets_count));
     }
 
     public static double profitRate(int[] tickets_count){

@@ -8,7 +8,7 @@ import java.util.Map;
 import lotto.util.Constants.LottoResult;
 
 public class ResultService {
-    private Map<Integer,Integer> winningResult = new HashMap<>();
+    private final Map<Integer,Integer> winningResult = new HashMap<>();
     private long winningMoney;
 
     public ResultService() {
@@ -29,7 +29,7 @@ public class ResultService {
                 coincideCount = addCoincideCount(winningNumber,userNumber,coincideCount);
             }
             if(coincideCount == LottoResult.FIVE.getCount())
-                coincideCount = containsBonusNumber(winningNumber,bonusNumber,coincideCount);
+                coincideCount = containsBonusNumber(userLottery.getUserLottery(),bonusNumber,coincideCount);
             winningResult.put(coincideCount,winningResult.getOrDefault(coincideCount,0)+1);
         }
         return winningResult;
@@ -39,8 +39,8 @@ public class ResultService {
             coincideCount++;
         return coincideCount;
     }
-    private int containsBonusNumber(final List<Integer> winningNumber, final int bonusNumber,int coincideCount){
-        if(winningNumber.contains(bonusNumber))
+    private int containsBonusNumber(final List<Integer> userLottery, final int bonusNumber,int coincideCount){
+        if(userLottery.contains(bonusNumber))
             coincideCount = LottoResult.FIVE_AND_BONUS.getCount();
         return coincideCount;
     }

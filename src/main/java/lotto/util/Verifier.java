@@ -31,9 +31,13 @@ public class Verifier {
         }
     }
 
-    public static void validateBonusNumber(Integer bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+    public static void validateBonusNumber(Integer bonusNumber, List<Integer> winningNumbers) {
+        if (!LottoNumber.isInRange(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMsg.INVALID_BONUS_NUMBER_RANGE.getErrMsg());
+        }
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMsg.INVALID_BONUS_NUMBER_DUPLICATE.getErrMsg());
         }
     }
 

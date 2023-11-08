@@ -10,6 +10,10 @@ import lotto.Util.RandomLottoNumberGenerator;
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
 
+    /**
+     * 발행할 로또 개수를 받아 로또 생성
+     * @param count 발행할 로또 개수
+     */
     public Lottos(Integer count) {
         for (int i = 0; i < count; i++) {
             addLotto();

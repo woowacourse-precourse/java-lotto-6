@@ -3,8 +3,8 @@ package lotto.exception;
 public enum ErrorCode {
     LOTTO_NUMBERS_INVALID_SIZE("로또 번호는 6개여야 합니다."),
     LOTTO_NUMBERS_DUPLICATED("로또 번호는 중복될 수 없습니다."),
-    LOTTO_NUMBERS_OUT_OF_RANGE("로또 번호는 1~45 사이여야 합니다."),
-    BONUS_NUMBER_OUT_OF_RANGE("보너스 번호는 1~45 사이여야 합니다."),
+    LOTTO_NUMBERS_OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    BONUS_NUMBER_OUT_OF_RANGE("보너스 번호는 1부터 45 사이의 숫자여야 합니다."),
     BONUS_NUMBER_DUPLICATED("보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     PURCHASE_AMOUNT_INVALID_VALUE("구입금액은 1000원 단위여아 합니다."),
     PURCHASE_AMOUNT_OUT_OF_RANGE("구입금액은 양수여야 합니다."),

@@ -62,4 +62,11 @@ class LottoTest {
         Assertions.assertEquals(numbers, lotto.getNumbers());
     }
 
+    @DisplayName("당첨 번호와 일치하는 개수와 보너스 번호와 일치하는지 확인한다.")
+    @Test
+    void checkPrize() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        Assertions.assertEquals(PrizeTier.SECOND, lotto.checkPrize(winningNumbers, 7));
+    }
 }

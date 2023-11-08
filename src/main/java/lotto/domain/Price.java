@@ -7,4 +7,8 @@ public class Price {
     public Price(int price) {
         this.price = price;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

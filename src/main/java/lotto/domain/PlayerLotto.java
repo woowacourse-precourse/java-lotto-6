@@ -10,11 +10,11 @@ public class PlayerLotto {
         this.lottos = lottos;
     }
 
-    public FinalGrade calculateFinalGrade(final Lotto winningNumber, final LottoNumber bonusNumber) {
+    public FinalGrade calculateFinalGrade(final WinningInformation winningInformation) {
         List<Rank> results = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            int containCounts = lotto.countMatchingNumbers(winningNumber);
-            boolean isMatchBonus = lotto.isContains(bonusNumber);
+            int containCounts = lotto.countMatchingNumbers(winningInformation.getWinningNumbers());
+            boolean isMatchBonus = lotto.isContains(winningInformation.getBonusNumber());
 
             Rank rank = Rank.calculateRank(containCounts, isMatchBonus);
             results.add(rank);

@@ -24,6 +24,18 @@ public class NumberValidator {
         }
     }
 
+    public static void validateLottoCount(int customerPrice) throws IllegalArgumentException {
+        if (canChangeCountByLottoPrice(customerPrice)) {
+            System.out.println(ErrorMessage.ERROR_LOTTO_COUNT_MESSAGE);
+            System.out.println();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static boolean canChangeCountByLottoPrice(int customerPrice) {
+        return (customerPrice % LottoValues.LOTTO_PRICE != 0) || (customerPrice == 0);
+    }
+
     private static void validateNumberCount(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != LottoValues.LOTTO_NUMBER_COUNT) {
             System.out.println(ErrorMessage.ERROR_VALIDATE_NUMBER_COUNT_MESSAGE);

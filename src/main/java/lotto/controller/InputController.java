@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import lotto.util.ErrorMessage;
 import lotto.util.InputMessage;
@@ -60,5 +61,14 @@ public class InputController {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public static <T> T repeat(Supplier<T> supplier) {
+        while (true) {
+            try {
+                T result = supplier.get();
+                return result;
+            } catch (IllegalArgumentException e) {}
+        }
     }
 }

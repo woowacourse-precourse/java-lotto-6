@@ -2,7 +2,6 @@ package lotto.service;
 
 import java.util.List;
 import lotto.controller.InputController;
-import lotto.controller.RepeatController;
 import lotto.domain.WinningNumbers;
 import lotto.exception.NumberValidator;
 
@@ -16,12 +15,12 @@ public class WinningNumberGenerator {
 
 
     private List<Integer> getWinningNumbers() {
-        List<Integer> winningNumbers = RepeatController.repeat(() -> inputAndValidateWinningNumbers());
+        List<Integer> winningNumbers = InputController.repeat(() -> inputAndValidateWinningNumbers());
 
         return winningNumbers;
     }
     private Integer getBonusNumber(List<Integer> winningNumbers) {
-        Integer bonusNumber = RepeatController.repeat(() -> inputAndValidateBonusNumbers(winningNumbers));
+        Integer bonusNumber = InputController.repeat(() -> inputAndValidateBonusNumbers(winningNumbers));
         NumberValidator.validate(bonusNumber, winningNumbers);
 
         return bonusNumber;

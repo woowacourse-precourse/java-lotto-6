@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.application.LottoService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -52,6 +53,30 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void 구매_금액이_숫자가_아닐때_검증(){
+        boolean validated = LottoService.validatePurchaseAmount("111a22");
+        assertThat(validated).isFalse();
+    }
+
+    @Test
+    void 구매_금액이_정수가_아닐때_검증(){
+        boolean validated = LottoService.validatePurchaseAmount("1000.1");
+        assertThat(validated).isFalse();
+    }
+
+    @Test
+    void 구매_금액이_1000원_보다_작을때_검증(){
+        boolean validated = LottoService.validatePurchaseAmount("999");
+        assertThat(validated).isFalse();
+    }
+
+    @Test
+    void 구매_금액이_1000원_단위가_아닐때_검증(){
+        boolean validated = LottoService.validatePurchaseAmount("10001");
+        assertThat(validated).isFalse();
     }
 
     @Override

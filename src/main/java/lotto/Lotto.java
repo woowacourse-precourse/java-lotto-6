@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    public static final int LOTTO_PRICE = 1000;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

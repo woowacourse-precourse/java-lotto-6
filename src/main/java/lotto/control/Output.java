@@ -1,4 +1,4 @@
-package lotto;
+package lotto.control;
 
 import lotto.lottoMaker.Lotto;
 

@@ -21,14 +21,14 @@ public class LottoResult {
         Map<LottoStatus, Integer> statusCounts = new HashMap<>();
 
         for (LottoStatus lottoStatus : LottoStatus.values()) {
-            int count = statusCount(lottoStatus);
+            int count = countLottoStatus(lottoStatus);
             statusCounts.put(lottoStatus, count);
         }
 
         return new LottoResultDto(statusCounts);
     }
 
-    private int statusCount(LottoStatus lottoStatus) {
+    private int countLottoStatus(LottoStatus lottoStatus) {
         return (int) lottoResult.stream()
                 .filter(status -> status.equals(lottoStatus))
                 .count();

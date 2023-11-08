@@ -36,7 +36,7 @@ public class CorrectLotto {
         }
     }
 
-    private List<Integer> convertStringToInteger(String input_numbers){
+    public List<Integer> convertStringToInteger(String input_numbers){
         String[] numbers = input_numbers.split(",");
         checkEmptyPart(countComma(input_numbers) + 1, numbers.length);
 

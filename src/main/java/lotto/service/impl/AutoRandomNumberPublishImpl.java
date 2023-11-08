@@ -7,7 +7,6 @@ import static lotto.config.LottoConfig.MIN_LOTTO_NUMBER;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Comparator;
 import java.util.List;
-import lotto.config.LottoConfig;
 import lotto.service.Publish;
 
 public class AutoRandomNumberPublishImpl implements Publish {

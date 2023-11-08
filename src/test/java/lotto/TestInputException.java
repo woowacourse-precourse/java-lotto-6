@@ -50,8 +50,8 @@ public class TestInputException {
         int trueValue = 3000;
         int falseValue = 2400;
 
-        assertThatCode(()-> testUi.check1000(trueValue))
-                .doesNotThrowAnyException();
+        assertThat(testUi.check1000(trueValue)).isEqualTo(3);
+
         assertThatThrownBy(()-> testUi.check1000(falseValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }

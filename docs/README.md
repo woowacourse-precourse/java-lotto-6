@@ -22,9 +22,9 @@
 
 ## 📮 클래스 설계
 **_InputValidator_**
-  - 구입 금액 검증 / 메소드
-  - 당첨 번호 검증 / 메소드 
-  - 보너스 번호 검증 / 메소드
+  - 구입 금액 검증(validatePurchaseAmount) / 메소드
+  - 당첨 번호 검증(validateWinningNumber) / 메소드 
+  - 보너스 번호 검증(validateBonusNumber) / 메소드
 
 **_InputException_**
 - NOT_IN_RANGE_MONEY
@@ -35,48 +35,72 @@
 - NOT_DISTINCT_BONUS_NUMBER
 
 **_InputView_**
-- 구입 금액 읽기 / 메소드
-- 당첨 번호 읽기 / 메소드
-- 보너스 번호 읽기 /메소드
+- 구입 금액 읽기(readPurchaseAmount) / 메소드
+- 당첨 번호 읽기(readWinningNumbers) / 메소드
+- 보너스 번호 읽기(readBonusNUmber) /메소드
 
 **_OutputView_**
-- 구매 결과 알림 / 메소드
-- 당첨 결과 알림 / 메소드
+- 구매 결과 알림(notifyPurchaseResult) / 메소드
+- 당첨 결과 알림(notifyLottoResult) / 메소드
 
 **_Lotto_**
-- 6개의 번호 / 속성
-- 매칭 (winningNumber, bonusNumber) / 메소드
+- 6개의 번호(numbers) / 속성
+- 번호 조회(getNumbers) / 메소드
+- 매칭 (matchWithWinningNumbersAndBonusNumber) / 메소드
 
 **_Lottos_**
-- List<Lotto> 복수의 로또 / 속성
-- 일괄 매칭 (winningNumber, bonuseNumber) / 메소드
+- List<Lotto> 복수의 로또 (lottoTickets) / 속성
+- 로또 추가 (insertLotto) / 메소드
+- 복수 로또 반환 (getLottoTickets) / 메소드
+- 일괄 매칭 (matchAll) / 메소드
 
 **_Player_**
-- 구입 금액 / 속성
-- 당첨 번호 / 속성
-- 보너스 번호 / 속성
-- 수익률 계산 / 메서드 
+- 구입 금액 (purChaseAmount)/ 속성
+- 당첨 번호 (winningNumbers) / 속성
+- 보너스 번호 (bonusNumber) / 속성
+- 수익률 (rateOfReturn) / 속성
+- 구입 금액 등록(insertPurchaseAmount) / 메소드
+- 당첨 번호 등록(insertWinningNumbers) / 메소드
+- 보너스 번호 등록(insertBonusNumber) / 메소드
+- 보너스 번호 조회 (getBonusNumber) / 메소드
+- 당첨 번호 조회(getWinningNumbers) / 메소드
+- 구입 금액 조회(getPurChaseAmount) / 메소드
+- 수익률 조회 (getRateOfReturn) / 메소드
+- 수익률 계산 (calculateRateOfReturn) / 메소드
 
 **_LottoResultDto_** 
-- 매치 숫자 개수
-- 매치 보너스 번호 개수
+- 매치 숫자 개수 (matchedAmount) / 속성
+- 매치 보너스 번호 개수(bonusMatchedAmount) / 속성
 
 **_PurchaseResultDto_**
-- 구매된 복수의 로또 번호 
+- 구매된 로또 개수 (size) / 속성
+- 구매된 복수의 로또 번호 (lottoNumbers) / 속성
+
+**_Rank_**
+- FIFTH_PLACE("3개 일치 (5,000원)"),
+- FOURTH_PLACE("4개 일치 (50,000원)"),
+- THIRD_PLACE("5개 일치 (1,500,000원)"),
+- SECOND_PLACE("5개 일치, 보너스 볼 일치 (30,000,000원)"),
+- FIRST_PLACE("6개 일치 (2,000,000,000원)");
 
 **_LottoService_**
-- 구입 금액 입력받기
-- 당첨 번호 입력받기 
-- 보너스 번호 입력받기
-- 로또 구매 
-- 로또 매칭결과 반환
+- 플레이어 (player) / 속성
+- 복수의 로또 (lottos) / 속성
+- 입력 검증 (inputValidator) / 속성
+- 로또 구매 (purchaseLotto) / 메소드 
+- 당첨 번호 등록 (putWinningNumbers) / 메소드 
+- 보너스 번호 등록 (putBonusNumber) / 메소드
+- 이익률 반환 (getRateOfReturn) / 메소드 
+- 로또 매칭결과 반환 (getLottoResult) / 메소드
 
 **_Controller_**
-- 구입 금액 입력
-- 당첨 번호 입력
-- 보너스 번호 입력
-- 로또 구매
-- 결과 조회
+- 서비스코드 (lottoService) / 속성
+- 입력 뷰 (inputView) / 속성
+- 출력 뷰 (outputView) / 속성
+- 로또 구매 (purchaseLotto) / 메소드
+- 당첨 번호 입력 (putWinningNumbers) / 메소드
+- 보너스 번호 입력 (putBonusNumber) / 메소드
+- 결과 조회 (getLottoResult) / 메소드
 
 ## 🤔 요구 사항에 대한 분석 (공부 및 적용할 것)
 - 로또 클래스를 통한 객체지향 프로그래밍 

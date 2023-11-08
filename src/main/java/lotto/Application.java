@@ -19,5 +19,3 @@ public class Application {
         return config.lottoGameController();
     }
 }
-
-// TODO: final달기, 테스트에 중복되는 내용 처리

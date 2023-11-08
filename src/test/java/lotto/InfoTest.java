@@ -19,4 +19,16 @@ public class InfoTest {
 
         assertThat(info.getStatistic()).isEqualTo(new int[]{0, 2, 1, 0, 0, 1});
     }
+
+    @DisplayName("당첨금 합계 테스트")
+    @Test
+    void 당첨급_합계_집계_테스트() {
+        Info info = new Info();
+        info.addStatistic(Grade.FIRST_GRADE);
+        info.addStatistic(Grade.SECCOND_GRADE);
+        info.addStatistic(Grade.FIFTH_GRADE);
+        info.addStatistic(Grade.FIRST_GRADE);
+
+        assertThat(info.getRewards()).isEqualTo(4030005000L);
+    }
 }

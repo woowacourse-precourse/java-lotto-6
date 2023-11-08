@@ -23,7 +23,7 @@ public class WinningLottoNumbers {
 
   }
 
-  public List<Integer> getNumbers() {
+  public List<Integer> getWinningNumbers() {
     return numbers;
   }
 

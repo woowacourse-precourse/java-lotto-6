@@ -2,9 +2,13 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.view.InputView;
 
 public class Controller {
     private boolean flag;
+    private String input;
+    private List<Lotto> userLotto;
     private final User user;
     private final LottoCompany lottoCompany;
 
@@ -55,5 +59,27 @@ public class Controller {
             prizeNumbers.add(changeStringToInt(string));
         }
         lottoCompany.setPrizeNumbers(prizeNumbers);
+    }
+
+    private void inputBonusNumber() {
+        flag = false;
+        while (!flag) {
+            tryInputBonusNumber();
+        }
+    }
+
+    private void tryInputBonusNumber() {
+        try {
+            input = InputView.inputBonusNumber();
+            setBonusNumber(input);
+            flag = true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void setBonusNumber(String input) {
+        int bonusNumber = changeStringToInt(input);
+        lottoCompany.setBonusNumber(bonusNumber);
     }
 }

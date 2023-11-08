@@ -10,7 +10,7 @@ public class Output {
     }
 
     public void printLottos(List<List<Integer>> lottos) {
-        System.out.println(lottos);
+        lottos.forEach(System.out::println);
     }
 
     public void printResult(HashMap<String, Integer> count) {

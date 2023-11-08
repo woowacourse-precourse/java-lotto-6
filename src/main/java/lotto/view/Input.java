@@ -8,7 +8,7 @@ import lotto.Lotto;
 import lotto.LottoMachine;
 
 public class Input {
-    private static final String splitter = ",";
+    private static final String SPLITTER = ",";
 
     public Integer readPaymentAmount() {
         String input = this.read(InputMessage.PAYMENT_AMOUNT);
@@ -43,7 +43,7 @@ public class Input {
     }
 
     private static List<Integer> formatInputToLottoNumbers(String input) {
-        return Arrays.stream((input.split(splitter))).map(Input::formatToNumber).toList();
+        return Arrays.stream((input.split(SPLITTER))).map(Input::formatToNumber).toList();
     }
 
     public Integer readBonusNumber() {

@@ -13,6 +13,7 @@ public class Controller {
     void buy() {
         Integer paymentAmount = input.readPaymentAmount();
         LottoMachine lottoMachine = new LottoMachine(paymentAmount);
+        lottoMachine.issue();
         output.printPurchaseCount(lottoMachine.getCount());
         this.lottos = lottoMachine.getLottos();
         output.printLottos(lottos);

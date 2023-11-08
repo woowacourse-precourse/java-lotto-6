@@ -8,13 +8,19 @@ import static lotto.validators.PurchaseValidator.validPurchasePrice;
 
 public class UserInput {
     public static Integer readPurchasePrice() {
-        String inputLottoPurchasePrice = readLine();
-        validEmptyString(inputLottoPurchasePrice);
-        validContainsWhiteSpace(inputLottoPurchasePrice);
+        while (true) {
+            try {
+                String inputLottoPurchasePrice = readLine();
+                validEmptyString(inputLottoPurchasePrice);
+                validContainsWhiteSpace(inputLottoPurchasePrice);
 
-        Integer purchasePrice = getIntegerValue(inputLottoPurchasePrice);
-        validPurchasePrice(purchasePrice);
+                Integer purchasePrice = getIntegerValue(inputLottoPurchasePrice);
+                validPurchasePrice(purchasePrice);
 
-        return purchasePrice;
+                return purchasePrice;
+            } catch (IllegalArgumentException e) {
+                ErrorOutput.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

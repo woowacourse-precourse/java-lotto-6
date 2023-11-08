@@ -1,3 +1,28 @@
+## 서비스 흐름도
+```mermaid
+  flowchart LR
+    A(게임 시작) -->|사용자 입력| B[InputView]
+    B --> C{입력 검증}
+    C -->|잘못된 입력| B
+    C -->|올바른 입력| D[LottoService]
+    D --> E{금액 확인}
+    E -->|금액 불충분| B
+    E -->|금액 충분| F[LottoMachine]
+    F -->|티켓 발행| G[LottoTicket]
+    G -.-> H[OutputView]
+    H -->|티켓 출력| I[InputView]
+    I --> J{당첨 번호 입력}
+    J -.->|잘못된 번호| I
+    J -.->|올바른 번호| K[LottoService]
+    K --> L{보너스 번호 입력}
+    L -.->|잘못된 번호| I
+    L -.->|올바른 번호| M[WinningLotto]
+    M --> N{당첨 확인}
+    N --> O[LottoResult]
+    O --> P[OutputView]
+    P -.->|통계 출력| Q((종료))
+```
+
 ## 구현 기능 목록
 
 ### 도메인(모델)

@@ -14,10 +14,10 @@ public class Statistics {
     private static final String ENTER = "\n";
     private final Map<Rank, Integer> results;
 
-    public Statistics(List<Lotto> lottos, WinningLotto winningLotto, int bonus) {
+    public Statistics(List<Lotto> lottos, WinningLotto winningLotto) {
         Map<Rank, Integer> results = initResults();
         for (Lotto lotto : lottos) {
-            Rank rank = getRank(winningLotto, bonus, lotto);
+            Rank rank = getRank(winningLotto, lotto);
             results.computeIfPresent(rank, (key, v) -> v + ONE);
         }
         this.results = results;
@@ -31,8 +31,8 @@ public class Statistics {
         return initialResults;
     }
 
-    private Rank getRank(WinningLotto winningLotto, int bonus, Lotto lotto) {
-        boolean hasBonus = lotto.contains(bonus);
+    private Rank getRank(WinningLotto winningLotto, Lotto lotto) {
+        boolean hasBonus = lotto.contains(winningLotto.getBonus());
         int matchCount = lotto.countMatch(winningLotto);
         return Rank.getRank(matchCount, hasBonus);
     }

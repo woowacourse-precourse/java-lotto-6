@@ -24,9 +24,9 @@ public class Controller {
         WinningLotto winningLotto = view.inputAndValidateWinningLotto();
 
         view.output(INPUT_BONUS);
-        int bonus = view.inputAndValidateBonus(winningLotto);
+        view.inputAndValidateBonus(winningLotto);
 
-        Statistics statistics = new Statistics(lottos, winningLotto, bonus);
+        Statistics statistics = new Statistics(lottos, winningLotto);
         displayStatistics(statistics);
         displayRevenueRate(buyer, statistics);
     }

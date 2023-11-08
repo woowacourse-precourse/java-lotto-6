@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.error;
 
 public enum ErrorMessage {
     INCORRECT_INPUT_TYPE_ERROR_MESSAGE("[ERROR] 로또 번호는 숫자여야 합니다."),

@@ -1,6 +1,5 @@
-package lotto;
+package lotto.model;
 
-import lotto.Lotto;
 import lotto.model.enums.LottoSpec;
 import lotto.view.enums.ErrorMessage;
 

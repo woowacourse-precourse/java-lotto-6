@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.model.LottoRankResult;
 import lotto.view.enums.ErrorMessage;
 import lotto.view.enums.PrintMessage;

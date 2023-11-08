@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
 import lotto.model.enums.LottoSpec;
 
 import java.util.List;

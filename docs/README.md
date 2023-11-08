@@ -54,3 +54,8 @@
   - [x] 수익률 계산하기 calculateProfit()
   - [x] 수익률 출력하기(UI) printProfit()
 - [x] 예외처리
+
+## 테스트 코드
+- [x] RandomNumberGeneratorTest
+- [] WinnerTest
+- [] ProfitTest

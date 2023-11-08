@@ -40,4 +40,13 @@ public class InputLottoException {
 		        }
 		    }
 	}
+	
+	public void validateLottoNumbersRange(List<Integer> lottoNumbers) {
+		for(int lottoNumber : lottoNumbers) {
+			if(lottoNumber < MIN_LOTTO_NUMBER || lottoNumber > MAX_LOTTO_NUMBER) {
+				throw new IllegalArgumentException(ERROR + LOTTO_NUMBERS_OUT_OF_RANGE);
+			}
+		}
+	}
+	
 }

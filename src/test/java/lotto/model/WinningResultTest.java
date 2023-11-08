@@ -17,6 +17,9 @@ public class WinningResultTest {
 
         rank.put("5th", Long.valueOf(2));
         rank.put("4th", Long.valueOf(1));
+        rank.put("3rd", Long.valueOf(0));
+        rank.put("2nd", Long.valueOf(0));
+        rank.put("1st", Long.valueOf(0));
 
         winningResult.calculate(matchResult);
         Assertions.assertThat(winningResult.getWinningResult()).isEqualTo(rank);
@@ -26,9 +29,16 @@ public class WinningResultTest {
     void WinningResult_당첨이_하나도_안된_경우() {
         List<Integer> matchResult = List.of(1, 1, 2, 1, 2);
         WinningResult winningResult = new WinningResult();
+        Map<String, Long> rank = new HashMap<>();
+
+        rank.put("5th", Long.valueOf(0));
+        rank.put("4th", Long.valueOf(0));
+        rank.put("3rd", Long.valueOf(0));
+        rank.put("2nd", Long.valueOf(0));
+        rank.put("1st", Long.valueOf(0));
 
         winningResult.calculate(matchResult);
-        Assertions.assertThat(winningResult.getWinningResult()).isEmpty();
+        Assertions.assertThat(winningResult.getWinningResult()).isEqualTo(rank);
     }
 
     @Test

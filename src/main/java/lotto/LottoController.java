@@ -46,10 +46,22 @@ public class LottoController {
         while(true){
             try{
                 List<Integer> winningNumbers = getWinningNumber();
-                int bonusNumber = inputView.inputBonusNumber();
+                int bonusNumber = getBonusNumber();
                 lottoService.createWinningLotto(winningNumbers, bonusNumber);
                 return;
             } catch (IllegalArgumentException e){
+                outputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumber() {
+        while(true)
+        {
+            try{
+                int bonusNumber = inputView.inputBonusNumber();
+                return bonusNumber;
+            }catch (IllegalArgumentException e){
                 outputView.printError(e.getMessage());
             }
         }

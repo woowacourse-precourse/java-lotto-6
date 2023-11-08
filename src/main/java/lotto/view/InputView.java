@@ -56,6 +56,8 @@ public class InputView {
         validateNotEmptyInput(input);
         int bonusNumber = validateInputIsNumeric(input);
         validatePositiveNumber(bonusNumber);
+        validateNumberInRange(bonusNumber);
+
         return bonusNumber;
     }
 

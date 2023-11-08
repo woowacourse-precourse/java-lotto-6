@@ -1,7 +1,10 @@
 package view;
 
 import model.Lotto;
+
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class OutputView {
@@ -43,7 +46,14 @@ public class OutputView {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResult.get(6) +"개");
         System.out.println("6개 일치 (2,000,000,000원) - " + winningResult.get(7) +"개");
     }
-    public static void printEarningRateResultMessage(double earningRate) {
-        System.out.println("총 수익률은 " + Math.round(earningRate * 100.0) / 100.0 + "% 입니다.");
+
+    public static void printEarningRateResultMessage(String earningRate) {
+        System.out.println("총 수익률은 " + earningRate + "%입니다.");
+    }
+
+    public static void printLottoResult(Map<Integer, Integer> winningResult, String earningRate) {
+        printWinningResultTitle();
+        printWinningResult(winningResult);
+        printEarningRateResultMessage(earningRate);
     }
 }

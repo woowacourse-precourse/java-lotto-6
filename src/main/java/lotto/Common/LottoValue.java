@@ -12,6 +12,25 @@ public enum LottoValue {
 
     }
 
+    public static int getMultiplier(int matchingNumber){
+        if( matchingNumber == 3) {
+            return 5000;
+        }
+        if( matchingNumber == 4) {
+            return 50000;
+        }
+        if( matchingNumber == 5) {
+            return 1500000;
+        }
+        if( matchingNumber == 6) {
+            return 2000000000;
+        }
+        if( matchingNumber == 7) {
+            return 30000000;
+        }
+        return 0;
+    }
+
     public Integer getValue() {
         return value;
     }

@@ -12,4 +12,9 @@ public class WinningNumber {
     public List<Integer> getWinningNumber(){
         return this.winningNumber;
     }
+
+    /**
+     * 입력 검증 목록
+     *
+     */
 }

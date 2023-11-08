@@ -13,17 +13,17 @@ public class InputView {
 
 
     public String getLottoPurchaseAmount() {
-        GeneralOutput.stringOutput(PURCHASE_AMOUNT_PROMPT);
+        GeneralOutput.stringPrintln(PURCHASE_AMOUNT_PROMPT);
         return GeneralInput.stringInput();
     }
 
     public String getLottoWinningNumber() {
-        GeneralOutput.stringOutput(WINNING_NUMBER_PROMPT);
+        GeneralOutput.stringPrintln(WINNING_NUMBER_PROMPT);
         return GeneralInput.stringInput();
     }
 
     public String getLottoBonusNumber() {
-        GeneralOutput.stringOutput(BONUS_NUMBER_PROMPT);
+        GeneralOutput.stringPrintln(BONUS_NUMBER_PROMPT);
         return GeneralInput.stringInput();
     }
 

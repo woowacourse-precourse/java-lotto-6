@@ -12,17 +12,17 @@ public class LottoResultVerifier {
     private Integer bonusNumber;
     private List<Integer> winningNumber;
     private final LottoWinningResult winningResultList;
-    private final LottoSet lottoSet;
+    private  LottoSet lottoSet;
     private final PromptService Prompt;
 
 
-    public LottoResultVerifier(PromptService Prompt, LottoSet lottoSet) {
+    public LottoResultVerifier(PromptService Prompt) {
         this.Prompt = Prompt;
-        this.lottoSet = lottoSet;
         this.winningResultList = new LottoWinningResult();
     }
 
-    public LottoWinningResult findWinningLotto() {
+    public LottoWinningResult findWinningLotto(LottoSet lottoSet) {
+        this.lottoSet = lottoSet;
 
         this.winningNumber = Prompt.getLottoWinningNumber().getWinningNumber();
         this.bonusNumber = Prompt.getLottoBonusNumber().getBonusNumber();

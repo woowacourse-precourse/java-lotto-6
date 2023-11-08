@@ -10,25 +10,27 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static lotto.model.enums.ErrorMessage.ERROR_HEAD_MESSAGE;
 
 class LottoTest {
+    private static void lottoNumbersExceptionTest(List<Integer> numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_HEAD_MESSAGE.getErrorMessage());
+    }
+
     @DisplayName("로또 번호의 개수가 6개 초과인 경우 예외 확인")
     @Test
     void 로또_번호_사이즈_초과일_때_예외_확인() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_HEAD_MESSAGE.getErrorMessage());
+        lottoNumbersExceptionTest(List.of(1,2,3,4,5,6,7));
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있는 경우 예외 확인")
     @Test
     void 로또_번호_중복일_때_예외_확인() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_HEAD_MESSAGE.getErrorMessage());
+        lottoNumbersExceptionTest(List.of(1,2,3,4,5,5));
     }
 
     @DisplayName("로또 번호에 1~45 사이의 값이 아닌 숫자가 있는 경우 예외 확인")
     @Test
     void 로또_번호_범위값이_아닐_때_예외_확인() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ERROR_HEAD_MESSAGE.getErrorMessage());
+        lottoNumbersExceptionTest(List.of(1,2,3,4,5,46));
     }
 
     @DisplayName("로또 번호 정렬 확인")

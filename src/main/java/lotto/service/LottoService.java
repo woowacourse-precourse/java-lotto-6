@@ -6,29 +6,29 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoList;
 import lotto.domain.LottoNumber;
 import lotto.domain.dto.LottoPrizeDto;
-import lotto.domain.dto.LottoPurchaseDto;
+import lotto.domain.dto.LottoResultDto;
 
 public class LottoService {
     private static final int THOUSAND = 1000;
     private static final double TEN_POINT_ZERO = 10.0;
 
-    public LottoPrizeDto totalWinnings(LottoPurchaseDto lottoPurchaseDto) {
-        LottoList lottoList = lottoPurchaseDto.getLottoList();
-        Lotto winningLotto = lottoPurchaseDto.getWinningLotto();
-        LottoNumber bonusNumber = lottoPurchaseDto.getBonusNumber();
+    public LottoPrizeDto totalWinnings(LottoResultDto lottoResultDto) {
+        LottoList lottoList = lottoResultDto.getLottoList();
+        Lotto winningLotto = lottoResultDto.getWinningLotto();
+        LottoNumber bonusNumber = lottoResultDto.getBonusNumber();
 
         return checkLottoWinnings(lottoList, winningLotto, bonusNumber);
     }
 
-    public double calculateRateOfReturn(LottoPurchaseDto lottoPurchaseDto) {
-        LottoPrizeDto dto = totalWinnings(lottoPurchaseDto);
+    public double calculateRateOfReturn(LottoResultDto lottoResultDto) {
+        LottoPrizeDto dto = totalWinnings(lottoResultDto);
         long totalPrizeMoney = dto.getFirst() * PrizeMoney.FIRST.getValue()
                 + dto.getSecond() * PrizeMoney.SECOND.getValue()
                 + dto.getThird() * PrizeMoney.THIRD.getValue()
                 + dto.getFourth() * PrizeMoney.FOURTH.getValue()
                 + dto.getFifth() * PrizeMoney.FIFTH.getValue();
 
-        int cost = lottoPurchaseDto.getCost();
+        int cost = lottoResultDto.getCost();
         return roundUpToTheTenthPlace(totalPrizeMoney / (double) cost);
     }
 

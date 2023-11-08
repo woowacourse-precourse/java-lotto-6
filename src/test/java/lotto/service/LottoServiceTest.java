@@ -9,7 +9,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoList;
 import lotto.domain.LottoNumber;
 import lotto.domain.dto.LottoPrizeDto;
-import lotto.domain.dto.LottoPurchaseDto;
+import lotto.domain.dto.LottoResultDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +53,7 @@ class LottoServiceTest {
 
         LottoNumber bonusNumber = new LottoNumber(10);
 
-        LottoPrizeDto dto = lottoService.totalWinnings(LottoPurchaseDto.Of(lottoList, winningLotto, bonusNumber));
+        LottoPrizeDto dto = lottoService.totalWinnings(LottoResultDto.Of(lottoList, winningLotto, bonusNumber));
 
         assertThat(dto.getFirst()).isEqualTo(2);
         assertThat(dto.getSecond()).isEqualTo(3);
@@ -81,7 +81,7 @@ class LottoServiceTest {
 
         LottoNumber bonusNumber = new LottoNumber(7);
 
-        LottoPurchaseDto dto = LottoPurchaseDto.Of(lottoList, winningLotto, bonusNumber);
+        LottoResultDto dto = LottoResultDto.Of(lottoList, winningLotto, bonusNumber);
         assertThat(lottoService.calculateRateOfReturn(dto)).isEqualTo(62.5d);
     }
 

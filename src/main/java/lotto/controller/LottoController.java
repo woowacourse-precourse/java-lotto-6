@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoList;
 import lotto.domain.LottoNumber;
 import lotto.domain.Money;
-import lotto.domain.dto.LottoPurchaseDto;
+import lotto.domain.dto.LottoResultDto;
 import lotto.service.LottoService;
 import lotto.view.LottoView;
 
@@ -13,33 +13,45 @@ public class LottoController {
     private final LottoService lottoService = new LottoService();
     private final LottoView lottoView = new LottoView();
 
-    public void purchaseLottos() {
-        Money money = lottoView.getLottoPurchasingCost();
-        LottoList lottoList = LottoList.generateRandomLottoListSizeWith(money.getLottoCount());
-        printPublishedLottos(money.getLottoCount(), lottoList.getLottos());
-        Lotto winningLotto = lottoView.getWinningLotto();
-        LottoNumber bonusNumber = lottoView.getBonusNumberWithDuplicationCheck(winningLotto);
-
-        LottoPurchaseDto lottoPurchaseDto = LottoPurchaseDto.Of(lottoList, winningLotto, bonusNumber);
-
-        printStatistics(lottoPurchaseDto);
-        printRateOfReturn(lottoPurchaseDto);
+    public void start() {
+        LottoResultDto result = processLottoGame();
+        printLottoResult(result);
     }
 
-    private void printStatistics(LottoPurchaseDto lottoPurchaseDto) {
-        lottoView.printWinningStatistics(lottoService.totalWinnings(lottoPurchaseDto));
+    private LottoResultDto processLottoGame() {
+        LottoList publishedLottoList = buyLottos();
+        Lotto winningLotto = lottoView.getWinningLotto();
+        LottoNumber bonusNumber = lottoView.getBonusNumberWithDuplicationCheck(winningLotto);
+        return LottoResultDto.Of(publishedLottoList, winningLotto, bonusNumber);
+    }
+
+    private LottoList buyLottos() {
+        Money lottoPurchasingCost = lottoView.getLottoPurchasingCost();
+        int buyingLottoCount = lottoPurchasingCost.getLottoCount();
+        LottoList publishedLottoList = LottoList.generateRandomLottoListSizeWith(buyingLottoCount);
+        printPublishedLottos(buyingLottoCount, publishedLottoList.getLottos());
+        return publishedLottoList;
+    }
+
+    private void printLottoResult(LottoResultDto lottoResultDto) {
+        printStatistics(lottoResultDto);
+        printRateOfReturn(lottoResultDto);
+    }
+
+    private void printStatistics(LottoResultDto lottoResultDto) {
+        lottoView.printWinningStatistics(lottoService.totalWinnings(lottoResultDto));
     }
 
     private void printPublishedLottos(int lottoCount, List<Lotto> lottos) {
         lottoView.printPublishedLottos(lottoCount, lottos);
     }
 
-    private void printRateOfReturn(LottoPurchaseDto lottoPurchaseDto) {
-        lottoView.printRateOfReturn(calculateRateOfReturn(lottoPurchaseDto));
+    private void printRateOfReturn(LottoResultDto lottoResultDto) {
+        lottoView.printRateOfReturn(calculateRateOfReturn(lottoResultDto));
     }
 
-    private double calculateRateOfReturn(LottoPurchaseDto lottoPurchaseDto) {
-        return lottoService.calculateRateOfReturn(lottoPurchaseDto);
+    private double calculateRateOfReturn(LottoResultDto lottoResultDto) {
+        return lottoService.calculateRateOfReturn(lottoResultDto);
     }
 
 }

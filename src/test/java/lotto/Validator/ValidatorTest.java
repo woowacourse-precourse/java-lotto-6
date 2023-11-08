@@ -17,7 +17,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class ValidatorTest {
     private Validator<String> mockValidator;
 
-    private class MockValidator extends Validator<String> {
+    private static class MockValidator extends Validator<String> {
         @Override
         public String valid(String input) {
             return input;
@@ -33,6 +33,13 @@ public class ValidatorTest {
     @CsvSource(value = {"123,true", "01192,true","1a928,false", "1 23,false", "1:23,false"})
     void 모든_문자가_숫자인지_확인한다(String input, boolean expected) {
         boolean actualValue = mockValidator.isNumber(input);
+        assertEquals(expected, actualValue);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,true", "0,false", "45,true", "46,false"})
+    void 숫자가_로또_숫자인지_확인한다(int number, boolean expected) {
+        boolean actualValue = mockValidator.isLottoNumber(number);
         assertEquals(expected, actualValue);
     }
 }

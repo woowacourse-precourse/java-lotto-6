@@ -1,13 +1,14 @@
 package lotto.console;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.ConsoleMessage;
 import lotto.model.Lotto;
 import lotto.model.Capital;
 import lotto.utils.StringUtil;
 
 public class InputConsole {
     public static Capital getCapital() {
-        System.out.println("구입금액을 입력해 주세요.");
+        OutputConsole.printInputPrompt(ConsoleMessage.PURCHASE_INPUT);
 
         String input = Console.readLine();
 
@@ -19,7 +20,7 @@ public class InputConsole {
     }
 
     public static Lotto getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        OutputConsole.printInputPrompt(ConsoleMessage.WINNING_NUMBERS_INPUT);
 
         String input = Console.readLine();
 
@@ -31,7 +32,7 @@ public class InputConsole {
     }
 
     public static int getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        OutputConsole.printInputPrompt(ConsoleMessage.BONUS_NUMBER_INPUT);
 
         String input = Console.readLine();
 

@@ -6,6 +6,7 @@ import java.util.List;
 public class Player {
     private int purChaseAmount;
     private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     public void insertPurchaseAmount(int purChaseAmountInput) {
         this.purChaseAmount = purChaseAmountInput;
@@ -16,7 +17,15 @@ public class Player {
                 .map(Integer::valueOf)
                 .toList();
     }
-    
+
+    public void insertBonusNumber(String bonusNumber) {
+        this.bonusNumber = Integer.parseInt(bonusNumber);
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }

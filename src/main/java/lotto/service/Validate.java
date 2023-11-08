@@ -7,8 +7,8 @@ import java.util.Set;
 public class Validate {
 
     public void IsThousandFormat(int money) {
-        while (money > 0) {
-            if (money%10 != 0) {
+        while (money > 11) {
+            if (money%1000 != 0) {
                 System.out.println("[ERROR] 로또 구매 금액은 1000원 단위여야 합니다.");
                 throw new IllegalArgumentException();
             }

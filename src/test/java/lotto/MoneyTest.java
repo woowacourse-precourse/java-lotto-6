@@ -14,6 +14,7 @@ public class MoneyTest {
         assertThatThrownBy(() -> new Money(1234))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     void format_amountException_2() {
         assertThatThrownBy(() -> new Money(300))

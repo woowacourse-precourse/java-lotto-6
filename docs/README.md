@@ -1,5 +1,5 @@
 # 로또
-로또 프로그램은 현실의 로또 게임 기능을 구현한다.
+<b>로또 프로그램은 현실의 로또 게임 기능을 구현한다.</b>
 
 ## 유저 기능 목록
 ### 로또 번호 생성 기능
@@ -52,3 +52,32 @@
 - [X] makeLottoAsPurchaseAndAccumulate
 - [X] 당첨 번호 입력받도록 사용자에게 전달하는 메세지 필요
 - [X] 총 수익률을 출력하는 함수 해결 필요
+
+
+### 프로젝트 구조도
+```text
+.
+├── Application.java
+├── domain
+│         ├── Lotto.java
+│         ├── LottoResult.java      // 로또 결과 저장
+│         └── WinningLotto.java     // 당첨 로또 정보 저장
+├── global
+│         ├── ResponseStatus.java   // 검사 결과들 미리 선언한 Enum 클래스
+│         ├── constant
+│         │   ├── LottoConstant.java        // 로또 구현에 필요한 상수들 모음
+│         │   └── LottoRankAndPrize.java    // 로또의 등수와 상금을 저장하는 Enum 클래스
+│         └── error
+│             └── ErrorMessage.java     // 에러 메세지를 미리 선언한 Enum 클래스
+├── manager
+│         └── LottoManager.java     // 로또 게임을 진행하는 클래스
+├── utils
+│         ├── LottoReferee.java     // 로또 당첨 결과를 판단하는 클래스
+│         ├── LottoService.java     // 로또를 처리하는 로직을 모은 클래스
+│         └── NumberHandler.java    // 숫자 관련 처리가 필요한 로직을 모은 클래스
+└── view
+    ├── InputValidator.java         // 사용자의 입력의 유효성을 검사하는 클래스
+    ├── LottoInput.java             // 사용자에게 입력을 받는 클래스
+    └── LottoOutput.java            // 결과를 출력하는 클래스
+
+```

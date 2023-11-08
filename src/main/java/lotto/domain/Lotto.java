@@ -15,14 +15,21 @@ public final class Lotto {
         this(numbers.stream()
                 .map(LottoNumber::valueOf)
                 .collect(Collectors.toSet()));
+        validateLength(numbers);
+    }
+
+    private void validateLength(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_LENGTH) {
+            throw new IllegalArgumentException(String.format(LOTTO_LENGTH_ERROR.getMessage(), LOTTO_LENGTH));
+        }
     }
 
     private Lotto(Set<LottoNumber> numbers) {
-        validate(numbers);
+        validateDistinctLength(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(Set<LottoNumber> lottoNumbers) {
+    private void validateDistinctLength(Set<LottoNumber> lottoNumbers) {
         if (lottoNumbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(String.format(LOTTO_LENGTH_ERROR.getMessage(), LOTTO_LENGTH));
         }

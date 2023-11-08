@@ -8,6 +8,7 @@ import lotto.type.ErrorMessageType;
 import lotto.type.ResultType;
 
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class LottoController {
@@ -50,8 +51,8 @@ public class LottoController {
         String[] splitedNumbers = numbers.split(",");
         List<Integer> intNumbers = new ArrayList<>();
         for (String str : splitedNumbers) {
-            str.replace(" ", "");       // 각각의 공백 제거
-            if (str.matches("[0-9]+") == false) {
+            str = str.replaceAll(" ", "");       // 각각의 공백 제거
+            if (!Pattern.matches("^[1-9][0-9]*$", str)) {
                 throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.message());
             }
             intNumbers.add(Integer.parseInt(str));

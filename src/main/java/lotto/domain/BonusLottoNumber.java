@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.type.ErrorMessageType;
 
+import java.util.regex.Pattern;
+
 public class BonusLottoNumber {
     private int bonusNum;
 
@@ -9,8 +11,8 @@ public class BonusLottoNumber {
         int bonusNum = inputBonusException(bonus);
     }
 
-    private int inputBonusException(String bonus) {
-        if (bonus.matches("[0-9]+") == false) {
+    public int inputBonusException(String bonus) {
+        if (!Pattern.matches("^[1-9][0-9]*$", bonus)) {
             throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.message());
         }
         int bonusNum = Integer.parseInt(bonus);

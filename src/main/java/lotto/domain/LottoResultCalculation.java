@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.type.ErrorMessageType;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class LottoResultCalculation {
     private int inputMoney;
@@ -18,7 +19,7 @@ public class LottoResultCalculation {
     }
 
     public int inputMoneyException(String money) throws IllegalArgumentException {
-        if (money.matches("[0-9]+") == false) {
+        if (!Pattern.matches("^[1-9][0-9]*$", money)) {
             throw new IllegalArgumentException(ErrorMessageType.NOT_NUMBER.message());
         }
         int intMoney = Integer.parseInt(money);

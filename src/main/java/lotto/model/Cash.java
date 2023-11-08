@@ -1,8 +1,9 @@
 package lotto.model;
 
 
-public class Cash {
+import lotto.util.ErrorCode;
 
+public class Cash {
     private final int UNIT = 1000;
     private static int amount = 0;
     public Cash(int amount) {
@@ -18,14 +19,14 @@ public class Cash {
     public static int getAmount() { return amount; }
 
     private void validateAmount(int amount) {
-        if(amount < 1000) {
-            throw new IllegalArgumentException("최소 금액은 1000원 입니다.");
+        if(amount < UNIT) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_CASH_AMOUNT.getMessage());
         }
     }
 
     private void validateAmountUnit(int amount) {
         if (amount % UNIT != 0) {
-            throw new IllegalArgumentException("1000원 단위로만 참여 가능합니다.");
+            throw new IllegalArgumentException(ErrorCode.INVALID_CASH_UNIT.getMessage());
         }
     }
 }

@@ -49,7 +49,4 @@ public class lottoController {
         printLottoResults(lottoService.getLottoHashMap());
         messagePrinter.printProfitRate();
     }
-
-
-
 }

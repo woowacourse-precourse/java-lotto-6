@@ -11,7 +11,6 @@ import lotto.model.Rank;
 import lotto.model.WinningLotto;
 
 public class lottoService {
-
     private static final int LOWER_BOUND = 1;
     private static final int UPPER_BOUND = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;

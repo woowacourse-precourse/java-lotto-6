@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import lotto.service.lottoService;
+import lotto.util.ErrorCode;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +15,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.INVALID_NUMBER_SIZE.getMessage());
         }
     }
 
@@ -22,7 +23,7 @@ public class Lotto {
     private void validateRedundantNumbers(List<Integer> numbers) {
         List<Integer> distinctList = numbers.stream().distinct().toList();
         if (numbers.size() != distinctList.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.REDUNDANT_NUMBER.getMessage());
         }
     }
 

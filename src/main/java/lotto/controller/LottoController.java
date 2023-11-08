@@ -6,9 +6,9 @@ import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.result.Result;
 import lotto.domain.winning.Winning;
+import lotto.service.LottoGenerator;
 import lotto.service.LottoInputReader;
 import lotto.service.LottoOutputWriter;
-import lotto.service.MultiLottoGenerator;
 
 public class LottoController {
 
@@ -38,17 +38,17 @@ public class LottoController {
 
     private int createLottoSize() {
         int purchaseAmount = reader.readPurchaseAmount();
+
         return purchaseAmount / PURCHASE_AMOUNT_UNIT;
     }
 
     private List<Lotto> createLottos(int lottoSize) {
         writer.showPurchaseLottoSize(lottoSize);
 
-        MultiLottoGenerator generator = MultiLottoGenerator.of(lottoSize);
-
+        LottoGenerator generator = LottoGenerator.of(lottoSize);
         List<Lotto> lottos = generator.generate();
 
-        writer.showLottos(lottos);
+        writer.showAllLotto(lottos);
 
         return lottos;
     }

@@ -6,14 +6,28 @@ import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.domain.lotto.Lotto;
 
-public abstract class SingleLottoGenerator {
+public class LottoGenerator {
 
-    private SingleLottoGenerator() {
+    private final int lottoSize;
+
+    public static LottoGenerator of(int lottoSize) {
+        return new LottoGenerator(lottoSize);
     }
 
-    public static Lotto generate() {
+    private LottoGenerator(int lottoSize) {
+        this.lottoSize = lottoSize;
+    }
+
+    public List<Lotto> generate() {
+        return IntStream.range(0, this.lottoSize)
+                .mapToObj(count -> generateSingleLotto())
+                .toList();
+    }
+
+    private Lotto generateSingleLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER,
                         LOTTO_END_NUMBER,
                         LOTTO_NUMBER_COUNT)

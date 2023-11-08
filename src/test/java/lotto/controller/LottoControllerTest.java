@@ -33,7 +33,7 @@ class LottoControllerTest {
         controller.run();
 
         // Assert
-        verify(mockOutputWriter).showLottos(anyList());
+        verify(mockOutputWriter).showAllLotto(anyList());
         verify(mockOutputWriter, times(5)).showStatistics(any(Grade.class), anyInt());
         verify(mockOutputWriter).showProfit(anyDouble());
     }

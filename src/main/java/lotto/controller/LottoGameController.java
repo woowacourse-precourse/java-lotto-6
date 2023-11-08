@@ -1,6 +1,11 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoPurchase;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.roulette.Roulette;
+import lotto.domain.roulette.RouletteResult;
+import lotto.domain.roulette.WinningLotto;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

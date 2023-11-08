@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.RouletteResult;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.roulette.RouletteResult;
 
 import java.util.List;
 import java.util.Map;

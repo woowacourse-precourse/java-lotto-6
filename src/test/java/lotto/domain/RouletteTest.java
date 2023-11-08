@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.roulette.Roulette;
+import lotto.domain.roulette.RouletteResult;
+import lotto.domain.roulette.WinningLotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

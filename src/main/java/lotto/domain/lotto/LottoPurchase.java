@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 public class LottoPurchase {
     private final static int MIN_AMOUNT = 0;

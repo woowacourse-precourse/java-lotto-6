@@ -1,4 +1,8 @@
-package lotto.domain;
+package lotto.domain.roulette;
+
+import lotto.domain.lotto.LottoPurchase;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 
 import java.util.Arrays;
 import java.util.HashMap;

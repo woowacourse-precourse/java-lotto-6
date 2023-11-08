@@ -1,6 +1,11 @@
 package lotto.service;
 
-import lotto.domain.*;
+import lotto.domain.lotto.LottoGenerator;
+import lotto.domain.lotto.LottoPurchase;
+import lotto.domain.lotto.Lottos;
+import lotto.domain.roulette.Roulette;
+import lotto.domain.roulette.RouletteResult;
+import lotto.domain.roulette.WinningLotto;
 
 import java.util.List;
 import java.util.Map;

@@ -14,7 +14,7 @@ public class LottoTicketTest {
 
     @BeforeEach
     void setInit() {
-        lottos = IntStream.range(0, 5)
+        lottos = IntStream.range(0, 2)
                 .mapToObj(i -> Lotto.from(List.of(1, 2, 3, 4, 5, 6)))
                 .collect(Collectors.toList());
     }
@@ -24,7 +24,7 @@ public class LottoTicketTest {
         //when
         LottoTicket lottoTicket = new LottoTicket(lottos);
         //then
-        assertThat(lottoTicket.getLottos().size()).isEqualTo(5);
+        assertThat(lottoTicket.getLottos().size()).isEqualTo(2);
     }
 
     @Test
@@ -35,6 +35,20 @@ public class LottoTicketTest {
         //when
         List<Ranking> rankings = lottoTicket.checkRankings(winLotto);
         //then
-        assertThat(rankings).containsExactly(Ranking.FIFTH, Ranking.FIFTH, Ranking.FIFTH, Ranking.FIFTH, Ranking.FIFTH);
+        assertThat(rankings).containsExactly(Ranking.FIFTH, Ranking.FIFTH);
+    }
+
+    @Test
+    void getLottosNumber_메서드는_각각의_로또_번호들을_반환한다() {
+        //given
+        LottoTicket lottoTicket = new LottoTicket(lottos);
+        //when
+        List<List<Integer>> lottosNumber = lottoTicket.getLottosNumber();
+        // then
+        assertThat(lottosNumber)
+                .containsExactly(
+                        List.of(1, 2, 3, 4, 5, 6),
+                        List.of(1, 2, 3, 4, 5, 6)
+                );
     }
 }

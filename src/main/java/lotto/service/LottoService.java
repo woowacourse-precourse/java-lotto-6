@@ -1,28 +1,30 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.LottoFactory;
 import lotto.domain.LottoGameResult;
 import lotto.constant.LottoRank;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.constant.NumericConstant.LOTTO_SIZE;
 import static lotto.constant.NumericConstant.LOTTO_PRICE;
-import static lotto.constant.NumericConstant.MAX_LOTTO_NUMBER;
-import static lotto.constant.NumericConstant.MIN_LOTTO_NUMBER;
 
 public class LottoService {
 
     private long totalPurchaseAmount = 0;
     private List<Lotto> userLottos = new ArrayList<>();
+    private LottoFactory lottoFactory;
+
+    public LottoService(LottoFactory lottoFactory) {
+        this.lottoFactory = lottoFactory;
+    }
 
     public List<Lotto> buyLotto(int money) {
         totalPurchaseAmount += money;
         int count = money / LOTTO_PRICE;
 
-        userLottos = createLottos(count);
+        userLottos = lottoFactory.createLottos(count);
         return userLottos;
     }
 
@@ -35,18 +37,5 @@ public class LottoService {
         }
 
         return lottoGameResult;
-    }
-
-    private List<Lotto> createLottos(int count) {
-        List<Lotto> createdLottos = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            List<Integer> numbers
-                    = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
-
-            createdLottos.add(new Lotto(numbers));
-        }
-
-        return createdLottos;
     }
 }

@@ -1,8 +1,10 @@
 package lotto.service;
 
 import lotto.constant.LottoRank;
+import lotto.domain.DefualtLottoNumbersGenerator;
 import lotto.domain.Lotto;
 
+import lotto.domain.LottoFactory;
 import lotto.domain.LottoGameResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -17,23 +19,22 @@ class LottoServiceTest {
     @Test
     @DisplayName("구입되는 로또의 수량은 구매금액에서 로또가격을 나눈 값이어야 한다.")
     void buyLotto() {
-        LottoService lottoService = new LottoService();
+        LottoService lottoService = new LottoService(new LottoFactory(new DefualtLottoNumbersGenerator()));
         int money = 5000;
 
         List<Lotto> lottos = lottoService.buyLotto(5000);
         assertThat(lottos.size()).isEqualTo(money / LOTTO_PRICE);
     }
 
-
     @Test
     @DisplayName("로또 게임의 결과가 올바르게 반환되는지 테스트")
     void getResultOfLottos() {
-        LottoService lottoService = new LottoService();
+        LottoService lottoService = new LottoService(new LottoFactory(new DefualtLottoNumbersGenerator()));
         int money = 10_000;
 
         lottoService.buyLotto(10_000); //로또 10장 구입
 
-        Lotto winningLotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
         LottoGameResult result = lottoService.getResultOfLottos(winningLotto, bonusNumber);

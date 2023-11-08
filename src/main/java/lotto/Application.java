@@ -18,9 +18,6 @@ public class Application {
         int bonusNumber = lottoController.inputBonusNumber();
         winningNumbers.add(bonusNumber);
 
-        List<Integer> result = lottoService.getWinningStatistics(winningNumbers, lottoBundle);
-        System.out.println(result.toString());
-
-
+        lottoController.showWinningStatistics(cash, winningNumbers, lottoBundle);
     }
 }

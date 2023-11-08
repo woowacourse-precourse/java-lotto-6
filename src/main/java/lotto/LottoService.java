@@ -10,26 +10,6 @@ public class LottoService {
     static final int START_NUMBER = 1;
     static final int END_NUMBER = 45;
     static final int COUNT_NUMBER = 6;
-    enum WINNING {
-        THREE(0),
-        FOUR(0),
-        FIVE(0),
-        FIVE_BONUS(0),
-        SIX(0);
-
-        private int value;
-
-        WINNING(int value) {
-            this.value = value;
-        }
-
-        void addValue() {
-
-        }
-        int getValue() {
-            return value;
-        }
-    }
 
     int getInput() {
         int parsedInput;
@@ -108,35 +88,83 @@ public class LottoService {
         return lottoBundle;
     }
 
-    List<Integer> getWinningStatistics(List<Integer> winningNumbers, List<Lotto> lottoBundle) {
-        List<Integer> winningStatistics = new ArrayList<>();
+    List<Prize> getWinningStatistics(List<Integer> winningNumbers, List<Lotto> lottoBundle) {
+        List<Prize> winningStatistics = new ArrayList<>();
 
         for (int i = 0; i < lottoBundle.size(); i++) {
             Lotto lotto = lottoBundle.get(i);
             List<Integer> lottoNumbers = lotto.getNumbers();
-            winningStatistics.add(compareWinningAndLotto(winningNumbers, lottoNumbers));
+            Prize prize = compareWinningAndLotto(winningNumbers, lottoNumbers);
+            winningStatistics.add(prize);
         }
 
         return winningStatistics;
     }
 
-    int compareWinningAndLotto(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
-        int containsCount = 0;
+    Prize compareWinningAndLotto(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
+        int generalCount = 0;
+        int bonusCount = 0;
         int bonusNumberIndex = winningNumbers.size() - 1;
+        int bouusNumber = winningNumbers.get(bonusNumberIndex);
 
-        // 마지막 번호인 보너스 번호를 제외하고 비교
-        for (int i = 0; i < bonusNumberIndex; i++) {
-            if (lottoNumbers.contains(winningNumbers.get(i))) {
-                containsCount++;
+        generalCount += countGeneralNumber(winningNumbers, lottoNumbers);
+        bonusCount += countBonusNumber(bouusNumber, lottoNumbers);
+
+        if (bonusCount < 1) {
+            if (generalCount == 3) {
+                return Prize.FIFTH;
+            }
+            if (generalCount == 4) {
+                return Prize.FOURTH;
+            }
+            if (generalCount == 5) {
+                return Prize.THIRD;
+            }
+            if (generalCount == 6) {
+                return Prize.FIRST;
             }
         }
 
-        // 보너스 번호가 포함되어 있는지 확인
-        if (lottoNumbers.contains(winningNumbers.get(bonusNumberIndex))) {
-            containsCount++;
+        if (bonusCount > 1 && generalCount == 5) {
+            return Prize.SECOND;
         }
 
-        return containsCount;
+        return Prize.NONE;
     }
 
+    int countGeneralNumber(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
+        int generalCount = 0;
+        int bonusNumberIndex = winningNumbers.size() - 1;
+
+        for (int i = 0; i < bonusNumberIndex; i++) {
+            if (lottoNumbers.contains(winningNumbers.get(i))) {
+                generalCount++;
+            }
+        }
+
+        return generalCount;
+    }
+
+    int countBonusNumber(int bonusNumber, List<Integer> lottoNumbers) {
+        int bonusCount = 0;
+
+        if (lottoNumbers.contains(bonusNumber)) {
+            bonusCount++;
+        }
+
+        return bonusCount;
+    }
+
+    float getRateOfReturn(int cash, List<Prize> winningStatistics) {
+        float rateOfReturn;
+        int prize = 0;
+
+        for (int i = 0; i < winningStatistics.size(); i++) {
+            prize += winningStatistics.get(i).getPrize();
+        }
+
+        rateOfReturn = (float) prize / cash * 100;
+
+        return rateOfReturn;
+    }
 }

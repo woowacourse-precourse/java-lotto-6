@@ -52,7 +52,7 @@ public class UserView {
         }
     }
 
-    public void totalResult(HashMap<Rewards, Integer> resultAll, String winningRate) {
+    public void totalResult(List<String> resultAll, String winningRate) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -60,13 +60,9 @@ public class UserView {
         rate(winningRate);
     }
 
-    public void winningsLog(HashMap<Rewards, Integer> resultAll) {
-        Rewards[] rewards = Rewards.values();
-        Arrays.sort(rewards, Comparator.comparingInt(Rewards::correctLottos));
-
-        for (Rewards reward : rewards) {
-            System.out.printf("%s %s - %d개\n", reward.getNotifyMessege(), viewProcessor.moneyEdit(reward)
-                    , resultAll.get(reward));
+    public void winningsLog(List<String> resultAll) {
+        for (String result : resultAll) {
+            System.out.println(resultAll);
         }
     }
 

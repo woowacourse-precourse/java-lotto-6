@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoService {
-    private static final int LOTTO_PRICE = 1000;
-    private static final int LOTTO_MIN = 1;
-    private static final int LOTTO_MAX = 45;
-    private static final int LOTTO_COUNT = 6;
-    private static final int RANKING = 5;
-    private static final int[] lottoWinsCount = new int[RANKING];
-    private static final Rank[] ranks = Rank.values();
+    static final int LOTTO_PRICE = 1000;
+    static final int LOTTO_MIN = 1;
+    static final int LOTTO_MAX = 45;
+    static final int LOTTO_COUNT = 6;
+    static final int RANKING = 5;
+    static final int[] lottoWinsCount = new int[RANKING];
+    static final Rank[] ranks = Rank.values();
 
     public int readPaid() {
         while (true) {

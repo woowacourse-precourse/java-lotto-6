@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
+import lotto.model.LottoSalesOffice;
 import lotto.model.Money;
 import lotto.model.User;
 import lotto.model.WinningLotto;
@@ -31,7 +32,8 @@ public class GameController {
 
     private void setUser() {
         Money money = inputController.readMoney();
-        user = new User(money);
+        LottoSalesOffice salesOffice = new LottoSalesOffice();
+        user = new User(money, salesOffice.buyLottos(money.getPurchaseLottoCount()));
     }
 
     private void printUserLottos() {

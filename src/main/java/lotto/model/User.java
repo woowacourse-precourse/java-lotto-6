@@ -3,23 +3,14 @@ package lotto.model;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class User {
     private final Map<Lotto, LottoResult> lottos;
     private final Money spendMoney;
 
-    public User(Money money) {
+    public User(Money money, List<Lotto> lottos) {
         this.spendMoney = money;
-        this.lottos = buyLottos(spendMoney.getPurchaseLottoCount())
-                .stream().collect(Collectors.toMap(lotto -> lotto, result -> LottoResult.DEFAULT));
-    }
-
-    private List<Lotto> buyLottos(int lottoCount) {
-        RandomLottoGenerator lottoGenerator = new RandomLottoGenerator();
-        return IntStream.range(0, lottoCount)
-                .mapToObj(i -> lottoGenerator.generate())
-                .toList();
+        this.lottos = lottos.stream().collect(Collectors.toMap(lotto -> lotto, result -> LottoResult.DEFAULT));
     }
 
     public void calculateLottoResults(WinningLotto winningLotto) {

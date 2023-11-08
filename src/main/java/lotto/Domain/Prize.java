@@ -25,8 +25,8 @@ public enum Prize {
         return prizeMoney;
     }
 
-    public void setCount(int count){
-        this.count = count;
+    public void plusCount(int count){
+        this.count += count;
     }
     public int getCount(){
         return count;

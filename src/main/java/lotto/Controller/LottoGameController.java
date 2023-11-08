@@ -39,7 +39,8 @@ public class LottoGameController {
 
         // 당첨 확인 및 결과 출력
         Map<Integer, Integer> results = machine.checkTickets();
-        view.displayResults(results);
+        view.showWinning(results);
+        //view.displayResults(results);
 
         // 수익률 계산 및 출력
         double revenueRate = calculateRevenueRate(purchaseAmount, results);

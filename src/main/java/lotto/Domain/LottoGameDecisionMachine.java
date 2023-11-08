@@ -1,11 +1,17 @@
 package lotto.Domain;
 
-import lotto.Domain.Lotto;
-
+import lotto.Domain.*;
 import java.util.*;
 
 public class LottoGameDecisionMachine {
     private List<Lotto> tickets = new ArrayList<>();
+    private final static ArrayList<Prize> PRIZE_TYPE = new ArrayList<>(Arrays.asList(
+            Prize.FIRST_PLACE,
+            Prize.SECOND_PLACE,
+            Prize.THIRD_PLACE,
+            Prize.FOURTH_PLACE,
+            Prize.FIFTH_PLACE));
+
     private List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
 
@@ -36,32 +42,33 @@ public class LottoGameDecisionMachine {
         return tickets;
     }
 
-    public Prize checkTickets1(){
-         for(Lotto ticket : tickets){
-             ticket.getNumbers() = F
-
-         }
-    }
     public Map<Integer, Integer> checkTickets() {
         Map<Integer, Integer> result = new HashMap<>();
         for (Lotto ticket : tickets) {
             int numMatching = countMatchingNumbers(ticket.getNumbers());
             if (numMatching == 6) {
                 result.put(6, result.getOrDefault(6, 0) + 1);
-
-
-                System.out.println(result.get(6));
-            } else if (numMatching == 5 && ticket.getNumbers().contains(bonusNumber)) {
-                result.put(7, result.getOrDefault(7, 0) + 1);
-            }else if (numMatching == 5  && !(ticket.getNumbers().contains(bonusNumber))) {
-                result.put(5, result.getOrDefault(5, 0) + 1);
-            }else if (numMatching == 4) {
-                result.put(4, result.getOrDefault(4, 0) + 1);
-            } else if (numMatching == 3) {
-                result.put(3, result.getOrDefault(3, 0) + 1);
-            } else {
-                result.put(numMatching, result.getOrDefault(numMatching, 0) + 1);
+                Prize.FIRST_PLACE.plusCount(1);
+                //System.out.println(result.get(6));
             }
+            if (numMatching == 5 && ticket.getNumbers().contains(bonusNumber)) {
+                Prize.SECOND_PLACE.plusCount(1);
+                //result.put(7, result.getOrDefault(7, 0) + 1);
+            }
+            if (numMatching == 5  && !(ticket.getNumbers().contains(bonusNumber))) {
+                Prize.THIRD_PLACE.plusCount(1);
+                //result.put(5, result.getOrDefault(5, 0) + 1);
+            }
+            if (numMatching == 4) {
+                //result.put(4, result.getOrDefault(4, 0) + 1);
+                Prize.FOURTH_PLACE.plusCount(1);
+            }
+            if (numMatching == 3) {
+                //result.put(3, result.getOrDefault(3, 0) + 1);
+                Prize.FIFTH_PLACE.plusCount(1);
+            } //else {
+                //result.put(numMatching, result.getOrDefault(numMatching, 0) + 1);
+            //}
         }
         return result;
     }

@@ -32,8 +32,7 @@ public class LottoStore {
             purchaseLottos = new PurchaseLottos(lottoMachine, purchaseAmount.getPurchaseAmount());
             showEmptyLine();
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            showEmptyLine();
+            System.out.println(exception.getMessage()+"\n");
             buyLottos();
         }
     }
@@ -48,8 +47,7 @@ public class LottoStore {
             winningLotto = new Lotto(InputView.inputWinningLotto());
             showEmptyLine();
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            showEmptyLine();
+            System.out.println(exception.getMessage()+"\n");
             setWinningLotto();
         }
     }
@@ -59,8 +57,7 @@ public class LottoStore {
             bonusNumber = new BonusNumber(InputView.inputBonusNumber(), winningLotto.getNumbers());
             showEmptyLine();
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            showEmptyLine();
+            System.out.println(exception.getMessage()+"\n");
             setBonusNumber();
         }
     }

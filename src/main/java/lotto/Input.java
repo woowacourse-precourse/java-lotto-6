@@ -14,7 +14,7 @@ public class Input {
 
         do {
             try {
-                price = inputprice();
+                price = readInputPrice();
                 validPrice = true;
             } catch (IllegalArgumentException wrongPrice) {
                 System.out.println("[ERROR] " + wrongPrice.getMessage());
@@ -23,7 +23,7 @@ public class Input {
         return price;
     }
 
-    private int inputprice() {
+    private int readInputPrice() {
         String rawPrice = Console.readLine();
         checkPrice(rawPrice);
         return Converter.parseToInt(rawPrice);
@@ -38,6 +38,21 @@ public class Input {
     }
 
     public List<Integer> inputWinNumbers() {
+        List<Integer> winNumbers = new ArrayList<>();
+        boolean validWinNumbers = false;
+        do {
+            try {
+                winNumbers = readInputWinNumbers();
+                validWinNumbers = true;
+            } catch (IllegalArgumentException wrongWinNumber) {
+                System.out.println("[ERROR] " + wrongWinNumber.getMessage());
+            }
+        } while (!validWinNumbers);
+
+        return winNumbers;
+    }
+
+    public List<Integer> readInputWinNumbers() {
         String rawNumbers = Console.readLine();
         return convertedWinNumber(rawNumbers); // 범위확인 넣을것
     }
@@ -53,16 +68,39 @@ public class Input {
         }
         int convertedRawNumber = Converter.parseToInt(nowNumbers);
         splitNumbers.add(convertedRawNumber);
+        checkWinNumberSize(splitNumbers);
         return splitNumbers;
     }
 
     private List<Integer> checkAndthenAdd(String tempNumber, List<Integer> splitNumbers) {
         int convertedTempNumber = Converter.parseToInt(tempNumber);
+        checkNumberRange(convertedTempNumber);
+        checkSameNumber(convertedTempNumber, splitNumbers);
         splitNumbers.add(convertedTempNumber);
         return splitNumbers;
     }
 
+    private void checkNumberRange(int tempNumber) {
+        if (!(tempNumber>=1 && tempNumber<=45)) {
+            throw new IllegalArgumentException("1부터 45까지의 정수를 입력해 주세요");
+        }
+    }
+
+    private void checkWinNumberSize(List<Integer> winNumbers) {
+        if (!(winNumbers.size() == 6)) {
+            throw new IllegalArgumentException("6개의 정수를 입력해주세요");
+        }
+    }
+
+    private void checkSameNumber(int tempNumber, List<Integer> winNumbers) {
+        if (winNumbers.contains(tempNumber)) {
+            throw new IllegalArgumentException("중복되지않는 6개의 정수를 입력해주세요");
+        }
+    }
+
     public int inputBonusNumber () {
-        return Converter.parseToInt(Console.readLine()); // 범위확인 넣을것
+        int bonusNumber = Converter.parseToInt(Console.readLine());
+        checkNumberRange(bonusNumber);
+        return bonusNumber;
     }
 }

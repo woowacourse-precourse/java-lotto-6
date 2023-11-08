@@ -11,6 +11,7 @@ import lotto.model.domain.vo.Rank;
 
 public class RankingBoard {
 
+    private static final int INIT_NUMBER_OF_PERSON = 0;
     private LottoWinNumber lottoWinNumber;
     private Map<Rank, Integer> rankCount;
 
@@ -18,7 +19,7 @@ public class RankingBoard {
         this.lottoWinNumber = lottoWinNumber;
         rankCount = new EnumMap<>(Rank.class);
         Arrays.stream(Rank.values())
-                .forEach(rank -> rankCount.put(rank, 0));
+                .forEach(rank -> rankCount.put(rank, INIT_NUMBER_OF_PERSON));
     }
 
     public static RankingBoard from(LottoWinNumber lottoWinNumber) {

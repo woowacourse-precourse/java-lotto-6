@@ -7,7 +7,7 @@ import lotto.Domain.LottoRate;
 
 public class LottoCal {
     private static final int SECOND_REQUIRE = 5;
-    private static final int SECOND_REQUIRE_SUCCESS = 0;
+    private static final int SECOND_REQUIRE_SUCCESS = 7;
     private Map<Integer,Integer> prizeCount;
     public LottoCal(){
         prizeCount = new HashMap<>();
@@ -26,6 +26,7 @@ public class LottoCal {
         boolean bonusCheck = userLotto.contains(userBonus);
         lotto.retainAll(userLotto);
         int count=lotto.size();
+        System.out.println("aa"+count);
         if(count==SECOND_REQUIRE && bonusCheck){
             count=SECOND_REQUIRE_SUCCESS;
         }

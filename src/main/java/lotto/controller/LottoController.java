@@ -23,7 +23,7 @@ public class LottoController {
     private UserLottoPrice userLottoPrice;
     private LottoCal lottoCal = new LottoCal();
     private RateView rateView = new RateView();
-    private static final List<Integer> RESULT_INDEX = new ArrayList<>(Arrays.asList(3,4,5,0,6));
+    private static final List<Integer> RESULT_INDEX = new ArrayList<>(Arrays.asList(3,4,5,7,6));
 
     public void buyLotto(){
         String buyPrice = userLottoView.inputBuyPrice();

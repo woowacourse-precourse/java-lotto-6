@@ -22,7 +22,7 @@ class PrizeSummaryDtoTest {
         );
         PrizeSummary prizeSummary = PrizeSummary.from(summary);
 
-        PrizeSummaryDto prizeSummaryDto = PrizeSummaryDto.from(prizeSummary);
+        PrizeSummaryDto prizeSummaryDto = PrizeSummaryDto.from(prizeSummary.getSummary());
 
         assertThat(prizeSummaryDto.getPrizeSummary())
                 .doesNotContainKey(LottoPrize.NOTHING);
@@ -39,7 +39,7 @@ class PrizeSummaryDtoTest {
         );
         PrizeSummary prizeSummary = PrizeSummary.from(summary);
 
-        PrizeSummaryDto prizeSummaryDto = PrizeSummaryDto.from(prizeSummary);
+        PrizeSummaryDto prizeSummaryDto = PrizeSummaryDto.from(prizeSummary.getSummary());
 
         Set<LottoPrize> actualLottoPrizeKey = prizeSummaryDto.getPrizeSummary().keySet();
         assertThat(actualLottoPrizeKey).containsExactly(

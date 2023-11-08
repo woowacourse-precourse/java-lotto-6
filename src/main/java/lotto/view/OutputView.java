@@ -14,7 +14,7 @@ public class OutputView {
     private static final String LOTTO_GROUP_SIZE_FORMAT = "%d개를 구매했습니다.";
     private static final String TOTAL_PRIZE_RESULT_START_MESSAGE = "당첨 통계";
     private static final String LINE_SEPARATOR = "---";
-    private static final String PRIZE_AMOUNT_FORMAT = "%,d";
+    private static final String PRIZE_MONEY_FORMAT = "%,d";
     private static final String NORMAL_PRIZE_MESSAGE_FORMAT = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_PRIZE_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String TOTAL_PROFIT_RATE_FORMAT = "%,.1f";
@@ -72,21 +72,6 @@ public class OutputView {
         printer.printEmptyLine();
     }
 
-    public void printTotalProfitRate(TotalProfitRateDto totalProfitRateDto) {
-        double rawTotalProfitRate = totalProfitRateDto.getTotalProfitRate();
-        String totalProfitRateFormatted = formatTotalProfitRate(rawTotalProfitRate);
-        String totalProfitRateMessage = formatTotalProfitRateMessage(totalProfitRateFormatted);
-        printer.printLine(totalProfitRateMessage);
-    }
-
-    private static String formatTotalProfitRate(double rawTotalProfitRate) {
-        return String.format(TOTAL_PROFIT_RATE_FORMAT, rawTotalProfitRate);
-    }
-
-    private static String formatTotalProfitRateMessage(String totalProfitRateFormatted) {
-        return String.format(TOTAL_PROFIT_RATE_MESSAGE_FORMAT, totalProfitRateFormatted);
-    }
-
     public void printPrizeSummary(PrizeSummaryDto prizeSummaryDto) {
         printer.printLine(TOTAL_PRIZE_RESULT_START_MESSAGE);
         printer.printLine(LINE_SEPARATOR);
@@ -104,28 +89,46 @@ public class OutputView {
     }
 
     private static String formatPrizeMessage(LottoPrize lottoPrize, Long numberOfPrizesMatched) {
-        int numberOfRequiredMatches = lottoPrize.getRequiredMatchingNumbers();
-        String prizeAmountFormatted = formatPrizeAmount(lottoPrize);
-        String prizeMessage = formatNormalPrizeMessage(numberOfRequiredMatches, prizeAmountFormatted,
+        int requiredMatchingNumbers = lottoPrize.getRequiredMatchingNumbers();
+        String prizeMoneyFormatted = formatPrizeMoney(lottoPrize);
+        String prizeMessage = formatNormalPrizeMessage(requiredMatchingNumbers, prizeMoneyFormatted,
                 numberOfPrizesMatched);
 
         if (lottoPrize.isSecondPrize()) {
-            prizeMessage = formatSecondPrizeMessage(numberOfRequiredMatches, prizeAmountFormatted,
+            prizeMessage = formatSecondPrizeMessage(requiredMatchingNumbers, prizeMoneyFormatted,
                     numberOfPrizesMatched);
         }
         return prizeMessage;
     }
 
-    private static String formatPrizeAmount(LottoPrize lottoPrize) {
-        int prizeAmount = lottoPrize.getPrizeMoney();
-        return String.format(PRIZE_AMOUNT_FORMAT, prizeAmount);
+    private static String formatPrizeMoney(LottoPrize lottoPrize) {
+        int prizeMoney = lottoPrize.getPrizeMoney();
+        return String.format(PRIZE_MONEY_FORMAT, prizeMoney);
     }
 
-    private static String formatNormalPrizeMessage(int matchCount, String formattedPrizeAmount, long prizeCount) {
-        return String.format(NORMAL_PRIZE_MESSAGE_FORMAT, matchCount, formattedPrizeAmount, prizeCount);
+    private static String formatNormalPrizeMessage(int requiredMatchingNumbers, String prizeMoneyFormatted,
+                                                   long numberOfPrizesMatched) {
+        return String.format(NORMAL_PRIZE_MESSAGE_FORMAT, requiredMatchingNumbers, prizeMoneyFormatted,
+                numberOfPrizesMatched);
     }
 
-    private static String formatSecondPrizeMessage(int matchCount, String formattedPrizeAmount, long prizeCount) {
-        return String.format(SECOND_PRIZE_MESSAGE_FORMAT, matchCount, formattedPrizeAmount, prizeCount);
+    private static String formatSecondPrizeMessage(int matchCount, String prizeMoneyFormatted,
+                                                   long numberOfPrizesMatched) {
+        return String.format(SECOND_PRIZE_MESSAGE_FORMAT, matchCount, prizeMoneyFormatted, numberOfPrizesMatched);
+    }
+
+    public void printTotalProfitRate(TotalProfitRateDto totalProfitRateDto) {
+        double rawTotalProfitRate = totalProfitRateDto.getTotalProfitRate();
+        String totalProfitRateFormatted = formatTotalProfitRate(rawTotalProfitRate);
+        String totalProfitRateMessage = formatTotalProfitRateMessage(totalProfitRateFormatted);
+        printer.printLine(totalProfitRateMessage);
+    }
+
+    private static String formatTotalProfitRate(double rawTotalProfitRate) {
+        return String.format(TOTAL_PROFIT_RATE_FORMAT, rawTotalProfitRate);
+    }
+
+    private static String formatTotalProfitRateMessage(String totalProfitRateFormatted) {
+        return String.format(TOTAL_PROFIT_RATE_MESSAGE_FORMAT, totalProfitRateFormatted);
     }
 }

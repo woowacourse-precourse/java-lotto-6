@@ -26,27 +26,27 @@ public enum LottoPrize {
         this.isBonusNumberRequired = isBonusNumberRequired;
     }
 
-    public static LottoPrize of(int numberOfMatches, boolean isBonusNumberRequired) {
-        if (isEligibleForSecondPrize(numberOfMatches, isBonusNumberRequired)) {
+    public static LottoPrize of(int matchingNumbers, boolean isBonusNumberMatched) {
+        if (isEligibleForSecondPrize(matchingNumbers, isBonusNumberMatched)) {
             return SECOND_PRIZE;
         }
 
-        return findByMatchingNumbers(numberOfMatches);
+        return findByMatchingNumbers(matchingNumbers);
     }
 
-    private static boolean isEligibleForSecondPrize(int numberOfMatches, boolean isBonusNumberRequired) {
-        return numberOfMatches == SECOND_PRIZE.requiredMatchingNumbers && isBonusNumberRequired;
+    private static boolean isEligibleForSecondPrize(int matchingNumbers, boolean isBonusNumberMatched) {
+        return matchingNumbers == SECOND_PRIZE.requiredMatchingNumbers && isBonusNumberMatched;
     }
 
-    private static LottoPrize findByMatchingNumbers(int matchCount) {
+    private static LottoPrize findByMatchingNumbers(int matchingNumbers) {
         return Stream.of(values())
-                .filter(prize -> isMatchingNumbers(prize, matchCount))
+                .filter(prize -> isMatchingNumbers(prize, matchingNumbers))
                 .findFirst()
                 .orElse(NOTHING);
     }
 
-    private static boolean isMatchingNumbers(LottoPrize prize, int matchCount) {
-        return prize.requiredMatchingNumbers == matchCount;
+    private static boolean isMatchingNumbers(LottoPrize prize, int matchingNumbers) {
+        return prize.requiredMatchingNumbers == matchingNumbers;
     }
 
     public long calculatePrizeAmount(Long prizeCount) {

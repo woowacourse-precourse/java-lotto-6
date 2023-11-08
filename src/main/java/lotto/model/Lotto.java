@@ -64,10 +64,10 @@ public final class Lotto {
     }
 
     public LottoPrize determineLottoPrize(WinningCombination winningCombination) {
-        int numberOfMatches = countMatchingNumbers(winningCombination);
+        int matchingNumbers = countMatchingNumbers(winningCombination);
         boolean isBonusNumberMatched = hasBonusNumber(winningCombination);
 
-        return LottoPrize.of(numberOfMatches, isBonusNumberMatched);
+        return LottoPrize.of(matchingNumbers, isBonusNumberMatched);
     }
 
     private int countMatchingNumbers(WinningCombination winningCombination) {

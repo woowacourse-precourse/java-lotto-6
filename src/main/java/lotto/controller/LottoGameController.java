@@ -104,12 +104,12 @@ public class LottoGameController {
     }
 
     private void printPrizeSummary(PrizeSummary prizeSummary) {
-        PrizeSummaryDto prizeSummaryDto = PrizeSummaryDto.from(prizeSummary);
+        PrizeSummaryDto prizeSummaryDto = PrizeSummaryDto.from(prizeSummary.getSummary());
         outputView.printPrizeSummary(prizeSummaryDto);
     }
 
     private static TotalProfitRate generateTotalProfitRate(PrizeSummary prizeSummary, InvestmentMoney investmentMoney) {
-        return prizeSummary.calculateTotalProfitRate(investmentMoney);
+        return prizeSummary.generateTotalProfitRate(investmentMoney);
     }
 
     private void printTotalProfitRate(TotalProfitRate totalProfitRate) {

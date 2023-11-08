@@ -7,12 +7,12 @@ public class WinningCombination {
     private final LottoNumber bonusNumber;
 
     private WinningCombination(Lotto winningLotto, LottoNumber bonusNumber) {
-        validate(winningLotto, bonusNumber);
+        validateBonusNumberNotDuplicated(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(Lotto winningLotto, LottoNumber bonusNumber) {
+    private void validateBonusNumberNotDuplicated(Lotto winningLotto, LottoNumber bonusNumber) {
         if (winningLotto.hasNumber(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_EXCEPTION);
         }

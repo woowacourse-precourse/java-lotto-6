@@ -14,6 +14,16 @@ public class Result {
         }
     }
 
+    public void printResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (int i = 5; i >= 0; i--) {
+            printResultByRank(i + 1, matchCounts[i]);
+        }
+        double totalProfitRate = calculateTotalProfitRate();
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", totalProfitRate);
+    }
+
     private void printResultByRank(int rank, int count) {
         String prize = rank == 6 ? "2,000,000,000원" : (rank == 5 ? "30,000,000원" : (rank == 4 ? "1,500,000원" : (rank == 3 ? "50,000원" : "5,000원")));
         System.out.printf("%d개 일치 (%s) - %d개\n", rank, prize, count);

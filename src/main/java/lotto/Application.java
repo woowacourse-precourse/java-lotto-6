@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.domain.LottoModel;
+import lotto.userinterface.UserView;
 
 public class Application {
     public static void main(String[] args) {
-        LottoModel lottoModel = new LottoModel();
-        lottoModel.run();
+        UserView userView = new UserView();
+        userView.run();
     }
 }

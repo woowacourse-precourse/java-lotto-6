@@ -2,7 +2,6 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.validate.LottoValidator;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

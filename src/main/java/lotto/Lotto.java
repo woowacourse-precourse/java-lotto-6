@@ -38,5 +38,10 @@ public class Lotto {
             throw new IllegalArgumentException("당첨 번호는 중복된 숫자가 없어야 합니다.");
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     // TODO: 추가 기능 구현
 }

@@ -112,4 +112,8 @@ public class LottoManager {
         }
     }
 
+    private void checkBonusNumberInLottoNumbers(int number){
+        if(winLotto.getNumbers().stream().anyMatch(n->n==number))
+            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복하면 안됩니다.");
+    }
 }

@@ -10,12 +10,12 @@ public class InputView {
         throw new IllegalArgumentException("[ERROR]");
     }
 
-    public static String inputMoney() {
+    public static Integer inputMoney() {
         try {
             String money = Console.readLine();
             Validator.validateMoney(money);
 
-            return money;
+            return Integer.parseInt(money);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMoney();

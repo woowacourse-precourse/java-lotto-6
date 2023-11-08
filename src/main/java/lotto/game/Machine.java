@@ -96,5 +96,4 @@ public class Machine {
         }
         return investmentSum / (PRICE * purchasedLottoCount) * 100;
     }
-
 }

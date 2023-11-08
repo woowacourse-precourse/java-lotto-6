@@ -20,7 +20,7 @@ public class LottoMatchingDataTest {
 
     @Test
     @DisplayName("LottoRank에 해당하는 매치 카운트를 추가할 수 있어야 한다")
-    void shouldAddMatchCountToLottoRank() {
+    void AddMatchCountToLottoRankTest() {
         matchingData.addMatch(LottoRank.FIRST);
         matchingData.addMatch(LottoRank.SECOND);
         matchingData.addMatch(LottoRank.SECOND);

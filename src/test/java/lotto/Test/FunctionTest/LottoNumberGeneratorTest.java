@@ -13,7 +13,7 @@ public class LottoNumberGeneratorTest {
 
     @Test
     @DisplayName("생성된 숫자 리스트는 6개의 숫자를 포함해야 한다")
-    public void generateNumbers_ShouldReturnSixNumbers() {
+    public void ReturnSixNumbersTest() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
         List<Integer> numbers = generator.generateNumbers();
         assertEquals(6, numbers.size(), "생성된 숫자의 개수가 6개가 아닙니다.");
@@ -21,7 +21,7 @@ public class LottoNumberGeneratorTest {
 
     @Test
     @DisplayName("모든 숫자는 1과 45 사이의 값이어야 한다")
-    public void generateNumbers_NumbersShouldBeBetweenOneAndFortyFive() {
+    public void RangeTest() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
         List<Integer> numbers = generator.generateNumbers();
         assertTrue(numbers.stream().allMatch(number -> number >= 1 && number <= 45), "모든 숫자는 1과 45 사이의 값이어야 합니다.");
@@ -29,7 +29,7 @@ public class LottoNumberGeneratorTest {
 
     @Test
     @DisplayName("모든 숫자는 중복되지 않아야 한다")
-    public void generateNumbers_NumbersShouldNotHaveDuplicates() {
+    public void DuplicateTest() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
         List<Integer> numbers = generator.generateNumbers();
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
@@ -38,7 +38,7 @@ public class LottoNumberGeneratorTest {
 
     @Test
     @DisplayName("생성된 숫자 리스트는 정렬되어야 한다")
-    public void generateNumbers_ShouldBeSorted() {
+    public void ListSortingTest() {
         LottoNumberGenerator generator = new LottoNumberGenerator();
         List<Integer> numbers = generator.generateNumbers();
         List<Integer> sortedNumbers = numbers.stream().sorted().collect(Collectors.toList());

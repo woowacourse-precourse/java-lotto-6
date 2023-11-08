@@ -31,7 +31,7 @@ public class LottoTicketCreatorTest {
 
     @Test
     @DisplayName("요청된 티켓 수만큼 로또 티켓을 생성해야 한다")
-    void shouldCreateRequestedNumberOfLottoTickets() {
+    void CreateRequestedTest() {
         int numberOfTickets = 5;
         List<List<Integer>> tickets = ticketCreator.createLottoTickets(numberOfTickets);
         assertEquals(numberOfTickets, tickets.size(), "생성된 티켓의 수가 요청과 일치하지 않습니다.");
@@ -39,7 +39,7 @@ public class LottoTicketCreatorTest {
 
     @Test
     @DisplayName("각 로또 티켓은 6개의 번호를 가져야 한다")
-    void eachLottoTicketShouldHaveSixNumbers() {
+    void HaveSixNumbersTest() {
         List<List<Integer>> tickets = ticketCreator.createLottoTickets(1);
         assertEquals(6, tickets.get(0).size(), "티켓은 6개의 번호를 가져야 합니다.");
     }

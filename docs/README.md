@@ -124,7 +124,7 @@
 - [o] LottoTicketCalculatorTest
 - [o] LottoTicketCreatorTest
 - [o] LottoMatchingDataTest
-- [ ] LottoRankCheckerTest
+- [o] LottoRankCheckerTest
 - [ ] LottoReturnsCalculatorTest
 - [ ] LottoTotalWinningsTest
 - [ ] LottoWinningStatisticsTest 

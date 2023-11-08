@@ -33,8 +33,8 @@ public class LottoGame {
         outputView.printPurchaseAmount(purchaseAmount);
     }
 
-    public void setWinningLotto() {
-        this.winningLotto = inputView.inputWinningNumbers();
+    public void setWinningLotto(int count) {
+        this.winningLotto = inputView.inputWinningNumbers(count);
     }
 
     public int getPurchaseAmount() {

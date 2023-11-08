@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.domain.validator.ValidateBonusBall;
 
 public class BonusBall {
+    private static final int ONLY_SECOND = 2;
+    private static final int ZERO = 0;
     private final Integer bonusBall;
 
     public BonusBall(int number, Lotto lotto) {
@@ -17,8 +19,8 @@ public class BonusBall {
 
     public int contains(LottoNumber lottoNumber) {
         if (lottoNumber.calculateScore(bonusBall)) {
-            return 2;
+            return ONLY_SECOND;
         }
-        return 0;
+        return ZERO;
     }
 }

@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -43,17 +43,19 @@ class LottoTest {
 
     @DisplayName("로또는 다른 로또와 겹치는 숫자를 반환한다.")
     @Test
-    void getHowManySameNumbers(){
-        Lotto lotto = new Lotto(List.of(5,6,7,8,9,10));
-        Lotto compare = new Lotto(List.of(5,6,7,11,12,13));
+    void getHowManySameNumbers() {
+        Lotto lotto = new Lotto(List.of(5, 6, 7, 8, 9, 10));
+        Lotto compare = new Lotto(List.of(5, 6, 7, 11, 12, 13));
         assertThat(lotto.getHowManySameNumbers(compare)).isEqualTo(3);
     }
 
-    @DisplayName("로또는 보너스 숫자를 포함하는지 여부를 확인한다.")
+    @DisplayName("로또는 5개가 모두 같은 숫자를 가질 때 보너스 숫자를 포함하는지 여부를 확인한다.")
     @ParameterizedTest
-    @CsvSource({"5,true", "6,true", "7,false", "8,false"})
-    void checkHasBonusinLotto(int number, boolean hasBonus){
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        assertThat(lotto.hasBonus(number)).isEqualTo(hasBonus);
+    @ValueSource(ints = {4, 5, 6, 7, 8})
+    void checkHasBonusInLotto(int number) {
+        Lotto lotto = new Lotto(List.of(10, 11, 12, 13, 14, number));
+        OutputService.printLottoNumbers(lotto);
+        Lotto compare = new Lotto(List.of(10, 11, 12, 13, 14, number + 20));
+        assertThat(lotto.hasBonus(compare, number)).isFalse();
     }
 }

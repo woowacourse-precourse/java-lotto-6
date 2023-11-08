@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import enums.Error;
 import validators.InputException;
 
 public class Lotto {
@@ -12,7 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         validate(numbers);
         InputException.checkOverlap(numbers);
-        InputException.checkNumberRange(numbers);
+        InputException.checkNumberListRange(numbers);
         
         this.numbers = numbers;
     }
@@ -23,7 +24,7 @@ public class Lotto {
 
 	private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.WRONG_NUMBER.getMessage());
         }
     }
 	

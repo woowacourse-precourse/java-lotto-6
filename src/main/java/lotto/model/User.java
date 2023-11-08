@@ -13,13 +13,13 @@ public class User {
     private final UserInputView userInputView;
     private final WinningLotto winningNumber;
 
-    List<Lotto> myLottoNumbers = new ArrayList<>();
+    private List<Lotto> myLottoNumbers = new ArrayList<>();
 
     public User(){
         userInputView = new UserInputView();
         userWallet = UserWallet.createWallet(userInputView.userMoneyInput());
         lottoMarket = new LottoMarket();
-        winningNumber = lottoMarket.winNumberInput(
+        winningNumber = lottoMarket.winNumberLottoGenerate(
                 userInputView.winLottoNumberInput(),
                 userInputView.bonusNumberInput()
         );
@@ -30,8 +30,24 @@ public class User {
     }
 
     public void buyLotto(){
-        useMoney();
         myLottoNumbers = lottoMarket.buyLotto(useMoney());
+        List<LottoRank> winnings = winLottoCheck();
+
+
+        check();
+    }
+
+    public List<LottoRank> winLottoCheck(){
+        List<LottoRank> winningsMoney = new ArrayList<>();
+        myLottoNumbers.forEach(
+                lotto -> winningsMoney.add(lotto.getMyRank(winningNumber))
+        );
+
+        return winningsMoney;
+    }
+
+    public void check(){
+
     }
 
 

@@ -6,10 +6,8 @@ import lotto.domain.LottoResultCalculation;
 import lotto.domain.RandomLottoNumber;
 import lotto.type.ResultType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoController {
     private LottoResultCalculation lottoResultCalculation;
@@ -87,12 +85,32 @@ public class LottoController {
         return resultType;
     }
 
-    public List<ResultType> getAllOfResult(List<Integer> tryLotto, int bonus) {
-        List<ResultType> result = new ArrayList<>();
+    public Map<ResultType, Long> getResultTypeCount(List<ResultType> resultTypes) {
+        return resultTypes.stream()
+                .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+    }
+
+    public Map<ResultType, Long> getAllOfResult() {
+        List<ResultType> resultTypes = new ArrayList<>();
+        List<Integer> tryLotto = inputLottoNumber.getNumbers();
+        int bonus = bonusLottoNumber.getBounsNum();
         for(Lotto lotto : randomLottos) {
             ResultType resultType = getTotalResult(lotto.getNumbers(), tryLotto, bonus);
-            result.add(resultType);
+            resultTypes.add(resultType);
         }
-        return result;
+        Map<ResultType, Long> resultTypeLongMap = getResultTypeCount(resultTypes);
+
+        return resultTypeLongMap;
+    }
+
+    public double getReturnRate(Map<ResultType, Long> resultTypeLongMap) {
+        int totalWinningMoney = 0;
+        Iterator<Map.Entry<ResultType, Long>> iterator = resultTypeLongMap.entrySet().iterator();
+        while(iterator.hasNext()) {
+            Map.Entry<ResultType, Long> entry = iterator.next();
+            totalWinningMoney += entry.getKey().reward() * entry.getValue();
+        }
+        double returnRate = lottoResultCalculation.calculateReturn(totalWinningMoney);
+        return returnRate;
     }
 }

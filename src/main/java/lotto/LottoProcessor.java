@@ -22,8 +22,7 @@ public class LottoProcessor {
     private final LottoController lottoController = new LottoController(lottoService,
             lottoInput, lottoOutput);
 
-    private final RaffleUtil raffleUtil = new RaffleUtil();
-    private final RaffleService raffleService = new RaffleService(raffleUtil);
+    private final RaffleService raffleService = new RaffleService();
     private final RaffleController raffleController = new RaffleController(raffleService,
             lottoInput);
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Model.Domain.Lotto;
 import lotto.Model.Util.LottoUtil;
-import System.Exception;
 
 public class LottoService {
 
@@ -18,10 +17,7 @@ public class LottoService {
     }
 
     public void createLotto(String purchaseAmount) {
-        lottoUtil.validatePurchaseAmount(purchaseAmount);
-
         purchaseMoney = Integer.parseInt(purchaseAmount);
-        lottoUtil.checkPurchaseAmount(purchaseMoney);
 
         for (int index = 0; index < lottoUtil.calculateCount(purchaseMoney); index++) {
             lottos.add(lottoUtil.pickLottoNumber());

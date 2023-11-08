@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import java.util.List;
 import lotto.Model.Service.RaffleService;
 import lotto.View.LottoInput;
 
@@ -14,7 +15,9 @@ public class RaffleController {
     }
 
     public void setRaffle() {
-        raffleService.setRaffleNumber(lottoInput.inputWinningNumber(),
-                lottoInput.inputBonusNumber());
+        List<Integer> winningNumberList = lottoInput.inputWinningNumber();
+
+        raffleService.setRaffleNumber(winningNumberList,
+                lottoInput.inputBonusNumber(winningNumberList));
     }
 }

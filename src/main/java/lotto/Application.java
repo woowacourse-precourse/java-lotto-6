@@ -11,6 +11,8 @@ public class Application {
         LottoGenerator lottoGenerator = new LottoGenerator(); //로또 생성 객체
         List<Lotto> allLotto; //사용자가 산 로또 장수만큼 모든 로또를 담는 리스트
 
+        Winning winning = new Winning(); //당첨 번호 입력, 저장하는 객체
+
         System.out.println("구입금액을 입력해 주세요.");
         price.inputPrice();
 
@@ -21,6 +23,9 @@ public class Application {
 
         System.out.println(ticket + "개를 구매했습니다.");
         printBoughtLotto(allLotto);
+
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        winning.inputNumbers();
     }
 
     private static void printBoughtLotto(List<Lotto> allLotto) {

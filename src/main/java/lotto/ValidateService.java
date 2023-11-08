@@ -5,7 +5,6 @@ import java.util.List;
 public class ValidateService {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
-    private static final int NUMBER_SIZE = 6;
     private static final int LOTTO_PRICE = 1000;
     public static void validateNumber(String number){
         if(!number.matches("\\d+")){
@@ -36,7 +35,7 @@ public class ValidateService {
 
     public static void validateDuplicatedNums(List<Integer> numbers) {
         int distinctNumbersCount = (int) numbers.stream().distinct().count();
-        if (distinctNumbersCount != NUMBER_SIZE) {
+        if (distinctNumbersCount != numbers.size()) {
             throw new IllegalArgumentException(
                     ErrorMessage.NON_DUPLICATED_NUMS.getErrorMessage()
             );

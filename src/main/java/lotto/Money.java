@@ -18,6 +18,9 @@ public class Money {
         if (isCorrectUnit(amount)) {
             throw new IllegalArgumentException("[Error] 구매 금액은 1,000단위로만 입력 가능합니다.");
         }
+        if (isZero(amount)) {
+            throw new IllegalArgumentException("[Error] 구매 금액은 0원 이상만 가능합니다.");
+        }
     }
 
     private boolean isNumber(String amount) {
@@ -26,5 +29,9 @@ public class Money {
 
     private boolean isCorrectUnit(String amount) {
         return Integer.parseInt(amount) % UNIT != 0;
+    }
+
+    private boolean isZero(String amount) {
+        return Integer.parseInt(amount) == 0;
     }
 }

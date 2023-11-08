@@ -24,7 +24,7 @@ public class InputHandler {
                 int lottoPurchasePrice = InputUtil.parseInt(input);
 
                 //너도 마찬가지
-                InputValidator.validateIsMultiplesOf1000(lottoPurchasePrice);
+                InputValidator.validateIsMultiplesOfSingleLottoPrice(lottoPurchasePrice);
                 return lottoPurchasePrice;
             } catch (IllegalArgumentException e) {
                 OutputView.print(e.getMessage());

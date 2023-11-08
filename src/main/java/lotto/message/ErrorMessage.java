@@ -2,6 +2,7 @@ package lotto.message;
 
 public enum ErrorMessage implements MessageProvider{
     INVALID_INPUT("[ERROR] 입력이 잘못되었습니다."),
+    INVALID_PURCHASE_PRICE_FORMAT("[ERROR] 구매 가격이 될 수 없는 입력입니다."),
     INVALID_PARSE_INT("[ERROR] 숫자로 변환할 수 없는 형식입니다."),
     INVALID_COUNT_FORMAT("[ERROR] 숫자 형식으로 입력해주세요."),
     INVALID_PURCHASE_AMOUNT_UNIT("[ERROR] 1,000원 단위로 입력해주세요."),

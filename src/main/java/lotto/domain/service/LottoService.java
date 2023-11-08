@@ -25,31 +25,8 @@ public class LottoService {
     public Receipt calculateLottoRate(int price, List<Result> results) {
         int profit = 0;
         Receipt receipt = new Receipt();
-        List<Integer> counts = receipt.getCounts();
-        for (Result result : results) {
-            int count = result.getCount();
-            boolean isIncludeBonus = result.getIsIncludeBonus();
-            if (count == 3) {
-                profit += 5000;
-                counts.set(0, counts.get(0) + 1);
-            } else if (count == 4) {
-                profit += 50000;
-                counts.set(1, counts.get(1) + 1);
-            } else if (count == 5) {
-                profit += 1500000;
-                counts.set(2, counts.get(2) + 1);
-            } else if (count == 6) {
-                if (isIncludeBonus) {
-                    profit += 30000000;
-                    counts.set(3, counts.get(3) + 1);
-                } else {
-                    profit += 2000000000;
-                    counts.set(4, counts.get(4) + 1);
-                }
-            }
-        }
-        double rate = Math.round(((double) profit / price) * 1000) / 10.0;
-        receipt.setRate(rate);
+        profit = calculateLottoProfitWithResults(receipt, results, profit);
+        receipt.setRate(calculateLottoProfitRate(price, profit));
         return receipt;
     }
 
@@ -78,5 +55,41 @@ public class LottoService {
             }
         }
         return count;
+    }
+
+    private int calculateLottoProfitWithResults(Receipt receipt, List<Result> results, int profit) {
+        List<Integer> counts = receipt.getCounts();
+        for (Result result : results) {
+            int count = result.getCount();
+            boolean isIncludeBonus = result.getIsIncludeBonus();
+            profit = calculateLottoProfit(profit, counts, count, isIncludeBonus);
+        }
+        return profit;
+    }
+
+    private double calculateLottoProfitRate(int price, double profit) {
+        return Math.round((profit / price) * 1000) / 10.0;
+    }
+
+    private int calculateLottoProfit(int profit, List<Integer> counts, int count, boolean isIncludeBonus) {
+        if (count == 3) {
+            profit += 5000;
+            counts.set(0, counts.get(0) + 1);
+        } else if (count == 4) {
+            profit += 50000;
+            counts.set(1, counts.get(1) + 1);
+        } else if (count == 5) {
+            profit += 1500000;
+            counts.set(2, counts.get(2) + 1);
+        } else if (count == 6) {
+            if (isIncludeBonus) {
+                profit += 30000000;
+                counts.set(3, counts.get(3) + 1);
+            } else {
+                profit += 2000000000;
+                counts.set(4, counts.get(4) + 1);
+            }
+        }
+        return profit;
     }
 }

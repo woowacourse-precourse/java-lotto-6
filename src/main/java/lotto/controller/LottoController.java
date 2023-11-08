@@ -16,12 +16,10 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView input;
     private final OutputView output;
-    private final RandomLottoGenerator generator;
 
     public LottoController() {
         this.input = new InputView();
         this.output = new OutputView();
-        this.generator = new RandomLottoGenerator();
     }
 
     public void run() {
@@ -52,8 +50,9 @@ public class LottoController {
         return parsedMoney;
     }
 
+
     private Lottos makeLottos(Quantity totalLotteries) {
-        Lottos lottos = Lottos.of(totalLotteries, generator);
+        Lottos lottos = Lottos.of(totalLotteries, new RandomLottoGenerator());
         output.printBoughtLottos(lottos);
         return lottos;
     }

@@ -23,6 +23,12 @@ public class View implements InputView, OutputView {
     }
 
     @Override
+    public String readBonusNumber() {
+        printLottoMessage(INPUT_WINNING_BONUS_NUMBER);
+        return Console.readLine();
+    }
+
+    @Override
     public void printLottoMessage(LottoMessage lottoMessage) {
         System.out.println(lottoMessage.getMessage());
     }

@@ -6,16 +6,25 @@ import static lotto.io.ErrorMessage.VALUE_NOT_INTEGER;
 
 public class StringConverter {
 
-    private StringConverter(){
+    private StringConverter() {
     }
 
-    public static long toLong(String data){
+    public static long toLong(String data) {
         data = data.trim();
-        if(!Pattern.matches("\\d+",data)){
+        if (!Pattern.matches("\\d+", data)) {
             throw new IllegalArgumentException(VALUE_NOT_INTEGER.getMessage());
         }
 
         return Long.parseLong(data);
+    }
+
+    public static int toInt(String data) {
+        data = data.trim();
+        if (!Pattern.matches("\\d+", data)) {
+            throw new IllegalArgumentException(VALUE_NOT_INTEGER.getMessage());
+        }
+
+        return Integer.parseInt(data);
     }
 
 }

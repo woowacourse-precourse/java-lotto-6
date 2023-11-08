@@ -8,7 +8,8 @@ public enum ErrorMessage {
     VALUE_NOT_INTEGER(ErrorConstants.PREFIX + "입력한 수는 정수가 아닙니다."),
     NUMBER_OUT_OF_RANGE(ErrorConstants.PREFIX + "로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     INVALID_NUMBER_SIZE(ErrorConstants.PREFIX + "로또 번호는 1개당 6개여야 합니다."),
-    DUPLICATE_LOTTO_NUMBER(ErrorConstants.PREFIX + "로또 번호는 중복될 수 없습니다.");
+    DUPLICATE_LOTTO_NUMBER(ErrorConstants.PREFIX + "로또 번호는 중복될 수 없습니다."),
+    DUPLICATE_BONUS_NUMBER(ErrorConstants.PREFIX + "보너스 번호는 나머지 6개의 번호와 중복될 수 없습니다.");
 
     private final String message;
 

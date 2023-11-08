@@ -1,10 +1,10 @@
 package lotto;
 
-import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoCount;
 import lotto.domain.lotto.LottoMachine;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.Price;
+import lotto.domain.lotto.WinningNumber;
 import lotto.domain.lotto.random.LottoNumberCreator;
 import lotto.domain.lotto.random.LottoNumberParser;
 import lotto.io.ConsoleManager;
@@ -29,6 +29,6 @@ public class LottoProgram {
         Lottos lottos = lottoMachine.createLottoNumbers(count);
         consoleManager.printLottos(lottos);
 
-        Lotto winningLotto = consoleManager.getWinningNumbers();
+        WinningNumber winningLotto = consoleManager.getWinningNumber();
     }
 }

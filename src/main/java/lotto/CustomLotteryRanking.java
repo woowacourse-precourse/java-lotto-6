@@ -7,6 +7,7 @@ public enum CustomLotteryRanking implements LotteryRanking {
     LAST_PLACE(0, 2) {
         @Override
         public boolean matches(int counts, boolean isBonusNumberMatch) {
+            int matches = getMatches();
             if (isBonusNumberMatch) {
                 return counts <= matches - 1;
             }
@@ -16,6 +17,7 @@ public enum CustomLotteryRanking implements LotteryRanking {
     FIFTH(5000, 3) {
         @Override
         public boolean matches(int counts, boolean isBonusNumberMatch) {
+            int matches = getMatches();
             if (isBonusNumberMatch) {
                 return counts == matches - 1;
             }
@@ -25,6 +27,7 @@ public enum CustomLotteryRanking implements LotteryRanking {
     FORTH(50000, 4) {
         @Override
         public boolean matches(int counts, boolean isBonusNumberMatch) {
+            int matches = getMatches();
             if (isBonusNumberMatch) {
                 return counts == matches - 1;
             }
@@ -34,6 +37,7 @@ public enum CustomLotteryRanking implements LotteryRanking {
     THIRD(1500000, 5) {
         @Override
         public boolean matches(int counts, boolean isBonusNumberMatch) {
+            int matches = getMatches();
             if (isBonusNumberMatch) {
                 return counts == matches - 1;
             }
@@ -43,6 +47,7 @@ public enum CustomLotteryRanking implements LotteryRanking {
     SECOND(30000000, 5) {
         @Override
         public boolean matches(int counts, boolean isBonusNumberMatch) {
+            int matches = getMatches();
             if (isBonusNumberMatch) {
                 return counts == matches;
             }
@@ -52,12 +57,13 @@ public enum CustomLotteryRanking implements LotteryRanking {
     FIRST(2000000000, 6) {
         @Override
         public boolean matches(int counts, boolean isBonusNumberMatch) {
+            int matches = getMatches();
             return counts == matches;
         }
     };
 
     private int amount;
-    public int matches;
+    private int matches;
 
     CustomLotteryRanking(int amount, int matches) {
         this.amount = amount;
@@ -83,5 +89,4 @@ public enum CustomLotteryRanking implements LotteryRanking {
     public int getMatches() {
         return this.matches;
     }
-
 }

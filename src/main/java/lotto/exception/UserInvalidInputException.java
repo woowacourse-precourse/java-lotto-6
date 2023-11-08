@@ -3,8 +3,7 @@ package lotto.exception;
 import static lotto.resource.TextResourceProvider.ERROR_MESSAGE_TAG;
 
 public class UserInvalidInputException extends IllegalArgumentException {
-
-    private String invalidInput;
+    private final String invalidInput;
 
     public UserInvalidInputException(Throwable cause) {
         super(cause);

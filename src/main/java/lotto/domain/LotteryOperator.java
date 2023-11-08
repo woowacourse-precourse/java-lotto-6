@@ -9,9 +9,9 @@ import java.util.Objects;
 public class LotteryOperator {
     private LotteryRound round;
 
-    private Map<LotteryRound, WinningLottery> history;
+    private final Map<LotteryRound, WinningLottery> history;
 
-    private Collection<? extends LotteryRanking> rankings;
+    private final Collection<? extends LotteryRanking> rankings;
     private final long lotteryPrice;
 
     public LotteryOperator(LotteryRound round, Collection<? extends LotteryRanking> rankings, long lotteryPrice) {

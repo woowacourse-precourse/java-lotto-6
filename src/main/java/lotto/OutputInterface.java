@@ -10,7 +10,6 @@ import lotto.service.dto.LotteryReceiptDto;
 import lotto.service.dto.LotteryResultDto;
 
 public class OutputInterface {
-
     private Output out;
     private ReceiptRenderer receiptRenderer;
     private LotteryResultRenderer lotteryResultRenderer;
@@ -32,7 +31,5 @@ public class OutputInterface {
         out.println(OUTPUT_LOTTERY_RESULT_HEADER_LINE_TEXT);
         out.println(lotteryResultRenderer.render(results));
         out.println(LOTTERY_EARNING_RATE_RESULT_TEXT.format(String.format("%.1f", earningRate)));
-
     }
-
 }

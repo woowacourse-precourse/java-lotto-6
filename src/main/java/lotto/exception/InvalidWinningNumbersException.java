@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InvalidWinningNumbersException extends UserInvalidInputException {
-
     public InvalidWinningNumbersException(String message, String invalidInput, Throwable cause) {
         super(message, invalidInput, cause);
     }

@@ -12,16 +12,16 @@ public class LotteryReceipt implements Iterable<PurchasedLottery> {
     private final List<PurchasedLottery> lotteries;
     private final LotteryOperator operator;
 
+    public LotteryReceipt(List<PurchasedLottery> lotteries, LotteryOperator operator) {
+        this.lotteries = lotteries;
+        this.operator = Objects.requireNonNull(operator);
+    }
+
     public static LotteryReceipt createLotteryReceipt(LotteryOperator operator, long quantity, LottoRandom random) {
         if (quantity < MIN_SIZE) {
             throw new IllegalArgumentException();
         }
         return new LotteryReceipt(createPurchasedLotteries(operator, quantity, random), operator);
-    }
-
-    public LotteryReceipt(List<PurchasedLottery> lotteries, LotteryOperator operator) {
-        this.lotteries = lotteries;
-        this.operator = Objects.requireNonNull(operator);
     }
 
     private static List<PurchasedLottery> createPurchasedLotteries(LotteryOperator operator, long quantity,
@@ -31,16 +31,16 @@ public class LotteryReceipt implements Iterable<PurchasedLottery> {
                 .collect(toList());
     }
 
-    public long size() {
-        return lotteries.size();
-    }
-
     public List<PurchasedLottery> getLotteries() {
         return List.copyOf(lotteries);
     }
 
     public long getPurchasedAmount() {
         return operator.getLotteryPrice() * lotteries.size();
+    }
+
+    public long size() {
+        return lotteries.size();
     }
 
     @Override

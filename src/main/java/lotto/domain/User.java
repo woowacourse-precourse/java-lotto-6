@@ -11,7 +11,7 @@ public class User {
     }
 
     public void takeReceipt(LotteryReceipt receipt) {
-        if(receipt == null){
+        if (receipt == null) {
             throw new IllegalArgumentException();
         }
         receipts.add(receipt);
@@ -20,5 +20,4 @@ public class User {
     public List<LotteryReceipt> getReceipts() {
         return List.copyOf(receipts);
     }
-
 }

@@ -17,13 +17,13 @@ public class BonusNumber {
         return numbers.contains(number);
     }
 
-    private void validateNumber(int number) {
+    private static void validateNumber(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateNumbers(List<Integer> numbers) {
+    private static void validateNumbers(List<Integer> numbers) {
         if (numbers == null || numbers.size() == 0) {
             throw new IllegalArgumentException();
         }

@@ -64,8 +64,8 @@ public class TextFormat {
         int cur = target.indexOf(tokens.get(0));
         for (int i = 0; i < tokens.size() - 1; i++) {
             int from = cur + tokens.get(i).length();
-            int to = target.indexOf(tokens.get(i + 1), from+1);
-            result.add(target.substring(from , to));
+            int to = target.indexOf(tokens.get(i + 1), from + 1);
+            result.add(target.substring(from, to));
             cur = to;
         }
         return result;

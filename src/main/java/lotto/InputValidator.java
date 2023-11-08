@@ -59,7 +59,7 @@ public class InputValidator {
         }
     }
 
-    public void checkIfNumbersSizeIs6(List<Integer> tokens){
+    public void checkIfNumbersSizeIs6(List<Integer> tokens) {
         if (tokens.size() != 6) {
             throw new InvalidWinningNumbersException(
                     WINNING_NUMBERS_SHOULD_BE_6_UNIQUE_NUMBERS_TEXT, tokens);

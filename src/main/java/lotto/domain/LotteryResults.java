@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 
 
 public class LotteryResults {
-    private static final int MAX_MATCHES = Integer.MAX_VALUE/2;
+    private static final int MAX_MATCHES = Integer.MAX_VALUE / 2;
     private final Map<LotteryRanking, Integer> results;
-    private final Collection<? extends  LotteryRanking> rankings;
+    private final Collection<? extends LotteryRanking> rankings;
 
-    private LotteryResults(Collection<? extends  LotteryRanking> rankings) {
+    private LotteryResults(Collection<? extends LotteryRanking> rankings) {
         this.rankings = Objects.requireNonNull(rankings);
         this.results = createEmptyLotteryRankingMap();
     }
@@ -28,8 +28,8 @@ public class LotteryResults {
         return new LotteryResults(rankings);
     }
 
-    private static void validateMatches(int matches){
-        if(matches < 0 || matches > MAX_MATCHES){
+    private static void validateMatches(int matches) {
+        if (matches < 0 || matches > MAX_MATCHES) {
             throw new IllegalArgumentException();
         }
     }
@@ -37,7 +37,7 @@ public class LotteryResults {
     private void apply(LotteryRanking ranking, int matches) {
         validateMatches(matches);
         int oldValue = results.getOrDefault(ranking, 0);
-        validateMatches(oldValue+matches);
+        validateMatches(oldValue + matches);
         results.put(ranking, oldValue + matches);
     }
 
@@ -73,7 +73,6 @@ public class LotteryResults {
         }
         return result;
     }
-
 
     @Override
     public boolean equals(Object obj) {

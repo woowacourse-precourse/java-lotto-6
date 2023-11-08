@@ -6,7 +6,6 @@ import lotto.service.dto.LotteryDto;
 import lotto.service.dto.LotteryReceiptDto;
 
 public class ReceiptRenderer {
-
     public String render(LotteryReceiptDto receipt) {
         StringBuilder builder = new StringBuilder();
         for (LotteryDto lottery : receipt.lotteries()) {
@@ -24,5 +23,4 @@ public class ReceiptRenderer {
 
         return LOTTO_NUMBERS_TEXT_FORMAT.format(arguments) + "\n";
     }
-
 }

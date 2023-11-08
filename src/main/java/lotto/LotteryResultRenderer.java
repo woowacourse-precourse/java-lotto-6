@@ -9,10 +9,9 @@ import java.util.List;
 import lotto.service.dto.LotteryResultDto;
 
 public class LotteryResultRenderer {
-
     private NumberFormat numberFormat;
 
-    public LotteryResultRenderer(NumberFormat numberFormat){
+    public LotteryResultRenderer(NumberFormat numberFormat) {
         this.numberFormat = numberFormat;
     }
 

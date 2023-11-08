@@ -6,40 +6,24 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Lotto {
-    private final List<Integer> numbers;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = Objects.requireNonNull(numbers);
     }
 
-    public static Lotto copyOf(Lotto lotto) {
-        return new Lotto(lotto.getNumbers());
-    }
-
     public static Lotto createLotto(LottoRandom random) {
         return new Lotto(random.generateNumbers());
     }
 
-    public int matches(List<Integer> otherNumbers) {
-        validate(otherNumbers);
-        return (int) numbers.stream()
-                .filter(otherNumbers::contains)
-                .count();
-    }
-
-    public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
-    }
-
-    private void validate(List<Integer> numbers) {
+    private static void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateUniqueNumbers(numbers);
         validateNumbersInRange(numbers);
     }
-
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
@@ -65,5 +49,16 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
+
+    public int matches(List<Integer> otherNumbers) {
+        validate(otherNumbers);
+        return (int) numbers.stream()
+                .filter(otherNumbers::contains)
+                .count();
     }
 }

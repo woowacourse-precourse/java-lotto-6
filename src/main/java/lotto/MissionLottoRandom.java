@@ -13,6 +13,4 @@ public class MissionLottoRandom implements LottoRandom {
         List<Integer> numbers = List.copyOf(Randoms.pickUniqueNumbersInRange(MIN, MAX, SIZE));
         return numbers;
     }
-
-
 }

@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.Objects;
 
 public class LotteryRetailer {
-
     private final LottoRandom random;
 
     public LotteryRetailer(LottoRandom random) {

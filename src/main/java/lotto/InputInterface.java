@@ -8,7 +8,6 @@ import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
 import java.util.List;
 
 public class InputInterface {
-
     private Input in;
     private Output out;
 

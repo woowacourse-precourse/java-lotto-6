@@ -7,13 +7,13 @@ public class PurchasedLottery {
     private final Lotto lotto;
     private final LotteryRound round;
 
-    public static PurchasedLottery createLottery(LotteryRound round, LottoRandom random) {
-        return new PurchasedLottery(round, Lotto.createLotto(random));
-    }
-
     public PurchasedLottery(LotteryRound round, Lotto lotto) {
         this.round = Objects.requireNonNull(round);
         this.lotto = Objects.requireNonNull(lotto);
+    }
+
+    public static PurchasedLottery createLottery(LotteryRound round, LottoRandom random) {
+        return new PurchasedLottery(round, Lotto.createLotto(random));
     }
 
     public boolean isEqualRound(LotteryRound otherRound) {

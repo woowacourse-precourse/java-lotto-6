@@ -30,8 +30,8 @@ public enum MatchState {
             return MATCH_COUNT_BONUS;
         }
         return Arrays.stream(values())
-                .filter(matchState -> matchState.matchCount == numberOfMatch)
+                .filter(matchState -> matchState.getMatchCount() == numberOfMatch)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("값이 3보다 작습니다."));
+                .orElse(null);
     }
 }

@@ -24,7 +24,7 @@ public class Lotto {
     }
 
     public String winningStatus(ArrayList<Integer> winningNumber, int bonusNumber) {
-        int count = 0;
+        int count = Constant.ZERO;
         boolean bonus = false;
         for (int number : numbers) {
             if (winningNumber.contains(number)) {
@@ -38,7 +38,7 @@ public class Lotto {
         return getRank(count, bonus);
     }
 
-    private String getRank(int count, boolean bonus) { //TODO: refactor
+    private String getRank(int count, boolean bonus) {
         if (count == LottoMessage.FIRST.getCount()) {
             return LottoMessage.FIRST.getRank();
         }

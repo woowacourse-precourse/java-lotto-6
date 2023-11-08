@@ -13,6 +13,7 @@ public final class CostRequestView {
             String cost = Validator.validate(enterMessage());
             return Integer.parseInt(cost);
         } catch (IllegalArgumentException e) {
+            printlnMessage(e.getMessage());
             return request();
         }
     }

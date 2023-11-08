@@ -1,5 +1,7 @@
 package lotto.view.ui;
 
+import lotto.global.exception.ErrorMessage;
+
 public final class Output {
     private static final String NEWLINE = "\n";
 

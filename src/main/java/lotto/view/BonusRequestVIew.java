@@ -2,6 +2,7 @@ package lotto.view;
 
 import static lotto.global.validator.Validator.validateNumber;
 import static lotto.view.ui.Input.enterMessage;
+import static lotto.view.ui.Output.printlnMessage;
 import static lotto.view.ui.Output.printlnMessageWithNewLine;
 
 import lotto.domain.Number;
@@ -17,6 +18,7 @@ public class BonusRequestVIew {
             String bonusNumber = Validator.validate(enterMessage());
             return parseBonusNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
+            printlnMessage(e.getMessage());
             return request();
         }
     }

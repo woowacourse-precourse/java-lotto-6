@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.view.ui.Input.enterMessage;
+import static lotto.view.ui.Output.printlnMessage;
 import static lotto.view.ui.Output.printlnMessageWithNewLine;
 
 import java.util.Arrays;
@@ -19,6 +20,7 @@ public class WinningRequestView {
             String winningNumbers = Validator.validate(enterMessage());
             return parseWinningNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
+            printlnMessage(e.getMessage());
             return request();
         }
     }

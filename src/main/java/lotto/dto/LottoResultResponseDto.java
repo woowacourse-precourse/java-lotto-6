@@ -1,14 +1,12 @@
 package lotto.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 public class LottoResultResponseDto {
     private int threeMatchingPrizeCount;
     private int fourMatchingPrizeCount;
@@ -24,15 +22,6 @@ public class LottoResultResponseDto {
                 .fiveMatchingPrizeCount(fiveMatchingPrizeCount)
                 .fiveMatchingWithBonusBallPrizeCount(fiveMatchingWithBonusBallPrizeCount)
                 .sixMatchingPrizeCount(sixMatchingPrizeCount)
-                .build();
-    }
-    public static LottoResultResponseDto plus(int threeMatchingPrizeCount, int fourMatchingPrizeCount, int fiveMatchingPrizeCount, int fiveMatchingWithBonusBallPrizeCount, int sixMatchingPrizeCount,LottoResultResponseDto lottoResultResponseDto){
-        return LottoResultResponseDto.builder()
-                .threeMatchingPrizeCount(threeMatchingPrizeCount+lottoResultResponseDto.getThreeMatchingPrizeCount())
-                .fourMatchingPrizeCount(fourMatchingPrizeCount+lottoResultResponseDto.getFourMatchingPrizeCount())
-                .fiveMatchingPrizeCount(fiveMatchingPrizeCount+lottoResultResponseDto.getFiveMatchingPrizeCount())
-                .fiveMatchingWithBonusBallPrizeCount(fiveMatchingWithBonusBallPrizeCount+lottoResultResponseDto.getFiveMatchingWithBonusBallPrizeCount())
-                .sixMatchingPrizeCount(sixMatchingPrizeCount+lottoResultResponseDto.getSixMatchingPrizeCount())
                 .build();
     }
 }

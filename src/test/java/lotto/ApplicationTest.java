@@ -1,13 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.constant.LottoRanking;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +56,19 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    void convertRankingListToMap_테스트() {
+        List<LottoRanking> input = new ArrayList<>();
+        input.add(LottoRanking.FIRST);
+        input.add(LottoRanking.THIRD);
+        input.add(LottoRanking.THIRD);
+
+        Map<LottoRanking, Integer> result = Application.convertRankingListToMap(input);
+
+        assertEquals(1, result.get(LottoRanking.FIRST));
+        assertEquals(2, result.get(LottoRanking.THIRD));
     }
 
     @Override

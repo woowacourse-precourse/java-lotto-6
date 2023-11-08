@@ -29,7 +29,7 @@ public class LottoService {
         try {
             int number = Integer.parseInt(numberStr);
             if(number>=1 && number<=45){
-                throw new IllegalArgumentException("[ERROR] 유효하지 로또 번호입니다.");
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 로또 번호입니다.");
             }
             numbers.add(number);
         } catch (IllegalArgumentException e) {

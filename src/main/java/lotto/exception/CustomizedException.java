@@ -35,7 +35,7 @@ public class CustomizedException {
     public static void winningNumberHasSameNumber(List<Integer> winningNumbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         if (uniqueNumbers.size() < winningNumbers.size()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_INIT + "중복된 수가 있습니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_INIT + "로또 번호에 중복된 숫자가 있으면 예외가 발생한다.");
         }
     }
 

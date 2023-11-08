@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.CustomizedException;
 import lotto.view.InputView;
 
 import java.text.DecimalFormat;
@@ -14,6 +15,7 @@ public class Lotto {
     //    private int bonusNumber;
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        CustomizedException.winningNumbersQualification(numbers);
         this.numbers = numbers;
     }
 

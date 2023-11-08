@@ -1,27 +1,48 @@
 package lotto;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import lotto.domain.BonusNumber;
+import lotto.domain.Prize;
+import lotto.domain.WinningChecker;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.WinningChecker;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WinningCheckerTest {
+
+    private WinningChecker winningChecker;
+    private List<Integer> winningNumbers;
+
+    @BeforeEach
+    void setUp() {
+        winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        winningChecker = new WinningChecker(winningNumbers);
+    }
+
     @Test
-    void testWinningChecker() {
-        WinningChecker winningChecker = new WinningChecker();
+    void testCheckWinningPrize() {
+        assertEquals(Prize.WinningPrize.FIRST_RANK.getPrizeAmount(), winningChecker.checkWinningPrize(6, false));
+        assertEquals(Prize.WinningPrize.SECOND_RANK.getPrizeAmount(), winningChecker.checkWinningPrize(5, true));
+        assertEquals(Prize.WinningPrize.THIRD_RANK.getPrizeAmount(), winningChecker.checkWinningPrize(5, false));
+        assertEquals(Prize.WinningPrize.FOURTH_RANK.getPrizeAmount(), winningChecker.checkWinningPrize(4, false));
+        assertEquals(Prize.WinningPrize.FIFTH_RANK.getPrizeAmount(), winningChecker.checkWinningPrize(3, false));
+    }
 
-        List<Integer> winningNumbers = Arrays.asList(3, 7, 12, 19, 24, 30);
-        int bonusNumber = 5;
+    @Test
+    void testCheckMachingCount() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 7, 8, 9);
+        int matchingCount = winningChecker.checkMachingCount(numbers);
+        assertEquals(3, matchingCount);
+    }
 
-        List<Integer> userTicket1 = Arrays.asList(3, 7, 12, 19, 24, 30);
-        List<Integer> userTicket2 = Arrays.asList(1, 2, 3, 4, 5, 6);
-
-        List<List<Integer>> userTickets = Arrays.asList(userTicket1, userTicket2);
-
-        List<Integer> result = winningChecker.checkWinning(userTickets, winningNumbers, bonusNumber);
-
-        assertEquals(Arrays.asList(1, 0), result);
+    @Test
+    void testHasBonusNumber() {
+        BonusNumber bonusNumber = new BonusNumber(7);
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 7, 8, 9);
+        assertTrue(winningChecker.hasBonusNumber(bonusNumber, numbers));
     }
 }

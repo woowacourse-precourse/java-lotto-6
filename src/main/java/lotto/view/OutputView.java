@@ -14,6 +14,7 @@ public class OutputView {
     private static final String LOTTO_PURCHASE_MESSAGE = "개를 구매했습니다.";
     private static final String ENTER_WINNING_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String ENTER_BONUS_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String ERROR_HEADER = "[ERROR]: ";
     private static final String HYPHEN = "---";
     private static final String WINNING_STATS = "당첨 통계";
 
@@ -60,5 +61,9 @@ public class OutputView {
 
     public static void printEarningRate(double earningRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", earningRate);
+    }
+
+    public static void printErrorMessage(String exception) {
+        System.out.println(ERROR_HEADER + exception);
     }
 }

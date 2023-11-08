@@ -97,4 +97,4 @@
   - printWinningResultHeader(): 당첨 통계 콘솔과 하이픈(---)을 출력한다.
   - printWinningResult(): 당첨 통계를 출력한다.
   - printEarningRate(): 수익률을 출력한다.
-  - [ ] 예외 메시지(String)을 인자로 받아, 에러 메시지를 출력한다.
+  - printErrorMessage(): 예외 메시지(String)을 인자로 받아, 에러 메시지를 출력한다.

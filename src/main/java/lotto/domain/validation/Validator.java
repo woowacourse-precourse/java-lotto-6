@@ -19,6 +19,7 @@ import lotto.exception.LottoException;
 
 public class Validator {
     private static final String LOTTO_NUMBER_REGEX = "^(\\d+,)+\\d+$";
+    public static final String NUMBER_DIVIDER = ",";
 
     private Validator() {
     }
@@ -58,17 +59,17 @@ public class Validator {
         }
     }
 
-    public static boolean hasDuplicatedNumber(List<Integer> numbers) {
+    private static boolean hasDuplicatedNumber(List<Integer> numbers) {
         return new HashSet<>(numbers).size() != numbers.size();
     }
 
-    public static boolean hasOverRangedNumber(List<Integer> numbers) {
+    private static boolean hasOverRangedNumber(List<Integer> numbers) {
         return !numbers.stream()
                 .allMatch(Validator::isOverRangedNumber);
     }
 
     public static List<Integer> numbersStringToList(String numbers) {
-        return Arrays.stream(numbers.split(","))
+        return Arrays.stream(numbers.split(NUMBER_DIVIDER))
                 .map(Integer::parseInt)
                 .toList();
     }

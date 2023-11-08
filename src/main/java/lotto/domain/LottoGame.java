@@ -29,11 +29,11 @@ public class LottoGame {
 		int count = 0;
 		boolean bonus = false;
 		for (int num : lotto.getNumbers()) {
-			if(num == bonusNumber){
+			if (num == bonusNumber) {
 				bonus = true;
 			}
-			if(lottoPrizeNumber.contains(num)){
-				count ++;
+			if (lottoPrizeNumber.contains(num)) {
+				count++;
 			}
 		}
 		return Prize.prizeNumber(count, bonus);

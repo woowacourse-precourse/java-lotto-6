@@ -20,7 +20,7 @@ public class LottoPlayerTest {
             "99000, 99",
             "990000, 990"
     })
-    public void orderLottos_CalculatesQuantityCorrectly(Integer cache,Integer answerQuantity) {
+    public void 금액에_대한_로또_구매갯수_확인(Integer cache,Integer answerQuantity) {
         LottoPlayer lottoPlayer = new LottoPlayer(cache);
 
         int purchaseQuantity = lottoPlayer.orderLottos();

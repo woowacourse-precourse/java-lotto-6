@@ -33,4 +33,8 @@ public enum Ranking {
     public String getDescription() {
         return description;
     }
+
+    public int getReward() {
+        return reward;
+    }
 }

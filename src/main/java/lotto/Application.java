@@ -48,7 +48,7 @@ public class Application {
                 .mapToObj(i -> getRandomLotto())
                 .toList();
         System.out.println(toBuy + "개를 구매했습니다.");
-        lottos.forEach(Lotto::printNumbers);
+        lottos.forEach(lotto -> System.out.println(lotto.toString()));
         return lottos;
     }
 

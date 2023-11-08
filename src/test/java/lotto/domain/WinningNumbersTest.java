@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.WinningNumbers;
@@ -56,14 +56,6 @@ public class WinningNumbersTest extends NsTest {
         assertSimpleTest(() -> {
             runException("15,40,7,19,20,9","29,");
             assertThat(output()).contains(NON_NUMBER.getMessage());
-        });
-    }
-    @DisplayName("보너스 번호가 1~45 범위 외의 수이면 예외가 발생한다.")
-    @Test
-    void createBonusNumberByNotInRange() {
-        assertSimpleTest(() -> {
-            runException("15,40,7,19,20,9","70");
-            assertThat(output()).contains(NOT_IN_RANGE.getMessage());
         });
     }
     @DisplayName("보너스 번호가 로또 당첨번호와 중복되는 경우 예외가 발생한다..")

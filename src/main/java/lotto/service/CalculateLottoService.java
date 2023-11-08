@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,6 +87,14 @@ public class CalculateLottoService {
             return true;
         }
         return false;
+    }
+    
+    public String getTheRateOfReturnOfLotto(User user, int totalPrice) {
+        if (user.getBuyingLottosPrice() == 0) {
+            return "0.0";
+        }
+        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
+        return decimalFormat.format((double) totalPrice / user.getBuyingLottosPrice() * 100);
     }
     
     

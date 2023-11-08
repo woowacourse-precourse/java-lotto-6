@@ -36,6 +36,6 @@ public class OutputView {
         System.out.println("5개 일치 (1,500,000원) - " + resultCount.getOrDefault(Result.THIRD, 0) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + resultCount.getOrDefault(Result.SECOND, 0) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + resultCount.getOrDefault(Result.FIRST, 0) + "개");
-        System.out.println("총 수익률은 " + profitCalculator(money.getMoney(), resultCount) + "입니다.");
+        System.out.println("총 수익률은 " + profitCalculator(money.getMoney(), resultCount) + "%입니다.");
     }
 }

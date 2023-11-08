@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.util.NumberGenerator;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoPlayer {
 
@@ -17,7 +17,8 @@ public class LottoPlayer {
     private void createLottos() {
         lottos = new Lotto[count];
         for (int i = 0; i < lottos.length; i++) {
-            lottos[i] = new Lotto(NumberGenerator.generateNumbers());
+            System.out.println("생성 시작");
+            lottos[i] = new Lotto(Randoms.pickUniqueNumbersInRange(LottoConfiguration.NUMBER_RANGE_START, LottoConfiguration.NUMBER_RANGE_END, LottoConfiguration.NUMBERS_SIZE));
         }
     }
 

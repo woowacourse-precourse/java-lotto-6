@@ -38,9 +38,11 @@ public class Application {
     }
 
     private static int inputPurchaseAmount() {
+        String purchaseAmount = "";
+
         while(true) {
             try {
-                String purchaseAmount = readLine();
+                purchaseAmount = readLine();
                 Validator.validPurchaseAmount(purchaseAmount);
                 return Integer.parseInt(purchaseAmount);
             } catch (IllegalArgumentException e) {

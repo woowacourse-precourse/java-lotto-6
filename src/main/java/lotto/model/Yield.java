@@ -1,17 +1,22 @@
 package lotto.model;
 
+import java.util.HashMap;
 import lotto.util.Constant;
 
 public class Yield {
 
-    private String yield;
-
-    public void calculateYield(long totalPrizeMoney, int purchaseAmount) {
-        double result = (totalPrizeMoney * Constant.CONVERT_PERCENT) / (double) purchaseAmount;
-        this.yield = String.format("%.1f", result);
+    public static Yield createYield() {
+        return new Yield();
     }
 
-    public String getYield() {
-        return yield;
+    public String calculateYield(int purchaseAmount, HashMap<LottoRankings, Integer> lottoResult) {
+        long totalPrizeMoney = 0;
+        for (LottoRankings rank : lottoResult.keySet()) {
+            totalPrizeMoney += (long) rank.getWinningAmount() * lottoResult.get(rank);
+        }
+
+        double result = (totalPrizeMoney * Constant.CONVERT_PERCENT) / (double) purchaseAmount;
+
+        return String.format("%.1f", result);
     }
 }

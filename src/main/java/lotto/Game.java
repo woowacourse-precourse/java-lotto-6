@@ -2,6 +2,11 @@ package lotto;
 
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.LottoMaker;
+import lotto.domain.Rank;
+import lotto.domain.WinningAnalyzer;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

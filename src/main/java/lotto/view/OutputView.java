@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.Lotto;
-import lotto.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 public class OutputView {
 

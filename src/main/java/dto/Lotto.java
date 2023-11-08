@@ -22,7 +22,6 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
     public void showLottoNumbers() {
         System.out.print(Constants.PRINT_LOTTO_START);
         for (int i = 0; i < 5; i++) {

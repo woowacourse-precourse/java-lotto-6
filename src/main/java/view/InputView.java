@@ -8,7 +8,6 @@ import java.util.List;
 import validation.ExceptionHandler;
 
 public class InputView {
-
     private final ExceptionHandler exceptionHandler;
 
     public InputView() {
@@ -64,6 +63,4 @@ public class InputView {
             }
         }
     }
-
-
 }

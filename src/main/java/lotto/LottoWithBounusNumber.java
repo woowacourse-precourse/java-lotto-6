@@ -18,7 +18,7 @@ public class LottoWithBounusNumber {
     public static LottoWithBounusNumber createLottoWithBonusNumber() {
         Lotto lotto;
         Integer bounusNumber;
-함        while (true){
+        while (true){
             try {
                 lotto = Lotto.inputLotto();
                 break;

@@ -5,7 +5,6 @@ import lotto.model.WinningRecords;
 import lotto.model.Lotto;
 import lotto.model.BonusWinningNumber;
 import lotto.model.WinningNumbersWithBonusNumber;
-import lotto.model.RateOfReturn;
 import lotto.model.LottoTicket;
 import lotto.model.LottoTickets;
 
@@ -53,7 +52,6 @@ public class Controller {
         // 수익률 계산 및 출력
         int winningPrize = calculateWinningPrize(lotteryResults);
         double rateOfReturn = calculateRateOfReturn(winningPrize, countLottoTickets);
-        RateOfReturn yieldRateOfReturn = new RateOfReturn(winningPrize, rateOfReturn);
 
         output.printRateOfReturn(rateOfReturn);
 

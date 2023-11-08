@@ -1,8 +1,8 @@
-package lotto.mock;
+package lotto.stub;
 
 import lotto.io.writer.Writer;
 
-public class MockWriter implements Writer {
+public class StubWriter implements Writer {
     private final StringBuilder output = new StringBuilder();
 
     @Override

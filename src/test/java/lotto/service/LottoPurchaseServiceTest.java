@@ -4,14 +4,14 @@ import static lotto.fixture.LottoFixture.createLottoPurchaseAmount;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.controller.dto.input.LottoPurchaseAmountDto;
-import lotto.mock.MockLottoNumberGenerator;
 import lotto.model.purchase.LottoPurchase;
+import lotto.stub.StubLottoNumberGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoPurchaseServiceTest {
-    private final MockLottoNumberGenerator mockLottoNumberGenerator = new MockLottoNumberGenerator();
-    private final LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(mockLottoNumberGenerator);
+    private final StubLottoNumberGenerator stubLottoNumberGenerator = new StubLottoNumberGenerator();
+    private final LottoPurchaseService lottoPurchaseService = new LottoPurchaseService(stubLottoNumberGenerator);
 
     @CsvSource({
             "1000, 1",

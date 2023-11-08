@@ -1,9 +1,9 @@
-package lotto.mock;
+package lotto.stub;
 
 
 import lotto.io.reader.Reader;
 
-public class MockReader implements Reader {
+public class StubReader implements Reader {
     private String input;
 
     @Override

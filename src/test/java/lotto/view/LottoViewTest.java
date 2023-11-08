@@ -11,9 +11,9 @@ import lotto.controller.dto.input.LottoPurchaseAmountDto;
 import lotto.controller.dto.input.WinningLottoNumbersDto;
 import lotto.controller.dto.output.PurchasedLottosDto;
 import lotto.controller.dto.output.WinningLottoResultDto;
-import lotto.mock.MockReader;
-import lotto.mock.MockWriter;
 import lotto.model.lotto.Lotto;
+import lotto.stub.StubReader;
+import lotto.stub.StubWriter;
 import lotto.view.constants.Message;
 import lotto.view.constants.MessageFormatter;
 import org.junit.jupiter.api.Test;
@@ -21,8 +21,8 @@ import org.junit.jupiter.api.Test;
 class LottoViewTest {
     private static final String LINE_SEPARATOR = MessageFormatter.LINE_SEPARATOR.value;
 
-    private final MockReader reader = new MockReader();
-    private final MockWriter writer = new MockWriter();
+    private final StubReader reader = new StubReader();
+    private final StubWriter writer = new StubWriter();
     private final LottoView lottoView = new LottoView(reader, writer);
 
     @Test

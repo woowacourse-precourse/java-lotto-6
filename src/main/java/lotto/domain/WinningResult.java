@@ -11,10 +11,24 @@ import java.util.Map.Entry;
 public class WinningResult {
     private Map<WinningType, Integer> winningResult;
 
+    private WinningResult(Map<WinningType, Integer> winningResult) {
+        this.winningResult = winningResult;
+    }
+
     private WinningResult(final Lottos lottos, final DrawnNumbers drawnNumbers) {
         this.winningResult = new EnumMap<>(WinningType.class);
         initializeWinningResult();
         generateWinningResult(lottos, drawnNumbers);
+    }
+
+    /**
+     * 당첨 결과를 외부에서 받아와 저장하는 테스트용 메서드
+     *
+     * @param winningResult 당첨 결과
+     * @return 당첨 등수와 그에 해당하는 로또 개수
+     */
+    public static WinningResult from(final Map<WinningType, Integer> winningResult) {
+        return new WinningResult(winningResult);
     }
 
     /**
@@ -58,13 +72,13 @@ public class WinningResult {
     }
 
     /**
-     * 당첨 내역으로부터 수익률을 계산하는 메서드.
+     * 당첨 내역으로부터 수익률을 계산하는 메서드
      *
      * @param cost 로또를 구매한 총 비용
      * @return 총 수익에서 비용을 나눈 수익률
      */
     public double calculateEarningsRate(final int cost) {
-        return getEarnings() / cost;
+        return (getEarnings() / cost) * 100;
     }
 
     private double getEarnings() {

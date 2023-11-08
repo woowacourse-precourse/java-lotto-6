@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import lotto.exception.DuplicatedLottoException;
 import lotto.exception.LottoSizeException;
 import lotto.exception.RangeLottoException;
@@ -54,7 +53,7 @@ public class Lotto {
     public List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
-                .collect(Collectors.toList());
+                .toList();
     }
 
 

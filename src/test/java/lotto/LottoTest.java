@@ -7,14 +7,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class LottoTest {
-    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     void createLottoByOverSize() {
         //Given
         List<LottoNumber> lottoNumbers = Stream.of(1, 2, 3, 4, 5, 6, 7)
@@ -28,8 +30,8 @@ class LottoTest {
                         NumberType.LOTTO_LENGTH.getValue());
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     void createLottoByDuplicatedNumber() {
         //Given
         List<LottoNumber> lottoNumbers = Stream.of(1, 2, 3, 4, 5, 5)
@@ -42,8 +44,8 @@ class LottoTest {
                 .hasMessage(ErrorMessage.LOTTO_HAS_DUPLICATE_NUMBER_ERROR.getMessage());
     }
 
-    @DisplayName("로또 번호의 개수가 6이고 로또 번호에 1 ~ 45범위 외의 숫자가 없고 중복이 없으면 예외가 발생하지 않는다 ")
     @Test
+    @DisplayName("로또 번호의 개수가 6이고 로또 번호에 1 ~ 45범위 외의 숫자가 없고 중복이 없으면 예외가 발생하지 않는다 ")
     void createLottoWithNoException() {
         //Given
         List<LottoNumber> lottoNumbers = Stream.of(NumberType.MIN_LOTTO_NUMBER.getValue(), 2, 3, 4, 5,
@@ -75,18 +77,17 @@ class LottoTest {
         assertThat(result).isEqualTo(expectedResult);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"6, true", "7, false"}, delimiter = ',')
     @DisplayName("발행한 로또에 당첨 번호의 숫자가 포함되는지 확인한다.")
-    @Test
-    void bonusNumberInLottoTest() {
+    void bonusNumberInLottoTest(int bonusNumber, boolean expectedResult) {
         //Given
         Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
                 .map(LottoNumber::of)
                 .toList());
-        LottoNumber bonusNumber = LottoNumber.of(6);
 
         //When
-        boolean expectedResult = true;
-        boolean result = lotto.hasNumber(bonusNumber.getNumber());
+        boolean result = lotto.hasNumber(bonusNumber);
 
         //When & Then
         assertThat(result).isEqualTo(expectedResult);

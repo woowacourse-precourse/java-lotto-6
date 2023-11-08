@@ -13,13 +13,21 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
-
+        validNumberRange(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validNumberRange(List<Integer> numbers) {
+        int MIN_NUM = 1;
+        int MAX_NUM = 45;
+        if (numbers.stream().anyMatch(number -> number < MIN_NUM || number > MAX_NUM)) {
+            throw new IllegalArgumentException(ConsoleMessage.LOTTO_NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
@@ -33,6 +41,7 @@ public class Lotto {
             throw new IllegalArgumentException(ConsoleMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
+
 
     public Rank compare(WinningLotto winningLotto) {
         List<WinningNumber> winningNumber = winningLotto.getWinnigNumbers();

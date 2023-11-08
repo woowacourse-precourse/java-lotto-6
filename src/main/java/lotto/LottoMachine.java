@@ -74,6 +74,7 @@ public class LottoMachine {
             addBonus();
         }
         win.add(Integer.parseInt(input));
+        Collections.sort(win);
     }
 
     public void validateLength(String input){

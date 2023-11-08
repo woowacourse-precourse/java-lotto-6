@@ -13,14 +13,33 @@ public class LottoService {
         return new Lotto(numbers);
     }
 
+
     private void updateResult(GameResult result, boolean isBonus) {
         if (GameResult.SECOND_PRIZE.getMatchCount() == result.getMatchCount()) {
             if (result.getIsBonus() && isBonus) {
                 result.increaseResultCount();
             }
-            return ;
+            return;
         }
         result.increaseResultCount();
+    }
+
+    private void compareTicket(Lotto targetTicket, Lotto winningTicket, int bonusNumber) {
+        int matchCount = targetTicket.countWinningNumber(winningTicket);
+        boolean isBonus = targetTicket.contains(bonusNumber);
+
+        for (GameResult result : GameResult.values()) {
+            if (result.getMatchCount() == matchCount) {
+                updateResult(result, isBonus);
+                return;
+            }
+        }
+    }
+
+    public void compareForEachTickets(List<Lotto> purchasedTickets, Lotto winningTicket, int bonusNumber) {
+        for (Lotto currentTicket : purchasedTickets) {
+            compareTicket(currentTicket, winningTicket, bonusNumber);
+        }
     }
 
     public List<Lotto> purchaseLottoTickets(long amount) {

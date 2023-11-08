@@ -33,6 +33,15 @@ public class InputBonusNumberTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("1~45 범위 밖의 보너스 번호 입력 시 예외 테스트")
+    void validateBonusNumberRange_test() {
+        assertSimpleTest(() -> {
+            runException("100");
+            assertThat(output()).contains(BONUS_NUMBER_RANGE.errorMessage());
+        });
+    }
+
     private void command(final String... args) {
         final byte[] buf = String.join("\n", args).getBytes();
         System.setIn(new ByteArrayInputStream(buf));

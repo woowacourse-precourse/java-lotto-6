@@ -2,7 +2,7 @@ package lotto.util;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 
 public class LottoAgency {

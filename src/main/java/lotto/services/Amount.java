@@ -16,7 +16,6 @@ public class Amount {
     private void validateAmountNotNumeric(String amount) {
         if (!isInvalidPrice(amount)) {
             invalidPriceType();
-            throw new IllegalArgumentException();
         }
     }
 

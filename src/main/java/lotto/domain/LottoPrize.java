@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.Collections;
+import java.util.List;
+
 public enum LottoPrize {
     FIRST(6, 2_000_000_000),
     SECOND(6, 30_000_000),
@@ -44,5 +47,12 @@ public enum LottoPrize {
 
     public long getPrize() {
         return prize;
+    }
+
+    public static List<LottoPrize> getReverseLottoPrize() {
+        LottoPrize[] values = LottoPrize.values();
+        List<LottoPrize> reversedLottoPrize = new java.util.ArrayList<>(List.of(values));
+        Collections.reverse(reversedLottoPrize);
+        return reversedLottoPrize;
     }
 }

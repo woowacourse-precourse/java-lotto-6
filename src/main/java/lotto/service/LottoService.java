@@ -27,40 +27,6 @@ public class LottoService {
         return purchasedLotto;
     }
 
-    public List<Lotto> purchaseLottos(int purchaseAmount) {
-        List<Lotto> purchasedLottos = new ArrayList<>();
-        while (purchasedLottos.size() < purchaseAmount) {
-            Lotto generatedlotto = generateNonDuplicateLotto(purchasedLottos);
-            purchasedLottos.add(generatedlotto);
-        }
-        return purchasedLottos;
-    }
-
-    private Lotto generateNonDuplicateLotto(List<Lotto> existingLottos) {
-        Lotto generatedLotto;
-        do {
-            generatedLotto = new Lotto(generateLottoNumbers());
-        } while (isDuplicate(existingLottos, generatedLotto));
-        return generatedLotto;
-    }
-
-    private boolean isDuplicate(List<Lotto> existingLottos, Lotto newLotto) {
-        for (Lotto lotto : existingLottos) {
-            if (new HashSet<>(lotto.getNumbers()).containsAll(newLotto.getNumbers())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(
-                LOTTO_MINIMUM_NUMBER,
-                LOTTO_MAXIMUM_NUMBER,
-                LOTTO_NUMBERS_COUNT
-        );
-    }
-
     public List<LottoResult> calculateResult(List<Lotto> lottoTickets,
                                              List<Integer> winningLottoNumbers,
                                              int bonusNumber) {

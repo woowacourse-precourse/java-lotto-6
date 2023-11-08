@@ -50,7 +50,7 @@ public class Lotto {
     public void validateRange(List<Integer> numbers) {
         numbers.forEach(number -> {
             if(0 >= number || number > 45) {
-                ExceptionMessage.WINNING_NUMBER_RANGE.getValue();
+                ExceptionMessage.WINNING_NUMBER_RANGE.printValue();
                 throw new IllegalArgumentException();
             }
         });

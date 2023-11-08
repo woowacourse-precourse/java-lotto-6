@@ -45,4 +45,8 @@ public class OutputView {
     public void outputRateOfReturn(double rateOfReturn) {
         System.out.print(RATE_OF_RETURN.getMessage(rateOfReturn));
     }
+
+    public void outputErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

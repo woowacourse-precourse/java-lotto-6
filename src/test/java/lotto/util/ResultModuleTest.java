@@ -32,23 +32,6 @@ public class ResultModuleTest extends NsTest {
         );
     }
 
-    @DisplayName("로또 번호가 3개 당첨되었을 때")
-    @Test
-    void getThirdPlace() {
-        //given
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
-
-        //when
-        ResultModule.checkResult(result, lotto, LOTTO_NUM, BONUS_NUM);
-        ResultModule.formattingResult(result);
-        System.out.println(result);
-
-        //then
-        assertSimpleTest(() ->
-                assertEquals(1, result.get(FIFTH_PLACE))
-        );
-    }
-
     @DisplayName("[5등] 로또 번호가 3개 당첨되었을 때")
     @Test
     void getFifthPlace() {

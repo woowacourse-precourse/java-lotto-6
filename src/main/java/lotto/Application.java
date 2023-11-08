@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import lotto.controller.LottoController;
 
 public class Application {
@@ -12,5 +13,8 @@ public class Application {
         lottoController.brag(lottoLover);
 
         DrawResult drawResult = lottoController.getDrawResult();
+        for (Lotto lotto : lottoLover.bragAboutMyLottoButYouAreNotAllowedToTouchIt()) {
+            System.out.println(drawResult.check(lotto));
+        }
     }
 }

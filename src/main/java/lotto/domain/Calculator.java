@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import lotto.constant.Grade;
-import lotto.constant.Prize;
 
 public class Calculator {
     public static Grade checkWinning(Lotto lotto, LottoDrawResult lottoDrawResult) {
@@ -75,32 +74,9 @@ public class Calculator {
 
         for (int i = 0; i < purchaseCnt; i++) {
             Grade grade = checkWinning(lottos.get(i), lottoDrawResult);
-            winningMoney += obtainMoneyByGrade(grade);
+            winningMoney += grade.getPrize();
         }
 
         return Double.valueOf(winningMoney) * PERCENTILE_UNIT / purchaseMoney;
-    }
-
-    private static Integer obtainMoneyByGrade(Grade grade) {
-        if (grade == FIRST) {
-            return Prize.FIRST;
-        }
-        if (grade == SECOND) {
-            return Prize.SECOND;
-        }
-        if (grade == THIRD) {
-            return Prize.THIRD;
-        }
-        return getThirdAfterPrice(grade);
-    }
-
-    private static int getThirdAfterPrice(Grade grade) {
-        if (grade == FOURTH) {
-            return Prize.FOURTH;
-        }
-        if (grade == FIFTH) {
-            return Prize.FIFTH;
-        }
-        return Prize.NONE;
     }
 }

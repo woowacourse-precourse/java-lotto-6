@@ -54,6 +54,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_구입_금액은_1000원으로_나누어_떨어져야_한다() {
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

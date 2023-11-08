@@ -17,5 +17,7 @@ public class Constants {
     public static final String EARNING_RATE_MESSAGE_1 = "총 수익률은 ";
     public static final String EARNING_RATE_MESSAGE_2 = "%입니다.";
     public static final String ERROR_MESSAGE_1 = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    public static final String ERROR_MESSAGE_2 = "[ERROR] 구입 가격은 양의 정수로만 이루어져야 합니다.";
+    public static final String ERROR_MESSAGE_3 = "[ERROR] 당첨 번호의 개수는 6개여야 합니다.";
     private Constants() {}
 }

@@ -11,6 +11,8 @@ import java.util.Map;
 
 public class Computer {
 
+    private static final String RATE_OF_PROFIT_FORMAT = "#.#";
+
     public static int[] rewards;
     public static String rateOfProfit;
 
@@ -83,7 +85,7 @@ public class Computer {
     }
 
     public void calcRateOfProfit(Map<Integer, Integer> winningStats, int purchaseAmount) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        DecimalFormat decimalFormat = new DecimalFormat(RATE_OF_PROFIT_FORMAT);
         double totalReward = 0.0;
         setWinningReward();
 

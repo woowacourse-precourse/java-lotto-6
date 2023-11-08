@@ -13,6 +13,8 @@ import static lotto.domain.constants.LotteryMessageConstant.*;
 
 public class LotteryMessageBuilder {
 
+    private static final String REWARD_FORMAT = "###,###";
+
     public String returnLottoList(List<Lotto> lottos) {
         StringBuilder sb = new StringBuilder();
         for (Lotto lotto :
@@ -77,7 +79,7 @@ public class LotteryMessageBuilder {
 
     private String returnEachResultAmount(int result) {
         StringBuilder sb = new StringBuilder();
-        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        DecimalFormat decimalFormat = new DecimalFormat(REWARD_FORMAT);
         sb.append(REWARD_PREFIX.getMessage())
                 .append(decimalFormat.format(rewards[result - 1]))
                 .append(REWARD_UNIT.getMessage())

@@ -1,8 +1,5 @@
 package lotto.entity;
 
-import lotto.entity.mapper.FiledMapper;
-import lotto.property.MethodProperty;
-
 import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.List;
@@ -73,7 +70,11 @@ public class LottoManager {
         return df.format(result);
     }
 
-    public Map<LottoResult, Integer> getResultEnumMap() {
+    /*public Map<LottoResult, Integer> getResultEnumMap() {
         return (Map<LottoResult, Integer>) FiledMapper.getFieldValue(this, MethodProperty.RESULT_ENUM_MAP);
+    }*/
+
+    public static Map<LottoResult, Integer> getResultEnumMap() {
+        return resultEnumMap;
     }
 }

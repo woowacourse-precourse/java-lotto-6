@@ -1,9 +1,5 @@
 package lotto.entity;
 
-import lotto.entity.mapper.FiledMapper;
-import lotto.property.MethodProperty;
-
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -28,9 +24,13 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
+    /*public List<Integer> getNumbers() {
         return Collections.unmodifiableList(
                 (List<Integer>) FiledMapper.getFieldValue(this, MethodProperty.LOTTO_NUMBERS)
         );
+    }*/
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

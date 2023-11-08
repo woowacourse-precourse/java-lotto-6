@@ -1,3 +1,4 @@
+/*
 package lotto.entity.mapper;
 
 import lotto.property.ErrorProperty;
@@ -15,3 +16,4 @@ public class FiledMapper {
         }
     }
 }
+*/

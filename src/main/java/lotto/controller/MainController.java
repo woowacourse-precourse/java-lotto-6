@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.core.policy.PickNumberPolicy;
 import lotto.core.policy.WinningPolicy;
 import lotto.entity.*;
-import lotto.property.MethodProperty;
 import lotto.tool.OutputGenerateTool;
 
 import java.util.List;
@@ -49,7 +48,7 @@ public class MainController {
     }
 
     private void displayPublishedLottos(OutputGenerateTool outputGenerateTool) {
-        outputFormatting(outputGenerateTool.getLottosFormat(MethodProperty.LOTTOS_FORMAT));
+        outputFormatting(outputGenerateTool.getLottosFormat());
     }
 
     private void purchaseResult(List<Lotto> lottos, Cost cost) {
@@ -77,7 +76,7 @@ public class MainController {
 
     private void displayLottoResult(OutputGenerateTool outputGenerateTool) {
         outputFormatting(LOTTO_RESULT.toString());
-        outputFormatting(outputGenerateTool.getLottosFormat(MethodProperty.LOTTO_RESULT_FORMAT));
+        outputFormatting(outputGenerateTool.getLottoResultFormat());
     }
 
     private void displayLottoRate(String lottoRate) {

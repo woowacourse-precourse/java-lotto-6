@@ -1,8 +1,5 @@
 package lotto.entity;
 
-import lotto.entity.mapper.FiledMapper;
-import lotto.property.MethodProperty;
-
 public enum LottoResult {
     NO_PRIZE(0, 0L, "", ""),
     THREE_MATCH(3, 5000L, "3개 일치", "(5,000원)"),
@@ -23,7 +20,11 @@ public enum LottoResult {
         this.hitPrize = hitPrize;
     }
 
+//    public Integer getCount() {
+//        return (Integer) FiledMapper.getFieldValue(this, MethodProperty.ENUM_COUNT);
+//    }
+
     public Integer getCount() {
-        return (Integer) FiledMapper.getFieldValue(this, MethodProperty.ENUM_COUNT);
+        return count;
     }
 }

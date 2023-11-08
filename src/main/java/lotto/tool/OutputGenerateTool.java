@@ -2,7 +2,6 @@ package lotto.tool;
 
 import lotto.entity.Lotto;
 import lotto.entity.LottoResult;
-import lotto.entity.mapper.FiledMapper;
 import lotto.property.OutputProperty;
 
 public class OutputGenerateTool {
@@ -26,7 +25,14 @@ public class OutputGenerateTool {
         lottoResultFormat.append("\n");
     }
 
-    public String getLottosFormat(String methodProperty) {
+    /*public String getLottosFormat(String methodProperty) {
         return FiledMapper.getFieldValue(this, methodProperty).toString();
+    }*/
+    public String getLottosFormat() {
+        return lottosFormat.toString();
+    }
+
+    public String getLottoResultFormat() {
+        return lottoResultFormat.toString();
     }
 }

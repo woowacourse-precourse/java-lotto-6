@@ -1,8 +1,5 @@
 package lotto.entity;
 
-import lotto.entity.mapper.FiledMapper;
-import lotto.property.MethodProperty;
-
 import static lotto.property.ValidationProperty.COST;
 import static lotto.validation.ValidationForm.verifyFormatForInputValue;
 
@@ -25,7 +22,13 @@ public class Cost {
         }
     }
 
+/*
     public Long getPurchaseCost() {
         return (Long) FiledMapper.getFieldValue(this, MethodProperty.PURCHASE_COST);
+    }
+*/
+
+    public Long getPurchaseCost() {
+        return purchaseCost;
     }
 }

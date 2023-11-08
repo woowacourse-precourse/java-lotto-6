@@ -109,21 +109,21 @@ public class Application {
             Lotto lotto = new Lotto(randomNums);
             lottos.add(lotto);
         }
-        System.out.println(lottos);
+        //System.out.println(lottos);
     }
 
     private static List<Integer> generateRandomNumbers() {
-        List<Integer> numbers = new ArrayList<>();
+        //List<Integer> numbers = new ArrayList<>();
+        Set<Integer> numbers = new HashSet<>();
         while (true) {
             for (int i=0; i<LOTTO_NUMBER_COUNT; i++){
                 int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
                 numbers.add(randomNumber);
             }
-            if (numbers.stream().distinct().count() == numbers.size()){
-                Collections.sort(numbers);
-                //System.out.println("numbers : "+numbers);
-                return numbers;
-            }
+            List<Integer> result = new ArrayList<>(numbers);
+            Collections.sort(result);
+            System.out.println(result);
+            return result;
         }
     }
 }

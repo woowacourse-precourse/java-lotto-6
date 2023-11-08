@@ -12,12 +12,6 @@ public class InputValidation {
         }
     }
 
-    public static void validateNonZeroInput(String input) {
-        if(input.equals("0")) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_ZERO_NOT_ALLOWED);
-        }
-    }
-
     public static void validateLottoNumberCount(List<Integer> list) {
         if (list.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_LOTTO_NUMBER_COUNT);

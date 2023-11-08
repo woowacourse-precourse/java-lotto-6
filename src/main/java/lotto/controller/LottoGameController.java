@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import lotto.model.Lotto;
 import lotto.model.LottoBuyer;
 import lotto.model.WinningNumbers;
+import lotto.model.dto.AnalyzerWinningStatistics;
 import lotto.model.dto.BuyerLottoHistory;
 import lotto.model.lottonumbersgenerator.RandomLottoNumbersGenerator;
 import lotto.view.InputView;
@@ -20,6 +21,7 @@ public class LottoGameController {
     public void play() {
         buyAutoLotto();
         WinningNumbers winningNumbers = determineWinningNumbers();
+        calculateWinningStatistics(winningNumbers);
     }
 
     private void tryCatchTemplate(Runnable action) {
@@ -79,5 +81,10 @@ public class LottoGameController {
     private int askBonusNumber() {
         OutputView.printBonusNumberPrompt();
         return InputView.readBonusNumber();
+    }
+
+    private void calculateWinningStatistics(WinningNumbers winningNumbers) {
+        AnalyzerWinningStatistics analyzerWinningStatistics = lottoBuyer.calculateWinningStatistics(winningNumbers);
+        OutputView.printAnalyzerWinningStatistics(analyzerWinningStatistics);
     }
 }

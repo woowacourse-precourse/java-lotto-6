@@ -14,7 +14,7 @@ public class CommonFunction {
     public static void checkNumbersIn1to45(List<Integer> numbers){
         for(Integer number : numbers){
             if(number < 1 || number > 45){
-                throw new IllegalArgumentException("번호는 1~45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("모든 번호는 1~45 사이의 숫자여야 합니다.");
             }
         }
     }
@@ -24,7 +24,7 @@ public class CommonFunction {
         try {
             return Integer.parseInt(input_amount);
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException("입력값이 정수가 아닙니다. 1000원 단위의 자연수를 입력해주세요.");
+            throw new IllegalArgumentException("입력값이 정수가 아닙니다.");
         }
     }
 

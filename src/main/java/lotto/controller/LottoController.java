@@ -38,8 +38,8 @@ public class LottoController {
         OutputView.printProfitRate(calculateProfitRate(result));
     }
 
-    private float calculateProfitRate(final RankingResult result) {
-        return result.calculateProfit() / budget;
+    private double calculateProfitRate(final RankingResult result) {
+        return (double) result.calculateProfit() / budget * 100;
     }
 
     private RankingResult calculateCountOfRankings() {
@@ -80,7 +80,7 @@ public class LottoController {
         OutputView.println(lottoTickets.toString());
     }
 
-    private int readBudget() throws IllegalArgumentException {
+    private int readBudget() {
         try {
             OutputView.println(Messages.BUDGET_INPUT_MESSAGE);
             int budget = Parser.stringToInteger(InputView.read());

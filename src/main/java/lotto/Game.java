@@ -4,8 +4,35 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Game {
+    enum LottoRank{
+        FIRST(6, false, 2000000000),
+        SECOND(5, true, 30000000),
+        THIRD(5, false, 1500000),
+        FOURTH(4, false, 50000),
+        FIFTH(3, false, 5000),
+        NO_MATCHED(0, false, 0);
+
+        private final Integer matchedNumbersCount;
+        private final boolean isBonusNumberMatched;
+        private final Integer prizeMoney;
+
+        LottoRank(Integer matchedNumbersCount, boolean isBonusNumberMatched, final Integer prizeMoney){
+            this.matchedNumbersCount = matchedNumbersCount;
+            this.isBonusNumberMatched = isBonusNumberMatched;
+            this.prizeMoney = prizeMoney;
+        }
+        private static LottoRank getRank(Integer matchedNumbersCount, boolean isBonusNumberMatched){
+            for (LottoRank rank : LottoRank.values()){
+                if (Objects.equals(rank.matchedNumbersCount, matchedNumbersCount) && (rank.isBonusNumberMatched && isBonusNumberMatched)){
+                    return rank;
+                }
+            }
+            return NO_MATCHED;
+        }
+    }
     private InputUser inputUser;
     private OutputUser outputUser;
     private List<Lotto> numberTickets;
@@ -47,8 +74,9 @@ public class Game {
     }
     private void resultLottoGame(List<Lotto> numberTickets, WinningLotto winningLotto){
         for (Lotto lotto : numberTickets){
-            System.out.println(calculateLottoGame(lotto, winningLotto));
-            System.out.println(calculateLottoGameBonus(lotto, winningLotto));
+            Integer matchedNumbersCount = calculateLottoGame(lotto, winningLotto);
+            Boolean isBonusNumberMatched = calculateLottoGameBonus(lotto, winningLotto);
+            calculateLottoGameResult(matchedNumbersCount, isBonusNumberMatched);
         }
     }
     private int calculateLottoGame(Lotto lotto, WinningLotto winningLotto){
@@ -59,4 +87,8 @@ public class Game {
     private boolean calculateLottoGameBonus(Lotto lotto, WinningLotto winningLotto){
         return lotto.getNumbers().contains(winningLotto.getBonusNumber());
     }
+    private void calculateLottoGameResult(Integer matchedNumbersCount, Boolean isBonusNumberMatched){
+        LottoRank rank = LottoRank.getRank(matchedNumbersCount, isBonusNumberMatched);
+    }
+
 }

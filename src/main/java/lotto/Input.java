@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.lottoMaker.Lotto;
@@ -35,13 +36,13 @@ public class Input {
 
     private String inputPurchaseAmount() {
         String purchaseAmount;
-        while(true) {
+        while (true) {
             try {
                 purchaseAmount = Console.readLine();
                 PurcahseAmountValidator.validate(purchaseAmount);
                 System.out.println();
                 break;
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -49,8 +50,8 @@ public class Input {
     }
 
     private void genLottos(String purchaseAmount) {
-        int numOfTicket = Integer.parseInt(purchaseAmount)/1000;
-        System.out.println(numOfTicket+"개를 구매했습니다.");
+        int numOfTicket = Integer.parseInt(purchaseAmount) / 1000;
+        System.out.println(numOfTicket + "개를 구매했습니다.");
         LottoGenerator.generate(lottoTicket, numOfTicket);
         LottoGenerator.printLottoTicket(lottoTicket);
         System.out.println();
@@ -58,14 +59,14 @@ public class Input {
 
     private String inputWinningNum() {
         String winningNum;
-        while(true) {
+        while (true) {
             try {
                 winningNum = Console.readLine();
                 WinningNumberValidator.validate(winningNum);
                 splitWinningNumber(winningNum);
                 System.out.println();
                 break;
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -81,13 +82,13 @@ public class Input {
 
     private String inputBonusNum() {
         String bonusNum;
-        while(true) {
+        while (true) {
             try {
                 bonusNum = Console.readLine();
                 BonusNumberValidator.validate(bonusNum);
                 System.out.println();
                 break;
-            } catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

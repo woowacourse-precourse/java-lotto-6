@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.List;
 
 public class Lotto {
@@ -14,31 +12,21 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개를 입력하십시오.");
         }
     }
 
-    public void inputMoney() {
-
-        boolean validInput = false;
-        System.out.println("구입금액을 입력해 주세요.");
-        while (!validInput) {
-            try {
-                String input = Console.readLine();
-                validateMoney(input);
-                validInput = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 구입 금액은 1000원 단위로 입력해주세요.");
-                System.out.println("구입금액을 입력해 주세요.");
+    public int countMatchingNumbers(List<Integer> winningNumbers) {
+        int count = 0;
+        for (Integer number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
             }
         }
+        return count;
     }
 
-    public static void validateMoney(String input) {
-        int money = Integer.parseInt(input);
-        if (money % 1000 != 0) {
-            throw new IllegalArgumentException();
-        }
+    public List<Integer> getNumbers() {
+        return numbers;
     }
-
 }

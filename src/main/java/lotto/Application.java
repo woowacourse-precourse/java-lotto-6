@@ -1,26 +1,14 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.List;
-
+import lotto.domain.IoLotto;
 
 public class Application {
     public static void main(String[] args) {
+        IoLotto ioLotto = new IoLotto();
 
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        /*try {
-            Lotto lotto = new Lotto(numbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }*/
-        Lotto lotto = new Lotto(numbers);
-        lotto.inputMoney();
+        int money = ioLotto.inputMoney();
+        Lotto purchasedLotto = (Lotto) ioLotto.purchaseLotto(money);
 
-
-
-
-        // TODO: 프로그램 구현
+        ioLotto.checkResult(purchasedLotto, ioLotto.inputBonusNumber());
     }
 }

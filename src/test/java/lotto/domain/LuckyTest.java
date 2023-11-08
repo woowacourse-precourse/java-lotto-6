@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 class LuckyTest {
 
-    Lucky computer = new Lucky(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+    Lucky computer = new Lucky("1,2,3,4,5,6", 7);
 
     @ParameterizedTest(name = "로또 번호:{0}, 결과: {1}")
     @MethodSource("lottoRank")

@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,10 +19,10 @@ public class Lotto {
 
     public void printLottoNumbers() {
         System.out.print("[");
-        for(int number : numbers) {
-            System.out.print(number + ", ");
-        }
-        System.out.println("]");
+        String result = numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
+        System.out.println(result + "]");
     }
 
     public int getMatchCount(List<Integer> winningNumbers) {

@@ -1,11 +1,10 @@
-package lotto.model;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.constants.WinningResult;
-import lotto.validator.UserInputValidator;
 import lotto.view.OutputView;
 
 public class LottoStore {
@@ -20,20 +19,11 @@ public class LottoStore {
     private WinLotto compareResult;
 
 
-    public List<Lotto> buyLottos(String userInput) {
-        purchaseAmount = getPurchaseAmount(userInput);
+    public List<Lotto> buyLottos(int purchaseAmount) {
+        this.purchaseAmount = purchaseAmount;
         lottoCount = calculateAttemptCount(purchaseAmount);
         lottoList = generateLottoList();
         return lottoList;
-    }
-
-    public static int getPurchaseAmount(String userInput) throws IllegalArgumentException {
-        try {
-            int amount = UserInputValidator.validatePurchaseAmount(userInput);
-            return amount;
-        } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException(ex.getMessage());
-        }
     }
 
     private static int calculateAttemptCount(int purchaseAmount) {

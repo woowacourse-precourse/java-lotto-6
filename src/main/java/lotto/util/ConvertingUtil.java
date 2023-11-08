@@ -1,4 +1,4 @@
-package lotto;
+package lotto.util;
 
 public class ConvertingUtil {
     private static final Integer TICKET_PRICE = 1000;

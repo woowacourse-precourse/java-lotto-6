@@ -1,6 +1,7 @@
-package lotto;
+package lotto.validator;
 
 public class InputValidator {
+    //PriceValidator로 클래스명을 변경할 것
     private static final Integer PRICE_UNIT = 1000;
     private static final Integer PRICE_STANDARD = 1000;
     private static final Integer REMAIN_ZERO = 0;

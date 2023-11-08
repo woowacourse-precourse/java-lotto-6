@@ -2,6 +2,9 @@ package lotto;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import lotto.domain.Buyer;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

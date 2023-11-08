@@ -1,4 +1,12 @@
-package lotto;
+package lotto.controller;
+
+import lotto.domain.Buyer;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.domain.Result;
+import lotto.util.ConvertingUtil;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGame {
     public void play() {

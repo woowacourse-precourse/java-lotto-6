@@ -8,7 +8,6 @@ import java.util.List;
 public class InputBonusNumber {
     private final static String BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
     private final static String NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.";
-    private final static String LOTTO_ERROR = "[ERROR] 잘못된 입력입니다. 다시 입력해주세요.";
 
     private WinningNumber winningNumber;
 
@@ -26,7 +25,7 @@ public class InputBonusNumber {
             } catch (NumberFormatException e) {
                 System.out.println(NOT_NUMBER);
             } catch (IllegalArgumentException e) {
-                System.out.println(LOTTO_ERROR);
+                System.out.println(e.getMessage());
             }
         }
         return bonusNumber;
@@ -39,7 +38,7 @@ public class InputBonusNumber {
 
     private void validateRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 

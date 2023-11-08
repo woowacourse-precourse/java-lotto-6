@@ -9,6 +9,7 @@ import static lotto.values.LottoInformation.*;
 
 public class BonusNumber {
     int bonusNumber;
+
     public BonusNumber(String bonusNumber, WinningNumber winningNumber) {
         checkException(bonusNumber);
         checkNotInWinnerNumber(winningNumber);
@@ -30,8 +31,8 @@ public class BonusNumber {
         bonusNumber = num;
     }
 
-    public void checkNotInWinnerNumber(WinningNumber w){
-        if(w.checkDuplication(bonusNumber))
+    public void checkNotInWinnerNumber(WinningNumber w) {
+        if (w.checkDuplication(bonusNumber))
             throw new IllegalArgumentException(BONUS_NUMBER_IN_WINNING_NUMBER.getMessage());
     }
 

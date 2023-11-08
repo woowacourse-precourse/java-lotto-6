@@ -6,9 +6,11 @@ import static lotto.values.ExceptionMessage.*;
 
 public class OrderService {
     int lottoNumber;
+    int money;
 
     public int generateLottoNumber(String input) {
         checkException(input);
+        money = Integer.parseInt(input);
         return lottoNumber;
     }
 
@@ -30,8 +32,12 @@ public class OrderService {
         lottoNumber = calculator.compute();
     }
 
-    public int getLottoNumber() {
+    public int noticeLottoNumForDeliveryLotto(){
         return lottoNumber;
+    }
+
+    public int noticeMoneyForComputeEarning(){
+        return money;
     }
 
 }

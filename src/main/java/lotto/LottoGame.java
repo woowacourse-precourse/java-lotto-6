@@ -47,6 +47,7 @@ public class LottoGame {
     }
 
     private void announceResult(Result result) {
+        OutputView.noticeHeader();
         OutputView.printResult(
                 result.calculateTotalRankStatus()
         );

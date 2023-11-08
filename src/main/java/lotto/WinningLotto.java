@@ -6,16 +6,14 @@ public class WinningLotto {
   private final Lotto lotto;
   private final int bonusBall;
   
-  public WinningLotto(List<Integer> numbers, int bonusBall) {
-    this.lotto = new Lotto(numbers);
+  public WinningLotto(List<Integer> winningNumbers, int bonusBall) {
+    this.lotto = new Lotto(winningNumbers);
     this.bonusBall = bonusBall;
   }
   
-  public Lotto getLotto() {
-    return lotto;
-  }
-  
-  public boolean isSecondRank(Lotto lotto) {
-    return this.lotto.countMatchedNumbers(lotto) == 5 && lotto.contains(bonusBall);
+  public LottoRank rank(Lotto lotto) {
+    int countOfMatch = lotto.countMatchedNumbers(this.lotto);
+    boolean matchBonus = lotto.contains(bonusBall);
+    return LottoRank.valueOf(countOfMatch, matchBonus);
   }
 }

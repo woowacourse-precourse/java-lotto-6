@@ -2,11 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static lotto.LottoRank.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -30,53 +33,49 @@ public class Application {
         
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusBall);
         
-        Map<String, Integer> matchCount = new HashMap<>();
-        matchCount.put("3개 일치 (5,000원)", 0);
-        matchCount.put("4개 일치 (50,000원)", 0);
-        matchCount.put("5개 일치 (1,500,000원)", 0);
-        matchCount.put("5개 일치, 보너스 볼 일치(30,000,000원)", 0);
-        matchCount.put("6개 일치 (2,000,000,000원)", 0);
-        
-        Map<String, Integer> prizeMoney = new HashMap<>();
-        prizeMoney.put("3개 일치 (5,000원)", 5000);
-        prizeMoney.put("4개 일치 (50,000원)", 50000);
-        prizeMoney.put("5개 일치 (1,500,000원)", 1500000);
-        prizeMoney.put("5개 일치, 보너스 볼 일치(30,000,000원)", 30000000);
-        prizeMoney.put("6개 일치 (2,000,000,000원)", 2000000000);
-        
-        int totalPrizeMoney = 0;
+        Map<LottoRank, Integer> result = new HashMap<>();
         
         for (Lotto lotto : lottos) {
-            int count = lotto.countMatchedNumbers(winningLotto.getLotto());
-            if (count == 6) {
-                matchCount.put("6개 일치 (2,000,000,000원)", matchCount.get("6개 일치 (2,000,000,000원)") + 1);
-                totalPrizeMoney += prizeMoney.get("6개 일치 (2,000,000,000원)");
-            } else if (count == 5) {
-                if (winningLotto.isSecondRank(lotto)) {
-                    matchCount.put("5개 일치, 보너스 볼 일치(30,000,000원)", matchCount.get("5개 일치, 보너스 볼 일치(30,000,000원)") + 1);
-                    totalPrizeMoney += prizeMoney.get("5개 일치, 보너스 볼 일치(30,000,000원)");
-                } else {
-                    matchCount.put("5개 일치 (1,500,000원)", matchCount.get("5개 일치 (1,500,000원)") + 1);
-                    totalPrizeMoney += prizeMoney.get("5개 일치 (1,500,000원)");
-                }
-            } else if (count == 4) {
-                matchCount.put("4개 일치 (50,000원)", matchCount.get("4개 일치 (50,000원)") + 1);
-                totalPrizeMoney += prizeMoney.get("4개 일치 (50,000원)");
-            } else if (count == 3) {
-                matchCount.put("3개 일치 (5,000원)", matchCount.get("3개 일치 (5,000원)") + 1);
-                totalPrizeMoney += prizeMoney.get("3개 일치 (5,000원)");
-            }
+            LottoRank rank = winningLotto.rank(lotto);
+            result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
         
-        System.out.println("당첨 통계");
-        System.out.println("---------");
-        System.out.println("3개 일치 (5,000원)- " + matchCount.get("3개 일치 (5,000원)") + "개");
-        System.out.println("4개 일치 (50,000원)- " + matchCount.get("4개 일치 (50,000원)") + "개");
-        System.out.println("5개 일치 (1,500,000원)- " + matchCount.get("5개 일치 (1,500,000원)") + "개");
-        System.out.println("5개 일치, 보너스 볼 일치(30,000,000원)- " + matchCount.get("5개 일치, 보너스 볼 일치(30,000,000원)") + "개");
-        System.out.println("6개 일치 (2,000,000,000원)- " + matchCount.get("6개 일치 (2,000,000,000원)") + "개");
-        
-        double earningRate = (double) totalPrizeMoney / purchaseAmount * 100;
-        System.out.printf("총 수익률은 %.2f입니다.\n", earningRate);
+        printResult(result);
     }
+    
+    private static void printResult(Map<LottoRank, Integer> result) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        
+        printRankResult(FIFTH, result);
+        printRankResult(FOURTH, result);
+        printRankResult(THIRD, result);
+        printRankResult(SECOND, result);
+        printRankResult(FIRST, result);
+        
+        String profitRate = calculateProfitRate(result);
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    }
+    
+    private static void printRankResult(LottoRank rank, Map<LottoRank, Integer> result) {
+        System.out.println(rank.getCountOfMatch()
+            + "개 일치 "
+            + (rank == SECOND ? ", 보너스 볼 일치" : "")
+            + "(" + String.format("%,d", rank.getWinningMoney()) + "원)- "
+            + result.getOrDefault(rank, 0) + "개");
+    }
+    
+    private static String calculateProfitRate(Map<LottoRank, Integer> result) {
+        int totalPrizeMoney = result.entrySet().stream()
+            .mapToInt(entry -> entry.getKey().getWinningMoney() * entry.getValue())
+            .sum();
+        
+        int purchaseAmount = result.values().stream().mapToInt(Integer::intValue).sum() * 1000;
+        
+        double profitRate = (double) totalPrizeMoney / purchaseAmount * 100;
+        
+        return String.format("%.2f", profitRate);
+    }
+    
+    
 }

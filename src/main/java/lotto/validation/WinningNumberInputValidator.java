@@ -16,7 +16,7 @@ public class WinningNumberInputValidator {
     }
 
     public boolean isLottoNumber(int oneLottoNumber) {
-        return false;
+        return (1 <= oneLottoNumber && oneLottoNumber <= 45);
     }
 
     public boolean isLottoNumberDuplication(WinningNumber winningNumber) {

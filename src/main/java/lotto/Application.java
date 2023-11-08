@@ -29,30 +29,22 @@ public class Application {
 
         int lottoCount = InputView.getLottoCount();
         OutputView.printLottoCount(lottoCount);
-        //로도뜰 발행
         Lottos lottos = lottoService.createLottos(lottoCount);
         OutputView.printLottos(lottos);
 
-        //당첨 번호 입력
         InputView.messageAskLottoNumber();
         LottoNumber lottoNumber = lottoNumberService.createLottoNumber();
-        //보너스 번호 입력
         InputView.messageAskBonusNumber();
         LottoBonusNumber lottoBonusNumber = lottoBonusNumberService.createLottoBonusNumber();
 
-        // 위닝 로또 생성
         WinningLotto winningLotto = winningLottoService.createWinningLotto(lottoNumber, lottoBonusNumber);
         LottoMatcher lottoMatcher = new LottoMatcher(winningLotto);
-        // 당첨 결과 매치
         Ranks ranks = new Ranks(lottoMatcher.matchLottos(lottos));
-        System.out.println(ranks.getRanks());
 
-        // 결과 기록
         RankStatistics rankStatistics = rankService.createRankStatistics();
         rankStatistics.recordLottoRanks(ranks.getRanks());
         double revenueRate = rankStatistics.calculateLottoRevenueRate(lottoCount * LottoConstant.LOTTO_PRICE);
 
-        //결과 출력
         OutputView.printResultRankStatistics(rankStatistics.getRankCount());
         OutputView.printRevenueRate(revenueRate);
 

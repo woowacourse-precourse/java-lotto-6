@@ -2,7 +2,6 @@ package lotto;
 
 import static lotto.ExceptionHandler.checkWinningNumbersValidity;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {

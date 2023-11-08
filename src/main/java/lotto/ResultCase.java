@@ -12,12 +12,12 @@ public enum ResultCase {
 
     private int correctness;
     private int price;
-    private String inform;
+    private String comment;
 
-    ResultCase(int correctness, int price, String inform) {
+    ResultCase(int correctness, int price, String comment) {
         this.correctness = correctness;
         this.price = price;
-        this.inform = inform;
+        this.comment = comment;
     }
 
     public int getCorrectness() {
@@ -28,7 +28,7 @@ public enum ResultCase {
         return this.price;
     }
 
-    public String getInform() {
-        return this.inform;
+    public String getComment() {
+        return this.comment;
     }
 }

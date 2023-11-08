@@ -11,11 +11,11 @@ public class Ask {
                 double purchaseAmount = Double.parseDouble(camp.nextstep.edu.missionutils.Console.readLine());
                 return (int) isDivisibleByOneThousand(purchaseAmount); // 구매 금액이 1,000으로 나누어지는지 확인 후 정수로 바꾸어 리턴
             } catch (NullPointerException e) {
-                System.err.println("[ERROR] 구매금액을 입력하셔야 합니다.\n");
+                System.out.println("[ERROR] 구매금액을 입력하셔야 합니다.\n");
             } catch (NumberFormatException e) {
-                System.err.println("[ERROR] 구매금액은 숫자형식이어야 합니다.\n");
+                System.out.println("[ERROR] 구매금액은 숫자형식이어야 합니다.\n");
             } catch (IllegalArgumentException e) {
-                System.err.println("[ERROR] 구매금액은 1,000원 단위로 입력하셔야 합니다.\n");
+                System.out.println("[ERROR] 구매금액은 1,000원 단위로 입력하셔야 합니다.\n");
             }
         }
     }
@@ -28,9 +28,9 @@ public class Ask {
                 checkValidBonusNumber(winningNumbers, bonusNumber);
                 return bonusNumber;
             } catch (NullPointerException e) {
-                System.err.println("[ERROR] 보너스 번호를 입력하셔야 합니다.\n");
+                System.out.println("[ERROR] 보너스 번호를 입력하셔야 합니다.\n");
             } catch (NumberFormatException e) {
-                System.err.println("[ERROR] 보너스 번호는 숫자형식이어야 합니다.\n");
+                System.out.println("[ERROR] 보너스 번호는 숫자형식이어야 합니다.\n");
             } catch (IllegalArgumentException ignored) {
             }
         }
@@ -42,9 +42,9 @@ public class Ask {
             try {
                 return new Lotto(parseNumberList(camp.nextstep.edu.missionutils.Console.readLine()));
             } catch (NullPointerException e) {
-                System.err.println("[ERROR] 당첨번호를 입력하셔야 합니다.\n");
+                System.out.println("[ERROR] 당첨번호를 입력하셔야 합니다.\n");
             } catch (NumberFormatException e) {
-                System.err.println("[ERROR] 당첨번호들은 공백없이 쉼표로 구분된 숫자들의 형식이어야 합니다.\n");
+                System.out.println("[ERROR] 당첨번호들은 공백없이 쉼표로 구분된 숫자들의 형식이어야 합니다.\n");
             } catch (IllegalArgumentException ignored) {
             }
         }
@@ -73,7 +73,7 @@ public class Ask {
     public static void checkValidBonusNumber(Lotto winningNumbers, int bonusNumber) {
         List<Integer> numbers = winningNumbers.getNumbers();
         if (numbers.contains(bonusNumber)) {
-            System.err.println("[ERROR] 보너스 번호는 당첨번호와 중복되지 않아야 합니다.");
+            System.out.println("[ERROR] 보너스 번호는 당첨번호와 중복되지 않아야 합니다.");
             throw new IllegalArgumentException();
         }
     }

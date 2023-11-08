@@ -16,7 +16,6 @@ public class LottoService {
     private static List<Lotto> lottoList;
     private static List<Integer> lotto = new ArrayList<>();
 
-    // 로또 번호 리스트 생성
     public List<Lotto> getLottoLists(int lottoCount) {
         lottoList = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
@@ -25,7 +24,6 @@ public class LottoService {
         return lottoList;
     }
 
-    // 로또 번호 생성
     public Lotto makeLottoNumbers() {
         LottoNumbers lottoNumbers = new LottoNumbers();
         lotto = new ArrayList<>();
@@ -35,7 +33,6 @@ public class LottoService {
         return new Lotto(lotto);
     }
 
-    // 당첨 통계
     public void getWinningTotal(List<Lotto> lottoList, WinningLotto winningLotto) {
 
         Map<Rank, Integer> result = setResult();

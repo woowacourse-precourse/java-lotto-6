@@ -40,7 +40,6 @@ public class LottoController {
         winningTotal(lottoList, winningLotto);
     }
 
-    // 당첨번호 생성 (+보너스 번호)
     private WinningLotto makeWinningNumber() {
         Lotto lotto = new Lotto(InputView.getWinningNumbersFromUser());
         List<Integer> winningNumber = lotto.getLottoNumbers();
@@ -52,7 +51,6 @@ public class LottoController {
         return winningLotto;
     }
 
-    // 당첨 통계
     private void winningTotal(List<Lotto> lottoList, WinningLotto winningLotto) {
         OutputView.printResult();
         lottoService.getWinningTotal(lottoList, winningLotto);

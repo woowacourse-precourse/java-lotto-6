@@ -35,7 +35,7 @@ public class InputView {
         try {
             return tryToIntegerList(string);
         } catch (IllegalArgumentException exception) {
-            String exceptionMessage = "각 숫자는 int 형식이고, 각 숫자는 \'%s\'로 구분해야 합니다".formatted(NUMBER_DELIMITER);
+            String exceptionMessage = "각 숫자는 int 형식이고, 각 숫자는 '%s'로 구분해야 합니다".formatted(NUMBER_DELIMITER);
             throw new IllegalArgumentException(exceptionMessage, exception);
         }
     }

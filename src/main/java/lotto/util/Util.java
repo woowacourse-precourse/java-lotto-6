@@ -26,7 +26,7 @@ public class Util {
     }
 
     public static final void validateWinningNumber(List<Integer> winningNumber) {
-        LottoValidation.validateIsSize(winningNumber.size());
+        LottoValidation.validateIsCount(winningNumber.size());
         LottoValidation.validateIsDuplicated(winningNumber);
         for (Integer number : winningNumber) {
             LottoValidation.validateInRange(number);

@@ -55,9 +55,9 @@ public class LottoValidationTest {
     @Test
     void createLottoByMore() {
         List<Integer> lotto = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7));
-        int size = lotto.size();
+        int count = lotto.size();
 
-        assertThatThrownBy(() -> LottoValidation.validateIsSize(size))
+        assertThatThrownBy(() -> LottoValidation.validateIsCount(count))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 개수는 6개여야 합니다.");
     }
@@ -66,9 +66,9 @@ public class LottoValidationTest {
     @Test
     void createLottoByLess() {
         List<Integer> lotto = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
-        int size = lotto.size();
+        int count = lotto.size();
 
-        assertThatThrownBy(() -> LottoValidation.validateIsSize(size))
+        assertThatThrownBy(() -> LottoValidation.validateIsCount(count))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 개수는 6개여야 합니다.");
     }

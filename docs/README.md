@@ -45,7 +45,7 @@
    - 1000원 단위
    - 1000원 이상, 21*10^8 이하로 제한한다.
 - [x] 발행한 로또 금액에 맞는 로또 수량을 계산한다. convertMoneyToLotto()
-- [ ] 로또 금액에 맞는 수량만큼 player에게 지급한다. -> Player.makeLotto()
+- [x] 로또 금액에 맞는 수량만큼 player에게 지급한다. -> new Player(int n)
 
 ### ⛳️  GameResult
 - [ ]  당첨 내역을 검증한다.

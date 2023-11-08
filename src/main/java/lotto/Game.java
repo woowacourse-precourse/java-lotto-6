@@ -77,8 +77,15 @@ public class Game {
         }
 
     }
-
     private int convertMoneyToLotto() {
         return this.money / 1000;
+    }
+
+    public void playGame(){
+        this.askMoney();
+        this.askWinningNumbers();
+        this.askBonusNumber();
+
+        Player player = new Player(this.money/1000);
     }
 }

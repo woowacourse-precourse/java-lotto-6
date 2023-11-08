@@ -6,8 +6,7 @@ public enum Rank {
     THIRD_PLACE(1500000, 5),
     FOURTH_PLACE(50000, 4),
     FIFTH_PLACE(5000, 3),
-    NONE(0, 0)
-    ;
+    NONE(0, 0);
 
     private final int reward;
     private final double matchNumberCount;

@@ -22,10 +22,6 @@ public class WinnerLotto {
 
     private WinnerLotto(final List<Integer> winnerNumbers,
                        final Integer bonusNumber) {
-        validateWinnerNumbersLength(winnerNumbers);
-        validateEachWinnerNumberRange(winnerNumbers);
-        validateDuplicatedNumber(winnerNumbers);
-        validateBonusNumberRange(bonusNumber);
         validateDuplicatedNumberBetweenWinnerNumbersAndBonusNumber(winnerNumbers, bonusNumber);
         this.winnerNumbers = winnerNumbers;
         this.bonusNumber = bonusNumber;
@@ -36,35 +32,6 @@ public class WinnerLotto {
         return new WinnerLotto(winnerNumbers,
                                bonusNumber);
     }
-
-    private void validateWinnerNumbersLength(final List<Integer> winnerNumbers) {
-        if (winnerNumbers.size() != LOTTO_LENGTH.getSetting()) {
-            throw new IllegalArgumentException(WRONG_WINNER_LOTTO_LENGTH.getMessage());
-        }
-    }
-
-    private void validateEachWinnerNumberRange(final List<Integer> winnerNumbers) {
-        if (winnerNumbers.stream()
-                .anyMatch(number -> !(RANGE_START_NUMBER.getSetting() <= number && number <= RANGE_END_NUMBER.getSetting()))) {
-            throw new IllegalArgumentException(WRONG_WINNER_LOTTO_NUMBER_RANGE.getMessage());
-        }
-    }
-
-    private void validateDuplicatedNumber(final List<Integer> winnerNumbers) {
-        if (winnerNumbers.stream()
-                .collect(Collectors.toSet())
-                .size()
-                != LOTTO_LENGTH.getSetting()) {
-            throw new IllegalArgumentException(DUPLICATED_WINNER_NUMBER.getMessage());
-        }
-    }
-
-    private void validateBonusNumberRange(final Integer bonusNumber) {
-        if (!(RANGE_START_NUMBER.getSetting() <= bonusNumber && bonusNumber <= RANGE_END_NUMBER.getSetting())) {
-            throw new IllegalArgumentException(WRONG_BONUS_NUMBER_RANGE.getMessage());
-        }
-    }
-
     private void validateDuplicatedNumberBetweenWinnerNumbersAndBonusNumber(final List<Integer> winnerNumbers,
                                                                             final Integer bonusNumber) {
         if (winnerNumbers.contains(bonusNumber)) {

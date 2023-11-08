@@ -25,7 +25,7 @@ public class CompareLottoValue {
         }
         lottoPrize();
         OutputView.winningStatistics(amount);
-        getRateOfTurn(amount);
+        OutputView.winningRate(getRateOfTurn(amount));
     }
 
 
@@ -97,9 +97,9 @@ public class CompareLottoValue {
         return resultMoney;
     }
 
-    public static void getRateOfTurn(Integer amount){
+    public static double getRateOfTurn(Integer amount){
         double turn = ((double) (resultMoney ) / amount ) * 100;
         double rateOfTurn =  Math.round(turn * 100) / 100.0;
-        OutputView.winningRate(rateOfTurn);
+        return rateOfTurn;
     }
 }

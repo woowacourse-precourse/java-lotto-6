@@ -132,6 +132,35 @@ class LottoTest {
 
     }
 
+    @Test
+    void 총_수익률_계산(){
+        List<Integer> lottoBalls1 = List.of(8, 21, 23, 41, 42, 43);
+        List<Integer> lottoBalls2 = List.of(3, 5, 11, 16, 32, 38);
+        List<Integer> lottoBalls3 = List.of(7, 11, 16, 35, 36, 44);
+        List<Integer> lottoBalls4 = List.of(1, 8, 11, 31, 41, 42);
+        List<Integer> lottoBalls5 = List.of(13, 14, 16, 38, 42, 45);
+        List<Integer> lottoBalls6 = List.of(7, 11, 30, 40, 42, 43);
+        List<Integer> lottoBalls7 = List.of(2, 13, 22, 32, 38, 45);
+        List<Integer> lottoBalls8 = List.of(1, 3, 5, 14, 22, 45);
+
+        List<List<Integer>> lottoBalls = new ArrayList<>();
+        lottoBalls.add(lottoBalls1);
+        lottoBalls.add(lottoBalls2);
+        lottoBalls.add(lottoBalls3);
+        lottoBalls.add(lottoBalls4);
+        lottoBalls.add(lottoBalls5);
+        lottoBalls.add(lottoBalls6);
+        lottoBalls.add(lottoBalls7);
+        lottoBalls.add(lottoBalls8);
+
+        int amount = 8000;
+
+        List<Integer> winningBalls = List.of(1,2,3,4,5,6);
+        int bonusBall = 7;
+        compareValueStart(winningBalls, lottoBalls, bonusBall,8000);
+        Assertions.assertThat(Double.toString(CompareLottoValue.getRateOfTurn(amount))).isEqualTo("62.5");
+    }
+
 
 
 }

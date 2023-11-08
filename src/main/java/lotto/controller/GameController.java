@@ -32,6 +32,8 @@ public class GameController {
     private LottoPurchaseReceipt handlePurchaseLottos() {
         int purchaseMoney = inputView.readPurchaseMoney();
         LottoPurchaseReceipt receipt = gameService.purchaseLottos(purchaseMoney);
+        outputView.printLineSeparator();
+
         outputView.printLottos(receipt.purchasedLottos().getSortedLottos());
         outputView.printLineSeparator();
         return receipt;

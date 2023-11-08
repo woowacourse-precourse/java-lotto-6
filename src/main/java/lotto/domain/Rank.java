@@ -18,8 +18,8 @@ public enum Rank {
         if(symbolNumber == 60) return FirstRank;
         if(symbolNumber == 51) return SecondRank;
         if(symbolNumber == 50) return ThirdRank;
-        if(symbolNumber == 40) return ForthRank;
-        if(symbolNumber == 30) return FifthRank;
+        if(symbolNumber == 40 || symbolNumber == 41) return ForthRank;
+        if(symbolNumber == 30 || symbolNumber == 31) return FifthRank;
         return None;
     }
 

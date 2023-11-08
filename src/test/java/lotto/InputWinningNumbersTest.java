@@ -3,6 +3,7 @@ package lotto;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_WINNING_NUMBERS;
+import static lotto.message.ErrorMessage.WINNING_NUMBERS_DUPLICATE;
 import static lotto.message.ErrorMessage.WINNING_NUMBERS_LENGTH;
 import static lotto.message.ErrorMessage.WINNING_NUMBERS_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -52,6 +53,15 @@ public class InputWinningNumbersTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1,2,3,4,5,pobi");
             assertThat(output()).contains(NUMBER_FORMAT_WINNING_NUMBERS.errorMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("중복된 당첨번호 입력 시 예외 테스트")
+    void validateDuplicateWinningNumbers_test() {
+        assertSimpleTest(() -> {
+            runException("1,2,3,4,5,5");
+            assertThat(output()).contains(WINNING_NUMBERS_DUPLICATE.errorMessage());
         });
     }
 

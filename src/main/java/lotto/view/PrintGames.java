@@ -3,9 +3,10 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PrintGames {
     Map<String, Integer> result = null;
@@ -16,7 +17,7 @@ public class PrintGames {
         System.out.println(count + "개를 구매했습니다.");
         for (int i = 0; i < count; i++) {
             List<Integer> lotto = lottoGames.get(i).getNumbers();
-            Collections.sort(lotto);
+            lotto.stream().sorted().collect(Collectors.toList());
             System.out.println(lotto);
         }
         System.out.println();

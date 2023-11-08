@@ -19,21 +19,21 @@ class ExceptionTest {
     @DisplayName("양수 문자열 입력시 정상적으로 int 변환한다.")
     @Test
     void 인트_변환_양수_입력() {
-        int result = exception.checkInt("1000", "오류!");
+        int result = exception.checkInt("1000");
         assertThat(result).isEqualTo(1000);
     }
 
     @DisplayName("음수 문자열 입력시 정상적으로 int 변환한다.")
     @Test
     void 인트_변환_음수_입력() {
-        int result = exception.checkInt("-1000", "오류!");
+        int result = exception.checkInt("-1000");
         assertThat(result).isEqualTo(-1000);
     }
 
     @DisplayName("숫자가 아닌 문자열 입력시 IllegalArgumentException과 에러 메시지를 반환한다.")
     @Test
     void 인트_변환_문자_입력() {
-        assertThatThrownBy(() ->  exception.checkInt("test", "오류!"))
+        assertThatThrownBy(() ->  exception.checkInt("test"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -29,10 +29,17 @@ public class JackpotNumberExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨번호 입력 시 6개를 입력하지 않으면 예외가 발생한다.")
+    @DisplayName("당첨번호 입력 시 숫자 6개 미만을 입력하면 예외가 발생한다.")
     @Test
-    public void inputJackpotNumberByInaccurateSize() {
+    public void inputJackpotNumberBySmallSize() {
         assertThatThrownBy(() -> InputValidator.checkJackpotNumberInput("1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨번호 입력 시 숫자 6개를 초과하여 입력하면 예외가 발생한다.")
+    @Test
+    public void inputJackpotNumberByLargeSize() {
+        assertThatThrownBy(() -> InputValidator.checkJackpotNumberInput("1,2,3,4,5,6,7"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

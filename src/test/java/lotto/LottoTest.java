@@ -82,6 +82,13 @@ class LottoTest {
         assertThatThrownBy(() -> new LottoAmount("2300"))
                 .isInstanceOf(LottoMoneyDivideException.class);
     }
+
+    @DisplayName("구입금액이 1,000 보다 작은 경우 예외가 발생한다.")
+    @Test
+    void lottoAmountLessThan1000() {
+        assertThatThrownBy(() -> new LottoAmount("890"))
+                .isInstanceOf(LottoMoneyLessException.class);
+    }
 }
 
 

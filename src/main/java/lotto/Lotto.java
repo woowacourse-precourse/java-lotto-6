@@ -11,7 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         CheckDuplicateNumber(numbers);
-        Collections.sort(numbers);
+        Collections.sort(new ArrayList<>(numbers));
         this.numbers = numbers;
     }
 
@@ -21,7 +21,14 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < numbers.size(); i++) {
+            builder.append(numbers.get(i));
+            if (i < numbers.size() - 1) {
+                builder.append(", ");
+            }
+        }
+        return builder.toString();
     }
 
     private void validate(List<Integer> numbers) {
@@ -41,7 +48,7 @@ public class Lotto {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < numberOfLotto; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            System.out.println(lotto);
+            System.out.println(lotto.getNumbers().toString());
             lottos.add(lotto);
         }
         return lottos;

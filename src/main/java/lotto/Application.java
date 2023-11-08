@@ -61,7 +61,6 @@ public class Application {
         String[] inputs = Console.readLine().split(",");
         for(int i=0; i<inputs.length; i++) {
             int input = Integer.parseInt(inputs[i]);
-            validateRange(input, startLottoNumber, endLottoNumber);
             inputLottoNumber.add(input);
         }
         winLotto = new Lotto(inputLottoNumber);

@@ -1,11 +1,14 @@
 package lotto.domain;
 
+import lotto.utils.Validator;
+
 public class WinningLotto {
 
     private final Lotto lotto;
     private final LottoNumber bonusNumber;
 
     public WinningLotto(Lotto lotto, LottoNumber bonusNumber) {
+        Validator.validateDuplicate(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }

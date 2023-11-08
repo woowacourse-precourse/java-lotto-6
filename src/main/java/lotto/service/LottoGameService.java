@@ -33,30 +33,35 @@ public class LottoGameService {
 
     public WinningResult calculateWinningResult(
             List<Lotto> lotties, List<Integer> winningNumbers, BonusNumber bonusNumber) {
-
         LinkedHashMap<WinningAmountConstant, Integer> result = WinningAmountConstant.initWinningResult();
 
         for (Lotto lotto : lotties) {
             boolean hasBonusNumber = bonusNumber.hasBonusNumber(lotto.getLotto());
             int count = getCompareLottoCount(lotto, winningNumbers, hasBonusNumber);
 
-            Optional<WinningAmountConstant> value = WinningAmountConstant.getValueByCount(count,
-                    hasBonusNumber);
-
-            value.ifPresent(winningAmountConstant ->
-                    result.put(winningAmountConstant, result.get(winningAmountConstant) + 1));
+            saveWinningResult(result, count, hasBonusNumber);
         }
 
         return new WinningResult(result);
     }
 
+    private LinkedHashMap<WinningAmountConstant, Integer> saveWinningResult(
+            final LinkedHashMap<WinningAmountConstant, Integer> result, int count, boolean hasBonusNumber) {
+
+        Optional<WinningAmountConstant> value = WinningAmountConstant.getValueByCount(count,
+                hasBonusNumber);
+
+        value.ifPresent(winningAmountConstant ->
+                result.put(winningAmountConstant, result.get(winningAmountConstant) + 1));
+
+        return result;
+    }
+
     private int getCompareLottoCount(Lotto lotto, List<Integer> winningNumbers, boolean hasBonusNumber) {
         int count = lotto.countDuplicatedNumbers(winningNumbers);
 
-        if (hasBonusNumber) {
-            if (count < 6) {
-                count++;
-            }
+        if (hasBonusNumber && count < 6) {
+            count++;
         }
 
         return count;

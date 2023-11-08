@@ -42,14 +42,14 @@ public class LottoResult {
         return LottoPrize.valueOf(matchedNumber, false);
     }
 
-    private int countMatchingNumbers(Lotto lotto) {
+    public int countMatchingNumbers(Lotto lotto) {
         return winningNumbers.getNumbers().stream()
                 .filter(lotto.getNumbers()::contains)
                 .toList()
                 .size();
     }
 
-    private boolean isMatchBonusNumber(Lotto lotto) {
+    public boolean isMatchBonusNumber(Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 }

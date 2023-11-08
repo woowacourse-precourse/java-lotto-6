@@ -1,10 +1,12 @@
 package lotto.domain.winning;
 
 import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.utils.StringConstant.ONE;
+import static lotto.utils.StringConstant.ZERO;
 
 import java.util.List;
-import lotto.domain.lotto.Lotto;
 import lotto.domain.grade.Grade;
+import lotto.domain.lotto.Lotto;
 
 public class Winning {
 
@@ -30,9 +32,9 @@ public class Winning {
     }
 
     private int matchLottoNumbers(List<Integer> lottoNumbers) {
-        int matchCount = 0;
+        int matchCount = ZERO;
 
-        for (int index = 0; index < LOTTO_NUMBER_COUNT; index++) {
+        for (int index = ZERO; index < LOTTO_NUMBER_COUNT; index++) {
             if (this.numbers.contains(lottoNumbers.get(index))) {
                 matchCount++;
             }
@@ -42,9 +44,9 @@ public class Winning {
 
     private int matchBonusNumber(List<Integer> lottoNumbers) {
         if (lottoNumbers.contains(bonusNumber)) {
-            return 1;
+            return ONE;
         }
 
-        return 0;
+        return ZERO;
     }
 }

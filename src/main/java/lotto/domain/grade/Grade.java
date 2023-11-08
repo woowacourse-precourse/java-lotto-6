@@ -1,5 +1,11 @@
 package lotto.domain.grade;
 
+import static lotto.utils.StringConstant.FIVE;
+import static lotto.utils.StringConstant.FOUR;
+import static lotto.utils.StringConstant.ONE;
+import static lotto.utils.StringConstant.SIX;
+import static lotto.utils.StringConstant.THREE;
+
 public enum Grade {
 
     FIFTH("3개 일치 (5,000원)", 5_000),
@@ -25,20 +31,20 @@ public enum Grade {
         this.winningMoney = winningMoney;
     }
 
-    public static Grade of(int matchCount, int bonusMatchCount) {
-        if (matchCount == 6) {
+    public static Grade of(int numberMatchCount, int bonusMatchCount) {
+        if (numberMatchCount == SIX) {
             return FIRST;
         }
-        if (matchCount == 5 && bonusMatchCount == 1) {
+        if (numberMatchCount == FIVE && bonusMatchCount == ONE) {
             return SECOND;
         }
-        if (matchCount == 5) {
+        if (numberMatchCount == FIVE) {
             return THIRD;
         }
-        if (matchCount == 4) {
+        if (numberMatchCount == FOUR) {
             return FOURTH;
         }
-        if (matchCount == 3) {
+        if (numberMatchCount == THREE) {
             return FIFTH;
         }
 

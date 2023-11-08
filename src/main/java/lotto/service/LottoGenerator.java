@@ -3,6 +3,7 @@ package lotto.service;
 import static lotto.utils.LottoConstant.LOTTO_END_NUMBER;
 import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
+import static lotto.utils.StringConstant.ZERO;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -22,7 +23,7 @@ public class LottoGenerator {
     }
 
     public List<Lotto> generate() {
-        return IntStream.range(0, this.lottoSize)
+        return IntStream.range(ZERO, this.lottoSize)
                 .mapToObj(count -> generateSingleLotto())
                 .toList();
     }

@@ -7,7 +7,7 @@ public enum OutputMessage {
     LOTTO_STATISTICS_MESSAGE("%s - %d개"),
     LOTTO_RESULT_MESSAGE("\n당첨 통계\n---");
 
-    public final String message;
+    private final String message;
 
     OutputMessage(String message) {
         this.message = message;

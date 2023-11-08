@@ -8,6 +8,8 @@ import static lotto.utils.LottoConstant.LOTTO_END_NUMBER;
 import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
+import static lotto.utils.StringConstant.COMMA;
+import static lotto.utils.StringConstant.ZERO;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,19 +26,19 @@ public class LottoValidator {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE.getMessage());
         }
 
-        if (purchaseAmount <= 0 || purchaseAmount % PURCHASE_AMOUNT_UNIT != 0) {
+        if (purchaseAmount <= ZERO || purchaseAmount % PURCHASE_AMOUNT_UNIT != ZERO) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE.getMessage());
         }
     }
 
     public void verifyWinNumbers(String lottoWinNumbersInput) {
-        String[] numbers = lottoWinNumbersInput.split(",");
+        String[] numbers = lottoWinNumbersInput.split(COMMA);
 
         if (numbers.length != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_SIZE.getMessage());
         }
 
-        Set<Integer> winNumbersSet = new HashSet<>();
+        Set<Integer> winNumbers = new HashSet<>();
 
         for (String numberInput : numbers) {
             int number;
@@ -50,11 +52,11 @@ public class LottoValidator {
             if (!(LOTTO_START_NUMBER <= number && number <= LOTTO_END_NUMBER)) {
                 throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
             }
-            
-            winNumbersSet.add(number);
+
+            winNumbers.add(number);
         }
 
-        if (winNumbersSet.size() != LOTTO_NUMBER_COUNT) {
+        if (winNumbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBERS.getMessage());
         }
     }

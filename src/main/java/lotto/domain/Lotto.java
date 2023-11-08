@@ -56,7 +56,7 @@ public class Lotto {
 
     private void validateRange(Integer number) {
         if (outOfRange(number)) {
-            throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE_EXCEPTION);
+            throw new IndexOutOfBoundsException(NUMBER_OUT_OF_RANGE_EXCEPTION);
         }
     }
 

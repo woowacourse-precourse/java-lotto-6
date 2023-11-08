@@ -37,7 +37,7 @@ class LottoTest {
 
         // when  // then
         assertThatThrownBy(() -> new Lotto(Arrays.asList(first, second, third, fourth, fifth, sixth)))
-                .isExactlyInstanceOf(IllegalArgumentException.class)
+                .isExactlyInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessage(NUMBER_OUT_OF_RANGE_EXCEPTION);
     }
 }

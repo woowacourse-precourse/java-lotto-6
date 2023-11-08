@@ -81,6 +81,7 @@ class ApplicationTest extends NsTest {
         });
     }
 
+
     @Test
     void testGetPurchaseAmountValidInput(){
         String input = "2000\n";

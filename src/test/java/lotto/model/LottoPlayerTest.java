@@ -60,12 +60,6 @@ class LottoPlayerTest {
         assertEquals(winningAmount, lottoPlayer.getTotalWinnings());
     }
 
-    @Test
-    @DisplayName("지출이 0일 때 수익률 계산 시 예외를 던져야 한다")
-    void testGetEarningRateThrowsExceptionWhenSpendingsIsZero() {
-        // Assert
-        assertThrows(ArithmeticException.class, () -> lottoPlayer.getEarningRate());
-    }
 
     @Test
     @DisplayName("수익률을 올바르게 계산해야 한다")

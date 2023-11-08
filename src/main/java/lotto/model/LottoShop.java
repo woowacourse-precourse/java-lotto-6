@@ -9,7 +9,7 @@ public class LottoShop {
 
     private final LottoIssuer lottoIssuer = new LottoIssuer();
 
-    public List<Lotto> sell(int payment) {
+    public List<Lotto> sell(int payment) throws IllegalArgumentException {
         validateDivisibleByLottoPrice(payment);
         int amount = calculateLottoAmount(payment);
         return getIssuedLotto(amount);

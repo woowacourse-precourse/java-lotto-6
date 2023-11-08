@@ -4,16 +4,15 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 public class LottoNumberGenerator {
+    private static final Integer START_INCLUSIVE = 1;
+    private static final Integer END_INCLUSIVE = 45;
+    private static final Integer COUNT = 6;
 
     public static List<Integer> run() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        while (validateDuplicate(randomNumbers)) {
-            randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        }
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, COUNT);
         randomNumbers = sortRandomNumber(randomNumbers);
         return randomNumbers;
     }
@@ -24,13 +23,4 @@ public class LottoNumberGenerator {
         return sortedNumbers;
     }
 
-    private static Boolean validateDuplicate(List<Integer> numbers) {
-        HashSet<Integer> set = new HashSet<>();
-        for (Integer num : numbers) {
-            if (!set.add(num)) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

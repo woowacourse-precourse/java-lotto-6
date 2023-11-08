@@ -12,7 +12,7 @@ public class WinningLottoNumbers {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 문자가 부족합니다.");
         }
     }
 

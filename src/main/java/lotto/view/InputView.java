@@ -12,6 +12,8 @@ public class InputView {
     private static final String GET_WINNING_LOTTO_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요";
     private static final String GET_BONUS_LOTTO_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요";
 
+    private static final int LOTTO_NUMBER_COUNT = 6;
+
     public int getPurchaseAmount() {
 
         System.out.println(GET_PURCHASE_AMOUNT_MESSAGE);
@@ -31,12 +33,16 @@ public class InputView {
 
         String input = Console.readLine();
 
-        for (String inputSplit : input.split(",")) {
-            validateNumber(inputSplit);
+        for (String singleInput : input.split(",")) {
+            validateLottoNumber(singleInput);
         }
 
-        return new WinningLottoNumbers(
+        WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(
                 Arrays.stream(input.split(",")).map(Integer::parseInt).collect(Collectors.toList()));
+
+        validateDuplicateNumber(winningLottoNumbers);
+
+        return winningLottoNumbers;
 
     }
 
@@ -62,9 +68,30 @@ public class InputView {
 
     }
 
-    private void validateDivide(String input){
+    private void validateLottoNumber(String lottoNumber) {
 
-        if(Integer.parseInt(input)%1000 !=0){
+        validateNumber(lottoNumber);
+        validateNumberInRange(lottoNumber);
+
+    }
+
+    private void validateDuplicateNumber(WinningLottoNumbers winningLottoNumbers) {
+
+        if (winningLottoNumbers.getNumbers().stream().distinct().count() != LOTTO_NUMBER_COUNT){
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
+        }
+
+    }
+
+    private void validateNumberInRange(String lottoNumber) {
+        if (0 > Integer.parseInt(lottoNumber) || Integer.parseInt(lottoNumber) > 45){
+            throw new IllegalArgumentException("[ERROR] 번호가 범위 밖입니다.");
+        }
+    }
+
+    private void validateDivide(String input) {
+
+        if (Integer.parseInt(input) % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1000으로 나누어 떨어지지 않습니다.");
         }
 

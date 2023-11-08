@@ -26,6 +26,14 @@ public class JunitTest {
     }
 
     @ParameterizedTest
+    @CsvSource(value = {"2,1,2볼 1스트라이크", "0, 0, 0볼 0스트라이크", "3, 0, 3볼 0스트라이크"})
+    @DisplayName("CsvSource 제대로 된 사용 방법")
+    void csvSourceSuccess(int ball, int strike, String answer)  {
+        System.out.println(ball + " " + strike + " " + answer);
+        assertThat(answer).isEqualTo(ball +"볼 " + strike + "스트라이크");
+    }
+
+    @ParameterizedTest
     @CsvSource(value = {"1,2,3", "    1,2,3", "   1,2,3   "},
             delimiter = ':')
     @DisplayName("CsvSource 는 trim() 한다.")

@@ -74,7 +74,7 @@ public class ValidateException {
     public static void negative(String strLine) {
         Integer inputNum = Integer.valueOf(strLine);
         if (inputNum < POSITIVE_CONDITION_ZERO) {
-            throw new NumberFormatException("[ERROR] 양수만 입력해 주세요");
+            throw new NumberFormatException(ValidateConstant.ERROR_INPUT_NEGATIVE());
         }
     }
 

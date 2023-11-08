@@ -28,4 +28,8 @@ public class ValidateConstant {
     public static String ERROR_INCLUDE_BLANK() {
         return "[ERROR] 입력 중간에 공백이 포함되어 있습니다.";
     }
+
+    public static String ERROR_INPUT_NEGATIVE() {
+        return "[ERROR] 양수만 입력해 주세요";
+    }
 }

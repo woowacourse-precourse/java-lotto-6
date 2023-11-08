@@ -2,6 +2,8 @@ package model;
 
 import common.Constant;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +38,7 @@ public class Lotto {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
+        Collections.sort(numbers);
         sb.append(numbers);
         return sb.toString();
     }

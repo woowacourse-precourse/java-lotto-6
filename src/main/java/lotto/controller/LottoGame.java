@@ -63,7 +63,7 @@ public class LottoGame {
         revenue = 0;
         BONUS_NUMBER.forEach(num -> {
             int sameCnt = resultStatistics.getOrDefault(num, 0);
-            System.out.println(lottoUtil.getStatisticsMessage(num) + sameCnt);
+            System.out.println(lottoUtil.getStatisticsMessage(num) + sameCnt + "개");
             if(sameCnt > 0) {
                 revenue += lottoUtil.getStatisticsValue(num) * sameCnt;
             }

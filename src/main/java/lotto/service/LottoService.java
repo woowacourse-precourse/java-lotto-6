@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.domain.ExceptionModule.checkParseIntException;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
@@ -17,21 +18,8 @@ public class LottoService {
     private static final Integer LOTTO_PRICE = 1000;
 
     public static void run() {
-        //구입 금액 입력 받기
-        System.out.println("구입금액을 입력해 주세요.");
-        int tryNum;
-        while (true) {
-            //TODO 메세지 출력 부분을 IllegalArgumentException 발생 후 처리로 변경
-            try {
-                tryNum = Integer.parseInt(Console.readLine());
-                if (tryNum % LOTTO_PRICE == 0) {
-                    break;
-                }
-                System.out.println("[ERROR] 로또 구입 금액은 1000원의 양의 정수배만 입력 가능합니다.");
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 로또 구입 금액은 1000원의 양의 정수배만 입력 가능합니다.");
-            }
-        }
+        Integer tryNum = InteractService.purchasePhase();
+
         //로또 생성
         int lottoCount = tryNum / LOTTO_PRICE;
         System.out.println();
@@ -74,12 +62,12 @@ public class LottoService {
         while (true) {
             //TODO 메세지 출력 부분을 IllegalArgumentException 발생 후 처리로 변경
             try {
-                bonusNum = Integer.parseInt(Console.readLine());
+                bonusNum = checkParseIntException(Console.readLine());
                 if (!winningNum.contains(bonusNum)) {
                     break;
                 }
-                    System.out.println("[ERROR] 보너스 번호는 당첨 번호 6개 외의 숫자만 입력 가능합니다.");
-            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 당첨 번호 6개 외의 숫자만 입력 가능합니다.");
+            } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 보너스 번호는 1~45 사이의 숫자만 입력 가능합니다.");
             }
         }

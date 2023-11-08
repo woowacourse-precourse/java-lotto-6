@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import lotto.domain.Grade;
 import lotto.domain.Lotto;
 import lotto.error.InputErrorMessage;
+import lotto.error.LottoErrorMessage;
 
 public class UI {
     public static Integer inputMoney() {
@@ -86,10 +87,10 @@ public class UI {
         try {
             bonus = Integer.parseInt(line);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(InputErrorMessage.NO_NATURAL);
+            throw new IllegalArgumentException(LottoErrorMessage.RANGE);
         }
-        if (bonus <= 0) {
-            throw new IllegalArgumentException(InputErrorMessage.NO_NATURAL);
+        if (bonus <= 0 || 45 < bonus) {
+            throw new IllegalArgumentException(LottoErrorMessage.RANGE);
         }
         return bonus;
     }

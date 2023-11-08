@@ -14,7 +14,7 @@ import lotto.error.LottoErrorMessage;
 public class Program {
     private List<Lotto> consumerLottos = null;
     private Lotto winning = null;
-    private Integer bonus = null;
+    private LottoDrawResult drawResult = null;
 
     public void purchaseLottos() {
         Integer payment = 0;
@@ -53,13 +53,13 @@ public class Program {
         while (true) {
             try {
                 bonus = UI.inputBonusNumber();
+                drawResult = BroadCastingStation.drawLotto(winning, bonus);
             } catch (IllegalArgumentException e) {
                 UI.printExceptionCause(e);
                 continue;
             }
             break;
         }
-        this.bonus = bonus;
     }
 
     public void showResult() {
@@ -69,7 +69,6 @@ public class Program {
             UI.printExceptionCause(e);
             return;
         }
-        LottoDrawResult drawResult = BroadCastingStation.drawLotto(winning, bonus);
         Map<Grade, Integer> winningFrequency = obtainWinningFrequency(consumerLottos, drawResult);
         Double returnRate = Calculator.returnRate(consumerLottos, drawResult);
         UI.printWinningStats(winningFrequency, returnRate);
@@ -99,7 +98,7 @@ public class Program {
     }
 
     private void validateShowState() {
-        if (consumerLottos == null || winning == null || bonus == null) {
+        if (drawResult == null) {
             throw new IllegalStateException(LottoErrorMessage.SETTING_SEQUENCE);
         }
     }

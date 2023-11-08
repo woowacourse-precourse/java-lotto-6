@@ -17,7 +17,6 @@ public class Profit {
         for(Score score : Score.values()) {
             int frequency = Collections.frequency(scores, score);
             profit += score.getPrize() * frequency;
-            System.out.println(score.getPrize() * frequency);
         }
         this.profitRate = round((float) profit / moneyYouPut * 100 * 100) / 100.0;
     }

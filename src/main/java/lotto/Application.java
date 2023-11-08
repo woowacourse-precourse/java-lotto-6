@@ -36,8 +36,8 @@ public class Application {
         System.out.println();
         // 당첨 통계 처리 및 출력
         gameManager.updateResult();
-        PrintHandler.printResults(gameManager.getResult(), gameManager.getProfit());
         gameManager.updateProfit();
+        PrintHandler.printResults(gameManager.getResult(), gameManager.getProfit());
         
     }
 }

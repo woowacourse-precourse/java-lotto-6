@@ -6,11 +6,16 @@ import java.util.List;
 import java.util.Set;
 
 public class Result {
-    private List<Score> scores;
+    private final List<Score> scores;
     public Result() {
         this.scores = new ArrayList<>();
     }
     public List<Score> getScores() { return this.scores; }
+    
+    //For Test code only
+    public void setScores(List<Score> scores) {
+        this.scores.addAll(scores);
+    }
 
     public void makeScores(List<Integer> winningNumbers, Integer bonusNumber,List<Lotto> lottos) {
         lottos.forEach(lotto -> scores

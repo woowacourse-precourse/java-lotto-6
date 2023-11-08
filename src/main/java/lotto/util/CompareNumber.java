@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.domain.Lotto;
+
 import java.util.List;
 
 public class CompareNumber {

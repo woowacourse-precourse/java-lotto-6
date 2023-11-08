@@ -13,6 +13,14 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public Lotto getLotto() {
+        return lotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateBonusNumber(int bonusNumber) {
         if (!LottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
@@ -23,13 +31,5 @@ public class WinningLotto {
         if (lotto.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public Lotto getLotto() {
-        return lotto;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 }

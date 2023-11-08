@@ -1,6 +1,5 @@
 package lotto.utils;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RandomGeneratorTest {
-
-    @BeforeEach
-    void setUp() {
-    }
 
     @DisplayName("지정된 범위에 해당하는 지정된 개수의 서로 다른 난수 배열 생성")
     @Test

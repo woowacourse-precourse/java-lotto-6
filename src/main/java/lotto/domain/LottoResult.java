@@ -16,6 +16,19 @@ public class LottoResult {
         this.rankingCounts = rankingCounts;
     }
 
+    public Map<Ranking, Integer> getRankingCounts() {
+        return Map.copyOf(rankingCounts);
+    }
+
+    public BigDecimal calculatePrizeRate(Money money, int scale, RoundingMode roundingMode) {
+        BigDecimal totalPrize = calculateTotalPrize();
+        BigDecimal spent = BigDecimal.valueOf(money.getAmount());
+        BigDecimal prizeRate = totalPrize.divide(spent, 10, RoundingMode.HALF_UP)
+                .multiply(BigDecimal.valueOf(100))
+                .setScale(scale, roundingMode);
+        return prizeRate;
+    }
+
     private void validateKeys(Map<Ranking, Integer> rankingCounts) {
         if (rankingCounts.keySet().size() != Ranking.values().length) {
             throw new IllegalStateException();
@@ -34,15 +47,6 @@ public class LottoResult {
         }
     }
 
-    public BigDecimal calculatePrizeRate(Money money, int scale, RoundingMode roundingMode) {
-        BigDecimal totalPrize = calculateTotalPrize();
-        BigDecimal spent = BigDecimal.valueOf(money.getAmount());
-        BigDecimal prizeRate = totalPrize.divide(spent, 10, RoundingMode.HALF_UP)
-                .multiply(BigDecimal.valueOf(100))
-                .setScale(scale, roundingMode);
-        return prizeRate;
-    }
-
     private BigDecimal calculateTotalPrize() {
         BigDecimal totalPrize = BigDecimal.ZERO;
 
@@ -54,9 +58,5 @@ public class LottoResult {
         }
 
         return totalPrize;
-    }
-
-    public Map<Ranking, Integer> getRankingCounts() {
-        return Map.copyOf(rankingCounts);
     }
 }

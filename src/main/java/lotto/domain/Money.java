@@ -9,6 +9,10 @@ public class Money {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validateModulo(int amount) {
         if (amount % LottoMachine.getLottoPrice() != 0) {
             throw new IllegalArgumentException();
@@ -19,9 +23,5 @@ public class Money {
         if (amount <= 0) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public int getAmount() {
-        return amount;
     }
 }

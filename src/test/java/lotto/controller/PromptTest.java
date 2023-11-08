@@ -5,7 +5,6 @@ import lotto.domain.WinningLotto;
 import lotto.view.Message;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -37,7 +36,6 @@ class PromptTest {
         prompt = new Prompt(reader, promptParser, message);
     }
 
-    @Order(1)
     @DisplayName("구매 금액 입력")
     @Test
     void promptMoney_성공() {
@@ -53,7 +51,6 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validMoneyInput);
     }
 
-    @Order(2)
     @DisplayName("구매 금액이 숫자가 아니면 에러 발생")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "　", "8000a", "abc", "..."})

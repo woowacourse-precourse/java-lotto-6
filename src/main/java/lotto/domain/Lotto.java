@@ -20,6 +20,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public int findCorrects(Lotto winningNumbers) {
+        return (int) numbers.stream().filter(winningNumbers::contains).count();
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_SIZE) {
             throw new IllegalArgumentException();
@@ -36,17 +48,5 @@ public class Lotto {
         if (!numbers.stream().allMatch(LottoNumbers::contains)) {
             throw new IllegalArgumentException();
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
-    }
-
-    public boolean contains(int number) {
-        return numbers.contains(number);
-    }
-
-    public int findCorrects(Lotto winningNumbers) {
-        return (int) numbers.stream().filter(winningNumbers::contains).count();
     }
 }

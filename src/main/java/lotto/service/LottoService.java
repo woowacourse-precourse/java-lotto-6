@@ -119,7 +119,7 @@ public class LottoService {
      */
     public void predictWinning(){
         countWinning();
-
+        getRate();
         lottoPrint.winningStaticsPrint(winning, winningRate);
     }
     // 당첨 금액 및 개수 Count
@@ -156,5 +156,12 @@ public class LottoService {
         return winning;
     }
 
-
+    // 수익률 구하기
+    public void getRate(){
+        double winningMoney = 0;
+        for(Integer i : winning.keySet()){
+            if(winning.get(i) != 0) winningMoney += (i * winning.get(i));
+        }
+        winningRate = Math.round(winningMoney * 10) / 10.0;
+    }
 }

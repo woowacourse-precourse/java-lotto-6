@@ -2,6 +2,8 @@ package lotto.validate;
 
 import lotto.message.ErrorMessage;
 
+import java.util.Arrays;
+
 import static lotto.message.ErrorMessage.*;
 
 public class Validator {
@@ -24,6 +26,11 @@ public class Validator {
 
     public static boolean isCommaSeparated(String input) {
         return input.split(",").length == 6;
+    }
+
+    public static boolean isAllNumberic(String input){
+        String[] split = input.split(",");
+        return Arrays.stream(split).allMatch(s -> isNumeric(s));
     }
 
     public static boolean isNumeric(String str) {

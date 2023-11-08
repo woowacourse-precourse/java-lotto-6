@@ -7,6 +7,7 @@ import static lotto.view.InputView.inputWinningNumbers;
 import static lotto.view.OutputView.printLottoNumbers;
 import static lotto.view.OutputView.printLottoResult;
 import static lotto.view.OutputView.printTotalYieldRate;
+import static lotto.view.OutputView.printWinningStatistics;
 
 import common.enumtype.ResultType;
 import common.exception.InvalidArgumentException;
@@ -33,7 +34,7 @@ public class Game {
         printLottoes();
         this.winningNumbers = createNumbers();
         this.lottoResult = createLottoResult();
-        printResult();
+        printStatistics();
     }
 
     private LottoNumberStrategy settingStrategy(LottoNumberStrategy strategy) {
@@ -141,9 +142,18 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
+    private void printStatistics() {
+        printWinningStatistics();
+        printResult();
+        printYieldRate();
+    }
+
     private void printResult() {
         Map<ResultType, Integer> result = lottoResult.getResult();
         printLottoResult(result);
+    }
+
+    private void printYieldRate() {
         int lottoPurchaseAmount = amount.getLottoPurchaseAmount();
         double yieldRate = lottoResult.getYieldRate(lottoPurchaseAmount);
         printTotalYieldRate(yieldRate);

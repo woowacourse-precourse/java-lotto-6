@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.dto.LottoNumbers;
 
 public final class OutputView {
@@ -16,8 +17,8 @@ public final class OutputView {
     private static final String LOTTO_NUMBERS_STRING_PREFIX = "[";
     private static final String SEPARATE = ", ";
     private static final String LOTTO_NUMBER_STRING_SUFFIX = "]\n";
-    public static final String RESULT_FORMAT = "%d개 일치 (%s원) - %d개\n";
-    public static final String SECOND_PLACE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    public static final String RESULT_FORMAT = "%d개 일치 (%s원) - %d개";
+    public static final String SECOND_PLACE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     public static final int DEFAULT_COUNT = 0;
 
     private OutputView() {
@@ -31,16 +32,14 @@ public final class OutputView {
         System.out.println(sb);
     }
 
-    public static void printWinningStatistics(){
+    public static void printWinningStatistics() {
         System.out.println("\n당첨 통계");
         System.out.println("---");
     }
 
     public static void printLottoResult(Map<ResultType, Integer> lottoResult) {
-        StringBuilder sb = new StringBuilder();
-        Arrays.stream(ResultType.values())
-                .forEach(value -> makeLottoResultString(value, lottoResult, sb));
-        System.out.println(sb);
+        String collect = makeLottoResultString(lottoResult);
+        System.out.println(collect);
     }
 
     public static void printTotalYieldRate(double yieldRate) {
@@ -55,21 +54,25 @@ public final class OutputView {
         sb.append(LOTTO_NUMBER_STRING_SUFFIX);
     }
 
-    private static void makeLottoResultString(
+    private static String makeLottoResultString(Map<ResultType, Integer> lottoResult) {
+        return Arrays.stream(ResultType.values())
+                .map(value -> makeResultTypeString(value, lottoResult))
+                .collect(Collectors.joining("\n"));
+    }
+
+    private static String makeResultTypeString(
             ResultType resultType,
-            Map<ResultType, Integer> lottoResult,
-            StringBuilder sb
+            Map<ResultType, Integer> lottoResult
     ) {
         if (isNotWin(resultType)) {
-            return;
+            return "";
         }
 
         String format = getResultFormat(resultType);
-        sb.append(String.format(format,
-                        resultType.getMatchCount(),
-                        convertNumberFormat(resultType),
-                        getResultCount(resultType, lottoResult)
-                )
+        return String.format(format,
+                resultType.getMatchCount(),
+                convertNumberFormat(resultType),
+                getResultCount(resultType, lottoResult)
         );
     }
 

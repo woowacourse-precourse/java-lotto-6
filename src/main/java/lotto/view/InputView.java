@@ -1,12 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
-import java.util.List;
 import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
 import lotto.domain.WinningNumber;
-import lotto.message.ExceptionMessage;
 
 public class InputView {
     public Amount inputAmount() {

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 import java.util.regex.Pattern;
 import lotto.message.ExceptionMessage;
 
@@ -46,9 +45,6 @@ public class Amount {
         return amount / AMOUNT_MIN;
     }
 
-    public int getAmount() {
-        return amount;
-    }
 
     public int getCountLotto() {
         return countLotto;

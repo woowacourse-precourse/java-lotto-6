@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 
 public enum Ranking {
     FIRST(6, false, 2_000_000_000),
@@ -25,9 +24,6 @@ public enum Ranking {
         return matchNumber;
     }
 
-    public boolean isBonusMatched() {
-        return isBonusMatched;
-    }
 
     public int getPrize() {
         return prize;

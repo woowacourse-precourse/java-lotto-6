@@ -5,6 +5,8 @@ import static lotto.Util.getLottoCount;
 
 import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 public class MessagePrinter {
     public static final String INPUT_FOR_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";

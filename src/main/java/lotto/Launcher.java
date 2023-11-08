@@ -27,8 +27,12 @@ public class Launcher {
     }
 
     private static PurchaseController createPurchaseController() {
-        LottoNumberGenerator generator = new RandomLottoNumberGenerator();
-        return PurchaseController.from(generator);
+        LottoNumberGenerator lottoNumberGenerator = createRandomGenerator();
+        return PurchaseController.from(lottoNumberGenerator);
+    }
+
+    private static LottoNumberGenerator createRandomGenerator() {
+        return new RandomLottoNumberGenerator();
     }
 
     private static LottoPurchase processPurchase(PurchaseController purchaseController) {

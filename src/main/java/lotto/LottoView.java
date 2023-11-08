@@ -43,8 +43,19 @@ public class LottoView {
     }
 
     public static int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.\n");
-        return Integer.parseInt(Console.readLine());
+        while(true) {
+            System.out.println("보너스 번호를 입력해 주세요.\n");
+            try {
+                int bonusNum = Integer.parseInt(Console.readLine());
+                if(bonusNum<1||bonusNum>45)
+                    throw new IllegalArgumentException();
+                return bonusNum;
+            }catch (NumberFormatException e){
+                System.out.println("[ERROR] 1~45사이의 숫자를 입력해 주십시오");
+            }catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 숫자로 입력해주십시오.");
+            }
+        }
     }
 
     public static void showLottos(LottoRepository lottoRepository) {

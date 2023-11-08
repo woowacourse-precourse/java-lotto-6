@@ -1,8 +1,12 @@
-package lotto;
+package game;
 
 import account.UserAccount;
 import console.InputView;
 import console.OutputView;
+import calculator.IncomeCalculator;
+import lotto.Lotto;
+import lotto.Lottos;
+import lotto.StandardLotto;
 
 public class LottoController {
     private LottoController() {

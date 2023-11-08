@@ -1,7 +1,7 @@
 package account;
 
 import lotto.Prize;
-import lotto.IncomeCalculator;
+import calculator.IncomeCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

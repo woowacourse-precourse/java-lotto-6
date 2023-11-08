@@ -1,4 +1,6 @@
-package lotto;
+package calculator;
+
+import lotto.Prize;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

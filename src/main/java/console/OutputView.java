@@ -3,7 +3,7 @@ package console;
 import lotto.Lotto;
 import lotto.Lottos;
 import lotto.Prize;
-import lotto.IncomeCalculator;
+import calculator.IncomeCalculator;
 
 import java.util.List;
 import java.util.Map;

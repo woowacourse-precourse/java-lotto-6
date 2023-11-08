@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.global.enums.Constants.LOTTO_MAX_NUM;
+import static lotto.global.enums.Constants.LOTTO_MIN_NUM;
+import static lotto.global.enums.Constants.LOTTO_NUM_CNT;
 import static lotto.global.util.InputManager.inputPayment;
 import static lotto.global.util.OutputManager.printHistory;
 import static lotto.global.util.OutputManager.printRateOfProfit;
@@ -32,7 +35,7 @@ public class Round {
      */
     public void extractor(int totalCnt) {
         for (int i=0; i<totalCnt; i++) {
-            List<Integer> randomNums = new ArrayList<>(pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> randomNums = new ArrayList<>(pickUniqueNumbersInRange(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_NUM_CNT));
             Collections.sort(randomNums);   // 오름차순 정렬
             Lotto lotto = new Lotto(randomNums);
             lottos.add(lotto);

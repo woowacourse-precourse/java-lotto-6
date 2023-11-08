@@ -2,6 +2,9 @@ package lotto.model;
 
 import java.util.List;
 
+import static lotto.constant.ErrorMessage.ERROR_WIN_NUMBERS_DUPLICATES;
+import static lotto.constant.ErrorMessage.ERROR_WIN_NUMBERS_SIZE_IS_NOT_6;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -12,7 +15,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_WIN_NUMBERS_SIZE_IS_NOT_6);
+        }
+        if (numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException(ERROR_WIN_NUMBERS_DUPLICATES);
         }
     }
 

@@ -1,6 +1,5 @@
 package constants;
 
-
 public enum LottoGameResultMessage {
 
     LOTTO_3_WINNING("3개 일치 (5,000원) - {lotto_3}개","{lotto_3}"),
@@ -22,12 +21,4 @@ public enum LottoGameResultMessage {
         return this.message.replace(this.messageReplace, winningCount);
     }
 
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getMessageReplace() {
-        return messageReplace;
-    }
 }

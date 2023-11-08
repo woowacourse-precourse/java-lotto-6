@@ -106,8 +106,6 @@ public class GameService {
 
             lotto.checkNumber();
 
-            lotto.checkOverlap();
-
             return lotto;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

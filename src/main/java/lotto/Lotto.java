@@ -19,6 +19,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        checkOverlap(numbers);
     }
 
     public boolean checkNumber(){
@@ -31,6 +32,15 @@ public class Lotto {
     }
 
     public boolean checkOverlap(){
+        Set<Integer> check = new HashSet<>();
+        for(int num : numbers){
+            if(check.contains(num)) throw new IllegalArgumentException("[ERROR] 중복된 숫자는 허용되지 않습니다!");
+            check.add(num);
+        }
+        return true;
+    }
+
+    private boolean checkOverlap(List<Integer> numbers){
         Set<Integer> check = new HashSet<>();
         for(int num : numbers){
             if(check.contains(num)) throw new IllegalArgumentException("[ERROR] 중복된 숫자는 허용되지 않습니다!");

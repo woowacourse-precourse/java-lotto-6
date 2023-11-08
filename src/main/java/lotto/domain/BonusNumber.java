@@ -6,8 +6,8 @@ import lotto.constant.LottoConstant;
 public class BonusNumber {
     private final int bonusNumber;
 
-    public BonusNumber(String bonusNumber) {
-        validate(bonusNumber);
+    public BonusNumber(String bonusNumber, Lotto lotto) {
+        validate(bonusNumber, lotto);
         this.bonusNumber = toInt(bonusNumber);
     }
 
@@ -19,7 +19,7 @@ public class BonusNumber {
         return Integer.parseInt(bonusNumber);
     }
 
-    private void validate(String bonusNumber) {
+    private void validate(String bonusNumber, Lotto lotto) {
         if (isEmpty(bonusNumber)) {
             ErrorMessage.INPUT_IS_EMPTY.throwIllegalArgumentException();
         }
@@ -28,6 +28,9 @@ public class BonusNumber {
         }
         if (!isInRange(bonusNumber)) {
             ErrorMessage.BONUS_NUMBER_IS_OUT_OF_RANGE.throwIllegalArgumentException();
+        }
+        if (isContain(bonusNumber, lotto)) {
+            ErrorMessage.BONUS_NUMBER_CONTAIN_LOTTO.throwIllegalArgumentException();
         }
     }
 
@@ -42,5 +45,9 @@ public class BonusNumber {
     private boolean isInRange(String bonusNumber) {
         int number = toInt(bonusNumber);
         return number >= LottoConstant.LOTTO_START_RANGE && number <= LottoConstant.LOTTO_END_RANGE;
+    }
+
+    private boolean isContain(String bonusNumber, Lotto lotto) {
+        return lotto.getNumbers().contains(toInt(bonusNumber));
     }
 }

@@ -16,7 +16,7 @@ public class PaymentTest {
 
     @DisplayName("잔돈이 생기는 경우 예외 발생")
     @Test
-    void createPaymentByChanges() {
+    void createPaymentForRemainder() {
         assertThatThrownBy(() -> Payment.create("1001"))
                 .isInstanceOf(LottoGameException.class);
     }

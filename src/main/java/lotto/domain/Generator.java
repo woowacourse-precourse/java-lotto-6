@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import lotto.util.InteractModule;
 import lotto.util.ResultModule;
 
 public class Generator {
@@ -18,8 +17,6 @@ public class Generator {
             randomNum.sort(Comparator.naturalOrder());
 
             generateLotto.add(new Lotto(randomNum));
-
-            InteractModule.printRandomNum(randomNum);
         }
 
         return generateLotto;

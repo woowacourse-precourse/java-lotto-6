@@ -3,6 +3,7 @@ package lotto.util;
 import java.text.DecimalFormat;
 import java.util.List;
 import lotto.Enum.Winning;
+import lotto.domain.Lotto;
 
 public class InteractModule {
 
@@ -15,8 +16,10 @@ public class InteractModule {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
-    public static void printRandomNum(List<Integer> randomNum) {
-        System.out.println(randomNum);
+    public static void printRandomNum(List<Lotto> generateLotto) {
+        for (Lotto lotto : generateLotto) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public static void printWinningNumNotice() {

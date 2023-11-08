@@ -35,6 +35,9 @@ public class InteractService {
 
         List<Lotto> generateLotto = Generator.generateLotto(lottoCount);
         checkLottoCount(generateLotto.size(), lottoCount);
+
+        printRandomNum(generateLotto);
+
         return generateLotto;
     }
 

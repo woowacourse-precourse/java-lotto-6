@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class InputTest {
-    @DisplayName("입력에서 공백 문자를 모두 제거한 값을 반환한다")
+    @DisplayName("입력에서 공백 문자를 모두 제거한 값을 반환한다.")
     @ParameterizedTest
     @CsvSource({"'   ',''", "'\t  ',''", "' a b c ',abc"})
     void trimmed(String inputString, String expected) {

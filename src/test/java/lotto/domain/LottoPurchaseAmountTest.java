@@ -19,7 +19,7 @@ class LottoPurchaseAmountTest {
         assertThat(lottoPurchaseAmount.value()).isEqualTo(expectedAmount);
     }
 
-    @DisplayName("1,000으로 나누어 떨어지지 않는 금액을 입력하면 예외가 발생한다")
+    @DisplayName("1,000으로 나누어 떨어지지 않는 금액을 입력하면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 500, 999, 1_001, 1_500})
     void createByNonDivisiblePrice(int price) {
@@ -27,7 +27,7 @@ class LottoPurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("0원을 입력하면 예외가 발생한다")
+    @DisplayName("0원을 입력하면 예외가 발생한다.")
     @Test
     void createByZeroPrice() {
         assertThatThrownBy(() -> LottoPurchaseAmount.from(0))

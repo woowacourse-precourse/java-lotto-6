@@ -1,18 +1,29 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.service.Calculator;
+import lotto.service.GetLottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호의 개수가 6개보다 적으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -24,5 +35,18 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("구입 금액에 따른 로또 갯수 테스트")
+    @Test
+    void lottoNumberSizeTest() {
+        final int purchasePrice = 8000;
+        int numberOfLottoTickets = Calculator.numberOfLottoTickets(purchasePrice);
+        List<Lotto> userTickets = new ArrayList<>();
+
+        for(int i = 0; i < numberOfLottoTickets ; i++) {
+            List<Integer> lottoNumber = GetLottoNumber.userTicketNumbers();
+            userTickets.add(new Lotto(lottoNumber));
+        }
+
+        assertThat(userTickets.size()).isEqualTo(8);
+    }
 }

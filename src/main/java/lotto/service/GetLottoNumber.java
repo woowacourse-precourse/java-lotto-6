@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;

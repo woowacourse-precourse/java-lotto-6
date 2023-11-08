@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.model.Lotto;
-import lotto.util.Calculator;
-import lotto.util.GetLottoNumber;
-import lotto.util.Validator;
+import lotto.service.Validator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class WinningNumbersValidationTest extends NsTest {
+public class ValidateTest extends NsTest {
     @Override
     protected void runMain() {
         Application.main(new String[]{});
@@ -32,7 +30,7 @@ public class WinningNumbersValidationTest extends NsTest {
         assertThat(exception.getMessage()).isEqualTo("[ERROR] 숫자를 입력하세요.");
     }
 
-    @DisplayName("당첨 번호에 기호가 입력되었을 경우 예외 처리")
+    @DisplayName("당첨 번호에 문자 또는 기호가 입력되었을 경우 예외 처리")
     @Test
     void isWinningNumbersSymbolTest () {
         String input = "ㅏ,2,3";
@@ -83,21 +81,6 @@ public class WinningNumbersValidationTest extends NsTest {
         });
 
         assertThat(exception.getMessage()).isEqualTo("[ERROR] 숫자를 6개 입력하세요.");
-    }
-
-    @DisplayName("구입 금액에 따른 로또 갯수 테스트")
-    @Test
-    void lottoNumberSizeTest() {
-        final int purchasePrice = 8000;
-        int numberOfLottoTickets = Calculator.getNumberOfLottoTickets(purchasePrice);
-        List<Lotto> userTickets = new ArrayList<>();
-
-        for(int i = 0; i < numberOfLottoTickets ; i++) {
-            List<Integer> lottoNumber = GetLottoNumber.userTicketNumbers();
-            userTickets.add(new Lotto(lottoNumber));
-        }
-
-        assertThat(userTickets.size()).isEqualTo(8);
     }
 
 }

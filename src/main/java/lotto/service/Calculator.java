@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.service;
 
 import static lotto.model.Rank.*;
 
@@ -7,26 +7,26 @@ public class Calculator {
     private static final float PERCENTAGE = 100;
     private static final int TICKET_PRICE = 1000;
 
-    public static int getNumberOfLottoTickets(int purchasePrice) {
+    public static int numberOfLottoTickets(int purchasePrice) {
         return purchasePrice / TICKET_PRICE;
     }
 
-    public static float getRateOfProfit(int purchasePrice, int[] rankBoard) {
-        float totalPrize = getTotalPrize(rankBoard);
+    public static float rateOfProfit(int purchasePrice, int[] rankBoard) {
+        float totalPrize = totalPrize(rankBoard);
         float rateOfProfit = (totalPrize / (float) purchasePrice) * PERCENTAGE;
         return rateOfProfit;
     }
 
-    public static int getTotalPrize(int[] rates) {
+    public static int totalPrize(int[] rates) {
         int total = 0;
 
         for (int i = 1; i < 6; i++) {
-            total += getEachRankPrize(i, rates[i]);
+            total += eachRankPrize(i, rates[i]);
         }
         return total;
     }
 
-    public static int getEachRankPrize(int rate, int rateNum) {
+    public static int eachRankPrize(int rate, int rateNum) {
 
         switch (rate) {
             case 5:

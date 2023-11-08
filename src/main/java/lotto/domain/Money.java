@@ -1,12 +1,12 @@
 package lotto.domain;
 
+import lotto.constant.Constant;
 import lotto.util.Convertor;
 import lotto.util.Validator;
 
 public class Money {
 
     private final int money;
-    private final int UNIT = 1000;
 
     public Money(String inputMoney) {
         int money = Convertor.getInstance().convertToInt(inputMoney);
@@ -15,7 +15,7 @@ public class Money {
     }
 
     public int calculateTicket() {
-        return money / UNIT;
+        return money / Constant.MONEY_UNIT;
     }
 
     public double calculateRevenue(double rewards) {

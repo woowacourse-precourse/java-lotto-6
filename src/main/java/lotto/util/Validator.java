@@ -1,6 +1,7 @@
 package lotto.util;
 
 import java.util.List;
+import lotto.constant.Constant;
 
 public class Validator {
 
@@ -37,26 +38,26 @@ public class Validator {
     }
 
     public void validateMoney(int money) {
-        if (money % 1000 != 0 || money == 0) {
+        if (money % Constant.MONEY_UNIT != 0 || money == 0) {
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다.");
         }
     }
 
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
+        if (numbers.stream().anyMatch(num -> num < Constant.NUMBER_MIN || num > Constant.NUMBER_MAX)) {
             throw new IllegalArgumentException("[ERROR] 번호는 1이상 45이하 숫자여야 합니다.");
         }
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constant.NUMBERS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 번호는 6개여야 합니다.");
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != Constant.NUMBERS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
         }
     }
@@ -68,7 +69,7 @@ public class Validator {
     }
 
     private void validateRangeBonusNumber(int number) {
-        if (number < 1 || number > 45) {
+        if (number < Constant.NUMBER_MIN || number > Constant.NUMBER_MAX) {
             throw new IllegalArgumentException("[ERROR] 번호는 1이상 45이하 숫자여야 합니다.");
         }
     }

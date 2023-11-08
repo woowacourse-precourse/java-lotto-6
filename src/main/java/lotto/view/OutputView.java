@@ -6,7 +6,6 @@ import lotto.model.User;
 import lotto.utils.Calculator;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

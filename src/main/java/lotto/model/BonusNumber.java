@@ -8,6 +8,7 @@ public class BonusNumber {
     private final int bonusNumber;
 
     public BonusNumber(int bonusNumber, WinningNumber winningNumber) {
+        validate(bonusNumber, winningNumber.getWinningNumbers());
         this.bonusNumber = bonusNumber;
     }
 

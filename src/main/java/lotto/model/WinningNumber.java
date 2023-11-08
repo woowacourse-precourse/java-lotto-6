@@ -11,7 +11,7 @@ public class WinningNumber {
         this.winningNumbers = winningNumbers;
     }
 
-    private List<Integer> getWinningNumbers() {
+    public List<Integer> getWinningNumbers() {
         return Collections.unmodifiableList(winningNumbers);
     }
 }

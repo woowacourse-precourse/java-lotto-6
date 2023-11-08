@@ -10,6 +10,13 @@ public class BonusNumberValidator {
 
     }
 
+    private static void isInRange(String bonusNumberInput) {
+        if (Integer.parseInt(bonusNumberInput) < 1 || Integer.parseInt(bonusNumberInput) > 45) {
+            System.out.println(ErrorMessages.NOT_IN_RANGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessages.NOT_IN_RANGE.getMessage());
+        }
+    }
+
     private static void isNumeric(String bonusNumberInput) {
         try {
             Integer.parseInt(bonusNumberInput);

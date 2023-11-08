@@ -51,9 +51,10 @@ public class View implements InputView, OutputView {
         StringBuilder lottoNumber = new StringBuilder();
 
         for (Lotto lotto : lottos) {
+            List<Integer> tmpLotto = lotto.getNumbers();
             lottoNumber.append("[");
             for (int i = 0; i < lotto.getLottoSize(); i++) {
-                lottoNumber.append(lotto.getNumbers().get(i));
+                lottoNumber.append(tmpLotto.get(i));
                 if (i != lotto.getLottoSize() - 1) {
                     lottoNumber.append(", ");
                 }

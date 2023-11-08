@@ -18,7 +18,7 @@ import lotto.domain.dto.GameResultDto;
 import lotto.domain.dto.OrderResultDto;
 
 public class OutputView {
-    private static final float PERCENTAGE_MULTIPLIER = 100;
+
 
     public void printOrderResult(OrderResultDto orderResultDto) {
         printBuyAmount(orderResultDto.quantity());
@@ -43,11 +43,11 @@ public class OutputView {
         System.out.println(OUTPUT_MESSAGE_FOR_RESULT_INIT);
         System.out.println(OUTPUT_MESSAGE_FOR_LINE_SEPARATOR);
         printPrizesResult(gameResultDto);
-        printWinningPercentage(gameResultDto.winningRatio());
+        printWinningPercentage(gameResultDto.winningPercentage());
     }
 
     private void printPrizesResult(GameResultDto gameResultDto) {
-        Map<Prize, Integer> prizeIntegerMap = gameResultDto.prizeCountMap();
+        Map<Prize, Integer> prizeIntegerMap = gameResultDto.prizeCounter();
         prizeIntegerMap.keySet().stream()
                 .sorted(Collections.reverseOrder())
                 .forEach(key -> printPrizeResult(key,
@@ -67,8 +67,8 @@ public class OutputView {
         return "";
     }
 
-    private void printWinningPercentage(float ratio) {
-        System.out.printf(OUTPUT_MESSAGE_FOR_EARNING_RATIO + "%n", ratio * PERCENTAGE_MULTIPLIER);
+    private void printWinningPercentage(float percentage) {
+        System.out.printf(OUTPUT_MESSAGE_FOR_EARNING_RATIO + "%n", percentage);
     }
 
 }

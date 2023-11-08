@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.domain.dto.GameResultDto;
 
 public class GameResult {
+    private static final float PERCENTAGE_MULTIPLIER = 100.0f;
     private final Map<Prize, Integer> prizeCounter;
 
     private GameResult() {
@@ -22,8 +23,8 @@ public class GameResult {
         prizeCounter.put(prize, prizeCounter.get(prize) + 1);
     }
 
-    public float getWinningRate(int buyAmount) {
-        return (float) getTotalWinningAmount() / buyAmount;
+    public float getWinningPercentage(int buyAmount) {
+        return (float) getTotalWinningAmount() * PERCENTAGE_MULTIPLIER / buyAmount;
     }
 
     private long getTotalWinningAmount() {
@@ -33,6 +34,6 @@ public class GameResult {
     }
 
     public GameResultDto getGameResultDto(Order order) {
-        return new GameResultDto(prizeCounter, getWinningRate(order.getBuyAmount()));
+        return new GameResultDto(prizeCounter, getWinningPercentage(order.getBuyAmount()));
     }
 }

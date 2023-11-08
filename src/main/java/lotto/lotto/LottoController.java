@@ -7,6 +7,9 @@ import lotto.ranking.Ranking;
 import lotto.statistics.Statistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.common.ErrorMessageView;
+import lotto.view.statistics.LottoProfitOutputView;
+import lotto.view.statistics.LottoStaticsOutputView;
 
 public class LottoController {
 
@@ -16,10 +19,10 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void run() {
+    public void start() {
         Money money = receiveMoney();
         LottoPaper lottoPaper = buyLottoPaper(money);
-        aggregateResult(lottoPaper, money);
+        processLottoGame(lottoPaper, money);
     }
 
     private LottoPaper buyLottoPaper(Money money) {
@@ -37,7 +40,7 @@ public class LottoController {
             OutputView.inputMoney();
             return InputView.getMoney();
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
+            ErrorMessageView.printError(e);
             return receiveMoney();
         }
     }
@@ -47,7 +50,7 @@ public class LottoController {
             OutputView.inputWinningLotto();
             return InputView.getWinnerLotto();
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
+            ErrorMessageView.printError(e);
             return receiveWinningLotto();
         }
     }
@@ -57,12 +60,12 @@ public class LottoController {
             OutputView.inputBonusNumber();
             return InputView.getBonusNumber(winningLotto);
         } catch (IllegalArgumentException e) {
-            OutputView.printError(e);
+            ErrorMessageView.printError(e);
             return receiveBonusNumber(winningLotto);
         }
     }
 
-    private void aggregateResult(LottoPaper lottoPaper, Money money) {
+    private void processLottoGame(LottoPaper lottoPaper, Money money) {
         WinningLotto winningLotto = receiveWinningLotto();
         BonusNumber bonusNumber = receiveBonusNumber(winningLotto);
         Statistics results = calculateStatistics(lottoPaper, winningLotto, bonusNumber);
@@ -75,6 +78,7 @@ public class LottoController {
     }
 
     private void showStatistics(Money money, Statistics statistics) {
-        OutputView.showStatists(statistics, money);
+        LottoStaticsOutputView.showStatists(statistics);
+        LottoProfitOutputView.showProfit(statistics, money);
     }
 }

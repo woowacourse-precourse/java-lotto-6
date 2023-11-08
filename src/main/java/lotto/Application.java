@@ -9,6 +9,6 @@ public class Application {
         RandomLottoNumberGenerator generator = new RandomLottoNumberGenerator();
         LottoService lottoService = new LottoService(generator);
         LottoController lottoController = new LottoController(lottoService);
-        lottoController.run();
+        lottoController.start();
     }
 }

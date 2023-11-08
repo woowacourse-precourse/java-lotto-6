@@ -1,9 +1,11 @@
 package lotto.util.validator;
 
+import lotto.model.constant.LottoConstant;
 import lotto.util.validator.constant.ErrorMessageConstant;
 
 import java.util.Arrays;
 
+import static lotto.model.constant.LottoConstant.*;
 import static lotto.util.validator.constant.ErrorMessageConstant.*;
 
 public class LottoInputValidator implements InputValidator{
@@ -13,7 +15,7 @@ public class LottoInputValidator implements InputValidator{
     }
 
     private static void validateCount(String[] checkValues) {
-        if(checkValues.length != 6) {
+        if(checkValues.length != LOTTO_MAX_COUNT.getNumber()) {
             throw new IllegalArgumentException(LOTTO_LENGTH_NOT_SIX_MESSAGE.getMessage());
         }
     }
@@ -34,12 +36,12 @@ public class LottoInputValidator implements InputValidator{
     }
 
     private static void validateDuplicate(String[] checkValues) {
-        if(Arrays.stream(checkValues).distinct().count() != 6) {
+        if(Arrays.stream(checkValues).distinct().count() != LOTTO_MAX_COUNT.getNumber()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_MESSAGE.getMessage());
         }
     }
 
     private static boolean isValidRange(int number) {
-        return number < 1 || number > 45;
+        return number < LOTTO_NUMBER_MIN_RANGE.getNumber() || number > LOTTO_NUMBER_MAX_RANGE.getNumber();
     }
 }

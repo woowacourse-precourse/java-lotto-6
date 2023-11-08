@@ -41,9 +41,9 @@ public class BonusNumber {
     }
 
     private static void validateDuplication(int bonusNumber, List<Integer> winningBundle) {
-        if(winningBundle.contains(bonusNumber)) {
+        if (winningBundle.contains(bonusNumber)) {
             throw new IllegalStateException(BonusNumberErrorMessage.DUPLICATE_WINNING_BUNDLE_INVALID.entireMessage());
-        };
+        }
     }
 
     public int toInt() {

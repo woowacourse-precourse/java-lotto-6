@@ -37,7 +37,7 @@ public class WinningTier {
 
             WinningStatistics confirmResult = WinningStatistics.confirm(correctWinningCount, correctBonus);
             int rank = confirmResult.getRank();
-            if(winningTier.containsKey(rank)) {
+            if (winningTier.containsKey(rank)) {
                 tempWinningTier.put(rank, tempWinningTier.getOrDefault(rank, DEFAULT_VALUE) + PLUS_UNIT);
             }
         }

@@ -64,7 +64,7 @@ public class UserAmount {
     }
 
     private static void validateNatureNumber(int userAmount) {
-        if(isNotNatureNumber(userAmount)) {
+        if (isNotNatureNumber(userAmount)) {
             throw new IllegalArgumentException(UserAmountErrorMessage.NATURE_NUMBER_INVALID.entireMessage());
         }
     }

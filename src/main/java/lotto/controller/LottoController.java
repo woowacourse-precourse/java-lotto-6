@@ -8,14 +8,17 @@ public class LottoController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
-        getPurchase();
+        int lottoPurchase = getPurchase();
         createLottoPlayer();
         createLottoList();
         getPlayerNumbers();
         displayResult();
     }
 
-    private void getPurchase() {
+    private int getPurchase() {
+        outputView.printLottoPurchaseInputMessage();
+        int lottoPurchase = inputView.requestLottoPurchase();
+        return lottoPurchase;
     }
 
     private void createLottoPlayer() {

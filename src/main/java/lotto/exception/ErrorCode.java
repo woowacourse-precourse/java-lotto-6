@@ -7,6 +7,7 @@ public enum ErrorCode {
     INCORRECT_UNIT("1000원 단위로 입력해야합니다."),
     INVALID_LOTTO_SIZE("로또는 6개의 숫자로 이루어져있습니다."),
     INVALID_NUMBER_RANGE("1 ~ 45 사이의 숫자를 입력해야합니다."),
+    INVALID_RANK_RANGE("등수는 1등 ~ 5등 까지 존재합니다."),
     DUPLICATE_NUMBER("중복되는 숫자가 존재합니다."),
     NOT_FOUND_PURCHASE_LOTTO("구매된 로또가 없습니다."),
     ;

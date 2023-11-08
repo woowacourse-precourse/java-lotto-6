@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.config.WinningCriteria;
+import lotto.exception.ErrorCode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class WinningDetails {
 
     private void validate(int key) {
         if(key < FIRST_PRIZE.getRank() || key > FIFTH_PRIZE.getRank()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.INVALID_RANK_RANGE.getMessage());
         }
     }
 

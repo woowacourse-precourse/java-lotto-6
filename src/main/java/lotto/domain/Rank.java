@@ -8,7 +8,7 @@ public enum Rank {
     FifthRank(5000),
     None(0);
 
-    int prize;
+    long prize;
 
     private Rank(int prize) {
         this.prize = prize;
@@ -23,7 +23,7 @@ public enum Rank {
         return None;
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 }

@@ -10,6 +10,8 @@ public class LottoValidation implements LottoVaildationInterface{
     final String lengthError = "[ERROR] 로또 번호의 크기는 6개여야 합니다.";
     final String numberError = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     final int lottoLength = 6;
+    final int MAXRANGE = 45;
+    final int MINRANGE = 0;
 
     @Override
    public void lottoLengthError(List<Integer> numbers) throws IllegalArgumentException {
@@ -27,7 +29,7 @@ public class LottoValidation implements LottoVaildationInterface{
     @Override
     public void lottoNumberError(List<Integer> numbers) throws IllegalArgumentException {
         numbers.stream()
-                .filter((x) -> { return x < 0 || x > 45; })
+                .filter((x) -> { return x < MINRANGE || x > MAXRANGE; })
                 .findAny()
                 .ifPresent( (x) -> { throw new IllegalArgumentException(numberError); }
                 );

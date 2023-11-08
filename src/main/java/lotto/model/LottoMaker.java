@@ -11,6 +11,7 @@ public class LottoMaker {
 
     private List<Lotto> lottos = new ArrayList<>();
     private final int money;
+    private final int MONEYUNIT = 1000;
 
     LottoMaker(int money){
         this.money = money;
@@ -20,8 +21,12 @@ public class LottoMaker {
         return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, COUNT_NUMBER);
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     private int makeCount(int money){
-        return money / 1000;
+        return money / MONEYUNIT;
     }
     void addLotto(int money){
         for(int i= 0 ; i< makeCount(money) ; i++) {

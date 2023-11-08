@@ -182,3 +182,14 @@ LottoCompare
 
 해당 부분도 인터페이스를 이용해 추상화하는 것이 필요
 ----
+6회차
+
+수정 사항
+1. validation 상수 선언
+2. maker getLottos 추가
+
+lottoRank 정의
+1. 등수, 가격, 매치 수, 비교 람다식
+
+2. getRank : static method를 사용해 어떠한 열거형에 해당하는지
+객체를 반환함.

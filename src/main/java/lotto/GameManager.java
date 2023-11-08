@@ -56,22 +56,13 @@ public class GameManager {
             WinningStatistics winningStatistics
     ) {
         if (matchCount == 5) {
-            winningStatistics.incrementWinningStatus(compareLottoWithBonusNumber(lotto, bonusNumber));
+            winningStatistics.incrementWinningStatus(Ranking.compareLottoWithBonusNumber(lotto, bonusNumber));
             return;
         }
 
         if (matchCount >= 3) {
             winningStatistics.incrementWinningStatus(Ranking.findByMatchCount(matchCount));
         }
-    }
-
-    private Ranking compareLottoWithBonusNumber(Lotto lotto, int bonusNumber) {
-        for (int number : lotto.getNumbers()) {
-            if (number == bonusNumber) {
-                return Ranking.FIVE_MATCHES_BONUS_MATCHES;
-            }
-        }
-        return Ranking.FIVE_MATCHES;
     }
 
     public String calculateProfitPercentage(WinningStatistics winningStatistics, int purchaseAmount) {

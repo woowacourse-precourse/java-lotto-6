@@ -39,4 +39,14 @@ public enum Ranking {
                 .findAny()
                 .orElseThrow(() -> new IllegalStateException(FOUNT_MATCH_RANKING.errorMessage()));
     }
+
+    public static Ranking compareLottoWithBonusNumber(Lotto lotto, int bonusNumber) {
+        for (int number : lotto.getNumbers()) {
+            if (number == bonusNumber) {
+                return FIVE_MATCHES_BONUS_MATCHES;
+            }
+        }
+
+        return FIVE_MATCHES;
+    }
 }

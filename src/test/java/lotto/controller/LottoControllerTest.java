@@ -1,10 +1,12 @@
 package lotto.controller;
 
+import lotto.type.ErrorMessageType;
 import lotto.type.ResultType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoControllerTest {
@@ -27,5 +29,14 @@ class LottoControllerTest {
     void getLottoResultTest() {
         assertThat(lottoController.getRankResult(5, false))
                 .isEqualTo(ResultType.FIFTH);
+    }
+
+    @DisplayName("당첨 번호를 입력할 때 숫자가 아닌 문자가 있으면 예외 처리")
+    @Test
+    void notNumberException() {
+        assertThatThrownBy(()-> {
+            lottoController.setinputLottoNumber("a, 2, 14, 10, 23, 32");})
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessageType.NOT_NUMBER.message());
     }
 }

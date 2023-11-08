@@ -19,11 +19,13 @@ public class LottoGameService {
 
         return joiner.toString();
     }
+
     public Double calculateRateOfReturn(int purchaseAmount, int totalWinningAmount) {
         Double amount = Double.valueOf(purchaseAmount);
         return totalWinningAmount / amount * 100;
 
     }
+
     public int sumWinningAmount(WinningResult result) {
         return result.calculateWinningAmount();
     }
@@ -34,16 +36,8 @@ public class LottoGameService {
         LinkedHashMap<WinningAmountConstant, Integer> result = WinningAmountConstant.initWinningResult();
 
         for (Lotto lotto : lotties) {
-            List<Integer> lottoValues = lotto.getLotto();
-
-            boolean hasBonusNumber = hasBonusNumber(lottoValues, bonusNumber.getNumber());
-            int count = countDuplicatedNumbers(lottoValues, winningNumbers);
-
-            if (hasBonusNumber) {
-                if (count != 6) {
-                    count++;
-                }
-            }
+            boolean hasBonusNumber = bonusNumber.hasBonusNumber(lotto.getLotto());
+            int count = getCompareLottoCount(lotto, winningNumbers, hasBonusNumber);
 
             WinningAmountConstant value;
 
@@ -59,12 +53,15 @@ public class LottoGameService {
         return new WinningResult(result);
     }
 
-    private boolean hasBonusNumber(List<Integer> lotto, Integer bonusNumber) {
-        return lotto.contains(bonusNumber);
-    }
+    private int getCompareLottoCount(Lotto lotto, List<Integer> winningNumbers, boolean hasBonusNumber) {
+        int count = lotto.countDuplicatedNumbers(winningNumbers);
 
-    private int countDuplicatedNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        lottoNumbers.retainAll(winningNumbers);
-        return lottoNumbers.size();
+        if (hasBonusNumber) {
+            if (count < 6) {
+                count++;
+            }
+        }
+
+        return count;
     }
 }

@@ -24,9 +24,9 @@ public class InputView {
         return winninglotto;
     }
 
-    public BonusNumber inputBonusNumber(){
+    public BonusNumber inputBonusNumber(CalculateLotto answerLotto){
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        BonusNumber bonusNumber = inputViewHandler.inputBonusNumber();
+        BonusNumber bonusNumber = inputViewHandler.inputBonusNumber(answerLotto);
         return bonusNumber;
     }
 }

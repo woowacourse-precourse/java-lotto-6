@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoConstant;
 
 import java.util.*;
@@ -32,32 +33,36 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != LottoConstant.LENGTH.getNumber()) {
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_LENGTH.getMessage());
         }
     }
 
     private void validateNumber(List<Integer> numbers) {
         for (Integer num : numbers) {
             if (num < LottoConstant.START.getNumber() || num > LottoConstant.END.getNumber()) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ExceptionMessage.NUMBER_RANGE.getMessage());
             }
         }
     }
 
     private void validatePattern(String numbers){
         if(!Pattern.matches("^[1-9|,]+$",numbers)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.NUMBER_ONLY_LOTTO.getMessage());
         }
     }
 
     private void validateDuplicateNumber(List<Integer> numbers){
         for(int i = 0; i< numbers.size()-1; i++){
             for (int j = i+1; j< numbers.size(); j++){
-                if(numbers.get(i).equals(numbers.get(j))){
-                    throw new IllegalArgumentException();
-                }
+                isCheckDupicateNumber(numbers.get(i),numbers.get(j));
             }
+        }
+    }
+
+    private void isCheckDupicateNumber(Integer num,Integer num2){
+        if(num.equals(num2)){
+            throw new IllegalArgumentException(ExceptionMessage.DUPICATE_NUMBER.getMessage());
         }
     }
 

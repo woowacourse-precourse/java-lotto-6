@@ -24,7 +24,7 @@ public class LottoSystem {
         outputView.outputLottoTickets(money.calculateLottoSize(), lottos);
 
         CalculateLotto answerLotto = inputView.inputWinningNumber();
-        BonusNumber bonusNumber = inputView.inputBonusNumber();
+        BonusNumber bonusNumber = inputView.inputBonusNumber(answerLotto);
         List<Integer> includeNumbers = isCheckincludeNumbers(answerLotto, lottos, bonusNumber);
 
         List<Integer> result = calculateLottoResult(includeNumbers);

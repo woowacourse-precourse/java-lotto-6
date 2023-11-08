@@ -33,14 +33,14 @@ public class InputViewHandler {
         return lotto;
     }
 
-    public BonusNumber inputBonusNumber(){
+    public BonusNumber inputBonusNumber(CalculateLotto answerLotto){
         BonusNumber bonusNumber = new BonusNumber();
         try{
-            bonusNumber = new BonusNumber(Console.readLine());
+            bonusNumber = new BonusNumber(Console.readLine(),answerLotto);
             return bonusNumber;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            inputBonusNumber();
+            inputBonusNumber(answerLotto);
         }
         return bonusNumber;
     }

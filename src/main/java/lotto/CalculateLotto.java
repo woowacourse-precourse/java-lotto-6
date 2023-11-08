@@ -37,4 +37,11 @@ public class CalculateLotto {
         }
         return false;
     }
+
+    public boolean isCheckedBonusNumber(int bonusNumber){
+        if(answerNumbsers.contains(bonusNumber)){
+            return true;
+        }
+        return false;
+    }
 }

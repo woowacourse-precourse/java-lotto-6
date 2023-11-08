@@ -7,7 +7,7 @@ public enum Ranking {
     THIRD(5, false, 1_500_000),
     FOURTH(4, false, 50_000),
     FIFTH(3, false, 5_000),
-    NONE(0, false, 0);
+    NONE(0,false,0);
 
     private final int matchNumber;
     private final boolean isBonusMatched;
@@ -18,6 +18,7 @@ public enum Ranking {
         this.isBonusMatched = isBonusMatched;
         this.prize = prize;
     }
+
 
 
     public int getMatchNumber() {

@@ -25,7 +25,7 @@ public class LottoController {
     int purchaseCount;
 
 
-    public void startLotto() {
+    public void startLotto(){
         outputView.printAmountInputMessage();
         Amount amount = inputView.inputAmount();
         purchaseCount = amount.getCountLotto();
@@ -44,7 +44,7 @@ public class LottoController {
         lottoDraw();
     }
 
-    public void lottoDraw() {
+    public void lottoDraw(){
         outputView.printWinningNumberInputMessage();
         winningNumber = inputView.inputWinningNumber();
         outputView.printBonusNumberInputMessage();
@@ -53,10 +53,9 @@ public class LottoController {
         checkDraw();
     }
 
-    public void checkDraw() {
-        for (Lotto lotto : lottoes) {
-            long matchCount = lottoComparison.compareLottoNumbers(lotto.getNumbers(),
-                    winningNumber.getWinningNumbers());
+    public void checkDraw(){
+        for(Lotto lotto : lottoes){
+            long matchCount = lottoComparison.compareLottoNumbers(lotto.getNumbers(), winningNumber.getWinningNumbers());
             boolean isBonus = lottoComparison.compareBonusNumber(lotto.getNumbers(), bonusNumber.getBonusNumber());
             Ranking ranking = lottoComparison.determineRanking(matchCount, isBonus);
             winningStatistics.addRanking(ranking);
@@ -65,13 +64,13 @@ public class LottoController {
         outputResult();
     }
 
-    public void outputResult() {
+    public void outputResult(){
         int first = winningStatistics.getRankingCount(Ranking.FIRST);
         int second = winningStatistics.getRankingCount(Ranking.SECOND);
         int third = winningStatistics.getRankingCount(Ranking.THIRD);
-        int fourth = winningStatistics.getRankingCount(Ranking.FOURTH);
+        int fourth =  winningStatistics.getRankingCount(Ranking.FOURTH);
         int fifth = winningStatistics.getRankingCount(Ranking.FIFTH);
-        double yield = winningStatistics.calculateYield(purchaseCount * 1000);
-        outputView.printWinningStatisticsMessage(first, second, third, fourth, fifth, yield);
+        double yield = winningStatistics.calculateYield(purchaseCount*1000);
+        outputView.printWinningStatisticsMessage(first,second,third,fourth,fifth,yield);
     }
 }

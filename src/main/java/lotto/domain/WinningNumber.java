@@ -12,9 +12,9 @@ public class WinningNumber {
     private static final String LOTTO_NUMBER_REGEXP = "^[0-9,]+$";
     private final List<Integer> winningNumbers;
 
-    public WinningNumber(String input) {
+    public  WinningNumber(String input){
         validateInput(input);
-        List<Integer> winningNumbers = parseWinningNumbers(input);
+        List<Integer> winningNumbers =parseWinningNumbers(input);
         validateWinningRange(winningNumbers);
         validateWinningLength(winningNumbers);
         validateWinningOverlap(winningNumbers);
@@ -22,8 +22,8 @@ public class WinningNumber {
         this.winningNumbers = winningNumbers;
     }
 
-    private void validateInput(String input) {
-        if (!Pattern.matches(LOTTO_NUMBER_REGEXP, input)) {
+    private void validateInput(String input){
+        if(!Pattern.matches(LOTTO_NUMBER_REGEXP,input)){
             throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_TYPE.getMessage());
         }
     }
@@ -34,23 +34,23 @@ public class WinningNumber {
         }
     }
 
-    private void validateWinningOverlap(List<Integer> winningNumbers) {
+    private void validateWinningOverlap(List<Integer> winningNumbers){
         Set<Integer> set = new HashSet<>(winningNumbers);
 
-        if (set.size() != winningNumbers.size()) {
+        if( set.size() != winningNumbers.size()){
             throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_OVERLAP.getMessage());
         }
     }
 
-    private void validateWinningRange(List<Integer> winningNumbers) {
-        for (int number : winningNumbers) {
-            if (number < 1 || number > 45) {
+    private void validateWinningRange(List<Integer> winningNumbers){
+        for(int number: winningNumbers){
+            if(number<1 || number>45){
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_RANGE.getMessage());
             }
         }
     }
 
-    private List<Integer> parseWinningNumbers(String input) {
+    private List<Integer> parseWinningNumbers(String input){
         String[] numbersStr = input.split(",");
         List<Integer> winningNumber = new ArrayList<>();
         for (String numberStr : numbersStr) {

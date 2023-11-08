@@ -96,14 +96,14 @@ public class LottoController {
     }
 
     private List<Lotto> buyLotto(int lottoNum) {
-        List<Lotto> LottoList = new ArrayList<>();
+        List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < lottoNum; i++) {
             List<Integer> list = makeRandomNum();
             Lotto lotto = new Lotto(list);
-            LottoList.add(lotto);
+            lottoList.add(lotto);
         }
-        printLottoList(LottoList);
-        return LottoList;
+        printLottoList(lottoList);
+        return lottoList;
     }
 
     private static void printLottoList(List<Lotto> LottoList) {
@@ -114,7 +114,7 @@ public class LottoController {
 
     private List<Integer> makeRandomNum() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
+        numbers.stream().sorted().collect(Collectors.toList());
         return numbers;
     }
 
@@ -164,20 +164,12 @@ public class LottoController {
                             .map(Integer::parseInt)
                             .collect(Collectors.toList());
 
-                    if (WinningNum.size() != 6) {
-                        throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
-                    }
+                    if (WinningNum.size() != 6) throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
 
                     Set<Integer> checkSameNum = new HashSet<>(WinningNum);
-                    if (checkSameNum.size() != 6) {
-                        throw new IllegalArgumentException("[ERROR]동일한 로또 번호가 있으면 안됩니다.");
-                    }
+                    if (checkSameNum.size() != 6) throw new IllegalArgumentException("[ERROR]동일한 로또 번호가 있으면 안됩니다.");
 
-                    for (int number : WinningNum) {
-                        if (number < 1 || number > 45) {
-                            throw new IllegalArgumentException("[ERROR]로또 번호는 1~45 사이의 숫자만 가능합니다.");
-                        }
-                    }
+                    for (int number : WinningNum) if (number < 1 || number > 45) throw new IllegalArgumentException("[ERROR]로또 번호는 1~45 사이의 숫자만 가능합니다.");
 
                     return WinningNum;
                 } catch (IllegalArgumentException e) {

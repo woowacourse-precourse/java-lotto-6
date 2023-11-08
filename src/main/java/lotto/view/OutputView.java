@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.config.SystemNumberConfig.LINE_REPEAT;
+import static lotto.config.SystemNumberConfig.START_NUM;
 import static lotto.message.Message.BONUS_NUMBER_REQUEST;
 import static lotto.message.Message.COUNT;
 import static lotto.message.Message.DIVIDING_LINE;
@@ -44,7 +46,7 @@ public class OutputView {
     public static void printNoticeWiningResult() {
         System.out.println();
         System.out.println(WINNING_STATISTICS_RESULT.getMessage());
-        for (int i = 0; i < 3; i++) {
+        for (int i = START_NUM.getConfig(); i < LINE_REPEAT.getConfig(); i++) {
             System.out.print(DIVIDING_LINE.getMessage());
         }
         System.out.println();

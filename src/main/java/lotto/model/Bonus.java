@@ -11,4 +11,9 @@ public class Bonus {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+
+    public boolean isMatchingBonus(MyLottoNumber myLottoNumber){
+        return myLottoNumber.getMyLottoNumber().contains(this.bonusNumber);
+    }
 }

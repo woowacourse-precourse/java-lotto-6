@@ -19,7 +19,8 @@ public class Application {
         System.out.println("구입 금액을 입력해 주세요.");
         money = moneyInput(money);
         System.out.println();
-        System.out.println(money+"개를 구매했습니다.");
+        numberOfLotto = money/1000;
+        System.out.println(numberOfLotto+"개를 구매했습니다.");
 
         for(int i = 0 ; i < money ; i++) {
             makeLotto(lottos);
@@ -28,6 +29,7 @@ public class Application {
         }
         System.out.println("당첨 번호를 입력해 주세요.");
         winningNumbersInput(winningNumbers);
+        bonusNumberInput(winningNumbers);
 
     }
 
@@ -58,13 +60,40 @@ public class Application {
         if(numbers.length!=6)
             throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
         try {
-            for (String name : numbers){
-                winningNumbers.add(Integer.parseInt(name.trim()));
-            }
+            int num = compareWinning(numbers);
+            winningNumbers.add(num);
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
         }
-
     }
 
-}
+    public static int compareWinning( String[] numbers) {
+        int num = 0;
+        for (String number : numbers) {
+            num = Integer.parseInt(number.trim());
+            if (!(1 <= num && num <= 45))
+                throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
+        }
+        return num;
+    }
+
+        public static void bonusNumberInput (List < Integer > winningNumbers) {
+            String userInput = Console.readLine();
+            if (userInput.length() != 1)
+                throw new IllegalArgumentException("[Error] 보너스 번호 1개를 입력하여야 합니다.");
+            try {
+                int num = compareBonus(userInput);
+                winningNumbers.add(num);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[Error] 보너스 번호 1개를 입력하여야 합니다.");
+            }
+        }
+
+
+        public static int compareBonus (String number){
+            int num = Integer.parseInt(number.trim());
+            if (!(1 <= num && num <= 45))
+                throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
+            return num;
+            }
+        }

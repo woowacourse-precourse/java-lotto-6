@@ -54,13 +54,18 @@ public class Customer {
 
     public double calculateReturnRate() {
         double seedMoney = (double) (lottos.size() * LOTTO_PRICE.get());
+        double returnMoney = calculateReturnMoney();
+        return (1L - ((seedMoney - returnMoney) / seedMoney)) * 100;
+    }
+
+    private double calculateReturnMoney() {
         double returnMoney = 0L;
         for (EnumMap.Entry<Ranking, Integer> entry : rankingCounts.entrySet()) {
             Ranking ranking = entry.getKey();
             Integer count = entry.getValue();
             returnMoney += ranking.getWinningsByInt() * count;
         }
-        return (1L - ((seedMoney - returnMoney) / seedMoney)) * 100;
+        return returnMoney;
     }
 
 }

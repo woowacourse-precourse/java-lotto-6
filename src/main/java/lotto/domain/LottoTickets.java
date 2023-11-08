@@ -10,6 +10,7 @@ import java.util.List;
 public class LottoTickets {
 
     private static final int LOTTO_PRICE = 1000;
+    private static final int AMOUNT_ZERO = 0;
     private static final int REMAINDER_ZERO = 0;
     private static final int LOTTO_NUMBERS_SIZE = 6;
     private static final int LOTTO_NUMBERS_MINIMUM = 1;
@@ -18,10 +19,17 @@ public class LottoTickets {
     private final List<Lotto> lottoTickets;
 
     public LottoTickets(int purchaseAmount) {
+        validatePurchaseAmountZero(purchaseAmount);
         validateDivisibleByLottoPrice(purchaseAmount);
         int lottoCount = purchaseAmount / LOTTO_PRICE;
         lottoTickets = new ArrayList<>();
         publishLottoTickets(lottoCount);
+    }
+
+    private void validatePurchaseAmountZero(int purchaseAmount) {
+        if (purchaseAmount == AMOUNT_ZERO) {
+            ExceptionMessage.LOTTO_PURCHASE_AMOUNT_IS_ZERO.throwIllegalArgumentException();
+        }
     }
 
     private void validateDivisibleByLottoPrice(int purchaseAmount) {

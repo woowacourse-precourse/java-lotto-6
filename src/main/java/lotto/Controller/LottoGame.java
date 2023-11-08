@@ -14,20 +14,20 @@ public class LottoGame {
     public void start() {
         Price price = createPrice();
         RandomLottos randomLottos = new RandomLottos(price);
-        printSettingRandomLottos(randomLottos);
+        print(randomLottos);
 
         WinningLotto winningLotto = createWinningLotto();
         Bonus bonus = createBonusNumber(winningLotto);
 
         Result result = new Result();
-        result.makeWinningResultWith(randomLottos, winningLotto, bonus);
+        result.countWinningRank(randomLottos, winningLotto, bonus);
         Rate rate = new Rate(result);
 
-        OutputView.printWinningResult(result);
+        OutputView.printWinningStatistics(result);
         OutputView.printWinningRate(rate.calculateWinningRate(price));
     }
 
-    private void printSettingRandomLottos(RandomLottos randomLottos) {
+    private void print(RandomLottos randomLottos) {
         OutputView.newLine();
         OutputView.printCounting(randomLottos);
         OutputView.printNumbers(randomLottos);

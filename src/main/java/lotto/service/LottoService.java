@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -35,13 +36,14 @@ public class LottoService {
         return results;
     }
 
-    public double calculateProfitRate(Map<LottoRank, Integer> results, int purchasesAmount) {
+    public String calculateProfitRate(Map<LottoRank, Integer> results, int purchasesAmount) {
         int totalPrize = results.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
                 .sum();
-        double profitRate =  (double) totalPrize / purchasesAmount;
+        double profitRate =  ((double) totalPrize / (purchasesAmount * LOTTO_PRICE)) * 100;
+        DecimalFormat df = new DecimalFormat("0.0");
 
-        return Math.round(profitRate*100.0) / 100.0;
+        return df.format(profitRate) + "%";
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {

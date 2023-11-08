@@ -29,7 +29,7 @@ public class OutputView {
         }
     }
 
-    public void displayProfitRate(double profitRate) {
+    public void displayProfitRate(String profitRate) {
         System.out.println("총 수익률은 " + profitRate + "입니다.");
     }
 }

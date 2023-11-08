@@ -53,9 +53,8 @@ public class StatisticServiceImpl implements StatisticService {
     @Override
     public ResultDto getResult(int purchaseAmount) {
         int[] ranks = new int[Prize.values().length];
-        List<StatisticDto> statisticDtos = statisticRepository.findAll();
         int sum = 0;
-        for (StatisticDto statisticDto : statisticDtos) {
+        for (StatisticDto statisticDto : statisticRepository.findAll()) {
             ranks[statisticDto.getPrize().ordinal()]++;
             sum += statisticDto.getPrize().getReward();
         }

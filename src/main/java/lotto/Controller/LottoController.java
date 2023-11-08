@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.Service.LottoInitService;
 import lotto.Service.LottoService;
+import lotto.Validator.BonusNumberValidator;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
@@ -39,7 +40,7 @@ public class LottoController {
 
     private WinningNumber getWinningNumber() {
         List<Integer> winningNumbers = getWinningNumbers();
-        Integer bonusNumber = getBonusNumber();
+        Integer bonusNumber = getBonusNumber(winningNumbers);
 
         return lottoInitService.getWinningNumber(winningNumbers, bonusNumber);
     }
@@ -57,13 +58,15 @@ public class LottoController {
         }
     }
 
-    private Integer getBonusNumber() {
+    private Integer getBonusNumber(List<Integer> winningNumbers) {
         System.out.println();
 
         while (true) {
             try {
                 InputView.printGetBonusNumber();
-                return lottoInitService.inputBonusNumberToInteger(userInput());
+                Integer bonusNumber = lottoInitService.inputBonusNumberToInteger(userInput());
+                BonusNumberValidator.validDuplicatedNumber(winningNumbers, bonusNumber);
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }

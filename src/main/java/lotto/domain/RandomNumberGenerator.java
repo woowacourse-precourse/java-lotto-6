@@ -12,7 +12,6 @@ public class RandomNumberGenerator implements LottoNumberGenerator {
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
-        numbers.stream().sorted().collect(Collectors.toList());
-        return numbers;
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 }

@@ -1,15 +1,21 @@
 package lotto.Controller;
 
+import lotto.Service.LottoService;
 import lotto.View.InputView;
 import lotto.View.OutputView;
+import lotto.domain.Lottos;
 
 public class LottoController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final LottoService lottoService = new LottoService();
+    private final Lottos lottos = new Lottos();
     private int money = 0;
 
     public void run() {
         receiveMoney();
+        buyTicket();
+
     }
     private void receiveMoney() {
         try {
@@ -20,5 +26,19 @@ public class LottoController {
             System.out.println("[ERROR] 잘못된 입력입니다.");
             receiveMoney();
         }
+    }
+    private void buyTicket() {
+        int ticketCount=0;
+        try {
+            ticketCount = lottoService.getTicketCount(money);
+        }catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 1000원으로 나누어 떨어지지 않습니다.");
+            receiveMoney();
+        }
+        outputView.printTicketCount(ticketCount);
+        for (int i = 0; i < ticketCount; i++) {
+            lottos.createLotto();
+        }
+        outputView.printPurchasedLotto(lottos.purchasedLottos);
     }
 }

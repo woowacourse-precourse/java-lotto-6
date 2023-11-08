@@ -2,26 +2,30 @@ package lotto.View.OutputView;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Common.LottoValue;
 import lotto.Model.Lotto.Lotto;
 import lotto.Model.LottoSet.LottoSet;
 import lotto.Model.LottoWinningResult.LottoWinningResult;
+
 import static lotto.Common.LottoValue.*;
 
 public class OutputView {
     private static final String LOTTO_BUY_COUNT = "%2d 개를 구매했습니다.";
-    private static final String WINNING_PROFIT  = "당첨 통계";
+    private static final String WINNING_PROFIT = "당첨 통계";
+
+    private static final String WINNING_LOTTO_PRINT = "%d개 일치 (%,d원) - %d개%n";
+    private static final String WINNING_LOTTO_PRINT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
 
 
     public void lottoSetPrint(LottoSet lottoSet) {
         List<Lotto> lottoList = lottoSet.getLottoSet();
-        System.out.printf((LOTTO_BUY_COUNT) +"%n",lottoList.size());
+        System.out.printf((LOTTO_BUY_COUNT) + "%n", lottoList.size());
         for (Lotto lotto : lottoList) {
             System.out.print("[");
             List<Integer> numbers = lotto.getNumbers();
             lottoNumberPrint(numbers);
             System.out.println("]");
         }
+        System.out.println();
     }
 
     private void lottoNumberPrint(List<Integer> numbers) {
@@ -36,32 +40,46 @@ public class OutputView {
         }
     }
 
-    public void profitRatePrint(LottoWinningResult lottoWinningResult){
+    public void winningLottoPrint(LottoWinningResult lottoWinningResult) {
         System.out.println(WINNING_PROFIT);
-
+        System.out.println("---");
         Map<Integer, List<Lotto>> winningLottoList = lottoWinningResult.getMatchingResults();
 
         for (int matchingNumbers = 3; matchingNumbers <= 6; matchingNumbers++) {
             List<Lotto> lottoList = winningLottoList.get(matchingNumbers);
-            int prize = getMultiplier(matchingNumbers);
-            if(matchingNumbers == 5) {
-                winningLottoCountPrint(matchingNumbers,prize,lottoList);
-                System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", matchingNumbers, prize, winningLottoList.get(7).size());
-            }
 
-            if (lottoList != null) {
-                winningLottoCountPrint(matchingNumbers,prize,lottoList);
-            }
-            if(lottoList == null){
-                winningLottoCountPrint(matchingNumbers,prize,lottoList);
+            withOutBonusNumber(matchingNumbers,lottoList);
+
+            if (matchingNumbers == 5) {
+                withBonusNumber(matchingNumbers, winningLottoList);
             }
         }
     }
 
-    private void winningLottoCountPrint (int matchingNumbers , int prize, List<Lotto> lottoList){
+    private void withBonusNumber(int matchingNumbers , Map<Integer, List<Lotto>> winningLottoList ){
+        int bonusPrize = getMultiplier(7);
+        int bonusMatches = 0 ;
 
-        System.out.printf("%d개 일치 (%,d원) - %d개%n", matchingNumbers, prize, lottoList.size());
+        if(winningLottoList.get(7) != null) {
+            bonusMatches = winningLottoList.get(7).size();
+        }
+
+        System.out.printf(WINNING_LOTTO_PRINT_WITH_BONUS, matchingNumbers, bonusPrize, bonusMatches);
+
     }
+
+    private void withOutBonusNumber( int matchingNumbers , List<Lotto> lottoList){
+        int prize = getMultiplier(matchingNumbers);
+        int size =0;
+
+        if (lottoList != null) {
+            size = lottoList.size();
+        }
+
+        System.out.printf(WINNING_LOTTO_PRINT, matchingNumbers, prize, size);
+
+    }
+
 
 
 }

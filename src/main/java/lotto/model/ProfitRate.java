@@ -3,9 +3,9 @@ package lotto.model;
 import java.util.Map;
 
 public class ProfitRate {
-
+    private static final int INITAL_PROFIT = 0;
     private final int purchaseAmount;
-    private int totalProfit = 0;
+    private int totalProfit = INITAL_PROFIT;
     private final double profitRate;
 
     public ProfitRate(Map<WinningCriteria, Integer> lottoResult, int purchaseAmount) {

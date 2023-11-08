@@ -9,14 +9,12 @@ import lotto.domain.LottoManager;
 import lotto.domain.LottoPrice;
 import lotto.domain.Lottos;
 import lotto.domain.MatchNumber;
+import lotto.domain.ReturnMoney;
 import lotto.util.MatchRanking;
 import lotto.view.LottoView;
 
 public class LottoController {
     private static int PRICE_OF_LOTTO = 1000;
-    private static String SECOND_DECIMAL_PLACE = "#.##";
-    private static double PERCENTAGE = 100.0;
-
     private final LottoView lottoView = new LottoView();
     private Lottos lottos;
 
@@ -41,21 +39,8 @@ public class LottoController {
         Map<MatchRanking, Integer> rankingCount = lottoManager.getLottoResult();
         lottoView.matchStatisticsMessage(rankingCount);
 
-        double returnMoney = findReturnMoney(rankingCount, lottoPrice);
-        lottoView.totalReturnMessage(returnMoney);
-    }
-
-    public Double findReturnMoney(Map<MatchRanking, Integer> rankingCount, LottoPrice lottoPrice){
-        int getTotalMoney = 0;
-        int purchaseAmount = lottoPrice.getLottoPrice();
-
-        for(MatchRanking key : rankingCount.keySet()){
-            getTotalMoney += key.getMoney() * rankingCount.get(key);
-        }
-
-        DecimalFormat decimalFormat = new DecimalFormat(SECOND_DECIMAL_PLACE);
-        double returnMoney = getTotalMoney/(double)purchaseAmount * PERCENTAGE;
-        return Double.parseDouble(decimalFormat.format(returnMoney));
+        ReturnMoney returnMoney = new ReturnMoney(rankingCount, lottoPrice);
+        lottoView.totalReturnMessage(returnMoney.getReturnMoney());
     }
 
     public LottoManager matchResult(MatchNumber matchNumber, BonusNumber bonusNumber){

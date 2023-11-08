@@ -13,8 +13,7 @@ import static lotto.app.game.views.enums.WinningLottoViewMessage.MIN_NUMBER_RANG
 import static lotto.app.game.views.enums.WinningLottoViewMessage.calculationProfit;
 
 import java.util.List;
-import java.util.Map;
-import lotto.app.collaboration.dto.PlayerLotto;
+import lotto.app.collaboration.dto.PrizeLottos;
 import lotto.app.collaboration.enums.Prize;
 import lotto.app.game.io.Input;
 import lotto.app.game.io.InteractionRepeatable;
@@ -73,19 +72,15 @@ public class WinningLottoView implements InteractionRepeatable {
     }
 
     public void announceWinningStatistics(final int purchaseAmount,
-                                          final Map<Prize, List<PlayerLotto>> lottosWithPrize) {
+                                          final PrizeLottos prizeLottos) {
         output.println(ANNOUNCE_WINNING_STATISTICS.get());
-        long totalPrizeMoney = 0L;
-        for (Prize prize : Prize.valuesByRank()) {
-            if (prize == Prize.LOST) {
-                continue;
-            }
-            List<PlayerLotto> prizeLottos = lottosWithPrize.getOrDefault(prize, List.of());
-            output.println(prize.makeCountOfPrizeLottos(prizeLottos.size()));
-            totalPrizeMoney += prize.money() * prizeLottos.size();
-        }
 
-        output.println(calculationProfit(totalPrizeMoney, purchaseAmount));
+        Prize.prizeByRank().forEach(prize ->
+                output.println(prizeLottos.getMessageCountOfPrizeLottosBy(prize)));
+
+        output.println(calculationProfit(
+                prizeLottos.calculateTotalPrizeMoney(),
+                purchaseAmount));
     }
 
 }

@@ -1,9 +1,8 @@
 package lotto.app.game.views;
 
 import java.util.List;
-import java.util.Map;
 import lotto.app.collaboration.dto.PlayerLotto;
-import lotto.app.collaboration.enums.Prize;
+import lotto.app.collaboration.dto.PrizeLottos;
 
 public class LottoGameView {
 
@@ -31,8 +30,9 @@ public class LottoGameView {
         return winningLottoView.askBonusNumber();
     }
 
-    public void announceWinningStatistics(final int purchaseAmount, final Map<Prize, List<PlayerLotto>> prizeListMap) {
-        winningLottoView.announceWinningStatistics(purchaseAmount, prizeListMap);
+    public void announceWinningStatistics(final int purchaseAmount,
+                                          final PrizeLottos prizeLottos) {
+        winningLottoView.announceWinningStatistics(purchaseAmount, prizeLottos);
     }
 
 }

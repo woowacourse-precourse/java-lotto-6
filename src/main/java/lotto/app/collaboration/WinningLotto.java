@@ -4,8 +4,8 @@ import static java.util.stream.Collectors.groupingBy;
 import static lotto.app.collaboration.enums.WinningLottoMessage.EXCEPTION_DUPLICATED;
 
 import java.util.List;
-import java.util.Map;
 import lotto.app.collaboration.dto.PlayerLotto;
+import lotto.app.collaboration.dto.PrizeLottos;
 import lotto.app.collaboration.enums.Prize;
 
 public class WinningLotto {
@@ -29,10 +29,10 @@ public class WinningLotto {
         }
     }
 
-    public Map<Prize, List<PlayerLotto>> matchNumbers(final List<PlayerLotto> buyLottos) {
-        return buyLottos.stream()
+    public PrizeLottos matchNumbers(final List<PlayerLotto> buyLottos) {
+        return new PrizeLottos(buyLottos.stream()
                 .collect(groupingBy(lotto ->
-                        Prize.matchPrize(matchNumbers(lotto), matchBonusNumber(lotto))));
+                        Prize.matchPrize(matchNumbers(lotto), matchBonusNumber(lotto)))));
     }
 
     private int matchNumbers(PlayerLotto lotto) {

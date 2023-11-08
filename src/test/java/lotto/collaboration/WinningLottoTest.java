@@ -6,6 +6,7 @@ import static lotto.app.collaboration.enums.Prize.FOURTH;
 import static lotto.app.collaboration.enums.Prize.LOST;
 import static lotto.app.collaboration.enums.Prize.SECOND;
 import static lotto.app.collaboration.enums.Prize.THIRD;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,14 +14,14 @@ import java.util.Map;
 import lotto.app.collaboration.Lotto;
 import lotto.app.collaboration.WinningLotto;
 import lotto.app.collaboration.dto.PlayerLotto;
+import lotto.app.collaboration.dto.PrizeLottos;
 import lotto.app.collaboration.enums.Prize;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class WinningLottoTest {
 
     @Test
-    void matchNumbers로_구매한로또들의_최종결과Map을받아볼수있다() {
+    void matchNumbers로_구매한로또들의_최종상금을_확인할수있다() {
         Lotto lotto1 = Lotto.make(() -> List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = Lotto.make(() -> List.of(2, 3, 4, 5, 6, 45));
         Lotto lotto3 = Lotto.make(() -> List.of(2, 3, 4, 5, 6, 7));
@@ -36,7 +37,7 @@ class WinningLottoTest {
         List<PlayerLotto> buyLottos = List.of(p1, p2, p3, p4, p5, p6);
 
         WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 45);
-        Map<Prize, List<PlayerLotto>> actual = winningLotto.matchNumbers(buyLottos);
+        PrizeLottos actual = winningLotto.matchNumbers(buyLottos);
         Map<Prize, List<PlayerLotto>> expected = new HashMap<>();
         expected.put(FIRST, List.of(p1));
         expected.put(SECOND, List.of(p2));
@@ -44,8 +45,12 @@ class WinningLottoTest {
         expected.put(FOURTH, List.of(p4));
         expected.put(FIFTH, List.of(p5));
         expected.put(LOST, List.of(p6));
+        long expectedTotalPrizeMoney = 0L;
+        for (Prize prize : Prize.prizeByRank()) {
+            expectedTotalPrizeMoney += prize.money() * expected.getOrDefault(prize, List.of()).size();
+        }
 
-        Assertions.assertThat(actual).containsAllEntriesOf(expected);
+        assertThat(actual.calculateTotalPrizeMoney()).isEqualTo(expectedTotalPrizeMoney);
     }
 
 }

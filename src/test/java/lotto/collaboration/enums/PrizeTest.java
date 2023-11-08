@@ -54,10 +54,10 @@ class PrizeTest {
     }
 
     @Test
-    void valuesByRank로_역순의_Prize를가져올수있다() {
-        List<Prize> expected = List.of(Prize.LOST, Prize.FIFTH, Prize.FOURTH, Prize.THIRD, Prize.SECOND, Prize.FIRST);
+    void prizeByRank로_역순의_당첨Prize를가져올수있다() {
+        List<Prize> expected = List.of(Prize.FIFTH, Prize.FOURTH, Prize.THIRD, Prize.SECOND, Prize.FIRST);
 
-        List<Prize> actual = Prize.valuesByRank();
+        List<Prize> actual = Prize.prizeByRank();
 
         assertThat(actual).containsExactly(expected.toArray(Prize[]::new));
     }

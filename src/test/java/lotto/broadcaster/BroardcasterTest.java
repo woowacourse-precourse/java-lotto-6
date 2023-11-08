@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -22,11 +23,11 @@ class BroardcasterTest {
         //given
         Broardcaster broadcaster = new Broardcaster();
         String input = "1,2,3,4,5,6";
-        String[] expected = {"1", "2", "3", "4", "5", "6"};
+        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
 
         //when
         provideRemoteInput(input);
-        String[] pickedNumbers = broadcaster.pickLotteryNumber();
+        List<Integer> pickedNumbers = broadcaster.pickLotteryNumbers();
 
         //then
         assertThat(pickedNumbers).isEqualTo(expected);
@@ -41,7 +42,7 @@ class BroardcasterTest {
         provideRemoteInput(input);
 
         //when & then
-        assertThatThrownBy(() -> broadcaster.pickLotteryNumber())
+        assertThatThrownBy(() -> broadcaster.pickLotteryNumbers())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -54,7 +55,7 @@ class BroardcasterTest {
         provideRemoteInput(input);
 
         //when & then
-        assertThatThrownBy(() -> broadcaster.pickLotteryNumber())
+        assertThatThrownBy(() -> broadcaster.pickLotteryNumbers())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -67,7 +68,7 @@ class BroardcasterTest {
         provideRemoteInput(input);
 
         //when & then
-        assertThatThrownBy(() -> broadcaster.pickLotteryNumber())
+        assertThatThrownBy(() -> broadcaster.pickLotteryNumbers())
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -80,8 +81,71 @@ class BroardcasterTest {
         provideRemoteInput(input);
 
         //when & then
-        assertThatThrownBy(() -> broadcaster.pickLotteryNumber())
+        assertThatThrownBy(() -> broadcaster.pickLotteryNumbers())
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
+    // 보너스 번호 입력
+    @DisplayName("보너스 번호를 입력 받는다.")
+    @Test
+    void 보너스번호_입력() throws Exception {
+        //given
+        Broardcaster broadcaster = new Broardcaster();
+        String input = "7";
+        int expected = 7;
+        List<Integer> lotteryNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        //when
+        provideRemoteInput(input);
+        int bonusNumber = broadcaster.pickBonusNumber(lotteryNumbers);
+
+        //then
+        assertThat(bonusNumber).isEqualTo(expected);
+    }
+
+
+    @DisplayName("보너스 번호 입력 - 예외처리 1. 숫자가 아닌 입력의 경우 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"aa", "c", "ㅋ", "1@", "2435ㅏ", "2ㅌ"})
+    void 보너스번호_입력_예외처리_숫자가_아닌_입력의_경우(String input) throws Exception {
+        //given
+        Broardcaster broadcaster = new Broardcaster();
+        provideRemoteInput(input);
+        List<Integer> lotteryNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        //when & then
+        assertThatThrownBy(() -> broadcaster.pickBonusNumber(lotteryNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호 입력 - 예외처리 2. 숫자 범위(1~45)를 넘어서는 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"200", "0", "46", "49", "99"})
+    void 보너스번호_입력_예외처리_숫자_범위를_넘어서는_경우(String input) throws Exception {
+        //given
+        Broardcaster broadcaster = new Broardcaster();
+        provideRemoteInput(input);
+        List<Integer> lotteryNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        //when & then
+        assertThatThrownBy(() -> broadcaster.pickBonusNumber(lotteryNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호 입력 - 예외처리 3. 당첨번호와 중복되는 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "4", "5", "6"})
+    void 보너스번호_입력_예외처리_당첨번호와_중복되는_경우(String input) throws Exception {
+        //given
+        Broardcaster broadcaster = new Broardcaster();
+        provideRemoteInput(input);
+        List<Integer> lotteryNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        //when & then
+        assertThatThrownBy(() -> broadcaster.pickBonusNumber(lotteryNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

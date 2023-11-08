@@ -6,15 +6,6 @@ import lotto.constant.ValidationConstant;
 
 public class WinningLotto {
     private final Lotto standardNumbers;
-
-    public Lotto getStandardNumbers() {
-        return standardNumbers;
-    }
-
-    public int getSpecialNumber() {
-        return specialNumber;
-    }
-
     private final int specialNumber;
 
     public WinningLotto(Lotto lotto, int specialNumber) throws IllegalArgumentException{
@@ -39,5 +30,13 @@ public class WinningLotto {
         if(standardNumbers.contains(specialNumber)) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_REDUNDANT.getMessage());
         }
+    }
+
+    public Lotto getStandardNumbers() {
+        return standardNumbers;
+    }
+
+    public int getSpecialNumber() {
+        return specialNumber;
     }
 }

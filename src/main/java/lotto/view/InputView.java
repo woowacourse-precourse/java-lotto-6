@@ -8,6 +8,15 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.InputMessage;
 
 public class InputView {
+    public int inputMoney() {
+        System.out.println(InputMessage.RECEIVE_MONEY.getMessage());
+        try {
+            return Integer.parseInt(Console.readLine().trim());
+        } catch(IllegalArgumentException e) {
+            System.out.println(ErrorMessage.INPUT_NOT_A_NUMBER.getMessage());
+            return inputMoney();
+        }
+    }
     public List<Integer> inputWinningLottoStandardNumber() {
         List<Integer> lottoNumbers;
         System.out.println(InputMessage.RECEIVE_LOTTO_NUMBER.getMessage());
@@ -21,26 +30,6 @@ public class InputView {
         return lottoNumbers;
     }
 
-    public int inputWinningLottoBonusNumber() {
-        System.out.println(InputMessage.RECEIVE_BONUS_NUMBER.getMessage());
-        try {
-            return Integer.parseInt(Console.readLine().trim());
-        } catch(IllegalArgumentException e) {
-            System.out.println(ErrorMessage.INPUT_MULTIPLE_INPUT.getMessage());
-            return inputWinningLottoBonusNumber();
-        }
-    }
-
-    public int inputMoney() {
-        System.out.println(InputMessage.RECEIVE_MONEY.getMessage());
-        try {
-            return Integer.parseInt(Console.readLine().trim());
-        } catch(IllegalArgumentException e) {
-            System.out.println(ErrorMessage.INPUT_NOT_A_NUMBER.getMessage());
-            return inputMoney();
-        }
-    }
-
     private List<Integer> stringListToIntList(List<String> stringInput) throws IllegalArgumentException{
         try {
             return stringInput.stream()
@@ -49,6 +38,16 @@ public class InputView {
                     .toList();
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_CANT_DELIMITER.getMessage());
+        }
+    }
+
+    public int inputWinningLottoBonusNumber() {
+        System.out.println(InputMessage.RECEIVE_BONUS_NUMBER.getMessage());
+        try {
+            return Integer.parseInt(Console.readLine().trim());
+        } catch(IllegalArgumentException e) {
+            System.out.println(ErrorMessage.INPUT_MULTIPLE_INPUT.getMessage());
+            return inputWinningLottoBonusNumber();
         }
     }
 }

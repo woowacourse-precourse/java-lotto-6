@@ -6,7 +6,7 @@ import lotto.domain.Lottos;
 public class LottosDTO {
     private List<List<Integer>> lottos;
 
-    private int totalLottoBought;
+    private final int totalLottoBought;
 
     public LottosDTO(Lottos lottos) {
         this.lottos = lottos.getLottoBundle().stream()

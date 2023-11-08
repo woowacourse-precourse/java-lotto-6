@@ -5,9 +5,11 @@ import static lotto.constants.ErrorMessage.IS_NOT_NUMERIC_ERROR_MESSAGE;
 import java.util.ArrayList;
 
 public class InputValidator {
+    private static final String DELIMITER = ",";
+
     public static ArrayList<Integer> validateAndParseNumbersInput(String input) {
         ArrayList<Integer> inputNumbers = new ArrayList<>();
-        String[] winningNumbers = input.split(",");
+        String[] winningNumbers = input.split(DELIMITER);
 
         for (String winningNumber : winningNumbers) {
             inputNumbers.add(validateAndParseInput(winningNumber));

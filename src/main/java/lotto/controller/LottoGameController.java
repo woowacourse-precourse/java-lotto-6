@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
 import lotto.domain.Player;
+import lotto.service.LottoCalculateService;
 import lotto.util.LottoAgency;
 import lotto.domain.LottoDrawingMachine;
 import lotto.view.InputView;
@@ -11,14 +12,22 @@ import lotto.view.OutputView;
 
 public class LottoGameController {
 
+    private final LottoCalculateService lottoCalculateService = new LottoCalculateService();
 
     public void startGame() {
         Player player = inputAmount();
         ticketingLotto(player);
 
-
         Lotto winningBall = createLotto();
         LottoBall bonusBall = createBonusBall();
+
+        LottoDrawingMachine lottoDrawingMachine = createWinningLottoNumbers(winningBall, bonusBall);
+
+        lottoCalculateService.calculateWinning(player, lottoDrawingMachine);
+    }
+
+    private static LottoDrawingMachine createWinningLottoNumbers(Lotto winningBall, LottoBall bonusBall) {
+        return new LottoDrawingMachine(winningBall, bonusBall);
     }
 
     private static Player inputAmount() {

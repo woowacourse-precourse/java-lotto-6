@@ -22,7 +22,7 @@ public class LottoController {
     }
 
     public void start() {
-        Money money = new Money(generateMoney());
+        Money money = generateMoney();
         LottoQuantity lottoQuantity = new LottoQuantity(money.getQuantity());
         output.printPurchaseQuantity(lottoQuantity.getQuantity());
 
@@ -35,11 +35,13 @@ public class LottoController {
         output.printResult(winningLottoCounts, profit.calculate());
     }
 
-    private int generateMoney() {
-        int money;
+    private Money generateMoney() {
+        Money money;
+        int amount;
         try {
             output.printInputPurchaseAmountMessage();
-            money = getUserAmount();
+            amount = getUserAmount();
+            money = new Money(amount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             money = generateMoney();

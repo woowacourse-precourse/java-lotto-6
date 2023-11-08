@@ -20,7 +20,7 @@ public class OutputView {
     private static final String BONUS_NUMBER_MATCHED_MESSAGE = ", 보너스 볼 일치";
     private static final String LOTTO_RANK_PRIZE_MESSAGE_FORMAT = " (%,d원)";
     private static final String LOTTO_RESULT_MATCH_COUNT_MESSAGE_FORMAT = " - %d개\n";
-    private static final String PRIZE_RATE_MESSAGE_FORMAT = "총 수익률은 %.2f%%입니다.\n";
+    private static final String PRIZE_RATE_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.\n";
 
     private OutputView() {
     }

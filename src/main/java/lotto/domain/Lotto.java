@@ -24,4 +24,9 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }

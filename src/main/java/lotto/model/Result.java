@@ -11,20 +11,16 @@ public class Result {
     private int totalPrize;
     private String totalProfit;
 
-    public void addWinningCount(int rank) {
-        if (winningCount.containsKey(rank)) {
-            winningCount.put(rank, winningCount.get(rank) + 1);
-            return;
-        }
-        winningCount.put(rank, 1);
-    }
-
-    public void addLottoTicket(Lotto lotto) {
-        lottoTickets.add(lotto);
+    public void setWinningCount(HashMap<Integer, Integer> winningCount) {
+        this.winningCount = winningCount;
     }
 
     public HashMap<Integer, Integer> getWinningCount() {
         return winningCount;
+    }
+
+    public void addLottoTicket(Lotto lotto) {
+        lottoTickets.add(lotto);
     }
 
     public List<Lotto> getLottoTicket() {

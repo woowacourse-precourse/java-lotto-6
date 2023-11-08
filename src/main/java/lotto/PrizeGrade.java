@@ -31,12 +31,12 @@ public enum PrizeGrade {
     }
 
     private static PrizeGrade ofWithoutSecond(int matchCount) {
-        for (PrizeGrade prizeGrade : PrizeGrade.values()) {
-            if (prizeGrade != PrizeGrade.SECOND && prizeGrade.getMatchCount() == matchCount) {
+        for (PrizeGrade prizeGrade : values()) {
+            if (prizeGrade != SECOND && prizeGrade.getMatchCount() == matchCount) {
                 return prizeGrade;
             }
         }
-        return PrizeGrade.NO_PRIZE;
+        return NO_PRIZE;
     }
 
     public int getMatchCount() {

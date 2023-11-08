@@ -3,6 +3,8 @@ package lotto;
 import java.util.List;
 import java.util.TreeMap;
 
+import static lotto.NumberConstants.*;
+
 public class PrizeStats {
     private final TreeMap<PrizeGrade, Integer> gradeDist;
 
@@ -18,7 +20,7 @@ public class PrizeStats {
     private TreeMap<PrizeGrade, Integer> getEmptyDist() {
         TreeMap<PrizeGrade, Integer> zeroDist = new TreeMap<>();
         for (PrizeGrade prizeGrade : PrizeGrade.values()) {
-            zeroDist.put(prizeGrade, NumberConstants.ZERO);
+            zeroDist.put(prizeGrade, ZERO);
         }
         return zeroDist;
     }
@@ -34,6 +36,6 @@ public class PrizeStats {
     }
 
     private void addFrequency(PrizeGrade prizeGrade) {
-        gradeDist.put(prizeGrade, gradeDist.get(prizeGrade) + NumberConstants.ONE);
+        gradeDist.put(prizeGrade, gradeDist.get(prizeGrade) + ONE);
     }
 }

@@ -42,7 +42,7 @@ public class Output {
             //System.out.println("current count is " + count + " is bonus checked " + lottoTicket.get(i).getNumbers().contains(bonusNumber));
         }
 
-        System.out.println("당첨통계");
+        System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + threeMatch + "개");
         System.out.println("4개 일치 (50,000원) - " + fourMatch + "개");
@@ -55,6 +55,7 @@ public class Output {
         double roundedProfitRate = Math.round(profitRate*100.0)/100.0;
         //System.out.println("총 수익금은 " + profit + "입니다.");
         //System.out.println("총 수익률은 " + profitRate + "%입니다.");
-        System.out.println("총 수익률은 " + roundedProfitRate + "%입니다.");
+        //System.out.println("총 수익률은 " + roundedProfitRate + "%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", roundedProfitRate);
     }
 }

@@ -34,7 +34,7 @@ class LottosListTest {
     @Test
     public void createLottos() {
         lottosList.createLottos(5);
-        assertThat(lottosList.getLottosList().size()).isEqualTo(5);
+        assertThat(lottosList.getLottos().size()).isEqualTo(5);
 
     }
 

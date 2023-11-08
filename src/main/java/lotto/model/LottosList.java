@@ -13,16 +13,16 @@ import java.util.List;
 import java.util.regex.Matcher;
 
 public class LottosList {
-    private List<Lotto> lottosList;
+    private List<Lotto> lottos;
 
     private List<Boolean> bonusCheck;
 
     public LottosList() {
-        this.lottosList = new ArrayList<>();
+        this.lottos = new ArrayList<>();
     }
 
     public LottosList(String price) throws IllegalArgumentException {
-        lottosList = new ArrayList<>();
+        lottos = new ArrayList<>();
         validatePricePositive(price);
         validatePrice1000(price);
         int lottoNum = calculateNumberLottos(price);
@@ -46,8 +46,8 @@ public class LottosList {
         }
     }
 
-    public List<Lotto> getLottosList() {
-        return Collections.unmodifiableList(lottosList);
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 
     public void createLottos(int lottoNum) throws IllegalArgumentException {
@@ -55,7 +55,7 @@ public class LottosList {
 
         for (int i = 0; i < lottoNum; i++) {
             List<Integer> numbers = generateUniqueNumbers();
-            lottosList.add(new Lotto(numbers));
+            lottos.add(new Lotto(numbers));
             bonusCheck.add(false);
         }
     }

@@ -17,7 +17,7 @@ import lotto.service.LottoService;
 import lotto.view.ConsolePrint;
 
 public class LottoController {
-    private LottosList lottosList;
+    private LottosList lottoBox;
     private Lotto winningNumber;
     private BonusNumber bonus;
 
@@ -27,18 +27,19 @@ public class LottoController {
 
     public void start() {
         LottoService service = new LottoService();
+
         readPrice(service);
         printLottos();
         readWinningNum(service);
         readBonusNum(service, winningNumber);
         List<Integer> sames = compareNumbers();
         makeRank(sames);
-        double revenue = calculateRevenue(sumRevenues(sames), lottosList.getLottosList().size());
+        double revenue = calculateRevenue(sumRevenues(sames), lottoBox.getLottos().size());
         printRevenue((float) revenue);
     }
 
     void readPrice(LottoService service) {
-        lottosList = service.readPrice();
+        lottoBox = service.readPrice();
     }
 
     void readWinningNum(LottoService service) {
@@ -51,7 +52,7 @@ public class LottoController {
 
     public List<Integer> compareNumbers() {
         List<Integer> countList = new ArrayList<>();
-        List<Lotto> lottos = lottosList.getLottosList();
+        List<Lotto> lottos = lottoBox.getLottos();
 
         IntStream.range(0, lottos.size())
                 .filter(index -> {
@@ -60,13 +61,13 @@ public class LottoController {
                     return count == 5;
                 })
                 .forEach(index -> {
-                    processCountIs5(index, lottosList);
+                    processCountIs5(index);
                 });
         return countList;
     }
 
-    public int processCountIs5(int index, LottosList lottoBox) {
-        Lotto lotto = lottoBox.getLottosList().get(index);
+    public int processCountIs5(int index) {
+        Lotto lotto = lottoBox.getLottos().get(index);
 
         if (lotto.getNumbers().contains(bonus.getNumber())) {
             lottoBox.checkBonus(index);
@@ -84,9 +85,9 @@ public class LottoController {
     }
 
     void printLottos() {
-        ConsolePrint.printPurchased(lottosList.getLottosList().size());
+        ConsolePrint.printPurchased(lottoBox.getLottos().size());
 
-        for (Lotto lotto : lottosList.getLottosList()) {
+        for (Lotto lotto : lottoBox.getLottos()) {
             ConsolePrint.printLotto(lotto);
         }
     }
@@ -98,7 +99,7 @@ public class LottoController {
         ConsolePrint.print4Same(Collections.frequency(sames, 4));
 
         int result = Collections.frequency(sames, 5);
-        int bonusSame = Collections.frequency(lottosList.getBonusCheck(), true);
+        int bonusSame = Collections.frequency(lottoBox.getBonusCheck(), true);
 
         ConsolePrint.printBonusX(result - bonusSame);
         ConsolePrint.printBonusO(bonusSame);
@@ -115,7 +116,7 @@ public class LottoController {
         revenues.add(Collections.frequency(sames, 4) * SAME_NUMBER_4.getPrice());
 
         int result = Collections.frequency(sames, 5);
-        int bonusSame = Collections.frequency(lottosList.getBonusCheck(), true);
+        int bonusSame = Collections.frequency(lottoBox.getBonusCheck(), true);
 
         revenues.add((result - bonusSame) * SAME_NUMBER_5_BONUSE_X.getPrice());
         revenues.add(bonusSame * SAME_NUMBER_5_BONUSE_O.getPrice());

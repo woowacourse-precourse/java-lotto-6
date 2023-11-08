@@ -9,7 +9,7 @@ public class LottoController {
     Print print = new Print();
     int quantity;
 
-    void main() {
+    void run() {
         System.out.println(Print.priceRequest);
         quantity = lottoFunction.getQuantity(Console.readLine());
         System.out.println("\n" + String.format(Print.quantity, quantity));

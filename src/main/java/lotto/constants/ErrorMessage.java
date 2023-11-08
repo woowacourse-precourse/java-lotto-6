@@ -14,7 +14,6 @@ public enum ErrorMessage {
     WINNING_NUMBER_RANGE_ERROR("[ERROR] 당첨 번호는 1 ~ 45 사이의 숫자로 입력해주세요."),
     WINNING_NUMBER_FORMAT_ERROR("[ERROR] 당첨 번호는 1 ~ 45 사이의 숫자 6개를 쉼표(,)로 구분하여 입력해주세요.");
 
-
     private final String message;
 
     ErrorMessage(String message) {

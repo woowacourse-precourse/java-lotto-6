@@ -22,6 +22,10 @@ public enum Rank {
         this.prize = prize;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     public String toString() {
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
@@ -31,8 +35,5 @@ public enum Rank {
         return count + "개 일치 (" + decimalFormat.format(prize) + "원)";
     }
 
-    public int getPrize() {
-        return prize;
-    }
 
 }

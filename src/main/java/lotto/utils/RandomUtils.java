@@ -1,7 +1,6 @@
 package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.List;
 
 import static lotto.constants.Value.*;

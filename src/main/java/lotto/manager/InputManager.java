@@ -1,7 +1,6 @@
 package lotto.manager;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constants.ErrorMessage;
 import lotto.constants.Value;
 import lotto.domain.WinningLotto;
 import lotto.utils.OutputUtils;
@@ -13,8 +12,8 @@ import static lotto.constants.ErrorMessage.*;
 
 public class InputManager {
 
-    ParseUtils parseUtils = new ParseUtils();
-    OutputUtils outputUtils = new OutputUtils();
+    private final ParseUtils parseUtils = new ParseUtils();
+    private final OutputUtils outputUtils = new OutputUtils();
 
     public int inputPayMoney() {
         outputUtils.displayPayMoneyRequestMessage();

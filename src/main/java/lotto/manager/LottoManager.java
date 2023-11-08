@@ -1,6 +1,5 @@
 package lotto.manager;
 
-import lotto.constants.ErrorMessage;
 import lotto.constants.Value;
 import lotto.domain.Lotto;
 import lotto.constants.Rank;
@@ -17,13 +16,11 @@ import static lotto.constants.ErrorMessage.*;
 
 public class LottoManager {
 
-
     private final List<Lotto> buyLottos = new ArrayList<>();
-    private WinningLotto winningLotto;
-
     private final RandomUtils randomUtils = new RandomUtils();
-
     private final Map<Rank, Integer> lottoResults = new LinkedHashMap<>();
+
+    private WinningLotto winningLotto;
 
     public LottoManager() {
         lottoResults.put(Rank.FIFTH, 0);

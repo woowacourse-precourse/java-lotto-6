@@ -57,7 +57,7 @@ public class LottoRepository {
         for (int i = 0; i < 5; i++) {
             prize = prize + ranks[i] * PRIZE[i];
         }
-        double rate = Math.round((double) prize * 10 / money) / 10.0;
+        double rate = Math.round((double) prize * 1000 / money) / 1000.0;
         return rate;
     }
 

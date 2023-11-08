@@ -85,7 +85,7 @@ public class Board {
             index = transFifthPointWithBonus(matchCount, isBonus);
             increaseStatics(index);
         }
-        if (THIRD <= matchCount && matchCount < ALL_CORRECT) {
+        if (THIRD <= matchCount && matchCount <= ALL_CORRECT) {
             index = transAnotherPoint(matchCount);
             increaseStatics(index);
         }

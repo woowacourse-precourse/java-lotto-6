@@ -1,8 +1,6 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.domain.Bank;
-import lotto.domain.LottoShop;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,8 +11,7 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         LottoService lottoService = new LottoService();
-        Bank bank = new Bank();
-        LottoController lottoController = new LottoController(inputView, outputView, lottoService, bank);
+        LottoController lottoController = new LottoController(inputView, outputView, lottoService);
         lottoController.run();
     }
 }

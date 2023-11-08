@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,13 @@ import lotto.domain.enums.Prize;
 public class Bank {
     private int extraWinningNumber;
     private List<Integer> winningNumbers;
+    private Map<Prize, Integer> prizeCountMap;
+
+    public Bank() {
+        this.extraWinningNumber = 0;
+        this.winningNumbers = new ArrayList<>();
+        this.prizeCountMap = new LinkedHashMap<>();
+    }
 
     public void setExtraWinningNumber(int extraWinningNumber) {
         this.extraWinningNumber = extraWinningNumber;
@@ -28,7 +36,6 @@ public class Bank {
     }
 
     public Map<Prize, Integer> calculatePrizeCountMap(Player player) {
-        Map<Prize, Integer> prizeCountMap = new LinkedHashMap<>();
         for (Lotto lotto : player.getLottos().getLottos()) {
             int correctCount = countCorrect(lotto);
             boolean matchBonus = isMatchBonus(lotto);

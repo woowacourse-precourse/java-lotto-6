@@ -6,7 +6,6 @@ import lotto.domain.Bank;
 import lotto.domain.Player;
 import lotto.domain.enums.Prize;
 import lotto.dto.response.LottosInfoDto;
-import lotto.domain.LottoShop;
 import lotto.service.LottoService;
 import lotto.validation.InputValidator;
 import lotto.view.ConsoleOutput;
@@ -18,14 +17,13 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
-    private final Bank bank;
+    private Bank bank;
     private Player player;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService, Bank bank) {
+    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;
-        this.bank = bank;
     }
 
     public void run() {
@@ -94,6 +92,7 @@ public class LottoController {
     }
 
     private void setWinningNumbersInBank(List<Integer> winningNumbers) {
+        this.bank = new Bank();
         bank.setWinningNumbers(winningNumbers);
     }
 

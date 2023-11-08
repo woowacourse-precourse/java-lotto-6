@@ -18,6 +18,7 @@ public class LuckyNumbers { // 입력받은 당첨 번호(String > List<String> 
 
     private void validate(String readNumbers) {
         checkComma(readNumbers);
+        checkNonSeparatedComma(readNumbers);
         tmpNumbers = checkDigitSeparatedComma(readNumbers);
     }
 

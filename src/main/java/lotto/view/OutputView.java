@@ -28,7 +28,7 @@ public class OutputView {
     public static void displayUserLottos(List<Lotto> userLottos) {
         System.out.printf(PURCHASE_INFO_MESSAGE, userLottos.size());
         userLottos.forEach(userLotto -> {
-            System.out.println(userLotto.getDisplayFormat());
+            System.out.println(LottoUtil.convertLottoToDisplayFormat(userLotto.getNumbers()));
         });
     }
 

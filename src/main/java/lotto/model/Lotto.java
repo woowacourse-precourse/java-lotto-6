@@ -6,6 +6,7 @@ import static lotto.util.Constants.MIN_LOTTO_NUM;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.message.ExceptionMessage;
 import lotto.util.LottoUtil;
@@ -54,8 +55,8 @@ public class Lotto {
         return copyNumbers.size();
     }
 
-    public String getDisplayFormat() {
-        return LottoUtil.convertLottoToDisplayFormat(numbers);
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
 }

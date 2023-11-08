@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.Result;
@@ -46,10 +45,6 @@ public class OutputView {
         System.out.println(SEPARATE_LINE);
     }
 
-    public static void printEachResult(List<Result> results) {
-        results.forEach(System.out::println);
-    }
-
     public static void printFinalReturnRate(double finalReturnRate) {
         System.out.println(TOTAL_RETURN_RATE_MESSAGE + finalReturnRate + END_MESSAGE);
     }
@@ -60,5 +55,9 @@ public class OutputView {
         System.out.println(Result.FIVE + finalResult.get(Result.FIVE).toString() + COUNT);
         System.out.println(Result.BONUS + finalResult.get(Result.BONUS).toString() + COUNT);
         System.out.println(Result.SIX + finalResult.get(Result.SIX).toString() + COUNT);
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }

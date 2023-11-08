@@ -37,7 +37,7 @@ public class LottoController {
         try {
             return InputView.inputPurchaseAmount();
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
             return fetchPurchaseAmount();
         }
     }
@@ -48,7 +48,7 @@ public class LottoController {
             List<Integer> inputNumbers = InputView.inputWinningNumber();
             return new WinningNumbers(inputNumbers);
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
             return fetchWinningNumbers();
         }
     }
@@ -64,7 +64,7 @@ public class LottoController {
             gameNumbers.addBonusNumber(fetchBonusNumber());
             return gameNumbers;
         } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+            OutputView.printErrorMessage(exception.getMessage());
             return tryFetchBonusNumbers(gameNumbers);
         }
     }

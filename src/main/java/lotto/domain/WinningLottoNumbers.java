@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.validator.system.domain.WinningCombinationValidator;
+import lotto.validator.system.domain.WinningLottoNumbersValidator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +12,7 @@ public class WinningLottoNumbers {
 
     public WinningLottoNumbers(String numbers){
         this.numbers = changeToList(numbers);
-        WinningCombinationValidator.validateWinningNumbers(this.numbers);
+        WinningLottoNumbersValidator.validateWinningLottoNumbers(this.numbers);
     }
 
     public List<Integer> getNumbers() {

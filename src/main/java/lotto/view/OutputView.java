@@ -44,6 +44,7 @@ public class OutputView {
                 ErrorMessage.FORMAT.getMessage(),
                 errorMessage
         ));
+        printLineFeed();
     }
 
     public static void printLineFeed() {

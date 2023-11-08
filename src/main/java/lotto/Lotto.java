@@ -1,11 +1,16 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        checkDuplicatedValue(numbers);
         validate(numbers);
         this.numbers = numbers;
     }
@@ -17,4 +22,63 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void checkDuplicatedValue(List<Integer> numbers){
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public List<Integer> getNumbers(){
+
+        return this.numbers;
+    }
+
+    public static List<Integer> makeLotto(){
+
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
+
+
+    public String toString(){
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        for(int i=0;i<numbers.size() - 1;i++){
+            stringBuilder.append(numbers.get(i)).append(", ");
+        }
+        stringBuilder.append(numbers.get(numbers.size()-1)).append("]");
+
+        return stringBuilder.toString();
+    }
+
+    public int checkWinningNumbers(List<Integer> winningNumbers){
+
+        int count = 0;
+        for(int number : winningNumbers){
+            if(this.numbers.contains(number)){
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public boolean checkBonusNumber(int bonusNumber){
+
+        return this.numbers.contains(bonusNumber);
+    }
+
+    public int checkResult(List<Integer> winningNumbers, int bonusNumber){
+
+        int count = checkWinningNumbers(winningNumbers);
+        boolean bonus = checkBonusNumber(bonusNumber);
+        if(bonus){
+            count++;
+        }
+
+        if(count == 5 && !bonus){
+            return 7;
+        }
+        return count;
+    }
 }

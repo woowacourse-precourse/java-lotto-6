@@ -1,7 +1,10 @@
 package lotto.App;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.Domain.Lotto;
+import lotto.Enum.WinningType;
 
 public class LottoView {
 
@@ -27,4 +30,23 @@ public class LottoView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    public void printWinningResults(Map<WinningType, Integer> winningResult) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        List<Map.Entry<WinningType, Integer>> results = new ArrayList<>(winningResult.entrySet());
+        for (int i = results.size() - 1; i >= 0; i--) {
+            Map.Entry<WinningType, Integer> entry = results.get(i);
+            WinningType type = entry.getKey();
+            if (type == WinningType.NONE) {
+                continue;
+            }
+            int count = entry.getValue();
+            System.out.println(type + "- " + count + "개");
+        }
+    }
+
+    public void printReturnRate(double returnRate) {
+        String rate = String.format("%.1f", returnRate * 100);
+        System.out.println("총 수익률은 " + rate + "%입니다.");
+    }
 }

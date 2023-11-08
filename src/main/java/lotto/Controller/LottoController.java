@@ -2,11 +2,13 @@ package lotto.Controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.Domain.Human;
 import lotto.Domain.Lotto;
 import lotto.Domain.LottoDraw;
 import lotto.Domain.WinningLotto;
+import lotto.Enum.WinningType;
 import lotto.RandomGenerator.LottoGenerator;
 
 public class LottoController {
@@ -54,5 +56,13 @@ public class LottoController {
         lottoDraw.checkNumbers(human);
 
         // return Successful
+    }
+
+    public Map<WinningType, Integer> getWinningResult() {
+        return human.getWinningResult();
+    }
+
+    public double getReturnRate() {
+        return human.getReturnRate();
     }
 }

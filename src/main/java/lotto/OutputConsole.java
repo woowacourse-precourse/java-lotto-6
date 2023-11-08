@@ -12,7 +12,7 @@ public class OutputConsole {
     }
 
     public static void print(Lottos lottos) {
-        lottos.print();
+        lottos.printCurrentState();
     }
 
     public static void printResult(Lottos lottos, WinningLotto winningLotto) {

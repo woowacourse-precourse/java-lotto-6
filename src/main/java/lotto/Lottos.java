@@ -28,7 +28,7 @@ public class Lottos {
         }
     }
 
-    public void print() {
+    public void printCurrentState() {
         System.out.printf(Message.NUMBER_OF_LOTTOS_MESSAGE.getMessage(), lottos.size());
         for (Lotto lotto : lottos) {
             lotto.print();

@@ -46,12 +46,16 @@ public class OutputView {
     private String buildPrizeMessage(Prize prize, int prizeCount) {
         final String COUNT_FORMAT = "개 ";
         final String MATCHED_COUNT_FORMAT = COUNT_FORMAT + "일치 ";
+        final String SECOND_MATCHED_COUNT_FORMAT = COUNT_FORMAT + "일치, 보너스 볼 일치 ";
         final String FIRST_ROUND_BRACKETS = "(";
         final String LAST_ROUND_BRACKETS = ")";
         final String PRIZE_MONEY_FORMAT = "원";
         final String DASH_FORMAT = " - ";
 
         String matchedCountMessage = prize.matchedCount + MATCHED_COUNT_FORMAT;
+        if (prize.equals(Prize.SECOND)) {
+            matchedCountMessage = prize.matchedCount + SECOND_MATCHED_COUNT_FORMAT;
+        }
         String prizeMoneyMessage = FIRST_ROUND_BRACKETS + formatPrizeMoney(prize.prizeMoney) + PRIZE_MONEY_FORMAT + LAST_ROUND_BRACKETS;
         String countMessage = DASH_FORMAT + prizeCount + COUNT_FORMAT;
 

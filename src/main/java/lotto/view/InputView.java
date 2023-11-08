@@ -1,15 +1,15 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.LottoPrice;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InputView {
-    public String getLottoPrice() {
-        return Console.readLine();
+    public LottoPrice getLottoPrice() {
+        String input = Console.readLine();
+        return new LottoPrice(input);
     }
 
     public List<Integer> getWinningNumbers() {

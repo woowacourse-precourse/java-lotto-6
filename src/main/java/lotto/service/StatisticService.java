@@ -23,6 +23,7 @@ public class StatisticService {
                                     .filter(prize -> prize != null)
                                     .mapToDouble(LottoPrize::getPrize)
                                     .sum();
-        return Math.round(totalPrize / totalPrice * 10.0) / 10.0;
+        double yield = (totalPrize / totalPrice) * 100;
+        return Math.round(yield * 100.0) / 100.0;
     }
 }

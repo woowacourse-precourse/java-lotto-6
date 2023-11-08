@@ -1,9 +1,10 @@
 package lotto.model;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 
 public enum Rank {
-    FIRST(6, 20000000, false),
+    FIRST(6, 2000000000, false),
     SECOND(5, 30000000, true),
     THIRD(5, 1500000, false),
     FOURTH(4, 50000, false),
@@ -35,4 +36,20 @@ public enum Rank {
         return rank.winningCount == matchCount;
     }
 
+    public int getWinningCount() {
+        return winningCount;
+    }
+
+    public int getReward() {
+        return reward;
+    }
+
+    public String rewardNumberFormat(){
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        return formatter.format(reward);
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
 }

@@ -11,14 +11,20 @@ import java.util.List;
 public class Application {
     static int numberOfLotto;
     static int money = 0;
+    static enum statistic {
+        correct3,
+        correct4,
+        correct5,
+        correct6,
 
+    }
     public static void main(String[] args) {
         List<Lotto> lottos = new ArrayList<>();
         List<Integer> winningNumbers = new ArrayList<>();
         buyOutput();
         myLottoOutput(lottos);
         winningLottoOutput(winningNumbers);
-        statisticsOutput(winningNumbers);
+        statisticsOutput(lottos,winningNumbers);
     }
 
     public static void buyOutput() {
@@ -46,9 +52,14 @@ public class Application {
         System.out.println();
     }
 
-    public static void statisticsOutput(List<Integer> winningNumbers) {
+    public static void statisticsOutput(List<Lotto> lottos, List<Integer> winningNumbers) {
+        List<Integer> lottohaveWinningNumList = new ArrayList<>();
+
         System.out.println("당첨 통계");
         System.out.println("---");
+        for(int i=0;i<lottos.size();i++)
+            lottohaveWinningNumList.add(findCorrectNums(lottos.get(i),winningNumbers));
+
     }
 
     public static int moneyInput(int money) {
@@ -116,9 +127,21 @@ public class Application {
     }
 
 
-    public static int findCorrectNums(){
-
+    public static int findCorrectNums(Lotto lotto, List<Integer> winningNumbers){
+        int winningLottoNums = 0;
+        for(int element : winningNumbers){
+            winningLottoNums = winningLottoNums + onewinnningNum(lotto,element);
+        }
+        return winningLottoNums;
     }
 
+    public static int onewinnningNum(Lotto lotto, int winningNum){
+        for(int element : lotto.getNumbers())
+            if(element == winningNum)
+                return 1;
+        return 0;
+    }
+
+    public static
 
 }

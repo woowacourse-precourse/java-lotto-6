@@ -34,13 +34,14 @@ public class Money {
 
     public int calculateTotalWinnings(List<LottoRank> lottoRanks) {
         return lottoRanks.stream()
-                .mapToInt(LottoRank::getPrizeMoney)
+                .mapToInt(rank -> rank == LottoRank.SECOND ? LottoRank.FIRST.getPrizeMoney() : rank.getPrizeMoney())
                 .sum();
     }
 
-    public double calculateReturnOfRate(int totalSpent, int totalWinnings) {
-        double profit = totalWinnings - totalSpent;
-        double rateOfReturn = (profit / totalSpent) * 100;
-        return 100 - Math.abs(rateOfReturn);
+    public double calculateReturnOfRate(int totalPurchaseAmount, int totalWinnings) {
+        if (totalPurchaseAmount == 0) {
+            return 0;
+        }
+        return ((double) totalWinnings / totalPurchaseAmount) * 100;
     }
 }

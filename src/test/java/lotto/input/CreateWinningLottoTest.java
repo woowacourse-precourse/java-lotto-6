@@ -33,7 +33,7 @@ public class CreateWinningLottoTest {
     @DisplayName("보너스 숫자가 범위를 넘어 가는 값일 때 OverValueException 발생")
     void invalidBonusNumberTest(){
 
-        //given때
+        //given
         int invalidBonusNumber = 500;
 
         //when & then

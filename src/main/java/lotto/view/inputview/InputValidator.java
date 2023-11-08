@@ -7,9 +7,10 @@ public final class InputValidator {
     private InputValidator() {
     }
 
-    public static void validateIsNumber(String input) {
+    public static boolean validateIsNumber(String input) {
         try {
             Integer.parseInt(input);
+            return true;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_NUMBER.getText());
         }

@@ -1,8 +1,8 @@
 package lotto.view.outputview;
 
 import lotto.domain.LottoRankInfo;
-import lotto.dto.Dto;
 import lotto.dto.LottoResultOutputDto;
+import lotto.dto.OutputDto;
 import lotto.view.OutputView;
 
 import java.util.Map;
@@ -11,7 +11,7 @@ import static lotto.view.ParameterConfig.LOTTO_RESULT;
 
 public final class LottoResultOutputView implements OutputView {
     @Override
-    public void view(Map<String, ? super Dto.Output> model) {
+    public void view(Map<String, OutputDto> model) {
         LottoResultOutputDto dto = (LottoResultOutputDto) model.get(LOTTO_RESULT);
 
         viewInitText();

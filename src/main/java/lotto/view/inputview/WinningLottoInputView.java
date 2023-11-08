@@ -2,7 +2,7 @@ package lotto.view.inputview;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.dto.Dto;
+import lotto.dto.InputDto;
 import lotto.dto.WinningLottoInputDto;
 import lotto.view.InputView;
 import lotto.view.ParameterConfig;
@@ -16,8 +16,8 @@ public final class WinningLottoInputView implements InputView {
     private static final String DELIMITER = ",";
 
     @Override
-    public void read(Map<String, ? super Dto.Input> parameter) {
-        WinningLottoInputDto input = (WinningLottoInputDto) parameter.get(ParameterConfig.WINNING_LOTTO);
+    public void read(Map<String, InputDto> inputs) {
+        WinningLottoInputDto input = (WinningLottoInputDto) inputs.get(ParameterConfig.WINNING_LOTTO);
         if (input.getLotto() == null) {
             inputLottoNumbers(input);
             return;

@@ -1,6 +1,6 @@
 package lotto.view.outputview;
 
-import lotto.dto.Dto;
+import lotto.dto.OutputDto;
 import lotto.view.OutputView;
 import lotto.view.ParameterConfig;
 
@@ -13,7 +13,7 @@ public final class WinningLottoOutputView implements OutputView {
     );
 
     @Override
-    public void view(Map<String, ? super Dto.Output> model) {
+    public void view(Map<String, OutputDto> model) {
         model.keySet().forEach(this::runMethod);
     }
 

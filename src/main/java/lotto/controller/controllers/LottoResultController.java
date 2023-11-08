@@ -1,10 +1,7 @@
 package lotto.controller.controllers;
 
 import lotto.domain.WinningLotto;
-import lotto.dto.BuyLottoDto;
-import lotto.dto.Dto;
-import lotto.dto.LottoResultOutputDto;
-import lotto.dto.WinningLottoInputDto;
+import lotto.dto.*;
 import lotto.service.LottoResultService;
 import lotto.view.OutputView;
 import lotto.view.ParameterConfig;
@@ -21,18 +18,20 @@ public final class LottoResultController implements Controller {
     }
 
     @Override
-    public void process(Map<String, ? super Dto.Input> inputs, Map<String, ? super Dto.Output> outputs) {
+    public void process(Map<String, InputDto> inputs,
+                        Map<String, OutputDto> outputs) {
         init(inputs, outputs);
         LottoResultOutputDto lottoResultOutputDto = service.createLottoResultDto();
         viewLottoResult(outputs, lottoResultOutputDto);
     }
 
-    private void viewLottoResult(Map<String, ? super Dto.Output> outputs, LottoResultOutputDto dto) {
+    private void viewLottoResult(Map<String, OutputDto> outputs, LottoResultOutputDto dto) {
         outputs.put(ParameterConfig.LOTTO_RESULT, dto);
         outputView.view(outputs);
     }
 
-    private void init(Map<String, ? super Dto.Input> inputs, Map<String, ? super Dto.Output> outputs) {
+    private void init(Map<String, InputDto> inputs,
+                      Map<String, OutputDto> outputs) {
         BuyLottoDto.Output buyLottoDto = (BuyLottoDto.Output) outputs.get(ParameterConfig.BUY_PRICE);
         WinningLottoInputDto winningLottoInputDto = (WinningLottoInputDto) inputs.get(ParameterConfig.WINNING_LOTTO);
 

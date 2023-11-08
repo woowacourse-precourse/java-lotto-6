@@ -1,7 +1,7 @@
 package lotto.view.inputview;
 
 import lotto.dto.BuyLottoDto;
-import lotto.dto.Dto;
+import lotto.dto.InputDto;
 import lotto.view.InputView;
 
 import java.util.Map;
@@ -11,8 +11,8 @@ import static lotto.view.ParameterConfig.BUY_PRICE;
 
 public final class LottoBuyInputView implements InputView {
     @Override
-    public void read(Map<String, ? super Dto.Input> parameter) {
-        BuyLottoDto.Input dto = (BuyLottoDto.Input) parameter.get(BUY_PRICE);
+    public void read(Map<String, InputDto> inputs) {
+        BuyLottoDto.Input dto = (BuyLottoDto.Input) inputs.get(BUY_PRICE);
         inputBuyPrice(dto);
     }
 

@@ -20,6 +20,10 @@ public class InputView {
         return splitToList(Console.readLine());
     }
 
+    public static int readBonusNumber() {
+        return convertToPositiveNumber(Console.readLine());
+    }
+
     private static List<Integer> splitToList(String input) {
         return Stream.of(input.split(","))
                 .map(String::trim)

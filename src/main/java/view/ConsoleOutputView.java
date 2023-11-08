@@ -36,7 +36,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     private void printLottoNumbers(Lotto lotto) {
-        List<LottoNumber> lottoNumbers = lotto.getLottoNumbers();
+        List<LottoNumber> lottoNumbers = lotto.getSortedLottoNumbers();
         String numbersJoinComma = lottoNumbers.stream()
                 .map(LottoNumber::lottoNumberValue)
                 .map(Object::toString)

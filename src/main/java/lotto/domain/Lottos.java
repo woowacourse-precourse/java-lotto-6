@@ -10,11 +10,13 @@ public class Lottos {
 
 
 
-    public static List<Lotto> generateLotto()  {
+    public static List<Lotto> generateLotto(Money count)  {
             List<Lotto> lottos = new ArrayList<>();
-            Lotto lotto = new Lotto(LottoMaker.generateNumber());
-            lottos.add(lotto);
-
+            while(count.checkCount()) {
+                Lotto lotto = new Lotto(LottoMaker.generateNumber());
+                lottos.add(lotto);
+                count.minusCount();
+            }
             return lottos;
         }
 

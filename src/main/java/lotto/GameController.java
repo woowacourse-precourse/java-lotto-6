@@ -1,39 +1,45 @@
 package lotto;
 
 import java.util.List;
-import lotto.domain.Count;
+
 
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.view.Input;
+import lotto.view.Output;
 
 public class GameController {
 
     public void start() {
-        readyToGame();
-    }
-
-    private void readyToGame() {
-        Count count = insertMoney();
-        List<Lotto> lottos = generateUserLotto();
-
+        Money count = insertMoney();
+        List<Lotto> lottos = generateUserLotto(count);
 
     }
 
-    private Count insertMoney(){
-        Count count = new Count(Integer.parseInt(Input.consoleLine()));
+
+
+    private Money insertMoney(){
+        Money count = new Money(Integer.parseInt(Input.consoleLine()));
         count.checkmoney();
-
         return count;
     }
 
-    private List<Lotto> generateUserLotto(){
-        List<Lotto> lottos =  Lottos.generateLotto();
+    private List<Lotto> generateUserLotto(Money count){
+        List<Lotto> lottos =  Lottos.generateLotto(count);
         return lottos;
     }
 
     private void generateWinningLottto(){
-
+        Output.consoleLine("~");
+        String numbers = Input.consoleLine();
+        //validation 실행
+        Output.consoleLine("~");
+        String bonusNumbers = Input.consoleLine();
+        //validationtion실행
+//        WinningLotto winningLotto = new WinningLotto();
+        //생성
     }
 
 }

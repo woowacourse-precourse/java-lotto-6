@@ -18,10 +18,10 @@ public class Statistics {
             MatchMode mode = entry.getKey();
             int matchCount = entry.getValue();
 
-            System.out.println(mode.description + " - " + matchCount+"개");
+            System.out.println(mode.description + " - " + matchCount + "개");
         }
 
-        getRate(createResultMap,lottery);
+        getRate(createResultMap, lottery);
 
     }
 
@@ -73,23 +73,22 @@ public class Statistics {
     private void getRate(Map<MatchMode, Integer> createResultMap, int lottery) {
         int totalPrize = 0;
         for (Map.Entry<MatchMode, Integer> entry : createResultMap.entrySet()) {
-            if(entry.getValue() !=0){
+            if (entry.getValue() != 0) {
                 totalPrize += entry.getKey().prize;
             }
         }
 
-        double profitPercentage = Math.round(((double)(totalPrize / lottery) * 100)) / 1000.0;
-        System.out.println("총 수익률은 "+ profitPercentage +"%입니다.");
+        double profitPercentage = Math.round(((double) (totalPrize / lottery) * 100)) / 1000.0;
+        System.out.println("총 수익률은 " + profitPercentage + "%입니다.");
     }
 
 
     public enum MatchMode {
         THREE_NUMBER_MATCH("3개 일치 (5,000원)", 5_000),
-        FOUR_NUMBER_MATCH("4개 일치 (50,000원)",50_000),
+        FOUR_NUMBER_MATCH("4개 일치 (50,000원)", 50_000),
         FIVE_NUMBER_MATCH("5개 일치 (1,500,000원)", 1_500_000),
         FIVE_NUMBER_MATCH_WITH_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)", 30_000_000),
-        SIX_NUMBER_MATCH("6개 일치 (2,000,000,000원)", 2_000_000_000)
-        ;
+        SIX_NUMBER_MATCH("6개 일치 (2,000,000,000원)", 2_000_000_000);
 
         private final String description;
         private final int prize;

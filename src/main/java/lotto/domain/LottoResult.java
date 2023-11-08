@@ -20,4 +20,10 @@ public class LottoResult {
     public int getRankCount(Rank rank) {
         return ranksCount.getOrDefault(rank, 0);
     }
+
+    public long calculateTotalPrizeMoney() {
+        return ranksCount.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+    }
 }

@@ -13,7 +13,7 @@ public class LottoGenerator {
         this.amount = amount;
     }
 
-    public static List<Lotto> from(int amount) {
+    public static LottoGenerator from(int amount) {
         if (amount < 1000) {
             throw new IllegalArgumentException("[ERROR] 로또의 최소 구매 가능 금액은 1,000원입니다.");
         }
@@ -21,7 +21,12 @@ public class LottoGenerator {
             throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위로만 구매 가능합니다.");
         }
 
-        LottoGenerator lottoGenerator = new LottoGenerator(amount);
+        return new LottoGenerator(amount);
+    }
+
+    public static List<Lotto> generateFrom(int amount) {
+        LottoGenerator lottoGenerator = LottoGenerator.from(amount);
+
         return lottoGenerator.generate();
     }
 

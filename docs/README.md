@@ -14,7 +14,7 @@
 * 중복되지 않는 6개의 숫자 입력
   * 오름차순으로 정렬
 * 보너스 번호 1개 추가입력
-* *중복되는 번호 입력 시 IllegalArgumentException 발생
+* 중복되는 번호 입력 시 IllegalArgumentException 발생
 
 #### 구매한 6자리의 수와 입력한 당첨번호를 비교
 * Java Enum을 사용하여 당첨 결과 정의

@@ -14,7 +14,7 @@ public class LottoResultTest {
     private static final int SECOND_PRIZE = 30_000_000;
     private static final int THIRD_PRIZE = 1_500_000;
 
-    private final Map<Rank, Integer> result = new HashMap<>();
+    private Map<Rank, Integer> result = new HashMap<>();
     private final LottosResult lottosResult = new LottosResult();
 
     @DisplayName("구입한 로또들에 대한 총 상금을 알 수 있다.")
@@ -34,9 +34,10 @@ public class LottoResultTest {
 
     @BeforeEach
     void initializeResult() {
-        result.clear();
-        result.put(Rank.FIRST,1);
-        result.put(Rank.SECOND,1);
-        result.put(Rank.THIRD,2);
+        result = Map.of(
+                Rank.FIRST, 1,
+                Rank.SECOND, 1,
+                Rank.THIRD, 2
+        );
     }
 }

@@ -13,5 +13,5 @@ abstract class TicketGenerator {
         this.count = count;
     }
 
-    public abstract Lotto createLotto(); // Marked as abstract
+    public abstract Lotto createLotto();
 }

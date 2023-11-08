@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.*;
 import lotto.service.LottoService;
+import lotto.view.input.InputView;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -18,5 +19,6 @@ public class LottoController {
         BonusNumber validBonusNumber = lottoService.getValidBonusNumber(validWinningNumbers);
         LottoResult lottoResult = lottoService.getLottoResult(lottoBundle, validWinningNumbers, validBonusNumber);
         lottoService.showProfitRate(lottoResult, validPurchaseAmount);
+        InputView.readClose();
     }
 }

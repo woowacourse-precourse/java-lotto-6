@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -10,11 +11,22 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        List<Integer> uniqueNumbers = new ArrayList<>();
+        for (Integer number : numbers) {
+            if (uniqueNumbers.contains(number)) {
+                throw new IllegalArgumentException();
+            }
+            uniqueNumbers.add(number);
+        }
+
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -51,9 +51,9 @@ public enum Result {
             return result;
         }
         if (hasBonus) {
-            return Result.FIVE;
+            return Result.BONUS;
         }
-        return Result.FOUR;
+        return Result.FIVE;
     }
 
     @Override

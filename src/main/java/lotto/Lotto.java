@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -16,5 +17,24 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    void printNumbers() {
+        System.out.println(numbers);
+    }
+
+    Prize compare(LuckyNumber luckyNumber) {
+        int matches = 0;
+        boolean bonus = false;
+
+        for (int lottoNumber : this.numbers) {
+            if (luckyNumber.has(lottoNumber)) {
+                matches++;
+            }
+        }
+        if (luckyNumber.bonusIs(this.numbers)) {
+            bonus = true;
+        }
+        return new Prize(matches, bonus);
+    }
+
+
 }

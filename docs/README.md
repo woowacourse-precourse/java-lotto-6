@@ -6,37 +6,39 @@
 
 - [x] 로또 구입 금액을 입력 받는다. - InputView | inputLottoPurchaseAmount()
   - [x] (예외)로또 구입 금액이 1000원으로 나누어 떨어지지 않으면 예외처리를 한다. - InputValidator | checkDivisibleBy1000()
-  - [x] (예외)로또 구입 금액 입력값이 숫자인가? - InputValidator | isNumeric()
+  - [x] (예외)로또 구입 금액 입력값이 숫자인가? - InputValidator | isNumber()
 - [x] 로또를 발행한다.(개수만큼) - LottoStore | generateLottoNumbers()
 - [x] 구입한 로또를 출력한다. - OutputView | printPurchasedLottos()
   - [x] 로또 번호는 오름차순으로 정렬한다.
-- [x] 당첨번호를 입력받는다. - InputView | inputWinningNumber()
+- [x] 당첨번호를 입력받는다. - InputView | inputLottoWinningNumber()
   - [x] 번호는 쉼표(,)를 기준으로 구분하는가? - InpuValidator | checkCommaDelimiter() // 테스트 코드 (o)
   - [x] (예외)쉼표가 5개가 아닐경우 - InputValidator | checkSixNumber()
   - [x] (예외)숫자 6개를 입력받지 못했을 경우 - InputValidator | checkSixNumber()
   - [x] (예외)숫자가 아닐경우 - InputValidator | isNumber() // // 테스트 코드 (o)
   - [x] (예외)1~45의 범위를 벗어날 경우 - InputValidator | isValidRangeNumber
   - [x] (예외) 각 자리수는 서로 다른가? - InputValidator | checkDistinctNumbers()
+  - [x (예외) 콤마 사이에 아무값도 입력하지 않은 경우 
 - [x] 보너스 번호를 입력받는다. - InputView | inputBonusNumber()
   - [x] (예외) 숫자가 아닐경우 - isNumber()
   - [x] (예외)1~45의 범위를 벗어날 경우 - isValidRangeNumber()
+  - [x] (예외) 당첨번호와 보너스번호가 겹치는가? - checkDistinctBetweenWinningAndBonusNumber()
 - [x] 입력한 로또 번호와 발행한 로또 번호를 비교한다. - LottoSystem | compareLottoNumbers()
 - [x] 당첨 내역을 출력한다. - OutputView | printLottoWinningStatistics()
 - [x] 수익률을 계산한다.(소수점 둘째 자리에서 반올림 한다.) - caculateRateOfReturn()
 - [x] 수익률을 출력한다. - OutputView | printRateOfReturn()
 
-- [x] (전체예외) 입력값이 null이가 empty일때
+- [x] (전체예외) 입력값이 null이거나 empty일때 | isNullOrEmpty()
 
 ## 객체지향적으로 기능들을 바라보기
 
-- main
-
+- MainController
 
 - 로또 (Lotto)
   - 로또 타입 로또 객체
 
 - 로또 가게 (LottoStore)
   - [x] 로또를 발행한다.
+  - [x] 당첨금액을 계산한다
 
 - 로또 시스템 (LottoSystem)
   - [x] 로또 당첨 번호를 입력받는다. (컨트롤러에서 받아서 생성자로 넘긴다.)
@@ -45,8 +47,7 @@
 
 - 손님 (Customer)
   - [x] 로또를 구매한다.
-  - 내 수익률을 계산한다.
-  - 내 수익률을 출력한다.
+  - [x] 내 수익률을 계산한다.
 
   
 

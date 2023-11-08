@@ -1,6 +1,8 @@
 package lotto.view;
 
+import lotto.domain.LottoResult;
 import lotto.domain.LottoTicket;
+import lotto.domain.Rank;
 
 import java.util.List;
 
@@ -17,5 +19,18 @@ public class OutputView {
             System.out.println(ticket.getNumbers().toString());
         }
     }
-    
+
+    public static void printWinningStatistics(LottoResult lottoResult) {
+        System.out.println(WINNING_STATISTICS_HEADER);
+        System.out.println(WINNING_STATISTICS_LINE);
+
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE && lottoResult.getRankCount(rank) > 0) {
+                System.out.println(String.format(RESULT_FORMAT,
+                        rank.getMatchCount(),
+                        rank.getPrizeMoney(),
+                        lottoResult.getRankCount(rank)));
+            }
+        }
+    }
 }

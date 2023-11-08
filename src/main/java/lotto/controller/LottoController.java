@@ -57,4 +57,17 @@ public class LottoController {
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
     }
+
+    //feat(LottoController): Implement total prize calculation method
+    public long calculateTotalPrize(Map<Rank, Integer> result) {
+        long totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            totalPrize += (long) rank.getWinningMoney() * result.getOrDefault(rank, 0);
+        }
+        return totalPrize;
+    }
+    
+    public double calculateReturnRate(long totalPrize, int amount) {
+        return (double) totalPrize / amount * 100;
+    }
 }

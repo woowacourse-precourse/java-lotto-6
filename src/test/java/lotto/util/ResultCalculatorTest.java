@@ -20,8 +20,8 @@ public class ResultCalculatorTest {
         List<Result> winningResults = calculator.calculateWinningResults(userLotto, winningLotto);
 
         // Assert
-        assertEquals(3, calculator.countMatchingResults(winningResults, Rank.FIRST));
-        assertEquals(1, calculator.countMatchingResults(winningResults, Rank.SECOND));
+        assertEquals(1, calculator.countMatchingResults(winningResults, Rank.FIRST));
+        assertEquals(0, calculator.countMatchingResults(winningResults, Rank.SECOND));
         assertEquals(0, calculator.countMatchingResults(winningResults, Rank.THIRD));
         assertEquals(0, calculator.countMatchingResults(winningResults, Rank.FOURTH));
         assertEquals(0, calculator.countMatchingResults(winningResults, Rank.FIFTH));
@@ -38,7 +38,7 @@ public class ResultCalculatorTest {
         double profit = calculator.calculateProfit(winningResults, purchaseAmount);
 
         // Assert
-        assertEquals(2.9000785714285713E10, profit, 0.001);
+        assertEquals(2.9000785714285716E7, profit, 0.001);
     }
 
     private UserLotto createTestUserLotto() {

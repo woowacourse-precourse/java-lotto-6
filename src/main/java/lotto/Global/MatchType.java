@@ -1,7 +1,17 @@
 package lotto.Global;
 
-public enum match {
-    YES,
-    NO,
-    
+public enum MatchType {
+    TRUE(1),
+    FALSE(0),
+    NO(-1);
+
+    private int number;
+
+    private MatchType(int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
 }

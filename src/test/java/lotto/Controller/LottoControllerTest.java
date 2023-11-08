@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import lotto.Global.Exception;
-import lotto.Global.LottoResult;
 import lotto.Global.PrintPhrase;
 import lotto.Model.LottoMachine;
 import lotto.Model.LottoResultGenerator;
@@ -29,7 +28,7 @@ class LottoControllerTest {
         lottoController.run();
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        assertThat(out.toString().contains(LottoResult.PURCHASE_RESULT.getResultState(1)));
+        assertThat(out.toString().contains(PrintPhrase.PURCHASE_RESULT.getResultState(1)));
         verify(lottoMachine, times(1)).buyLottos(1);
     }
 

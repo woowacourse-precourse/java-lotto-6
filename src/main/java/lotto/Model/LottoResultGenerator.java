@@ -1,10 +1,17 @@
 package lotto.Model;
 
+import static lotto.Global.Constants.LOTTO_NUMBER_MAX_RANGE;
+import static lotto.Global.Constants.LOTTO_NUMBER_MIN_RANGE;
+import static lotto.Global.Constants.LOTTO_SALES_AMOUNT_MONEY;
+import static lotto.Global.Exception.LOTTO_BONUS_NUMBER_INPUT;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import lotto.Controller.LottoController;
+import lotto.Global.LottoAmount;
+import lotto.Global.LottoNumberMatch;
 import lotto.Global.LottoResult;
+import lotto.Global.MatchType;
 
 public class LottoResultGenerator {
     private WinningLotto winningLotto;
@@ -12,30 +19,27 @@ public class LottoResultGenerator {
 
     private static String WINNING_NUMBER_MATCHES = "winning";
     private static String BONUS_NUMBER_MATCHES = "bonus";
-    private static int FIFTH_WINNING_NUMBER_MATCH_COUNT = 3;
-    private static int FIFTH_WINNING_AMOUNT = 5000;
-    private static int FOURTH_WINNING_NUMBER_MATCH_COUNT = 4;
-    private static int FOURTH_WINNING_AMOUNT = 50000;
-    private static int THIRD_WINNING_NUMBER_MATCH_COUNT = 5;
-    private static int THIRD_BONUS_NUMBER_MATCH_COUNT = 0;
-    private static int THIRD_WINNING_AMOUNT = 1500000;
-    private static int SECOND_WINNING_NUMBER_MATCH_COUNT = 5;
-    private static int SECOND_BONUS_NUMBER_MATCH_COUNT = 1;
-    private static int SECOND_WINNING_AMOUNT = 30000000;
-    private static int FIRST_WINNING_NUMBER_MATCH_COUNT = 6;
-    private static int FIRST_WINNING_AMOUNT = 2000000000;
 
     public LottoResultGenerator() {
         this.selledLottos = new ArrayList<>();
     }
 
     private class WinningLotto {
-        private List<Integer> winningNumber;
+        private Lotto winningNumber;
         private int bonusNumber;
 
-        public WinningLotto(List<Integer> winningNumber, int bonusNumber) {
+        public WinningLotto(Lotto winningNumber, int bonusNumber) {
             this.winningNumber = winningNumber;
-            this.bonusNumber = bonusNumber;
+            if (isBonusNumberValid(bonusNumber)) {
+                this.bonusNumber = bonusNumber;
+            }
+        }
+
+        private boolean isBonusNumberValid(int bonusNumber) {
+            if (bonusNumber < LOTTO_NUMBER_MIN_RANGE || bonusNumber > LOTTO_NUMBER_MAX_RANGE) {
+                throw new IllegalArgumentException(LOTTO_BONUS_NUMBER_INPUT.getErrorPhrase());
+            }
+            return true;
         }
 
         public HashMap<String, Integer> matchesResult(Lotto lotto) {
@@ -51,30 +55,32 @@ public class LottoResultGenerator {
     }
 
     public void putWinningLottoNumber(List<Integer> winningNumber, int bonusNumber) {
-        winningLotto = new WinningLotto(winningNumber, bonusNumber);
+        winningLotto = new WinningLotto(new Lotto(winningNumber), bonusNumber);
     }
 
     public HashMap<String, Integer> getLottosResult() {
         HashMap<String, Integer> result = new HashMap<>();
-        result.put(LottoResult.FIFTH_RESULT.getName(), getResultNumber(FIFTH_WINNING_NUMBER_MATCH_COUNT));
-        result.put(LottoResult.FOURTH_RESULT.getName(), getResultNumber(FOURTH_WINNING_NUMBER_MATCH_COUNT));
-        result.put(LottoResult.THIRD_RESULT.getName(),
-                getResultNumber(THIRD_WINNING_NUMBER_MATCH_COUNT, THIRD_BONUS_NUMBER_MATCH_COUNT));
-        result.put(LottoResult.SECOND_RESULT.getName(),
-                getResultNumber(SECOND_WINNING_NUMBER_MATCH_COUNT, SECOND_BONUS_NUMBER_MATCH_COUNT));
-        result.put(LottoResult.FIRST_RESULT.getName(), getResultNumber(FIRST_WINNING_NUMBER_MATCH_COUNT));
+        for (LottoResult lottoResult : LottoResult.values()) {
+            MatchType matchType = LottoNumberMatch.valueOf(lottoResult.name()).getMatchType();
+            result.put(lottoResult.getName(), getTotalResultNumber(lottoResult.name(), matchType));
+        }
         return result;
     }
 
     public float getLottoRateOfResult(HashMap<String, Integer> lottoResult) {
         float result = 0;
-        result += lottoResult.get(LottoResult.FIFTH_RESULT.getName()) * FIFTH_WINNING_AMOUNT;
-        result += lottoResult.get(LottoResult.FOURTH_RESULT.getName()) * FOURTH_WINNING_AMOUNT;
-        result += lottoResult.get(LottoResult.THIRD_RESULT.getName()) * THIRD_WINNING_AMOUNT;
-        result += lottoResult.get(LottoResult.SECOND_RESULT.getName()) * SECOND_WINNING_AMOUNT;
-        result += lottoResult.get(LottoResult.FIRST_RESULT.getName()) * FIRST_WINNING_AMOUNT;
-        result = (result / (selledLottos.size() * LottoController.LOTTO_SALES_AMOUNT_MONEY)) * 100;
+        for (LottoResult lotto : LottoResult.values()) {
+            result += lottoResult.get(lotto.getName()) * LottoAmount.valueOf(lotto.name()).getAmount();
+        }
+        result = (result / (selledLottos.size() * LOTTO_SALES_AMOUNT_MONEY)) * 100;
         return result;
+    }
+
+    private int getTotalResultNumber(String name, MatchType matchType) {
+        if (matchType.equals(MatchType.NO)) {
+            return getResultNumber(LottoNumberMatch.valueOf(name).getWinningNumber());
+        }
+        return getResultNumber(LottoNumberMatch.valueOf(name).getWinningNumber(), matchType.getNumber());
     }
 
     private int getResultNumber(int winningMatchNumber) {
@@ -82,7 +88,7 @@ public class LottoResultGenerator {
         int result = 0;
         for (Lotto lotto : selledLottos) {
             lottoMatchResult = winningLotto.matchesResult(lotto);
-            if (lottoMatchResult.get(WINNING_NUMBER_MATCHES) == winningMatchNumber) {
+            if (checkWinningNumber(lottoMatchResult, winningMatchNumber)) {
                 result += 1;
             }
         }
@@ -91,15 +97,35 @@ public class LottoResultGenerator {
 
     private int getResultNumber(int winningMatchNumber, int bonusMatchNumber) {
         HashMap<String, Integer> lottoMatchResult = new HashMap<>();
+        HashMap<String, Integer> criteriaMatchNumber = getCriteriaMatchNumber(winningMatchNumber, bonusMatchNumber);
         int result = 0;
         for (Lotto lotto : selledLottos) {
             lottoMatchResult = winningLotto.matchesResult(lotto);
-            if (lottoMatchResult.get(WINNING_NUMBER_MATCHES) == winningMatchNumber
-                    && lottoMatchResult.get(BONUS_NUMBER_MATCHES) == bonusMatchNumber) {
+            if (checkNumbers(lottoMatchResult, criteriaMatchNumber)) {
                 result += 1;
             }
         }
         return result;
+    }
+
+    private HashMap<String, Integer> getCriteriaMatchNumber(int winningMatchNumber, int bonusMatchNumber) {
+        HashMap<String, Integer> criteriaMatchNumber = new HashMap<>();
+        criteriaMatchNumber.put(WINNING_NUMBER_MATCHES, winningMatchNumber);
+        criteriaMatchNumber.put(BONUS_NUMBER_MATCHES, bonusMatchNumber);
+        return criteriaMatchNumber;
+    }
+
+    private Boolean checkNumbers(HashMap<String, Integer> result, HashMap<String, Integer> criteriaNumber) {
+        return checkWinningNumber(result, criteriaNumber.get(WINNING_NUMBER_MATCHES)) && checkBonusNumber(result,
+                criteriaNumber.get(BONUS_NUMBER_MATCHES));
+    }
+
+    private Boolean checkWinningNumber(HashMap<String, Integer> result, int winningMatchNumber) {
+        return result.get(WINNING_NUMBER_MATCHES) == winningMatchNumber;
+    }
+
+    private Boolean checkBonusNumber(HashMap<String, Integer> result, int bonusMatchNumber) {
+        return result.get(BONUS_NUMBER_MATCHES) == bonusMatchNumber;
     }
 
 

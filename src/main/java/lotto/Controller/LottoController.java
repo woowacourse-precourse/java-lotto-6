@@ -1,8 +1,11 @@
 package lotto.Controller;
 
+import static lotto.Global.Constants.LOTTO_NUMBER_AMOUNT;
+import static lotto.Global.Constants.LOTTO_SALES_AMOUNT_MONEY;
+import static lotto.Global.Exception.LOTTO_PURCHASE_INPUT;
+
 import java.util.HashMap;
 import java.util.List;
-import lotto.Global.Exception;
 import lotto.Model.LottoMachine;
 import lotto.View.View;
 
@@ -10,9 +13,6 @@ public class LottoController {
 
     private View view;
     private LottoMachine lottoMachine;
-    public static int LOTTO_SALES_AMOUNT_MONEY = 1000;
-    public static int LOTTO_NUMBER_AMOUNT = 6;
-
 
     public LottoController(View view, LottoMachine lottoMachine) {
         this.view = view;
@@ -39,7 +39,7 @@ public class LottoController {
         try {
             int moneyAmount = view.getLottoBuyAmout();
             if (moneyAmount % LOTTO_SALES_AMOUNT_MONEY != 0) {
-                throw new IllegalArgumentException(Exception.LOTTO_PURCHASE_INPUT.getErrorPhrase());
+                throw new IllegalArgumentException(LOTTO_PURCHASE_INPUT.getErrorPhrase());
             }
             return moneyAmount / LOTTO_SALES_AMOUNT_MONEY;
         } catch (IllegalArgumentException e) {

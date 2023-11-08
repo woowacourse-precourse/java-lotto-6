@@ -1,5 +1,8 @@
 package lotto.Model;
 
+import static lotto.Global.Constants.LOTTO_NUMBER_MAX_RANGE;
+import static lotto.Global.Constants.LOTTO_NUMBER_MIN_RANGE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,8 +11,6 @@ import lotto.Global.Exception;
 public class LottoMachine {
     private LottoVendingMachine lottoVendingMachine;
     private LottoResultGenerator lottoResultGenerator;
-    public static int LOTTO_NUMBER_MIN_RANGE = 1;
-    public static int LOTTO_NUMBER_MAX_RANGE = 45;
 
     public LottoMachine(LottoVendingMachine lottoVendingMachine, LottoResultGenerator lottoResultGenerator) {
         this.lottoVendingMachine = lottoVendingMachine;

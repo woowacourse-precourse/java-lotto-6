@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -56,9 +57,9 @@ public class LottoServiceTest {
     @ValueSource(ints = {3, 5, 8})
     @DisplayName("구매한 로또장 수 만큼 랜덤값 생성")
     void generateRandomLottoNumsByNTime(int time) {
-        List<List<Integer>> myLottoNums = service.generateRandomLottoNums(time);
+        List<Lotto> myLottoNums = service.generateRandomLottoNums(time);
         assertThat(myLottoNums.size()).isEqualTo(time);
-        assertThat(myLottoNums.get(0).size()).isEqualTo(6);
+        assertThat(myLottoNums.getNumbers().size()).isEqualTo(6);
     }
 
     @ParameterizedTest

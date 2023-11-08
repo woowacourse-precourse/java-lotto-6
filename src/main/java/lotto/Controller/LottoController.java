@@ -14,4 +14,8 @@ public class LottoController {
         lottoBuyer.printLottos();
     }
 
+    public void generateWinningLotto() {
+        winningLottoGenerator.generateWinningNumbers();
+        winningLottoGenerator.generateBonusNumber();
+    }
 }

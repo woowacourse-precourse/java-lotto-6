@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -16,25 +17,38 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
-    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외 발생")
     @Test
-    void createLottoByOverSize() {
+    void createLottoByOverSizeTest() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(InvalidSizeException.class);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("로또 번호 6개일 경우 예외 발생X")
     @Test
-    void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+    void createLottoByCorrecetSizeTest() {
+        assertThatCode(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외 발생")
+    @Test
+    void createLottoByDuplicatedNumberTest() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(DuplicatedNumberException.class);
+    }
+
+    @DisplayName("로또 번호에 중복된 숫자가 없으면 예외 발생X")
+    @Test
+    void createLottoByNonDuplicatedNumberTest() {
+        assertThatCode(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .doesNotThrowAnyException();
     }
 
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("outOfRangeParameter")
     @DisplayName("범위 밖의 숫자 예외 발생")
-    void createLottoByOutOfRangeNumbers(String testName, List<Integer> input) {
+    void createLottoByOutOfRangeNumbersTest(String testName, List<Integer> input) {
         AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(input))
                 .isInstanceOf(OutOfRangeNumberException.class);
     }
@@ -49,10 +63,17 @@ class LottoTest {
         );
     }
 
+    @DisplayName("범위 내의 숫자 예외 발생X")
+    @Test
+    void createLottoByInRangeNumbersTest() {
+        assertThatCode(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .doesNotThrowAnyException();
+    }
+
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("compareLottoParameter")
-    @DisplayName("로또끼리 번호 비교")
-    void calculateSameNumber(String testName, List<Integer> input, int count) {
+    @DisplayName("번호 비교 테스트")
+    void calculateSameNumberCountTest(String testName, List<Integer> input, int count) {
         Lotto myLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int result = myLotto.calculateSameNumberCount(new Lotto(input));
         assertThat(result).isEqualTo(count);

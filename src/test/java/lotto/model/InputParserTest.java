@@ -12,10 +12,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputParserTest {
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index}: {0}")
     @ValueSource(strings = {"1, 2, 3, 4, 5, 6", "1,2,3,4,5,6", "1, 2,3, 4,  5,      6"})
-    @DisplayName("예외 발생 X")
-    void checkCorrectParsing(String input) {
+    @DisplayName("입력값 파싱 테스트")
+    void validInputParsingTest(String input) {
         assertThatCode(() -> InputParser.parseInput(input))
                 .doesNotThrowAnyException();
 
@@ -24,8 +24,8 @@ class InputParserTest {
 
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("invalidParameter")
-    @DisplayName("파싱 예외 X")
-    void checkNoException(String input) {
+    @DisplayName("파싱 예외 발생 X")
+    void noExceptionOnParsingAnyValueTest(String input) {
         assertThatCode(() -> InputParser.parseInput(input))
                 .doesNotThrowAnyException();
     }
@@ -33,13 +33,13 @@ class InputParserTest {
     private static Stream<Arguments> invalidParameter() {
         return Stream.of(
                 // null, 공백 입력 시 예외 X
-                Arguments.of("Null 예외 발생", "1, 2, 3, 4,"),
-                Arguments.of("공백 예외 발생", "1, 2, 3, 4, "),
+                Arguments.of("Null", "1, 2, 3, 4,"),
+                Arguments.of("공백", "1, 2, 3, 4, "),
 
                 // 정수가 아닌 값 입력 시 예외 X
-                Arguments.of("소수 입력 예외 발생", "1, 2, 3, 4, 0.5"),
-                Arguments.of("문자 입력 예외 발생", "1, 2, 3, 4, 안녕"),
-                Arguments.of("특수 문자 입력 예외 발생", "1, 2, 3, 4, 5 + 1")
+                Arguments.of("소수", "1, 2, 3, 4, 0.5"),
+                Arguments.of("문자", "1, 2, 3, 4, 안녕"),
+                Arguments.of("특수 문자", "1, 2, 3, 4, 5 + 1")
         );
     }
 }

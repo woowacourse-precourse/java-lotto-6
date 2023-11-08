@@ -25,20 +25,20 @@ public class LottoNumbersGeneratorTest {
 
     @Test
     @DisplayName("숫자 6개 검증")
-    void validateSizeSix() {
+    void validateSizeSixTest() {
         assertThat(generatedLottoNumbers.size()).isEqualTo(SIZE.getValue());
     }
 
     @Test
     @DisplayName("중복된 숫자 검증")
-    void validateDuplicateNumber() {
+    void validateDuplicateNumberTest() {
         HashSet<Integer> uniqueLottoNumbers = new HashSet<>(generatedLottoNumbers);
         assertEquals(SIZE.getValue(), uniqueLottoNumbers.size());
     }
 
     @Test
     @DisplayName("오름차순 정렬 검증")
-    void validateAscendingSort() {
+    void validateAscendingSortTest() {
         for (int index = 0; index < generatedLottoNumbers.size() - 1; index++) {
             assertTrue(generatedLottoNumbers.get(index) < generatedLottoNumbers.get(index + 1));
         }
@@ -47,7 +47,7 @@ public class LottoNumbersGeneratorTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
     @DisplayName("count 개수만큼 Lotto 생성")
-    void generateLottoAsCount(int count) {
+    void generateLottoAsCountTest(int count) {
         List<Lotto> lottos = lottoNumbersGenerator.generateLottos(count);
         assertEquals(lottos.size(), count);
     }

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.stream.Stream;
@@ -10,12 +11,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class AmountTest {
     @ParameterizedTest(name = "{index}: {0}")
     @MethodSource("invalidParameter")
     @DisplayName("금액 검증")
-    void invalidInput(String testName, String amount, Class<? extends IllegalArgumentException> exceptionClass) {
+    void invalidAmountTest(String testName, String amount, Class<? extends IllegalArgumentException> exceptionClass) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(exceptionClass);
     }
@@ -43,5 +45,13 @@ public class AmountTest {
                 Arguments.of("1000의 배수 아닐 경우 예외 발생1", "123", NotDivisibleIntegerException.class),
                 Arguments.of("1000의 배수 아닐 경우 예외 발생2", "1120", NotDivisibleIntegerException.class)
         );
+    }
+
+    @ParameterizedTest(name = "{index}: {0}원")
+    @ValueSource(strings = {"1000", "2000", "3000", "4000", "5000"})
+    @DisplayName("예외 발생 X")
+    void correctAmountTest(String input) {
+        assertThatCode(() -> new Amount(input))
+                .doesNotThrowAnyException();
     }
 }

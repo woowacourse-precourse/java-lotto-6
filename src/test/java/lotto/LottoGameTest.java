@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -81,5 +82,18 @@ class LottoGameTest {
         String result = lottoGame.getEarningRate(ranks, price);
 
         assertThat(result).isEqualTo("71.4%");
+    }
+
+    @Test
+    void getRankCount() {
+        List<Rank> ranks = List.of(Rank.FIRST, Rank.FIRST, Rank.FIFTH);
+
+        Map<Rank, Integer> result = lottoGame.getRankCount(ranks);
+
+        assertThat(result.getOrDefault(Rank.FIRST, 0)).isEqualTo(2);
+        assertThat(result.getOrDefault(Rank.SECOND, 0)).isEqualTo(0);
+        assertThat(result.getOrDefault(Rank.THIRD, 0)).isEqualTo(0);
+        assertThat(result.getOrDefault(Rank.FOURTH, 0)).isEqualTo(0);
+        assertThat(result.getOrDefault(Rank.FIFTH, 0)).isEqualTo(1);
     }
 }

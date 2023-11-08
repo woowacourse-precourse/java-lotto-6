@@ -17,4 +17,11 @@ public class InputHandler {
 
         return purchaseAmount;
     }
+
+    public static String getWinningNumberInputMessage() {
+            Printer.printWinningNumberChoiceMessage();
+            String winningNumbers = Console.readLine();
+
+        return winningNumbers;
+    }
 }

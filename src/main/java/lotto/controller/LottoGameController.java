@@ -17,5 +17,11 @@ public class LottoGameController {
         Lottos lottos = lottoGameService.generateLottos(lottoCount);
 
         PrintHandler.printStartingPartOfLottoGame(lottoCount, lottos);
+
+        playLottoGame(lottos);
+    }
+
+    private static void playLottoGame(Lottos lottos) {
+        String winningNumbers = InputHandler.getWinningNumberInputMessage();
     }
 }

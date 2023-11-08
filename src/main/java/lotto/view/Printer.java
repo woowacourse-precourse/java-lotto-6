@@ -3,8 +3,7 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 
-import static lotto.message.InfoMessage.PURCHASE_AMOUNT_CHOICE;
-import static lotto.message.InfoMessage.PURCHASE_COMPLETE;
+import static lotto.message.InfoMessage.*;
 
 public class Printer {
     public static void printLineBreak() {
@@ -25,5 +24,9 @@ public class Printer {
 
     public static void printLotto(Lotto lotto) {
         System.out.println(lotto.getNumbers());
+    }
+
+    public static void printWinningNumberChoiceMessage() {
+        System.out.println(WINNING_NUMBER_CHOICE);
     }
 }

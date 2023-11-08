@@ -11,12 +11,12 @@ public class Validator {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_MESSAGE.getMessage());
         }
     }
-    public static void isInteger(String inputMessage, ErrorMessage message) {
+    public static void isInteger(String inputMessage, ErrorMessage errorMessage) {
         isNumber(inputMessage);
         try {
             Integer.parseInt(inputMessage);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(message.getMessage());
+            throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
 

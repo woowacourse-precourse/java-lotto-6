@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.WinNumber;
+import lotto.exception.ErrorMessage;
 import lotto.io.InputHandler;
 import lotto.io.OutputHandler;
 import lotto.validator.LottoNumberValidator;
@@ -40,7 +41,7 @@ public class LotteryGame {
         while (true) {
             try {
                 String inputPrice = inputHandler.readLine();
-                PriceValidator.isInteger(inputPrice);
+                PriceValidator.isInteger(inputPrice, ErrorMessage.PRICE_OUT_OF_RANGE_MESSAGE);
 
                 int price = Integer.parseInt(inputPrice);
 
@@ -103,7 +104,7 @@ public class LotteryGame {
     private Integer[] toIntegerArray(String[] inputNumbers){
         Integer[] numbers = new Integer[inputNumbers.length];
         for (int i = 0; i < inputNumbers.length; i++) {
-            LottoNumberValidator.isInteger(inputNumbers[i].trim());
+            LottoNumberValidator.isInteger(inputNumbers[i].trim(), ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE_MESSAGE);
             numbers[i] = Integer.parseInt(inputNumbers[i].trim());
         }
         return numbers;
@@ -113,7 +114,7 @@ public class LotteryGame {
         while (true) {
             try {
                 String inputNumber = inputHandler.readLine();
-                LottoNumberValidator.isInteger(inputNumber);
+                LottoNumberValidator.isInteger(inputNumber, ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE_MESSAGE);
                 int bonusNumber = Integer.parseInt(inputNumber);
 
                 LottoNumberValidator.validateDuplicatedNumber(numbers, bonusNumber);

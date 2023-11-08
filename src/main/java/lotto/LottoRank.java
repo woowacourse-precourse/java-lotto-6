@@ -1,11 +1,13 @@
 package lotto;
 
+import static constants.LottoConstants.*;
+
 public enum LottoRank {
-    FIRST(2000000000, "6개 일치 (2,000,000,000원)"),
-    SECOND(30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
-    THIRD(1500000, "5개 일치 (1,500,000원)"),
-    FOURTH(50000, "4개 일치 (50,000원)"),
-    FIFTH(5000, "3개 일치 (5,000원)");
+    FIRST(2000000000, LOTTO_WINNING_FIRST_MESSAGE),
+    SECOND(30000000, LOTTO_WINNING_SECOND_MESSAGE),
+    THIRD(1500000, LOTTO_WINNING_THIRD_MESSAGE),
+    FOURTH(50000, LOTTO_WINNING_FOURTH_MESSAGE),
+    FIFTH(5000, LOTTO_WINNING_FIFTH_MESSAGE);
 
     private final int rankPrice;
     private final String rankMessage;

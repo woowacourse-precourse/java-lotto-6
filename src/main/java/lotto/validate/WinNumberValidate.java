@@ -6,6 +6,7 @@ import static lotto.constants.ErrorMessages.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lotto.Lotto;
 
 public class WinNumberValidate {
 
@@ -22,7 +23,7 @@ public class WinNumberValidate {
 
     public static void validateWinNumberIsEmpty(String winNumber) {
         if (winNumber.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_EMPTY_ERROR.getMessage());
+            throw new IllegalArgumentException(LOTTO_EMPTY_ERROR.getMessage());
         }
     }
 
@@ -32,7 +33,7 @@ public class WinNumberValidate {
 
     public static void validateWinNumberLength(String[] winNumbers) {
         if (winNumbers.length != LOTTO_LENGTH.getValue()) {
-            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_LENGTH_ERROR.getMessage());
+            throw new IllegalArgumentException(LOTTO_LENGTH_ERROR.getMessage());
         }
     }
 
@@ -42,7 +43,7 @@ public class WinNumberValidate {
             try {
                 winIntNumbers[Arrays.asList(winNumbers).indexOf(winNumber)] = Integer.parseInt(winNumber);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_CHAR_ERROR.getMessage());
+                throw new IllegalArgumentException(LOTTO_CHAR_ERROR.getMessage());
             }
         }
         return winIntNumbers;
@@ -51,7 +52,7 @@ public class WinNumberValidate {
     public static void validateWinNumberIsRange(int[] winIntNumbers) {
         for (int winIntNumber : winIntNumbers) {
             if (winIntNumber < START_LOTTO_NUMBER.getValue() || winIntNumber > END_LOTTO_NUMBER.getValue()) {
-                throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_RANGE_ERROR.getMessage());
+                throw new IllegalArgumentException(LOTTO_RANGE_ERROR.getMessage());
             }
         }
     }
@@ -60,22 +61,23 @@ public class WinNumberValidate {
         ArrayList<Integer> winIntNumbersList = new ArrayList<>();
         for (int winIntNumber : winIntNumbers) {
             if (winIntNumbersList.contains(winIntNumber)) {
-                throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_DUPLICATE_ERROR.getMessage());
+                throw new IllegalArgumentException(LOTTO_DUPLICATE_ERROR.getMessage());
             }
             winIntNumbersList.add(winIntNumber);
         }
     }
 
-    public static int validateBonusNumber(String bonusNumber) {
+    public static int validateBonusNumber(String bonusNumber, Lotto winIntNumbers) {
         validateBonusNumberIsEmpty(bonusNumber);
         int bonusIntNumber = validateBonusNumberIsNumber(bonusNumber);
         validateBonusNumberIsRange(bonusIntNumber);
+        validateBonusNumberIsNotDuplicate(winIntNumbers, bonusIntNumber);
         return bonusIntNumber;
     }
 
     public static void validateBonusNumberIsEmpty(String bonusNumber) {
         if (bonusNumber.isEmpty()) {
-            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_EMPTY_ERROR.getMessage());
+            throw new IllegalArgumentException(LOTTO_EMPTY_ERROR.getMessage());
         }
     }
 
@@ -83,21 +85,19 @@ public class WinNumberValidate {
         try {
             return Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_CHAR_ERROR.getMessage());
+            throw new IllegalArgumentException(LOTTO_CHAR_ERROR.getMessage());
         }
     }
 
     public static void validateBonusNumberIsRange(int bonusIntNumber) {
         if (bonusIntNumber < START_LOTTO_NUMBER.getValue() || bonusIntNumber > END_LOTTO_NUMBER.getValue()) {
-            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_RANGE_ERROR.getMessage());
+            throw new IllegalArgumentException(LOTTO_RANGE_ERROR.getMessage());
         }
     }
 
-    public static void validateBonusNumberIsNotDuplicate(int[] winIntNumbers, int bonusIntNumber) {
-        for (int winIntNumber : winIntNumbers) {
-            if (winIntNumber == bonusIntNumber) {
-                throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_DUPLICATE_ERROR.getMessage());
-            }
+    public static void validateBonusNumberIsNotDuplicate(Lotto winLotto, int bonusIntNumber) {
+        if (winLotto.getNumbers().contains(bonusIntNumber)) {
+            throw new IllegalArgumentException(LOTTO_DUPLICATE_ERROR.getMessage());
         }
     }
 

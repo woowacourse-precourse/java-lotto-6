@@ -33,7 +33,7 @@ public class Application {
         System.out.println();
 
         printGetBonusNumberMessage();
-        int bonus = getBonusNumber();
+        int bonus = getBonusNumber(winLotto);
 
         System.out.println();
 

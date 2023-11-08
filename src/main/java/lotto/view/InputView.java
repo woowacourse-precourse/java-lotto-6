@@ -18,9 +18,9 @@ public class InputView {
         return new Lotto(WinNumberValidate.validateWinNumber(winNumber));
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(Lotto winNumbers) {
         String bonusNumber = Console.readLine();
-        return WinNumberValidate.validateBonusNumber(bonusNumber);
+        return WinNumberValidate.validateBonusNumber(bonusNumber, winNumbers);
     }
 
 }

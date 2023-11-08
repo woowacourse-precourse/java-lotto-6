@@ -9,15 +9,15 @@ import lotto.Application;
 import lotto.object.LottoNumber;
 
 public class LottoGenerate {
-    private static final int lottoPrice = 1000;
+    private static final int LOTTOPRICE = LottoEnum.LOTTO_PRICE.getMoney();
 
     public static void moneyCheck(String money) {
         try {
             Application.purchaseAmount = Integer.parseInt(money);
-            if (Application.purchaseAmount % lottoPrice != 0) {
+            if (Application.purchaseAmount % LOTTOPRICE  != 0) {
                 throw new IllegalArgumentException();
             }
-            Application.ticketNumber = Application.purchaseAmount / lottoPrice;
+            Application.ticketNumber = Application.purchaseAmount / LOTTOPRICE ;
             System.out.println(Application.ticketNumber + "개를 구매했습니다.");
             makeLotto();
         } catch (IllegalArgumentException e) {

@@ -25,9 +25,6 @@ public class Lotto {
         if (!isUniqueNumbers(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_UNIQUE.getMessage());
         }
-        if (!isAscending(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_ASCENDING.getMessage());
-        }
     }
 
     private boolean isCorrectSize(List<Integer> numbers) {
@@ -50,15 +47,6 @@ public class Lotto {
                 return false;
             }
             isContained[number] = true;
-        }
-        return true;
-    }
-
-    private boolean isAscending(List<Integer> numbers) {
-        for (int i = 1; i < numbers.size(); i++) {
-            if (numbers.get(i) < numbers.get(i - 1)) {
-                return false;
-            }
         }
         return true;
     }

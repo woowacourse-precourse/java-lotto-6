@@ -30,10 +30,4 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호가 오름차순이 아니면 예외가 발생한다.")
-    @Test
-    void createLottoByDescending() {
-        assertThatThrownBy(() -> new Lotto(List.of(6, 5, 4, 3, 2, 1)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }

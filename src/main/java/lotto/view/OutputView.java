@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class OutputView {
     private void printLottoNumber(List<Lotto> lottos) {
         StringBuilder sb = new StringBuilder();
         for (Lotto lotto : lottos) {
+            Collections.sort(lotto.getNumbers());
             sb.append(lotto).append("\n");
         }
         System.out.println(sb);

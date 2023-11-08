@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.purchase.Purchase;
 import lotto.ticket.LottoTicket;
+import lotto.Bonus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,5 +16,7 @@ public class Application {
         List<List<Integer>> ticketBundle = LottoTicket.lottoTicket(count);
 
         LottoTicket.printTickets(ticketBundle);
+
+        int bonusNumber = Bonus.getBonus();
     }
 }

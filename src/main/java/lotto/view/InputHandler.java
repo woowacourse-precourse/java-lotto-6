@@ -42,6 +42,8 @@ public class InputHandler {
             exceptionStatus = ExceptionHandler.handleBonusNumberInputException(bonusNumber, winningNumbers);
         } while (exceptionStatus.isOccurred());
 
+        Printer.printLineBreak();
+
         return bonusNumber;
     }
 }

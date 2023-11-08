@@ -18,7 +18,7 @@ public class LottoPurchaseConsoleUI {
     public int startPurchaseProcess() {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                System.out.println("\n구입금액을 입력해 주세요.");
                 int purchaseAmount = Integer.parseInt(Console.readLine());
                 return manager.calculateNumOfLotto(purchaseAmount);
             } catch (NumberFormatException e) {

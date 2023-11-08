@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.constant.LottoValue;
 import lotto.constant.LottoWinningValue;
 import lotto.domain.Lotto;
 import lotto.domain.RateOfReturn;
@@ -10,6 +11,8 @@ import java.util.Map;
 public class OutputView {
     private static final int HIGHEST_RANK = LottoWinningValue.values()[0].getRank();
     private static final int LOWEST_RANK = LottoWinningValue.values()[LottoWinningValue.values().length - 1].getRank();
+
+    private static final String RATE_OR_RETURN_DECIMAL_PLACE = "%." + LottoValue.RATE_OR_RETURN_DECIMAL_PLACE.getValue() + "f";
 
     public void printNumberOfPurchase(int num) {
         System.out.printf("\n%d개를 구매했습니다.\n", num);
@@ -43,6 +46,6 @@ public class OutputView {
     }
 
     private void printRateOfReturn(RateOfReturn rateOfReturn) {
-        System.out.printf("총 수익률은 %s입니다.", rateOfReturn.getRateOfReturn());
+        System.out.printf("총 수익률은 " + RATE_OR_RETURN_DECIMAL_PLACE + "%%입니다.", rateOfReturn.getRateOfReturnPercentage());
     }
 }

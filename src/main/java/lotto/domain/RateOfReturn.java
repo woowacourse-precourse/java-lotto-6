@@ -1,31 +1,25 @@
 package lotto.domain;
 
+/**
+ * 수익률 담고 있는 클래스
+ */
 public class RateOfReturn {
-    private static final int ROUNDING_DIGIT = 1;
-
-    private String rateOfReturnPercent;
+    private double rateOfReturn;
+    private double rateOfReturnPercentage;
 
     public RateOfReturn() {
     }
 
     public RateOfReturn(double rateOfReturn) {
-        String rateOfReturnPercent = changeToneDecimalPercent(rateOfReturn);
-
-        this.rateOfReturnPercent = rateOfReturnPercent;
+        this.rateOfReturn = rateOfReturn;
+        this.rateOfReturnPercentage = rateOfReturn * 100;
     }
 
-    public String getRateOfReturn() {
-        return rateOfReturnPercent;
+    public double getRateOfReturn() {
+        return rateOfReturn;
     }
 
-    private String changeToneDecimalPercent(double num) {
-        num *= 100; // 백분율로 변환
-        num = roundNum(num);
-
-        return num + "%";
-    }
-
-    private double roundNum(double num) {
-        return Math.round(num * Math.pow(10.0, ROUNDING_DIGIT)) / Math.pow(10.0, ROUNDING_DIGIT);
+    public double getRateOfReturnPercentage() {
+        return rateOfReturnPercentage;
     }
 }

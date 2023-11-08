@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstant;
+import lotto.constant.LottoRanking;
 import lotto.model.Lotto;
+import lotto.model.LottoPocket;
 import lotto.util.IntegerParser;
 
 public class View {
@@ -60,6 +62,19 @@ public class View {
         outputView.printLottoCountMessage(lottos.size());
         lottos.forEach(lotto -> outputView.printLottoNumber(lotto));
         outputView.printLine();
+    }
+
+    public void printLottoRanking(LottoPocket lottoPocket) {
+        outputView.printRankingMessage();
+        for (LottoRanking ranking : LottoRanking.values()) {
+            if (!ranking.equals(LottoRanking.NONE)) {
+                outputView.printRankingInfo(ranking, lottoPocket.getRankingCount(ranking));
+            }
+        }
+    }
+
+    public void printRateOfReturn(double rate) {
+        outputView.printRateOfReturn(rate);
     }
 
     public void printErrorMessage(String message) {

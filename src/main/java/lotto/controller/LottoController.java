@@ -27,6 +27,10 @@ public class LottoController {
         int bonusNumber = setBonusNumber(winningLotto);
 
         LottoChecker lottoChecker = new LottoChecker(winningLotto, bonusNumber);
+        lottoPocket.setRankings(lottoPocket.getLottos().stream().map(lottoChecker::check).toList());
+
+        view.printLottoRanking(lottoPocket);
+        view.printRateOfReturn(lottoPocket.getRateOfReturn(money));
     }
 
     private Lotto setWinningLotto() {

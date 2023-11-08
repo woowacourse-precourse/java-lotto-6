@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoRanking;
 
@@ -14,7 +15,7 @@ public class LottoChecker {
     }
 
     public LottoRanking check(Lotto lotto) {
-        List<Integer> numbers = lotto.getNumbers();
+        ArrayList<Integer> numbers = new ArrayList<>(lotto.getNumbers());
         boolean bonus = numbers.contains(bonusNumber);
 
         numbers.retainAll(winningLotto.getNumbers());

@@ -2,12 +2,12 @@ package lotto.constant;
 
 public enum LottoRanking {
 
-    FIRST(6, false, 2_000_000_000),
-    SECOND(5, true, 30_000_000),
-    THIRD(5, false, 1_500_000),
-    FOURTH(4, false, 50_000),
+    NONE(0, false, 0),
     FIFTH(3, false, 5_000),
-    NONE(0, false, 0);
+    FOURTH(4, false, 50_000),
+    THIRD(5, false, 1_500_000),
+    SECOND(5, true, 30_000_000),
+    FIRST(6, false, 2_000_000_000);
 
     private final int hit;
     private final boolean bonus;
@@ -26,5 +26,17 @@ public enum LottoRanking {
         if (hit == 4) return FOURTH;
         if (hit == 3) return FIFTH;
         return NONE;
+    }
+
+    public int getHit() {
+        return hit;
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

@@ -11,36 +11,24 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class UserLottoTest {
     UserLotto userLotto;
-    String buyPrice;
     String userLottoNumber;
     String userBonusLotto;
     @BeforeEach
     public void userLottoTest(){
 
         //given
-        buyPrice = "1000";
         userLottoNumber="1,2,3,4,5,6";
         userBonusLotto="22";
 
     }
-    @Test
-    @DisplayName("로또 구매 금액 1000원 단위 확인 테스트")
-    public void lottoPriceTest() {
-        //given
-        buyPrice = "1300";
-        //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 금액은 1000원 단위로 입력해주세요");
 
-    }
     @ParameterizedTest
     @DisplayName("로또 번호 6개 확인 테스트")
     @ValueSource(strings = {"1,2,3,4,5","1,2,3,4,5,6,7"})
     public void lottoLengthTest(String userLottoNumber){
         //given
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+        Assertions.assertThatThrownBy(() -> new UserLotto(userLottoNumber,userBonusLotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 6개만 입력 해주세요");
 
@@ -51,7 +39,7 @@ public class UserLottoTest {
     public void lottoRangeTest(String userLottoNumber){
         //given
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+        Assertions.assertThatThrownBy(() -> new UserLotto(userLottoNumber,userBonusLotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 1~45 범위의 숫자만을 입력하세요");
 
@@ -63,7 +51,7 @@ public class UserLottoTest {
         //given
 
         //when
-        userLotto = new UserLotto(buyPrice,userLottoNumber,userBonusLotto);
+        userLotto = new UserLotto(userLottoNumber,userBonusLotto);
         // then
         Assertions.assertThat(userLotto.getUserLotto()).isEqualTo(Arrays.asList(1,2,3,4,5,6));
     }
@@ -74,7 +62,7 @@ public class UserLottoTest {
         userLottoNumber = "1,2,3,4,5,5,";
 
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+        Assertions.assertThatThrownBy(() -> new UserLotto(userLottoNumber,userBonusLotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호를 중복해서 입력하지마세요");
 
@@ -86,7 +74,7 @@ public class UserLottoTest {
         userLottoNumber = "1,2,3,4,5,a,";
 
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+        Assertions.assertThatThrownBy(() -> new UserLotto(userLottoNumber,userBonusLotto))
                 .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining("[ERROR]");
 
@@ -97,7 +85,7 @@ public class UserLottoTest {
         //given
         userBonusLotto = "a";
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+        Assertions.assertThatThrownBy(() -> new UserLotto(userLottoNumber,userBonusLotto))
                 .isInstanceOf(NumberFormatException.class)
                 .hasMessageContaining("[ERROR]숫자만을 입력해주세요");
 
@@ -108,7 +96,7 @@ public class UserLottoTest {
         //given
         userBonusLotto = "1";
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+        Assertions.assertThatThrownBy(() -> new UserLotto(userLottoNumber,userBonusLotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호를 중복해서 입력하지마세요");
 
@@ -119,7 +107,7 @@ public class UserLottoTest {
         //given
         userBonusLotto = "46";
         //when,then
-        Assertions.assertThatThrownBy(() -> new UserLotto(buyPrice,userLottoNumber,userBonusLotto))
+        Assertions.assertThatThrownBy(() -> new UserLotto(userLottoNumber,userBonusLotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 1~45 범위의 숫자만을 입력하세요");
 

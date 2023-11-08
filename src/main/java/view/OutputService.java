@@ -1,4 +1,4 @@
-package service;
+package view;
 
 import lotto.Lotto;
 

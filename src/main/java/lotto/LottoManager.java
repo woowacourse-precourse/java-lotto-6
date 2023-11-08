@@ -6,8 +6,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 import static constants.Constant.*;
-import static service.InputService.*;
-import static service.OutputService.*;
+import static view.InputService.*;
+import static view.OutputService.*;
 
 public class LottoManager {
 
@@ -126,7 +126,9 @@ public class LottoManager {
     public List<Integer>convertToList(String input){
         List<Integer>list = new ArrayList<>();
         for(String s : input.split(SEP_COMMA)){
-            list.add(Integer.parseInt(s));
+            Integer value = Integer.parseInt(s);
+            validateRangeNumber(value);
+            list.add(value);
         }
         return list;
     }

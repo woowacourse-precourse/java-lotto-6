@@ -1,6 +1,11 @@
 package lotto.service;
 
-import lotto.domain.*;
+
+import lotto.domain.BonusNumber;
+import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
+import lotto.domain.WinningScores;
+import lotto.domain.Budget;
 
 public class WinningService {
     private volatile static WinningService INSTANCE;

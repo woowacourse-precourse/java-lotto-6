@@ -30,7 +30,6 @@ public class Lotto {
     public static Lotto createRandomSorted() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 1, 45, 6);
-        Collections.sort(numbers);
 
         return new Lotto(numbers);
     }

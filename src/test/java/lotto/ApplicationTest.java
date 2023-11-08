@@ -54,6 +54,23 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    //추가 테스트 코드 작성
+    @Test
+    void 예외_테스트_당첨번호_문자입력() {
+        assertSimpleTest(() -> {
+            runException("3000", "abc", "7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스번호_문자입력() {
+        assertSimpleTest(() -> {
+            runException("3000", "1,2,3,4,5,6", "avbaㄱ");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

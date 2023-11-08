@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Application {
@@ -27,7 +28,7 @@ public class Application {
         final int endLottoNumber = 45;
         final int pickLottoCount = 6;
 
-        int money;
+        int money = 0;
         List<Lotto> purchasedLottos = new ArrayList<>();
         List<Integer> inputLottoNumber = new ArrayList<>();
         Lotto winLotto = null;
@@ -37,7 +38,12 @@ public class Application {
         float returnRate = 0.0f;
 
         System.out.println("구입금액을 입력해 주세요.");
-        money = Integer.parseInt(Console.readLine());
+        try {
+            money = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 구입금액은 정수여야 합니다.");
+            return;
+        }
         if(money % unit != 0) {
             System.out.println("[ERROR] 구입금액은 " + unit + "원으로 나누어 떨어져야 합니다.");
             throw new IllegalArgumentException();
@@ -45,11 +51,10 @@ public class Application {
 
         System.out.println("\n" + (money / unit) + "개를 구매했습니다.");
         for(int i=0; i<money/unit; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startLottoNumber, endLottoNumber, pickLottoCount);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(startLottoNumber, endLottoNumber, pickLottoCount));
+            numbers.sort(Comparator.naturalOrder());
+            System.out.println(numbers);
             purchasedLottos.add(new Lotto(numbers));
-
-            Collections.sort(purchasedLottos.get(purchasedLottos.size()-1).getNumbers());
-            System.out.println(purchasedLottos.get(purchasedLottos.size()-1).getNumbers());
         }
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -57,7 +62,6 @@ public class Application {
         for(int i=0; i<inputs.length; i++) {
             int input = Integer.parseInt(inputs[i]);
             validateRange(input, startLottoNumber, endLottoNumber);
-            validateDuplicate(input, inputLottoNumber);
             inputLottoNumber.add(input);
         }
         winLotto = new Lotto(inputLottoNumber);

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.LottoResultIndex.SECOND_RANK_INDEX;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -37,6 +39,10 @@ public class GameResult {
 
     public int[] calculateLottoRankResult() {
         for (LottoRank eachRank : lottoResult) {
+            if(eachRank.getMatchNumbers() == LottoRank.SECOND_RANK.getMatchNumbers()) {
+                lottoRankResult[SECOND_RANK_INDEX.getIndex()]++;
+                continue;
+            }
             lottoRankResult[eachRank.getMatchNumbers()]++;
         }
 

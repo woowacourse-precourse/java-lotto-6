@@ -29,4 +29,8 @@ public class CalculateMatch {
 
     }
 
+    public static void calculateMatchBonus(Lotto lotto, int winningBonusNumber) {
+        matchBonus = lotto.getNumbers().contains(winningBonusNumber);
+    }
+
 }

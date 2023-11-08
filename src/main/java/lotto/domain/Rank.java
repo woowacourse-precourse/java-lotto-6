@@ -40,15 +40,12 @@ public enum Rank {
         return FIRST;
     }
 
-    public static Map<Rank, Integer> createNewSheet() {
-        return new HashMap<>(Map.of(
-                FIRST, 0,
-                SECOND, 0,
-                THIRD, 0,
-                FOURTH, 0,
-                FIFTH, 0,
-                NO_RANK, 0
-        ));
+    public static Map<Rank, Integer> createRankRepository() {
+        Map<Rank, Integer> rankRepository = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            rankRepository.put(rank, 0);
+        }
+        return rankRepository;
     }
 
     public int getPrize() {

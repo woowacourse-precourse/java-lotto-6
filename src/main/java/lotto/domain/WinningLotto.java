@@ -1,12 +1,10 @@
 package lotto.domain;
 
-import java.util.List;
-import java.util.Map;
 import lotto.message.ExceptionMessage;
 
-public record WinningLotto(Lotto lotto, BonusNumber bonus) {
+public record WinningLotto(Lotto answerLotto, BonusNumber bonus) {
     public WinningLotto {
-        validateDuplicate(lotto, bonus.number());
+        validateDuplicate(answerLotto, bonus.number());
     }
 
     private void validateDuplicate(Lotto lotto, int bonus) {
@@ -15,20 +13,17 @@ public record WinningLotto(Lotto lotto, BonusNumber bonus) {
         }
     }
 
-    public ResultSheet calculateResult(List<Lotto> lottos) {
-        Map<Rank, Integer> sheet = Rank.createNewSheet();
-        lottos.stream()
+    public ResultSheet calculateResult(Lottos lottos) {
+        ResultSheet sheet = new ResultSheet(Rank.createRankRepository());
+        lottos.lottoItems()
+                .stream()
                 .map(this::calculateLottoRank)
-                .forEach(rank -> addCountByRank(sheet, rank));
-        return new ResultSheet(sheet);
-    }
-
-    private void addCountByRank(Map<Rank, Integer> resultSheet, Rank rank) {
-        resultSheet.put(rank, resultSheet.get(rank) + 1);
+                .forEach(sheet::addCountByRank);
+        return sheet;
     }
 
     public Rank calculateLottoRank(Lotto userLotto) {
-        int matchCount = lotto.getMatchCount(userLotto);
+        int matchCount = answerLotto.getMatchCount(userLotto);
         boolean matchBonus = userLotto.hasNumber(bonus.number());
         if (matchBonus) {
             matchCount += 1;

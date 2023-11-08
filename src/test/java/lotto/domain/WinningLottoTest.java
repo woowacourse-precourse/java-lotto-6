@@ -52,4 +52,9 @@ public class WinningLottoTest {
                 Arguments.of(new Lotto(List.of(35, 16, 41, 25, 36, 13)), new BonusNumber(35))
         );
     }
+
+
+    void calculateResultTest() {
+
+    }
 }

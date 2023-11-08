@@ -14,10 +14,6 @@ public record Lottos(List<Lotto> lottoItems) {
         return new Lottos(lottoItems);
     }
 
-    public List<Lotto> getLottoItems() {
-        return lottoItems;
-    }
-
     public int size() {
         return lottoItems.size();
     }

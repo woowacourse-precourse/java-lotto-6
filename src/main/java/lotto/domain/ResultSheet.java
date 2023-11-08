@@ -5,6 +5,10 @@ import java.util.Map;
 public record ResultSheet(Map<Rank, Integer> sheet) {
     private static final int PERCENTAGE = 100;
 
+    public void addCountByRank(Rank rank) {
+        sheet.put(rank, sheet.get(rank) + 1);
+    }
+
     public int findCountByRank(Rank rank) {
         return sheet.get(rank);
     }

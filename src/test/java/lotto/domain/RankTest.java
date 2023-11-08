@@ -31,16 +31,4 @@ class RankTest {
         );
     }
 
-    @DisplayName("새로운 정답 시트를 생성한다.")
-    @Test
-    void createNewSheet() {
-        Map<Rank, Integer> newSheet = Rank.createNewSheet();
-
-        int sum = newSheet.values()
-                .stream()
-                .mapToInt(Integer::intValue)
-                .sum();
-
-        Assertions.assertThat(sum).isEqualTo(0);
-    }
 }

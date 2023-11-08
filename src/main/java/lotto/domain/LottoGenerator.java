@@ -9,12 +9,7 @@ import lotto.domain.constants.LottoConstraint;
 
 public class LottoGenerator {
     private static List<Integer> generateLottoNumbers() {
-        return sortLottoNumbers(Randoms.pickUniqueNumbersInRange(LottoConstraint.MIN_NUMBER.getValue(), LottoConstraint.MAX_NUMBER.getValue(), LottoConstraint.LOTTO_SIZE.getValue()));
-    }
-
-    private static List<Integer> sortLottoNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(LottoConstraint.MIN_NUMBER.getValue(), LottoConstraint.MAX_NUMBER.getValue(), LottoConstraint.LOTTO_SIZE.getValue());
     }
 
     public static List<Lotto> generateLottos(int lottoTicketCount) {

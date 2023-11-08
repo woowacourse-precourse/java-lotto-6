@@ -7,7 +7,10 @@ public class Application {
         // TODO: 프로그램 구현
         LottoController lottoController = new LottoController();
         LottoLover lottoLover = new LottoLover();
+
         lottoController.giveMoneyTo(lottoLover);
         lottoController.brag(lottoLover);
+
+        DrawResult drawResult = lottoController.getDrawResult();
     }
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.DrawResult;
 import lotto.Lotto;
 import lotto.LottoLover;
 import lotto.view.LottoView;
@@ -27,8 +28,9 @@ public class LottoController {
         LottoView.printPurchaseList(lookAtThis);
     }
 
-    public void drawResult() {
+    public DrawResult getDrawResult() {
         List<Integer> winningNumbers = LottoView.requestWinningNumbers();
         int bonusNumber = LottoView.requestBonusNumber();
+        return new DrawResult(winningNumbers, bonusNumber);
     }
 }

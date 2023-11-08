@@ -6,8 +6,8 @@ import lotto.Messages.MainMessage;
 import lotto.Messages.WinningStatistics;
 
 public class Print {
-    public static void printMessage(String printStr){
-        System.out.println(printStr);
+    public static void printMessage(String printMessage){
+        System.out.println(printMessage);
     }
     public static void printPurchase(Integer purchaseCount){
         Print.printMessage("");

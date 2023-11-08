@@ -54,15 +54,7 @@ public class LottoSimulation {
             try {
                 return new WinningNumber(stringToNumberList(inputView.readWinningNumber()));
             } catch (IllegalArgumentException e) {
-                if (e.getMessage().equals(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage())) {
-                    outputView.printMessage(String.format(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
-                }
-                if (e.getMessage().equals(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage())) {
-                    outputView.printMessage(String.format(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
-                }
-                if (e.getMessage().equals(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage())) {
-                    outputView.printMessage(String.format(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
-                }
+                checkErrorMessage(e);
             }
         }
     }
@@ -90,5 +82,17 @@ public class LottoSimulation {
         return Arrays.stream(input.split(LOTTO_NUMBER_SEPARATER.getString()))
                 .map(Integer::parseInt)
                 .toList();
+    }
+
+    private void checkErrorMessage(IllegalArgumentException e) {
+        if (e.getMessage().equals(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage())) {
+            outputView.printMessage(String.format(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
+        }
+        if (e.getMessage().equals(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage())) {
+            outputView.printMessage(String.format(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
+        }
+        if (e.getMessage().equals(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage())) {
+            outputView.printMessage(String.format(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
+        }
     }
 }

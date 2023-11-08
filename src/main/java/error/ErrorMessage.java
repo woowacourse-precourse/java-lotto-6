@@ -3,14 +3,15 @@ package error;
 
 import constant.GameValues;
 import lotto.ConsoleIO;
+import util.FormatUtil;
 
 public enum ErrorMessage {
 
     //input error
     INVALID_MONEY_UNIT(
             ErrorType.USER_INPUT
-            , "금액은 %s원단위로 입력 해야합니다."
-            , GameValues.MONEY_UNIT.getValue()
+            , "금액은 %s단위로 입력 해야합니다."
+            , FormatUtil.forWon(GameValues.MONEY_UNIT.getValue())
     ),
     INVALID_NUM_TYPE(
             ErrorType.USER_INPUT
@@ -18,9 +19,9 @@ public enum ErrorMessage {
     ),
     INVALID_MONEY_RANGE(
             ErrorType.USER_INPUT
-            , "입력할 수 있는 금액은 %s원이상 %s원이하입니다."
-            , GameValues.MIN_MONEY.getValue()
-            , GameValues.MAX_MONEY.getValue()
+            , "입력할 수 있는 금액은 %s이상 %s이하입니다."
+            , FormatUtil.forWon(GameValues.MIN_MONEY.getValue())
+            , FormatUtil.forWon(GameValues.MAX_MONEY.getValue())
     ),
     INVALID_LOTTO_NUM_RANGE(
             ErrorType.USER_INPUT
@@ -54,7 +55,7 @@ public enum ErrorMessage {
     }
 
     public void errorHandle() {
-        ConsoleIO.printMessage("[ERROR] " + message);
+        System.out.println("[ERROR]" + message);
         throw getThrowableType();
     }
 

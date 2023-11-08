@@ -37,10 +37,6 @@ public enum LottoRank {
         return earnings;
     }
 
-    public boolean isMatchesBonusNumber() {
-        return matchesBonusNumber;
-    }
-
     public int getMatchedCount() {
         return matchedCount;
     }

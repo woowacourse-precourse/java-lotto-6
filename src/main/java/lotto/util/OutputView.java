@@ -19,20 +19,17 @@ public class OutputView {
     }
 
     public void printLottoResult(EnumMap<LottoRank, Integer> lottoResultMap) {
-
         System.out.println(OUTPUT_STATISTICS.getMessage());
 
         for (LottoRank lottoRank : lottoResultMap.keySet()) {
-            if (lottoRank == LottoRank.NONE) {
-                continue;
-            }
             int matches = lottoRank.getMatchedCount();
             int earnings = lottoRank.getEarnings();
             int matchesCount = lottoResultMap.get(lottoRank);
-            if (matches == 5 && lottoRank.isMatchesBonusNumber()) {
-                System.out.println(OUTPUT_MATCH_COUNT_WITH_BONUS.format(matches, earnings, matchesCount));
-            } else {
+            if (lottoRank != LottoRank.NONE && lottoRank != LottoRank.SECOND) {
                 System.out.println(OUTPUT_MATCH_COUNT.format(matches, earnings, matchesCount));
+            }
+            if (lottoRank == LottoRank.SECOND) {
+                System.out.println(OUTPUT_MATCH_COUNT_WITH_BONUS.format(matches, earnings, matchesCount));
             }
         }
     }

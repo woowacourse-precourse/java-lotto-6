@@ -52,7 +52,6 @@ public class LottoMachine {
             }
         }
         return matchCount;
-
     }
 
     private boolean isBonusNumberMatched(Lotto lotto) {

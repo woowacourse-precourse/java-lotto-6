@@ -88,6 +88,7 @@ public class InputInitializer {
             }
 
         } while (hasException);
+
         return Integer.parseInt(bonusNumberInput);
     }
 

@@ -35,7 +35,7 @@ public class InputView {
     public static int getBonusNumberInput(final List<Integer> winningNumberInput) {
         print(WINNING_BONUS_NUMBER_INPUT);
         String bonus = Console.readLine();
-        InputValidator.validBonusType(bonus);
+        InputValidator.validMoneyType(bonus);
 
         int numberBonus = Integer.parseInt(bonus);
 

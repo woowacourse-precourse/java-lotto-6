@@ -19,16 +19,16 @@ public class LottoAwards {
 
         return getRank(matchCount, useBonus);
     }
+    private static int findMatchNumber(Lotto lotto, List<Integer> numbers) {
+        return (int) numbers.stream()
+                .filter(lotto::numberCheck)
+                .count();
+    }
     private static Rank getRank(int matchCount, boolean useBonus) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.getMatchCount() == matchCount)
                 .filter(rank -> rank.isBonusCheck() == useBonus)
                 .findAny()
                 .orElse(Rank.NO);
-    }
-    private static int findMatchNumber(Lotto lotto, List<Integer> numbers) {
-        return (int) numbers.stream()
-                .filter(lotto::numberCheck)
-                .count();
     }
 }

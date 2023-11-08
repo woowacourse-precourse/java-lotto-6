@@ -12,7 +12,7 @@ public class Application {
 
             lottoController.play();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR]" + e.getMessage());
+            System.out.println("[ERROR] " + e.getMessage());
         }
     }
 }

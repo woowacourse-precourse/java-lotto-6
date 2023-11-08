@@ -17,7 +17,7 @@ public class WinningNumber {
                 .mapToInt(n -> n).sorted().toArray();
 
         numbers = Arrays.copyOfRange(numbersAndBonus, 0, LOTTO_DRAW_NUMBER_COUNT);
-        bonus = numbersAndBonus[LOTTO_DRAW_NUMBER_COUNT+LOTTO_DRAW_BONUS_NUMBER_COUNT - 1];
+        bonus = numbersAndBonus[LOTTO_DRAW_TOTAL_COUNT - 1];
     }
 
     public boolean[] getNumbersExist() {

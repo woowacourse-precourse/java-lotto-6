@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.domain.Ranking.FIVE_MATCHES;
+import static lotto.domain.Ranking.FOUR_MATCHES;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -46,6 +48,17 @@ public class GameManagerTest extends NsTest {
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                 "6개 일치 (2,000,000,000원) - 0개"
         );
+    }
+
+    @Test
+    @DisplayName("수익률을 계산하는 테스트")
+    void calculateProfitPercentage_test(){
+        WinningStatistics winningStatistics = new WinningStatistics();
+        winningStatistics.incrementWinningStatus(FIVE_MATCHES);
+        winningStatistics.incrementWinningStatus(FOUR_MATCHES);
+        int purchaseAmount = 1000;
+
+        assertThat(gameManager.calculateProfitPercentage(winningStatistics, purchaseAmount)).isEqualTo(String.valueOf(155000.0));
     }
 
     @Override

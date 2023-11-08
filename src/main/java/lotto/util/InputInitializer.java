@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static lotto.config.LottoConfig.lottoPrice;
 import static lotto.message.InputMessage.*;
 
 public class InputInitializer {
@@ -30,7 +31,7 @@ public class InputInitializer {
             }
 
         }
-        return Integer.parseInt(input) / 1000;
+        return Integer.parseInt(input) / lottoPrice;
     }
 
     public Lotto inputLottoNumber() {

@@ -2,22 +2,24 @@ package lotto.domain;
 
 import java.util.EnumMap;
 
+import static lotto.config.LottoConfig.lottoPrice;
+
 public class EarningCalculator {
     public double getEarningRate(EnumMap<LottoRank, Integer> lottoMap, int purchaseAmount) {
-        int earnings = calculateTotalEarnings(lottoMap);
+        double earnings = calculateTotalEarnings(lottoMap);
         return calculateEarningRate(earnings, purchaseAmount);
     }
 
 
-    private int calculateTotalEarnings(EnumMap<LottoRank, Integer> lottoMap) {
+    public double calculateTotalEarnings(EnumMap<LottoRank, Integer> lottoMap) {
         return lottoMap.entrySet().stream()
                 .map(rank -> rank.getKey().getEarnings() * rank.getValue())
-                .mapToInt(Integer::intValue)
+                .mapToDouble(Integer::intValue)
                 .sum();
     }
 
-    private double calculateEarningRate(int earnings, int purchaseAmount) {
-        double purchase = purchaseAmount * 1000;
+    private double calculateEarningRate(double earnings, int purchaseAmount) {
+        double purchase = purchaseAmount * lottoPrice;
 
         try {
             return earnings / purchase * 100;

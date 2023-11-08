@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import lotto.constant.Message;
+import static lotto.constant.Message.WINNING_STATS;
+
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
 import lotto.dto.ReturnRateDto;
@@ -39,7 +40,7 @@ public class LottoController {
                 lottosDto
         );
 
-        view.printMessage(Message.WINNING_STATS);
+        view.printMessage(WINNING_STATS);
         view.printWinningResult(winningResultDto);
         ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto, winningResultDto);
         view.printReturnRateMessage(returnRateDto);

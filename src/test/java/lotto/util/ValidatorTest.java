@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 class ValidatorTest {
@@ -77,6 +78,15 @@ class ValidatorTest {
                     .isThrownBy(() -> Validator.validateNumberInRange(invalidNumber))
                     .withMessageContaining(ERROR_MESSAGE);
         }
+
+        @Test
+        @DisplayName("최소 범위보다 작은 숫자")
+        void validateNumberInRange_TooLow() {
+            int tooLowNumber = LottoConfig.START_OF_LOTTO_NUMBER.getValue() - 1;
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> Validator.validateNumberInRange(tooLowNumber))
+                    .withMessageContaining(ERROR_MESSAGE);
+        }
     }
 
     @Nested
@@ -141,6 +151,16 @@ class ValidatorTest {
         @DisplayName("당첨 번호의 크기가 잘못됨")
         void validateWinningNumbers_InvalidSize() {
             List<Integer> numbers = Arrays.asList(1, 10, 20, 30, 40); // 6개가 아님
+            WinningNumbersDto dto = WinningNumbersDto.from(numbers);
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> Validator.validateWinningNumbers(dto))
+                    .withMessageContaining(ERROR_MESSAGE);
+        }
+
+        @Test
+        @DisplayName("당첨 번호 리스트가 비어 있음")
+        void validateWinningNumbers_EmptyList() {
+            List<Integer> numbers = Collections.emptyList(); // 비어 있는 리스트
             WinningNumbersDto dto = WinningNumbersDto.from(numbers);
             assertThatExceptionOfType(IllegalArgumentException.class)
                     .isThrownBy(() -> Validator.validateWinningNumbers(dto))

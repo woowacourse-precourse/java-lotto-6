@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.view.exception.LottoInputException;
-import lotto.view.message.LottoInputExceptionMessage;
+import lotto.view.exception.BonusNumberInputException;
+import lotto.view.message.exception.BonusNumberInputExceptionMessage;
 
 public class BonusNumber extends LottoNumber {
     private BonusNumber(final int number) {
@@ -18,8 +18,8 @@ public class BonusNumber extends LottoNumber {
     private static void isNotDuplicatedWithWinningNumbers(final LottoNumber bonusNumber,
                                                           final List<LottoNumber> lottoNumbers) {
         if (lottoNumbers.contains(bonusNumber)) {
-            throw LottoInputException.of(
-                    LottoInputExceptionMessage.BONUS_NUMBER_IS_DUPLICATED_WITH_WINNING_LOTTO_NUMBERS);
+            throw BonusNumberInputException.of(
+                    BonusNumberInputExceptionMessage.BONUS_NUMBER_IS_DUPLICATED_WITH_WINNING_LOTTO_NUMBERS);
         }
     }
 }

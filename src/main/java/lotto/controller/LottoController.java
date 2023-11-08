@@ -15,7 +15,6 @@ import lotto.dto.UserLottoGameResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.view.exception.LottoInputException;
 
 public class LottoController {
     private final InputView inputView;
@@ -48,7 +47,7 @@ public class LottoController {
         try {
             long userMoney = askToInsertUserMoney();
             return lottoService.initUserMoney(userMoney);
-        } catch (LottoInputException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return initUserMoney();
         }
@@ -75,7 +74,7 @@ public class LottoController {
         try {
             List<Integer> winningLottoNumbers = askToInsertWinningLottoNumbers();
             return lottoService.initWinningLottoNumbers(winningLottoNumbers);
-        } catch (LottoInputException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return initWinningLottoNumbers();
         }
@@ -90,7 +89,7 @@ public class LottoController {
         try {
             int bonusNumber = askToInsertBonusNumber();
             return lottoService.initBonusNumber(winningLottoNumbers, bonusNumber);
-        } catch (LottoInputException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return initBonusNumber(winningLottoNumbers);
         }

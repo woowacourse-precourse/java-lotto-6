@@ -2,8 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.constant.LottoConstant;
-import lotto.view.exception.LottoInputException;
-import lotto.view.message.LottoInputExceptionMessage;
+import lotto.domain.exception.LottoInputException;
+import lotto.domain.message.LottoInputExceptionMessage;
 
 public class Lotto {
     private final List<LottoNumber> numbers;

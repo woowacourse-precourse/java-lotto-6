@@ -2,8 +2,8 @@ package lotto.view.validator;
 
 import lotto.constant.LottoConstant;
 import lotto.view.constant.InputConstant;
-import lotto.view.exception.LottoInputException;
-import lotto.view.message.LottoInputExceptionMessage;
+import lotto.view.exception.UserMoneyInputException;
+import lotto.view.message.exception.UserMoneyInputExceptionMessage;
 
 public class UserMoneyInputValidator {
     public void validate(final String userMoney) {
@@ -14,7 +14,7 @@ public class UserMoneyInputValidator {
 
     private void isNotEmpty(final String userMoney) {
         if (userMoney.isEmpty()) {
-            throw LottoInputException.of(LottoInputExceptionMessage.INPUT_IS_EMPTY);
+            throw UserMoneyInputException.of(UserMoneyInputExceptionMessage.INPUT_IS_EMPTY);
         }
     }
 
@@ -22,13 +22,14 @@ public class UserMoneyInputValidator {
         try {
             Long.parseLong(userMoney);
         } catch (NumberFormatException e) {
-            throw LottoInputException.of(LottoInputExceptionMessage.USER_MONEY_IS_NOT_NUMERIC_TYPE);
+            throw UserMoneyInputException.of(UserMoneyInputExceptionMessage.USER_MONEY_IS_NOT_NUMERIC_TYPE);
         }
     }
 
     private void isDivisibleWithLottoPrice(final String userMoney) {
         if (!divisibleWithLottoPrice(userMoney)) {
-            throw LottoInputException.of(LottoInputExceptionMessage.USER_MONEY_IS_NOT_DIVISIBLE_WITH_LOTTO_PRICE);
+            throw UserMoneyInputException.of(
+                    UserMoneyInputExceptionMessage.USER_MONEY_IS_NOT_DIVISIBLE_WITH_LOTTO_PRICE);
         }
     }
 

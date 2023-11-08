@@ -3,8 +3,8 @@ package lotto.view.validator;
 import java.util.Arrays;
 import lotto.constant.LottoConstant;
 import lotto.view.constant.InputConstant;
-import lotto.view.exception.LottoInputException;
-import lotto.view.message.LottoInputExceptionMessage;
+import lotto.view.exception.WinningLottoNumbersInputException;
+import lotto.view.message.exception.WinningLottoNumbersInputExceptionMessage;
 
 public class WinningLottoNumbersInputValidator {
     public void validate(final String winningLottoNumbers) {
@@ -18,19 +18,21 @@ public class WinningLottoNumbersInputValidator {
 
     private void isNotEmpty(final String winningLottoNumbers) {
         if (winningLottoNumbers.isEmpty()) {
-            throw LottoInputException.of(LottoInputExceptionMessage.INPUT_IS_EMPTY);
+            throw WinningLottoNumbersInputException.of(WinningLottoNumbersInputExceptionMessage.INPUT_IS_EMPTY);
         }
     }
 
     private void containsDelimiter(final String winningLottoNumbers) {
         if (!winningLottoNumbers.contains(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER)) {
-            throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBERS_DOES_NOT_CONTAIN_DELIMITER);
+            throw WinningLottoNumbersInputException.of(
+                    WinningLottoNumbersInputExceptionMessage.WINNING_LOTTO_NUMBERS_DOES_NOT_CONTAIN_DELIMITER);
         }
     }
 
     private void containsSixNumbers(final String winningLottoNumbers) {
         if (!dividedIntoSixNumbers(winningLottoNumbers)) {
-            throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBERS_DOES_NOT_CONTAIN_SIX_NUMBERS);
+            throw WinningLottoNumbersInputException.of(
+                    WinningLottoNumbersInputExceptionMessage.WINNING_LOTTO_NUMBERS_DOES_NOT_CONTAIN_SIX_NUMBERS);
         }
     }
 
@@ -50,14 +52,16 @@ public class WinningLottoNumbersInputValidator {
         try {
             Long.parseLong(lottoNumber);
         } catch (NumberFormatException e) {
-            throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBER_IS_NOT_NUMERIC_TYPE);
+            throw WinningLottoNumbersInputException.of(
+                    WinningLottoNumbersInputExceptionMessage.WINNING_LOTTO_NUMBER_IS_NOT_NUMERIC_TYPE);
         }
     }
 
     private void isEachNumberNotEmpty(final String winningLottoNumbers) {
         String[] lottoNumbers = splitNumbersWithDelimiter(winningLottoNumbers);
         if (isMoreThanOneNumberEmpty(lottoNumbers)) {
-            throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBERS_CONTAINS_EMPTY_NUMBER);
+            throw WinningLottoNumbersInputException.of(
+                    WinningLottoNumbersInputExceptionMessage.WINNING_LOTTO_NUMBERS_CONTAINS_EMPTY_NUMBER);
         }
     }
 
@@ -73,7 +77,8 @@ public class WinningLottoNumbersInputValidator {
 
     private void throwExceptionIfExceedInputRange(final String lottoNumber) {
         if (exceedInputRange(lottoNumber)) {
-            throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBERS_INPUT_EXCEED_INPUT_RANGE);
+            throw WinningLottoNumbersInputException.of(
+                    WinningLottoNumbersInputExceptionMessage.WINNING_LOTTO_NUMBERS_INPUT_EXCEED_INPUT_RANGE);
         }
     }
 

@@ -1,7 +1,7 @@
 package lotto.view.validator;
 
-import lotto.view.exception.LottoInputException;
-import lotto.view.message.LottoInputExceptionMessage;
+import lotto.view.exception.BonusNumberInputException;
+import lotto.view.message.exception.BonusNumberInputExceptionMessage;
 
 public class BonusNumberInputValidator {
     public void validate(final String bonusNumber) {
@@ -12,7 +12,7 @@ public class BonusNumberInputValidator {
 
     private void isNotEmpty(final String bonusNumber) {
         if (bonusNumber.isEmpty()) {
-            throw LottoInputException.of(LottoInputExceptionMessage.INPUT_IS_EMPTY);
+            throw BonusNumberInputException.of(BonusNumberInputExceptionMessage.INPUT_IS_EMPTY);
         }
     }
 
@@ -20,13 +20,13 @@ public class BonusNumberInputValidator {
         try {
             Long.parseLong(bonusNumber);
         } catch (NumberFormatException e) {
-            throw LottoInputException.of(LottoInputExceptionMessage.BONUS_NUMBER_IS_NOT_NUMERIC_TYPE);
+            throw BonusNumberInputException.of(BonusNumberInputExceptionMessage.BONUS_NUMBER_IS_NOT_NUMERIC_TYPE);
         }
     }
 
     private void isNotExceedInputRange(final String bonusNumber) {
         if (exceedInputRange(bonusNumber)) {
-            throw LottoInputException.of(LottoInputExceptionMessage.BONUS_NUMBER_INPUT_EXCEED_INPUT_RANGE);
+            throw BonusNumberInputException.of(BonusNumberInputExceptionMessage.BONUS_NUMBER_INPUT_EXCEED_INPUT_RANGE);
         }
     }
 

@@ -1,6 +1,6 @@
-package lotto.view.exception;
+package lotto.domain.exception;
 
-import lotto.view.message.LottoInputExceptionMessage;
+import lotto.domain.message.LottoInputExceptionMessage;
 
 public class LottoInputException extends IllegalArgumentException {
     private LottoInputException(final LottoInputExceptionMessage lottoInputExceptionMessage) {

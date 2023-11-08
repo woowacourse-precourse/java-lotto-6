@@ -26,7 +26,7 @@ public class LottoNumbersValidator {
 
     private static boolean hasOutOfRangeNumber(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < RANGE_START || number < RANGE_END);
+                .anyMatch(number -> number < RANGE_START || number > RANGE_END);
     }
 
     private static void validateDuplication(List<Integer> numbers) {

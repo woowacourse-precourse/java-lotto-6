@@ -9,14 +9,14 @@ public class Utils {
         return Long.parseLong(stringMoney);
     }
 
-    public static List<Integer> convertStringToList(String winningNumber) throws NumberFormatException {
-        return Arrays.stream(winningNumber.split(","))
+    public static List<Integer> convertStringToList(String winningLotto) throws NumberFormatException {
+        return Arrays.stream(winningLotto.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    public static int convertStringToInt(String bonusNumber) throws NumberFormatException{
-        return Integer.parseInt(bonusNumber);
+    public static int convertStringToInt(String bonusLotto) throws NumberFormatException{
+        return Integer.parseInt(bonusLotto);
     }
 }

@@ -26,10 +26,11 @@ public class LottoController {
 
     private void compareLottos() {
         checker = getWinningLottos();
+        checker.checkLottoWithWinningLotto();
     }
 
     private LottoChecker getWinningLottos() {
-        List<Integer> winningNumber = InputView.getWinningNumber();
-        return new LottoChecker(lottos, winningNumber, InputView.getBonusNumber(winningNumber));
+        List<Integer> winningLotto = InputView.getWinningLotto();
+        return new LottoChecker(lottos, winningLotto, InputView.getBonusLotto(winningLotto));
     }
 }

@@ -30,48 +30,48 @@ public class InputView {
         return false;
     }
 
-    public static List<Integer> getWinningNumber() {
-        String winningNumber;
+    public static List<Integer> getWinningLotto() {
+        String winningLotto;
         do {
             System.out.println();
-            winningNumber = printWinningNumberInputMessage();
-        } while (validateWinningNumberInput(winningNumber));
-        return Utils.convertStringToList(winningNumber);
+            winningLotto = printWinningLottoInputMessage();
+        } while (validateWinningLottoInput(winningLotto));
+        return Utils.convertStringToList(winningLotto);
     }
 
-    private static String printWinningNumberInputMessage() {
+    private static String printWinningLottoInputMessage() {
         System.out.println("당첨 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
-    private static boolean validateWinningNumberInput(String winningNumber) {
-        if (WinningLottoValidator.isInvalid(winningNumber)
-                || WinningLottoValidator.hasSpecialCharacter(winningNumber)
-                || WinningLottoValidator.isInvalidSize(winningNumber)
-                || WinningLottoValidator.isDuplicated(winningNumber)
-                || WinningLottoValidator.isInvalidNumber(winningNumber)) {
+    private static boolean validateWinningLottoInput(String winningLotto) {
+        if (WinningLottoValidator.isInvalid(winningLotto)
+                || WinningLottoValidator.hasSpecialCharacter(winningLotto)
+                || WinningLottoValidator.isInvalidSize(winningLotto)
+                || WinningLottoValidator.isDuplicated(winningLotto)
+                || WinningLottoValidator.isInvalidNumber(winningLotto)) {
             return true;
         }
         return false;
     }
 
-    public static int getBonusNumber(List<Integer> winningNumber) {
-        String bonusNumber;
+    public static int getBonusLotto(List<Integer> winningLotto) {
+        String bonusLotto;
         do {
-            bonusNumber = printBonusNumberInputMessage();
-        } while (validateBonusNumberInput(bonusNumber, winningNumber));
-        return Utils.convertStringToInt(bonusNumber);
+            bonusLotto = printBonusLottoInputMessage();
+        } while (validateBonusLottoInput(bonusLotto, winningLotto));
+        return Utils.convertStringToInt(bonusLotto);
     }
 
-    private static String printBonusNumberInputMessage() {
+    private static String printBonusLottoInputMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }
 
-    private static boolean validateBonusNumberInput(String bonusNumber, List<Integer> winningNumber) {
-        if (BonusLottoValidator.isInvalid(bonusNumber)
-                || BonusLottoValidator.isInvalidNumber(bonusNumber)
-                || BonusLottoValidator.isDuplicated(bonusNumber, winningNumber)) {
+    private static boolean validateBonusLottoInput(String bonusLotto, List<Integer> winningLotto) {
+        if (BonusLottoValidator.isInvalid(bonusLotto)
+                || BonusLottoValidator.isInvalidNumber(bonusLotto)
+                || BonusLottoValidator.isDuplicated(bonusLotto, winningLotto)) {
             return true;
         }
         return false;

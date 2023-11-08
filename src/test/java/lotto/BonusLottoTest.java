@@ -11,7 +11,6 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 

@@ -23,6 +23,13 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int getMatchNumber(Lotto lotto) {
+        return (int) lotto.numbers
+                .stream()
+                .filter(this::hasNumber)
+                .count();
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(NUMBERS_SIZE_INVALID_EXCEPTION);

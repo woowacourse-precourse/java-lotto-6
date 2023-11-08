@@ -26,12 +26,12 @@
     - [x] `예외상황` : 당첨 번호와 중복되는 경우
 
 ### 로또 당첨 결과 출력
-- [ ] 당첨 통계 출력
-    - [ ] 1등 : 6개 번호 일치 / 2,000,000,000원
-    - [ ] 2등 : 5개 번호 + 보너스 번호 일치 / 30,000,000원
-    - [ ] 3등 : 5개 번호 일치 / 1,500,000원
-    - [ ] 4등 : 4개 번호 일치 / 50,000원
-    - [ ] 5등 : 3개 번호 일치 / 5,000원
+- [x] 당첨 통계 출력
+    - [x] 1등 : 6개 번호 일치 / 2,000,000,000원
+    - [x] 2등 : 5개 번호 + 보너스 번호 일치 / 30,000,000원
+    - [x] 3등 : 5개 번호 일치 / 1,500,000원
+    - [x] 4등 : 4개 번호 일치 / 50,000원
+    - [x] 5등 : 3개 번호 일치 / 5,000원
 - [ ] 수익률 출력
     - [ ] 소수점 둘째 자리에서 반올림
 
@@ -45,8 +45,8 @@
 - [x] 로또 1장 숫자 개수 변동 가능성
 - [x] 로또 번호 숫자 범위 변동 가능성
 - [x] 당첨 번호 입력 구분자 변동 가능성
-- [ ] 당첨 기준 변동 가능성
-- [ ] 당첨 금액 변동 가능성
+- [x] 당첨 기준 변동 가능성
+- [x] 당첨 금액 변동 가능성
 
 ## 🧑🏻‍🏫 클래스 구조
 
@@ -61,20 +61,28 @@
 
 ### NumberService
 - `PurchaseAmount`
-- `AllLottoNumbers`
-- `AllWinningNumbers`
+- `Lottos`
+- `WinningNumbers`
+- `RankStatistics`
 
 ### PurchaseAmount
 - int
 
-### AllLottoNumbers
+### Lottos
 - List\<Lotto>
 
 ### Lotto
 - List\<Integer>
 
-### AllWinningNumbers
+### WinningNumbers
 - `Lotto` winningLotto
 - int bonusNumber
+
+### RankStatistics
+- Map<Rank, Integer>
+
+### Rank
+- int matchNumber
+- int prize
 
 ### GameUtils

@@ -11,8 +11,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AllWinningNumbersTest {
-    AllWinningNumbers allWinningNumbers = new AllWinningNumbers();
+class WinningNumbersTest {
+    WinningNumbers winningNumbers = new WinningNumbers();
 
     @DisplayName("당첨 번호 입력값이 null이면 예외가 발생한다.")
     @ParameterizedTest
@@ -22,10 +22,10 @@ class AllWinningNumbersTest {
         final String nullString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> allWinningNumbers.initWinningLotto(nullString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> winningNumbers.initWinningLotto(nullString));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(AllWinningNumbers.WINNING_LOTTO_NOT_NUMBER_EXCEPTION);
+        assertThat(exception.getMessage()).isEqualTo(WinningNumbers.WINNING_LOTTO_NOT_NUMBER_EXCEPTION);
     }
 
     @DisplayName("당첨 번호 입력값이 비어있으면 예외가 발생한다.")
@@ -36,10 +36,10 @@ class AllWinningNumbersTest {
         final String emptyString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> allWinningNumbers.initWinningLotto(emptyString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> winningNumbers.initWinningLotto(emptyString));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(AllWinningNumbers.WINNING_LOTTO_NOT_NUMBER_EXCEPTION);
+        assertThat(exception.getMessage()).isEqualTo(WinningNumbers.WINNING_LOTTO_NOT_NUMBER_EXCEPTION);
     }
 
     @DisplayName("쪼개진 당첨 번호 입력값이 null이거나 비어있으면 예외가 발생한다.")
@@ -51,10 +51,10 @@ class AllWinningNumbersTest {
         final String nullOrEmptyString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> allWinningNumbers.initWinningLotto(nullOrEmptyString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> winningNumbers.initWinningLotto(nullOrEmptyString));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(AllWinningNumbers.WINNING_LOTTO_NOT_NUMBER_EXCEPTION);
+        assertThat(exception.getMessage()).isEqualTo(WinningNumbers.WINNING_LOTTO_NOT_NUMBER_EXCEPTION);
     }
 
     @DisplayName("쪼개진 당첨 번호 입력값이 숫자가 아니면 예외가 발생한다.")
@@ -65,10 +65,10 @@ class AllWinningNumbersTest {
         final String notNumberString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> allWinningNumbers.initWinningLotto(notNumberString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> winningNumbers.initWinningLotto(notNumberString));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(AllWinningNumbers.WINNING_LOTTO_NOT_NUMBER_EXCEPTION);
+        assertThat(exception.getMessage()).isEqualTo(WinningNumbers.WINNING_LOTTO_NOT_NUMBER_EXCEPTION);
     }
 
     @DisplayName("보너스 번호 입력값이 null이면 예외가 발생한다.")
@@ -79,10 +79,10 @@ class AllWinningNumbersTest {
         final String nullString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> allWinningNumbers.initBonusNumber(nullString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> winningNumbers.initBonusNumber(nullString));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(AllWinningNumbers.BONUS_LOTTO_NOT_NUMBER_EXCEPTION);
+        assertThat(exception.getMessage()).isEqualTo(WinningNumbers.BONUS_LOTTO_NOT_NUMBER_EXCEPTION);
     }
 
     @DisplayName("보너스 번호 입력값이 비어있으면 예외가 발생한다.")
@@ -93,10 +93,10 @@ class AllWinningNumbersTest {
         final String emptyString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> allWinningNumbers.initBonusNumber(emptyString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> winningNumbers.initBonusNumber(emptyString));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(AllWinningNumbers.BONUS_LOTTO_NOT_NUMBER_EXCEPTION);
+        assertThat(exception.getMessage()).isEqualTo(WinningNumbers.BONUS_LOTTO_NOT_NUMBER_EXCEPTION);
     }
 
     @DisplayName("보너스 번호 입력값이 숫자가 아니면 예외가 발생한다.")
@@ -107,10 +107,10 @@ class AllWinningNumbersTest {
         final String notNumberString = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> allWinningNumbers.initBonusNumber(notNumberString));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> winningNumbers.initBonusNumber(notNumberString));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(AllWinningNumbers.BONUS_LOTTO_NOT_NUMBER_EXCEPTION);
+        assertThat(exception.getMessage()).isEqualTo(WinningNumbers.BONUS_LOTTO_NOT_NUMBER_EXCEPTION);
     }
 
     @DisplayName("보너스 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.")
@@ -121,10 +121,10 @@ class AllWinningNumbersTest {
         final String outOfRangeNumber = input;
 
         //when
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> allWinningNumbers.initBonusNumber(outOfRangeNumber));
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> winningNumbers.initBonusNumber(outOfRangeNumber));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(AllWinningNumbers.BONUS_NUMBER_RANGE_INVALID_EXCEPTION);
+        assertThat(exception.getMessage()).isEqualTo(WinningNumbers.BONUS_NUMBER_RANGE_INVALID_EXCEPTION);
     }
 
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
@@ -135,10 +135,10 @@ class AllWinningNumbersTest {
         final String duplicateNumber = "1";
 
         //when
-        allWinningNumbers.initWinningLotto(winningLotto);
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> allWinningNumbers.initBonusNumber(duplicateNumber));
+        winningNumbers.initWinningLotto(winningLotto);
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> winningNumbers.initBonusNumber(duplicateNumber));
 
         //then
-        assertThat(exception.getMessage()).isEqualTo(AllWinningNumbers.BONUS_NUMBER_DUPLICATE_EXCEPTION);
+        assertThat(exception.getMessage()).isEqualTo(WinningNumbers.BONUS_NUMBER_DUPLICATE_EXCEPTION);
     }
 }

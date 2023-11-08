@@ -7,22 +7,23 @@ import lotto.view.OutputView;
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private NumberService numberService;
+    private final NumberService numberService;
 
-    public GameController(InputView inputView, OutputView outputView) {
+    public GameController(InputView inputView, OutputView outputView, NumberService numberService) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.numberService = new NumberService();
+        this.numberService = numberService;
     }
 
     public void run() {
-        purchaseLotto();
-        issueLotto();
+        purchaseLottos();
+        issueLottos();
         inputWinningLotto();
         inputBonusNumber();
+        outputWinningStatistics();
     }
 
-    public void purchaseLotto() {
+    public void purchaseLottos() {
         String input;
         do {
             outputView.requestPurchaseAmountMessage();
@@ -30,18 +31,19 @@ public class GameController {
         } while (isInvalidPurchaseAmount(input));
     }
 
-    public void issueLotto() {
+    public void issueLottos() {
         try {
-            numberService.initAllLottoNumbers();
+            numberService.initLottos();
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());
             throw e;
         }
         outputView.printPurchasedNumberMessage(numberService.getPurchaseNumber());
-        outputView.printAllLottoNumbers(numberService.getAllLottoNumbersInString());
+        outputView.printLottos(numberService.getLottosOutput());
     }
 
     public void inputWinningLotto() {
+        numberService.initWinningNumbers();
         String input;
         do {
             outputView.requestWinningLottoMessage();
@@ -55,6 +57,11 @@ public class GameController {
             outputView.requestBonusNumberMessage();
             input = inputView.scanBonusNumber();
         } while (isInvalidBonusNumber(input));
+    }
+
+    public void outputWinningStatistics() {
+        numberService.initRankStatistics();
+        outputView.printRankStatistics(numberService.getRankStatisticsOutput());
     }
 
     private boolean isInvalidPurchaseAmount(String input) {

@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public final class GameUtils {
     private GameUtils() {
     }
 
-    public static int convertStringToInt(String input) {
+    public static int convertToNumber(String input) {
         return Integer.parseInt(input);
     }
 
@@ -25,6 +26,11 @@ public final class GameUtils {
 
     public static Lotto createManualLotto(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public static String convertToMoney(int prize) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(prize) + "원";
     }
 
     public static boolean isNotNumber(String input) {

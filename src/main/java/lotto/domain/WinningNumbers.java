@@ -5,7 +5,7 @@ import org.junit.platform.commons.util.StringUtils;
 
 import java.util.List;
 
-public class AllWinningNumbers {
+public class WinningNumbers {
     private static final String WINNING_LOTTO_DELIMITER = ",";
     public static final String WINNING_LOTTO_NOT_NUMBER_EXCEPTION = "당첨 번호는 숫자여야 합니다. (번호는 " + WINNING_LOTTO_DELIMITER + "를 기준으로 구분)";
     public static final String BONUS_LOTTO_NOT_NUMBER_EXCEPTION = "보너스 번호는 숫자여야 합니다.";
@@ -19,17 +19,25 @@ public class AllWinningNumbers {
         List<String> rawNumbers = GameUtils.splitStringByDelimiter(input, WINNING_LOTTO_DELIMITER);
         rawNumbers.forEach(this::validateNumberWinningLotto);
         List<Integer> numbers = rawNumbers.stream()
-                .map(GameUtils::convertStringToInt)
+                .map(GameUtils::convertToNumber)
                 .toList();
         this.winningLotto = GameUtils.createManualLotto(numbers);
     }
 
     public void initBonusNumber(String input) {
         validateNumberBonusNumber(input);
-        int number = GameUtils.convertStringToInt(input);
+        int number = GameUtils.convertToNumber(input);
         validateRange(number);
         validateDuplicate(number);
         this.bonusNumber = number;
+    }
+
+    public int getMatchNumber(Lotto lotto) {
+        return winningLotto.getMatchNumber(lotto);
+    }
+
+    public boolean hasBonusNumber(Lotto lotto) {
+        return lotto.hasNumber(bonusNumber);
     }
 
     private void validateNotBlank(String input) {

@@ -6,6 +6,10 @@ public class OutputView {
     private static final String PRINT_LOTTO_PURCHASE_MESSAGE = "개를 구매했습니다";
     private static final String REQUEST_WINNING_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String REQUEST_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String PRINT_RANK_STATISTICS_MESSAGE = """
+            당첨 통계
+            ---
+            """;
 
     public void printExceptionMessage(String exceptionMessage) {
         System.out.println(ERROR_PREFIX + exceptionMessage);
@@ -19,8 +23,8 @@ public class OutputView {
         System.out.println(number + PRINT_LOTTO_PURCHASE_MESSAGE);
     }
 
-    public void printAllLottoNumbers(String allLottoNumbers) {
-        System.out.println(allLottoNumbers);
+    public void printLottos(String lottos) {
+        System.out.println(lottos);
     }
 
     public void requestWinningLottoMessage() {
@@ -29,5 +33,9 @@ public class OutputView {
 
     public void requestBonusNumberMessage() {
         System.out.println(REQUEST_BONUS_NUMBER_MESSAGE);
+    }
+
+    public void printRankStatistics(String rankStatistics) {
+        System.out.println(PRINT_RANK_STATISTICS_MESSAGE + rankStatistics);
     }
 }

@@ -11,7 +11,7 @@ public class PurchaseAmount {
 
     public PurchaseAmount(String input) {
         validateNumber(input);
-        int amount = GameUtils.convertStringToInt(input);
+        int amount = GameUtils.convertToNumber(input);
         validatePositive(amount);
         validateDivisible(amount);
         this.amount = amount;

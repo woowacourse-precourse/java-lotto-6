@@ -67,7 +67,7 @@
         - ⚠️ count() : 내부 method - 해당 class에 존재하는게 맞는지 , util로 분리해야할지 고민
     - income() : 수익률 출력
 
-2.✅ model package
+2. ✅ model package
 
 - [x] Lotto : 로또번호 list
 - [x] RankTable : enum clas로 맞춘 번호 개수, bonus 여부, 획득 상금 여부에 따른 변수 생성
@@ -88,7 +88,7 @@
 - [x] LottoTypeConverter
     - toList() : , 연결된 String List<Integer>로 변환
     - toWon() : 숫자를 한국돈으로 format 변경
-- [ ] LottoValidator
+- [x] LottoValidator
     - divideMoney() : 1000원 단위로 잘 나뉘는지 확인
     - checkWinningNumber() : 올바른 숫자 들어왔는지, 중복 숫자 없는지
     - checkBonusNumber() :  올바른 숫자 들어왔는지, 중복 숫자 없는지
@@ -98,7 +98,7 @@
     - SetIncome() : 수익률 계산 - 소수점 2째자리서 반올림
 -  [x] WinningLottoNumber
 
-4.✅ controller
+4. ✅ controller
 
 - [x] LottoController
     - [x] ⚠️ controller에서 iv를 최소한으로 줄이는 것이 좋지 않을까? 줄이는게 좋다.

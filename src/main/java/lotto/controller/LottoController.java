@@ -9,7 +9,6 @@ import lotto.domain.Lottos;
 import lotto.validation.InputValidation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import org.jetbrains.annotations.NotNull;
 
 public class LottoController {
 
@@ -121,7 +120,7 @@ public class LottoController {
         return purchaseAmount / LOTTO_TICKET_PRIZE;
     }
 
-    private static @NotNull Lotto generateRandomLotto() {
+    private static Lotto generateRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Lotto randomLotto = new Lotto(randomNumbers);
         List<Integer> sortedNumbers = randomLotto.sortNumbers();

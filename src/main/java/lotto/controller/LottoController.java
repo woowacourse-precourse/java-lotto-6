@@ -27,11 +27,11 @@ public class LottoController {
 
     private final LottoShop lottoShop = new LottoShop();
 
+    private final Messenger messenger = new Messenger();
+
     private Cash purchaseCash;
     private WinningLottoNumbers winningLottoNumbers;
     private List<Lotto> lotteries;
-
-    private final Messenger messenger = new Messenger();
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -46,45 +46,49 @@ public class LottoController {
 
     private void purchaseLotteries() {
         outputView.print(messenger.getInputPurchaseCashAmountMessage());
-        while(true) {
+        while (true) {
             try {
                 purchaseCash = new Cash(inputView.inputNumber());
                 int lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
                 outputView.print(messenger.getPurchasedLotteriesCountMessage(lotteriesCount));
-
-                List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(lotteriesCount);
-                lotteries = lottoNumbersDTOs.stream()
-                        .map(LottoNumbersDTO::numbers)
-                        .map(Lotto::new)
-                        .toList();
-                outputView.print(messenger.getLotteriesNumbersMessage(lottoNumbersDTOs));
-                break;
+                generateLotteries(lotteriesCount);
+                return;
             } catch (IllegalArgumentException e) {
                 outputView.print(e);
             }
         }
     }
 
+    private void generateLotteries(int count) {
+        List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(count);
+        outputView.print(messenger.getLotteriesNumbersMessage(lottoNumbersDTOs));
+        lotteries = lottoNumbersDTOs.stream()
+                .map(LottoNumbersDTO::numbers)
+                .map(Lotto::new)
+                .toList();
+    }
+
     private void inputWinningLottoNumbers() {
 
         outputView.print(messenger.getInputWinningNumbersMessage());
-        Lotto winningNumbers;
-        while(true) {
+        Lotto winningNumbers = inputNumbers();
+
+        outputView.print(messenger.getInputBonusNumberMessage());
+        while (true) {
             try {
-                winningNumbers = new Lotto(inputView.inputNumbers());
-                break;
+                LottoNumber bonusNumber = new LottoNumber(inputView.inputNumber());
+                winningLottoNumbers = new WinningLottoNumbers(winningNumbers, bonusNumber);
+                return;
             } catch (IllegalArgumentException e) {
                 outputView.print(e);
             }
         }
+    }
 
-        outputView.print(messenger.getInputBonusNumberMessage());
-        LottoNumber bonusNumber;
-        while(true) {
+    private Lotto inputNumbers() {
+        while (true) {
             try {
-                bonusNumber = new LottoNumber(inputView.inputNumber());
-                winningLottoNumbers = new WinningLottoNumbers(winningNumbers, bonusNumber);
-                break;
+                return new Lotto(inputView.inputNumbers());
             } catch (IllegalArgumentException e) {
                 outputView.print(e);
             }
@@ -94,9 +98,16 @@ public class LottoController {
     private void printResult() {
         WinStatesCounter winStatesCounter = new WinStatesCounter(winningLottoNumbers, lotteries);
         List<WinStateInformationDTO> winStateInformationDTOs = winStatesCounter.getWinStateInformationDTOs();
+        printWinningStatistics(winStateInformationDTOs);
+        printYield(winStateInformationDTOs);
+    }
+
+    private void printWinningStatistics(List<WinStateInformationDTO> winStateInformationDTOs) {
         outputView.print(messenger.getWinningStatisticStartMessage());
         outputView.print(messenger.getWinningStatisticsInformationMessage(winStateInformationDTOs));
+    }
 
+    private void printYield(List<WinStateInformationDTO> winStateInformationDTOs) {
         Prize prize = Prize.from(winStateInformationDTOs);
         double yield = prize.getYield(purchaseCash);
         outputView.print(messenger.getYieldMessage(yield));

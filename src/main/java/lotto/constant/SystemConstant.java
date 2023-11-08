@@ -7,7 +7,8 @@ public enum SystemConstant {
     OUTPUT_LOTTO_BUY_COUNT_MESSAGE("%d개를 구매했습니다.\n"),
     OUTPUT_RESULT_MESSAGE("당첨 통계\n"),
     LINE("---\n"),
-    OUTPUT_RESULT_COUNT_MESSAGE("%s - %d개\n"),
+    OUTPUT_RESULT_COUNT_MESSAGE("%d개 일치 (%,d원) - %d개\n"),
+    OUTPUT_BONUS_RESULT_COUNT_MESSAGE("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n"),
     OUTPUT_RESULT_RATE_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private final String message;

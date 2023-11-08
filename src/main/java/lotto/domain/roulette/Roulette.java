@@ -1,10 +1,9 @@
 package lotto.domain.roulette;
 
-import lotto.domain.lotto.LottoPurchase;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoPurchase;
 import lotto.domain.lotto.Lottos;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +20,12 @@ public class Roulette {
 
     public Map<RouletteResult, Integer> createResult() {
         result = new HashMap<>();
-        Arrays.stream(RouletteResult.values()).forEach(rouletteResult -> result.put(rouletteResult, 0));
+        for (RouletteResult rouletteResult : RouletteResult.values()
+        ) {
+            if (rouletteResult != RouletteResult.FAILURE) {
+                result.put(rouletteResult, 0);
+            }
+        }
         return result;
     }
 
@@ -42,8 +46,10 @@ public class Roulette {
         }
     }
 
-    public void getRouletteResultCount(RouletteResult rouletteCompensation) {
-        result.put(rouletteCompensation, result.get(rouletteCompensation) + 1);
+    public void getRouletteResultCount(RouletteResult rouletteResult) {
+        if (rouletteResult != RouletteResult.FAILURE) {
+            result.put(rouletteResult, result.get(rouletteResult) + 1);
+        }
     }
 
     public int getWinningMoney() {

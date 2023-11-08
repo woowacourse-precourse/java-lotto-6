@@ -9,16 +9,16 @@ import java.util.Set;
 
 public class LottoAnswer extends Lotto {
     private BonusNumber bonusNumber;
-
+    private final List<Integer> numbers = getNumbers();
     public LottoAnswer(String input) {
         parseInteger(input);
-        validate(getNumbers());
+        validate(numbers);
     }
 
     public LottoAnswer(String input, int bonusNumber) {
         parseInteger(input);
         validate(getNumbers());
-        isUnique(getNumbers(), bonusNumber);
+        isUniqueBonus(numbers, bonusNumber);
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
 
@@ -28,7 +28,7 @@ public class LottoAnswer extends Lotto {
         for (String part : parts) {
             try {
                 int num = Integer.parseInt(part);
-                getNumbers().add(num);
+                numbers.add(num);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_INPUT);
             }
@@ -44,11 +44,11 @@ public class LottoAnswer extends Lotto {
     }
 
     public void setBonusNumber(BonusNumber bonusNumber) {
-        isUnique(getNumbers(), bonusNumber.getNumber());
+        isUniqueBonus(numbers, bonusNumber.getNumber());
         this.bonusNumber = bonusNumber;
     }
 
-    private void isUnique(List<Integer> numbers, int bonusNumber) {
+    private void isUniqueBonus(List<Integer> numbers, int bonusNumber) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBERS);

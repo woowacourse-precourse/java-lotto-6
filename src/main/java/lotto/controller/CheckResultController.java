@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.constant.ConstantNumber;
 import lotto.model.BoughtLotto;
 import lotto.model.Lotto;
@@ -25,10 +26,14 @@ public class CheckResultController {
             int matched = lottoResultService.matchResult(lotto.getNumbers(), winningNumbers.getWinningNumbers());
             if (lottoResultService.inWinRange(matched)) {
                 result.addWinInformation(matched);
-                if (lottoResultService.isBonusNumberIncluded(lotto.getNumbers(), winningNumbers.getBonusNumber())) {
-                    result.addFiveMatchWithBonus();
-                }
+                checkIfFiveMatchWithBonus(lotto.getNumbers());
             }
+        }
+    }
+
+    private void checkIfFiveMatchWithBonus(List<Integer> lottoNumber) {
+        if (lottoResultService.isBonusNumberIncluded(lottoNumber, winningNumbers.getBonusNumber())) {
+            result.addFiveMatchWithBonus();
         }
     }
 

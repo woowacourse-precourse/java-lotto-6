@@ -2,6 +2,8 @@ package domain;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
+import exception.DuplicateNumberException;
+import exception.SizeNotEqualException;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -25,13 +27,13 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new SizeNotEqualException(LOTTO_SIZE);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != new HashSet<>(numbers).size()) {
-            throw new IllegalArgumentException();
+            throw new DuplicateNumberException();
         }
     }
 

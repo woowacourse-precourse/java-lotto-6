@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.utils.NumberConstants;
+import lotto.validation.NumberException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,7 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NumberConstants.NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호의 개수는 6개여야 합니다.");
+            throw NumberException.INVALID_NUMBER_COUNT_EXCEPTION.getException();
         }
     }
 
@@ -38,7 +39,7 @@ public class Lotto {
         boolean result = numbers.stream()
             .anyMatch(winningNumber -> Collections.frequency(numbers, winningNumber) > 1);
         if (result) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호는 존재할 수 없습니다.");
+            throw NumberException.DUPLICATE_NUMBER_EXCEPTION.getException();
         }
     }
 

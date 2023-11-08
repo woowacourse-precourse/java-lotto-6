@@ -57,7 +57,7 @@ public class LottoView implements View {
     public void printLottoNumbers(LottosDto lottosDto) {
         lottosDto.lottos()
                 .forEach(lottoDto ->
-                        println(lottoDto.getLottoNumbers())
+                        println(lottoDto.toString())
                 );
     }
 

@@ -6,7 +6,8 @@ import java.util.List;
 public record LottoDto(
         List<Integer> numbers
 ) {
-    public String getLottoNumbers() {
+    @Override
+    public String toString() {
         return Arrays.toString(numbers.toArray());
     }
 }

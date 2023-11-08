@@ -85,11 +85,11 @@ public class GameService {
             }
         }
 
-        List<Integer> winningNumbers = getWinningNumberStringToInteger(winningNumberInput);
+        List<Integer> winningNumbers = changeWinningType(winningNumberInput);
         return winningNumbers;
     }
 
-    public List<Integer> getWinningNumberStringToInteger(String[] winningNumberInput) {
+    public List<Integer> changeWinningType(String[] winningNumberInput) {
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : winningNumberInput) {
             winningNumbers.add(Integer.parseInt(number));

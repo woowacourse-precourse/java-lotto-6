@@ -12,6 +12,11 @@ public class InputJudgement {
         return LOTTO_PRICE;
     }
 
+    /**
+     * 사용자가 입력한 로또 구입 금액에 대한 유효성을 검증한다.
+     * @param inputPurchaseMoney 사용자가 입력한 로또 구매 금액
+     * @return 유효한 금액이면 true, 그렇지 않으면 false
+     */
     public boolean judgeInputPurchaseMoneyFormat(Optional<String> inputPurchaseMoney) {
         try {
             checkInputPurchaseMoneyIsNull(inputPurchaseMoney);
@@ -28,18 +33,34 @@ public class InputJudgement {
         return true;
     }
 
+    /**
+     * 사용자가 입력한 로또 구매 금액이 비어있는지 확인한다.
+     * @param inputPurchaseMoney 사용자가 입력한 로또 구매 금액
+     * @throws IllegalArgumentException 구매 금액이 비어있을 때
+     */
     private void checkInputPurchaseMoneyIsNull(Optional<String> inputPurchaseMoney) {
         if(inputPurchaseMoney.isEmpty()){
             throw new IllegalArgumentException("로또 구매 금액이 입력되지 않았습니다.");
         }
     }
 
+    /**
+     * 사용자가 입력한 로또 구매 금액의 길이가 기준치를 만족하는지 확인한다.
+     * 만약 로또 금액이 1000원이라면 입력 길이는 최소 4여야한다.
+     * @param inputPurchaseMoney 사용자가 입력한 로또 구매 금액
+     * @throws IllegalArgumentException 입력값의 길이가 로또 최소 구매 금액보다 작은 자리수를 가질 때
+     */
     private void checkLengthOfInputPurchaseMoney(Optional<String> inputPurchaseMoney) {
         if(inputPurchaseMoney.get().length() < LOTTO_MIN_LENGTH){
             throw new IllegalArgumentException("로또 구매 금액은 " + LOTTO_PRICE + "원 이상입니다.");
         }
     }
 
+    /**
+     * 사용자가 입력한 로또 구매 금액이 정수 형태인지 확인
+     * @param inputPurchaseMoney 사용자가 입력한 로또 구매 금액
+     * @throws IllegalArgumentException 구매 금액이 정수형태가 아닐 때
+     */
     private void checkInputPurchaseMoneyTypeIsInteger(String inputPurchaseMoney) {
         try {
             Arrays.stream(inputPurchaseMoney.split("")).forEach(str -> Integer.parseInt(str));
@@ -48,12 +69,22 @@ public class InputJudgement {
         }
     }
 
+    /**
+     * 사용자가 입력한 로또 구매 금액이 로또 최소 구매 금액을 만족하는지 확인
+     * @param price 사용자가 입력한 로또 구매 금액
+     * @throws IllegalArgumentException 사용자의 입력이 로또 구매 금액의 최소를 미치지 못할 때
+     */
     private void checkInputPurchaseMoneyIsEffectiveRange(Integer price) {
         if(price < LOTTO_PRICE){
             throw new IllegalArgumentException("로또 구매 금액은 " + LOTTO_PRICE + "원 단위의 정수여야합니다.");
         }
     }
 
+    /**
+     * 사용자가 입력한 로또 구매 금액이 로또 1개의 가격에 나누어 떨어지는지 확인
+     * @param price 사용자가 입력한 로또 구매 금액
+     * @throws IllegalArgumentException 사용자의 입력이 로또 1개의 금액으로 나누어 떨어지지 않을 때
+     */
     private void checkInputPurchaseMoneyCanDivideBy1000(Integer price) {
         if(price % LOTTO_PRICE != 0){
             throw new IllegalArgumentException("로또 구매 금액은 " + LOTTO_PRICE + "원 단위의 정수여야합니다.");
@@ -64,15 +95,20 @@ public class InputJudgement {
         System.out.println("[ERROR] "+ message);
     }
 
-    public Integer parseInteger(Optional<String> inputPurchaseMoney) {
+    public Integer parseIntegerInputPurchaseMoneyOrBonusNumber(Optional<String> inputPurchaseMoney) {
         return Integer.parseInt(inputPurchaseMoney.get());
     }
 
-    public List<Integer> parseIntegers(Optional<String> inputWinningNumbers) {
+    public List<Integer> parseIntegerInputWinningNumbers(Optional<String> inputWinningNumbers) {
         String[] splitWinningNumbers = inputWinningNumbers.get().split(",");
         return Arrays.stream(splitWinningNumbers).mapToInt(Integer::parseInt).boxed().toList();
     }
 
+    /**
+     * 사용자가 입력한 로또 당첨 번호가 유효한지 판단
+     * @param inputWinningNumber 사용자가 입력한 로또 당첨 번호
+     * @return 사용자가 입력한 로또 당첨 번호가 유효하면 true, 그렇지 않으면 false
+     */
     public boolean judgeInputWinningNumberFormat(Optional<String> inputWinningNumber) {
         try {
             checkInputWinningNumberIsNull(inputWinningNumber);
@@ -93,6 +129,12 @@ public class InputJudgement {
         }
     }
 
+    /**
+     * 사용자의 입력이 구분자(,)를 기준으로 6개인지를 확인
+     * @param inputWinningNumber 사용자가 입력한 로또 당첨 번호
+     * @throws IllegalArgumentException 사용자의 입력이 구분자 기준 6개가 아닐 때
+     * @return 구분자로 구분한 List
+     */
     private List<String> checkInputLengthOfWinningNumber(Optional<String> inputWinningNumber) {
         List<String> winningNumbers = Arrays.stream(inputWinningNumber.get().split(",")).toList();
         if(winningNumbers.size() != 6){
@@ -101,6 +143,12 @@ public class InputJudgement {
         return winningNumbers;
     }
 
+    /**
+     * 사용자의 입력값이 정수인지 확인
+     * @param inputWinningNumbers 사용자의 입력 값
+     * @throws IllegalArgumentException 사용자의 입력 값이 정수가 아닐 때
+     * @return 사용자의 입력값을 Integer로 변환한 List
+     */
     private List<Integer> checkInputWinningNumberTypeIsInteger(List<String> inputWinningNumbers) {
         List<Integer> winningNumbers;
         try {
@@ -112,6 +160,7 @@ public class InputJudgement {
         return winningNumbers;
     }
 
+
     private void checkInputWinningNumberEffectiveRange(List<Integer> winningNumbers) throws IllegalArgumentException{
         winningNumbers.forEach(number -> isNotInbound(number));
     }
@@ -122,6 +171,11 @@ public class InputJudgement {
         }
     }
 
+    /**
+     * 사용자가 입력한 로또 당첨 번호에 중복이 있는지 확인
+     * @param winningNumbers 사용자가 입력한 로또 당첨 번호
+     * @throws IllegalArgumentException 로또 당첨 번호에 중복이 있을 때
+     */
     private void checkInputWinningNumberEachUnique(List<Integer> winningNumbers) {
         List<Integer> distinctWinningNumbers = winningNumbers.stream().distinct().toList();
         if(winningNumbers.size() != distinctWinningNumbers.size()){
@@ -129,6 +183,12 @@ public class InputJudgement {
         }
     }
 
+    /**
+     * 사용자가 입력한 보너스 당첨 번호가 유효한지 판단
+     * @param inputBonusNumber 사용자가 입력한 보너스 번호
+     * @param winningNumbers 로또 당첨 번호
+     * @return 보너스 번호가 유효하면 true, 그렇지 않으면 false
+     */
     public boolean judgeInputBonusNumberFormat(Optional<String> inputBonusNumber, List<Integer> winningNumbers) {
         try {
             checkInputBonusNumberIsNull(inputBonusNumber);
@@ -141,6 +201,7 @@ public class InputJudgement {
         }
         return true;
     }
+
 
     private void checkInputBonusNumberIsNull(Optional<String> inputBonusNumber) {
         if(inputBonusNumber.isEmpty()){
@@ -165,6 +226,12 @@ public class InputJudgement {
         }
     }
 
+    /**
+     * 사용자가 입력한 보너스 번호가 로또 당첨 번호와 중복되는지 확인
+     * @param inputBonusNumber 사용자가 입력한 보너스 번호
+     * @param winningNumbers 로또 당첨 번호
+     * @throws IllegalArgumentException 사용자가 입력한 보너스 번호와 로또 당첨 번호가 중복될 때
+     */
     private void checkInputBonusNumberContainedWinningNumber(Integer inputBonusNumber, List<Integer> winningNumbers) {
         if(winningNumbers.contains(inputBonusNumber)){
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되지 않아야합니다.");

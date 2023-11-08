@@ -7,7 +7,7 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class Game {
-
+    
     private InputView inputView;
     private OutputView outputView;
     private LottoGenerator lottoGenerator;
@@ -20,30 +20,51 @@ public class Game {
     }
 
     public void run() {
-
         List<Lotto> purchaseLotto = LottoStorage.getLotto();
+        calculateWinningDetails(purchaseLotto);
+        printWinningDetails();
 
+        double profitRate = calculateProfitRate();
+        printProfitRate(profitRate);
+    }
+
+    private void calculateWinningDetails(List<Lotto> purchaseLotto) {
         for (Lotto lotto : purchaseLotto) {
-
             float correctCount = LottoWinner.compareWinningLotto(lotto);
 
-            if (correctCount < 3) {
+            if (cannotGetPrize(correctCount)) {
                 continue;
             }
-            if (correctCount == 5) {
+            if (mustCheckBonus(correctCount)) {
                 correctCount += LottoWinner.compareBonusLotto(lotto);
             }
-
-            WinnerPrize winnerPrize = WinnerPrize.findWinnerPrize(correctCount);
-
-            GameResult.increaseWinnerPrizeCount(winnerPrize);
+            countNumberOfPrize(correctCount);
         }
+    }
 
+    private void printWinningDetails() {
         outputView.printWinningDetails();
+    }
 
+    private void countNumberOfPrize(float correctCount) {
+        WinnerPrize winnerPrize = WinnerPrize.findWinnerPrize(correctCount);
+        GameResult.increaseWinnerPrizeCount(winnerPrize);
+    }
+
+    private boolean mustCheckBonus(float correctCount) {
+        return correctCount == 5;
+    }
+
+    private boolean cannotGetPrize(float correctCount) {
+        return correctCount < 3;
+    }
+
+    private double calculateProfitRate() {
         int purchasePrice = lottoGenerator.getPurchasePrice();
-        double profitRate = GameResult.calculateProfit(purchasePrice);
+        return GameResult.calculateProfit(purchasePrice);
+    }
 
+    private void printProfitRate(double profitRate) {
         outputView.printProfitRate(profitRate);
     }
 

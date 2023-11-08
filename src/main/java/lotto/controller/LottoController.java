@@ -71,8 +71,8 @@ public class LottoController {
             try {
                 System.out.println(lottoOutput.requestWinningNumber());
                 String winningNumbersInput = lottoInput.getWinningNumber();
-                List<Integer> winningNumbers = WinningNumberValidator.validateWinningNumbers(winningNumbersInput);
-                return winningNumbers;
+                return WinningNumberValidator.validateWinningNumbers(winningNumbersInput);
+
             } catch (IllegalArgumentException exception) {
                 System.out.println(lottoOutput.getErrorMessage(exception.getMessage()));
             }

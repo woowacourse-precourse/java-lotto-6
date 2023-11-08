@@ -36,11 +36,7 @@ public class LottoController {
 
     private void calcProfit() {
         profit = 0;
-        profit += calcProfit(LottoVariables.LOTTO_FIRST);
-        profit += calcProfit(LottoVariables.LOTTO_SECOND);
-        profit += calcProfit(LottoVariables.LOTTO_THIRD);
-        profit += calcProfit(LottoVariables.LOTTO_FOURTH);
-        profit += calcProfit(LottoVariables.LOTTO_FIFTH);
+        for(LottoVariables lottoVariables: LottoVariables.values()) profit += calcProfit(lottoVariables);
     }
 
     private int calcProfit(LottoVariables lottoVariables) {

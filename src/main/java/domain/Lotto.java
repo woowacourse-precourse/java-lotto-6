@@ -2,6 +2,7 @@ package domain;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Lotto {
     public static Lotto randomPick() {
         List<Integer> numbers = pickUniqueNumbersInRange(LottoNumber.MIN_LOTTO_NUMBER, LottoNumber.MAX_LOTTO_NUMBER,
                 LOTTO_SIZE);
+        numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);
     }
 

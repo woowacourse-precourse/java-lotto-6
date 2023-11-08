@@ -21,6 +21,7 @@ public class WinningNumbersChecker {
     }
 
     public static void rightNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
+        uniqueWinningNumbers = new HashSet<>();
         for (Integer winningNumber : winningNumbers) {
             isRightRange(winningNumber);
             isUnique(winningNumber);

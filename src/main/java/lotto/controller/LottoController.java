@@ -50,7 +50,7 @@ public class LottoController {
     private long getTicketCount() throws IllegalArgumentException {
         OutputHandler.requirePaymentPrice();
         String paymentPriceInput = InputHandler.getInput();
-        paymentPrice = Converter.pay(paymentPriceInput);
+        paymentPrice = Converter.paymentPrice(paymentPriceInput);
         PaymentPriceChecker.positive(paymentPrice);
         PaymentPriceChecker.multipleOfPrice(paymentPrice);
         OutputHandler.printEmptyLine();

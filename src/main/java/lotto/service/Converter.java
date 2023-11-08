@@ -15,7 +15,7 @@ import lotto.view.OutputHandler;
 
 public class Converter {
 
-    public static long pay(String paymentPrice) throws IllegalArgumentException {
+    public static long paymentPrice(String paymentPrice) throws IllegalArgumentException {
         InputChecker.nonEmpty(paymentPrice);
         try {
             return Long.parseLong(paymentPrice);

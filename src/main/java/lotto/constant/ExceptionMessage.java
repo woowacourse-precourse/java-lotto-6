@@ -8,7 +8,7 @@ public enum ExceptionMessage {
 
     REQUIRE_NONEMPTY_INPUT("값을 입력해주세요."),
     REQUIRE_POSITIVE_LONG("9,223,372,036,854,775,807 이하의 양의 정수여야 합니다."),
-    REQUIRE_POSITIVE_INTEGER("2,147,483,647 이하의 양수여야 합니다."),
+    REQUIRE_POSITIVE_INTEGER("2,147,483,647 이하의 양의 정수여야 합니다."),
     REQUIRE_MULTIPLE_OF_LOTTO_PRICE(
             String.format("구입 금액은 %s으로 나누어 떨어져야 합니다.", LOTTO_PRICE.getNumber())),
     REQUIRE_NOT_STARTS_WITH_COMMA("입력은 ,로 시작하지 않아야 합니다."),

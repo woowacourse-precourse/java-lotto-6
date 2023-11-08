@@ -1,7 +1,12 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.ConvertorUtil;
+import lotto.validator.BonusNumberValidator;
 import lotto.validator.BuyAmountValidator;
+import lotto.validator.LottoValidator;
+
+import java.util.List;
 
 import static lotto.constants.InputMessages.*;
 
@@ -11,13 +16,19 @@ public class InputView {
         return new BuyAmountValidator(Console.readLine());
     }
 
-    public String readWinNumber() {
+    public List<Integer> readWinNumber() {
         System.out.println(INPUT_WIN_NUMBER.getMessage());
-        return Console.readLine();
+        return new LottoValidator(ConvertorUtil.convertToList(Console.readLine()))
+                .numbers()
+                .stream()
+                .map(Integer::valueOf)
+                .toList();
     }
 
-    public String readBonusNumber() {
+    public Integer readBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER.getMessage());
-        return Console.readLine();
+        return Integer.parseInt(
+                new BonusNumberValidator(Console.readLine().trim())
+                        .number());
     }
 }

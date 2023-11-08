@@ -1,40 +1,78 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.validator.BuyAmountValidator;
+import lotto.constants.Ranks;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRound;
+import lotto.domain.Player;
+import lotto.domain.Rank;
+import lotto.util.ConvertorUtil;
+import lotto.util.NumberUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Arrays;
+import java.util.List;
+
+import static lotto.constants.OutputMessages.MATCH_NUMBER;
+
+
 public class GameController {
-    private  final InputView inputView;
-    private  final OutputView outputView;
-    public GameController() {
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-    }
+    private  final InputView inputView = new InputView();
+    private  final OutputView outputView = new OutputView();
 
     public void start() {
-        initUserInput();
-        // TODO 1.당첨 번호 및 보너스 입력 처리
-        // TODO 2.로또 발행 및 출력
+        final int inputPrice = getInputPrice();
+        Player player = new Player(inputPrice);
+        outputView.printIssuedLottoes(player.getRegularNumbers().size(), player.getIssuedLottoMessages());
+
+        LottoRound lottoRound = getAnswer();
+        List<Lotto> inputs = player.getRegularNumbers();
+        List<Ranks> ranks = Rank.calculateRanks(lottoRound, inputs);
+
+        Arrays.stream(Ranks.values()).forEach(ranks1 -> {
+            outputView.printMatchResult(ranks1, String.valueOf(ranks
+                    .stream()
+                    .filter(ranks2 -> ranks2.getMoney() == ranks1.getMoney())
+                    .count()));
+        });
+        outputView.printProfit(NumberUtil.getRate(inputPrice, ranks).toPlainString());
     }
 
-    private void initUserInput() {
-        int buyAmount = initBuyAmount().getBuyAmount();
-        // TODO 1.당첨 번호 및 보너스 입력 처리
+
+
+    private LottoRound getAnswer() {
+        return LottoRound.of(
+                new Lotto(getRegularNumber()),
+                getBonusNumber()
+        );
     }
 
-    private BuyAmountValidator initBuyAmount() {
+    private List<Integer> getRegularNumber() {
         try {
-            return inputView.readBuyAmount();
+            return inputView.readWinNumber();
         } catch (IllegalArgumentException e) {
-            outputView.printMessage(e.getMessage());
-            return initBuyAmount();
+            outputView.printErrorMessage(e.getMessage());
+            return getRegularNumber();
         }
     }
 
-    // TODO 예외 발생 시, 재입력을 위한 콘솔 반환
-    public void close() {
-        Console.close();
+    private Integer getBonusNumber() {
+        try {
+            return inputView.readBonusNumber();
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getBonusNumber();
+        }
+    }
+
+    private Integer getInputPrice() {
+        try {
+            return Integer.parseInt(inputView.readBuyAmount().amount());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getInputPrice();
+        }
     }
 }

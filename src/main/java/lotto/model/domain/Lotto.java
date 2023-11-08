@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 import static lotto.model.constant.LottoMessageConstant.END_BRACKET;
 import static lotto.model.constant.LottoMessageConstant.NUMBER_DELIMITER;
@@ -23,7 +23,7 @@ public class Lotto {
         for (Integer integer : lottoNumberInput) {
             numbers.add(new LottoNumber(integer));
         }
-        numbers.sort(Comparator.comparingInt(LottoNumber::getNumber));
+        numbers.sort(Comparator.comparingInt(LottoNumber::number));
     }
 
     public void isValidLottoNumbers(List<Integer> lottoNumberInput) {

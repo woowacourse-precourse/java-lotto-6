@@ -1,14 +1,6 @@
-package lotto.model;
+package lotto.model.domain;
 
-import java.util.Objects;
-
-public class LottoNumber {
-
-    private final int number;
-
-    public LottoNumber(int number) {
-        this.number = number;
-    }
+public record LottoNumber(int number) {
 
     @Override
     public boolean equals(Object lottoNumber) {
@@ -20,15 +12,6 @@ public class LottoNumber {
         }
         LottoNumber that = (LottoNumber) lottoNumber;
         return number == that.number;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(number);
     }
 
     @Override

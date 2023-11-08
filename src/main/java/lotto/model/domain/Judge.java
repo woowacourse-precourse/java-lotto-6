@@ -1,6 +1,7 @@
-package lotto.model;
+package lotto.model.domain;
 
 import java.util.List;
+import lotto.model.LottoResultCount;
 
 public class Judge {
 
@@ -36,7 +37,7 @@ public class Judge {
         return purchasedLotto.getLottoNumbers().contains(bonusNumber);
     }
 
-    private void updateDrawResult(LottoResultCount lottoResultCount, Lotto purchasedLotto,int matchedCnt) {
+    private void updateDrawResult(LottoResultCount lottoResultCount, Lotto purchasedLotto, int matchedCnt) {
         if (matchedCnt == 6) {
             lottoResultCount.incrementFirst();
         } else if (matchedCnt == 5 && isBonusMatched(purchasedLotto)) {

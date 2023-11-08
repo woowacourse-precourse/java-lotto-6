@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.model.domain.LottoResult;
+
 public class LottoResultCount {
 
     private int first;

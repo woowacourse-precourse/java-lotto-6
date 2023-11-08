@@ -1,6 +1,11 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.model.domain.Judge;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.LottoNumber;
+import lotto.model.domain.LottoResult;
+import lotto.model.domain.User;
 import lotto.util.InputUtil;
 import lotto.util.message.ResultMessage;
 import lotto.util.message.SystemMessage;

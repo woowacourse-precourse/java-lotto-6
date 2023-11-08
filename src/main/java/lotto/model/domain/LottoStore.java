@@ -1,7 +1,8 @@
-package lotto.model;
+package lotto.model.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.LottoGenerator;
 import lotto.util.message.SystemMessage;
 
 public class LottoStore {

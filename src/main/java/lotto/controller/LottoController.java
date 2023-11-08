@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.LottoService;
-import lotto.model.User;
+import lotto.model.domain.User;
 
 public class LottoController {
 

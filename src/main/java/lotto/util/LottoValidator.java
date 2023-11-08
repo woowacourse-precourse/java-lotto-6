@@ -1,14 +1,14 @@
 package lotto.util;
 
-import static lotto.util.constant.ValidatorStatus.DUPLICATE_WINNING_NUMBER;
 import static lotto.util.constant.ValidatorStatus.DUPLICATE_BONUS_NUMBER_INPUT;
+import static lotto.util.constant.ValidatorStatus.DUPLICATE_WINNING_NUMBER;
 import static lotto.util.constant.ValidatorStatus.INVALID_NUMBER_RANGE;
 import static lotto.util.constant.ValidatorStatus.INVALID_WINNING_NUMBER_COUNT;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.model.LottoNumber;
+import lotto.model.domain.LottoNumber;
 import lotto.util.exception.ExceptionHandler;
 
 public class LottoValidator {
@@ -53,7 +53,7 @@ public class LottoValidator {
 
     private void isDuplicateBonusNumber(List<LottoNumber> lottoNumbers, int bonusNumberInput) {
         boolean isContainBonusNumberInput = lottoNumbers.stream()
-                .anyMatch(lottoNumber -> lottoNumber.getNumber() == bonusNumberInput);
+                .anyMatch(lottoNumber -> lottoNumber.number() == bonusNumberInput);
         if (isContainBonusNumberInput) {
             exceptionHandler.validatorStatusMap.get(DUPLICATE_BONUS_NUMBER_INPUT)
                     .accept(DUPLICATE_BONUS_NUMBER_INPUT);

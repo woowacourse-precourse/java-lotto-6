@@ -17,11 +17,13 @@ public class InputValidator {
         isInputDigit(input);
         isDivisibleBy1000(input);
     }
+
     public void validateRawLottoNumbers(String input) {
         isValidLottoNumberFormat(input);
         isInputOnlyDigit();
 
     }
+
     public void validateRawLottoBonusNumber(String input) {
         isInputDigit(input);
     }

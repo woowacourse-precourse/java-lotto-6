@@ -9,7 +9,7 @@ class RankTest {
     @Test
     @DisplayName("enum값 매핑 테스트")
     void valueOfMatchCount() {
-        assertThat(Rank.valueOfMatchCount(5)).isEqualTo(Rank.SECOND);
+        assertThat(Rank.getMatchRank(5)).isEqualTo(Rank.SECOND);
     }
 
 

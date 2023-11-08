@@ -16,12 +16,13 @@ public class GameService {
 
     private final String DIVISION_STANDARD = ",";
 
+    private final NumberGenerator numberGenerator;
+
     private PurchaseAmount purchaseAmount;
     private Lotteries lotteries;
     private Lotto winningNumbers;
     private WinningLotto winningLotto;
     private LottoResult lottoResult;
-    private final NumberGenerator numberGenerator;
 
     public GameService(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;

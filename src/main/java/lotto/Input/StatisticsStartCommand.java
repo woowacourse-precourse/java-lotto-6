@@ -22,8 +22,26 @@ public class StatisticsStartCommand {
   }
 
 
-  public static StatisticsStartCommand of(NumberEnteredEvent event, List<Lotto> lottos, int standardPrice) {
-    return new StatisticsStartCommand(event.getWinningLotto(), event.getBonusNumber().getBonusNumber(), lottos, standardPrice);
+  public static StatisticsStartCommand of(NumberEnteredEvent event, List<Lotto> lottos,
+      int standardPrice) {
+    return new StatisticsStartCommand(event.getWinningLotto(),
+        event.getBonusNumber().getBonusNumber(), lottos, standardPrice);
+  }
+
+  public Lotto getWinningNumber() {
+    return winningNumber;
+  }
+
+  public int getBonusNumber() {
+    return bonusNumber;
+  }
+
+  public List<Lotto> getIssuedLottos() {
+    return lottos;
+  }
+
+  public int getStandardPrice() {
+    return standardPrice;
   }
 
   @Override

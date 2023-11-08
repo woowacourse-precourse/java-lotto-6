@@ -37,9 +37,12 @@ public class Judge {
         return matchingNumbers.size();
     }
 
-    public boolean compareBonusNumber(Lotto lotteryNumbers, int bonusNumber) {
+    private boolean compareBonusNumber(Lotto lotteryNumbers, int bonusNumber) {
         // 보너스 번호와 일치하는지 비교하는 코드 구현
-        return true;
+        if (lotteryNumbers.getLotteryNumbers().contains(bonusNumber)) {
+            return true;
+        }
+        return false;
     }
 
 }

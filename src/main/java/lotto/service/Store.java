@@ -9,7 +9,6 @@ import lotto.view.impl.LottoBuyView;
 public class Store {
     private LottoBuyView lottoBuyView;
 
-
     public Store(LottoBuyView lottoBuyView) {
         this.lottoBuyView = lottoBuyView;
     }
@@ -20,14 +19,6 @@ public class Store {
         informLotto(lottos);
 
         return lottos;
-    }
-
-    private void informLotto(Lottos lottos) {
-        lottoBuyView.outputView(lottos);
-    }
-
-    private Money requestMoneyAmount(){
-        return (Money) lottoBuyView.inputView();
     }
 
     private Lottos lottoGenerate(Money money) {
@@ -44,4 +35,13 @@ public class Store {
     private int countLotto(Money money) {
         return money.calculateCount(Money.LOTTO_PRICE);
     }
+
+    private void informLotto(Lottos lottos) {
+        lottoBuyView.outputView(lottos);
+    }
+
+    private Money requestMoneyAmount(){
+        return (Money) lottoBuyView.inputView();
+    }
+
 }

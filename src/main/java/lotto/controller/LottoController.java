@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
+import lotto.domain.Money;
 import lotto.domain.Statistic;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoBroadCast;
@@ -22,15 +23,11 @@ public class LottoController {
         this.lottoBroadCast = lottoBroadCast;
     }
 
-
-
     public void operate(){
         Lottos lottos = store.sell();
         WinningLotto winningLotto = lottoBroadCast.announceWinningLotto();
-
-        Statistic statistic = statisticProducer.produce(lottos, winningLotto);
-        statisticView.view(statistic);
+        Statistic statistic = statisticProducer.produce(lottos, winningLotto, Money.LOTTO_PRICE);
+        statisticView.outputView(statistic);
     }
-
 
 }

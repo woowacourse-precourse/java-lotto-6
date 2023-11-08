@@ -15,13 +15,11 @@ public class LottoBroadCast {
         this.bonusNumberView = bonusNumberView;
     }
 
-
-
     public WinningLotto announceWinningLotto() {
         Lotto winningLotto = requestLottoNumber();
         BonusNumber bonusNumber = requestBonusNumber();
 
-        return LottoGenerator.generateWinningLotto(winningLotto,bonusNumber);
+        return LottoGenerator.generateWinningLotto(winningLotto, bonusNumber);
     }
 
     private Lotto requestLottoNumber() {
@@ -31,4 +29,5 @@ public class LottoBroadCast {
     private BonusNumber requestBonusNumber(){
         return (BonusNumber) bonusNumberView.inputView();
     }
+
 }

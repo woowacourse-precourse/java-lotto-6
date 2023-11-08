@@ -6,7 +6,7 @@ public class InputValidator {
         throw new AssertionError("인스턴스화 불가능");
     }
 
-    public static void validateMoney(String money) throws IllegalArgumentException {
+    public static void validateMoney(String money) {
         if (isNotDigit(money)) {
             throw new IllegalArgumentException("숫자만 입력할 수 있습니다.");
         }

@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoCalculateService {
-    private OutputView outputView = new OutputView();
-    private HashMap<Winning, Integer> countOfWinning = new HashMap<>();
+    private final OutputView outputView = new OutputView();
+    private final HashMap<Winning, Integer> countOfWinning = new HashMap<>();
 
     public void calculateWinning(User user, Lotto lotto) {
         countLottoWinningCount(user, lotto);
@@ -64,6 +64,10 @@ public class LottoCalculateService {
             }
         }
         return count;
+    }
+
+    public void inputCountOfWinning(Winning winning) {
+        countOfWinning.put(winning, countOfWinning.getOrDefault(winning, 0) + 1);
     }
 
 }

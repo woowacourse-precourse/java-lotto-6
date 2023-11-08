@@ -17,11 +17,12 @@ public class LottoResult {
 
     public double calculateEarningRate(int purchaseMoney) {
         Map<Rank, Integer> result = getFinalResult();
-        double profit = result.get(Rank.THREE_MATCH) * Rank.THREE_MATCH.getPrize()
-                + result.get(Rank.FOUR_MATCH) * Rank.FOUR_MATCH.getPrize()
-                + result.get(Rank.FIVE_MATCH) * Rank.FIVE_MATCH.getPrize()
-                + result.get(Rank.FIVE_MATCH_AND_BONUS) * Rank.FIVE_MATCH_AND_BONUS.getPrize()
-                + result.get(Rank.SIX_MATCH) * Rank.SIX_MATCH.getPrize();
+        Rank[] ranks = Rank.values();
+
+        double profit = 0;
+        for (Rank rank : ranks) {
+            profit += result.get(rank) * rank.getPrize();
+        }
 
         return profit / purchaseMoney * PERCENT;
     }

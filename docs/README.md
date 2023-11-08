@@ -16,11 +16,11 @@
 - [ ] 잘못된 입력 감지 / 에러메시지 출력
 ***
 ## 기능 목록
-- [ ] 게임진행: GameProcess
+- [x] 게임진행: GameProcess
     - [ ] 로또 구입: buyLotto
-    - [ ] 로또 발행: publishLotto
+    - [x] 로또 발행: publishLotto
     - [ ] 당첨 번호 입력: enterWiningNumber
-    - [ ] 당첨 결과 확인: checkWiningResult
+    - [x] 당첨 결과 확인: checkWiningResult
 - [x] 로또: Lotto
     - [x] 로또 보기: getLotto
 - [x] 결제: Payment

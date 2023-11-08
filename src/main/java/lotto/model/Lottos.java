@@ -78,24 +78,50 @@ public class Lottos {
     }
 
     private WinningResult checkIfWin(
-            final int winningCount,
+            final int winningNumberCount,
             WinningResult winningResult,
             final boolean matchesBonusNumber
     ) {
         Objects.requireNonNull(winningResult);
-        if (winningCount == FIRST_PLACE.getCount()) {
+        winningResult = increaseFirstPlace(winningNumberCount, winningResult);
+        winningResult = increaseSecondPlace(winningNumberCount, winningResult, matchesBonusNumber);
+        winningResult = increaseThirdPlace(winningNumberCount, winningResult);
+        winningResult = increaseFourthPlace(winningNumberCount, winningResult);
+        winningResult = increaseFifthPlace(winningNumberCount, winningResult);
+        return winningResult;
+    }
+
+    private static WinningResult increaseFirstPlace(final int winningNumberCount, WinningResult winningResult) {
+        if (winningNumberCount == FIRST_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedPlaceCount(0);
         }
-        if (matchesBonusNumber && winningCount == SECOND_AND_THIRD_PLACE.getCount()) {
+        return winningResult;
+    }
+
+    private static WinningResult increaseSecondPlace(final int winningNumberCount, WinningResult winningResult,
+                                                     boolean matchesBonusNumber) {
+        if (matchesBonusNumber && winningNumberCount == SECOND_AND_THIRD_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedPlaceCount(1);
         }
-        if (winningCount == SECOND_AND_THIRD_PLACE.getCount()) {
+        return winningResult;
+    }
+
+    private static WinningResult increaseThirdPlace(final int winningNumberCount, WinningResult winningResult) {
+        if (winningNumberCount == SECOND_AND_THIRD_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedPlaceCount(2);
         }
-        if (winningCount == FOURTH_PLACE.getCount()) {
+        return winningResult;
+    }
+
+    private static WinningResult increaseFourthPlace(final int winningNumberCount, WinningResult winningResult) {
+        if (winningNumberCount == FOURTH_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedPlaceCount(3);
         }
-        if (winningCount == FIFTH_PLACE.getCount()) {
+        return winningResult;
+    }
+
+    private static WinningResult increaseFifthPlace(final int winningNumberCount, WinningResult winningResult) {
+        if (winningNumberCount == FIFTH_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedPlaceCount(4);
         }
         return winningResult;

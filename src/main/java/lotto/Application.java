@@ -5,6 +5,8 @@ import static lotto.Lotto.*;
 import static lotto.Lottery.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -20,10 +22,20 @@ public class Application {
                 break;
             } catch(IllegalArgumentException e) { }
         }
-        //확인용
-//        System.out.println(howMuch + ", " + numberOfLotteries);
 
         //2. 당첨 금액 입력 받아 저장하기
+        List<Integer> lottoNumbers = new ArrayList<>();
+        while(true) {
+            try{
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String inputLottoNumbers = Console.readLine();
+                lottoNumbers = convertStringToIntegerList(inputLottoNumbers);
+                Lotto myNumbers = new Lotto(lottoNumbers);
+                break;
+            } catch (IllegalArgumentException e) { }
+        }
+
+        System.out.println(lottoNumbers);
 
 
         //3. 보너스 번호 입력 받기
@@ -34,11 +46,10 @@ public class Application {
                 String inputBonusNumber = Console.readLine();
                 bonusNumber = isNumber(inputBonusNumber);
                 rangeValidation(bonusNumber);
+                bonusRedundancyCheck(lottoNumbers, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) { }
         }
-        //확인용
-//        System.out.println(bonusNumber);
 
 
 

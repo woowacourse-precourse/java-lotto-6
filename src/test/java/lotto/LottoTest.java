@@ -41,10 +41,10 @@ class LottoTest {
 
     @DisplayName("유효한 Lotto 객체를 생성하는지 확인한다.")
     @Test
-    void testValidLottoCreation() {
+    void createValidLotto() {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
         Assertions.assertNotNull(lotto);
     }
-    // 아래에 추가 테스트 작성 가능
+
 }

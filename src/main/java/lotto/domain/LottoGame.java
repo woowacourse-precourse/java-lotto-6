@@ -5,16 +5,31 @@ import lotto.util.LottoGameUtil;
 import lotto.util.OutputUtil;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface LottoGame {
 
     static void play() {
-        int purchaseAmount = getPurchaseAmount();
-        OutputUtil.println(purchaseAmount + LottoGameMessage.PURCHASE_COMPLETED_MESSAGE);
-        List<Lotto> lottoNumbers = createLottoNumbers(purchaseAmount);
+        String purchaseAmount = getPurchaseAmount();
+        OutputUtil.println(LottoGameUtil.convertPurchaseAmount(purchaseAmount) + LottoGameMessage.PURCHASE_COMPLETED_MESSAGE);
+        List<Lotto> lottoNumbers = createLottoNumbers(LottoGameUtil.convertPurchaseAmount(purchaseAmount));
         Lotto winningNumber = inputLottoNumber();
         OutputUtil.println(LottoGameMessage.REQUEST_BONUS_NUMBERS);
         int bonusNumber = inputBonusNumber();
+        viewWinningStatistics(lottoNumbers, winningNumber, bonusNumber, InputUtil.convert(purchaseAmount));
+    }
+
+    static void viewWinningStatistics(List<Lotto> lottoNumbers, Lotto winningNumber, int bonusNumber, int purchaseAmount) {
+        OutputUtil.println(LottoGameMessage.WINNING_STATISTICS);
+        OutputUtil.println(LottoGameMessage.CONTOUR);
+        List<LottoScore> winningStatistics = getWinningStatistics(lottoNumbers, winningNumber, bonusNumber);
+        LottoGameUtil.getWinningStatistics(winningStatistics).view(purchaseAmount);
+    }
+
+    static List<LottoScore> getWinningStatistics(List<Lotto> lottoNumbers, Lotto winningNumber, int bonusNumber) {
+        return lottoNumbers.stream()
+                .map(lotto -> lotto.compare(winningNumber, bonusNumber))
+                .collect(Collectors.toList());
     }
 
     static int inputBonusNumber() {
@@ -27,6 +42,7 @@ public interface LottoGame {
         }
         return InputUtil.convert(bonusNumber);
     }
+
     static Lotto inputLottoNumber() {
         OutputUtil.println(LottoGameMessage.REQUEST_WINNING_NUMBERS);
         String winningNumber = InputUtil.EMPTY;
@@ -39,12 +55,14 @@ public interface LottoGame {
         }
         return new Lotto(LottoGameUtil.convertLottoNumber(winningNumber));
     }
+
     static List<Lotto> createLottoNumbers(int purchaseAmount) {
         List<Lotto> lottoNumbers = LottoGameUtil.generateLottoNumbers(purchaseAmount);
         lottoNumbers.forEach(lotto -> lotto.viewNumberStatus());
         return lottoNumbers;
     }
-    static int getPurchaseAmount() {
+
+    static String getPurchaseAmount() {
         OutputUtil.println(LottoGameMessage.REQUEST_PURCHASE_AMOUNT);
         String amount = InputUtil.EMPTY;
         try {
@@ -54,6 +72,6 @@ public interface LottoGame {
             OutputUtil.println(e.getMessage());
             getPurchaseAmount();
         }
-        return LottoGameUtil.convertPurchaseAmount(amount);
+        return amount;
     }
 }

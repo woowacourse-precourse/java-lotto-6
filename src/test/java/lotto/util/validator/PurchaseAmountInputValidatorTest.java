@@ -12,7 +12,7 @@ class PurchaseAmountInputValidatorTest {
 
     @DisplayName("구매 금액이 숫자가 아닐 경우 예외가 발생한다.")
     @Test
-    void parchaseAmountIsNotNumeric() {
+    void purchaseAmountIsNotNumeric() {
         //given
         String purchaseAmount = "w";
 
@@ -23,7 +23,7 @@ class PurchaseAmountInputValidatorTest {
 
     @DisplayName("구매 금액이 1000으로 나누어 떨어지지 않을 경우 예외가 발생한다")
     @Test
-    void parchaseAmountIsNotDivisibleByThousand() {
+    void purchaseAmountIsNotDivisibleByThousand() {
         //given
         String purchaseAmount = "1234";
 
@@ -34,7 +34,7 @@ class PurchaseAmountInputValidatorTest {
 
     @DisplayName("구매 금액이 음수일 경우 예외가 발생한다.")
     @Test
-    void parchaseAmountIsNotPositive() {
+    void purchaseAmountIsNotPositive() {
         //given
         String purchaseAmount = "-1000";
 

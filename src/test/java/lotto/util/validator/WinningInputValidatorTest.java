@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class LottoInputValidatorTest {
+class WinningInputValidatorTest {
     private static final InputValidator winningInputValidator = new WinningInputValidator();
 
     @DisplayName("당첨 번호 입력 개수가 6개가 넘어갈 경우 예외가 발생한다.")

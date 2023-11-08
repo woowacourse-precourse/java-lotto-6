@@ -27,4 +27,24 @@ public class InputValidatorTest {
         assertThat(result1).isInstanceOf(IllegalArgumentException.class);
         assertThat(result2).doesNotThrowAnyException();
     }
+
+    @DisplayName("구입금액이 숫자로 입력되었는지 검사")
+    @Test
+    void 구입금액_숫자_테스트() {
+        // given
+        String case1 = "오천원";
+        String case2 = "5000";
+
+        // when
+        Throwable result1 = catchThrowable(() -> {
+            InputValidator.validateInputIsNumeric(case1);
+        });
+        Throwable result2 = catchThrowable(() -> {
+            InputValidator.validateInputIsNumeric(case2);
+        });
+
+        // then
+        assertThat(result1).isInstanceOf(IllegalArgumentException.class);
+        assertThat(result2).doesNotThrowAnyException();
+    }
 }

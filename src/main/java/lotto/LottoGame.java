@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.io.UserInput;
 import lotto.io.UserOutput;
@@ -10,13 +11,18 @@ public class LottoGame {
     private final UserOutput output;
     private final LottoMachine lottoMachine;
     private final LottoInputParser lottoInputParser;
+    private final LottoComparator lottoComparator;
 
-    public LottoGame(UserInput input, UserOutput output, LottoMachine lottoMachine,
-            LottoInputParser lottoInputParser) {
+    public LottoGame(UserInput input,
+            UserOutput output,
+            LottoMachine lottoMachine,
+            LottoInputParser lottoInputParser,
+            LottoComparator lottoComparator) {
         this.input = input;
         this.output = output;
         this.lottoMachine = lottoMachine;
         this.lottoInputParser = lottoInputParser;
+        this.lottoComparator = lottoComparator;
     }
 
     public void play() {
@@ -25,6 +31,8 @@ public class LottoGame {
         List<Lotto> lottos = createLottos(lottoPurchaseAmount);
 
         WinningLotto winningLotto = createWinningLotto();
+
+        List<LottoResult> lottoResults = compareLottos(winningLotto, lottos);
     }
 
     public UserOutput getOutput() {
@@ -61,5 +69,13 @@ public class LottoGame {
         int bonusNumber = lottoInputParser.parseInt(inputBonusNumber);
 
         return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<LottoResult> compareLottos(WinningLotto winningLotto, List<Lotto> lottos) {
+        List<LottoResult> lottoResults = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottoResults.add(lottoComparator.compare(winningLotto, lotto));
+        }
+        return lottoResults;
     }
 }

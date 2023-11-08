@@ -15,12 +15,14 @@ public class Application {
         UserOutput userOutput = new UserOutput();
         LottoMachine lottoMachine = new LottoMachine(new RandomGenerator());
         LottoInputParser lottoInputParser = new LottoInputParser();
+        LottoComparator lottoComparator = new LottoComparator();
 
         return new LottoGame(
                 userInput,
                 userOutput,
                 lottoMachine,
-                lottoInputParser
+                lottoInputParser,
+                lottoComparator
         );
     }
 

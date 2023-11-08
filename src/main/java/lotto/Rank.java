@@ -1,6 +1,7 @@
 package lotto;
 
-public enum WinnerRank {
+public enum Rank {
+    LOSE_PLACE(6),
     FIFTH_PLACE(5),
     FOURTH_PLACE(4),
     THIRD_PLACE(3),
@@ -9,7 +10,7 @@ public enum WinnerRank {
 
     private final Integer rank;
 
-    private WinnerRank(Integer rank) {
+    private Rank(Integer rank) {
         this.rank = rank;
     }
 

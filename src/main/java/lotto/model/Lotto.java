@@ -55,4 +55,14 @@ public class Lotto {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("[");
+        numbers.forEach(number -> sb.append(number).append(", "));
+        sb.deleteCharAt(sb.length() - 1);
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(']');
+        return sb.toString();
+    }
 }

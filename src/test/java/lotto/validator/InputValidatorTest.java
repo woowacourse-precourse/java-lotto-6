@@ -23,4 +23,20 @@ class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateIsDigit(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("입력값이 콤마로 구분되어 있지 않으면 예외가 발생한다.")
+    void isNotSplitComma() {
+        String input = "1,2,3,4,5.6";
+        assertThatThrownBy(() -> inputValidator.validateIsDigit(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("입력값이 콤마로 구분되어 있으나 숫자가 아닌 경우 예외가 발생한다.")
+    void isSplitCommaButNotDigit() {
+        String input = "1,2,3,4,5,a";
+        assertThatThrownBy(() -> inputValidator.validateIsDigit(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

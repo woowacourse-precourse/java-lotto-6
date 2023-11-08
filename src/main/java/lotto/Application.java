@@ -9,6 +9,7 @@ public class Application {
         lottoService.sellLottos();
         lottoService.informPurchaseHistory();
         lottoService.requestWinningNumber();
+        lottoService.checkLottos();
         lottoService.showResult();
     }
 }

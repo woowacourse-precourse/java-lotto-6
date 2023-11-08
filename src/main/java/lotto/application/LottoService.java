@@ -70,12 +70,11 @@ public class LottoService {
 
     public void requestWinningNumber() {
         WinningNumber winningNumber = IOService.scanWinningNumber();
-        this.winningNumber = winningNumber;
+        setWinningNumber(winningNumber);
     }
 
     public void showResult(){
         User user = userService.getUser();
-        checkLottos();
 
         IOService.printResult(user);
     }
@@ -90,7 +89,7 @@ public class LottoService {
         return lottos;
     }
 
-    private void checkLottos() {
+    public void checkLottos() {
         User user = userService.getUser();
 
         List<Lotto> lottos = user.getLottos();
@@ -154,5 +153,13 @@ public class LottoService {
         }
 
         user.setTotalPrize(totalPrize);
+    }
+
+    public UserService getUserService() {
+        return this.userService;
+    }
+
+    public void setWinningNumber(WinningNumber winningNumber) {
+        this.winningNumber = winningNumber;
     }
 }

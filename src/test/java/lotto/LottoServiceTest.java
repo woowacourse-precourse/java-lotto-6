@@ -22,12 +22,14 @@ class LottoServiceTest {
     }
 
     @Test
-    void testPrintLottos() {
-        List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(6, 5, 4, 3, 2, 1)));
+    void printLottos() {
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(6, 5, 4, 3, 2, 1))));
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         lottoService.printLottos(lottos);
-        assertEquals("[1, 2, 3, 4, 5, 6]\n[6, 5, 4, 3, 2, 1]", out.toString().trim());
+        assertEquals("[1, 2, 3, 4, 5, 6]\n[1, 2, 3, 4, 5, 6]", out.toString().trim());
     }
 
     @DisplayName("구입한 로또 수만큼 로또 번호 발행.")

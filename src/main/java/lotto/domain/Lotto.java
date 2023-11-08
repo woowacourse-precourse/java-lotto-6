@@ -25,12 +25,18 @@ public class Lotto {
     }
 
     public void printLotto() {
+        List<Integer> sortedLottoNumber = sortLottoNumber();
+
         String lotto = OPEN_DELIMITER;
-        lotto += numbers.stream()
+        lotto += sortedLottoNumber.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(BLANK_DELIMITER)) + CLOSE_DELIMITER;
 
         OutputView.printMessage(lotto);
+    }
+
+    private List<Integer> sortLottoNumber() {
+        return numbers.stream().sorted().toList();
     }
 }
 

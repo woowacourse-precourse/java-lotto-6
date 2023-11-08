@@ -17,8 +17,6 @@ public class LottoCompareController {
     public static double winningLottoRate(){
         double purchaseAmount = LottoTickets.getBuyLottoTicketsNum() * 1000;
         double winningMoney =  winningMoney();
-        System.out.println(purchaseAmount);
-        System.out.println(winningMoney);
         double resultRate = winningMoney/purchaseAmount * 100;
         return Math.round(resultRate*100)/100.0;
     }

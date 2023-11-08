@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.view.ExceptionMessage;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -36,7 +37,7 @@ public class Lotto {
 
     private void duplicationValidate(List<Integer> numbers){
         if(numbers.size() != numbers.stream().distinct().count()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.duplicationError.getErrorMessage());
         }
     }
 }

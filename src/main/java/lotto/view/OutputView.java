@@ -12,7 +12,7 @@ public class OutputView {
     private static final String SECOND_RANK_STATISTICS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
     private static final String RANK_STATISTICS_MESSAGE = "%d개 일치 (%,d원) - %d개%n";
     private static final String STATISTICS_MESSAGE = "%n당첨 통계%n---%n";
-    private static final String PROFIT_RAT_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String PROFIT_RAT_MESSAGE = "총 수익률은 %,.1f%%입니다.";
 
     public void printPurchaseLottoNumbers(List<Lotto> lottos) {
         System.out.println();

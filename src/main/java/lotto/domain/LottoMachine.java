@@ -3,11 +3,13 @@ package lotto.domain;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
 
     private static final String PURCHASE_AMOUNT_GUIDE = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBER_INPUT_GUIDE = "당첨 번호를 입력해 주세요.";
     private static final int PURCHASE_UNIT = 1000;
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;
@@ -42,4 +44,9 @@ public class LottoMachine {
         return lottos;
     }
 
+    public String readWinningNumber() {
+        System.out.println(WINNING_NUMBER_INPUT_GUIDE);
+        String winningNumberText = readLine();
+        return winningNumberText;
+    }
 }

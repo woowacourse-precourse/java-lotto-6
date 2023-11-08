@@ -9,7 +9,6 @@ import common.enumtype.ResultType;
 import common.exception.InvalidArgumentException;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 public class WinningNumbers {
@@ -85,10 +84,6 @@ public class WinningNumbers {
         if (!isUniqueBonusNumber(bonusNumber)) {
             throw new InvalidArgumentException(WINNING_NUMBERS_CONTAIN_BONUS_NUMBER);
         }
-    }
-
-    private boolean isBonusNumberNull() {
-        return Objects.isNull(this.bonusNumber);
     }
 
     private boolean isUniqueBonusNumber(WinningNumber bonusNumber) {

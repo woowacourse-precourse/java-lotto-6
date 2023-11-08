@@ -30,6 +30,16 @@ public enum LottoResult {
         return numOfMatches;
     }
 
+    public static void makeMatchCntNull() {
+        LottoResult[] lottoResultValues = LottoResult.values();
+        for (var i=0; i < lottoResultValues.length; i++) {
+            if (lottoResultValues[i].getNumOfMatches() != 0) {
+                LottoResult nameOfResult = lottoResultValues[i];
+                nameOfResult.numOfMatches = 0;
+            }
+        }
+    }
+
     public static void countResult(List<List<Integer>> allLotto, List<Integer> numbers, int bonusNum) {
         LottoResult[] lottoResultValues = LottoResult.values();
         for (List<Integer> eachLotto : allLotto) {

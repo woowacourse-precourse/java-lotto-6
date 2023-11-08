@@ -33,10 +33,10 @@ public class MainController {
         outputLineBreak();
         Long purchaseCount = calculatePurchaseCount(cost);
         outputFormatting(PURCHASE_COUNT.toString().formatted(purchaseCount));
-        publishLotto(purchaseCount);
+        publishLotto(purchaseCount, cost);
     }
 
-    private void publishLotto(Long purchaseCount) {
+    private void publishLotto(Long purchaseCount, Cost cost) {
         Lottos lottos = new Lottos();
         OutputGenerateTool outputGenerateTool = new OutputGenerateTool();
         for (long i = 0; i < purchaseCount; i++) {
@@ -45,14 +45,14 @@ public class MainController {
             outputGenerateTool.generateLottoList(lotto);
         }
         displayPublishedLottos(outputGenerateTool);
-        purchaseResult(lottos.getLottos());
+        purchaseResult(lottos.getLottos(), cost);
     }
 
     private void displayPublishedLottos(OutputGenerateTool outputGenerateTool) {
         outputFormatting(outputGenerateTool.getLottosFormat(MethodProperty.LOTTOS_FORMAT));
     }
 
-    private void purchaseResult(List<Lotto> lottos) {
+    private void purchaseResult(List<Lotto> lottos, Cost cost) {
         WeekWinning weekWinning = publishWeekWinning();
         LottoManager lottoManager = new LottoManager();
         for (int i = 0; i < lottos.size(); i++) {
@@ -62,21 +62,26 @@ public class MainController {
                     winningPolicy.hitBonus(lottoNumbers, weekWinning.bonus())
             );
         }
-        writePurchaseResult(lottoManager.getResultEnumMap());
+        writePurchaseResult(lottoManager.getResultEnumMap(), lottoManager.calculateLottoRate(cost));
     }
 
-    private void writePurchaseResult(Map<LottoResult, Integer> lottoResultMap) {
+    private void writePurchaseResult(Map<LottoResult, Integer> lottoResultMap, Double lottoRate) {
         OutputGenerateTool outputGenerateTool = new OutputGenerateTool();
         for (LottoResult lottoResult : lottoResultMap.keySet()) {
             if (lottoResult.equals(LottoResult.NO_PRIZE)) continue;
             outputGenerateTool.generateLottoResult(lottoResult, lottoResultMap.get(lottoResult));
         }
         displayLottoResult(outputGenerateTool);
+        displayLottoRate(lottoRate);
     }
 
     private void displayLottoResult(OutputGenerateTool outputGenerateTool) {
         outputFormatting(LOTTO_RESULT.toString());
         outputFormatting(outputGenerateTool.getLottosFormat(MethodProperty.LOTTO_RESULT_FORMAT));
+    }
+
+    private void displayLottoRate(Double lottoRate) {
+        outputFormatting(LOTTO_RATE_PREFIX.toString() + lottoRate + LOTTO_RATE_SUFFIX);
     }
 
     private WeekWinning publishWeekWinning() {

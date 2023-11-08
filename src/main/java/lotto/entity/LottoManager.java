@@ -43,6 +43,16 @@ public class LottoManager {
                 .orElseThrow(() -> new IllegalStateException(LOTTO_RESULT_GENERATE_ERROR.toString()));
     }
 
+    public Double calculateLottoRate(Cost cost) {
+        Long purchaseCost = cost.getPurchaseCost();
+        Long totalPrize = 0L;
+        for (LottoResult result : resultEnumMap.keySet()) {
+            totalPrize += result.prize * resultEnumMap.get(result);
+        }
+        Double rate = ((totalPrize - purchaseCost) / (double) purchaseCost) * 100;
+        return Math.round(rate * 100.0) / 100.0;
+    }
+
     public Map<LottoResult, Integer> getResultEnumMap() {
         return (Map<LottoResult, Integer>) FiledMapper.getFieldValue(this, MethodProperty.RESULT_ENUM_MAP);
     }

@@ -7,7 +7,10 @@ public enum OutputProperty {
     INPUT_WINNING("당첨 번호를 입력해 주세요."),
     INPUT_BONUS("보너스 번호를 입력해 주세요."),
     LOTTO_RESULT("당첨 통계\n---"),
-    LOTTO_RESULT_SCORE(" - ");
+    LOTTO_RESULT_SCORE(" - "),
+    LOTTO_RATE_PREFIX("총 수익률은"),
+    LOTTO_RATE_SUFFIX("%입니다");
+
 
     private String console;
 

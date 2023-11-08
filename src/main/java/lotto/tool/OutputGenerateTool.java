@@ -16,9 +16,14 @@ public class OutputGenerateTool {
     public void generateLottoResult(LottoResult lottoResult, Integer resultScore) {
         lottoResultFormat.append(lottoResult.hitCount)
                 .append(" ")
-                .append(lottoResult.prize)
+                .append(lottoResult.hitPrize)
                 .append(OutputProperty.LOTTO_RESULT_SCORE)
-                .append(resultScore + "개\n");
+                .append(resultScore + "개");
+        if (!lottoResult.equals(LottoResult.SIX_MATCH)) generateLottoResultLineBreak();
+    }
+
+    public void generateLottoResultLineBreak() {
+        lottoResultFormat.append("\n");
     }
 
     public String getLottosFormat(String methodProperty) {

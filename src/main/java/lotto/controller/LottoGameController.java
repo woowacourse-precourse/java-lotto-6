@@ -8,7 +8,7 @@ import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 import lotto.domain.ThousandUnitMoney;
 import lotto.domain.WinningResult;
-import lotto.repository.Repository;
+import lotto.domain.dto.LottoGameDto;
 import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,16 +18,13 @@ public class LottoGameController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoGameService lottoGameService;
-    private final Repository lottoGameRepository;
 
     public LottoGameController(InputView inputView,
                                OutputView outputView,
-                               LottoGameService lottoGameService,
-                               Repository lottoGameRepository) {
+                               LottoGameService lottoGameService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoGameService = lottoGameService;
-        this.lottoGameRepository = lottoGameRepository;
     }
 
     public void playGame() {
@@ -70,8 +67,9 @@ public class LottoGameController {
                 bonusNumber,
                 winningResult);
 
-        //LottoGame만 저장소에 저장
-        lottoGameRepository.save(lottoGame);
+        //service를 통해 게임 저장
+        Long lottoGameId = lottoGameService.saveLottoGame(lottoGame);
+
 
         //재시작기능
         replayGame(false);

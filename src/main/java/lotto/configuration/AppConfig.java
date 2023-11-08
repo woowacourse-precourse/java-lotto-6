@@ -24,9 +24,7 @@ public class AppConfig implements Config {
             return new LottoGameController(
                     inputView,
                     outputView,
-                    lottoGameService,
-                    lottoGameRepository
-            );
+                    lottoGameService);
         }
 
         private static InputView createInputView() {
@@ -38,7 +36,7 @@ public class AppConfig implements Config {
         }
 
         private static LottoGameService createLottoGameService() {
-            return new LottoGameServiceImpl();
+            return new LottoGameServiceImpl(lottoGameRepository);
         }
 
         private static Repository createLottoGameRepository() {

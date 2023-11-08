@@ -19,11 +19,13 @@ public class Application {
     public static void main(String[] args) {
         getAmount();
 
+        buyLotto();
+
         getAnswer();
 
         getBonusNum();
 
-        buyLotto();
+        calculateRes();
 
         printResult();
     }
@@ -60,6 +62,7 @@ public class Application {
     }
 
     private static void getBonusNum(){
+        System.out.println();
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
@@ -83,6 +86,7 @@ public class Application {
     }
 
     private static void getAnswer(){
+        System.out.println();
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
@@ -102,6 +106,7 @@ public class Application {
     }
 
     private static void buyLotto(){
+        System.out.println();
         int lottoNum = amount / LOTTO_PRICE;
         System.out.println(lottoNum+"개를 구매했습니다.");
         for (int i=0; i<lottoNum; i++){
@@ -109,21 +114,25 @@ public class Application {
             Lotto lotto = new Lotto(randomNums);
             lottos.add(lotto);
         }
-        //System.out.println(lottos);
     }
 
     private static List<Integer> generateRandomNumbers() {
-        //List<Integer> numbers = new ArrayList<>();
-        Set<Integer> numbers = new HashSet<>();
-        while (true) {
+        Set<Integer> numbers;
+        do{
+            numbers = new HashSet<>();
             for (int i=0; i<LOTTO_NUMBER_COUNT; i++){
                 int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
                 numbers.add(randomNumber);
             }
-            List<Integer> result = new ArrayList<>(numbers);
-            Collections.sort(result);
-            System.out.println(result);
-            return result;
+        }while (numbers.size() < LOTTO_NUMBER_COUNT);
+        List<Integer> result = new ArrayList<>(numbers);
+        Collections.sort(result);
+        return result;
+    }
+
+    public static void calculateRes(){
+        for(Lotto lotto: lottos){
+            System.out.println(lotto);
         }
     }
 }

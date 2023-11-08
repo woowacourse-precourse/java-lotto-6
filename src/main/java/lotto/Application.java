@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -12,6 +13,7 @@ public class Application {
             int lottoAmount = askAmount();
             List<Lotto> lottos = issueLotto(lottoAmount / 1000);
             printLottos(lottos);
+            Lotto winningLotto = askWinningNumber();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -39,10 +41,25 @@ public class Application {
         return lottos;
     }
 
-    private static void printLottos(List<Lotto> lottos) {
+    public static void printLottos(List<Lotto> lottos) {
         System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.toString());
         }
     }
+
+    public static Lotto askWinningNumber() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        String[] splited = Console.readLine().split(",");
+        ArrayList<Integer> numbers = new ArrayList<>();
+        for (String s : splited) {
+            try {
+                numbers.add(Integer.parseInt(s));
+            } catch(NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+            }
+        }
+        return new Lotto(numbers);
+    }
+
 }

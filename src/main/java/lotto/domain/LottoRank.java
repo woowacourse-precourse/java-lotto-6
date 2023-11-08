@@ -20,7 +20,6 @@ public enum LottoRank {
     public int numberMatches() {
         return this.numberMatches;
     }
-
     public int price() {
         return this.price;
     }

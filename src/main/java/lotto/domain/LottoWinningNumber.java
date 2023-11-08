@@ -8,6 +8,14 @@ public class LottoWinningNumber {
 
     public LottoWinningNumber() {}
 
+    public List<Integer> getNumbers() {
+        return this.lotto.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return this.bonusNumber;
+    }
+
     public void setLotto(Lotto lotto) {
         validateDuplication(lotto);
         this.lotto = lotto;
@@ -36,13 +44,5 @@ public class LottoWinningNumber {
         if (lotto.getNumbers().contains(this.bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return this.lotto.getNumbers();
-    }
-
-    public int getBonusNumber() {
-        return this.bonusNumber;
     }
 }

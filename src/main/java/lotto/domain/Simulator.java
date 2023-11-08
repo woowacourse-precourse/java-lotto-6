@@ -12,6 +12,14 @@ public class Simulator {
         initializeLottoRankResult();
     }
 
+    public Map<LottoRank, Integer> getLottoRankResult() {
+        return this.lottoRankResult;
+    }
+
+    public float getRateOfReturn() {
+        return this.rateOfReturn;
+    }
+
     private void initializeLottoRankResult() {
         for (LottoRank lottoRankValue : LottoRank.values()) {
             this.lottoRankResult.put(lottoRankValue, 0);
@@ -77,13 +85,5 @@ public class Simulator {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + this.lottoRankResult.get(LottoRank.SECOND) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + this.lottoRankResult.get(LottoRank.FIRST) + "개");
         System.out.println("총 수익률은 " + this.rateOfReturn + "%입니다.");
-    }
-
-    public Map<LottoRank, Integer> getLottoRankResult() {
-        return this.lottoRankResult;
-    }
-
-    public float getRateOfReturn() {
-        return this.rateOfReturn;
     }
 }

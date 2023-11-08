@@ -1,9 +1,9 @@
-package service;
+package lotto.service;
 
-import exception.Exception;
-import model.Money;
-import view.InputView;
-import view.OutputView;
+import lotto.exception.Exception;
+import lotto.model.Money;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class MoneyService {
 

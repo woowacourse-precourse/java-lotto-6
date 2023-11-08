@@ -1,16 +1,16 @@
-package controller;
+package lotto.controller;
 
 import lotto.Utils;
-import model.Lotto;
-import model.LottoGame;
-import model.Money;
-import model.WinningLotto;
-import service.LottoService;
-import service.MoneyService;
-import view.OutputView;
+import lotto.model.Lotto;
+import lotto.model.LottoGame;
+import lotto.model.Money;
+import lotto.model.WinningLotto;
+import lotto.service.LottoService;
+import lotto.service.MoneyService;
+import lotto.view.OutputView;
 import java.util.Map;
 
-import static model.LottoUtils.LOTTO_PRICE;
+import static lotto.model.LottoUtils.LOTTO_PRICE;
 
 public class LottoGameController {
 

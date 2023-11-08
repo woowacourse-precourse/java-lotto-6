@@ -1,10 +1,10 @@
-package service;
+package lotto.service;
 
-import exception.Exception;
-import model.Lotto;
-import model.WinningLotto;
-import view.InputView;
-import view.OutputView;
+import lotto.exception.Exception;
+import lotto.model.Lotto;
+import lotto.model.WinningLotto;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoService {
 

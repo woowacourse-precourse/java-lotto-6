@@ -1,12 +1,11 @@
 package lotto;
 
-import model.Lotto;
-import model.LottoGame;
-import model.WinningLotto;
+import lotto.model.Lotto;
+import lotto.model.LottoGame;
+import lotto.model.WinningLotto;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

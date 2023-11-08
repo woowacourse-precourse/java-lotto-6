@@ -1,4 +1,4 @@
-package exception;
+package lotto.exception;
 
 public enum ExceptionMessage {
     INVALID_MONEY_RANGE_MESSAGE("[ERROR] 로또 구입 금액은 1,000원 이상 1,000,000,000원 이하여야 합니다."),

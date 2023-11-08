@@ -1,8 +1,6 @@
-package model;
+package lotto.model;
 
-import static model.LottoUtils.LOTTO_PRICE;
-
-import exception.Exception;
+import lotto.exception.Exception;
 
 public class Money {
 
@@ -54,17 +52,17 @@ public class Money {
     }
 
     void validateMoneyDividedTByThousand(int money) {
-        if (money % LOTTO_PRICE != 0) {
+        if (money % LottoUtils.LOTTO_PRICE != 0) {
             Exception.raiseMoneyNotDevidedByThousandException();
         }
     }
 
     boolean canPurchaseLotto() {
-        return money >= LOTTO_PRICE;
+        return money >= LottoUtils.LOTTO_PRICE;
     }
 
     void purchaseLotto() {
-        money -= LOTTO_PRICE;
+        money -= LottoUtils.LOTTO_PRICE;
     }
 
     public int getCost() {

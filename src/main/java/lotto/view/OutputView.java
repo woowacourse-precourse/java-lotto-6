@@ -1,10 +1,10 @@
-package view;
+package lotto.view;
 
-import static model.LottoUtils.*;
+import static lotto.model.LottoUtils.*;
 
 import java.util.List;
 import java.util.Map;
-import model.Lotto;
+import lotto.model.Lotto;
 
 public class OutputView {
 

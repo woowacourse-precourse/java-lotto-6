@@ -1,9 +1,9 @@
-package model;
+package lotto.model;
 
-import static model.LottoUtils.FIRST_PRIZE;
-import static model.LottoUtils.SECOND_PRIZE;
+import static lotto.model.LottoUtils.FIRST_PRIZE;
+import static lotto.model.LottoUtils.SECOND_PRIZE;
 
-import exception.Exception;
+import lotto.exception.Exception;
 import java.util.List;
 
 public class WinningLotto extends Lotto {

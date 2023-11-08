@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import lotto.constant.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

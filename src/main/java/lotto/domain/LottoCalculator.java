@@ -5,7 +5,6 @@ import static lotto.constant.LottoInformation.LOTTO_PRICE;
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.Map;
-import lotto.constant.Prize;
 
 public class LottoCalculator {
     private final Map<Prize, Integer> result;

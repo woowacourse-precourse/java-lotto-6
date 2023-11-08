@@ -28,7 +28,8 @@ public class Lotto {
     private static void validateSameNumber(List<Integer> numbers) {
         Set<Integer> tempNumber = new HashSet<>(numbers);
         if (tempNumber.size() < numbers.size()) {
-            throw new IllegalArgumentException(ValidateErrorMessage.LOTTO_SAME_NUMBER_ERROR.getMessage());
+            throw new IllegalArgumentException(
+                    ValidateErrorMessage.LOTTO_SAME_NUMBER_ERROR.getMessage());
         }
     }
     public List<Integer> getNumbers() {

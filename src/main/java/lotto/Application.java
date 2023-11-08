@@ -12,10 +12,10 @@ public class Application {
     static Validator validator = Validator.getInstance();
     static Committee committee = Committee.getInstance();
 
-    static final int MONEY_UNIT=1000;
-    static final int NUM_OF_LOTTONUM=6;
-    static final int START_NUM=1;
-    static final int END_NUM=45;
+    static final int MONEY_UNIT = 1000;
+    static final int NUM_OF_LOTTONUM = 6;
+    static final int START_NUM = 1;
+    static final int END_NUM = 45;
 
     public static void main(String[] args) {
         int price = setPrice();
@@ -24,9 +24,9 @@ public class Application {
         outputView.printIssueNumbers(issueNumbers, count);
         Lotto lotto = setWinningNumbers();
         int bonusNumber = setBonusNumber(lotto);
-        int[] sameNumberCount = committee.calculateResult(issueNumbers, lotto, bonusNumber);
-        outputView.printResult(sameNumberCount);
-        float rate = committee.calculateRate(sameNumberCount, price);
+        committee.calculateResult(issueNumbers, lotto, bonusNumber);
+        outputView.printResult();
+        float rate = committee.calculateRate(price);
         outputView.printRate(rate);
     }
 

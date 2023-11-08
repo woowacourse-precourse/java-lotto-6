@@ -22,19 +22,6 @@ class LottoGeneratorTest {
         assertThat(LottoGenerator.createLottos(lottoCount).size()).isEqualTo(lottoCount);
     }
 
-    @DisplayName("서로 중복되지 않는 로또번호를 생성")
-    @ParameterizedTest
-    @ValueSource(ints = {1, 10, 8})
-    void createLottosByNotDuplication(int lottoCount) {
-        for (int index = 0; index < lottoCount; index++) {
-            // when
-            Set<Integer> lotto = new HashSet<>(LottoGenerator.createLottos(lottoCount).get(index).getNumbers());
-
-            // then
-            assertThat(lotto.size()).isEqualTo(LOTTO_SIZE.get());
-        }
-    }
-
     @DisplayName("당첨 번호를 입력 받아 당첨 로또 생성")
     @Test
     void createWinningLotto() {

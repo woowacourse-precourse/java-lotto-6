@@ -12,6 +12,8 @@ public class LottoGame {
         //parseToInt
         Integer ticketCount = ConvertingUtil.convertToTicket(userPrice);
 
+        OutputView.noticeTicketCount(ticketCount);
+
         //create Lottos
         Lottos randomLottos = Lottos.create(ticketCount);
 

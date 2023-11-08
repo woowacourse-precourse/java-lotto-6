@@ -14,9 +14,11 @@ public class LottoTotalPrice {
         this.price = convertStringToInt(price);
         this.numberOfPurchasedLotto = calculateNumberOfPurchasedLotto(this.price);
     }
+
     public int getNumberOfPurchasedLotto() {
         return numberOfPurchasedLotto;
     }
+
     public int getPrice() {
         return price;
     }
@@ -24,6 +26,7 @@ public class LottoTotalPrice {
     private Boolean isExceedZero(String inputPrice) {
         return convertStringToInt(inputPrice) > 0;
     }
+
     private int calculateNumberOfPurchasedLotto(int price) {
         validateUnit(price);
         int number = price / UNIT;
@@ -45,8 +48,9 @@ public class LottoTotalPrice {
             throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
         }
     }
+
     private void validateUnit(int inputPrice) {
-        if (inputPrice % UNIT != 0){
+        if (inputPrice % UNIT != 0) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNITS);
         }
     }
@@ -60,6 +64,7 @@ public class LottoTotalPrice {
     private boolean isStringEmpty(String price) {
         return price == null || price.isBlank();
     }
+
     private boolean isStringDigit(String price) {
         return price.chars().allMatch(Character::isDigit);
     }

@@ -20,7 +20,7 @@ public class Lotto {
     }
 
     private void validateRangeInteger(List<Integer> numbers) {
-        if(!isBetweenLottoRange(numbers)) {
+        if (!isBetweenLottoRange(numbers)) {
             throw new IllegalArgumentException("[ERROR]:값이 1~45사이여야 합니다");
         }
     }
@@ -59,7 +59,7 @@ public class Lotto {
 
     private void validateRange(String inputNumbers) {
         List<Integer> lottoNumber = convertStringListToIntegerList(convertStringToList(inputNumbers));
-        if(!isBetweenLottoRange(lottoNumber)) {
+        if (!isBetweenLottoRange(lottoNumber)) {
             throw new IllegalArgumentException("[ERROR]:값이 1~45사이여야 합니다");
         }
     }
@@ -67,14 +67,16 @@ public class Lotto {
     private void validateDuplicate(String randomNumbers) {
         List<Integer> lottoNumbers = convertStringListToIntegerList(convertStringToList(randomNumbers));
         boolean duplicated = lottoNumbers.stream().distinct().count() != lottoNumbers.size();
-        if(duplicated) {
+        if (duplicated) {
             throw new IllegalArgumentException("[ERROR]:중복된 값을 입력하면 안됩니다");
         }
     }
+
     private boolean isBetweenLottoRange(List<Integer> numbers) {
         return numbers.stream().allMatch(number ->
                 number >= 1 && number <= 45);
     }
+
     private List<String> convertStringToList(String numbers) {
         return List.of(numbers.split(","));
     }

@@ -11,9 +11,10 @@ public class LottoMachine {
         validate(randomNumbers);
         return randomNumbers;
     }
+
     private static void validate(List<Integer> randomNumbers) {
         boolean duplicated = randomNumbers.stream().distinct().count() != randomNumbers.size();
-        if(duplicated) {
+        if (duplicated) {
             getRandomNumbers();
         }
     }

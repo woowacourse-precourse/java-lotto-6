@@ -33,12 +33,14 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 48)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("로또 당첨 번호 입력 - 빈 값을 입력한 경우 예외 발생")
     @Test
     void checkInputIsNotEmpty() {
         assertThatThrownBy(() -> new Lotto(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("로또 당첨 번호 입력 - 띄어쓰기만 입력한 경우 예외 발생")
     @Test
     void checkInputIsSpace() {
@@ -70,6 +72,7 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,55"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("(문자열) 로또 번호에 숫자와 문자가 동시에 들어오면 예외가 발생한다.")
     @Test
     void createStringLottoByChar() {

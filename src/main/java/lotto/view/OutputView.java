@@ -12,9 +12,10 @@ public class OutputView {
     private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
 
     public static void printNumberOfPurchasedLotto(int numberOfPurchasedLotto) {
-        System.out.printf(NUMBER_OF_LOTTOS_PURCHASED_MESSAGE,numberOfPurchasedLotto);
+        System.out.printf(NUMBER_OF_LOTTOS_PURCHASED_MESSAGE, numberOfPurchasedLotto);
         System.out.println();
     }
+
     public static void printLottosList(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getLotto());
@@ -28,6 +29,7 @@ public class OutputView {
             System.out.println(winningHistory.getStaticsMessage(winningHistories.get(winningHistory)));
         }
     }
+
     public static void printRateOfReturn(String rate) {
         System.out.printf(RATE_OF_RETURN_MESSAGE, rate);
     }

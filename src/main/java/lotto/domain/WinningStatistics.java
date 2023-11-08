@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 public class WinningStatistics {
     private final HashMap<Rank, Integer> winningHistory;
     private double totalPrizeMoney;
+
     //초기화
     public WinningStatistics() {
         this.winningHistory = new HashMap<>() {{
@@ -27,7 +28,7 @@ public class WinningStatistics {
 
     public void calculateNumberOfWins(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
         for (Lotto lotto : lottos) {
-            increaseWinningHistoryType(getMatchNumbers(lotto,winningNumbers), isMatchBonusNumber(lotto,bonusNumber));
+            increaseWinningHistoryType(getMatchNumbers(lotto, winningNumbers), isMatchBonusNumber(lotto, bonusNumber));
         }
     }
 
@@ -41,7 +42,7 @@ public class WinningStatistics {
         totalPrizeMoney += prizeMoney;
     }
 
-    private Boolean isMatchBonusNumber( Lotto lotto,int bonusNumber) {
+    private Boolean isMatchBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.getLotto().contains(bonusNumber);
     }
 
@@ -53,7 +54,7 @@ public class WinningStatistics {
 
     public String calculateRateOfReturn(int price) {
         totalPrizeMoney *= 1.0;
-        return roundTwoDecimalPlaces((totalPrizeMoney/price) * 100);
+        return roundTwoDecimalPlaces((totalPrizeMoney / price) * 100);
     }
 
     private String roundTwoDecimalPlaces(double rate) {

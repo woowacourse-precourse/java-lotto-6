@@ -17,19 +17,18 @@ public class Exception {
         try {
             amount = Integer.parseInt(totalAmount);
         } catch (NumberFormatException e) {
-            throwIllegalArgument(message);
-        } finally {
-            return amount;
+            System.out.println(message);
+            throw new IllegalArgumentException();
         }
+        return amount;
     }
 
     public boolean checkAmount(int totalAmount, boolean correctAmount, String message) {
         if (totalAmount % Constants.LOTTOPRICE != 0) {
-            throwIllegalArgument(message);
-            return correctAmount;
+            System.out.println(message);
+            throw new IllegalArgumentException();
         }
-        correctAmount = true;
-        return correctAmount;
+        return !correctAmount;
     }
 
     public List<Integer> checkNumbers(String lottoNumbers) {
@@ -37,8 +36,8 @@ public class Exception {
         for (String str : lottoNumbers.split(",")) {
             int number = checkInt(str, message);
             if (number < 1 || number > 45 || numbers.contains(number)) {
-                System.out.println(throwIllegalArgument(message));
-                return numbers;
+                System.out.println(message);
+                throw new IllegalArgumentException();
             }
             numbers.add(number);
         }
@@ -46,9 +45,10 @@ public class Exception {
     }
 
     public List<Integer> checkLength(List<Integer> numbers) {
+        String message = "[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자를 공백없이 쉼표로 구분하여 입력해주세요.";
         if (numbers.size() != 6) {
-            String message = "[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자를 공백없이 쉼표로 구분하여 입력해주세요.";
-            System.out.println(throwIllegalArgument(message));
+            System.out.println(message);
+            throw new IllegalArgumentException();
         }
         return numbers;
     }
@@ -57,19 +57,9 @@ public class Exception {
         String message = "[ERROR] 당첨 번호와 중복되지 않는 1부터 45 사이의 숫자 1개를 입력해주세요.";
         int bonusNumber = checkInt(bonus, message);
         if (winningNumber.contains(bonusNumber) || bonusNumber < 1 || bonusNumber > 45) {
-            System.out.println(throwIllegalArgument(message));
-            return 0;
+            System.out.println(message);
+            throw new IllegalArgumentException();
         }
         return bonusNumber;
-    }
-
-    public String throwIllegalArgument(String message) {
-        try {
-            throw new IllegalArgumentException();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } finally {
-            return message;
-        }
     }
 }

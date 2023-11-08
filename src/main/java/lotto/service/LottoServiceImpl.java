@@ -57,4 +57,10 @@ public class LottoServiceImpl implements LottoService {
                         .toList()
         );
     }
+
+    @Override
+    public int drawBonusNumber(String number) {
+        LottoNumbersValidator.validateInteger(number);
+        return Integer.parseInt(number);
+    }
 }

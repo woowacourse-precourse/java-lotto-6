@@ -6,4 +6,5 @@ import lotto.domain.Lottos;
 public interface LottoService {
     Lottos buyLottos(String payment);
     Lotto drawWinningNumbers(String numbers);
+    int drawBonusNumber(String number);
 }

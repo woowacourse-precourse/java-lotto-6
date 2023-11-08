@@ -19,7 +19,7 @@ public class User {
     public User (int payment) {
         this.payment = payment;
         this.lottos = Lotto.publish(payment);
-        this.totalResult = Arrays.stream(values()).collect(Collectors.toMap(Enum::name, value->0));
+        this.totalResult = Arrays.stream(values()).collect(Collectors.toMap(ResultConfig::getCount, value->0));
     }
 
     public void processCheckResult (String count, boolean getBonus) {
@@ -39,4 +39,5 @@ public class User {
                 ", totalResult=" + totalResult +
                 '}';
     }
+
 }

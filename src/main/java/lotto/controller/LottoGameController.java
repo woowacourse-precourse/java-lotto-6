@@ -13,22 +13,31 @@ public class LottoGameController {
     private int purchaseCount;
     private List<Integer> winningNumbers;
     private String bonusNumber;
+    private boolean isGameOver = false;
 
     public void playGame() {
-        try {
-            inputLottoPurchaseAmount();
-            setLottoPurchaseCount();
-            printPurchaseQuantity();
-            generateLottoTicket();
-            printPurchasedLottoNumbers();
-            setWinningNumbers();
-            setBonusNumber();
-            updateWinningCount();
-            printWinningStatistics();
-            printProfitRatio();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        printStartMessage();
+        while (!isGameOver) {
+            try {
+                inputLottoPurchaseAmount();
+                setLottoPurchaseCount();
+                printPurchaseQuantity();
+                generateLottoTicket();
+                printPurchasedLottoNumbers();
+                setWinningNumbers();
+                setBonusNumber();
+                updateWinningCount();
+                printWinningStatistics();
+                printProfitRatio();
+                gameOver();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
+    }
+
+    public void printStartMessage() {
+        inputView.printInputPurchaseAmountMessage();
     }
 
     public void inputLottoPurchaseAmount() {
@@ -83,5 +92,9 @@ public class LottoGameController {
     public void printProfitRatio() {
         outputView.printProfitRatio(lottoGameService.calculateProfitRate(
                 purchaseAmount, lottoGameService.getLottoRakingMap()));
+    }
+
+    public void gameOver() {
+        isGameOver = true;
     }
 }

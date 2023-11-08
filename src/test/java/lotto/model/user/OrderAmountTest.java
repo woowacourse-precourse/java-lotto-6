@@ -31,4 +31,11 @@ class OrderAmountTest {
         assertThatThrownBy(() -> new OrderAmount("letter"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("구입 금액 입력시 1000원 단위의 숫자가 아니라면 예외가 발생한다.")
+    void createOrderAmountByNotMultipleOf1000(){
+        assertThatThrownBy(() -> new OrderAmount("1234"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

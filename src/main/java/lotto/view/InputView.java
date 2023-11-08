@@ -4,6 +4,8 @@ import static lotto.constant.ViewConstant.COMMA;
 import static lotto.constant.ViewConstant.INPUT_BONUS_NUMBER_MENT;
 import static lotto.constant.ViewConstant.INPUT_FEE_MENT;
 import static lotto.constant.ViewConstant.INPUT_WINNER_NUMBERS_MENT;
+import static lotto.exception.Message.INPUT_BONUS_NUMBERS_ERROR;
+import static lotto.exception.Message.INPUT_LOTTO_NUMBERS_ERROR;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +22,7 @@ public class InputView {
             System.out.println(INPUT_FEE_MENT);
             return Long.parseLong(consoleService.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 잘못되었습니다. 번호를 다시 입력해주세요!");
+            throw new IllegalArgumentException(INPUT_LOTTO_NUMBERS_ERROR);
         }
     }
 
@@ -34,7 +36,7 @@ public class InputView {
             System.out.println(INPUT_BONUS_NUMBER_MENT);
             return Integer.parseInt(consoleService.readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 잘못되었습니다. 번호를 다시 입력해주세요!");
+            throw new IllegalArgumentException(INPUT_BONUS_NUMBERS_ERROR);
         }
     }
 }

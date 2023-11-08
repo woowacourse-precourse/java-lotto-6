@@ -29,4 +29,8 @@ public enum Rank {
     public int getPrizeMoney() {
         return prizeMoney;
     }
+
+    public boolean isMatchBonus() {
+        return matchBonus;
+    }
 }

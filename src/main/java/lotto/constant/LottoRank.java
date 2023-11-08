@@ -30,18 +30,17 @@ public enum LottoRank {
 
     public static LottoRank getRank(int sameCount, boolean isBonus) {
         for (LottoRank rank : values()) {
-            if (sameCount <= NO_LUCK.sameCount) {
+            if (sameCount <= NO_LUCK.sameCount)
                 return NO_LUCK;
-            }
-            if (sameCount == rank.sameCount && rank.bonusStatus == NOT_AFFECTED) {
+
+            if (sameCount == rank.sameCount && rank.bonusStatus == NOT_AFFECTED)
                 return rank;
-            }
-            if (sameCount == rank.sameCount && rank.bonusStatus == MUST_BE_DIFFERENT && !isBonus) {
+
+            if (sameCount == rank.sameCount && rank.bonusStatus == MUST_BE_DIFFERENT && !isBonus)
                 return rank;
-            }
-            if (sameCount == rank.sameCount && rank.bonusStatus == MUST_BE_SAME && isBonus) {
+
+            if (sameCount == rank.sameCount && rank.bonusStatus == MUST_BE_SAME && isBonus)
                 return rank;
-            }
         }
         throw new IllegalArgumentException(ENTER_PROPER_SAME_COUNT);
     }

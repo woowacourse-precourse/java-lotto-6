@@ -12,6 +12,7 @@ public class WinningNumbersValidator {
         List<String> winningSixNumbers = List.of(winningNumbers.split(","));
         winningNumbersSix(winningSixNumbers);
         winningNumberNotNull(winningSixNumbers);
+        winningNumberRange(winningSixNumbers);
         winningNumberUnique(winningSixNumbers);
     }
 
@@ -47,11 +48,19 @@ public class WinningNumbersValidator {
         }
     }
 
+    public static void winningNumberRange(List<String> winningSixNumbers) {
+        for (String winningNumber : winningSixNumbers) {
+            if (!winningNumber.matches("([1-9]|[1-3][0-9]|4[0-5])")) {
+                throw new IllegalArgumentException("[ERROR] 1부터 45까지의 수를 입력해주세요.");
+            }
+        }
+    }
+
     public static void winningNumberUnique(List<String> winningSixNumbers) {
         Set<String> uniqueWinningNumbers = new HashSet<>();
         for (String name : winningSixNumbers) {
             if (!uniqueWinningNumbers.add(name)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자를 사용하면 안됩니다");
+                throw new IllegalArgumentException("[ERROR] 중복된 숫자를 사용하면 안됩니다.");
             }
         }
 

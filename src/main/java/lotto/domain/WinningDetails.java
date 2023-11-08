@@ -63,4 +63,15 @@ public class WinningDetails {
         }
         return rankingCount;
     }
+
+    public static double findReturns(int ticketCount, int[] statistics) {
+        double ret = 0.0;
+        ret += rankingCount[1] * 2000000000;
+        ret += rankingCount[2] * 30000000;
+        ret += rankingCount[3] * 1500000;
+        ret += rankingCount[4] * 50000;
+        ret += rankingCount[5] * 5000;
+
+        return ret / ticketCount;
+    }
 }

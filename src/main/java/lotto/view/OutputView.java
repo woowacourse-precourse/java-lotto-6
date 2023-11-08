@@ -33,9 +33,15 @@ public class OutputView {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankings[2] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + rankings[1] + "개");
     }
-    
+
     private static void printResultMessage() {
         System.out.println("당첨 통계");
         System.out.println("--");
+    }
+
+    public static void printReturns(double returns) {
+        System.out.print("총 수익률은 ");
+        System.out.print(Math.round(returns * 100) / 100.0);
+        System.out.println("%입니다.");
     }
 }

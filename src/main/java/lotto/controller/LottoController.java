@@ -46,6 +46,9 @@ public class LottoController {
         int[] statistics = WinningDetails.findStatistics(rankings);
         OutputView.printResultByRanking(statistics);
 
+        double returns = WinningDetails.findReturns(ticketCount, statistics);
+        OutputView.printReturns(returns);
+
     }
 
     private void initializeLottos(int ticketCount) {

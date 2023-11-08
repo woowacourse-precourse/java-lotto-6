@@ -23,7 +23,6 @@ public class LottoManager {
     public void startLottoService() {
         purchaseLotto(); //로또 구매하기
         generateLotto(); //로또 생성하기
-
     }
 
     private void purchaseLotto() {
@@ -49,7 +48,10 @@ public class LottoManager {
         return purchaseAmount;
     }
 
-    private void generateLotto(){
+    private void generateLotto() {
         lottoCollection = lottoGenerator.generate(lottoCount);
+        for (Lotto lotto : lottoCollection) {
+            OutputView.printLottoNumbers(lotto.getLottoNumbers());
+        }
     }
 }

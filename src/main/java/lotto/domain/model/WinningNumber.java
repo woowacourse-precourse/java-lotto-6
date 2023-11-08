@@ -28,7 +28,7 @@ public class WinningNumber {
         Set<Integer> duplicateChecker = new HashSet<>(regularWinningNumbers);
 
         if (!duplicateChecker.add(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_CONTAIN_BONUS_NUMBER_IN_WINNING_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR_CONTAIN_BONUS_NUMBER_IN_WINNING_NUMBER);
         }
     }
 

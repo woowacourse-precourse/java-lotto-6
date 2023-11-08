@@ -11,8 +11,9 @@ import org.junit.jupiter.api.Test;
 
 class PurchasedLottosTest {
     LottoGenerator lottoGenerator;
+
     @BeforeEach
-    void setUp(){
+    void setUp() {
         List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
         lottoGenerator = new TestLottoGenerator(validNumbers);
     }

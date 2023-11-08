@@ -1,12 +1,10 @@
 package lotto.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.List;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,7 +56,6 @@ class InputViewTest {
 
         assertThat(bonusNumber).isEqualTo(7);
     }
-
 
 
     @AfterEach

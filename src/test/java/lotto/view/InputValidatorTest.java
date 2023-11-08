@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -97,11 +96,11 @@ class InputValidatorTest {
 
     @Nested
     @DisplayName("당첨 번호와 보너스 번호 중복 여부 테스트")
-    class DuplicateTest{
+    class DuplicateTest {
 
         @DisplayName("당첨 번호와 보너스 번호 중복 여부 테스트")
         @Test
-        public void duplicateWithWinningNumbers(){
+        public void duplicateWithWinningNumbers() {
             List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
 
             assertThatThrownBy(() -> InputValidator.notInWinningNumbers(winningNumbers, 6))

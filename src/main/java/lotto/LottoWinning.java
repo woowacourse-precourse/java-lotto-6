@@ -1,15 +1,52 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class LottoWinning {
 
-    private List<Integer> winningNumbers;
-    private Integer bonusNumber;
+    private static int LOTTO_WINNING_NUM_MIN = 1;
+    private static int LOTTO_WINNING_NUM_MAX = 45;
+    private static int LOTTO_WINNING_NUMS = 6;
 
-    public LottoWinning(List<Integer> winningNumbers, Integer bonusNumber) {
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
+
+    public LottoWinning(List<Integer> winningNumbers, int bonusNumber) {
+        validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
+        validateBonusNumber(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 " + LOTTO_WINNING_NUMS + " 자리입니다.");
+        }
+        if (new HashSet<Integer>(winningNumbers).size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호에 중복되는 숫자가 사용되었습니다.");
+        }
+        int numberOfValidElements =
+                (int)winningNumbers.stream()
+                        .filter(n -> n <= LOTTO_WINNING_NUM_MAX && n >= LOTTO_WINNING_NUM_MIN)
+                        .count();
+        if (numberOfValidElements != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호에 유효하지 않은 숫자가 사용되었습니다.");
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber > LOTTO_WINNING_NUM_MAX || bonusNumber < LOTTO_WINNING_NUM_MIN) {
+            throw new IllegalArgumentException("[ERROR] 로또 보너스 당첨 번호에 유효하지 않은 숫자가 사용되었습니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 로또 보너스 당첨 번호와 로또 당첨 번호가 중복됩니다.");
+        }
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

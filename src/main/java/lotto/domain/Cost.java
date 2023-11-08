@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.global.constants.NumberType.COST_UNIT;
+import static lotto.view.ui.Output.printlnMessage;
 
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
@@ -16,6 +17,7 @@ public class Cost {
         try {
             Validator.validate(cost);
         } catch (IllegalArgumentException e) {
+            printlnMessage(e.getMessage());
             cost = CostRequestView.request();
         }
         this.cost = cost;

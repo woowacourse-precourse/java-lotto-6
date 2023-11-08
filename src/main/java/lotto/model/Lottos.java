@@ -25,4 +25,8 @@ public class Lottos {
         }
         return count;
     }
+
+    public boolean isMatchingBonusNumber(int index, int bonusNumber) {
+        return lottoNumbers.get(index).getNumbers().contains(bonusNumber);
+    }
 }

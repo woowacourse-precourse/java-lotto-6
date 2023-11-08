@@ -69,10 +69,13 @@ public class LotteryService {
     public void checkEachLottoMatch(Lotto toCheckLotto){
         int winningCount = checkPrizeNumberMatch(toCheckLotto);
 
-        if(winningCount == 5 && checkBonusNumberMatch(toCheckLotto)){
-            return;
+        if(winningCount == 5){
+            if(checkBonusNumberMatch(toCheckLotto)){
+                return;
+            }
         }
         prize.addPrize(7 - winningCount);
+        prize.calcTotalPrize(PrizeStandard.findPrize(winningCount).getWinningPrize());
     }
 
     public int checkPrizeNumberMatch(Lotto toCheckLotto){
@@ -91,8 +94,17 @@ public class LotteryService {
     public boolean checkBonusNumberMatch(Lotto toCheckLotto){
         if(toCheckLotto.getNumbers().contains(this.bonusNumber)) {
             prize.addPrize(0);
+            prize.calcTotalPrize(PrizeStandard.findPrize(5).getWinningPrize());
             return true;
         }
         return false;
+    }
+
+    public void checkTotalPrizeInfo(){
+        System.out.printf("%s %d개\n", Progress.FIFTH.getMessage(), this.prize.getTotalRankInfo().get(4));
+        System.out.printf("%s %d개\n", Progress.FOURTH.getMessage(), this.prize.getTotalRankInfo().get(3));
+        System.out.printf("%s %d개\n", Progress.THIRD.getMessage(), this.prize.getTotalRankInfo().get(2));
+        System.out.printf("%s %d개\n", Progress.SECOND.getMessage(), this.prize.getTotalRankInfo().get(0));
+        System.out.printf("%s %d개\n", Progress.FIRST.getMessage(), this.prize.getTotalRankInfo().get(1));
     }
 }

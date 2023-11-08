@@ -9,5 +9,6 @@ public class Application {
         doLotto.makeWinningNumber();
         doLotto.makeBonusNumber();
         doLotto.checkEveryLottoMatch();
+        doLotto.checkTotalPrizeInfo();
     }
 }

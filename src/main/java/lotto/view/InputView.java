@@ -11,26 +11,25 @@ public class InputView {
 
     private static final String NUMBER_DELIMITER = ",";
 
-    public InputView() {
-    }
-
-    public int readPurchaseAmount() {
-        int purchaseAmount = Integer.parseInt(readLine().trim());
-        return purchaseAmount;
+    public int readPurchaseAmount() throws NumberFormatException {
+        String input = readLine().trim();
+        validateEmptyValue(input);
+        return Integer.parseInt(input);
     }
 
     public List<Integer> readWinningNumbers() {
-        String numbers = readLine().trim();
-        validateEmptyValue(numbers);
-        List<Integer> winningNumbers = Arrays.stream(numbers.split(NUMBER_DELIMITER))
+        String input = readLine().trim();
+        validateEmptyValue(input);
+        List<Integer> winningNumbers = Arrays.stream(input.split(NUMBER_DELIMITER))
             .map(Integer::parseInt)
             .collect(Collectors.toList());
         return winningNumbers;
     }
 
     public int readBonusNumber() {
-        int bonusNumber = Integer.parseInt(readLine());
-        return bonusNumber;
+        String input = readLine().trim();
+        validateEmptyValue(input);
+        return Integer.parseInt(input);
     }
 
     public void validateEmptyValue(String value) throws IllegalArgumentException{

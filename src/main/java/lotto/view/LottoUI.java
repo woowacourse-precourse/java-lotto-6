@@ -31,10 +31,17 @@ public class LottoUI {
     }
 
     private void isAmountValid(int amount) {
-        int count = amount / 1_000;
-        if (count == 0) {
+        if (canDivideByUnit(amount) || countBiggerThanZero(amount)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private static boolean countBiggerThanZero(int amount) {
+        return (amount / Constants.LOTTO_PURCHASE_UNIT) <= 0;
+    }
+
+    private static boolean canDivideByUnit(int amount) {
+        return (amount % Constants.LOTTO_PURCHASE_UNIT) != 0;
     }
 
     public void printLottoPurchase(int amount) {

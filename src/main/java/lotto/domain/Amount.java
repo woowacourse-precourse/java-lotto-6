@@ -28,4 +28,8 @@ public class Amount {
             throw AmountException.UNIT_EXCEPTION.getException();
         }
     }
+
+    public int getLottoCount() {
+        return value / ONE_LOTTO_PRICE;
+    }
 }

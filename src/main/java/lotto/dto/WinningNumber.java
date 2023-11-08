@@ -19,6 +19,7 @@ public class WinningNumber {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         validInRangeNumber(winningNumber);
+        validateLottoLength(winningNumber);
         validateDuplicateNumber(winningNumber);
     }
 

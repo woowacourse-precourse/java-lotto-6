@@ -1,8 +1,6 @@
 package lotto.util;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
-import java.util.List;
 
 public class Util {
     public static final int LOTTO_PRICE = 1000;
@@ -12,10 +10,6 @@ public class Util {
 
     public static int getLottoCount(int totalAmount) {
         return totalAmount / LOTTO_PRICE;
-    }
-
-    public static List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(START_RANGE, END_RANGE, LOTTO_SIZE);
     }
 
     public static String formatCurrency(int amount) {

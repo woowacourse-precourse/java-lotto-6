@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static final String ERROR_PROMPT = "[ERROR] ";
+    public static final String ERROR_PROMPT = "[ERROR] ";
     private static final String COMMA = ",";
 
     public int requestLottoPurchase() {

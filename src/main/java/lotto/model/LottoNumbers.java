@@ -1,6 +1,8 @@
 package lotto.model;
 
 import lotto.util.RandomNumberGenerator;
+
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -12,7 +14,6 @@ public class LottoNumbers {
 
     public static List<Integer> setLottoNumbers() {
         List<Integer> lottoNumbers = randomNumberGenerator.generateRandomUniqueNumbers(LOTTO_NUMBER_COUNT);
-        lottoNumbers.sort(Comparator.naturalOrder());
         return lottoNumbers;
     }
 }

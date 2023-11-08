@@ -34,15 +34,15 @@ public class OutputView {
     }
 
     public void printLottoPurchaseCountMessage(int LottoPurchaseCount) {
-        System.out.println(LottoPurchaseCount + LOTTO_PURCHASE_COUNT_MESSAGE);
+        System.out.println(LINE_SPACE + LottoPurchaseCount + LOTTO_PURCHASE_COUNT_MESSAGE);
     }
 
     public void printWinningNumbersInputMessage() {
-        System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
+        System.out.println(LINE_SPACE + WINNING_NUMBERS_INPUT_MESSAGE);
     }
 
     public void printBonusNumberInputMessage() {
-        System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+        System.out.println(LINE_SPACE + BONUS_NUMBER_INPUT_MESSAGE);
     }
 
     public void printLottoPurchasedNumber(List<Integer> numbers) {
@@ -50,7 +50,7 @@ public class OutputView {
     }
 
     public void printLottoStatics(HashMap<WinningCriteria, Integer> winningRecords, double rateOfReturn) {
-        System.out.println(LOTTO_STATISTICS);
+        System.out.println(LINE_SPACE + LOTTO_STATISTICS);
         for (WinningCriteria currentRank : orderPrintRank) {
             printRankStatics(
                     rankMessages.get(currentRank),

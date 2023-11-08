@@ -15,7 +15,7 @@ public class CorrectLotto {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public int countComma(String input_numbers){
+    private int countComma(String input_numbers){
         int count = 0;
         for(int i = 0; i < input_numbers.length(); i++){
             if(input_numbers.charAt(i) == ',')
@@ -25,14 +25,14 @@ public class CorrectLotto {
     }
 
     // 입력값이 없는 부분이 있는지 확인
-    public void checkEmptyPart(int expect, int size){
+    private void checkEmptyPart(int expect, int size){
         if(expect != size){
             throw new IllegalArgumentException("입력값이 없는 부분이 있습니다. 6개의 당첨 번호를 입력해 주세요.");
         }
     }
 
     // 입력값이 숫자인지 확인하여 변환
-    public int IsInteger(String number){
+    private int IsInteger(String number){
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e){
@@ -40,7 +40,7 @@ public class CorrectLotto {
         }
     }
 
-    public List<Integer> convertStringToInteger(String input_numbers){
+    private List<Integer> convertStringToInteger(String input_numbers){
         String[] numbers = input_numbers.split(",");
         checkEmptyPart(countComma(input_numbers) + 1, numbers.length);
 

@@ -15,4 +15,11 @@ public class Game {
         this.money = Integer.parseInt(Console.readLine());
         this.count = this.money/1000;
     }
+
+    private void generate(){
+        System.out.println(this.count+"개를 구매했습니다.");
+        for(int i=0;i<this.count;i++){
+            //로또 생성
+        }
+    }
 }

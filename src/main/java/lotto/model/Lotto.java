@@ -27,17 +27,17 @@ public class Lotto {
         return Result.checkResult(matchWinningNumbers, isMatchBonus);
     }
 
-    private boolean isMatchBonusNumber(GameNumbers gameNumbers) {
+    private boolean isMatchBonusNumber(final GameNumbers gameNumbers) {
         return numbers.contains(gameNumbers.getBonusNumber().toInt());
     }
 
-    private int caculateMatchWinningNumber(GameNumbers gameNumbers) {
+    private int caculateMatchWinningNumber(final GameNumbers gameNumbers) {
         return (int) numbers.stream()
                 .filter(gameNumbers::isContainWinningNumber)
                 .count();
     }
 
-    private void validateDuplicate(List<Integer> numbers) {
+    private void validateDuplicate(final List<Integer> numbers) {
         Set<Integer> distinctNumbers = new HashSet<>(numbers);
         if (numbers.size() != distinctNumbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR.getErrorMessage());

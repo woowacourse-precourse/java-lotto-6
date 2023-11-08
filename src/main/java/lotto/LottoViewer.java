@@ -63,15 +63,21 @@ public class LottoViewer {
     }
 
     void printProfitResult(double profit){
-        System.out.println(String.format("총 수익률은 %.1f%% 입니다.", profit));
+        System.out.printf("총 수익률은 %.1f%% 입니다.\n", profit);
     }
 
     void printLottoResult(Map<Integer, Integer> lotteryResult){
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for(LottoVariables lottoVariables: LottoVariables.values())
-            printLottoResult(lottoVariables, lotteryResult.get(lottoVariables.getPrice()));
+        printLottoResult(LottoVariables.LOTTO_FIFTH, lotteryResult.get(LottoVariables.LOTTO_FIFTH.getPrice()));
+        printLottoResult(LottoVariables.LOTTO_FOURTH, lotteryResult.get(LottoVariables.LOTTO_FOURTH.getPrice()));
+        printLottoResult(LottoVariables.LOTTO_THIRD, lotteryResult.get(LottoVariables.LOTTO_THIRD.getPrice()));
+        printLottoResult(LottoVariables.LOTTO_SECOND, lotteryResult.get(LottoVariables.LOTTO_SECOND.getPrice()));
+        printLottoResult(LottoVariables.LOTTO_FIRST, lotteryResult.get(LottoVariables.LOTTO_FIRST.getPrice()));
+
+//        for(LottoVariables lottoVariables: LottoVariables.values())
+//            printLottoResult(lottoVariables, lotteryResult.get(lottoVariables.getPrice()));
     }
 
     void printLottoResult(LottoVariables lottoVariables, int N){

@@ -30,7 +30,7 @@ public class Calculator {
 
     private Long sumTotalPrize(Map<Rank, Integer> winningResult) {
         return winningResult.entrySet().stream()
-                .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }
 

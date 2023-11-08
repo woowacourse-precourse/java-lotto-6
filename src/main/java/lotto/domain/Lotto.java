@@ -1,13 +1,13 @@
-package lotto;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static lotto.ErrorMessage.INVALID_SIZE_ERROR;
-import static lotto.ErrorMessage.INVALID_RANGE_ERROR;
-import static lotto.ErrorMessage.DUPLICATE_NUMBER_ERROR;
+import static lotto.view.ErrorMessage.INVALID_SIZE_ERROR;
+import static lotto.view.ErrorMessage.INVALID_RANGE_ERROR;
+import static lotto.view.ErrorMessage.DUPLICATE_NUMBER_ERROR;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;

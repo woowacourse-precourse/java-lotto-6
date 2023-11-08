@@ -32,7 +32,7 @@ public class GameController {
         validateWinningLotto(numbers,bonusNumber);
 
         model.createWinningResult(model.findAllLottos(), model.findWinningLotto());
-        printWinningStatistics(model.findWinningResult(), purchaseAmount);
+        printWinningStatistics(model.findWinningResult(), model.findPurchaseCount()*1000);
     }
 
     private int getPurchaseAmount(String lottPurchaseAmount) {

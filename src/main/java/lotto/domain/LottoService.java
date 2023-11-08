@@ -26,6 +26,7 @@ public class LottoService {
     private final static int THIRD_RANKING_PRIZE = 1500000;
     private final static int FOURTH_RANKING_PRIZE = 50000;
     private final static int FIFTH_RANKING_PRIZE = 5000;
+    private final static int MAKE_PERCENT = 100;
 
 
     private final LottoRepository lottoRepository;
@@ -131,7 +132,7 @@ public class LottoService {
 
     public float getReturnRate(WinningResult winningResult, int purchaseAmount) {
         int totalReturn = calculateTotalReturn(winningResult);
-        return (float) totalReturn / purchaseAmount * 100;
+        return (float) totalReturn / purchaseAmount * MAKE_PERCENT;
     }
 
     private int calculateTotalReturn(WinningResult winningResult) {

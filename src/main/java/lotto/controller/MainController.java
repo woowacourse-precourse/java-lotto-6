@@ -26,17 +26,16 @@ public class MainController {
         final UserLotto userLotto = new UserLotto(buyLotto(amount));
         outputView.printUserLotto(userLotto.getMyLotto());
 
-        final WinningLotto winningLotto = new WinningLotto(
-                inputView.inputWinningLotto(), inputView.inputBonusNumber());
+        final WinningLotto winningLotto = new WinningLotto(inputView.inputWinningLotto(), inputView.inputBonusNumber());
         final List<Prize> prizes = winningLotto.calculateTotalPrize(userLotto.getMyLotto());
-        PrizeStorage prizeStorage = new PrizeStorage(prizes);
-        List<Integer> prizeCount = prizeStorage.getPrizeCount();
+        final PrizeStorage prizeStorage = new PrizeStorage(prizes);
+        final List<Integer> prizeCount = prizeStorage.getPrizeCount();
 
-        double TotalReturn = (getTotalReturn(prizes) / amount) * 100;
-        outputView.printWinningStatistics(prizeCount, TotalReturn);
+        double profitRate = calculateProfitRate(prizes, amount);
+        outputView.printWinningStatistics(prizeCount, profitRate);
     }
 
-    public List<Lotto> buyLotto(int amount) {
+    private List<Lotto> buyLotto(int amount) {
         int lottoCount = amount / Constants.LOTTO_PRICE;
         final List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
@@ -45,14 +44,15 @@ public class MainController {
         return lotto;
     }
 
-    public Lotto getNewLotto() {
+    private Lotto getNewLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(
                 Constants.MIN_RANGE, Constants.MAX_RANGE, Constants.LOTTO_SIZE));
     }
 
-    public double getTotalReturn(List<Prize> prizes) {
-        return prizes.stream()
+    private double calculateProfitRate(List<Prize> prizes, int amount) {
+        double totalPrizesMoney =  prizes.stream()
                 .mapToDouble(Prize::getPrizeMoney)
                 .sum();
+        return (totalPrizesMoney / amount) * 100;
     }
 }

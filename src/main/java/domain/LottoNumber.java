@@ -2,7 +2,7 @@ package domain;
 
 import exception.OutOfLottoNumberRangeException;
 
-public record LottoNumber(int lottoNumberValue) {
+public record LottoNumber(int lottoNumberValue) implements Comparable<LottoNumber> {
     public static final int MIN_LOTTO_NUMBER = 1;
     public static final int MAX_LOTTO_NUMBER = 45;
     public LottoNumber {
@@ -13,5 +13,10 @@ public record LottoNumber(int lottoNumberValue) {
 
     private static boolean isNotInLottoNumberRange(int lottoNumberValue) {
         return lottoNumberValue < MIN_LOTTO_NUMBER || MAX_LOTTO_NUMBER < lottoNumberValue;
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return Integer.compare(this.lottoNumberValue, o.lottoNumberValue);
     }
 }

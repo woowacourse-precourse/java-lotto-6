@@ -50,5 +50,7 @@ public class Game {
     public void DoIt(){
         start();
         generate();
+        userWinning();
+        userBonus();
     }
 }

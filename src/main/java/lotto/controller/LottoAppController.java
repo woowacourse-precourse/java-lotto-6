@@ -17,7 +17,7 @@ public class LottoAppController {
         while (true) {
             try {
                 printPurchasePrompt();
-                return new Budget(readLine());
+                return new Budget(readLine().trim());
             } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
@@ -28,9 +28,9 @@ public class LottoAppController {
         while (true) {
             try {
                 printWinningNumbersPrompt();
-                String numbersStr = readLine();
+                String numbersStr = readLine().trim();
                 printBonusNumberPrompt();
-                String bonusNumberStr = readLine();
+                String bonusNumberStr = readLine().trim();
 
                 return new WinningLotto(numbersStr, bonusNumberStr);
             } catch (Exception e) {

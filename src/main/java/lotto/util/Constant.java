@@ -10,6 +10,7 @@ public class Constant {
     public static final int PERCENT = 100;
     public static final String PERCENT_FORMAT = "%.1f";
     public static final int CHECK_BONUS_NUMBER = 7;
+    public static final int SECOND_GET_MATCH_COUNT = 5;
 
     public static final String COMMA = ",";
     public static final String REGEX_SPACE = "\\s";

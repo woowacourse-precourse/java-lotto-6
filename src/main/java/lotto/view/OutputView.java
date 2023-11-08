@@ -1,12 +1,17 @@
 package lotto.view;
 
+import java.util.List;
 import lotto.message.OutMessage;
+import lotto.model.Lotto;
 
 public class OutputView {
 
 
-    public void printNumberOfLotto(int numberOfLotto) {
-        System.out.printf(OutMessage.OUT_NUMBER_OF_LOTTO.getMessage(), numberOfLotto);
+    public void printNumberOfLotto(List<Lotto> lottos) {
+        System.out.println(String.format(OutMessage.OUT_NUMBER_OF_LOTTO.getMessage(), lottos.size()));
+        for (var lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public void printWinningStatics() {

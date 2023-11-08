@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.Money;
 import lotto.message.InputMessage;
 import lotto.util.Validator;
 

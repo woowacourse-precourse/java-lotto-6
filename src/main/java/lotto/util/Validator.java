@@ -8,7 +8,6 @@ public class Validator {
     public static void validateLottoPurchaseAmount(String money) {
         checkDivisibleByMoneyUnit(money);
         checkExistOfValue(money);
-        checkNumericInput(money);
         checkNegativeNumber(money);
     }
 
@@ -23,14 +22,6 @@ public class Validator {
         String input = inputValue.trim();
         if (input.isEmpty()) {
             throw new IllegalArgumentException(EXIST_OF_VALUE_ERROR.getMessage());
-        }
-    }
-
-    private int checkNumericInput(String inputValue) {
-        try {
-            return Integer.parseInt(inputValue);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMERIC_INPUT_ERROR.getMessage());
         }
     }
 

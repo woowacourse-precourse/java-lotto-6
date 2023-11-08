@@ -42,9 +42,15 @@ public class Game {
     }
 
     private void userBonus(){
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
-        this.bonus = Integer.parseInt(Console.readLine());
+        do{
+            System.out.println();
+            System.out.println("보너스 번호를 입력해 주세요.");
+            this.bonus = Integer.parseInt(Console.readLine());
+        }while(!checkRange());
+    }
+
+    private boolean checkRange(){
+        return (this.bonus >0 ) &(this.bonus<46);
     }
 
     private void initHash(){

@@ -6,6 +6,7 @@ import lotto.domain.Rank;
 import lotto.domain.User;
 import lotto.domain.WinningNumber;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -82,9 +83,13 @@ public class IOService {
     }
 
     private static void printProfit(User user) {
-        double profit =  (double)user.getTotalPrize() / 1000.0 / (double) (user.getLottoCnt());
-        profit = Math.round(profit * 1000) / 10.0;
-        System.out.println("총 수익률은 " + profit + "%입니다.");
+        long purchaseAmount = 1000 * user.getLottoCnt();
+
+        double profitRate = (user.getTotalPrize()) / (double) purchaseAmount * 100.0;
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");
+        String formattedProfitRate = decimalFormat.format(profitRate);
+
+        System.out.println("총 수익률은 " + formattedProfitRate + "%입니다.");
     }
 
     public static int scanPurchaseAmount() {

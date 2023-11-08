@@ -7,7 +7,6 @@ import static org.assertj.core.api.Assertions.tuple;
 import java.util.List;
 import lotto.model.dto.AnalyzerWinningStatistics;
 import lotto.model.lottonumbersgenerator.LottoNumbersGenerator;
-import lotto.model.stublottonumbersgenerator.CustomLottoNumbersGeneratorStub;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +18,7 @@ public class LottoBuyerTest {
 
     @BeforeEach
     void setUp() {
-        numbersGenerator = new CustomLottoNumbersGeneratorStub(List.of(1, 2, 3, 4, 5, 6));
+        numbersGenerator = () -> List.of(1, 2, 3, 4, 5, 6);
         lottoBuyer = new LottoBuyer();
     }
 

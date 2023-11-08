@@ -15,6 +15,7 @@ public class WinningResult {
     public Ranking match(Lotto playerNumber) {
         int countOfMatch = playerNumber.countMatch(lotto);
         boolean bonusCheck = playerNumber.containNumber(bonusball);
+
         return Ranking.valueOf(countOfMatch, bonusCheck);
     }
 }

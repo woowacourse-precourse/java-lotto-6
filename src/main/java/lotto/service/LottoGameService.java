@@ -34,6 +34,7 @@ public class LottoGameService {
 
     public WinningResult calculateWinningResult(
             List<Lotto> lotties, List<Integer> winningNumbers, BonusNumber bonusNumber) {
+
         LinkedHashMap<WinningAmountConstant, Integer> result = WinningAmountConstant.initWinningResult();
 
         for (Lotto lotto : lotties) {

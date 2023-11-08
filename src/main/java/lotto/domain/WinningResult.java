@@ -13,10 +13,6 @@ public class WinningResult {
         this.result = result;
     }
 
-    public Integer getCountByRank(String rank) {
-        return result.get(rank);
-    }
-
     public int calculateWinningAmount() {
         List<WinningAmountConstant> keys = result.keySet().stream().toList();
         List<Integer> values = result.values().stream().toList();
@@ -31,12 +27,12 @@ public class WinningResult {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
         StringJoiner joiner = new StringJoiner("\n");
         List<WinningAmountConstant> keys = result.keySet().stream().toList();
         List<Integer> values = result.values().stream().toList();
 
         String format;
+
         for (int i = 0; i < keys.size(); i++) {
             if (keys.get(i).equals(WinningAmountConstant.SECOND)) {
                 format = String.format("%d개 일치, 보너스 볼 일치 (%,d원) - %d개",
@@ -45,7 +41,7 @@ public class WinningResult {
                 continue;
             }
 
-             format = String.format("%d개 일치 (%,d원) - %d개",
+            format = String.format("%d개 일치 (%,d원) - %d개",
                     keys.get(i).getCount(), keys.get(i).getValue(), values.get(i));
 
             joiner.add(format);

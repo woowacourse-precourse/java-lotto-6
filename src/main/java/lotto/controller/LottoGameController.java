@@ -15,8 +15,9 @@ public class LottoGameController {
     }
 
     public String run(PurchaseAmount amount, WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotties lotties) {
-        WinningResult winningResult = service.calculateWinningResult(lotties.getLotties(),
-                winningNumbers.getWinningNumbers(), bonusNumber);
+        WinningResult winningResult = service.calculateWinningResult(
+                lotties.getLotties(), winningNumbers.getWinningNumbers(), bonusNumber);
+
         int sum = service.sumWinningAmount(winningResult);
         Double rateOfReturn = service.calculateRateOfReturn(amount.getAmount(), sum);
 

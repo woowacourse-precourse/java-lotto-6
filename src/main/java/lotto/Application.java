@@ -6,6 +6,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotties;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
+import lotto.exception.DuplicatedNumberException;
 import lotto.exception.ModelExceptionConstant;
 import lotto.service.LottoGameService;
 import lotto.util.LottoGameUtil;
@@ -24,7 +25,7 @@ public class Application {
 
         WinningNumbers winningNumbers = setWinningNumbers();
 
-        BonusNumber bonusNumber = setBonusNumber();
+        BonusNumber bonusNumber = setBonusNumber(winningNumbers.getWinningNumbers());
 
         LottoGameController controller = new LottoGameController(new LottoGameService());
         String gameResult = controller.run(purchaseAmount, winningNumbers, bonusNumber, lotties);
@@ -60,14 +61,18 @@ public class Application {
         }
     }
 
-    private static BonusNumber setBonusNumber() {
+    private static BonusNumber setBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 String input = inputView.inputBonusNumber();
 
                 int number = LottoGameUtil.StringToInt(input);
+                BonusNumber bonusNumber = new BonusNumber(number);
+                bonusNumber.validateBonusNumberDuplicatedByWinningNumbers(bonusNumber, winningNumbers);
 
-                return new BonusNumber(number);
+                return bonusNumber;
+            } catch (DuplicatedNumberException e) {
+                System.out.println(ModelExceptionConstant.DUPLICATED_NUMBERS.getText());
             } catch (IllegalArgumentException e) {
                 System.out.println(ModelExceptionConstant.OUT_OF_LOTTO_NUMBER_RANGE.getText());
             }

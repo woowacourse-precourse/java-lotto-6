@@ -5,7 +5,6 @@ import static lotto.Constants.Constants.LOTTO_PRICE;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class LottoResult {
@@ -29,12 +28,11 @@ public class LottoResult {
             .count();
     }
 
-    public String toOutputString() {
-        final StringJoiner joiner = new StringJoiner("\n");
-        Arrays.stream(LottoRank.values())
-            .filter(lottoRank -> lottoRank.getPrize() > 0)
-            .forEach(lottoRank -> joiner.add(getLottoRankOutputString(lottoRank)));
-        return joiner.toString();
+    public List<String> toOutputStrings() {
+        return Arrays.stream(LottoRank.values())
+            .filter(LottoRank::isPositivePrize)
+            .map(this::getLottoRankOutputString)
+            .toList();
     }
 
     private String getLottoRankOutputString(final LottoRank lottoRank) {

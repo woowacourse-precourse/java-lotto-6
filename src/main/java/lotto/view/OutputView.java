@@ -29,7 +29,7 @@ public class OutputView {
 
     public static void printLottoResult(final LottoResult result) {
         System.out.println(LOTTO_TICKETS_RESULT_MESSAGE);
-        System.out.println(result.toOutputString());
+        result.toOutputStrings().forEach(System.out::println);
     }
 
     public static void printEarningRate(final double earningRate) {

@@ -16,12 +16,12 @@ class LottoCheckerTest {
 
         final LottoResult lottoResult = lottoChecker.checkLottos(lottos);
 
-        final String outputString = lottoResult.toOutputString();
-        Assertions.assertThat(outputString).contains("3개 일치 (5,000원) - 1개");
-        Assertions.assertThat(outputString).contains("4개 일치 (50,000원) - 0개");
-        Assertions.assertThat(outputString).contains("5개 일치 (1,500,000원) - 1개");
-        Assertions.assertThat(outputString).contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개");
-        Assertions.assertThat(outputString).contains("6개 일치 (2,000,000,000원) - 0개");
+        final List<String> outputStrings = lottoResult.toOutputStrings();
+        Assertions.assertThat(outputStrings).contains("3개 일치 (5,000원) - 1개");
+        Assertions.assertThat(outputStrings).contains("4개 일치 (50,000원) - 0개");
+        Assertions.assertThat(outputStrings).contains("5개 일치 (1,500,000원) - 1개");
+        Assertions.assertThat(outputStrings).contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개");
+        Assertions.assertThat(outputStrings).contains("6개 일치 (2,000,000,000원) - 0개");
     }
 
 }

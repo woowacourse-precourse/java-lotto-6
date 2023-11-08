@@ -14,12 +14,12 @@ class LottoResultTest {
     void 당첨_등수의_당첨_개수를_증가시킨다() {
         final LottoResult lottoResult = new LottoResult(List.of(THREE_MATCH, FOUR_MATCH));
 
-        final String outputString = lottoResult.toOutputString();
-        assertThat(outputString).contains("3개 일치 (5,000원) - 1개");
-        assertThat(outputString).contains("4개 일치 (50,000원) - 1개");
-        assertThat(outputString).contains("5개 일치 (1,500,000원) - 0개");
-        assertThat(outputString).contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개");
-        assertThat(outputString).contains("6개 일치 (2,000,000,000원) - 0개");
+        final List<String> outputStrings = lottoResult.toOutputStrings();
+        assertThat(outputStrings).contains("3개 일치 (5,000원) - 1개");
+        assertThat(outputStrings).contains("4개 일치 (50,000원) - 1개");
+        assertThat(outputStrings).contains("5개 일치 (1,500,000원) - 0개");
+        assertThat(outputStrings).contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 0개");
+        assertThat(outputStrings).contains("6개 일치 (2,000,000,000원) - 0개");
     }
 
     @Test

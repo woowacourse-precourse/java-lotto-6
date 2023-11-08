@@ -49,23 +49,13 @@ public class Validator {
         }
     }
 
-    public static boolean validateLotto(String input) {
-        List<Integer> nums;
+    public static void validateLottoInput(String input) {
         try {
-            nums = validateLottoFormats(input);
-            return true;
-        } catch (IllegalArgumentException e) {
+            validateLottoComma(input);
+            validateLottoFormat(input);
+        } catch (NumberFormatException e) {
             System.out.println(ExceptionType.INVALID_LOTTO_FORMAT.getMessage());
-            return false;
         }
-    }
-
-    private static List<Integer> validateLottoFormats(String input) {
-        List<Integer> nums;
-        validateLottoComma(input);
-        nums = validateLottoFormat(input);
-
-        return nums;
     }
 
     public static void validateLottoComma(String input) {
@@ -74,13 +64,11 @@ public class Validator {
         }
     }
 
-    public static List<Integer> validateLottoFormat(String input) throws NumberFormatException {
+    public static void validateLottoFormat(String input) throws NumberFormatException {
         String[] inputArray = input.split(",");
-        List<Integer> nums = new ArrayList<>();
         for (String str : inputArray) {
-            nums.add(Integer.parseInt(str.replaceAll("\\s", "")));
+            Integer.parseInt(str.replaceAll("\\s", ""));
         }
-        return nums;
     }
 
     public static boolean validateBonus(String input) {

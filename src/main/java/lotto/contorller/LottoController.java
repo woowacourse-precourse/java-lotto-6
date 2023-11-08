@@ -26,6 +26,7 @@ public class LottoController {
             String lottoInput = Console.readLine();
             try {
                 System.out.println();
+                Validator.validateLottoInput(lottoInput);
                 return ticketsService.stringToLotto(lottoInput);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -56,7 +57,6 @@ public class LottoController {
                 return Integer.parseInt(bonusNumInput);
             }
         }
-
     }
 
     public void init() {

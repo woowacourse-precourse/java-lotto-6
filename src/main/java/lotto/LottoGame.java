@@ -30,5 +30,13 @@ public class LottoGame {
                 Output.printAllLotteries(lotteries);
 
                 return lotteries;
+    private static List<Integer> inputWinningNumbers() {
+                String inputWinningNumbers = Input.getWinningNumbers();
+                List<Integer> winningNumbers = Converter.splitFromString(inputWinningNumbers);
+
+                InputValidator.validateSplitSize(winningNumbers);
+                InputValidator.validateWinningNumbersRange(winningNumbers);
+
+                return winningNumbers;
     }
     }

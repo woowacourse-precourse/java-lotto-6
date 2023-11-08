@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.LottoCount;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
@@ -68,5 +69,16 @@ class LottoGameServiceTest {
         assertThat(parsedWinningNumbers.getWinningNumbers()).hasSize(COUNT)
                 .containsExactly(winningNumbers.get(0), winningNumbers.get(1), winningNumbers.get(2),
                         winningNumbers.get(3), winningNumbers.get(4), winningNumbers.get(5));
+    }
+
+    @DisplayName("입력 받은 보너스 번호의 문자열 값을 정수값을 가지는 object type으로 포장할 수 있다.")
+    @ParameterizedTest
+    @CsvSource({"1", "21", "45"})
+    void parseBonusNumber(int bonusNumber) {
+        // given, when
+        BonusNumber parsedBonusNumber = lottoGameService.parseBonusNumber(String.valueOf(bonusNumber));
+
+        // then
+        assertThat(parsedBonusNumber.getBonusNumber()).isEqualTo(bonusNumber);
     }
 }

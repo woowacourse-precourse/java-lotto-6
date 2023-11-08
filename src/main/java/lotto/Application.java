@@ -29,10 +29,14 @@ public class Application {
 
         Lotto winningNumbers = getInputSec();
 
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        int bonusNumber = getInputThi();
+
     }
 
     private static int getInputFir() {
-
         int cash = 0;
 
         while (true){
@@ -111,5 +115,39 @@ public class Application {
         }
 
         return new Lotto(winningNumbers);
+    }
+
+    private static int getInputThi() {
+        int tempNumber;
+
+        while (true){
+            try{
+                String targetStr = Console.readLine();
+                tempNumber = validInputThi(targetStr);
+                break;
+            }
+            catch(IllegalArgumentException e){
+                System.out.print("\n");
+            }
+        }
+
+        return tempNumber;
+    }
+
+    private static int validInputThi(String targetStr) {
+        try {
+            int number = Integer.parseInt(targetStr);
+
+            if (1 > number || number > 45) {
+                System.out.print("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException();
+            }
+
+            return number;
+        }
+        catch (NumberFormatException e) {
+            System.out.print("[ERROR] 숫자를 입력해주세요.");
+            throw new IllegalArgumentException();
+        }
     }
 }

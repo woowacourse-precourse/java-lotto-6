@@ -35,7 +35,7 @@ public class LottoService {
         return new LottoQuantity(tickets).getLottos();
     }
 
-    public Map<Prize, Integer> getPrizeResult(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {
+    public Map<Prize, Integer> getPrizeResult(List<Lotto> lottos, List<Integer> winningNumber, final int bonusNumber) {
         List<Prize> prizes = calculatePrize(lottos, winningNumber, bonusNumber);
         return new PrizeResult(prizes).getResult();
     }
@@ -53,11 +53,11 @@ public class LottoService {
         return money.calculateRevenue(rewards);
     }
 
-    private List<Prize> calculatePrize(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    private List<Prize> calculatePrize(List<Lotto> lottos, List<Integer> winningNumbers, final int bonusNumber) {
         return lottos.stream().map(lotto -> findPrize(lotto, winningNumbers, bonusNumber)).toList();
     }
 
-    private Prize findPrize(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
+    private Prize findPrize(Lotto lotto, List<Integer> winningNumber, final int bonusNumber) {
         int count = lotto.countSameNumber(winningNumber);
         boolean bonus = lotto.containsBonus(bonusNumber);
         return Prize.findBySameNumberCountAndBonus(count, bonus);

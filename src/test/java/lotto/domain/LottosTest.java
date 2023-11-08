@@ -44,4 +44,26 @@ class LottosTest {
         // then
         assertThat(size).isEqualTo(10);
     }
+
+    @DisplayName("로또 당첨 배열을 반환한다.")
+    @Test
+    void calculateRankingsSuccessTest() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Lotto> readyLottos = IntStream.range(0, 10)
+                .mapToObj(idx -> new Lotto(List.copyOf(numbers)))
+                .toList();
+        WinningLotto winningLotto = new WinningLotto(List.copyOf(numbers), 7);
+        Lottos lottos = new Lottos(readyLottos);
+        List<LottoRanking> expectedRankings = IntStream.range(0, 10)
+                .mapToObj(idx -> LottoRanking.FIRST)
+                .toList();
+
+        // when
+        List<LottoRanking> lottoRankings = lottos.calculateRankings(winningLotto);
+
+        // then
+        assertThat(lottoRankings).isEqualTo(expectedRankings);
+
+    }
 }

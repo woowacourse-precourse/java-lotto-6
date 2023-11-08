@@ -17,6 +17,15 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         hasDuplication(numbers);
+        validateLottoRange(numbers);
+    }
+
+    private void validateLottoRange(List<Integer> numbers) {
+        numbers.forEach(number -> {
+            if (number > 45 || number < 1) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1~45 입니다.");
+            }
+        });
     }
 
     private void hasDuplication(List<Integer> numbers) {

@@ -24,6 +24,7 @@ public class Lotto {
         validateSize(numbers.size());
         validateDuplication(numbers);
     }
+
     public String showNumbers() {
         String numbers = this.numbers.stream()
             .sorted()
@@ -43,20 +44,21 @@ public class Lotto {
         if (hasBonus) {
             correctCount++;
         }
-        if (correctCount == THREE_MATCHES.getMatchCount()) {
-            return THREE_MATCHES;
-        }
-        if (correctCount == FOUR_MATCHES.getMatchCount()) {
-            return FOUR_MATCHES;
-        }
-        if (correctCount == FIVE_MATCHES.getMatchCount()) {
-            return FIVE_MATCHES;
-        }
-        if (correctCount == FIVE_BONUS_MATCHES.getMatchCount() && hasBonus) {
-            return FIVE_BONUS_MATCHES;
-        }
-        if (correctCount == SIX_MATCHES.getMatchCount()) {
-            return SIX_MATCHES;
+        return getNumberOfLottoCorrect(correctCount, hasBonus);
+    }
+
+    private static NumberOfLottoCorrect getNumberOfLottoCorrect(int correctCount,
+        boolean hasBonus) {
+        for (NumberOfLottoCorrect numberOfLottoCorrect : NumberOfLottoCorrect.values()) {
+            if (correctCount == FIVE_BONUS_MATCHES.getMatchCount() && hasBonus) {
+                return FIVE_BONUS_MATCHES;
+            }
+            if (correctCount == SIX_MATCHES.getMatchCount()) {
+                return SIX_MATCHES;
+            }
+            if (numberOfLottoCorrect.getMatchCount() == correctCount) {
+                return numberOfLottoCorrect;
+            }
         }
         return TWO_LESS_MATCHES;
     }
@@ -66,6 +68,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         numbers.stream().forEach(uniqueNumbers::add);

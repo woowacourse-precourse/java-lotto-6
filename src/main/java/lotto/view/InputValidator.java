@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.regex.Pattern;
+import java.util.List;
 import lotto.constant.Constant;
 import lotto.constant.Message;
 
@@ -54,6 +55,12 @@ final class InputValidator {
         if (lottoNumber < Constant.MINIMUM_LOTTO_NUMBER.getValue()
                 || lottoNumber > Constant.MAXIMUM_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
+        }
+    }
+
+    static void validateWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(Message.ERROR_BONUS_NUMBER_DUPLICATED.getMessage());
         }
     }
 }

@@ -47,15 +47,22 @@ public class InputView {
         }
     }
 
-    public int getUserInputBonusNumber() {
+    public int getUserInputBonusNumber(List<Integer> winningNumbers) {
         System.out.println(PROMPT_BONUS_NUMBER);
-        String userInput = Console.readLine();
-        System.out.println();
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                System.out.println();
 
-        InputValidator.validateNonSpaced(userInput);
-        InputValidator.validateNonZeroLeadingParsableNumber(userInput);
-        int bonusNumber = Integer.parseInt(userInput);
-        InputValidator.validateLottoNumber(bonusNumber);
-        return bonusNumber;
+                InputValidator.validateNonSpaced(userInput);
+                InputValidator.validateNonZeroLeadingParsableNumber(userInput);
+                int bonusNumber = Integer.parseInt(userInput);
+                InputValidator.validateLottoNumber(bonusNumber);
+                InputValidator.validateWinningLotto(winningNumbers, bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 }

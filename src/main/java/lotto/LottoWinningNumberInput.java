@@ -26,7 +26,7 @@ public class LottoWinningNumberInput {
         }
     }
 
-    private void validateInputFormat(String input) {
+    public void validateInputFormat(String input) {
         if (input == null || input.trim().isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }
@@ -41,7 +41,7 @@ public class LottoWinningNumberInput {
         }
     }
 
-    private Set<Integer> convertInputToSet(String input) {
+    public Set<Integer> convertInputToSet(String input) {
         return Arrays.stream(input.split(NUMBER_DELIMITER))
                 .map(String::trim)
                 .map(this::parseAndValidateNumber)

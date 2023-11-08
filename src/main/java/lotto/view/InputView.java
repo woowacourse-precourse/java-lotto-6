@@ -1,5 +1,7 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Scanner;
 import java.util.List;
 import java.util.HashSet;
@@ -16,7 +18,7 @@ public class InputView {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                String input = scanner.nextLine();
+                String input = Console.readLine();
                 int purchaseAmount = Integer.parseInt(input);
                 if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 양수여야 합니다.");
@@ -35,7 +37,7 @@ public class InputView {
             try {
                 System.out.println();
                 System.out.println("당첨 번호를 입력해 주세요.");
-                String[] numbers = scanner.nextLine().split(",");
+                String[] numbers = Console.readLine().split(",");
                 if (numbers.length != LOTTO_NUMBERS_SIZE) {
                     throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
                 }
@@ -64,7 +66,7 @@ public class InputView {
             try {
                 System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
-                int bonusNumber = Integer.parseInt(scanner.nextLine());
+                int bonusNumber = Integer.parseInt(Console.readLine());
                 if (bonusNumber < 1 || bonusNumber > MAX_LOTTO_NUMBER) {
                     throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
                 }

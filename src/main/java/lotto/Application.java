@@ -54,7 +54,7 @@ public class Application {
     static int totalPrizeAmount = 0;
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해주세요:");
-        generateLottoTickets(Console.readLine());
+        generateLottoTickets(readPurchase());
         showLottoTickets();
         System.out.println("당첨번호를 입력해 주세요.");
         getWinningNumbers(Console.readLine());
@@ -65,6 +65,38 @@ public class Application {
         calculateProfitRate();
     }
 
+    public static Integer readPurchase() {
+        while (true) {
+            try {
+                String purchaseAmount = Console.readLine().trim();
+                isNumeric(purchaseAmount);
+                int amount = Integer.parseInt(purchaseAmount);
+                isDividedByThousand(amount);
+                return amount;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    public static void isDividedByThousand(Integer money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException("구입 금액은 1,000단위로 입력해주세요");
+        }
+    }
+    public static void isNumeric(String purchaseAmount) {
+        if (purchaseAmount == null || purchaseAmount.isEmpty())
+            throw new IllegalArgumentException("빈 금액은 입력할 수 없습니다.");
+        for (char c : purchaseAmount.toCharArray()) {
+            if(!Character.isDigit(c)) {
+                throw new IllegalArgumentException("구입 금액은 숫자여야 합니다");
+            }
+        }
+    }
+
+
+
+
     public static Integer convertMoneyFormat(String inputMoney) {
         Integer money = Integer.valueOf(inputMoney);
         return money;
@@ -73,8 +105,7 @@ public class Application {
         Integer quantityOfLotto = money/1000;
         return quantityOfLotto;
     }
-    public static void generateLottoTickets(String inputMoney) {
-        Integer money= convertMoneyFormat(inputMoney);
+    public static void generateLottoTickets(Integer money) {
         Integer quantityOfLotto = getQuantityOfLotto(money);
         for (int i = 0; i<quantityOfLotto; i++) {
             lottoTickets.add(generateLotto());

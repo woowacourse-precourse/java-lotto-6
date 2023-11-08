@@ -4,200 +4,152 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 public class Application {
-
+    static List<Lotto> lottos = new ArrayList<>();
+    static HashMap<String,Integer> win_list = new HashMap<>();
+    final static int lotto_price = 1000;
+    final static int min_number = 1;
+    final static int max_number = 45;
+    final static int lotto_size = 6;
+    static String hit3 = "3개 일치 (5,000원) - ";
+    static String hit4 = "4개 일치 (50,000원) - ";
+    static String hit5 = "5개 일치 (1,500,000원) - ";
+    static String hit5_bonus = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
+    static String hit6 = "6개 일치 (2,000,000,000원) - ";
+    static List<String> keys = List.of(hit3,hit4,hit5,hit5_bonus,hit6);
     public static void main(String[] args) {
-        print("구입금액을 입력해 주세요");
+        String inputmoney = InputMoney();
+        int lotto_count = CheckUnit(inputmoney);
+        LottoNumber(lotto_count);
+        PrintLotto(lottos);
+        List<Integer> win_numbers = InputNumber();
+        int bonus_number = BonusNumber();
+        MakeMap(keys);
+        for(Lotto lotto : lottos){
+            int count = CompareNumber(lotto,win_numbers);
+            boolean bonus = CompareBonus(lotto, bonus_number);
+            String win = CountWin(count,bonus);
+            if(win != null){
+                win_list.put(win,win_list.get(win) + 1);
+            }
+        }
+        PrintWin();
+        CalculateMoney(inputmoney);
+    }
 
-        int money = inputMoney();
-        print("");
+    public static String InputMoney() {
+        System.out.println("구매금액을 입력해 주세요.");
+        String inputmoney = Console.readLine();
+        return inputmoney;
+    }
+    public static int CheckUnit(String inputmoney){
+        try{
+            Integer money = Integer.valueOf(inputmoney);
+            if(money % lotto_price !=0){
+                throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위입니다.");
+            }
+            return money/lotto_price;
+        } catch (Exception e){
+            System.out.println("[ERROR] 유효한 숫자를 입력해주세요.");
+            return 0;
+        }
+    }
 
-        int count = money / 1000;
-        List<Lotto> lottos = new ArrayList<>();
-
-        print(count + "개를 구매했습니다.");
-        for (int i = 0; i < count; i++) {
-            Lotto lotto = buyLotto();
-            print(lotto.toString());
+    public static void LottoNumber(int lotto_count){
+        System.out.println(lotto_count + "개를 구매했습니다.");
+        for(int i =1 ; i <= lotto_count; i++){
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(min_number, max_number, lotto_size));
+            Collections.sort(numbers);
+            Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
-
-        print("");
-        print("당첨 번호를 입력해 주세요.");
-        List<Integer> lottoNumber = inputLottoNumber();
-
-        print("");
-        print("보너스 번호를 입력해 주세요.");
-        int bonus = inputBonus();
-        int[] win = new int[5];
-        for(Lotto lotto : lottos) {
-            checkWin(lotto, lottoNumber, bonus, win);
+    }
+    public static void PrintLotto(List<Lotto> lottos){
+        for(Lotto lotto : lottos){
+            System.out.println(lotto.getNumbers());
         }
-        int[] moneyList = new int[5];
-        setMoney(moneyList);
-
-        print("");
-        print("당첨 통계");
-        print("---");
-        int earn = printTotal(win, moneyList);
-        print("총 수익률은 " + calRevenue(money, earn) + "%입니다.");
     }
-
-    private static String calRevenue(int money, int earn) {
-        double revenue = 0;
-        revenue += earn;
-        revenue *= 100;
-        revenue /= money;
-        return String.format("%.1f", revenue);
-    }
-
-    private static int printTotal(int[] win, int[] moneyList) {
-        int sum = 0;
-        for(int i = 0; i < 5; i++) {
-            print(i + 3 + "개 일치 (" + moneyFormat(moneyList[i]) + "원) - " + win[i] + "개");
-            sum += moneyList[i] * win[i];
+    public static List<Integer> InputNumber(){
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] win_number = Console.readLine().split(",");
+        List<Integer> win_numbers = new ArrayList<>();
+        for(String number : win_number){
+            win_numbers.add(Integer.valueOf(number));
         }
-        return sum;
+        return win_numbers;
     }
 
-    private static String moneyFormat(int money) {
-        DecimalFormat formatter = new DecimalFormat("###,###");
-        return formatter.format(money);
+    public static int BonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonus = Console.readLine();
+        return Integer.valueOf(bonus);
     }
-
-    private static void setMoney(int[] moneyList) {
-        moneyList[0] = 5000;
-        moneyList[1] = 50000;
-        moneyList[2] = 15000000;
-        moneyList[3] = 30000000;
-        moneyList[4] = 2000000000;
-    }
-
-    private static void checkWin(Lotto lotto, List<Integer> lottoNumber, int bonus, int[] win) {
-        int cnt = 0;
-        boolean bonusCheck = false;
-        for(Integer num : lotto.getNumbers()) {
-            if(lottoNumber.contains(num)) cnt++;
-            if(num == bonus) bonusCheck = true;
-        }
-
-        calWin(cnt, bonusCheck, win);
-    }
-
-    private static void calWin(int cnt, boolean bonusCheck, int[] win) {
-        if(cnt < 3) return;
-        if(cnt == 3) win[0]++;
-        if(cnt == 4) win[1]++;
-        if(cnt == 5 && !bonusCheck) win[2]++;
-        if(cnt == 5 && bonusCheck) win[3]++;
-        if(cnt == 6) win[4]++;
-
-    }
-
-    private static int inputBonus() {
-        int bonus = 0;
-
-        try {
-            bonus = Integer.parseInt(Console.readLine());
-            if(bonus < 0 || bonus > 45) {
-                try {
-                    exception("보너스 번호는 1~45의 숫자입니다.");
-                } catch (IllegalArgumentException exception) {
-                    return inputBonus();
-                }
-            }
-        } catch (IllegalArgumentException e) {
-            try {
-                exception("하나의 숫자만 입력해주세요.");
-            } catch (IllegalArgumentException exception) {
-                return inputBonus();
+    public static int CompareNumber(Lotto lotto, List<Integer> win_number){
+        int count = 0;
+        for(int number : lotto.getNumbers()){
+            if(win_number.contains(number)){
+                count++;
             }
         }
-        return bonus;
+        return count;
     }
 
-    private static List<Integer> inputLottoNumber() {
-        String line = Console.readLine();
-        StringTokenizer st = new StringTokenizer(line,",");
-
-        List<Integer> lottoNumber = new ArrayList<>();
-
-        for (int i = 0; i < 6; i++) {
-            checkNumber(lottoNumber, st);
+    public static boolean CompareBonus(Lotto lotto, int bonus_number){
+        for(int number : lotto.getNumbers()){
+            if(number == bonus_number) {
+                return true;
+            }
         }
-        return lottoNumber;
+        return false;
+    }
+    public static void MakeMap(List<String> keys){
+        for(String key : keys){
+            win_list.put(key,0);
+        }
+    }
+    public static String CountWin(int count, boolean bonus){
+        if (count == 3){
+            return hit3;
+        }
+        if (count == 4){
+            return hit4;
+        }
+        if (count == 5){
+            if (bonus == true){
+                return hit5_bonus;
+            }
+            return hit5;
+        }
+        if (count == 6){
+            return hit6;
+        }
+        return null;
     }
 
-    private static void checkNumber(List<Integer> lottoNumber, StringTokenizer st) {
-        try {
-            int num = Integer.parseInt(st.nextToken());
-            if (num < 0 || num > 45) {
-                try {
-
-                } catch (IllegalArgumentException exception) {
-                    exception("당첨 번호는 1~45의 숫자입니다.");
-                    checkNumber(lottoNumber, st);
-                }
-            }
-            if (lottoNumber.contains(num)) {
-                try {
-
-                }catch (IllegalArgumentException exception) {
-                    exception("중복된 숫자입니다.");
-                    checkNumber(lottoNumber, st);
-                }
-            }
-            lottoNumber.add(num);
-        } catch (IllegalArgumentException e) {
-            try {
-
-            } catch (IllegalArgumentException exception) {
-                exception("6개의 숫자를 입력해주세요");
-                checkNumber(lottoNumber, st);
-            }
+    public static void PrintWin(){
+        for(String key : keys){
+            System.out.println(key + win_list.get(key) + "개");
         }
     }
 
-    private static Lotto buyLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
-        Lotto lotto = new Lotto(numbers);
-        return lotto;
-    }
-
-    private static int inputMoney() {
-        int money = 0;
-        try {
-            money = Integer.parseInt(Console.readLine());
-        } catch (Exception e) {
-            try{
-                exception("숫자만 입력해주세요");
-            }
-            catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-                return inputMoney();
-            }
-        }
-        if (money % 1000 != 0 || money / 1000 == 0) {
-            try {
-                exception("금액은 1000원 단위로 입력해주세요");
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-                return inputMoney();
-            }
-        }
-        return money;
-    }
-
-    private static void exception(String string) {
-        throw new IllegalArgumentException("[ERROR] " + string);
-    }
-
-    private static void print(String string) {
-        System.out.println(string);
+    public static void CalculateMoney(String inputmoney){
+        double sum = 0;
+        sum += 5000. * win_list.get(hit3);
+        sum += 50000. * win_list.get(hit4);
+        sum += 1500000. * win_list.get(hit5);
+        sum += 30000000. * win_list.get(hit5_bonus);
+        sum += 20000000000. * win_list.get(hit6);
+        double money = Double.valueOf(inputmoney);
+        double earning_rate = sum / money * 100;
+        double rate = Math.round(earning_rate*10);
+        rate = rate/10;
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }

@@ -15,13 +15,13 @@ import java.util.Map;
 
 class WinnerTest {
 
-    Winner winner;
+    LottoWinningNumbers lottoWinningNumbers;
 
     @DisplayName("당천번호와 보너스번호")
     @BeforeEach
     public void beforeEach() {
-        winner = new Winner("1,6,8,25,33,45");
-        winner.lottoWinningBonusNumber("5");
+        lottoWinningNumbers = new LottoWinningNumbers("1,6,8,25,33,45");
+        lottoWinningNumbers.lottoWinningBonusNumber("5");
     }
 
     @DisplayName("5개의 로또당첨번호와 보너스 번호가 같을 경우")
@@ -29,13 +29,13 @@ class WinnerTest {
     @ValueSource(strings = {"1", "2", "3", "11", "16", "17"})
     public void 로또당첨번호_5개와_보너스번호_같을경우(String bonus) throws Exception {
         //given
-        winner.lottoWinningBonusNumber(bonus);
+        lottoWinningNumbers.lottoWinningBonusNumber(bonus);
         Lotto userLottoNumbers = new Lotto("1,2,3,11,16,17");
 
         //when
-        Method method = winner.getClass().getDeclaredMethod("sameFiveNumbersAndBonus", Lotto.class, int.class);
+        Method method = lottoWinningNumbers.getClass().getDeclaredMethod("sameFiveNumbersAndBonus", Lotto.class, int.class);
         method.setAccessible(true);
-        boolean check = (Boolean) method.invoke(winner, userLottoNumbers, 5);
+        boolean check = (Boolean) method.invoke(lottoWinningNumbers, userLottoNumbers, 5);
 
         //then 결과값 비교
         Assertions.assertThat(check).isTrue();
@@ -46,13 +46,13 @@ class WinnerTest {
     @CsvSource(value = {"1,4", "2,3", "3,2", "11,1", "16,0"}, delimiter = ',')
     public void 로또당첨번호_5개아닌_보너스번호_같을경우(String bonus, int sameCount) throws Exception {
         //given
-        winner.lottoWinningBonusNumber(bonus);
+        lottoWinningNumbers.lottoWinningBonusNumber(bonus);
         Lotto userLottoNumbers = new Lotto("1,2,3,11,16,17");
 
         //when
-        Method method = winner.getClass().getDeclaredMethod("sameFiveNumbersAndBonus", Lotto.class, int.class);
+        Method method = lottoWinningNumbers.getClass().getDeclaredMethod("sameFiveNumbersAndBonus", Lotto.class, int.class);
         method.setAccessible(true);
-        boolean check = (Boolean) method.invoke(winner, userLottoNumbers, sameCount);
+        boolean check = (Boolean) method.invoke(lottoWinningNumbers, userLottoNumbers, sameCount);
 
         //then 결과값 비교
         Assertions.assertThat(check).isFalse();
@@ -72,16 +72,16 @@ class WinnerTest {
         Lotto sameUserLottoNumberZero = new Lotto(new ArrayList<>(List.of(2, 3, 4, 5, 11, 42)));
 
         //when (기능 작동)
-        Method method = winner.getClass().getDeclaredMethod("checkUserLottoNumberCount", Lotto.class);
+        Method method = lottoWinningNumbers.getClass().getDeclaredMethod("checkUserLottoNumberCount", Lotto.class);
         method.setAccessible(true);
-        int six = (Integer) method.invoke(winner, sameUserLottoNumberSix);
-        int fiveAndBonus = (Integer) method.invoke(winner, sameUserLottoNumberFiveAndBonus);
-        int five = (Integer) method.invoke(winner, sameUserLottoNumberFive);
-        int four = (Integer) method.invoke(winner, sameUserLottoNumberFour);
-        int three = (Integer) method.invoke(winner, sameUserLottoNumberThree);
-        int two = (Integer) method.invoke(winner, sameUserLottoNumberTwo);
-        int one = (Integer) method.invoke(winner, sameUserLottoNumberOne);
-        int zero = (Integer) method.invoke(winner, sameUserLottoNumberZero);
+        int six = (Integer) method.invoke(lottoWinningNumbers, sameUserLottoNumberSix);
+        int fiveAndBonus = (Integer) method.invoke(lottoWinningNumbers, sameUserLottoNumberFiveAndBonus);
+        int five = (Integer) method.invoke(lottoWinningNumbers, sameUserLottoNumberFive);
+        int four = (Integer) method.invoke(lottoWinningNumbers, sameUserLottoNumberFour);
+        int three = (Integer) method.invoke(lottoWinningNumbers, sameUserLottoNumberThree);
+        int two = (Integer) method.invoke(lottoWinningNumbers, sameUserLottoNumberTwo);
+        int one = (Integer) method.invoke(lottoWinningNumbers, sameUserLottoNumberOne);
+        int zero = (Integer) method.invoke(lottoWinningNumbers, sameUserLottoNumberZero);
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(six).isEqualTo(6);
@@ -122,12 +122,12 @@ class WinnerTest {
         userLottos.add(sameUserLottoNumberZero);
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 100000);
-        int sixCount = winner.countTotalLottoPrizes().get(6);
-        int fiveAndBonusCount = winner.countTotalLottoPrizes().get(50);
-        int fiveCount = winner.countTotalLottoPrizes().get(5);
-        int fourCount = winner.countTotalLottoPrizes().get(4);
-        int threeCount = winner.countTotalLottoPrizes().get(3);
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 100000);
+        int sixCount = lottoWinningNumbers.countTotalLottoPrizes().get(6);
+        int fiveAndBonusCount = lottoWinningNumbers.countTotalLottoPrizes().get(50);
+        int fiveCount = lottoWinningNumbers.countTotalLottoPrizes().get(5);
+        int fourCount = lottoWinningNumbers.countTotalLottoPrizes().get(4);
+        int threeCount = lottoWinningNumbers.countTotalLottoPrizes().get(3);
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(sixCount).isEqualTo(1);
@@ -151,9 +151,9 @@ class WinnerTest {
         Map<Integer, Integer> check = lottoResult.getWinningCount();
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
-        Map<Integer, Integer> count = winner.countTotalLottoPrizes();
-        double profitMoney = winner.totalProfitMargin();
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> count = lottoWinningNumbers.countTotalLottoPrizes();
+        double profitMoney = lottoWinningNumbers.totalProfitMargin();
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(profitMoney).isEqualTo(calculate);
@@ -176,9 +176,9 @@ class WinnerTest {
         Map<Integer, Integer> check = lottoResult.getWinningCount();
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 2000);
-        Map<Integer, Integer> count = winner.countTotalLottoPrizes();
-        double profitMoney = winner.totalProfitMargin();
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 2000);
+        Map<Integer, Integer> count = lottoWinningNumbers.countTotalLottoPrizes();
+        double profitMoney = lottoWinningNumbers.totalProfitMargin();
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(profitMoney).isEqualTo(calculate);
@@ -205,9 +205,9 @@ class WinnerTest {
         Map<Integer, Integer> check = lottoResult.getWinningCount();
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 3000);
-        Map<Integer, Integer> count = winner.countTotalLottoPrizes();
-        double profitMoney = winner.totalProfitMargin();
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 3000);
+        Map<Integer, Integer> count = lottoWinningNumbers.countTotalLottoPrizes();
+        double profitMoney = lottoWinningNumbers.totalProfitMargin();
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(profitMoney).isEqualTo(calculate);
@@ -233,9 +233,9 @@ class WinnerTest {
         Map<Integer, Integer> check = lottoResult.getWinningCount();
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 3000);
-        Map<Integer, Integer> count = winner.countTotalLottoPrizes();
-        double profitMoney = winner.totalProfitMargin();
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 3000);
+        Map<Integer, Integer> count = lottoWinningNumbers.countTotalLottoPrizes();
+        double profitMoney = lottoWinningNumbers.totalProfitMargin();
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(profitMoney).isEqualTo(calculate);
@@ -256,9 +256,9 @@ class WinnerTest {
         Map<Integer, Integer> check = lottoResult.getWinningCount();
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
-        Map<Integer, Integer> fourCount = winner.countTotalLottoPrizes();
-        double profitMoney = winner.totalProfitMargin();
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> fourCount = lottoWinningNumbers.countTotalLottoPrizes();
+        double profitMoney = lottoWinningNumbers.totalProfitMargin();
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(profitMoney).isEqualTo(calculate);
@@ -279,9 +279,9 @@ class WinnerTest {
         Map<Integer, Integer> check = lottoResult.getWinningCount();
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
-        Map<Integer, Integer> threeCount = winner.countTotalLottoPrizes();
-        double profitMoney = winner.totalProfitMargin();
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> threeCount = lottoWinningNumbers.countTotalLottoPrizes();
+        double profitMoney = lottoWinningNumbers.totalProfitMargin();
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(profitMoney).isEqualTo(calculate);
@@ -302,9 +302,9 @@ class WinnerTest {
         Map<Integer, Integer> check = lottoResult.getWinningCount();
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
-        Map<Integer, Integer> threeCount = winner.countTotalLottoPrizes();
-        double profitMoney = winner.totalProfitMargin();
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> threeCount = lottoWinningNumbers.countTotalLottoPrizes();
+        double profitMoney = lottoWinningNumbers.totalProfitMargin();
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(profitMoney).isEqualTo(calculate);
@@ -325,9 +325,9 @@ class WinnerTest {
         Map<Integer, Integer> check = lottoResult.getWinningCount();
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
-        Map<Integer, Integer> threeCount = winner.countTotalLottoPrizes();
-        double profitMoney = winner.totalProfitMargin();
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> threeCount = lottoWinningNumbers.countTotalLottoPrizes();
+        double profitMoney = lottoWinningNumbers.totalProfitMargin();
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(profitMoney).isEqualTo(calculate);
@@ -348,9 +348,9 @@ class WinnerTest {
         Map<Integer, Integer> check = lottoResult.getWinningCount();
 
         //when (기능 작동)
-        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
-        Map<Integer, Integer> threeCount = winner.countTotalLottoPrizes();
-        double profitMoney = winner.totalProfitMargin();
+        lottoWinningNumbers.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> threeCount = lottoWinningNumbers.countTotalLottoPrizes();
+        double profitMoney = lottoWinningNumbers.totalProfitMargin();
 
         //then (기능 작동 후 결과)
         Assertions.assertThat(profitMoney).isEqualTo(calculate);

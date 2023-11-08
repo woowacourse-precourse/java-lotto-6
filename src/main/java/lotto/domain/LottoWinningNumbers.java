@@ -3,13 +3,13 @@ package lotto.domain;
 import java.util.List;
 import java.util.Map;
 
-public class Winner {
+public class LottoWinningNumbers {
 
     private Lotto lotto;
     private int bonus;
     private LottoResult lottoResult;
 
-    public Winner(String lottoNumbers) {
+    public LottoWinningNumbers(String lottoNumbers) {
         lotto = new Lotto(lottoNumbers);
     }
 

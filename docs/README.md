@@ -55,7 +55,7 @@
     <행동>
    - [x] 구매한 로또 리스트에 저장하기
    
-4. Winner
+4. LottoWinningNumbers
     
     <상태>
     - [x] 당첨로또 번호

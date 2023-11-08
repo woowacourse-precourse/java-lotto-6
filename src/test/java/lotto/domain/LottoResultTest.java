@@ -30,4 +30,22 @@ class LottoResultTest {
         assertThat(result).isEqualTo(false);
     }
 
+    @Test
+    void getLottoRankTest() {
+        LottoResult lottoResult = new LottoResult();
+
+        lottoResult.getLottoRank(3,false);
+        lottoResult.getLottoRank(5,true);
+        lottoResult.getLottoRank(5,false);
+        lottoResult.getLottoRank(4,true);
+        lottoResult.getLottoRank(2,true);
+        lottoResult.getLottoRank(6,true);
+
+        assertThat(lottoResult.first).isEqualTo(1);
+        assertThat(lottoResult.second).isEqualTo(1);
+        assertThat(lottoResult.third).isEqualTo(1);
+        assertThat(lottoResult.fourth).isEqualTo(1);
+        assertThat(lottoResult.fifth).isEqualTo(1);
+    }
+
 }

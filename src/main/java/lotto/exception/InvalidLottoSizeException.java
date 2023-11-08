@@ -1,4 +1,4 @@
-package lotto.util.exception;
+package lotto.exception;
 
 import static lotto.domain.enums.LottoConstants.LOTTO_SIZE;
 

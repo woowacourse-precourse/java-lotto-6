@@ -1,4 +1,4 @@
-package lotto.util.exception;
+package lotto.exception;
 
 public class BlankInputException extends IllegalArgumentException {
     private static final String INPUT_IS_BLANK = "[ERROR] 빈값을 입력하면 안됩니다.";

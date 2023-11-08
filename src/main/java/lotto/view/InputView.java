@@ -53,6 +53,7 @@ public class InputView {
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+        validateRangeWinningNumbers(winningNumbers);
         return winningNumbers;
     }
 
@@ -66,6 +67,12 @@ public class InputView {
         Set<String> uniqueNames = new HashSet<>(Arrays.asList(inputWinningNumbers));
         if (uniqueNames.size() != inputWinningNumbers.length) {
             throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자 6개를 입력하세요.");
+        }
+    }
+
+    private static void validateRangeWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 값이어야 합니다.");
         }
     }
 

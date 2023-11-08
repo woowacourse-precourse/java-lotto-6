@@ -17,10 +17,14 @@ public class WinResult {
         winResult.put(Rankings.FIFTH, WIN_RESULT_INITIALIZATION);
     }
 
-    public void setWinresult(Rankings rankings) {
+    public void setWinResult(Rankings rankings) {
         if(!(rankings == Rankings.NOTHING)) {
             this.winResult.replace(rankings, this.winResult.get(rankings) + WIN_RESULT_INCREMENT);
         }
+    }
+
+    public Map<Rankings, Integer> getWinResult() {
+        return this.winResult;
     }
 
 }

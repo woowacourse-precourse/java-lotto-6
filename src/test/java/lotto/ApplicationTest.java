@@ -54,6 +54,13 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            assertThat("[ERROR] 숫자를 입력해야 합니다.").contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

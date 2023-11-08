@@ -5,11 +5,11 @@ import camp.nextstep.edu.missionutils.Console;
 public class PressEnter {
     private String buff;
 
-    public void plzPressEnter(){
+    public void plzPressEnter() {
         buff = Console.readLine();
     }
 
-    public String getInput(){
+    public String getInput() {
         return buff;
     }
 }

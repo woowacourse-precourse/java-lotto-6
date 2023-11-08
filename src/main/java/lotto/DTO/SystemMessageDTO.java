@@ -22,7 +22,7 @@ public enum SystemMessageDTO {
         this.msg = msg;
     }
 
-    public String getSystemMessage(){
+    public String getSystemMessage() {
         return msg;
     }
 }

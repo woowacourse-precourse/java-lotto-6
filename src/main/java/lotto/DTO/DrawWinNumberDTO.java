@@ -6,19 +6,19 @@ public class DrawWinNumberDTO {
     private List<Integer> winNumber;
     private int bonusNumber;
 
-    public DrawWinNumberDTO(List<Integer> winNumber){
+    public DrawWinNumberDTO(List<Integer> winNumber) {
         this.winNumber = winNumber;
     }
 
-    public List<Integer> getWinNumber(){
+    public List<Integer> getWinNumber() {
         return winNumber;
     }
 
-    public void setBonusNumber(int bonusNumber){
+    public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
-    public int getBonusNumber(){
+    public int getBonusNumber() {
         return bonusNumber;
     }
 }

@@ -18,22 +18,19 @@ import lotto.View.CallSystemMessage;
 
 public class GameProcess {
     CallSystemMessage callMessage = new CallSystemMessage();
-
     PressEnter lottoInputSystem = new PressEnter();
-
     CheckPurchaseAmount validatecheck = new CheckPurchaseAmount();
-    // List<Integer> test;
 
     public GameProcess() {
-        // 시작 메세지, 입력 받기, 파스
+        // 시작 메세지, 입력 받기, 형 변환
         callMessage.printMessage(SystemMessageDTO.INPUT_PURCHASE_AMOUNT, true);
         lottoInputSystem.plzPressEnter();
-        String res = lottoInputSystem.getInput();
-        int val = 0;
+        String inputPurchaseAmount = lottoInputSystem.getInput();
+        int makeNumber = 0;
 
         try {
-            StringToInt parse2 = new StringToInt(res);
-            val = parse2.getInteger();
+            StringToInt sToIParser = new StringToInt(inputPurchaseAmount);
+            makeNumber = sToIParser.getInteger();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 다시 입력하세요.");
         }
@@ -41,10 +38,10 @@ public class GameProcess {
         System.out.println();
 
         // DTO에 저장, 유효 검사 및 티켓 수 획득
-        AutoTicketDTO autoTicketDTO = new AutoTicketDTO(val);
-        int chongack = autoTicketDTO.getPurcahseAmount();
-        int tt = validatecheck.getNumberOfTicket(chongack);
-        autoTicketDTO.setNumberOfTicket(tt);
+        AutoTicketDTO autoTicketDTO = new AutoTicketDTO(makeNumber);
+        int purchaseAmount = autoTicketDTO.getPurcahseAmount();
+        int checkPurchaseAmount = validatecheck.getNumberOfTicket(purchaseAmount);
+        autoTicketDTO.setNumberOfTicket(checkPurchaseAmount);
         int numberOfTicket = autoTicketDTO.getNumberOfTicket();
         System.out.print(numberOfTicket);
         callMessage.printMessage(SystemMessageDTO.OUTPUT_NUMBER_OF_TICKET, true);
@@ -60,26 +57,23 @@ public class GameProcess {
         callMessage.printMessage(SystemMessageDTO.INPUT_WINNING_NUMBERS, true);
 
         lottoInputSystem.plzPressEnter();
-        String res2 = lottoInputSystem.getInput();
-        StringToList parse3 = new StringToList(res2);
-        List<Integer> vall = parse3.getListInteger();
+        String inputWinNumbers = lottoInputSystem.getInput();
+        StringToList sToLParser = new StringToList(inputWinNumbers);
+        List<Integer> winNumbers = sToLParser.getListInteger();
 
-        DrawWinNumberDTO drawWinNumberDTO = new DrawWinNumberDTO(vall);
-
+        DrawWinNumberDTO drawWinNumberDTO = new DrawWinNumberDTO(winNumbers);
         System.out.println();
         callMessage.printMessage(SystemMessageDTO.INPUT_BONUS_NUMBER, true);
 
         lottoInputSystem.plzPressEnter();
-        String res3 = lottoInputSystem.getInput();
-        StringToInt parse5 = new StringToInt(res3);
-        int valll = parse5.getInteger();
+        String inputBonusNumber = lottoInputSystem.getInput();
+        StringToInt sToIParser = new StringToInt(inputBonusNumber);
+        int bonusNumber = sToIParser.getInteger();
 
-        drawWinNumberDTO.setBonusNumber(valll);
+        drawWinNumberDTO.setBonusNumber(bonusNumber);
 
         StatResultDTO statResultDTO = new StatResultDTO();
-
         CheckWinNumber checkWinNumber = new CheckWinNumber();
-        //List<Integer> winCount = new ArrayList<>();
 
         for (int i = 0; i < numberOfTicket; i++) {
             int cnt = checkWinNumber.checkWinNumber(autoTicketDTO.getAutoTicket(i), drawWinNumberDTO.getWinNumber(),
@@ -96,12 +90,10 @@ public class GameProcess {
             if (cnt == 6)
                 statResultDTO.setWinCount(4, statResultDTO.getWinCount(4) + 1);
         }
-
         System.out.println();
 
         callMessage.printMessage(SystemMessageDTO.COMMENT_WINNING_STAT, true);
         callMessage.printMessage(SystemMessageDTO.HORIZONTAL_RULE, true);
-
         callMessage.printMessage(SystemMessageDTO.FIFTH_STAT, false);
         System.out.println(statResultDTO.getWinCount(0) + "개");
         callMessage.printMessage(SystemMessageDTO.FOURTH_STAT, false);
@@ -114,9 +106,9 @@ public class GameProcess {
         System.out.println(statResultDTO.getWinCount(4) + "개");
 
         MakeTotalProceeds makeTotalProceeds = new MakeTotalProceeds();
+
         makeTotalProceeds.makeTotalProceeds(statResultDTO);
         statResultDTO.setRateOfReturn(statResultDTO.getTotalProceeds(), autoTicketDTO.getPurcahseAmount());
-
         callMessage.printMessage(SystemMessageDTO.TOTAL_STAT, false);
         System.out.print(statResultDTO.getRateOfReturn() + "%");
         callMessage.printMessage(SystemMessageDTO.POSTPOSITION, false);

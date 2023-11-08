@@ -17,16 +17,13 @@ class MakeAutoTicketTest {
         MakeAutoTicket autoTicket = new MakeAutoTicket();
         List<Integer> numbers = autoTicket.getnumbers();
 
-        
         assertThat(numbers).hasSize(6);
 
-        
         List<Integer> outOfRangeNumbers = numbers.stream()
                 .filter(num -> num < 1 || num > 45)
                 .collect(Collectors.toList());
         assertThat(outOfRangeNumbers).isEmpty();
 
-        
         long distinctCount = numbers.stream().distinct().count();
         assertThat(distinctCount).isEqualTo(6);
     }

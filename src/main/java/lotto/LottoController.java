@@ -23,18 +23,69 @@ public class LottoController {
         RatingCalculate(LottoList, WinningNum, BonusNum);
     }
 
+    private void EarningCalculate(int[] rankCounts, int lottoCount) {
+        int totalPrize = 0;
+        for (int i = 0; i < Rank.values().length - 1; i++) {
+            totalPrize += rankCounts[i] * Rank.values()[i].getPrize();
+        }
+
+        int totalSpent = lottoCount * 1000;
+        double earningRate = (double) totalPrize / totalSpent * 100;
+
+        System.out.println("총 수익률은 " + String.format("%.1f", earningRate) + "%입니다.");
+    }
+
     private void RatingCalculate(List<Lotto> lottoList, List<Integer> winningNum, int bonusNum) {
+        int[] rankCounts = new int[Rank.values().length];
+        int lottoPrice = 1000;
+
         for (Lotto lotto : lottoList) {
             int matchingCount = countMatchingNumbers(lotto.getNumbers(), winningNum);
             boolean hasBonusBall = lotto.getNumbers().contains(bonusNum);
-            Rank rank = calculateRank(matchingCount, hasBonusBall);
+            Rank rank = findRank(matchingCount, hasBonusBall);
 
-            System.out.println("로또 번호: " + lotto.getNumbers());
-            System.out.println("일치하는 번호 개수: " + matchingCount);
-            System.out.println("보너스 볼 일치 여부: " + hasBonusBall);
-            System.out.println("등수: " + rank);
-            System.out.println("상금: " + rank.getPrize() + "원");
-            System.out.println();
+            rankCounts[rank.ordinal()]++;
+        }
+
+        System.out.println("당첨 통계\n---");
+        for (int i = Rank.values().length - 2; i >= 0; i--) {
+            Rank rank = Rank.values()[i];
+            int count = rankCounts[i];
+            System.out.println(rank.getDescription() + " - " + count + "개");
+        }
+
+        int lottoCount = lottoList.size(); // 구입한 로또 개수
+        EarningCalculate(rankCounts, lottoCount);
+    }
+
+    public enum Rank {
+        FIRST(6, 2_000_000_000, "6개 일치"),
+        SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치"),
+        THIRD(5, 1_500_000, "5개 일치"),
+        FOURTH(4, 50_000, "4개 일치"),
+        FIFTH(3, 5_000, "3개 일치"),
+        NO_RANK(0, 0, "꽝");
+
+        private final int matchCount;
+        private final int prize;
+        private final String description;
+
+        Rank(int matchCount, int prize, String description) {
+            this.matchCount = matchCount;
+            this.prize = prize;
+            this.description = description;
+        }
+
+        public int getMatchCount() {
+            return matchCount;
+        }
+
+        public int getPrize() {
+            return prize;
+        }
+
+        public String getDescription() {
+            return description + " (" + String.format("%,d원", prize) + ")";
         }
     }
 
@@ -44,7 +95,7 @@ public class LottoController {
                 .count();
     }
 
-    private Rank calculateRank(int matchingCount, boolean hasBonusBall) {
+    private Rank findRank(int matchingCount, boolean hasBonusBall) {
         if (matchingCount == 6) {
             return Rank.FIRST;
         }
@@ -104,31 +155,6 @@ public class LottoController {
                 .boxed().collect(Collectors.toList());
     }
 
-
-    public enum Rank {
-        FIRST(6, 2000000000),
-        SECOND(5, 30000000),
-        THIRD(5, 1500000),
-        FOURTH(4, 50000),
-        FIFTH(3, 5000),
-        NO_RANK(0, 0);
-
-        private final int matchCount;
-        private final int prize;
-
-        Rank(int matchCount, int prize) {
-            this.matchCount = matchCount;
-            this.prize = prize;
-        }
-
-        public int getMatchCount() {
-            return matchCount;
-        }
-
-        public int getPrize() {
-            return prize;
-        }
-    }
 
 
 }

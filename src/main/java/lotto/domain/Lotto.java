@@ -22,7 +22,7 @@ public class Lotto {
         isNotDuplicate(numbers);
         isRightRange(numbers);
     }
-    // TODO: 추가 기능 구현
+
     public void isNotDuplicate(List<Integer>numbers){
         if(numbers.size()!=numbers.stream().distinct().count()){
             throw new IllegalArgumentException(Constants.NUM_DUPLICATE_EORROR);

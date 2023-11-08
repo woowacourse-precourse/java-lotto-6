@@ -24,10 +24,6 @@ public class LottoPrize {
             int matchCount = countMatchingNumbers(lotto);
             LottoMatch match = LottoMatch.findByMatchCount(matchCount, lotto.getNumbers().contains(bonusNumber));
 
-            if (match == LottoMatch.FIFTH && !lotto.getNumbers().contains(bonusNumber)) {
-                match = LottoMatch.FIFTH_BONUS;
-            }
-
             prizeCounts[match.ordinal()]++;
         }
 
@@ -39,11 +35,11 @@ public class LottoPrize {
         OutputView.lottoResult();
         for (LottoMatch match : LottoMatch.values()) {
             if (match != LottoMatch.MISS) {
-                System.out.println(match.getResultMessage() + prizeCounts[match.ordinal()] + "개");
+                int prizeMoney = match.getPrizeMoney();
+                System.out.println(match.getResultMessage() + prizeCounts[match.ordinal()] + "개 - " + prizeMoney + "원");
             }
         }
     }
-
     private double calculateRate(int[] prizeCount) {
         double totalPrize = calculateTotalPrize(prizeCount);
         double purchaseCost = purchasedLotto.size() * Constants.LOTTO_PRICE;

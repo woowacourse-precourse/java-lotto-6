@@ -6,6 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UIView {
+    private static final String[] lottoResultPrefixes = {
+            "6개 일치 (2,000,000,000원)",
+            "5개 일치, 보너스 볼 일치 (30,000,000원)",
+            "5개 일치 (1,500,000원)",
+            "4개 일치 (50,000원)",
+            "3개 일치 (5,000원)"
+    };
+
     // INPUT
     public static Integer getPurchaseMoney() {
         Integer parsedPurchaseMoney;
@@ -49,5 +57,23 @@ public class UIView {
         }
 
         return parsedBonusNumber;
+    }
+
+    // OUTPUT
+    public static void showSelectedNumbers(List<Integer>[] selectedNumbers) {
+        System.out.println(selectedNumbers.length + "개를 구매했습니다.");
+        for(List<Integer> numbers : selectedNumbers) {
+            System.out.println(numbers.toString());
+        }
+    }
+
+    public static void showLottoResults(List<Integer> lottoResults) {
+        for(int i = lottoResultPrefixes.length - 1; i >= 0; i--) {
+            System.out.println(lottoResultPrefixes[i] + " - " + lottoResults.get(i) + "개");
+        }
+    }
+
+    public static void showReturnRate(Float returnRate) {
+        System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }
 }

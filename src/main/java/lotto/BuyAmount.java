@@ -10,9 +10,9 @@ public class BuyAmount {
         validateUnit(this.buyAmount);
     }
 
-    private void validateInteger(String buyAmount) {
+    private void validateInteger(String userInput) {
         try {
-            Integer.parseInt(buyAmount);
+            Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력하신 값은 정수로 변환할 수 없습니다.");
         }

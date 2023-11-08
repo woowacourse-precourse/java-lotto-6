@@ -10,14 +10,15 @@ public class SelectedNumbers {
     private final List<Integer> selectedNumbers;
     private final LottoValidator validator = new LottoValidator();
 
+    /**
+     * 당첨 번호 생성
+     *
+     * @param inputNumbers ,로 구분된 당첨 번호
+     */
     public SelectedNumbers(String inputNumbers) {
         makeSplittedNumbers(inputNumbers);
         validator.lottoNumbers(numbers);
         selectedNumbers = convertNums();
-    }
-
-    public List<String> giveSplittedNumbers() {
-        return List.copyOf(numbers);
     }
 
     private void makeSplittedNumbers(String InputNumbers) {
@@ -34,6 +35,10 @@ public class SelectedNumbers {
             converting.add(converted);
         }
         return List.copyOf(converting);
+    }
+
+    public List<String> giveSplittedNumbers() {
+        return List.copyOf(numbers);
     }
 
     List<Integer> getSelectedNumbers() {

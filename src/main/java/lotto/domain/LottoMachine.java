@@ -11,6 +11,11 @@ public class LottoMachine {
         money = new Money(inputMoney);
     }
 
+    /**
+     * 입력된 금액만큼 로또 묶음을 생성
+     *
+     * @return 로또 묶음
+     */
     public LottoBundle makeLottoBundle() {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < money.toLottoAmount(); i++) {

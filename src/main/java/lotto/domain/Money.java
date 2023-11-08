@@ -11,6 +11,11 @@ public class Money {
         this.money = inputMoney;
     }
 
+    /**
+     * 금액에 맞는 로또 갯수 계산
+     *
+     * @return 구매할 수 있는 로또 갯수
+     */
     public int toLottoAmount() {
         return Integer.valueOf(money) / 1000;
     }

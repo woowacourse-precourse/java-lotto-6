@@ -1,5 +1,7 @@
 package lotto.broadcaster;
 
+import lotto.message.ErrorMessage;
+import lotto.message.Message;
 import lotto.utils.CustomScanner;
 import lotto.utils.Validator;
 
@@ -9,16 +11,24 @@ import java.util.List;
 
 public class Broardcaster {
     public List<Integer> pickLotteryNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(Message.INPUT_LOTTERY_NUMBERS);
         String inputLotteryNumbers = CustomScanner.getReadLine();
+        try {
+            validateInputLotteryNums(inputLotteryNumbers);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return pickLotteryNumbers();
+        }
+        return getListFromArray(inputLotteryNumbers.split(","));
+    }
+
+    private void validateInputLotteryNums(String inputLotteryNumbers) {
         if (!Validator.validateLotteryNumbersAndSize(inputLotteryNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTERY_NUMBERS.getMessage());
         }
-        String[] parseResult = inputLotteryNumbers.split(",");
-        if (Validator.isDuplicateLotteryNumbers(parseResult)) {
-            throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
+        if (Validator.isDuplicateLotteryNumbers(inputLotteryNumbers.split(","))) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTERY_NUMBERS.getMessage());
         }
-        return getListFromArray(parseResult);
     }
 
     private List<Integer> getListFromArray(String[] parseResult) {
@@ -29,15 +39,23 @@ public class Broardcaster {
     }
 
     public int pickBonusNumber(List<Integer> lotteryNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(Message.INPUT_BONUS_NUMBER);
         String inputBonusNumber = CustomScanner.getReadLine();
+        try {
+            validateInputBonusNumber(inputBonusNumber, lotteryNumbers);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return pickBonusNumber(lotteryNumbers);
+        }
+        return Integer.parseInt(inputBonusNumber);
+    }
+
+    private void validateInputBonusNumber(String inputBonusNumber, List<Integer> lotteryNumbers) {
         if (!Validator.validateBonusNumber(inputBonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER.getMessage());
         }
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
-        if (Validator.isDuplicateAllNumbers(lotteryNumbers, bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 중 중복된 번호가 존재합니다.");
+        if (Validator.isDuplicateAllNumbers(lotteryNumbers, Integer.parseInt(inputBonusNumber))) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());
         }
-        return bonusNumber;
     }
 }

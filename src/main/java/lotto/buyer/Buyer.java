@@ -2,6 +2,9 @@ package lotto.buyer;
 
 import lotto.company.LotteryResult;
 import lotto.company.Lotto;
+import lotto.message.ErrorMessage;
+import lotto.message.Message;
+import lotto.rank.Rank;
 import lotto.utils.CustomScanner;
 import lotto.utils.Validator;
 
@@ -21,20 +24,29 @@ public class Buyer {
 
     private Map<Integer, Integer> initRankResult () {
         Map<Integer, Integer> initMap = new HashMap<>();
-        for (int i = 1; i < 6; i++) {
+        for (int i = Rank.FIRST.getRank(); i <= Rank.FIFTH.getRank(); i++) {
             initMap.put(i, 0);
         }
         return initMap;
     }
 
     public int payForLotto() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(Message.INPUT_BUY_AMOUNT);
         String buyAmount = CustomScanner.getReadLine();
-        if (!Validator.isNumber(buyAmount) || !Validator.validateBuyAmount(buyAmount)) {
-            System.out.println("[ERROR] 로또 구매 금액은 1000원 단위로 입력해주세요. (최소 구매 금액: 1000원)");
-            throw new IllegalArgumentException();
+        try {
+            validateInput(buyAmount);
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
+            return payForLotto();
         }
         return Integer.parseInt(buyAmount);
+    }
+
+    private void validateInput(String buyAmount) throws IllegalArgumentException{
+        System.out.println("buyAmount: " + buyAmount);
+        if (!Validator.isNumber(buyAmount) || !Validator.validateBuyAmount(buyAmount)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_BUY_AMOUNT_INPUT.getMessage());
+        }
     }
 
     public void receiveLottos (List<Lotto> generatedLottos) {
@@ -64,10 +76,10 @@ public class Buyer {
 
     private int calculateRank(Map<Integer, Integer> rankResult, int count, boolean isBonusNumMatch) {
         if (count == 7 || count == 6 && !isBonusNumMatch) {
-            return 1;
+            return Rank.FIRST.getRank();
         }
         if (count == 6 && isBonusNumMatch) {
-            return 2;
+            return Rank.SECOND.getRank();
         }
         return 8 - count;
     }
@@ -78,11 +90,11 @@ public class Buyer {
                 "5개 일치 (1,500,000원) - %d개\n" +
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n" +
                 "6개 일치 (2,000,000,000원) - %d개\n"
-        , rankResult.get(5)
-        , rankResult.get(4)
-        , rankResult.get(3)
-        , rankResult.get(2)
-        , rankResult.get(1)
+        , rankResult.get(Rank.FIFTH.getRank())
+        , rankResult.get(Rank.FOURTH.getRank())
+        , rankResult.get(Rank.THIRD.getRank())
+        , rankResult.get(Rank.SECOND.getRank())
+        , rankResult.get(Rank.FIRST.getRank())
         );
         System.out.printf("총 수익률은 %.1f%%입니다.\n", getProfitRate());
     }
@@ -90,11 +102,9 @@ public class Buyer {
     private double getProfitRate() {
         double profit = 0;
         int buyAmount = lottos.size() * 1000;
-        profit += rankResult.get(1) * 2_000_000_000;
-        profit += rankResult.get(2) * 30_000_000;
-        profit += rankResult.get(3) * 1_500_000;
-        profit += rankResult.get(4) * 50_000;
-        profit += rankResult.get(5) * 5_000;
+        for (Rank rank : Rank.values()) {
+            profit += rankResult.get(rank.getRank()) * rank.getPrize();
+        }
         return (profit / buyAmount) * 100;
     }
 }

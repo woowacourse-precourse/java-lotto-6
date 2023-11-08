@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.service.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -31,8 +32,7 @@ public class GameController {
     private Money getMoney() {
         while (true) {
             try {
-                outputView.println(Message.NEED_PURCHASE_MONEY);
-                String input = inputView.readOne();
+                String input = inputView.readString(Message.NEED_PURCHASE_MONEY);
                 int money = numberGenerator.createOne(input);
 
                 return new Money(money);
@@ -52,8 +52,7 @@ public class GameController {
     private Lotto getWinningLotto() {
         while (true) {
             try {
-                outputView.println(Message.ENTER_WINNING_LOTTO);
-                String input = inputView.readOne();
+                String input = inputView.readString(Message.ENTER_WINNING_LOTTO);
                 List<Integer> winningNumbers = numberGenerator.createNumbers(input);
 
                 return new Lotto(winningNumbers);
@@ -66,8 +65,7 @@ public class GameController {
     private Bonus getBonus(Lotto winningLotto) {
         while (true) {
             try {
-                outputView.println(Message.NEED_BONUS_NUMBER);
-                String input = inputView.readOne();
+                String input = inputView.readString(Message.NEED_BONUS_NUMBER);
                 int bonus = numberGenerator.createOne(input);
 
                 return new Bonus(bonus, winningLotto);

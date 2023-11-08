@@ -46,6 +46,16 @@ class LottoTest {
         assertThat(ranking).isEqualTo(result);
     }
 
+    @Test
+    void getNumberValues_메서드는_로또가_가진_숫자들을_반환한다() {
+        //given
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        //when
+        List<Integer> numberValues = lotto.getNumberValues();
+        //then
+        assertThat(numberValues).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
     //당첨 로또 번호 1,2,3,4,5,6 과 비교할 로또와, 결과 등수 데이터 제공
     static List<Arguments> provideLottoTestData() {
         return Arrays.asList(

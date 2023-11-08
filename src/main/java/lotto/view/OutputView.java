@@ -14,11 +14,9 @@ public class OutputView {
     private static final String SECOND_WINNING_RESULT_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RETURN_RATE_FORMAT = "총 수익률은 %s%%입니다.";
     private static final String WINNING_RESULT_TITLE = "당첨 통계";
-
-    private static final int LOTTO_RESULT_CHARACTER_REPEAT_COUNT = 3;
-
-    private static final String DASH = "-";
     private static final String LOTTO_NUMBER_DELIMITER = ", ";
+    private static final String WINNING_TITLE_DASH = "-";
+    private static final int WINNING_TITLE_DASH_REPEAT_COUNT = 3;
 
     public static void printPurchasedCount(final int purchasedCount) {
         System.out.println();
@@ -42,7 +40,7 @@ public class OutputView {
     public static void printPrizeCount(PrizeCount prizeCount) {
         System.out.println();
         System.out.println(WINNING_RESULT_TITLE);
-        System.out.println(DASH.repeat(LOTTO_RESULT_CHARACTER_REPEAT_COUNT));
+        System.out.println(WINNING_TITLE_DASH.repeat(WINNING_TITLE_DASH_REPEAT_COUNT));
 
         prizeCount.getPrizeCount().forEach(OutputView::printOnePrizeCount);
     }

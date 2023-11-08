@@ -12,7 +12,7 @@ import lotto.generator.RandomLottosGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoController  {
+public class LottoController {
     public void run() {
         Money money = askMoney();
         Lottos playerLottos = generateLottos(money);
@@ -43,6 +43,7 @@ public class LottoController  {
     private void printWinningResult(Money money, Lottos playerLottos) {
         WinningLotto winningLotto = askWinningLottoNumbers();
         askBonusNumber(winningLotto);
+
         PrizeCount prizeCount = new PrizeCount(playerLottos.match(winningLotto));
 
         OutputView.printPrizeCount(prizeCount);

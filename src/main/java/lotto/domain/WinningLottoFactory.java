@@ -4,8 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WinningLottoFactory {
-    private static final String FORMAT_ERROR = "[ERROR] 정수만 입력하세요.";
-
+    private static final String NUMBER_FORMAT_ERROR = "[ERROR] 정수만 입력하세요.";
     private static final String LOTTO_NUMBER_DELIMITER = ",";
 
     public static WinningLotto of(String lottoNumbersInput) {
@@ -22,7 +21,7 @@ public class WinningLottoFactory {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(FORMAT_ERROR);
+            throw new IllegalArgumentException(NUMBER_FORMAT_ERROR);
         }
     }
 }

@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class PrizeCount {
-    private Map<Prize, Integer> prizeCount;
+    private final Map<Prize, Integer> prizeCount;
 
     public PrizeCount(List<Prize> matchResult) {
         this.prizeCount = new LinkedHashMap<>();
@@ -30,12 +30,12 @@ public class PrizeCount {
         }
     }
 
-    public Map<Prize, Integer> getPrizeCount() {
-        return Collections.unmodifiableMap(this.prizeCount);
-    }
-
     public double calculateReturnRate(Money money) {
         return money.calculateReturnRate(getTotalWinningAmount());
+    }
+
+    public Map<Prize, Integer> getPrizeCount() {
+        return Collections.unmodifiableMap(this.prizeCount);
     }
 
     private long getTotalWinningAmount() {

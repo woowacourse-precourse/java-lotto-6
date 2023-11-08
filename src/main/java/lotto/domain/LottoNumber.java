@@ -3,8 +3,7 @@ package lotto.domain;
 import java.util.Objects;
 
 public class LottoNumber {
-    private static final String RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-
+    private static final String NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 
@@ -21,7 +20,7 @@ public class LottoNumber {
 
     private void validateRange(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR);
         }
     }
 

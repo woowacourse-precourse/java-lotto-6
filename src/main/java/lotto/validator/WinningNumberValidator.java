@@ -14,13 +14,13 @@ public class WinningNumberValidator {
         return true;
     }
 
-    private static boolean isValidFormat(String[] numbers) {
+    public static boolean isValidFormat(String[] numbers) {
         if(numbers.length!=6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 \"(숫자),(숫자),(숫자),(숫자),(숫자),(숫자)\" 꼴의 입력이어야 합니다.");
         }
         return true;
     }
-    private static boolean isNumbers(String[] numbers) {
+    public static boolean isNumbers(String[] numbers) {
         try{
             for(String num : numbers) {
                 Integer.parseInt(num);
@@ -31,7 +31,7 @@ public class WinningNumberValidator {
         }
         return true;
     }
-    private static boolean isValidNumbers(String[] numbers) {
+    public static boolean isValidNumbers(String[] numbers) {
         for(String num : numbers) {
             if(Integer.parseInt(num)<0 || 45<Integer.parseInt(num)) {
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -40,7 +40,7 @@ public class WinningNumberValidator {
         return true;
     }
 
-    private static boolean hasDuplicatedNumbers(String[] numbers) {
+    public static boolean hasDuplicatedNumbers(String[] numbers) {
         HashSet<String> num = new HashSet<>();
         for(String number : numbers) {
             num.add(number);

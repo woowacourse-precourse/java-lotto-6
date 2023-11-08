@@ -64,7 +64,11 @@ public class LottoView {
     public void printWin(){
         System.out.println("당첨 통계");
         System.out.println("---");
+        System.out.println(Ranking.FIFTH.getRankingName() + Ranking.FIFTH.getRankingNumber() + "개");
+        System.out.println(Ranking.FOURTH.getRankingName() + Ranking.FOURTH.getRankingNumber() + "개");
+        System.out.println(Ranking.THIRD.getRankingName() + Ranking.THIRD.getRankingNumber() + "개");
+        System.out.println(Ranking.SECOND.getRankingName() + Ranking.SECOND.getRankingNumber() + "개");
+        System.out.println(Ranking.FIRST.getRankingName() + Ranking.FIRST.getRankingNumber() + "개");
     }
-
 
 }

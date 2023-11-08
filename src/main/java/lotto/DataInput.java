@@ -29,19 +29,32 @@ public class DataInput {
     }
 
     public List<Integer> userInputWinningNumbers(){
-        StringTokenizer winningNumbersTokenizer = new StringTokenizer(Console.readLine(), ",");
-        List<Integer> winningNumbers = new ArrayList<>();
         String curToken;
         int curNumber;
 
-        while(winningNumbersTokenizer.hasMoreTokens()){
-            curToken = winningNumbersTokenizer.nextToken();
-            curNumber = Integer.parseInt(curToken);
-            // Validate
-            winningNumbers.add(curNumber);
+        while(true){
+            try{
+                StringTokenizer winningNumbersTokenizer = new StringTokenizer(Console.readLine(), ",");
+                List<Integer> winningNumbers = new ArrayList<>();
+                while(winningNumbersTokenizer.hasMoreTokens()){
+                    curToken = winningNumbersTokenizer.nextToken();
+                    curNumber = Integer.parseInt(curToken);
+                    if(curNumber > 45 || curNumber < 1){
+                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    }
+                    if(winningNumbers.contains(curNumber)){
+                        throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
+                    }
+                    winningNumbers.add(curNumber);
+                }
+                if(winningNumbers.size() != 6){
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
+                }
+                return winningNumbers;
+            } catch (IllegalArgumentException e){
+                System.out.println(e);
+            }
         }
-
-        return winningNumbers;
     }
 
     public int userInputBonusNumber(){

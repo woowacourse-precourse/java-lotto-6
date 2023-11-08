@@ -21,7 +21,7 @@ public class UserRequestService {
 
     public static Lotto requestWinningLottoWithException() {
         OutputView.printRequestWinningNumbers();
-        List<Integer> winningNumbers = Converter.convertToNumberList(InputView.requestWinningNumber());
+        List<Integer> winningNumbers = Converter.formatConverter(InputView.requestWinningNumber());
         return Exception.winningLottoException(winningNumbers);
     }
 

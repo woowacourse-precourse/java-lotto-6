@@ -5,8 +5,6 @@ import lotto.util.TypeConverter.UserPromptConverter;
 
 public class LottoTicketService {
 
-    public
-
 
 
 }

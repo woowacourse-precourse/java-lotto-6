@@ -1,15 +1,13 @@
 package lotto.util;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.util.Verify.inputVerifyToStringArray;
 import static lotto.util.Verify.verifyAmount;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
-import lotto.Application;
-import lotto.Model.Lotto;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class VerifyTest extends NsTest {
@@ -21,29 +19,62 @@ public class VerifyTest extends NsTest {
     private static final String CAN_NOT_BUY2 = "999";
 
     @Test
-    void 값이1000원이상일경우() {
+    void verifyAmount_값이1000원이상일경우() {
         assertSimpleTest(() -> {
             assertThat(verifyAmount(CAN_BUY)).isEqualTo(CAN_BUY_VALUE);
         });
     }
 
     @Test
-    void 값이1000원이상일경우2() {
+    void verifyAmount_값이1000원이상일경우2() {
         assertSimpleTest(() -> {
             assertThat(verifyAmount(CAN_BUY2)).isEqualTo(CAN_BUY_VALUE2);
         });
     }
     @Test
-    void 값이1000원미만일경우() {
+    void verifyAmount_값이1000원미만일경우() {
         assertThatThrownBy(() -> verifyAmount(CAN_NOT_BUY))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 값이1000원미만일경우2() {
+    void verifyAmount_값이1000원미만일경우2() {
         assertThatThrownBy(() -> verifyAmount(CAN_NOT_BUY2))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void inputVerifyToStringArray_쉼표정확히6개_0부터45까지의숫자_정상(){
+        assertSimpleTest(
+                ()-> {
+                    assertThat(inputVerifyToStringArray("1,2,3,4,5,6"))
+                            .isEqualTo(List.of(1,2,3,4,5,6));
+                }
+        );
+    }
+
+    @Test
+    void inputVerifyToStringArray_쉼표정확히6개_0부터45까지의숫자_쉼표사이공백처리_정상(){
+        assertSimpleTest(
+                ()-> {
+                    assertThat(inputVerifyToStringArray("1,2,3,4,  5,6"))
+                            .isEqualTo(List.of(1,2,3,4,5,6));
+                }
+        );
+    }
+
+    @Test
+    void inputVerifyToStringArray_쉼표정확히6개_범위숫자아닌경우() {
+        assertThatThrownBy(() -> inputVerifyToStringArray("1,2,3,4,55,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void inputVerifyToStringArray_숫자가아닌값이들어올경우() {
+        assertThatThrownBy(() -> inputVerifyToStringArray("1,2,r,4,sssss, 6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Override
     public void runMain() {
         new Verify();

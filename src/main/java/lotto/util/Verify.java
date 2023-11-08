@@ -14,11 +14,17 @@ public class Verify {
     }
 
     public static List<Integer> inputVerifyToStringArray(String input) throws IllegalArgumentException{
-        input.replace(" ","");
+        input = input.replace(" ","");
         String[] numbers = input.split(",");
         List<Integer> inputList = new ArrayList<>();
         for(int i=0; i<numbers.length; i++){
-            Integer number = Integer.parseInt(String.valueOf(numbers[i]));
+            Integer number;
+            try{
+                number = Integer.parseInt(String.valueOf(numbers[i]));
+            }
+            catch (NumberFormatException e){
+                throw new IllegalArgumentException();
+            }
             if(number<0 || number>46)
                 throw new IllegalArgumentException();
             inputList.add(number);

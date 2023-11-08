@@ -18,6 +18,14 @@ public class Statistics {
         this.matchResults = matchResults;
     }
 
+    public float evaluateTotalProfit() {
+        Map<MatchResult, Integer> counts = calculateMatchCounts();
+
+        float totalEarningPrize = calculateTotalEaringPrize(counts);
+        float totalProfit = getProfitRate(totalEarningPrize);
+        return totalProfit;
+    }
+
     private static Map<MatchResult, Integer> initializePrizeMoney() {
         Map<MatchResult, Integer> prizeMoney = new HashMap<>();
         prizeMoney.put(new MatchResult(3, false), 5_000);
@@ -28,23 +36,15 @@ public class Statistics {
         return prizeMoney;
     }
 
-    public Map<MatchResult, Integer> calculateMatchCounts() {
+    private Map<MatchResult, Integer> calculateMatchCounts() {
         return matchResults.stream()
             .collect(Collectors.toMap(Function.identity(), matchResult -> 1, Integer::sum));
     }
 
-    public int calculateTotalEaringPrize(Map<MatchResult, Integer> matchCounts) {
+    private int calculateTotalEaringPrize(Map<MatchResult, Integer> matchCounts) {
         return matchCounts.entrySet().stream()
             .mapToInt(entry -> entry.getValue() * PRIZE_MONEY.getOrDefault(entry.getKey(), 0))
             .sum();
-    }
-
-    public float evaluateTotalProfit() {
-        Map<MatchResult, Integer> counts = calculateMatchCounts();
-        
-        float totalEarningPrize = calculateTotalEaringPrize(counts);
-        float totalProfit = getProfitRate(totalEarningPrize);
-        return totalProfit;
     }
 
     private float getProfitRate(float totalWinnings) {

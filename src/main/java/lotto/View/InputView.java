@@ -13,9 +13,15 @@ public class InputView {
     public static int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         int amount = getMoney();
-                if (amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
+        try {
+            if (amount % LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 1,000원 단위로 입력해 주세요.");
+            amount = getMoney();
         }
+
         return amount / LOTTO_PRICE;
     }
 

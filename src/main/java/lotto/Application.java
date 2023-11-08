@@ -60,6 +60,15 @@ public class Application {
         return new Lotto(winningNumbers);
     }
 
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        Integer input = convertInteger(Console.readLine());
+        boolean isNotInLottoNumberRange = input < 1 || 45 < input;
+        if(isNotInLottoNumberRange)
+            throw new IllegalArgumentException();
+        return input;
+    }
+
     public static void main(String[] args) {
         int budget;
         List<Lotto> lottos;
@@ -71,8 +80,10 @@ public class Application {
         }
 
         Lotto winningLotto;
+        int bonusNumber;
         try {
             winningLotto = inputWinningLotto();
+            bonusNumber = inputBonusNumber();
         } catch (IllegalArgumentException e) {
             alertError("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }

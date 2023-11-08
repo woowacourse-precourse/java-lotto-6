@@ -10,7 +10,7 @@ public class LottoGame {
         String userPrice = InputView.requestPrice();
 
         //parseToInt
-        Integer ticketCount = ConvertingUtil.convertToInteger(userPrice) / 1000;
+        Integer ticketCount = ConvertingUtil.convertToTicket(userPrice);
 
         //create Lottos
         Lottos randomLottos = Lottos.create(ticketCount);

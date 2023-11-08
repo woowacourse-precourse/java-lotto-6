@@ -1,7 +1,13 @@
 package lotto;
 
 public class ConvertingUtil {
-    public static int convertToInteger(String userInput) {
+    private static final Integer TICKET_PRICE = 1000;
+
+    public static int convertToTicket(String userInput) {
+        return convertToInteger(userInput) / TICKET_PRICE;
+    }
+
+    private static int convertToInteger(String userInput) {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {

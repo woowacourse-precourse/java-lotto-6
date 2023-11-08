@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class UserMoneyInputValidatorTest {
-
     @DisplayName("구입 금액이 비어있는 입력값일 때 예외가 발생한다.")
     @Test
     void insertUserMoneyWithBlankValue() {

@@ -65,5 +65,9 @@ public class LottoRound {
         }
 
     }
-    
+
+    public void calculatePrize() {
+        lottoBatchResult = new LottoBatchResult(lottoBatch, prizeNumbers);
+        lottoBatchResult.calculateLottoResults();
+    }
 }

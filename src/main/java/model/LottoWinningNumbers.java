@@ -9,8 +9,8 @@ public class LottoWinningNumbers {
     private Lotto winningNumbers;
     private int bonusNumber;
 
-    public LottoWinningNumbers(Lotto winningNumbers, String bonusNumber) {
-        this.winningNumbers = winningNumbers;
+    public LottoWinningNumbers(List<Integer> winningNumbers, String bonusNumber) {
+        this.winningNumbers = new Lotto(winningNumbers);
         validationBonusNumber(Converter.stringToInt(bonusNumber));
         this.bonusNumber = Converter.stringToInt(bonusNumber);
     }

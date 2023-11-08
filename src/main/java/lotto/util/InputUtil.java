@@ -8,7 +8,8 @@ import lotto.model.LottoNumber;
 public class InputUtil {
 
     private static final InputUtil instance = new InputUtil();
-    private final Validator validator = new Validator();
+    private final InputValidator inputValidator = new InputValidator();
+    private final LottoValidator lottoValidator = new LottoValidator();
 
     private InputUtil() {
     }
@@ -29,7 +30,7 @@ public class InputUtil {
 
     private boolean validateMoneyInput(String moneyInput) {
         try {
-            validator.validateMoney(moneyInput);
+            inputValidator.validateMoney(moneyInput);
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -47,9 +48,9 @@ public class InputUtil {
         return convertToList(winningNumbersInput);
     }
 
-    private boolean validateWinningNumbers(String moneyInput) {
+    private boolean validateWinningNumbers(String winningNumberInput) {
         try {
-            validator.validateLottoNumbers(moneyInput);
+            inputValidator.validateRawLottoNumbers(winningNumberInput);
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -58,18 +59,19 @@ public class InputUtil {
     }
 
     //로또 보너스 당첨번호 입력 메소드
-    public int inputBonusNumber() {
+    public int inputBonusNumber(List<LottoNumber> lottoNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumberInput = "";
         do {
             bonusNumberInput = Console.readLine();
-        } while (!validateBonusNumber(bonusNumberInput));
+        } while (!validateBonusNumber(lottoNumbers, bonusNumberInput));
         return Integer.parseInt(bonusNumberInput);
     }
 
-    private boolean validateBonusNumber(String moneyInput) {
+    private boolean validateBonusNumber(List<LottoNumber> lottoNumbers, String bonusNumberInput) {
         try {
-            validator.validateLottoBonusNumber(moneyInput);
+            inputValidator.validateRawLottoBonusNumber(bonusNumberInput);
+            lottoValidator.validateLottoBonusNumber(lottoNumbers, Integer.parseInt(bonusNumberInput));
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -81,6 +83,7 @@ public class InputUtil {
         List<String> stringNumbers = Arrays.stream(lottoNumberInput.split(",")).toList();
         return stringNumbers.stream()
                 .map(Integer::parseInt)
+                .sorted()
                 .toList();
     }
 }

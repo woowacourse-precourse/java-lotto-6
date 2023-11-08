@@ -18,8 +18,8 @@ public class InputValidation {
         }
     }
 
-    public static void validateLottoNumberCount(String[] list) {
-        if (list.length != 6) {
+    public static void validateLottoNumberCount(List<Integer> list) {
+        if (list.size() != 6) {
             throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_LOTTO_NUMBER_COUNT);
         }
     }

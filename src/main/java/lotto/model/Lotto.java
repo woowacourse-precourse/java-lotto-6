@@ -12,18 +12,14 @@ public class Lotto {
 
 
     public Lotto(List<Integer> numbers) {
-
-        this.numbers = validate(numbers);
+        validate(numbers);
+        this.numbers = numbers;
     }
 
-    private List<Integer> validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         validateNumbersForDuplicates(numbers);
         validateNumbersForRange(numbers);
         validateNumbersCount(numbers);
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
 
@@ -46,4 +42,9 @@ public class Lotto {
             throw new IllegalArgumentException(EXCESS_NUMBERS_ERROR_MESSAGE);
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }

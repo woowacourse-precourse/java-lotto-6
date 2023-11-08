@@ -63,7 +63,7 @@ public class LottoGame {
         System.out.println("3개 일치 (5,000원) - " + lottoResults.get(Winnings.FIFTH_PLACE).size() + "개");
         System.out.println("4개 일치 (50,000원) - " + lottoResults.computeIfAbsent(Winnings.FOURTH_PLACE, k -> new ArrayList<>()).size() + "개");
         System.out.println("5개 일치 (1,500,000원) - " + lottoResults.computeIfAbsent(Winnings.THIRD_PLACE, k -> new ArrayList<>()).size() + "개");
-        System.out.println("5개 일치 (30,000,000원), 보너스 볼 일치 - " + lottoResults.computeIfAbsent(Winnings.SECOND_PLACE, k -> new ArrayList<>()).size() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoResults.computeIfAbsent(Winnings.SECOND_PLACE, k -> new ArrayList<>()).size() + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoResults.computeIfAbsent(Winnings.FIRST_PLACE, k -> new ArrayList<>()).size() + "개");
 
         return getSum(lottoResults);
@@ -86,6 +86,6 @@ public class LottoGame {
     }
 
     private static void printRate(long sum, int pay) {
-        System.out.println("총 수익률은 " + Math.round(((double) pay) / sum * 10) / 10 + "%입니다.");
+        System.out.println("총 수익률은 " + ((double)Math.round(((double) sum) / pay * 100 * 10)) / 10 + "%입니다.");
     }
 }

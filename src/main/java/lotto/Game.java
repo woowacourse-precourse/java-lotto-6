@@ -59,9 +59,17 @@ public class Game {
         if(check_count ==4){this.correct[1] = this.correct[1]+1; }
         if(check_count ==5){
             this.correct[2] = this.correct[2]+1;
+            checkFive(here);
         }
         if(check_count ==6){this.correct[4] = this.correct[4]+1; }
 
+    }
+
+    private void checkFive(Lotto here){
+        if(here.containNum(this.bonus)){
+            this.correct[2] = this.correct[2]-1;
+            this.correct[3] = this.correct[3]+1;
+        }
     }
 
     private double result(){

@@ -56,7 +56,6 @@ class LottoTest {
         assertThat(lotto.countMatchingNumber(userLotto)).isEqualTo(6);
     }
 
-
     @DisplayName("로또 번호에 보너스 번호가 존재하면 true를 반환한다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})

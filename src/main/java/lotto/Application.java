@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Application {
@@ -18,13 +20,16 @@ public class Application {
         int bonusNumber = bonusNumberInput(winningLotto);
         System.out.println();
 
+        Map<LottoRank, Integer> winningResult = makeWinningResult(winningLotto, bonusNumber, boughtLottos);
+
+
     }
 
     public static int purchaseAmountInput() {
         System.out.println("구매금액을 입력해 주세요.");
 
         int purchaseAmount = InputManager.purchaseAmountInput();
-        
+
         return purchaseAmount;
     }
 
@@ -53,12 +58,35 @@ public class Application {
     }
 
     public static void printBoughtLottos(List<Lotto> boughtLottos) {
-        for (Lotto lotto: boughtLottos) {
+        for (Lotto lotto : boughtLottos) {
             System.out.println(lotto.toString());
         }
     }
 
     private static List<Lotto> makeLottoNumbersToLotto(List<List<Integer>> LottoNumbers) {
         return LottoNumbers.stream().map(Lotto::new).collect(Collectors.toList());
+    }
+
+    public static Map<LottoRank, Integer> makeWinningResult(Lotto winningLotto, int bonusNumber, List<Lotto> boughtLottos) {
+        Map<LottoRank, Integer> winningResult = setWinningResult();
+
+        for (Lotto lotto : boughtLottos) {
+            LottoRank winningRanking = LottoNumberReader.checkRanking(winningLotto, bonusNumber, lotto);
+            winningResult.put(winningRanking, winningResult.get(winningRanking) + 1);
+        }
+
+        return winningResult;
+    }
+
+    private static Map<LottoRank, Integer> setWinningResult() {
+        Map<LottoRank, Integer> winningResult = new HashMap<>();
+        winningResult.put(LottoRank.NO_WIN, 0);
+        winningResult.put(LottoRank.FIFTH, 0);
+        winningResult.put(LottoRank.FOURTH, 0);
+        winningResult.put(LottoRank.THIRD, 0);
+        winningResult.put(LottoRank.SECOND, 0);
+        winningResult.put(LottoRank.FIRST, 0);
+
+        return winningResult;
     }
 }

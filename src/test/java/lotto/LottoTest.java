@@ -24,4 +24,19 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @DisplayName("당첨 번호의 개수가 6이 아니고 1~45의 숫자가 아닐 경우 예외가 발생한다.")
+    @Test
+    void createWinningLottoBySizeNotSix() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 66)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호의 범위가 1~45 가 아닐 경우 예외가 발생한다.")
+    @Test
+    void validateInvalidBonusNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThatThrownBy(() -> lotto.validateBonus(55))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

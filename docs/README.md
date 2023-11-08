@@ -57,13 +57,16 @@
 ### GameController
 - `InputView`
 - `OutputView`
-- `NumberService`
+- `GameService`
+- `LottoService`
 
-### NumberService
+### GameService
 - `PurchaseAmount`
+- `RankStatistics`
+
+### LottoService
 - `Lottos`
 - `WinningNumbers`
-- `RankStatistics`
 
 ### PurchaseAmount
 - int

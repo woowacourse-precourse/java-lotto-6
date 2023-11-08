@@ -1,18 +1,21 @@
 package lotto.controller;
 
-import lotto.service.NumberService;
+import lotto.service.GameService;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final NumberService numberService;
+    private final GameService gameService;
+    private final LottoService lottoService;
 
-    public GameController(InputView inputView, OutputView outputView, NumberService numberService) {
+    public GameController(InputView inputView, OutputView outputView, GameService gameService, LottoService lottoService) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.numberService = numberService;
+        this.gameService = gameService;
+        this.lottoService = lottoService;
     }
 
     public void run() {
@@ -34,17 +37,17 @@ public class GameController {
 
     public void issueLottos() {
         try {
-            numberService.initLottos();
+            lottoService.initLottos(gameService.createLottos());
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
             throw e;
         }
-        outputView.printPurchaseNumber(numberService.getPurchaseNumber());
-        outputView.printLottos(numberService.getLottosOutput());
+        outputView.printPurchaseNumber(gameService.getPurchaseNumber());
+        outputView.printLottos(lottoService.getLottosOutput());
     }
 
     public void inputWinningLotto() {
-        numberService.initWinningNumbers();
+        lottoService.initWinningNumbers();
         String input;
         do {
             outputView.requestWinningLotto();
@@ -61,17 +64,17 @@ public class GameController {
     }
 
     public void outputWinningStatistics() {
-        numberService.initRankStatistics();
-        outputView.printRankStatistics(numberService.getRankStatisticsOutput());
+        gameService.initRankStatistics(lottoService.createStatistics());
+        outputView.printRankStatistics(gameService.getRankStatisticsOutput());
     }
 
     public void outputProfitRate() {
-        outputView.printProfitRate(numberService.getProfitRate());
+        outputView.printProfitRate(gameService.getProfitRate());
     }
 
     private boolean isInvalidPurchaseAmount(String input) {
         try {
-            numberService.initPurchaseAmount(input);
+            gameService.initPurchaseAmount(input);
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
             return true;
@@ -81,7 +84,7 @@ public class GameController {
 
     private boolean isInvalidWinningLotto(String input) {
         try {
-            numberService.initWinningLotto(input);
+            lottoService.initWinningLotto(input);
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
             return true;
@@ -91,7 +94,7 @@ public class GameController {
 
     private boolean isInvalidBonusNumber(String input) {
         try {
-            numberService.initBonusNumber(input);
+            lottoService.initBonusNumber(input);
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
             return true;

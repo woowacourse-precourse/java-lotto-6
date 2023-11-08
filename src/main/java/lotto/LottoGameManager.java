@@ -11,7 +11,7 @@ import lotto.validation.WinningNumbersInputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoGameManger {
+public class LottoGameManager {
     private static final int PRICE_PER_TICKET = 1000;
     private String totalPrice;
     private int lottoQauntity;
@@ -22,7 +22,7 @@ public class LottoGameManger {
     private double rateOfReturn;
 
     private final LottoService lottoService;
-    public LottoGameManger(LottoService lottoService) {
+    public LottoGameManager(LottoService lottoService) {
         this.lottoService = lottoService;
     }
 

@@ -20,8 +20,8 @@ public class LottoService {
         return purchaseTickets.getBuyLottoInfo();
     }
 
-    public void createWinningLotto(List<Integer> numbers, BonusNumber bonusNumber){
-        winningLotto = new WinningLotto(numbers, bonusNumber);
+    public void createWinningLotto(List<Integer> numbers, int bonusNumber){
+        winningLotto = new WinningLotto(numbers, new BonusNumber(bonusNumber));
     }
 
     public LottoWinResult checkWinningLotto() {

@@ -14,32 +14,42 @@ import lotto.service.WinningNumberGenerator;
 public class GameConfig {
 
     public static GameController getGameController() {
-        Player player = getPlayer();
-        PlayerService playerService = getPlayerService(player);
-        OutputController outputController = getOutputController(player);
-        WinningNumberGenerator winningNumberGenerator = new WinningNumberGenerator();
-        LottoCountGenerator lottoCountGenerator = new LottoCountGenerator();
+        return new GameController(getPlayer(), getPlayerService(), getWinningNumberGenerator(), getOutputController(), getLottoCountGenerator());
+    }
 
-        return new GameController(player, playerService, winningNumberGenerator, outputController, lottoCountGenerator);
+    public static CorrectLottoCalculator getCorrectLottoCalculator() {
+        return new CorrectLottoCalculator();
+    }
+
+    public static PlayerService getPlayerService() {
+        return new PlayerService(getPlayer(), getLottoGenerator(), getWinningLottoCalculator());
     }
 
     private static Player getPlayer() {
-        CorrectLottoCalculator correctLottoCalculator = new CorrectLottoCalculator();
-
-        return new Player(correctLottoCalculator);
+        return Player.getInstance();
     }
 
-
-    private static PlayerService getPlayerService(Player player) {
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
-
-        return new PlayerService(player, lottoGenerator, winningLottoCalculator);
+    private static WinningNumberGenerator getWinningNumberGenerator(){
+        return new WinningNumberGenerator();
     }
 
-    private static OutputController getOutputController(Player player) {
-        TotalStatCalculator totalStatCalculator = new TotalStatCalculator(player);
+    private static LottoCountGenerator getLottoCountGenerator(){
+        return new LottoCountGenerator();
+    }
 
-        return new OutputController(totalStatCalculator);
+    private static LottoGenerator getLottoGenerator(){
+        return new LottoGenerator();
+    }
+
+    private static WinningLottoCalculator getWinningLottoCalculator(){
+        return new WinningLottoCalculator();
+    }
+
+    private static OutputController getOutputController() {
+        return new OutputController(getTotalStatCalculator());
+    }
+
+    private static TotalStatCalculator getTotalStatCalculator(){
+        return new TotalStatCalculator(getPlayer());
     }
 }

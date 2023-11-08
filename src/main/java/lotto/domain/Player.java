@@ -3,18 +3,31 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.config.GameConfig;
 import lotto.exception.LottoValidator;
 import lotto.service.CorrectLottoCalculator;
 import lotto.util.RankingMessage;
 
 public class Player {
 
+    private static Player instance;
     CorrectLottoCalculator correctLottoCalculator;
     Map<Lotto, CorrectCount> lottos;
 
-    public Player(CorrectLottoCalculator correctLottoCalculator) {
+    private Player(CorrectLottoCalculator correctLottoCalculator) {
         this.correctLottoCalculator = correctLottoCalculator;
         lottos = new HashMap<>();
+    }
+
+    public static Player getInstance() {
+        if (instance == null) {
+            instance = new Player(GameConfig.getCorrectLottoCalculator());
+        }
+        return instance;
+    }
+
+    public static void deleteInstance() {
+        instance = null;
     }
 
     public void addLotto(Lotto lotto) {
@@ -25,7 +38,7 @@ public class Player {
         return lottos.keySet().stream().toList();
     }
 
-    public List<CorrectCount> getCorrectLottoCounts() {
+    public List<CorrectCount> getCorrectCounts() {
         return lottos.values().stream().toList();
     }
 
@@ -39,14 +52,14 @@ public class Player {
     }
 
     public int getNumberCount(String message, int rankCount) {
-        List<CorrectCount> correctLottoCounts = getCorrectLottoCounts();
+        List<CorrectCount> correctCounts = getCorrectCounts();
 
         if (message.equals(RankingMessage.SECOND_RANK.toString())) {
-            return correctLottoCalculator.getCorrectSecondLottoCount(rankCount, correctLottoCounts).intValue();
+            return correctLottoCalculator.getCorrectSecondLottoCount(rankCount, correctCounts).intValue();
         }
         if (message.equals(RankingMessage.THIRD_RANK.toString())) {
-            return correctLottoCalculator.getCorrectThirdLottoCount(rankCount, correctLottoCounts).intValue();
+            return correctLottoCalculator.getCorrectThirdLottoCount(rankCount, correctCounts).intValue();
         }
-        return correctLottoCalculator.getCorrectLottoCount(rankCount, correctLottoCounts).intValue();
+        return correctLottoCalculator.getCorrectLottoCount(rankCount, correctCounts).intValue();
     }
 }

@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import lotto.config.GameConfig;
 import lotto.domain.CorrectCount;
 import lotto.domain.Lotto;
 import lotto.domain.Player;
 import lotto.domain.WinningNumbers;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,20 +17,12 @@ class PlayerServiceTest {
 
     Player player;
     PlayerService playerService;
-    static LottoGenerator lottoGenerator;
-    static WinningLottoCalculator winningLottoCalculator;
-
-    @BeforeAll
-    static void beforeAll(){
-        lottoGenerator = new LottoGenerator();
-        winningLottoCalculator = new WinningLottoCalculator();
-    }
 
     @BeforeEach
     void beforeEach() {
-        CorrectLottoCalculator correctLottoCalculator = new CorrectLottoCalculator();
-        player = new Player(correctLottoCalculator);
-        playerService = new PlayerService(player,lottoGenerator,winningLottoCalculator);
+        Player.deleteInstance();
+        player = Player.getInstance();
+        playerService = GameConfig.getPlayerService();
     }
 
     @Test
@@ -58,9 +50,9 @@ class PlayerServiceTest {
         player.addLotto(lotto);
         playerService.check(winningNumbers);
         //then
-        for (CorrectCount correctLottoCount : player.getCorrectLottoCounts()) {
-            assertEquals(CORRECT_COUNT, correctLottoCount.getCorrectNumberCount(),"맞춘 개수가 동일해야 한다.");
-            assertEquals(CORRECT_BONUS_COUNT, correctLottoCount.getCorrectBonusNumberCount(),"보너스 개수가 동일해야 한다.");
+        for (CorrectCount correctCount : player.getCorrectCounts()) {
+            assertEquals(CORRECT_COUNT, correctCount.getCorrectNumberCount(),"맞춘 개수가 동일해야 한다.");
+            assertEquals(CORRECT_BONUS_COUNT, correctCount.getCorrectBonusNumberCount(),"보너스 개수가 동일해야 한다.");
         }
     }
 }

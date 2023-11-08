@@ -24,7 +24,12 @@ public class LottoController {
     private static int bonusNumber;
 
     public static void start() {
-
+        purchaseLotto();
+        printAllLottoNumbers();
+        setWinningNumbers();
+        setBonusNumber();
+        printStatisticsResult();
+        printLottoProfitResult();
     }
 
     private static void purchaseLotto() {
@@ -62,7 +67,6 @@ public class LottoController {
     }
 
     private static void printLottoProfitResult() {
-        OutputView.printTotalProfitRate();
         LottoProfit lottoProfit = new LottoProfit(lottoCount * LOTTO_PER_PRICE);
         String lottoProfitResult = lottoProfit.getLottoProfit();
         OutputView.printLottoProfit(lottoProfitResult);

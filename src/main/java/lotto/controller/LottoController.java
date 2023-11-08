@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.domain.Bank;
 import lotto.domain.Player;
 import lotto.domain.enums.Prize;
+import lotto.dto.response.LottoResultDto;
 import lotto.dto.response.LottosInfoDto;
 import lotto.service.LottoService;
 import lotto.validation.InputValidator;
@@ -145,7 +146,8 @@ public class LottoController {
         int totalPrizeMoney = bank.calculateTotalPrizeMoney(prizeCountMap);
         double earningRate = bank.calculateEarningRate(totalPrizeMoney, player);
 
-        outputView.displayWinningStatistics(prizeCountMap);
-        outputView.displayEarningRate(earningRate);
+        LottoResultDto lottoResultDto = new LottoResultDto(prizeCountMap, earningRate);
+        outputView.displayWinningStatistics(lottoResultDto);
+        outputView.displayEarningRate(lottoResultDto);
     }
 }

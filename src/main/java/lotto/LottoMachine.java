@@ -27,6 +27,7 @@ public class LottoMachine {
         System.out.println(lottoCount + "개를 구매했습니다.");
         List<List<Integer>> myLottos = getAllLotto(lottoCount);
         System.out.println(lottoToString(myLottos));
+        Lotto lotto = setWinningNumbers();
     }
 
     public int setLottoCount() {
@@ -57,6 +58,18 @@ public class LottoMachine {
             ret.append("\n");
         });
         return ret.toString().trim();
+    }
+
+    private Lotto setWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                List<Integer> numbers = getSplitNaturalNumberList(",");
+                return new Lotto(numbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Integer> getLotto() {

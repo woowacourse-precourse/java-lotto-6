@@ -38,3 +38,20 @@ class LottoTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("로또 숫자 배열 오름차순 정렬 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"6,5,4,3,2,1", "1,6,4,3,2,5"})
+    void sortLottoNumbers(String numbersCsv) {
+        List<Integer> numbers = Arrays.stream(numbersCsv.split(","))
+                .map(String::trim)
+                .map(Integer::valueOf)
+                .collect(Collectors.toList());
+        Lotto lotto = new Lotto(numbers);
+
+        String actual = lotto.toString();
+        String expected = "[1, 2, 3, 4, 5, 6]";
+
+        assertThat(actual).isEqualTo(expected);
+    }
+}

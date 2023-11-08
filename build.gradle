@@ -9,6 +9,8 @@ repositories {
 
 dependencies {
     implementation 'com.github.woowacourse-projects:mission-utils:1.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
 
 java {
@@ -19,4 +21,8 @@ java {
 
 test {
     useJUnitPlatform()
+}
+
+test.onlyIf {
+    !project.hasProperty('test')
 }

@@ -26,13 +26,14 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public void run() {
+    public boolean run() {
         start();
         buy();
         randomLotto();
         winningLotto();
         lottoResult();
         rate();
+        return true;
     }
 
     private void start() {
@@ -72,9 +73,7 @@ public class LottoController {
 
     private String inputBonus() {
         outputView.inputBonusNumber();
-        String bonus = inputView.inputBonus();
-        Validation.onlyNumberCheck(bonus);
-        return bonus;
+        return inputView.inputBonus();
     }
 
     private void lottoResult() {

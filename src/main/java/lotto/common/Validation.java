@@ -12,6 +12,7 @@ import static lotto.common.util.LottoUtil.SIZE;
 import static lotto.common.util.LottoUtil.THOUSAND;
 import static lotto.common.util.LottoUtil.ZERO;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -53,7 +54,16 @@ public final class Validation {
     }
 
     public static Integer lottoDuplicateBonusNumber(String lotto, String bonus) {
-        if (lotto.contains(bonus)) {
+        List<Integer> lottoList = Arrays.stream(lotto.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
+
+        int bonusNumber = Integer.parseInt(bonus.trim());
+
+        boolean hasExactMatch = lottoList.stream()
+                .anyMatch(number -> number == bonusNumber);
+        if (hasExactMatch) {
             throw new IllegalArgumentException(DUPLICATE_BONUS.getMessage());
         }
 

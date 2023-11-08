@@ -23,16 +23,16 @@ public class Lotto {
         return numbers;
     }
 
-    public boolean hasNumber(int number) {
-        return numbers.contains(number);
-    }
-
     public int getDuplicatedNumberCount(Lotto lotto) {
         long count = numbers.stream()
                 .filter(l -> lotto.getNumbers().stream()
                         .anyMatch(Predicate.isEqual(l))).count();
 
         return (int) count;
+    }
+
+    protected boolean hasNumber(int number) {
+        return numbers.contains(number);
     }
 
     private void validate(List<Integer> numbers) {

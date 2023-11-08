@@ -1,10 +1,12 @@
 package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto;
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.util.Validator;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ConsoleUI {
@@ -98,5 +100,32 @@ public class ConsoleUI {
                 .sorted()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ")) + "]";
+    }
+
+    public void displayResult(Map<LottoResult, Integer> lottoResult, double earningsRate) {
+        printResultTemplate();
+        printLottoResult(lottoResult);
+        printEarningsRate(earningsRate);
+    }
+
+    private void printLottoResult(Map<LottoResult, Integer> lottoResult) {
+        for (LottoResult result : LottoResult.values()) {
+            if (result != LottoResult.NONE) { // 'NONE'은 출력하지 않는다.
+                System.out.printf("%d개 일치 (%s) - %d개\n",
+                        result.getMatchCount(),
+                        result.getPrizeString(),
+                        lottoResult.getOrDefault(result, 0));
+            }
+        }
+    }
+
+    private void printEarningsRate(double earningsRate) {
+        String formattedEarningsRate = String.format("%.1f%%", earningsRate);
+        System.out.println("총 수익률은 "+formattedEarningsRate+"입니다.");
+    }
+
+    private void printResultTemplate() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
     }
 }

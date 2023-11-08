@@ -40,10 +40,9 @@
 
             // 로또 번호 출력
             for (Lotto lotto : lottoContainer) {
-                List<Integer> sortedNumbers = Sorting.LottoNum(lotto.getNumbers());
+                List<Integer> sortedNumbers = Sorting.LottoNum(lotto.getNumbers()); //오름차순으로 정렬
                 sb.append(sortedNumbers).append("\n");
             }
-
             return sb.toString();
         }
 

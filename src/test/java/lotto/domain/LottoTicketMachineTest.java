@@ -1,13 +1,14 @@
-package lotto.service;
+package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.domain.IssuedLottos;
+import lotto.domain.LottoTicketMachine;
 import lotto.utility.vo.request.PurchaseAmountRequest;
 import org.junit.jupiter.api.Test;
 
-class LottoServiceTest {
-    private final LottoService lottoService = new LottoService();
+class LottoTicketMachineTest {
+    private final LottoTicketMachine lottoTicketMachine = new LottoTicketMachine();
 
     @Test
     void 로또를_발행한다() {
@@ -15,7 +16,7 @@ class LottoServiceTest {
         PurchaseAmountRequest 구매금액요청 = new PurchaseAmountRequest("5000");
 
         // when
-        IssuedLottos 발행된_로또들 = lottoService.generateLottos(구매금액요청);
+        IssuedLottos 발행된_로또들 = lottoTicketMachine.generateLottos(구매금액요청);
 
         // then
         assertEquals(5, 발행된_로또들.numberOfIssuedLottos());

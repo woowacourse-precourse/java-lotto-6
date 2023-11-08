@@ -6,7 +6,8 @@ import lotto.domain.IssuedLottos;
 import lotto.domain.Lotto;
 import lotto.domain.Profit;
 import lotto.domain.Rank;
-import lotto.service.LottoService;
+import lotto.domain.LottoTicketMachine;
+import lotto.utility.validation.WinningNumberChecker;
 import lotto.utility.vo.request.BonusNumberRequest;
 import lotto.utility.vo.response.LottoResponse;
 import lotto.utility.vo.response.ProfitResponse;
@@ -19,12 +20,10 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final LottoService lottoService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
+    public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoService = lottoService;
     }
 
     public void run() {
@@ -42,7 +41,7 @@ public class LottoController {
         while(true) {
             try {
                 PurchaseAmountRequest purchaseAmount = inputView.getPurchaseAmount();
-                return lottoService.generateLottos(purchaseAmount);
+                return LottoTicketMachine.generateLottos(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 outputView.informErrorMessage(e.getMessage());
             }
@@ -63,7 +62,8 @@ public class LottoController {
                 BonusNumberRequest bonusNumberRequest = inputView.getBonusNumber();
                 BonusNumber bonusNumber = bonusNumberRequest.convertToValidBonusNumber();
 
-                return  lottoService.determineWinning(issuedLottos, winningLotto, bonusNumber);
+                WinningNumberChecker.validate(winningLotto, bonusNumber);
+                return  issuedLottos.determineRanks(winningLotto, bonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.informErrorMessage(e.getMessage());
             }
@@ -76,7 +76,7 @@ public class LottoController {
     }
 
     private Profit calculateProfit(List<Rank> ranks) {
-        return lottoService.createProfit(ranks);
+        return new Profit(ranks);
     }
 
     private void printProfit(Profit profit) {

@@ -37,6 +37,7 @@ public class LottoGame implements Game {
     @Override
     public void play() {
         createLottoTickets(lottoPurchaseAmount);
+        checkWinningLottos();
     }
 
     @Override

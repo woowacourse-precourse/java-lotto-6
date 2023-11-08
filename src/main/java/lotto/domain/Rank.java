@@ -25,4 +25,8 @@ public enum Rank {
         }
         return this.count == count;
     }
+
+    public long getPrize() {
+        return prize;
+    }
 }

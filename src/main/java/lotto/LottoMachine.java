@@ -28,6 +28,7 @@ public class LottoMachine {
         List<List<Integer>> myLottos = getAllLotto(lottoCount);
         System.out.println(lottoToString(myLottos));
         Lotto lotto = setWinningNumbers();
+        int bonus = setBonusNumber(lotto);
     }
 
     public int setLottoCount() {
@@ -67,6 +68,19 @@ public class LottoMachine {
                 List<Integer> numbers = getSplitNaturalNumberList(",");
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int setBonusNumber(Lotto lotto) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                int number = getNaturalNumber();
+                Validation.validateDuplicate(lotto, number);
+                return number;
+            } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }

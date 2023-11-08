@@ -11,7 +11,6 @@ public class ProfitCalculator {
 
     public String calculate(){
         double percent = ((double) this.profit / (double) this.inputPrice * 100);
-        System.out.println(percent);
         return String.format("%.1f", percent);
     }
 }

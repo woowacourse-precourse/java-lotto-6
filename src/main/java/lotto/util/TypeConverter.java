@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TypeConverter {
     public static List<Integer> convertToIntegers(String numbers) throws NumberFormatException {
-        List<String> numbersSplit = Arrays.asList(numbers.split(","));
+        List<String> numbersSplit = new ArrayList<>(Arrays.asList(numbers.split(",")));
         List<Integer> numbersConverted = new ArrayList<>();
 
         for (String number : numbersSplit) {

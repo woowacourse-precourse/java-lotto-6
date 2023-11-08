@@ -44,6 +44,15 @@ public class InputValidator {
     }
 
     private static List<Integer> parsePrizeNumbers(String prizeNumbers) {
+        try {
+            List<Integer> numbers = convertStringToInteger(prizeNumbers);
+            return numbers;
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException(CAN_NOT_CONVERT_INTEGER.getErrorMessage());
+        }
+    }
+
+    private static List<Integer> convertStringToInteger(String prizeNumbers) {
         List<Integer> numbers = Arrays.stream(prizeNumbers.split(SPLIT_DELIMITER.getRegex()))
                 .map(number -> validatePrizeNumberRange(Integer.parseInt(number)))
                 .toList();

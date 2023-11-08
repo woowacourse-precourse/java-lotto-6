@@ -30,4 +30,8 @@ public class LottoPlayer {
     public double computeRateOfReturn(int income) {
         return (double) PERCENTAGE * income / initialAmount;
     }
+
+    public List<Integer> getLottoNumberByIndex(int index) {
+        return lottoList.get(index).getNumbers();
+    }
 }

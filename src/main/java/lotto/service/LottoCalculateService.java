@@ -49,10 +49,10 @@ public class LottoCalculateService {
         player.addWinningPrice(Ranking.FIND.valueOf(value).getPrice());
     }
 
-    private int countPlayerNumbersContainLotto(List<Integer> userNumbers, List<Integer> lottoNumbers) {
+    public int countPlayerNumbersContainLotto(List<Integer> playerNumbers, List<Integer> lottoNumbers) {
         int count = 0;
         for (int i = 0; i < BEFORE_BONUS_NUMBER_INDEX; i++) {
-            if (userNumbers.contains(lottoNumbers.get(i))) {
+            if (playerNumbers.contains(lottoNumbers.get(i))) {
                 count++;
             }
         }
@@ -63,7 +63,7 @@ public class LottoCalculateService {
         countOfWinning.put(ranking, countOfWinning.getOrDefault(ranking, 0) + 1);
     }
 
-    private boolean isNumberMatchedNormal(int countContainsOfLotto) {
+    public boolean isNumberMatchedNormal(int countContainsOfLotto) {
         if (countContainsOfLotto == Ranking.FIFTH.getMatchedCount()
                 || countContainsOfLotto == Ranking.FOURTH.getMatchedCount()
                 || countContainsOfLotto == Ranking.FIRST.getMatchedCount()) {
@@ -72,21 +72,20 @@ public class LottoCalculateService {
         return false;
     }
 
-    private boolean isNumberMatchedFiveWithBonus(int countContainsOfLotto, List<Integer> numbers, LottoDrawingMachine lotto) {
-        if (countContainsOfLotto == Ranking.THIRD.getMatchedCount() && numbers.contains(lotto.getLottoBonusBall())) {
+    public boolean isNumberMatchedFiveWithBonus(int countContainsOfLotto, List<Integer> numbers, LottoDrawingMachine lotto) {
+
             return true;
         }
         return false;
     }
 
-    private boolean isNumberMatchedFive(int countContainsOfLotto, List<Integer> numbers, LottoDrawingMachine lotto) {
-        if (countContainsOfLotto == Ranking.THIRD.getMatchedCount() && !numbers.contains(lotto.getLottoBonusBall())) {
+    public boolean isNumberMatchedFive(int countContainsOfLotto, List<Integer> numbers, LottoDrawingMachine lotto) {
             return true;
         }
         return false;
     }
 
-    private String getYieldOfLotto(Player player, int totalPrice) {
+    public String getYieldOfLotto(Player player, int totalPrice) {
         if (player.getPlayerBuyPrice() == 0) {
             return "0.0";
         }

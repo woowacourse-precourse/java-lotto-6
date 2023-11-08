@@ -23,5 +23,13 @@ public enum Rank {
         return winningMoney;
     }
 
+    public static Rank valueOf(int MatchCount, boolean matchBonus) {
+        if (MatchCount < 3) {
+            return null;
+        }
+        return determineRank(MatchCount, matchBonus);
+    }
+
+
 }
 

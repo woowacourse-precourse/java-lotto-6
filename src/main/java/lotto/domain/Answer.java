@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static lotto.util.InputValidator.validateNumberInRange;
 
-import java.util.List;
 import lotto.enums.ErrorMessages;
 
 public class Answer {
@@ -10,19 +9,18 @@ public class Answer {
     private final int bonusNumber;
 
     public Answer(Lotto hitNumbers, int bonusNumber) {
-        validate(hitNumbers, bonusNumber);
         this.hitNumbers = hitNumbers;
+        validate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(Lotto hitNumbers, int bonusNumber) {
+    private void validate(int bonusNumber) {
         validateNumberInRange(bonusNumber);
-        validateBonusNumberConflictWithAnswer(hitNumbers, bonusNumber);
+        validateBonusNumberConflictWithAnswer(bonusNumber);
     }
 
-    private void validateBonusNumberConflictWithAnswer(Lotto hitNumbers, int bonusNumber) {
-        List<Integer> numbers = hitNumbers.getNumbers();
-        boolean duplicatedFlag = numbers.contains(bonusNumber);
+    private void validateBonusNumberConflictWithAnswer(int bonusNumber) {
+        boolean duplicatedFlag = hitNumbers.findNumber(bonusNumber);
         if (duplicatedFlag) {
             throw new IllegalArgumentException(ErrorMessages.BONUS_NUMER_CONFLICT_EXCEPTION_MSG.getMsg());
         }

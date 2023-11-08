@@ -27,7 +27,7 @@ public class LottoViewResolver {
         showProfit(result.getProfit());
     }
 
-    private void showStatistics(Statistics statistics) {
+    protected void showStatistics(Statistics statistics) {
         List<GradeCount> gradeCounts = statistics.getGradeCounts();
 
         for (GradeCount gradeCount : gradeCounts) {
@@ -38,7 +38,7 @@ public class LottoViewResolver {
         }
     }
 
-    public void showProfit(Profit profit) {
+    protected void showProfit(Profit profit) {
         writer.printProfit(profit.getPercentage());
     }
 }

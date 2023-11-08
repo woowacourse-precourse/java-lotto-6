@@ -67,5 +67,16 @@ public class LottoGame {
         }
     }
 
+    public void lottoRateToString() {
+        long totalAward = 0L;
+
+        for (LottoStatistic key :
+                LottoStatistic.values()) {
+             totalAward += lottoResult.get(key) * key.getAward();
+        }
+        double rate = 0.0;
+        rate = ((double) totalAward / purchaseAmount) * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
+    }
 
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -73,7 +74,8 @@ public class LottoController {
         rateView.printPrize(resultCount, resultHit, resultPrize);
 
         RateCal rateCal = new RateCal(lottoCal.getPrizeCount());
-        String formatResult = String.format("%.1f", rateCal.getReturnRate(userLottoPrice.getPrice()));
+        DecimalFormat decFormat = new DecimalFormat("#,###.0");
+        String formatResult = decFormat.format(rateCal.getReturnRate(userLottoPrice.getPrice()));
         rateView.printRate(formatResult);
 
     }

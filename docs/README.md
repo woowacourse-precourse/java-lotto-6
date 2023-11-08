@@ -68,4 +68,6 @@ check new branch
 - printInfo()
   - input : null / return : void
   - Lotto의 numbers 출력
-  
+- compareOther()
+  - input : Lotto / return : int
+  - 다른 Lotto와의 교집합 계산

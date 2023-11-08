@@ -94,13 +94,13 @@
     <th align="center">Description</th></th>
 </tr>
 <tr>
-    <td rowspan="1">controller</td>
+    <td rowspan="1" align="center">controller</td>
     <td>LottoController</td>
     <td>전반적인 기능을 담당하는 컨트롤러</td>
 </tr>
 <tr><td colspan="3"></td></tr>
 <tr>
-    <td rowspan="9">domain</td>
+    <td rowspan="9" align="center">domain</td>
     <td>Lotto</td>
     <td>로또 번호를 캡슐화하는 클래스</td>
 </tr>
@@ -138,7 +138,7 @@
 </tr>
 <tr><td colspan="3"></td></tr>
 <tr>
-    <td rowspan="5">view</td>
+    <td rowspan="5" align="center">view</td>
     <td>InputView</td>
     <td>사용자 입력을 처리하고 문자열 값을 반환하는 클래스</td>
 </tr>

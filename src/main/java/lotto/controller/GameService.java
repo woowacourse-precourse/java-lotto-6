@@ -9,12 +9,13 @@ import java.util.List;
 
 public class GameService {
 
-    private Setting setting = Setting.getSetting();
+    private Setting setting;
     private Judgement judgement;
     private List<Lotto> lottos;
     private Jackpot jackpot;
 
     public GameService() {
+        setting = new Setting();
     }
 
     public void play() {

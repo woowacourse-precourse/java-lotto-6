@@ -14,18 +14,12 @@ import java.util.List;
 
 public class Setting {
 
-    private static Setting setting = new Setting();
-
     private Input input = Input.getInput();
     private Output output = Output.getOutput();
     private ProviderRandomValue providerRandomValue;
 
-    private Setting() {
+    public Setting() {
         providerRandomValue = new ProviderRandomValue();
-    }
-
-    public static Setting getSetting() {
-        return setting;
     }
 
     public int purchaseLotto() {

@@ -13,12 +13,12 @@ public class RandomNumberGenerator {
     private static final int ENDINCLUSIVE = 45;
     private static final int COUNT = 6;
 
-    public List<Integer> createUniqueRandomNumbers() {
+    public static List<Integer> createUniqueRandomNumbers() {
         List<Integer> randomNumbers = pickUniqueNumbersInRange(STARTINCLUSIVE, ENDINCLUSIVE, COUNT);
         return sortRandomNumbers(new ArrayList<>(randomNumbers));
     }
 
-    private List<Integer> sortRandomNumbers(List<Integer> randomNumbers) {
+    private static List<Integer> sortRandomNumbers(List<Integer> randomNumbers) {
         Collections.sort(randomNumbers, Comparator.naturalOrder());
         return randomNumbers;
     }

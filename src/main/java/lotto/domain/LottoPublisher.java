@@ -8,7 +8,6 @@ import lotto.domain.lotto.Lottos;
 public class LottoPublisher {
 
     private static final int UNIT = 1000;
-    private RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
 
     public Lottos publishLottosByAmount(Amount amount) {
         int lottoCount = getLottoCountByAmount(amount);
@@ -24,7 +23,7 @@ public class LottoPublisher {
     }
 
     private Lotto publishRandomLotto() {
-        return new Lotto(randomNumberGenerator.createUniqueRandomNumbers());
+        return new Lotto(RandomNumberGenerator.createUniqueRandomNumbers());
     }
 
 }

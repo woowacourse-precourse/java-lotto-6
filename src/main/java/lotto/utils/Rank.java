@@ -17,4 +17,15 @@ public enum Rank {
         this.matchCount = matchCount;
         this.prize = prize;
     }
+
+    public Rank getRank(int mathCount, boolean isContainBonusNumber) {
+        if (matchCount == SECOND.matchCount && !isContainBonusNumber) {
+            return Rank.THIRD;
+        }
+
+        return Arrays.stream(Rank.values())
+            .filter(rank -> rank.matchCount == mathCount)
+            .findFirst()
+            .orElse(Rank.NONE);
+    }
 }

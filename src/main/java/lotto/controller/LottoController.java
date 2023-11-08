@@ -35,6 +35,7 @@ public class LottoController {
     public void play() {
         prepare();
         drawLots();
+        printResult();
     }
 
     private void prepare() {
@@ -101,11 +102,11 @@ public class LottoController {
     private void drawLots() {
         lottoService.getResult(lottoDto.getWinningNumbers(), lottoDto.getBonusNumber());
         String totalYield = lottoService.calculateTotalYield(lottoDto.getPurchaseAmount());
-        printResult(totalYield);
+        lottoDto.setTotalYield(totalYield);
     }
 
-    private void printResult(String totalYield) {
+    private void printResult() {
         outputView.printWinningStatistics(lottoDto.getWinningStatistics());
-        outputView.printTotalYield(totalYield);
+        outputView.printTotalYield(lottoDto.getTotalYield());
     }
 }

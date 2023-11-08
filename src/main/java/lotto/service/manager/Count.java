@@ -12,7 +12,6 @@ public class Count {
         this.count = count;
     }
 
-
     public void plus() {
         count++;
     }

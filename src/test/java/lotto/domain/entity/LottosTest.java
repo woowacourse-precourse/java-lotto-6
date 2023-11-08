@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class LottosTest {
 
     @DisplayName("추첨 등수 계산 성공")

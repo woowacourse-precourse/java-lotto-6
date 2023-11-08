@@ -1,7 +1,10 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import lotto.util.ConvertingUtil;
+import lotto.util.LottoMaker;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,7 +13,11 @@ public class Lotto {
         return new Lotto();
     }
 
-    public static Lotto create(List<Integer> numbers) {
+    public static Lotto create(String userNumbers) {
+        List<Integer> numbers = Arrays.stream(userNumbers.split(","))
+                .map(ConvertingUtil::convertToInteger)
+                .toList();
+
         return new Lotto(numbers);
     }
 

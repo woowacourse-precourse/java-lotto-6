@@ -25,7 +25,7 @@ public class LottoManager {
 
     public String getLottosInfo() {
         StringBuilder sb = new StringBuilder();
-        for(Lotto lotto: lottos.getLottos()) {
+        for (Lotto lotto : lottos.getLottos()) {
             sb.append(lotto.printLottoInfo());
             sb.append("\n");
         }

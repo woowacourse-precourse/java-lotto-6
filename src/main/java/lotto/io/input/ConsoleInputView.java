@@ -51,7 +51,7 @@ public class ConsoleInputView implements InputView {
     }
 
     private void checkIsValidInput(String inputValue) {
-        if ( Objects.isNull(inputValue) || inputValue.isBlank() || inputValue.isEmpty()) {
+        if (Objects.isNull(inputValue) || inputValue.isBlank() || inputValue.isEmpty()) {
             throw new IllegalArgumentException(INVALID_INPUT.getMessage());
         }
     }

@@ -1,6 +1,6 @@
 package lotto.model.money;
 
-public record LottoCount (
+public record LottoCount(
         int lottoCount
 ) {
 }

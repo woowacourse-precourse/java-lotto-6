@@ -18,7 +18,7 @@ public class Judge {
     private Judge(WinningLotto winningLotto) {
         this.winningLotto = winningLotto;
         statistics = new HashMap<>();
-        for (LottoWinningConstant lottoWinningConstant: LottoWinningConstant.values()) {
+        for (LottoWinningConstant lottoWinningConstant : LottoWinningConstant.values()) {
             statistics.put(lottoWinningConstant, LOTTO_WINNING_DEFAULT_VALUE);
         }
     }
@@ -32,8 +32,9 @@ public class Judge {
         System.out.println(matchCount);
         boolean isBonusMatch = winningLotto.isBonusMatches(lotto.getNumbers());
 
-        for (LottoWinningConstant lottoWinningConstant: LottoWinningConstant.values()) {
-            if (matchCount == lottoWinningConstant.getWinningCount() && isBonusMatch == lottoWinningConstant.isBonusNeeded()) {
+        for (LottoWinningConstant lottoWinningConstant : LottoWinningConstant.values()) {
+            if (matchCount == lottoWinningConstant.getWinningCount()
+                    && isBonusMatch == lottoWinningConstant.isBonusNeeded()) {
                 statistics.put(lottoWinningConstant, statistics.get(lottoWinningConstant) + 1);
             }
         }

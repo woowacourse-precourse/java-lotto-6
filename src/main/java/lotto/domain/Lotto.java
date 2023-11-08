@@ -34,4 +34,9 @@ public class Lotto {
     public void printLotto() {
         System.out.println(numbers.stream().map(Objects::toString).collect(Collectors.joining(", ", "[", "]")));
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }

@@ -50,4 +50,18 @@ class LottoRankTest {
                 .withMessageContaining("[ERROR] 일치하는 로또 순위가 없습니다.");
     }
 
+    @Test
+    @DisplayName("매치 카운트가 필요하지 않은 경우 보너스 매치를 고려하지 않아야 함")
+    void shouldNotConsiderBonusIfNotRequiredByMatchCount() {
+        // given
+        int matchCountForFifth = 3;
+        boolean bonusMatchForFifth = true; 
+
+        // when
+        LottoRank result = LottoRank.valueOf(matchCountForFifth, bonusMatchForFifth);
+
+        // then
+        assertThat(result).isEqualTo(LottoRank.FIFTH);
+    }
+
 }

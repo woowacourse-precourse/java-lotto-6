@@ -14,6 +14,6 @@ class TotalWinningAmountTest {
         ReturnRate returnRate = totalWinningAmount.calculateReturnRateFrom(purchaseAmount);
 
         assertThat(returnRate.returnRate())
-                .isEqualTo(BigDecimal.valueOf(242424.24));
+                .isEqualTo(BigDecimal.valueOf(242424.2));
     }
 }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static lotto.constant.ErrorMessage.CONTAINING_OTHER_THAN_NUMBER;
+import static lotto.constant.ErrorMessage.NOT_IN_LOTTO_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -35,6 +36,6 @@ class LottosTest {
         String bonusNumber = "0";
         assertThatThrownBy(() -> lottos.getWinningResult(intWinningNumber, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(CONTAINING_OTHER_THAN_NUMBER.getMessage());
+                .hasMessageContaining(NOT_IN_LOTTO_NUMBER_RANGE.getMessage());
     }
 }

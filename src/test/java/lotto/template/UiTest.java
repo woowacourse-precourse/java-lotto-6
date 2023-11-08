@@ -1,5 +1,6 @@
 package lotto.template;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -22,9 +23,10 @@ public abstract class UiTest {
         return captor.toString().trim();
     }
 
-    protected final void input(String... args) {
-        byte[] joinedInput = String.join("\n", args).getBytes();
+    protected void input(String... args) {
+        final byte[] joinedInput = String.join("\n", args).getBytes();
         System.setIn(new ByteArrayInputStream(joinedInput));
+        Console.close();
     }
 
 

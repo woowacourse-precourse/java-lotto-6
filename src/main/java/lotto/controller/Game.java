@@ -15,10 +15,14 @@ public class Game {
     private final ResultService resultService = new ResultService();
 
     public void start() {
-        boolean isValidPurchaseAmount = false;
-        boolean isValidWinningNumber = false;
-        boolean isValidBonusNumber = false;
+        purchaseLotto();
+        setWinningNumber();
+        setBonusNumber();
+        showResult();
+    }
 
+    private void purchaseLotto() {
+        boolean isValidPurchaseAmount = false;
         while (!isValidPurchaseAmount) {
             String purchaseAmountInput = InputView.inputPurchaseAmount();
             try {
@@ -30,7 +34,10 @@ public class Game {
         }
         LottosDto createdLottos = userService.purchaseLottos();
         OutputView.printLottos(createdLottos);
+    }
 
+    private void setWinningNumber() {
+        boolean isValidWinningNumber = false;
         while (!isValidWinningNumber) {
             String winningNumbers = InputView.inputWinningNumber();
             try {
@@ -40,7 +47,10 @@ public class Game {
                 OutputView.printMessage(e.getMessage());
             }
         }
+    }
 
+    private void setBonusNumber() {
+        boolean isValidBonusNumber = false;
         while (!isValidBonusNumber) {
             String bonusNumber = InputView.inputBonusNumber();
             try {
@@ -50,13 +60,14 @@ public class Game {
                 OutputView.printMessage(e.getMessage());
             }
         }
+    }
 
+    private void showResult() {
         LottosDto purchasedLottos = userService.getLottosDto();
         WinningNumber winningNumber = lottoService.getWinningNumber();
         BonusNumber bonusNumber = lottoService.getBonusNumber();
         resultService.calculateWinningStatistics(purchasedLottos, winningNumber, bonusNumber);
         resultService.calculateReturnRate(purchasedLottos);
         OutputView.printResult(resultService.getLottoResult());
-
     }
 }

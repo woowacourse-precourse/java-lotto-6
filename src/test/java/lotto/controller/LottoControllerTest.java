@@ -2,7 +2,6 @@ package lotto.controller;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.WinningNumber;
 import lotto.service.LottoPublishServiceImpl;
 import lotto.service.WinningServiceImpl;
 import lotto.utils.ExceptionMessage;
@@ -61,7 +60,6 @@ class LottoControllerTest {
                 .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
     }
 
-//    - [X] 문자 입력 시 예외 발생
     @Test
     @DisplayName("당첨 번호 입력 시 맨앞 공백 예외 발생")
     void winningNumberFirstSpace() {
@@ -93,6 +91,19 @@ class LottoControllerTest {
     void winningNumberEndSpace() {
         // Given
         String winningNumbers = "1,2,3,,5,";
+
+        // When
+        // Then
+        assertThatThrownBy(() -> lottoController.createWinningNumber(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+    }
+
+    @Test
+    @DisplayName("당첨 번호 문자 입력 예외 발생")
+    void winningNumberChar() {
+        // Given
+        String winningNumbers = "1,2,sdf,,5,6";
 
         // When
         // Then

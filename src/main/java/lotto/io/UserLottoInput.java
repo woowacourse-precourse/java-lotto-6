@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
-import lotto.exception.InvalidMoneyInput;
+import lotto.exception.InvalidMoneyInputException;
 import lotto.exception.LackOfMoneyException;
 
 public class UserLottoInput implements LottoInput {
@@ -53,7 +53,7 @@ public class UserLottoInput implements LottoInput {
     private void validateNumericString(String input) {
         for (Character c : input.toCharArray()) {
             if (!Character.isDigit(c)) {
-                throw new InvalidMoneyInput();
+                throw new InvalidMoneyInputException();
             }
         }
     }

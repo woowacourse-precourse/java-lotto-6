@@ -10,7 +10,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
 import lotto.domain.MatchDetail;
 import lotto.domain.WinningNumbers;
-import lotto.exception.InvalidMoneyInput;
+import lotto.exception.InvalidMoneyInputException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +31,7 @@ class UserLottoInputTest {
         UserLottoInput input = new UserLottoInput();
 
         assertThatThrownBy(input::getMoneyAmount)
-                .isInstanceOf(InvalidMoneyInput.class);
+                .isInstanceOf(InvalidMoneyInputException.class);
     }
 
     @ParameterizedTest

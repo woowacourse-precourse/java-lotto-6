@@ -19,4 +19,8 @@ public class LottoTypeConverter {
         DecimalFormat decimalFormat = new DecimalFormat(" (#,###원)");
         return decimalFormat.format(money);
     }
+    public static String percent(double income) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.#");
+        return decimalFormat.format(income);
+    }
 }

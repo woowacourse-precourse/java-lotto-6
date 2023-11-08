@@ -146,8 +146,8 @@ public class LottoController {
         return matchCount;
     }
 
-    private boolean isBonusNumberMatch(Lotto winningNumbers, Integer bonusNumber) {
-        return winningNumbers.getNumbers().contains(bonusNumber);
+    private boolean isBonusNumberMatch(Lotto generatedLotto, Integer bonusNumber) {
+        return generatedLotto.getNumbers().contains(bonusNumber);
     }
 
     private int calculateMatchResult(Lotto generatedLotto, Lotto winningNumbers,
@@ -156,10 +156,10 @@ public class LottoController {
         if (matchCount == 6) {
             return 1;
         }
-        if (matchCount == 5 && isBonusNumberMatch(winningNumbers, bonusNumber)) {
+        if (matchCount == 5 && isBonusNumberMatch(generatedLotto, bonusNumber)) {
             return 2;
         }
-        if (matchCount == 5) {
+        if (matchCount == 5 && !(isBonusNumberMatch(generatedLotto, bonusNumber))) {
             return 3;
         }
         if (matchCount == 4) {

@@ -24,7 +24,7 @@ public class LottoPurchase {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 숫자만 입력해야 합니다.");
-            return 0; // 잘못된 입력에 대해서는 0을 반환합니다.
+            return 0;
         }
     }
 

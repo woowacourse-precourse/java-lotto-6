@@ -41,4 +41,8 @@ public class LottoResult {
         }
         return matchCount;
     }
+
+    public static Map<String, Integer> getPrizeMoney() {
+        return PRIZE_MONEY;
+    }
 }

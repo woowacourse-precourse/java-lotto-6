@@ -8,8 +8,7 @@ public class BonusNumber {
         while (true) {
             try {
                 String input = Console.readLine();
-                int bonusNumber = parseAndValidate(input);
-                return bonusNumber;
+                return parseAndValidate(input);
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해야 합니다.");
             } catch (IllegalArgumentException e) {

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.constant.ConstantNumber;
+import lotto.constant.LottoPrize;
 import lotto.model.BoughtLotto;
 import lotto.model.Lotto;
 import lotto.model.Result;
@@ -26,19 +27,20 @@ public class CheckResultController {
             int matched = lottoResultService.matchResult(lotto.getNumbers(), winningNumbers.getWinningNumbers());
             if (lottoResultService.inWinRange(matched)) {
                 result.addWinInformation(matched);
-                checkIfFiveMatchWithBonus(lotto.getNumbers());
+                checkFiveMatchWithBonus(matched, lotto.getNumbers());
             }
         }
     }
 
-    private void checkIfFiveMatchWithBonus(List<Integer> lottoNumber) {
-        if (lottoResultService.isBonusNumberIncluded(lottoNumber, winningNumbers.getBonusNumber())) {
+    private void checkFiveMatchWithBonus(int matchedNumber, List<Integer> lottoNumber) {
+        if (matchedNumber == LottoPrize.FIVE_MATCH.getMatchedNumber()
+                && lottoResultService.isBonusNumberIncluded(lottoNumber, winningNumbers.getBonusNumber())) {
             result.addFiveMatchWithBonus();
         }
     }
 
     public void checkEarningRate() {
-        int earning = lottoResultService.calculateEarning(result.getMatchResult());
+        long earning = lottoResultService.calculateEarning(result.getMatchResult());
         result.calculateEarningRate(earning, boughtLotto.getBoughtNumber() * ConstantNumber.LOTTO_PRICE_UNIT);
     }
 

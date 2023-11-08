@@ -31,41 +31,41 @@ class LottoTest {
     // 아래에 추가 테스트 작성 가능
     @ParameterizedTest
     @DisplayName("로또 넘버 contains 참 테스트")
-    @ValueSource(ints = {1,3,4})
+    @ValueSource(ints = {1, 3, 4})
     public void containsTrueTest(int source) {
-        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
+        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         assertThat(lotto.contains(source)).isEqualTo(true);
     }
 
     @ParameterizedTest
     @DisplayName("로또 넘버 contains 참 테스트")
-    @ValueSource(ints = {1,3,4})
+    @ValueSource(ints = {1, 3, 4})
     public void containsLottoNumberTrueTest(int source) {
-        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
+        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         assertThat(lotto.contains(new LottoNumber(source))).isEqualTo(true);
     }
 
     @ParameterizedTest
     @DisplayName("로또 넘버 contains 거짓 테스트")
-    @ValueSource(ints = {7,8,9})
+    @ValueSource(ints = {7, 8, 9})
     public void containsFalseTest(int source) {
-        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
+        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         assertThat(lotto.contains(source)).isEqualTo(false);
     }
 
     @ParameterizedTest
     @DisplayName("로또 넘버 contains 거짓 테스트")
-    @ValueSource(ints = {7,8,9})
+    @ValueSource(ints = {7, 8, 9})
     public void containsLottoNumberFalseTest(int source) {
-        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
+        Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
         assertThat(lotto.contains(new LottoNumber(source))).isEqualTo(false);
     }
 
     @DisplayName("같은 로또 번호를 가진 로또들은 같은 로또이다.")
     @Test
     void equalsTrueTest() {
-        Lotto lotto1 = new Lotto(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
-        Lotto lotto2 = new Lotto(new ArrayList<>(Arrays.asList(1,5,6,2,3,4)));
+        Lotto lotto1 = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Lotto lotto2 = new Lotto(new ArrayList<>(Arrays.asList(1, 5, 6, 2, 3, 4)));
         assertThat(lotto1.equals(lotto2)).isEqualTo(true);
 
     }
@@ -73,8 +73,8 @@ class LottoTest {
     @DisplayName("하나라도 다른 로또 번호를 가진 로또들은 다른 로또이다.")
     @Test
     void equalsFalseTest() {
-        Lotto lotto1 = new Lotto(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
-        Lotto lotto2 = new Lotto(new ArrayList<>(Arrays.asList(1,5,6,2,10,4)));
+        Lotto lotto1 = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        Lotto lotto2 = new Lotto(new ArrayList<>(Arrays.asList(1, 5, 6, 2, 10, 4)));
         assertThat(lotto1.equals(lotto2)).isEqualTo(false);
 
     }
@@ -82,8 +82,8 @@ class LottoTest {
     @DisplayName("로또는 오름차순으로 저장된다.")
     @Test
     void sortAscTest() {
-        Lotto lotto2 = new Lotto(new ArrayList<>(Arrays.asList(1,5,6,2,10,4)));
-        assertThat(lotto2.getNumbers()).isEqualTo(List.of(1,2,4,5,6,10));
+        Lotto lotto2 = new Lotto(new ArrayList<>(Arrays.asList(1, 5, 6, 2, 10, 4)));
+        assertThat(lotto2.getNumbers()).isEqualTo(List.of(1, 2, 4, 5, 6, 10));
 
     }
 }

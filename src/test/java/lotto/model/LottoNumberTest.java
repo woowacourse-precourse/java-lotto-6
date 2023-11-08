@@ -35,7 +35,7 @@ public class LottoNumberTest {
 
     @ParameterizedTest
     @DisplayName("로또 넘버 숫자 범위 정상 테스트")
-    @ValueSource(ints = {1,3,4,7,45})
+    @ValueSource(ints = {1, 3, 4, 7, 45})
     public void validateRangeNormalTest(Integer source) {
         assertThat(new LottoNumber(source)).isEqualTo(source);
     }

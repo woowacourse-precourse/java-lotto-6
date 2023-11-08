@@ -1,7 +1,7 @@
 package lotto.constants;
 
 public class ExceptionMessage {
-    public static final String ERROR_PREFIX = "ERROR";
+    public static final String ERROR_PREFIX = "[ERROR] ";
     public static final String EXCEPTION_DUPLICATED = "중복된 번호가 존재합니다.";
     public static final String EXCEPTION_OUT_OF_RANGE = "번호는 1~45사이 값이여야 합니다.";
     public static final String EXCEPTION_WRONG_LENGTH = "입력된 번호의 길이는 6개여야합니다.";

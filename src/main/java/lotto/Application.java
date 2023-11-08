@@ -16,6 +16,8 @@ public class Application {
         buyerService.tryBuy(buyer);
         buyer.printLottos();
         committee.setWeeklyLottery(committeeService.getWeeklyNumber());
+        committeeService.getBonusNumber(committee);
+
 //        buyerService.tryCheck(buyer);
 //        buyer.printResult();
 //        buyerService.tryCalculate(buyer);

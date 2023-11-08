@@ -18,13 +18,14 @@ public class LotteryCommitteeService {
 
     public Lotto getWeeklyNumber() {
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String WeeklyNumber = Console.readLine();
 
         Map<String, Object> checkResult = checkNumber(WeeklyNumber);
+        String resultMsg = checkResult.get("Result").toString();
 
-        if (!checkResult(checkResult.get("Result").toString())) {
-            failWorks(checkNumber(WeeklyNumber).get("Result").toString());
+        if (!checkResult(resultMsg)) {
+            failWorks(resultMsg);
             getWeeklyNumber();
             return null;
         }
@@ -32,6 +33,40 @@ public class LotteryCommitteeService {
         Lotto weeklyLotto = new Lotto((List<Integer>) checkResult.get("Data"));
 
         return weeklyLotto;
+    }
+
+    public void getBonusNumber(LotteryCommittee committee) {
+
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        String[] bonusNumber = new String[1];
+        bonusNumber[0] = Console.readLine();
+
+        Map<String, Object> checkResult = bonusCheck(bonusNumber, committee);
+        String resultMsg = checkResult.get("Result").toString();
+
+        //보너스 넘버는 파싱이랑 어레인지 체크만 하면 된다.
+        if (!checkResult(resultMsg)) {
+            failWorks(resultMsg);
+            getBonusNumber(committee);
+            return;
+        }
+
+        committee.setBonusNum((int) checkResult.get("Data"));
+    }
+
+    public Map<String, Object> bonusCheck(String[] bonusNumber, LotteryCommittee committee) {
+
+        Map<String, Object> parsingResult = parsingNumbers(bonusNumber);
+        if (!checkResult(parsingResult.get("Result").toString())) {
+            return parsingResult;
+        }
+
+        Map<String, Object> arangeCheckResult = checkArange((List<Integer>) parsingResult.get("Data"));
+        if (!checkResult(arangeCheckResult.get("Result").toString())) {
+            return arangeCheckResult;
+        }
+
+        return bonusDupCheck((List<Integer>) parsingResult.get("Data"), committee);
     }
 
     public Map<String, Object> checkNumber(String numbers) {
@@ -52,6 +87,23 @@ public class LotteryCommitteeService {
         }
 
         return checkArange((List<Integer>) parsingResult.get("Data"));
+    }
+
+    public Map<String, Object> bonusDupCheck(List<Integer> bonusNumber, LotteryCommittee committee) {
+
+        Map<String, Object> resultMap = new HashMap<>();
+
+        int number = bonusNumber.get(0);
+        List<Integer> numbers = committee.getWeeklyLottery().getNumbers();
+
+        if (numbers.contains(number)) {
+            resultMap.put("Result", ERROR_MSG_HEADER + "보너스 번호도 중복은 불가합니다");
+            return resultMap;
+        }
+
+        resultMap.put("Result", SUCCESE_CODE);
+        resultMap.put("Data", number);
+        return resultMap;
     }
 
     public Map<String, Object> splitNumbers(String numbers) {
@@ -116,7 +168,7 @@ public class LotteryCommitteeService {
         Collections.sort(numbers);
 
         int max = numbers.get(0);
-        int min = numbers.get(LOTTO_SIZE - 1);
+        int min = numbers.get(numbers.size() - 1);
 
         if (min < START_NUMBER) {
             resultMap.put("Result", ERROR_MSG_HEADER + "입력할 수 있는 번호는 최소 1 입니다.");
@@ -148,7 +200,6 @@ public class LotteryCommitteeService {
             throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println(errorMsg);
-            getWeeklyNumber();
         }
     }
 

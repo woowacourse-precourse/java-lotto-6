@@ -10,6 +10,8 @@ public class LottoResultDisplay {
     }
 
     public void showWinningDetails(LottoResult lottoResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + lottoResult.fifth + "개");
         System.out.println("4개 일치 (50,000원) - " + lottoResult.fourth + "개");
         System.out.println("5개 일치 (1,500,000원) - " + lottoResult.third + "개");

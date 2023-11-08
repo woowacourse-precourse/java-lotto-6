@@ -12,22 +12,22 @@ public class Money {
     }
 
     private void validate(Integer amount) {
+        if (isUnderAtLeast(amount)) {
+            System.out.println(ErrorMessages.PURCHASE_LEAST.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessages.PURCHASE_LEAST.getErrorMessage());
+        }
         if (isCorrectUnit(amount)) {
             System.out.println(ErrorMessages.PURCHASE_UNIT.getErrorMessage());
             throw new IllegalArgumentException(ErrorMessages.PURCHASE_UNIT.getErrorMessage());
         }
-        if (isZero(amount)) {
-            System.out.println(ErrorMessages.PURCHASE_LEAST.getErrorMessage());
-            throw new IllegalArgumentException(ErrorMessages.PURCHASE_LEAST.getErrorMessage());
-        }
+    }
+
+    private boolean isUnderAtLeast(Integer amount) {
+        return amount < UNIT;
     }
 
     private boolean isCorrectUnit(Integer amount) {
         return amount % UNIT != 0;
-    }
-
-    private boolean isZero(Integer amount) {
-        return amount == 0;
     }
 
     public int getPurchasingQuantity() {

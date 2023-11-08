@@ -7,6 +7,8 @@ import lotto.domain.WinningNumber;
 import java.util.List;
 
 public class LottoController {
+
+    private final  LottoTickets lottoTickets = LottoTickets.getInstance();
     private LottoController() {
     }
 
@@ -19,15 +21,15 @@ public class LottoController {
     }
 
     public void buyLottoTickets(long purchaseAmount){
-        LottoTickets.getInstance().buyLottoTickets(purchaseAmount);
+        lottoTickets.buyLottoTickets(purchaseAmount);
     }
 
     public int getBuyLottoTicketsNum(){
-        return LottoTickets.getInstance().getBuyLottoTickets().size();
+        return lottoTickets.getBuyLottoTickets().size();
     }
 
     public List<Lotto> getBuyLottoTickets(){
-        return LottoTickets.getInstance().getBuyLottoTickets();
+        return lottoTickets.getBuyLottoTickets();
     }
 
 

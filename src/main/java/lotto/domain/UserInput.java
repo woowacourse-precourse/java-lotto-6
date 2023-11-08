@@ -46,8 +46,7 @@ public class UserInput {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
-
-    public List<Integer> winningNumbers() {
+    public Lotto winningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         while (true) {
             try {
@@ -58,7 +57,7 @@ public class UserInput {
                     validateNumber(item);
                     numbers.add(Integer.parseInt(item));
                 }
-                return numbers;
+                return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -3,7 +3,9 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,7 +17,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리여야 합니다.");
+        }
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if (numberSet.size() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.");
         }
     }
 
@@ -64,7 +70,6 @@ public class Lotto {
     public static void lottoPrint(List<Lotto> lottoNumbers, int quantity) {
         System.out.println("\n" + quantity + "개를 구매했습니다.");
         for (Lotto lotto : lottoNumbers) {
-            Collections.sort(lotto.numbers);
             System.out.println(lotto.numbers);
         }
     }

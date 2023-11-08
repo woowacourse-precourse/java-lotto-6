@@ -105,7 +105,7 @@ public class InputValidator {
             }
         }
         catch (IllegalArgumentException e) {
-            errorMessage = ErrorMessage.ERROR_AMOUNT_OTHER_STRING;
+            errorMessage = ErrorMessage.ERROR_PRIZE_NUM_OVERLAP;
             return false;
         }
         return true;
@@ -127,7 +127,7 @@ public class InputValidator {
 
     public boolean validOverLottoSize(ArrayList<Integer> nums) {
         try {
-            if(nums.size() > lottoSize || nums.isEmpty()) {
+            if(nums.size() != lottoSize) {
                 throw new IllegalArgumentException();
             }
         }

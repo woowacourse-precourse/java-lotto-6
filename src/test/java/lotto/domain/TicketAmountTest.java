@@ -9,6 +9,16 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class TicketAmountTest {
+
+    @DisplayName("구입 금액이 공백이면 예외가 발생한다.")
+    @Test
+    void createTicketAmountByIsEmpty() {
+        String input = "";
+
+        assertThatThrownBy(() -> new TicketAmount(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("구입 금액이 자연수가 아닌 경우 예외가 발생한다.")
     @Test
     void createTicketAmountByNotNatural() {

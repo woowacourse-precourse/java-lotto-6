@@ -22,20 +22,20 @@ public class Validations {
             throw new IllegalArgumentException(LottoMessages.WRONG_WINNING_NUMBERS.getKr());
         }
     }
-    public static void checkDuplicateWinningNumbers(int[] givenWinningNumbers) {
+    public static void checkDuplicateWinningNumbers(int[] givenWinningNumbers, int limit) {
         Set<Integer>set = new HashSet<>();
         for(int number: givenWinningNumbers) {
             set.add(number);
         }
 
-        if(set.size() < LOTTO_DRAW_NUMBER_COUNT + LOTTO_DRAW_BONUS_NUMBER_COUNT) {
+        if(set.size() != limit) {
             throw new IllegalArgumentException(LottoMessages.DUPLICATE_NUMBER.getKr());
         }
     }
 
-    public static void checkDuplicateWinningNumbers(List<Integer> givenWinningNumbers) {
-        int _givenWinningNumbers[] = givenWinningNumbers.stream().mapToInt(n -> n).toArray();
-        checkDuplicateWinningNumbers(_givenWinningNumbers);
+    public static void checkDuplicateWinningNumbers(List<Integer> givenWinningNumbers, int limit) {
+        int[] _givenWinningNumbers = givenWinningNumbers.stream().mapToInt(n -> n).toArray();
+        checkDuplicateWinningNumbers(_givenWinningNumbers, limit);
     }
 
     public static void checkWinningNumberRange(int givenNumber) {

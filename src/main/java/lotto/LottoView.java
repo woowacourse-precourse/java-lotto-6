@@ -14,9 +14,15 @@ public class LottoView {
             "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
             "6개 일치 (2,000,000,000원) - "};
     public static int inputMoney(){
-        System.out.println("구입금액을 입력해 주세요.");
-        int money = Integer.parseInt(Console.readLine());
-        return money;
+        while(true) {
+            System.out.println("구입금액을 입력해 주세요.");
+            try {
+                int money = Integer.parseInt(Console.readLine());
+                return money;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주십시오.");
+            }
+        }
     }
     public static Lotto inputWinningLotto(){
         System.out.println("당첨 번호를 입력해 주세요.");

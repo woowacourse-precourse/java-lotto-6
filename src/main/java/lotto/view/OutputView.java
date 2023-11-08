@@ -1,22 +1,50 @@
 package lotto.view;
 
-import lotto.Result;
+import lotto.model.Lotto;
+import lotto.model.Rank;
+
+import java.util.List;
 
 public class OutputView {
-    public static void printLottos(List<Lotto> lottos) {
-        System.out.println(lottos.size() + "개를 구매했습니다.");
-        lottos.forEach(lotto -> System.out.println(lotto));
+    private static final String QUESTION_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String QUESTION_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String QUESTION_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+
+    public void printPurchaseAmountMessage() {
+        System.out.println(QUESTION_PURCHASE_AMOUNT);
     }
 
-    public static void printResult(Result result) {
-        System.out.println("\n당첨 통계");
-        System.out.println("---------");
-        System.out.printf("3개 일치 (5000원) - %d개\n", result.getCountOfMatch3());
-        System.out.printf("4개 일치 (50000원) - %d개\n", result.getCountOfMatch4());
-        System.out.printf("5개 일치 (1500000원) - %d개\n", result.getCountOfMatch5());
-        System.out.printf("5개 일치, 보너스 볼 일치 (30000000원) - %d개\n", result.getCountOfMatch5WithBonus());
-        System.out.printf("6개 일치 (2000000000원) - %d개\n", result.getCountOfMatch6());
+    public void printWinningNumberstMessage() {
+        System.out.println(QUESTION_WINNING_NUMBERS);
+    }
 
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", result.calculateProfit(LottoStore.LOTTO_PRICE));
+    public void printBonusNumberMessage() {
+        System.out.println(QUESTION_BONUS_NUMBER);
+    }
+
+    public void printPurchasedLottoTickets(List<Lotto> lottoTickets) {
+        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
+
+        for (Lotto ticket : lottoTickets) {
+            System.out.println(ticket.getNumbers());
+        }
+    }
+
+    public void printWinningResults(List<Rank> ranks) {
+        System.out.println("당첨 통계\n---");
+
+        for (Rank rank : Rank.values()) {
+            long count = ranks.stream().filter(r -> r == rank).count();
+            if (rank != Rank.NONE)
+                System.out.printf(rank.getDescription() + " - %d개\n", count);
+        }
+    }
+
+    public void printTotalProfit(double totalProfitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", totalProfitRate);
+    }
+
+    public void printErrorCode(String errorCode) {
+        System.out.println(errorCode);
     }
 }

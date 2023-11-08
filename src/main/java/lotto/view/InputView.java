@@ -1,36 +1,30 @@
 package lotto.view;
 
-import java.util.ArrayList;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.util.validator.BonusNumberValidator;
+import lotto.util.validator.PurchaseValidator;
+import lotto.util.validator.WinningNumberValidator;
+
 import java.util.List;
-import java.util.Scanner;
 
 public class InputView {
-    private static final Scanner scanner = new Scanner(System.in);
+    private final PurchaseValidator purchaseValidator = new PurchaseValidator();
+    private final WinningNumberValidator winningNumberValidator = new WinningNumberValidator();
+    private final BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
 
-    public static int getPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(scanner.nextLine());
+    public long getPurchaseAmount() {
+        String inputPurchaseAmount = Console.readLine();
+        return purchaseValidator.validatePurchaseAmount(inputPurchaseAmount);
     }
 
-    public static List<Integer> getWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = scanner.nextLine();
-        return parseNumbers(input);
+    public List<Integer> getWinningNumbers() {
+        String inputWinningNumbers = Console.readLine();
+        List<Integer> winningNumbers = winningNumberValidator.validateWinningNumbers(inputWinningNumbers);
+        return winningNumbers;
     }
 
-    public static int getBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(scanner.nextLine());
-    }
-
-    private static List<Integer> parseNumbers(String input) {
-        String[] tokens = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
-
-        for (String token : tokens) {
-            numbers.add(Integer.parseInt(token));
-        }
-
-        return numbers;
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        String inputBonusNumber = Console.readLine();
+        return bonusNumberValidator.validateBonusNumber(inputBonusNumber, winningNumbers);
     }
 }

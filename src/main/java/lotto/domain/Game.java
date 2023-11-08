@@ -25,8 +25,7 @@ public class Game {
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         Validation.validateListOutOfRangeNumber(winningNumbers);
     }
-
-
+    
     private void validateBonusNumber(int bonusNumber) {
         Validation.validateListContainsNumber(this.winningNumbers, bonusNumber);
         Validation.validateOutOfRangeNumber(bonusNumber);

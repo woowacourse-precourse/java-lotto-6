@@ -3,7 +3,6 @@ package lotto.validation;
 import java.util.List;
 
 public final class Validation {
-    //    private static final String ONLY_NUMBER_REGEX = "[0-9]+";
     private static final int MINIMUM_AMOUNT = 1000;
     private static final int TARGET_LEFTOVER = 0;
     private static final int LOTTO_LIST_SIZE = 6;

@@ -10,7 +10,6 @@ import lotto.view.Output;
 
 public class Controller {
     private final Service service = new Service();
-
     private Buyer buyer;
     private Game game;
 

@@ -21,12 +21,12 @@ public class Buyer {
         return this.amount;
     }
 
-    public void setLottos(Lotto lotto) {
-        lottos.add(lotto);
-    }
-
     public List<Lotto> getLottos() {
         return this.lottos;
+    }
+
+    public void setLottos(Lotto lotto) {
+        lottos.add(lotto);
     }
 
     public HashMap<Rank, Integer> getResult() {

@@ -51,7 +51,8 @@ public class LottoController {
             try {
                 purchaseCash = new Cash(inputView.inputNumber());
                 int lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
-                outputView.print(Messages.PURCHASED_LOTTERIES_FORMAT.getMessage(lotteriesCount));
+                outputView.print(messenger.getPurchasedLotteriesCount(lotteriesCount));
+
                 List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(lotteriesCount);
                 lotteries = lottoNumbersDTOs.stream()
                         .map(LottoNumbersDTO::numbers)

@@ -12,7 +12,7 @@ public class LottoNumberTest {
     @DisplayName("로또 번호가 정상적으로 생성된다.")
     void 로또_번호가_정상적으로_생성된다() {
         // given
-        int number = 1;
+        var number = 1;
 
         // when
         var lottoNumber = LottoNumber.of(number);

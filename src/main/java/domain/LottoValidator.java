@@ -20,4 +20,15 @@ public class LottoValidator {
         int count = scoreCountMap.getOrDefault(score, 0);
         System.out.println(prizeText + " - " + count + "개");
     }
+
+    public long calculateTotalPrize(Map<LottoScore, Integer> scoreCountMap) {
+        long totalPrize = 0;
+
+        for (LottoScore score : LottoScore.values()) {
+            int count = scoreCountMap.getOrDefault(score, 0);
+            totalPrize += (long) count * score.getPrizeMoney();
+        }
+
+        return totalPrize;
+    }
 }

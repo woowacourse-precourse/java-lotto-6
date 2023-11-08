@@ -29,7 +29,8 @@ public class Application {
             LottoScore score = lottoNumbers.get(i).calculate(winningNumbers.getWinningNumbers(), winningNumbers.getBonusNumber());
             scoreCountMap.put(score, scoreCountMap.getOrDefault(score, 0) + 1);
         }
-
         lottoValidator.printResult(scoreCountMap);
+
+        long totalPrize = lottoValidator.calculateTotalPrize(scoreCountMap);
     }
 }

@@ -7,4 +7,8 @@ public class OutputMessage {
     public static void lottoNumber(List<Integer> number) {
         System.out.println(number);
     }
+
+    public static void purchaseMessage(int output){
+        System.out.printf("\n%d개를 구입했습니다.\n",output);
+    }
 }

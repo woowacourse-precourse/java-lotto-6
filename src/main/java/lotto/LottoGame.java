@@ -13,6 +13,7 @@ public class LottoGame {
         List<Integer> winningNumber = inputResolver.inputWinningNumber();
         lottoWinningNumber = new LottoWinningNumber(winningNumber, inputResolver.inputBonusNumber(winningNumber));
         checkLottoResult(lottoList);
+        printResult();
     }
 
     private static void checkLottoResult(List<Lotto> lottoList) {
@@ -48,5 +49,12 @@ public class LottoGame {
             return Optional.of(LottoWinningSpec.SECOND_PRIZE);
         }
         return LottoWinningSpec.getRankByMatchingCount(count);
+    }
+
+    private static void printResult() {
+        System.out.println("당첨통계 \n---");
+        for (LottoWinningSpec prize :LottoWinningSpec.values()) {
+            System.out.println(prize.getWinInformation() + " - " + winningResult.get(prize) + "개");
+        }
     }
 }

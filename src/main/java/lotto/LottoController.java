@@ -15,6 +15,7 @@ public class LottoController {
 
     public void runLotto() {
         PurchasedLottos purchasedLottos = buyLottos();
+        WinningLotto winningLotto = drawLotto();
     }
 
     private PurchasedLottos buyLottos() {
@@ -23,6 +24,12 @@ public class LottoController {
         outputView.printTicketCount(purchase.getTicketCount());
         outputView.printBoughtLottos(purchasedLottos.LottosToString());
         return purchasedLottos;
+    }
+
+    private WinningLotto drawLotto() {
+        Lotto lotto = new Lotto(inputView.getWinningLottoNumbers());
+        Integer bonusNumber = inputView.getWinningBonusNumber();
+        return new WinningLotto(lotto, bonusNumber);
     }
 
 

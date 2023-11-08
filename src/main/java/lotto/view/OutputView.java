@@ -8,7 +8,7 @@ public class OutputView {
         System.out.println("\n"+ticketCount + PRINT_TICKET_COUNT_MESSAGE);
     }
     public static void printBoughtLottos(String boughtLottos){
-        System.out.println(boughtLottos);
+        System.out.println(boughtLottos+"\n");
     }
 
     public static void printWinningStatistics() {

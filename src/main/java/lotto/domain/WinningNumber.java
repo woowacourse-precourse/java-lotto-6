@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.ErrorCode;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -38,19 +40,19 @@ public class WinningNumber {
 
     private void isNullWinningNumber(String number) {
         if (number.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 공백일 수 없습니다.\n");
+            throw new IllegalArgumentException(ErrorCode.MISSING_WINNING_NUMBERS.getMessage());
         }
     }
 
     private void isValidWinningNumber(String number) {
         if (!number.matches("^[0-9,]+$")) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 ,(쉼표)로만 입력할 수 있습니다.\n");
+            throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBERS_FORMAT.getMessage());
         }
     }
 
     private void isLengthWinningNumber(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자로 입력할 수 있습니다.\n");
+            throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBERS_SIZE.getMessage());
         }
     }
 
@@ -58,7 +60,7 @@ public class WinningNumber {
         boolean hasDuplicates = winningNumbers.size() != new HashSet<>(winningNumbers).size();
 
         if (hasDuplicates) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorCode.DUPLICATE_WINNING_NUMBERS.getMessage());
         }
     }
 
@@ -67,7 +69,7 @@ public class WinningNumber {
                 .anyMatch(number -> number < 1 || number > 45);
 
         if (isInvalid) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이에 숫자만 입력할 수 있습니다.\n");
+            throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBER_RANGE.getMessage());
         }
     }
 }

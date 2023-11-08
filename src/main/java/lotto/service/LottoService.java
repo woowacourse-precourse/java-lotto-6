@@ -43,6 +43,20 @@ public class LottoService {
             winningCount[index]++;
         }
     }
+    public double calculateProfitRatio(LottoTicket lottoTicket) {
+        // 사용자의 지불 금액과 총 당첨 금액을 바탕으로 수익률을 계산합니다.
+        int purchaseAmount = lottoTicket.getPurchaseAmount();
+        long totalPrize = getTotalLottoPrize();
+        return ((double) totalPrize / purchaseAmount) * 100;
+    }
+
+    private long getTotalLottoPrize() {
+        long result = 0;
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            result += (long) lottoPrize.getPrize() * winningCount[lottoPrize.ordinal()];
+        }
+        return result;
+    }
 
 
 }

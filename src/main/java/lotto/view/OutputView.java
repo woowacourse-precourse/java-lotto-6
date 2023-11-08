@@ -59,4 +59,8 @@ public class OutputView {
         DecimalFormat decimalFormat = new DecimalFormat(AppConstants.LOTTO_PRIZE_FORMAT);
         return decimalFormat.format(prize);
     }
+
+    public static void printProfitRatio(double ratio) {
+        System.out.printf((WINNING_STATISTICS_RESULT_RATIO.getData()) + "%n", ratio);
+    }
 }

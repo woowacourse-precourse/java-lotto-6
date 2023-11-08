@@ -32,4 +32,4 @@ public enum ErrorMessage {
     public String getErrorMessage(String message) {
         return "[ERROR] " + message;
     }
-    }
+}

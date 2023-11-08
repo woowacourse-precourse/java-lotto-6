@@ -62,10 +62,13 @@ public class Lotto {
     //    private static String[] convertInputTo
     private static List<Integer> generateNumbers() {
         return Randoms.pickUniqueNumbersInRange(
-                RANDOM_RANGE_MIN_NUMBER.getValue(),
-                RANDOM_RANGE_MAX_NUMBER.getValue(),
-                NUMBER_LENGTH.getValue()
-        );
+                              RANDOM_RANGE_MIN_NUMBER.getValue(),
+                              RANDOM_RANGE_MAX_NUMBER.getValue(),
+                              NUMBER_LENGTH.getValue()
+                      )
+                      .stream()
+                      .sorted()
+                      .collect(Collectors.toList());
     }
 
     public static void checkWinOrNot(User user) {

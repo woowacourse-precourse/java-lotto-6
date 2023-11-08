@@ -2,12 +2,15 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.enums.LottoInfo;
+import lotto.enums.LottoPrize;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import static lotto.Input.getNaturalNumber;
 import static lotto.Input.getSplitNaturalNumberList;
+import static lotto.enums.LottoPrize.lottoResultToLottoPrize;
 
 public class LottoMachine {
     private final int MIN_NUMBER;
@@ -30,6 +33,7 @@ public class LottoMachine {
         Lotto lotto = setWinningNumbers();
         int bonus = setBonusNumber(lotto);
         List<LottoResult> lottoResults = getCountingMatches(lotto, bonus, myLottos);
+        TreeMap<LottoPrize, Integer> winningCount = countLottoPrize(lottoResults);
     }
 
     public int setLottoCount() {
@@ -66,6 +70,15 @@ public class LottoMachine {
         List<LottoResult> count = new ArrayList<>();
         myLottos.forEach(i -> {
             count.add(new LottoResult(i, lotto, bonus));
+        });
+        return count;
+    }
+
+    public TreeMap<LottoPrize, Integer> countLottoPrize(List<LottoResult> lottoResults) {
+        TreeMap<LottoPrize, Integer> count = new TreeMap<>();
+        lottoResults.forEach(lottoResult -> {
+            LottoPrize item = lottoResultToLottoPrize(lottoResult);
+            count.put(item, count.getOrDefault(item, 0)+1);
         });
         return count;
     }

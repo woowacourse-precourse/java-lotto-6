@@ -16,6 +16,8 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE + "숫자 형식이 아닙니다.");
     }
+
+
     @Test
     void 로또_구입_금액_입력_시_최소_금액_보다_작을_때_예외_발생() {
         assertThatThrownBy(() -> validator.checkMinMoney(800))
@@ -33,6 +35,13 @@ public class ValidatorTest {
         assertThatThrownBy(() -> validator.checkDividedByThousand(8900))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE + "1,000원의 단위로 입력해 주세요.");
+    }
+    @Test
+    void 당첨_번호_입력_시_숫자_형태가_아닐_때_예외_발생() {
+        List<String> splitNumbers = List.of( "1", "2", "3", "4", "가","나");
+        assertThatThrownBy(() -> validator.checkWinNumbersIsNumber(splitNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + "숫자 형식이 아닙니다.");
     }
     @Test
     void 당첨_번호_입력_시_콤마로_시작할_때_예외_발생() {

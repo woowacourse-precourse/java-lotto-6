@@ -13,11 +13,7 @@ public class Validator {
     private final int ZERO = 0;
     private final String ERROR_MESSAGE = "[ERROR] ";
 
-    public void checkWinNumbersIsNumber(List<String> splitNumbers) throws IllegalArgumentException {
-        for (String splitNumber : splitNumbers) {
-            checkIsNumber(splitNumber);
-        }
-    }
+
 
     public void checkIsNumber(String input) throws IllegalArgumentException {
             Matcher matcher = NUMBER_PATTERN.matcher(input);
@@ -42,6 +38,12 @@ public class Validator {
     public void checkDividedByThousand(int amount) throws IllegalArgumentException {
         if (Math.floorMod(amount, TICKET_PRICE) != ZERO) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "1,000원의 단위로 입력해 주세요.");
+        }
+    }
+
+    public void checkWinNumbersIsNumber(List<String> splitNumbers) throws IllegalArgumentException {
+        for (String splitNumber : splitNumbers) {
+            checkIsNumber(splitNumber);
         }
     }
 

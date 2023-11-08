@@ -17,6 +17,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) { //로또번호 받기
         validateIs1_45(numbers);
         validate(numbers);
+        validateDuplicated(numbers);
         this.numbers = numbers;
         sort();
     }
@@ -31,7 +32,7 @@ public class Lotto {
 //        System.out.println("당첨번호" + numbers);
         validate(numbers);
         validateIs1_45(numbers);
-        validateWinningDuplicated(numbers);
+        validateDuplicated(numbers);
         sort();
     }
 
@@ -53,7 +54,7 @@ public class Lotto {
 
     }
 
-    private void validateWinningDuplicated(List<Integer> numbers) throws IllegalArgumentException {
+    private void validateDuplicated(List<Integer> numbers) throws IllegalArgumentException {
         HashSet<Integer> set = new HashSet<>(numbers);
         if ((numbers.size()) != (set.size())) {
             throw new IllegalArgumentException();
@@ -77,7 +78,7 @@ public class Lotto {
                 .collect(Collectors.toList()); // 내림차순 정렬
     }
 
-    public int parstInt(String num) {
+    private int parstInt(String num) {
         return Integer.parseInt(num);
 
     }

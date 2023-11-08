@@ -2,19 +2,18 @@ package lotto.constant;
 
 public enum ErrorMessage {
 
-    NUM_POSITIVE("양의정수만 입력하세요"),
-    RANGE("1~45의 숫자만 입력해주세요"),
-    EMPTY_NAME("로또 번호가 "),
-    LEN_MAX("");
+    ERROR_RANGE("[ERROR]", "로또 번호는 1부터 45 사이의 6개의 숫자만 입력하셔야 합니다.");
 
+    private final String error;
     private final String message;
 
-    ErrorMessage(String message) {
+    ErrorMessage(String error, String message) {
+        this.error = error;
         this.message = message;
     }
 
     public String getMessage() {
-        return message;
+        return String.format("%s %s", error, message);
     }
 
 }

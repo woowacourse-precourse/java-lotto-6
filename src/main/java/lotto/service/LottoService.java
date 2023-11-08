@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.constant.ErrorMessage.ERROR_RANGE;
+
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottosList;
@@ -18,11 +20,11 @@ public class LottoService {
 
     public Lotto readWinningNum() {
         while (true) {
-
             try {
                 return new Lotto(
                         ConsolePrint.readWinningNum().split(","));
             } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_RANGE.getMessage());
             }
         }
     }
@@ -30,7 +32,6 @@ public class LottoService {
     public BonusNumber readBonusNum() {
         while (true) {
             try {
-
                 return new BonusNumber(ConsolePrint.readBonusNum());
             } catch (IllegalArgumentException e) {
 

@@ -7,6 +7,7 @@ import static lotto.consts.ErrorMsgConst.ERROR_WINNUMBER_VALUE_RANGE;
 import static lotto.consts.LottoConst.LOTTO_MAX_NUMBER;
 import static lotto.consts.LottoConst.LOTTO_MIN_NUMBER;
 import static lotto.consts.LottoConst.LOTTO_SIZE;
+import static lotto.valid.CommonValid.validNotBlank;
 
 import java.util.List;
 import lotto.util.ConvertStr;
@@ -14,6 +15,7 @@ import lotto.util.ConvertStr;
 public class WinNumberValid {
 
     public static List<Integer> validWinNumber(String input) {
+        validNotBlank(input);
         List<String> nums = validOnlyNum(input);
         List<Integer> intNums = ConvertStr.strsToIntegers(nums);
         validLottoNums(intNums);

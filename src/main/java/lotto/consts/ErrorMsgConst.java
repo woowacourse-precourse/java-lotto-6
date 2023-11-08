@@ -8,6 +8,7 @@ import static lotto.consts.LottoConst.LOTTO_SIZE;
 public class ErrorMsgConst {
 
     public static final String ERROR_ONLY_NUMBER = "[ERROR] 숫자만 입력 가능합니다.";
+    public static final String ERROR_NOT_BLANK = "[ERROR] 빈 칸은 입력하면 안 됩니다.";
     public static final String ERROR_SPLITED_ONLY_NUMBER = "[ERROR] ,로 구분된 숫자만 입력 가능합니다.";
     public static final String ERROR_BONUS_VALUE_RANGE =
             "[ERROR] 보너스 번호는 " + LOTTO_MIN_NUMBER + "과 " + LOTTO_MAX_NUMBER + "사이의 숫자여야 합니다.";

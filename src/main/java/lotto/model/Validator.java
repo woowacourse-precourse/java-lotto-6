@@ -4,15 +4,17 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Validator {
     public static final String regexSixNumber = "^[0-9,]*";
     public static final String regexNumber = "^[0-9]*";
     public List<Integer> validatePickSixNumber(String rawInput) throws IllegalArgumentException{
         validateNumberList(rawInput);
-        List<Integer> numbers = Arrays.stream(rawInput.split(","))
-                .map(Integer::parseInt)
-                .toList();
+        Stream<Integer> integerStream = Arrays.stream(rawInput.split(","))
+                .map(Integer::parseInt);
+        List<Integer> numbers = integerStream.collect(Collectors.toList());
         validateDuplicateSix(numbers);
         validateCount(numbers);
         numbers.forEach(this::validateRange);

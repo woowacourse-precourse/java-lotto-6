@@ -11,6 +11,11 @@ public class InputView {
         while (true) {
             System.out.println("구입금액을 입력해 주세요.");
             String input = Console.readLine();
+            try {
+                return MoneyValidator.validatePurchaseAmount(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -18,6 +23,11 @@ public class InputView {
         while (true) {
             System.out.println("당첨 번호를 입력해 주세요.");
             String input = Console.readLine();
+            try {
+                return WinningNumberValidator.validateWinningNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -25,6 +35,12 @@ public class InputView {
         while (true) {
             System.out.println("보너스 번호를 입력해 주세요.");
             String input = Console.readLine();
+            try {
+                return BonusNumberValidator.validateBonusNumber(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
+
 }

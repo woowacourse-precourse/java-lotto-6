@@ -11,7 +11,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return this.numbers;
     }
 

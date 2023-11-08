@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningNumbers {
-    List<Integer> winningNumbers;
     int bonusNumber;
+    List<Integer> winningNumbers;
     private String ERROR_MESSAGE_COMMA_NUMBERS= ErrorMessages.ERROR_MESSAGE_COMMA_NUMBERS.getMessage();
     private String ERROR_MESSAGE_BONUS_NUMBER = ErrorMessages.ERROR_MESSAGE_BONUS_NUMBER.getMessage();
 

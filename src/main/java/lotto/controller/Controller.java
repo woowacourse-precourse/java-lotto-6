@@ -10,8 +10,9 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class Controller {
-    List<Integer> winnings;
+
     int winningBonusNumber;
+    List<Integer> winnings;
     LottoGame lottoGame = new LottoGame();
     WinningNumbers winningNumbers = new WinningNumbers();
 
@@ -58,7 +59,7 @@ public class Controller {
         List<Lotto> BunchOfLotto = lottoGame.getBunchOfLotto();
         confirmationWinning.checkWinnings(winnings,BunchOfLotto);
 
-        showWinningsResult(confirmationWinning)
+        showWinningsResult(confirmationWinning);
     }
 
 

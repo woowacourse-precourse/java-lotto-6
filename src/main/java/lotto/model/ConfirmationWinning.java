@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.util.LottoRules;
 import lotto.util.MapMaker;
 
 
@@ -12,6 +13,12 @@ public class ConfirmationWinning {
     int bonusNumber;
     int tempWinningCount;
     boolean tempBounsNumberContains;
+
+    int FIRST_PRIZE = LottoRules.FIRST_PRIZE.getValue();
+    int SECOND_PRIZE = LottoRules.SECOND_PRIZE.getValue();
+    int THIRD_PRIZE = LottoRules.THIRD_PRIZE.getValue();
+    int FORTH_PRIZE = LottoRules.FORTH_PRIZE.getValue();
+
     List<EachLottoResult> lottoResult = new ArrayList<>();
     Map<Integer, Integer> lottoResultCount = new HashMap<>();
 
@@ -19,7 +26,7 @@ public class ConfirmationWinning {
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<Integer, Integer> getLottoResultCount(){
+    public Map<Integer, Integer> getLottoResultCount() {
         return this.lottoResultCount;
     }
 
@@ -56,26 +63,22 @@ public class ConfirmationWinning {
         Map<Integer, Integer> lottoResultCount = MapMaker.makeEmptyLottoResultCount();
 
         for (EachLottoResult eachLotto : lottoResult) {
-            if (eachLotto.winningCount == 3) {
-                lottoResultCount = countUpLottoResult(3, lottoResultCount);
-            } else if (eachLotto.winningCount == 4) {
-                lottoResultCount = countUpLottoResult(4, lottoResultCount);
-            } else if (eachLotto.winningCount == 5) {
-                lottoResultCount = countUpLottoResult(5, lottoResultCount);
-            } else if (eachLotto.winningCount == 6) {
+            if (eachLotto.winningCount >= FORTH_PRIZE && eachLotto.winningCount < FIRST_PRIZE) {
+                lottoResultCount = countUpLottoResult(eachLotto.winningCount, lottoResultCount);
+            } else if (eachLotto.winningCount == FIRST_PRIZE) {
                 lottoResultCount = splitBonusNumberCase(eachLotto, lottoResultCount);
             }
         }
         return lottoResultCount;
-    }
+}
 
 
     public Map<Integer, Integer> splitBonusNumberCase(EachLottoResult eachLotto, Map<Integer, Integer> lottoResultCount) {
         if (eachLotto.bounsNumberContains) {
-            countUpLottoResult(6, lottoResultCount);
+            lottoResultCount = countUpLottoResult(FIRST_PRIZE, lottoResultCount);
 
         } else if (!eachLotto.bounsNumberContains) {
-            countUpLottoResult(7, lottoResultCount);
+            lottoResultCount = countUpLottoResult(FIRST_PRIZE + 1, lottoResultCount);
         }
         return lottoResultCount;
     }
@@ -92,9 +95,9 @@ public class ConfirmationWinning {
 
         for (Integer key : lottoResultCount.keySet()) {
             int value = lottoResultCount.get(key);
-            if (key > 5) {
+            if (key > SECOND_PRIZE) {
                 System.out.println(key - 1 + "개 일치" + winningAmount.get(key) + " - " + value + "개");
-            } else if (key <= 5) {
+            } else if (key <= SECOND_PRIZE) {
                 System.out.println(key + "개 일치" + winningAmount.get(key) + " - " + value + "개");
             }
         }
@@ -102,8 +105,8 @@ public class ConfirmationWinning {
 
     public void calculateRate(int purchaseAmount) {
         double totalIncome = calculateTotalIncome(lottoResultCount);
-        double temp = (totalIncome / purchaseAmount) * 100;
-        System.out.println("총 수익률은 " + temp + "%입니다.");
+        double rate = (totalIncome / purchaseAmount) * 100;
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 
     public int calculateTotalIncome(Map<Integer, Integer> lottoResultCount) {

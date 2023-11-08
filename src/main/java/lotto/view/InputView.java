@@ -8,13 +8,15 @@ public class InputView {
     private final static String BONUS_NUMBER_REQUEST_MESSAGE = "보너스 번호를 입력해 주세요.";
 
 
-    public static void requestPurchaseAmount(){
+    public static void requestPurchaseAmount() {
         System.out.println(PURCHASE_PIRCE_REQUEST_MESSAGE);
     }
-    public static void askCommonWinningNumbersMessage(){
+
+    public static void askCommonWinningNumbersMessage() {
         System.out.println(WINNING_NUMBERS_REQUEST_MESSAGE);
     }
-    public static void askBonusNumberMessage(){
+
+    public static void askBonusNumberMessage() {
         System.out.println(BONUS_NUMBER_REQUEST_MESSAGE);
     }
 }

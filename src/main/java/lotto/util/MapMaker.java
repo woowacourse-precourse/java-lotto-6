@@ -6,6 +6,7 @@ import java.util.Map;
 public class MapMaker {
 
     static int PRINT_RESULT_COUNT = LottoRules.PRINT_RESULT_COUNT.getValue();
+
     public static Map<Integer, String> makeWinningAmount() {
         Map<Integer, String> winningAmount = new HashMap<>();
         winningAmount.put(3, " (5,000원)");

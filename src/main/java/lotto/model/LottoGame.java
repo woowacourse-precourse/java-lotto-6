@@ -17,16 +17,18 @@ public class LottoGame {
     List<Lotto> BunchOfLotto = new ArrayList<>();
 
 
-    public LottoGame() {}
-    public List<Lotto> getBunchOfLotto(){
+    public LottoGame() {
+    }
+
+    public List<Lotto> getBunchOfLotto() {
         return this.BunchOfLotto;
     }
 
-    public int getPurchaseAmount(){
+    public int getPurchaseAmount() {
         return this.purchaseAmount;
     }
 
-    public void payForLottoGame(){
+    public void payForLottoGame() {
         PurchaseAmount purchaseAmount = new PurchaseAmount();
         purchaseAmount.generateLottoCount();
         this.lottoCount = purchaseAmount.purchaseCount;
@@ -53,8 +55,8 @@ public class LottoGame {
         return RandomNumbers;
     }
 
-    public void showLottos(){
-        for(Lotto lotto : BunchOfLotto){
+    public void showLottos() {
+        for (Lotto lotto : BunchOfLotto) {
             System.out.println(lotto.getNumbers());
         }
     }

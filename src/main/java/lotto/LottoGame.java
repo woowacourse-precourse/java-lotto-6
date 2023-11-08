@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchaser;
@@ -42,15 +44,16 @@ public class LottoGame {
         return lottos;
     }
 
-    // TODO 3항연산자 사용 X
     public List<Lotto> addLottos() {
-        List<Lotto> allLottos = new ArrayList<>();
-        for (int i = 0; i < lottoPurchaser.getNumberOfLottos(); i++) {
-            List<Integer> randomNumber = getRandomNumber();
-            randomNumber.sort(Comparator.naturalOrder());
-            allLottos.add(new Lotto(randomNumber));
-        }
-        return allLottos;
+        return IntStream.range(0, lottoPurchaser.getNumberOfLottos())
+                .mapToObj(i -> new Lotto(getSortedRandomNumber()))
+                .collect(Collectors.toList());
+    }
+
+    private List<Integer> getSortedRandomNumber() {
+        List<Integer> randomNumber = getRandomNumber();
+        randomNumber.sort(Comparator.naturalOrder());
+        return randomNumber;
     }
 
     // TODO 숫자 상수로 빼기
@@ -81,7 +84,7 @@ public class LottoGame {
         boolean success;
         do {
             success = getBonusNumber();
-        } while(success == false);
+        } while (success == false);
     }
 
     private boolean getBonusNumber() {
@@ -111,10 +114,10 @@ public class LottoGame {
         System.out.println(statistics);
     }
 
-    public void calculateProfitRatio () {
+    public void calculateProfitRatio() {
         int profit = statistics.calculateprofits();
         System.out.println("profit = " + profit);
-        double profitRatio = ((double) profit / (lottoPurchaser.getNumberOfLottos()*1000)) * 100;
+        double profitRatio = ((double) profit / (lottoPurchaser.getCost())) * 100;
         BigDecimal bd = new BigDecimal(profitRatio);
         bd = bd.setScale(1, RoundingMode.HALF_UP);
 

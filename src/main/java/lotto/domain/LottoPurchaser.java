@@ -2,16 +2,18 @@ package lotto.domain;
 
 import lotto.output.OutputView;
 
-public class LottoPurchaser extends Validator{
+public class LottoPurchaser extends Validator {
 
     private static LottoPurchaser lottoPurchaser;
 
     private int numberOfLottos;
+    private int cost;
 
-    private LottoPurchaser() {}
+    private LottoPurchaser() {
+    }
 
     public static LottoPurchaser getInstance() {
-        if (lottoPurchaser ==null) {
+        if (lottoPurchaser == null) {
             lottoPurchaser = new LottoPurchaser();
         }
         return lottoPurchaser;
@@ -21,15 +23,20 @@ public class LottoPurchaser extends Validator{
         return numberOfLottos;
     }
 
+    public int getCost() {
+        return cost;
+    }
+
     public void setNumberOfLottos(String cost) {
         int integerCost = parseInt(cost);
         isSmallerthanZero(integerCost);
         calculateNumberOfLottos(integerCost);
-        this.numberOfLottos = integerCost/1000;
+        this.cost = integerCost;
+        this.numberOfLottos = integerCost / 1000;
     }
 
     public boolean checkNumberOfLottos() {
-        return this.numberOfLottos>0;
+        return this.numberOfLottos > 0;
     }
 
     public String printOutNumberOfLottos() {

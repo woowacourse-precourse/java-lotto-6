@@ -8,29 +8,34 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
+import lotto.exception.LottoPriceUnitException;
 import lotto.model.Lotto;
+import lotto.model.LottoWallet;
 import lotto.model.Money;
+import lotto.repository.UserLottoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoServiceTest extends NsTest {
 
+    UserLottoRepository userLottoRepository;
     LottoService lottoService;
 
     @BeforeEach
     void setup() {
-        this.lottoService = new LottoService();
+        this.userLottoRepository = new UserLottoRepository();
+        this.lottoService = new LottoService(userLottoRepository);
     }
 
     @DisplayName("구매 금액이 1000원 단위가 아니면 예외 발생")
     @Test
     void purchaseAmountByNotUnit() {
         final Money money = new Money("1100");
-        final LottoService service = new LottoService();
 
-        assertThatThrownBy(() -> service.validateUnit(money))
+        assertThatThrownBy(() -> lottoService.validateUnit(money))
                 .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(LottoPriceUnitException.class)
                 .hasMessageContaining(ERROR_PREFACE);
     }
 
@@ -38,9 +43,8 @@ class LottoServiceTest extends NsTest {
     @Test
     void validateUnitSuccess() {
         final Money money = new Money("11000");
-        final LottoService service = new LottoService();
 
-        service.validateUnit(money);
+        lottoService.validateUnit(money);
     }
 
     @DisplayName("로또가 정상적으로 생성된다.")
@@ -66,12 +70,14 @@ class LottoServiceTest extends NsTest {
         assertThat(lottos.size()).isEqualTo(count);
     }
 
-    @DisplayName("입력한 돈 만큼 로또를 구입한다.")
+    @DisplayName("입력한 돈 만큼 로또를 구입하고 저장됨을 확인한다.")
     @Test
     void buyLotto() {
         final Money money = new Money("5000");
-        List<Lotto> lottos = lottoService.buyLottos(money);
+        lottoService.buyLottos(money);
 
+        LottoWallet wallet = userLottoRepository.getLottoWallet();
+        List<Lotto> lottos = wallet.getLottos();
         assertThat(lottos.size())
                 .isEqualTo(money.getMoney() / 1000);
     }

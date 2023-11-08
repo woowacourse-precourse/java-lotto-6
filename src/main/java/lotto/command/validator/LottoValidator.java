@@ -12,8 +12,15 @@ public class LottoValidator implements Validator {
         inputSplit.forEach(this::validateIsNumber);
 
         List<Integer> numbers = inputSplit.stream().map(Integer::parseInt).toList();
+        validateCount(numbers);
         validateUnique(numbers);
         validateOverNumber(numbers);
+    }
+
+    private void validateCount(List<Integer> numbers) {
+        if(numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력하세요");
+        }
     }
 
     private List<String> toList(String input) {

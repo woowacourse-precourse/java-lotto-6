@@ -2,7 +2,7 @@ package lotto.view;
 
 
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.dto.ResultResponse;
 
 public class OutputView {
@@ -23,10 +23,8 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public void printLottos(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto);
-        }
+    public void printLottos(Lottos lottos) {
+        System.out.println(lottos);
     }
 
     public void printLottoCount(int lottoCount) {

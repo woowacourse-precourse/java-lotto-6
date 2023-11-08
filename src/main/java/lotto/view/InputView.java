@@ -4,11 +4,17 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BonusNumber;
 import lotto.domain.User;
 import lotto.domain.WinningNumber;
+import lotto.utils.InputValidator;
 
 public class InputView {
     public static User readPayment() {
-        String pay = Console.readLine();
-        return User.paid(pay);
+        try {
+            String pay = Console.readLine();
+            InputValidator.validatePayNumber(pay);
+            return User.paid(pay);
+        } catch (IllegalArgumentException e) {
+            return readPayment();
+        }
     }
 
     public static WinningNumber readWinningNumber() {

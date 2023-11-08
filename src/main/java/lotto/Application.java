@@ -9,37 +9,28 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         int PRICE_LOTTO = 1000;
-        Console console = new Console();
 
-        int purchaseAmount = getPurchaseAmount(console);
+        int purchaseAmount = getPurchaseAmount();
         int numberOfLottos = purchaseAmount / PRICE_LOTTO;
 
         List<Lotto> lottos = buyLottos(numberOfLottos);
         printLottos(lottos);
 
-        List<Integer> winningNumbers = getWinningNumbers(console);
-        int bonusNumber = getBonusNumber(console);
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
 
-//        calculateAndPrintResult(lottos, winningNumbers, bonusNumber);
+        calculateAndPrintResult(lottos, winningNumbers, bonusNumber);
     }
 
-    private static int getPurchaseAmount(Console console) {
-        int purchaseAmount;
+    private static int getPurchaseAmount() {
         while (true) {
             try {
                 System.out.println("구입 금액을 입력해 주세요.");
-                purchaseAmount = Integer.parseInt(console.readLine());
-                if (purchaseAmount % 1000 != 0) {
-                    throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
-                }
-                break;
+                return Integer.parseInt(Console.readLine());
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
             }
         }
-        return purchaseAmount;
     }
 
     private static List<Lotto> buyLottos(int numberOfLottos) {
@@ -59,9 +50,15 @@ public class Application {
         }
     }
 
-    private static List<Integer> getWinningNumbers(Console console) {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return parseNumbers(console.readLine());
+    private static List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                return parseNumbers(Console.readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            }
+        }
     }
 
     private static List<Integer> parseNumbers(String input) {
@@ -73,12 +70,25 @@ public class Application {
         return numbers;
     }
 
-    private static int getBonusNumber(Console console) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(console.readLine());
+    private static int getBonusNumber() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                return Integer.parseInt(Console.readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            }
+        }
     }
 
-    private static void calculateAndPrintResult() {
+    private static void calculateAndPrintResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Result result = new Result();
+        for (Lotto lotto : lottos) {
+            int matched = lotto.matchNumbers(winningNumbers);
+            boolean hasBonusNumber = winningNumbers.contains(bonusNumber);
 
+            result.add(matched, hasBonusNumber);
+        }
+        result.printResult();
     }
 }

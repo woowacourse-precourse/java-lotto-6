@@ -4,6 +4,10 @@ public class Result {
     // 각 로또의 당첨 여부를 저장하고 결과를 집계하는 역할
     private int[] matchCounts;
 
+    public Result() {
+        this.matchCounts = new int[6];
+    }
+
     public void add(int matchedCount, boolean hasBonusNumber) {
         if (matchedCount == 6) {
             matchCounts[5]++;

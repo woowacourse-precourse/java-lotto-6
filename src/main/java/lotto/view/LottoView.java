@@ -21,6 +21,11 @@ public class LottoView {
         }
     }
 
+    public static void printNumberOfLotto(Integer numberOfLotto) {
+        System.out.println();
+        System.out.println(numberOfLotto + "개를 구매했습니다.");
+    }
+
     public static void printLottoList(List<Lotto> lottoList) {
         for (Lotto lotto : lottoList) {
             System.out.println(lotto.toString());

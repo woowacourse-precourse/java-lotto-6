@@ -10,8 +10,7 @@ import java.util.Map;
 public class LottoController {
     public static void playLotto() {
         Integer numberOfLotto = LottoView.getNumberOfLottoForPrice();
-        System.out.println();
-        System.out.println(numberOfLotto + "개를 구매했습니다.");
+        LottoView.printNumberOfLotto(numberOfLotto);
 
         List<Lotto> lottoList = LottoService.generateLottoList(numberOfLotto);
         LottoView.printLottoList(lottoList);

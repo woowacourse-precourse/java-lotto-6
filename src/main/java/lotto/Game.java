@@ -8,8 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
+    private static final String ERROR = "[ERROR]";
+    public static final int MAX_OF_RANGE = 45;
+    public static final int MIN_OF_RANGE = 1;
     private List<Integer> numbers = new ArrayList<>();
     private int bonusNumber;
+
 
     public void run() {
         Customer customer = setCustomer();
@@ -38,7 +42,7 @@ public class Game {
                 customer = new Customer(inputPrice());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 최소 1000원 이상의 금액을 1000원 단위로 입력해주세요.");
+                System.out.println(ERROR + "최소 1000원 이상의 금액을 1000원 단위로 입력해주세요.");
             }
 
         }
@@ -52,9 +56,9 @@ public class Game {
                 inputLottoNumbers();
                 return new Lotto(this.numbers);
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자 형식으로 입력해주세요");
+                System.out.println(ERROR + "숫자 형식으로 입력해주세요");
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1~45 사이의 중복되지 않는 숫자 6개를 입력해주세요.");
+                System.out.println(ERROR + "1~45 사이의 중복되지 않는 숫자 6개를 입력해주세요.");
             }
         }
     }
@@ -68,7 +72,7 @@ public class Game {
                 inputPrice = Integer.parseInt(input);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자 형식으로 입력해주세요.");
+                System.out.println(ERROR + "숫자 형식으로 입력해주세요.");
             }
         }
         return inputPrice;
@@ -90,15 +94,15 @@ public class Game {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 int bonusNumber = Integer.parseInt(Console.readLine());
-                if (numbers.contains(bonusNumber) || (bonusNumber < 1 || bonusNumber > 45)) {
+                if (numbers.contains(bonusNumber) || (bonusNumber < MIN_OF_RANGE || bonusNumber > MAX_OF_RANGE)) {
                     throw new IllegalArgumentException();
                 }
                 this.bonusNumber = bonusNumber;
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자 형식으로 입력해주세요.");
+                System.out.println(ERROR + "숫자 형식으로 입력해주세요.");
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 당첨 번호와 중복되지 않는 1~45 사이의 숫자 1개를 입력해주세요.");
+                System.out.println(ERROR + "당첨 번호와 중복되지 않는 1~45 사이의 숫자 1개를 입력해주세요.");
             }
         }
     }

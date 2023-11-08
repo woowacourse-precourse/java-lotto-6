@@ -13,7 +13,7 @@ public enum ErrorMessages {
     LOTTO_NUMBERS_NUMERIC_ONLY("로또 번호는 숫자여야 합니다."),
     LOTTO_NUMBERS_COUNT("로또 번호 개수는 %d개여야 합니다."),
     LOTTO_NUMBERS_DUPLICATE("로또 번호는 중복이 될수 없습니다."),
-    LOTTO_NUMBErS_RANGE("로또 번호는 %d부터 %d 사이의 숫자여야 합니다."),
+    LOTTO_NUMBERS_RANGE("로또 번호는 %d부터 %d 사이의 숫자여야 합니다."),
 
     WINNING_NUMBERS_NOT_NULL("당첨 번호는 null 이 될수 없습니다."),
     WINNING_NUMBERS_NUMERIC_ONLY("당첨 번호는 숫자여야 합니다."),

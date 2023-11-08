@@ -24,6 +24,7 @@ class LottoTest {
             .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("발행된 로또에 당첨번호 수 확인")
     @Test
     void validateWinningCount() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);

@@ -21,8 +21,8 @@ public class LottoManager {
     private int LOTTO_NUM_END = 45;
     private String stringSeperator = ",";
     private float totalRateOfRevenue;
-    private Hashtable<Integer, Integer> winningCountHash;
-    Hashtable<Integer, Integer> moneyHash;
+    private Hashtable<Integer, Integer> winningCountTable;
+    Hashtable<Integer, Integer> moneyTable;
     LottoBuyer lottoBuyer;
     List<Integer> winningNumbers;
     ErrorMessages errorType;
@@ -33,13 +33,13 @@ public class LottoManager {
         totalRevenue = 0;
         lottoBuyer = buyer;
         winningNumbers = new ArrayList<Integer>();
-        winningCountHash = new Hashtable<Integer, Integer>();
+        winningCountTable = new Hashtable<Integer, Integer>();
 
         for (int i = LAST_PLACE; i <= FIRST_PLACE; i++) {
-            winningCountHash.put(i, 0);
+            winningCountTable.put(i, 0);
         }
 
-        initMoneyHashMap();
+        initMoneyTableMap();
     }
 
     public void lottoSellingStart() {
@@ -51,21 +51,21 @@ public class LottoManager {
         announceResult();
     }
 
-    public void initMoneyHashMap() {
-        moneyHash = new Hashtable<Integer, Integer>();
+    public void initMoneyTableMap() {
+        moneyTable = new Hashtable<Integer, Integer>();
 
-        moneyHash.put(3, LottoManagerConsts.FIFTH_GRADE_MONEY.getConst());
-        moneyHash.put(4, LottoManagerConsts.FORTH_GRADE_MONEY.getConst());
-        moneyHash.put(5, LottoManagerConsts.THIRD_GRADE_MONEY.getConst());
-        moneyHash.put(6, LottoManagerConsts.SECOND_GRADE_MONEY.getConst());
-        moneyHash.put(7, LottoManagerConsts.FIRST_GRADE_MONEY.getConst());
+        moneyTable.put(LottoManagerConsts.THREE.getConst(), LottoManagerConsts.FIFTH_GRADE_MONEY.getConst());
+        moneyTable.put(LottoManagerConsts.FOUR.getConst(), LottoManagerConsts.FORTH_GRADE_MONEY.getConst());
+        moneyTable.put(LottoManagerConsts.FIVE.getConst(), LottoManagerConsts.THIRD_GRADE_MONEY.getConst());
+        moneyTable.put(LottoManagerConsts.FIVE_AND_BONUS.getConst(), LottoManagerConsts.SECOND_GRADE_MONEY.getConst());
+        moneyTable.put(LottoManagerConsts.SIX.getConst(), LottoManagerConsts.FIRST_GRADE_MONEY.getConst());
     }
 
     public void announceResult() {
         System.out.print(LottoManagerMsg.WINNING_STATISTICS_MESSAGE.getDescription());
-        winningCountHash.forEach((key, value) -> {
+        winningCountTable.forEach((key, value) -> {
             printWinningDetails(key, value);
-            totalRevenue += (moneyHash.get(key) * value);
+            totalRevenue += (moneyTable.get(key) * value);
         });
         totalRateOfRevenue = ((float) totalRevenue /lottoBuyer.getPurchaseAmount()) * 100f;
         System.out.printf(LottoManagerMsg.TOTAL_RATE_REVENUE_MESSAGE.getDescription(), getTotalRateOfRevenue());
@@ -80,15 +80,15 @@ public class LottoManager {
 
         if (key == LottoManagerConsts.SECOND_GRADE_KEY.getConst()) {
             System.out.printf(LottoManagerMsg.SECOND_MESSAGE.getDescription(),
-                LottoManagerConsts.THIRD_MATCH_COUNT.getConst(), moneyFormat.format(moneyHash.get(key)), value);
+                LottoManagerConsts.THIRD_MATCH_COUNT.getConst(), moneyFormat.format(moneyTable.get(key)), value);
             return;
         } else if (key == LottoManagerConsts.FIRST_GRADE_KEY.getConst()) {
             System.out.printf(LottoManagerMsg.NORMAL_MESSAGE.getDescription(),
-                LottoManagerConsts.FIRST_MATCH_COUNT.getConst(), moneyFormat.format(moneyHash.get(key)), value);
+                LottoManagerConsts.FIRST_MATCH_COUNT.getConst(), moneyFormat.format(moneyTable.get(key)), value);
             return;
         }
 
-        System.out.printf(LottoManagerMsg.NORMAL_MESSAGE.getDescription(), key, moneyFormat.format(moneyHash.get(key)), value);
+        System.out.printf(LottoManagerMsg.NORMAL_MESSAGE.getDescription(), key, moneyFormat.format(moneyTable.get(key)), value);
     }
 
     public void inputWinningNumbers() {
@@ -162,7 +162,7 @@ public class LottoManager {
                 matchedCount = LottoManagerConsts.FIRST_GRADE_KEY.getConst();
             }
 
-            winningCountHash.put(matchedCount, winningCountHash.get(matchedCount) + 1);
+            winningCountTable.put(matchedCount, winningCountTable.get(matchedCount) + 1);
         }
     }
 
@@ -175,8 +175,8 @@ public class LottoManager {
         return false;
     }
 
-    public Hashtable<Integer, Integer> getWinningCountHash () {
-        return winningCountHash;
+    public Hashtable<Integer, Integer> getWinningCountTable () {
+        return winningCountTable;
     }
 
     private void validateBonusNumber(List<String> number) {

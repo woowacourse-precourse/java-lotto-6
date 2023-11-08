@@ -29,8 +29,9 @@ class LottoBuyerTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또가 정상 발행 되었는지 확인한다")
     @Test
-    void 구매한로또_정상발행확인() {
+    void verifyPublishingLotto() {
         LottoBuyer buyer = new LottoBuyer();
         Lotto lotto = new Lotto(List.of(6, 1, 4, 5, 12, 41));
 

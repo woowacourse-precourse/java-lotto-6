@@ -1,10 +1,13 @@
 package lotto;
 
 public enum LottoManagerConsts {
+    THREE(3),
+    FOUR(4),
+    FIVE(5),
+    FIVE_AND_BONUS(6),
+    SIX(7),
     REQUIRED_NUMBER_COUNT(6),
     REQUIRED_BONUS_NUMBER_COUNT(1),
-    LAST_PLACE(3),
-    FIRST_PLACE(7),
     FIRST_GRADE_KEY(7),
     SECOND_GRADE_KEY(6),
     FIRST_MATCH_COUNT(6),

@@ -30,7 +30,6 @@ class LottoManagerTest {
         LottoBuyer buyer = new LottoBuyer();
         LottoManager manager = new LottoManager(buyer);
 
-        System.out.println(String.join("", listToStream));
         assertThatThrownBy(() -> manager.setWinningNumbers(listToStream))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -128,11 +127,11 @@ class LottoManagerTest {
 
     @Test
     void 당첨결과확인() {
+        int forthPlace = 4;
         LottoBuyer buyer = new LottoBuyer();
         LottoManager manager = new LottoManager(buyer);
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-
 
         List<String> winningNumbers = List.of("1", "2", "3", "4", "8", "9");
         List<String> bonusNumber = List.of("10");
@@ -142,12 +141,11 @@ class LottoManagerTest {
         buyer.addMyLottos(lotto1);
         buyer.addMyLottos(lotto2);
 
-
         manager.setWinningResult();
         manager.announceResult();
-        Hashtable<Integer, Integer> copiedWinningHash = manager.getWinningCountHash();
+        Hashtable<Integer, Integer> copiedWinningTable = manager.getWinningCountTable();
 
-        assertThat(copiedWinningHash.get(4)).isEqualTo(2);
+        assertThat(copiedWinningTable.get(forthPlace)).isEqualTo(2);
     }
 
     @Test

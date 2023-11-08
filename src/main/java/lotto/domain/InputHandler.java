@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static lotto.Validator.*;
+
 public class InputHandler {
     // TODO : 사용자의 입력에 대한 처리
     private static final String delimiter = ",";
@@ -27,11 +29,15 @@ public class InputHandler {
     public static List<Integer> askWinningNumbers() {
         do {
             try {
-                List<Integer> numbers = convertStringToArray(inputWinningNumbers());
-                Validator.isValidSize(numbers);
-                return convertStringToArray(Console.readLine());
+                String input = inputWinningNumbers();
+                containOnlyDigit(input.split(","));
+                List<Integer> inputNumbers = convertStringToArray(input);
+                isValidSize(inputNumbers);
+                isDigitInValidRange(inputNumbers);
+                isDuplicated(inputNumbers);
+                return inputNumbers;
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.NUMBER_FORMAT);
+                System.out.println(e.getMessage());
             }
         } while (true);
     }
@@ -73,7 +79,7 @@ public class InputHandler {
         do {
             askWinningNumbers();
             try {
-                Validator.containOnlyDigit(input);
+                containOnlyDigit(input);
             } catch (IllegalArgumentException e) {
 
             }
@@ -86,16 +92,14 @@ public class InputHandler {
     }
 
     public static int convertStringToInteger (String input) {
-        if (!Validator.containOnlyDigitTest(input)) {
-            throw new IllegalArgumentException();
-        }
+        containOnlyDigit(input);
         return Integer.parseInt(input);
     }
 
     public static List<Integer> convertStringToArray (String inputNumbers) {
         List<Integer> numbers = new ArrayList<>();
         for (String input: inputNumbers.split(delimiter)) {
-            if (!Validator.containOnlyDigitTest(input)) {
+            if (!containOnlyDigitTest(input)) {
                 throw new IllegalArgumentException();
             }
             numbers.add(Integer.parseInt(input));

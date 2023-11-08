@@ -1,7 +1,7 @@
 package lotto.constant;
 
 public enum ErrorMessage {
-    NON_EXIST_INPUT("[ERROR] 값이 입력되지 않았습니다."),
+    NON_EXIST_INPUT("[ERROR] 입력되지 않은 값이 존재합니다."),
     NOT_DIGIT("[ERROR] 숫자가 아닌 값이 입력되었습니다."),
     EXIST_ZERO("[ERROR] 0이 입력되었습니다."),
     INVALID_MONEY("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다."),

@@ -34,7 +34,7 @@ public class OutputView {
     public void printPurchasedLotto(List<Integer> lottoNumbers) {
         String formattedLotto = formatLottoNumbers(lottoNumbers);
 
-        System.out.printf("%s%s%s",
+        System.out.printf("%s%s%s\n",
                 PurchasedMessage.PURCHASED_LOTTO_START,
                 formattedLotto,
                 PurchasedMessage.PURCHASED_LOTTO_END);

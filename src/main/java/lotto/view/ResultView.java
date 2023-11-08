@@ -2,17 +2,18 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.model.Lotto;
-import lotto.model.Ranking;
+import lotto.model.entity.Lotto;
+import lotto.model.entity.Ranking;
 
 public class ResultView {
     private static final String TICKET_COUNT_MESSAGE = "%d개를 구매했습니다.";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계\n---";
     private static final String REVENUE_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String MATCH_MESSAGE_FORMAT = "%s%d개";
+    private static final String NEW_LINE = "%n";
 
     public static void printTicketCount(int count) {
-        System.out.printf((TICKET_COUNT_MESSAGE) + "%n", count);
+        System.out.printf((TICKET_COUNT_MESSAGE) + NEW_LINE, count);
     }
 
     public static void printSuccessResult() {
@@ -27,7 +28,7 @@ public class ResultView {
     }
 
     public static void printRevenueRate(double earningRate) {
-        System.out.printf((REVENUE_RATE_MESSAGE) + "%n", earningRate);
+        System.out.printf((REVENUE_RATE_MESSAGE) + NEW_LINE, earningRate);
     }
 
     public static void printLottos(List<Lotto> lottos) {

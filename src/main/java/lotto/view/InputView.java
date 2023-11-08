@@ -12,6 +12,7 @@ public class InputView {
     private static final String VALIDATE_NUMBER_MESSAGE = "[ERROR] 숫자만 입력해야 합니다.";
 
     public static int inputLottoAmount() {
+        OutputView.printInputAmount();
         String money = Console.readLine();
         System.out.println(money);
         try{
@@ -23,6 +24,7 @@ public class InputView {
     }
 
     public static List<String> inputWinningNumbers() {
+        OutputView.printWinningNumbers();
         String numberInput = Console.readLine();
         System.out.println(numberInput);
         String[] numbers = numberInput.split(",");
@@ -30,9 +32,9 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
+        OutputView.printBonusNumber();
         String bonusNumber = Console.readLine();
         System.out.println(bonusNumber);
         return parseInt(bonusNumber);
     }
-
 }

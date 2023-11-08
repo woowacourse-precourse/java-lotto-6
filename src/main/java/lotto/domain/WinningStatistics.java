@@ -1,11 +1,14 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public record WinningStatistics(LottoAmount lottoAmount, Map<Ranking, Integer> rankingNumbers) {
-    public double getReturnRate() {
-        return Math.round(calculateReturnRate() * 10.0) / 10.0;
+    public BigDecimal getReturnRate() {
+        BigDecimal returnRate = BigDecimal.valueOf(calculateReturnRate());
+        return returnRate.setScale(1, RoundingMode.HALF_UP);
     }
 
     private double calculateReturnRate() {

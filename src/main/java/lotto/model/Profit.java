@@ -35,4 +35,10 @@ public class Profit {
     public Map<Prize,Integer> getResultCount(){
         return resultCount;
     }
+    public Integer getProfit(){
+        return profit;
+    }
+    public Integer getAmount(){
+        return amount;
+    }
 }

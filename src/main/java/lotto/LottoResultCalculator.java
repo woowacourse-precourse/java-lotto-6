@@ -53,4 +53,17 @@ public class LottoResultCalculator {
         }
     }
 
+    public static double calculateYield(int purchaseAmount, Map<LottoRank, Integer> rankCount) {
+        int totalWinningMoney = 0;
+        for (LottoRank rank : LottoRank.values()) {
+            totalWinningMoney += rank.getWinningMoney() * rankCount.getOrDefault(rank, 0);
+        }
+
+        return (double) totalWinningMoney / purchaseAmount;
+    }
+
+    public static void printYield(double yield) {
+        System.out.printf("총 수익률은 %.2f입니다.\n", yield);
+    }
+
 }

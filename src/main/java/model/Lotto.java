@@ -84,7 +84,7 @@ public class Lotto {
         return (numbers.contains(number));
     }
 
-    List<Integer> getNumbers() {
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }

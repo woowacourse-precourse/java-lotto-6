@@ -65,7 +65,7 @@ class LottosTest {
         long result = userLottos.calculateTotalReward(userLottos.getRankResult(winningLotto));
 
         // then
-        assertThat(result).isEqualTo(result);
+        assertThat(result).isEqualTo(expected);
     }
 
     static Stream<Arguments> provideDataForCalculateTotalReward() {

@@ -27,7 +27,6 @@ public class LottoService {
 
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH);
-            Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
         return lottos;

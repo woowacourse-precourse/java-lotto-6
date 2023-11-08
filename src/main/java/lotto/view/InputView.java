@@ -12,9 +12,14 @@ import lotto.model.Lotto;
 public class InputView {
     public int getLottoPurchaseAmount() {
         System.out.println(InputMessage.INPUT_PURCHASE_AMOUNT.getMessage());
-        String input = Console.readLine();
-        Validator.validateLottoPurchaseAmount(input);
-        return Integer.parseInt(input);
+        try {
+            String input = Console.readLine();
+            Validator.validateLottoPurchaseAmount(input);
+            return Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getLottoPurchaseAmount();
+        }
     }
 
     public Lotto getWinningNumbers() {

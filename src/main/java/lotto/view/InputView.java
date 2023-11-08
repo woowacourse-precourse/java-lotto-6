@@ -84,7 +84,7 @@ public class InputView {
                 System.out.print("보너스 볼을 입력해 주세요: ");
                 String input = Console.readLine();
                 int bonusNumber = Integer.parseInt(input);
-                validateBonusNumber(bonusNumber, winningNumbers);
+                checkBonusNumberValidity(bonusNumber, winningNumbers);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -92,7 +92,13 @@ public class InputView {
         }
     }
 
-    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+    private void checkBonusNumberValidity(int bonusNumber, List<Integer> winningNumbers) {
+        validateRangeBonusNumber(bonusNumber);
+    }
+    private void validateRangeBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 값이어야 합니다.");
+        }
     }
 
 }

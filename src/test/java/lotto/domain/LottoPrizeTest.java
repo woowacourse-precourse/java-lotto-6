@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoPrizeTest {
 
@@ -55,7 +54,7 @@ class LottoPrizeTest {
         answer.put(4, innerMap);
 
         innerMap = new HashMap<>();
-        innerMap.put("5NoBonus", 0);;
+        innerMap.put("5NoBonus", 0);
         innerMap.put("5Bonus", 0);
         answer.put(5, innerMap);
 

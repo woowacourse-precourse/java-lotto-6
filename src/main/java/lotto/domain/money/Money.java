@@ -24,4 +24,8 @@ public class Money {
     public int ticketCount() {
         return amount / LOTTO_PRICE;
     }
+
+    public float calculateEarningsRate(int totalWinningAmount) {
+        return (float) totalWinningAmount / amount * 100;
+    }
 }

@@ -38,7 +38,8 @@
     - 각 Prize의 개수를 저장하는 map을 가진다.
     - prize의 count를 1 증가시킨다.
     - prize의 count를 반환한다.
-- [ ] LottoCommission
+- [x] Committee
     - PrizeResult와 당첨금 총합을 가진다.
     - 사용자의 Lotto들과 WinningLotto를 비교하여 각 등수의 개수를 prizeResult에 저장한다.
     - 당첨된 Prize에 해당하는 개수를 반환한다.
+    - 구입 금액과 총 당첨금을 비교하여 수익률을 반환한다.

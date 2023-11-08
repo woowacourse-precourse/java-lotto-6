@@ -14,7 +14,7 @@ public class WinningLotto {
     }
 
     private void validate(Integer bonusNumber) {
-        if (bonusNumber < LottoNumbers.MIN_RANGE.getNumber() || bonusNumber > LottoNumbers.MAX_RANGE.getNumber()) {
+        if (isInRange(bonusNumber)) {
             System.out.println(ErrorMessages.IN_RANGE.getDeclaringClass());
             throw new IllegalArgumentException(ErrorMessages.IN_RANGE.getErrorMessage());
         }
@@ -22,6 +22,10 @@ public class WinningLotto {
             System.out.println(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
             throw new IllegalArgumentException(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
         }
+    }
+
+    private boolean isInRange(Integer bonusNumber) {
+        return bonusNumber < LottoNumbers.MIN_RANGE.getNumber() || bonusNumber > LottoNumbers.MAX_RANGE.getNumber();
     }
 
     public Lotto getLotto() {

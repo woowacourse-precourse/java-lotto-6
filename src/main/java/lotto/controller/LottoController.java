@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.MyLotto;
+import lotto.model.WinLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.InputViewImpl;
@@ -31,5 +32,9 @@ public class LottoController {
 
   private WinLotto winningNumber() {
     return lottoService.setWinningLottery(inputView.readLotteryNumber(), inputView.readBonusNumber());
+  }
+
+  private void compareWithWinningNumbers(MyLotto myLotto, WinLotto winLotto) {
+    lottoService.getResultFromComparison(myLotto, winLotto);
   }
 }

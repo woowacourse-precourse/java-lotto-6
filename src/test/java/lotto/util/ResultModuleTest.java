@@ -80,6 +80,22 @@ public class ResultModuleTest extends NsTest {
         );
     }
 
+    @DisplayName("[2등] 로또 번호가 5개 당첨되고 보너스 번호가 당첨되었을 때")
+    @Test
+    void getSecondPlace() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+
+        //when
+        ResultModule.checkResult(result, lotto, LOTTO_NUM, BONUS_NUM);
+        ResultModule.formattingResult(result);
+
+        //then
+        assertSimpleTest(() ->
+                assertEquals(1, result.get(SECOND_PLACE))
+        );
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

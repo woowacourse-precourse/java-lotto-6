@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class InputViewTest {
 
     @AfterEach
-    void afterEach () {
+    void afterEach() {
         Console.close();
     }
 
@@ -262,5 +262,4 @@ class InputViewTest {
 
         assertThatThrownBy(() -> InputView.readBonusNumber(winningNumbers)).isInstanceOf(IllegalArgumentException.class);
     }
-
 }

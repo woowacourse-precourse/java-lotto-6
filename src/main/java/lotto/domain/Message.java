@@ -67,4 +67,3 @@ public enum Message {
                 .replace("TOTAL_RETURN", String.valueOf(winningResult.getTotalReturn()));
     }
 }
-

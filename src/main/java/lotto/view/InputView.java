@@ -52,7 +52,36 @@ public class InputView {
     }
 
     public int bonusInput() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(readLine().trim());
+    private void isCorrectMoney(int money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
     }
+
+    public int bonusInput(List<Integer> answers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonus = 0;
+        try {
+            bonus = Integer.parseInt(readLine().trim());
+            isOrigin(answers, bonus);
+            inRange(bonus);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 보너스번호는 당첨번호와 중복되지 않아야 하며 1~45 사이 숫자만 가능합니다.");
+            bonusInput(answers);
+        }
+        return bonus;
+    }
+
+    private void isOrigin(List<Integer> answers, int bonus) {
+        if (answers.contains(bonus)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void inRange(int num) {
+        if (num < 1 || num > 45) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

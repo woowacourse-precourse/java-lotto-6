@@ -10,33 +10,34 @@ public class LottoController {
     private final OutputView outputView;
     private final InputView inputView;
     private final InputProcessor inputProcessor;
+    private final LottoService lottoService;
 
-    public LottoController(OutputView outputView, InputView inputView, InputProcessor inputProcessor) {
+    public LottoController(final OutputView outputView, final InputView inputView, final InputProcessor inputProcessor, final LottoService lottoService) {
         this.outputView = outputView;
         this.inputView = inputView;
         this.inputProcessor = inputProcessor;
+        this.lottoService = lottoService;
     }
 
-    public void start() {
+    public void play() {
 
-        PaidAmount paidAmount = createPaidAmount();
-
-        LottoIssuer lottoIssuer = new LottoIssuer(new RandomLottoNumberGenerator());
-        LottoTickets issuedLottoTickets = lottoIssuer.issue(paidAmount);
+        PaidAmount paidAmount = requestPaidAmount();
+        LottoTickets issuedLottoTickets = lottoService.issue(paidAmount);
         outputView.printIssuedLottoTickets(LottoTicketsDto.from(issuedLottoTickets));
 
-        LottoWinningNumbers lottoWinningNumbers = createLottoWinningNumbers();
-        WinningRankCounts winningRankCounts = issuedLottoTickets.calculateWinningRanks(new WinningRankCalculator(), lottoWinningNumbers);
+        LottoWinningNumbers lottoWinningNumbers = requestLottoWinningNumbers();
+
+        WinningRankCounts winningRankCounts = lottoService.collectWinningRanks(issuedLottoTickets, lottoWinningNumbers);
         outputView.printWinningCounts(WinningRankCountsDto.from(winningRankCounts));
 
-        WinningStatistics winningStatistics = new WinningStatistics(winningRankCounts, paidAmount);
-        outputView.printProfitRate(ProfitRateDto.from(winningStatistics.calculateProfitRate()));
+        ProfitRateDto profitRateDto = lottoService.calculateProfitRate(winningRankCounts, paidAmount);
+        outputView.printProfitRate(profitRateDto);
     }
 
-    private PaidAmount createPaidAmount() {
+    private PaidAmount requestPaidAmount() {
         while (true) {
             try {
-                Integer paidAmountInput = inputProcessor.toPaidAmount(inputView.requestPaidAmount());//
+                Integer paidAmountInput = inputProcessor.toPaidAmount(inputView.requestPaidAmount());
                 return new PaidAmount(paidAmountInput);
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
@@ -44,11 +45,11 @@ public class LottoController {
         }
     }
 
-    private LottoWinningNumbers createLottoWinningNumbers() {
+    private LottoWinningNumbers requestLottoWinningNumbers() {
         while (true) {
             try {
-                Lotto winningNumber = createWinningNumber();
-                BonusNumber bonusNumber = createBonusNumber();
+                Lotto winningNumber = requestWinningNumber();
+                BonusNumber bonusNumber = requestBonusNumber();
                 return new LottoWinningNumbers(winningNumber, bonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
@@ -56,7 +57,7 @@ public class LottoController {
         }
     }
 
-    private Lotto createWinningNumber() {
+    private Lotto requestWinningNumber() {
         while (true) {
             try {
                 List<Integer> winningNumbersInput = inputProcessor.toWinningNumbers(inputView.requestWinningNumbers());//
@@ -67,7 +68,7 @@ public class LottoController {
         }
     }
 
-    private BonusNumber createBonusNumber() {
+    private BonusNumber requestBonusNumber() {
         while (true) {
             try {
                 Integer bonusNumberInput = inputProcessor.toBonusNumber(inputView.requestBonusNumber());//

@@ -22,7 +22,7 @@ class LottoTicketsTest {
         LottoTickets lottoTickets = new LottoTickets(List.of(lotto1, lotto2, lotto3));
 
         //when
-        WinningRankCounts winningRankCounts = lottoTickets.calculateWinningRanks(new WinningRankCalculator(), lottoWinningNumbers);
+        WinningRankCounts winningRankCounts = lottoTickets.collectWinningRanks(new WinningRankCalculator(), lottoWinningNumbers);
 
         //then
         assertThat(winningRankCounts.getCount(WinningRank.FIRST)).isEqualTo(1);

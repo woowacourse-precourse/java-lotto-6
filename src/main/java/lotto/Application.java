@@ -9,7 +9,9 @@ public class Application {
         OutputView outputView = new OutputView();
         InputView inputView = new InputView(outputView);
         InputProcessor inputProcessor = new InputProcessor();
-        LottoController lottoController = new LottoController(outputView, inputView, inputProcessor);
-        lottoController.start();
+        LottoService lottoService = new LottoService(new LottoIssuer(new RandomLottoNumberGenerator()), new WinningRankCalculator(), new ProfitRateCalculator());
+
+        LottoController lottoController = new LottoController(outputView, inputView, inputProcessor, lottoService);
+        lottoController.play();
     }
 }

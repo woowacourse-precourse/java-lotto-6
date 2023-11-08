@@ -43,14 +43,6 @@ public class OutputView {
         print(line.toString());
     }
 
-    private String getBonusMessage(WinningRankCountsDto winningRankCountsDto) {
-        String bonusMessage = EMPTY;
-        if (winningRankCountsDto.isRequiresBonus()) {
-            bonusMessage = BONUS_NUMBER_REQUIRED;
-        }
-        return bonusMessage;
-    }
-
     public void printProfitRate(final ProfitRateDto profitRateDto) {
         print(String.format(PROFIT_FORMAT_FORMAT, profitRateDto.getProfitRate()));
     }
@@ -70,4 +62,11 @@ public class OutputView {
         });
     }
 
+    private String getBonusMessage(WinningRankCountsDto winningRankCountsDto) {
+        String bonusMessage = EMPTY;
+        if (winningRankCountsDto.isRequiresBonus()) {
+            bonusMessage = BONUS_NUMBER_REQUIRED;
+        }
+        return bonusMessage;
+    }
 }

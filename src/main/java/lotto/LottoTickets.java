@@ -12,7 +12,7 @@ public class LottoTickets {
 
     }
 
-    public WinningRankCounts calculateWinningRanks(WinningRankCalculator calculator, LottoWinningNumbers lottoWinningNumbers) {
+    public WinningRankCounts collectWinningRanks(WinningRankCalculator calculator, LottoWinningNumbers lottoWinningNumbers) {
         WinningRankCounts counts = new WinningRankCounts();
 
         lottos.stream()

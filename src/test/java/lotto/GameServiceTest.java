@@ -4,17 +4,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.Service.GameService;
 import lotto.Validator.LottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class GameTest {
+public class GameServiceTest {
     @DisplayName("게임서비스는 유저로부터 당첨번호를 입력받아 저장한다.")
     @Test
     void askWinningNumbers() {
-        Game game = new Game();
+        GameService game = new GameService();
         game.setWinningLotto(List.of(1, 2, 3, 4, 5, 6));
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -25,7 +26,7 @@ public class GameTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
     void setWinningNumbers(int n) {
-        Game game = new Game();
+        GameService game = new GameService();
         game.setBonusNumber(n);
         assertThat(game.getBonusNumber()).isEqualTo(n);
     }
@@ -34,7 +35,7 @@ public class GameTest {
     @ParameterizedTest
     @ValueSource(ints = {14000, 1000})
     void setMoney(int money) {
-        Game game = new Game();
+        GameService game = new GameService();
         game.setMoney(money);
         assertThat(game.getMoney()).isEqualTo(money);
     }
@@ -43,7 +44,7 @@ public class GameTest {
     @ParameterizedTest
     @ValueSource(ints = {0, Integer.MIN_VALUE, -1000})
     void setMoneyWithExceptionMinMax(int money) {
-        Game game = new Game();
+        GameService game = new GameService();
 
         assertThatThrownBy(() -> game.setMoney(money))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -54,7 +55,7 @@ public class GameTest {
     @ParameterizedTest
     @ValueSource(ints = {1001, 1003, 1500})
     void setMoneyWithExceptionThousand(int money) {
-        Game game = new Game();
+        GameService game = new GameService();
 
         assertThatThrownBy(() -> game.setMoney(money))
                 .isInstanceOf(IllegalArgumentException.class);

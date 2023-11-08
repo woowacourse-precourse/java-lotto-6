@@ -53,7 +53,4 @@ public class RankingTest {
         assertThat(prize.match(playerInputNumber)).isEqualTo(FIFTH);
     }
 
-
-
-
 }

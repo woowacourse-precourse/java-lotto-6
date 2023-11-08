@@ -1,6 +1,6 @@
-package lotto.Option;
+package lotto.option;
 
-public enum GameStatus {
+public enum EqualStatus {
     THREE_EQUAL,
     FOUR_EQUAL,
     FIVE_EQUAL,

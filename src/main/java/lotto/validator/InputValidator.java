@@ -1,8 +1,5 @@
 package lotto.validator;
 
-import lotto.model.Bonus;
-import lotto.model.Lotto;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

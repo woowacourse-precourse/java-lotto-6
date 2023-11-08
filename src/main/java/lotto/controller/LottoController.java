@@ -37,6 +37,15 @@ public class LottoController {
         printResult(matchCountChecker.countLottoByPrize(compareLottoNumResult), lottoCost.getCost());
     }
 
+    public void printResult(HashMap<String, Integer> countByPrize, int lottoCost) {
+        System.out.println(output.printResultMessage());
+        printFifthPrizeCount(countByPrize);
+        printFourthPrizeCount(countByPrize);
+        printThirdPrizeCount(countByPrize);
+        printSecondPrizeCount(countByPrize);
+        printFirstPrizeCount(countByPrize);
+        printReturnRate(countByPrize, lottoCost);
+    }
 
     private LottoCost inputValueToLottoCost() {
         LottoCost lottoCost = null;
@@ -120,16 +129,6 @@ public class LottoController {
         for (int key : allLotto.keySet()) {
             System.out.println(allLotto.get(key).getLotto());
         }
-    }
-
-    public void printResult(HashMap<String, Integer> countByPrize, int lottoCost) {
-        System.out.println(output.printResultMessage());
-        printFifthPrizeCount(countByPrize);
-        printFourthPrizeCount(countByPrize);
-        printThirdPrizeCount(countByPrize);
-        printSecondPrizeCount(countByPrize);
-        printFirstPrizeCount(countByPrize);
-        printReturnRate(countByPrize, lottoCost);
     }
 
     private void printReturnRate(HashMap<String, Integer> countByPrize, int lottoCost) {

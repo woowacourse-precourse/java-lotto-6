@@ -9,7 +9,6 @@ import model.MyLotto;
 
 public class OutPutView {
 
-
     public static void printPurchaseResult(MyLotto myLotto) {
         System.out.printf(ViewMessage.PRINT_PURCHASE_RESULT.getMessage(), myLotto.getMyLotto().size());
         for (Lotto lotto : myLotto.getMyLotto()) {

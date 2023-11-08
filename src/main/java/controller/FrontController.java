@@ -6,7 +6,6 @@ import view.InputView;
 import view.OutPutView;
 
 public class FrontController {
-
     MyLotto myLotto;
     WinningNumbers winningNumbers;
     CompareController compareController;

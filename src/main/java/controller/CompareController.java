@@ -45,10 +45,7 @@ public class CompareController {
     }
 
     public boolean compareBonusNumber(Lotto lotto, WinningNumbers winningNumbers) {
-        if (lotto.getNumbers().contains(winningNumbers.getBonusNumber())) {
-            return true;
-        }
-        return false;
+        return lotto.getNumbers().contains(winningNumbers.getBonusNumber());
     }
 
     public void classificationRank(int matchedNumberCount, boolean bonus) {

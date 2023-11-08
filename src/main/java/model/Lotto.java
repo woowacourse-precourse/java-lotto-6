@@ -18,13 +18,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자로 이루어져있어야합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자로 이루어져 있어야합니다.");
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.indexOf(numbers.get(i))!=i) {
+            if (numbers.indexOf(numbers.get(i)) != i) {
                 throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
             }
         }

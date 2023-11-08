@@ -26,6 +26,7 @@ public class MyLotto {
     public List<Lotto> getMyLotto() {
         return Collections.unmodifiableList(this.myLotto);
     }
+
     public int size() {
         return this.myLotto.size();
     }

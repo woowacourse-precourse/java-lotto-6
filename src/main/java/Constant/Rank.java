@@ -1,7 +1,6 @@
 package Constant;
 
 public enum Rank {
-
     FIFTH("3개 일치 (5,000원) - %d개", 5000) {
         @Override
         public boolean isCorrect(int matchedNumberCount, boolean bonus) {

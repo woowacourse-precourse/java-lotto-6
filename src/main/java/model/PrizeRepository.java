@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class PrizeRepository {
-    private final static int COUNT = 1;
+    private static final  int COUNT = 1;
     private HashMap<Prize, Integer> prizeRepository = new LinkedHashMap<>();
 
     public HashMap getPrizeRepository() {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import message.ErrorMessages;
 import utils.Converter;
 
 public class LottoVendor {
@@ -12,7 +13,6 @@ public class LottoVendor {
     private static final int MIN_NUMBER = 1;
     private static final int COUNT = 6;
     private static final int LOTTO_AMOUNT = 1000;
-    private static final String CAN_NOT_DIVIDE = "[ERROR] 1000으로 나누어 떨어지지 않습니다.";
 
     public LottoVendor(String purchaseAmount) {
         validationDivide(Converter.stringToInt(purchaseAmount));
@@ -24,7 +24,7 @@ public class LottoVendor {
 
     public void validationDivide(int purchaseAmount) {
         if (purchaseAmount % LOTTO_AMOUNT > 0) {
-            throw new IllegalArgumentException(CAN_NOT_DIVIDE);
+            throw new IllegalArgumentException(ErrorMessages.CAN_NOT_DIVIDE);
         }
     }
 

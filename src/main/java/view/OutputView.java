@@ -3,23 +3,20 @@ package view;
 import java.util.List;
 import java.util.stream.Collectors;
 import message.InformationMessages;
+import message.OutputSign;
 import model.EarningRate;
 import model.Lotto;
 import model.LottoPrize;
 import model.Prize;
 
 public class OutputView {
-    private static final String START_SYMBOL = "[";
-    private static final String END_SYMBOL = "]";
-    private static final String DELIMITER = ", ";
-    private static final String THOUSAND_SEPARATOR =",";
 
     public void printPurchaseLotto(List<Lotto> lottos) {
         System.out.println();
         System.out.printf(InformationMessages.PURCHASE_MESSAGE, lottos.size());
         System.out.println();
         for (Lotto lotto : lottos) {
-            System.out.println(START_SYMBOL + LottoWithDelimiter(lotto) + END_SYMBOL);
+            System.out.println(OutputSign.START_SYMBOL + LottoWithDelimiter(lotto) + OutputSign.END_SYMBOL);
         }
         System.out.println();
     }
@@ -52,7 +49,7 @@ public class OutputView {
 
     public String addThousandSeparator(int priceNumber) {
         String price = String.valueOf(priceNumber);
-        return price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", THOUSAND_SEPARATOR); //3자릿 수 마다 "," 문자 추가
+        return price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", OutputSign.THOUSAND_SEPARATOR); //3자릿 수 마다 "," 문자 추가
     }
 
     public void printNotWinning(Prize prize) {
@@ -75,7 +72,7 @@ public class OutputView {
     }
 
     public String LottoWithDelimiter(Lotto lotto) {
-        return lotto.getNumbers().stream().map(number -> String.valueOf(number)).collect(Collectors.joining(DELIMITER));
+        return lotto.getNumbers().stream().map(number -> String.valueOf(number)).collect(Collectors.joining(OutputSign.DELIMITER));
     }
 }
 

@@ -33,7 +33,7 @@ public class RateCal {
     }
 
     public double getReturnRate(int price) {
-        returnRate = price / (double) sumPrize;
+        returnRate = (sumPrize / (double) price) * 100;
         return returnRate;
     }
 }

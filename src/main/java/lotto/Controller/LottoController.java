@@ -47,6 +47,7 @@ public class LottoController {
         int bonusNumber;
         try {
             normalNumbers = lottoInputValidator.validateNormalNumbersIsInteger(normalNumbersStr);
+            lottoInputValidator.validateNormalNumbersInRange(normalNumbers);
             bonusNumber = lottoInputValidator.validateBonusNumberIsInteger(bonusNumberStr);
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,5 +42,16 @@ public class LottoInputValidator {
         }
         return bonusNumber;
     }
-    
+
+    public void validateNormalNumbersInRange(List<Integer> normalNumbers) throws Exception {
+        List<Integer> errorNumbers = new ArrayList<>();
+        for (Integer normalNumber : normalNumbers) {
+            if (normalNumber < 1 || normalNumber > 45) {
+                errorNumbers.add(normalNumber);
+            }
+        }
+        if (!errorNumbers.isEmpty()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호가 1에서 45 사이의 숫자가 아닙니다 : " + errorNumbers);
+        }
+    }
 }

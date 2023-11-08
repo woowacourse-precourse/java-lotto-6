@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Referee {
@@ -11,5 +12,15 @@ public class Referee {
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public int getWinningNumberMatchCount(Lotto lotto) {
+        int winNumberMatchCount = 0;
+        for (String winningNumber : winningNumbers.getNumbers()) {
+            if (lotto.getNumbers().contains(winningNumber)) {
+                winNumberMatchCount++;
+            }
+        }
+        return winNumberMatchCount;
     }
 }

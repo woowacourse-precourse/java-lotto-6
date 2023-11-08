@@ -33,4 +33,24 @@ public class PlayerLotto {
 
         return info.toString();
     }
+
+    public List<Integer> calculateResult(WinningNumber winningNumber) {
+        List<Integer> result = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            result.add(lotto.getCalculateResult(winningNumber));
+        }
+
+        return result;
+    }
+
+    public List<Boolean> bonusResult(WinningNumber winningNumber) {
+        List<Boolean> result = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            result.add(lotto.isBonusNumberIn(winningNumber));
+        }
+
+        return result;
+    }
 }

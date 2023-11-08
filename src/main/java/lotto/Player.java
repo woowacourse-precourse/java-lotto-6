@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.List;
+
 public class Player {
     private final PlayerLotto playerLotto;
     private final int purchaseAmount;
@@ -40,5 +42,12 @@ public class Player {
     public void outputLottoInfo() {
         System.out.printf(LottoMessage.LOTTO_PURCHASE_QUANTITY.getMessage(), getPurchaseQuantity());
         System.out.printf(playerLotto.getAllLottoInfo());
+    }
+
+    public ResultDTO calculateResult(WinningNumber winningNumber) {
+        List<Integer> result = playerLotto.calculateResult(winningNumber);
+        List<Boolean> bonusCount = playerLotto.bonusResult(winningNumber);
+
+        return new ResultDTO(result, bonusCount);
     }
 }

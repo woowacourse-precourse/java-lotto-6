@@ -47,8 +47,10 @@ public final class InputView {
      * 이렇게 작성하면 `inputLottoNumbers`, `inputBonusNumber` 메소드도 따로 작성할 필요가 없게 됨.
      * <p>
      * 주석 및 가독성을 위해 분리 적용하여 실제 사용하지는 않는 메소드입니다.
+     * <p>
+     * 실제 사용되는 메소드는 아래 `inputDrawLottos`을 참조해주세요.
      */
-    public DrawLottosInput inputDrawLottosDtoInline() {
+    public DrawLottosInput inputDrawLottosInline() {
         final Builder builder = DrawLottosInput.builder();
 
         retryUntilSuccess(() -> {

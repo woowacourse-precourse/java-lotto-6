@@ -11,11 +11,17 @@ public class LottoController {
     public LottoController(){
     }
 
-    public void play(){
+    void play(){
+        MoneyInput();
         LottoNumInput();
     }
 
-    public void LottoNumInput(){
+    private void MoneyInput() {
+        int Money = Integer.parseInt(readLine());
+        System.out.println(Money);
+    }
+
+    private void LottoNumInput(){
         List<Integer> list = Arrays.stream(readLine().split(","))
                 .mapToInt(Integer::parseInt)
                 .boxed().collect(Collectors.toList());

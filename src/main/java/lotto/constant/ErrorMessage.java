@@ -29,7 +29,7 @@ public enum ErrorMessage {
         this.message = message;
     }
 
-    public String getErrorMessage(String message) {
+    public String getMessage() {
         return "[ERROR] " + message;
     }
 }

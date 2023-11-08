@@ -32,10 +32,10 @@ public class Application {
     }
 
     private static int readPaid() {
-        System.out.println("구입금액을 입력해 주세요.");
+
         while(true) {
             try {
-                int paid = Integer.parseInt(Console.readLine());
+                int paid = InputUI.inputPaid();
                 if(paid % LOTTO_PRICE != 0) throw new IllegalArgumentException("[ERROR] 구입금액은 " + LOTTO_PRICE + "의 배수여야 합니다.");
                 System.out.println();
                 return paid;
@@ -72,9 +72,8 @@ public class Application {
 
     private static Lotto readUserNum() {
         while(true) {
-            System.out.println("당첨 번호를 입력해 주세요.");
             try {
-                List<Integer> nums = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
+                List<Integer> nums = InputUI.inputUserNum();
                 Lotto userNum = new Lotto(nums);
                 System.out.println();
                 return userNum;
@@ -90,9 +89,8 @@ public class Application {
 
     public static int readBonusNum(Lotto userNum) {
         while(true) {
-            System.out.println("보너스 번호를 입력해 주세요.");
             try {
-                int bonusNum = Integer.parseInt(Console.readLine());
+                int bonusNum = InputUI.inputBonusNum();
                 userNum.validateBonusDuplicate(userNum.getNumbers(), bonusNum);
                 return bonusNum;
             }

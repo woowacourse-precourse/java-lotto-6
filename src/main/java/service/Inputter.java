@@ -3,9 +3,11 @@ package service;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Inputter {
-    public String inputPurchaseAmount() {
-        String input = Console.readLine();
+    Outputter outputter = new Outputter();
 
+    public String inputPurchaseAmount() {
+        outputter.promptPurchaseAmount();
+        String input = Console.readLine();
         return input;
     }
 

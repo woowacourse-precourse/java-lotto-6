@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 import lottomachine.Lotto;
+import lottomachine.LottoResult;
 
 public class Outputter {
     public void promptPurchaseAmount() {
@@ -9,7 +10,7 @@ public class Outputter {
     }
 
     public void promptLottoAmount(int amount) {
-        System.out.println(amount + "개를 구입했습니다.");
+        System.out.println(amount + "개를 구매했습니다.");
     }
 
     public void promptLottoList(List<Lotto> lottos) {
@@ -29,7 +30,12 @@ public class Outputter {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public void promptStatistics(){
+    public void promptStatistics(List<LottoResult> resultList) {
         System.out.println("통계입니다.");
+        for (LottoResult result : resultList) {
+            System.out.println(result.getPrize());
+            System.out.println(result.getRank());
+        }
+
     }
 }

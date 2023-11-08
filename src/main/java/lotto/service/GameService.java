@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constants.LottoConstant;
 import lotto.exception.InputValidator;
 import lotto.model.Lotto;
 import lotto.model.Playing;
@@ -8,6 +9,8 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.constants.LottoConstant.LOTTO_TICKET_PRICE;
 
 public class GameService {
 
@@ -19,7 +22,7 @@ public class GameService {
     public static void startGame() {
         OutputView.printPurchaseAmountMessage();
         inputAmount = InputValidator.checkPurchaseAmountInput();
-        lottoCnt = inputAmount / 1000;
+        lottoCnt = inputAmount / LOTTO_TICKET_PRICE;
         System.out.println();
         OutputView.printLottoCntMessage(lottoCnt);
     }

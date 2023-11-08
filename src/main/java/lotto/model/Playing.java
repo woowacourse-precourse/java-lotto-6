@@ -6,6 +6,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static lotto.constants.LottoConstant.*;
+import static lotto.constants.LottoPriceConstant.*;
+
 public class Playing {
 
     public static List<Lotto> lottos = new ArrayList<>();
@@ -19,7 +22,7 @@ public class Playing {
     }
 
     private static List<Integer> getLottoNumbers(){
-        List<Integer> lottos = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottos = Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, LOTTO_COUNT);
         List<Integer> sortedLottos = new ArrayList<>(lottos);
         Collections.sort(sortedLottos);
         return sortedLottos;
@@ -64,7 +67,7 @@ public class Playing {
     }
 
     public static String getRateOfReturn(Integer inputAmount) {
-        List<Integer> amount = Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000);
+        List<Integer> amount = Arrays.asList(PRIZE_AMOUNT_3_MATCH, PRIZE_AMOUNT_4_MATCH, PRIZE_AMOUNT_5_MATCH, PRIZE_AMOUNT_5_MATCH_WITH_BONUS, PRIZE_AMOUNT_6_MATCH);
         int totalAmount = 0;
         for (int i = 0; i < 5; i++) {
             totalAmount += amount.get(i) * winningStatistics.get(i);

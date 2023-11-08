@@ -8,6 +8,8 @@ import java.sql.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static lotto.constants.LottoConstant.*;
+
 public class InputValidator {
 
 
@@ -29,7 +31,7 @@ public class InputValidator {
     }
 
     public static void checkIsDivided(Integer input){
-        if(input % 1000 != 0){
+        if(input % LOTTO_TICKET_PRICE != 0){
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 나누어지지 않습니다. 다시 입력해주세요.");
         }
     }
@@ -91,27 +93,27 @@ public class InputValidator {
     }
 
     private static void checkValidCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다. 다시 입력해주세요.");
         }
     }
 
     private static void checkDuplicate(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() != 6) {
+        if (set.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다. 다시 입력해주세요.");
         }
     }
 
     private static void checkValidRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < START_LOTTO_NUMBER || number > END_LOTTO_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }
     private static void checkValidRange(Integer number) {
-        if (number < 1 || number > 45) {
+        if (number < START_LOTTO_NUMBER || number > END_LOTTO_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
     }

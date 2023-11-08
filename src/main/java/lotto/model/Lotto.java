@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.constants.LottoConstant.LOTTO_COUNT;
+
 public class Lotto {
     private final List<Integer> numbers;
     private Integer correctLottoCnt = 0;
@@ -16,14 +18,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 이어야 합니다.");
         }
     }
 
     private void validateDuplicated(List<Integer> numbers){
         Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() != 6) {
+        if (set.size() != LOTTO_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
         }
     }

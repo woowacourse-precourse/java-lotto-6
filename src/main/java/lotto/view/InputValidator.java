@@ -93,6 +93,7 @@ public class InputValidator {
             if(uniqueNumbers.size() != lottoNumbers.size()){
                 throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_DUPLICATED.getMessage());
             }
+            return ResponseStatus.OK;
         }catch(IllegalArgumentException e){
             e.printStackTrace();
             return ResponseStatus.BAD;

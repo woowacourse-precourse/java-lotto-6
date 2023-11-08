@@ -3,8 +3,8 @@ package lotto;
 import domain.ErrorMessage;
 
 import java.util.List;
-
-import java.util.*;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Lotto {
     private final List<Integer> numbers;

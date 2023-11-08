@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 public class LottoGameController {
     private static final int LOTTO_PRICE = 1000;
     public void play() {
-        String purchaseAmout = InputView.receiveInputWinningNumberMsg();
+        String purchaseAmout = InputView.receivePurchaseAmountMsg();
 
         new LottoPurchaseVerifier(purchaseAmout);
         int purchaseCount = Integer.parseInt(purchaseAmout);

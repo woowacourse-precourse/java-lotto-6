@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.message.ErrorMessages.INVALID_AMOUNT_EMPTY;
 import static lotto.message.ErrorMessages.INVALID_AMOUNT_FORMAT;
 import static lotto.message.ErrorMessages.INVALID_AMOUNT_RANGE;
 import static lotto.message.ErrorMessages.INVALID_AMOUNT_UNIT;
@@ -10,9 +11,16 @@ public record PlayerBuyPrice(String amount) {
     private static int MAX_AMOUNT = 10_000_000;
 
     public PlayerBuyPrice {
+        validateEmptyFromAmount(amount);
         validateCharacterFromAmount(amount);
         validateRangeFromAmount(amount);
         validateUnitFromAmount(amount);
+    }
+
+    private void validateEmptyFromAmount(String amount) {
+        if (amount.isEmpty()) {
+            throw new IllegalArgumentException(INVALID_AMOUNT_EMPTY.getMessage());
+        }
     }
 
     private void validateCharacterFromAmount(String input) {

@@ -11,6 +11,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class PlayerBuyPriceTest {
 
+    @DisplayName("validateEmptyFromAmount() : 구입 금액에 빈 문자열이 들어가는 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {""})
+    void validateEmptyFromAmount_Fail(String amount) throws Exception {
+        //given
+        String exceptionMessage = "[ERROR] 구입 금액이 비어있습니다.";
+
+        //when //then
+        assertThatThrownBy(() -> new PlayerBuyPrice(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(exceptionMessage);
+    }
+
     @DisplayName("validateCharacterFromAmount() : 구입 금액에 문자가 들어가는 경우")
     @ParameterizedTest
     @ValueSource(strings = {"1,000", "1,000,000", "1000e", "dollar", "e1000"})

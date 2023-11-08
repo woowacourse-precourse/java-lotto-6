@@ -11,7 +11,10 @@ public class PurchasePriceTest {
     @DisplayName("로또 구매 금액이 1000원 단위가 아닐 경우")
     @Test
     void validatorPriceUnit() {
-        assertThatThrownBy(() -> new PurchasePrice(1001))
+
+        int purchasePrice = 1001;
+
+        assertThatThrownBy(() -> new PurchasePrice(purchasePrice))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorCode.INCORRECT_UNIT.getMessage());
     }

@@ -1,20 +1,27 @@
 package lotto;
 
 public enum Ranking {
-    FIRST("6개 일치 (2,000,000,000원) - "),
-    SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
-    THIRD("5개 일치 (1,500,000원) - "),
-    FOURTH("4개 일치 (50,000원) - "),
-    FIFTH("3개 일치 (5,000원) - "),
-    LOSE("낙첨");
+    ZERO(0,0),
+    ONE(1,0),
+    TWO(2, 0),
+    THREE(3,5000),
+    FOUR(4,50_000),
+    FIVE(5,1_500_000),
+    SIX(6,2_000_000_000),
+    FIVE_AND_BONUS(7,30_000_000);
 
-    private String message;
-
-    Ranking(String message) {
-        this.message = message;
+    private final int rankingValue;
+    private final int lottoNum;
+    Ranking(int lottoNum, int rankingValue) {
+        this.lottoNum = lottoNum;
+        this.rankingValue = rankingValue;
     }
 
-    public String getMessage() {
-        return message;
+    public int getLottoNum() {
+        return lottoNum;
+    }
+
+    public  int getRankingValue() {
+        return rankingValue;
     }
 }

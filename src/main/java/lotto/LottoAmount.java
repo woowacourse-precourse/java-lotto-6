@@ -9,6 +9,7 @@ public class LottoAmount {
     public LottoAmount(int amount) {
         validate(amount);
         validateDivisible(amount);
+        validateNumber(String.valueOf(amount));
 
         this.amount = amount;
     }
@@ -24,6 +25,15 @@ public class LottoAmount {
             throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위여야 합니다.");
         }
 
+    }
+
+    public int validateNumber(String amount) {
+        boolean isDigit = amount.chars().allMatch(Character::isDigit);
+        if (!isDigit) {
+            throw new IllegalArgumentException("[ERROR] 숫자로만 입력하세요.");
+
+        }
+        return Integer.parseInt(amount);
     }
 
     public int calculateLottoCount() {

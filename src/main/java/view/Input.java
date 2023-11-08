@@ -14,7 +14,12 @@ public class Input {
 
     public static int inputLottoAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            return inputLottoAmount();
+        }
     }
 
     public static List<Integer> inputWinNums() {

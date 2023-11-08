@@ -8,6 +8,7 @@ import lotto.domain.GenerateLotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.view.OutputMoney;
+import lotto.view.OutputView;
 import lotto.view.Request;
 
 public class Lottogame {
@@ -18,6 +19,8 @@ public class Lottogame {
 
         Lottos lottos = getLottos(money);
         printLottoList(lottos);
+
+        OutputView.ASK_INPUT_NUMBER.getMessage();
     }
 
     private Money getLottoMoney(){

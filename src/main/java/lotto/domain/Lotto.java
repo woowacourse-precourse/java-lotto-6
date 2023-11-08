@@ -1,12 +1,14 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers = sorted(numbers);
         this.numbers = numbers;
     }
 
@@ -16,20 +18,27 @@ public class Lotto {
         }
     }
 
-    private void validate_number(List<Integer> numbers){
-        if(isDuplicate(numbers)){
+    private void validate_number(List<Integer> numbers) {
+        if (isDuplicate(numbers)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private static boolean isDuplicate(final List<Integer> numbers){
+    private static boolean isDuplicate(final List<Integer> numbers) {
         long distinctcount = numbers.stream()
                 .distinct()
                 .count();
         return distinctcount < numbers.size();
     }
+
     public boolean isContain(int number) {
         return numbers.contains(number);
+    }
+
+    public List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public String toString() {

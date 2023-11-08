@@ -54,6 +54,7 @@ public enum Rank {
     public int getPrize() {
         return prize;
     }
+
     public static int countRank(List<Rank> ranks, Rank targetRank) {
         return (int) ranks.stream()
                 .filter(rank -> rank == targetRank)

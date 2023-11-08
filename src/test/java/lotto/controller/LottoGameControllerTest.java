@@ -13,7 +13,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 
-public class MCTest {
+public class LottoGameControllerTest {
     private LottoGameController lottoGameController;
     private View view;
     private Referee referee;

@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.utils.Constant.COUNT_OF_LOTTO;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -13,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != COUNT_OF_LOTTO) {
             throw new IllegalArgumentException();
         }
         if (isDuplicateNumbers(numbers)) {
@@ -29,6 +31,5 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>();
         return numbers.stream().anyMatch(n -> !uniqueNumbers.add(n));
     }
-
 
 }

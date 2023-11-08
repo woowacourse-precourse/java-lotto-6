@@ -1,17 +1,19 @@
 package lotto.view;
 
 import lotto.model.Lotto;
-import lotto.model.UserLotto;
 import lotto.model.WinningResult;
 
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.utils.Constant.*;
+import static lotto.utils.Constant.OutputMessage.*;
+
 public class OutputView {
     public void printLottoQuantity(int quantity) {
         System.out.println();
-        System.out.println(quantity + "개를 구매했습니다.");
+        System.out.println(quantity + MSG_LOTTO_QUANTITY);
     }
 
     public void printLottoNumbers(List<Lotto> lottos) {
@@ -23,23 +25,23 @@ public class OutputView {
 
     public void printLottoResult(Map<WinningResult, Integer> countOfWinningResult) {
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(MSG_WINNING_STATISTICS);
+        System.out.println(MSG_LINE);
 
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        DecimalFormat decimalFormat = new DecimalFormat(FORMAT_PRICE);
 
         for (WinningResult winningResult : countOfWinningResult.keySet()) {
             if (winningResult == WinningResult.SECOND) {
-                System.out.print("5개 일치, 보너스 볼 일치");
+                System.out.print(MSG_WINNING_WITH_BONUSNUM);
             }
             if (winningResult != WinningResult.SECOND) {
-                System.out.print(winningResult.getValue() + "개 일치");
+                System.out.print(winningResult.getValue() + MSG_WINNING_WITHOUT_BONUSNUM);
             }
-            System.out.println(" " + "(" + decimalFormat.format(winningResult.getPrice()) + "원)" + " - " + countOfWinningResult.getOrDefault(winningResult, 0) + "개");
+            System.out.println(BLANK + BRACKET_START + decimalFormat.format(winningResult.getPrice()) + MSG_MONEY_UNIT + BRACKET_END + BLANK + LINE + BLANK + countOfWinningResult.getOrDefault(winningResult, 0) + MSG_COUNT_UNIT);
         }
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.println(MSG_RATE_OF_RETURN_FIRST + rateOfReturn + MSG_RATE_OF_RETURN_END);
     }
 }

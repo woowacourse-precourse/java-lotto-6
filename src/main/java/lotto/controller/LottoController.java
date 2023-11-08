@@ -11,6 +11,8 @@ import lotto.view.OutputView;
 import java.text.DecimalFormat;
 import java.util.*;
 
+import static lotto.utils.Constant.*;
+
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
@@ -42,7 +44,7 @@ public class LottoController {
     }
 
     private double calculateRateOfReturn(UserLotto userLotto) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        DecimalFormat decimalFormat = new DecimalFormat(FORMAT_ONE_DICIMAL);
         return Double.parseDouble(decimalFormat.format((double) userLotto.getWinningPrice() / userLotto.getPurchasePrice() * 100));
     }
 
@@ -84,7 +86,7 @@ public class LottoController {
     }
 
     private boolean isCorrectWinningLottoCount(int count) {
-        return count == 3 || count == 4 || count == 6;
+        return count == WinningResult.FIFTH.getValue() || count == WinningResult.FOURTH.getValue() || count == WinningResult.THIRD.getValue();
     }
 
     private int countWinningLotto(List<Integer> numbers, List<Integer> winningNumbers) {
@@ -96,7 +98,7 @@ public class LottoController {
     private void pickLottoNumbers(UserLotto userLotto, int quantity) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(SD_RANDOM_NUMBER_MIN, SD_RANDOM_NUMBER_MAX, COUNT_OF_LOTTO);
             List<Integer> sortedNumbers = new ArrayList<>(numbers);
             sortedNumbers.sort(Comparator.naturalOrder());
             Lotto lotto = new Lotto(sortedNumbers);
@@ -106,7 +108,7 @@ public class LottoController {
     }
 
     private int calculateQuantity(int money) {
-        return money / 1000;
+        return money / LOTTO_PRICE;
     }
 
 }

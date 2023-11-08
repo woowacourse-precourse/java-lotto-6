@@ -33,7 +33,7 @@ class PlayTest {
     @Test
     void alignRanking() {
         Play play = new Play();
-        assertEquals(List.of(3,1,1,1,0), play.alignRanking(List.of(1,1,1,2,3,4,0,0,0,0)));
+        assertEquals(List.of(3,1,1,1,0,4), play.alignRanking(List.of(1,1,1,2,3,4,0,0,0,0)));
     }
 
 

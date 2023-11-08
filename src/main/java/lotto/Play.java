@@ -101,7 +101,8 @@ public class Play {
         int third = Collections.frequency(rankings, 3);
         int fourth = Collections.frequency(rankings, 4);
         int fifth = Collections.frequency(rankings, 5);
-        return List.of(first, second, third, fourth, fifth);
+        int zero = Collections.frequency(rankings, 0);
+        return List.of(first, second, third, fourth, fifth,zero);
     }
 
 }

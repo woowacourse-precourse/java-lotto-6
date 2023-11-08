@@ -6,9 +6,10 @@ public interface OutputView {
     void printGetLottoMoney();
     void printGetWinningNumbers();
     void printGetBonusNumber();
+    void printLottosInfo(int count, String lottosInfo);
     void printResult();
-    void printStatistics();
-    void printProfitRate();
+    void printStatistics(String statistics);
+    void printProfitRate(float profitRate);
 }
 
 

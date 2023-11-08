@@ -3,6 +3,9 @@ package lotto.io.output;
 import static lotto.utils.constant.IOConstant.GET_BONUS_NUMBER;
 import static lotto.utils.constant.IOConstant.GET_LOTTO_MONEY;
 import static lotto.utils.constant.IOConstant.GET_WINNING_NUMBERS;
+import static lotto.utils.constant.IOConstant.LOTTO_COUNT;
+import static lotto.utils.constant.IOConstant.PROFIT_RATE;
+import static lotto.utils.constant.IOConstant.RESULT;
 
 public class ConsoleOutputView implements OutputView {
 
@@ -27,17 +30,23 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
+    public void printLottosInfo(int count, String lottosInfo) {
+        System.out.println("\n" + count + LOTTO_COUNT.getValue());
+        System.out.println(lottosInfo);
+    }
+
+    @Override
     public void printResult() {
-        // todo 결과 출력 형식 결정시 구현
+        System.out.println(RESULT.getValue());
     }
 
     @Override
-    public void printStatistics() {
-        // todo 통계 출력 형식 결정시 구현
+    public void printStatistics(String statistics) {
+        System.out.println(statistics);
     }
 
     @Override
-    public void printProfitRate() {
-        // todo 수익률 출력 형식 결정시 구현
+    public void printProfitRate(float profitRate) {
+        System.out.println(PROFIT_RATE.getValue().formatted(profitRate));
     }
 }

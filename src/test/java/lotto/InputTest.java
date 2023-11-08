@@ -144,7 +144,7 @@ public class InputTest {
     }
     @DisplayName("당첨 번호 입력시 1 ~ 45 사이의 숫자가 아닌 문자열의 입력")
     @Test
-    void illigalWinningNumberInput() {
+    void notIn1To45WinningNumberInput() {
         Input input = new Input();
 
         assertThatThrownBy(() -> input.winningNumbersInput("0,1,2,3,4,5"))

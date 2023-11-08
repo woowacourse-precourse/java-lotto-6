@@ -19,6 +19,11 @@ public class LottoMachine {
 
     private List<Lotto> lottos;
     private Lotto winningLotto;
+    private int purchaseAmount;
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
+    }
 
     public String readAmount() {
         System.out.println(PURCHASE_AMOUNT_GUIDE);
@@ -27,7 +32,7 @@ public class LottoMachine {
     }
 
     public int purchaseAmountTextToInt(String purchaseAmountText) {
-        int purchaseAmount = Integer.parseInt(purchaseAmountText);
+        purchaseAmount = Integer.parseInt(purchaseAmountText);
         validatePurchaseAmount(purchaseAmount);
         return purchaseAmount;
     }

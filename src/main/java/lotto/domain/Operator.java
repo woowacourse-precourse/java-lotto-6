@@ -22,7 +22,7 @@ public class Operator {
         return corrects;
     }
 
-    public void matchBonusNumber(List<Lotto> lottos, int bonusNumber) {
+    public List<Integer> matchBonusNumber(List<Lotto> lottos, int bonusNumber) {
         List<Integer> bonusCorrects = new ArrayList<>();
 
         for (Lotto candidateLotto : lottos) {
@@ -32,5 +32,6 @@ public class Operator {
             }
             bonusCorrects.add(bonusCorrect);
         }
+        return bonusCorrects;
     }
 }

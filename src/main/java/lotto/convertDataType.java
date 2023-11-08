@@ -12,7 +12,7 @@ public class convertDataType {
 		}
 		catch (NumberFormatException e){
 			System.out.println("[ERROR] 숫자만 입력해주세요.");
-			throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
+			throw new IllegalArgumentException();
 		}
 
 	}

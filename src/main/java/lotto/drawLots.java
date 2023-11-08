@@ -54,7 +54,6 @@ public class drawLots {
 
 		}
 
-		System.out.println(Arrays.toString(countTicketList));
 
 		List<String> resultDrawLotsList = new ArrayList<>();
 

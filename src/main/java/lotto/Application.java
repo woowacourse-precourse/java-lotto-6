@@ -10,8 +10,6 @@ public class Application {
 
         // TODO: 프로그램 구현
         String userPurchaseAmount = userInput.inputPurchaseAmount();
-
-
         int convertedUserPurchaseAmount = convertDataType.stringToInt(userPurchaseAmount);
         userInputValidation.userPurchaseAmountMinValidation(convertedUserPurchaseAmount);
         userInputValidation.userPurchaseAmountValidation(convertedUserPurchaseAmount);

@@ -10,6 +10,8 @@ import lotto.validator.WinningNumbersValidator;
 
 public class InputView {
 
+    private static final int INVALID_INPUT = 0;
+
     public static String getPlayerInput(String message) {
         OutputView.printMessage(message);
         return Console.readLine().trim();
@@ -20,7 +22,7 @@ public class InputView {
         do {
             String input = getPlayerInput("구입 금액을 입력해 주세요");
             purchaseAmount = validatePurchaseAmount(input);
-        } while (purchaseAmount == 0);
+        } while (purchaseAmount == INVALID_INPUT);
         OutputView.printEmptyLine();
         return purchaseAmount;
     }
@@ -30,7 +32,7 @@ public class InputView {
             return PurchaseAmountValidator.parseAndValidatePurchaseAmount(input);
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
-            return 0;
+            return INVALID_INPUT;
         }
     }
 
@@ -64,7 +66,7 @@ public class InputView {
         do {
             String input = getPlayerInput("보너스 번호를 입력해 주세요");
             bonusNumber = validateBonusNumber(input, winningNumbers);
-        } while (bonusNumber == 0);
+        } while (bonusNumber == INVALID_INPUT);
         OutputView.printEmptyLine();
         return bonusNumber;
     }
@@ -74,7 +76,7 @@ public class InputView {
             return BonusNumberValidator.validateBonusNumber(input, winningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printMessage(e.getMessage());
-            return 0;
+            return INVALID_INPUT;
         }
     }
 }

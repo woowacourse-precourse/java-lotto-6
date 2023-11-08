@@ -11,6 +11,19 @@ public class InputView {
 
     private static final int WINNING_NUMBER_SIZE = 6;
 
+    private static void validateDuplicateWinningNumbers(String[] inputWinningNumbers) {
+        Set<String> uniqueNames = new HashSet<>(Arrays.asList(inputWinningNumbers));
+        if (uniqueNames.size() != inputWinningNumbers.length) {
+            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자 6개를 입력하세요.");
+        }
+    }
+
+    private static void validateRangeWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 값이어야 합니다.");
+        }
+    }
+
     public int readPurchaseAmount() {
         while (true) {
             try {
@@ -40,7 +53,7 @@ public class InputView {
                 String[] inputWinningNumbers = Console.readLine().split(",");
                 return checkWinningNumbersValidity(inputWinningNumbers);
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해주세요." );
+                System.out.println("[ERROR] 숫자를 입력해주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -64,19 +77,6 @@ public class InputView {
         }
     }
 
-    private static void validateDuplicateWinningNumbers(String[] inputWinningNumbers) {
-        Set<String> uniqueNames = new HashSet<>(Arrays.asList(inputWinningNumbers));
-        if (uniqueNames.size() != inputWinningNumbers.length) {
-            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자 6개를 입력하세요.");
-        }
-    }
-
-    private static void validateRangeWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1에서 45 사이의 값이어야 합니다.");
-        }
-    }
-
     public int readBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
@@ -86,7 +86,7 @@ public class InputView {
                 checkBonusNumberValidity(bonusNumber, winningNumbers);
                 return bonusNumber;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해주세요." );
+                System.out.println("[ERROR] 숫자를 입력해주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -97,6 +97,7 @@ public class InputView {
         validateRangeBonusNumber(bonusNumber);
         validateDuplicateBonusNumber(bonusNumber, winningNumbers);
     }
+
     private void validateRangeBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1에서 45 사이의 값이어야 합니다.");

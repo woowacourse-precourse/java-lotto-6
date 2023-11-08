@@ -25,7 +25,8 @@ public class LottoService {
         return tickets;
     }
 
-    public Map<LottoRank, Integer> checkWinningResults(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+    public Map<LottoRank, Integer> checkWinningResults(List<Lotto> lottoTickets, List<Integer> winningNumbers,
+                                                       int bonusNumber) {
         Map<LottoRank, Integer> results = new HashMap<>();
         for (Lotto ticket : lottoTickets) {
             LottoRank lottoRank = LottoRank.calculateRank(ticket.getNumbers(), winningNumbers, bonusNumber);
@@ -38,7 +39,7 @@ public class LottoService {
         int totalPrize = results.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
                 .sum();
-        double profitRate =  ((double) totalPrize / (purchasesAmount * LOTTO_PRICE)) * 100;
+        double profitRate = ((double) totalPrize / (purchasesAmount * LOTTO_PRICE)) * 100;
         DecimalFormat df = new DecimalFormat("0.0");
 
         return df.format(profitRate) + "%";

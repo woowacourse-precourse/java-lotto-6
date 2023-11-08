@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
     private static final int LOTTO_NUMBER_COUNT = 6;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

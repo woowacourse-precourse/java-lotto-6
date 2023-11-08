@@ -24,9 +24,9 @@ public class LottoResultTest {
     @DisplayName("3등 1장 + 4등 2장 당첨 = 총 당첨금액 105,000원")
     void createTotalProfitTest(){
         //given
-        lottoResult.setLottoResultCount(3,false);
-        lottoResult.setLottoResultCount(4,false);
-        lottoResult.setLottoResultCount(4,false);
+        lottoResult.setLottoWinning(3,false);
+        lottoResult.setLottoWinning(4,false);
+        lottoResult.setLottoWinning(4,false);
 
         //when
         BigDecimal totalProfit = lottoResult.createTotalProfit(lottoResult);

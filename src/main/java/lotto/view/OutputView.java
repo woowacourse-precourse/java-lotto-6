@@ -5,7 +5,10 @@ public class OutputView {
 
 
     public static void printTicketCount(int ticketCount) {
-        System.out.println(ticketCount + PRINT_TICKET_COUNT_MESSAGE);
+        System.out.println("\n"+ticketCount + PRINT_TICKET_COUNT_MESSAGE);
+    }
+    public static void printBoughtLottos(String boughtLottos){
+        System.out.println(boughtLottos);
     }
 
     public static void printWinningStatistics() {

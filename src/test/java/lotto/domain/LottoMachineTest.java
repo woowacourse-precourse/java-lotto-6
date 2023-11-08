@@ -5,13 +5,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import lotto.domain.LottoAmount;
 import lotto.domain.LottoMachine;
 import lotto.generator.LottoNumberGenerator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoMachineTest {
     private LottoMachine lottoMachine = new LottoMachine(new LottoNumberGenerator());
 
+    @DisplayName("로또 금액에 맞게 올바른 수량의 로또가 발행되는가.")
     @Test
-    void 로또_수량에_맞게_로또_리스트가_생성되는가() {
+    void createLottosByLottoAmount() {
         int lottoPrice = 1_000;
         int lottoQuantity = 10;
 

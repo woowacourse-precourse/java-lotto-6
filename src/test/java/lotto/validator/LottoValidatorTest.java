@@ -6,18 +6,21 @@ import static lotto.validator.LottoValidator.validate;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoValidatorTest {
+    @DisplayName("당첨번호 리스트의 크기가 6이 아닌 경우 예외가 발생하는가.")
     @Test
-    void 당첨번호_리스트의_크기가_6이_아닌_경우_예외() {
+    void validateWinningNumbersByOverSize() {
         assertThatThrownBy(() -> validate(List.of(1, 2, 3, 4)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNING_NUMBERS_SIZE_SHOULD_BE_SIX.getMessage());
     }
 
+    @DisplayName("당첨번호 리스트에 중복된 숫자가 있는 경우 예외가 발생하는가.")
     @Test
-    void 당첨번호_리스트에_중복된_숫자가_있는_경우_예외() {
+    void validateWinningNumbersByDuplication() {
         int sameNumber = 10;
 
         assertThatThrownBy(() -> validate(List.of(1, 2, 3, 4, sameNumber, sameNumber)))

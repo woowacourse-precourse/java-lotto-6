@@ -11,6 +11,7 @@ public enum InputErrorCode {
     INPUT_NOT_NUMERIC(ERROR_MESSAGE_PREFIX + "입력값은 숫자이여야 합니다."),
     INPUT_SPLIT_SIZE(ERROR_MESSAGE_PREFIX + "당첨 번호는 쉼표(,)로 구분되는 6자리 수여야 합니다."),
     INVALID_BONUS_NUMBER_RANGE(ERROR_MESSAGE_PREFIX + "보너스 번호의 범위는 1 ~ 45 사이여야 합니다."),
+    INCLUDE_BONUS_NUMBER_IN_WINNING_NUMBER(ERROR_MESSAGE_PREFIX + "보너스 번호가 당첨 번호에 포함되어선 안됩니다."),
     MISMATCH_PURCHASE_PRICE_AND_LOTTO_COUNT(ERROR_MESSAGE_PREFIX + "로또 개수와 구매 금액이 일치하지 않습니다.");
 
     private final String message;

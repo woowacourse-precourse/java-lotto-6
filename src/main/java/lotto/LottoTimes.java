@@ -16,7 +16,7 @@ public class LottoTimes {
 
     private static int purchaseLotto() {
         try {
-            System.out.println("구매금액을 입력해 주세요.");
+            System.out.println("구입금액을 입력해 주세요.");
             int lottoMoney = inputLottoMoney();
             validateLottoMoney(lottoMoney);
 

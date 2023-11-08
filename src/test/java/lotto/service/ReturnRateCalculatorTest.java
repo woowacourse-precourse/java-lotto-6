@@ -17,7 +17,8 @@ class ReturnRateCalculatorTest {
 
     @BeforeEach
     void beforeEach() {
-        player = new Player();
+        CorrectLottoCalculator correctLottoCalculator = new CorrectLottoCalculator();
+        player = new Player(correctLottoCalculator);
     }
 
     @Test

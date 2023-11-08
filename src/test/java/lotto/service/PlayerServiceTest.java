@@ -28,7 +28,8 @@ class PlayerServiceTest {
 
     @BeforeEach
     void beforeEach() {
-        player = new Player();
+        CorrectLottoCalculator correctLottoCalculator = new CorrectLottoCalculator();
+        player = new Player(correctLottoCalculator);
         playerService = new PlayerService(player,lottoGenerator,winningLottoCalculator);
     }
 

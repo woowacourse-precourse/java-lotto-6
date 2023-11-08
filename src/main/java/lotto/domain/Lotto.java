@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.constant.ErrorMessage.DUPLICATED_LOTTO;
 import static lotto.constant.ErrorMessage.INCORRECT_NUMBER_OF_LOTTO;
+import static lotto.domain.LottoNumber.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoNumber.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -35,7 +37,7 @@ public class Lotto {
     }
 
     private List<LottoNumber> createLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO);
         return lottoNumbers.stream().map(LottoNumber::new).toList();
     }
 

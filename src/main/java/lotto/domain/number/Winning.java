@@ -22,19 +22,28 @@ public class Winning {
     public Grade match(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
 
+        int matchCount = matchLottoNumbers(lottoNumbers);
+        int bonusMatchCount = matchBonusNumber(lottoNumbers);
+
+        return Grade.of(matchCount, bonusMatchCount);
+    }
+
+    private int matchLottoNumbers(List<Integer> lottoNumbers) {
         int matchCount = 0;
-        int bonusMatchCount = 0;
 
         for (int index = 0; index < LOTTO_NUMBER_COUNT; index++) {
             if (this.numbers.contains(lottoNumbers.get(index))) {
                 matchCount++;
             }
         }
+        return matchCount;
+    }
 
-        if (matchCount == 5 && lottoNumbers.contains(bonusNumber)) {
-            bonusMatchCount++;
+    private int matchBonusNumber(List<Integer> lottoNumbers) {
+        if (lottoNumbers.contains(bonusNumber)) {
+            return 1;
         }
-
-        return Grade.of(matchCount, bonusMatchCount);
+        
+        return 0;
     }
 }

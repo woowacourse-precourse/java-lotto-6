@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.configuration.RandomNumberConfig.COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FormatConverterTest {
@@ -23,13 +24,13 @@ class FormatConverterTest {
         List<Integer> result4 = FormatConverter.toIntegerListFromStringWithComma(WINNING_NUMBERS4);
 
         // then
-        assertThat(result1).hasSize(6)
+        assertThat(result1).hasSize(COUNT)
                 .containsExactly(1, 2, 3, 4, 5, 6);
-        assertThat(result2).hasSize(6)
+        assertThat(result2).hasSize(COUNT)
                 .containsExactly(40, 41, 42, 43, 44, 45);
-        assertThat(result3).hasSize(6)
+        assertThat(result3).hasSize(COUNT)
                 .containsExactly(1, 3, 16, 28, 37, 45);
-        assertThat(result4).hasSize(6)
+        assertThat(result4).hasSize(COUNT)
                 .containsExactly(2, 8, 10, 15, 22, 36);
     }
 }

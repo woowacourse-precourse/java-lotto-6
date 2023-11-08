@@ -40,7 +40,7 @@ public class InputFormatValidator {
     }
 
     private static void validateCountOfNumbers(String[] winningNumbers) {
-        if (winningNumbers.length == 6) {
+        if (winningNumbers.length == COUNT) {
             return;
         }
 

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.generator.LottoGenerator;
 
 public class Lottos {
@@ -21,4 +22,11 @@ public class Lottos {
     public List<Lotto> getLottos() {
         return lottos;
     }
+
+    public List<List<Integer>> getLottoNumbers() {
+        return lottos.stream().map(Lotto::getNumber)
+                .collect(Collectors.toList());
+    }
+
+
 }

@@ -27,8 +27,8 @@ public class OutputView {
         System.out.println(String.format(LOTTO_COUNT_MESSAGE, lottoCount));
     }
 
-    public static void printLottos(List<Integer> lottoNumbers) {
-        System.out.println(lottoNumbers);
+    public static void printLottoNumbers(List<List<Integer>> lottoNumbers) {
+        lottoNumbers.forEach(lottoNumber -> System.out.println(lottoNumber));
     }
 
     public static void printResults(List<String> results, String profit) {

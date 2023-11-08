@@ -13,7 +13,7 @@ public class LottoGameController {
         OutputView.printLottoCountMessage(money.getLottoCount());
 
         Lottos lottos = Lottos.createByGenerator(money.getLottoCount());
-        lottos.getLottos().forEach(lotto -> OutputView.printLottos(lotto.getNumber()));
+        OutputView.printLottoNumbers(lottos.getLottoNumbers());
 
         WinningLotto winningLotto = WinningLotto.of(InputView.inputWinningNumber(),
                 InputView.inputBonusNumber());

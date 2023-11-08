@@ -31,7 +31,7 @@ enum WinningGrade {
 public class Winner {
 
     private List<Integer> result = new ArrayList<>(Collections.nCopies(8, 0));
-
+    //맞춘 개수에 해당하는 인덱스에 값을 추가하고, 2등인경우 7인덱스에 값을 추가한다.
 
     public void checkLottoNumbers(List<Integer> userLotto, List<Integer> winnerLotto, int bonus) {
         int rightCount = 0;
@@ -45,12 +45,12 @@ public class Winner {
         if (rightCount == 5) {
             if (bonusMaching) {
                 result.set(WinningGrade.FIFTH_BONUS.getCount(), result.get(WinningGrade.FIFTH_BONUS.getCount()) + 1);
-            }
+            } //예외적으로 2등이므로 인덱스 7에 추가
             if (!bonusMaching) {
                 result.set(rightCount, result.get(rightCount) + 1);
-            }
+            } //5개를 맞췄으므로 인덱스5 에 추가
         }
-        if (rightCount != 5) {
+        if (rightCount != 5) { //result[맞춘개수]에 1 더하기
             result.set(rightCount, result.get(rightCount) + 1);
         }
 

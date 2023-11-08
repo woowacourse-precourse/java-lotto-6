@@ -44,7 +44,6 @@ public class UserInput {
 
     public int inputBonusNumber(String prompt) {
         while (true) {
-
             System.out.println(prompt);
             String userInput = Console.readLine();
             try {

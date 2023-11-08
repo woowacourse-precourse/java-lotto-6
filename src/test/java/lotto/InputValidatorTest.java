@@ -47,4 +47,34 @@ public class InputValidatorTest {
         assertThat(result1).isInstanceOf(IllegalArgumentException.class);
         assertThat(result2).doesNotThrowAnyException();
     }
+
+    @DisplayName("당첨 번호가 콤마로 구분되어 입력되었는지 검사")
+    @Test
+    void 당첨_번호_콤마_구분_테스트() {
+        // given
+        String case1 = "123456";
+        String case2 = "1/2/3/4/5/6";
+        String case3 = "1,2,3/4/5/6";
+        String case4 = "1,2,3,4,5,6";
+
+        // when
+        Throwable result1 = catchThrowable(() -> {
+            InputValidator.validateSeparatedByComma(case1);
+        });
+        Throwable result2 = catchThrowable(() -> {
+            InputValidator.validateSeparatedByComma(case2);
+        });
+        Throwable result3 = catchThrowable(() -> {
+            InputValidator.validateSeparatedByComma(case3);
+        });
+        Throwable result4 = catchThrowable(() -> {
+            InputValidator.validateSeparatedByComma(case4);
+        });
+
+        // then
+        assertThat(result1).isInstanceOf(IllegalArgumentException.class);
+        assertThat(result2).isInstanceOf(IllegalArgumentException.class);
+        assertThat(result3).isInstanceOf(IllegalArgumentException.class);
+        assertThat(result4).doesNotThrowAnyException();
+    }
 }

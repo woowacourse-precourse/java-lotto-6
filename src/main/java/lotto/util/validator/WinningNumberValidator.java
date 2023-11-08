@@ -34,4 +34,12 @@ public class WinningNumberValidator {
         }
         return numbers;
     }
+
+    private static void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < MIN_RANDOM_BOUND || number > MAX_RANDOM_BOUND) {
+                throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBER_RANGE.getMessage());
+            }
+        }
+    }
 }

@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoHandler {
     private static final int LOTTO_START_NUMBER = 1;
@@ -104,8 +105,7 @@ public class LottoHandler {
                 LOTTO_LAST_NUMBER,
                 LOTTO_NUMBER_COUNT
         );
-        List<Integer> lottoNumbers = new ArrayList<>(numbers);
-        lottoNumbers.sort(Comparator.naturalOrder());
+        List<Integer> lottoNumbers = sort(numbers);
         return new Lotto(lottoNumbers);
     }
 
@@ -119,8 +119,8 @@ public class LottoHandler {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
         }
-        winningNumbers.sort(Comparator.naturalOrder());
-        return new Lotto(winningNumbers);
+        List<Integer> winningLottoNumbers = sort(winningNumbers);
+        return new Lotto(winningLottoNumbers);
     }
 
     public int receiveBonusNumber(String receivedBonusNumber) {
@@ -205,5 +205,12 @@ public class LottoHandler {
 
     private double rounds(double number, int decimalPoint) {
         return new BigDecimal(number).setScale(decimalPoint, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    private List<Integer> sort(List<Integer> numbers) {
+        List<Integer> lottoNumbers = numbers.stream()
+                .sorted(Comparator.naturalOrder())
+                .collect(Collectors.toList());
+        return lottoNumbers;
     }
 }

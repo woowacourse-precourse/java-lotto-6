@@ -4,12 +4,13 @@ import lotto.Constants;
 import lotto.Util;
 
 import java.util.List;
+import java.util.regex.Matcher;
 
 public class LottoNumValidator {
         public final String LOTTO_NUM_STRING;
         public final List<String> LOTTO_NUM;
-
         public final List<Integer> LOTTO_NUMBER;
+
 
         public LottoNumValidator(String lottoNumString) {
                 this.LOTTO_NUM_STRING = lottoNumString;
@@ -19,13 +20,32 @@ public class LottoNumValidator {
         }
 
         public void validate() {
+                isRightNumbersString();
                 isRightNumRange();
                 isDuplicate();
         }
 
+        public void isRightNumbersString() {
+                if (!Constants.stringPattern.matcher(LOTTO_NUM_STRING).matches()) {
+                    throw new IllegalArgumentException(Constants.WINNING_NUMBER_WRONG_ERROR);
+                }
+        }
+
+        public boolean isNumInRange(String input) {
+                Matcher matcher = Constants.numPattern.matcher(input);
+                if (matcher.matches()) {
+                    int number = Integer.parseInt(input);
+                    return true;
+                }
+                return false;
+        }
+
         public void isRightNumRange() {
-                if (!Constants.numPattern.matcher(LOTTO_NUM_STRING).matches()) {
+                for (String number : LOTTO_NUM) {
+                    boolean valid = isNumInRange(number);
+                    if (!valid) {
                         throw new IllegalArgumentException(Constants.WINNING_NUMBER_RANGE_WRONG_ERROR);
+                    }
                 }
         }
 

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Input;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_WINNING_NUMBERS;

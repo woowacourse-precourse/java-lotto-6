@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Input;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
@@ -20,7 +20,6 @@ public class InputPurchaseAmountTest extends NsTest {
         command("8000");
 
         assertThat(input.getValidPurchaseAmount()).isEqualTo(8000);
-
     }
 
     @Test

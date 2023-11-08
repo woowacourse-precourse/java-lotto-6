@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.NoSuchElementException;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +21,7 @@ public class InputViewTest {
         return new InputView();
     }
 
-    @DisplayName("구입할 로또 금액를 검증한다.")
+    @DisplayName("구입할 로또 금액를 검증한다. 옳바른 값이 아닐 경우 재 입력을 받는다. 재 입력이 입력되지 않으면 예외가 발생한다.")
     @Nested
     public class ValidationLottoPrice {
         @ParameterizedTest
@@ -39,7 +40,7 @@ public class InputViewTest {
         void validateInteger_invalidCharacter_exceptionThrown(String strings) {
             nsTestExtend.inputTestValue(strings);
             Assertions.assertThatThrownBy(() -> getInputView().askPrice())
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(NoSuchElementException.class);
         }
 
         @ParameterizedTest
@@ -48,7 +49,7 @@ public class InputViewTest {
         void validateBlankAndEmptyInteger_blank_empty_exceptionThrown(String strings) {
             nsTestExtend.inputTestValue(strings);
             Assertions.assertThatThrownBy(() -> getInputView().askPrice())
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(NoSuchElementException.class);
         }
 
         @ParameterizedTest
@@ -57,7 +58,7 @@ public class InputViewTest {
         void validateInteger_floating_point_number_exceptionThrown(String strings) {
             nsTestExtend.inputTestValue(strings);
             Assertions.assertThatThrownBy(() -> getInputView().askPrice())
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(NoSuchElementException.class);
         }
 
         @ParameterizedTest
@@ -66,7 +67,7 @@ public class InputViewTest {
         void validateInteger_special_character_exceptionThrown(String strings) {
             nsTestExtend.inputTestValue(strings);
             Assertions.assertThatThrownBy(() -> getInputView().askPrice())
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(NoSuchElementException.class);
         }
 
         @ParameterizedTest
@@ -75,7 +76,7 @@ public class InputViewTest {
         void validateNegativeInteger_negative_integer_exceptionThrown(int ints) {
             nsTestExtend.inputTestValue(ints);
             Assertions.assertThatThrownBy(() -> getInputView().askPrice())
-                    .isInstanceOf(IllegalArgumentException.class);
+                    .isInstanceOf(NoSuchElementException.class);
         }
     }
 

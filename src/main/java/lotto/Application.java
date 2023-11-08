@@ -24,7 +24,7 @@ public class Application {
             String purchaseMoney = user.input("구입금액을 입력해 주세요.");
             return user.getMoneyNumber(purchaseMoney);
         } catch (IllegalArgumentException e) {
-            printError("구입 금액은 1,000원으로 나누어 떨어져야 합니다.\n");
+            printError(e.getMessage());
             return purchaseLotto(user);
         }
     }

@@ -53,4 +53,8 @@ public class Lotto {
     private boolean isDuplicate(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();
     }
+
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
 }

@@ -12,7 +12,7 @@ public class Money {
         this.money = money;
     }
 
-    public int divideMoney1000(){
+    public int divide1000(){
         return money / 1000;
     }
 
@@ -26,5 +26,18 @@ public class Money {
         if(money % 1000 != 0 ){
             throw new IllegalArgumentException(Error.MONEY_DIVIDE_ERROR.message());
         }
+    }
+
+    public double rateOfReturn(int[] lottoRank){
+        double sum = 0;
+        for(int rank=1;rank<=5;rank++){
+            if(rank==1) sum += 200000000 * lottoRank[rank];
+            if(rank==2) sum += 30000000 * lottoRank[rank];
+            if(rank==3) sum += 1500000 * lottoRank[rank];
+            if(rank==4) sum += 50000 * lottoRank[rank];
+            if(rank==5) sum += 5000 * lottoRank[rank];
+        }
+        return (sum / money) * 100;
+
     }
 }

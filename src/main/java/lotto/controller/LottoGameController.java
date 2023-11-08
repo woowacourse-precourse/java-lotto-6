@@ -6,28 +6,38 @@ import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.List;
-
 public class LottoGameController {
     private OutputView outputView = new OutputView();
     private InputView inputView = new InputView();
-    int ticket;
-    int bonus;
+    private Money money;
     private LottoTickets lottoTickets;
     private Lotto correctLotto;
+    private int bonus;
 
     public void run(){
-        getTicket();
+        gameStart();
+        gameResult();
+    }
+
+    private void gameStart(){
+        createMoney();
+        int ticket = getTicket(money);
         createLottoTickets(ticket);
         createCorrectLotto();
         createBonusNumber();
+    }
+
+    private void gameResult(){
+        int[] lottoRank = lottoTickets.createLottoRank(correctLotto, bonus);
+        double rateOfReturn = money.rateOfReturn(lottoRank);
+        outputView.resultMessage(lottoRank, rateOfReturn);
     }
 
     private void createBonusNumber(){
         while (true){
             try {
                 int temp = inputView.inputBonus();
-                correctLotto.bonusCheck(temp);
+                correctLotto.checkBonus(temp);
                 bonus = temp;
                 break;
             } catch (IllegalArgumentException e){
@@ -47,16 +57,15 @@ public class LottoGameController {
         }
     }
 
-    private LottoTickets createLottoTickets(int ticket){
+    private void createLottoTickets(int ticket){
         lottoTickets = new LottoTickets(ticket);
         outputView.printLottoTickets(lottoTickets.getLottoTickets());
-        return lottoTickets;
     }
 
-    private void getTicket(){
+    private void createMoney(){
         while(true){
             try {
-                ticket = createTicket(createMoney());
+                money = new Money(inputView.inputMoney());
                 break;
             } catch (IllegalArgumentException e){
                 outputView.println(e.getMessage());
@@ -64,13 +73,8 @@ public class LottoGameController {
         }
     }
 
-    private Money createMoney(){
-        Money money = new Money(inputView.inputMoney());
-        return money;
-    }
-
-    private int createTicket(Money money){
-        int ticket = money.divideMoney1000();
+    private int getTicket(Money money){
+        int ticket = money.divide1000();
         outputView.moneyInputResultMessage(ticket);
         return ticket;
     }

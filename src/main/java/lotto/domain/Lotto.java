@@ -37,10 +37,25 @@ public class Lotto {
         }
     }
 
-    public void bonusCheck(int bonus){
+    public void checkBonus(int bonus){
         if(numbers.contains(bonus)){
             throw new IllegalArgumentException(Error.BONUS_DUPLICATE_ERROR.message());
         }
+    }
+
+    public int countCorrect(List<Integer> lotto, int bonus){
+        int count = 0;
+        for(int num : lotto){
+            if(numbers.contains(num)){
+                count++;
+            }
+        }
+        if(count==5){
+            if(lotto.contains(bonus)){
+                count = 7;
+            }
+        }
+        return count;
     }
 
 

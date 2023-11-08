@@ -51,6 +51,9 @@ check new branch
 - userWinning()
   - input : null / return : void
   - 당첨 번호 입력받아 answer에 Lotto 타입으로 저장
+- userBonus()
+  - input : null / return : void
+  - 보너스 번호 받아 bonus에 Integer 타입으로 저장
   
 ## (Class) Lotto
 - numbers(List<Integer>, 로또 번호)

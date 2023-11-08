@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,13 +24,20 @@ public class Validator {
         return validatedInput;
     }
 
-    void validateInputForNumbers(List<String> input, int maxSize) {
-        try {
-            if (input.size() > maxSize) {
-                throw new IllegalArgumentException();
+    List<String> validateInputForNumbers(List<String> splitedInput, int maxSize) {
+        while (true) {
+            try {
+                if (splitedInput.size() != maxSize) {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_MESSAGE + "6개의 당첨번호를 입력해야 합니다.");
+                String input = Console.readLine();
+                splitedInput = Arrays.asList(input.split(","));
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + "당첨번호는 최대 6개입니다.");
         }
+
+        return  splitedInput;
     }
 }

@@ -29,10 +29,10 @@ public class LottoService {
 
         List<String> splitedInput = Arrays.asList(input.split(","));
 
-        // validator.validateInputForNumbers(splitedInput, COUNT_NUMBER);
+        List<String> validatedInput = validator.validateInputForNumbers(splitedInput, COUNT_NUMBER);
 
-        for (int i = 0; i < splitedInput.size(); i++) {
-            parsedInput.add(Integer.parseInt(splitedInput.get(i)));
+        for (int i = 0; i < validatedInput.size(); i++) {
+            parsedInput.add(Integer.parseInt(validatedInput.get(i)));
         }
 
         return parsedInput;

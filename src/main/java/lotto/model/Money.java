@@ -20,7 +20,7 @@ public class Money {
         validateEmptyInput(moneyInput);
         validateMoneyLength(moneyInput);
         validateMoneyNumeric(moneyInput);
-        validateMoneyInRange(Integer.parseInt(moneyInput));
+        validateMoneyInRange(Long.parseLong(moneyInput));
         validateMoneyDividedTByThousand(Integer.parseInt(moneyInput));
         return Integer.parseInt(moneyInput);
     }
@@ -37,7 +37,7 @@ public class Money {
         }
     }
 
-    void validateMoneyInRange(int money) {
+    void validateMoneyInRange(long money) {
         if (money < MIN_MONEY_RANGE || money > MAX_MONEY_RANGE) {
             Exception.raiseInvalidMoneyRangeException();
         }

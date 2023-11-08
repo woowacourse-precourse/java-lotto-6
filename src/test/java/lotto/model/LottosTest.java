@@ -18,7 +18,7 @@ class LottosTest {
                 new Lotto(List.of(13, 14, 15, 16, 17, 18))));
     }
 
-    @DisplayName("발행된 로또가 3개일 떄 로또의 수")
+    @DisplayName("발행된 로또가 3개일 때 로또의 수")
     @Test
     void getNumberOfLottoTest() {
         Assertions.assertThat(lottos.getNumberOfLotto()).isEqualTo(3);

@@ -39,6 +39,7 @@ public class WinningNumberInputController {
     }
 
     public Lotto splitWinningNumber(String winningNumber) throws IllegalArgumentException {
+        winningNumber = winningNumber.replace(" ", "");
         String[] number = winningNumber.split(",");
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < number.length; i++) {

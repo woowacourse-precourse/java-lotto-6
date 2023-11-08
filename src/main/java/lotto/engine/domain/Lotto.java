@@ -1,10 +1,11 @@
 package lotto.engine.domain;
 
+import static lotto.engine.LottoSystemConstant.LOTTO_MAXIMUM_NUMBER_OF_WINNINGS;
 import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_LENGTH;
+import static lotto.engine.LottoSystemConstant.TextMessage.ERROR_PREFIX;
 
 import java.util.HashSet;
 import java.util.List;
-import lotto.engine.LottoSystemConstant;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,15 +16,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_LENGTH.value()) {
-            throw new IllegalArgumentException();
-        }
-
-        int count = (int) numbers.stream().distinct().count();
-        if (count != LOTTO_NUMBER_LENGTH.value()) {
-            throw new IllegalArgumentException("유효한 길이가 아닙니다.");
-        }
-
+        validSize(numbers.size(), "유효한 길이가 아닙니다.");
+        validNonDuplicateNumbers(numbers);
     }
 
     public String showNumbers() {
@@ -41,9 +35,11 @@ public class Lotto {
         count += (int) numbers.stream().filter(winingNumbers::contains)
                 .count();
 
-        if (count > LottoSystemConstant.LOTTO_MAXIMUM_NUMBER_OF_WINNINGS.value()) {
-            count = LottoSystemConstant.LOTTO_MAXIMUM_NUMBER_OF_WINNINGS.value();
+        boolean isExceedFixedValue = count > LOTTO_MAXIMUM_NUMBER_OF_WINNINGS.value();
+        if (isExceedFixedValue) {
+            count = LOTTO_MAXIMUM_NUMBER_OF_WINNINGS.value();
         }
+
         return count;
     }
 
@@ -55,5 +51,18 @@ public class Lotto {
                 .count();
 
         return !winingNumbers.contains(bonusNumber) && count == correctNumber;
+    }
+
+    private void validSize(int numbers, String x) {
+        if (numbers != LOTTO_NUMBER_LENGTH.value()) {
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + x);
+        }
+    }
+
+    private void validNonDuplicateNumbers(List<Integer> numbers) {
+        int count = (int) numbers.stream().distinct().count();
+        if (count != LOTTO_NUMBER_LENGTH.value()) {
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + "중복된 숫자가 존재합니다.");
+        }
     }
 }

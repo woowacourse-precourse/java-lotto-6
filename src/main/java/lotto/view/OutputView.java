@@ -10,10 +10,13 @@ import lotto.model.Lotto;
 import lotto.model.Ranking;
 
 public class OutputView {
+    private static final String PRINT_TICKET_COUNT = "\n%d개를 구매했습니다.\n";
+    private static final String PRINT_WINNING_STATISTICS = "\n당첨 통계\n---";
+    private static final String PRICE_FORMAT = "#,###";
+    private static final String PRINT_RATE_OF_RETURN = "\n총 수익률은 %.1f%%입니다.";
 
     public void printPurchases(int ticketCount) {
-        System.out.println();
-        System.out.println(ticketCount + "개를 구매했습니다.");
+        System.out.printf(PRINT_TICKET_COUNT, ticketCount);
     }
 
     public void printIssuedLotto(List<Lotto> issuedLotto) {
@@ -24,8 +27,7 @@ public class OutputView {
     }
 
     public void printLotteryStatistics() {
-        System.out.println();
-        System.out.println("당첨 통계\n---");
+        System.out.println(PRINT_WINNING_STATISTICS);
     }
 
     public void printStatisticsResult(Map<Ranking, Integer> results) {
@@ -40,12 +42,11 @@ public class OutputView {
     }
 
     private String transfer(int price) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        DecimalFormat decimalFormat = new DecimalFormat(PRICE_FORMAT);
         return decimalFormat.format(price);
     }
 
     public void printRateOfReturn(float result) {
-        System.out.println();
-        System.out.printf("총 수익률은 %.1f%%입니다.", result);
+        System.out.printf(PRINT_RATE_OF_RETURN, result);
     }
 }

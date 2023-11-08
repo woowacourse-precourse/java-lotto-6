@@ -22,9 +22,9 @@ public class Lotto {
         return numbers;
     }
 
-    public int countMatch(Lotto winningNumber) {
+    public int countMatch(Lotto lotto) {
         return (int) numbers.stream()
-                .filter(winningNumber::containNumber)
+                .filter(lotto::containNumber)
                 .count();
     }
 
@@ -32,9 +32,12 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public LottoRank checkRank(Lotto userLotto, int bonusNumber) {
-        int matchCount = userLotto.countMatch(this);
-        boolean matchBonus = userLotto.getNumbers().contains(bonusNumber);
+    public LottoRank checkRank(Lotto winningNumber, int bonusNumber) {
+        int matchCount = winningNumber.countMatch(this);
+        boolean matchBonus = this.containNumber(bonusNumber);
+        if (matchCount != 5) {
+            matchBonus = false;
+        }
         return LottoRank.valueOf(matchCount, matchBonus);
     }
 

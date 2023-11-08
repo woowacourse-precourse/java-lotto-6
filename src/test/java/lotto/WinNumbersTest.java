@@ -1,9 +1,13 @@
 package lotto;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinNumbersTest {
 
@@ -32,5 +36,20 @@ public class WinNumbersTest {
         String[] userInput = {"1", "2", "3", "4", "5", "3"};
         assertThatThrownBy(() -> new WinNumbers(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호 정렬 테스트")
+    @Test
+    void 당첨번호_정렬_테스트() {
+        //given
+        String[] userInput = {"1", "2", "3", "4", "5", "6"};
+        //when
+        List<Integer> winNumbers = new WinNumbers(userInput).getWinNumbers();
+        //then
+        for(int i = 0; i < 6; i++){
+            assertThat(winNumbers.get(i))
+                    .isEqualTo(i+1);
+        }
+
     }
 }

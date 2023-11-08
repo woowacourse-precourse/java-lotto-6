@@ -57,10 +57,23 @@ public class DataInput {
         }
     }
 
-    public int userInputBonusNumber(){
-        String userBonusNumber;
-        userBonusNumber = Console.readLine();
-        // Validate
-        return Integer.parseInt(userBonusNumber);
+    public int userInputBonusNumber(List<Integer> winningNumbers){
+        String userBonusNumberInput;
+        int userBonusNumber;
+        while(true){
+            try{
+                userBonusNumberInput = Console.readLine();
+                userBonusNumber = Integer.parseInt(userBonusNumberInput);
+                if(winningNumbers.contains(userBonusNumber)){
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복으로 입력할 수 없습니다.");
+                }
+                if(userBonusNumber > 45 || userBonusNumber < 1){
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                return userBonusNumber;
+            } catch (IllegalArgumentException e){
+                System.out.println(e);
+            }
+        }
     }
 }

@@ -61,7 +61,7 @@ public class LotteryService {
 
     public void makeBonusNumber(){
         outputSets.printProgressMessage(Progress.BONUS);
-        this.bonusNumber = inputSets.userInputBonusNumber();
+        this.bonusNumber = inputSets.userInputBonusNumber(this.winningNumber);
     }
 
     public void checkEveryLottoMatch(){

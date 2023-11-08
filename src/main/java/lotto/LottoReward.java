@@ -1,19 +1,23 @@
 package lotto;
 
+
+import java.util.Arrays;
+
 public enum LottoReward {
-    /*
-    _1ST_PRIZE(6, Money.wons(2_000_000_000L)),
-    _2ND_PRIZE(5, Money.wons(30_000_000L)),
-    _3RD_PRIZE(5, Money.wons(1_500_000L)),
-    _4TH_PRIZE(4, Money.wons(50_000L)),
-    _5TH_PRIZE(3, Money.wons(5_000L)),
-    _NOTHING(0, Money.ZERO);
+    FIRST_PRIZE(6, 2_000_000_000L),
+    SECOND_PRIZE(5, 30_000_000L),
+    THIRD_PRIZE(5, 1_500_000L),
+    FOURTH_PRIZE(4, 50_000L),
+    FIFTH_PRIZE(3, 5_000L),
+    NOTHING(0, 0);
 
+    private final int matchNumbersCount;
+    private final long winningReward;
+    private static final int WINNING_MIN_COUNT = 3;
 
-    private final Integer matchNumbersCount;
-
-    LottoReward(Integer matchNumbersCount) {
+    LottoReward(int matchNumbersCount, long winningReward) {
         this.matchNumbersCount = matchNumbersCount;
+        this.winningReward = winningReward;
     }
-     */
+
 }

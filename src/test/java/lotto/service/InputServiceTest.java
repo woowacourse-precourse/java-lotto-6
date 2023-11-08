@@ -35,4 +35,13 @@ public class InputServiceTest {
 
     }
 
+    @Test
+    @DisplayName("보너스 번호를 입력받는 기능.")
+    public void input3() {
+        String input = "7";
+        inputService.readBonusNum(input);
+        assertThat(inputService.bonusNum).isEqualTo("7");
+
+    }
+
 }

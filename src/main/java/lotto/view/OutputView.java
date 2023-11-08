@@ -20,10 +20,13 @@ public class OutputView {
     }
 
     public static void printRequestBonusNumber() {
+        System.out.println();
         System.out.println(RequestMessage.BONUS_NUMBER.getMessage());
     }
 
     public static void printPurchaseResult(LottoTicket lottoTicket) {
+        System.out.println();
+
         String formattedMessage = String.format(ResponseMessage.PURCHASE_COUNT.getMessage(),
                 lottoTicket.getLottoCount());
         System.out.println(formattedMessage);
@@ -36,6 +39,8 @@ public class OutputView {
     }
 
     public static void printResponseWinningStats(LottoResult lottoResult) {
+        System.out.println();
+        
         String formattedMessage =
                 String.format(ResponseMessage.WINNING_STATS.getMessage(),
                         lottoResult.getCountOfRank(LottoRank.FIFTH),

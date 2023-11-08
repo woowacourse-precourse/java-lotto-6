@@ -34,4 +34,10 @@ public class LottoWinningManager {
             totalCost = lottos.size() * 1000;
         }
     }
+
+    public double calculateProfitRate() {
+        if (totalCost == 0) return 0.0;
+        double rate = (double) totalReward / totalCost;
+        return Math.round(rate * 1000.0) / 10.0;
+    }
 }

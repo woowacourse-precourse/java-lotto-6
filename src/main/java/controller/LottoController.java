@@ -16,25 +16,33 @@ public class LottoController {
     private LottoService lottoService = new LottoService();
 
     public void play() {
-        init();
-        initPlayer();
+        int money = init();
+        initPlayer(money);
+        result();
+        end();
     }
 
-    public void init() {
+    public int init() {
         int input = InputMessage.printMoneyInputMessage();
         int totalCount = lottoService.getTotalCount(input);
         OutputMessage.moneyToNumberPrint(totalCount);
         List<Lotto> lottosList = lottoService.buyLotto(totalCount);
         OutputMessage.printLottosListOutputMessage(lottosList);
+        return input;
     }
 
-    public void initPlayer() {
+    public void initPlayer(int money) {
         List<Integer> winningNumbers = InputMessage.printWinNumberInputMessage();
         int bonusNumber = InputMessage.printBonusNumberInputMessage();
-        lottoService.setPlayer(winningNumbers, bonusNumber);
+        lottoService.setPlayer(winningNumbers, bonusNumber, money);
     }
 
-    private void result() {
+    public void end() {
+        double earnRatio = lottoService.getEarnRatio();
+        OutputMessage.printEarnRatioOutputMessage(earnRatio);
+    }
+
+    public void result() {
         OutputMessage.printResultReadyOutputMessage();
         HashMap resultMap = lottoService.getWinningResult();
         OutputMessage.printResultOutputMessage(resultMap);

@@ -42,6 +42,5 @@ class LottoTest {
 
         // then
         assertThat(lotto.toString()).isEqualTo(answerNumbers.toString());
-        System.out.println("[CHECK] 정렬 기능이 잘 수행되었습니다.");
     }
 }

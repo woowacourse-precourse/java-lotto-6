@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.view.OutputView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +14,12 @@ public class InputValidator {
                 throw new IllegalArgumentException(Message.INPUT_INSERT_MONEY_THOUSAND_ERROR_MESSAGE);
             }
         } catch (NumberFormatException e) {
-            System.out.println(Message.INPUT_NOT_NUMBER_MESSAGE);
+            OutputView.printInputNotNumberErrorMessage();
+//            System.out.println(Message.INPUT_NOT_NUMBER_MESSAGE);
             return false;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printMessage(e.getMessage());
+//            System.out.println(e.getMessage());
             return false;
         }
         return true;
@@ -26,7 +30,8 @@ public class InputValidator {
             try {
                 Integer.parseInt(sNum);
             } catch (NumberFormatException e) {
-                System.out.println(Message.INPUT_LOTTO_NUM_ERROR_MESSAGE);
+                OutputView.printInputNumRangeErrorMessage();
+//                System.out.println(Message.INPUT_NUM_RANGE_ERROR_MESSAGE);
                 return false;
             }
         }
@@ -41,7 +46,7 @@ public class InputValidator {
                 throw new IllegalArgumentException(Message.DUPLICATE_MESSAGE);
             }
             if (iNum < Constant.LOTTO_MIN_NUM || iNum > Constant.LOTTO_MAX_NUM) {
-                throw new IllegalStateException(Message.INPUT_LOTTO_NUM_ERROR_MESSAGE);
+                throw new IllegalStateException(Message.INPUT_NUM_RANGE_ERROR_MESSAGE);
             }
             inputDangchum.add(iNum);
         }

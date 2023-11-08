@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.Dangchum;
 import lotto.util.Constant;
 import lotto.util.InputValidator;
 
@@ -37,7 +36,7 @@ public class InputView {
                 validInput = true;
             }
             if (splitUserInput.length > Constant.DANGCHUM_NUM_CNT) {
-                System.out.println("[ERROR] 당첨 번호는 6개 여야 합니다.");
+                OutputView.printNumNotSixErrorMessage();
                 continue;
             }
             // 6개 이상 들어왔을 때, 오류를 catch로 잡아서 에러 메세지 보여줘야하나??
@@ -58,7 +57,6 @@ public class InputView {
 
     public int userInputBonus(List<Integer> dangchum) {
         boolean validInput = false;
-        int inputBonus = 0;
         String[] splitUserInput = {};
 
         while (!validInput) {
@@ -75,7 +73,7 @@ public class InputView {
                 validInput = false;
             }
             if (!checkBonus(dangchum, Integer.parseInt(splitUserInput[0]))) {
-                System.out.println("[ERROR] 보너스가 당첨에 포함되었습니다.");
+                OutputView.printBonusInDangchumErrorMessage();
                 validInput = false;
             }
         }

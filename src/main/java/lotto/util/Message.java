@@ -14,8 +14,10 @@ public class Message {
     public static final String AMOUNT_MESSAGE = "개";
     public static final String PROFIT_RESULT_MESSAGE_1 = "총 수익률은 ";
     public static final String PROFIT_RESULT_MESSAGE_2 = "%입니다.";
-    public static final String INPUT_LOTTO_NUM_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    public static final String INPUT_NUM_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String INPUT_INSERT_MONEY_THOUSAND_ERROR_MESSAGE = "[ERROR] 입력 금액은 천원 단위여야 합니다.";
     public static final String INPUT_NOT_NUMBER_MESSAGE = "[ERROR] 입력이 숫자가 아닙니다.";
     public static final String DUPLICATE_MESSAGE = "[ERROR] 중복된 숫자입니다.";
+    public static final String NUMBER_MUST_SIX = "[ERROR] 당첨 번호는 6개 여야 합니다.";
+    public static final String BONUS_IN_DANGCHUM = "[ERROR] 보너스가 당첨에 포함되었습니다.";
 }

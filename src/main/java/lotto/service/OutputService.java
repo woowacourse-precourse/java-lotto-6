@@ -28,7 +28,7 @@ public class OutputService {
         StringBuilder sb = new StringBuilder();
         sb.append(message);
         sb.append(number);
-        sb.append(PrintMessage.NUMBER_UNIT.getMessage());
+        sb.append(PrintMessage.NUMBER_UNIT);
         return sb.toString();
     }
 

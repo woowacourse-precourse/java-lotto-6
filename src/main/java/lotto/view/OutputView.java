@@ -15,6 +15,7 @@ public class OutputView {
     private static final String PRINT_STATISTICS_FORMAT = "%d개 일치%s (%s원) - %d개\n";
     private static final String PRINT_BONUS_NUMBER_HIT = ", 보너스 볼 일치";
     private static final String PRINT_BONUS_NUMBER_NO_HIT = "";
+    
     private static final DecimalFormat PRINT_PRIZE_FORMAT = new DecimalFormat("###,###");
 
     private OutputView() {
@@ -27,6 +28,7 @@ public class OutputView {
     public static void printResult(ResultDto resultDto) {
         System.out.println(PRINT_STATISTICS_LINE);
         printStatistics(resultDto.statistics());
+
         System.out.printf((PRINT_PROFIT_FORMAT) + "%n", resultDto.profit());
     }
 
@@ -34,8 +36,10 @@ public class OutputView {
         StringBuilder statisticsResult = new StringBuilder();
         statistics.forEach((result, count) -> {
             String bonus = getBonusMessage(result);
+
             statisticsResult.append(String.format(
                     PRINT_STATISTICS_FORMAT, result.getHitCount(), bonus, PRINT_PRIZE_FORMAT.format(result.getPrize()), count));
+
         });
         System.out.print(statisticsResult);
     }

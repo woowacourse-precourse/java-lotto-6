@@ -18,15 +18,16 @@ public class LottoPurchaseVerifier {
     }
 
     public void verifyInt(){
+        int purchaseAmountInt;
         try {
-            int purchaseAmountInt = Integer.parseInt(purchaseAmount);
-            if(purchaseAmountInt % 1000 != 0){
-                throw new IllegalArgumentException(ExceptionMsg.NOT_MULTIPLE_THOUSAND.getMessage());
-            }
+             purchaseAmountInt = Integer.parseInt(purchaseAmount);
         }catch (IllegalArgumentException e){
             throw new IllegalArgumentException(ExceptionMsg.NOT_INT_INPUT.getMessage());
-
         }
+        if(purchaseAmountInt % 1000 != 0){
+            throw new IllegalArgumentException(ExceptionMsg.NOT_MULTIPLE_THOUSAND.getMessage());
+        }
+
     }
 
 }

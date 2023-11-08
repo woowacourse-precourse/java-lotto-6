@@ -38,4 +38,22 @@ public class WinningNumber {
     public boolean isEqualsBonusNumber(int bonusNumber) {
         return this.winningNumber == bonusNumber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        WinningNumber otherWinningNumber = (WinningNumber) o;
+        return winningNumber == otherWinningNumber.winningNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(winningNumber);
+    }
 }

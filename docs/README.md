@@ -62,6 +62,7 @@ public static void main(String[] args) {
 - `Lotto` : 로또 정보를 일급 객체로 관리
 
 <br>
+
 # 테스트 목록
 테스트 패키지의 구성은 다음과 같습니다. 
 

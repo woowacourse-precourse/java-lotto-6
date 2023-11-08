@@ -17,7 +17,7 @@ public class InputView {
     }
 
     public static int inputBonus() {
-        try{
+        try {
             return Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");

@@ -17,7 +17,7 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(final List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
 
         validateCount(sortedNumbers);
@@ -32,13 +32,13 @@ public class Lotto {
         return numbers;
     }
 
-    private void validateCount(final List<Integer> numbers) {
+    private void validateCount(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_COUNT);
         }
     }
 
-    private void hasDuplicateNumber(final List<Integer> numbers) {
+    private void hasDuplicateNumber(List<Integer> numbers) {
         Set<Integer> exceptDuplicateNumber = new HashSet<>(numbers);
 
         if (exceptDuplicateNumber.size() != numbers.size()) {
@@ -46,22 +46,22 @@ public class Lotto {
         }
     }
 
-    private void validRange(final List<Integer> numbers) {
+    private void validRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> !(number >= MIN_RANGE && number <= MAX_RANGE))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_RANGE);
         }
     }
 
-    public boolean contains(final int targetNumber) {
+    public boolean contains(int targetNumber) {
         return numbers.contains(targetNumber);
     }
 
-    public void sortNumbers(final List<Integer> numbers) {
+    public void sortNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
     }
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

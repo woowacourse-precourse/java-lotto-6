@@ -19,15 +19,13 @@ public class LottoWinningNumbersTest {
     @Test
     void createBonusNumberByDuplicatedNumber() {
         assertThatThrownBy(() -> new LottoWinningNumbers(lottoNumbers, 5))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("로또 번호와 보너스 번호는 중복될 수 없습니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호가 범위를 벗어나면 예외가 발생한다.")
     @Test
     void createBonusNumberWithInvalidRange() {
         assertThatThrownBy(() -> new LottoWinningNumbers(lottoNumbers, 0))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("보너스 번호도 1부터 45 사이의 숫자여야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

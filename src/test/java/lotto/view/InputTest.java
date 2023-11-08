@@ -15,7 +15,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {""," "})
     void inputNull(String input) {
-        assertThatThrownBy(() -> InputValidator.validateInputPrice(input))
+        assertThatThrownBy(() -> InputValidator.validateInputBudget(input))
                 .isInstanceOf(NullInputException.class);
     }
 
@@ -23,7 +23,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {"a","-",".","1.0","8,000"})
     void inputNotInteger(String input){
-        assertThatThrownBy(() -> InputValidator.validateInputPrice(input))
+        assertThatThrownBy(() -> InputValidator.validateInputBudget(input))
                 .isInstanceOf(NotIntegerException.class);
     }
 
@@ -31,7 +31,7 @@ public class InputTest {
     @ParameterizedTest
     @ValueSource(strings = {"1 100", "11 00"})
     void inputHasSpace(String input){
-        assertThatThrownBy(() -> InputValidator.validateInputPrice(input))
+        assertThatThrownBy(() -> InputValidator.validateInputBudget(input))
                 .isInstanceOf(HasSpaceException.class);
     }
     @DisplayName("당첨숫자 입력이 공백일 시 예외가 발생한다.")

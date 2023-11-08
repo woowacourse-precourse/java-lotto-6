@@ -18,7 +18,7 @@ class LottoServiceTest {
     @DisplayName("발행 로또 정보 DTO 테스트")
     @Test
     void tickets() {
-        lottoService.init(5);
+        lottoService.buyTickets(5000);
 
         List<LottoTicket> dtos = lottoService.tickets();
 
@@ -39,7 +39,8 @@ class LottoServiceTest {
         lottos.add(new Lotto(List.of(7, 11, 30, 40, 42, 43)));
         lottos.add(new Lotto(List.of(2, 13, 22, 32, 38, 45)));
         lottos.add(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
-        lottoService.init(lottos);
+        lottoService.initPayment(8000);
+        lottoService.initLottos(lottos);
         lottoService.initMainNumbers(List.of(1, 2, 3, 4, 5, 6));
         lottoService.initBonusNumber(7);
         lottoService.initWinningNumbers();
@@ -61,7 +62,8 @@ class LottoServiceTest {
         lottos.add(new Lotto(List.of(7, 11, 30, 40, 42, 43)));
         lottos.add(new Lotto(List.of(2, 13, 22, 32, 38, 45)));
         lottos.add(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
-        lottoService.init(lottos);
+        lottoService.initPayment(8000);
+        lottoService.initLottos(lottos);
         lottoService.initMainNumbers(List.of(1, 2, 3, 4, 5, 6));
         lottoService.initBonusNumber(7);
         lottoService.initWinningNumbers();

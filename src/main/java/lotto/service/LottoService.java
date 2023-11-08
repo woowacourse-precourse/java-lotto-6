@@ -12,6 +12,7 @@ import lotto.PrizeMoney;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.MainNumbers;
+import lotto.domain.Payment;
 import lotto.domain.Prize;
 import lotto.domain.PrizeCounter;
 import lotto.domain.WinningNumbers;
@@ -19,22 +20,39 @@ import lotto.dto.LottoTicket;
 import lotto.dto.StatisticsResult;
 
 public class LottoService {
-
     private List<Lotto> lottos;
+    private Payment payment;
     private MainNumbers mainNumbers;
     private BonusNumber bonusNumber;
     private WinningNumbers winningNumbers;
 
-    public void init(int size) {
+    public void buyTickets(int price) {
+        initPayment(price);
+        initLottos(createLottos(payment.getLottoCount()));
+    }
+
+    public void initPayment(int payment) {
+        this.payment = new Payment(payment);
+    }
+
+    public void initLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
+    private List<Lotto> createLottos(int size) {
         List<Lotto> lottos = new ArrayList<>();
         while (lottos.size() < size) {
             lottos.add(new Lotto(createLottoNumbers()));
         }
-        init(lottos);
+        return lottos;
     }
 
-    public void init(List<Lotto> lottos) {
-        this.lottos = lottos;
+    private List<Integer> createLottoNumbers() {
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START.value(), LOTTO_NUMBER_END.value(),
+                        LOTTO_NUMBER_COUNT.value()));
+        numbers.sort(Comparator.naturalOrder());
+        return numbers;
     }
 
     public void initMainNumbers(List<Integer> mainNumbers) {
@@ -53,20 +71,9 @@ public class LottoService {
         return lottos.stream().map(Lotto::toLottoTicket).toList();
     }
 
-    private List<Integer> createLottoNumbers() {
-        List<Integer> numbers = new ArrayList<>(
-                Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START.value(), LOTTO_NUMBER_END.value(),
-                        LOTTO_NUMBER_COUNT.value()));
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
-    }
-
     public StatisticsResult getPrizeResult() {
-        PrizeCounter prizeCounter = countPrize();
-        int prizeMoney = prizeMoney(prizeCounter);
-        int payment = lottos.size() * 1000;
-
-        return new StatisticsResult(prizeCounter.getCounter(), prizeMoney, payment);
+        PrizeCounter countingResult = countPrize();
+        return new StatisticsResult(countingResult.getCounter(), prizeMoney(countingResult), payment.getPayment());
     }
 
     private int prizeMoney(PrizeCounter prizeCounter) {

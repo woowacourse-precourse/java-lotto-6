@@ -5,7 +5,6 @@ import static lotto.validator.Validator.validatePayment;
 import lotto.LottoRule;
 
 public class Payment {
-
     private final int payment;
 
     public Payment(int payment) {
@@ -13,8 +12,11 @@ public class Payment {
         this.payment = payment;
     }
 
+    public int getPayment() {
+        return payment;
+    }
+
     public int getLottoCount() {
         return this.payment / LottoRule.LOTTO_PRICE.value();
     }
-
 }

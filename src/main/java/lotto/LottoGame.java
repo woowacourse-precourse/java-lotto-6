@@ -29,8 +29,20 @@ public class LottoGame {
     }
 
     public List<Integer> generateLottoNumbers(){
-        List<Integer> eachLottoList=Randoms.pickUniqueNumbersInRange(1,45,6);
-        Collections.sort(eachLottoList);
+//        List<Integer> eachLottoList=Randoms.pickUniqueNumbersInRange(1,45,6);
+
+        List<Integer> eachLottoList=new ArrayList<>();
+        eachLottoList=Randoms.pickUniqueNumbersInRange(1,45,6);
+//        Collections.sort(eachLottoList);
+//        List<Integer> list=new ArrayList<>();
+//        for(int i=0;i<6;i++){
+//            int number = Randoms.pickNumberInRange(1, 45);
+//
+//            System.out.println("new num="+number);
+//            list.add(number);
+//        }
+//        System.out.println("list "+list);
+//        Collections.sort(list);
         return eachLottoList;
     }
 

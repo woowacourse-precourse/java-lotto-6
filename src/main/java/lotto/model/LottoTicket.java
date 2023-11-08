@@ -11,6 +11,14 @@ public class LottoTicket {
         this.ticket = ticket;
     }
 
+    public List<Number> getTicket() {
+        return ticket;
+    }
+
+    public boolean hasBonusNumber(Number bonusNumber) {
+        return ticket.contains(bonusNumber);
+    }
+
     @Override
     public String toString() {
         return "[" + ticket.stream()

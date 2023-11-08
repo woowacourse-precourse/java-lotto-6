@@ -5,6 +5,11 @@ import lotto.constance.GameConst;
 import lotto.exception.LottoGameException;
 import lotto.model.domain.result.LottoCompareResult;
 
+/**
+ * 로또 게임의 정답을 저장하기 위한 클래스
+ *
+ * <p>로또 숫자 리스트와 더불어 보너스 숫자를 가지고 있다.</p>
+ */
 public class LottoAnswer extends Lotto {
     private final Integer bonusNumber;
 
@@ -20,6 +25,12 @@ public class LottoAnswer extends Lotto {
         }
     }
 
+    /**
+     * 로또를 정답과 비교해 결과를 반환한다.
+     *
+     * @param lotto 정답과 비교할 로또 객체
+     * @return {@link LottoCompareResult} - 로또와 정답의 비교 결과
+     */
     @Override
     public LottoCompareResult compareLotto(Lotto lotto) {
         int collectNumber = collectNumber(lotto);

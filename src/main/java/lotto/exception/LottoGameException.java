@@ -28,6 +28,10 @@ public enum LottoGameException {
         return exceptionMessage;
     }
 
+    /**
+     * @return 자신의 exceptionMessage를 예외 메시지로 사용하는 IllegalArgumentException을 리턴 합니다. <br> !주의 - 예외를 발생 시키는 것이 아닌, 예외를
+     * 리턴하는 것이므로 해당 리턴값을 `throw` 해 주어야 합니다.
+     */
     public IllegalArgumentException makeException() {
         return new IllegalArgumentException(this.exceptionMessage);
     }

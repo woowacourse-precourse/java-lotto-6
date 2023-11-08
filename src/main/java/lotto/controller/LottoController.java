@@ -41,7 +41,10 @@ public class LottoController {
             OutputView.printRandomLottoNumbers(randomNumbers);
         }
 
-        WinningDetails.findRanking(winningLottoNumbers, randomLottos, bonusNum);
+        List<Integer> rankings = WinningDetails.findRanking(winningLottoNumbers, randomLottos, bonusNum);
+
+        int[] statistics = WinningDetails.findStatistics(rankings);
+        OutputView.printResultByRanking(statistics);
 
     }
 

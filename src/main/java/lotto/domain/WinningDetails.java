@@ -9,6 +9,7 @@ public class WinningDetails {
 
     static boolean visitedRandomLottos[] = new boolean[46];
     static boolean visitedWinningLottos[] = new boolean[46];
+    static int rankingCount[] = new int[6];
     static List<Integer> rankingResults = new ArrayList<>();
 
     public static List<Integer> findRanking(Lotto winningLottoNumbers, List<List<Integer>> randomLottos, int bonusNum) {
@@ -54,5 +55,12 @@ public class WinningDetails {
         }
 
         return rankingResults;
+    }
+
+    public static int[] findStatistics(List<Integer> rankings) {
+        for (int i : rankings) {
+            rankingCount[i]++;
+        }
+        return rankingCount;
     }
 }

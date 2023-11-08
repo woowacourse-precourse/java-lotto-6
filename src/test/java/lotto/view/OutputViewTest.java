@@ -12,4 +12,5 @@ class OutputViewTest {
         String result = OutputView.printRandomLottoNumbers(input);
         Assertions.assertThat(result).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
+
 }

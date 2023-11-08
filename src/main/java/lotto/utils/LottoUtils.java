@@ -77,8 +77,10 @@ public class LottoUtils {
         setRateOfReturn(lottos.size(), setReturnAmount(threeWin, fourWin, fiveWin, bonusWin, wholeWin));
     }
 
-    public Integer setReturnAmount(Integer threeWin, Integer fourWin, Integer fiveWin, Integer bonusWin, Integer wholeWin) {
-        return (threeWin * Constants.THREE) + (fourWin * Constants.FOUR) + (fiveWin * Constants.FIVE) + (bonusWin * Constants.BONUS) + (wholeWin * Constants.WHOLE);
+    public Integer setReturnAmount(Integer threeWin, Integer fourWin, Integer fiveWin, Integer bonusWin,
+                                   Integer wholeWin) {
+        return (threeWin * Constants.THREE) + (fourWin * Constants.FOUR) + (fiveWin * Constants.FIVE) + (bonusWin
+                * Constants.BONUS) + (wholeWin * Constants.WHOLE);
     }
 
     public void setRateOfReturn(Integer size, Integer returnAmount) {
@@ -110,7 +112,7 @@ public class LottoUtils {
 
     public void isNumbersDuplicate(List<Integer> numbers) {
         Set<Integer> numSet = new HashSet<>(numbers);
-        if(numSet.size()!= numbers.size()){
+        if (numSet.size() != numbers.size()) {
             throw new IllegalArgumentException(Constants.DUPLICATE_ERROR);
         }
     }

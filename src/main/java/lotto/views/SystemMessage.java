@@ -1,6 +1,5 @@
 package lotto.views;
 
-import lotto.Lotto;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.Constants;
 
@@ -29,7 +28,8 @@ public class SystemMessage {
         System.out.println(Constants.RESULT);
     }
 
-    public void printLottoResult(Integer threeWin, Integer fourWin, Integer fiveWin, Integer bonusWin, Integer wholeWin) {
+    public void printLottoResult(Integer threeWin, Integer fourWin, Integer fiveWin, Integer bonusWin,
+                                 Integer wholeWin) {
         System.out.println(Constants.THREE_MATCHED + threeWin + '개');
         System.out.println(Constants.FOUR_MATCHED + fourWin + '개');
         System.out.println(Constants.FIVE_MATCHED + fiveWin + '개');

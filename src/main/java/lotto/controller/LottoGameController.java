@@ -14,7 +14,7 @@ public class LottoGameController {
     }
 
     public void run(PurchaseAmount amount, WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotties lotties) {
-        playGame();
+        service.calculateWinningResult(lotties.getLotties(), winningNumbers.getWinningNumbers(), bonusNumber);
     }
 
     private void playGame() {

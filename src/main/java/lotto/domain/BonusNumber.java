@@ -13,4 +13,7 @@ public class BonusNumber {
     }
 
 
+    public Integer getNumber() {
+        return number;
+    }
 }

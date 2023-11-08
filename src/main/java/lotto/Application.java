@@ -17,7 +17,6 @@ public class Application {
     private final static OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
-
         PurchaseAmount purchaseAmount = setPurchaseAmount();
 
         Lotties lotties = LottoGameUtil.setLotties(purchaseAmount.getLottoCount());

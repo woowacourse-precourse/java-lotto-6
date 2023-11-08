@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.ModelExceptionConstant;
 
@@ -18,4 +19,7 @@ public class WinningNumbers {
         }
     }
 
+    public List<Integer> getWinningNumbers() {
+        return new ArrayList<>(numbers);
+    }
 }

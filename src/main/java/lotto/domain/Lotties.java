@@ -1,10 +1,10 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotties {
     private final List<Lotto> lotties;
-
 
     public Lotties(List<Lotto> lotties) {
         this.lotties = lotties;
@@ -18,5 +18,9 @@ public class Lotties {
         }
 
         return builder.toString();
+    }
+
+    public List<Lotto> getLotties() {
+        return new ArrayList<>(lotties);
     }
 }

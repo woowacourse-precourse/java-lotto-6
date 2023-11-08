@@ -15,11 +15,25 @@ public enum WinningAmountConstant {
         this.count = count;
     }
 
-    public int value() {
+    public static WinningAmountConstant getByCount(int count, boolean hasBonusNumber) {
+        if (hasBonusNumber && (count == WinningAmountConstant.SECOND.count)) {
+            return WinningAmountConstant.SECOND;
+        }
+
+        for (WinningAmountConstant winningAmountConstant : WinningAmountConstant.values()) {
+            if (winningAmountConstant.count == count) {
+                return winningAmountConstant;
+            }
+        }
+
+        return null;
+    }
+
+    public int getValue() {
         return this.value;
     }
 
-    public int count() {
+    public int getCount() {
         return this.count;
     }
 }

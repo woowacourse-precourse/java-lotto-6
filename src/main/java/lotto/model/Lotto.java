@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static lotto.Constant.*;

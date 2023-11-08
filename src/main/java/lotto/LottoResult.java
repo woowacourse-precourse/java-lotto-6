@@ -1,6 +1,6 @@
 package lotto;
 
-public enum RankType {
+public enum LottoResult {
     FIRST("6개 일치 (2,000,000,000원)", 2_000_000_000, 6),
     SECOND("5개 일치, 보너스 볼 일치 (30,000,000원)", 30_000_000, 5),
     THIRD("5개 일치 (1,500,000원)", 1_500_000, 5),
@@ -11,7 +11,7 @@ public enum RankType {
     private final int prize;
     private final int match;
 
-    RankType(String detail, int prize, int match) {
+    LottoResult(String detail, int prize, int match) {
         this.detail = detail;
         this.prize = prize;
         this.match = match;

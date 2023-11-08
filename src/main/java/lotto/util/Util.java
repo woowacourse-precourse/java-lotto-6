@@ -6,7 +6,11 @@ import lotto.view.InputView;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static lotto.view.InputView.inputBonusNumberView;
+import static lotto.view.InputView.inputLottoNumberView;
 
 public class Util {
     private Util(){}    // 생성자 생성 방지
@@ -25,5 +29,27 @@ public class Util {
     public static Lotto createRandomNumbers(){
         List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         return new Lotto(numbers);
+    }
+
+    public static List<Integer> inputWinningNumbers(){
+        inputLottoNumberView();
+        String word = Console.readLine();
+        return makeInteger(word);
+    }
+
+    public static List<Integer> makeInteger(String word){
+        List<String> numbersStr = Arrays.asList(word.split(","));
+        List<Integer> numbersInt = new ArrayList<>();
+        for (String numberStr : numbersStr) {
+            Integer numberInt = Integer.parseInt(numberStr);
+            numbersInt.add(numberInt);
+        }
+        return numbersInt;
+   }
+
+    public static int inputBonusNumber(){
+        inputBonusNumberView();
+        String bn = Console.readLine();
+        return Integer.parseInt(bn);
     }
 }

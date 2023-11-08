@@ -1,6 +1,10 @@
 package lotto.validation;
 
+import java.util.HashSet;
+import java.util.List;
+
 import static lotto.util.Util.inputPrice;
+import static lotto.util.Util.inputWinningNumbers;
 import static lotto.view.ErrorView.*;
 
 public class InputValidation {
@@ -47,6 +51,29 @@ public class InputValidation {
         try{
             Integer.parseInt(cost);
         }catch(IllegalArgumentException e){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static List<Integer> validateWinningNumbers(List<Integer> wn){
+        List<Integer> n = verifyWinningNumbersDuplicate(wn);
+        return n;
+    }
+
+    public static List<Integer> verifyWinningNumbersDuplicate(List<Integer> wn){
+        try{
+            validateWinningNumbersDuplicate(wn);
+        }catch (IllegalArgumentException e){
+            errorDuplicate();
+            List<Integer> n = inputWinningNumbers();
+            verifyWinningNumbersDuplicate(n);
+        }
+        return wn;
+    }
+
+    public static void validateWinningNumbersDuplicate(List<Integer> wn){
+        HashSet<Integer> winNum = new HashSet<>(wn);
+        if(winNum.size() != 6){
             throw new IllegalArgumentException();
         }
     }

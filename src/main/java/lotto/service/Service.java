@@ -2,8 +2,11 @@ package lotto.service;
 
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 
-import static lotto.util.Util.createRandomNumbers;
+import java.util.List;
+
+import static lotto.util.Util.*;
 
 public class Service {
     public void createLotto(Buyer buyer){
@@ -13,4 +16,5 @@ public class Service {
             buyer.buyLotto(lotto);
         }
     }
+
 }

@@ -22,4 +22,8 @@ public class OutputView {
     public static void askBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
+
+    public static void showLottoResult(String message, int numberMatchCount) {
+        System.out.println(message + numberMatchCount + "개");
+    }
 }

@@ -1,10 +1,10 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.LottoFromUser;
-import lotto.model.LottoPurchasingAmount;
-import lotto.model.Lottos;
+import lotto.model.*;
 import lotto.view.OutputView;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class LottoController {
     private final InputController inputController;
@@ -28,20 +28,38 @@ public class LottoController {
     }
 
     public void lottery(LottoPurchasingAmount lottoPurchasingAmount, Lottos lottos, LottoFromUser lottoFromUser) {
-        getProfits(lottos, lottoFromUser);
+        Map<Prize, Integer> prizeCount = getLotteryPrizeCount(lottos, lottoFromUser);
+
+        for (int i = Prize.values().length - 1; i >= 0; i--) {
+            OutputView.showLottoResult(Prize.values()[i].getMessage(), prizeCount.get(Prize.values()[i]));
+        }
     }
 
-    public void getProfits(Lottos lottos, LottoFromUser lottoFromUser) {
+    public Map<Prize, Integer> getLotteryPrizeCount(Lottos lottos, LottoFromUser lottoFromUser) {   //당첨금 등수별 횟수 구하기
+        Map<Prize, Integer> prizeCount = initPrizeCount();
         for (Lotto lotto : lottos.getLottoList()) {
-            int numberMatches = compareLotto(lotto, lottoFromUser);
+            int numberMatchCount = compareLotto(lotto, lottoFromUser);
             boolean bonusCheck = lotto.getLottoNumbers().contains(lottoFromUser.getBonusNumber());
 
-            System.out.println("맞춘 숫자 갯수 : " + numberMatches + " 보너스 숫자 맞춘 여부 : " + bonusCheck);
+            Prize prize = Prize.getPrize(numberMatchCount, bonusCheck);     //당첨금 등수 구하기
+            prizeCount.put(prize, prizeCount.get(prize) + 1);
         }
+
+        return prizeCount;
     }
 
     public int compareLotto(Lotto lotto, LottoFromUser lottoFromUser) {
         return (int) lotto.getLottoNumbers().stream().filter(
                 number -> lottoFromUser.getLotto().getLottoNumbers().contains(number)).count();
+    }
+
+    private Map<Prize, Integer> initPrizeCount() {
+        Map<Prize, Integer> prizeCount = new LinkedHashMap<>();
+
+        for (Prize prize : Prize.values()) {
+            prizeCount.put(prize, 0);
+        }
+
+        return prizeCount;
     }
 }

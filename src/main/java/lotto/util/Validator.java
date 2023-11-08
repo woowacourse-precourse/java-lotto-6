@@ -73,4 +73,9 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateInput(String input) {
+        validateInputNotEmpty(input);
+        validateIsParsableToInt(input);
+    }
 }

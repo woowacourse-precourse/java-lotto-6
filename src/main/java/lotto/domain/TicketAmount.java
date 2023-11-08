@@ -8,6 +8,7 @@ public class TicketAmount {
     private final int amount;
 
     public TicketAmount(String money) {
+        Validator.validateInput(money);
         int purchaseAmount = Integer.parseInt(money);
         validateMoney(purchaseAmount);
         this.amount = purchaseAmount;

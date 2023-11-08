@@ -46,4 +46,12 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
+
+    public boolean isContain(int number){
+        return numbers.contains(number);
+    }
+
+    public int getMatchLottoNumber(LottoWinningNumber lottoWinningNumber){
+        return (int) numbers.stream().filter(lottoWinningNumber::isContain).count();
+    }
 }

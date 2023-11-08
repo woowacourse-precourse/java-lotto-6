@@ -12,14 +12,14 @@ public class LottoWinningNumber {
     private static final int MAX_RANGE = 45;
 
     private final Lotto numbers;
-    private final Integer bonusnumber;
+    private final Integer bonusNumber;
 
     public LottoWinningNumber(List<Integer> numbers, Integer bonusNumber) {
         this.numbers = new Lotto(numbers);
 
         validate(numbers, bonusNumber);
 
-        this.bonusnumber = bonusNumber;
+        this.bonusNumber = bonusNumber;
     }
 
     private void validate(List<Integer> numbers, Integer bonusNumber) {
@@ -40,5 +40,13 @@ public class LottoWinningNumber {
         if(nonDuplicateNumbers.size() != WINNING_LOTTO_SIZE){
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
+    }
+
+    public int getBonusNumber(){
+        return bonusNumber;
+    }
+
+    public static boolean isContain(int number){
+        return LottoWinningNumber.isContain(number);
     }
 }

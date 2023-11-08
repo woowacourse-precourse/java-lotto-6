@@ -25,21 +25,21 @@ public class Input {
         }
     }
 
-    public Lotto winningNumberWithoutBonus() {
+    public Lotto winningLottoWithoutBonus() {
         try {
             List<Integer> winningNumbers = stringConverter.convertToIntegerList(inputView.inputWinningNumbers());
             return makeWinningLotto(winningNumbers);
         } catch (IllegalArgumentException e) {
-            return winningNumberWithoutBonus();
+            return winningLottoWithoutBonus();
         }
     }
 
-    public WinningLotto bonusNumber(Lotto winningLottoWithoutBonus) {
+    public WinningLotto winningLottoWithBonusNumber(Lotto winningLottoWithoutBonus) {
         try {
             int bonusNumber = stringConverter.covertToInteger(inputView.inputBonusNumber());
             return new WinningLotto(winningLottoWithoutBonus, bonusNumber);
         } catch (IllegalArgumentException e) {
-            return bonusNumber(winningLottoWithoutBonus);
+            return winningLottoWithBonusNumber(winningLottoWithoutBonus);
         }
     }
 
@@ -47,7 +47,7 @@ public class Input {
         try {
             return new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
-            return winningNumberWithoutBonus();
+            return winningLottoWithoutBonus();
         }
     }
 

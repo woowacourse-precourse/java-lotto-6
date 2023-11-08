@@ -12,8 +12,8 @@ public class Application {
 
         output.generatedMyLottos();
 
-        Lotto winningLottoWithoutBonusNum = input.winningNumberWithoutBonus();
-        WinningLotto winningLottoWithBonusNum= input.bonusNumber(winningLottoWithoutBonusNum);
+        Lotto winningLottoWithoutBonusNum = input.winningLottoWithoutBonus();
+        WinningLotto winningLottoWithBonusNum = input.winningLottoWithBonusNumber(winningLottoWithoutBonusNum);
 
         output.statisticsAndProfitability(winningLottoWithBonusNum);
     }

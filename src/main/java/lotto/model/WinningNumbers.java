@@ -15,4 +15,8 @@ public class WinningNumbers {
     public static List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
+
+    public static WinningNumbers createForTesting(List<Integer> numbers) {
+        return new WinningNumbers(numbers);
+    }
 }

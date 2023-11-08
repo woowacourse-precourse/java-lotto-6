@@ -4,6 +4,7 @@ import lotto.domain.Calculator;
 import lotto.domain.Controller;
 import lotto.domain.GeneratorLotto;
 import lotto.model.MatchingCounts;
+import lotto.model.WinningNumbers;
 import lotto.validator.Validator;
 import lotto.view.View;
 

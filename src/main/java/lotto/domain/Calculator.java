@@ -9,10 +9,9 @@ public class Calculator {
     public Calculator() {
     }
 
-    public void calculateWinningLottoResults(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers,
-                                             MatchingCounts matchingCounts) {
+    public void calculateWinningLottoResults(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers) {
         for (List<Integer> numbers : lottoNumbers) {
-            countMatchingNumbers(numbers, winningNumbers, matchingCounts);
+            countMatchingNumbers(numbers, winningNumbers);
         }
     }
 
@@ -24,20 +23,19 @@ public class Calculator {
         return count == 5;
     }
 
-    private void handleMatchingCounts(int count, boolean isCount5, MatchingCounts matchingCounts) {
+    private void handleMatchingCounts(int count, boolean isCount5) {
         if (count >= 3 && !isCount5) {
-            matchingCounts.displayWinningInfo(count, 0);
+            MatchingCounts.displayWinningInfo(count, 0);
         }
     }
 
-    private void countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers,
-                                      MatchingCounts matchingCounts) {
+    private void countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int count = countMatches(lottoNumbers, winningNumbers);
         boolean isCount5 = hasReachedCount5(count);
-        handleMatchingCounts(count, isCount5, matchingCounts);
+        handleMatchingCounts(count, isCount5);
 
         if (isCount5) {
-            countBonusNumbers(lottoNumbers, matchingCounts, count);
+            countBonusNumbers(lottoNumbers, count);
         }
     }
 
@@ -53,7 +51,7 @@ public class Calculator {
         return count;
     }
 
-    private void countBonusNumbers(List<Integer> lottoNumbers, MatchingCounts matchingCounts, int count) {
+    private void countBonusNumbers(List<Integer> lottoNumbers, int count) {
         int bonus = 0;
 
         for (int lottoNumber : lottoNumbers) {
@@ -62,10 +60,10 @@ public class Calculator {
             }
         }
 
-        matchingCounts.displayWinningInfo(count, bonus);
+        MatchingCounts.displayWinningInfo(count, bonus);
     }
 
-    public String calculateProfitPercentage(MatchingCounts matchingCounts) {
+    public static String calculateProfitPercentage(MatchingCounts matchingCounts) {
         Prize[] prizes = {
                 Prize.MATCH_3,
                 Prize.MATCH_4,
@@ -79,7 +77,7 @@ public class Calculator {
         return formatProfit(profit);
     }
 
-    private int calculateLineLottoTotal(Prize[] prizes, MatchingCounts matchingCounts) {
+    private static int calculateLineLottoTotal(Prize[] prizes, MatchingCounts matchingCounts) {
         int lineLottoTotal = 0;
 
         for (int i = 0; i < 5; i++) {
@@ -89,12 +87,12 @@ public class Calculator {
         return lineLottoTotal;
     }
 
-    private double calculateProfit(int lineLottoTotal) {
+    private static double calculateProfit(int lineLottoTotal) {
         double purchaseAmount = Purchase.getPurchaseAmount();
         return (double) lineLottoTotal / purchaseAmount * 100;
     }
 
-    private String formatProfit(double profit) {
+    private static String formatProfit(double profit) {
         return String.format("%.1f", profit);
     }
 }

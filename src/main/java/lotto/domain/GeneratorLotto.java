@@ -11,21 +11,21 @@ public class GeneratorLotto {
     public GeneratorLotto() {
     }
 
-    public List<Integer> generateLottoNumbers() {
+    public static List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    public List<Lotto> generateLottoTickets(int purchaseAmount) {
+    public static List<Lotto> generateLottoTickets(int purchaseCount) {
         List<Lotto> lottoNumbers = new ArrayList<>();
 
-        for (int i = 0; i < purchaseAmount; i++) {
+        for (int i = 0; i < purchaseCount; i++) {
             lottoNumbers.add(generateRandomSortedLotto());
         }
 
         return lottoNumbers;
     }
 
-    private Lotto generateRandomSortedLotto() {
+    private static Lotto generateRandomSortedLotto() {
         List<Integer> numbers = new ArrayList<>(generateLottoNumbers());
         Collections.sort(numbers);
         return new Lotto(numbers);

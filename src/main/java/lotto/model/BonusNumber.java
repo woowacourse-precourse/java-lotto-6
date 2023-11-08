@@ -14,23 +14,23 @@ public class BonusNumber {
         return bonusNumber;
     }
 
-    private void validate(int bonusNumber) {
+    public static void validate(int bonusNumber) {
         if (!isBonusNumbersValid(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private boolean isBonusNumbersValid(int bonusNumber) {
+    private static boolean isBonusNumbersValid(int bonusNumber) {
         boolean duplicatesValid = isBonusNumberInWinningNumbers(bonusNumber);
         boolean boundsValid = checkInputBounds(bonusNumber);
         return duplicatesValid && boundsValid;
     }
 
-    private boolean isBonusNumberInWinningNumbers(int bonusNumber) {
+    private static boolean isBonusNumberInWinningNumbers(int bonusNumber) {
         return !containsNumber(WinningNumbers.getWinningNumbers(), bonusNumber);
     }
 
-    private boolean containsNumber(List<Integer> numbers, int target) {
+    private static boolean containsNumber(List<Integer> numbers, int target) {
         for (int number : numbers) {
             if (number == target) {
                 return true;
@@ -39,7 +39,7 @@ public class BonusNumber {
         return false;
     }
 
-    private boolean checkInputBounds(int bonusNumber) {
+    private static boolean checkInputBounds(int bonusNumber) {
         return 1 <= bonusNumber && bonusNumber <= 45;
     }
 }

@@ -27,11 +27,11 @@ public class Controller {
     }
 
     public void lotto_Logic() {
-        int purchaseAmount = processPurchaseAmount();
+        int purchaseCount = processPurchaseAmount();
         System.out.println();
-        view.displayPurchaseQuantityMessage(purchaseAmount);
+        view.displayPurchaseQuantityMessage(purchaseCount);
 
-        List<List<Integer>> lottoNumbers = generateLottoNumbersForPurchase(purchaseAmount);
+        List<List<Integer>> lottoNumbers = generateLottoNumbersForPurchase(purchaseCount);
         view.displayLottoNumbers(lottoNumbers);
 
         List<Integer> winningNumbers = processAndValidateWinningNumbers();
@@ -62,7 +62,7 @@ public class Controller {
 
     private List<List<Integer>> generateLottoNumbersForPurchase(int purchaseAmount) {
 
-        List<Lotto> generatedLotto  = generatorLotto.generateLottoTickets(purchaseAmount);
+        List<Lotto> generatedLotto  = GeneratorLotto.generateLottoTickets(purchaseAmount);
         return generatorLotto.generateLottoNumbersList(generatedLotto);
     }
 
@@ -73,7 +73,7 @@ public class Controller {
     }
 
     private void calculateWinningResults(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers) {
-        calculator.calculateWinningLottoResults(lottoNumbers, winningNumbers, matchingCounts);
+        calculator.calculateWinningLottoResults(lottoNumbers, winningNumbers);
     }
 
     public void processInputAndValidateData(String dataType, Validator validator) {

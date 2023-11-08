@@ -14,5 +14,6 @@ public class Application {
         lottoManager.insertBonusNumber();
         lottoManager.loopJudgeLottoCandidateSetsResult();
         lottoManager.showResult();
+        lottoManager.showReturnRate();
     }
 }

@@ -16,14 +16,14 @@ public class LottoManager {
     List<Integer> winLottoMoney;
     Lotto winLotto;
     public void insertMoney() {
-        int money=0;
+        String money;
 
         System.out.println("구입금액을 입력해 주세요.");
-        money=Integer.parseInt(Console.readLine());
+        money=Console.readLine();
         insertMoneyErrorHandling(money);
     }
 
-    public void insertMoneyErrorHandling(int money) {
+    public void insertMoneyErrorHandling(String money) {
         try {
             checkMoney(money);
         } catch (IllegalArgumentException e) {
@@ -33,11 +33,18 @@ public class LottoManager {
         }
     }
 
-    private void checkMoney(int money) {
-        if (money % 1000 != 0) {
+    private void checkMoney(String money) {
+        int tempMoney=0;
+
+        for(int i=0; i<money.length(); i++){
+            if(money.charAt(i)-'0'<0 || money.charAt(i)-'9'>0)
+                throw new IllegalArgumentException("금액에 문자가 포함되면 안됩니다.");
+        }
+        tempMoney=Integer.parseInt(money);
+        if (tempMoney % 1000 != 0) {
             throw new IllegalArgumentException("금액은 1000단위로 입력해주세요.");
         }
-        buyMoney=money;
+        buyMoney=tempMoney;
     }
 
     public void buyLottoAmount(){
@@ -191,5 +198,26 @@ public class LottoManager {
         System.out.println("5개 일치 (1,500,000원) - "+winLottoCount.get(2)+"개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+winLottoCount.get(1)+"개");
         System.out.println("6개 일치 (2,000,000,000원) - "+winLottoCount.get(0)+"개");
+    }
+
+    public void showReturnRate(){
+        int profit=0;
+        float returnRate=0.0f;
+
+        profit=sumWinMoney(winLottoCount, winLottoMoney);
+        System.out.println();
+        returnRate=(float)profit/buyMoney*100;
+        System.out.print("총 수익률은 ");
+        System.out.printf("%.1f", returnRate);
+        System.out.println("%입니다.");
+    }
+
+    private int sumWinMoney(List<Integer> winLottoCount, List<Integer> winLottoMoney){
+        int sum=0;
+
+        for(int i=0; i<winLottoCount.size(); i++){
+            sum+=winLottoCount.get(i)*winLottoMoney.get(i);
+        }
+        return sum;
     }
 }

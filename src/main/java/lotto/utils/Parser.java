@@ -13,7 +13,8 @@ public class Parser {
 
     private void checkEmpty(String input) throws IllegalArgumentException {
         if(input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 빈 값입니다.");
+            System.out.println("[ERROR] 입력값이 빈 값입니다.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -21,13 +22,14 @@ public class Parser {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR]");
+            System.out.println("[ERROR] 입력값은 숫자여야합니다.");
         }
     }
 
     private void checkThousand(int number) throws IllegalArgumentException {
         if((number % 1000) != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 입력 금액은 1000원 단위여야 합니다.");
+            System.out.println("[ERROR] 로또 입력 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -64,13 +66,15 @@ public class Parser {
 
     private void checkRange(String input) throws IllegalArgumentException {
         if(Integer.valueOf(input) < 1 || Integer.valueOf(input) > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 숫자는 1이상 45이하여야 합니다.");
+            System.out.println("[ERROR] 로또 숫자는 1이상 45이하여야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
     private void checkDuplicate(int num, List<Integer> numList) throws IllegalArgumentException {
         if(numList.contains(num)) {
-            throw new IllegalArgumentException("[ERROR] 로또 입력 값은 중복 되지 않아야 합니다.");
+            System.out.println("[ERROR] 로또 입력 값은 중복 되지 않아야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 

@@ -18,11 +18,19 @@ public class LottoController {
     }
 
     public void setLottoCount() {
-        lottoService.setLottoCount();
+        try{
+            lottoService.setLottoCount();
+        } catch(IllegalArgumentException e) {
+            setLottoCount();
+        }
     }
 
     public void setUserLotto() {
-        lottoService.setUserLotto();
+        try{
+            lottoService.setUserLotto();
+        } catch(IllegalArgumentException e) {
+            setUserLotto();
+        }
     }
 
     public void getUserLotto() {
@@ -30,11 +38,19 @@ public class LottoController {
     }
 
     public void setWinningLotto() {
-        lottoService.setWinningLotto();
+        try{
+            lottoService.setWinningLotto();
+        } catch(IllegalArgumentException e) {
+            setWinningLotto();
+        }
     }
 
     public void setBonusNum() {
-        lottoService.setBonusNum();
+        try{
+            lottoService.setBonusNum();
+        } catch(IllegalArgumentException e) {
+            setBonusNum();
+        }
     }
 
     public void getRank() {

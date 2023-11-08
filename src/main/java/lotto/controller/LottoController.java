@@ -101,7 +101,6 @@ public class LottoController {
         lottoOutput.printPrizeStatistics(prizeCountMap);
 
         long totalPrizeMoney = prizeCalculator.getTotalPrizeMoney();
-        int cost = purchasedTickets.size() * LottoTicket.PRICE_PER_TICKET;
         BigDecimal earningsRate = LottoEarningCalculator.calculateEarningsRate(totalPrizeMoney, numberOfTickets, lottoPrice);
 
         lottoOutput.printEarningsRate(earningsRate.doubleValue());

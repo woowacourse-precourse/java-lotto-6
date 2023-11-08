@@ -3,7 +3,9 @@ package lotto.model;
 import static lotto.view.View.printMessage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import lotto.constant.LottoConstant;
 
 public class Customer {
     private List<Lotto> lottos;
@@ -13,16 +15,25 @@ public class Customer {
         this.budget = budget;
     }
     public int getLottoCount() {
-        return budget.getMoney() / 1000;
+        return budget.getMoney() / LottoConstant.LOTTO_PRICE.getValue();
     }
-    public void purchaseLotto() {
-        for (int i = 0; i < getLottoCount(); i++) {
+    public List<Lotto> purchaseLotto() {
+        List<Lotto> lottos = new ArrayList<>();
+        int lottoCount = getLottoCount();
+
+        for (int i = 0; i < lottoCount; i++) {
             LottoNumber numbers = new LottoNumber();
             lottos.add(new Lotto(numbers.getLottoNumbers()));
         }
-    }
-    public List<Lotto> getLottos() {
+
         return lottos;
+    }
+    public void setLottos(List<Lotto> lottos) {
+        this.lottos.addAll(lottos);
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(this.lottos);
     }
     public void showLottos(){
         this.getLottos()

@@ -14,7 +14,7 @@ public class OutputView {
     private static final String MESSAGE_FORMAT_RANK_3 = "5개 일치 (%,d원) - %d개%n";
     private static final String MESSAGE_FORMAT_RANK_2 = "5개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
     private static final String MESSAGE_FORMAT_RANK_1 = "6개 일치 (%,d원) - %d개%n";
-    private static final String MESSAGE_FORMAT_GROSS_PROFIT_RATE = "총 수익률은 %,.1F%%입니다.%n";
+    private static final String MESSAGE_FORMAT_GROSS_PROFIT_RATE = "총 수익률은 %,.1f%%입니다.%n";
 
     public void writePurchaseDetails(List<Lotto> lottery) {
         System.out.println(lottery.size() + MESSAGE_PURCHASE_COMPLETED);
@@ -40,7 +40,7 @@ public class OutputView {
         resultMessage.put(LottoRank.RANK_1, MESSAGE_FORMAT_RANK_1);
 
         for (Map.Entry<LottoRank, String> entry : resultMessage.entrySet()) {
-            LottoRank rank =  entry.getKey();
+            LottoRank rank = entry.getKey();
             String message = entry.getValue();
             int count = rankResult.getOrDefault(rank, 0);
             System.out.printf(message, rank.getPrize(), count);

@@ -6,8 +6,6 @@ import static lotto.Constraints.MIN_NUMBER;
 import static lotto.Constraints.SIZE;
 
 public enum ErrorMessage {
-    NULL_INPUT_MESSAGE("[ERROR] null은 입력하실 수 없습니다."),
-    BLANK_INPUT_MESSAGE("[ERROR] 빈 값은 입력하실 수 없습니다."),
     NOT_INTEGER_INPUT_MESSAGE("[ERROR] 정수를 입력해 주세요."),
     NOT_DIVISIBLE_INTEGER_INPUT_MESSAGE("[ERROR] " + LOTTO_PRICE.getValue() + "단위로 입력해 주세요."),
     NOT_POSITIVE_INTEGER_INPUT_MESSAGE("[ERROR] 양의 정수를 입력해 주세요."),

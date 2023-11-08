@@ -3,11 +3,9 @@ package lotto.model;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.stream.Stream;
-import lotto.model.exceptions.BlankInputException;
 import lotto.model.exceptions.NotDivisibleIntegerException;
 import lotto.model.exceptions.NotIntegerException;
 import lotto.model.exceptions.NotPositiveIntegerException;
-import lotto.model.exceptions.NullInputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -25,11 +23,11 @@ public class AmountTest {
     private static Stream<Arguments> invalidParameter() {
         return Stream.of(
                 // null 예외
-                Arguments.of("Null 예외 발생", null, NullInputException.class),
+                Arguments.of("Null 예외 발생", null, NotIntegerException.class),
 
                 // 빈값 + 공백 예외
-                Arguments.of("빈값 예외 발생", "", BlankInputException.class),
-                Arguments.of("공백 예외 발생", " ", BlankInputException.class),
+                Arguments.of("빈값 예외 발생", "", NotIntegerException.class),
+                Arguments.of("공백 예외 발생", " ", NotIntegerException.class),
 
                 // 정수 아닐 경우 예외
                 Arguments.of("문자열 예외 발생", "hot", NotIntegerException.class),

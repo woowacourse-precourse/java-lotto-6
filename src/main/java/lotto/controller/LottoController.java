@@ -14,8 +14,13 @@ import org.mockito.internal.matchers.GreaterThan;
 
 public class LottoController {
     private final int lottoPrice = 1000;
-    private int purchaseQuantity;
+    private static final String ERROR_INPUT_NUMBER = "[ERROR]숫자를 입력해 주세요.";
+    private static final String ERROR_INPUT_UNIT_1000 = "[ERROR]금액은 1,000원 단위로 입력해 주세요.";
+    private static final String ERROR_INPUT_6_NUMBER = "[ERROR]당첨 번호는 6개의 숫자를 입력해주세요.";
+    private static final String ERROR_INPUT_BONUS_NUMBER_RANGE = "[ERROR]보너스 번호는 1~45 사이의 숫자 하나만 입력해 주세요.";
+    private static final String ERROR_INPUT_WINNING_NUMBER_RANGE = "[ERROR]당첨 번호는 1~45 사이의 숫자를 , 구분자를 사용해서 입력해주세요.";
 
+    private int purchaseQuantity;
     private int purchaseMoney;
     private boolean checkInitPurchaseQuantity = true;
     private boolean checkInitWinningNumber = true;
@@ -137,31 +142,30 @@ public class LottoController {
         Matcher matcher = pattern.matcher(input);
         if (!matcher.find()) {
             checkInitPurchaseQuantity = true;
-            throw new IllegalArgumentException("[ERROR]숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_INPUT_NUMBER);
         }
     }
 
     public void validatePurchaseQuantity(int money) {
         if (money == 0 || money % 1000 != 0) {
             checkInitPurchaseQuantity = true;
-            throw new IllegalArgumentException("[ERROR]금액은 1,000원 단위로 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_INPUT_UNIT_1000);
         }
     }
 
     public void validateWinningNumberLength(int size) {
         if (size != 6) {
-            throw new IllegalArgumentException("[ERROR]당첨 번호는 6개의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(ERROR_INPUT_6_NUMBER);
         }
 
     }
-
 
     public void validateBonusNumber(String number) {
         String regex = "^(?:[1-9]|[1-3][0-9]|4[0-5])$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(number);
         if (!matcher.find()) {
-            throw new IllegalArgumentException("[ERROR]보너스 번호는 1~45 사이의 숫자 하나만 입력해 주세요.");
+            throw new IllegalArgumentException(ERROR_INPUT_BONUS_NUMBER_RANGE);
         }
     }
 
@@ -170,7 +174,7 @@ public class LottoController {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(number);
         if (!matcher.find()) {
-            throw new IllegalArgumentException("[ERROR]당첨 번호는 1~45 사이의 숫자를 , 구분자를 사용해서 입력해주세요.");
+            throw new IllegalArgumentException(ERROR_INPUT_WINNING_NUMBER_RANGE);
         }
     }
 

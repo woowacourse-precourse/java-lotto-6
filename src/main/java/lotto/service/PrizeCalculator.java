@@ -19,7 +19,7 @@ public class PrizeCalculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Map.Entry<Integer, Boolean>> caculate() {
+    public List<Map.Entry<Integer, Boolean>> caculatePrize() {
         Iterator iterator = lottos.createIterator();
         List<Map.Entry<Integer, Boolean>> results = new ArrayList<>();
         while (iterator.hasNext()) {

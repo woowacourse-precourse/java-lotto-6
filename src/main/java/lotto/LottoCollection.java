@@ -17,7 +17,7 @@ public class LottoCollection {
     private final Map<Integer, Integer> rankMapping = new HashMap<>();
 
     public LottoCollection(int purchaseAmount) {
-        this.numberOfLotto = purchaseAmount / 1000;
+        this.numberOfLotto = purchaseAmount / LOTTO_PRICE;
         this.lottoCollection = new ArrayList<>();
         setRankMapping();
         generateLottoNumbers(numberOfLotto);
@@ -25,7 +25,7 @@ public class LottoCollection {
 
     private void generateLottoNumbers(int numberOfLotto) {
         for (int i = 0; i < numberOfLotto; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_COUNT));
             lottoCollection.add(lotto);
         }
     }
@@ -67,7 +67,7 @@ public class LottoCollection {
     public void printWinningStatistics() {
         System.out.println(WINNING_STATISTICS_MESSAGE);
         System.out.println(DASHES);
-        for (int i = 5; i > 0; i--){
+        for (int i = LOTTO_RANK_COUNT; i > 0; i--){
             LottoRank rank = getLottoRankByNumber(i);
             int count = rankingCount.getOrDefault(i, 0);
             System.out.println(rank.getRankMessage() + DASH + count + COUNT_MESSAGE);
@@ -81,7 +81,7 @@ public class LottoCollection {
 
     private double getProfitRate() {
         double totalPrize = 0.0;
-        for (int i = 5; i > 0; i--){
+        for (int i = LOTTO_RANK_COUNT; i > 0; i--){
             int count = rankingCount.getOrDefault(i, 0);
             if (count == 0) {
                 continue;
@@ -91,7 +91,7 @@ public class LottoCollection {
             totalPrize = totalPrize + (prize * count);
         }
 
-        return totalPrize / (double) (numberOfLotto * 1000) * 100;
+        return totalPrize / (double) (numberOfLotto * LOTTO_PRICE) * 100;
     }
 
     private LottoRank getLottoRankByNumber(int number) {

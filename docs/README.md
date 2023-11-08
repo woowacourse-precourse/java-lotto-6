@@ -31,7 +31,7 @@
 #### <util>
 1. ErrorMessage - 에러 메시지를 관리하는 Enum 클래스
 2. LottoRules - 로또의 모든 룰을 관리하는 Enum 클래스
-3. MapMaker - 당첨 여부를 확인할 때 사용할 Map 객체를 생성한다
+3. MapMaker - 당첨 여부를 확인할 때 사용할 Map 객체를 생성하는 기능
 
 #### <vaildator>
 1. WinningNumbersVailator - 당첨 번호 유효성 체크를 위한 매서들을 관리한다

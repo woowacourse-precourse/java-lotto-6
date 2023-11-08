@@ -41,7 +41,7 @@ public class LottoController {
         while (true) {
             try {
                 outputView.printPurchaseAmountMessage();
-                return new Money(inputView.inputNumber());
+                return new Money(inputView.inputMoney());
             } catch (final IllegalArgumentException illegalArgumentException) {
                 outputView.printExceptionMessage(illegalArgumentException);
             }

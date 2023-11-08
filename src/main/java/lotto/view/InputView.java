@@ -10,6 +10,10 @@ public class InputView {
         return Utils.convertStringToInt(Console.readLine());
     }
 
+    public long inputMoney() {
+        return Utils.convertStringToLong(Console.readLine());
+    }
+
     public List<Integer> inputWinningNumbers() {
         return Utils.convertStringToIntegerList(Console.readLine());
     }

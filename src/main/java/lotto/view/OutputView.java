@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import lotto.model.LottoTicket;
 import lotto.model.Rank;
@@ -25,7 +26,8 @@ public class OutputView {
     }
 
     public void printLottoTicket(final LottoTicket lottoTicket) {
-        System.out.println(lottoTicket);
+        lottoTicket.getLottos()
+                .forEach(System.out::println);
     }
 
     public void printWinningNumbersMessage() {
@@ -55,7 +57,7 @@ public class OutputView {
         System.out.println(exception.getMessage());
     }
 
-    public void printProfitRate(final double profitRate) {
+    public void printProfitRate(final BigDecimal profitRate) {
         System.out.printf(PROFIT_RATE_MESSAGE, profitRate);
     }
 

@@ -1,38 +1,48 @@
 package lotto.model;
 
+import java.math.BigDecimal;
+
 public class Money {
 
     private static final String MONEY_UNIT_EXCEPTION_MESSAGE = "[ERROR] 입력 금액은 1000원 단위여야 합니다.";
-    private static final String NEGATIVE_AMOUNT_EXCEPTION_MESSAGE = "[ERROR] 입력 금액은 0 또는 음수이면 안 됩니다.";
+    private static final String NEGATIVE_AMOUNT_EXCEPTION_MESSAGE = "[ERROR] 입력 금액은 음수이면 안 됩니다.";
 
-    private final int money;
+    private final long money;
 
-    public Money(final int money) {
+    public Money(final long money) {
         validateMultipleOfThousand(money);
-        validateNonPositiveAmount(money);
+        validateNonNegativeAmount(money);
         this.money = money;
     }
 
     public int getNumberOfLotto() {
-        return money / LottoConstants.LOTTO_PRICE_UNIT;
+        return (int) (money / LottoConstants.LOTTO_PRICE_UNIT);
     }
 
-    public int getMoney() {
+    public Money multiply(final int winningCount) {
+        return new Money(money * winningCount);
+    }
+
+    public BigDecimal divide(final Money another) {
+        return BigDecimal.valueOf(money).divide(BigDecimal.valueOf(another.getMoney()));
+    }
+
+    public long getMoney() {
         return money;
     }
 
-    private void validateMultipleOfThousand(final int money) {
+    private void validateMultipleOfThousand(final long money) {
         if (isNotMultipleOfUnit(money)) {
             throw new IllegalArgumentException(MONEY_UNIT_EXCEPTION_MESSAGE);
         }
     }
 
-    private boolean isNotMultipleOfUnit(final int money) {
-        return money % LottoConstants.LOTTO_PRICE_UNIT != 0;
+    private boolean isNotMultipleOfUnit(final long money) {
+        return money % LottoConstants.LOTTO_PRICE_UNIT != 0L;
     }
 
-    private void validateNonPositiveAmount(final int money) {
-        if (money <= 0) {
+    private void validateNonNegativeAmount(final long money) {
+        if (money < 0L) {
             throw new IllegalArgumentException(NEGATIVE_AMOUNT_EXCEPTION_MESSAGE);
         }
     }

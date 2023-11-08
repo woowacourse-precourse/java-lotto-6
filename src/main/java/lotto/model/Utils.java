@@ -7,6 +7,7 @@ public final class Utils {
 
     private static final String INVALID_PURCHASE_AMOUNT_EXCEPTION_MESSAGE = "[ERROR] 구입 금액은 숫자만 입력하실 수 있습니다.";
     private static final String WINNING_NUMBER_SEPARATOR = ",";
+    private static final String INVALID_BONUS_NUMBER_EXCEPTION_MESSAGE = "보너스 번호는 숫자만 입력할 수 있습니다.";
 
     private Utils() {
     }
@@ -15,7 +16,7 @@ public final class Utils {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException numberFormatException) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(INVALID_BONUS_NUMBER_EXCEPTION_MESSAGE);
         }
     }
 
@@ -23,6 +24,14 @@ public final class Utils {
         return splitWinningNumbers(string).stream()
                 .map(inputNumber -> convertStringToInt(inputNumber))
                 .toList();
+    }
+
+    public static long convertStringToLong(final String string) {
+        try {
+            return Long.parseLong(string);
+        } catch (NumberFormatException numberFormatException) {
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_EXCEPTION_MESSAGE);
+        }
     }
 
     private static List<String> splitWinningNumbers(final String winningNumbers) {

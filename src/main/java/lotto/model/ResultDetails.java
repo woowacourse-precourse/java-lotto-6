@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class ResultDetails {
 
-    private static final int PERCENTAGE_FACTOR = 100;
+    private static final long PERCENTAGE_FACTOR = 100L;
 
     private final Map<Rank, Integer> resultDetails = new HashMap<>();
 
@@ -24,8 +25,9 @@ public class ResultDetails {
                 .forEach((rank, count) -> resultDetails.put(rank, count.intValue()));
     }
 
-    public double calculateProfitRate(final Money purchaseAmount) {
-        return (double) calculateTotalPrize() / purchaseAmount.getMoney() * PERCENTAGE_FACTOR;
+    public BigDecimal calculateProfitRate(final Money purchaseAmount) {
+        final BigDecimal returnRate = calculateTotalPrize().divide(purchaseAmount);
+        return returnRate.multiply(BigDecimal.valueOf(PERCENTAGE_FACTOR));
     }
 
     public int getWinnerCountByRank(final Rank rank) {
@@ -37,9 +39,14 @@ public class ResultDetails {
                 .forEach(rank -> resultDetails.put(rank, 0));
     }
 
-    private int calculateTotalPrize() {
-        return Arrays.stream(Rank.values())
-                .mapToInt(rank -> rank.getPrize() * getWinnerCountByRank(rank))
+    private Money calculateTotalPrize() {
+//        return Arrays.stream(Rank.values())
+//                .mapToInt(rank -> rank.getPrize() * getWinnerCountByRank(rank))
+//                .sum();
+        long sum = Arrays.stream(Rank.values())
+                .map(rank -> rank.multiply(getWinnerCountByRank(rank)))
+                .mapToLong(Money::getMoney)
                 .sum();
+        return new Money(sum);
     }
 }

@@ -5,10 +5,14 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class LottoTicket {
-    
+
+    private static final int MINIMUM = 1;
+    private static final String LOTTO_COUNT_EXCEPTION_MESSAGE = "[ERROR] 로또의 개수는 1개 이상이어야 합니다.";
+
     private final List<Lotto> lottos;
 
     private LottoTicket(final List<Lotto> lottos) {
+        validateLottosNumber(lottos);
         this.lottos = lottos;
     }
 
@@ -24,8 +28,9 @@ public class LottoTicket {
         return Collections.unmodifiableList(lottos);
     }
 
-    @Override
-    public String toString() {
-        return lottos.toString();
+    private void validateLottosNumber(List<Lotto> lottos) {
+        if (lottos.size() < MINIMUM) {
+            throw new IllegalArgumentException(LOTTO_COUNT_EXCEPTION_MESSAGE);
+        }
     }
 }

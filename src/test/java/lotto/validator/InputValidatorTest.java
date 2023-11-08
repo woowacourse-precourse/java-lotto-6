@@ -3,6 +3,10 @@ package lotto.validator;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
+import lotto.message.ErrorMessage;
 import org.junit.jupiter.api.Test;
 
 public class InputValidatorTest {
@@ -43,69 +47,72 @@ public class InputValidatorTest {
     @Test
     void validateWinningNumber() {
         String winningNumberInput = "1,2,3,4,5,6";
-        String bonusNumberInput = "7";
 
-        assertThatCode(() -> inputValidator.validateWinningNumber(winningNumberInput, bonusNumberInput))
+        assertThatCode(() -> inputValidator.validateWinningNumber(winningNumberInput))
             .doesNotThrowAnyException();
     }
 
     @Test
     void notCorrectLength() {
         String winningNumberInput = "1,2,3,4";
-        String bonusNumberInput = "8";
 
-        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput, bonusNumberInput))
+        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("6개의 숫자가 아닙니다");
+            .hasMessageContaining(ErrorMessage.PREFIX.getErrorMessage() +
+                ErrorMessage.NOT_LENGTH_SIX.getErrorMessage());
     }
 
     @Test
     void winningNumberDuplicate() {
         String winningNumberInput = "1,2,3,4,5,5";
-        String bonusNumberInput = "8";
 
-        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput, bonusNumberInput))
+        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("중복 숫자가 존재합니다.");
+            .hasMessageContaining(ErrorMessage.PREFIX.getErrorMessage() +
+                ErrorMessage.HAS_DUPLICATED_NUMBER.getErrorMessage());
     }
 
     @Test
     void winningNumberDuplicateByBonusNumber() {
         String winningNumberInput = "1,2,3,4,5,6";
-        String bonusNumberInput = "6";
+        Set<Integer> winningNumber = Arrays.stream(winningNumberInput.split(","))
+                                            .map(Integer::parseInt)
+                                            .collect(Collectors.toSet());
+        int bonusNumber = 6;
 
-        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput, bonusNumberInput))
+        assertThatThrownBy(() -> inputValidator.validateBonusNumberNotDuplicate(winningNumber, bonusNumber))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("당첨 번호와 보너스 번호가 중복입니다.");
+            .hasMessageContaining(ErrorMessage.PREFIX.getErrorMessage() +
+                ErrorMessage.HAS_DUPLICATED_WINNING_NUMBER_WITH_BONUS_NUMBER.getErrorMessage());
     }
 
     @Test
     void winningNumberOutOfUpperRange() {
         String winningNumberInput = "1,2,3,4,5,66";
-        String bonusNumberInput = "6";
 
-        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput, bonusNumberInput))
+        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("번호가 범위를 벗어났습니다.");
+            .hasMessageContaining(ErrorMessage.PREFIX.getErrorMessage() +
+                ErrorMessage.OUT_OF_RANGE.getErrorMessage());
     }
 
     @Test
     void winningNumberOutOfLowerRange() {
         String winningNumberInput = "-1,2,3,4,5,6";
-        String bonusNumberInput = "6";
 
-        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput, bonusNumberInput))
+        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("번호가 범위를 벗어났습니다.");
+            .hasMessageContaining(ErrorMessage.PREFIX.getErrorMessage() +
+                ErrorMessage.OUT_OF_RANGE.getErrorMessage());
     }
 
     @Test
     void bonusNumberOutOfRange() {
-        String winningNumberInput = "1,2,3,4,5,6";
         String bonusNumberInput = "66";
 
-        assertThatThrownBy(() -> inputValidator.validateWinningNumber(winningNumberInput, bonusNumberInput))
+        assertThatThrownBy(() -> inputValidator.validateBonusNumber(bonusNumberInput))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessageContaining("번호가 범위를 벗어났습니다.");
+            .hasMessageContaining(ErrorMessage.PREFIX.getErrorMessage() +
+                ErrorMessage.OUT_OF_RANGE.getErrorMessage());
     }
 }

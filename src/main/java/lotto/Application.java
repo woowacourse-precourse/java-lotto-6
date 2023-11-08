@@ -11,6 +11,8 @@ public class Application {
     private static final int LOTTO_NUMBERS = 6;
     public static void main(String[] args) {
         // TODO: 프로그램 구현
+        int[] prizeLevels = new int[]{0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000}; // Define prize levels
+
         int purchaseAmount = getPurchaseAmount();
         int numberOfLottos = purchaseAmount / LOTTO_PRICE;
         List<Lotto> lottos = generateLottos(numberOfLottos);
@@ -19,11 +21,11 @@ public class Application {
         int bonusBall = getBonusBall();
 
         int[] matchCounts = countMatches(lottos, winningLotto, bonusBall);
-        int prizeMoney = calculatePrizeMoney(matchCounts);
+        int prizeMoney = calculatePrizeMoney(matchCounts, prizeLevels);
         double profitRate = (double) prizeMoney / purchaseAmount;
 
         printLottos(lottos);
-        printResult(matchCounts, profitRate);
+        printResult(matchCounts, profitRate, prizeLevels);
     }
     private static int getPurchaseAmount() {
         int purchaseAmount;
@@ -75,11 +77,19 @@ public class Application {
 
 
     private static int[] countMatches(List<Lotto> lottos, Lotto winningLotto, int bonusBall) {
-        int[] matchCounts = new int[6];
+        int[] matchCounts = new int[7];
         for (Lotto lotto : lottos) {
             int matchCount = countMatchNumbers(lotto, winningLotto);
             boolean hasBonusBall = lotto.getNumbers().contains(bonusBall);
-            matchCounts[matchCount] += hasBonusBall ? 0 : 1;
+
+            if (matchCount == 6) {
+                matchCounts[6]++;
+            } else {
+                int index = matchCount + (hasBonusBall ? 6 : 0);
+                if (index >= 0 && index < matchCounts.length) {
+                    matchCounts[index]++;
+                }
+            }
         }
         return matchCounts;
     }
@@ -89,33 +99,29 @@ public class Application {
                 .filter(winningLotto.getNumbers()::contains)
                 .count();
     }
-    private static int calculatePrizeMoney(int[] matchCounts) {
+    private static int calculatePrizeMoney(int[] matchCounts, int[] prizeLevels) {
         int prizeMoney = 0;
-        for (int i = 0; i < 6; i++) {
-            int matchCount = matchCounts[i];
-            if (i == 5) {
-                prizeMoney += matchCount * 30_000_000;
-            } else if (i == 6) {
-                prizeMoney += matchCount * 2_000_000_000;
-            } else {
-                prizeMoney += matchCount * (6 - i) * 1_000;
-            }
+        for (int i = 3; i < matchCounts.length; i++) {
+            prizeMoney += matchCounts[i] * prizeLevels[i];
         }
         return prizeMoney;
     }
 
-    private static void printResult(int[] matchCounts, double profitRate) {
+    private static void printResult(int[] matchCounts, double profitRate, int[] prizeLevels) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---------");
-        for (int i = 3; i < 6; i++) {
+        for (int i = 0; i < 7; i++) { // Updated loop from 0 to 6
             int matchCount = matchCounts[i];
-            int prizeMoney = i == 5 ? 30_000_000 : i == 6 ? 2_000_000_000 : (6 - i) * 1_000;
-            System.out.println(i + "개 일치 (" + prizeMoney + "원) - " + matchCount + "개");
+            int prizeLevel = getPrizeLevel(i); // Helper method to get the correct prize level
+            System.out.println(i + "개 일치 (" + prizeLevel + "원) - " + matchCount + "개");
         }
         System.out.println();
         System.out.println("총 수익률은 " + profitRate + "입니다.");
     }
 
-
+    private static int getPrizeLevel(int index) {
+        int[] prizeLevels = new int[]{0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000};
+        return prizeLevels[index];
+    }
 }

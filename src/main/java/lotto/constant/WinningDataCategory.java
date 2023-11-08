@@ -10,7 +10,6 @@ public enum WinningDataCategory {
     private final int position;
     private final int prize;
 
-
     WinningDataCategory(final int position, final int prize) {
         this.position = position;
         this.prize = prize;

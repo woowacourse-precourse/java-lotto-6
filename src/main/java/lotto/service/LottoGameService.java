@@ -5,12 +5,14 @@ import lotto.constant.WinningDataCategory;
 import lotto.model.Buyer;
 import lotto.model.Lotto;
 import lotto.model.LottoDecision;
+import lotto.validation.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
 public class LottoGameService {
+    private static final String ERROR_CODE_CATEGORY_FOR_WINNING_NUMBER = "당첨 번호";
     private static final int LOTTO_PRICE = 1000;
     private static final int BONUS_NUMBER_POSITION = 6;
     private static final int WINNING_DATA_LENGTH = 6;
@@ -50,7 +52,8 @@ public class LottoGameService {
     private ArrayList<Integer> makeFinalWinningNumber(List<String> defaultWinningNumbers, int bonusWinningNumber) {
         ArrayList<Integer> finalWinningNumber = new ArrayList<>();
         for (String number : defaultWinningNumbers) {
-            finalWinningNumber.add(Integer.parseInt(number));
+            int validatedNumeric = Validator.validateNumeric(number, ERROR_CODE_CATEGORY_FOR_WINNING_NUMBER);
+            finalWinningNumber.add(validatedNumeric);
         }
         finalWinningNumber.add(bonusWinningNumber);
         return finalWinningNumber;

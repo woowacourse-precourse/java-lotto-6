@@ -68,7 +68,7 @@
 - [x] ModelAndViewConverter 싱글톤 구현하기 - ModelAndViewConverter
 - [x] 랜덤 숫자로 로또 생성하기 - RandomLottoGenerator
 - [x] LottoResult 를 하나씩 제공하는 기능 구현하기 - LottoResultProvider
-- [ ] 출력할 LottoResult 의 결과를 저장해 전달하기 - LottoResultData
+- [x] 출력할 LottoResult 의 결과를 저장해 전달하기 - LottoResultData
 
 # View
 - [x] 로또 구입 금액 입력 - InputView

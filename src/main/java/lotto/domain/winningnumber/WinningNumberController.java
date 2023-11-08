@@ -10,13 +10,30 @@ public class WinningNumberController {
     public View view;
 
     public WinningNumberController() {
+        String numbers;
+        String bonusNumber;
+
         view = new View();
         view.askWinningNumbers();
-        String numbers = Console.readLine();
+        while (true) {
+            try {
+                numbers = Console.readLine();
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
         view.breakLine();
 
         view.askBonusNumber();
-        String bonusNumber = Console.readLine();
+        while (true) {
+            try {
+                bonusNumber = Console.readLine();
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
         view.breakLine();
 
         winningNumber = new WinningNumber(numbers, bonusNumber);

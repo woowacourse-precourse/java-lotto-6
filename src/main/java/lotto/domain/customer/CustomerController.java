@@ -13,7 +13,14 @@ public class CustomerController {
     public CustomerController() {
         this.view = new View();
         view.askPrice();
-        this.customer = new Customer(Console.readLine());
+        while (true) {
+            try {
+                this.customer = new Customer(Console.readLine());
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
         view.breakLine();
 
         customerService = new CustomerService(customer);

@@ -28,4 +28,16 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.NOT_MULTIPLE_OF_LOTTO_PRICE.getMessage());
         }
     }
+
+    public static void validateInRange(int min, int max, int item) {
+        if (!(min <= item && item <= max)) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_IN_RANGE.getMessage());
+        }
+    }
+
+    public static void validateInRange(int min, int max, List<Integer> lotto) {
+        lotto.forEach(i -> {
+            validateInRange(min, max, i);
+        });
+    }
 }

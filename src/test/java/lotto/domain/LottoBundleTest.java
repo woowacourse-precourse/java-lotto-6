@@ -46,4 +46,17 @@ public class LottoBundleTest {
             Collections.sort(lottery);
         }
     }
+
+    @Test
+    @DisplayName("로또 뭉치의 사이즈를 알려준다.")
+    void size(){
+        // given
+        LottoBundle lottoBundle = new LottoBundle(createNewLotteries());
+
+        // when
+        int size = lottoBundle.size();
+
+        // then
+        assertThat(size).isEqualTo(3);
+    }
 }

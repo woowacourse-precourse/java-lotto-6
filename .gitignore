@@ -30,3 +30,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Java class files ###
+*.class
+
+### Eclipse .metadata folder ###
+.metadata

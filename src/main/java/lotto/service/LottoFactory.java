@@ -21,7 +21,6 @@ public class LottoFactory {
 
     public Lotto makeLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        sort(numbers);
         return new Lotto(numbers);
     }
 

@@ -1,6 +1,8 @@
 package lotto.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Money;
@@ -8,12 +10,14 @@ import lotto.model.UserLotto;
 import lotto.model.WinningLotto;
 
 public class LottoGameService {
-    private LottoFactory lottoFactory;
+    private final LottoFactory lottoFactory;
     private UserLotto userLotto;
     private Money money;
     private int lottoCount;
     private Lotto winningLottoNumber;
     private WinningLotto winningLotto;
+
+    private List<LottoResult> lottoResults;
 
     public LottoGameService() {
         lottoFactory = new LottoFactory();
@@ -39,14 +43,24 @@ public class LottoGameService {
         winningLotto = lottoFactory.makeWinningLottoWithBonusNumber(winningLottoNumber, bonusNumber);
     }
 
-    public String calculateResult() {
-        List<LottoResult> lottoResults = userLotto.calculateResult(winningLotto);
-        return String.valueOf(calculateTotalYield(lottoResults));
+    public String calculateStatistics() {
+        lottoResults = userLotto.calculateResult(winningLotto);
+        return makeStatistics(lottoResults);
     }
 
-    private double calculateTotalYield(List<LottoResult> lottoResults) {
-        return money.calculateYield(lottoResults.stream()
+    private String makeStatistics(List<LottoResult> lottoResults) {
+        Map<LottoResult, Integer> statistics = new HashMap<>();
+
+        lottoResults.forEach(lottoResult -> {
+            statistics.put(lottoResult, statistics.getOrDefault(lottoResult, 0) + 1);
+        });
+
+        return LottoResult.makeResult(statistics);
+    }
+
+    public String calculateTotalYield() {
+        return String.valueOf( money.calculateYield(lottoResults.stream()
                 .mapToDouble(LottoResult::getPrizeMoney)
-                .sum());
+                .sum()));
     }
 }

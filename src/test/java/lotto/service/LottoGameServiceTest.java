@@ -68,16 +68,14 @@ class LottoGameServiceTest {
     void 수익률_계산_로직_테스트() {
         Money money = new Money("3000");
         List<LottoResult> lottoResults = List.of(
-                LottoResult.FIRST,
-                LottoResult.SECOND,
                 LottoResult.THIRD
         );
 
         double totalProfit = money.calculateYield(lottoResults.stream()
                 .mapToDouble(LottoResult::getPrizeMoney)
                 .sum());
-        double prizeMoney = 2_000_000_000 + 30_000_000 + 1_500_000;
-        double expected = (prizeMoney / 3000) * 100.0;
+        double rate = (1_500_000 / 3000) * 100.0;
+        double expected = Math.round(rate * 100.0)/ 100.0;
 
         assertThat(totalProfit).isEqualTo(expected);
     }

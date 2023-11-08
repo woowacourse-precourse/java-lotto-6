@@ -28,14 +28,11 @@ public class Money {
         return this.money / LOTTO_PRICE;
     }
 
-//    public double calculateTotalProfitPercent(double totalWinningMoney) {
-//        return Math.round((totalWinningMoney - (double) money) / money) * 100;
-//    }
-
     public double calculateYield(double totalPrizeMoney) {
         if(totalPrizeMoney == 0) {
             return 0.0;
         }
-        return (( totalPrizeMoney / (double) money) * 100.0);
+        double rate = ( totalPrizeMoney / (double) money) * 100.0;
+        return Math.round(rate * 100.0) / 100.0;
     }
 }

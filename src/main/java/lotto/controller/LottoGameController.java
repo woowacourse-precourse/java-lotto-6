@@ -21,8 +21,23 @@ public class LottoGameController {
         makeLotto(lottoCount);
         enterWinningLotto();
         enterBonusNumber();
-        String TotalProfitPercent = lottoGameService.calculateResult();
+        printResult();
     }
+
+    private void printResult() {
+        printStatistics();
+        printTotalYield();
+    }
+
+    private void printStatistics() {
+        printMessage(Message.STATISTICS.toString());
+        printMessage(lottoGameService.calculateStatistics());
+    }
+
+    private void printTotalYield() {
+        printMessage(Message.TOTAL_YIELD.toString(), lottoGameService.calculateTotalYield());
+    }
+
     private void enterBonusNumber() {
         printMessage(Message.ASK_BONUS_NUMBER.toString());
         String bonusNumber = inputView.inputWinningLotto();
@@ -55,5 +70,9 @@ public class LottoGameController {
 
     private void printMessage(String message) {
         outputView.printMessage(message);
+    }
+
+    private void printMessage(String message, Object... args) {
+        outputView.printfMessage(message, args);
     }
 }

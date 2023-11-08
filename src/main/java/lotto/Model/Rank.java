@@ -37,15 +37,19 @@ public enum Rank {
     public static Rank calculateWinningRank(Lotto randomLotto, WinningLotto winningLotto, Bonus bonus) {
         List<Integer> randomLottoNumbers = randomLotto.getNumbers();
         List<Integer> winningLottoNumbers = winningLotto.getWinningLotto().getNumbers();
-        int matching = (int) randomLottoNumbers.stream()
-                .filter(randomNumber -> winningLottoNumbers.contains(randomNumber))
-                .count();
-        boolean isBonus = false;
+        int matching = countMatchingBall(randomLottoNumbers, winningLottoNumbers);
 
+        boolean isBonus = false;
         if (isDistinguishSecondFromThird(matching)) {
             isBonus = isSecondRank(randomLottoNumbers, bonus);
         }
         return getRank(matching, isBonus);
+    }
+
+    private static int countMatchingBall(List<Integer> randomLottoNumbers, List<Integer> winningLottoNumbers) {
+        return (int) randomLottoNumbers.stream()
+                .filter(winningLottoNumbers::contains)
+                .count();
     }
 
     private static boolean isDistinguishSecondFromThird(int matching) {

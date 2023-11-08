@@ -65,11 +65,11 @@
     - [x] 번호가 당첨 번호와 중복되지 않는지 검증한다.
 
 ### PurchaseValidator
-- [ ] 로또 구입 금액의 유효성을 검증한다.
-    - [ ] 금액이 공백이 아닌지 검증한다.
-    - [ ] 금액이 long 값인지 검증한다.
-    - [ ] 금액이 양수인지 검증한다.
-    - [ ] 금액이 1,000원 단위로 입력되었는지 검증한다.
+- [x] 로또 구입 금액의 유효성을 검증한다.
+    - [x] 금액이 공백이 아닌지 검증한다.
+    - [x] 금액이 long 값인지 검증한다.
+    - [x] 금액이 양수인지 검증한다.
+    - [x] 금액이 1,000원 단위로 입력되었는지 검증한다.
 
 ### WinningNumberValidator
 - [x] 당첨 번호의 유효성을 검증한다.
@@ -85,9 +85,9 @@
 - [x] NULL_OR_EMPTY_BONUS_NUMBER: 보너스 번호는 null이나 공백일 수 없음
 - [x] DUPLICATE_BONUS_NUMBER: 보너스 번호는 당첨 번호와 중복될 수 없음
 
-- [ ] INVALID_PURCHASE_AMOUNT: 구매 금액은 자연수 값
-- [ ] NULL_OR_EMPTY_PURCHASE_AMOUNT: 구매 금액은 null이나 공백일 수 없음
-- [ ] INVALID_PURCHASE_AMOUNT_FORMAT: 구입 금액은 1,000원 단위
+- [x] INVALID_PURCHASE_AMOUNT: 구매 금액은 자연수 값
+- [x] NULL_OR_EMPTY_PURCHASE_AMOUNT: 구매 금액은 null이나 공백일 수 없음
+- [x] INVALID_PURCHASE_AMOUNT_FORMAT: 구입 금액은 1,000원 단위
 
 - [x] INVALID_WINNING_NUMBER_RANGE: 당첨 번호는 1부터 45 사이의 숫자
 - [x] DUPLICATE_WINNING_NUMBERS: 당첨 번호는 중복될 수 없음

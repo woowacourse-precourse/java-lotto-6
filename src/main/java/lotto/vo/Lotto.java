@@ -40,7 +40,7 @@ public class Lotto {
         int i = 0;
         while (i < TOTAL_LOTTO_NUMBER.getValue()) {
             for (Integer number : this.numbers) {
-                if (min < number) min = number;
+                Math.max(min, number);
             }
             sb.append(numbers);
             i++;

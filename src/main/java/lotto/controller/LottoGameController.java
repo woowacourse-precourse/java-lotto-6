@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.LottoGameService;
 import lotto.validator.InputValidator;
@@ -22,22 +25,27 @@ public class LottoGameController {
         Integer budget = Integer.parseInt(budgetInput);
 
         /// 로또 생성 및 출력
-        lottoGameService.buyLottosWithBudget(budget);
-        OutputView.printPurchasedLottoCount(lottoGameService.getLottoCount());
+        List<Lotto> lottos = lottoGameService.buyLottosWithBudget(budget);
+        OutputView.printPurchasedLottoCount(lottos.size());
 
-        for (Lotto lotto : lottoGameService.getLottos()) {
+        for (Lotto lotto : lottos) {
             OutputView.printLotto(lotto.getNumbers());
         }
 
         /// 당첨 번호 입력
         String winningNumberInput = InputView.inputWinningNumbers();
         InputValidator.validateWinningNumber(winningNumberInput);
-        lottoGameService.setWinningNumbers(winningNumberInput);
+
+        String[] numbers = winningNumberInput.split(",");
+        List<Integer> winningNumbers = Arrays.stream(numbers)
+            .map(Integer::parseInt)
+            .toList();
 
         /// 보너스 번호 입력
         String bonusNumberInput = InputView.inputBonusNumber();
-        InputValidator.validateBonusNumber(bonusNumberInput, lottoGameService.getWinningNumbers());
-        lottoGameService.setBonusNumber(bonusNumberInput);
+        InputValidator.validateBonusNumber(bonusNumberInput, winningNumbers);
+
+        Integer bonusNumber = Integer.parseInt(bonusNumberInput);
 
         /// TODO Compare or MakeResult
     }

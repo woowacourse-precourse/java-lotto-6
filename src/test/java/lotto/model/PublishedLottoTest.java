@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class PublishedLottoTest {
     private static final Integer THREE_LOTTO = 3000;
 
-    @DisplayName("생성되는 객체 확인")
+    @DisplayName("주어지는 정수로 생성되는 객체 확인")
     @Test
     void getInstanceTest() {
         assertRandomUniqueNumbersInRangeTest(

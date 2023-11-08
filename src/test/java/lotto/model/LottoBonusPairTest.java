@@ -33,9 +33,9 @@ class LottoBonusPairTest {
                 .hasMessageContaining("보너스 번호가 포함될 수 없습니다.");
     }
 
-    @DisplayName("getResult 메서드 작동 확인 테스트")
+    @DisplayName("getResults 메서드 작동 확인 테스트")
     @Test
-    void getResults() {
+    void getResultsTest() {
         LottoBonusPair testInstance = LottoBonusPair.getInstance(TEST_LOTTO_INSTANCE, VALID_BONUS_NUMBER);
         assertRandomUniqueNumbersInRangeTest(
                 () -> {

@@ -43,7 +43,6 @@ public class LottoController {
             int matchingCount = countMatchingNumbers(lotto.getNumbers(), winningNum);
             boolean hasBonusBall = lotto.getNumbers().contains(bonusNum);
             Rank rank = findRank(matchingCount, hasBonusBall);
-
             rankCounts[rank.ordinal()]++;
         }
 
@@ -89,23 +88,13 @@ public class LottoController {
     }
 
     private Rank findRank(int matchingCount, boolean hasBonusBall) {
-        if (matchingCount == 6) {
-            return Rank.FIRST;
-        }
-
+        if (matchingCount == 6) return Rank.FIRST;
         if (matchingCount == 5) {
             if (hasBonusBall) return Rank.SECOND;
             return Rank.THIRD;
         }
-
-        if (matchingCount == 4) {
-            return Rank.FOURTH;
-        }
-
-        if (matchingCount == 3) {
-            return Rank.FIFTH;
-        }
-
+        if (matchingCount == 4) return Rank.FOURTH;
+        if (matchingCount == 3) return Rank.FIFTH;
         return Rank.NO_RANK;
     }
 

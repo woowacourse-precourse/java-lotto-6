@@ -42,7 +42,7 @@ class RankStatisticsTest {
         RankStatistics rankStatistics = new RankStatistics(ranks);
         double profitRate = rankStatistics.getProfitRate(100000);
         assertThat(profitRate).isEqualTo(
-                (Rank.FIRST.getPrize() + Rank.SECOND.getPrize() + Rank.FIFTH.getPrize()) / (double) 100000
+                ((Rank.FIRST.getPrize() + Rank.SECOND.getPrize() + Rank.FIFTH.getPrize()) / (double) 100000)*100
         );
     }
 }

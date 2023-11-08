@@ -1,6 +1,6 @@
 package lotto.exception.errorcode;
 
-import static lotto.exception.errorcode.ErrorCodeConstants.ERROR_MESSAGE_PREFIX;
+import static lotto.exception.errorcode.ErrorCodeConstant.ERROR_MESSAGE_PREFIX;
 
 public enum InputErrorCode {
 

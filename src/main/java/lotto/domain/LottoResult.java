@@ -2,9 +2,11 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class LottoResult {
@@ -47,6 +49,9 @@ public class LottoResult {
     public Map<LottoRank, Integer> getResult() {
         return result.entrySet().stream()
                 .filter(entry -> entry.getKey().isNotNothing())
-                .collect(Collectors.toUnmodifiableMap(Entry::getKey, Entry::getValue));
+                .collect(Collectors.toMap(
+                        Entry::getKey, Entry::getValue,
+                        (x, y) -> x, LinkedHashMap::new
+                ));
     }
 }

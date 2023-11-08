@@ -2,6 +2,49 @@
 
 <br>
 
+## 📁디렉토리 구조
+
+```
+📦src
+ ┣ 📂main
+ ┃ ┗ 📂java
+ ┃ ┃ ┗ 📂lotto
+ ┃ ┃ ┃ ┣ 📂config
+ ┃ ┃ ┃ ┃ ┣ 📜LottoConfig.java
+ ┃ ┃ ┃ ┃ ┣ 📜RankConfig.java
+ ┃ ┃ ┃ ┃ ┗ 📜ValidatorConfig.java
+ ┃ ┃ ┃ ┣ 📂controller
+ ┃ ┃ ┃ ┃ ┗ 📜Controller.java
+ ┃ ┃ ┃ ┣ 📂domain
+ ┃ ┃ ┃ ┃ ┣ 📜Buyer.java
+ ┃ ┃ ┃ ┃ ┣ 📜Lotto.java
+ ┃ ┃ ┃ ┃ ┣ 📜LottoGame.java
+ ┃ ┃ ┃ ┃ ┣ 📜LottoGameResult.java
+ ┃ ┃ ┃ ┃ ┣ 📜LottoMachine.java
+ ┃ ┃ ┃ ┃ ┗ 📜Rank.java
+ ┃ ┃ ┃ ┣ 📂util
+ ┃ ┃ ┃ ┃ ┣ 📜InputUtil.java
+ ┃ ┃ ┃ ┃ ┣ 📜Utils.java
+ ┃ ┃ ┃ ┃ ┗ 📜Validation.java
+ ┃ ┃ ┃ ┣ 📂view
+ ┃ ┃ ┃ ┃ ┣ 📜InputView.java
+ ┃ ┃ ┃ ┃ ┗ 📜OutputView.java
+ ┃ ┃ ┃ ┗ 📜Application.java
+ ┗ 📂test
+ ┃ ┗ 📂java
+ ┃ ┃ ┣ 📂domain
+ ┃ ┃ ┃ ┣ 📜BuyerTest.java
+ ┃ ┃ ┃ ┣ 📜LottoGameResultTest.java
+ ┃ ┃ ┃ ┣ 📜LottoGameTest.java
+ ┃ ┃ ┃ ┣ 📜LottoMachineTest.java
+ ┃ ┃ ┃ ┣ 📜LottoTest.java
+ ┃ ┃ ┃ ┗ 📜RankTest.java
+ ┃ ┃ ┗ 📂lotto
+ ┃ ┃ ┃ ┗ 📜ApplicationTest.java
+```
+
+<br>
+
 ## ✨기능 목록
 
 ### 로또 구매 기능

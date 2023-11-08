@@ -35,9 +35,11 @@ public enum LottoRank {
     public static LottoRank getRank(Lotto lotto, WinningLotto winningLotto) {
         Set<Integer> lottoSet = new HashSet<>(lotto.getNumbers());
         Set<Integer> winningLottoSet = new HashSet<>(winningLotto.getLotto().getNumbers());
-        winningLottoSet.retainAll(lottoSet);
 
-        return findByNormalAndBonus(winningLottoSet.size(), lottoSet.contains(winningLotto.getBonusNumber()));
+        int duplicatedCount = (int) winningLottoSet.stream().filter(lottoSet::contains).count();
+        boolean isBonusCorrect = lottoSet.contains(winningLotto.getBonusNumber());
+        
+        return findByNormalAndBonus(duplicatedCount, isBonusCorrect);
     }
 
     private static LottoRank findByNormalAndBonus(int normalCount, boolean isCorrectBonus) {

@@ -15,6 +15,10 @@ public class Price {
         validate(input);
     }
 
+    public long getAmount() {
+        return price / 1000;
+    }
+
     private void validate(String input) {
         validateNumeric(input);
         validateRemainder();

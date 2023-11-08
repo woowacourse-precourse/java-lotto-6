@@ -56,7 +56,8 @@ public class InputValidatorTest {
         String case1 = "123456";
         String case2 = "1/2/3/4/5/6";
         String case3 = "1,2,3/4/5/6";
-        String case4 = "1,2,3,4,5,6";
+        String case4 = "1 ,  2, 3,4,5  ,6";
+        String case5 = "1,2,3,4,5,6";
 
         // when
         Throwable result1 = catchThrowable(() -> {
@@ -71,12 +72,16 @@ public class InputValidatorTest {
         Throwable result4 = catchThrowable(() -> {
             InputValidator.validateSeparatedByComma(case4);
         });
+        Throwable result5 = catchThrowable(() -> {
+            InputValidator.validateSeparatedByComma(case5);
+        });
 
         // then
         assertThat(result1).isInstanceOf(IllegalArgumentException.class);
         assertThat(result2).isInstanceOf(IllegalArgumentException.class);
         assertThat(result3).isInstanceOf(IllegalArgumentException.class);
         assertThat(result4).doesNotThrowAnyException();
+        assertThat(result5).doesNotThrowAnyException();
     }
 
     @DisplayName("당첨 번호 중 중복된 값이 있는지 검사")

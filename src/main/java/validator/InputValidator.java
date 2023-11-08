@@ -3,6 +3,7 @@ package validator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import utils.Utils;
 
 public class InputValidator {
     private static final int LOTTO_PRICE = 1_000;
@@ -28,7 +29,7 @@ public class InputValidator {
         if (!hasComma(winningNumbers)) {
             throw new IllegalArgumentException("당첨 번호 6개를 콤마(,)로 구분해 주세요.");
         }
-        String[] separatedWinningNumbers = winningNumbers.split(",");
+        String[] separatedWinningNumbers = Utils.splitInputByComma(winningNumbers);
         for (String winningNumber : separatedWinningNumbers) {
             if (!isNumeric(winningNumber)) {
                 throw new IllegalArgumentException("당첨 번호 6개를 콤마(,)로 구분해 주세요.");

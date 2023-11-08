@@ -2,7 +2,7 @@
 ## 기능 목록
 ### 핵심 로직
 - [] 해당 수만큼 로또를 발행할 수 있다. - LotterySeller#createLottoCount
-- [] 1부터 45까지 서로 다른 임의의 수 6개를 생성한다. - NumberGenerator#creatRandomNumbers()
+- [X] 1부터 45까지 서로 다른 임의의 수 6개를 생성한다. - NumberGenerator#creatRandomNumbers()
 - [] 사용자가 구매한 로또 번호와 당첨 번호를 비교할 수 있다. - LotteryHost#compare => 리스트 안에 리스트 한개 받아서 비교
   - [X] 순위를 정의할 수 있다. - Rank
 - [] 당첨 내역을 구할 수 있다. - Committee#winningDetail

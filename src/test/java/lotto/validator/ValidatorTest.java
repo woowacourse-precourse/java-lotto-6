@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,7 +38,7 @@ class ValidatorTest {
 
     @DisplayName("당첨 번호 입력 검증")
     @ParameterizedTest
-    @ValueSource(strings = {"1", "1,2,3,4,5,6","11,12,13,14,15,16"})
+    @ValueSource(strings = {"1", "1,2,3,4,5,6", "11,12,13,14,15,16"})
     void validateWinningNumbersInput(String input) {
         assertDoesNotThrow(() -> Validator.validateMainNumbersInput(input));
     }

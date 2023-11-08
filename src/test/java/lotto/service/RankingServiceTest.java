@@ -62,7 +62,7 @@ class RankingServiceTest {
         rankingService.initWinningNumbers();
         lottoService.play();
 
-        int prizeMoney = rankingService.getRankingResult().prizeMoney();
+        long prizeMoney = rankingService.getRankingResult().prizeMoney();
 
         assertThat(prizeMoney).isEqualTo(2030005000);
     }

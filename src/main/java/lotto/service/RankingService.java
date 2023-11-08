@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.Prize;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.MainNumbers;
@@ -35,18 +34,12 @@ public class RankingService {
 
     public void savePlayResult(Lotto lotto) {
         Ranking ranking = findRanking(lotto);
-        if (ranking.name() != "NONE") {
-            rankingCounter.addCount(ranking.name());
-        }
+        rankingCounter.addCount(ranking);
     }
 
     public StatisticsResult getRankingResult() {
-        return new StatisticsResult(rankingCounter.getCounter(), prizeMoney(), lottoService.getPayment());
-    }
-
-    private int prizeMoney() {
-        return rankingCounter.getCounter().entrySet().stream()
-                .mapToInt(entry -> Prize.valueOf(entry.getKey()).value() * entry.getValue()).sum();
+        return new StatisticsResult(rankingCounter.getCounter(), rankingCounter.getPrizeMoney(),
+                lottoService.getPayment());
     }
 
     private Ranking findRanking(Lotto lotto) {

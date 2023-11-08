@@ -36,7 +36,7 @@ public class OutputView {
                 .forEach(prize -> System.out.printf(prize.toString(), counter.get(prize.name())));
     }
 
-    private static void printRevenue(int prizeMoney, int payment) {
+    private static void printRevenue(long prizeMoney, int payment) {
         System.out.printf(REVENUE_MESSAGE.toString(), ((double) prizeMoney / payment) * 100);
     }
 

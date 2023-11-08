@@ -1,36 +1,31 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.domain.Numbers;
+import lotto.domain.WinningNumber;
 import lotto.game.Machine;
-import lotto.game.UserOutput;
+import lotto.game.UserConsole;
 
 import java.util.List;
+import java.util.Map;
+
+import static lotto.game.UserConsole.*;
 
 public class Application {
     public static void main(String[] args) {
-        UserOutput.inputMoney();
-        String money = Console.readLine();
+
+        long money = getMoney();
         Machine machine = new Machine(money);
-        UserOutput.getLottoCount(String.valueOf(machine.getCount()));
-        List<Lotto> lottos = machine.createLottoNumbers();
-        UserOutput.showLottos(machine, lottos);
-        UserOutput.inputWinningNumber();
-        String WinningNumberInput = Console.readLine();
-        List<Integer> winningNumber = machine.createWinningNumber(WinningNumberInput);
-        UserOutput.inputBonusNumber();
-        int bonusNumberInput = Integer.parseInt(Console.readLine());
-        machine.createBonusNumber(winningNumber, bonusNumberInput);
-        Numbers numbers = new Numbers(winningNumber, bonusNumberInput);
-        UserOutput.getWinningResult();
-        int[] matchResult = machine.createMatchResult(lottos, numbers);
-        UserOutput.getMatch3(String.valueOf(matchResult[0]));
-        UserOutput.getMatch4(String.valueOf(matchResult[1]));
-        UserOutput.getMatch5(String.valueOf(matchResult[2]));
-        UserOutput.getMatch5A(String.valueOf(matchResult[3]));
-        UserOutput.getMatch6(String.valueOf(matchResult[4]));
+        showPurchasedLottoCount(machine);
+
+        List<Lotto> lottos = machine.createLottos();
+
+        WinningNumber winningNumber = new WinningNumber(inputFirstWinningNumber(),
+                inputBonusNumber());
+
+        Map<Double, Integer> matchResult = machine.createMatchResult(lottos, winningNumber);
+        UserConsole.showWinningResult(matchResult);
+
         double investmentRate = machine.calculateInvestmentResult(matchResult);
-        UserOutput.getInvestmentResult(String.valueOf(investmentRate));
+        UserConsole.getInvestmentResult(investmentRate);
     }
 }

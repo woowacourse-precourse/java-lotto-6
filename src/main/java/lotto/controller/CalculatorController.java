@@ -23,18 +23,18 @@ public class CalculatorController {
             if(count == MatchNumber.FIVE.getNumber()) {
                 bonus = checkWinning.bonusNumberCounter(purchaseLottoNumber);
             }
-            wonRecordManager(winningRank, count, bonus);
+            wonRecordController(winningRank, count, bonus);
         }
         Map<Winning, Integer> allPrizeCount = winningRank.getAllPrizeCount();
         LottoOutputView.printWinningStatistics(allPrizeCount);
         return allPrizeCount;
     }
 
-    public void wonRecordManager(WinningRank winningRank, int count, BonusMatchType bonus) {
+    public void wonRecordController(WinningRank winningRank, int count, BonusMatchType bonus) {
         winningRank.recorderWinningRank(count, bonus);
     }
 
-    public void rateOfReturnManager(int purchase, Map<Winning, Integer> allPrizeCount) {
+    public void rateOfReturnController(int purchase, Map<Winning, Integer> allPrizeCount) {
         YieldCalculator yieldCalculator = new YieldCalculator(purchase, allPrizeCount);
         LottoOutputView.printRateOfReturn(yieldCalculator.getRateOfReturn());
     }

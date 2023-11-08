@@ -6,7 +6,7 @@ import lotto.util.ErrorMessage;
 public class BonusNumberValidator {
 
     public static void validate(String bonusNumber) {
-        ValidationManager.validateInput(bonusNumber);
+        InputValidator.validateInput(bonusNumber);
         checkValidRangeNumber(Integer.parseInt(bonusNumber));
     }
 

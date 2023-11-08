@@ -14,7 +14,8 @@ class WinningNumbersTest {
     @BeforeEach
     void initialize() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        winningNumbers = new WinningNumbers(numbers);
+        int bonusNumber = 7;
+        winningNumbers = new WinningNumbers(numbers, bonusNumber);
     }
 
     @DisplayName("당첨 번호와 발행된 로또 번호를 비교해 일치하는 수를 반환한다.")

@@ -7,6 +7,7 @@ import java.util.TreeMap;
 public class GameManager {
     private static Map<Prize, Integer> prizeStatistics;
     private WinningNumbers winningNumbers;
+    private int totalPrizeMoney;
 
     public GameManager() {
         prizeStatistics = new TreeMap<>();
@@ -47,9 +48,22 @@ public class GameManager {
         prizeStatistics.put(prize, currentMatchedCount + 1);
     }
 
-    public double calculateEarningRate(int purchasePrice, int totalPrizeMoney) {
-        double earningRate = (double) ((totalPrizeMoney - purchasePrice) / purchasePrice) * 100;
-        return Math.round(earningRate * 10) * 10;
+    public String calculateEarningRate(int purchasePrice) {
+        int totalPrizeMoney = calculateTotalPrizeMoney();
+        double earningRate = (double)totalPrizeMoney / (double) purchasePrice * 100.0;
+        return String.format("%.1f",earningRate);
+    }
+
+    public int calculateTotalPrizeMoney() {
+        for (Map.Entry<Prize, Integer> entry : prizeStatistics.entrySet()) {
+            Prize prize = entry.getKey();
+            int prizeCount = entry.getValue();
+            if (prizeCount != 0) {
+                totalPrizeMoney += prize.prizeMoney * prizeCount;
+            }
+        }
+
+        return totalPrizeMoney;
     }
 
     public Map<Prize, Integer> getPrizeStatistics() {

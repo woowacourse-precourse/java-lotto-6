@@ -19,6 +19,15 @@ class ViewTest extends NsTest {
         });
     }
 
+    @DisplayName("구입금액에 int 범위 이상의 숫자를 입력하면 예외가 발생한다.")
+    @Test
+    void inputOverIntRangeCost() {
+        assertSimpleTest(() -> {
+            runException("2200000000");
+            assertThat(output()).contains("[ERROR] 20억 이하의 숫자를 입력해주세요.");
+        });
+    }
+
     @Test
     void inputAndValidateWinningLotto() {
     }

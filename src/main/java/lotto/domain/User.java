@@ -15,10 +15,21 @@ public class User {
         this.lottoCount = buyingPrice / 1000;
         lottos = new ArrayList<Lotto>();
     }
+    /* getter */
+    public List<Lotto> getUserLottos() {
+        return lottos;
+    }
     /* 구매 금액 상 가능한 만큼의 로또를 구매 */
     public void buyLotto() {
+        Lotto lotto;
         for (int i = 0; i < this.lottoCount; ++i) {
-            Lotto lotto = new Lotto(getLottoNumbers());
+            try {
+                lotto = new Lotto(getLottoNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println("[Error] 로또 번호는 여섯 개로 이루어져야 합니다.");
+                i--;
+                continue;
+            }
             lottos.add(lotto);
         }
     }

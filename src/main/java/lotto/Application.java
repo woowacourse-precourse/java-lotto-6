@@ -18,8 +18,7 @@ public class Application {
         // 당첨 결과를 출력
         Prints.printResult(lottoResultChecker);
     }
-
-
+    
     // NumGenerator 배열에서 Lotto들을 빼서 Lotto 배열을 만드는 메서드
     private static Lotto[] getLottos(int purchaseAmount, NumberGenerator[] purchaseNumbers) {
         Lotto[] userLotto = new Lotto[purchaseAmount];
@@ -29,15 +28,4 @@ public class Application {
         }
         return userLotto;
     }
-
-    // 구입 금액에 해당하는 만큼 로또를 발행하는 메서드
-    public static void generateLottos(int purchaseAmount, NumberGenerator[] purchaseNumbers) {
-        for (int i = 0; i < purchaseAmount; i++) {
-            purchaseNumbers[i] = new NumberGenerator();
-            purchaseNumbers[i].generateLottoNumbers();
-            System.out.println(purchaseNumbers[i].getLottoNumbers());
-        }
-    }
-
-
 }

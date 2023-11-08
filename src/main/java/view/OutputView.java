@@ -12,7 +12,7 @@ public class OutputView {
     static final String BONUS_NUMBER_INPUT_REQUEST_MESSAGE =   "보너스 번호를 입력해 주세요.";
     static final String PURCHASING_RESULT_MESSAGE = "개를 구매했습니다.";
     static final String WINNING_NUMBER_INPUT_REQUEST_MESSAGE = "당첨 번호를 입력해 주세요.";
-    static final String WINNING_RESULT_TITLE = "당첨 통계" + lineSeparator + "---" + lineSeparator;
+    static final String WINNING_RESULT_TITLE = "당첨 통계" + lineSeparator + "---";
 
     public static void  printMoneyInputRequestMessage() {
         System.out.println(MONEY_INPUT_REQUEST_MESSAGE);

@@ -12,7 +12,7 @@ import lotto.utils.LottoGameException;
 public class WinningNumber {
     private final List<Integer> numbers;
 
-    public WinningNumber(String numbers) { // 일단 숫자로 들어온다. 그럴 경우 예외가? 1. 6개 아닌 경우 2. 중복숫자존재
+    public WinningNumber(String numbers) {
         List<Integer> splitNumbers = Arrays.stream(numbers.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

@@ -67,7 +67,6 @@ class LottoTest {
         Lotto answerLotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
                 .map(LottoNumber::of)
                 .toList());
-//        LottoNumber bonusNumber = LottoNumber.of(7);
 
         //When
         int expectedResult = 6;

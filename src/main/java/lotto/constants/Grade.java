@@ -14,7 +14,7 @@ public enum Grade {
     private final int prizeMoney;
     private final String message;
 
-    Grade(double point,int prizeMoney, String message) {
+    Grade(double point, int prizeMoney, String message) {
         this.point = point;
         this.prizeMoney = prizeMoney;
         this.message = message;

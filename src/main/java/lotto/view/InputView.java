@@ -5,6 +5,7 @@ import lotto.constants.ErrorMessage;
 
 public class InputView {
     private static final String INPUT_DELIMITER = ",";
+    private static final String NATURAL_NUMBER_REGULAR_EXPRESSION = "\\d+";
 
     public static String readLine() {
         String userInput = Console.readLine();
@@ -58,6 +59,6 @@ public class InputView {
     }
 
     private static boolean isNotNaturalNumber(final String userInput) {
-        return !userInput.matches("\\d+");
+        return !userInput.matches(NATURAL_NUMBER_REGULAR_EXPRESSION);
     }
 }

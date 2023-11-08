@@ -12,7 +12,8 @@ public class OutputView {
     }
 
     public static void printLottoPurchaseCount(int count) {
-        System.out.println(String.format(OutputMessage.LOTTO_PURCHASE_COUNT_MESSAGE.getMessage(), count));
+        System.out.printf((OutputMessage.LOTTO_PURCHASE_COUNT_MESSAGE.getMessage()), count);
+        System.out.println();
     }
 
     public static void printAnswerLottoNumberInputMessage() {
@@ -30,10 +31,6 @@ public class OutputView {
     public static void printHorizontalRule() {
         System.out.println(HORIZONTAL_RULE);
     }
-
-//    public static void printLottoString(Lotto lotto) {
-//        System.out.println(lotto.getGeneratedLottoString());
-//    }
 
     public static void printResult(Grade grade, int count) {
         System.out.printf(grade.getMessage(), count);

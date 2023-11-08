@@ -5,7 +5,8 @@ public class PointCalculator {
     private final double BONUS_NUMBER_NOT_MATCH_POINT = 0;
 
     public double calculateTotalPoint(Lotto lotto, WinningInformation winningInformation) {
-        return calculateGeneralPoint(lotto, winningInformation) + calculateBonusPoint(lotto, winningInformation.getBonusNumber());
+        return calculateGeneralPoint(lotto, winningInformation) + calculateBonusPoint(lotto,
+                winningInformation.getBonusNumber());
     }
 
     private int calculateGeneralPoint(Lotto lotto, WinningInformation winningInformation) {

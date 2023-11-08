@@ -28,7 +28,7 @@ public class PointResult {
     }
 
     private void initPointResult(List<Double> pointResult) {
-        for(Grade grade : Grade.getAllGrades()) {
+        for (Grade grade : Grade.getAllGrades()) {
             int frequency = Collections.frequency(pointResult, grade.getPoint());
             this.pointResult.put(grade.getPoint(), frequency);
         }

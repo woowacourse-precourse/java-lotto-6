@@ -1,8 +1,8 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.LottoException;
-import lotto.LottoRank;
+import lotto.globalconstatnt.LottoException;
+import lotto.globalconstatnt.LottoRank;
 import lotto.domain.Lotto;
 
 import java.math.BigDecimal;

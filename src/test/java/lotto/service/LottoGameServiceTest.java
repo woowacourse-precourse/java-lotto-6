@@ -1,9 +1,8 @@
 package lotto.service;
 
-import lotto.LottoRank;
+import lotto.globalconstatnt.LottoRank;
 import lotto.domain.Lotto;
 
-import lotto.model.LottoResultModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

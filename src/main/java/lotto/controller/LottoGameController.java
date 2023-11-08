@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.LottoRank;
+import lotto.globalconstatnt.LottoRank;
 import lotto.domain.Lotto;
 import lotto.model.LottoNumberModel;
 import lotto.model.LottoResultModel;

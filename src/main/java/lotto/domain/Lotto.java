@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.LottoException;
+import lotto.globalconstatnt.LottoException;
 
 import java.util.ArrayList;
 import java.util.Collections;

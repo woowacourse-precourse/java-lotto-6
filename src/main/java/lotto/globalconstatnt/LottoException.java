@@ -1,4 +1,4 @@
-package lotto;
+package lotto.globalconstatnt;
 
 public enum LottoException {
     INPUT_NOT_DiGIT("[ERROR] 숫자로 입력해 주세요."),

@@ -12,7 +12,7 @@ class LottoTest {
 
     @Test
     @DisplayName("Lotto 생성 테스트")
-    void createLottoTest() {
+    void createLotto() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.getNumbers()).
                 containsAll(List.of(1, 2, 3, 4, 5, 6));

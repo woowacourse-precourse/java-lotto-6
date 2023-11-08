@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static lotto.model.constants.IntegerConstants.*;
+import static lotto.model.constants.StringConstants.*;
 import static lotto.model.validator.InputValidator.lottoMakesSixNumbers;
 import static lotto.model.validator.InputValidator.lottoMustBeUniqueNumber;
 
@@ -21,7 +23,7 @@ public class Lotto {
 
     public int countSameNumber(WinningNumber winningNumber){
         int count = 0;
-        for(int i=0; i<6; i++){
+        for(int i=0; i<SIZE_OF_LOTTO.get(); i++){
             if(winningNumber.answer.numbers.contains(numbers.get(i))){
                 count++;
             }
@@ -30,14 +32,8 @@ public class Lotto {
     }
 
     public boolean isBonusNumberDuplicatedWithWinningNumber(int bonusNumber){
-        return IntStream.range(0, numbers.size())
+        return IntStream.range(ZERO.get(), numbers.size())
                 .anyMatch(i -> numbers.get(i) == bonusNumber);
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        Lotto lotto = (Lotto) obj;
-        return IntStream.range(0, 6).allMatch(i-> numbers.get(i).equals(lotto.numbers.get(i)));
     }
 
     public boolean isHitBonusNumber(BonusNumber bonusNumber) {
@@ -45,8 +41,17 @@ public class Lotto {
     }
 
     public String getTicketContent() {
-        return String.format("[%d, %d, %d, %d, %d, %d]",
-                numbers.get(0), numbers.get(1), numbers.get(2),
-                numbers.get(3), numbers.get(4), numbers.get(5));
+        StringBuilder ticket = new StringBuilder();
+        IntStream.range(ZERO.get(), SIZE_OF_LOTTO.get()).
+                forEach(i -> ticket.append(numbers.get(i)).append(COMMA_WITH_BLANK.get()));
+        ticket.setLength(ticket.length() - TWO.get());
+        return TICKET_CONTENT_START.get() + ticket + TICKET_CONTENT_END.get();
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        Lotto lotto = (Lotto) obj;
+        return IntStream.range(ZERO.get(), SIZE_OF_LOTTO.get())
+                .allMatch(i-> numbers.get(i).equals(lotto.numbers.get(i)));
     }
 }

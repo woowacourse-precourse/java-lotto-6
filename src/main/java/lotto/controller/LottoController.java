@@ -11,7 +11,6 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-    private volatile static LottoController INSTANCE;
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
@@ -20,21 +19,6 @@ public class LottoController {
         this.inputView = new InputView();
         this.outputView = new OutputView();
         this.lottoService = LottoService.getInstance();
-    }
-
-    public static LottoController getInstance() {
-        if (INSTANCE == null) {
-            synchronized (LottoController.class) {
-                generateInstance();
-            }
-        }
-        return INSTANCE;
-    }
-
-    private static void generateInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new LottoController();
-        }
     }
 
     public void run() {
@@ -48,7 +32,6 @@ public class LottoController {
         responseRevenue(prizeResult, money);
 
     }
-
 
     private Money requestMoney() {
         Money money;

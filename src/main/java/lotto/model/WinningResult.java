@@ -17,6 +17,11 @@ public class WinningResult {
         this.lotto = lotto;
     }
 
+    public static double getProfit(Map<Ranking, Integer> result, int amount) {
+        double totalPrize = calculateTotalPrize(result);
+        return totalPrize / (double) amount;
+    }
+
     private static double calculateTotalPrize(Map<Ranking, Integer> result) {
         double totalPrize = 0.0;
 

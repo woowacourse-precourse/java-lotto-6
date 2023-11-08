@@ -2,19 +2,19 @@ package lotto.factory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.model.Lotto;
-import lotto.model.RandomNumbersGenerator;
 
 public class LottoFactory {
 
-    private final RandomNumbersGenerator randomNumbersGenerator;
+    private final Supplier<List<Integer>> randomNumbersGenerator;
 
-    public LottoFactory(RandomNumbersGenerator randomNumbersGenerator) {
+    public LottoFactory(Supplier<List<Integer>> randomNumbersGenerator) {
         this.randomNumbersGenerator = randomNumbersGenerator;
     }
 
     public Lotto createLotto() {
-        List<Integer> randomList = randomNumbersGenerator.createUniqueElementList();
+        List<Integer> randomList = randomNumbersGenerator.get();
         List<Integer> sortedRandomList = sortRandomNumber(randomList);
         return new Lotto(sortedRandomList);
     }

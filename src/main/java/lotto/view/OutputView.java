@@ -15,4 +15,8 @@ public class OutputView {
         System.out.printf("%d개 구매했습니다.\n", ticketCount);
         System.out.println(lottos);
     }
+
+    public void winningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

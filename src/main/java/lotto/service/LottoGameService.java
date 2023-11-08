@@ -1,5 +1,7 @@
 package lotto.service;
 
+import java.util.List;
+import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.money.Money;
 
@@ -27,5 +29,16 @@ public class LottoGameService {
         Lottos lottos = new Lottos(ticketCount);
         outputService.lottos(money, lottos);
         return lottos;
+    }
+
+    public Lotto winningNumber() {
+        try {
+            outputService.winningNumbers();
+            List<Integer> numbers = inputService.inputWinningNumbers();
+            return new Lotto(numbers);
+        }catch (IllegalArgumentException exception) {
+            outputService.handleException(exception);
+            return winningNumber();
+        }
     }
 }

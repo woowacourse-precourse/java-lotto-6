@@ -7,6 +7,7 @@ import util.LottoNumberGenerator;
 
 import java.util.*;
 
+import static util.LottoStatistics.printStatistics;
 import static util.TicketPurchaseAmountValidator.validateTicketPurchaseAmount;
 
 public class LottoGame {
@@ -27,6 +28,8 @@ public class LottoGame {
         Lotto bonusNumber = getBonusNumber();
 
         Map<LottoRank, Integer> rankCounter = getRankCounter(tickets, winningNumbers, bonusNumber);
+
+        printStatistics(rankCounter, ticketPurchaseAmount);
     }
 
     private Map<LottoRank, Integer> getRankCounter(List<Lotto> tickets, Lotto winningNumbers, Lotto bonusNumber) {

@@ -24,22 +24,35 @@ public class LottoController {
     }
 
     public void start() {
-        String inputPurchaseAmount = view.askPurchaseAmount();
-        LottoPurchaseDto lottoPurchaseDto = service.buyLottery(inputPurchaseAmount);
+        LottoPurchaseDto lottoPurchaseDto = purchaseLotto();
+        LottosDto lottosDto = generateLottos(lottoPurchaseDto);
+        WinningResultDto winningResultDto = drawLotto(lottosDto);
+        showWinningStats(winningResultDto, lottoPurchaseDto);
+    }
 
+    private LottoPurchaseDto purchaseLotto() {
+        String inputPurchaseAmount = view.askPurchaseAmount();
+        return service.buyLottery(inputPurchaseAmount);
+    }
+
+    private LottosDto generateLottos(LottoPurchaseDto lottoPurchaseDto) {
         view.printPurchaseQuantity(lottoPurchaseDto);
         LottosDto lottosDto = service.generateLotto(lottoPurchaseDto.quantity());
         view.printLottoNumbers(lottosDto);
+        return lottosDto;
+    }
 
+    private WinningResultDto drawLotto(LottosDto lottosDto) {
         String inputWinningNumber = view.askWinningNumber();
-
         String inputBonusNumber = view.askBonusNumber();
-        WinningResultDto winningResultDto = service.generateWinningResult(
+        return service.generateWinningResult(
                 inputWinningNumber,
                 inputBonusNumber,
                 lottosDto
         );
+    }
 
+    private void showWinningStats(WinningResultDto winningResultDto, LottoPurchaseDto lottoPurchaseDto) {
         view.printMessage(WINNING_STATS);
         view.printWinningResult(winningResultDto);
         ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto, winningResultDto);

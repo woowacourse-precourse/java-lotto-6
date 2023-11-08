@@ -10,16 +10,16 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    LottoService lottoService;
-    WinningService winningService;
-    InputView inputView;
-    OutputView outputView;
+    private LottoService lottoService;
+    private WinningService winningService;
+    private InputView inputView;
+    private OutputView outputView;
 
     public LottoController(){
-        lottoService = new LottoService();
-        winningService = new WinningService();
-        inputView = new InputView();
-        outputView = new OutputView();
+        this.lottoService = new LottoService();
+        this.winningService = new WinningService();
+        this.inputView = new InputView();
+        this.outputView = new OutputView();
     }
 
     public void playGame(){

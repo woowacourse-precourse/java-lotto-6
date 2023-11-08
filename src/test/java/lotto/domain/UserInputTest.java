@@ -31,4 +31,10 @@ class UserInputTest {
         assertThatThrownBy(() -> userInput.validateMoney("-1000"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨_번호_글자_입력() {
+        assertThatThrownBy(() -> userInput.validateNumber("글자"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

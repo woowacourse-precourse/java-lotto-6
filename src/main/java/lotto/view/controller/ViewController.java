@@ -26,4 +26,11 @@ public class ViewController {
     public void printRandomLottos(List<LottoDto> lottoDtos) {
         viewOutputService.printPurchasedCount(lottoDtos);
     }
+
+    public List<Integer> inputWinnerNumbers() {
+        // 당첨 번호 입력 요구 메세지
+        viewInputService.printMessageWinningNumbers();
+        // 당첨 번호 입력
+        return viewInputService.inputWinningNumbers();
+    }
 }

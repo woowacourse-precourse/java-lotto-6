@@ -2,7 +2,7 @@ package lotto.machine;
 
 import lotto.constant.Prize;
 import lotto.lotto.controller.LottoController;
-import lotto.statistics.controller.StatisticsController;
+//import lotto.statistics.controller.StatisticsController;
 import lotto.view.controller.ViewController;
 
 import java.util.List;
@@ -25,11 +25,10 @@ public class LottoMachine {
         setPurchaseAmount(viewController.inputPurchaseAmount());
         // 랜덤 로또 발행
         lottoController.createRandomLottos(getPurchaseAmount()/ Prize.UNIT.getPrize());
-        lottoController.createRandomLottos(getPurchaseAmount() / Prize.UNIT.getPrize());
         // 발행된 로또 출력
         viewController.printRandomLottos(lottoController.getRandomLottos());
         // 당첨 번호 입력
-
+        setWinningNumbers(viewController.inputWinnerNumbers());
         // 보너스 번호 입력 및 저장
 
         // 번호 비교
@@ -45,5 +44,13 @@ public class LottoMachine {
 
     public int getPurchaseAmount() {
         return purchaseAmount;
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public void setWinningNumbers(List<Integer> winningNumbers) {
+        this.winningNumbers = winningNumbers;
     }
 }

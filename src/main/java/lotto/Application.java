@@ -6,5 +6,7 @@ public class Application {
 
         Player test = new Player();
         test.inputAmount();
+        test.buyLotto();
+        test.printLotto();
     }
 }

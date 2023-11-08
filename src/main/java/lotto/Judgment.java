@@ -1,14 +1,22 @@
 package lotto;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Judgment{
 
     public static int divisibleByThousand(int amount){
-        int value = amount % 1000;
+        int remain = amount % 1000;
+        int numberOfTickets = amount / 1000;
 
-        if(value != 0){
+        if(remain != 0){
             throw new IllegalArgumentException();
         }
 
-        return value;
+        return numberOfTickets;
+    }
+
+    public static void lottoSort(List<Integer> ticket) {
+        Collections.sort(ticket);
     }
 }

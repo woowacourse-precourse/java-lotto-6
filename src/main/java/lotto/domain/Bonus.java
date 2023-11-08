@@ -21,7 +21,6 @@ public class Bonus {
     }
 
     private int validateNumeral(String input) {
-
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

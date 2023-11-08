@@ -2,8 +2,10 @@ package lotto.service;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.enums.LottoNumber;
 import lotto.enums.Rank;
 import lotto.model.Lotto;
@@ -51,7 +53,6 @@ public class GameService {
         if (bonusNumber < LottoNumber.MIN.getValue() || bonusNumber > LottoNumber.MAX.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1 ~ 45 사이의 수여야 합니다.");
         }
-
         return bonusNumber;
     }
 
@@ -60,23 +61,17 @@ public class GameService {
         int winNumber = lotto.countNumber(numbers);
         boolean bonus = lotto.containBonusNumber(bonusNumber);
 
-        for (Rank rank : Rank.values()) {
-            if (rank.isMatchBonus(winNumber, bonus)) {
-                return rank;
-            }
-        }
-
-        return Rank.FAIL;
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.isMatchBonus(winNumber, bonus))
+                .findFirst()
+                .orElse(Rank.FAIL);
     }
 
     public List<Rank> checkWinNumbers(List<Integer> winNumbers, List<Lotto> lottoList,
             int bonusNumber) {
-        List<Rank> rankList = new ArrayList<>();
-        for (Lotto lotto : lottoList) {
-            Rank rank = checkWinNumber(winNumbers, lotto, bonusNumber);
-            rankList.add(rank);
-        }
-        return rankList;
+        return lottoList.stream()
+                .map(lotto -> checkWinNumber(winNumbers, lotto, bonusNumber))
+                .collect(Collectors.toList());
     }
 
     // 수익률 계산
@@ -92,5 +87,4 @@ public class GameService {
 
         return formattedReturnRate + "%입니다.";
     }
-
 }

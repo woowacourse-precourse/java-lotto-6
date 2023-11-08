@@ -20,18 +20,18 @@ public class Validator {
         }
     }
 
-    private static boolean isNumeric(String str) {
+    private static boolean isNumeric(String money) {
         try {
-            int num = Integer.parseInt(str);
-            return str.equals(Integer.toString(num));
+            int number = Integer.parseInt(money);
+            return money.equals(Integer.toString(number));
         } catch (NumberFormatException e) {
             return false;
         }
     }
 
-    private static boolean isThousandUnit(String str) {
-        int num = Integer.parseInt(str);
-        return num % VALIDATE_MONEY_NUMBER == 0;
+    private static boolean isThousandUnit(String money) {
+        int number = Integer.parseInt(money);
+        return number % VALIDATE_MONEY_NUMBER == 0;
     }
 
     public static void validateWinningNumber(List<Integer> numbers) {

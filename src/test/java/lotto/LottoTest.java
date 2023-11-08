@@ -83,7 +83,93 @@ class LottoTest {
 
     }
 
+    @DisplayName("번호가 모두 일치 시 1등")
+    @Test
+    void when_All_Numbers_Match() {
 
+        List<Integer> winningNumber = Arrays.asList(1, 23, 29, 31, 38, 45);
+        List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 31, 38, 45)));
+        int bonusNumber = 22;
 
+        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        winning.lottoResult();
+        long l = winning.calculateProfit();
 
+        assertEquals(2000000000,l);
+    }
+
+    @DisplayName("5개 + 보너스 볼 일치 시 2등")
+    @Test
+    void when_5Numbers_BonusNumber_Match() {
+
+        List<Integer> winningNumber = Arrays.asList(1, 23, 29, 31, 38, 45);
+        List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 31, 38, 22)));
+        int bonusNumber = 22;
+
+        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        winning.lottoResult();
+        long l = winning.calculateProfit();
+
+        assertEquals(30000000,l);
+    }
+
+    @DisplayName("5개 일치 시 3등")
+    @Test
+    void when_5Numbers_Match() {
+
+        List<Integer> winningNumber = Arrays.asList(1, 23, 29, 31, 38, 45);
+        List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 31, 38, 39)));
+        int bonusNumber = 22;
+
+        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        winning.lottoResult();
+        long l = winning.calculateProfit();
+
+        assertEquals(1500000,l);
+    }
+
+    @DisplayName("4개 일치 시 4등")
+    @Test
+    void when_4Numbers_Match() {
+
+        List<Integer> winningNumber = Arrays.asList(1, 23, 29, 31, 38, 45);
+        List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 31, 37, 39)));
+        int bonusNumber = 22;
+
+        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        winning.lottoResult();
+        long l = winning.calculateProfit();
+
+        assertEquals(50000,l);
+    }
+
+    @DisplayName("3개 일치 시 5등")
+    @Test
+    void when_3Numbers_Match() {
+
+        List<Integer> winningNumber = Arrays.asList(1, 23, 29, 31, 38, 45);
+        List<Lotto> lotto = List.of(new Lotto(List.of(1, 23, 29, 32, 37, 39)));
+        int bonusNumber = 22;
+
+        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        winning.lottoResult();
+        long l = winning.calculateProfit();
+
+        assertEquals(5000,l);
+    }
+
+    @DisplayName("2개 일치 시 0원")
+    @Test
+    void when_2Numbers_Match() {
+
+        List<Integer> winningNumber = Arrays.asList(1, 23, 29, 31, 38, 45);
+        List<Lotto> lotto = List.of(new Lotto(List.of(1, 24, 29, 32, 37, 39)));
+        int bonusNumber = 22;
+
+        Winning winning = LottoController.getWinning(lotto, winningNumber, bonusNumber);
+        winning.lottoResult();
+        long l = winning.calculateProfit();
+
+        assertEquals(0,l);
+    }
 }

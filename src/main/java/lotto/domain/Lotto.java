@@ -1,5 +1,12 @@
 package lotto.domain;
 
+import static lotto.config.SystemNumberConfig.RANDOM_END;
+import static lotto.config.SystemNumberConfig.RANDOM_START;
+import static lotto.config.SystemNumberConfig.SIZE;
+import static lotto.message.ErrorMessage.NUMBER_DUPLICATION;
+import static lotto.message.ErrorMessage.NUMBER_RANGE;
+import static lotto.message.ErrorMessage.NUMBER_SIZE;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -20,15 +27,15 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 6개가 되어야 합니다.");
+        if (numbers.size() != SIZE.getConfig()) {
+            throw new IllegalArgumentException(NUMBER_SIZE.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (int num : numbers) {
-            if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 1과 45 사이의 숫자만 가능합니다.");
+            if (num < RANDOM_START.getConfig() || num > RANDOM_END.getConfig()) {
+                throw new IllegalArgumentException(NUMBER_RANGE.getMessage());
             }
         }
     }
@@ -37,18 +44,18 @@ public class Lotto {
         if (numbers.stream()
                 .distinct()
                 .count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
+            throw new IllegalArgumentException(NUMBER_DUPLICATION.getMessage());
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
     }
 
     private List<Integer> sort(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .collect(Collectors.toList());
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     @Override

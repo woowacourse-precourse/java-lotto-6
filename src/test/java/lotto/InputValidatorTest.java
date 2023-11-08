@@ -56,7 +56,8 @@ public class InputValidatorTest {
     @DisplayName("중복된 당첨 번호 입력시 예외가 발생한다.")
     @Test
     void inputDuplicatedNumbers() {
-        assertThatThrownBy(() -> InputValidator.validateDuplicate(Arrays.asList("1", "5", "7", "12", "5", "37")))
+        assertThatThrownBy(
+            () -> InputValidator.validateDuplicate(Arrays.asList("1", "5", "7", "12", "5", "37")))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("중복된 숫자가 존재합니다.");
     }
@@ -64,7 +65,8 @@ public class InputValidatorTest {
     @DisplayName("입력받은 보너스 번호가 당첨 번호와 중복될 때 예외가 발생한다.")
     @Test
     void inputDuplicatedBonusNumber() {
-        assertThatThrownBy(() -> InputValidator.validateBonusNumber("9", Arrays.asList(1, 5, 7, 12, 9, 37)))
+        assertThatThrownBy(
+            () -> InputValidator.validateBonusNumber("9", Arrays.asList(1, 5, 7, 12, 9, 37)))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("중복된 숫자가 존재합니다.");
     }

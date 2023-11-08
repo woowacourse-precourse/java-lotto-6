@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class Output {
 
@@ -8,15 +9,16 @@ public class Output {
     System.out.println(count + "개를 구매했습니다.");
   }
 
-  public static void printGeneratedLottoNumbers(List<List<Integer>> lottoNumbers) {
+  public static void printGeneratedLottoNumbers(List<Lotto> lottoTickets) {
     System.out.println("생성된 로또 번호:");
-    for (List<Integer> numbers : lottoNumbers) {
-      for (int number : numbers) {
+    for (Lotto lotto : lottoTickets) {
+      for (int number : lotto.getNumbers()) {
         System.out.print("[" + number + "] ");
       }
       System.out.println();
     }
   }
+
 
   public static void printResult(String result) {
     System.out.println("당첨 통계");

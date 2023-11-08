@@ -2,7 +2,9 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringUtils {
     private static final Pattern NUMBER_ALLOWED_PATTERN = Pattern.compile("\\D");
@@ -28,15 +30,16 @@ public class StringUtils {
     }
 
     public static List<Integer> convertNumbersStringToList(String target) {
-        validateIntegerNumbers(target);
+        validateMultipleIntegerNumbers(target);
 
         return Arrays.stream(target.split(NUMBER_SEPARATOR)).map(Integer::parseInt).toList();
     }
 
-    private static void validateIntegerNumbers(String target) {
-        try {
-            Arrays.stream(target.split(NUMBER_SEPARATOR)).mapToInt(Integer::parseInt);
-        } catch (IllegalArgumentException illegalArgumentException) {
+    private static void validateMultipleIntegerNumbers(String target) {
+        Set<String> nonNumerics = Arrays.stream(target.split(NUMBER_SEPARATOR))
+                .filter(str -> !isNumeric(str))
+                .collect(Collectors.toSet());
+        if (!nonNumerics.isEmpty()) {
             throw new IllegalArgumentException(createErrorMessage("숫자와 콤마(,)만 입력해주세요."));
         }
     }

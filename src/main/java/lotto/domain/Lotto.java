@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constant.GameNumber.NORMAL_NUMBER_COUNT;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,7 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NORMAL_NUMBER_COUNT.getNumber()) {
             throw new IllegalArgumentException();
         }
     }

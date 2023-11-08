@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 import static lotto.LottoWinningCase.*;
+import static lotto.constant.DefinedNumber.FIRST_PLACE_REWARD;
 import static org.assertj.core.api.Assertions.*;
 
 public class LottoServiceTest {
@@ -25,8 +26,8 @@ public class LottoServiceTest {
     @ValueSource(strings = {"1,2,3,4,5,6", "6,7,8,9,10,11"})
     @DisplayName("콤마로 구분된 입력 문자열을 List으로 변환")
     void convertToDifferentType(String input) {
-        List<Integer> winningNumber = service.reshapeWinningNumber(input);
-        assertThat(winningNumber).hasSize(6)
+        Lotto winningNumber = service.reshapeWinningNumber(input);
+        assertThat(winningNumber.getNumbers()).hasSize(6)
                 .contains(input.charAt(0) - '0');
     }
 
@@ -74,7 +75,8 @@ public class LottoServiceTest {
     static Stream<Arguments> generateListData() {
         return Stream.of(
                 Arguments.of(new Lotto(Arrays.asList(3, 8, 10, 23, 33, 42)), Arrays.asList(1, 2, 3, 4, 5, 6), 10, UNRANK),
-                Arguments.of(new Lotto(Arrays.asList(7, 9, 10, 11, 20, 23)), Arrays.asList(11, 12, 13, 14, 20, 23), 10, FIFTH_PLACE)
+                Arguments.of(new Lotto(Arrays.asList(7, 9, 10, 11, 20, 23)), Arrays.asList(11, 12, 13, 14, 20, 23), 10, FIFTH_PLACE),
+                Arguments.of(new Lotto(Arrays.asList(1,2,3,4,5,6)), Arrays.asList(1,2,3,4,5,6), 10, FIRST_PLACE)
         );
     }
 
@@ -83,12 +85,12 @@ public class LottoServiceTest {
     @DisplayName("당첨으로 얻은 총 금액 증가 테스트")
     void calculateTotalIncomeTest(Map<LottoWinningCase, Integer> winStatisticMap) {
         int totalIncome = service.calculateTotalIncome(winStatisticMap);
-        assertThat(totalIncome).isEqualTo(55000);
+        assertThat(totalIncome).isEqualTo(FIRST_PLACE_REWARD);
     }
 
     static Stream<Map<LottoWinningCase, Integer>> generateMap() {
         return Stream.of(
-                Map.of(FIFTH_PLACE, 1, FOURTH_PLACE, 1)
+                Map.of(FIRST_PLACE, 1)
         );
     }
 
@@ -102,7 +104,7 @@ public class LottoServiceTest {
 
     static Stream<Arguments> generateTotalIncomeAndSpentFee() {
         return Stream.of(
-                Arguments.of(8000, 5000, "62.5%")
+                Arguments.of(8000, FIRST_PLACE_REWARD, "62.5%")
         );
     }
 }

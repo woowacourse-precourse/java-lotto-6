@@ -13,12 +13,12 @@ import static lotto.constant.ErrorMessage.*;
 
 public class LottoService {
 
-    public List<Integer> reshapeWinningNumber(String inputNumbersWithComma) {
+    public Lotto reshapeWinningNumber(String inputNumbersWithComma) {
         String[] splitedInputNumbers = getSplitedInputNumbers(inputNumbersWithComma);
         return convertInputType(splitedInputNumbers);
     }
 
-    private static List<Integer> convertInputType(String[] splitedInputNumbers) {
+    private static Lotto convertInputType(String[] splitedInputNumbers) {
         List<Integer> toBeReturnedInputNumbers = new ArrayList<>();
         for (String splitedInputNumber : splitedInputNumbers) {
             toBeReturnedInputNumbers.add(Integer.parseInt(splitedInputNumber.trim()));
@@ -26,7 +26,8 @@ public class LottoService {
         if (toBeReturnedInputNumbers.contains("")) {
             throw new IllegalArgumentException(CONTAINS_EMPTY_NUMBER);
         }
-        return toBeReturnedInputNumbers;
+
+        return new Lotto(toBeReturnedInputNumbers);
     }
 
     private static String[] getSplitedInputNumbers(String inputNumbersWithComma) {
@@ -40,6 +41,7 @@ public class LottoService {
     }
 
     public int calculateAvailableNumberOfLotteryTickets(int spentAmount) {
+
         return spentAmount / 1000;
     }
 
@@ -66,7 +68,7 @@ public class LottoService {
         return totalIncome;
     }
 
-    private String typeConvertIncomeRate(float incomeRate) {
+    private String typeConvertIncomeRate(double incomeRate) {
         double roundedIncomeRate = Math.round(incomeRate * 1000) / 10.0;
         String converted = Double.toString(roundedIncomeRate) + PERCENT;
 
@@ -74,6 +76,7 @@ public class LottoService {
     }
 
     public String calculateIncomeRate(int totalIncome, int spentAmount) {
-        return typeConvertIncomeRate(spentAmount / (float) totalIncome);
+        if(totalIncome == 0) return "0"+PERCENT;
+        return typeConvertIncomeRate((double) spentAmount / (double) totalIncome);
     }
 }

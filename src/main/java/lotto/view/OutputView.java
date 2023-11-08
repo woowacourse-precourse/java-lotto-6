@@ -19,7 +19,7 @@ public class OutputView {
     private static final String FIVE_AND_BONUS_MATCHES = "5개 일치, 보너스 볼 일치 (30,000,000원)";
     private static final String SIX_MATCHES = "6개 일치 (2,000,000,000원) ";
     private static final String HYPHEN = "-";
-    private static final String COUNT_UNIT = "개";
+    private static final String COUNT_UNIT = " 개";
     private static final String TOTAL_INCOME_RATE_PREFIX = "총 수익률은 ";
     private static final String TOTAL_INCOME_RATE_SUFFIX = "입니다.";
 
@@ -32,6 +32,7 @@ public class OutputView {
         for (Lotto randomLottoNumber : randomLottoNumbers) {
             System.out.println(randomLottoNumber);
         }
+        System.out.println();
     }
 
     public static void printWinningStatistics(Map<LottoWinningCase, Integer> winStatisticMap, String incomeRate) {

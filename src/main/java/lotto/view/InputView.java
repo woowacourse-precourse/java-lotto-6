@@ -10,7 +10,8 @@ public class InputView {
 
     public static String receiveSpentAmount() {
         System.out.println(ENTER_SPENT_AMOUNT);
-        return Console.readLine();
+        String moneySpent = Console.readLine();
+        return moneySpent;
     }
 
     public static String receiveWinningNumber() {

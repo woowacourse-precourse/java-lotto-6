@@ -14,7 +14,13 @@ public class LottoBonusNumberController {
     }
 
     public LottoBonusNumber createBonusNumber() {
-        int bonusNumber = lottoBonusNumberView.requestBonusNumber();
-        return new LottoBonusNumber(bonusNumber, winningNumber.getNumbers());
+        while (true) {
+            try {
+                int bonusNumber = lottoBonusNumberView.requestBonusNumber();
+                return new LottoBonusNumber(bonusNumber, winningNumber.getNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]" + e.getMessage());
+            }
+        }
     }
 }

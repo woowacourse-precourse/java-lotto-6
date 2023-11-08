@@ -18,13 +18,16 @@ public class LottoYieldController {
         this.yieldCalculatorService = yieldCalculatorService;
     }
 
-    public void processLottoYield(List<Set<Integer>> purchasedNumbers, Set<Integer> winningNumbers, int bonusNumber) {
+    public void processLottoYield(List<List<Integer>> purchasedNumbers, Set<Integer> winningNumbers, int bonusNumber) {
         LottoResult result = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
         Map<LottoRank, Integer> matchCounts = result.getMatchCounts();
-        double yield = yieldCalculatorService.calculateYield(matchCounts);
+        double yield = yieldCalculatorService.calculateYield(matchCounts, purchasedNumbers.size());
         view.displayResults(matchCounts, yield);
+
     }
 }
+
+
 
 
 

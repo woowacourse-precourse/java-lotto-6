@@ -22,7 +22,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
 
-        Collections.sort(numbers);
+
     }
 
     private boolean hasDuplicates(List<Integer> numbers) {
@@ -32,6 +32,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
 
 }

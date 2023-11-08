@@ -6,12 +6,12 @@ import java.util.Map;
 import java.util.Set;
 
 public class LottoResult {
-    private final List<Set<Integer>> purchasedNumbers;
+    private final List<List<Integer>> purchasedNumbers;
     private final Set<Integer> winningNumbers;
     private final int bonusNumber;
     private final Map<LottoRank, Integer> matchCounts;
 
-    public LottoResult(List<Set<Integer>> purchasedNumbers, Set<Integer> winningNumbers, int bonusNumber) {
+    public LottoResult(List<List<Integer>> purchasedNumbers, Set<Integer> winningNumbers, int bonusNumber) {
         this.purchasedNumbers = purchasedNumbers;
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -23,7 +23,7 @@ public class LottoResult {
     }
 
     private void calculateResults() {
-        for (Set<Integer> numbers : purchasedNumbers) {
+        for (List<Integer> numbers : purchasedNumbers) {
             int matches = (int) winningNumbers.stream().filter(numbers::contains).count();
 
             if (matches < LottoRank.FIFTH.getMatchCount()) {

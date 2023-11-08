@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.v3.util.LottoConstants;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
@@ -12,7 +13,7 @@ public class LottoMachine {
                 LottoConstants.LOTTO_NUMBER_MIN.getValue(),
                 LottoConstants.LOTTO_NUMBER_MAX.getValue(),
                 LottoConstants.LOTTO_NUMBERS_SIZE.getValue()
-        );
+        ).stream().sorted().toList();
         return new Lotto(numbers);
     }
 

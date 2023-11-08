@@ -4,14 +4,21 @@ import lotto.v3.model.LottoWinningNumber;
 import lotto.v3.view.LottoWinningNumbersView;
 
 public class LottoWinningNumberController {
-    private final LottoWinningNumbersView lottoWinningNumbersView;
+    private final LottoWinningNumbersView LottoWinningNumbersView;
 
-    public LottoWinningNumberController(LottoWinningNumbersView lottoWinningNumbersView) {
-        this.lottoWinningNumbersView = lottoWinningNumbersView;
+    public LottoWinningNumberController(LottoWinningNumbersView LottoWinningNumbersView) {
+        this.LottoWinningNumbersView = LottoWinningNumbersView;
     }
 
     public LottoWinningNumber createWinningNumber() {
-        return new LottoWinningNumber(lottoWinningNumbersView.requestWinningNumbers());
+        while (true) {
+            try {
+                return new LottoWinningNumber(LottoWinningNumbersView.requestWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]" + e.getMessage());
+            }
+        }
     }
+
 }
 

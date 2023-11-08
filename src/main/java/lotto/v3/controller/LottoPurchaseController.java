@@ -13,13 +13,18 @@ public class LottoPurchaseController {
     }
 
     public int startPurchaseProcess() {
-        int purchaseAmount = lottoPurchaseView.requestPurchaseAmount();
-        validatePurchaseAmount(purchaseAmount);
-        int numberOfLottoTickets = calculateLottoTicketsPurchasable(purchaseAmount);
-        lottoPurchaseView.displayNumberOfLottoTicketsPurchased(numberOfLottoTickets);
-        return numberOfLottoTickets;
+        while (true){
+            try{
+                int purchaseAmount = lottoPurchaseView.requestPurchaseAmount();
+                validatePurchaseAmount(purchaseAmount);
+                int numberOfLottoTickets = calculateLottoTicketsPurchasable(purchaseAmount);
+                lottoPurchaseView.displayNumberOfLottoTicketsPurchased(numberOfLottoTickets);
+                return numberOfLottoTickets;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
-
 
     private void validatePurchaseAmount(int amount) {
         if (amount <= 0 || amount % LOTTO_PRICE.getValue() != 0) {

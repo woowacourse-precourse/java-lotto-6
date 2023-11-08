@@ -12,7 +12,7 @@ public class LottoResultController {
         this.view = view;
     }
 
-    public void showResults(List<Set<Integer>> purchasedNumbers, Set<Integer> winningNumbers, int bonusNumber) {
+    public void showResults(List<List<Integer>> purchasedNumbers, Set<Integer> winningNumbers, int bonusNumber) {
         LottoResult result = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
         view.displayResults(result.getMatchCounts());
     }

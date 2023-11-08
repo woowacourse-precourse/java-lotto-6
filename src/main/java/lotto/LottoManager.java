@@ -24,7 +24,7 @@ public class LottoManager {
 
     private int purchasePrice;
     private int lottoCount;
-    private List<Integer> winningNumbers;
+    private Lotto winningNumbers;
     private int bonusNumber;
 
     public void run() {
@@ -121,7 +121,7 @@ public class LottoManager {
             throw new IllegalArgumentException(ExceptionInfo.WINNING_NUMBERS_ARE_NOT_INTEGER.getMessage());
         }
 
-        this.winningNumbers = validWinningNumber;
+        this.winningNumbers = new Lotto(validWinningNumber);
 
         return true;
     }

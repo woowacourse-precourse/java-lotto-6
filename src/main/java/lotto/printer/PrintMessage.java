@@ -2,7 +2,7 @@ package lotto.printer;
 
 public enum PrintMessage {
 	ASK_INPUT_PURCHASE_PRICE("구입금액을 입력해 주세요."),
-	NOTICE_PURCHASE("개를 구매했습니다."),
+	NOTICE_PURCHASE("개를 구매했습니다.\n"),
 	ASK_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
 	ASK_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
 	NOTICE_RESULT("당첨 통계\n---\n"),

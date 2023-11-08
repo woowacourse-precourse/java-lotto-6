@@ -22,15 +22,15 @@ public class LottoSystem {
         return new LottoSystem(winningLottos, player);
     }
 
-    public List<Lotto> generateWinningLottos() {
+    public static List<Lotto> generateWinningLottos(int purchasedLottoCount) {
         List<Lotto> winningLottos = new ArrayList<>();
-        for (int i = 0; i < player.getPurchasedLottoCount(); i++) {
+        for (int i = 0; i < purchasedLottoCount; i++) {
             winningLottos.add(generateWinningLotto());
         }
         return winningLottos;
     }
 
-    private Lotto generateWinningLotto() {
+    private static Lotto generateWinningLotto() {
         return Lotto.create(RandomUtil.generateRandomLottoNumber());
     }
 

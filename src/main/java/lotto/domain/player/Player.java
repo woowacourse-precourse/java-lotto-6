@@ -3,6 +3,8 @@ package lotto.domain.player;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 
+import java.util.List;
+
 public class Player {
 
     private Lotto lotto;
@@ -10,14 +12,18 @@ public class Player {
 
     private PurchaseAmount purchaseAmount;
 
-    public Player(Lotto lotto, LottoNumber bonusNumber, PurchaseAmount purchaseAmount) {
-        this.lotto = lotto;
-        this.bonusNumber = bonusNumber;
-        this.purchaseAmount = purchaseAmount;
+    private Player(List<Integer> numbers, Integer bonusNumber, Integer purchaseAmount) {
+        this.lotto = Lotto.create(numbers);
+        this.bonusNumber = LottoNumber.create(bonusNumber);
+        this.purchaseAmount = PurchaseAmount.create(purchaseAmount);
+    }
+
+    public static Player create(List<Integer> numbers, Integer bonusNumber, Integer purchaseAmount) {
+        return new Player(numbers, bonusNumber, purchaseAmount);
     }
 
     public int getPurchasedLottoCount() {
-        return purchaseAmount.calculatePurchasedLottoCount();
+        return PurchaseAmount.calculatePurchasedLottoCount(purchaseAmount.getPurchaseAmount());
     }
 
     public Lotto getLotto() {

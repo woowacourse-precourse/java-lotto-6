@@ -7,7 +7,18 @@ public class LottoNumberValidator {
     public static void validate(String lottoNumberInput) {
         isNumeric(lottoNumberInput);
         isCountSix(lottoNumberInput);
+        isInRange(lottoNumberInput);
 
+    }
+
+    private static void isInRange(String lottoNumberInput) {
+        List<String> lottoNumbers = List.of(lottoNumberInput.split(","));
+        for (String lottoNumber : lottoNumbers) {
+            if (Integer.parseInt(lottoNumber) < 1 || Integer.parseInt(lottoNumber) > 45) {
+                System.out.println(ErrorMessages.NOT_IN_RANGE.getMessage());
+                throw new IllegalArgumentException(ErrorMessages.NOT_IN_RANGE.getMessage());
+            }
+        }
     }
 
     private static void isCountSix(String lottoNumberInput) {

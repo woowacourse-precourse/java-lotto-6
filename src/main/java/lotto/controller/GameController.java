@@ -1,8 +1,12 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.service.GameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameController {
     private InputView inputView;
@@ -23,6 +27,20 @@ public class GameController {
 
         outputView.printLottoCount(gameService.getLottoCount());
         outputView.printWinningLottos(gameService.getWinningLottos());
+    }
+
+    public void playGame() {
+        String rawInputLottoNumbers = inputView.requestInputLottoNumbers();
+        Lotto playerLotto = convertRawInputLottoNumbersToLotto(rawInputLottoNumbers);
+        gameService.setPlayerLotto(playerLotto);
+
+        String rawInputBonusNumber = inputView.requestInputBonusNumber();
+        int bonusNumber = convertRawInputBonusNumberToInt(rawInputBonusNumber, playerLotto);
+        gameService.setBonusNumber(bonusNumber);
+    }
+
+    public void endGame() {
+
     }
 
     private int convertRawInputLottoMoneyToInt(String rawInput) {
@@ -49,11 +67,48 @@ public class GameController {
         }
     }
 
-    public void playGame() {
-
+    private Lotto convertRawInputLottoNumbersToLotto(String rawInput) {
+        List<Integer> lottoNumbers = validateRawInputLottoNumbers(rawInput);
+        return new Lotto(lottoNumbers);
     }
 
-    public void endGame() {
+    private List<Integer> validateRawInputLottoNumbers(String rawInput) {
+        String[] splitedRawInput = rawInput.split(",");
+        List<Integer> lottoNumbers = new ArrayList<>();
 
+        // 숫자인지 검증
+        for(String number : splitedRawInput) {
+            try{
+                lottoNumbers.add(Integer.parseInt(number));
+            } catch (IllegalArgumentException e) {
+                System.out.println("숫자가 아닙니다.");
+            }
+        }
+
+        return lottoNumbers;
+    }
+
+    private Integer convertRawInputBonusNumberToInt(String rawInput, Lotto playerLotto) {
+        validateRawInputBonusNumber(rawInput, playerLotto);
+        return Integer.parseInt(rawInput);
+    }
+
+    private void validateRawInputBonusNumber(String rawInput, Lotto playerLotto) {
+        int bonusNumber = 0;
+
+        // 숫자인지 검증
+        try{
+            bonusNumber = Integer.parseInt(rawInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println("숫자가 아닙니다.");
+        }
+        // 1~45 사이의 숫자인지 검증
+        if(bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.");
+        }
+        // 로또 번호와 중복되는지 검증
+        if(playerLotto.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("로또 번호와 중복되는 숫자입니다.");
+        }
     }
 }

@@ -29,12 +29,12 @@
   - 로또 번호는 오름차순으로 정렬하여 출력
 
 
-- [ ] 당첨 번호 입력 받기
+- [x] 당첨 번호 입력 받기
   - 쉼표(,)를 기준으로 구분
   - 입력 형식 예시) 1, 2, 3, 4, 5, 6
 
 
-- [ ] 보너스 번호 입력 받기
+- [x] 보너스 번호 입력 받기
   - 1 ~ 45 사이의 숫자가 아닌 경우 예외 발생 (IllegalArgumentException)
   - 숫자가 아닌 경우 예외 발생 (IllegalArgumentException)
   - 당첨 번호와 중복되는 경우 예외 발생 (IllegalArgumentException)

@@ -9,7 +9,8 @@ import java.util.List;
 public class GameService {
 
     private int lottoCount;
-    private List<Lotto> playerLottos;
+    private Lotto playerLotto;
+    private int bonusNumber;
     private List<Lotto> winningLottos;
 
     public void initGame(int money) {
@@ -31,5 +32,11 @@ public class GameService {
 
     public List<Lotto> getWinningLottos() {
         return winningLottos;
+    }
+
+    public void setPlayerLotto(Lotto lotto) { playerLotto = lotto; }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }

@@ -8,23 +8,23 @@ public class LottoException {
     private final static String notLottoNumberMessage = "[ERROR] 로또 번호는 1~45 사이로 입력해야 합니다.";
     private final static String duplicationLottoNumberMessage = "[ERROR] 로또 번호는 중복 없이 입력해야 합니다.";
 
-    public void notNumber() {
+    public static void notNumber() {
         throw new IllegalArgumentException(notNumberMessage);
     }
 
-    public void notThousand() {
+    public static void notThousand() {
         throw new IllegalArgumentException(notThousandMessage);
     }
 
-    public void notSixLottoNumber() {
+    public static void notSixLottoNumber() {
         throw new IllegalArgumentException(notSixLottoNumberMessage);
     }
 
-    public void notLottoNumber() {
+    public static void notLottoNumber() {
         throw new IllegalArgumentException(notLottoNumberMessage);
     }
 
-    public void duplicationLottoNumber() {
+    public static void duplicationLottoNumber() {
         throw new IllegalArgumentException(duplicationLottoNumberMessage);
     }
 

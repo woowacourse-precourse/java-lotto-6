@@ -16,16 +16,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            LottoException lottoException = new LottoException();
-            lottoException.notSixLottoNumber();
+            LottoException.notSixLottoNumber();
         }
     }
 
     public void isLottoNumberNotDuplication(List<Integer> numbers) {
         Set<Integer> duplicationCheck = new HashSet<>(numbers);
         if (duplicationCheck.size() != numbers.size()) {
-            LottoException lottoException = new LottoException();
-            lottoException.duplicationLottoNumber();
+            LottoException.duplicationLottoNumber();
         }
     }
 

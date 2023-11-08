@@ -8,7 +8,6 @@ import lotto.validation.MoneyInputValidator;
 public class MoneyInputController {
     InputValidator inputValidator = new InputValidator();
     MoneyInputValidator moneyInputValidator = new MoneyInputValidator();
-    LottoException lottoException = new LottoException();
 
     public int inputMoney() {
         String money = "";
@@ -27,7 +26,7 @@ public class MoneyInputController {
 
     public void checkMoneyNumber(String money) throws IllegalArgumentException {
         if (!inputValidator.isNumber(money)) {
-            lottoException.notNumber();
+            LottoException.notNumber();
         }
         checkMoneyThousand(money);
     }
@@ -35,7 +34,7 @@ public class MoneyInputController {
     public void checkMoneyThousand(String money) throws IllegalArgumentException {
         int realMoney = Integer.parseInt(money);
         if (!moneyInputValidator.isDividedThousand(realMoney)) {
-            lottoException.notThousand();
+            LottoException.notThousand();
         }
     }
 }

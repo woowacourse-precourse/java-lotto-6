@@ -13,7 +13,6 @@ public class WinningNumberInputController {
 
     InputValidator inputValidator = new InputValidator();
     WinningNumberInputValidator winningNumberInputValidator = new WinningNumberInputValidator();
-    LottoException lottoException = new LottoException();
 
     public Lotto inputWinningNumber() {
         String winningNumber = "";
@@ -34,7 +33,7 @@ public class WinningNumberInputController {
 
     public void checkWinningNumber(String winningNumber) throws IllegalArgumentException {
         if (!winningNumberInputValidator.isCommaFive(winningNumber)) {
-            lottoException.notSixLottoNumber();
+            LottoException.notSixLottoNumber();
         }
     }
 
@@ -44,7 +43,7 @@ public class WinningNumberInputController {
         List<Integer> numbers = new ArrayList<>();
         for (int i = 0; i < number.length; i++) {
             if (!inputValidator.isNumber(number[i])) {
-                lottoException.notNumber();
+                LottoException.notNumber();
             }
             int oneNumber = Integer.parseInt(number[i]);
             numbers.add(oneNumber);
@@ -56,7 +55,7 @@ public class WinningNumberInputController {
         for (int i = 0; i < numbers.size(); i++) {
             int oneNumber = numbers.get(i);
             if (!winningNumberInputValidator.isLottoNumber(oneNumber)) {
-                lottoException.notLottoNumber();
+                LottoException.notLottoNumber();
             }
         }
         return new Lotto(numbers);
@@ -80,7 +79,7 @@ public class WinningNumberInputController {
 
     public void checkBonusNumber(String bonusNumber) throws IllegalArgumentException {
         if (!inputValidator.isNumber(bonusNumber)) {
-            lottoException.notNumber();
+            LottoException.notNumber();
         }
         checkBonusNumberRange(bonusNumber);
     }
@@ -88,7 +87,7 @@ public class WinningNumberInputController {
     public void checkBonusNumberRange(String bonusNumber) throws IllegalArgumentException {
         int realBonusNumber = Integer.parseInt(bonusNumber);
         if (!winningNumberInputValidator.isLottoNumber(realBonusNumber)) {
-            lottoException.notLottoNumber();
+            LottoException.notLottoNumber();
         }
     }
 
@@ -96,7 +95,7 @@ public class WinningNumberInputController {
         int realBonusNumber = Integer.parseInt(bonusNumber);
         WinningNumber winningNumber = new WinningNumber(winningLotto, realBonusNumber);
         if (!winningNumberInputValidator.isWinningLottoNotDuplication(winningNumber)) {
-            lottoException.duplicationLottoNumber();
+            LottoException.duplicationLottoNumber();
         }
     }
 }

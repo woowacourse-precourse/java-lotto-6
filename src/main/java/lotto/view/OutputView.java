@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     public static void outputProfitRatio(String profitRatio) {
-        System.out.println("총 수익률은 " + profitRatio + "% 입니다.");
+        System.out.println("총 수익률은 " + profitRatio + "%입니다.");
     }
 
     public static void outputEmptyLine() {

@@ -4,6 +4,8 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import static lotto.util.LottoGenerator.generateLottos;
+
 public class LottoController {
 
     private final InputView inputView = new InputView();
@@ -36,9 +38,9 @@ public class LottoController {
     }
 
     private Lottos buyLottos(int count) {
-        Lottos lottos = new Lottos();
+        Lottos lottos;
         try{
-            lottos.generateLottos(count);
+            lottos = new Lottos(generateLottos(count));
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return buyLottos(count);

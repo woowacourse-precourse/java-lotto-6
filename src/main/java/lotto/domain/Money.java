@@ -28,6 +28,7 @@ public class Money {
             throw new IllegalArgumentException("[ERROR] 돈은 최소 1000원입니다.");
         }
     }
+
     private void validateMoneyDevided(int money){
         if(0 != money % LOTTO_PRICE){
             throw new IllegalArgumentException("[ERROR] 돈의 단위는 1000원입니다.");

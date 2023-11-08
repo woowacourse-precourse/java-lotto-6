@@ -13,16 +13,6 @@ public class TotalWinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public LottoResult checkLottos(Lottos userLottos) {
-        LottoResult lottoResult = new LottoResult();
-        userLottos.getLottos()
-                .forEach(lotto -> lottoResult.addResult(checkLotto(lotto)));
-        return lottoResult;
-    }
-
-    private Rank checkLotto(Lotto userLotto) {
-        return Rank.decideRank(countCollectNumbers(userLotto), checkBonusNumber(userLotto));
-    }
 
     private void validateBonusNumber(Lotto lotto, int bonusNumber) throws IllegalArgumentException{
         validateNumberBoundary(bonusNumber);
@@ -39,6 +29,17 @@ public class TotalWinningNumbers {
         if(lotto.getNumbers().contains(bonusNumber)){
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 중복 됐습니다.");
         }
+    }
+
+    public LottoResult checkLottos(Lottos userLottos) {
+        LottoResult lottoResult = new LottoResult();
+        userLottos.getLottos()
+                .forEach(lotto -> lottoResult.addResult(checkLotto(lotto)));
+        return lottoResult;
+    }
+
+    private Rank checkLotto(Lotto userLotto) {
+        return Rank.decideRank(countCollectNumbers(userLotto), checkBonusNumber(userLotto));
     }
 
     private int countCollectNumbers(Lotto userLotto) {

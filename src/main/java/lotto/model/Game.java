@@ -26,19 +26,9 @@ public class Game {
     }
 
     public void createWinningLotto(String inputWinningLotto) {
-        List<Integer> winningLotto = splitWinningLottoNumber(inputWinningLotto);
-        validateWinningLottoNumbers(winningLotto);
-        this.winningLotto = new WinningLotto(winningLotto);
+        this.winningLotto = new WinningLotto(inputWinningLotto);
     }
 
-    private List<Integer> splitWinningLottoNumber(String inputWinningLottoNumbers) {
-        List<Integer> winningLottoNumbers = new ArrayList<>();
-        for (String inputWinningLottoNumber : inputWinningLottoNumbers.split(",")) {
-            validateWinningLottoNumber(inputWinningLottoNumber);
-            winningLottoNumbers.add(Integer.parseInt(inputWinningLottoNumber));
-        }
-        return winningLottoNumbers;
-    }
 
     private void validateWinningLottoNumber(String winningLottoNumber) {
         InputValidator.validateInputIsNumber(winningLottoNumber);

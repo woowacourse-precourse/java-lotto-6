@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
-import lotto.message.LottoMessage;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,7 +42,7 @@ public class LottoView {
         System.out.println("---");
         System.out.println(THREE_MATCH.getMessage() + lottoResult.getThreeMatchCount() + QUANTITY.getMessage());
         System.out.println(FOUR_MATCH.getMessage() + lottoResult.getFourMatchCount() + QUANTITY.getMessage());
-        System.out.println(FIVE_MATCH.getMessage()+ lottoResult.getFiveMatchCount() + QUANTITY.getMessage());
+        System.out.println(FIVE_MATCH.getMessage() + lottoResult.getFiveMatchCount() + QUANTITY.getMessage());
         System.out.println(FIVE_MATCH_WITH_BONUS.getMessage() + lottoResult.getFiveMatchWithBonusCount() + QUANTITY.getMessage());
         System.out.println(SIX_MATCH.getMessage() + lottoResult.getSixMatchCount() + QUANTITY.getMessage());
     }

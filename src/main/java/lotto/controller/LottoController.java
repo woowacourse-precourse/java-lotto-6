@@ -19,7 +19,7 @@ public class LottoController {
         this.lottoView = new LottoView();
     }
 
-    public void run(){
+    public void run() {
         int purchaseMoney = inputPurchaseMoney();
         lottoView.printPurchaseCount(purchaseMoney / 1000);
         List<Lotto> lottos = lottoGenerator.generateLottoBundle(purchaseMoney);

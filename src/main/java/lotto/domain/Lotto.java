@@ -1,13 +1,11 @@
 package lotto.domain;
 
-import lotto.message.ErrorMessage;
-import lotto.validate.Validator;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.message.ErrorMessage.*;
+import static lotto.message.ErrorMessage.INVALID_SIZE_EXCEPTION;
+import static lotto.message.ErrorMessage.NOT_UNIQUE_EXCEPTION;
 
 public class Lotto {
     private final List<Integer> numbers;

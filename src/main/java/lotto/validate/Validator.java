@@ -1,6 +1,5 @@
 package lotto.validate;
 
-import lotto.message.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,32 +22,32 @@ public class Validator {
         }
     }
 
-    public static void validateWinningNumber(String numbers){
-        if(hasBlank(numbers)){
+    public static void validateWinningNumber(String numbers) {
+        if (hasBlank(numbers)) {
             throw new IllegalArgumentException(HAS_BLANK_EXCEPTION.getMessage());
         }
-        if(!isCommaSeparated(numbers)){
+        if (!isCommaSeparated(numbers)) {
             throw new IllegalArgumentException(NOT_COMMA_SEPARATED_EXCEPTION.getMessage());
         }
-        if(!isAllNumberic(numbers)){
+        if (!isAllNumeric(numbers)) {
             throw new IllegalArgumentException(NOT_ALL_NUMERIC_EXCEPTION.getMessage());
         }
-        if(!isInRange(numbers)){
+        if (!isInRange(numbers)) {
             throw new IllegalArgumentException(NOT_IN_RANGE_EXCEPTION.getMessage());
         }
-        if(!areNumbersUnique(numbers)){
+        if (!areNumbersUnique(numbers)) {
             throw new IllegalArgumentException(NOT_UNIQUE_EXCEPTION.getMessage());
         }
     }
 
-    public static void validateBonusNumber(String number, List<Integer> winningNumbers){
-        if(!isNumeric(number)){
+    public static void validateBonusNumber(String number, List<Integer> winningNumbers) {
+        if (!isNumeric(number)) {
             throw new IllegalArgumentException(NOT_NUMERIC_EXCEPTION.getMessage());
         }
-        if(!isInRange(number)){
+        if (!isInRange(number)) {
             throw new IllegalArgumentException(NOT_IN_RANGE_EXCEPTION.getMessage());
         }
-        if(isBonusNumberInWinningNumbers(number, winningNumbers)){
+        if (isBonusNumberInWinningNumbers(number, winningNumbers)) {
             throw new IllegalArgumentException(NOT_UNIQUE_EXCEPTION.getMessage());
         }
     }
@@ -65,12 +64,12 @@ public class Validator {
         return input.split(",").length == 6;
     }
 
-    private static boolean isAllNumberic(String input){
+    private static boolean isAllNumeric(String input) {
         String[] split = input.split(",");
         return Arrays.stream(split).allMatch(s -> isNumeric(s));
     }
 
-    private static boolean isInRange(String input){
+    private static boolean isInRange(String input) {
         String[] split = input.split(",");
         return Arrays.stream(split)
                 .map(Integer::parseInt)

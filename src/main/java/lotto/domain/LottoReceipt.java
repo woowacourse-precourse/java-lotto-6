@@ -9,6 +9,13 @@ public class LottoReceipt {
     public Map<Rank, Integer> winningStatistics = new HashMap<>();
     public double profitRate;
 
+    public LottoReceipt(List<Lotto> lottoTickets) {
+        this.lottoTickets = lottoTickets;
+        for (Rank rank : Rank.values()) {
+            winningStatistics.put(rank, 0);
+        }
+        profitRate = 0;
+    }
 
     public void setProfitRate(double profitRate) {
         this.profitRate = profitRate;
@@ -16,14 +23,6 @@ public class LottoReceipt {
 
     public double getProfitRate() {
         return profitRate;
-    }
-
-    public LottoReceipt(List<Lotto> lottoTickets) {
-        this.lottoTickets = lottoTickets;
-        for (Rank rank : Rank.values()) {
-            winningStatistics.put(rank, 0);
-        }
-        profitRate = 0;
     }
 
     public List<Lotto> getLottoTickets() {

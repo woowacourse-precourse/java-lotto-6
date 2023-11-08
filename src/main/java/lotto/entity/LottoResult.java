@@ -12,8 +12,8 @@ public enum LottoResult {
     SIX_MATCH(6, "6개 일치", "(2,000,000,000원)");
 
     private Integer count;
-    private String hitCount;
-    private String prize;
+    public String hitCount;
+    public String prize;
 
     LottoResult(Integer count, String hitCount, String prize) {
         this.count = count;

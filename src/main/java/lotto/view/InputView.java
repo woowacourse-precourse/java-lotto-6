@@ -18,8 +18,13 @@ public class InputView {
     }
 
     public static WinningNumber readWinningNumber() {
-        String winningNumber = Console.readLine();
-        return WinningNumber.consistOf(winningNumber);
+        try {
+            String winningNumber = Console.readLine();
+            InputValidator.validateWinningNumber(winningNumber);
+            return WinningNumber.consistOf(winningNumber);
+        } catch (IllegalArgumentException e) {
+            return readWinningNumber();
+        }
     }
 
     public static BonusNumber readBonusNumber(WinningNumber winningNumber) {

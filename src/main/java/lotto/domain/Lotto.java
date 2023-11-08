@@ -1,11 +1,7 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.view.message.ExceptionMessage;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -51,10 +47,6 @@ public class Lotto {
         return numbers;
     }
 
-
-    private void sortLotto(List<Integer> lottoNums) {
-        Collections.sort(lottoNums);
-    }
 
     public int compareWithLotto(WinningLotto winningLotto) {
         List<Integer> winningSixLottoNums = winningLotto.getLotto().getNumbers();

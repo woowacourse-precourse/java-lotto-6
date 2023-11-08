@@ -5,7 +5,6 @@ import lotto.domain.Prize;
 import lotto.view.message.OutputMessage;
 
 import java.util.EnumMap;
-import java.util.List;
 
 public class OutputView {
     public static void outputLottoCount(int lottoCount) {

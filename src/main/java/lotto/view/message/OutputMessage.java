@@ -14,11 +14,11 @@ public enum OutputMessage {
 
     private final String message;
 
-    OutputMessage(final String message) {
+    OutputMessage(String message) {
         this.message = message;
     }
 
-    public final String getMessage() {
+    public String getMessage() {
         return message;
     }
 }

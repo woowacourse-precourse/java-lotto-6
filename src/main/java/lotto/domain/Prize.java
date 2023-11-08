@@ -1,13 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public enum Prize {
     ZERO(0, false, 0),
@@ -20,9 +13,9 @@ public enum Prize {
 
 
 
-    private int equalNumCount;
-    private boolean hasCheckBonus;
-    private int winningAmount;
+    private final int equalNumCount;
+    private final boolean hasCheckBonus;
+    private final int winningAmount;
 
     Prize(int equalNumCount, boolean hasCheckBonus, int winningAmount) {
         this.equalNumCount = equalNumCount;

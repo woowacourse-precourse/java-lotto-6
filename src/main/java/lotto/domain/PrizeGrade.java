@@ -1,14 +1,14 @@
 package lotto.domain;
 
-import lotto.StringConstants;
+import lotto.constants.Strings;
 
 public enum PrizeGrade {
-    FIRST(6, 2000000000, StringConstants.EMPTY),
+    FIRST(6, 2000000000, Strings.EMPTY),
     SECOND(5, 30000000, ", 보너스 볼 일치"),
-    THIRD(5, 1500000, StringConstants.EMPTY),
-    FOURTH(4, 50000, StringConstants.EMPTY),
-    FIFTH(3, 5000, StringConstants.EMPTY),
-    NO_PRIZE(0, 0, StringConstants.EMPTY);
+    THIRD(5, 1500000, Strings.EMPTY),
+    FOURTH(4, 50000, Strings.EMPTY),
+    FIFTH(3, 5000, Strings.EMPTY),
+    NO_PRIZE(0, 0, Strings.EMPTY);
 
     private final int matchCount;
     private final int prizeMoney;

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.NumberConstants.*;
-import static lotto.StringConstants.*;
+import static lotto.constants.Numbers.*;
+import static lotto.constants.Strings.*;
 import static lotto.Validator.*;
 import static lotto.InputView.*;
 import static lotto.OutputView.*;

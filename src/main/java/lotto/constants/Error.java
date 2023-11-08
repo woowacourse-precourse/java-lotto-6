@@ -1,6 +1,6 @@
-package lotto;
+package lotto.constants;
 
-import static lotto.NumberConstants.*;
+import static lotto.constants.Numbers.*;
 
 public enum Error {
     NON_NUMBER("숫자 외에 입력할 수 없습니다. 숫자만 입력해주세요."),

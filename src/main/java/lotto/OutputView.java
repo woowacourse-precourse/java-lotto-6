@@ -7,8 +7,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.TreeMap;
 
-import static lotto.NumberConstants.*;
-import static lotto.StringConstants.*;
+import static lotto.constants.Numbers.*;
+import static lotto.constants.Strings.*;
 
 public class OutputView {
     private static final String TICKET_NUMBER_MESSAGE = "%d개를 구매했습니다.\n";

@@ -5,9 +5,9 @@ import lotto.domain.Lotto;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static lotto.Error.*;
-import static lotto.NumberConstants.*;
-import static lotto.StringConstants.*;
+import static lotto.constants.Error.*;
+import static lotto.constants.Numbers.*;
+import static lotto.constants.Strings.*;
 
 public class Validator {
     public static void validateNumberString(String input) {

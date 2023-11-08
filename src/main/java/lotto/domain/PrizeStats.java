@@ -1,13 +1,9 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
-import lotto.domain.PrizeGrade;
-import lotto.domain.WinningNumbers;
-
 import java.util.List;
 import java.util.TreeMap;
 
-import static lotto.NumberConstants.*;
+import static lotto.constants.Numbers.*;
 
 public class PrizeStats {
     private final TreeMap<PrizeGrade, Integer> gradeDist;

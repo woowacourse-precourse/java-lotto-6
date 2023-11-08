@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.Validator.*;
-import static lotto.NumberConstants.*;
+import static lotto.constants.Numbers.*;
 
 public class BuyingLotto {
     private final int buyingPrice;

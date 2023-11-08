@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.List;
 
 import static lotto.Validator.*;
-import static lotto.NumberConstants.*;
+import static lotto.constants.Numbers.*;
 
 public class Lotto {
     private final List<Integer> numbers;

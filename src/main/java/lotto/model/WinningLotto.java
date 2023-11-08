@@ -15,18 +15,18 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public int calculateMatchNumber(LottoPlayerNumber lottoPlayerNumber) {
+    public int calculateMatchNumber(LottoFactory lottoFactory) {
         List<Integer> numbers = lotto.getNumbers();
 
-        return (int) lottoPlayerNumber.getLottoPlayerNumber()
+        return (int) lottoFactory.getLottoPlayerNumber()
                 .stream()
                 .filter(numbers::contains)
                 .count();
 
     }
 
-    public boolean hasBonusNumber(LottoPlayerNumber lottoPlayerNumber) {
-        return lottoPlayerNumber.getLottoPlayerNumber()
+    public boolean hasBonusNumber(LottoFactory lottoFactory) {
+        return lottoFactory.getLottoPlayerNumber()
                 .contains(bonusNumber.getBonusNumber());
     }
 

@@ -19,9 +19,9 @@ public class Statistics {
     private void generateResult(PlayerLottos playerLottos, WinningLotto winningLotto) {
         initResult();
 
-        for (LottoPlayerNumber lottoPlayerNumber : playerLottos.getLottoPlayerNumbers()) {
-            int matchCount = winningLotto.calculateMatchNumber(lottoPlayerNumber);
-            boolean hasBonusNumber = winningLotto.hasBonusNumber(lottoPlayerNumber);
+        for (LottoFactory lottoFactory : playerLottos.getLottoPlayerNumbers()) {
+            int matchCount = winningLotto.calculateMatchNumber(lottoFactory);
+            boolean hasBonusNumber = winningLotto.hasBonusNumber(lottoFactory);
             Prize prize = Prize.findPrize(matchCount, hasBonusNumber);
 
             result.replace(prize, result.get(prize) + 1);

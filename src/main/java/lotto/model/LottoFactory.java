@@ -6,10 +6,10 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoPlayerNumber {
+public class LottoFactory {
     private final List<Integer> lottoPlayerNumber;
 
-    public LottoPlayerNumber() {
+    public LottoFactory() {
         this.lottoPlayerNumber = generateLottoNumber();
     }
 

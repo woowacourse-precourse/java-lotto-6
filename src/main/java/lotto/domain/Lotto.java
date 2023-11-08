@@ -87,7 +87,12 @@ public class Lotto {
                 winning_check[7]++;
             }
         }
-        
+        double winningmoney = (
+                (double) ((5000 * winning_check[3]) + (50000 * winning_check[4]) + (1500000 * winning_check[5]) + (
+                        30000000 * winning_check[6])
+                        + (2000000000 * winning_check[7])) /(myList.size()*1000))*100;
+        System.out.println(winningmoney);
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
             System.out.println("3개 일치 (5,000)원 - " + winning_check[3] + "개");
@@ -95,7 +100,7 @@ public class Lotto {
             System.out.println("5개 일치 (1,500,000)원 - " + winning_check[5] + "개");
             System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winning_check[6] + "개");
             System.out.println("6개 일치 (2,000,000,000원) - " + winning_check[7] + "개");
-
+        System.out.println("총 수익률은 "+(Math.round(winningmoney*100)/100.0)+"%입니다.");
 
         }
     }

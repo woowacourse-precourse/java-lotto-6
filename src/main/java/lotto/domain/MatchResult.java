@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public enum MatchResult {
-    /*
+
     THREE_MATCH(3, 5000),
     FOUR_MATCH(4, 50000),
     FIVE_MATCH(5, 1500000),
@@ -22,5 +22,5 @@ public enum MatchResult {
 
     public int getPrize() {
         return prize;
-    }*/
+    }
 }

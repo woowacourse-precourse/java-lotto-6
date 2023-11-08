@@ -51,12 +51,17 @@ public class LottoController {
 
     private LottoResultsDTO createLottoResultsDTO() {
         List<LottoResults> lottoResults = lottos.calculateAllOfLottoResult(winningNumbers);
+        Map<LottoResults, Integer> lottoStatistics = calculateLottoStatistics(lottoResults);
+        long winningAmount = calculateTotalWinningAmount(lottoStatistics);
+        return new LottoResultsDTO(lottoStatistics, winningAmount, buyAmount.getBuyAmount());
+    }
+
+    private Map<LottoResults, Integer> calculateLottoStatistics(List<LottoResults> lottoResults) {
         Map<LottoResults, Integer> lottoStatistics = new EnumMap<>(LottoResults.class);
         for (LottoResults result : lottoResults) {
             lottoStatistics.put(result, lottoStatistics.getOrDefault(result, 0) + 1);
         }
-        long winningAmount = calculateTotalWinningAmount(lottoStatistics);
-        return new LottoResultsDTO(lottoStatistics, winningAmount, buyAmount.getBuyAmount());
+        return lottoStatistics;
     }
 
     private long calculateTotalWinningAmount(Map<LottoResults, Integer> lottoStatistics) {

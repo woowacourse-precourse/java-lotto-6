@@ -40,9 +40,9 @@ public class LottoWinningCalculationMachine {
     public void calculatePlace(WinningStatistics winningStatistics, int correctWinningNumber, int correctBonusNumber) {
         if (correctWinningNumber == LottoPlaceCount.FIRST_PLACE.lottoPlaceCount) {
             winningStatistics.addFirstPlace();
-        } else if (correctWinningNumber == LottoPlaceCount.SECOND_PLACE.lottoPlaceCount) {
+        } else if (correctWinningNumber == LottoPlaceCount.SECOND_PLACE.lottoPlaceCount && correctBonusNumber == 1) {
             winningStatistics.addSecondPlace();
-        } else if (correctWinningNumber == LottoPlaceCount.THIRD_PLACE.lottoPlaceCount || correctBonusNumber == 1) {
+        } else if (correctWinningNumber == LottoPlaceCount.THIRD_PLACE.lottoPlaceCount) {
             winningStatistics.addThirdPlace();
         } else if (correctWinningNumber == LottoPlaceCount.FOURTH_PLACE.lottoPlaceCount) {
             winningStatistics.addFourthPlace();
@@ -61,8 +61,8 @@ public class LottoWinningCalculationMachine {
         long winningMoney = firstPlaceMoney + secondPlaceMoney + thirdPlaceMoney + fourthPlaceMoney + fifthPlaceMoney;
 
         int money = lottoCount * 1000;
-        double winningRate = money / winningMoney * 100;
-        double twoWinningRate = Math.round(winningRate * 100) / 100;
+        double winningRate = (double) winningMoney / money * 100;
+        double twoWinningRate = Math.round(winningRate * 100) / 100.0;
         winningStatistics.setWinningRate(twoWinningRate);
     }
 }

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.domain.ExceptionModule.checkNegative;
 import static lotto.domain.ExceptionModule.checkNumBoundary;
 import static lotto.domain.ExceptionModule.checkParseIntException;
 import static lotto.domain.ExceptionModule.checkThousandException;
@@ -18,6 +19,7 @@ public class InteractService {
             System.out.println("구입금액을 입력해 주세요.");
             try {
                 Integer tryNum = checkParseIntException(Console.readLine());
+                checkNegative(tryNum);
                 checkThousandException(tryNum, LOTTO_PRICE);
                 return tryNum;
             } catch (IllegalArgumentException e) {

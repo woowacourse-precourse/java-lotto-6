@@ -15,35 +15,38 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public int checkMatch(List<Integer> prizeNumber){
+    public int checkMatch(List<Integer> prizeNumber) {
         int count = 0;
-        for(int number : prizeNumber){
-           if(numbers.contains(number)){ //이 로또가 정답을 갖고있다면
+        for (int number : prizeNumber) {
+            if (numbers.contains(number)) { //이 로또가 정답을 갖고있다면
                 count++;
-           }
-       }
+            }
+        }
         return count;
     }
-    public boolean checkBonus(int bounsNumber){
+
+    public boolean checkBonus(int bounsNumber) {
         return numbers.contains(bounsNumber);
     }
 
     public static void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.WRONG_ORDER_COUNT.getMessage());
         }
     }
 
-    public static void duplicateCheck(List<Integer> numbers){
+    public static void duplicateCheck(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
-        if(set.size() != numbers.size()){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+        if (set.size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.REDUNDANT_NUMBER.getMessage());
         }
     }
-    public void printLotto(){
+
+    public void printLotto() {
         System.out.println(numbers);
     }
-    void sortLotto(List<Integer> numbers){
+
+    void sortLotto(List<Integer> numbers) {
 
         numbers.sort(Comparator.naturalOrder());
     }

@@ -12,16 +12,19 @@ public class Purchase {
 
     }
 
-    private void priceCheck(int price){
-        if(price % LOTTO_PRICE != 0){
-            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구매할 수 있습니다.");
+    private void priceCheck(int price) {
+        if (price % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.WRONG_ORDER_PRICE.getMessage());
         }
     }
+
     public int getPurchaseCount() {
         return purchaseCount;
     }
-    public int getPurchasePrice(){return purchasePrice;}
 
+    public int getPurchasePrice() {
+        return purchasePrice;
+    }
 
 
 }

@@ -17,6 +17,7 @@ public class Ranking {
     private final int MATCH_FIVE = 5;
     private final int MATCH_FIVE_BONUS = 7;
     private final int MATCH_SIX = 6;
+    private final String COUNT_MESSAGE = "개";
 
     private enum Match {
 
@@ -27,16 +28,18 @@ public class Ranking {
         SIX("6개 일치 (2,000,000,000원) - ");
 
         private final String message;
-        Match(String message){
+
+        Match(String message) {
             this.message = message;
         }
-        public String getMessage(){
+
+        public String getMessage() {
             return message;
         }
 
     }
-    private final String COUNT_MESSAGE = "개";
-    public void addRank(int rank){
+
+    public void addRank(int rank) {
         winningDetails.add(rank);
     }
 
@@ -45,21 +48,22 @@ public class Ranking {
         return winningDetails;
     }
 
-    public void printResult(){
+    public void printResult() {
 
-        System.out.println(Match.THREE.getMessage()+fifth+COUNT_MESSAGE);
-        System.out.println(Match.FOUR.getMessage()+fourth+COUNT_MESSAGE);
-        System.out.println(Match.FIVE.getMessage()+third+COUNT_MESSAGE);
-        System.out.println(Match.FIVE_BONUS.getMessage()+second+COUNT_MESSAGE);
-        System.out.println(Match.SIX.getMessage()+first+COUNT_MESSAGE);
+        System.out.println(Match.THREE.getMessage() + fifth + COUNT_MESSAGE);
+        System.out.println(Match.FOUR.getMessage() + fourth + COUNT_MESSAGE);
+        System.out.println(Match.FIVE.getMessage() + third + COUNT_MESSAGE);
+        System.out.println(Match.FIVE_BONUS.getMessage() + second + COUNT_MESSAGE);
+        System.out.println(Match.SIX.getMessage() + first + COUNT_MESSAGE);
     }
-    public void calculateResult(){
-        for(int win : winningDetails){
+
+    public void calculateResult() {
+        for (int win : winningDetails) {
             matchRank(win);
         }
     }
 
-    private void matchRank(int win){
+    private void matchRank(int win) {
         switch (win) {
             case MATCH_THREE -> fifth++;
             case MATCH_FOUR -> fourth++;

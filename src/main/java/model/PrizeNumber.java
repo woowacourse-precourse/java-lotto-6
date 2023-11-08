@@ -8,10 +8,11 @@ public class PrizeNumber {
     private List<Integer> prizeNumber;
     private int bonousNumber;
 
-    public void initPrizeNumber(List<Integer> numbers){
+    public void initPrizeNumber(List<Integer> numbers) {
         prizeNumber = numbers;
     }
-    public void initBonusNumber(int number){
+
+    public void initBonusNumber(int number) {
         bonousNumber = number;
     }
 

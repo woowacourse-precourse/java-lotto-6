@@ -10,10 +10,10 @@ import java.util.List;
 public class LottoGenerator {
     //로또 생성을 담당하는 클래스
 
-    public static List<Lotto> createLottos(int number){
+    public static List<Lotto> createLottos(int number) {
         List<Lotto> lottos = new ArrayList<>();
-        while (number > 0){
-            List<Integer> randomNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+        while (number > 0) {
+            List<Integer> randomNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Lotto lotto = new Lotto(randomNumber);
             lottos.add(lotto);
             number--;

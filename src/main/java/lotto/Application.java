@@ -9,7 +9,7 @@ public class Application {
         run();
     }
 
-    static void run(){
+    static void run() {
         Purchase purchase = new Purchase();
         Lottos lottos = new Lottos();
         PrizeNumber prizeNumber = new PrizeNumber();
@@ -31,14 +31,13 @@ public class Application {
 
         Message.printOuttro();
 
-        ranking = prizeChecker.checkRank(lottos,prizeNumber);
+        ranking = prizeChecker.checkRank(lottos, prizeNumber);
         int total = YieldCalculator.totalPrize(ranking);
         ranking.calculateResult();
         ranking.printResult();
 
-        YieldCalculator.yieldcalculate(total,purchase.getPurchasePrice());
+        YieldCalculator.yieldcalculate(total, purchase.getPurchasePrice());
     }
-
 
 
 }

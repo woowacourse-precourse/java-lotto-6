@@ -13,17 +13,26 @@ public class LottoManager {
     private final int bonusNumber;
 
     public LottoManager(final Lotto target, final int bonusNumber) {
-        validate(bonusNumber);
+        validateRange(bonusNumber);
+        validateContain(target, bonusNumber);
         this.target = target;
         this.bonusNumber = bonusNumber;
         rankBoard = new RankBoard();
     }
 
-    private void validate(int bonusNumber) {
+    private void validateRange(final int bonusNumber) {
         if (Lotto.START > bonusNumber || Lotto.END < bonusNumber)
         {
             throw new IllegalArgumentException(
                     ExceptionCode.LOTTO_INVALID_RANGE.getDescription()
+            );
+        }
+    }
+
+    private void validateContain(final Lotto target, final int bonusNumber) {
+        if (target.contain(bonusNumber)) {
+            throw new IllegalArgumentException(
+                    ExceptionCode.BONUS_NUMBER_CONTAINED.getDescription()
             );
         }
     }

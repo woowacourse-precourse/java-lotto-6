@@ -1,10 +1,13 @@
 package lotto.service;
 
+import lotto.Enum.Constant;
+import lotto.Enum.Rank;
 import lotto.model.Lotto;
 import lotto.model.Statistics;
 
 import java.util.*;
 
+import static lotto.Enum.Constant.*;
 import static lotto.controller.InputController.*;
 import static lotto.service.IssueLotto.lottoTickets;
 
@@ -15,14 +18,14 @@ public class DrawStatistics {
     public static int compareWithWinningNumbers(Lotto lottoTicket) {
         List<Integer> lottoNumbers = lottoTicket.getNumbers();
         Set<Integer> findCorrectNumbers = new HashSet<>(lottoNumbers);
-        int countingCorrectNumbers = 0;
+        int countingCorrectNumbers = NUMBER_FOR_INITIALIZATION.getValue();
 
         for (Integer num : winningNumbers) {
             if(findCorrectNumbers.contains(num)) {
                 countingCorrectNumbers++;
             }
         }
-        if (countingCorrectNumbers == 5) {
+        if (countingCorrectNumbers == AMOUNT_OF_CORRECT_NUMBER.getValue()) {
             countingCorrectNumbers = compareWithBonusNumber(lottoNumbers);
         }
         return countingCorrectNumbers;
@@ -30,10 +33,10 @@ public class DrawStatistics {
     public static int compareWithBonusNumber(List<Integer> lottoNumbers) {
         for (Integer number : lottoNumbers) {
             if (number == bonusNumber) {
-                return 7;
+                return CORRECT_WITH_BONUS_NUMBER.getValue();
             }
         }
-        return 5;
+        return AMOUNT_OF_CORRECT_NUMBER.getValue();
     }
     public static void countCorrectNumbers() {
         amountOfCorrectNumbers = new ArrayList<>();
@@ -41,10 +44,10 @@ public class DrawStatistics {
             amountOfCorrectNumbers.add(compareWithWinningNumbers(lottoTicket));
         }
     }
-    public static int countCorrespondingTickets(int number,List<Integer> amountOfCorrectNumbers) {
-        int counter = 0;
+    public static int countCorrespondingTickets(Rank rank, List<Integer> amountOfCorrectNumbers) {
+        int counter = NUMBER_FOR_INITIALIZATION.getValue();
         for (Integer correctNumbers : amountOfCorrectNumbers) {
-            if (correctNumbers == number) {
+            if (correctNumbers == rank.getCorrectNumbers()) {
                 counter ++;
             }
         }
@@ -52,17 +55,19 @@ public class DrawStatistics {
     }
     public static void makeStatistics() {
         lottoStatistics = new ArrayList<>();
-        lottoStatistics.add(new Statistics("3개 일치 (5,000원)",5000, countCorrespondingTickets(3, amountOfCorrectNumbers)));
-        lottoStatistics.add(new Statistics("4개 일치 (50,000원)",50000, countCorrespondingTickets(4, amountOfCorrectNumbers)));
-        lottoStatistics.add(new Statistics("5개 일치 (1,500,000원)",1500000, countCorrespondingTickets(5, amountOfCorrectNumbers)));
-        lottoStatistics.add(new Statistics("5개 일치, 보너스 볼 일치 (30,000,000원)",30000000, countCorrespondingTickets(7, amountOfCorrectNumbers)));
-        lottoStatistics.add(new Statistics("6개 일치 (2,000,000,000원)",2000000000, countCorrespondingTickets(6, amountOfCorrectNumbers)));
+        for (Rank rank : Rank.values()) {
+            lottoStatistics.add(new Statistics(
+                    rank.getDescription(),
+                    rank.getPrizeAmount(),
+                    countCorrespondingTickets(rank, amountOfCorrectNumbers)
+            ));
+        }
     }
     public static void getEarningRate() {
-        earningRate = 0;
+        earningRate = NUMBER_FOR_INITIALIZATION.getValue();
         for (Statistics statistics : lottoStatistics) {
             earningRate += statistics.getValueNumber()*statistics.getAmountOfTickets();
         }
-        earningRate = earningRate / money * 100;
+        earningRate = earningRate / money * PERCENT.getValue();
     }
 }

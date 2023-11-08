@@ -1,9 +1,12 @@
 package lotto.model;
 
+import lotto.service.IssueLotto;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.controller.InputController.validator;
 import static lotto.controller.InputController.winningNumbers;
 
 public class Lotto {
@@ -19,11 +22,15 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
 
-        List<Integer> checking = new ArrayList<>();
-        checking = numbers.stream().distinct().collect(Collectors.toList());
-
+        List<Integer> checking = numbers.stream().distinct().toList();
         if (numbers.size() != checking.size()) {
-            throw new IllegalArgumentException("중복되지 않는 6개의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException();
+        }
+
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 

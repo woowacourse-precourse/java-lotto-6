@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static lotto.controller.InputController.money;
+import static lotto.controller.InputController.validator;
 
 public class IssueLotto {
     public static int amountOfLottoTickets;
@@ -20,10 +21,14 @@ public class IssueLotto {
         lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < amountOfLottoTickets; i++) {
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = makeARandomNumbersList();
             Collections.sort(numbers);
             Lotto ticketNumbers = new Lotto(numbers);
             lottoTickets.add(ticketNumbers);
         }
+    }
+    public static List<Integer> makeARandomNumbersList() {
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return numbers;
     }
 }

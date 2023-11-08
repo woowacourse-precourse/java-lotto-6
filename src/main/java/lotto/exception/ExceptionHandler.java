@@ -11,7 +11,7 @@ public final class ExceptionHandler {
 
 
     public static void invalidPriceType() {
-        System.out.println(NOT_NUMERIC);
+        throw new IllegalArgumentException(NOT_NUMERIC);
     }
 
     public static void notDivisibleBy1000() {

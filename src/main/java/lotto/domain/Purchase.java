@@ -11,8 +11,8 @@ public class Purchase {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
                 int purchaseQuantity = Integer.parseInt(input);
-                printQuantity(purchaseQuantity);
                 checkInputMoney(purchaseQuantity);
+                printQuantity(purchaseQuantity);
                 return purchaseQuantity;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 로또 구입금액은 숫자만 입력 가능합니다.");

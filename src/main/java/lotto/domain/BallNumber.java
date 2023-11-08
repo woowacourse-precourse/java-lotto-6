@@ -20,7 +20,7 @@ public class BallNumber {
             for (String s : winningBallNumber) {
                 winningNumber.add(Integer.parseInt(s));
             }
-            Lotto lotto = new Lotto(winningNumber);
+            //Lotto lotto = new Lotto(winningNumber);
 
         return winningNumber;
     }
@@ -28,7 +28,6 @@ public class BallNumber {
     public static boolean validate(List<Integer> param){
         canUse = false;
         Lotto lotto = new Lotto(param);
-
         return canUse;
     }
 

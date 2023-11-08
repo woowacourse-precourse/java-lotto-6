@@ -17,7 +17,6 @@ public class Application {
         List<Integer> winningNumber = new ArrayList<>();
 
         while (BallNumber.canUse) {
-            //List<Integer> winningNumber = BallNumber.transWinningBall(BallNumber.inputWinningBall());
             winningNumber = BallNumber.transWinningBall(BallNumber.inputWinningBall());
             BallNumber.canUse = BallNumber.validate(winningNumber);
         }

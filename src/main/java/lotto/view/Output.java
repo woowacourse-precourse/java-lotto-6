@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 
 public class Output {
 
-    private static final String LOTTO_QUANTITY_MESSAGE = "\n%d개를 구매했습니다.";
+    private static final String LOTTO_QUANTITY_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";
     private static final String TOTAL_RETURN_MESSAGE = "총 수익률은 %s%%입니다.";
 
@@ -16,7 +16,7 @@ public class Output {
 
     public void printLottoNumbers(IssuedLotto issuedLotto) {
         for (Lotto lotto : issuedLotto.getLottos()) {
-            System.out.println(lotto.toString());
+            System.out.println(lotto.getNumbers());
         }
     }
 

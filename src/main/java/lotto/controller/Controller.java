@@ -161,7 +161,7 @@ public class Controller {
     private void getBonusNumber() {
         String inputBonusNumber = askBonusNumber();
         checkInputBonusNumberValidation(inputBonusNumber);
-        bonusNumber = new BonusNumber(Integer.parseInt(inputBonusNumber));
+        bonusNumber = new BonusNumber(Integer.parseInt(inputBonusNumber), winningNumbers.getWinningNumbers());
     }
 
     private String askBonusNumber() {

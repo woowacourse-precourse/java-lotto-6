@@ -1,9 +1,17 @@
 package lotto.validator;
 
+import java.util.List;
+
 public class BonusNumberValidator {
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final int MIN_NUBMER = 1;
     private static final int MAX_NUBMER = 45;
+
+    public static void hasDuplicateNumber(int bonusNumber, List<Integer> numbers) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "당첨번호와 중복되는 번호입니다.");
+        }
+    }
 
     public static void validateMinNumber(int bonusNumber) {
         if (bonusNumber < MIN_NUBMER) {

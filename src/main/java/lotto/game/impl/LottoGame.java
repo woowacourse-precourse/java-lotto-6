@@ -16,9 +16,7 @@ public class LottoGame implements Game {
     private final MoneyController moneyController;
     private final WinningLottoController winningLottoController;
     private final StatisticsController statisticsController;
-
     private final PrintController printController;
-
     private final WalletController walletController;
 
     public LottoGame(MoneyController moneyController, WinningLottoController winningLottoController,
@@ -33,7 +31,9 @@ public class LottoGame implements Game {
 
     @Override
     public void playLotto() {
+        printController.purchaseAmount();
         Money money = moneyController.make();
+        printController.newLine();
         printController.LottoCount(money);
         Wallet wallet = walletController.make(money);
         printController.newLine();
@@ -42,6 +42,4 @@ public class LottoGame implements Game {
         printController.statistics(statistics);
         printController.rateOfReturn(money, statistics);
     }
-
-
 }

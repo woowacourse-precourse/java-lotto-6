@@ -17,11 +17,10 @@ public class MoneyController {
     }
 
     public Money make() {
-        LottoMessage purchaseAmountMessage = LottoMessage.ENTER_PURCHASE_AMOUNT;
-        ioAdapter.printMessage(purchaseAmountMessage.getMessage());
         int moneyInput = moneyInput();
         return new Money(moneyInput);
     }
+
 
     private int moneyInput() {
 
@@ -29,7 +28,6 @@ public class MoneyController {
             try {
                 String moneyInputStream = ioAdapter.inputStream();
                 validateService.checkCorrectMoney(moneyInputStream);
-                ioAdapter.printNewLine();
                 return Integer.parseInt(moneyInputStream);
             } catch (IllegalArgumentException exception) {
                 ErrorMessage notUnitsOfThousandError = ErrorMessage.NOT_UNITS_OF_THOUSAND_ERROR;

@@ -46,4 +46,9 @@ public class PrintController {
     public void newLine() {
         ioAdapter.printNewLine();
     }
+
+    public void purchaseAmount() {
+        LottoMessage purchaseAmountMessage = LottoMessage.ENTER_PURCHASE_AMOUNT;
+        ioAdapter.printMessage(purchaseAmountMessage.getMessage());
+    }
 }

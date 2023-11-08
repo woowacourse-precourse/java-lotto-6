@@ -8,19 +8,19 @@ import lotto.model.domain.lotto.LottoAnswer;
  */
 public class AnswerGenerator extends LottoGenerator<LottoAnswer> {
     private static LottoAnswer lottoAnswer;
-    private final List<Integer> list;
+    private final List<Integer> answerNumbers;
     private final Integer bonusNumber;
 
-    public AnswerGenerator(List<Integer> list, Integer bonusNumber) {
-        this.list = list;
+    public AnswerGenerator(List<Integer> answerNumbers, Integer bonusNumber) {
+        this.answerNumbers = answerNumbers;
         this.bonusNumber = bonusNumber;
-        lottoAnswer = new LottoAnswer(list, bonusNumber);
+        lottoAnswer = new LottoAnswer(answerNumbers, bonusNumber);
     }
 
     @Override
     public LottoAnswer generate() {
         if (lottoAnswer == null) {
-            lottoAnswer = new LottoAnswer(this.list, this.bonusNumber);
+            lottoAnswer = new LottoAnswer(this.answerNumbers, this.bonusNumber);
         }
         return lottoAnswer;
     }

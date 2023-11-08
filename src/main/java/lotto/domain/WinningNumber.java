@@ -6,7 +6,7 @@ import lotto.message.Error;
 import lotto.util.Validation;
 
 public class WinningNumber {
-    
+
     private static final int winningNumberCount = 6;
 
     private final List<Integer> numbers;

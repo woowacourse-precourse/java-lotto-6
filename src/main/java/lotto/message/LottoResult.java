@@ -15,14 +15,6 @@ public enum LottoResult {
         this.price = price;
     }
 
-    public void print(int count) {
-        System.out.printf(message, count);
-    }
-
-    public int yield(int count) {
-        return this.price * count;
-    }
-
     public static LottoResult getMessageByResult(int matchedNumberCount, boolean isBonusMatched) {
         if (matchedNumberCount == 6) {
             return SIX_NUMBERS_MATCHES;
@@ -37,5 +29,13 @@ public enum LottoResult {
             return FOUR_NUMBERS_MATCHES;
         }
         return THREE_NUMBERS_MATCHES;
+    }
+
+    public void print(int count) {
+        System.out.printf(message, count);
+    }
+
+    public int yield(int count) {
+        return this.price * count;
     }
 }

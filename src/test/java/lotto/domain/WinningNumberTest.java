@@ -13,6 +13,23 @@ class WinningNumberTest {
 
     private static final String errorPrefix = "[ERROR] ";
 
+    private static Stream<List<Integer>> provideValidIntArray() {
+
+        return Stream.of(
+                List.of(1, 2, 45, 3, 4, 5),
+                List.of(20, 21, 22, 40, 41, 42)
+        );
+    }
+
+    private static Stream<List<Integer>> provideInvalidIntArray() {
+        return Stream.of(
+                List.of(1, 2, 50, 4, 1),
+                List.of(1, 2, 50, 2),
+                List.of(-1, -1),
+                List.of(1, 2, 3, 4, 100, 200, 300, 1)
+        );
+    }
+
     @ParameterizedTest
     @DisplayName("WinningNumber: 적절한 입력이 주어졌을 때 객체 생성에 성공한다")
     @MethodSource("provideValidIntArray")
@@ -31,23 +48,6 @@ class WinningNumberTest {
         assertThatThrownBy(() -> new WinningNumber(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(errorPrefix);
-    }
-
-    private static Stream<List<Integer>> provideValidIntArray() {
-
-        return Stream.of(
-                List.of(1, 2, 45, 3, 4, 5),
-                List.of(20, 21, 22, 40, 41, 42)
-        );
-    }
-
-    private static Stream<List<Integer>> provideInvalidIntArray() {
-        return Stream.of(
-                List.of(1, 2, 50, 4, 1),
-                List.of(1, 2, 50, 2),
-                List.of(-1, -1),
-                List.of(1, 2, 3, 4, 100, 200, 300, 1)
-        );
     }
 
 }

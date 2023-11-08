@@ -11,7 +11,6 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-
     private final LottoIssuer lottoIssuer = new LottoIssuer();
 
     public void play() {

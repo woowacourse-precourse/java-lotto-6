@@ -29,11 +29,10 @@ class LottoControllerTest {
                     + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n"
                     + "6개 일치 (2,000,000,000원) - 1개\n"
                     + "총 수익률은 200000000.0%입니다.";
-
-    private ByteArrayOutputStream outputStream;
-    private ByteArrayInputStream inputStream;
     private final OutputStream originalOutputStream = System.out;
     private final InputStream originalInputStream = System.in;
+    private ByteArrayOutputStream outputStream;
+    private ByteArrayInputStream inputStream;
 
     @BeforeEach
     void setup() {

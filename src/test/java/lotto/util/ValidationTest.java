@@ -12,6 +12,22 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidationTest {
 
+    private static Stream<List<Integer>> provideValidIntArray() {
+        return Stream.of(
+                List.of(1, 2, 45, 3, 4, 5),
+                List.of(20, 21, 22, 40, 41, 42)
+        );
+    }
+
+    private static Stream<List<Integer>> provideInvalidIntArray() {
+        return Stream.of(
+                List.of(1, 2, 50, 4, 1),
+                List.of(1, 2, 50, 2),
+                List.of(-1, -1),
+                List.of(1, 2, 3, 4, 100, 200, 300, 1)
+        );
+    }
+
     @ParameterizedTest
     @DisplayName("isNumericValue: 숫자 형식의 String이 주어지면 true를 반환한다")
     @ValueSource(strings = {"1", "123", "-123", "-12345"})
@@ -107,21 +123,5 @@ class ValidationTest {
     void hasDuplicate_true(List<Integer> value) {
 
         assertThat(Validation.hasDuplicate(value)).isTrue();
-    }
-
-    private static Stream<List<Integer>> provideValidIntArray() {
-        return Stream.of(
-                List.of(1, 2, 45, 3, 4, 5),
-                List.of(20, 21, 22, 40, 41, 42)
-        );
-    }
-
-    private static Stream<List<Integer>> provideInvalidIntArray() {
-        return Stream.of(
-                List.of(1, 2, 50, 4, 1),
-                List.of(1, 2, 50, 2),
-                List.of(-1, -1),
-                List.of(1, 2, 3, 4, 100, 200, 300, 1)
-        );
     }
 }

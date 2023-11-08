@@ -26,5 +26,7 @@ public class Application {
         WinningLotto winningLotto = new WinningLotto(winnerLotto, BonusNumber);
         LottoGame lottoGame = new LottoGame();
         lottoGame.play(winningLotto, lottoTickets);
+
+        outputView.printTotalPrize(lottoGame.getResult());
     }
 }

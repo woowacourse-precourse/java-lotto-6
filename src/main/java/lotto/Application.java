@@ -50,13 +50,13 @@ public class Application {
     }
 
     public static int isBuyingValid(String inp) {
-        int paying = strToNum(inp);
+        int payed = strToNum(inp);
 
-        if ((paying % PRICE_OF_LOTTO) != 0) {
+        if ((payed == 0) || (payed % PRICE_OF_LOTTO) != 0) {
             throw new IllegalArgumentException();
         }
 
-        return paying % PRICE_OF_LOTTO;
+        return payed / PRICE_OF_LOTTO;
     }
 
     public static int buying() {

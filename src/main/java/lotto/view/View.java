@@ -73,7 +73,7 @@ public final class View {
 
     private static void printLottoInfo(Lotto lotto) {
         String result = String.join(OUTPUT_SEPARATOR.getSymbol(), convertNumbers(lotto.getNumbers()));
-        printlnResult(PREFIX + result + POSTFIX);
+        printlnResult(PREFIX.getSymbol() + result + POSTFIX.getSymbol());
     }
 
     private static String[] convertNumbers(List<Integer> numbers) {

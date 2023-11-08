@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 public class WinningStatistics {
     private int firstPlace;

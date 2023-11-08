@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.LottoPurchaseMachine;
-import lotto.domain.Lottos;
+import lotto.model.Lottos;
 import lotto.view.LottoPurchaseOutputView;
 
 public class LottoPurchaseController {

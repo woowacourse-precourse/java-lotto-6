@@ -1,7 +1,7 @@
 package lotto.validation;
 
-import lotto.domain.Lotto;
-import lotto.domain.WinningNumber;
+import lotto.model.Lotto;
+import lotto.model.WinningNumber;
 
 public class WinningNumberInputValidator {
 

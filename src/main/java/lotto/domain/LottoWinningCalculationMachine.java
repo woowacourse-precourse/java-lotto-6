@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+import lotto.model.WinningNumber;
+import lotto.model.WinningStatistics;
+
 public class LottoWinningCalculationMachine {
 
     public int calculateWinningNumber(Lotto oneLotto, WinningNumber winningNumber) {

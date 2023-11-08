@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.model;
+
+import lotto.model.Lotto;
 
 public class WinningNumber {
 

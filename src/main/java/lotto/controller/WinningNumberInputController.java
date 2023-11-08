@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Exception.LottoException;
-import lotto.domain.Lotto;
-import lotto.domain.WinningNumber;
+import lotto.model.Lotto;
+import lotto.model.WinningNumber;
 import lotto.validation.InputValidator;
 import lotto.validation.WinningNumberInputValidator;
 

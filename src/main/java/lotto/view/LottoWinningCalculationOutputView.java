@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.math.BigDecimal;
-import lotto.domain.WinningStatistics;
+import lotto.model.WinningStatistics;
 
 public class LottoWinningCalculationOutputView {
     private final static String WINNING_STATISTICS = "당첨 통계\n---";

@@ -1,10 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
+import lotto.model.Lotto;
 import lotto.domain.LottoWinningCalculationMachine;
-import lotto.domain.Lottos;
-import lotto.domain.WinningNumber;
-import lotto.domain.WinningStatistics;
+import lotto.model.Lottos;
+import lotto.model.WinningNumber;
+import lotto.model.WinningStatistics;
 import lotto.view.LottoWinningCalculationOutputView;
 
 public class LottoWinningCalculationController {

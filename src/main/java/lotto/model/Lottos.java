@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Lotto;
 
 public class Lottos {
 

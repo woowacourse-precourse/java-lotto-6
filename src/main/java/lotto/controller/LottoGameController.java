@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lottos;
+import lotto.model.Lottos;
 
 public class LottoGameController {
     private LottoPurchaseController lottoPurchaseController;

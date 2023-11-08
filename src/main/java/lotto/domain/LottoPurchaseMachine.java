@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.model.Lottos;
+
 public class LottoPurchaseMachine {
 
     LottoRepository lottoRepository;

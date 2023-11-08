@@ -158,4 +158,12 @@ class LottoTest {
         assertThatThrownBy(() -> gameController.stringToInteger("apple"))
                 .isInstanceOf(NumberFormatException.class);
     }
+
+    @Test
+    void 천원으로_나누어지는지_확인() {
+        GameController gameController = new GameController();
+
+        assertThatThrownBy(() -> gameController.checkAmountValid(100))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

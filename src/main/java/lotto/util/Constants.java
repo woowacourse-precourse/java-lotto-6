@@ -7,6 +7,8 @@ public final class Constants {
 
     public static final String ERROR_LOTTO_BUDGET_RANGE = "[ERROR] 구입금액은 0원 이상 MAX 이하여야 합니다";
     public static final String ERROR_LOTTO_BUDGET_PRICE = "[ERROR] 구입금액은 1000원 단위여야 합니다. ";
-    public static final String ERROR_LOTTO_BUDGET_INTEGER = "[ERROR] 구입음액은 숫자여야 합니다.";
-
+    public static final String ERROR_INTEGER_TYPE_ERROR = "[ERROR] 숫자가 입력되어야 합니다.";
+    public static final String ERROR_LOTTO_NUMBER_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    public static final int NUMBER_START_RANGE = 1;
+    public static final int LOTTO_END_RANGE = 45;
 }

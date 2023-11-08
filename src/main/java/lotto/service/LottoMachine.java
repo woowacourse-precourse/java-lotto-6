@@ -33,9 +33,24 @@ public class LottoMachine {
         lottoTickets.createTicket(lottoBudget / TICKET_PRICE);
         outputView.printLottoTickets(lottoTickets.getLottoTickets());
 
-        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        WinningLotto winningLotto = getWinningLotto();
+
         HashMap<Result, Integer> resultIntegerHashMap = lottoTickets.calculateWinningLotto(winningLotto);
-        System.out.println(resultIntegerHashMap);
+        outputView.printResult(resultIntegerHashMap, getScore(resultIntegerHashMap));
+    }
+
+    private double getScore(HashMap<Result, Integer> resultIntegerHashMap) {
+        double sum = 0;
+        for (Result result : resultIntegerHashMap.keySet()) {
+            sum += result.getPrizeMoney() * resultIntegerHashMap.get(result);
+        }
+        return sum / (lottoTickets.getLottoTicketsSize() * TICKET_PRICE / 100);
+    }
+
+    private WinningLotto getWinningLotto() {
+        List<Integer> numbers = inputView.getWinningLottoNumbers();
+        int bonusNumber = inputView.getWinningLottoBonusNumber();
+        return new WinningLotto(numbers, bonusNumber);
     }
 
 }

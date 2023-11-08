@@ -29,6 +29,18 @@ public enum Result {
     private final int hitsBonusCount;
     private final int prizeMoney;
 
+    public int getHitsNumberCount() {
+        return hitsNumberCount;
+    }
+
+    public int getHitsBonusCount() {
+        return hitsBonusCount;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
     @Override
     public String toString() {
         return "Result{" +

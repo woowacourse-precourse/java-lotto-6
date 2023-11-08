@@ -26,8 +26,8 @@ public class OutputView {
         return String.format(QUANTITY_MSG, lottosDto.quantity());
     }
 
-    private static String getNumbers(LottoDto lottoDto) {
-        return lottoDto.numbers()
+    private static String getNumbers(LottoDto lottoTicket) {
+        return lottoTicket.numbers()
                 .toString();
     }
 
@@ -35,10 +35,9 @@ public class OutputView {
         writer.writeln(getQuantity(lottosDto));
         List<LottoDto> lottoTickets = lottosDto.lottoNumbers();
         for (LottoDto lottoTicket : lottoTickets) {
-            writer.writeln(lottoTicket.numbers().toString());
+            writer.writeln(getNumbers(lottoTicket));
         }
     }
-
 
     public void printDrawResult(DrawLottoDto drawLottoDto) {
         writer.writeln(STATISTIC_MSG);

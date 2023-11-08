@@ -1,7 +1,9 @@
 package domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +32,13 @@ public class Utils {
     public static int stringToInteger(String string) {
         Validations.validateParseInt(string);
         return Integer.parseInt(string);
+    }
+
+    // 오름차순 정렬
+    public static List<Integer> ascendingOrder(List<Integer> list) {
+        List<Integer> orderedList = new ArrayList<>(list);
+        Collections.sort(orderedList);
+        return orderedList;
     }
 
 }

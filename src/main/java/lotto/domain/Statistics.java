@@ -1,23 +1,34 @@
 package lotto.domain;
 
+import static lotto.constants.Constants.FIRST_PRIZE;
+import static lotto.constants.Constants.SECOND_PRIZE;
+import static lotto.constants.Constants.THIRD_PRIZE;
+import static lotto.constants.Constants.FOURTH_PRIZE;
+import static lotto.constants.Constants.FIFTH_PRIZE;
+import static lotto.constants.Constants.HUNDRED;
+import static lotto.constants.Constants.ZERO;
+import static lotto.constants.Constants.THREE_MATCH;
+import static lotto.constants.Constants.FOUR_MATCH;
+import static lotto.constants.Constants.FIVE_MATCH;
+import static lotto.constants.Constants.SIX_MATCH;
+
 import lotto.Lotto;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import static lotto.domain.Constants.ZERO;
 
 public class Statistics {
-    private List<Integer> prizes;
-    private List<Lotto> myLotto;
-    private List<Integer> prizeNumbers;
-    private int bonusNumber;
+    private final int cost;
+    private final int bonusNumber;
+    private final List<Integer> prizeNumbers;
+    private final List<Lotto> myLotto;
     private float profitPercent;
-    private int cost;
     private long totalProfit;
+    private List<Integer> prizeCount;
 
     public Statistics(List<Lotto> myLotto, List<Integer> prizeNumbers, int bonusNumber, int cost) {
-        prizes = Arrays.asList(ZERO, ZERO, ZERO, ZERO, ZERO);
+        initializePrizeCount();
         this.myLotto = myLotto;
         this.prizeNumbers = prizeNumbers;
         this.bonusNumber = bonusNumber;
@@ -26,12 +37,12 @@ public class Statistics {
         computeProfit();
     }
 
-    public List<Integer> getPrizes() {
-        return prizes;
-    }
-
     public float getProfitPercent() {
         return profitPercent;
+    }
+
+    public List<Integer> getPrizesCount() {
+        return prizeCount;
     }
 
     private int correctCount(List<Integer> lotto) {
@@ -43,61 +54,65 @@ public class Statistics {
         return count;
     }
 
+    public void initializePrizeCount() {
+        prizeCount = Arrays.asList(ZERO, ZERO, ZERO, ZERO, ZERO);
+    }
+
     private void calculate() {
         for (Lotto lotto : myLotto) {
-            boolean bonus = false;
+            boolean matchBonus = false;
             int correct = correctCount(lotto.getNumbers());
             if (lotto.getNumbers().contains(bonusNumber)) {
-                bonus = true;
+                matchBonus = true;
             }
-            matchNumber(correct, bonus);
+            matchNumber(correct, matchBonus);
         }
     }
 
-    private void matchNumber(int correct, boolean bonus) {
+    private void matchNumber(int correct, boolean matchBonus) {
         matchThree(correct);
         matchFour(correct);
-        matchFive(correct, bonus);
-        matchBonus(correct, bonus);
+        matchFive(correct, matchBonus);
+        matchBonus(correct, matchBonus);
         matchSix(correct);
     }
 
     private void matchThree(int correct) {
-        if (correct == 3) {
-            prizes.set(0, prizes.get(0) + 1);
-            totalProfit += Constants.FIFTH_PRIZE;
+        if (correct == THREE_MATCH) {
+            prizeCount.set(0, prizeCount.get(0) + 1);
+            totalProfit += FIFTH_PRIZE;
         }
     }
 
     private void matchFour(int correct) {
-        if (correct == 4) {
-            prizes.set(1, prizes.get(1) + 1);
-            totalProfit += Constants.FOURTH_PRIZE;
+        if (correct == FOUR_MATCH) {
+            prizeCount.set(1, prizeCount.get(1) + 1);
+            totalProfit += FOURTH_PRIZE;
         }
     }
 
-    private void matchFive(int correct, boolean bonus) {
-        if (correct == 5 && !bonus) {
-            prizes.set(2, prizes.get(2) + 1);
-            totalProfit += Constants.THIRD_PRIZE;
+    private void matchFive(int correct, boolean matchBonus) {
+        if (correct == FIVE_MATCH && !matchBonus) {
+            prizeCount.set(2, prizeCount.get(2) + 1);
+            totalProfit += THIRD_PRIZE;
         }
     }
 
-    private void matchBonus(int correct, boolean bonus) {
-        if (correct == 5 && bonus) {
-            prizes.set(3, prizes.get(3) + 1);
-            totalProfit += Constants.SECOND_PRIZE;
+    private void matchBonus(int correct, boolean matchBonus) {
+        if (correct == FIVE_MATCH && matchBonus) {
+            prizeCount.set(3, prizeCount.get(3) + 1);
+            totalProfit += SECOND_PRIZE;
         }
     }
 
     private void matchSix(int correct) {
-        if (correct == 6) {
-            prizes.set(4, prizes.get(4) + 1);
-            totalProfit += Constants.FIRST_PRIZE;
+        if (correct == SIX_MATCH) {
+            prizeCount.set(4, prizeCount.get(4) + 1);
+            totalProfit += FIRST_PRIZE;
         }
     }
 
     private void computeProfit() {
-        profitPercent = (float) totalProfit / cost * Constants.HUNDRED;
+        profitPercent = (float) totalProfit / cost * HUNDRED;
     }
 }

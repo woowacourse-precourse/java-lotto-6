@@ -29,6 +29,15 @@ public enum Prize {
                 .orElse(NONE);
     }
 
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean getMatchBonus() {
+        return isMatchBonus;
+    }
+
     public long getPrizeMoney() {
         return prizeMoney;
     }

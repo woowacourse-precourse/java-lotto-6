@@ -1,14 +1,23 @@
 package lotto.view;
 
+import static lotto.exception.ErrorMessage.NOT_NUMBER;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.LottoException;
 
 public class InputView {
 
     public static int requestPurchaseAmount() {
         printConstantMessage(ConstantMessage.REQUEST_PURCHASE_AMOUNT);
+
+        // 입력값이 숫자가 아니라면 예외 처리
+        if (!Console.readLine().matches("[0-9]+")) {
+            throw LottoException.of(NOT_NUMBER);
+        }
+
         return Integer.parseInt(Console.readLine());
     }
 
@@ -18,6 +27,7 @@ public class InputView {
     }
 
     public static int requestBonusNumber() {
+        printNewLine();
         printConstantMessage(ConstantMessage.REQUEST_BONUS_NUMBER);
         return Integer.parseInt(Console.readLine());
     }

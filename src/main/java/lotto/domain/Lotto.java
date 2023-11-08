@@ -12,16 +12,28 @@ import java.util.Set;
 import lotto.exception.LottoException;
 
 public class Lotto {
+    
+    public static final int MIN_VALUE = 1;
+    public static final int MAX_VALUE = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        sort(numbers);
         this.numbers = numbers;
     }
 
     public static Lotto generateRandom() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(randomNumbers);
+    }
+
+    private List<Integer> sort(List<Integer> numbers) {
+
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {
@@ -50,5 +62,9 @@ public class Lotto {
     private boolean isDuplicated(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() != numbers.size();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

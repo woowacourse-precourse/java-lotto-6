@@ -23,7 +23,7 @@ public class LottoController {
         return new LottoController(view, LottoService.create());
     }
 
-    public void run() {
+    public void start() {
         String inputPurchaseAmount = view.askPurchaseAmount();
         LottoPurchaseDto lottoPurchaseDto = service.buyLottery(inputPurchaseAmount);
 

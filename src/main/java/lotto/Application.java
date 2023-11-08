@@ -2,33 +2,33 @@ package lotto;
 
 import java.util.*;
 
+import org.assertj.core.util.NaturalOrderComparator;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
 public class Application {
 	public static void main(String[] args) {
-		int countLotto = countLotto(inputMoney());
-		// 금액과 발행 가능한 로또 개수 확인
-		List<Lotto> lottoList = makeLotto(countLotto);
-		// 구매 가능한 수만큼 로또 발행
-		printLottoList(lottoList);
-		// 발행한 로또 목록 출력
-		
+		int countLotto = countLotto(inputMoney()); // 금액과 발행 가능한 로또 개수 확인
+		List<Lotto> lottoList = makeLotto(countLotto); // 구매 가능한 수만큼 로또 발행
+		printLottoList(lottoList); // 발행한 로또 목록 출력
+
 		System.out.println();
 		Lotto lotto = inputUserLotto(); // 당첨 번호 생성
-		
+
 		System.out.println();
 		int bonus = bonusInput(); // 보너스 번호
-		
+
 		System.out.println();
-		printResult(lottoList); // 통계 결과 출력
+		//int fitLotto = calculateResult(lottoList, bonus, lotto); // 당첨된 로또 개수
 	}
 
 	public static int inputMoney() {
 		System.out.println("구입금액을 입력해 주세요.");
 		return Integer.parseInt(Console.readLine());
 	}
-	
+
 	public static int countLotto(int money) { // 구매한 횟수 계산
 		if (money % 1000 != 0)
 			throw new IllegalArgumentException();
@@ -78,7 +78,7 @@ public class Application {
 		for (int temp : lottoNum)
 			if (temp > 45)
 				throw new IllegalArgumentException();
-		
+
 		return lottoNum;
 	}
 
@@ -93,17 +93,27 @@ public class Application {
 		return Integer.parseInt(Console.readLine());
 	}
 
-	public static void printResult(List<Lotto> lottoList) {
+	public static void calculateResult(List<Lotto> lottoList, int bonus, Lotto lotto) {
+		for (Lotto temp : lottoList) {
+			
+		}
+	}
+
+	public static void printPercentage(int inputMoney, int resultMoney) {
+		double percentage = 0.0;
+
+		System.out.printf("총 수익률은 %.1f%입니다.", percentage);
+	}
+
+	public static boolean calculateBonus(int bonus, List<Integer> lotto) {
+		lotto
+	}
+
+	public static void printResult() {
+		// 통계 결과 출력
 		System.out.println("당첨 통계");
 		System.out.println("---");
 		System.out.println();
-
-		System.out.println("3개 일치 (5,000원) - " + num + "개");
-		System.out.println("4개 일치 (50,000원) - " + num + "개");
-		System.out.println("5개 일치 (1,500,000원) - " + num + "개");
-		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + num + "개");
-		System.out.println("6개 일치 (2,000,000,000원) - " + num + "개");
-		System.out.println("총 수익률은 " + percentage + "%입니다.");
 	}
-	
+
 }

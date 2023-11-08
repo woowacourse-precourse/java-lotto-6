@@ -11,7 +11,8 @@ public class InputUser {
     private String inputMoney;
     private Integer lottoMoney;
     private List<Integer> WinningNumbers;
-    public InputUser(){
+
+    public InputUser() {
         this.validate = new Validate();
     }
 

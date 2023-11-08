@@ -79,7 +79,7 @@ public class Game {
     }
 
     private void makeNumberTicket(Integer lottoMoney) {
-        this.totalLottoCount = lottoMoney/1000;
+        this.totalLottoCount = lottoMoney / 1000;
         for (int i = 0; totalLottoCount > i; i++) {
             this.numberTickets.add(lottoMachine.makeNumber());
         }

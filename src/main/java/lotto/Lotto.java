@@ -1,7 +1,11 @@
 package lotto;
 
+import util.InputView;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
@@ -11,32 +15,33 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        // 에러 체크 구현
+        duplicationCheck(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개를 입력해야 합니다.");
         }
     }
-
+    private void duplicationCheck(List<Integer> numbers) {
+        Set<Integer> checkNumbers = new HashSet<>(numbers);
+        if (numbers.size() != checkNumbers.size()) throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+    }
     // TODO: 추가 기능 구현
     public static Lotto createLotto() {
         List<Integer> randomNumbers = pickUniqueNumbersInRange(1,45,6);
         return new Lotto(randomNumbers);
     }
 
-    public Lotto inputLotto() {
-        // 당첨 번호 입력을 요구하는 출력문
+    public static Lotto inputLotto() {
+        InputView.printUserInputLotto();
         String[] input = readLine().split(",");
         List<Integer> inputLotto = new ArrayList<Integer>();
 
         for (String i : input) {
             inputLotto.add(Integer.parseInt(i));
         }
-        // 에러체크기능 -> 테스트를 보니 생성자 내에서 이게 체크되어야 하는 것 같다
         return new Lotto(inputLotto);
     }
-
 }

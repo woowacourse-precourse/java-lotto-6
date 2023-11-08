@@ -2,6 +2,8 @@ package lotto.validation;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -90,21 +92,21 @@ class WiningNumbersValidatorTest {
     @Test
     void 로또_구입_금액_정상값_테스트() {
         // given
-        String winningNumbers = "1,2,3,4,5,6";
+        String numbers = "1,2,3,4,5,6";
 
         // when, then
-        assertNotThrowsOnValidWinningNumbers(winningNumbers);
+        assertNotThrowsOnValidWinningNumbers(numbers);
     }
 
-    private static void assertNotThrowsOnValidWinningNumbers(String winningNumbers) {
+    private static void assertNotThrowsOnValidWinningNumbers(String numbers) {
         assertDoesNotThrow(() -> {
-            Validator.validateWinningNumbers(winningNumbers);
+            Validator.validateNumbers(numbers);
         });
     }
 
-    private static void assertThrowOnInvalidPurchasePrice(String winningNumbers) {
+    private static void assertThrowOnInvalidPurchasePrice(String numbers) {
         assertThrows(IllegalArgumentException.class, () -> {
-            Validator.validateWinningNumbers(winningNumbers);
+            Validator.validateNumbers(numbers);
         });
     }
 }

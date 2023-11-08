@@ -14,7 +14,6 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    @Disabled
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
@@ -49,7 +48,6 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    @Disabled
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");

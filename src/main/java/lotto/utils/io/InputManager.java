@@ -1,6 +1,10 @@
 package lotto.utils.io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.Parser;
+import lotto.validation.Validator;
+
+import java.util.List;
 
 public class InputManager {
     private static final String INPUT_PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
@@ -10,18 +14,50 @@ public class InputManager {
     private InputManager() {
     }
 
-    public String receivePurchasePrice() {
-        System.out.println(INPUT_PURCHASE_PRICE_MESSAGE);
-        return Console.readLine();
+    public static int receivePurchasePrice() {
+        int result;
+        try {
+            System.out.println(INPUT_PURCHASE_PRICE_MESSAGE);
+            String input = Console.readLine();
+            Validator.validatePurchasePrice(input);
+
+            result = Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return receivePurchasePrice();
+        }
+        return result;
     }
 
-    public String receiveWinningNumbers() {
-        System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
-        return Console.readLine();
+    public static List<Integer> receiveNumbers() {
+        List<Integer> numbers = null;
+        try {
+            System.out.println();
+            System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
+            String input = Console.readLine();
+
+            Validator.validateNumbers(input);
+            numbers = Parser.stringToIntList(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return receiveNumbers();
+        }
+        return numbers;
     }
 
-    public String receiveBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        return Console.readLine();
+    public static int receiveBonusNumber(List<Integer> lottoNumbers) {
+        int result;
+        try {
+            System.out.println();
+            System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+            String input = Console.readLine();
+            Validator.validateBonusNumber(lottoNumbers, input);
+
+            result = Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return receiveBonusNumber(lottoNumbers);
+        }
+        return result;
     }
 }

@@ -3,6 +3,7 @@ package lotto.utils;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Parser {
     private Parser() {
@@ -14,6 +15,10 @@ public class Parser {
                 .toList();
 
         return stringListToString(collect);
+    }
+
+    public static List<Integer> stringToIntList(String string) {
+        return stringListToIntList(stringToStringList(string));
     }
 
     public static List<String> stringToStringList(String numbers) {
@@ -28,5 +33,11 @@ public class Parser {
 
     private static String stringListToString(List<String> strings) {
         return String.join(", ", strings);
+    }
+
+    public static List<String> intListToStringList(List<Integer> numbers) {
+        return numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.toList());
     }
 }

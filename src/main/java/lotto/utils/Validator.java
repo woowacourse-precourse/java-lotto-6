@@ -15,6 +15,13 @@ public class Validator {
         }
     }
 
+    public static void validatePositiveNumber(int number) {
+        if (number < 0) {
+            System.out.println(NOT_POSITIVE_NUMBER_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void validatePositiveNumbers(List<Integer> numbers) {
         numbers.forEach(number -> {
             if (number < 0) {

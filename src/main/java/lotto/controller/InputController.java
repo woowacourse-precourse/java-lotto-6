@@ -17,6 +17,8 @@ public class InputController {
         try {
             customerPrice = Integer.parseInt(Console.readLine());
         } catch (NumberFormatException e) {
+            System.out.println(ErrorMessage.ERROR_INPUT_PRICE_MESSAGE);
+            System.out.println();
             throw new IllegalArgumentException();
         }
 

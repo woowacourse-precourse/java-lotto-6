@@ -23,6 +23,7 @@ import static lotto.constant.WinningNumberTestConstant.WINNING_NUMBERS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.model.PaymentAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,6 @@ class InputViewTest {
         @Nested
         @DisplayName("예외 테스트")
         class ExceptionTest {
-
             @Test
             @DisplayName("숫자가 아닌 입력 테스트")
             void invalidTypeTest() {
@@ -70,8 +70,8 @@ class InputViewTest {
 
         @Override
         protected void runMain() {
-            InputView inputView = new InputView();
-            System.out.println(inputView.purchaseCost());
+            PaymentAmount paymentAmount = InputView.commonInput(() -> new PaymentAmount(InputView.paymentAmount()));
+            System.out.println(paymentAmount.getPrice());
         }
     }
 
@@ -148,8 +148,9 @@ class InputViewTest {
 
         @Override
         protected void runMain() {
-            InputView inputView = new InputView();
-            System.out.println(inputView.winningNumber());
+            lotto.model.WinningNumber winningNumber = InputView.commonInput(
+                    () -> new lotto.model.WinningNumber(InputView.winningNumber()));
+            System.out.println(winningNumber.getNumbers());
         }
     }
 
@@ -204,8 +205,9 @@ class InputViewTest {
 
         @Override
         protected void runMain() {
-            InputView inputView = new InputView();
-            System.out.println(inputView.bonusNumber(WINNING_NUMBERS));
+            lotto.model.BonusNumber bonusNumber = InputView.commonInput(
+                    () -> new lotto.model.BonusNumber(InputView.bonusNumber(), WINNING_NUMBERS));
+            System.out.println(bonusNumber.getNumber());
         }
     }
 }

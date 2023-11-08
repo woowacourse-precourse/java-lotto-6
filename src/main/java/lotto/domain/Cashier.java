@@ -33,8 +33,7 @@ public class Cashier {
     }
 
     public long getPurchaseAmount() {
-        long purchaseAmount = this.purchaseAmount;
-        return purchaseAmount;
+        return this.purchaseAmount;
     }
 
 }

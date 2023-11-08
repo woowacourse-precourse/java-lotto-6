@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.GameResult;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
+import lotto.domain.LottoRank;
 import lotto.domain.Player;
 import lotto.domain.WinningLottoNumber;
 import lotto.exception.InputException;
@@ -21,6 +23,7 @@ public class LottoGame {
     public static void openStore() {
         beforeGame();
         startGame();
+        afterGame();
     }
 
     private static void beforeGame() {
@@ -76,5 +79,15 @@ public class LottoGame {
             OutputView.printErrorMessage(exception.getMessage());
             return readWinNumber();
         }
+    }
+
+    private static void afterGame() {
+        GameResult gameResult = GameResult.of(playerLottos, winNumbers);
+        List<LottoRank> resultRank = gameResult.calculateRank();
+
+        OutputView.printLottoResult(
+                gameResult.calculateLottoRankResult(),
+                gameResult.calculateYield(gameResult.calculateWinningMoney(), player.getPurchaseAmount())
+        );
     }
 }

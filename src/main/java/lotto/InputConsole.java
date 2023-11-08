@@ -9,7 +9,8 @@ public class InputConsole {
 
     public static int inputPrice() {
         String inputPrice = Console.readLine();
-        validateInputPrice(inputPrice);
+        String inputPriceNoSpace = removeWhiteSpace(inputPrice);
+        validateInputPrice(inputPriceNoSpace);
         return Integer.parseInt(inputPrice);
     }
 

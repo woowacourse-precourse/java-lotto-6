@@ -107,32 +107,39 @@ public class ValidationUtil {
     private List<Integer> StringToInteger(List<String> inputs) {
         List<Integer> numbers = new ArrayList<>();
         for (String input : inputs) {
-            int number = Integer.parseInt(input);
+            int number = isValidNumber(input);
             numbers.add(number);
         }
         return numbers;
     }
 
-    private List<Integer> validateLottoRange(List<String> inputNums) throws IllegalArgumentException {
+    private List<Integer> validateLottoRange(List<String> inputNums) throws NumberFormatException {
         List<Integer> inputIntList = new ArrayList<>();
         for (String inputNum : inputNums) {
-            int number = isValidNumber(inputNum);
-            inputIntList.add(number);
+            try {
+                int number = Integer.parseInt(inputNum);
+                isValidRangeNumber(number);
+                inputIntList.add(number);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
         return inputIntList;
     }
 
-    private int isValidNumber(String number) throws IllegalArgumentException {
-        try {
-            int num = Integer.parseInt(number);
-            if (num < FIRST_NUMBER.getNumber() || num > LAST_NUMBER.getNumber()) {
-                throwArgExceptionMessage(ExceptionMessage.NUMBER_RANGE.getMessage());
-            }
-            return num;
-        } catch (NumberFormatException e) {
-            throwNumFormatExceptionMessage(ExceptionMessage.IS_NOT_NUMBER.getMessage());
+
+    private void isValidRangeNumber(int num) throws IllegalArgumentException {
+        if (num < FIRST_NUMBER.getNumber() || num > LAST_NUMBER.getNumber()) {
+            throwArgExceptionMessage(ExceptionMessage.NUMBER_RANGE.getMessage());
         }
-        return -1;
+    }
+
+    private int isValidNumber(String input) throws NumberFormatException {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e){
+            throw new NumberFormatException(ExceptionMessage.IS_NOT_NUMBER.getMessage());
+        }
     }
 
     private void isExistedNumber(int bonus, List<Integer> lotto) throws IllegalArgumentException {

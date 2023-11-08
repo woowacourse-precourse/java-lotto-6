@@ -8,12 +8,13 @@ public class InputViewHandler {
         Money money = new Money();
         try{
             String input = Console.readLine();
-            money = new Money(Integer.parseInt(input));
+            money = new Money(input);
             return money;
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             inputMoney();
         }
+
         return money;
     }
 

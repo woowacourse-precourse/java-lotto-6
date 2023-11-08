@@ -110,15 +110,19 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("rightRangeOfNumbers")
     void 숫자_생성기가_유효한_범위의_로또_번호들을_생성하면_로또_생성_가능하다(List<Integer> numbers) {
+        NumberGenerator numberGenerator = (min, max, size) -> numbers;
+
         assertDoesNotThrow(
-                () -> Lotto.from(numbers)
+                () -> Lotto.create(numberGenerator)
         );
     }
 
     @ParameterizedTest
     @MethodSource("outRangeOfNumbers")
     void 숫자_생성기는_유효한_범위의_로또_번호들을_생성하지_않으면_로또_생성시_예외가_발생한다(List<Integer> numbers) {
-        assertThatThrownBy(() -> Lotto.from(numbers))
+        NumberGenerator numberGenerator = (min, max, size) -> numbers;
+
+        assertThatThrownBy(() -> Lotto.create(numberGenerator))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

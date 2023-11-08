@@ -43,13 +43,15 @@ class PurchasedLottoBundleTest {
                 new Lotto(List.of(1, 5, 10, 15, 20, 45)), // 2등
                 new Lotto(List.of(1, 5, 10, 15, 20, 25)) // 1등
         ));
-
+        
         final var winningResults = purchasedLottoBundle.checkWinningResults(
-                AnswerLotto.of(List.of(1, 5, 10, 15, 20, 25))
-                        .registerBonusNumber(45)
+                AnswerLotto.of(List.of(1, 5, 10, 15, 20, 25)).registerBonusNumber(45)
         );
+        final var matchCounts = winningResults.value()
+                .values()
+                .stream()
+                .toList();
 
-        final var matchCounts = winningResults.value().values().stream().toList();
         assertAll(
                 () -> assertThat(matchCounts).isEqualTo(List.of(1L, 1L, 1L, 1L, 1L)),
                 () -> assertThat(winningResults.calculateProfit()).isEqualTo(Arrays.stream(LottoRewardTable.values())

@@ -37,7 +37,7 @@ class PurchaseLottoEventTest {
 
         assertAll(
                 () -> assertThat(state.quantity()).isEqualTo(4),
-                () -> assertThat(state.value()).isEqualTo(numbers)
+                () -> assertThat(state.purchasedLottoBundle()).isEqualTo(numbers)
         );
 
     }

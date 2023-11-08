@@ -35,8 +35,6 @@ class LottoStoreTest {
         final var purchasedLottoBundle = lottoStore.purchaseLotto(new Money(quantity * 1000));
 
         assertThat(purchasedLottoBundle.getQuantity()).isEqualTo(quantity);
-
-
     }
 
 }

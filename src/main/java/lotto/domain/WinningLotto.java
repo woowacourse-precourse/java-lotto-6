@@ -8,43 +8,53 @@ public class WinningLotto {
     private static int fiveAndBonusSameNumLotto = 0;
     private static int sixSameNumLotto = 0;
 
-    public static int getTreeSameNumLotto() {
+    public WinningLotto() {
+    }
+    private static class WinningLottoHolder{
+        private static final WinningLotto winningLotto = new WinningLotto();
+    }
+
+    public static WinningLotto getInstance() {
+        return WinningLottoHolder.winningLotto;
+    }
+
+    public  int getTreeSameNumLotto() {
         return treeSameNumLotto;
     }
 
-    public static int getFourSameNumLotto() {
+    public  int getFourSameNumLotto() {
         return fourSameNumLotto;
     }
 
-    public static int getFiveSameNumLotto() {
+    public  int getFiveSameNumLotto() {
         return fiveSameNumLotto;
     }
 
-    public static int getFiveAndBonusSameNumLotto() {
+    public  int getFiveAndBonusSameNumLotto() {
         return fiveAndBonusSameNumLotto;
     }
 
-    public static int getSixSameNumLotto() {
+    public  int getSixSameNumLotto() {
         return sixSameNumLotto;
     }
 
-    public static void increaseTreeSameNumLotto(){
+    public  void increaseTreeSameNumLotto(){
         treeSameNumLotto++;
     }
-    public static void increaseFourSameNumLotto(){
+    public  void increaseFourSameNumLotto(){
         fourSameNumLotto++;
     }
-    public static void increaseFiveSameNumLotto(){
+    public  void increaseFiveSameNumLotto(){
         fiveSameNumLotto++;
     }
-    public static void increaseFiveAndBonusSameNumLotto(){
+    public  void increaseFiveAndBonusSameNumLotto(){
         fiveAndBonusSameNumLotto++;
     }
-    public static void increaseSixSameNumLotto(){
+    public  void increaseSixSameNumLotto(){
         sixSameNumLotto++;
     }
 
-    public static void WinningLottoInit(){
+    public  void WinningLottoInit(){
         treeSameNumLotto = 0;
         fourSameNumLotto = 0;
         fiveSameNumLotto = 0;

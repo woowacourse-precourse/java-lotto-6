@@ -17,6 +17,6 @@ public class LottoTicketsTest {
         LottoController.getInstance().buyLottoTickets(purchaseAmount);
 
         //then
-        Assertions.assertThat(LottoTickets.getBuyLottoTickets().size()).isEqualTo(8);
+        Assertions.assertThat(LottoTickets.getInstance().getBuyLottoTickets().size()).isEqualTo(8);
     }
 }

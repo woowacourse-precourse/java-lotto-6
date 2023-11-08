@@ -19,15 +19,15 @@ public class LottoController {
     }
 
     public  void buyLottoTickets(long purchaseAmount){
-        LottoTickets.buyLottoTickets(purchaseAmount);
+        LottoTickets.getInstance().buyLottoTickets(purchaseAmount);
     }
 
     public  int getBuyLottoTicketsNum(){
-        return LottoTickets.getBuyLottoTickets().size();
+        return LottoTickets.getInstance().getBuyLottoTickets().size();
     }
 
     public  List<Lotto> getBuyLottoTickets(){
-        return LottoTickets.getBuyLottoTickets();
+        return LottoTickets.getInstance().getBuyLottoTickets();
     }
 
 

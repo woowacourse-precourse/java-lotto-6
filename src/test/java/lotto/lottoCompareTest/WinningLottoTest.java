@@ -21,11 +21,11 @@ public class WinningLottoTest extends NsTest {
 
                     run("5000", "2,11,18,20,23,32", "1");
 
-                    Assertions.assertThat(WinningLotto.getTreeSameNumLotto()).isEqualTo(1);
-                    Assertions.assertThat(WinningLotto.getFourSameNumLotto()).isEqualTo(1);
-                    Assertions.assertThat(WinningLotto.getFiveSameNumLotto()).isEqualTo(1);
-                    Assertions.assertThat(WinningLotto.getFiveAndBonusSameNumLotto()).isEqualTo(1);
-                    Assertions.assertThat(WinningLotto.getSixSameNumLotto()).isEqualTo(1);
+                    Assertions.assertThat(WinningLotto.getInstance().getTreeSameNumLotto()).isEqualTo(1);
+                    Assertions.assertThat(WinningLotto.getInstance().getFourSameNumLotto()).isEqualTo(1);
+                    Assertions.assertThat(WinningLotto.getInstance().getFiveSameNumLotto()).isEqualTo(1);
+                    Assertions.assertThat(WinningLotto.getInstance().getFiveAndBonusSameNumLotto()).isEqualTo(1);
+                    Assertions.assertThat(WinningLotto.getInstance().getSixSameNumLotto()).isEqualTo(1);
 
 
                 },

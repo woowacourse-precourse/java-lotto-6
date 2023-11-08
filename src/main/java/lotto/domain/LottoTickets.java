@@ -8,9 +8,18 @@ import java.util.List;
 public class LottoTickets {
     private  static List<Lotto> lottoTickets;
 
+    public LottoTickets() {
+    }
 
+    private static class LottoTicketsHolder{
+        private static final LottoTickets lottoTickets = new LottoTickets();
+    }
 
-    public static void buyLottoTickets(long purchaseAmount) throws IllegalArgumentException{
+    public static LottoTickets getInstance(){
+        return LottoTicketsHolder.lottoTickets;
+    }
+
+    public  void buyLottoTickets(long purchaseAmount) throws IllegalArgumentException{
         if(purchaseAmount%1000!=0){
              throw new IllegalArgumentException(ExceptionMessage.inputPurchaseAmountError.getErrorMessage());
         }
@@ -20,11 +29,11 @@ public class LottoTickets {
 
 
 
-    public static List<Lotto> getBuyLottoTickets(){
+    public  List<Lotto> getBuyLottoTickets(){
         return lottoTickets;
     }
 
-    private static List<Lotto> putBuyLottoTickets(long purchaseAmount){
+    private  List<Lotto> putBuyLottoTickets(long purchaseAmount){
         List<Lotto> buyLottoTickets = new ArrayList<>();
         int purchasesNum = (int) (purchaseAmount/1000);
         while(purchasesNum!=0){

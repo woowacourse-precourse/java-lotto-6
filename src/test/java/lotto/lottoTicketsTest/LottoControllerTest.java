@@ -26,7 +26,7 @@ public class LottoControllerTest   {
         LottoController.getInstance().buyLottoTickets(purchaseAmount);
 
         //then
-        Assertions.assertThat(LottoTickets.getBuyLottoTickets().size()).isEqualTo(8);
+        Assertions.assertThat(LottoTickets.getInstance().getBuyLottoTickets().size()).isEqualTo(8);
     }
 
     @DisplayName("로또 목록 갯수 테스트")

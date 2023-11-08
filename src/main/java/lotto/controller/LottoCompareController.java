@@ -16,15 +16,15 @@ public class LottoCompareController {
         return LottoCompareControllerHolder.lottoCompareController;
     }
     public  void lottoTicketsCompareNum(){
-        WinningLotto.WinningLottoInit();
-        for(Lotto lotto : LottoTickets.getBuyLottoTickets()){
+        WinningLotto.getInstance().WinningLottoInit();
+        for(Lotto lotto : LottoTickets.getInstance().getBuyLottoTickets()){
             lottoCompareNum(lotto);
         }
 
     }
 
     public  double winningLottoRate(){
-        double purchaseAmount = LottoTickets.getBuyLottoTickets().size() * 1000;
+        double purchaseAmount = LottoTickets.getInstance().getBuyLottoTickets().size() * 1000;
         double winningMoney =  winningMoney();
         double resultRate = winningMoney/purchaseAmount * 100;
         return Math.round(resultRate*100)/100.0;
@@ -45,31 +45,31 @@ public class LottoCompareController {
     }
     private void increaseWinningDetails(int mathNum, boolean bonusNum){
         if(mathNum == 3){
-            WinningLotto.increaseTreeSameNumLotto();
+            WinningLotto.getInstance().increaseTreeSameNumLotto();
         }
         if(mathNum == 4){
-            WinningLotto.increaseFourSameNumLotto();
+            WinningLotto.getInstance().increaseFourSameNumLotto();
         }
         if(mathNum == 5){
             if(bonusNum == false){
-                WinningLotto.increaseFiveSameNumLotto();
+                WinningLotto.getInstance().increaseFiveSameNumLotto();
             }
             if(bonusNum == true){
-                WinningLotto.increaseFiveAndBonusSameNumLotto();
+                WinningLotto.getInstance().increaseFiveAndBonusSameNumLotto();
             }
         }
         if(mathNum == 6){
-            WinningLotto.increaseSixSameNumLotto();
+            WinningLotto.getInstance().increaseSixSameNumLotto();
         }
     }
 
     private  long winningMoney(){
 
-        return WinningMoney.FIRST.getWinningMoney() * WinningLotto.getSixSameNumLotto()
-                + WinningMoney.SECOND.getWinningMoney() * WinningLotto.getFiveAndBonusSameNumLotto()
-                + WinningMoney.THIRD.getWinningMoney() * WinningLotto.getFiveSameNumLotto()
-                + WinningMoney.FOURTH.getWinningMoney() * WinningLotto.getFourSameNumLotto()
-                + WinningMoney.FIFTH.getWinningMoney() * WinningLotto.getTreeSameNumLotto();
+        return WinningMoney.FIRST.getWinningMoney() * WinningLotto.getInstance().getSixSameNumLotto()
+                + WinningMoney.SECOND.getWinningMoney() * WinningLotto.getInstance().getFiveAndBonusSameNumLotto()
+                + WinningMoney.THIRD.getWinningMoney() * WinningLotto.getInstance().getFiveSameNumLotto()
+                + WinningMoney.FOURTH.getWinningMoney() * WinningLotto.getInstance().getFourSameNumLotto()
+                + WinningMoney.FIFTH.getWinningMoney() * WinningLotto.getInstance().getTreeSameNumLotto();
 
     }
 

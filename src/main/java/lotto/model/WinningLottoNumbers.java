@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.constant.ErrorConstants;
 import lotto.constant.GameConstants;
+import lotto.constant.LottoRank;
 
 public class WinningLottoNumbers {
 
@@ -12,6 +13,13 @@ public class WinningLottoNumbers {
         validate(winningNumbers,bonusNumber);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public LottoRank calcWinner(Lotto lotto) {
+        int match = winningNumbers.matchLottoNumbers(lotto);
+        boolean isBonusMatched = lotto.containsNumber(bonusNumber);
+
+        return LottoRank.of(match, isBonusMatched);
     }
 
     private void validate(Lotto winningNumbers, int bonusNumber) {

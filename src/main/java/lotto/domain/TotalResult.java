@@ -21,7 +21,8 @@ public class TotalResult {
         long sum = SUM_INIT_VAL;
 
         for (Reward reward : totalResult.keySet()) {
-            sum += reward.getReward() * totalResult.get(reward);
+            long rewardValue = reward.getReward();
+            sum += rewardValue * totalResult.get(reward);
         }
 
         return (double) sum / money * MULTIPLE_VAL;

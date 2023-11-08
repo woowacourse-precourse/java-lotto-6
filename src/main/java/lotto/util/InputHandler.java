@@ -87,7 +87,8 @@ public class InputHandler {
     }
 
     private List<Integer> convertStringToIntegerList(String input) {
-        return Arrays.stream(input.split(SEPARATOR))
+        String[] splitInput = input.split(SEPARATOR);
+        return Arrays.stream(splitInput)
                 .map(number -> Integer.parseInt(number.strip()))
                 .collect(Collectors.toList());
     }

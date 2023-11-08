@@ -22,11 +22,13 @@ public class LottoUtil {
         return lottos;
     }
 
-    public void validateNumberCheck(String number) {
+    public boolean validateNumberCheck(String number) {
         String deleteCommaNumber = number.replaceAll(",", "").replaceAll(" ", "");
         if(!deleteCommaNumber.matches(NUM_REG)) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER.getValue());
+            ExceptionMessage.WINNING_NUMBER.printValue();
+            return false;
         }
+        return true;
     }
 
     public List<Integer> convertNumbers(String number) {
@@ -37,11 +39,13 @@ public class LottoUtil {
                 .collect(Collectors.toList());
     }
 
-    public void checkDuplicateNumbers(List<Integer> numbers) {
+    public boolean checkDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> deleteDupliNumber = new HashSet<>(numbers);
         if(numbers.size() != deleteDupliNumber.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_DUPLICATE.getValue());
+            ExceptionMessage.WINNING_NUMBER_DUPLICATE.printValue();
+            return false;
         }
+        return true;
     }
 
     public List<Integer> calculateVariance(List<Integer> winningLotto, List<Integer> myLotto, int bonusNumber) {

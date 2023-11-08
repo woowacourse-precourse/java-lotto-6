@@ -14,26 +14,31 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_TOTAL.getValue());
+            ExceptionMessage.WINNING_NUMBER_TOTAL.printValue();
+            new LottoGame().inputWinninNumber();
         }
         numbers.forEach(number -> {
             if(0 >= number && number > 45) {
-                throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_RANGE.getValue());
+                ExceptionMessage.WINNING_NUMBER_RANGE.getValue();
+                new LottoGame().inputWinninNumber();
             }
         });
     }
 
-    public void validate(String number) {
+    public boolean validate(String number) {
         int num;
         try {
             num = Integer.parseInt(number);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ExceptionMessage.NUMBER.getValue());
+            ExceptionMessage.NUMBER.printValue();
+            return false;
         }
 
         if(0 >= num && num > 45) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_RANGE.getValue());
+            ExceptionMessage.WINNING_NUMBER_RANGE.printValue();
+            return false;
         }
+        return true;
     }
 
     public List<Integer> getNumbers() {

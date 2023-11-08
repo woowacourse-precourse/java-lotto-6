@@ -30,7 +30,7 @@ public class LottoGame {
     }
 
     public void printMessageAndInputMoney() {
-        lottoView.printBuyLottomMoneyMessage();
+        lottoView.printBuyLottoMoneyMessage();
         money = new Money();
         lottoView.printLottoTicketCount(money.getCount());
     }
@@ -43,19 +43,38 @@ public class LottoGame {
 
     public void printMessageAndInputWinningNumber() {
         lottoView.printWinningNumberMessage();
-        String winningNumber = lottoUtil.getUserInput();
-        lottoUtil.validateNumberCheck(winningNumber);
-        List<Integer> winnerNumber = lottoUtil.convertNumbers(winningNumber);
-        lottoUtil.checkDuplicateNumbers(winnerNumber);
+        inputWinninNumber();
+    }
+
+    public void inputWinninNumber() {
+        List<Integer> winnerNumber;
+        while(true) {
+            String winningNumber = lottoUtil.getUserInput();
+            if(!lottoUtil.validateNumberCheck(winningNumber)) {
+                continue;
+            }
+            winnerNumber = lottoUtil.convertNumbers(winningNumber);
+            if(!lottoUtil.checkDuplicateNumbers(winnerNumber)) {
+                continue;
+            }
+            break;
+        }
         lotto = new Lotto(winnerNumber);
     }
 
     public void printMessageAndInputBonusNumber() {
         lottoView.printBonusNumberMessage();
-        String bonusNum = lottoUtil.getUserInput();
-        lotto.validate(bonusNum);
-        bonusNumber = Integer.parseInt(bonusNum);
-        duplicateBonusNumber(bonusNumber);
+        while(true) {
+            String bonusNum = lottoUtil.getUserInput();
+            if(!lotto.validate(bonusNum)) {
+                continue;
+            }
+            bonusNumber = Integer.parseInt(bonusNum);
+            if(!duplicateBonusNumber(bonusNumber)) {
+                continue;
+            }
+            break;
+        }
     }
 
     public void printStatistics(Map<String, Integer> resultStatistics) {
@@ -88,12 +107,14 @@ public class LottoGame {
         return winningTotal;
     }
 
-    public void duplicateBonusNumber(int bonusNumber) {
-        lotto.getNumbers().forEach(num -> {
+    public boolean duplicateBonusNumber(int bonusNumber) {
+        for (Integer num : lotto.getNumbers()) {
             if(num == bonusNumber) {
-                throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_DUPLICATE.getValue());
+                ExceptionMessage.WINNING_NUMBER_DUPLICATE.printValue();
+                return false;
             }
-        });
+        }
+        return true;
     }
 
 }

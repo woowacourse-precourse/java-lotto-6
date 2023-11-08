@@ -7,15 +7,16 @@ public class Money {
     private final int MIN_MONEY = 1000;
     private int inputMoney;
     private int count;
+    private boolean isValidation;
 
     public Money() {
         LottoUtil lottoUtil = new LottoUtil();
         String payment = null;
-
-        payment = lottoUtil.getUserInput();
-        validateNumber(payment);
-        validateThousand(payment);
-
+        isValidation = false;
+        while(!isValidation) {
+            payment = lottoUtil.getUserInput();
+            validateThousand(payment);
+        }
         setCount(payment);
         this.inputMoney = Integer.parseInt(payment);
     }
@@ -32,24 +33,17 @@ public class Money {
         this.count = Integer.parseInt(number) / MIN_MONEY;
     }
 
-    public void validateNumber(String number) {
-        try {
-            Integer.parseInt(number);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ExceptionMessage.NUMBER.getValue());
-        }
-    }
-
     public void validateThousand(String number) {
         try {
             int convertNum = Integer.parseInt(number);
             if(convertNum % MIN_MONEY != 0 || convertNum < MIN_MONEY) {
                 throw new IllegalStateException();
             }
+            isValidation = true;
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ExceptionMessage.NUMBER.getValue());
+            ExceptionMessage.NUMBER.printValue();
         } catch (IllegalStateException e) {
-            throw new IllegalArgumentException(ExceptionMessage.THOUSAND.getValue());
+            ExceptionMessage.THOUSAND.printValue();
         }
     }
 

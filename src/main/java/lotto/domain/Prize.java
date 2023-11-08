@@ -26,7 +26,7 @@ public enum Prize {
         this.PRIZE_AMOUNT = PRIZE_AMOUNT;
     }
 
-    public int checkPrize(int mathNumbers, boolean matchBonusNumber) {
+    public static int checkPrize(int mathNumbers, boolean matchBonusNumber) {
         return Arrays.stream(Prize.values())
                 .filter(prize -> prize.MATCH_NUMBERS == mathNumbers)
                 .filter(prize -> prize.COMPARE_BONUS_NUMBER == matchBonusNumber)
@@ -34,13 +34,13 @@ public enum Prize {
                 .orElse(NO_PRIZE).ordinal();
     }
 
-    private Prize findPrizeByIndex(int idx){
+    private static Prize findPrizeByIndex(int idx){
         return Arrays.stream(Prize.values())
                 .filter(prize -> prize.ordinal() == idx)
                 .findFirst().get();
     }
 
-    public String getPrizeInfo(int idx){
+    public static String getPrizeInfo(int idx){
         StringBuilder info = new StringBuilder();
         Prize current = findPrizeByIndex(idx);
         info.append(current.PRIZE_MESSAGE)

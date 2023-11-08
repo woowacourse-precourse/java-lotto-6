@@ -8,8 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import lotto.constant.Condition;
 import lotto.constant.Message;
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 import lotto.domain.Procedure;
 import lotto.service.LottoService;
 import org.assertj.core.api.Assertions;
@@ -18,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 class LottoTest {
     Procedure procedure;
+    Prize prize;
     private final LottoService lottoService = new LottoService();
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -63,7 +66,6 @@ class LottoTest {
 
     }
 
-    // 오류 발생 안함 -> 0을 거르는 건 해야할듯
     @Test
     void 금액은_0보다_커야_합니다() {
         procedure = Procedure.PURCHASE_LOTTO;
@@ -187,6 +189,36 @@ class LottoTest {
                         .isInstanceOf(NumberFormatException.class),
                 () -> assertThatThrownBy(() -> lottoService.parseInputToNumberCandidates("1!,"))
                         .isInstanceOf(NumberFormatException.class)
+        );
+    }
+
+    @Test
+    void 상금의_인덱스를_계산합니다(){
+        /* 순위 인덱스
+        0 - 순위 밖
+        1 - 5등
+        2 - 4등
+        3 - 3등
+        4 - 2등
+        5 - 1등
+         */
+
+        assertAll(
+                ()->assertEquals(Prize.checkPrize(3, false), 1),
+                ()->assertEquals(Prize.checkPrize(5, false), 3),
+                ()->assertEquals(Prize.checkPrize(5, true), 4)
+        );
+    }
+
+    @Test
+    void 상금_정보를_주세요(){
+        int rank_5 = 1, rank_3 = 3, rank_2 = 4, rank_1 = 5;
+
+        assertAll(
+                ()->assertThat(Prize.getPrizeInfo(rank_5)).contains(Message.FIFTH_PRIZE, Integer.toString(Condition.FIFTH_PRIZE_AMOUNT)),
+                ()->assertThat(Prize.getPrizeInfo(rank_3)).contains(Message.THIRD_PRIZE, Integer.toString(Condition.THIRD_PRIZE_AMOUNT)),
+                ()->assertThat(Prize.getPrizeInfo(rank_2)).contains(Message.SECOND_PRIZE, Integer.toString(Condition.SECOND_PRIZE_AMOUNT)),
+                ()->assertThat(Prize.getPrizeInfo(rank_1)).contains(Message.FIRST_PRIZE, Integer.toString(Condition.FIRST_PRIZE_AMOUNT))
         );
     }
 }

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.Constant;
 import lotto.constant.Message;
 
 public class Lotto {
@@ -14,26 +15,28 @@ public class Lotto {
     }
 
     private void validate(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
-            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_NOT_SIX.toString());
+        if (lottoNumbers.size() != Constant.SIZE_OF_LOTTO_NUMBERS.getValue()) {
+            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_NOT_SIX.getMessage());
         }
     }
 
     private void validateDuplicated(List<Integer> lottoNumbers) {
         if (lottoNumbers.stream()
                 .distinct()
-                .count() != 6) {
-            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_DUPLICATED.toString());
+                .count() != Constant.SIZE_OF_LOTTO_NUMBERS.getValue()) {
+            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_DUPLICATED.getMessage());
         }
     }
 
     private void validateOutOfRange(List<Integer> lottoNumbers) {
-        if (lottoNumbers.stream()
-                .anyMatch(lottoNumber -> lottoNumber < 1 || lottoNumber > 45)) {
-            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.toString());
+        for (int lottoNumber : lottoNumbers) {
+            if (lottoNumber < Constant.MINMUM_LOTTO_NUMBER.getValue()
+                    || lottoNumber > Constant.MAXMUM_LOTTO_NUMBER.getValue()) {
+                throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
+            }
         }
     }
-    
+
     public int match(List<Integer> lottoNumbers) {
         return (int) this.lottoNumbers.stream()
                 .filter(lottoNumbers::contains)

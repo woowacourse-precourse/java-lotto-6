@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.Constant;
 import lotto.constant.Message;
 
 public class WinningLotto extends Lotto {
@@ -14,14 +15,15 @@ public class WinningLotto extends Lotto {
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.toString());
+        if (bonusNumber < Constant.MINMUM_LOTTO_NUMBER.getValue()
+                || bonusNumber > Constant.MAXMUM_LOTTO_NUMBER.getValue()) {
+            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
 
     private void validateDuplicated(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(Message.ERROR_BONUS_NUMBER_DUPLICATED.toString());
+            throw new IllegalArgumentException(Message.ERROR_BONUS_NUMBER_DUPLICATED.getMessage());
         }
     }
 

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.regex.Pattern;
+import lotto.constant.Constant;
 import lotto.constant.Message;
 
 final class InputValidator {
@@ -15,43 +16,44 @@ final class InputValidator {
 
     static void validateNonSpaced(String userInput) {
         if (!NON_SPACED.matcher(userInput).matches()) {
-            throw new IllegalArgumentException(Message.ERROR_INPUT_SPACED.toString());
+            throw new IllegalArgumentException(Message.ERROR_INPUT_SPACED.getMessage());
         }
     }
 
     static void validateNonZeroLeadingParsableNumber(String userInput) {
         if (!ONLY_NUMBER.matcher(userInput).matches()) {
-            throw new IllegalArgumentException(Message.ERROR_INPUT_NOT_ONLY_NUMBER.toString());
+            throw new IllegalArgumentException(Message.ERROR_INPUT_NOT_ONLY_NUMBER.getMessage());
         }
         if (ZERO_LEADING_NUMBER.matcher(userInput).matches()) {
-            throw new IllegalArgumentException(Message.ERROR_INPUT_ZERO_LEADING_NUMBER.toString());
+            throw new IllegalArgumentException(Message.ERROR_INPUT_ZERO_LEADING_NUMBER.getMessage());
         }
         if (NON_PARSABLE_NUMBER.matcher(userInput).matches()) {
-            throw new IllegalArgumentException(Message.ERROR_INPUT_NON_PARSABLE_NUMBER.toString());
+            throw new IllegalArgumentException(Message.ERROR_INPUT_NON_PARSABLE_NUMBER.getMessage());
         }
     }
 
     static void validateLottoNumbersPattern(String userInput) {
         if (!LOTTO_NUMBERS.matcher(userInput).matches()) {
-            throw new IllegalArgumentException(Message.ERROR_INPUT_INVALID_LOTTO_NUMBERS.toString());
+            throw new IllegalArgumentException(Message.ERROR_INPUT_INVALID_LOTTO_NUMBERS.getMessage());
         }
     }
 
     static void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount < 1_000) {
-            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_UNDER_MINIMUM.toString());
+        if (purchaseAmount < Constant.MINMUM_LOTTO_PURCHASE_AMOUNT.getValue()) {
+            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_UNDER_MINIMUM.getMessage());
         }
-        if (purchaseAmount > 100_000) {
-            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_OVER_MAXIMUM.toString());
+        if (purchaseAmount > Constant.MAXMUM_LOTTO_PURCHASE_AMOUNT.getValue()) {
+            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_OVER_MAXIMUM.getMessage());
         }
-        if (purchaseAmount % 1_000 != 0) {
-            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_INVALID_UNIT.toString());
+        if (purchaseAmount % Constant.UNIT_OF_LOTTO_PURCHASE_AMOUNT.getValue() != 0) {
+            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_INVALID_UNIT.getMessage());
         }
     }
 
-    static void validateLottoNumber(int winningNumber) {
-        if (winningNumber < 1 || winningNumber > 45) {
-            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.toString());
+    static void validateLottoNumber(int lottoNumber) {
+        if (lottoNumber < Constant.MINMUM_LOTTO_NUMBER.getValue()
+                || lottoNumber > Constant.MAXMUM_LOTTO_NUMBER.getValue()) {
+            throw new IllegalArgumentException(Message.ERROR_LOTTO_NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
 }

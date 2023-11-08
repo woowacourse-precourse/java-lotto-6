@@ -4,13 +4,14 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.Constant;
 import lotto.constant.Message;
 import lotto.domain.Lotto;
 
 public class LottoService {
     public List<Lotto> purchaseLottoTickets(int purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
-        int numberOfLottoTickets = purchaseAmount / 1000;
+        int numberOfLottoTickets = purchaseAmount / Constant.UNIT_OF_LOTTO_PURCHASE_AMOUNT.getValue();
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < numberOfLottoTickets; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
@@ -21,14 +22,14 @@ public class LottoService {
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount < 1_000) {
-            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_UNDER_MINIMUM.toString());
+        if (purchaseAmount < Constant.MINMUM_LOTTO_PURCHASE_AMOUNT.getValue()) {
+            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_UNDER_MINIMUM.getMessage());
         }
-        if (purchaseAmount > 100_000) {
-            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_OVER_MAXIMUM.toString());
+        if (purchaseAmount > Constant.MAXMUM_LOTTO_PURCHASE_AMOUNT.getValue()) {
+            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_OVER_MAXIMUM.getMessage());
         }
-        if (purchaseAmount % 1_000 != 0) {
-            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_INVALID_UNIT.toString());
+        if (purchaseAmount % Constant.UNIT_OF_LOTTO_PURCHASE_AMOUNT.getValue() != 0) {
+            throw new IllegalArgumentException(Message.ERROR_PURCHASE_AMOUNT_INVALID_UNIT.getMessage());
         }
     }
 

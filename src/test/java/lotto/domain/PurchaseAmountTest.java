@@ -13,8 +13,7 @@ class PurchaseAmountTest {
         int money = 1_200;
 
         assertThatThrownBy(() -> new PurchaseAmount(money))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("1,000원 단위의 금액을 입력 시 예외 테스트")

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.util.ExceptionMessage;
 import lotto.util.LottoConstants;
 
 public class PurchaseAmount {
@@ -12,7 +13,7 @@ public class PurchaseAmount {
 
     public void validatePurchaseAmount(int money) {
         if (money % LottoConstants.LOTTO_PRICE.getValue() != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_ALLOW_PURCHASE_AMOUNT_UNIT_MESSAGE.getErrorMessage());
         }
     }
 

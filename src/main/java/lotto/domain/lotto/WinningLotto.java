@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.util.ExceptionMessage;
 
 public class WinningLotto extends Lotto {
     private BonusNumber bonusNumber;
@@ -10,12 +11,12 @@ public class WinningLotto extends Lotto {
     private WinningLotto(List<Integer> numbers, int bonusNumber) {
         super(numbers);
         this.bonusNumber = new BonusNumber(bonusNumber);
-        validate(numbers);
+        validateDuplication(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateDuplication(List<Integer> numbers) {
         if (bonusNumber.isContains(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호와 보너스 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATION_BONUS_NUMBER_MESSAGE.getErrorMessage());
         }
     }
 

@@ -12,13 +12,13 @@ public class InputValidator {
 
     public static void validatePositiveNumber(String input) {
         if (!isPositiveNumber(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 양수여야합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_POSITIVE_NUMBER_MESSAGE.getErrorMessage());
         }
     }
 
     public static void validateEmptyInput(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 비어있습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NULL_INPUT_MESSAGE.getErrorMessage());
         }
     }
 

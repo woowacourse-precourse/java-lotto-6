@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.util.ExceptionMessage;
 import lotto.util.LottoConstants;
 
 public class Lotto {
@@ -16,14 +17,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LottoConstants.NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_LOTTO_NUMBER_COUNT_MESSAGE.getErrorMessage());
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 중복일 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATION_NUMBER_MESSAGE.getErrorMessage());
         }
     }
 
@@ -32,7 +33,7 @@ public class Lotto {
                 .filter(number -> !LottoConstants.isNumberInRange(number))
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    throw new IllegalArgumentException(ExceptionMessage.OVER_LOTTO_NUMBER_RANGE_MESSAGE.getErrorMessage());
                 });
     }
 

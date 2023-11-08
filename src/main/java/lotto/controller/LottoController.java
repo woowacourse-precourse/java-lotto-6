@@ -38,6 +38,7 @@ public class LottoController {
             outputView.nextLine();
             List<String> issuedLottosNumbers = lottoService.buyLotto(purchaseAmount);
             outputView.showIssuedLottoResult(issuedLottosNumbers);
+            outputView.nextLine();
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
             performLottosPurchaseProcess();
@@ -46,11 +47,11 @@ public class LottoController {
 
     private void performDrawWinningLottoProcess() {
         try {
-            outputView.nextLine();
             final List<Integer> winningNumbers = InputWinnigNumbers();
             outputView.nextLine();
             final int bonusNumber = InputValue(inputView.askBonusNumber());
             lottoService.drawWinningLotto(winningNumbers, bonusNumber);
+            outputView.nextLine();
         } catch (IllegalArgumentException e) {
             outputView.showErrorMessage(e.getMessage());
             performDrawWinningLottoProcess();
@@ -63,7 +64,6 @@ public class LottoController {
     }
 
     private void performLottoResultProcess() {
-        outputView.nextLine();
         final WinningDetails winningDetails = lottoService.getWinningResult();
         outputView.showLottoResult(winningDetails);
     }

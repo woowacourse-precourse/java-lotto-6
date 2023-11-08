@@ -5,6 +5,7 @@ import static lotto.constants.LottoConstant.MAXIMUM_LOTTO_NUMBER;
 import static lotto.constants.LottoConstant.MINIMUM_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,5 +47,9 @@ public class Lotto {
         return Math.toIntExact(numbers.stream()
             .filter(other::contains)
             .count());
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

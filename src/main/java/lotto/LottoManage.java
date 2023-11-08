@@ -7,6 +7,7 @@ public class LottoManage {
     private List<Lotto> lottos;
     //당첨번호
     private Lotto correct_lotto;
+    private int bonus;
     private int money;
 
     public LottoManage(String input){
@@ -17,9 +18,14 @@ public class LottoManage {
     }
 
     //사용자가 입력한 값이 올바른지 판단하는함수
-    public void validate(){
+    private void validate(){
         if(money<0||money%1000!=0){
             throw new IllegalArgumentException();
         }
+    }
+
+    public void setCorrect_lotto(List<Integer> input,int bonus){
+        this.correct_lotto=new Lotto(input);
+        this.bonus=bonus;
     }
 }

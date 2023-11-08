@@ -12,6 +12,10 @@ public class InputConvertor {
                 .collect(Collectors.toList());
     }
 
+    public Integer convertBonusWinningNum(String bonusWinningNumInput){
+        return Integer.parseInt(bonusWinningNumInput);
+    }
+
     public Integer convertLotteryBudget(String lotteryBudgetInput){
         return Integer.parseInt(lotteryBudgetInput);
     }

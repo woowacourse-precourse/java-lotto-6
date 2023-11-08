@@ -53,7 +53,7 @@ public class OutputView {
             messageKey = WINNING_STATISTICS_RESULT_SECOND_PRIZE.getData();
         }
 
-        System.out.printf(messageKey, lottoPrize.getMatchCount(),
+        System.out.printf(messageKey + "\n", lottoPrize.getMatchCount(),
                 getFormattedPrize(lottoPrize.getPrize()), count);
     }
 

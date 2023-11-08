@@ -3,57 +3,57 @@
 ## 🌟 구현할 기능 목록
 
 ### Domain
-- [x] Lotto class 구현
-    - [x] 당첨 번호 6개 입력 + 보너스 번호 입력 후 저장
-- [x] User class 구현
-  - [x] 로또 구매 및 저장, 구매 금액과 총 상금 관리
-- [x] UserLotto class 구현
-  - [x] 유저가 구입한 로또 번호가 담긴 클래스
+- ☑️ Lotto class 구현
+    - ☑️ 당첨 번호 6개 입력 + 보너스 번호 입력 후 저장
+- ☑️ User class 구현
+  - ☑️ 로또 구매 및 저장, 구매 금액과 총 상금 관리
+- ☑️ UserLotto class 구현
+  - ☑️ 유저가 구입한 로또 번호가 담긴 클래스
 
 ### Enum
-- [x] WinningLotto class 구현
+- ☑️ WinningLotto class 구현
   - 로또 등수
 
 ### Service
-- [x] UserInputDataService class 구현
-  - [x] `View`를 통해 유저가 로또를 사는 것을 진행, 유저의 정보를 반환
-- [x] LottoInputDataService class 구현
-  - [x] `View`를 통해 당첨 로또의 번호와 보너스 번호를 입력 받고, 로또의 정보 반환
-- [x] LottoCalculateService class 구현
-  - [x] 로또 당첨 확인 및 수익률 계산
-  - [x] 계산한 값을 출력(로또 당첨 및 계산)
+- ☑️ UserInputDataService class 구현
+  - ☑️ `View`를 통해 유저가 로또를 사는 것을 진행, 유저의 정보를 반환
+- ☑️ LottoInputDataService class 구현
+  - ☑️ `View`를 통해 당첨 로또의 번호와 보너스 번호를 입력 받고, 로또의 정보 반환
+- ☑️ LottoCalculateService class 구현
+  - ☑️ 로또 당첨 확인 및 수익률 계산
+  - ☑️ 계산한 값을 출력(로또 당첨 및 계산)
 
 ### Controller
-- [x] LottoController class 구현
-  - [x] Service를 통해 로또의 구입 및 입력, 출력을 명령
+- ☑️ LottoController class 구현
+  - ☑️ Service를 통해 로또의 구입 및 입력, 출력을 명령
 
 ### View
-- [x] InputView class 구현
-  - [x] 유저의 구입 금액을 입력 받음
-  - [x] 로또 당첨 번호를 입력 받음(+ 보너스 번호)
-- [x] OutputView class 구현
-  - [x] 로또 구매시, 랜덤으로 생성된 번호 출력
-  - [x] 당첨 통계 출력
+- ☑️ InputView class 구현
+  - ☑️ 유저의 구입 금액을 입력 받음
+  - ☑️ 로또 당첨 번호를 입력 받음(+ 보너스 번호)
+- ☑️ OutputView class 구현
+  - ☑️ 로또 구매시, 랜덤으로 생성된 번호 출력
+  - ☑️ 당첨 통계 출력
 
 ### Exception
-- [x] UserBuyingException
-  - [x] 입력 단위가 1,000원으로 떨어지지 않는 경우
-  - [x] 숫자가 아닌 경우
-- [x] LottoException
-    - [x] 로또 번호가 숫자와 콤마(,)로 구성이 되어 있는지
-    - [x] 보너스 번호가 숫자로 구성 되어 있는지
-    - [x] 로또 번호가 6개인지
-    - [x] 로또의 범위가 1~45가 맞는지
-    - [x] 보너스 번호 입력 시 중복이 없는지 확인
+- ☑️ UserBuyingException
+  - ☑️ 입력 단위가 1,000원으로 떨어지지 않는 경우
+  - ☑️ 숫자가 아닌 경우
+- ☑️ LottoException
+    - ☑️ 로또 번호가 숫자와 콤마(,)로 구성이 되어 있는지
+    - ☑️ 보너스 번호가 숫자로 구성 되어 있는지
+    - ☑️ 로또 번호가 6개인지
+    - ☑️ 로또의 범위가 1~45가 맞는지
+    - ☑️ 보너스 번호 입력 시 중복이 없는지 확인
 
 ### Utils
-- [x] GenerateLottoNumbers 매서드
-  - [x] 유저가 로또 구매 시 번호 추출 및 정렬
-- [x] LottoUtil 매서드
-  - [x] 6개의 입력된 로또번호를 ','를 기준으로 나누고 List로 번호 반환
-  - [x] 보너스 번호를 int형으로 반환
-- [x] InputUtil 매서드
-  - [x] String 타입으로 들어온 숫자를 int 타입으로 parsing
+- ☑️ GenerateLottoNumbers 매서드
+  - ☑️ 유저가 로또 구매 시 번호 추출 및 정렬
+- ☑️ LottoUtil 매서드
+  - ☑️ 6개의 입력된 로또번호를 ','를 기준으로 나누고 List로 번호 반환
+  - ☑️ 보너스 번호를 int형으로 반환
+- ☑️ InputUtil 매서드
+  - ☑️ String 타입으로 들어온 숫자를 int 타입으로 parsing
 
 ---
 

@@ -38,7 +38,7 @@ public enum Prize {
     public static Prize of(int matchCount, boolean hasBonus) {
         return Arrays.stream(Prize.values())
                 .filter(prize -> prize.matchCount == matchCount)
-                .filter(prize -> !prize.needBonus || hasBonus)
+                .filter(prize -> prize.needBonus == hasBonus)
                 .findAny()
                 .orElse(Prize.NOTHING);
     }

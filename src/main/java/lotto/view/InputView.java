@@ -1,17 +1,16 @@
 package lotto.view;
 
-import static lotto.validator.InputValidator.*;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.validator.InputValidator;
 
 public class InputView {
     public static int inputPurchaseAmount() {
-        int purchaseAmount = checkIsInteger(Console.readLine());
-        validatePurchaseAmount(purchaseAmount);
+        int purchaseAmount = InputValidator.checkIsInteger(Console.readLine());
+        InputValidator.validatePurchaseAmount(purchaseAmount);
 
         return purchaseAmount;
     }
@@ -30,8 +29,8 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
-        int bonus = checkIsInteger(Console.readLine());
-        validateBonus(bonus);
+        int bonus = InputValidator.checkIsInteger(Console.readLine());
+        InputValidator.validateBonus(bonus);
 
         return bonus;
     }

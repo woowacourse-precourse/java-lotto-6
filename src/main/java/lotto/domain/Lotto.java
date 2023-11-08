@@ -1,9 +1,10 @@
 package lotto.domain;
-import static lotto.message.ErrorMessages.*;
+
 import static lotto.util.Util.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.message.ErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,19 +22,19 @@ public class Lotto {
 
     private static void checkSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(INVALID_LOTTO_SIZE);
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_SIZE);
         }
     }
 
     private void checkNumberRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < START_RANGE || number > END_RANGE)) {
-            throw new IllegalArgumentException(INVALID_LOTTO_RANGE);
+            throw new IllegalArgumentException(ErrorMessages.INVALID_LOTTO_RANGE);
         }
     }
 
     private void checkDuplication(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATION);
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_NUMBER_DUPLICATION);
         }
     }
 

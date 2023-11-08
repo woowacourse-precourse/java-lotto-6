@@ -1,9 +1,8 @@
 package lotto.domain;
 
-import static lotto.message.ErrorMessages.LOTTO_WITH_BONUS_DUPLICATION;
-
 import java.util.ArrayList;
 import java.util.List;
+import lotto.message.ErrorMessages;
 
 public class WinningLotto {
     private final Lotto lotto;
@@ -17,7 +16,7 @@ public class WinningLotto {
 
     private void validate(Lotto lotto, int bonus) {
         if (lotto.getLottoNumbers().contains(bonus)) {
-            throw new IllegalArgumentException(LOTTO_WITH_BONUS_DUPLICATION);
+            throw new IllegalArgumentException(ErrorMessages.LOTTO_WITH_BONUS_DUPLICATION);
         }
     }
 

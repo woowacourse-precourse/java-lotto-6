@@ -1,14 +1,13 @@
 package lotto.controller;
 
-import static lotto.view.InputView.*;
-import static lotto.view.OutputView.*;
-
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Controller {
     public void run() {
@@ -20,10 +19,10 @@ public class Controller {
 
     private static int buyLotto() {
         try {
-            askPurchaseAmount();
-            return inputPurchaseAmount();
+            OutputView.askPurchaseAmount();
+            return InputView.inputPurchaseAmount();
         } catch (IllegalArgumentException e) {
-            printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return buyLotto();
         }
     }
@@ -31,7 +30,7 @@ public class Controller {
     private static UserLotto completeBuyingLotto(int purchaseAmount) {
         UserLotto userLotto = new UserLotto(purchaseAmount);
         List<Lotto> userLottoNumbers = userLotto.getUserLottos();
-        printCompletePurchase(purchaseAmount, userLottoNumbers);
+        OutputView.printCompletePurchase(purchaseAmount, userLottoNumbers);
         return userLotto;
     }
 
@@ -41,35 +40,35 @@ public class Controller {
             int bonusNumber = getBonusNumber();
             return new WinningLotto(lotto, bonusNumber);
         } catch (IllegalArgumentException e) {
-            printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return createWinningLotto();
         }
     }
 
     private static Lotto getWinningLotto() {
         try {
-            askWinningLotto();
-            return inputWinningLotto();
+            OutputView.askWinningLotto();
+            return InputView.inputWinningLotto();
         } catch (IllegalArgumentException e) {
-            printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return getWinningLotto();
         }
     }
 
     private static int getBonusNumber() {
         try {
-            askBonusNumber();
-            return inputBonusNumber();
+            OutputView.askBonusNumber();
+            return InputView.inputBonusNumber();
         } catch (IllegalArgumentException e) {
-            printErrorMessage(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             return getBonusNumber();
         }
     }
 
     private static void winningResult(int purchaseAmount, UserLotto userLotto, WinningLotto winningLotto) {
         Map<Rank, Integer> rankResult = userLotto.checkWinning(winningLotto);
-        printWinningStatistics(rankResult);
+        OutputView.printWinningStatistics(rankResult);
         float rateOfReturn = userLotto.getRateOfReturn(purchaseAmount);
-        printRateOfReturn(rateOfReturn);
+        OutputView.printRateOfReturn(rateOfReturn);
     }
 }

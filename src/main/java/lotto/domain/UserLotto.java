@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import static lotto.domain.Lotto.getLottoCount;
-import static lotto.domain.LottoGenerator.generateNumbers;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,14 +15,14 @@ public class UserLotto {
     private int revenue = 0;
 
     public UserLotto(int lottoAmount) {
-        this.lottoCount = getLottoCount(lottoAmount);
+        this.lottoCount = Lotto.getLottoCount(lottoAmount);
         createLotto(lottoCount);
     }
 
     private void createLotto(int lottoCount) {
         userLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = generateNumbers();
+            List<Integer> lottoNumbers = LottoGenerator.generateNumbers();
             userLottos.add(new Lotto(lottoNumbers));
         }
     }

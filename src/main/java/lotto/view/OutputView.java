@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.domain.Lotto.getLottoCount;
 import static lotto.util.Util.formatCurrency;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class OutputView {
     }
 
     public static void printCompletePurchase(int purchaseCount, List<Lotto> lottoNumbers) {
-        System.out.println(NEW_LINE + getLottoCount(purchaseCount) + COMPLETE_PURCHASE);
+        System.out.println(NEW_LINE + Lotto.getLottoCount(purchaseCount) + COMPLETE_PURCHASE);
         for (Lotto lottoNumber : lottoNumbers) {
             System.out.println(lottoNumber.ascendingSort());
         }

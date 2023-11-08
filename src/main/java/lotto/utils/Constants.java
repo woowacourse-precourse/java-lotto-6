@@ -8,4 +8,6 @@ public class Constants {
     public static int LOTTO_UPPER_BOUND = 45;
     public static int LOTTO_UNDER_BOUND = 1;
     public static String SEPERATOR = ",";
+
+    public static String ERROR_PREFIX = "[ERROR] ";
 }

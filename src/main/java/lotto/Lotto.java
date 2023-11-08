@@ -11,7 +11,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplication(numbers);
         this.numbers = numbers;
         sortNumbers();
     }
@@ -22,12 +21,6 @@ public class Lotto {
         }
     }
 
-    private void validateDuplication(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if(uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException();
-        }
-    }
     private void sortNumbers() {
         Collections.sort(this.numbers);
     }

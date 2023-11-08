@@ -43,4 +43,9 @@ public class GameView {
         System.out.println(Phrase.FIVE_BONUS_MATCH.getPrintPhrase() + " " + Phrase.DELIMITER.getPrintPhrase() + " " + matchNumber.get(7) + Phrase.COUNT.getPrintPhrase());
         System.out.println(Phrase.SIX_MATCH.getPrintPhrase() + " " + Phrase.DELIMITER.getPrintPhrase() + " " + matchNumber.get(6) + Phrase.COUNT.getPrintPhrase());
     }
+
+    public static void printRevenue(int price, int amount) {
+        double profitPercentage = ((double) price / amount) * 100;
+        System.out.println(String.format(Phrase.REVENUE.getPrintPhrase(), profitPercentage));
+    }
 }

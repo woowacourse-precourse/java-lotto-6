@@ -66,6 +66,21 @@ class LottoServiceTest {
 
     }
 
+    @DisplayName("사용자가 입력한 당첨 번호, 보너스 번호 저장")
+    @Test
+    void setUserLottoNumbersAndBonusNumber() {
+        String lottoNumbers = "1,2,3,4,5,6";
+        String bonusNumber = "7";
+
+        Map<String, String> userLottoNumbersAndBonusNumber =
+                lottoService.setUserLottoNumbersAndBonusNumber(lottoNumbers, bonusNumber);
+
+        assertThat(userLottoNumbersAndBonusNumber.containsKey("userLottoNumbers")).isTrue();
+        assertThat(userLottoNumbersAndBonusNumber.containsKey("userBonusNumber")).isTrue();
+        assertThat(userLottoNumbersAndBonusNumber.get("userLottoNumbers")).isEqualTo(lottoNumbers);
+        assertThat(userLottoNumbersAndBonusNumber.get("userBonusNumber")).isEqualTo(bonusNumber);
+    }
+
     @DisplayName("로또 1등~5등 당첨 결과 테스트")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})

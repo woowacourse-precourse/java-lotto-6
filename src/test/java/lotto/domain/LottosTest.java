@@ -27,4 +27,21 @@ class LottosTest {
         assertThat(expectedLottos == lottos).isFalse();
         assertThat(expectedLottos).isEqualTo(lottos);
     }
+
+    @DisplayName("로또 배열의 크기를 반환한다.")
+    @Test
+    void sizeSuccessTest() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Lotto> readyLottos = IntStream.range(0, 10)
+                .mapToObj(idx -> new Lotto(List.copyOf(numbers)))
+                .toList();
+        Lottos lottos = new Lottos(readyLottos);
+
+        // when
+        int size = lottos.size();
+
+        // then
+        assertThat(size).isEqualTo(10);
+    }
 }

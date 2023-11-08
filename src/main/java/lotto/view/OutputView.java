@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 import lotto.controller.Result;
 
@@ -31,5 +33,13 @@ public class OutputView {
         for (Result result : results) {
             System.out.println(String.format(Message.FOR_LOTTO_RESULT.label(), result.label(), result.cnt()));
         }
+    }
+
+    public static void printBenefits(double benefit) {
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMaximumFractionDigits(1);
+        numberFormat.setMinimumFractionDigits(1);
+        String formattedNumber = numberFormat.format(benefit);
+        System.out.print(String.format(Message.FOR_BENEFIT_RESILT.label(), formattedNumber));
     }
 }

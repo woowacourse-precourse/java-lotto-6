@@ -73,10 +73,11 @@ public class LottoController {
         }
 
         OutputView.printResults(results);
+        OutputView.printBenefits(getBenefits());
     }
 
-    private static int getBenefits() {
-        return (price / (lottoCnt * LOTTO_PRICE)) * PERCENTAGE;
+    private static double getBenefits() {
+        return ((double) price / (lottoCnt * LOTTO_PRICE)) * PERCENTAGE;
     }
 
     public static int getPrice(int correctCnt) {

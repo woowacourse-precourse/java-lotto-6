@@ -29,4 +29,10 @@ class OutputViewTest {
         OutputView.promptForBuyAmount();
         assertThat(outContent.toString()).isEqualTo("구입금액을 입력해 주세요. ");
     }
+
+    @Test
+    void 수익률_출력테스트() {
+        OutputView.printBenefits(52.22);
+        assertThat(outContent).isEqualTo("총 수익률은 52.2%입니다.");
+    }
 }

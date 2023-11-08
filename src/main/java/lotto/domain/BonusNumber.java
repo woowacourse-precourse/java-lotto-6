@@ -6,8 +6,6 @@ import static lotto.constant.ErrorMessage.OUT_OF_NUMBER_RANGE;
 public class BonusNumber {
 
     private final int bonusNumber;
-    RandomNumber randomNumber = new RandomNumber();
-
 
     public BonusNumber(int bonusNumber) {
         validate(bonusNumber);

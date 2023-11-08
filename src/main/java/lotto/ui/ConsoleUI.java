@@ -17,7 +17,7 @@ public class ConsoleUI {
         do {
             lottoPurchaseCost = attemptToGetValidPurchaseAmount();
         } while (lottoPurchaseCost == -1);
-        return lottoPurchaseCost;
+        return lottoPurchaseCost/1000;
     }
 
     private int attemptToGetValidPurchaseAmount() {

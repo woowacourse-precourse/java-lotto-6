@@ -15,11 +15,11 @@ public class WinningNumbers {
         if (inputSet.size() != winningNumbers.size()) {
             throw new IllegalArgumentException(Constant.DUPLICATE_NUMBER_EXCEPTION);
         }
-        if (winningNumbers.size() != 6) {
+        if (winningNumbers.size() != Constant.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(Constant.NUMBER_SIZE_EXCEPTION);
         }
         for (int number : winningNumbers) {
-            if (number > 45 || number < 1) {
+            if (number < Constant.MIN_LOTTO_NUMBER || number > Constant.MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(Constant.NUMBER_RANGE_EXCEPTION);
             }
         }

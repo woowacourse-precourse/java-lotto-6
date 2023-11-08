@@ -15,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constant.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
@@ -24,7 +24,7 @@ public class Lotto {
         }
 
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < Constant.MIN_LOTTO_NUMBER || number > Constant.MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(Constant.NUMBER_RANGE_EXCEPTION);
             }
         }

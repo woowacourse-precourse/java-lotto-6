@@ -1,16 +1,13 @@
 package lotto;
 
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import net.bytebuddy.description.annotation.AnnotationValue.ForMissingValue.Loaded;
 
 public class Score {
     private int[] result = {0, 0, 0, 0, 0, 0, 0, 0};
 
     private boolean checkBonus(List<Integer> numbers, int bonus) {
-        for (int num: numbers) {
+        for (int num : numbers) {
             if (num == bonus) {
                 return true;
             }
@@ -19,7 +16,7 @@ public class Score {
     }
 
     public void getScore(Lotto lotto, ArrayList<List<Integer>> numberSet, int bonus) {
-        for (List<Integer> numset: numberSet) {
+        for (List<Integer> numset : numberSet) {
             int score = lotto.calculate(numset);
             boolean flag = checkBonus(numset, bonus);
 
@@ -40,7 +37,7 @@ public class Score {
     }
 
     public void winner() {
-        System.out.println("당첨 통계\n---");
+        System.out.println(Message.MSG_STATISTICS);
         System.out.println(printMessage(result[7], Prize.SIX_PRIZE));
         System.out.println(printMessage(result[6], Prize.FIVE_PRIZE_BONUS));
         System.out.println(printMessage(result[5], Prize.FIVE_PRIZE));
@@ -62,7 +59,7 @@ public class Score {
 
     private double rate() {
         int amount = 0;
-        for (int val: result) {
+        for (int val : result) {
             amount += val;
         }
 
@@ -70,6 +67,8 @@ public class Score {
     }
 
     public void printRate() {
-        System.out.printf("총 수익률은 %.1f%%입니다.", rate());
+        System.out.printf(Message.MSG_RATE_FRONT.getMessage());
+        System.out.printf("%.1f", rate());
+        System.out.println(Message.MSG_RATE_BACK.getMessage());
     }
 }

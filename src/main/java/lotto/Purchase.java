@@ -15,13 +15,13 @@ public class Purchase {
         try {
             this.cost = Integer.parseInt(raw);
             if (cost < 0) {
-                throw new IllegalArgumentException("[ERROR] 금액은 음수일 수 없습니다.");
+                throw new IllegalArgumentException(Message.INPUT_NUMBER_NEGATIVE.getMessage());
             }
             if (cost % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 금액은 천 단위의 수여야 합니다.");
+                throw new IllegalArgumentException(Message.INPUT_NUMBER_THOUSAND.getMessage());
             }
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 숫자를 입력하세요.");
+            throw new NumberFormatException(Message.INPUT_NUMBER.getMessage());
         }
     }
 
@@ -50,7 +50,7 @@ public class Purchase {
     }
 
     private void printTickets() {
-        for (List ticket: this.tickets) {
+        for (List ticket : this.tickets) {
             System.out.println(ticket.toString());
         }
     }
@@ -58,7 +58,7 @@ public class Purchase {
     public void getTickets() {
         totalCost();
         calcAmount();
-        System.out.printf("\n%d개를 구매했습니다.\n", this.amount);
+        System.out.printf("\n%d%s\n", this.amount, Message.MSG_TICKET.getMessage());
 
         randomNubmers();
         printTickets();

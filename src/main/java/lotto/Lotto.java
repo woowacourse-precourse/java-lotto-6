@@ -13,16 +13,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력하세요.");
+            throw new IllegalArgumentException(Message.INPUT_SIX_NUMBERS.getMessage());
         }
 
         HashSet<Integer> nums = new HashSet<>();
 
-        for (int num: numbers) {
+        for (int num : numbers) {
             if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 1 이상 45 이하의 숫자를 입력하세요.");
+                throw new IllegalArgumentException(Message.INPUT_NUMBER_BETWEEN.getMessage());
             } else if (nums.contains(num)) {
-                throw new IllegalArgumentException("[ERROR] 당첨번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(Message.INPUT_DUPLICATE.getMessage());
             }
             nums.add(num);
         }
@@ -31,7 +31,7 @@ public class Lotto {
     public int calculate(List<Integer> input) {
         int score = 0;
 
-        for (int num: this.numbers) {
+        for (int num : this.numbers) {
             if (input.contains(num)) {
                 score++;
             }

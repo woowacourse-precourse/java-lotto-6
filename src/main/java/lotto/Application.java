@@ -1,22 +1,21 @@
 package lotto;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import lotto.domain.LottoStart;
-import lotto.object.LottoNumber;
-
+import lotto.object.Lotto;
 
 public class Application {
 	// 공통 변수
 	public static int purchaseAmount;
 	public static int ticketNumber;
-	public static List<Integer> playerNumber = new ArrayList<>();
-	public static int bonusNumber;
-	public static List<LottoNumber> lottoBox = new ArrayList<LottoNumber>();
-	public static List<Integer> computerNumber = new ArrayList<>();
-	
+	public static int bonusLotto;
+	public static Lotto playerLotto;
+	public static List<Lotto> lottoGroup = new ArrayList<Lotto>();
+
 	// main 메소드
-    public static void main(String[] args) {
-    	LottoStart.startGame();   	
-    }    	
+	public static void main(String[] args) {
+		LottoStart.startGame();
+	}
 }

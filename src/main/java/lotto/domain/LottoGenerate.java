@@ -6,11 +6,11 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Application;
-import lotto.object.LottoNumber;
+import lotto.object.Lotto;
 
 public class LottoGenerate {
 	private static final int LOTTOPRICE = LottoEnum.LOTTO_PRICE.getMoney();
-	
+
 	public static String moneyCheck(String money) {
 		try {
 			Application.purchaseAmount = Integer.parseInt(money);
@@ -21,42 +21,36 @@ public class LottoGenerate {
 			System.out.println(Application.ticketNumber + "개를 구매했습니다.");
 			makeLotto();
 			return (Application.ticketNumber + "개를 구매했습니다.");
-			
+
 		} catch (IllegalArgumentException e) {
 			System.out.println("[ERROR] 금액을 1000 단위의 숫자만 입력하세요.");
 			LottoStart.buyLotto();
 			return (Application.ticketNumber + "개를 구매했습니다.");
 		}
 	}
-	
+
 	public static void makeLotto() {
-		List<LottoNumber> saveLotto = new ArrayList<LottoNumber>();
-		
+		List<Lotto> saveLotto = new ArrayList<Lotto>();
+
 		for (int i = 0; i < Application.ticketNumber; i++) {
 			// 로또 티켓 각 장마다 인스턴스 생성
-			int lottoIndex = 0;
-			LottoNumber lottoInstance = new LottoNumber(lottoIndex, numberMaker());
-			lottoIndex++;
-			saveLotto.add(lottoInstance);				
+			saveLotto.add(numberMaker());
 		}
-		Application.lottoBox = saveLotto;
-		printTicket(Application.lottoBox);
+		Application.lottoGroup = saveLotto;
+		printTicket();
 	}
-	
-	public static List<Integer> numberMaker() {
-		List<Integer> computerNumber = new ArrayList<Integer>();
-		
-		computerNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-		Collections.sort(computerNumber); // 오름차순으로 정렬
-		Application.computerNumber = computerNumber; 
-		return computerNumber;
+
+	public static Lotto numberMaker() {
+		List<Integer> randomNumber = new ArrayList<Integer>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+
+		Collections.sort(randomNumber); // 오름차순으로 정렬
+		Lotto randomLotto = new Lotto(randomNumber);
+		return randomLotto;
 	}
-	
-	public static void printTicket(List<LottoNumber> lottoList) {
-		List<LottoNumber> lottoTicket = lottoList;
-		
-		for (LottoNumber tmpObj : lottoTicket) {
-			System.out.println(tmpObj.getComputerNumber());
+
+	public static void printTicket() {
+		for (Lotto tmpObj : Application.lottoGroup) {
+			System.out.println(tmpObj.getNumbers());
 		}
 	}
 }

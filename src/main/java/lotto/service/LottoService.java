@@ -54,6 +54,7 @@ public class LottoService implements LottoFinalConsts {
         for(String number:winning){
             lottoMachine.updateLottoWinningNumbers(Integer.parseInt(number));
         }
+        isBonusNumberAlreadyExist(lottoMachine.getLottoWinningNumbers(), Integer.parseInt(bonusNumber));
         lottoMachine.updateLottoBonusNumber(Integer.parseInt(bonusNumber));
     }
 
@@ -66,6 +67,12 @@ public class LottoService implements LottoFinalConsts {
     public void validateWinningSize(String[] winning){
         if (winning.length!=LOTTO_RANDOM_COUNT){
             throw new ArrayIndexOutOfBoundsException(LOTTO_ERROR_MESSAGE+LOTTO_RANGE_OUT_OF_BOUNDS);
+        }
+    }
+
+    public void isBonusNumberAlreadyExist(List<Integer> winningNumbers, int bonusNumber){
+        if (winningNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException(LOTTO_ERROR_MESSAGE+LOTTO_BONUS_NUMBER_ALREADY_EXIST);
         }
     }
 

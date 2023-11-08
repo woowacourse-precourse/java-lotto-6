@@ -3,7 +3,6 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,7 @@ public class LottoService {
         Map<LottoRank, Integer> results = new HashMap<>();
         for (Lotto ticket : lottoTickets) {
             LottoRank lottoRank = LottoRank.calculateRank(ticket.getNumbers(), winningNumbers, bonusNumber);
-            results.put(lottoRank, results.getOrDefault(lottoRank, 0) + 1);
+            results.merge(lottoRank, 1, Integer::sum);
         }
         return results;
     }
@@ -46,15 +45,7 @@ public class LottoService {
     }
 
     public List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-
-        while (numbers.size() < NUMBER_SIZE) {
-            int randomNumber = Randoms.pickNumberInRange(START_NUMBER, END_NUMBER);
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber);
-            }
-        }
-        Collections.sort(numbers);
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_SIZE);
     }
+
 }

@@ -3,6 +3,7 @@ package lotto.module.lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 class UserLottoTicketTest {
@@ -10,16 +11,17 @@ class UserLottoTicketTest {
     @Test
     void 유저_로또_티켓_생성_성공_테스트() {
         // given
-        UserLottoTicket userLottoTicket = UserLottoTicket.newInstance(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int expectedCount = 6;
+        List<Lotto> purchaseTickets = new ArrayList<>();
+        purchaseTickets.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+
+        UserLottoTickets userLottoTicket = UserLottoTickets.newInstance(purchaseTickets);
 
         // when
-        int count = userLottoTicket.getIncludedNumbersCount(lotto);
+        List<Lotto> tickets = userLottoTicket.tickets();
 
         // then
-        Assertions.assertThat(count)
-                .isEqualTo(expectedCount);
+        Assertions.assertThat(tickets.size())
+                .isEqualTo(1);
     }
 
 }

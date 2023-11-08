@@ -24,8 +24,6 @@ model
 - Lotto: 구입시 얻는 로또번호를 나타내는 클래스
 - WinningLotto: 당첨번호를 나타내는 클래스
 - PrizeRank: 상금과 등수를 구분하는 열거형 클래스
-dto
-- LottoDTO:
 service
 - LottoService:
 controller

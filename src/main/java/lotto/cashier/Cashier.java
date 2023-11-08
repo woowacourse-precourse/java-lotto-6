@@ -8,7 +8,7 @@ public class Cashier {
     private ReceivedAmount receivedAmount;
     private int totalRewardAmount;
 
-    public int calculateLottoCount(int purchaseAmount) {
+    public int calculateLottoCount(int purchaseAmount) throws IllegalArgumentException{
         receivedAmount = ReceivedAmount.create(purchaseAmount);
         return purchaseAmount / 1000;
     }

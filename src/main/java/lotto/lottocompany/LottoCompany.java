@@ -23,7 +23,7 @@ public class LottoCompany {
         return rewardHistory;
     }
 
-    public LottoBundle publishNLotto(int publishCount) {
+    public LottoBundle publishNLotto(int publishCount) throws IllegalArgumentException{
         List<Lotto> bundle = new ArrayList<>(publishCount);
         for (int count = 0; count < publishCount; count++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

@@ -6,7 +6,7 @@ public class ReceivedAmount {
 
     private final int amount;
 
-    private ReceivedAmount(int amount) {
+    private ReceivedAmount(int amount) throws IllegalArgumentException{
         validateIsLottoPrice(amount);
         this.amount = amount;
     }
@@ -15,12 +15,12 @@ public class ReceivedAmount {
         return amount;
     }
 
-    public static ReceivedAmount create(int amount) {
+    public static ReceivedAmount create(int amount) throws IllegalArgumentException{
         return new ReceivedAmount(amount);
     }
-    private void validateIsLottoPrice(int amount) {
+    private void validateIsLottoPrice(int amount) throws IllegalArgumentException{
         if (amount < LOTTO_PRICE || (amount % LOTTO_PRICE) != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 1000원단위 금액입니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 1000원단위 금액입니다.\n");
         }
     }
 }

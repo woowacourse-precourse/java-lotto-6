@@ -23,8 +23,7 @@ public class GameManager {
         Cashier cashier = new Cashier();
         LottoCompany lottoCompany = new LottoCompany();
 
-        int purchaseAmount = requestPurchaseAmountInput();
-        announcePublishedLotto(cashier, purchaseAmount, lottoCompany);
+        announcePublishedLotto(cashier, lottoCompany);
         Lotto lotto = requestInputWinningNumbers();
         int bonusNumber = requestInputBonusNumber();
 
@@ -35,29 +34,42 @@ public class GameManager {
         announceFinalStatistics(rewardHistory, profitRate);
     }
 
-    private int requestPurchaseAmountInput() {
-        output.printMessage("구입금액을 입력해 주세요.\n");
-        return input.inputPurchaseAmount();
-    }
-
-    private void announcePublishedLotto(Cashier cashier, int purchaseAmount, LottoCompany lottoCompany) {
-        int calculateLottoCount = cashier.calculateLottoCount(purchaseAmount);
-        output.printMessage(calculateLottoCount + "개를 구매했습니다.\n");
-        LottoBundle lottoBundle = lottoCompany.publishNLotto(calculateLottoCount);
-        List<Lotto> bundle = lottoBundle.getBundle();
-        for (Lotto lotto : bundle) {
-            output.printMessage(lotto.toString() + "\n");
+    private void announcePublishedLotto(Cashier cashier, LottoCompany lottoCompany) {
+        try {
+            output.printMessage("구입금액을 입력해 주세요.\n");
+            int purchaseAmount = input.inputPurchaseAmount();
+            int calculateLottoCount = cashier.calculateLottoCount(purchaseAmount);
+            output.printMessage(calculateLottoCount + "개를 구매했습니다.\n");
+            LottoBundle lottoBundle = lottoCompany.publishNLotto(calculateLottoCount);
+            List<Lotto> bundle = lottoBundle.getBundle();
+            for (Lotto lotto : bundle) {
+                output.printMessage(lotto.toString() + "\n");
+            }
+        } catch (Exception e) {
+            output.printMessage(e.getMessage());
+            announcePublishedLotto(cashier, lottoCompany);
         }
     }
 
     private Lotto requestInputWinningNumbers() {
-        output.printMessage("당첨 번호를 입력해 주세요.\n");
-        return input.inputWinningNumbers();
+        try {
+            output.printMessage("당첨 번호를 입력해 주세요.\n");
+            return input.inputWinningNumbers();
+        } catch (Exception e) {
+            output.printMessage(e.getMessage());
+            return requestInputWinningNumbers();
+        }
+
     }
 
     private int requestInputBonusNumber() {
-        output.printMessage("보너스 번호를 입력해 주세요.\n");
-        return input.inputBonusNumber();
+        try {
+            output.printMessage("보너스 번호를 입력해 주세요.\n");
+            return input.inputBonusNumber();
+        } catch (Exception e) {
+            output.printMessage(e.getMessage());
+            return requestInputBonusNumber();
+        }
     }
 
     private void announceFinalStatistics(RewardHistory rewardHistory, double profitRate) {

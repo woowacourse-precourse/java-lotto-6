@@ -15,7 +15,7 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException{
         validate(numbers);
         validateDuplicateNumber(numbers);
         validateLottoNumberRange(numbers);
@@ -52,23 +52,23 @@ public class Lotto {
         return THIRD;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) throws IllegalArgumentException{
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR]: 로또는 6개의 숫자입니다.");
+            throw new IllegalArgumentException("[ERROR]: 로또는 6개의 숫자입니다.\n");
         }
     }
 
-    private void validateDuplicateNumber(List<Integer> numbers) {
+    private void validateDuplicateNumber(List<Integer> numbers) throws IllegalArgumentException{
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR]: 로또는 6개의 숫자입니다.");
+            throw new IllegalArgumentException("[ERROR]: 로또는 서로 다른 6개의 숫자입니다.\n");
         }
     }
 
-    private void validateLottoNumberRange(List<Integer> numbers) {
+    private void validateLottoNumberRange(List<Integer> numbers) throws IllegalArgumentException{
         for (Integer number : numbers) {
             if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-                throw new IllegalArgumentException("[ERROR]: 로또는 번호는 1~45 사이의 숫자입니다.");
+                throw new IllegalArgumentException("[ERROR]: 로또는 번호는 1~45 사이의 숫자입니다.\n");
             }
         }
     }

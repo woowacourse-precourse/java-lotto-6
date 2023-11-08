@@ -14,12 +14,17 @@ public class LottoResultsTest {
     void createInputNonInteger() {
         String inputInteger = "12000";
         String inputString = "string";
+        String inputNull = "";
 
         // 숫자 입력했을 때 예외 미발생
         assertThatNoException().isThrownBy(() -> new LottoResults(inputInteger));
 
         // 문자 입력했을 때 예외 발생
         assertThatThrownBy(()->new LottoResults(inputString))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        // 입력이 비어있을 때 예외 발생
+        assertThatThrownBy(()->new LottoResults(inputNull))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

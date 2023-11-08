@@ -18,27 +18,36 @@ public class GameManager {
     private Calculator calculator = new Calculator();
 
     public void run() {
-        Amount amount = inputPurchaseAmountWhileNoError();
-        outputView.printPublishedLottoCount(lottoPublisher.getLottoCountByAmount(amount));
-        Lottos lottos = lottoPublisher.publishLottosByAmount(amount);
-        outputView.printPublishedLottos(lottos);
+        Amount amount = inputPurchaseAmountUntilNoError();
+        printLottoCountByAmount(amount);
+        Lottos lottos = publishLottosByAmountAndPrintLottos(amount);
         Lotto winningLotto = inputView.inputWinningNumbers();
         Bonus bonus = inputView.inputBonusNumber();
-        WinningResult winningResult = new WinningResult(lottos.determineWinningsCount(winningLotto,bonus));
+        WinningResult winningResult = new WinningResult(
+                lottos.determineWinningsCount(winningLotto, bonus));
         outputView.printWinningResult(winningResult);
         long prize = winningResult.getTotalLotteryPrize();
-        outputView.printROI(calculator.calculateROI(prize,amount));
+        outputView.printROI(calculator.calculateROI(prize, amount));
     }
 
-    private Amount inputPurchaseAmountWhileNoError(){
-        while(true){
+    private Amount inputPurchaseAmountUntilNoError() {
+        while (true) {
             try {
                 return inputView.inputPurchaseAmount();
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
     }
 
+    private void printLottoCountByAmount(Amount amount) {
+        outputView.printPublishedLottoCount(lottoPublisher.getLottoCountByAmount(amount));
+    }
+
+    private Lottos publishLottosByAmountAndPrintLottos(Amount amount){
+        Lottos lottos = lottoPublisher.publishLottosByAmount(amount);
+        outputView.printPublishedLottos(lottos);
+        return lottos;
+    }
 
 }

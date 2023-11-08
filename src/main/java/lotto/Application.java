@@ -12,5 +12,6 @@ public class Application {
 
         controller.inputWinnerNumber();
 
+        controller.showTotalLottoResult();
     }
 }

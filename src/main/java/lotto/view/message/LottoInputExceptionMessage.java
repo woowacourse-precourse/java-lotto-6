@@ -1,6 +1,6 @@
 package lotto.view.message;
 
-import lotto.domain.constant.LottoConstant;
+import lotto.constant.LottoConstant;
 import lotto.view.constant.InputConstant;
 import lotto.view.constant.OutputConstant;
 

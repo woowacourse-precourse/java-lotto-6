@@ -1,4 +1,4 @@
-package lotto.domain.constant;
+package lotto.constant;
 
 public enum LottoConstant {
     LOTTO_MIN_NUM(1),

@@ -2,8 +2,8 @@ package lotto.service.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.constant.LottoConstant;
 import lotto.domain.Lotto;
-import lotto.domain.constant.LottoConstant;
 
 public class LottoGenerator {
     private LottoGenerator() {

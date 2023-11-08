@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Objects;
-import lotto.domain.constant.LottoConstant;
+import lotto.constant.LottoConstant;
 import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 

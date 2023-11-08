@@ -24,7 +24,7 @@ public class Lotto {
     private void isUniqueNumber(List<Integer> numbers) {
         long uniqueCount = numbers.stream().distinct().count();
         if (uniqueCount != (long) (numbers.size())) {
-            throw new IllegalArgumentException("고유한 숫자만 입력 가능");
+            throw new IllegalArgumentException("각 숫자는 고유해야함");
         }
     }
 

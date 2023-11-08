@@ -35,7 +35,7 @@
 ## 데이터의 흐름
 
                    (purchasing)                   (winning)
-                  PurchaseAmount         WinningNumbers, BonusNumber
+                  PurchaseAmount           MainNumbers, BonusNumber
                         |                             |
                      Generator                 PrizeRankChecker
                         |                             |                         

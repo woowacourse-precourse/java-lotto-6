@@ -14,7 +14,7 @@ public class PurchaseAmount {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public String getPurchaseAmount() {
-        return purchaseAmount;
+    public Integer getPurchaseAmount() {
+        return Integer.parseInt(purchaseAmount);
     }
 }

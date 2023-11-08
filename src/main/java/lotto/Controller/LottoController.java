@@ -7,6 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
+    private static final String START_GAME_MSG = "로또 구입 금액을 입력하세요: ";
+    private static final String USER_INPUT_MSG_F = "당첨 번호 ";
+    private static final String USER_INPUT_MSG_B = "을 입력하세요: ";
+    private static final String INPUT_ERROR_MSG_BASIC = "당첨 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String INPUT_ERROR_MSG_BONUS = "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String INPUT_ERROR_MSG_FORMAT = "올바른 숫자를 입력하세요.";
+
     private LottoView view;
 
     public LottoController(LottoView view) {
@@ -14,7 +21,7 @@ public class LottoController {
     }
 
     public void runGame() {
-        int ticketCount = view.getUserInput("로또 구입 금액을 입력하세요: ");
+        int ticketCount = view.getUserInput(START_GAME_MSG);
         List<Lotto> purchasedTickets = generateTickets(ticketCount);
 
         List<Integer> winningNumbers = getWinningNumbersFromUser();
@@ -35,17 +42,17 @@ public class LottoController {
         List<Integer> winningNumbers = new ArrayList<>();
         try {
             for (int i = 0; i < 7; i++) {
-                int number = view.getUserInput("당첨 번호 " + (i + 1) + "을 입력하세요: ");
+                int number = view.getUserInput(USER_INPUT_MSG_F + (i + 1) + USER_INPUT_MSG_B);
                 if (i < 6) {
                     if (number < 1 || number > 45) {
-                        view.displayError("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                        view.displayError(INPUT_ERROR_MSG_BASIC);
                         i--;
                     } else {
                         winningNumbers.add(number);
                     }
                 } else {
                     if (number < 1 || number > 45) {
-                        view.displayError("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                        view.displayError(INPUT_ERROR_MSG_BONUS);
                         i--;
                     } else {
                         winningNumbers.add(number);
@@ -53,7 +60,7 @@ public class LottoController {
                 }
             }
         } catch (NumberFormatException e) {
-            view.displayError("올바른 숫자를 입력하세요.");
+            view.displayError(INPUT_ERROR_MSG_FORMAT);
         }
         return winningNumbers;
     }

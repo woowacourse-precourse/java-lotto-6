@@ -20,18 +20,23 @@ public class LottoGame {
     public void run () {
         // 유저로 부터 구입 금액을 입력 받는다
         int purchaseAmount = getPurchaseAmount();
+
+        // 로또 구매
         List<Lotto> lottoBundle = buyLottoBundle(purchaseAmount);
+
+        // 구매 결과를 출력
         printPurchaseHistory(lottoBundle);
+
+        // 당첨 번호와 보너스 번호 입력
         WinningNumbers winnerNumbers = getWinningNumbers();
+
+        // 당첨 결과를 계산
         Map<LottoRank, Integer> winningResults = lottoService.getWinningResults(lottoBundle, winnerNumbers);
+        long totalPrize = lottoService.calculateTotalPrize(winningResults);
+        double profitRate = lottoService.calculateProfitRate(totalPrize, purchaseAmount);
 
-
-        lottoService.compareAll(lottoBundle, winnerNumbers.getNumbers(), winnerNumbers.getBonusNumber()); // 리팩토링 대상
-        long profit = lottoService.calculateTotalPrize(winningResults);
-
-        double profitRate = profit / (double) purchaseAmount * 100;
-
-        printResults(lottoService, profitRate);
+        // 당첨 결과를 출력
+        printResults(winningResults, profitRate);
 
     }
 
@@ -46,6 +51,7 @@ public class LottoGame {
         try {
             String userInput = inputHandler.getWinningNumbersFromUser();
             return Arrays.stream(userInput.split(","))
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .sorted()
                     .toList();
@@ -61,14 +67,12 @@ public class LottoGame {
         }
     }
 
-    private void printResults(LottoService lottoService, double profitRate) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.printf(Result.FIFTH_PLACE.getMessage() + "%n", lottoService.getNumOfFifthPlace());
-        System.out.printf(Result.FOURTH_PLACE.getMessage() + "%n", lottoService.getNumOfFourthPlace());
-        System.out.printf(Result.THIRD_PLACE.getMessage() + "%n", lottoService.getNumOfThirdPlace());
-        System.out.printf(Result.SECOND_PLACE.getMessage() + "%n", lottoService.getNumOfSecondPlace());
-        System.out.printf(Result.FIRST_PLACE.getMessage() + "%n", lottoService.getNumOfFirstPlace());
+    private void printResults(Map<LottoRank, Integer> winningResults, double profitRate) {
+        System.out.printf(Result.FIFTH_PLACE.getMessage() + "%n", winningResults.get(LottoRank.FIFTH_PLACE));
+        System.out.printf(Result.FOURTH_PLACE.getMessage() + "%n", winningResults.get(LottoRank.FOURTH_PLACE));
+        System.out.printf(Result.THIRD_PLACE.getMessage() + "%n", winningResults.get(LottoRank.THIRD_PLACE));
+        System.out.printf(Result.SECOND_PLACE.getMessage() + "%n", winningResults.get(LottoRank.SECOND_PLACE));
+        System.out.printf(Result.FIRST_PLACE.getMessage() + "%n", winningResults.get(LottoRank.FIRST_PLACE));
         System.out.printf(Result.TOTAL_PROFIT_RATE.getMessage() + "%n", profitRate);
     }
 

@@ -1,19 +1,15 @@
 package lotto.controller;
 
 import lotto.domain.LottoBuyer;
+import lotto.domain.LottoSeller;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    InputView inputView;
-
-    public LottoController(InputView inputView) {
-        this.inputView = inputView;
-    }
-
     public void run() {
         LottoBuyer lottoBuyer = new LottoBuyer(InputView.purchaseMoney());
         OutputView.printLottoNums(lottoBuyer.getLottos());
+        LottoSeller lottoSeller = new LottoSeller(InputView.winningNumber(), InputView.bonusNumber());
     }
 }

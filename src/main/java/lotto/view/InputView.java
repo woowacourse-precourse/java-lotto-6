@@ -12,40 +12,51 @@ public class InputView {
 
     public int inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
+        return checkPurchaseAmount();
+    }
+
+    private int checkPurchaseAmount() {
         String purchaseAmount = Console.readLine().trim();
         try {
             Validator.validatePurchaseAmount(purchaseAmount);
             return Integer.parseInt(purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputPurchaseAmount();
+            return checkPurchaseAmount();
         }
     }
 
     public List<Integer> inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
+        return checkWinningNumbers();
+    }
+
+    private List<Integer> checkWinningNumbers() {
         String winningNumbersInput = Console.readLine().trim();
         try {
             Validator.validateWinningNumbers(winningNumbersInput);
             return changeInputToNumber(winningNumbersInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputWinningNumbers();
+            return checkWinningNumbers();
         }
     }
 
     public int inputBonusNumber(List<Integer> winningNumbers) {
         System.out.println(INPUT_BONUS_NUMBER);
+        return checkBonusNumber(winningNumbers);
+    }
+
+    private int checkBonusNumber(List<Integer> winningNumbers) {
         String bonusNumberInput = Console.readLine().trim();
         try {
             Validator.validateBonusNumber(winningNumbers, bonusNumberInput);
             return Integer.parseInt(bonusNumberInput);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputBonusNumber(winningNumbers);
+            return checkBonusNumber(winningNumbers);
         }
     }
-
 
     private List<Integer> changeInputToNumber (String input) {
         String[] values = input.split(",");

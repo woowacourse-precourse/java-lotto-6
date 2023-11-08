@@ -28,9 +28,8 @@ public class LottoService {
     }
 
     public List<Lotto> getLottoTickets(int count) {
-        List<Lotto> lottoSets = new ArrayList<>(); // 발행 목록 정의 -> !클래스 따로 만들 것인가 고민
-        for (int i = 0; i < count; i++) { // 로또 발행
-            // 로또 생성
+        List<Lotto> lottoSets = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
             lottoSets.add(lottoShop.generateLottoTicket());
         }
         outputView.printLottoTickets(lottoSets);

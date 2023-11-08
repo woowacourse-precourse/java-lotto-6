@@ -13,6 +13,7 @@ public class WinningNumberConverter {
         try {
             List<String> splitInput = List.of(input.split(delimiter, -1));
             return splitInput.stream()
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {

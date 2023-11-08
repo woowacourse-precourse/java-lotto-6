@@ -21,7 +21,8 @@ public class ProfitCalculator {
     static void determineRank() {
         for (Lotto lotto: LottoMachine.totalLottoTickets) {
             int numberOfOverlaps = compareIntersection(lotto);
-            calculateRank(lotto, numberOfOverlaps);
+            boolean containBonus = lotto.getNumbers().contains(WinningLotto.bonusNumber);
+            calculateRank(lotto, numberOfOverlaps, containBonus);
         }
     }
 
@@ -35,18 +36,15 @@ public class ProfitCalculator {
         return winningSet.size();
     }
 
-    static void calculateRank(Lotto lotto, int numberOfOverlaps) {
-        int bonusNumber = WinningLotto.bonusNumber;
+    static void calculateRank(Lotto lotto, int numberOfOverlaps, boolean containBonus) {
         if (numberOfOverlaps == 3) {
             fifthPlace += 1;
         } else if (numberOfOverlaps == 4) {
             fourthPlace += 1;
-        } else if (numberOfOverlaps == 5) {
-            if (lotto.getNumbers().contains(bonusNumber)) {
-                secondPlace += 1;
-            } else {
-                thirdPlace += 1;
-            }
+        } else if (numberOfOverlaps == 5 && containBonus) {
+            secondPlace += 1;
+        } else if (numberOfOverlaps == 5 && !containBonus) {
+            thirdPlace += 1;
         } else if (numberOfOverlaps == 6) {
             firstPlace += 1;
         }

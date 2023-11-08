@@ -17,7 +17,7 @@ public class Application {
         WinningLotto.gettingBonusNumber();
 
         // 통계 계산 후 수익률 출력
-        ProfitCalculator.calculate();
+        ProfitCalculator.determineRank();
         ProfitCalculator.calculateProfit();
         ProfitCalculator.printResult();
     }

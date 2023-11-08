@@ -33,7 +33,7 @@ public class LottoController {
         showResults();
     }
 
-    public void buyLotto() {
+    private void buyLotto() {
         int lottoQuantity = lottoService.calculateLotto(getPurchaseAmount());
         outputView.printPurchaseResult(lottoQuantity);
 
@@ -41,20 +41,20 @@ public class LottoController {
         outputView.printIssuedLottos(lottoDto.getLottos());
     }
 
-    public void setWinningNumbers() {
+    private void setWinningNumbers() {
         List<Integer> winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber(winningNumber);
         lottoService.saveWinningLotto(winningNumber, bonusNumber);
     }
 
-    public void showResults() {
+    private void showResults() {
         outputView.printWinningStatistics();
         ResultDto resultDto = lottoService.getResult();
         outputView.printWinningDetails(resultDto.getResult());
         outputView.printTotalReturn(resultDto.getReturnRate());
     }
 
-    public final int getPurchaseAmount() {
+    private int getPurchaseAmount() {
         try {
             outputView.printMessage(REQUEST_PURCHASE_AMOUNT.getMessage());
             String money = inputView.inputMessage();
@@ -66,7 +66,7 @@ public class LottoController {
         }
     }
 
-    public final List<Integer> getWinningNumber() {
+    private List<Integer> getWinningNumber() {
         try {
             outputView.printMessage(REQUEST_WINNING_NUMBER.getMessage());
             String winningNumber = inputView.inputMessage();
@@ -78,7 +78,7 @@ public class LottoController {
         }
     }
 
-    public final int getBonusNumber(List<Integer> winningNumber) {
+    private int getBonusNumber(List<Integer> winningNumber) {
         try {
             outputView.printMessage(REQUEST_BONUS_NUMBER.getMessage());
             String bonusNumber = inputView.inputMessage();

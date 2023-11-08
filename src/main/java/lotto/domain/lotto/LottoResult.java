@@ -42,7 +42,7 @@ public class LottoResult {
         issuedLotto.stream().forEach(lotto -> matchingNumber(lotto));
     }
 
-    public void matchingNumber(final Lotto lotto) {
+    private void matchingNumber(final Lotto lotto) {
         Long count = getMatchingCount(lotto);
 
         if (count == FIRST_PLACE.getMatchNumber()) {
@@ -59,7 +59,7 @@ public class LottoResult {
         }
     }
 
-    public void bonusCheck(Lotto lotto) {
+    private void bonusCheck(Lotto lotto) {
         if (isBonusContain(lotto)) {
             incrementResult(SECOND_PLACE);
             return;
@@ -77,7 +77,7 @@ public class LottoResult {
         rankingResult.merge(rank, INCREMENT, Integer::sum);
     }
 
-    public final boolean isBonusContain(final Lotto lotto) {
+    private boolean isBonusContain(final Lotto lotto) {
         return lotto.getNumbers().contains(winningLotto.bonus().getBonusNumber());
     }
 

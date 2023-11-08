@@ -11,6 +11,7 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validateSize(numbers);
         sortAsc(numbers);
         this.numbers = numbers
                 .stream().
@@ -26,6 +27,12 @@ public class Lotto {
                 .stream()
                 .map(number -> new LottoNumber(number))
                 .collect(Collectors.toList());
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자여야 한다.");
+        }
     }
 
     

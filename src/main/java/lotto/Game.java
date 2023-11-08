@@ -66,7 +66,7 @@ public class Game {
 
     private static Boolean checkMatchBonus(Lotto lotto, Bonus bonus) {
         for (Integer number : lotto.getNumbers()) {
-            if (number == bonus.getNumber()) {
+            if (number == bonus.getBonusNumber()) {
                 return true;
             }
         }

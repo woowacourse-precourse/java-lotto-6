@@ -22,29 +22,22 @@ class BonusTest {
     }
 
     @Test
-    @DisplayName("문자를 입력하면 예외 발생")
-    void validateNumeral() {
-        assertThatThrownBy(() -> new Bonus("3a", winLotto))
-            .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     @DisplayName("숫자 범위를 벗어나면 예외 발생")
     void validateNumber() {
-        assertThatThrownBy(() -> new Bonus(String.valueOf(MIN_NUMBER.getNumber() - 1), winLotto))
+        assertThatThrownBy(() -> new Bonus((int)MIN_NUMBER.getNumber() - 1, winLotto))
             .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> new Bonus(String.valueOf(MAX_NUMBER.getNumber() + 1), winLotto))
+        assertThatThrownBy(() -> new Bonus((int)MAX_NUMBER.getNumber() + 1, winLotto))
             .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("기존 당첨 번호와 중복되면 예외 발생")
     void validateDuplication() {
-        assertThatThrownBy(() -> new Bonus("5", winLotto))
+        assertThatThrownBy(() -> new Bonus(5, winLotto))
             .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> new Bonus("10", winLotto))
+        assertThatThrownBy(() -> new Bonus(10, winLotto))
             .isInstanceOf(IllegalArgumentException.class);
     }
 }

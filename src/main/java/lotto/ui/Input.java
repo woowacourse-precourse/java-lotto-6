@@ -44,7 +44,8 @@ public class Input {
             System.out.println(INPUT_BONUS_NUMBERS.getMessage());
             try {
                 String input = Console.readLine();
-                return new Bonus(input, winLotto);
+                int bonusNumber = Convert.toBonusNumber(input);
+                return new Bonus(bonusNumber, winLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

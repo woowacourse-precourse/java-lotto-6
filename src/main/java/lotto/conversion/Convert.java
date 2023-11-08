@@ -25,4 +25,12 @@ public class Convert {
             throw new IllegalArgumentException(ONLY_NUMBERS_COMMA_ALLOWED.getMessage());
         }
     }
+
+    public static int toBonusNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ONLY_NUMBERS_ALLOWED.getMessage());
+        }
+    }
 }

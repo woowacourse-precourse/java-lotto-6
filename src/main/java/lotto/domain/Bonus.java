@@ -1,42 +1,33 @@
 package lotto.domain;
 
 import static lotto.constant.ErrorMessage.NO_DUPLICATION_ALLOWED;
-import static lotto.constant.ErrorMessage.ONLY_NUMBERS_ALLOWED;
 import static lotto.constant.ErrorMessage.WRONG_NUMBER_RANGE;
 import static lotto.constant.GameNumber.MAX_NUMBER;
 import static lotto.constant.GameNumber.MIN_NUMBER;
 
 public class Bonus {
 
-    private final int number;
+    private final int bonusNumber;
 
-    public Bonus(String input, Lotto winLotto) {
-        this.number = validateNumeral(input);
-        validateNumber();
-        validateDuplication(winLotto);
+    public Bonus(int bonusNumber, Lotto winLotto) {
+        validateNumber(bonusNumber);
+        validateDuplication(bonusNumber, winLotto);
+        this.bonusNumber = bonusNumber;
     }
 
-    public int getNumber() {
-        return number;
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
-    private int validateNumeral(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ONLY_NUMBERS_ALLOWED.getMessage());
-        }
-    }
-
-    private void validateNumber() {
-        if (number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber()) {
+    private void validateNumber(int bonusNumber) {
+        if (bonusNumber < MIN_NUMBER.getNumber() || bonusNumber > MAX_NUMBER.getNumber()) {
             throw new IllegalArgumentException(WRONG_NUMBER_RANGE.getMessage());
         }
     }
 
-    private void validateDuplication(Lotto winLotto) {
+    private void validateDuplication(int bonusNumber, Lotto winLotto) {
         for (Integer winNumber : winLotto.getNumbers()) {
-            if (number == winNumber) {
+            if (bonusNumber == winNumber) {
                 throw new IllegalArgumentException(NO_DUPLICATION_ALLOWED.getMessage());
             }
         }

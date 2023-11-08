@@ -84,9 +84,25 @@ public class Base_Func {
         money += Jackpot_Money.JP_5.get_money() *Jackpot_list[5];
         money += Jackpot_Money.JP_6.get_money() *Jackpot_list[6];
         money += Jackpot_Money.JP_7.get_money() *Jackpot_list[7];
-        double rate = (double) money /purchase_num*100;
-        DecimalFormat df = new DecimalFormat("0.00");
+        if(money == 0){
+            System.out.println("총 수익률은 "+ 0 +"%입니다.");
+            return;
+        }
 
-        System.out.println("총 수익률은 "+ df.format(rate) +"%입니다.");
+        double rate = ((double) money) /((double)purchase_num)*100;
+        System.out.println("총 수익률은 "+ Earning_Rate_Float_to_String(rate) +"%입니다.");
+    }
+
+    public static String Earning_Rate_Float_to_String(double rate) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        String tmp_str = df.format(rate);
+        if (tmp_str.charAt(tmp_str.length() - 1) - '0' == 0) {
+            tmp_str = tmp_str.substring(0, tmp_str.length() - 1);
+
+            if (tmp_str.charAt(tmp_str.length() - 1) - '0' == 0) {
+                tmp_str = tmp_str.substring(0, tmp_str.length() - 2);
+            }
+        }
+        return tmp_str;
     }
 }

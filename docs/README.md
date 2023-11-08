@@ -25,6 +25,7 @@
   5. Input_Win_Lotto_Bonus_number() 
   6. Print_Jackpot_List() -> 당첨 내역 출력
   7. Print_Earning_Rate() -> 수익률을 계산해서 수익률 출력.
+  8. Earning_Rate_Float_to_String() -> 수익률에서 소수점 부분 출력 처리. 62.50% -> 62.5% 처럼 수정.
 
 - Application.java 클래스
   1. main()

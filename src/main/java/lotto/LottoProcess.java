@@ -25,6 +25,8 @@ public class LottoProcess {
         printLotto();
         requestWinnigNumbers();
         requsetBonnusNum();
+
+
     }
 
     public void printLotto() {
@@ -63,15 +65,15 @@ public class LottoProcess {
 
     public List<Integer> transferWinningNumbers(String str){
         String[] strArr = str.split(",");
-        List<Integer> winnigNumbers = new ArrayList<>();
+        List<Integer> winningNumbers = new ArrayList<>();
         for (String s : strArr) {
             validate.validateIsNum(s);
             int winningNum = Integer.parseInt(s);
             validate.validateIsLottoNumRange(winningNum);
-            winnigNumbers.add(winningNum);
+            winningNumbers.add(winningNum);
         }
-        validate.validateIsSIzeSix(winnigNumbers);
-        return winnigNumbers;
+        validate.validateIsSIzeSix(winningNumbers);
+        return winningNumbers;
     }
 
     public void requsetBonnusNum() {
@@ -82,11 +84,18 @@ public class LottoProcess {
                 validate.validateIsNum(str);
                 bonusNum = Integer.parseInt(str);
                 validate.validateIsLottoNumRange(bonusNum);
+                validateIsDUplication(bonusNum);
                 checkValidBonusNum = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 checkValidBonusNum = true;
             }
+        }
+    }
+
+    public void validateIsDUplication(int bonnusNum) {
+        if (winningNumbers.contains(bonnusNum)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호인 " + winningNumbers + "와 달라야합니다.");
         }
     }
 }

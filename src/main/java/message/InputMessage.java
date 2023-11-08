@@ -9,7 +9,7 @@ public enum InputMessage {
     InputMessage(String message){
         this.message = message;
     }
-    public String toString(){
+    public String getMessage(){
         return message;
     }
 }

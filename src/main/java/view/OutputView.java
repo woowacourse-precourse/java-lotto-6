@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class OutputView {
     public void printLottoCount(Integer count) {
-        System.out.println(count + OuputMessage.PAYRESULT.toString());
+        System.out.println(count + OuputMessage.PAYRESULT.getMessage());
     }
 
     public void printLottos(List<Integer> lotto) {
@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     public void printResult(ResultLottos resultLottos) {
-        System.out.println(OuputMessage.HEADRESULT);
+        System.out.println(OuputMessage.HEADRESULT.getMessage());
         printResultLottos(resultLottos);
     }
 

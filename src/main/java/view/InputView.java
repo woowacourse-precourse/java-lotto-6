@@ -7,12 +7,12 @@ import java.util.List;
 
 public class InputView {
     public String inputMoney() {
-        System.out.println(InputMessage.PAYMENT);
+        System.out.println(InputMessage.PAYMENT.getMessage());
         return Console.readLine();
     }
 
     public List<Integer> inputWinning() {
-        System.out.println(InputMessage.WINNINGNUMBERS);
+        System.out.println(InputMessage.WINNINGNUMBERS.getMessage());
         List<String> input = List.of(Console.readLine().split(","));
 
         return input.stream()
@@ -21,7 +21,7 @@ public class InputView {
     }
 
     public String inputBonus() {
-        System.out.println(InputMessage.BONUSNUMBER);
+        System.out.println(InputMessage.BONUSNUMBER.getMessage());
         return Console.readLine();
     }
 }

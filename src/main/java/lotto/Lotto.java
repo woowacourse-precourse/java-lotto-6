@@ -41,6 +41,9 @@ public class Lotto {
             List<Integer> randomNumbers = generateSixRandomNumber();
             lottoNumbers.add(randomNumbers);
         }
+        for(List<Integer> notSortedNumbers: lottoNumbers){
+            notSortedNumbers = sortRandomNumber(notSortedNumbers);
+        }
         return lottoNumbers;
     }
 

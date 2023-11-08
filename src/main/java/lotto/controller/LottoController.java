@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.model.domain.Lotto;
 import lotto.model.domain.ClientLottoData;
+import lotto.model.domain.RankTable;
 import lotto.model.domain.WinningLottoNumber;
 import lotto.model.LottoMachine;
 import lotto.util.LottoTypeConverter;
@@ -13,12 +13,11 @@ import java.util.List;
 
 public class LottoController {
     public void run() {
-        ClientLottoData clientLottoData;
+        ClientLottoData clientLottoData = new ClientLottoData();
         WinningLottoNumber winningLottoNumber;
-        clientLottoData = startLotto();
-        setClientLottoData(clientLottoData);
+        startLotto(clientLottoData);
+        clientLottoData.setLottoTicket(clientLottoData.getLottoTicketCount());
         getClientLottoData(clientLottoData);
-
         winningLottoNumber = setWinningNumber();
         setBonusNumber(winningLottoNumber);
         setMatchNumber(clientLottoData, winningLottoNumber);
@@ -26,52 +25,54 @@ public class LottoController {
         getIncome(clientLottoData);
     }
 
-    public ClientLottoData startLotto() {
+    public void startLotto(ClientLottoData clientLottoData) {
         OutputView.askBuyLottoPrice();
         String price = InputView.buyLottoPrice();
-
-        int money = 0;
         try {
-            money = LottoValidator.divideMoney(price);
+            int money = LottoValidator.divideMoney(price);
+            clientLottoData.setPrice(money);
+            clientLottoData.setLottoTicketNumber(money);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            startLotto();
+            startLotto(clientLottoData);
         }
-        int lottoTicketCount = LottoMachine.setLottoTicketNumber(money);
-        return new ClientLottoData(money, lottoTicketCount);
-    }
-
-    public void setClientLottoData(ClientLottoData clientLottoData) {
-        // service의 역할
-        clientLottoData.lottos = LottoMachine.setLottoTicket(clientLottoData.lottoTicketCount);
     }
 
     public void getClientLottoData(ClientLottoData clientLottoData) {
-        int numberLottoTicket = clientLottoData.lottoTicketCount;
-        List<Lotto> lottos = clientLottoData.lottos;
-        OutputView.boughtLottoNumber(numberLottoTicket, lottos);
+        int numberLottoTicket = clientLottoData.getLottoTicketCount();
+        OutputView.boughtLottoNumber(numberLottoTicket, clientLottoData.getLottos());
     }
 
     public WinningLottoNumber setWinningNumber() {
         OutputView.askWriteWinningNumber();
-        String winningNumber = InputView.winningNumber();
-        // todo 검증기 돌려야함
-        List<Integer> winningNumbers = LottoTypeConverter.toList(winningNumber);
+        String[] rawNumbers = LottoTypeConverter.toArray(InputView.winningNumber());
+        try {
+            LottoValidator.checkWinningNumber(rawNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setWinningNumber();
+        }
+        List<Integer> winningNumbers = LottoTypeConverter.toList(rawNumbers);
         return new WinningLottoNumber(winningNumbers);
     }
 
     public void setBonusNumber(WinningLottoNumber winningLottoNumber) {
         OutputView.askWriteBonusNumber();
-        // todo 입력값 검증
-        winningLottoNumber.bonusNumber = LottoValidator.checkBonusNumber(InputView.bonusNumber());
+        try {
+            winningLottoNumber.bonusNumber = LottoValidator.checkNumber(InputView.bonusNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setBonusNumber(winningLottoNumber);
+        }
     }
 
     public void setMatchNumber(ClientLottoData clientLottoData, WinningLottoNumber winningLottoNumber) {
-        clientLottoData.matchLottoCalculate = LottoMachine.matchLottoCalculate(clientLottoData, winningLottoNumber);
+        List<RankTable> rankTables = LottoMachine.matchLottoCalculate(clientLottoData, winningLottoNumber);
+        clientLottoData.setMatchLottoCalculate(rankTables);
     }
 
     public void showWinningStatistic(ClientLottoData clientLottoData) {
-        OutputView.winningStatistics(clientLottoData.matchLottoCalculate);
+        OutputView.winningStatistics(clientLottoData.getMatchLottoCalculate());
     }
 
     public void getIncome(ClientLottoData clientLottoData) {

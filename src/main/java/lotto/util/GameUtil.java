@@ -2,10 +2,9 @@ package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GameUtil {
@@ -15,11 +14,12 @@ public class GameUtil {
 
     //로또 생성
     public static Lotto createLotto(){
-        List<Integer> createdLotto = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM,MAX_LOTTO_NUM,LOTTO_NUM);
+        List<Integer> lottoList = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM,MAX_LOTTO_NUM,LOTTO_NUM);
 
-        Collections.sort(createdLotto);
+        //Collections.sort(lottoList);
+        //lottoList.sort(Comparator.naturalOrder());
 
-        return new Lotto(createdLotto);
+        return new Lotto(lottoList);
     }
 
     //형태 변환
@@ -37,6 +37,19 @@ public class GameUtil {
     }
 
     //당첨 결과 반환
+    public static void printHittingResult(HashMap<Rank, Integer> map) {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        map.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
+                .filter(e -> e.getKey().getWinningMoney() != 0)
+                .forEach(e -> e.getKey().printResult(map.get(e.getKey())));
+    }
 
     //총 수익률 반환
+    public static void printProfitResult(int totalHitMoney, int money) {
+        System.out.print("총 수익률은 ");
+        System.out.format("%.1f", (totalHitMoney / (double) money * 100.0));
+        System.out.println("%입니다.");
+    }
 }

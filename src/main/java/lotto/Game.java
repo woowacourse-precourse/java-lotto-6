@@ -12,33 +12,49 @@ public class Game {
     private final Output output = new Output();
     private int price;
     private int bonusNumber;
-    private List<Integer> winningNumbers;
+    private List<Integer> winningNumbers = new ArrayList<>();
     private List<Lotto> lottos = new ArrayList<>();
     private Map<MatchState, Integer> totalMatchCounts = new LinkedHashMap<>();
     private Error errorState = Error.NO_PROBLEM;
 
-//MatchState 활용해서 구현하기
-    private void printMatch() {
-        sortTotalMatchCounts();
-        totalMatchCounts.forEach(output::printResult);
+
+    public void run() {
+        setPrice();
+        output.printNumberOfLotto(price);
+        generateLotto();
+        setWinningNumbers();
+        setBonusNumber();
+        setTotalMatchCounts();
+        output.printResult(totalMatchCounts);
+        output.printRateOfReturn(getRateOfReturn());
     }
+
+    private float getRateOfReturn() {
+        float totalWinningPrize = totalMatchCounts.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+
+        return Math.round(totalWinningPrize * 10000.0f / price) / 100.0f;
+    }
+
     private void generateLotto() {
-        int numberOfLotto = price/1000;
+        int numberOfLotto = price / 1000;
         int index = 0;
         while (lottos.size() < numberOfLotto){
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
             lottos.get(index).printLottoNumbers();
-            setTotalMatchCounts(lottos.get(index).getMatchCount(winningNumbers), lottos.get(index).checkBonusNumber(bonusNumber));
             index++;
         }
     }
 
-    private void setTotalMatchCounts(int numberOfMatch, boolean isMatchBonus) {
-        MatchState matchState = MatchState.getMatchState(numberOfMatch, isMatchBonus);
-        if (totalMatchCounts.containsKey(matchState)) {
-            totalMatchCounts.put(matchState, matchState.getPrize());
-        }
-        totalMatchCounts.put(matchState, 1);
+    private void setTotalMatchCounts() {
+        lottos.forEach(lotto -> {
+            MatchState matchState = MatchState.getMatchState(lotto.getMatchCount(winningNumbers), lotto.checkBonusNumber(bonusNumber));
+            if (matchState != null) {
+                totalMatchCounts.merge(matchState, 1, Integer::sum);
+            }
+        });
+        sortTotalMatchCounts();
     }
 
     private void sortTotalMatchCounts() {
@@ -54,36 +70,36 @@ public class Game {
     }
 
     private void setPrice() {
-        while (!errorState.equals(Error.NO_PROBLEM)) {
+        do {
             try {
                 price = input.getPrice();
                 validatePrice();
             } catch (IllegalArgumentException e) {
-                errorState.printERROR(errorState);
+                errorState = Error.printERROR(errorState);
             }
-        }
+        } while (!errorState.equals(Error.NO_PROBLEM));
     }
 
     private void setWinningNumbers() {
-        while (!errorState.equals(Error.NO_PROBLEM)) {
+        do  {
             try {
                 winningNumbers = input.getWinningNumbers();
                 validateWinningNumbers();
             } catch (IllegalArgumentException e) {
-                errorState.printERROR(errorState);
+                errorState = Error.printERROR(errorState);
             }
-        }
+        } while(!errorState.equals(Error.NO_PROBLEM));
     }
 
     private void setBonusNumber() {
-        while (!errorState.equals(Error.NO_PROBLEM)) {
+        do {
             try {
                 bonusNumber = input.getBonusNumber();
                 validateBonusNumber();
             } catch (IllegalArgumentException e) {
-                errorState.printERROR(errorState);
+                errorState = Error.printERROR(errorState);
             }
-        }
+        } while (!errorState.equals(Error.NO_PROBLEM));
     }
 
     private void validatePrice() {

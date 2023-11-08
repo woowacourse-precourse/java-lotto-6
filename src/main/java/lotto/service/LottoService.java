@@ -2,7 +2,6 @@ package lotto.service;
 
 import java.util.List;
 import java.util.Map;
-import lotto.controller.LottoController;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoQuantity;
@@ -12,23 +11,6 @@ import lotto.domain.PrizeResult;
 import lotto.domain.Winning;
 
 public class LottoService {
-
-    private volatile static LottoService INSTANCE;
-
-    public static LottoService getInstance() {
-        if (INSTANCE == null) {
-            synchronized (LottoController.class) {
-                generateInstance();
-            }
-        }
-        return INSTANCE;
-    }
-
-    private static void generateInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new LottoService();
-        }
-    }
 
     public List<Lotto> getLottos(Money money) {
         int tickets = money.calculateTicket();

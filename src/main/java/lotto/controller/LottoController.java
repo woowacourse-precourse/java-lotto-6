@@ -32,6 +32,7 @@ public class LottoController {
         WinningNumbers winningNumbers = getWinningNumbers();
 
         LottoResult lottoResult = LottoResult.getResultFrom(lottos, winningNumbers, purchaseAmount);
+        outputView.printLottoResult(DtoModelMapper.LottoResultToDto(lottoResult));
     }
 
     private PurchaseAmount getValidPurchaseAmount() {

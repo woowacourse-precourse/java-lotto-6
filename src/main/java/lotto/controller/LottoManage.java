@@ -14,7 +14,7 @@ import lotto.view.Input;
 import lotto.view.Output;
 
 public class LottoManage {
-    private static List<Lotto> lottoList;
+    private static List<Lotto> lottoBought;
     private static LottoMatchResult lottoMatchResult;
 
     private static final BonusNumber bonusNumber = new BonusNumber();
@@ -23,9 +23,9 @@ public class LottoManage {
         int number = getPlayerBought();
         Output.boughtLottoNumMessage(number);
 
-        lottoList = makeLottoBoughtNumbers(number);
+        lottoBought = makeLottoBoughtNumbers(number);
         lottoMatchResult = bonusJudgement();
-        gameResult(lottoList, lottoMatchResult, number);
+        gameResult(lottoBought, lottoMatchResult, number);
     }
 
     public LottoMatchResult bonusJudgement() {
@@ -69,11 +69,11 @@ public class LottoManage {
     }
 
     private static List<Lotto> makeLottoBoughtNumbers(int number) {
-        lottoList = new ArrayList<>();
+        lottoBought = new ArrayList<>();
         for (int i = 0; i < number; i++) {
-            lottoList.add(createNumbers());
+            lottoBought.add(createNumbers());
         }
-        return lottoList;
+        return lottoBought;
     }
 
     private static Lotto createNumbers() {

@@ -77,6 +77,29 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("당첨 금액이 int 범위를 넘어갈 때 올바른 수익률을 반환한다.")
+    @Test
+    void overInteger() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "3개를 구매했습니다.",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 2개",
+                            "총 수익률은 133333333.3%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(7, 8, 9, 10, 11, 12)
+        );
+    }
+
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

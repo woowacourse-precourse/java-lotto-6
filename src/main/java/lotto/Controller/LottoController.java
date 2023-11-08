@@ -1,12 +1,8 @@
 package lotto.Controller;
 
-import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Domain.Lotto;
-import lotto.Domain.WinningStatistics;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import lotto.Domain.Lotto;
+
 import java.util.List;
 
 import static lotto.Domain.GenerateRandomNumber.generateLottos;

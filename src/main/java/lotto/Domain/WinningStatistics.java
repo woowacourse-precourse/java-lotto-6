@@ -72,6 +72,7 @@ public class WinningStatistics {
         }
         return countFive;
     }
+
     public int countMatchingAll() {
         int countAll = 0;
         for (Lotto lotto : lottos) {

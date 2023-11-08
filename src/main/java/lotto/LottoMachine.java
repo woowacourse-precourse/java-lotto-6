@@ -1,10 +1,15 @@
 package lotto;
-
+import java.util.*;
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class LottoMachine {
     private int count;
-
+    Lotto[] lotto;
 
     public void getMoney(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -19,4 +24,17 @@ public class LottoMachine {
 
     }
 
+    public void makeLotto(){
+        lotto = new Lotto[this.count];
+        for(int i = 0; i < this.count; i++){
+            lotto[i] = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        }
+    }
+
+    public void printLotto(){
+        System.out.println(this.count + "개를 구매했습니다.");
+        for(int i = 0 ; i < this.count; i++){
+            lotto[i].printNumber();
+        }
+    }
 }

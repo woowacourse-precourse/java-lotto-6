@@ -16,11 +16,9 @@
             List<Integer> lottoNumbersInt = new ArrayList<>();
 
             for (String numberStr : lottoNumbersStr) {
-                Validate.checkInteger(numberStr);
                 int numberInt = Integer.parseInt(numberStr);
                 lottoNumbersInt.add(numberInt);
             }
-
             return lottoNumbersInt;
         }
 

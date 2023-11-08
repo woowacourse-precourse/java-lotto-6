@@ -1,13 +1,13 @@
-package lotto.model;
+package lotto.model.winninglotto;
 
+import java.util.EnumMap;
 import java.util.Map.Entry;
-import lotto.model.winninglotto.LottoWinningResult;
+import lotto.model.LottoRanking;
 
 public class LottoProfitRateCalculator {
 
-    public static double calculateLottoProfitRate(LottoWinningResult lottoWinningResult, int purchaseAmount) {
-        int totalAmount = lottoWinningResult.getLottoResult()
-            .entrySet()
+    protected static double calculateLottoProfitRate(EnumMap<LottoRanking, Integer> lottoWinningResult, int purchaseAmount) {
+        int totalAmount = lottoWinningResult.entrySet()
             .stream()
             .mapToInt(LottoProfitRateCalculator::calculateRankingAmount)
             .sum();

@@ -13,6 +13,10 @@ public class LottoWinningResult {
         this.lottoResult = countRankings(lottoRankings);
     }
 
+    public double getLottoProfitRate(int purchaseAmount) {
+        return LottoProfitRateCalculator.calculateLottoProfitRate(lottoResult, purchaseAmount);
+    }
+
     private EnumMap<LottoRanking, Integer> countRankings(List<LottoRanking> lottoRankings) {
         return lottoRankings
             .stream()
@@ -22,9 +26,5 @@ public class LottoWinningResult {
                 , Integer::sum,
                 () -> new EnumMap<>(LottoRanking.class)
             ));
-    }
-
-    public EnumMap<LottoRanking, Integer> getLottoResult() {
-        return new EnumMap<>(lottoResult);
     }
 }

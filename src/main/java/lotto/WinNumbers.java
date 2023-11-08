@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,7 @@ public class WinNumbers extends LottoNumber{
        }
        validateSize(this.winNumbers);
        validateDuplication(this.winNumbers);
+       sort();
     }
 
     private void validateSize(List<Integer> winNumbers) {
@@ -31,5 +33,9 @@ public class WinNumbers extends LottoNumber{
         if(uniqueNumbers.size() != winNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호를 중복 없이 입력하셔야 합니다.");
         }
+    }
+
+    private void sort() {
+        Collections.sort(this.winNumbers);
     }
 }

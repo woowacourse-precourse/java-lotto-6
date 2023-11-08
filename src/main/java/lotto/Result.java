@@ -14,6 +14,13 @@ public class Result {
         }
     }
 
+    private double calculateTotalProfitRate() {
+        int totalPrize = matchCounts[0] * 5000 + matchCounts[1] * 50000 + matchCounts[2] * 1500000 +
+                matchCounts[3] * 30000000 + matchCounts[4] * 2000000000;
+        int totalPurchase = getTotalPurchaseAmount();
+        return ((double) totalPrize / totalPurchase) * 100;
+    }
+
     private int getTotalPurchaseAmount() {
         int pricePerLotto = 1000;
         int totalLottos = 0;

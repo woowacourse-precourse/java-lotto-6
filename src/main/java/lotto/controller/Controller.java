@@ -30,8 +30,11 @@ public class Controller {
         answerNumber = new Answer(answer,bonus);
     }
 
-    private void startLottoGame(){
-
+    private void startLottoGame() {
+        prize.compareAnswerAndLotto(answerNumber, lottoGame);
+        prize.calculateTotalPrizeMoney();
+        int num = lottoGame.getLottoNumber();
+        prize.calculateProfit(money);
     }
 
     private  void showGameResult(){

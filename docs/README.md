@@ -79,3 +79,15 @@ Bingo : 사용자의 당첨번호와 3~6개의 숫자가 일치하는 로또 개
 - 뽑은 로또 리스트 출력 `OutputLottos.printLottos()`
 - 당첨 통계 출력 `OutputResult.printResult()`
 - 수익률 출력 `OutputPercent.printPercent()`
+### 4. 테스트 코드 (LottoTest, InputTest)
+- LottoTest
+  - 랜덤으로 부여된 로또에 1~45 사이가 아닌 숫자가 있으면 예외가 발생한다. `checkOutOfRangeNum()`
+  - 로또번호가 오름차순으로 정렬되는지 확인한다. `checkLottoNumArray()`
+- InputTest
+  - 입력한 보너스 번호가 정수가 아닌 경우 예외가 발생한다. `checkBonusNumberValidate()`
+  - 입력한 보너스 번호가 범위를 벗어나면 예외가 발생한다. `checkBonusNumberRange()`
+  - 입력한 로또 번호가 올바른 구분자로 구분이 안되어 있으면 예외가 발생한다. `checkInputNumberValidate()`
+  - 입력한 구매 금액이 정수가 아닌 경우 예외가 발생한다. `checkInputUserMoneyValidate()`
+  - 구매 금액이 1000 단위가 아닌 경우 예외가 발생한다. `checkInputUserMoneyDigit()`
+  - 구매 금액이 양수가 아닌 경우 예외가 발생한다. `checkInputUserMoneyPositive()`
+  

@@ -7,19 +7,19 @@ public class Statistics {
 
     private Map<Prize, Integer> result;
 
-    public Statistics(LottoPlayerNumbers lottoPlayerNumbers, WinningLotto winningLotto) {
+    public Statistics(PlayerLottos playerLottos, WinningLotto winningLotto) {
         initResult();
-        generateResult(lottoPlayerNumbers, winningLotto);
+        generateResult(playerLottos, winningLotto);
     }
 
     public Map<Prize, Integer> getResult() {
         return result;
     }
 
-    private void generateResult(LottoPlayerNumbers lottoPlayerNumbers, WinningLotto winningLotto) {
+    private void generateResult(PlayerLottos playerLottos, WinningLotto winningLotto) {
         initResult();
 
-        for (LottoPlayerNumber lottoPlayerNumber : lottoPlayerNumbers.getLottoPlayerNumbers()) {
+        for (LottoPlayerNumber lottoPlayerNumber : playerLottos.getLottoPlayerNumbers()) {
             int matchCount = winningLotto.calculateMatchNumber(lottoPlayerNumber);
             boolean hasBonusNumber = winningLotto.hasBonusNumber(lottoPlayerNumber);
             Prize prize = Prize.findPrize(matchCount, hasBonusNumber);

@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoPlayer;
-import lotto.model.LottoPlayerNumbers;
+import lotto.model.PlayerLottos;
 import lotto.model.ProfitCalculator;
 import lotto.model.Statistics;
 import lotto.model.WinningLotto;
@@ -19,13 +19,13 @@ public class LottoGameController {
         int numberOfLottoTickets = lottoPlayer.getNumberOfLottoTickets();
         OutputView.outputNumberOfLottoTicks(numberOfLottoTickets);
 
-        LottoPlayerNumbers lottoPlayerNumbers = generateLottoPlayerNumbers(numberOfLottoTickets);
-        OutputView.outputLottoPlayerNumbers(lottoPlayerNumbers);
+        PlayerLottos playerLottos = generateLottoPlayerNumbers(numberOfLottoTickets);
+        OutputView.outputLottoPlayerNumbers(playerLottos);
 
         Lotto lotto = getLotto();
 
         WinningLotto winningLotto = createWinningLotto(lotto);
-        Statistics statistics = calculateStatistics(lottoPlayerNumbers, winningLotto);
+        Statistics statistics = calculateStatistics(playerLottos, winningLotto);
         OutputView.outputStatistics(statistics);
 
         ProfitCalculator profitCalculator = calculateProfit(lottoPlayer.getPurchaseMoney(), statistics);
@@ -41,8 +41,8 @@ public class LottoGameController {
         }
     }
 
-    private LottoPlayerNumbers generateLottoPlayerNumbers(int numberOfLottoTickets) {
-        return new LottoPlayerNumbers(numberOfLottoTickets);
+    private PlayerLottos generateLottoPlayerNumbers(int numberOfLottoTickets) {
+        return new PlayerLottos(numberOfLottoTickets);
     }
 
     private WinningLotto createWinningLotto(Lotto lotto) {
@@ -72,8 +72,8 @@ public class LottoGameController {
         }
     }
 
-    private Statistics calculateStatistics(LottoPlayerNumbers lottoPlayerNumbers, WinningLotto winningLotto) {
-        return new Statistics(lottoPlayerNumbers, winningLotto);
+    private Statistics calculateStatistics(PlayerLottos playerLottos, WinningLotto winningLotto) {
+        return new Statistics(playerLottos, winningLotto);
     }
 
     private ProfitCalculator calculateProfit(int purchaseMoney, Statistics statistics) {

@@ -5,7 +5,7 @@ import static lotto.model.Prize.SECOND;
 import java.text.DecimalFormat;
 import java.util.Map;
 import lotto.model.LottoPlayerNumber;
-import lotto.model.LottoPlayerNumbers;
+import lotto.model.PlayerLottos;
 import lotto.model.Prize;
 import lotto.model.ProfitCalculator;
 import lotto.model.Statistics;
@@ -31,8 +31,8 @@ public class OutputView {
         System.out.printf(OutputMessage.NUMBER_OF_LOTTO_TICKETS.message, numberOfLottoTickets);
     }
 
-    public static void outputLottoPlayerNumbers(LottoPlayerNumbers lottoPlayerNumbers) {
-        lottoPlayerNumbers.getLottoPlayerNumbers()
+    public static void outputLottoPlayerNumbers(PlayerLottos playerLottos) {
+        playerLottos.getLottoPlayerNumbers()
                 .stream()
                 .map(LottoPlayerNumber::getLottoPlayerNumber)
                 .forEach(System.out::println);

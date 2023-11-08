@@ -3,11 +3,11 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoPlayerNumbers {
+public class PlayerLottos {
 
     private final List<LottoPlayerNumber> LottoPlayerNumbers;
 
-    public LottoPlayerNumbers(int numberOfLottoTickets) {
+    public PlayerLottos(int numberOfLottoTickets) {
         this.LottoPlayerNumbers = generateLottoPlayerNumbers(numberOfLottoTickets);
     }
 

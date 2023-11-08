@@ -11,7 +11,7 @@ import lotto.dto.LottosResponse;
 public class OutputView {
 
     private static final String LOTTO_PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.\n";
-    private static final String LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.\n";
+    private static final String LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String WINNING_NUMBERS_PROMPT = "\n당첨 번호를 입력해 주세요.\n";
     private static final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.\n";
     private static final String WINNING_STATISTICS_HEADER = "\n당첨 통계\n";

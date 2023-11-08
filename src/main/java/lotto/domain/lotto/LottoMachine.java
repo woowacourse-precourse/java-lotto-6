@@ -10,8 +10,6 @@ import lotto.domain.amount.PurchaseAmount;
 
 public class LottoMachine {
 
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
     private final List<Lotto> lottos;
 
     private LottoMachine() {
@@ -30,7 +28,8 @@ public class LottoMachine {
     }
 
     private PurchaseAmount buyLotto(PurchaseAmount purchaseAmount) {
-        lottos.add(Lotto.from(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
+        lottos.add(Lotto.from(Randoms.pickUniqueNumbersInRange(LOTTO_START_INCLUSIVE,
+            LOTTO_END_INCLUSIVE,
             LOTTO_SIZE_CRITERION)));
         return purchaseAmount.subtractLottoCost();
     }

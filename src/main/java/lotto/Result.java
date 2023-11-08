@@ -15,4 +15,8 @@ public class Result {
     public void put(Ranking ranking) {
         result.put(ranking, result.get(ranking) + 1);
     }
+
+    public EnumMap<Ranking, Integer> getResult() {
+        return result;
+    }
 }

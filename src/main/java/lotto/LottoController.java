@@ -12,7 +12,8 @@ public class LottoController {
         Lottos userLottos = new Lottos(numberOfLottos);
         OutputView.printLottos(userLottos);
         WinningLotto winningLotto = getWinningLotto();
-        getResult(userLottos, winningLotto);
+        Result result = getResult(userLottos, winningLotto);
+        OutputView.printResult(result);
     }
 
     private Result getResult(Lottos userLottos, WinningLotto winningLotto) {

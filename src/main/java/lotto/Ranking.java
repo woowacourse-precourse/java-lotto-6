@@ -30,4 +30,7 @@ public enum Ranking {
                 .orElse(FAIL);
     }
 
+    public String getDescription() {
+        return description;
+    }
 }

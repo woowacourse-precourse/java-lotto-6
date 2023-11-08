@@ -2,11 +2,14 @@ package lotto.view;
 
 import static lotto.constant.OutputMessage.LOTTO_FORMAT;
 import static lotto.constant.OutputMessage.LOTTO_NUMBERS_SEPARATOR;
+import static lotto.constant.OutputMessage.LOTTO_RESULT_FORMAT;
 import static lotto.constant.OutputMessage.NUMBER_OF_LOTTO;
 
 import lotto.Lotto;
 import lotto.LottoNumber;
 import lotto.Lottos;
+import lotto.Ranking;
+import lotto.Result;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,5 +26,17 @@ public class OutputView {
                 .sorted().map(LottoNumber::toString)
                 .collect(Collectors.joining(LOTTO_NUMBERS_SEPARATOR));
         System.out.println(String.format(LOTTO_FORMAT, numbers));
+    }
+
+    public static void printResult(Result result) {
+        result.getResult().entrySet().stream()
+                .filter(entry -> entry.getKey() != Ranking.FAIL)
+                .forEach(
+                        entry -> {
+                            Ranking ranking = entry.getKey();
+                            Integer count = entry.getValue();
+                            System.out.println(String.format(LOTTO_RESULT_FORMAT, ranking.getDescription(), count));
+                        }
+                );
     }
 }

@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoGame {
@@ -105,14 +107,18 @@ public class LottoGame {
     }
 
     private static void showResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        int[] winCounts = new int[LOTTO_NUMBERS_COUNT + 1]; // 등수
+        Map<LottoRank, Integer> rankCounts = new EnumMap<>(LottoRank.class);
+
         for (Lotto lotto : lottos) {
             int matchCount = getMatchCount(lotto, winningNumbers);
             boolean bonusMatch = isBonusMatch(lotto, bonusNumber, matchCount);
-            updateWinCounts(winCounts, matchCount, bonusMatch);
+            LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
+
+            rankCounts.merge(rank, 1, Integer::sum);
         }
-        printResults(winCounts);
-        calculateEarnings(winCounts, lottos.size());
+
+        printResults(rankCounts);
+        calculateEarnings(rankCounts, lottos.size());
     }
 
     private static int getMatchCount(Lotto lotto, List<Integer> winningNumbers) {
@@ -137,26 +143,25 @@ public class LottoGame {
         }
     }
 
-    private static void printResults(int[] winCounts) {
+    private static void printResults(Map<LottoRank, Integer> rankCounts) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - " + winCounts[3] + "개");
-        System.out.println("4개 일치 (50,000원) - " + winCounts[4] + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + winCounts[5] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winCounts[2] + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + winCounts[6] + "개");
+
+        System.out.printf("3개 일치 (%,d원) - %d개\n", LottoRank.FIFTH.getWinnings(), rankCounts.getOrDefault(LottoRank.FIFTH, 0));
+        System.out.printf("4개 일치 (%,d원) - %d개\n", LottoRank.FOURTH.getWinnings(), rankCounts.getOrDefault(LottoRank.FOURTH, 0));
+        System.out.printf("5개 일치 (%,d원) - %d개\n", LottoRank.THIRD.getWinnings(), rankCounts.getOrDefault(LottoRank.THIRD, 0));
+        System.out.printf("5개 일치, 보너스 볼 일치 (%,d원) - %d개\n", LottoRank.SECOND.getWinnings(), rankCounts.getOrDefault(LottoRank.SECOND, 0));
+        System.out.printf("6개 일치 (%,d원) - %d개\n", LottoRank.FIRST.getWinnings(), rankCounts.getOrDefault(LottoRank.FIRST, 0));
     }
 
-    private static void calculateEarnings(int[] winCounts, int lottoCount) {
-        int[] winnings = new int[]{0, 0, 30000000, 5000, 50000, 1500000, 2000000000};
-        long totalWinnings = 0;
-        for (int i = 2; i <= 6; i++) {
-            totalWinnings += (long) winnings[i] * winCounts[i];
-        }
+    private static void calculateEarnings(Map<LottoRank, Integer> rankCounts, int lottoCount) {
+        long totalWinnings = rankCounts.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getWinnings() * entry.getValue())
+                .sum();
 
         long totalSpent = (long) lottoCount * LOTTO_PRICE;
         double earningsRate = (double) totalWinnings / totalSpent;
-        double earningsRatePercentage = (earningsRate * 100);
+        double earningsRatePercentage = earningsRate * 100;
 
         System.out.printf("총 수익률은 %.1f%%입니다.\n", earningsRatePercentage);
     }

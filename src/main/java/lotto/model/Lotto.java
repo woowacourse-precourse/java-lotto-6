@@ -36,4 +36,7 @@ public class Lotto {
         return distinctCount != numbers.size();
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

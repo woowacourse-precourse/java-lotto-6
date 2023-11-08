@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]숫자만을 입력해주세요";
+    private static final String ERROR_MESSAGE = "[ERROR] 숫자만을 입력해주세요";
 
     @Test
     void 기능_테스트() {

@@ -30,17 +30,17 @@ public class LottoNumber {
         }
         return false;
     }
-//    public int match(Lotto userLotto){
-//        int matchCount =0;
-//        for(int i =0; i<6; i++){
-//            for(int j = 0; j<6;j++){
-//                if(lottoNumbers.get(j).getNumber()==userLotto.getLotto().get(i)){
-//                    matchCount++;
-//                }
-//            }
-//        }
-//        return matchCount;
-//    }
+    public int match(Lotto userLotto){
+        int matchCount =0;
+        for(int i =0; i<6; i++){
+            for(int j = 0; j<6;j++){
+                if(lottoNumbers.get(j).getNumber()==userLotto.getLotto().get(i)){
+                    matchCount++;
+                }
+            }
+        }
+        return matchCount;
+    }
     private void validateBlank(List<Positive> lottoNumbers) {
         if (lottoNumbers == null || lottoNumbers.isEmpty()) {
             throw new IllegalArgumentException();

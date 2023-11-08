@@ -4,12 +4,19 @@ import validator.BonusNumberValidator;
 
 public class BonusNumber {
 
-    public BonusNumber(int num){
-        BonusNumberValidator.validRange(num);
+    private final int number;
+
+    public int getNumber() {
+        return number;
+    }
+
+    public BonusNumber(int number){
+        BonusNumberValidator.validRange(number);
+        this.number = number;
     }
 
     public BonusNumber(String inputData){
-        int number = BonusNumberValidator.validNumberic(inputData);
+        this.number = BonusNumberValidator.validNumberic(inputData);
         BonusNumberValidator.validRange(number);
     }
 }

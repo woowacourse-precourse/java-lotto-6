@@ -1,9 +1,6 @@
 package controller;
 
-import domain.BonusNumber;
-import domain.LottoMoney;
-import domain.Lottos;
-import domain.Lotto;
+import domain.*;
 import validator.LottoValidator;
 import view.Input;
 import view.Output;
@@ -14,6 +11,7 @@ public class LottoController {
     private Lottos lottos;
     private Lotto winningNumber;
     private BonusNumber bonusNumber;
+    private WinningRankController winningRankController;
 
     public LottoController() {
         input = new Input();
@@ -26,7 +24,7 @@ public class LottoController {
         lottoMoney = getLottoMeney();
 
         lottos = issueLottos(lottoMoney.getAvaliablePurcahaseCount());
-        printPublishedLottos();
+        printIssueLottos();
 
         // 당첨 번호 입력
         winningNumber = getWinningNumber();
@@ -34,6 +32,9 @@ public class LottoController {
         // 보너스 번호 입력
         bonusNumber = getBonusNumber();
 
+        // 당첨 여부 가리기
+        winningRankController = new WinningRankController(new WinningMachine(winningNumber, bonusNumber));
+        winningRankController.run(lottos.getLottos());
     }
 
     private LottoMoney getLottoMeney() {
@@ -54,7 +55,7 @@ public class LottoController {
         return new Lottos(issueCount);
     }
 
-    private void printPublishedLottos() {
+    private void printIssueLottos() {
         Output.print();
         Output.printLottoPurchaseMessage(lottos.getLottos().size());
         for (Lotto lotto : lottos.getLottos()) {
@@ -79,7 +80,7 @@ public class LottoController {
         }
     }
 
-    public BonusNumber getBonusNumber() {
+    private BonusNumber getBonusNumber() {
         BonusNumber bonusNumber;
         while (true) {
             try {

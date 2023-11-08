@@ -9,11 +9,14 @@ public class LottoGame {
     private final UserInput userInput;
     private final UserOutput userOutput;
     private final LottoMachine lottoMachine;
+    private final LottoInputParser lottoInputParser;
 
-    public LottoGame(UserInput userInput, UserOutput userOutput, LottoMachine lottoMachine) {
+    public LottoGame(UserInput userInput, UserOutput userOutput, LottoMachine lottoMachine,
+            LottoInputParser lottoInputParser) {
         this.userInput = userInput;
         this.userOutput = userOutput;
         this.lottoMachine = lottoMachine;
+        this.lottoInputParser = lottoInputParser;
     }
 
     public void play() {
@@ -21,7 +24,7 @@ public class LottoGame {
 
         List<Lotto> lottos = createLottos(lottoPurchaseAmount);
 
-
+        WinningLotto winningLotto = createWinningLotto();
     }
 
     private LottoPurchaseAmount createLottoPurchaseAmount() {
@@ -40,5 +43,19 @@ public class LottoGame {
         lottos.forEach(lotto -> userOutput.print(lotto.toString() + "\n"));
 
         return lottos;
+    }
+
+    private WinningLotto createWinningLotto() {
+        userOutput.print("\n당첨 번호를 입력해 주세요.\n");
+
+        String inputWinningNumbers = userInput.input();
+        List<Integer> winningNumbers = lottoInputParser.parseIntegerList(inputWinningNumbers);
+
+        userOutput.print("보너스 번호를 입력해 주세요.\n");
+
+        String inputBonusNumber = userInput.input();
+        int bonusNumber = lottoInputParser.parseInt(inputBonusNumber);
+
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 }

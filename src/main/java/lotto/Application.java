@@ -9,11 +9,13 @@ public class Application {
         UserInput userInput = new UserInput();
         UserOutput userOutput = new UserOutput();
         LottoMachine lottoMachine = new LottoMachine(new RandomGenerator());
+        LottoInputParser lottoInputParser = new LottoInputParser();
 
         LottoGame lottoGame = new LottoGame(
                 userInput,
                 userOutput,
-                lottoMachine
+                lottoMachine,
+                lottoInputParser
         );
 
         try {

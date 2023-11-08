@@ -6,6 +6,7 @@ import java.util.Set;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstant;
 import lotto.exception.InvalidWinningNumberException;
+import lotto.validator.LottoValidator;
 
 public record WinningNumberRequest(List<Integer> winningNumber) {
 
@@ -19,8 +20,8 @@ public record WinningNumberRequest(List<Integer> winningNumber) {
                 ErrorMessage.WINNING_NUMBER_CONTAINS_DUPLICATED_NUMBER);
         }
 
-        if (isWinningNumberOutOfRange(winningNumber)) {
-            throw new InvalidWinningNumberException(ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE);
+        for (Integer number : winningNumber) {
+            LottoValidator.validateLottoNumberInRange(number);
         }
     }
 
@@ -31,14 +32,5 @@ public record WinningNumberRequest(List<Integer> winningNumber) {
     private Boolean isWinningNumberContainsDuplicatedNumber(List<Integer> winningNumber) {
         Set<Integer> numberSet = new HashSet<>(winningNumber);
         return numberSet.size() != winningNumber.size();
-    }
-
-    private Boolean isWinningNumberOutOfRange(List<Integer> winningNumber) {
-        return winningNumber.stream().anyMatch(this::isNumberOutOfRange);
-    }
-
-    private Boolean isNumberOutOfRange(Integer number) {
-        return number < LottoConstant.LOTTO_NUMBER_MIN.getValue()
-            || number > LottoConstant.LOTTO_NUMBER_MAX.getValue();
     }
 }

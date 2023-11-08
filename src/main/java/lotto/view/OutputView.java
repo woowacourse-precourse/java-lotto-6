@@ -28,4 +28,8 @@ public class OutputView {
     public static void printWinStatistics(String result) {
         System.out.println(result);
     }
+
+    public static void printErrorMessage(String error) {
+        System.out.println(error);
+    }
 }

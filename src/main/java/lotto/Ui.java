@@ -20,8 +20,7 @@ public class Ui {
         try {
             int intInput = checkInteger(inputAmount);
             checkNegative(intInput);
-            check1000(intInput);
-            return intInput;
+            return check1000(intInput);
         } catch (IllegalArgumentException e) {
             return null;
         }
@@ -45,12 +44,13 @@ public class Ui {
         }
     }
 
-    public void check1000(int input) {
+    public Integer check1000(int input) {
 
         if (input % 1000 != 0) {
             print(ExceptionMessage.not1000Value.getMessage());
             throw new IllegalArgumentException();
         }
-    }
 
+        return input/1000;
+    }
 }

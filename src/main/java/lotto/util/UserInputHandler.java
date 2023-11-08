@@ -1,9 +1,9 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 import lotto.constants.ErrorMessages;
 
 public class UserInputHandler {
@@ -39,5 +39,21 @@ public class UserInputHandler {
     private static Integer convertToInteger(String userInput) {
         NumberValidator.verifyNumberType(userInput, ErrorMessages.LLOTTO_PURCHASE_AMOUNT_NUMERIC_ONLY);
         return Integer.parseInt(userInput);
+    }
+
+    public static List<Integer> getWinningNumbers() {
+        List<Integer> winningNumbers = new ArrayList<>();
+        do {
+            try {
+                currentTaskStart();
+                List<String> userInputs = List.of(Console.readLine().split(","));
+                winningNumbers.addAll(userInputs.stream().map(e -> convertToInteger(e)).toList());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                addTask();
+            }
+        } while (isNotEndTask());
+
+        return winningNumbers;
     }
 }

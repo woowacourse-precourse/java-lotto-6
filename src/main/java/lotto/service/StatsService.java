@@ -11,7 +11,7 @@ public class StatsService {
     private static final Integer FIVE_MATCH_AMOUNT = 1500000;
     private static final Integer FIVE_MATCH_WITH_BONUS_AMOUNT = 30000000;
     private static final Integer SIX_MATCH_AMOUNT = 2000000000;
-    private Player player;
+    private final Player player;
     private String profitRate;
 
     public StatsService(Player player) {
@@ -86,11 +86,11 @@ public class StatsService {
 
     public void printStats() {
         OutputView.printStatsMessage();
-        System.out.println("3개 일치 (5,000원): " + player.getThreeMatch() + "개");
-        System.out.println("4개 일치 (50,000원): " + player.getFourMatch() + "개");
-        System.out.println("5개 일치 (1,500,000원): " + player.getFiveMatch() + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원): " + player.getFiveMatchWithBonus() + "개");
-        System.out.println("6개 일치 (2,000,000,000원): " + player.getSixMatch() + "개");
+        System.out.println("3개 일치 (5,000원) - " + player.getThreeMatch() + "개");
+        System.out.println("4개 일치 (50,000원) - " + player.getFourMatch() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + player.getFiveMatch() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + player.getFiveMatchWithBonus() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + player.getSixMatch() + "개");
         System.out.println("총 수익률은 " + profitRate + " 입니다.");
     }
 }

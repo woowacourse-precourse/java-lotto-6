@@ -79,11 +79,20 @@ public class Game {
         return ((double)res_result/(double)this.money)*100;
     }
 
+    private void printResult(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for(int i=0;i<5;i++){
+            System.out.println("- "+this.correct[i]+"개");
+        }
+        System.out.println("총 수익률은 "+String.format("%.2f", result()) +"%입니다.");
+    }
+
     public void DoIt(){
         start();
         generate();
         userWinning();
         userBonus();
-        System.out.println(result());
+        printResult();
     }
 }

@@ -101,5 +101,5 @@
   - [x] 입력받은 당첨 번호가 6자리를 벗어나는 경우
   - [x] 입력받은 당첨 번호가 중복인 경우
   - [x] 예외처리 날 경우 입력 다시받기
-  - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리
-- [ ] 도메인 로직에 대한 단위 테스트 코드 작성
+  - [x] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리
+- [x] 도메인 로직에 대한 단위 테스트 코드 작성

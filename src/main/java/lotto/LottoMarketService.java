@@ -16,9 +16,8 @@ public class LottoMarketService {
 
     public List<Lotto> issueLottoes(int lottoCount){
         List<Lotto> lottoes = new ArrayList<>();
-        Supplier<Integer> lottoNumSupplier = new LottoNumSupplier();
         for(int i=0;i<lottoCount;i++){
-            List<Integer> lottoNums = generateNonDuplicatedNums();
+            List<Integer> lottoNums = new ArrayList<>(generateNonDuplicatedNums());
             Collections.sort(lottoNums);
             lottoes.add(new Lotto(lottoNums));
         }

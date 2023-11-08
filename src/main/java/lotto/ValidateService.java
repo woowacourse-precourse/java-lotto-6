@@ -26,7 +26,7 @@ public class ValidateService {
     }
 
     public static void validateNumberInRange(int number) {
-        if (number < MIN_NUMBER && number > MAX_NUMBER) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(
                     ErrorMessage.NON_PROPER_NUMS.getErrorMessage()
             );

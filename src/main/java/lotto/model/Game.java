@@ -76,7 +76,15 @@ public class Game {
         return false;
     }
 
-    public void checkLottoResult(int lotto, boolean bonus) {
+    public void checkLottoResult(List<Integer> lotto, List<Boolean> bonus) {
+        for (int i = 0; i < amountOfLotto; i++) {
+            int lottoPrize = lotto.get(i);
+            boolean bonusPrize = bonus.get(i);
+            calculateTotalPrice(lottoPrize, bonusPrize);
+        }
+    }
+
+    private void calculateTotalPrice(int lotto, boolean bonus) {
         for (Rank rank : Rank.values()) {
             totalPrice += rank.checkPrice(lotto, bonus);
         }

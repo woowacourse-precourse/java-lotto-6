@@ -50,12 +50,7 @@ public class LottoGameController {
     }
 
     private void compareLotto(Game game) {
-        List<Integer> comparedWinning = compareWinningLottoNumber(game);
-        List<Boolean> comparedBonus = compareBonusLottoNumber(game);
-
-        for (int i = 0; i < game.getAmountOfLotto(); i++) {
-            game.checkLottoResult(comparedWinning.get(i), comparedBonus.get(i));
-        }
+        game.checkLottoResult(compareWinningLottoNumber(game), compareBonusLottoNumber(game));
     }
 
     private List<Boolean> compareBonusLottoNumber(Game game) {

@@ -11,7 +11,7 @@ public class BuyingLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber() {
+    void validateBonusNumber() {
         if (bonusNumber < 1 || bonusNumber > 45 || winningNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }

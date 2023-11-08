@@ -85,6 +85,15 @@ public class ErrorTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("보너스 금액 입력시 숫자가 아닌 문자형이 들어왔을때")
+    public void inputBonusNumberFormatError(){
+        assertSimpleTest(() -> {
+            runException("3000","1,2,3,4,5,6" , "가");
+            assertThat(output()).contains(ExceptionMessage.NumberFormatError.getErrorMessage());
+        });
+    }
+
 
 
 

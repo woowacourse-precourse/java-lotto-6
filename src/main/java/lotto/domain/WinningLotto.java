@@ -10,16 +10,16 @@ public class WinningLotto {
 
     public WinningLotto(Lotto winningLotto, int bonus) {
         this.winningLotto = winningLotto;
-        validate(winningLotto, bonus);
+        validate(bonus);
         this.bonus = bonus;
     }
 
-    private void validate(Lotto winningLotto, int bonus) {
+    private void validate(int bonus) {
         LottoValidator.validateOutOfRange(bonus);
-        validateDuplication();
+        validateDuplication(bonus);
     }
 
-    private void validateDuplication() {
+    private void validateDuplication(int bonus) {
         boolean hasDuplication = winningLotto.hasBonusNumber(bonus);
         if (hasDuplication) {
             throw new IllegalArgumentException();

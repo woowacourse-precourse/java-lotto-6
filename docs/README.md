@@ -306,7 +306,10 @@
   *                         Second Lotto: Winning ticket,
   *                         BonusNumber: Bonus number
   */
-  public record Rank(RankMessage message, long reward, TriFunction<Lotto, Lotto, BonusNumber, Boolean> winningPredicate) {
+  public record Rank(
+              RankMessage message,
+              long reward,
+              TriFunction<Lotto, Lotto, BonusNumber, Boolean> winningPredicate) {
       public Rank {
           validatePositiveReward(reward);
       }
@@ -354,7 +357,7 @@
 - 공통 피드백에도 적혀 있었듯이 `기능 목록을 업데이트한다` 라는 부분에서 시작할 때 모든 기능을 완벽하게 정리할 수 없음을 표현하고 있었습니다.
 - 최대한 필요한 기능을 다 적었지만 해당 기능을 개발하다 보면 빠뜨리는 것이 튀어나오게 되는 것을 보고 해당 에외 상황 처리를 추가하여 더욱 완벽한 프로그램을 작성할 수 있었습니다.
 
-### 💡 UncheckedException vs CheckException
+### 💡 UncheckedException vs CheckException [참고](https://devlog-wjdrbs96.tistory.com/351)
 
 - 이번 주차에서 부터는 사용자의 입력을 받는 중 예외 상황이 생기면 `Catch` 후 에러 메세지를 출력하고 입력을 다시 받는 것이 추가되었습니다.
 - 이를 위해 함수 이름 선언 끝나고 `{` 를 열기 전에 `throws ~~Exception` 을 추가했었는데 이 함수를 호출하는 곳에 빨간줄이 안떠서 이상했었습니다.
@@ -437,6 +440,59 @@ public class ArrayTest {
   }
   ```
 
-### 💡 NumberFormat vs DecimalFormat
+### 💡 NumberFormat vs DecimalFormat [참고](https://docs.oracle.com/javase/7/docs/api/java/text/NumberFormat.html)
 
-`// TODO`
+> `NumberFormat` is the abstract base class for all number formats.<br>
+> `NumberFormat` helps you to format and parse numbers for any locale.
+
+- 참고 링크인 `Java 7 API Docs` 를 살펴보면 `NumberFormat` 은 좀 더 추상적이고 `locale` 기반으로 문자열을 숫자형식으로 파싱하거나 반대로 문자열화 시켜주는 것입니다.
+- 반면 `DecimalFormat` 은 `NumberFormat` 의 구현 클래스로써 `DateTime` 을 `toString` 하여 시간 표현을 정하듯 아래와 같이 구분자나 소수점을 쉽게 표현할 수 있습니다.
+  <table>
+    <tr>
+        <th>코드</th>
+        <th>출력</th>
+    </tr>
+    <tr>
+        <td>
+            <pre>
+  DecimalFormat formatter = new DecimalFormat("#,###");
+  formatter.format(1234500000);
+            </pre>
+        </td>
+        <td>
+            <pre>
+  1,234,500,000
+            </pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre>
+  DecimalFormat formatter = new DecimalFormat("#,###.0");
+  formatter.format(123456.789);
+  formatter.format(0);
+            </pre>
+        </td>
+        <td>
+            <pre>
+  123,456.7
+  .0
+            </pre>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <pre>
+  DecimalFormat formatter = new DecimalFormat("#,##0.0");
+  formatter.format(123456.789);
+  formatter.format(0);
+            </pre>
+        </td>
+        <td>
+            <pre>
+  123,456.7
+  0.0
+            </pre>
+        </td>
+    </tr>
+  </table>

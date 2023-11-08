@@ -9,12 +9,10 @@ public enum ErrorMessage {
     LOTTO_NUMBER_COUNT_INVALID_ERROR("[ERROR] 로또 번호가 6개가 아닌 경우가 발생하여, 로또 번호를 다시 생성합니다."),
     LOTTO_NUMBER_RANGE_INVALID_ERROR("[ERROR] 로또 번호가 1부터 45 사이의 숫자가 아닌 경우가 발생하여, 로또 번호를 다시 생성합니다."),
     LOTTO_NUMBER_DUPLICATION_ERROR("[ERROR] 로또 번호에 중복된 숫자가 포함된 경우가 발생하여, 로또 번호를 다시 생성합니다."),
-
     WINNING_NUMBER_COUNT_INVALID_ERROR("[ERROR] 당첨 번호는 6개여야 합니다."),
     WINNING_NUMBER_RANGE_INVALID_ERROR("[ERROR] 당첨 번호는 1부터 45 사이여야 합니다."),
     WINNING_NUMBER_DUPLICATION_ERROR("[ERROR] 당첨 번호는 중복될 수 없습니다."),
     WINNING_NUMBER_NOT_INTEGER_ERROR("[ERROR] 입력값은 모두 정수여야 합니다."),
-
     BONUS_NUMBER_RANGE_INVALID_ERROR("[ERROR] 보너스 숫자는 1부터 45 사이어야 합니다."),
     BONUS_NUM_AND_WINNING_NUM_DUPLICATE_ERROR("[ERROR] 보너스 번호는 당첨번호와 중복될 수 없습니다.");
 

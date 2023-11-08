@@ -48,4 +48,3 @@ public enum Rank {
         return matchBonus;
     }
 }
-

@@ -23,14 +23,6 @@ public class Lotto {
         sortNumbers();
     }
 
-    public boolean containsNumber(int number) {
-        return numbers.contains(number);
-    }
-
-    public boolean containsBonusNumber(BonusNumber bonusNumber) {
-        return numbers.contains(bonusNumber.getValue());
-    }
-
     public int matchNumbers(Lotto winningNumbers) {
         return (int) numbers.stream()
                 .filter(winningNumbers::containsNumber)
@@ -38,10 +30,14 @@ public class Lotto {
     }
 
     public void validateBonusNumber(BonusNumber bonusNumber) {
-        if(numbers.contains(bonusNumber.getValue())) {
+        if(containsBonusNumber(bonusNumber)) {
             printBonusNumberDistinctError();
             throw new IllegalArgumentException();
         }
+    }
+
+    public boolean containsBonusNumber(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getValue());
     }
 
     @Override
@@ -76,5 +72,8 @@ public class Lotto {
     private void sortNumbers() {
         Collections.sort(numbers);
     }
-    // TODO: 추가 기능 구현
+
+    private boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
 }

@@ -11,11 +11,17 @@ public class LottoApp {
     private final LottoController lottoController;
 
     public LottoApp() {
-        lottoController = new LottoController(LottoConfig.lottoPublishService());
+        lottoController = new LottoController(
+                LottoConfig.lottoPublishService(),
+                LottoConfig.winningService()
+        );
     }
 
     public void run() {
         requestPublishLotto();
+        requestWinningNumber();
+
+        Console.close();
     }
 
     private void requestPublishLotto() {
@@ -29,5 +35,12 @@ public class LottoApp {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void requestWinningNumber() {
+        InputView.printInputWinningNumber();
+        String winningNumber = Console.readLine();
+
+        lottoController.createWinningNumber(winningNumber);
     }
 }

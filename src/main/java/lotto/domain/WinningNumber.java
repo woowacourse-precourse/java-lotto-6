@@ -5,13 +5,10 @@ import lotto.Lotto;
 
 public class WinningNumber {
 
-    private final Lotto winningLotto;
-    private final int bonusNumber;
+    private Lotto winningLotto;
+    private int bonusNumber;
 
-    public WinningNumber(Lotto winningLotto, int bonusNumber) {
-        this.winningLotto = winningLotto;
-        this.bonusNumber = bonusNumber;
+    public void createWinningNumber(List<Integer> numbers) {
+        winningLotto = new Lotto(numbers);
     }
-
-
 }

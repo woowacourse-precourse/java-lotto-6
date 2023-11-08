@@ -107,7 +107,7 @@ class ViewTest extends NsTest {
     void inputNonNumericBonus() {
         assertSimpleTest(() -> {
             runException("1000", "1,2,3,4,5,6", "!");
-            assertThat(output()).contains("[ERROR] 보너스 번호는 하나의 숫자여야 합니다.");
+            assertThat(output()).contains("[ERROR] 보너스 번호는 1에서 45 사이인 하나의 숫자여야 합니다.");
         });
     }
 

@@ -19,7 +19,7 @@ public class InputView {
         return convertToInt(input);
     }
     public List<Integer> enterWinningNumber(){
-        String input = commonReadLine(InputMessage.BONUS_NUMBER);
+        String input = commonReadLine(InputMessage.WINNING_NUMBER);
 
         isCommaValidate(input);
         return convertToIntegerList(input);

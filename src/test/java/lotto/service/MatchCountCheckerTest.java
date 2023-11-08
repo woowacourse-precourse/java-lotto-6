@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.config.LottoConfig;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
@@ -32,5 +33,22 @@ class MatchCountCheckerTest {
         assertThat(matchCountChecker.compareLottoToNumber(lottoNumbers, winningNumber, bonusNumber))
                 .isEqualTo(result);
 
+    }
+
+    @DisplayName("상금 액수별 로또 개수 확인")
+    @Test
+    public void checkLottoByReward() {
+        HashMap<String, Integer> result = new HashMap<>(){{
+           put(LottoConfig.FIRST_PRIZE_REWARD, 1);
+           put(LottoConfig.SECOND_PRIZE_REWARD, 1);
+           put(LottoConfig.THIRD_PRIZE_REWARD, 0);
+           put(LottoConfig.FOURTH_PRIZE_REWARD, 0);
+           put(LottoConfig.FIFTH_PRIZE_REWARD, 0);
+        }};
+
+        HashMap<Integer, List<Integer>> matchNumberByLotto =
+                matchCountChecker.compareLottoToNumber(lottoNumbers, winningNumber, bonusNumber);
+
+        assertThat(matchCountChecker.countLottoByPrize(matchNumberByLotto)).isEqualTo(result);
     }
 }

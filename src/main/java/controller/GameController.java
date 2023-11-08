@@ -28,7 +28,7 @@ public class GameController {
         saveRandomLottoNumbers(lottoMoney);
         saveLuckeyNumbers();
         saveBonusLottoNumber();
-        lottoController = new LottoController(lottoMoney, luckeyLotto);
+        lottoController = new LottoController(lotto, lottoMoney, luckeyLotto);
         lottoController.playGame(lottoNumbers);
     }
 

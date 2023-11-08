@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import lotto.Lotto;
 import lotto.LottoMoney;
 import lotto.LuckeyLotto;
 import view.OutputView;
@@ -16,12 +17,14 @@ public class LottoController {
 
     LuckeyLotto luckeyLotto;
     LottoMoney lottoMoney;
+    Lotto lotto;
 
     OutputView outputView = new OutputView();
     int lottoWinnerCount;
     int[] lottoWinners = new int[REWARD_SIZE];
 
-    public LottoController(LottoMoney lottoMoney, LuckeyLotto luckeyLotto) {
+    public LottoController(Lotto lotto, LottoMoney lottoMoney, LuckeyLotto luckeyLotto) {
+        this.lotto = lotto;
         this.lottoMoney = lottoMoney;
         this.luckeyLotto = luckeyLotto;
     }

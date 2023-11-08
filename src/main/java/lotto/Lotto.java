@@ -1,5 +1,6 @@
 package lotto;
 
+import util.ErroerMessage;
 import util.InputView;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         duplicationCheck(numbers);
+        rangeCheck(numbers);
         this.numbers = numbers;
     }
 
@@ -26,7 +28,13 @@ public class Lotto {
     }
     private void duplicationCheck(List<Integer> numbers) {
         Set<Integer> checkNumbers = new HashSet<>(numbers);
-        if (numbers.size() != checkNumbers.size()) throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+        if (numbers.size() != checkNumbers.size()) throw new IllegalArgumentException(ErroerMessage.DUPLICATION_ERROR);
+    }
+
+    private void rangeCheck(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if ((number > 46) || (number < 1)) throw new IllegalArgumentException(ErroerMessage.RANGE_ERROR);
+        }
     }
     // TODO: 추가 기능 구현
     public static Lotto createLotto() {
@@ -43,5 +51,9 @@ public class Lotto {
             inputLotto.add(Integer.parseInt(i));
         }
         return new Lotto(inputLotto);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

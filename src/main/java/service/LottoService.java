@@ -28,6 +28,7 @@ public class LottoService {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         List<Integer> subList = new ArrayList<>();
         subList.addAll(numbers);
+        Collections.sort(subList);
         lottos.addLotto(new Lotto(numbers));
     }
 

@@ -30,7 +30,7 @@ class LottoTest {
         Assertions.assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE.getMessage()
-                        .formatted(LottoConstants.LOTTO_NUMBERS_SIZE));
+                        .formatted(LottoConstants.LOTTO_NUMBERS_SIZE.getValue()));
     }
 
     @DisplayName("로또 번호 중에서 1보다 작은 번호가 존재하면 예외가 발생한다.")
@@ -40,7 +40,11 @@ class LottoTest {
         Assertions.assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_LOTTO_NUMBERS_RANGE.getMessage()
-                        .formatted(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER));
+                        .formatted(
+                                LottoConstants.MIN_LOTTO_NUMBER.getValue(),
+                                LottoConstants.MAX_LOTTO_NUMBER.getValue()
+                        )
+                );
     }
 
     @DisplayName("로또 번호 중에서 45보다 큰 번호가 존재하면 예외가 발생한다.")
@@ -50,7 +54,11 @@ class LottoTest {
         Assertions.assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 66)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_LOTTO_NUMBERS_RANGE.getMessage()
-                        .formatted(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER));
+                        .formatted(
+                                LottoConstants.MIN_LOTTO_NUMBER.getValue(),
+                                LottoConstants.MAX_LOTTO_NUMBER.getValue()
+                        )
+                );
     }
 
     @DisplayName("로또 번호가 특정 숫자를 포함할 경우 true를 반환한다.")

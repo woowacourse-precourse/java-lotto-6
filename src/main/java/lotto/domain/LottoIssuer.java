@@ -17,14 +17,17 @@ public class LottoIssuer {
     }
 
     private int getLottoCount(PurchaseAmount purchaseAmount) {
-        return purchaseAmount.amount() / LottoConstants.LOTTO_PRICE;
+        return purchaseAmount.amount() / LottoConstants.LOTTO_PRICE.getValue();
     }
 
     private Lotto getLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
-                LottoConstants.MIN_LOTTO_NUMBER,
-                LottoConstants.MAX_LOTTO_NUMBER,
-                LottoConstants.LOTTO_NUMBERS_SIZE).stream().sorted().toList();
+                LottoConstants.MIN_LOTTO_NUMBER.getValue(),
+                LottoConstants.MAX_LOTTO_NUMBER.getValue(),
+                LottoConstants.LOTTO_NUMBERS_SIZE.getValue())
+                .stream()
+                .sorted()
+                .toList();
         return new Lotto(randomNumbers);
     }
 }

@@ -12,7 +12,11 @@ public record BonusNumber(int number) {
     private void validate(int number) {
         if (isInvalidRange(number)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_BONUS_NUMBER_RANGE.getMessage()
-                    .formatted(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER));
+                    .formatted(
+                            LottoConstants.MIN_LOTTO_NUMBER.getValue(),
+                            LottoConstants.MAX_LOTTO_NUMBER.getValue()
+                    )
+            );
         }
     }
 
@@ -21,10 +25,10 @@ public record BonusNumber(int number) {
     }
 
     private boolean isLessThanMinimumLottoNumber(int number) {
-        return number < LottoConstants.MIN_LOTTO_NUMBER;
+        return number < LottoConstants.MIN_LOTTO_NUMBER.getValue();
     }
 
     private boolean isGreaterThanMaximumLottoNumber(int number) {
-        return number > LottoConstants.MAX_LOTTO_NUMBER;
+        return number > LottoConstants.MAX_LOTTO_NUMBER.getValue();
     }
 }

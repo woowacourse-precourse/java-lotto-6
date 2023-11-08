@@ -20,19 +20,23 @@ public class Lotto {
     private void validateSize(List<Integer> numbers) {
         if (isInvalidSize(numbers)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE.getMessage()
-                    .formatted(LottoConstants.LOTTO_NUMBERS_SIZE));
+                    .formatted(LottoConstants.LOTTO_NUMBERS_SIZE.getValue()));
         }
     }
 
     private boolean isInvalidSize(List<Integer> numbers) {
-        return numbers.size() != LottoConstants.LOTTO_NUMBERS_SIZE;
+        return numbers.size() != LottoConstants.LOTTO_NUMBERS_SIZE.getValue();
     }
 
     private void validateRange(List<Integer> numbers) {
         long numbersSizeWithValidRange = getNumbersSizeWithValidRange(numbers);
         if (numbers.size() != numbersSizeWithValidRange) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBERS_RANGE.getMessage()
-                    .formatted(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER));
+                    .formatted(
+                            LottoConstants.MIN_LOTTO_NUMBER.getValue(),
+                            LottoConstants.MAX_LOTTO_NUMBER.getValue()
+                    )
+            );
         }
     }
 
@@ -43,7 +47,15 @@ public class Lotto {
     }
 
     private boolean isValidRange(int number) {
-        return LottoConstants.MIN_LOTTO_NUMBER <= number && number <= LottoConstants.MAX_LOTTO_NUMBER;
+        return isGreaterThanMinimum(number) && isLessThanMaximum(number);
+    }
+
+    private boolean isLessThanMaximum(int number) {
+        return number <= LottoConstants.MAX_LOTTO_NUMBER.getValue();
+    }
+
+    private boolean isGreaterThanMinimum(int number) {
+        return LottoConstants.MIN_LOTTO_NUMBER.getValue() <= number;
     }
 
     private void validateDuplicatedNumber(List<Integer> numbers) {

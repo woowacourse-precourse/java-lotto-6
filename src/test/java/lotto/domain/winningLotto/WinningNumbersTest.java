@@ -46,7 +46,7 @@ class WinningNumbersTest {
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getMessage()
-                        .formatted(LottoConstants.LOTTO_NUMBERS_SIZE));
+                        .formatted(LottoConstants.LOTTO_NUMBERS_SIZE.getValue()));
     }
 
     @DisplayName("당첨 번호의 개수가 6개보다 적으면 예외가 발생한다.")
@@ -56,7 +56,7 @@ class WinningNumbersTest {
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_WINNING_NUMBERS_SIZE.getMessage()
-                        .formatted(LottoConstants.LOTTO_NUMBERS_SIZE));
+                        .formatted(LottoConstants.LOTTO_NUMBERS_SIZE.getValue()));
     }
 
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -75,7 +75,11 @@ class WinningNumbersTest {
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 0)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage()
-                        .formatted(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER));
+                        .formatted(
+                                LottoConstants.MIN_LOTTO_NUMBER.getValue(),
+                                LottoConstants.MAX_LOTTO_NUMBER.getValue()
+                        )
+                );
     }
 
     @DisplayName("당첨 번호 중에서 45보다 큰 번호가 존재하면 예외가 발생한다.")
@@ -85,6 +89,10 @@ class WinningNumbersTest {
         Assertions.assertThatThrownBy(() -> new WinningNumbers(List.of(1, 2, 3, 4, 5, 66)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_WINNING_NUMBERS_RANGE.getMessage()
-                        .formatted(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER));
+                        .formatted(
+                                LottoConstants.MIN_LOTTO_NUMBER.getValue(),
+                                LottoConstants.MAX_LOTTO_NUMBER.getValue()
+                        )
+                );
     }
 }

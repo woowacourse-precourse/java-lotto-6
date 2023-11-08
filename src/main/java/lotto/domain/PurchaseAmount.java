@@ -35,6 +35,6 @@ public record PurchaseAmount(int amount) {
     }
 
     private boolean isNotDividedByLottoPrice(int amount) {
-        return amount % LottoConstants.LOTTO_PRICE != 0;
+        return amount % LottoConstants.LOTTO_PRICE.getValue() != 0;
     }
 }

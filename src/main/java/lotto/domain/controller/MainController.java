@@ -40,7 +40,7 @@ public class MainController {
             Validator.validatePrice(inputPrice);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputPrice = readInputPrice();
+            return readPriceAndValidatePriceAndGetPrice();
         }
         return Converter.convertToNumber(inputPrice);
     }
@@ -63,7 +63,7 @@ public class MainController {
             Validator.validateNumbers(inputNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputNumbers = readInputNumbers();
+            return readNumbersAndValidateNumbersAndGetLotto();
         }
         List<Integer> numbers = Converter.covertToNumbers(inputNumbers);
         return new Lotto(numbers);
@@ -75,7 +75,7 @@ public class MainController {
             Validator.validateBonusNumber(inputBonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            inputBonusNumber = readInputBonusNumber();
+            return readBonusNumberAndValidateBonusNumberAndGetBonus();
         }
         Integer bonusNumber = Converter.convertToNumber(inputBonusNumber);
         return new Bonus(bonusNumber);

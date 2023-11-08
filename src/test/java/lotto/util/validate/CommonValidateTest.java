@@ -13,4 +13,11 @@ class CommonValidateTest {
         assertThatThrownBy(() -> CommonValidate.checkIsNumber("abc"))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력한 값에 빈칸이 있는 경우")
+    @Test
+    void 일반_검증_빈칸_확인(){
+        assertThatThrownBy(() -> CommonValidate.checkBlank("1, 2, 3, 4, 5, 6"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }

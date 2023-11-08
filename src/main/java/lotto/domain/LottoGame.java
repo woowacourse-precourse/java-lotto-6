@@ -5,23 +5,25 @@ import lotto.message.Result;
 import lotto.ui.InputHandler;
 import lotto.ui.OutputHandler;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoGame {
+
+    private final static int LOTTO_START_NUMBER_INCLUSIVE = 1;
+    private final static int LOTTO_END_NUMBER_INCLUSIVE = 45;
+    private final static int LOTTO_TOTAL_NUMBERS = 6;
 
     private final OutputHandler outputHandler = new OutputHandler();
     private final InputHandler inputHandler = new InputHandler(this.outputHandler);
     private final LottoService lottoService = new LottoService();
 
     public void run () {
+        // 유저로 부터 구입 금액을 입력 받는다
         int purchaseAmount = getPurchaseAmount();
         List<Lotto> lottoBundle = buyLottoBundle(purchaseAmount);
         printPurchaseHistory(lottoBundle);
-
         WinningNumbers winnerNumbers = getWinningNumbers();
+        Map<LottoRank, Integer> winningResults = lottoService.getWinningResults(lottoBundle, winnerNumbers);
 
         lottoService.compareAll(lottoBundle, winnerNumbers.getNumbers(), winnerNumbers.getBonusNumber());
         long profit = lottoService.getProfit();
@@ -81,7 +83,7 @@ public class LottoGame {
     }
 
     private List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER_INCLUSIVE, LOTTO_END_NUMBER_INCLUSIVE, LOTTO_TOTAL_NUMBERS);
     }
 
     private int getPurchaseAmount() {

@@ -1,4 +1,4 @@
-package view;
+package lotto.view;
 
 import static lotto.constant.message.Output.*;
 import static lotto.constant.message.Input.*;
@@ -7,7 +7,6 @@ import static lotto.constant.message.Input.*;
 import java.util.List;
 import lotto.Lotto;
 import lotto.Purchase;
-import lotto.constant.message.Output;
 
 public class OutputView {
     public void printPurchase() {

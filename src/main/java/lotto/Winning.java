@@ -6,7 +6,7 @@ import static lotto.constant.Number.*;
 import java.util.List;
 
 public class Winning extends Lotto {
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public Winning(List<Integer> numbers, int bonusNumber) {
         super(numbers);
@@ -22,10 +22,6 @@ public class Winning extends Lotto {
         if (bonusNumber < MIN.getRange() || bonusNumber > MAX.getRange()) {
             throw new IllegalArgumentException(BONUS_RANGE.getMessage());
         }
-    }
-
-    public List<Integer> getWinningNumber() {
-        return getNumbers();
     }
 
     public int getBonusNumber() {

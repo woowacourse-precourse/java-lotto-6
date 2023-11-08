@@ -12,50 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lotto.constant.Number;
-import view.InputView;
-import view.OutputView;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Play {
     private final InputView input = new InputView();
     private final OutputView outputView = new OutputView();
-    /*public void run () {
-        outputView.printPurchase();
-        String purchaseInput = getValidPurchase();
-        Purchase purchase = new Purchase(purchaseInput);
-        outputView.printPurchaseAmount(purchase.getPurchaseAmount());
-        outputView.printPurchaseLotto(purchase);
 
-        outputView.printEnterWinning();
-        List<Integer> numbers = getValidNumbers();
-
-        outputView.printEnterBonus();
-        int bonusNumber = getValidBonusNumber();
-
-        Winning winning = new Winning(numbers, bonusNumber);
-
-        Compare compare = new Compare(winning, purchase);
-        compare.calculateStatistics();
-        compare.printResult();
-
-        int purchasePrice = Integer.parseInt(purchaseInput);
-        String profit = compare.computeEarningRate(purchasePrice);
-
-        outputView.printProfit(Double.parseDouble(profit));
-    }
-
-    private List<Integer> getValidNumbers() {
-        while (true) {
-            try {
-                String userInput = input.getInput();
-                validateBlank(userInput);
-                List<Integer> numbers = parseNumbers(userInput);
-                validateNumbers(numbers);
-                return numbers;
-            } catch (IllegalArgumentException e) {
-                System.out.println((e.getMessage()));
-            }
-        }
-    }*/
     public void run() {
         String purchaseInput = getPurchaseInput();
         Purchase purchase = makePurchase(purchaseInput);

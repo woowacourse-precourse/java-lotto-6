@@ -2,10 +2,9 @@ package lotto;
 
 import java.util.List;
 import lotto.constant.Rank;
-import view.OutputView;
+import lotto.view.OutputView;
 
 public class Compare {
-
     private final Winning winning;
     private final Purchase purchase;
     private final Same same = new Same();
@@ -47,7 +46,6 @@ public class Compare {
          OutputView outputView = new OutputView();
          outputView.printResult(same.getSixSame(), same.getFiveSame(), same.getFiveSameWithBonus(), same.getFourSame(), same.getThreeSame());
     }
-
 
     private int calculateSameCount(Lotto myLotto) {
         List<Integer> winningNumbers = winning.getNumbers();

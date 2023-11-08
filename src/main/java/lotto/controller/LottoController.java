@@ -5,7 +5,6 @@ import java.util.Map;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.WinnerLotto;
-import lotto.repository.LottoRepository;
 import lotto.service.LottoBuyService;
 import lotto.service.LottoStatsService;
 import lotto.service.LottoWinnerService;
@@ -19,7 +18,6 @@ public class LottoController {
     private final LottoBuyService lottoBuyService = new LottoBuyService();
     private final LottoWinnerService lottoWinnerService = new LottoWinnerService();
     private final LottoStatsService lottoStatsService = new LottoStatsService();
-    private final LottoRepository lottoRepository = LottoRepository.getInstance();
     private WinnerLotto winnerLotto;
 
     public void buyLotto() {

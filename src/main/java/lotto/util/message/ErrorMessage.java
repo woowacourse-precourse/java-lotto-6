@@ -9,7 +9,6 @@ public enum ErrorMessage {
     REQUEST_INT_LIST("1부터 45사이의 숫자 6개를 쉼표(,)를 이용하여 구분해 입력해주세요"),
     PREFIX("[ERROR]");
 
-
     private final String message;
 
     ErrorMessage(String message) {

@@ -1,6 +1,5 @@
 package lotto.validation;
 
-import java.util.List;
 import lotto.util.message.ErrorMessage;
 
 public class InputValidator {
@@ -98,12 +97,6 @@ public class InputValidator {
     private void checkSplit(String userInput) {
         if (!userInput.contains(DELIMITER)) {
             throw new IllegalArgumentException(ErrorMessage.REQUEST_DELIMITER.getErrorMessage());
-        }
-    }
-
-    private void checkListNumberRange(List<Integer> winnerLotto) {
-        for (Integer lotto : winnerLotto) {
-            checkNumberRange(lotto);
         }
     }
 }

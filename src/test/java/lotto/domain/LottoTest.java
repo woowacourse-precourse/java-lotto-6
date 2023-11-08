@@ -36,6 +36,6 @@ class LottoTest {
     void createLottoByInvalidNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+                .hasMessage("[ERROR] 로또 번호는 쉼표로 구분되는 1에서 45 사이의 숫자여야 합니다.");
     }
 }

@@ -38,7 +38,7 @@ class WinningLottoTest {
     void createLottoByInvalidNumber() {
         assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1에서 45 사이의 숫자여야 합니다.");
+                .hasMessage("[ERROR] 로또 번호는 쉼표로 구분되는 1에서 45 사이의 숫자여야 합니다.");
     }
 
     @DisplayName("보너스 번호가 당첨 로또 번호와 중복된 숫자라면 예외가 발생한다.")

@@ -77,4 +77,34 @@ class LottoTest {
         assertThat(String.format("%.1f",lottoService.getProfitRate())).isEqualTo("1000166.7");
 
     }
+
+    @Nested
+    class OutputViewTest {
+        private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        private final PrintStream originalOut = System.out;
+
+        @BeforeEach
+        public void setUpStreams() {
+            System.setOut(new PrintStream(outContent));
+        }
+
+        @AfterEach
+        public void restoreStreams() {
+            System.setOut(originalOut);
+        }
+
+        @DisplayName("생성된 로또 개수를 정상적으로 출력한다.")
+        @Test
+        void outputLottoCountTest() {
+            LottoService lottoService = new LottoService(new LottoRepository());
+            LottoDto lottoDto = new LottoDto();
+
+            lottoDto.setLottoPurchaseAmount("14000");
+            lottoService.createLottos(lottoDto);
+
+            OutputView.outputLottoCount(lottoService.getLottos().getAllLotto());
+            String output = outContent.toString();
+            assertThat(output).contains("14개를 구매했습니다.");
+        }
+    }
 }

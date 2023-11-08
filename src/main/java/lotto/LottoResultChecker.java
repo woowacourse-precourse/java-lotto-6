@@ -10,7 +10,7 @@ public class LottoResultChecker {
         this.winningLotto = winningLotto;
     }
 
-    public static List<Result> of(WinningLotto winningLotto, List<Lotto> lottos) {
+    public static List<Result> getResultsOf(WinningLotto winningLotto, List<Lotto> lottos) {
         LottoResultChecker lottoResultChecker = new LottoResultChecker(winningLotto);
 
         return lottoResultChecker.getResults(lottos);

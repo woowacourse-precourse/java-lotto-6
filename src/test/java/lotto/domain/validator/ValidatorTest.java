@@ -86,7 +86,7 @@ class ValidatorTest {
 
     @DisplayName("쉼표 전후에 아무런 값이 없으면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,,,3,4,5,6", ",,1,2,3,4,5,6", "1,2,3,4,5,6,"})
+    @ValueSource(strings = {"1,2,,,3,4,5,6", ",,1,2,3,4,5,6", "1,2,3,4,5,6,", "1, , 2, 3, 4, 5, 6"})
     void hasCommasWithoutSurroundingValues(String valuesSeparatedByCommas) {
         assertThatThrownBy(() -> Validator.hasCommasWithoutSurroundingValues(valuesSeparatedByCommas))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -95,7 +95,7 @@ class ValidatorTest {
 
     @DisplayName("올바른 값이 들어왔을 때 예외가 발생하지 않는다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,6"})
+    @ValueSource(strings = {"1,2,3,4,5,6", "1, 2, 3, 4, 5, 6", "1, 2, 3 , 4, 5, 6"})
     void hasCommasWithoutSurroundingValues2(String valuesSeparatedByCommas) {
         assertThatCode(() -> Validator.hasCommasWithoutSurroundingValues(valuesSeparatedByCommas))
                 .doesNotThrowAnyException();

@@ -55,7 +55,7 @@ public class DrawLotto {
         profitPercentage = Math.round(profitPercentage * 1000) / 10.0;
     }
 
-    public void printResult(){
+    public void printStatistics(){
         System.out.println("\n당첨 통계\n---");
 
         for(int i = 0; i < 3; i++){

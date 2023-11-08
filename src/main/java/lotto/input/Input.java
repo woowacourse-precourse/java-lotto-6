@@ -1,17 +1,13 @@
 package lotto.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.consts.Consts;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
 public class Input {
-
-    public static final int LOTTO_NUM_COUNT = 6;
-    public static final int MIN_RANGE = 1;
-    public static final int MAX_RANGE = 45;
-    public static final int UNIT = 1000;
 
     public static List<Integer> inputWinNums() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -43,7 +39,7 @@ public class Input {
     }
 
     private static void validateNumCounts(List<Integer> nums) {
-        if (nums.size() != LOTTO_NUM_COUNT) {
+        if (nums.size() != Consts.LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호 개수는 6개여야 합니다.");
         }
     }
@@ -51,14 +47,14 @@ public class Input {
     private static void validateNumRange(List<Integer> nums) {
         nums.stream()
                 .forEach(winNum -> {
-                    if (winNum < MIN_RANGE || winNum > MAX_RANGE) {
+                    if (winNum < Consts.MIN_RANGE || winNum > Consts.MAX_RANGE) {
                         throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                     }
                 });
     }
 
     private static void validateDuplication(List<Integer> nums) {
-        if (new HashSet<>(nums).size() != LOTTO_NUM_COUNT) {
+        if (new HashSet<>(nums).size() != Consts.LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되면 안됩니다.");
         }
     }
@@ -66,7 +62,7 @@ public class Input {
     public static int validateBonusNumInput(String bonusNumInput, List<Integer> winNums) {
         try {
             Integer bonusNum = Integer.valueOf(bonusNumInput);
-            if (bonusNum < MIN_RANGE || bonusNum > MAX_RANGE) {
+            if (bonusNum < Consts.MIN_RANGE || bonusNum > Consts.MAX_RANGE) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
             if (winNums.contains(bonusNum)) {
@@ -81,7 +77,7 @@ public class Input {
     public static int validatePriceInput(String priceInput) {
         try {
             Integer price = Integer.valueOf(priceInput);
-            if (price % UNIT != 0) {
+            if (price % Consts.UNIT != 0) {
                 throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
             }
             return price;

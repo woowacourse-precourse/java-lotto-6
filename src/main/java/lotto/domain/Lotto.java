@@ -1,13 +1,12 @@
 package lotto.domain;
 
+import lotto.consts.Consts;
 import lotto.enums.Rank;
 
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-
-    public static final int LOTTO_NUM_COUNT = 6;
 
     private final List<Integer> numbers;
 
@@ -18,13 +17,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUM_COUNT) {
+        if (numbers.size() != Consts.LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
-        if (new HashSet<>(numbers).size() != LOTTO_NUM_COUNT) {
+        if (new HashSet<>(numbers).size() != Consts.LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
         }
     }

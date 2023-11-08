@@ -14,9 +14,13 @@ public class Global {
         this.issuedLottos = new ArrayList<>();
     }
 
+    public void setIssuedLottos(List<Lotto> issuedLottos) {
+        this.issuedLottos = issuedLottos;
+    }
+
     public void issueLottos(int lottoPurchaseMoney) {
         int lottoCount = PUBLISH.getLottoCount(lottoPurchaseMoney);
-        issuedLottos = PUBLISH.getIssuedLottos(lottoCount);
+        setIssuedLottos(PUBLISH.getIssuedLottos(lottoCount));
         PUBLISH.printIssuedLottoCountAndNumbers(issuedLottos);
     }
 

@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,18 +28,17 @@ public class Lotto {
     }
 
     public Rank compareWithWinningNumbers(List<Integer> winningLotto) {
-        List<Integer> winningNumbers = new ArrayList<>(winningLotto);
-        int winningBonusNumber = winningNumbers.get(6);
-        winningNumbers.remove(6);
+        int winningBonusNumber = winningLotto.get(6);
 
-        int correctCount = getCorrectCount(winningNumbers);
+        int correctCount = getCorrectCount(winningLotto);
         int bonusCount = getBonusCount(winningBonusNumber);
         return getRankFromCount(correctCount, bonusCount);
     }
 
     private int getCorrectCount(List<Integer> winningNumbers) {
         int count = 0;
-        for (int winningNumber : winningNumbers) {
+        for (int i = 0; i < winningNumbers.size()-1; i++) {
+            int winningNumber = winningNumbers.get(i);
             if (numbers.contains(winningNumber)) {
                 count++;
             }

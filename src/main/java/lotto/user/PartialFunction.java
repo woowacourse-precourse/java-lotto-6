@@ -21,7 +21,9 @@ public class PartialFunction {
 
     public List<Integer> getWinningNumbers(String winningLotto) {
         try {
-            List<Integer> winnerNumbers = convertStringToIntegerList(winningLotto);
+            List<Integer> winnerNumbers = new ArrayList<>(
+                    convertStringToIntegerList(winningLotto)
+            );
             validateNumbers(winnerNumbers);
             return winnerNumbers;
         } catch (NumberFormatException e) {

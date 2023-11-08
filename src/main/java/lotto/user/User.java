@@ -2,6 +2,7 @@ package lotto.user;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -19,7 +20,9 @@ public class User {
     }
 
     public List<Integer> getWinningNumbersAndBonus() {
-        List<Integer> winningNumbers = inputAndGetWinningNumbers();
+        List<Integer> winningNumbers = new ArrayList<>(
+                inputAndGetWinningNumbers()
+        );
         int bonusNumber = inputAndGetBonusNumber(winningNumbers);
         winningNumbers.add(bonusNumber);
         return winningNumbers;

@@ -15,7 +15,9 @@ public class Publish {
     public List<Lotto> getIssuedLottos(int lottoCount) {
         List<Lotto> issuedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = getRandomNumber();
+            List<Integer> lottoNumbers = new ArrayList<>(
+                    getRandomNumber()
+            );
             Collections.sort(lottoNumbers);
             Lotto lotto = new Lotto(lottoNumbers);
             issuedLottos.add(lotto);

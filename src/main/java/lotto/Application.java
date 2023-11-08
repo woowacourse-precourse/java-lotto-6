@@ -3,6 +3,7 @@ package lotto;
 import lotto.global.Global;
 import lotto.user.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -16,7 +17,9 @@ public class Application {
 
         int lottoPurchaseMoney = user.purchaseLotto();
         global.issueLottos(lottoPurchaseMoney);
-        List<Integer> winningNumbersAndBonus = user.getWinningNumbersAndBonus();
+        List<Integer> winningNumbersAndBonus = new ArrayList<>(
+                user.getWinningNumbersAndBonus()
+        );
         global.getLottoRanking(winningNumbersAndBonus);
         global.getRateOfReturn(lottoPurchaseMoney);
     }

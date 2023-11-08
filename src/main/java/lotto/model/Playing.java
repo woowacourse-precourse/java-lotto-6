@@ -20,8 +20,9 @@ public class Playing {
 
     private static List<Integer> getLottoNumbers(){
         List<Integer> lottos = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lottos);
-        return lottos;
+        List<Integer> sortedLottos = new ArrayList<>(lottos);
+        Collections.sort(sortedLottos);
+        return sortedLottos;
     }
 
     public static void compareLottosAndWinningNumbers(List<Integer> winningNumbers, Integer bonus){
@@ -68,11 +69,15 @@ public class Playing {
         for (int i = 0; i < 5; i++) {
             totalAmount += (amount.get(i) * winningStatistics.get(i));
         }
-        double res = (totalAmount / inputAmount) * 100;
+        double res = 0;
+        if (inputAmount != 0) {
+            res = (totalAmount / inputAmount) * 100;
+        }
         String rateOfReturn = String.format("%.1f", res);
 
         return rateOfReturn;
     }
+
 
 
 

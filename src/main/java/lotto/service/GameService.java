@@ -18,7 +18,8 @@ public class GameService {
 
     public static void startGame() {
         OutputView.printPurchaseAmountMessage();
-        lottoCnt = InputValidator.checkPurchaseAmountInput();
+        inputAmount = InputValidator.checkPurchaseAmountInput();
+        lottoCnt = inputAmount / 1000;
         System.out.println();
         OutputView.printLottoCntMessage(lottoCnt);
     }

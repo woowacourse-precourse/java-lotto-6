@@ -14,19 +14,14 @@ public class InputValidator {
 
     public static int checkPurchaseAmountInput(){
 
-        int lottoCnt = 0;
         while(true){
             try{
                 String input = Console.readLine();
                 checkNullOrEmpty(input);
-
                 Integer purchaseAmount = convertInputToNumber(input);
                 checkIsPositiveNumber(purchaseAmount);
                 checkIsDivided(purchaseAmount);
-
-                lottoCnt = purchaseAmount / 1000;
-
-                return lottoCnt;
+                return purchaseAmount;
             } catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }

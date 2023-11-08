@@ -11,7 +11,7 @@ public class InputView {
 
     private static final String NUMBER_DELIMITER = ",";
 
-    public int readPurchaseAmount() throws NumberFormatException {
+    public int readPurchaseAmount() {
         String input = readLine().trim();
         validateEmptyValue(input);
         return Integer.parseInt(input);

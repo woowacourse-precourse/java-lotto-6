@@ -11,6 +11,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
+
         //1. 사용자로부터 로또 구입 금액을 입력받고, 로또 구입 금액에 해당하는 만큼 로또를 발행한다.(로또 1장의 가격은 1,000원)
         System.out.println("구입금액을 입력해 주세요.");
         long userInputAmount = getUserInputAmount();
@@ -31,7 +32,47 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getBonusNumber();
 
+        //3. 사용자가 구매한 로또 번호와 당첨 번호를 비교한다.
+        checkWinning(lottos, winningLotto, bonusNumber);
 
+
+
+    }
+
+    public static void checkWinning(List<Lotto> lottos, Lotto winningLotto, int bonusNumber){
+
+        for(Lotto lotto : lottos){
+            int rank = getLottoRank(lotto, winningLotto, bonusNumber);
+
+        }
+    }
+
+    public static int getLottoRank(Lotto lotto, Lotto winningLotto, int bonusNumber){
+        boolean bonusNumberCorrect = false;
+        int correctCount = getCorrectCount(lotto, winningLotto);
+
+        if(lotto.getNumbers().contains(bonusNumber)){
+            bonusNumberCorrect = true;
+        }
+
+        if(correctCount == 6) return 1;
+        else if(correctCount == 5 && bonusNumberCorrect) return 2;
+        else if(correctCount == 5) return 3;
+        else if(correctCount == 4) return 4;
+        else if(correctCount == 3) return 5;
+
+        return 0;
+    }
+
+    public static int getCorrectCount(Lotto lotto, Lotto winningLotto){
+        int correctCount = 0;
+        for(int winningNumber : winningLotto.getNumbers()){
+            if(lotto.getNumbers().contains(winningNumber)){
+                correctCount++;
+            }
+        }
+
+        return correctCount;
     }
 
     public static int getBonusNumber(){

@@ -19,7 +19,6 @@ public enum Rankings {
     private final int prizeMoney;
     private final String message;
 
-
     Rankings(int matchCount, boolean hasBonusNumber, int prizeMoney, String message) {
         this.matchCount = matchCount;
         this.hasBonusNumber = hasBonusNumber;
@@ -28,13 +27,14 @@ public enum Rankings {
     }
 
     public static Rankings setRankings(int matchCount, boolean hasBonusNumber) {
-        Predicate<Rankings> equalCount = rankings -> rankings.matchCount == matchCount;
-        Predicate<Rankings> equalBonusStatus = rankings -> rankings.hasBonusNumber == hasBonusNumber;
-
         return Arrays.stream(Rankings.values())
-                .filter(equalCount.and(equalBonusStatus))
+                .filter(rankings -> rankings.matches(matchCount, hasBonusNumber))
                 .findAny()
                 .orElse(NONE);
+    }
+
+    private boolean matches(int matchCount, boolean hasBonusNumber) {
+        return this.matchCount == matchCount && this.hasBonusNumber == hasBonusNumber;
     }
 
     public int getPrizeMoney(int count) {

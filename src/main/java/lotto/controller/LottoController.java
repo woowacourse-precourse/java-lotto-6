@@ -11,9 +11,9 @@ import lotto.view.Output;
 
 public class LottoController {
     private final List<Double> reward = new ArrayList<>();
-    User user;
-    Lotto winningNumber;
-    BonusNumber bonusNumber;
+    private User user;
+    private Lotto winningNumber;
+    private BonusNumber bonusNumber;
 
     public LottoController() {
         List<Double> reward = List.of(LottoValue.NONE.getReward(),

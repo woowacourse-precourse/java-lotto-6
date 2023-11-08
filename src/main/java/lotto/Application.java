@@ -25,16 +25,20 @@ public class Application {
         // TODO: 프로그램 구현
         askPurchasePrice();
         Integer purchasePrice = readPurchasePrice();
+        System.out.println();
 
         List<Lotto> lottos = lottoStore.purchaseLotto(purchasePrice);
         printNumberOfLottoPurchases(lottos);
         printPurchaseLottoInfo(lottos);
+        System.out.println();
 
         askWinningNumber();
         List<Integer> winningNumbers = readWinningNumber();
+        System.out.println();
 
         askBonusNumber();
         Integer bonusNumber = readBonusNumber(winningNumbers);
+        System.out.println();
 
         Map<LottoRank, Integer> winningResult = lottoAgency.calculateLottoRank(lottos, winningNumbers, bonusNumber);
 

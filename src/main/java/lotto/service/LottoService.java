@@ -5,7 +5,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoRank;
 import lotto.exception.LottoException;
-import lotto.view.LottoView;
 
 import java.util.ArrayList;
 import java.util.HashMap;

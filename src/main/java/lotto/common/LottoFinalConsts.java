@@ -1,20 +1,20 @@
 package lotto.common;
 
 public interface LottoFinalConsts {
-    public final String LOTTO_FIRST = "6";
-    public final String LOTTO_SECOND = "5+1";
-    public final String LOTTO_THIRD = "5";
-    public final String LOTTO_FOURTH = "4";
-    public final String LOTTO_FIFTH = "3";
-    public final int LOTTO_FIRST_RETURN = 2000000000;
-    public final int LOTTO_SECOND_RETURN = 50000000;
-    public final int LOTTO_THIRD_RETURN = 1500000;
-    public final int LOTTO_FOURTH_RETURN = 50000;
-    public final int LOTTO_FIFTH_RETURN = 5000;
-    public final String LOTTO_ERROR_MESSAGE = "[ERROR]";
-    public final String LOTTO_NOT_VALID_LOTTOPURCHASE = "구입 금액이 1000으로 나눠 떨어지지 않습니다.";
-    public final String INPUT_LOTTO_PURCHASE = "구입금액을 입력해 주세요.";
-    public final String PRINT_LOTTO_PURCHASE_COUNT = "개를 구매했습니다.";
+    String LOTTO_FIRST = "6";
+    String LOTTO_SECOND = "5+1";
+    String LOTTO_THIRD = "5";
+    String LOTTO_FOURTH = "4";
+    String LOTTO_FIFTH = "3";
+    int LOTTO_FIRST_RETURN = 2000000000;
+    int LOTTO_SECOND_RETURN = 50000000;
+    int LOTTO_THIRD_RETURN = 1500000;
+    int LOTTO_FOURTH_RETURN = 50000;
+    int LOTTO_FIFTH_RETURN = 5000;
+    String LOTTO_ERROR_MESSAGE = "[ERROR]";
+    String LOTTO_NOT_VALID_LOTTOPURCHASE = "구입 금액이 1000으로 나눠 떨어지지 않습니다.";
+    String INPUT_LOTTO_PURCHASE = "구입금액을 입력해 주세요.";
+    String PRINT_LOTTO_PURCHASE_COUNT = "개를 구매했습니다.";
     String INPUT_WIN_LOTTO = "당첨 번호를 입력해 주세요.";
     String INPUT_BONUS_LOTTO = "보너스 번호를 입력해 주세요.";
 

@@ -31,8 +31,7 @@ public class InputWinningNumView {
     private int validateInputBonusNum(String input) {
         if (ConvertStringToNum.isNumeric(input)) {
             return Integer.parseInt(input);
-        } else {
-            throw new IllegalArgumentException("올바른 보너스 숫자를 입력해주세요");
         }
+        throw new IllegalArgumentException("올바른 보너스 숫자를 입력해주세요");
     }
 }

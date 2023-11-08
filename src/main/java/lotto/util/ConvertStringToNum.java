@@ -11,11 +11,10 @@ public class ConvertStringToNum {
     }
 
     public static boolean isNumeric(String str) {
-        try {
-            Integer.parseInt(str); // Integer로 변환을 시도
+        if (str.matches("\\d+")) {
             return true;
-        } catch (IllegalArgumentException illegalArgumentException) {
-            return false;
         }
+        throw new IllegalArgumentException("올바른 숫자를 입력하세요");
+        
     }
 }

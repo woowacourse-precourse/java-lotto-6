@@ -6,6 +6,7 @@ public class PlayerMoney {
     public PlayerMoney(String money) {
         int playerMoney = isNumber(money);
         isThousand(playerMoney);
+
         this.money = playerMoney;
     }
 

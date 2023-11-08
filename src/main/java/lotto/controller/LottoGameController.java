@@ -14,13 +14,12 @@ public class LottoGameController {
         this.service = service;
     }
 
-    public void run(PurchaseAmount amount, WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotties lotties) {
+    public String run(PurchaseAmount amount, WinningNumbers winningNumbers, BonusNumber bonusNumber, Lotties lotties) {
         WinningResult winningResult = service.calculateWinningResult(lotties.getLotties(),
                 winningNumbers.getWinningNumbers(), bonusNumber);
         int sum = service.sumWinningAmount(winningResult);
-        String rateOfReturn = service.calculateRateOfReturn(amount.getAmount(), sum);
-    }
+        Double rateOfReturn = service.calculateRateOfReturn(amount.getAmount(), sum);
 
-    private void playGame() {
+        return service.generateWinningResult(winningResult, rateOfReturn);
     }
 }

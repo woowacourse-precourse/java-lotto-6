@@ -1,14 +1,13 @@
 package lotto.constant;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 public enum WinningAmountConstant {
-    FIRST(2000000000, 6),
-    SECOND(30000000, 5),
-    THIRD(1500000, 5),
+    FIFTH(5000, 3),
     FOURTH(50000, 4),
-    FIFTH(5000, 3);
+    THIRD(1500000, 5),
+    SECOND(30000000, 5),
+    FIRST(2000000000, 6);
 
     private final int value;
     private final int count;
@@ -40,14 +39,13 @@ public enum WinningAmountConstant {
         return this.count;
     }
 
-    public static Map<WinningAmountConstant, Integer> initWinningResult() {
-        HashMap<WinningAmountConstant, Integer> result = new HashMap<>();
+    public static LinkedHashMap<WinningAmountConstant, Integer> initWinningResult() {
+        LinkedHashMap<WinningAmountConstant, Integer> result = new LinkedHashMap<>();
 
         WinningAmountConstant[] values = WinningAmountConstant.values();
 
         for (WinningAmountConstant value : values) {
             result.put(value, 0);
-
         }
 
         return result;

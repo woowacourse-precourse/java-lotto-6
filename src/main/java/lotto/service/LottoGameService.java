@@ -1,25 +1,27 @@
 package lotto.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.constant.WinningAmountConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.WinningResult;
 
 public class LottoGameService {
-    public LottoGameService() {
 
-    }
-
-    public String generateWinningResult(WinningResult result, String rateOfReturn) {
+    public String generateWinningResult(WinningResult result, Double rateOfReturn) {
         StringBuilder builder = new StringBuilder();
-        return null;
+
+        builder.append(result);
+        String format = String.format("총 수익률은 %.1f 입니다.", rateOfReturn);
+        builder.append(format).append("\n");
+
+        return builder.toString();
     }
-    public String calculateRateOfReturn(int purchaseAmount, int totalWinningAmount) {
+    public Double calculateRateOfReturn(int purchaseAmount, int totalWinningAmount) {
         Double amount = Double.valueOf(purchaseAmount);
-        double rateOfReturn = totalWinningAmount / amount * 100;
-        return String.format("%.1f", rateOfReturn);
+        return totalWinningAmount / amount * 100;
+
     }
     public int sumWinningAmount(WinningResult result) {
         return result.calculateWinningAmount();
@@ -28,7 +30,7 @@ public class LottoGameService {
     public WinningResult calculateWinningResult(
             List<Lotto> lotties, List<Integer> winningNumbers, BonusNumber bonusNumber) {
 
-        Map<WinningAmountConstant, Integer> result = WinningAmountConstant.initWinningResult();
+        LinkedHashMap<WinningAmountConstant, Integer> result = WinningAmountConstant.initWinningResult();
 
         for (Lotto lotto : lotties) {
             List<Integer> lottoValues = lotto.getLotto();
@@ -42,14 +44,14 @@ public class LottoGameService {
                 }
             }
 
-            WinningAmountConstant value = null;
+            WinningAmountConstant value;
+
             try {
                 value = WinningAmountConstant.getValueByCount(count, hasBonusNumber);
             } catch (IllegalArgumentException e) {
                 continue;
             }
-
-            System.out.println(value);
+//            System.out.println(value);
             result.put(value, result.get(value) + 1);
         }
 

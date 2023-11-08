@@ -27,7 +27,9 @@ public class Application {
         BonusNumber bonusNumber = setBonusNumber();
 
         LottoGameController controller = new LottoGameController(new LottoGameService());
-        controller.run(purchaseAmount, winningNumbers, bonusNumber, lotties);
+        String gameResult = controller.run(purchaseAmount, winningNumbers, bonusNumber, lotties);
+
+        outputView.printGameResult(gameResult);
     }
 
     private static PurchaseAmount setPurchaseAmount() {

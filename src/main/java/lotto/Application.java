@@ -54,6 +54,7 @@ public class Application {
     private static List<Integer> getWinningNumbers() {
         while (true) {
             try {
+                System.out.println();
                 System.out.println("당첨 번호를 입력해 주세요.");
                 return parseNumbers(Console.readLine());
             } catch (NumberFormatException e) {
@@ -74,6 +75,7 @@ public class Application {
     private static int getBonusNumber() {
         while (true) {
             try {
+                System.out.println();
                 System.out.println("보너스 번호를 입력해 주세요.");
                 return Integer.parseInt(Console.readLine());
             } catch (NumberFormatException e) {

@@ -5,20 +5,21 @@ public class Result {
     private int[] matchCounts;
 
     public Result() {
-        this.matchCounts = new int[6];
+        this.matchCounts = new int[7];
     }
 
     public void add(int matchedCount, boolean hasBonusNumber) {
         if (matchedCount == 6) {
-            matchCounts[5]++;
+            matchCounts[6]++;
         } else if (matchedCount == 5 && hasBonusNumber) {
-            matchCounts[4]++;
+            matchCounts[5]++;
         } else {
-            matchCounts[matchedCount - 1]++;
+            matchCounts[matchedCount]++;
         }
     }
 
     public void printResult() {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         for (int i = 5; i >= 0; i--) {

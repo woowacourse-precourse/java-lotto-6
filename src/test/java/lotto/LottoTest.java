@@ -1,7 +1,10 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.domain.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 import java.util.List;
 
@@ -24,4 +27,12 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("구입 금액이 1,000원 단위가 아니라면 예외가 발생한다.")
+    @Test
+    void createMoneyByInvalidedNumber() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        assertThatThrownBy(() -> new Money(1234))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
+

@@ -1,4 +1,4 @@
-package lotto.constant.errorMessage.amount;
+package lotto.constant.errorMessage.input;
 
 import lotto.constant.errorMessage.ExceptionStatus;
 

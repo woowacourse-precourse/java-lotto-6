@@ -12,7 +12,6 @@ import java.util.Set;
 public class Lotto {
     private final List<Integer> numbers;
 
-    //    private int bonusNumber;
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         CustomizedException.winningNumbersQualification(numbers);
@@ -55,26 +54,27 @@ public class Lotto {
             }
         }
         showWinningRank(count);
-        calculateRateOfReturn(tickets,count);
+        calculateRateOfReturn(tickets, count);
     }
 
-    public static void calculateRateOfReturn(List<Lotto> tickets,int[] count){
-        int lottoPrize = tickets.size()*1000;
+    public static void calculateRateOfReturn(List<Lotto> tickets, int[] count) {
+        int lottoPrize = tickets.size() * 1000;
         int prizeMoney = 0;
         for (LottoRank rank : LottoRank.values()) {
-            prizeMoney += rank.getPrize()*count[rank.ordinal()];
+            prizeMoney += rank.getPrize() * count[rank.ordinal()];
         }
-        double temporaryRateOfReturn = (double)prizeMoney/lottoPrize;
+        double temporaryRateOfReturn = (double) prizeMoney / lottoPrize;
         double rateOfReturn = Math.round(temporaryRateOfReturn * 1000) / 10.0;
-        System.out.println("총 수익률은 " +rateOfReturn+"%입니다.");
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
-    public static void showWinningRank(int[] count){
+
+    public static void showWinningRank(int[] count) {
         System.out.println("당첨 통계\n" + "---");
         for (int i = LottoRank.values().length - 1; i >= 0; i--) {
             LottoRank rank = LottoRank.values()[i];
             DecimalFormat decimalFormat = new DecimalFormat("#,###");
             String formattedNumber = decimalFormat.format(rank.getPrize());
-            if(rank.getPrize()==30000000){
+            if (rank.getPrize() == 30000000) {
                 System.out.println(rank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + formattedNumber + "원) - " + count[rank.ordinal()] + "개");
                 continue;
             }

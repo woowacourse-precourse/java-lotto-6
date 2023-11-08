@@ -22,12 +22,13 @@ public enum LottoRank {
     public int getPrize() {
         return prize;
     }
+
     public static LottoRank getRank(int matchCount, boolean hasBonusNumber) {
         if (matchCount == 6) {
             return LottoRank.FIRST;
         }
         if (matchCount == 5) {
-            if(hasBonusNumber){
+            if (hasBonusNumber) {
                 return LottoRank.SECOND;
             }
             return LottoRank.THIRD;

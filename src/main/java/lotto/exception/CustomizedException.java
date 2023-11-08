@@ -50,10 +50,11 @@ public class CustomizedException {
             throw new IllegalArgumentException(ERROR_MESSAGE_INIT + "1부터45까지의 수만 입력 가능합니다.");
         }
     }
-    public static void bonusNumberWinningNumbersSame(List<Integer> WinningNumbers,int bonusNumber){
+
+    public static void bonusNumberWinningNumbersSame(List<Integer> WinningNumbers, int bonusNumber) {
         for (int WinningNumber : WinningNumbers) {
             if (WinningNumber == bonusNumber) {
-                throw new IllegalArgumentException(ERROR_MESSAGE_INIT+"당첨번호와 보너스 번호가 중복 되서는 안됩니다.");
+                throw new IllegalArgumentException(ERROR_MESSAGE_INIT + "당첨번호와 보너스 번호가 중복 되서는 안됩니다.");
             }
         }
     }

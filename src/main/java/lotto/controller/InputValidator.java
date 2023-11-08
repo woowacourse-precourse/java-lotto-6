@@ -51,4 +51,16 @@ public class InputValidator {
             }
         }
     }
+
+    public static void validateUserInputPrice(String rawPrice) throws IllegalArgumentException {
+        long price;
+        try {
+            price = Long.parseLong(rawPrice);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(INVALID_INPUT_MESSAGE);
+        }
+        if (checkInvalidPrice(price)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -21,4 +21,9 @@ public class Money {
     public int calculatePurchasedLotto() {
         return money / 1000;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(calculatePurchasedLotto());
+    }
 }

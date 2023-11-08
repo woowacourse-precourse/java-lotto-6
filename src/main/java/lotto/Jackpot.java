@@ -21,26 +21,36 @@ public class Jackpot {
     public Jackpot() {
         this.winningNumbers = askForWinningNumbers();
         this.bonusNumber = askForBonusNumber();
-        System.out.println(winningNumbers);
-        System.out.println(bonusNumber);
     }
 
     public Lotto askForWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = readLine();
-        List<Integer> winningNumbers = parseInputByComma(input);
-        validateWinningNumbers(winningNumbers);
-        return new Lotto(winningNumbers);
+        try {
+            System.out.println();
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String input = readLine();
+            List<Integer> winningNumbers = parseInputByComma(input);
+            validateWinningNumbers(winningNumbers);
+            validateUniqueNumbers(winningNumbers);
+            return new Lotto(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            return askForWinningNumbers();
+        }
     }
 
     public int askForBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = readLine();
-        int parsedBonusNumber = validateNumberAndReturnInt(input);
-        validateRange(parsedBonusNumber);
-        validateBonusNumberNotInWinningNumbers(winningNumbers,parsedBonusNumber);
-        return parsedBonusNumber;
+        try {
+            System.out.println();
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = readLine();
+            int parsedBonusNumber = validateNumberAndReturnInt(input);
+            validateRange(parsedBonusNumber);
+            validateBonusNumberNotInWinningNumbers(winningNumbers, parsedBonusNumber);
+            return parsedBonusNumber;
+        } catch (IllegalArgumentException e) {
+            return askForBonusNumber();
+        }
     }
+
 
     private List<Integer> parseInputByComma(String input) {
         String[] numbersArray = input.split(",");

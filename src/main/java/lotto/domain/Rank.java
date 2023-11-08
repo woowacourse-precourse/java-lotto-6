@@ -17,7 +17,7 @@ public enum Rank {
     public static Rank of(Boolean matchBonusNumber, Integer matchCount) {
         return Stream.of(Rank.values())
                 .filter(rank -> rank.matchBonusNumber == matchBonusNumber)
-                .filter(rank -> rank.matchCount == matchCount)
+                .filter(rank -> rank.matchCount.equals(matchCount))
                 .findAny()
                 .orElse(NON);
     }

@@ -3,7 +3,7 @@ package lotto.data;
 public class Messages {
     public static final String ASK_MONEY = "구입금액을 입력해 주세요.";
     public static final String ASK_WINNIG_NUMBERS = "당첨 번호를 입력해 주세요.";
-    public static final String ERROR_MESSAGE = "[ERROR] : ";
+    public static final String ERROR_PREFIX = "[ERROR] : ";
     public static final String ASK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     public static final String SPLIT_STRING = ",";
     public static final String TICKET_PRINT_FORMAT = "%d개를 구매했습니다.\n";

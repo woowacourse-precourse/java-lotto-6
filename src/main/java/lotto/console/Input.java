@@ -17,7 +17,8 @@ public class Input {
             Double money = Utils.convertInput(Console.readLine());
             return new Asset(money);
         } catch (IllegalArgumentException e) {
-            System.out.println(Messages.ERROR_MESSAGE + e.getMessage());
+            printErrorMessage(e.getMessage());
+            
             return askMoney();
         }
     }
@@ -33,7 +34,7 @@ public class Input {
 
             return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(Messages.ERROR_MESSAGE + e.getMessage());
+            printErrorMessage(e.getMessage());
 
             return askWinningNum();
         }
@@ -45,9 +46,13 @@ public class Input {
 
             return Integer.valueOf(Console.readLine());
         } catch (IllegalArgumentException e) {
-            System.out.println(Messages.ERROR_MESSAGE + e.getMessage());
+            printErrorMessage(e.getMessage());
 
             return askBonusNum();
         }
+    }
+
+    private static void printErrorMessage(String message) {
+        System.out.println(Messages.ERROR_PREFIX + message);
     }
 }

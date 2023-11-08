@@ -2,7 +2,7 @@ package lotto.view;
 
 public class Output {
     private static final String inputPurchaseAmount = "구입금액을 입력해 주세요.";
-    private static final String countLotto = "개를 구매했습니다";
+    private static final String countLotto = "개를 구매했습니다.";
     private static final String inputWinningNumber = "당첨 번호를 입력해 주세요.";
     private static final String inputBonusNumber = "보너스 번호를 입력해 주세요.";
     private static final String printStatistics = "당첨 통계";

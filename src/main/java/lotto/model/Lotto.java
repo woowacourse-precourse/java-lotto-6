@@ -15,10 +15,14 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validateLotto(numbers);
+        this.numbers = numbers;
+    }
+
+    private void validateLotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
         validateRange(numbers);
-        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) throws IllegalArgumentException {

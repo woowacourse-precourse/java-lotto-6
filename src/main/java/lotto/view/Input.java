@@ -3,6 +3,7 @@ package lotto.view;
 
 import static lotto.errorMessage.ExceptionErrorMessage.INPUT_ONLY_NUMBER;
 import static lotto.errorMessage.ExceptionErrorMessage.INPUT_ONLY_NUMBER_LOTTO;
+import static lotto.errorMessage.ExceptionErrorMessage.PURCHASE_LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -12,12 +13,14 @@ import java.util.regex.Pattern;
 public class Input {
     private static final String comma = ",";
     private static final String ONLY_NUMBER = "^[0-9]+$";
+    private static final int Lotto_Price = 1000;
 
     public static String inputAmount() {
         while (true) {
             try {
                 String amount = Console.readLine();
                 validateNumber(amount);
+                validateLottoPrice(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -80,5 +83,12 @@ public class Input {
 
     private static boolean isNotNumber(final String number) {
         return !number.matches("\\d+");
+    }
+
+    private static void validateLottoPrice(String str) {
+        int amount = Integer.parseInt(str);
+        if (amount % Lotto_Price != 0 || amount <= 0) {
+            throw new IllegalArgumentException(PURCHASE_LOTTO_PRICE);
+        }
     }
 }

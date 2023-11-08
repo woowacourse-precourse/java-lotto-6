@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.errorMessage.ExceptionErrorMessage.INPUT_ONLY_NUMBER_BONUS;
 import static lotto.view.Input.inputAmount;
 
 import java.util.ArrayList;
@@ -61,7 +60,7 @@ public class LottoController {
         Output.inputWinningNumber();
         List<Integer> numbers = new ArrayList<>(Input.inputWinningNumber());
         Output.inputBonusNumber();
-        int bonus = validateOnlyNumber(Input.inputBonusNumber());
+        int bonus = Integer.parseInt(Input.inputBonusNumber());
 
         return new Winner(new Lotto(numbers), bonus);
     }
@@ -104,11 +103,4 @@ public class LottoController {
         Output.total_EarningRate(earningRate);
     }
 
-    private int validateOnlyNumber(String bonus) {
-        try {
-            return Integer.parseInt(bonus);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_ONLY_NUMBER_BONUS);
-        }
-    }
 }

@@ -1,5 +1,6 @@
 package lotto.model;
 
+
 import static lotto.errorMessage.ExceptionErrorMessage.NOT_INCLUDE_RANKING;
 
 import lotto.view.Output;

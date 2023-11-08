@@ -2,6 +2,8 @@ package lotto;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.HashMap;
+import lotto.constant.StateType;
 import lotto.dto.LottoDto;
 import lotto.model.domain.Lotto;
 import lotto.model.repository.LottoRepository;
@@ -75,7 +77,32 @@ class LottoTest {
         //then
 
         assertThat(String.format("%.1f",lottoService.getProfitRate())).isEqualTo("1000166.7");
+    }
 
+    @DisplayName("로또 번호와 당첨 번호를 비교하고 결과를 저장한다.")
+    @Test
+    void compareLottosWithWinningNumbersTest() {
+        //given
+        LottoRepository lottoRepository = new LottoRepository();
+        LottoService lottoService = new LottoService(lottoRepository);
+        //when
+        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 6)); // SIX_MATCH
+        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 8)); // FIVE_MATCH_BONUS
+        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 7)); // FIVE_MATCH_NO_BONUS
+        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 8, 9));  // FOUR_MATCH
+        lottoRepository.saveLottos(List.of(1, 2, 3, 7, 8, 9)); // THREE_MATCH
+        lottoRepository.saveLottos(List.of(1, 2, 7, 8, 9, 10)); // NO_PRIZE
+
+        lottoRepository.saveGame(List.of(1, 2, 3, 4, 5, 6), 8);
+        lottoService.compareLottosWithWinningNumbers();
+        HashMap<StateType, Integer> result = lottoService.getResult();
+        //then;
+
+        assertThat(result.get(StateType.SIX_MATCH)).isEqualTo(1);
+        assertThat(result.get(StateType.FIVE_MATCH_BONUS)).isEqualTo(1);
+        assertThat(result.get(StateType.FIVE_MATCH_NO_BONUS)).isEqualTo(1);
+        assertThat(result.get(StateType.FOUR_MATCH)).isEqualTo(1);
+        assertThat(result.get(StateType.THREE_MATCH)).isEqualTo(1);
     }
 
     @Nested

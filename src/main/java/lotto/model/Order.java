@@ -59,7 +59,7 @@ public class Order {
             profitRate += 100;
         }
 
-        return Math.round((profitRate * 100.0) / 1.0) / 100.0;
+        return Math.round((profitRate * 10.0) / 1.0) / 10.0;
     }
 
 

@@ -27,7 +27,7 @@ public class CorrectNum {
         }
     }
     private void validateCorrectString(String[] correctString){
-
+        validateCorrectStringLength(correctString);
 
         for(int i = 0 ; i< correctString.length; i++) {
             String s = correctString[i];
@@ -36,9 +36,15 @@ public class CorrectNum {
         }
     }
 
+    private void validateCorrectStringLength(String[] correctString) {
+        if(correctString.length!=6){
+            throw new IllegalArgumentException();
+        }
+    }
+
 
     private void validateCorrectStringRange(String s) {
-        if(Integer.parseInt(s)<1 && Integer.parseInt(s)>45){
+        if(Integer.parseInt(s)<1 || Integer.parseInt(s)>45){
             throw new IllegalArgumentException();
         }
     }

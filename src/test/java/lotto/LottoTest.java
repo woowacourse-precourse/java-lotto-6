@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.model.BonusNum;
+import lotto.model.CorrectNum;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,4 +27,31 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    void BonusnumTest_숫자테스트(){
+        assertThatThrownBy(() -> new BonusNum("귯"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void BonusnumTest_범위테스트(){
+        assertThatThrownBy(() -> new BonusNum("1000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void CorrectNum_숫자테스트(){
+        assertThatThrownBy(() -> new CorrectNum("1,2,3,4,5,굿"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void CorrectNum_숫자범위테스트(){
+        assertThatThrownBy(() -> new CorrectNum("1,2,3,4,5,83"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void CorrectNum_로또숫자갯수(){
+        assertThatThrownBy(() -> new CorrectNum("1,2,3,4,5,6,7,8"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    
+
 }

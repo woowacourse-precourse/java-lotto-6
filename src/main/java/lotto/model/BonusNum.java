@@ -10,7 +10,7 @@ public class BonusNum {
     }
 
     private void validateCorrectStringRange(String s) {
-        if(Integer.parseInt(s)<1 && Integer.parseInt(s)>45){
+        if(Integer.parseInt(s)<1 || Integer.parseInt(s)>45){
             throw new IllegalArgumentException();
         }
     }

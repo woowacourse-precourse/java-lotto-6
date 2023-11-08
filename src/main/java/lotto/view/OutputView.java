@@ -46,4 +46,8 @@ public class OutputView {
         });
     }
 
+    public static void printPercent(double percent) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", percent);
+    }
+
 }

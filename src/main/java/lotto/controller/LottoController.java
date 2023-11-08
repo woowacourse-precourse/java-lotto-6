@@ -19,5 +19,6 @@ public class LottoController {
         BonusNumber bonusNumber = InputView.inputBonusNumber();
         EnumMap<Prize, Integer> result = TicketService.getResult(ticket, winningNumber.getNumbers(), bonusNumber.getBonusNumber());
         OutputView.printResult(result);
+        OutputView.printPercent(TicketService.calculatePercent(lottoPrice.getLottoPrice(), result));
     }
 }

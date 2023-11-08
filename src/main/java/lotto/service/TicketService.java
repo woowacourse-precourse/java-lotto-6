@@ -30,4 +30,17 @@ public class TicketService {
         }
         return result;
     }
+
+
+    public static double calculatePercent(int price, EnumMap<Prize, Integer> prizes) {
+        int totalPrize = 0;
+        for(Prize prize : Prize.values()) {
+            Integer count = prizes.get(prize);
+            if(count > 0) {
+                totalPrize += prize.getPrizeMoney() * count;
+            }
+        }
+        return (double)totalPrize / price * 100;
+    }
+
 }

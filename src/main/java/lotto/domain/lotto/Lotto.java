@@ -8,7 +8,7 @@ import static lotto.domain.lotto.LottoCondition.*;
 public class Lotto {
 
     private static final String LOTTO_NUMBER_COUNT_ERROR_MESSAGE = "로또 번호는 " + COUNT.getValue() + "개이어야 합니다.";
-    private static final String LOTTO_NUMBER_RANGE_ERROR_MESSAGE = "로또 번호는 " + START_NUMBER.getValue() + "부터 " + END_NUMBER.getValue() + " 사이의 숫자여야 합니다.";
+    private static final String LOTTO_NUMBER_RANGE_ERROR_MESSAGE = "로또 번호는 " + MIN_NUMBER.getValue() + "부터 " + MAX_NUMBER.getValue() + " 사이의 숫자여야 합니다.";
     private static final String LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE = "로또 번호는 중복될 수 없습니다.";
     private final List<Integer> numbers;
 
@@ -35,7 +35,7 @@ public class Lotto {
     }
 
     private void validateRange(Integer number) {
-        if (number < START_NUMBER.getValue() || number > END_NUMBER.getValue()) {
+        if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR_MESSAGE);
         }
     }

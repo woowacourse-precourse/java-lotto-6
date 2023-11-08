@@ -6,17 +6,17 @@ import java.util.List;
 
 import static lotto.domain.lotto.LottoCondition.*;
 
-public class RandomNumberGenerator implements NumberGenerator {
+public class LottoNumberGenerator implements NumberGenerator {
 
-    private RandomNumberGenerator() {
+    private LottoNumberGenerator() {
     }
 
     private static class NumberGeneratorHolder {
-        private static RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        private static LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
     }
 
-    public static RandomNumberGenerator getInstance() {
-        return NumberGeneratorHolder.randomNumberGenerator;
+    public static LottoNumberGenerator getInstance() {
+        return NumberGeneratorHolder.lottoNumberGenerator;
     }
 
     @Override

@@ -29,7 +29,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(OrderAnnotation.class)
 class InputViewTest {
 
-    InputView inputView;
+    InputView inputView = InputView.getInstance();
 
     public InputViewTest() {
         this.inputView = InputView.getInstance();

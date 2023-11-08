@@ -1,6 +1,7 @@
 package lotto;
 
 public class Amount {
+    private final static int  A_LOTTO_PRICE = 1000;
     private final int money;
     public Amount(String money) {
         validate(money);
@@ -19,6 +20,6 @@ public class Amount {
     }
 
     public int getLottoCount(){
-        return this.money/10;
+        return this.money / A_LOTTO_PRICE;
     }
 }

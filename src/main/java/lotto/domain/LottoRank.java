@@ -2,10 +2,10 @@ package lotto.domain;
 
 public enum LottoRank {
     FIRST(2_000_000_000, 6, false),
-    SECOND(1_500_000, 5, true),
-    THIRD(50_000, 5, false),
-    FOURTH(5_000, 4, false),
-    FIFTH(500, 3, false),
+    SECOND(30_000_000, 5, true),
+    THIRD(1_500_000, 5, false),
+    FOURTH(50_000, 4, false),
+    FIFTH(5_000, 3, false),
     NONE(0, 0, false);
 
     private final int winningAmount;

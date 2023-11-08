@@ -56,9 +56,7 @@ public class LottoGameController {
     }
 
     private void printResults() {
-
-        // 당첨 통계 출력
-        OutputView.printResponseWinningStats();
-        OutputView.printResponseProfitRate();
+        OutputView.printResponseWinningStats(lottoResult);
+        OutputView.printResponseProfitRate(lottoResult, lottoTicket);
     }
 }

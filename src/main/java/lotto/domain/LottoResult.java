@@ -21,7 +21,7 @@ public class LottoResult {
         return results.getOrDefault(rank, 0);
     }
 
-    public double calculateTotalEarnings() {
+    public double getTotalEarnings() {
         return results.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getWinningAmount() * entry.getValue())
                 .sum();

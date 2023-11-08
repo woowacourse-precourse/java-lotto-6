@@ -33,6 +33,12 @@ public class LottoWinningAnalyzer {
         return sortWinningResultByPriceAmount(unsortedWinningResults);
     }
 
+    public Map<WinningRule, Integer> countMatchedWinningRules() {
+        List<WinningRule> winningRules = matchWinningRules(lottos.getLottos());
+        return winningRules.stream()
+                .collect(Collectors.toMap(Function.identity(), winningRule -> 1, Integer::sum));
+    }
+
     private List<WinningResult> calculateWinningResult() {
         return Arrays.stream(WinningRule.values())
                 .map(winningRule -> WinningResult.of(winningRule, this))
@@ -43,12 +49,6 @@ public class LottoWinningAnalyzer {
         return winningResults.stream()
                 .sorted(Comparator.comparingLong(WinningResult::getPrizeAmount))
                 .collect(Collectors.toList());
-    }
-
-    public Map<WinningRule, Integer> countMatchedWinningRules() {
-        List<WinningRule> winningRules = matchWinningRules(lottos.getLottos());
-        return winningRules.stream()
-                .collect(Collectors.toMap(Function.identity(), winningRule -> 1, Integer::sum));
     }
 
     private long sumPrizeAmount(List<WinningResult> winningResults) {

@@ -27,6 +27,10 @@ public class Lotto {
         return new WinningNumbers(this, bonusNumber);
     }
 
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
     private void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
         validateNumbersDuplicate(numbers);
@@ -54,9 +58,5 @@ public class Lotto {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new CustomIllegalArgumentException(ErrorCode.LOTTO_NUMBERS_OUT_OF_RANGE);
         }
-    }
-
-    public boolean hasBonusNumber(int bonusNumber) {
-        return numbers.contains(bonusNumber);
     }
 }

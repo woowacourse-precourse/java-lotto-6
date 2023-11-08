@@ -15,21 +15,21 @@ public record LottoResult(
     public static LottoResult from(Map<LottoRank, Long> rankMap, double profitRate) {
         return new LottoResult(
                 new LottoResultEntry(
-                        LottoRank.FIRST.getPrize().getValue(),
+                        MoneyDto.from(LottoRank.FIRST.getPrize()),
                         rankMap.getOrDefault(LottoRank.FIRST, 0L).intValue()),
                 new LottoResultEntry(
-                        LottoRank.SECOND.getPrize().getValue(),
+                        MoneyDto.from(LottoRank.SECOND.getPrize()),
                         rankMap.getOrDefault(LottoRank.SECOND, 0L).intValue()),
                 new LottoResultEntry(
-                        LottoRank.THIRD.getPrize().getValue(),
+                        MoneyDto.from(LottoRank.THIRD.getPrize()),
                         rankMap.getOrDefault(LottoRank.THIRD, 0L).intValue()),
                 new LottoResultEntry(
-                        LottoRank.FOURTH.getPrize().getValue(),
+                        MoneyDto.from(LottoRank.FOURTH.getPrize()),
                         rankMap.getOrDefault(LottoRank.FOURTH, 0L).intValue()),
                 new LottoResultEntry(
-                        LottoRank.FIFTH.getPrize().getValue(),
+                        MoneyDto.from(LottoRank.FIFTH.getPrize()),
                         rankMap.getOrDefault(LottoRank.FIFTH, 0L).intValue()),
-                profitRate
+                profitRate * 100
         );
     }
 }

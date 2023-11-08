@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -45,4 +46,20 @@ class LottoTest {
     void createLotto() {
         assertDoesNotThrow(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)));
     }
+
+    @DisplayName("두 로또에 공통으로 있는 번호의 개수를 반환하는 테스트")
+    @ParameterizedTest(name = "로또 번호 : {0}, 예상 결과 : {1}")
+    @ArgumentsSource(LottoCompareArgumentsProvider.class)
+    void compare(final List<Integer> numbers, final int expected) {
+        // given
+        Lotto lotto = new Lotto(numbers);
+        Lotto other = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        long actual = lotto.compare(other);
+
+        // then
+        assertEquals(expected, actual);
+    }
+
 }

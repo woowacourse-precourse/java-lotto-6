@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
-public enum MatchNumber {
+public enum LottoRank {
     FIRST(4, "6개 일치", 6, false, "(2,000,000,000원)", 2000000000),
     SECOND(3, "5개 일치, 보너스 볼 일치", 5, true, "(30,000,000원)", 30000000),
     THIRD(2, "5개 일치", 5, false, "(1,500,000원)", 1500000),
@@ -18,8 +18,8 @@ public enum MatchNumber {
     private String moneyMessage;
     private int money;
 
-    private static final List<MatchNumber> bonusMatchNumbers = List.of(FIRST, SECOND, FOURTH, FIFTH);
-    private static final List<MatchNumber> bonusNotMatchNumbers = List.of(FIRST, THIRD, FOURTH, FIFTH);
+    private static final List<LottoRank> BONUS_LOTTO_RANKS = List.of(FIRST, SECOND, FOURTH, FIFTH);
+    private static final List<LottoRank> BONUS_NOT_LOTTO_RANKS = List.of(FIRST, THIRD, FOURTH, FIFTH);
 
     public int getListIndex() {
         return listIndex;
@@ -41,16 +41,16 @@ public enum MatchNumber {
         return moneyMessage;
     }
 
-    public static List<MatchNumber> getMembers() {
+    public static List<LottoRank> getMembers() {
         return Collections.unmodifiableList(List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST));
     }
 
-    private MatchNumber(int index,
-                        String resultMessage,
-                        int matchNumber,
-                        boolean isBonusMatch,
-                        String moneyMessage,
-                        int money) {
+    private LottoRank(int index,
+                      String resultMessage,
+                      int matchNumber,
+                      boolean isBonusMatch,
+                      String moneyMessage,
+                      int money) {
         this.listIndex = index;
         this.resultMessage = resultMessage;
         this.matchNumber = matchNumber;
@@ -59,23 +59,23 @@ public enum MatchNumber {
         this.money = money;
     }
 
-    public static MatchNumber findByMatchCountAndBonus(int count, boolean isBonusMatch) {
+    public LottoRank findByMatchCountAndBonus(int count, boolean isBonusMatch) {
         if (isBonusMatch) {
-            return bonusMatchNumbers.stream()
+            return BONUS_LOTTO_RANKS.stream()
                     .filter(match ->
                             match.matchNumber == count)
                     .findFirst()
                     .orElse(NOTHING);
         }
-        return bonusNotMatchNumbers.stream()
+        return BONUS_NOT_LOTTO_RANKS.stream()
                 .filter(match ->
                         match.matchNumber == count)
                 .findFirst()
                 .orElse(NOTHING);
     }
 
-    public int countMatchNumber(List<MatchNumber> matchNumbers, MatchNumber match) {
-        return (int) matchNumbers.stream().filter(m -> m.getMatchNumber() == match.getMatchNumber()).count();
+    public static int countMatchNumber(List<LottoRank> lottoRanks, LottoRank match) {
+        return (int) lottoRanks.stream().filter(m -> m.getMatchNumber() == match.getMatchNumber()).count();
     }
 
 }

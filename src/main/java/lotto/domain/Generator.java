@@ -10,13 +10,12 @@ public class Generator {
     Printer printer = new Printer();
 
     //상수(static final) 또는 클래스 변수
+    private final static List<Lotto> lottos = new ArrayList<>();
     private final int LOTTERY_COST = 1000;
+    private static int MONEY;
+    private static int numberOfLottery;
 
     //인스턴스 변수
-    private static int money;
-    private int numberOfLottery;
-    private List<Integer> numbers;
-    private List<Lotto> Lottos = new ArrayList<>();
 
     //생성자
 
@@ -25,8 +24,8 @@ public class Generator {
         System.out.println("구입금액을 입력해 주세요.");
         while(true) {
             try {
-                money = isCorrectFormat();
-                numberOfLottery = isDivisible(money);
+                MONEY = validateCorrectFormat();
+                numberOfLottery = calculateTheNumberOfLottery(MONEY);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -35,17 +34,21 @@ public class Generator {
         printer.showLotteryCount(numberOfLottery);
     }
 
-    private int isDivisible(int money) {
+    private int calculateTheNumberOfLottery(int money) {
+        validateDivisible(money);
+        return MONEY / LOTTERY_COST;
+    }
+
+    private void validateDivisible(int money) {
         if (money < 0) {
             throw new IllegalArgumentException("[ERROR] 유효한 숫자를 입력해주세요.");
         }
         if (money % LOTTERY_COST != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
         }
-        return money / LOTTERY_COST;
     }
 
-    private int isCorrectFormat() {
+    private int validateCorrectFormat() {
         try {
             return Integer.parseInt(readLine());
         } catch (NumberFormatException e) {
@@ -55,11 +58,11 @@ public class Generator {
 
     public List<Lotto> createLotto() {
         getAmountOfMoney();
-        while(Lottos.size() != numberOfLottery) {
+        while(lottos.size() != numberOfLottery) {
             Lotto generatedLotto = new Lotto(generateRandomNumbers());
-            Lottos.add(generatedLotto);
+            lottos.add(generatedLotto);
         }
-        return Lottos;
+        return lottos;
     }
 
     private List<Integer> generateRandomNumbers() {
@@ -68,6 +71,6 @@ public class Generator {
     }
 
     int getMoney() {
-        return money;
+        return MONEY;
     }
 }

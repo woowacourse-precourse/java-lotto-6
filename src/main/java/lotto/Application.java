@@ -24,15 +24,7 @@ public class Application {
             break;
         }
 
-        long purchaseQuantity = cashier.getPurchaseQuantity();
-        System.out.println(messageContainer.getPurchaseQuantityMessage(purchaseQuantity));
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        List<List<Integer>> lottoNumbers = lottoGenerator.issueLottoAsManyAsPurchased(purchaseQuantity);
-        for (List<Integer> numbers : lottoNumbers) {
-            System.out.println(numbers.toString());
-        }
-        System.out.println();
-        List<Lotto> lottoTickets = Lotto.createLottoTickets(lottoNumbers);
+        List<Lotto> lottoTickets = createLottoTickets(cashier, messageContainer);
 
         LottoNumberConverter lottoNumberConverter = new LottoNumberConverter();
         List<Integer> winningNumbers;
@@ -61,5 +53,17 @@ public class Application {
             break;
         }
 
+    }
+
+    private static List<Lotto> createLottoTickets(Cashier cashier, MessageContainer messageContainer) {
+        long purchaseQuantity = cashier.getPurchaseQuantity();
+        System.out.println(messageContainer.getPurchaseQuantityMessage(purchaseQuantity));
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        List<List<Integer>> lottoNumbers = lottoGenerator.issueLottoAsManyAsPurchased(purchaseQuantity);
+        for (List<Integer> numbers : lottoNumbers) {
+            System.out.println(numbers.toString());
+        }
+        System.out.println();
+        return Lotto.createLottoTickets(lottoNumbers);
     }
 }

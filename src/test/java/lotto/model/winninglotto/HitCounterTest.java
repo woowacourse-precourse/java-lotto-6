@@ -24,7 +24,7 @@ public class HitCounterTest {
         HitCounter hitCounter = new HitCounter(winningNumbers, 7);
         HitResult hitResult = hitCounter.countHit(winningNumbers);
 
-        assertThat(hitResult.getHitCount()).isEqualTo(winningNumbers.size());
+        assertThat(hitResult.hitCount()).isEqualTo(winningNumbers.size());
     }
 
     @Test
@@ -40,8 +40,8 @@ public class HitCounterTest {
         HitResult bonusBallNotHitResult = hitCounter.countHit(bonusBallNotHitNumbers);
 
         assertAll(
-            () -> assertThat(bonusBallHitResult.getIsBonusBallHit()).isTrue(),
-            () -> assertThat(bonusBallNotHitResult.getIsBonusBallHit()).isFalse()
+            () -> assertThat(bonusBallHitResult.isBonusBallHit()).isTrue(),
+            () -> assertThat(bonusBallNotHitResult.isBonusBallHit()).isFalse()
         );
     }
 }

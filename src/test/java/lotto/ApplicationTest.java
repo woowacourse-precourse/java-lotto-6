@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -183,6 +185,27 @@ class ApplicationTest extends NsTest {
         winningLotto.setWinningNumbers(new Lotto(List.of(1,2,3,4,5,6)));
         assertDoesNotThrow(() -> winningLotto.validate(7));
     }
+
+    @DisplayName("당첨번호와 일치하는 숫자의 개수를 리턴한다.")
+    @Test
+    void returnMatchCount() {
+        Long count =Ranking.getMatchCount(new Lotto(List.of(1,2,3,4,5,6)), new Lotto(List.of(1,2,3,7,8,9)));
+        assertThat(count).isEqualTo(3);
+    }
+
+    @DisplayName("당첨된 로또 개수를 리턴한다.")
+    @Test
+    void returnWinningCount() {
+        List<Lotto> lottos = new ArrayList<>();
+        Lotto winningNumbers = new Lotto(List.of(1,2,3,4,5,6));
+        lottos.add(new Lotto(List.of(1,2,3,4,5,6)));
+        lottos.add(new Lotto(List.of(1,2,3,4,5,7)));
+
+        HashMap<Ranking, Integer> result = Ranking.getWinningResult(lottos, winningNumbers, 7);
+        assertThat(result.get(Ranking.FIRST)).isEqualTo(1);
+        assertThat(result.get(Ranking.SECOND)).isEqualTo(1);
+    }
+
 
     @Override
     public void runMain() {

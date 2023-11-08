@@ -17,19 +17,20 @@ class BonusTest {
     void setUp() {
         bonus = new Bonus();
         numbers = List.of(1, 2, 3, 4, 5, 6, 7);
+        bonus.setWinningNumbers(numbers);
     }
 
     @DisplayName("보너스 번호를 정상적으로 저장한다.")
     @Test
     void saveBonus() {
-        bonus.save("23", numbers);
+        bonus.save("23");
         Assertions.assertThat(bonus.getNumber()).isEqualTo(23);
     }
 
     @DisplayName("보너스 번호가 당첨 번호 중 하나와 중복이라면 예외가 발생한다.")
     @Test
     void saveBonusByDuplicateNumber() {
-        assertThatThrownBy(() -> bonus.save("1", numbers))
+        assertThatThrownBy(() -> bonus.save("1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -44,27 +45,27 @@ class BonusTest {
     @DisplayName("보너스 번호에 공백만 존재할 시 예외가 발생한다.")
     @Test
     void saveBonusByEmptyOnly() {
-        assertThatThrownBy(() -> bonus.save("", numbers))
+        assertThatThrownBy(() -> bonus.save(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호가 문자를 포함한 경우 예외가 발생한다.")
     @Test
     void saveBonusByNotNumberOrRest() {
-        assertThatThrownBy(() -> bonus.save("2a", numbers))
+        assertThatThrownBy(() -> bonus.save("2a"))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> bonus.save("-2", numbers))
+        assertThatThrownBy(() -> bonus.save("-2"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호가 1~45 범위를 초과할 경우 예외가 발생한다.")
     @Test
     void saveBonusByExceedBoundary() {
-        assertThatThrownBy(() -> bonus.save("46", numbers))
+        assertThatThrownBy(() -> bonus.save("46"))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        assertThatThrownBy(() -> bonus.save("0", numbers))
+        assertThatThrownBy(() -> bonus.save("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

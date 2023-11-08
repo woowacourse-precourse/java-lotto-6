@@ -2,11 +2,11 @@ package lotto.dto;
 
 import lotto.domain.BuyLotto;
 
-public final class BuyLottoDTO {
-    private BuyLottoDTO() {
+public final class BuyLottoDto {
+    private BuyLottoDto() {
     }
 
-    public static class Input extends DTO.Input {
+    public static class Input extends Dto.Input {
         private Long buyPrice;
 
         public Long getBuyPrice() {
@@ -19,7 +19,7 @@ public final class BuyLottoDTO {
         }
     }
 
-    public static class Output extends DTO.Output {
+    public static class Output extends Dto.Output {
         private final BuyLotto buyLotto;
 
         public Output(BuyLotto buyLotto) {

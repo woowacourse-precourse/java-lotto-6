@@ -2,8 +2,8 @@ package lotto.view.outputview;
 
 import lotto.domain.BuyLotto;
 import lotto.domain.Lotto;
-import lotto.dto.BuyLottoDTO;
-import lotto.dto.DTO;
+import lotto.dto.BuyLottoDto;
+import lotto.dto.Dto;
 import lotto.view.OutputView;
 
 import java.util.Comparator;
@@ -14,9 +14,9 @@ import static lotto.view.ParameterConfig.BUY_PRICE;
 
 public final class LottoBuyOutputView implements OutputView {
     @Override
-    public void view(Map<String, ? super DTO.Output> model) {
+    public void view(Map<String, ? super Dto.Output> model) {
         if (model.containsKey(BUY_PRICE) && model.get(BUY_PRICE) != null) {
-            BuyLottoDTO.Output buyLottoDto = (BuyLottoDTO.Output) model.get(BUY_PRICE);
+            BuyLottoDto.Output buyLottoDto = (BuyLottoDto.Output) model.get(BUY_PRICE);
             viewAllBuyLotto(buyLottoDto.getBuyLotto());
             return;
         }

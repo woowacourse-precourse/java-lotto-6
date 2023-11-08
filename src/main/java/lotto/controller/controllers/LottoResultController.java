@@ -1,10 +1,10 @@
 package lotto.controller.controllers;
 
 import lotto.domain.WinningLotto;
-import lotto.dto.BuyLottoDTO;
-import lotto.dto.DTO;
-import lotto.dto.LottoResultDTO;
-import lotto.dto.WinningLottoDTO;
+import lotto.dto.BuyLottoDto;
+import lotto.dto.Dto;
+import lotto.dto.LottoResultOutputDto;
+import lotto.dto.WinningLottoInputDto;
 import lotto.service.LottoResultService;
 import lotto.view.OutputView;
 import lotto.view.ParameterConfig;
@@ -21,22 +21,22 @@ public final class LottoResultController implements Controller {
     }
 
     @Override
-    public void process(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs) {
+    public void process(Map<String, ? super Dto.Input> inputs, Map<String, ? super Dto.Output> outputs) {
         init(inputs, outputs);
-        LottoResultDTO lottoResultDto = service.createLottoResultDto();
-        viewLottoResult(outputs, lottoResultDto);
+        LottoResultOutputDto lottoResultOutputDto = service.createLottoResultDto();
+        viewLottoResult(outputs, lottoResultOutputDto);
     }
 
-    private void viewLottoResult(Map<String, ? super DTO.Output> outputs, LottoResultDTO dto) {
+    private void viewLottoResult(Map<String, ? super Dto.Output> outputs, LottoResultOutputDto dto) {
         outputs.put(ParameterConfig.LOTTO_RESULT, dto);
         outputView.view(outputs);
     }
 
-    private void init(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs) {
-        BuyLottoDTO.Output buyLottoDto = (BuyLottoDTO.Output) outputs.get(ParameterConfig.BUY_PRICE);
-        WinningLottoDTO winningLottoDto = (WinningLottoDTO) inputs.get(ParameterConfig.WINNING_LOTTO);
+    private void init(Map<String, ? super Dto.Input> inputs, Map<String, ? super Dto.Output> outputs) {
+        BuyLottoDto.Output buyLottoDto = (BuyLottoDto.Output) outputs.get(ParameterConfig.BUY_PRICE);
+        WinningLottoInputDto winningLottoInputDto = (WinningLottoInputDto) inputs.get(ParameterConfig.WINNING_LOTTO);
 
-        WinningLotto winningLotto = new WinningLotto(winningLottoDto.getLotto(), winningLottoDto.getBonus());
+        WinningLotto winningLotto = new WinningLotto(winningLottoInputDto.getLotto(), winningLottoInputDto.getBonus());
         service = new LottoResultService(winningLotto, buyLottoDto.getBuyLotto());
     }
 }

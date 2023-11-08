@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.domain.*;
-import lotto.dto.LottoResultDTO;
+import lotto.dto.LottoResultOutputDto;
 
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -17,7 +17,7 @@ public final class LottoResultService {
         this.buyLotto = buyLotto;
     }
 
-    public LottoResultDTO createLottoResultDto() {
+    public LottoResultOutputDto createLottoResultDto() {
         Map<LottoRankInfo, Integer> result = new EnumMap<>(LottoRankInfo.class);
 
         for (Lotto lotto : buyLotto.lotto()) {
@@ -32,10 +32,10 @@ public final class LottoResultService {
     }
 
 
-    private LottoResultDTO convertDto(Map<LottoRankInfo, Integer> result) {
+    private LottoResultOutputDto convertDto(Map<LottoRankInfo, Integer> result) {
         LottoResult lottoResult = new LottoResult(result);
         Map<LottoRankInfo, Integer> lottoRankDto = convertLottoRanks(result);
-        return new LottoResultDTO(lottoResult.getReturnRatio(), lottoRankDto);
+        return new LottoResultOutputDto(lottoResult.getReturnRatio(), lottoRankDto);
     }
 
     private Map<LottoRankInfo, Integer> convertLottoRanks(Map<LottoRankInfo, Integer> result) {

@@ -1,7 +1,7 @@
 package lotto.controller.controllers;
 
-import lotto.dto.BuyLottoDTO;
-import lotto.dto.DTO;
+import lotto.dto.BuyLottoDto;
+import lotto.dto.Dto;
 import lotto.service.LottoBuyService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,8 +21,8 @@ public final class LottoBuyController implements Controller {
     }
 
     @Override
-    public void process(Map<String, ? super DTO.Input> inputs,
-                        Map<String, ? super DTO.Output> outputs) {
+    public void process(Map<String, ? super Dto.Input> inputs,
+                        Map<String, ? super Dto.Output> outputs) {
         try {
             Long price = getBuyLottoPrice(inputs, outputs);
             viewBuyLottoNumbers(outputs, price);
@@ -32,18 +32,18 @@ public final class LottoBuyController implements Controller {
         }
     }
 
-    private void viewBuyLottoNumbers(Map<String, ? super DTO.Output> outputs, Long price) {
-        BuyLottoDTO.Output buyLottoDto = service.getBuyLottoDto(price);
+    private void viewBuyLottoNumbers(Map<String, ? super Dto.Output> outputs, Long price) {
+        BuyLottoDto.Output buyLottoDto = service.getBuyLottoDto(price);
         outputs.put(ParameterConfig.BUY_PRICE, buyLottoDto);
         outputView.view(outputs);
     }
 
-    private Long getBuyLottoPrice(Map<String, ? super DTO.Input> inputs,
-                                  Map<String, ? super DTO.Output> outputs) {
+    private Long getBuyLottoPrice(Map<String, ? super Dto.Input> inputs,
+                                  Map<String, ? super Dto.Output> outputs) {
 
-        inputs.put(ParameterConfig.BUY_PRICE, new BuyLottoDTO.Input());
+        inputs.put(ParameterConfig.BUY_PRICE, new BuyLottoDto.Input());
         outputView.view(outputs);
         inputView.read(inputs);
-        return ((BuyLottoDTO.Input) inputs.get(ParameterConfig.BUY_PRICE)).getBuyPrice();
+        return ((BuyLottoDto.Input) inputs.get(ParameterConfig.BUY_PRICE)).getBuyPrice();
     }
 }

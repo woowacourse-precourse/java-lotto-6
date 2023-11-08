@@ -1,9 +1,9 @@
 package lotto.view;
 
-import lotto.dto.DTO;
+import lotto.dto.Dto;
 
 import java.util.Map;
 
 public interface InputView {
-    void read(Map<String, ? super DTO.Input> parameter);
+    void read(Map<String, ? super Dto.Input> parameter);
 }

@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.controller.controllers.Controller;
 import lotto.domain.ProgramFlow;
-import lotto.dto.DTO;
+import lotto.dto.Dto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,23 +17,23 @@ public final class MainController {
     );
 
     public void run() {
-        Map<String, DTO.Input> inputs = new HashMap<>();
-        Map<String, DTO.Output> outputs = new HashMap<>();
+        Map<String, Dto.Input> inputs = new HashMap<>();
+        Map<String, Dto.Output> outputs = new HashMap<>();
 
         processBuyLotto(inputs, outputs);
         processWinningLotto(inputs, outputs);
         processLottoResult(inputs, outputs);
     }
 
-    private void processBuyLotto(Map<String, DTO.Input> inputs, Map<String, DTO.Output> outputs) {
+    private void processBuyLotto(Map<String, Dto.Input> inputs, Map<String, Dto.Output> outputs) {
         controllers.get(BUY_LOTTO).process(inputs, outputs);
     }
 
-    private void processWinningLotto(Map<String, DTO.Input> inputs, Map<String, DTO.Output> outputs) {
+    private void processWinningLotto(Map<String, Dto.Input> inputs, Map<String, Dto.Output> outputs) {
         controllers.get(SET_WINNING).process(inputs, outputs);
     }
 
-    private void processLottoResult(Map<String, DTO.Input> inputs, Map<String, DTO.Output> outputs) {
+    private void processLottoResult(Map<String, Dto.Input> inputs, Map<String, Dto.Output> outputs) {
         controllers.get(RANK_RESULT).process(inputs, outputs);
     }
 }

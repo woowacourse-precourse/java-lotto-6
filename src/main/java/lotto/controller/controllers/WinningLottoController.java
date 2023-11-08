@@ -1,8 +1,8 @@
 package lotto.controller.controllers;
 
 import lotto.domain.WinningLotto;
-import lotto.dto.DTO;
-import lotto.dto.WinningLottoDTO;
+import lotto.dto.Dto;
+import lotto.dto.WinningLottoInputDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.ParameterConfig;
@@ -19,13 +19,13 @@ public final class WinningLottoController implements Controller {
     }
 
     @Override
-    public void process(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs) {
-        inputs.put(ParameterConfig.WINNING_LOTTO, new WinningLottoDTO());
+    public void process(Map<String, ? super Dto.Input> inputs, Map<String, ? super Dto.Output> outputs) {
+        inputs.put(ParameterConfig.WINNING_LOTTO, new WinningLottoInputDto());
         inputLottoNumbers(inputs, outputs);
         inputBonusNumber(inputs, outputs);
     }
 
-    private void inputLottoNumbers(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs) {
+    private void inputLottoNumbers(Map<String, ? super Dto.Input> inputs, Map<String, ? super Dto.Output> outputs) {
         try {
             viewText(inputs, outputs, ParameterConfig.WINNING_LOTTO_NUMBERS);
 
@@ -35,7 +35,7 @@ public final class WinningLottoController implements Controller {
         }
     }
 
-    private void viewText(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs, String param) {
+    private void viewText(Map<String, ? super Dto.Input> inputs, Map<String, ? super Dto.Output> outputs, String param) {
         outputs.put(param, null);
         outputView.view(outputs);
         inputView.read(inputs);
@@ -43,20 +43,20 @@ public final class WinningLottoController implements Controller {
         outputs.remove(param);
     }
 
-    private void inputBonusNumber(Map<String, ? super DTO.Input> inputs,
-                                  Map<String, ? super DTO.Output> outputs) {
+    private void inputBonusNumber(Map<String, ? super Dto.Input> inputs,
+                                  Map<String, ? super Dto.Output> outputs) {
         try {
             viewText(inputs, outputs, ParameterConfig.BONUS_NUMBER);
             validateDuplication(inputs);
         } catch (IllegalArgumentException e) {
             System.out.print(e.getMessage());
-            ((WinningLottoDTO) inputs.get(ParameterConfig.WINNING_LOTTO)).setBonus(null);
+            ((WinningLottoInputDto) inputs.get(ParameterConfig.WINNING_LOTTO)).setBonus(null);
             inputBonusNumber(inputs, outputs);
         }
     }
 
-    private void validateDuplication(Map<String, ? super DTO.Input> inputs) {
-        WinningLottoDTO dto = (WinningLottoDTO) inputs.get(ParameterConfig.WINNING_LOTTO);
+    private void validateDuplication(Map<String, ? super Dto.Input> inputs) {
+        WinningLottoInputDto dto = (WinningLottoInputDto) inputs.get(ParameterConfig.WINNING_LOTTO);
         new WinningLotto(dto.getLotto(), dto.getBonus());
     }
 }

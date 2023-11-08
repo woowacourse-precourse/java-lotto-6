@@ -2,7 +2,7 @@ package lotto.dto;
 
 import lotto.domain.Lotto;
 
-public final class WinningLottoDTO extends DTO.Input {
+public final class WinningLottoInputDto extends Dto.Input {
     private Lotto lotto;
     private Integer bonus;
 

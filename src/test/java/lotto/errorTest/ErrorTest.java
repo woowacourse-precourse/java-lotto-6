@@ -68,6 +68,15 @@ public class ErrorTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("당첨 금액 입력 숫자중 0보다 작은 숫자가 있을때")
+    public void inputWinningNumberSmallRangeError(){
+        assertSimpleTest(() -> {
+            runException("3000","1,2,3,4,0,6");
+            assertThat(output()).contains(ExceptionMessage.NumberRangeError.getErrorMessage());
+        });
+    }
+
 
 
 

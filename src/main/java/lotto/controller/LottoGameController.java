@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
 import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.InvestmentMoneyDto;
 import lotto.dto.request.WinningLottoNumbersDto;
@@ -16,7 +18,6 @@ import lotto.model.PrizeSummary;
 import lotto.model.PurchasableLottoCount;
 import lotto.model.TotalProfitRate;
 import lotto.model.WinningCombination;
-import lotto.util.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -32,9 +33,9 @@ public class LottoGameController {
     }
 
     public void run() {
-        InvestmentMoney investmentMoney = RetryUtil.retryOnFail(this::createInvestmentMoney);
+        InvestmentMoney investmentMoney = retryOnFail(this::createInvestmentMoney);
 
-        LottoGroup lottoGroup = RetryUtil.retryOnFail(this::createLottoGroup, investmentMoney);
+        LottoGroup lottoGroup = retryOnFail(this::createLottoGroup, investmentMoney);
         printLottoGroup(lottoGroup);
 
         PrizeSummary prizeSummary = summarizePrizes(lottoGroup);
@@ -43,13 +44,13 @@ public class LottoGameController {
     }
 
     private InvestmentMoney createInvestmentMoney() {
-        InvestmentMoneyDto investmentMoneyDto = RetryUtil.retryOnFail(inputView::readInvestmentMoney);
+        InvestmentMoneyDto investmentMoneyDto = retryOnFail(inputView::readInvestmentMoney);
         int investmentMoney = investmentMoneyDto.getInvestmentMoney();
         return InvestmentMoney.from(investmentMoney);
     }
 
     private LottoGroup createLottoGroup(InvestmentMoney investmentMoney) {
-        PurchasableLottoCount lottoCount = RetryUtil.retryOnFail(this::createLottoCount, investmentMoney);
+        PurchasableLottoCount lottoCount = retryOnFail(this::createLottoCount, investmentMoney);
         return LottoGroup.create(lottoCount, numberGenerator);
     }
 
@@ -68,23 +69,23 @@ public class LottoGameController {
     }
 
     private LottoMachine createLottoMachine(LottoGroup lottoGroup) {
-        Lotto winningLotto = RetryUtil.retryOnFail(this::createWinningLotto);
-        WinningCombination winningCombination = RetryUtil.retryOnFail(this::createWinningCombination, winningLotto);
+        Lotto winningLotto = retryOnFail(this::createWinningLotto);
+        WinningCombination winningCombination = retryOnFail(this::createWinningCombination, winningLotto);
         return LottoMachine.of(lottoGroup, winningCombination);
     }
 
     private Lotto createWinningLotto() {
-        WinningLottoNumbersDto winningLottoNumbersDto = RetryUtil.retryOnFail(inputView::readWinningLottoNumbers);
+        WinningLottoNumbersDto winningLottoNumbersDto = retryOnFail(inputView::readWinningLottoNumbers);
         return Lotto.from(winningLottoNumbersDto.getWinningLottoNumbers());
     }
 
     private WinningCombination createWinningCombination(Lotto winningLotto) {
-        LottoNumber bonusNumber = RetryUtil.retryOnFail(this::createBonusNumber);
+        LottoNumber bonusNumber = retryOnFail(this::createBonusNumber);
         return WinningCombination.of(winningLotto, bonusNumber);
     }
 
     private LottoNumber createBonusNumber() {
-        BonusNumberDto bonusNumberDto = RetryUtil.retryOnFail(inputView::readBonusNumber);
+        BonusNumberDto bonusNumberDto = retryOnFail(inputView::readBonusNumber);
         return LottoNumber.from(bonusNumberDto.getBonusNumber());
     }
 
@@ -96,5 +97,23 @@ public class LottoGameController {
         TotalProfitRate totalProfitRate = prizeSummary.calculateTotalProfitRate(investmentMoney);
         TotalProfitRateDto totalProfitRateDto = TotalProfitRateDto.from(totalProfitRate);
         outputView.printTotalProfitRate(totalProfitRateDto);
+    }
+
+    private <T> T retryOnFail(Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            return retryOnFail(supplier);
+        }
+    }
+
+    private <T, R> R retryOnFail(Function<T, R> function, T input) {
+        try {
+            return function.apply(input);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e.getMessage());
+            return retryOnFail(function, input);
+        }
     }
 }

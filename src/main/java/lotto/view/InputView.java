@@ -2,13 +2,14 @@ package lotto.view;
 
 import java.util.List;
 import java.util.stream.Stream;
-import camp.nextstep.edu.missionutils.Console;
 import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.InvestmentMoneyDto;
 import lotto.dto.request.WinningLottoNumbersDto;
 import lotto.util.BlankValidator;
 import lotto.util.CommaSeparatedNumbersValidator;
 import lotto.util.DigitsOnlyValidator;
+import lotto.view.printer.Printer;
+import lotto.view.reader.Reader;
 
 public class InputView {
     private static final String INVESTMENT_MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -17,28 +18,25 @@ public class InputView {
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_LOTTO_NUMBERS_DELIMITER = ",";
 
-    private InputView() {
+    private final Reader reader;
+    private final Printer printer;
+
+    private InputView(Reader reader, Printer printer) {
+        this.reader = reader;
+        this.printer = printer;
     }
 
-    public static InputView getInstance() {
-        return LazyHolder.INSTANCE;
+    public static InputView of(Reader reader, Printer printer) {
+        return new InputView(reader, printer);
     }
 
     public InvestmentMoneyDto readInvestmentMoney() {
-        println(INVESTMENT_MONEY_INPUT_MESSAGE);
-        String rawInvestmentMoney = Console.readLine();
-        printEmptyLine();
+        printer.printLine(INVESTMENT_MONEY_INPUT_MESSAGE);
+        String rawInvestmentMoney = reader.readLine();
+        printer.printEmptyLine();
         validateInvestmentMoney(rawInvestmentMoney);
         int investmentMoney = convertToInt(rawInvestmentMoney);
         return new InvestmentMoneyDto(investmentMoney);
-    }
-
-    private void println(String message) {
-        System.out.println(message);
-    }
-
-    private void printEmptyLine() {
-        System.out.println();
     }
 
     private void validateInvestmentMoney(String rawInvestMoney) {
@@ -55,9 +53,9 @@ public class InputView {
     }
 
     public WinningLottoNumbersDto readWinningLottoNumbers() {
-        println(WINNING_LOTTO_NUMBERS_INPUT_MESSAGE);
-        String rawWinningLottoNumbers = Console.readLine();
-        printEmptyLine();
+        printer.printLine(WINNING_LOTTO_NUMBERS_INPUT_MESSAGE);
+        String rawWinningLottoNumbers = reader.readLine();
+        printer.printEmptyLine();
         validateWinningNumbers(rawWinningLottoNumbers);
         List<Integer> winningLottoNumbers = splitToInt(WINNING_LOTTO_NUMBERS_DELIMITER, rawWinningLottoNumbers);
         return new WinningLottoNumbersDto(winningLottoNumbers);
@@ -75,9 +73,9 @@ public class InputView {
     }
 
     public BonusNumberDto readBonusNumber() {
-        println(BONUS_NUMBER_INPUT_MESSAGE);
-        String rawBonusNumber = Console.readLine();
-        printEmptyLine();
+        printer.printLine(BONUS_NUMBER_INPUT_MESSAGE);
+        String rawBonusNumber = reader.readLine();
+        printer.printEmptyLine();
         validateBonusNumber(rawBonusNumber);
         int bonusNumber = convertToInt(rawBonusNumber);
         return new BonusNumberDto(bonusNumber);
@@ -88,9 +86,4 @@ public class InputView {
         DigitsOnlyValidator.validate(rawBonusNumber);
     }
 
-    private static class LazyHolder {
-
-        private static final InputView INSTANCE = new InputView();
-
-    }
 }

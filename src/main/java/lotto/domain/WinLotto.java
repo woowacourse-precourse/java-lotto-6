@@ -11,12 +11,12 @@ public class WinLotto extends Lotto {
 
     public WinLotto(List<Integer> numbers, Integer bonus) {
         super(numbers);
-        validateNumber(numbers, bonus);
+        validateBonusDuplicate(numbers, bonus);
         validateBonusRange(bonus);
         this.bonus = bonus;
     }
 
-    private void validateNumber(List<Integer> numbers, Integer bonus) {
+    private void validateBonusDuplicate(List<Integer> numbers, Integer bonus) {
         if (numbers.contains(bonus)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호가 보너스 번호와 중복되어서는 안됩니다.");
         }

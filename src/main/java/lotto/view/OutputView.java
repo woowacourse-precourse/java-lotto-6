@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.WinningDto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
@@ -11,7 +13,9 @@ public class OutputView {
         System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(numbers);
+            System.out.println(numbers);
         }
     }
 

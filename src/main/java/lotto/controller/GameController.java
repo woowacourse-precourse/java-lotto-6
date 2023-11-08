@@ -22,15 +22,15 @@ public class GameController {
     }
 
     public void startGame() {
-        setUser();
+        buyLottoForUser();
         printUserLottos();
-        setWinningLotto();
+        readWinningLotto();
         calculateLottoStatistics();
         printLottoResult();
         printLottoStatistics();
     }
 
-    private void setUser() {
+    private void buyLottoForUser() {
         LottoSalesOffice salesOffice = new LottoSalesOffice();
 
         Money money = inputController.readMoney();
@@ -41,7 +41,7 @@ public class GameController {
         OutputView.printUserLottos(user.getLottos());
     }
 
-    private void setWinningLotto() {
+    private void readWinningLotto() {
         Lotto lotto = inputController.readLotto();
         int bonus = inputController.readBonus(lotto.getNumbers());
         winningLotto = new WinningLotto(lotto, bonus);

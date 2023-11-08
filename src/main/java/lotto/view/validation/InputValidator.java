@@ -18,6 +18,11 @@ public class InputValidator {
         }
     }
 
+    public static void validatePurchase(String purchaseInputNumber) {
+        validateBlank(purchaseInputNumber);
+        validatePurchaseNumber(purchaseInputNumber);
+    }
+
     public static int validateLottoNumberAndConvertToNumeric(String number) {
         try {
             return Integer.parseInt(number);
@@ -27,6 +32,7 @@ public class InputValidator {
     }
 
     public static void validateBonusNumber(String bonusNumber) {
+        validateBlank(bonusNumber);
         try {
             Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {

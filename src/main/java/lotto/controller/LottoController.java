@@ -3,7 +3,9 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.validation.InputValidator;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class LottoController {
@@ -46,7 +48,9 @@ public class LottoController {
     }
 
     private double getPurchaseAmount() {
-        return InputView.getPurchaseAmountFromInput();
+        String inputAmount = InputView.getPurchaseAmountFromInput();
+        InputValidator.validatePurchase(inputAmount);
+        return Double.parseDouble(inputAmount);
     }
 
     private void winningLottoSetting() {
@@ -58,7 +62,13 @@ public class LottoController {
     private Lotto getWinningLottoAndCheck() {
         while (true) {
             try {
-                return InputView.getWinningLottoFromInput();
+                String inputWinningLotto = InputView.getWinningLottoFromInput();
+                InputValidator.validateBlank(inputWinningLotto);
+                return new Lotto(
+                        Arrays.stream(inputWinningLotto.split(",", -1))
+                                .map(InputValidator::validateLottoNumberAndConvertToNumeric)
+                                .toList()
+                );
             } catch (IllegalArgumentException e) {
                 OutputView.errorMessage(e.getMessage());
             } finally {
@@ -70,7 +80,9 @@ public class LottoController {
     private BonusNumber getBonusNumberAndCheck(Lotto winningNumberLotto) {
         while (true) {
             try {
-                BonusNumber bonusNumber = InputView.getBonusNumberFromInput();
+                String inputBonusNumber = InputView.getBonusNumberFromInput();
+                InputValidator.validateBonusNumber(inputBonusNumber);
+                BonusNumber bonusNumber = new BonusNumber(Integer.parseInt(inputBonusNumber.trim()));
                 bonusNumber.containsException(winningNumberLotto);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {

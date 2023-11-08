@@ -10,7 +10,7 @@ public class Application {
         public static int ticketNumber;
         public static List<Integer> playerNumber = new ArrayList<>();
         public static int bonusNumber;
-        public static List<LottoNumber> lottoList  = new ArrayList<LottoNumber>();
+        public static List<LottoNumber> lottoBox = new ArrayList<LottoNumber>();
         public static List<Integer> computerNumber = new ArrayList<>();
      // main 메소드
     public static void main(String[] args) {

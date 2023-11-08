@@ -1,5 +1,50 @@
-# 기능 구현 목록
-## UI
+# 우아한테크코스 6기 프리코스 3주차 미션 - 로또 게임
+> 우아한테크코스 6기 3주차 미션, 로또 게임을 구현한 저장소 입니다. 
+
+## 📦 패키지/클래스 구조
+
+### controller
+* `LottoCotroller`
+  * **domain**과 **view**를 이어주는 중개자 역할
+  * 예외 발생 시 해당 부분을 다시 입력 받을 수 있게 해준다.
+### domain
+* `Lotto`
+  * 로또 번호(```List<Integer>```를 관리한다.
+  * 로또 번호 검증, 로또 번호 비교 역할을 수행한다.
+* `LottoGenerator`
+  * 자동, 수동 등 로또(```Lotto```) 생성을 관리 및 통제한다.
+* `Rank`
+  * 1~6등까지 등수에 관한 정보를 관리한다.
+* `PurchaseLotto`
+  * 구매한 로또 리스트(```List<Lotto>```)를 관리한다.
+  * 총 당첨 금액 계산, 당청 등수 별 개수 계산 역할을 수행한다.
+* `LottoOrder`
+  * 지불 금액, 구매한 로또(```PurchaseLotto```) 정보를 관리한다.
+  * 지불 금액 검증, 수익률 계산, 총 등수 별 개수 계산 역할을 수행한다.
+* `WinningLotto`
+  * 당첨 로또 정보(```Lotto, 보너스 번호```)를 관리한다.
+  * 보너스 번호 검증, 당첨 등수 계산 역할을 수행한다.
+### view
+* `LottoInputView`
+  * 사용자에게 입력을 받는다.
+  * `LottoInputValidator`를 통해 입력값을 검증한다.
+  * `LottoOutputView`를 통해 정보를 출력한다.
+  * 필요한 타입으로 형변환을 수행한다.
+* `LottoInputValidator`
+  * 숫자, 구분자 위치 등 입력 받는 정보를 검증하는 역할을 수행한다.
+* `LottoOutputView`
+  * 사용자가 요구하는 값을 출력한다.
+### constant
+* `LottoConstant`
+  * 로또와 관련된 상수값을 보관한다.
+### exception
+* `ExceptionMessage`
+  * 로또와 관련된 예외 정보를 관리한다.
+
+---
+
+## 📚 나의 기능 구현 목록
+### UI
 - [x] 로또를 구입 할 금액을 입력 받는다.
   - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
   - 금액이 숫자가 아닐 경우 `[ERROR]`로 시작하는 에러 메시지와 함께 **예외**를 발생 시킨다.
@@ -20,7 +65,7 @@
 - [x] 로또 게임 당첨 통계 정보를 출력한다.
 - [x] 예외 메시지를 출력한다.
 
-## 핵심 로직
+### 핵심 로직
 - [x] 로또 번호를 랜덤 생성한다.
   - Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()`를 활용한다.
 - [x] 로또 번호를 검증 한다.

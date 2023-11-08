@@ -5,8 +5,8 @@ import java.util.List;
 
 public class InputValidator {
     public static final int WINNING_NUMBER_SIZE = 6;
-    public static final int MIN_LOTTO_NUMBER = 1;
-    public static final int MAX_LOTTO_NUMBER = 45;
+    public static final int MIN_INPUT_NUMBER = 1;
+    public static final int MAX_INPUT_NUMBER = 45;
 
     public static final String MONEY_1000_UNIT_ERROR = "[ERROR] 로또 구입금액은 1,000원 단위여야 합니다.\n";
     public static final String WINNING_NUMBER_SIZE_ERROR = "[ERROR] 당첨 번호는 6자리여야 합니다.";
@@ -33,7 +33,7 @@ public class InputValidator {
         }
 
         for (int number : winningLottoNumbers) {
-            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+            if (number < MIN_INPUT_NUMBER || number > MAX_INPUT_NUMBER) {
                 throw new IllegalArgumentException(INPUT_NUMBER_RANGE_ERROR);
             }
         }
@@ -52,7 +52,7 @@ public class InputValidator {
         if (winningLottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
-        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+        if (bonusNumber < MIN_INPUT_NUMBER || bonusNumber > MAX_INPUT_NUMBER) {
             throw new IllegalArgumentException(INPUT_NUMBER_RANGE_ERROR);
         }
     }

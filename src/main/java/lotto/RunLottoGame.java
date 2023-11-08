@@ -4,11 +4,17 @@ import java.util.List;
 
 public class RunLottoGame {
     private int lottoQuantity;
+    private List<Integer> winningLottoNumbers;
+    private String winningNumbers;
+    private List<Integer> randomLottoNumbers;
+
+    private int bonusNumber;
 
     public void start() {
         prepareLotto();
         publishLotto();
         winningLotto();
+        processLotto();
     }
 
     public void prepareLotto() {
@@ -30,7 +36,12 @@ public class RunLottoGame {
 
     public void winningLotto() {
         InputManager inputWinningManager = new InputManager();
-        List<Integer> winningLottoNumbers = inputWinningManager.inputWinningNumbers();
-        int bonusNumber = inputWinningManager.inputBonusNumber(winningLottoNumbers);
+        winningLottoNumbers = inputWinningManager.inputWinningNumbers();
+        bonusNumber = inputWinningManager.inputBonusNumber(winningLottoNumbers);
+    }
+
+    public void processLotto() {
+        LottoMatch lottoMatch = new LottoMatch();
+        lottoMatch.checkLotto(randomLottoNumbers, winningLottoNumbers, bonusNumber);
     }
 }

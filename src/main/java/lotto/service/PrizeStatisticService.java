@@ -19,11 +19,11 @@ public class PrizeStatisticService {
         return totalPrizeMoney;
     }
 
-    public static int calculateWinningPrize(Prize prize, int count) {
+    private static int calculateWinningPrize(Prize prize, int count) {
         return prize.getPrizeAmount() * count;
     }
 
-    public static void printPrizeStatistics(Prize prize, int count) {
+    private static void printPrizeStatistics(Prize prize, int count) {
         OutputView.printTotalStats(prize, count);
     }
 

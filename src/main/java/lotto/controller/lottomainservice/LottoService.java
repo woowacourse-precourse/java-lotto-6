@@ -31,7 +31,6 @@ public class LottoService {
         this.lottoMaker = lottoMaker;
         this.lottery = lottery;
     }
-
     public void game(){
         getMoney();
         makeRandomLotto();
@@ -39,7 +38,6 @@ public class LottoService {
         makeBonusNumber();
         makeCalculateAndPrintResult();
     }
-
     private void makeCalculateAndPrintResult() {
         List<LottoRanking> lottoRankings = new ArrayList<>();
         for(Lotto lotto : repository.getLottoNumbers()){
@@ -50,7 +48,6 @@ public class LottoService {
         output.printResult(lottoRankings);
         output.printCalculation(calculation.getCalculation(lottoRankings));
     }
-
     private void makeBonusNumber() {
         output.printGetBonusNum();
         do{
@@ -61,7 +58,6 @@ public class LottoService {
         }while(isUseFulBonusNumber);
         System.out.println();
     }
-
     private void makeAnswerLotto() {
         output.printGetLottoAnswer();
         do{
@@ -72,7 +68,6 @@ public class LottoService {
         }while(isUseFulAnswerLotto);
         System.out.println();
     }
-
     private void answerLottoValidate(List<Integer> tempAnswer) {
         try{
             repository.setAnswerLotto(new Lotto(tempAnswer));
@@ -81,7 +76,6 @@ public class LottoService {
             System.out.println(e.getMessage());
         }
     }
-
     private void getMoney() {
         output.printPurchaseAmount();
         do {
@@ -92,7 +86,6 @@ public class LottoService {
         }while(isUseFulLottoCount);
         System.out.println();
     }
-
     private void makeRandomLotto(){
         for(int i = 0; i<repository.getCountLotto(); i++){
             repository.setLottoNumbers(new Lotto(lottoMaker.makeLotto()));

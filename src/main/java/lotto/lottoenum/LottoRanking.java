@@ -10,7 +10,6 @@ public enum LottoRanking {
         this.value = value;
         this.price = price;
     }
-
     public int getValue(){
         return value;
     }

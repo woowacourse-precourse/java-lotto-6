@@ -22,7 +22,6 @@ public class InputValidateAnswer extends InputValidate{
 
         return answerLotto;
     }
-
     private String[] getLottoByString(String lottoNum) {
         return lottoNum.split(",");
     }

@@ -18,7 +18,6 @@ public class InputValidateBonus extends InputValidate{
         }
         return 0;
     }
-
     private int checkBonusNumberInAnswer(int bonus){
         List<Integer> lottoAnswer = repository.getAnswerLotto().getLottoDetail();
         if(lottoAnswer.contains(bonus)){

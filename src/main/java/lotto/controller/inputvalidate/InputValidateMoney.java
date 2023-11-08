@@ -12,7 +12,6 @@ public class InputValidateMoney extends InputValidate{
         }
         return 0;
     }
-
     private int validateCount(String amount) throws IllegalArgumentException{
         int money = super.validateIsDigit(amount);
         if(money % 1000 != 0){

@@ -33,6 +33,12 @@ public class LottoInputValidator implements InputValidator{
         }
     }
 
+    private static void validateDuplicate(String[] checkValues) {
+        if(Arrays.stream(checkValues).distinct().count() != 6) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_MESSAGE.getMessage());
+        }
+    }
+
     private static boolean isValidRange(int number) {
         return number < 1 || number > 45;
     }

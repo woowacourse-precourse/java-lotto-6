@@ -47,6 +47,29 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 기능_테스트_두개가_당첨() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("2000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "2개를 구매했습니다.",
+                            "[1, 2, 3, 10, 11, 12]",
+                            "[4, 5, 6, 13, 14, 15]",
+                            "3개 일치 (5,000원) - 2개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 500.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 10, 11, 12),
+                List.of(4, 5, 6, 13, 14, 15)
+        );
+    }
+
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");

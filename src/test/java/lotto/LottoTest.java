@@ -23,5 +23,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호에 잘못된 번호가 들어가면 예외 발생")
+    @Test
+    void wrongArgumentTest(){
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
     // 아래에 추가 테스트 작성 가능
 }

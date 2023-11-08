@@ -1,0 +1,102 @@
+package lotto.service;
+
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.User;
+import lotto.domain.UserLotto;
+import lotto.view.ResultView;
+
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class LottoCalculateService {
+    private static final int THREE_NUMBER_MATCHES = 3;
+    private static final int FOUR_NUMBER_MATCHES = 4;
+    private static final int FIVE_NUMBER_MATCHES = 5;
+    private static final int SIX_NUMBER_MATCHES = 6;
+    private static final int BONUS_ENUM_LABEL = 7;
+    private static final int BEFORE_BONUS_NUMBER_INDEX = 6;
+    private static final String DECIMAL_FORMAT = "###,##0.0";
+    private final ResultView resultView = new ResultView();
+    private Map<Rank, Integer> countofRank = new HashMap<>();
+
+    public void calculateWinning(User user, Lotto lotto) {
+        countLottoWinningCount(user, lotto);
+        resultView.responseWinningHistory(countofRank);
+        resultView.responseYieldOfLotto(getYieldOfLotto(user, user.getWinningPrice()));
+    }
+
+    public void countLottoWinningCount(User user, Lotto lotto) {
+        List<UserLotto> userLottos = user.getLottos();
+        userLottos
+                .stream()
+                .forEach(userLotto -> countLottoWinning(user, userLotto.getNumbers(), lotto));
+    }
+
+    public String getYieldOfLotto(User user, int totalPrice) {
+        if (user.getBuyingPrice() == 0) {
+            return "0.0";
+        }
+        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
+        return decimalFormat.format((double) totalPrice / user.getBuyingPrice() * 100);
+    }
+
+    public void countLottoWinning(User user, List<Integer> numbers, Lotto lotto) {
+        int countContainsOfLottoWithoutBonus = countUserNumbersContainLotto(numbers, lotto.getNumbers());
+        if (isNumberMatchedNormal(countContainsOfLottoWithoutBonus)) {
+            winLotto(countContainsOfLottoWithoutBonus, user);
+            return;
+        }
+        if (isNumberMatchedFiveWithBonus(countContainsOfLottoWithoutBonus, numbers, lotto)) {
+            winLotto(BONUS_ENUM_LABEL, user);
+            return;
+        }
+        if (isNumberMatchedFive(countContainsOfLottoWithoutBonus, numbers, lotto)) {
+            winLotto(countContainsOfLottoWithoutBonus, user);
+            return;
+        }
+    }
+
+    public void winLotto(int value, User user) {
+        inputCountOfRank(Rank.FIND.valueOf(value));
+        user.addWinningPrice(Rank.FIND.valueOf(value).getPrice());
+    }
+
+    public int countUserNumbersContainLotto(List<Integer> userNumbers, List<Integer> lottoNumbers) {
+        int count = 0;
+        for (int i = 0; i < BEFORE_BONUS_NUMBER_INDEX; i++) {
+            if (userNumbers.contains(lottoNumbers.get(i))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void inputCountOfRank(Rank rank) {
+        countofRank.put(rank, countofRank.getOrDefault(rank, 0) + 1);
+    }
+
+    public boolean isNumberMatchedNormal(int countContainsOfLotto) {
+        if (countContainsOfLotto == THREE_NUMBER_MATCHES || countContainsOfLotto == FOUR_NUMBER_MATCHES
+                || countContainsOfLotto == SIX_NUMBER_MATCHES) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isNumberMatchedFiveWithBonus(int countContainsOfLotto, List<Integer> numbers, Lotto lotto) {
+        if (countContainsOfLotto == FIVE_NUMBER_MATCHES && numbers.contains(lotto.getBonusNumber())) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isNumberMatchedFive(int countContainsOfLotto, List<Integer> numbers, Lotto lotto) {
+        if (countContainsOfLotto == FIVE_NUMBER_MATCHES && !numbers.contains(lotto.getBonusNumber())) {
+            return true;
+        }
+        return false;
+    }
+}

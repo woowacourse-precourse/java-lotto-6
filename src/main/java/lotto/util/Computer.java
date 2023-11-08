@@ -38,6 +38,36 @@ public class Computer {
         return (paymentAmount / 1000);
     }
 
+    public int getMatchCount(List<Integer> lottoNumbers, Lotto winningNumber) {
+        int matchCount = 0;
+        for (int number : lottoNumbers) {
+            if (winningNumber.getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    public int getWinningRank(int matchCount) {
+        if (matchCount == 6) {
+            return 1;
+        }
+        if (matchCount == 4) {
+            return 4;
+        }
+        if (matchCount == 3) {
+            return 5;
+        }
+        return 0;
+    }
+
+    public int getWinningSecondRank(List<Integer> lottoNumbers, int bonusNumber) {
+        if (lottoNumbers.contains(bonusNumber)) {
+            return 2;
+        }
+        return 3;
+    }
+
     public int calculateTotalPrize(HashMap<Integer, Integer> winningCount) {
         int totalPrize = 0;
         for (LottoRank lottoRank : LottoRank.values()) {

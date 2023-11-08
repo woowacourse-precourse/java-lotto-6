@@ -44,59 +44,31 @@ public class LottoMachine {
     }
 
     public void getWinningStatistics() {
-        compareLottoTicket();
+        result.setWinningCount(countWinningLottoTicket());
         result.setTotalPrize(computer.calculateTotalPrize(result.getWinningCount()));
         result.setTotalProfit(computer.calculateTotalProfit(result.getTotalPrize(), user.getPaymentAmount()));
         outputView.printWinningStatistics(result.getWinningCount());
         outputView.printTotalProfit(result);
     }
 
-    public void compareLottoTicket() {
+    public HashMap<Integer, Integer> countWinningLottoTicket() {
         //key:rank value:count
         HashMap<Integer, Integer> winningCount = new HashMap<>();
         for (Lotto lotto : result.getLottoTicket()) {
             compareNumber(lotto.getNumbers(), winningCount);
         }
-        result.setWinningCount(winningCount);
+        return winningCount;
     }
 
     public void compareNumber(List<Integer> lottoNumbers, HashMap<Integer, Integer> winningCount) {
-        int matchCount = getMatchCount(lottoNumbers);
+        int matchCount = computer.getMatchCount(lottoNumbers, user.getWinningNumber());
         if (matchCount != 5) {
-            addLottoWinning(matchCount, winningCount);
+            int rank = computer.getWinningRank(matchCount);
+            winningCount.merge(rank, 1, Integer::sum);
         }
         if (matchCount == 5) {
-            addSecondWinning(lottoNumbers, winningCount);
+            int rank = computer.getWinningSecondRank(lottoNumbers, user.getBonusNumber());
+            winningCount.merge(rank, 1, Integer::sum);
         }
-    }
-
-    public int getMatchCount(List<Integer> lottoNumbers) {
-        int matchCount = 0;
-        for (int number : lottoNumbers) {
-            if (user.getWinningNumber().getNumbers().contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
-    }
-
-    public void addLottoWinning(int matchCount, HashMap<Integer, Integer> winningCount) {
-        if (matchCount == 6) {
-            winningCount.merge(1, 1, Integer::sum);
-        }
-        if (matchCount == 4) {
-            winningCount.merge(4, 1, Integer::sum);
-        }
-        if (matchCount == 3) {
-            winningCount.merge(5, 1, Integer::sum);
-        }
-    }
-
-    public void addSecondWinning(List<Integer> lottoNumbers, HashMap<Integer,Integer> winningCount) {
-        if (lottoNumbers.contains(user.getBonusNumber())) {
-            winningCount.merge(2, 1, Integer::sum);
-            return;
-        }
-        winningCount.merge(3, 1, Integer::sum);
     }
 }

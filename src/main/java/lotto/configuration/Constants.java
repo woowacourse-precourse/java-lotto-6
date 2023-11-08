@@ -20,7 +20,6 @@ public class Constants {
         public static final String DELIM = ",";
     }
 
-
     public static final class Message {
         public static final String NEED_PURCHASE_MONEY = "구입금액을 입력해 주세요.";
         public static final String BUY_LOTTO = "개를 구매했습니다.\n";

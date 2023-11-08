@@ -38,7 +38,7 @@ public class InputView {
     public static Integer inputBonusNumber() {
         try {
             String bonusNumber = Console.readLine();
-            Validator.validateInputType(bonusNumber);
+            Validator.validateInput(bonusNumber);
 
             return Integer.parseInt(bonusNumber);
         } catch (IllegalArgumentException e) {

@@ -10,14 +10,14 @@ public class WinningNumberController {
         private static final WinningNumberController winningNumberController = new WinningNumberController();
     }
 
-    public  static WinningNumberController getInstance(){
+    public static WinningNumberController getInstance(){
         return WinningNumberControllerHolder.winningNumberController;
     }
 
-    public   void putWinningNums(String winningNums){
+    public void putWinningNums(String winningNums){
         WinningNumber.getInstance().putWinningNums(winningNums);
     }
-    public  void putBonusNum(String bonusNum){
+    public void putBonusNum(String bonusNum){
         WinningNumber.getInstance().putBonusNum(bonusNum);
 
     }

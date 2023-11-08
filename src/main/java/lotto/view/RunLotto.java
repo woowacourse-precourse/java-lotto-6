@@ -11,7 +11,7 @@ public class RunLotto {
         return RunLottoHolder.runLotto;
     }
 
-    public  void runLotto(){
+    public void runLotto(){
         UserOutputView.getInstance().outputPurchaseAmount();
         UserInputView.getInstance().inputPurchaseAmount();
 

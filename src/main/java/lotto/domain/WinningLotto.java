@@ -18,43 +18,43 @@ public class WinningLotto {
         return WinningLottoHolder.winningLotto;
     }
 
-    public  int getTreeSameNumLotto() {
+    public int getTreeSameNumLotto() {
         return treeSameNumLotto;
     }
 
-    public  int getFourSameNumLotto() {
+    public int getFourSameNumLotto() {
         return fourSameNumLotto;
     }
 
-    public  int getFiveSameNumLotto() {
+    public int getFiveSameNumLotto() {
         return fiveSameNumLotto;
     }
 
-    public  int getFiveAndBonusSameNumLotto() {
+    public int getFiveAndBonusSameNumLotto() {
         return fiveAndBonusSameNumLotto;
     }
 
-    public  int getSixSameNumLotto() {
+    public int getSixSameNumLotto() {
         return sixSameNumLotto;
     }
 
-    public  void increaseTreeSameNumLotto(){
+    public void increaseTreeSameNumLotto(){
         treeSameNumLotto++;
     }
-    public  void increaseFourSameNumLotto(){
+    public void increaseFourSameNumLotto(){
         fourSameNumLotto++;
     }
-    public  void increaseFiveSameNumLotto(){
+    public void increaseFiveSameNumLotto(){
         fiveSameNumLotto++;
     }
-    public  void increaseFiveAndBonusSameNumLotto(){
+    public void increaseFiveAndBonusSameNumLotto(){
         fiveAndBonusSameNumLotto++;
     }
-    public  void increaseSixSameNumLotto(){
+    public void increaseSixSameNumLotto(){
         sixSameNumLotto++;
     }
 
-    public  void WinningLottoInit(){
+    public void WinningLottoInit(){
         treeSameNumLotto = 0;
         fourSameNumLotto = 0;
         fiveSameNumLotto = 0;

@@ -19,7 +19,7 @@ public class LottoTickets {
         return LottoTicketsHolder.lottoTickets;
     }
 
-    public  void buyLottoTickets(long purchaseAmount) throws IllegalArgumentException{
+    public void buyLottoTickets(long purchaseAmount) throws IllegalArgumentException{
         if(purchaseAmount%1000!=0){
              throw new IllegalArgumentException(ExceptionMessage.inputPurchaseAmountError.getErrorMessage());
         }

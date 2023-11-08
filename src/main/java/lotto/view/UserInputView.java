@@ -16,7 +16,7 @@ public class UserInputView {
         return UserInputViewHolder.userInputView;
     }
 
-    public  void inputPurchaseAmount(){
+    public void inputPurchaseAmount(){
         try{
             LottoController.getInstance().buyLottoTickets(Long.parseLong(Console.readLine()));
 
@@ -26,7 +26,7 @@ public class UserInputView {
         }
     }
 
-    public  void inputWinningNums(){
+    public void inputWinningNums(){
         try{
             WinningNumberController.getInstance().putWinningNums(Console.readLine());
 
@@ -36,7 +36,7 @@ public class UserInputView {
         }
     }
 
-    public   void inputBonusNum(){
+    public void inputBonusNum(){
         try{
             WinningNumberController.getInstance().putBonusNum(Console.readLine());
         }catch (IllegalArgumentException e){
@@ -45,7 +45,7 @@ public class UserInputView {
         }
     }
 
-    private  void exceptionTypeMessage(IllegalArgumentException e){
+    private void exceptionTypeMessage(IllegalArgumentException e){
         if(e instanceof NumberFormatException){
             System.out.println(ExceptionMessage.NumberFormatError.getErrorMessage());
             return;

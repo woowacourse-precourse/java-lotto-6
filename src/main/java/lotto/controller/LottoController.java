@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.Constants.COMMA;
 import static lotto.Constants.LOTTO_PRICE;
 import static lotto.util.parser.Parser.parseStringToInt;
 
@@ -14,7 +13,7 @@ import lotto.model.Prize;
 import lotto.model.WinningLotto;
 import lotto.util.LottoUtil;
 import lotto.util.Validator;
-import lotto.util.parser.LottoParser;
+import lotto.util.parser.Parser;
 import lotto.view.input.LottoInputView;
 import lotto.view.input.PurchaseInputView;
 import lotto.view.output.LottoOutputView;
@@ -104,7 +103,7 @@ public class LottoController {
         lottoInputView.printInputWinningLotto();
         try {
             String winningNumber = Console.readLine();
-            List<Integer> numbers = LottoParser.parseStringArrToIntList(winningNumber.split(COMMA));
+            List<Integer> numbers = Parser.parseCommaStringToIntList(winningNumber);
             Validator.validateLottoNumbers(numbers);
             return numbers;
         } catch (Exception e) {

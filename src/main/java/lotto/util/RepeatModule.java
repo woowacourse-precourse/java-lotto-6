@@ -17,7 +17,7 @@ public class RepeatModule {
         }
     }
 
-    protected <T, R> void repeat(Supplier<T> inputReader, Consumer<T> setMethod) {
+    protected <T> void repeat(Supplier<T> inputReader, Consumer<T> setMethod) {
         try {
             setMethod.accept(inputReader.get());
         } catch (IllegalArgumentException e) {

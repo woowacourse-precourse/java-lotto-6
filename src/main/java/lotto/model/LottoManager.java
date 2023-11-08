@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class LottoManager {
     private static final String LINE_BREAK = "\n";
     private final Token token;
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
     private AnswerLotto answerLotto;
 
     public LottoManager(Token token) {

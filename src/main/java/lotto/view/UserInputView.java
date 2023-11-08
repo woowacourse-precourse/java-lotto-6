@@ -44,7 +44,7 @@ public class UserInputView {
 
     private static void validateRange(List<Integer> winningNumbers) {
         for (int number : winningNumbers) {
-            if (number < 1 || number > 45) {
+            if (number < MIN_LOTTO_NUMBER_RANGE || number > MAX_LOTTO_NUMBER_RANGE) {
                 throw new IllegalArgumentException(ErrorMessages.INVALID_RANGE.getMessage());
             }
         }

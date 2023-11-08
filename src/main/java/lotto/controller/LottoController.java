@@ -2,18 +2,14 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-import lotto.model.User;
 import lotto.service.LottoService;
-import lotto.service.RankService;
 import lotto.view.PrintView;
 
 
 public class LottoController {
 
     LottoService lottoService;
-    RankService rankService;
 
 
     public LottoController() {
@@ -21,30 +17,26 @@ public class LottoController {
     }
 
     public void run() {
-        User user = initInputUser();
-        List<Integer> winningNumbers = getInputWinningNumbers();
-        int bonusNum = getInputBonusNumber(winningNumbers);
+        initData();
+        processingRank();
+    }
 
-        processingRank(user, winningNumbers, bonusNum);
+    public void initData() {
+        initUserData();
+        initWinningNumbersData();
+        initBonusNumberData();
     }
 
 
-    public User initInputUser() {
-        int count = getInputMoney();
-        User user = lottoService.initUser(count);
 
-        PrintView.printLottos(user);
-        return user;
-    }
-
-
-    public int getInputMoney() {
-        int count = 0;
+    public void initUserData() {
         boolean checkException = true;
+        int count = 0;
 
         while (checkException) {
             PrintView.inputMoneyView();
             String inputMoney = Console.readLine();
+
             try {
                 count = lottoService.initMoneyToCount(inputMoney);
                 checkException = false;
@@ -53,50 +45,48 @@ public class LottoController {
             }
         }
 
-        return count;
+        lottoService.initUser(count);
+        PrintView.printLottos(lottoService.user);
     }
 
-    public List<Integer> getInputWinningNumbers() {
-        List<Integer> numbers = new ArrayList<>();
+    public void initWinningNumbersData() {
         boolean checkException = true;
+        List<Integer> winningNumbers = null;
 
         while (checkException) {
             PrintView.inputWinningNumbersView();
             String inputWinningNumbers = Console.readLine();
+
             try {
-                numbers = lottoService.initWinningNumbers(inputWinningNumbers);
+                winningNumbers = lottoService.parseAndValidateWinningNumbers(inputWinningNumbers);
                 checkException = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        return numbers;
+        lottoService.initWinningNumbers(winningNumbers);
     }
 
-    public int getInputBonusNumber(List<Integer> winningNumbers) {
-        int bonusNumber = 0;
+    public void initBonusNumberData() {
         boolean checkException = true;
 
         while (checkException) {
             PrintView.inputBonusNumberView();
             String inputBonusNumber = Console.readLine();
             try {
-                bonusNumber = lottoService.initBonusNumber(winningNumbers, inputBonusNumber);
+                lottoService.initBonusNumber(inputBonusNumber);
                 checkException =false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
-        return bonusNumber;
     }
 
-    public void processingRank(User user, List<Integer> winningNumbers, int bonusNum) {
-        rankService = new RankService(user, winningNumbers, bonusNum);
-
-        int[] winningCount = rankService.calculateLottoRanks();
-        BigDecimal result = rankService.rateOfReturn();
+    public void processingRank() {
+        int[] winningCount = lottoService.calculateLottoRanks();
+        BigDecimal result = lottoService.rateOfReturn();
         PrintView.printWinningResult(winningCount, result);
     }
 

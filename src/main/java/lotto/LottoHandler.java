@@ -17,10 +17,10 @@ public class LottoHandler {
     public int lottoCountForPurchasePrice() {
         int lottoTicket = 0;
         boolean validPrice = false;
+        OutputHandler.printMessage("구입금액을 입력해 주세요.");
 
         while (!validPrice) {
             try {
-                OutputHandler.printMessage("구입금액을 입력해 주세요.");
                 lottoTicket = calculateLottoTicketCount(Console.readLine());
                 validPrice = true;
             } catch (IllegalArgumentException e) {
@@ -45,9 +45,10 @@ public class LottoHandler {
     public Lotto winningLotto() {
         boolean validWinning = false;
         Lotto winningLotto = null;
+        OutputHandler.printLineBreakMessage("당첨 번호를 입력해 주세요.");
+
         while (!validWinning) {
             try {
-                OutputHandler.printLineBreakMessage("당첨 번호를 입력해 주세요.");
                 winningLotto = receiveWinningLotto(Console.readLine());
                 validWinning = true;
             } catch (IllegalArgumentException e) {
@@ -60,10 +61,10 @@ public class LottoHandler {
     public int bonusNumber() {
         boolean validBonusNumber = false;
         int bonusNumber = 0;
+        OutputHandler.printLineBreakMessage("보너스 번호를 입력해 주세요.");
 
         while (!validBonusNumber) {
             try {
-                OutputHandler.printLineBreakMessage("보너스 번호를 입력해 주세요.");
                 bonusNumber = receiveBonusNumber(Console.readLine());
                 validBonusNumber = true;
             } catch (IllegalArgumentException e) {

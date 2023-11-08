@@ -34,6 +34,7 @@ public class LottoController {
     }
 
     private void CheckLotto(PurchasedLottos purchasedLottos, WinningLotto winningLotto){
+        purchasedLottos.calculateRewardsInPurchasedLotto(winningLotto);
         outputView.printWinningStatistics(purchasedLottos.generateRewardString());
         outputView.printEarningRate(purchasedLottos.calculateAverageWinnings(winningLotto));
     }

@@ -47,7 +47,6 @@ public class PurchasedLottos {
     }
 
     public double calculateAverageWinnings(WinningLotto winningLotto) {
-        calculateRewardsInPurchasedLotto(winningLotto);
         long totalWinnings = 0;
         for (Map.Entry<LottoReward, Integer> entry : rewardmap.entrySet()) {
             LottoReward reward = entry.getKey();

@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.controller.startController;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        startController startController = new startController();
+        startController.start();
     }
+
 }

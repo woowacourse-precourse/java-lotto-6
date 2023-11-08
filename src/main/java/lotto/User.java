@@ -14,8 +14,8 @@ public class User {
 
     private final static String START = "구입금액을 입력해 주세요.";
     private final static String NUMBER = "개를 구매했습니다.";
-    private final static String WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    private final static String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private final static String WINNING_NUMBER = "\n당첨 번호를 입력해 주세요.";
+    private final static String BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
     private final static String DIVIDE_ERROR = "[ERROR] 구입 금액을 1,000원 단위로 입력해주세요.";
     private final static String NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.";
     private final static String LOTTO_ERROR = "[ERROR] 잘못된 입력입니다. 다시 입력해주세요.";
@@ -37,6 +37,7 @@ public class User {
     }
 
     public void enterWinningNumber() {
+        System.out.println(WINNING_NUMBER);
         String[] winNumber = Console.readLine().split(",");
         List<Integer> numbers = new ArrayList<Integer>();
         for (String s : winNumber) {
@@ -47,6 +48,7 @@ public class User {
     }
 
     public void enterBonusNumber() {
+        System.out.println(BONUS_NUMBER);
         while (true) {
             try {
                 bonusNumber = Integer.parseInt(Console.readLine());
@@ -87,6 +89,7 @@ public class User {
 
     private void decideNumberOfLotto() {
         numberOfLotto = money / 1000;
+        System.out.println();
         System.out.println(numberOfLotto + NUMBER);
     }
 

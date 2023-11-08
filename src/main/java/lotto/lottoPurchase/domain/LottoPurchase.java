@@ -15,13 +15,14 @@ public class LottoPurchase {
         this.purchaseAmount = 0;
     }
 
-    public void insult() throws IllegalArgumentException {
+    public void insult() {
         System.out.println("구입금액을 입력해 주세요.");
         try {
             String insultedMoney = readLine();
             this.money = Integer.parseInt(insultedMoney);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] money must be a number");
+            System.out.println("[ERROR] money must be a number");
+            insult();
         }
     }
 

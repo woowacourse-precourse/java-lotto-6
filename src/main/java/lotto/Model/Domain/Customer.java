@@ -10,6 +10,7 @@ public class Customer {
     int ticketQuantity;
     List<Lotto> havingTickets;
     HashMap<String, Integer> resultPlaces;
+    int prize;
 
     public int getTicketQuantity(){return ticketQuantity;}
     public List<Lotto> getHavingTickets(){return havingTickets;}
@@ -18,5 +19,8 @@ public class Customer {
     public void setHavingTickets(List<Lotto> tickets){this.havingTickets = tickets;}
     public void setResultPlaces(HashMap<String, Integer> resultPlaces){
         this.resultPlaces = resultPlaces;
+    }
+    public void setPrize(int prize){
+        this.prize = prize;
     }
 }

@@ -6,12 +6,14 @@ import org.mockito.internal.matchers.Null;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ResultController extends Controller{
     HashMap<String, Integer> resultPlaces;
     List<Lotto> clientLottos;
     List<Integer> winningNumber;
     int winningBonusNumber;
+    int prize;
     public ResultController(List<Lotto> clientLottos, List<Integer> winningNumber, int winningBonusNumber){
         resultPlaces = new HashMap<>();
         resultPlaces.put(Prices.LOSE.name(), 0);
@@ -27,6 +29,7 @@ public class ResultController extends Controller{
     @Override
     public void run(){
         calculateResultPlaces(clientLottos, winningNumber, winningBonusNumber);
+        prize = calculateTotalPrize(resultPlaces);
     }
     private String calculatePlace(Lotto lotto, List<Integer> winningNumber, int winningBonusNumber){
         int hitAmount = lotto.compareWithWinningNumber(winningNumber);
@@ -54,5 +57,15 @@ public class ResultController extends Controller{
             int placeAmount = resultPlaces.get(lottoPlace);
             resultPlaces.put(lottoPlace, ++placeAmount);
         }
+    }
+    private int calculateTotalPrize(HashMap<String, Integer> resultPlaces) {
+        int totalPrize = 0;
+        for (Map.Entry<String, Integer> entry : resultPlaces.entrySet()) {
+            String place = entry.getKey();
+            int value = entry.getValue();
+            Prices price = Prices.valueOf(place);
+            totalPrize += price.intValue() * value;
+        }System.out.println(totalPrize);
+        return totalPrize;
     }
 }

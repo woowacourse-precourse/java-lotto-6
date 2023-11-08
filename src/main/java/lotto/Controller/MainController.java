@@ -40,6 +40,7 @@ public class MainController extends Controller {
                 winningData.getWinningNumber(), winningData.getWinningBonusNumber());
         resultController.run();
         updateClient(resultController.resultPlaces);
+        updateClient(resultController.prize);
     }
 
     private void updateClient(int price, int quantity) {
@@ -51,6 +52,9 @@ public class MainController extends Controller {
     }
     private void updateClient(HashMap<String, Integer> resultPlaces){
         client.setResultPlaces(resultPlaces);
+    }
+    private void updateClient(int prize){
+        client.setPrize(prize);
     }
     private void lottosOfClient(Customer client) {
         OutputUI.printLottos(client.getHavingTickets());

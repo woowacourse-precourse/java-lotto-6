@@ -1,15 +1,16 @@
 package lotto.model;
 
 import lotto.constants.Constants;
+import lotto.constants.Errors;
 import lotto.constants.Message;
 
 public class Validator {
     public void validateCost(String cost, Integer lottoPrice) {
         if (notNumeric(cost)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+            throw new IllegalArgumentException(Errors.COST_NUMERIC);
         }
         if (notThousands(cost, lottoPrice)) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000의 배수여야 합니다.");
+            throw new IllegalArgumentException(Errors.COST_THOUSANDS);
         }
     }
 
@@ -19,19 +20,19 @@ public class Validator {
 
     public void validateAnswer(String number, Integer start, Integer end) {
         if (notNumeric(number)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(Errors.ANSWER_NUMERIC);
         }
         if (outOfRange(number, start, end)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(Errors.ANSWER_RANGE);
         }
     }
 
     public void validateBonus(String number, Integer start, Integer end) {
         if (notNumeric(number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(Errors.BONUS_NUMERIC);
         }
         if (outOfRange(number, start, end)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(Errors.BONUS_RANGE);
         }
     }
 

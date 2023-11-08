@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constants.Constants;
+import lotto.constants.Errors;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,15 +21,14 @@ public class Lotto {
 
     private void countNumbers(List<Integer> numbers) {
         if (numbers.size() != Constants.NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 "
-                    + Constants.NUMBER_COUNT + "개여야 합니다.");
+            throw new IllegalArgumentException(Errors.ANSWER_NUMBERS);
         }
     }
 
     private void duplicateNumbers(List<Integer> numbers) {
         for (int i = 0; i < numbers.size() - 1; i++) {
             if (Objects.equals(numbers.get(i), numbers.get(i + 1))) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있으면 안됩니다.");
+                throw new IllegalArgumentException(Errors.ANSWER_DUPLICATE);
             }
         }
     }

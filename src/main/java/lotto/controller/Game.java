@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constants.Constants;
+import lotto.constants.Errors;
 import lotto.model.Lotto;
 import lotto.model.Result;
 import lotto.model.Validator;
@@ -24,7 +25,7 @@ public class Game {
         Integer lottoCount = tryBuyLotto();
         List<Lotto> lottos = generateLottos(lottoCount);
         Lotto answer = tryGenerateAnswer();
-        Integer bonus = tryGenerateBonus();
+        Integer bonus = tryGenerateBonus(answer);
         Result result = generateResult(lottos, answer, bonus);
         showReturnRate(lottoCount, result);
     }
@@ -49,10 +50,10 @@ public class Game {
         }
     }
 
-    private Integer tryGenerateBonus() {
+    private Integer tryGenerateBonus(Lotto answer) {
         while (true) {
             try {
-                return generateBonus();
+                return generateBonus(answer);
             } catch (IllegalArgumentException e) {
                 view.printError(e);
             }
@@ -134,11 +135,16 @@ public class Game {
         return result;
     }
 
-    private Integer generateBonus() {
-        String bonus = view.inputBonus();
+    private Integer generateBonus(Lotto answer) {
+        Integer bonus;
+        String bonusInput = view.inputBonus();
 
-        validator.validateBonus(bonus, Constants.START, Constants.END);
-        return Integer.parseInt(bonus);
+        validator.validateBonus(bonusInput, Constants.START, Constants.END);
+        bonus = Integer.parseInt(bonusInput);
+        if (answer.compareBonus(bonus)) {
+            throw new IllegalArgumentException(Errors.BONUS_DUPLICATE);
+        }
+        return bonus;
     }
 
     private Result generateResult(List<Lotto> lottos, Lotto answer, Integer bonus) {

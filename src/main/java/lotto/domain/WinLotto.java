@@ -1,12 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class WinLotto {
-    private Lotto lotto;
+    private Lotto winLotto;
     private int bonusNumber;
 
     public WinLotto(List<String> winNumbers) {
@@ -15,7 +14,7 @@ public class WinLotto {
             numbers.add(Integer.parseInt(winNumber));
         }
 
-        lotto = new Lotto(numbers);
+        winLotto = new Lotto(numbers);
     }
 
     // 당첨 개수 카운트
@@ -23,14 +22,14 @@ public class WinLotto {
         List<Lotto> lottos = userLottos.getLottos();
         List<Integer> winCheck = new ArrayList<>();
 
-        for (Lotto userLotto : lottos) {
+        for (Lotto lotto : lottos) {
             int result = 0;
-            for (Integer number : userLotto.getNumbers()) {
-                if (lotto.getNumbers().contains(number))
+            for (Integer number : lotto.getNumbers()) {
+                if (winLotto.getNumbers().contains(number))
                     result += 1;
             }
             // 보너스 번호에 당첨될 경우 결과값 7증가
-            if (userLotto.getNumbers().contains(bonusNumber))
+            if (lotto.getNumbers().contains(bonusNumber))
                 result += 7;
             winCheck.add(result);
         }
@@ -56,11 +55,12 @@ public class WinLotto {
         return winResult;
     }
 
+    // 보너스 번호 설정
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
-    public Lotto getLotto() {
-        return lotto;
+    public Lotto getWinLotto() {
+        return winLotto;
     }
 }

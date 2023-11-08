@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,7 +64,7 @@ public class Validator {
 
     // 1000원으로 나누어 떨어지는지 검증
     public static void checkDividedBy(int divisor, Integer amount) {
-        if (amount%divisor != 0)
+        if (amount % divisor != 0)
             throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지지 않는 금액입니다.");
     }
 
@@ -89,8 +89,8 @@ public class Validator {
 
     // 중복입력이 있는지 검증
     public static void checkDuplicated(List<Integer> numbers) {
-        for(int i = 0 ; i < numbers.size()-1; i++) {
-            for(int j = i+1; j < numbers.size() ; j++)
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            for (int j = i + 1; j < numbers.size(); j++)
                 if (numbers.get(i).equals(numbers.get(j)))
                     throw new IllegalArgumentException("[ERROR] 중복된 로또 번호 입력이 존재합니다.");
         }

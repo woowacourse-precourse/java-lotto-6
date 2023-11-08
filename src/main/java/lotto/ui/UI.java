@@ -1,22 +1,22 @@
-package lotto;
+package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class UserInterface {
+public class UI {
     private String input;
 
-    public UserInterface() {
+    public UI() {
         input = "";
     }
 
     // 로또 구입 금액, 당첨 번호 , 보너스 번호 입력
-    public String getUserInput() {
+    public String input() {
         input = Console.readLine();
         return input;
     }
 
     // 에러 문구, 발행한 로또 수량 및 번호, 당첨 내역, 수익률 출력
-    public void showText(String text) {
+    public void show(String text) {
         System.out.println(text);
     }
 

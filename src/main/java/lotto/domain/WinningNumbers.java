@@ -1,21 +1,21 @@
 package lotto.domain;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public WinningNumbers(String winningNumbers, int bonusNumber) {
-        this.winningNumbers = splitWinningNumbersString(winningNumbers);
+    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> splitWinningNumbersString(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(","))
-                .map(number -> Integer.parseInt(number))
-                .collect(Collectors.toList());
+    public boolean containsLottoNumber(int lottoNumber) {
+        return winningNumbers.contains(lottoNumber);
+    }
+
+    public boolean matchBonusNumbers(List<Integer> lottoNumbers) {
+        return lottoNumbers.contains(bonusNumber);
     }
 }

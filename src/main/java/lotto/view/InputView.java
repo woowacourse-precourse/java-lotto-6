@@ -17,11 +17,13 @@ public class InputView {
             throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage() + exception.getMessage());
         }
     }
+
     private void validateNumeric(String input, Exception exception) {
         if (!NUMERIC_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage() + exception.getMessage());
         }
     }
+
     public int inputMoney() {
         System.out.println(Information.MONEY.getMessage());
         String input = Console.readLine();
@@ -30,7 +32,7 @@ public class InputView {
         return Integer.parseInt(input);
     }
 
-    public List<Integer> inputWinningNumbers(){
+    public List<Integer> inputWinningNumbers() {
         System.out.println(Information.WINNING_NUMBERS.getMessage());
         String input = Console.readLine();
         validateNullAndBlank(input, Exception.WINNING_NUMBERS_NULL_BLANK);
@@ -40,8 +42,8 @@ public class InputView {
                 .toList();
     }
 
-    public Integer inputBonusNumber(){
-        System.out.println(Information.BONUS_NUMBER);
+    public Integer inputBonusNumber() {
+        System.out.println(Information.BONUS_NUMBER.getMessage());
         String input = Console.readLine();
         validateNullAndBlank(input, Exception.BONUS_NUMBER_NULL_BLANK);
         validateNumeric(input, Exception.BONUS_NUMBER_NUMERIC);

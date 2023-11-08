@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 enum Prize {
     THREE_MATCH(3, 5_000),
@@ -57,7 +59,7 @@ public class Application {
         generateLottoTickets(readPurchase());
         showLottoTickets();
         System.out.println("당첨번호를 입력해 주세요.");
-        getWinningNumbers(Console.readLine());
+        generateWinningNumbers(readWinningNumbers());
         System.out.println("보너스 번호를 입력해주세요.");
         Integer bonusNumber=getBonusNumber(Console.readLine());
         compareLottoWithWinning(bonusNumber);
@@ -93,8 +95,52 @@ public class Application {
             }
         }
     }
+    public static String readWinningNumbers() {
+        while (true) {
+            try {
+                String inputWinningNumbers = Console.readLine();
+                isContainComma(inputWinningNumbers);
+                getBeWinningNumbers(inputWinningNumbers);
+                return inputWinningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
 
 
+        }
+
+    }
+    public static void getBeWinningNumbers(String inputWinningNumbers) {
+        Set<Integer> uniqueWinningNumbers = new HashSet<>();
+        for (String inputWinningNumber: inputWinningNumbers.split(",")) {
+            int num = isRangeIn(inputWinningNumber);
+            if (!uniqueWinningNumbers.add(num)) {
+                throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
+            }
+        }
+
+        if (uniqueWinningNumbers.size()!=6) {
+            throw new IllegalArgumentException("당첨 번호는 6개의 숫자를 입력해야합니다.");
+        }
+    }
+
+    public static int isRangeIn(String inputWinningNumber) {
+
+        try {
+            int num = Integer.parseInt(inputWinningNumber.trim());
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException("번호는 1에서 45사이의 숫자입니다.");
+            }
+            return num;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("당첨 번호는 숫자여야 합니다.");
+        }
+    }
+    public static void isContainComma(String winningNumbers) {
+        if(!winningNumbers.contains(",")) {
+            throw new IllegalArgumentException("당첨 번호는 쉼표로 구분해주세요.");
+        }
+    }
 
 
     public static Integer convertMoneyFormat(String inputMoney) {
@@ -124,7 +170,7 @@ public class Application {
             System.out.println(numbers);
         }
     }
-    public static void getWinningNumbers(String inputWinningNumbers) {
+    public static void generateWinningNumbers(String inputWinningNumbers) {
         for (String winningNumber : inputWinningNumbers.split(",")) {
             winningNumbers.add(Integer.valueOf(winningNumber));
         }

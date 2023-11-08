@@ -6,12 +6,6 @@ import lotto.Messages.MainMessage;
 import lotto.Messages.WinningStatistics;
 
 public class Print {
-    private static final int RANK_5 = 3;
-    private static final int RANK_4 = 4;
-    private static final int RANK_3 = 5;
-    private static final int RANK_2 = 7;
-    private static final int RANK_1 = 6;
-
     public static void printMessage(String printStr){
         System.out.println(printStr);
     }
@@ -44,11 +38,11 @@ public class Print {
     public static void printWinningStatistics(Float rateOfReturn, int[] winningCount){
         Print.printMessage("");
         Print.printMessage(MainMessage.WINNING_STATISTICS.getMessage());
-        printfMessage(WinningStatistics.WIN_3_MATCH.getMessage(), winningCount[RANK_5]);
-        printfMessage(WinningStatistics.WIN_4_MATCH.getMessage(), winningCount[RANK_4]);
-        printfMessage(WinningStatistics.WIN_5_MATCH.getMessage(), winningCount[RANK_3]);
-        printfMessage(WinningStatistics.WIN_5_BONUS_MATCH.getMessage(), winningCount[RANK_2]);
-        printfMessage(WinningStatistics.WIN_6_MATCH.getMessage(), winningCount[RANK_1]);
+        printfMessage(WinningStatistics.WIN_3_MATCH.getMessage(), winningCount[Lotto.RANK_5]);
+        printfMessage(WinningStatistics.WIN_4_MATCH.getMessage(), winningCount[Lotto.RANK_4]);
+        printfMessage(WinningStatistics.WIN_5_MATCH.getMessage(), winningCount[Lotto.RANK_3]);
+        printfMessage(WinningStatistics.WIN_5_BONUS_MATCH.getMessage(), winningCount[Lotto.RANK_2]);
+        printfMessage(WinningStatistics.WIN_6_MATCH.getMessage(), winningCount[Lotto.RANK_1]);
         printfMessage(WinningStatistics.TOTAL_AMOUNT.getMessage(), rateOfReturn);
     }
 

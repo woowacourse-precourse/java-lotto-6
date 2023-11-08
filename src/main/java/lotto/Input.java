@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Input {
     private final Validater validater = new Validater();
+    private Lotto winningNumber;
     public static enum InputType{
         PURCHASE_AMOUNT, WINNING_NUMBERS, BONUS_NUMBER;
     }
@@ -55,6 +56,7 @@ public class Input {
         for (String splited : inputStr.split(",")){
             conversionResult.add(Integer.parseInt(splited));
         }
+        winningNumber = new Lotto(conversionResult);
         return conversionResult;
     }
 }

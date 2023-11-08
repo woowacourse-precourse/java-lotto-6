@@ -35,7 +35,16 @@ public class WinningLotto {
         return LottoRanking.getRanking(hitResult.getHitCount(), hitResult.getIsBonusBallHit());
     }
 
-    private static void validateBonusNumberNotDuplicated(List<Integer> winningNumbers, int bonusNumber) {
+    public LottoWinningResult getLottoResult(List<Lotto> lottoTicket) {
+        List<LottoRanking> lottoRankings = lottoTicket.stream()
+            .map(Lotto::getLottoNumbers)
+            .map(this::checkRanking)
+            .toList();
+        return new LottoWinningResult(lottoRankings);
+    }
+
+    private static void validateBonusNumberNotDuplicated(List<Integer> winningNumbers,
+        int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }

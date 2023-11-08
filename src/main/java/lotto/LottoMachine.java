@@ -5,35 +5,34 @@ import lotto.model.LottoTicket;
 import lotto.model.winninglotto.LottoWinningResult;
 import lotto.model.winninglotto.WinningLotto;
 import lotto.util.NumberConvertor;
+import lotto.util.PurchaseAmountConvertor;
 import lotto.util.PurchaseCountCalculator;
-import lotto.view.BillAcceptor;
-import lotto.view.LottoNumberInput;
+import lotto.view.NumberInput;
 import lotto.view.Screen;
 
 public class LottoMachine {
 
     private static final int LOTTO_PRICE = 1_000;
     private final Screen screen;
-    private final BillAcceptor billAcceptor;
-    private final LottoNumberInput lottoNumberInput;
+    private final NumberInput numberInput;
 
-    public LottoMachine(Screen screen, BillAcceptor billAcceptor, LottoNumberInput lottoNumberInput) {
+    public LottoMachine(Screen screen, NumberInput numberInput) {
         this.screen = screen;
-        this.billAcceptor = billAcceptor;
-        this.lottoNumberInput = lottoNumberInput;
+        this.numberInput = numberInput;
     }
 
     public void start() {
-        int userLottoPurchaseCount = getUserLottoPurchaseCount();
-        LottoTicket lottoTicket = purchaseLottoTicket(userLottoPurchaseCount);
+        int purchaseCount = getUserLottoPurchaseCount();
+        LottoTicket lottoTicket = purchaseLottoTicket(purchaseCount);
         WinningLotto winningLotto = getWinningLotto();
-        getLottoResult(winningLotto, lottoTicket, userLottoPurchaseCount);
+        getLottoResult(winningLotto, lottoTicket, purchaseCount);
     }
 
     private int getUserLottoPurchaseCount() {
         try {
-            int userInsertAmount = billAcceptor.acceptBill();
-            return PurchaseCountCalculator.calculatePurchaseCount(userInsertAmount, LOTTO_PRICE);
+            String purchaseAmountInput = numberInput.requestPurchaseAmountInput();
+            int purchaseAmount = PurchaseAmountConvertor.convert(purchaseAmountInput);
+            return PurchaseCountCalculator.calculatePurchaseCount(purchaseAmount, LOTTO_PRICE);
         } catch (IllegalArgumentException illegalArgumentException) {
             screen.printErrorMessage(illegalArgumentException.getMessage());
             return getUserLottoPurchaseCount();
@@ -58,12 +57,12 @@ public class LottoMachine {
     }
 
     private List<Integer> getWinningNumbers() {
-        String winningNumberInput = lottoNumberInput.requestWinningNumberInput();
+        String winningNumberInput = numberInput.requestWinningNumberInput();
         return NumberConvertor.convertToNumbers(winningNumberInput);
     }
 
     private Integer getBonusNumber() {
-        String bonusNumberInput = lottoNumberInput.requestBonusNumberInput();
+        String bonusNumberInput = numberInput.requestBonusNumberInput();
         return NumberConvertor.convertToNumber(bonusNumberInput);
     }
 

@@ -1,15 +1,13 @@
-package lotto.view;
+package lotto.util;
 
-import camp.nextstep.edu.missionutils.Console;
+public class PurchaseAmountConvertor {
 
-public class BillAcceptor {
-
-    private static final String REQUEST_ACCEPT_BILL_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String ILLEGAL_ARGUMENT_EXCEPTION_MESSAGE = "[ERROR] 금액은 숫자여야 합니다. 다시 입력하세요.";
 
-    public int acceptBill() {
-        System.out.println(REQUEST_ACCEPT_BILL_MESSAGE);
-        String input = Console.readLine();
+    private PurchaseAmountConvertor() {
+    }
+
+    public static Integer convert(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException numberFormatException) {

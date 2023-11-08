@@ -10,6 +10,8 @@ public class WinningStatistics {
     private int matchingCount;
     private static HashMap<Ranking, Integer> totalRanking = new HashMap<>();
 
+    private static final int ONE_HUNDRED = 100;
+
     public WinningStatistics(Lotto resultNumbers,
                              List<Lotto> lotties,
                              int bonusNumber,
@@ -86,7 +88,7 @@ public class WinningStatistics {
             }
             rateOfReturn += ranking.getWinningAmount() * totalRanking.get(ranking);
         }
-        rateOfReturn = rateOfReturn / lottoPurchaseAmount * 100;
+        rateOfReturn = rateOfReturn / lottoPurchaseAmount * ONE_HUNDRED;
     }
 
 }

@@ -1,9 +1,9 @@
 package view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static validate.GeneralExceptionHandler.validateMinimumPurchaseAmount;
-import static validate.GeneralExceptionHandler.validateNotDividePurchaseAmount;
-import static validate.GeneralExceptionHandler.validateNumberExceptionHandler;
+import static validate.Validate.validateMinimumPurchaseAmount;
+import static validate.Validate.validateNotDividePurchaseAmount;
+import static validate.Validate.validateNumberExceptionHandler;
 
 public class InputView {
 

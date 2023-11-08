@@ -10,8 +10,10 @@ public class LottoCount {
     private int lottoCount;
     private List<Lotto> lotties;
 
+    private static final int ONE_THOUSAND = 1000;
+
     public LottoCount(int lottoCount) {
-        this.lottoCount = lottoCount / 1000;
+        this.lottoCount = lottoCount / ONE_THOUSAND;
         setLotties();
     }
 

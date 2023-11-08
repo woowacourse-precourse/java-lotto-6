@@ -4,7 +4,6 @@ import static lotto.enums.ViewMessageType.INPUT_SEPARATOR;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -44,11 +43,10 @@ public class LottoServiceImpl implements LottoService {
 
     public Lotto issueAutoLotto() {
         return new Lotto(
-                RandomNumberGenerator.makeUniQueRandomNumbers(
-                        MIN_LOTTO_NUMBER,
-                        MAX_LOTTO_NUMBER,
-                        LOTTO_SIZE
-                )
+                RandomNumberGenerator.makeUniQueRandomNumbers(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE)
+                        .stream()
+                        .sorted()
+                        .toList()
         );
     }
 

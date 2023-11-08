@@ -15,8 +15,11 @@ class LottoResultGeneratorTest {
     @ParameterizedTest
     @MethodSource("validParameters")
     void setEqualStatusByCount(int equalCount, int bonusCount, EqualStatus equalStatus) {
+        //given
+        //when
         LottoResult lottoResult = LottoResultGenerator.setEqualStatus(equalCount, bonusCount);
 
+        //then
         assertThat(lottoResult).isEqualTo(new LottoResult(equalStatus));
     }
 

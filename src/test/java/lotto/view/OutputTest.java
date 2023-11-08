@@ -45,6 +45,7 @@ class OutputTest extends NsTest {
     @DisplayName("수익률을 올바르게 출력하는지 확인한다.")
     @Test
     void checkRateOfReturnOutput() {
+        //given
         //when
         Output.rateOfReturn(67.51);
         //then

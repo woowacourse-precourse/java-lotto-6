@@ -14,14 +14,17 @@ class WinLottoTest {
     @Test
     @DisplayName("동일한 로또 번호 개수를 잘 찾아내는지 확인한다.")
     void checkIsEqualAndBonus() {
+        //given
         LottoCount lottoCount = LottoCount.from(1000);
         UserLotto userLotto = new UserLotto(lottoCount);
         userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
 
+        //when
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Bonus bonus = new Bonus(7);
         WinLotto winLotto = new WinLotto(lotto, bonus);
 
+        //then
         assertThat(winLotto.countEqual(userLotto.indexOf(0))).isEqualTo(3);
         assertThat(winLotto.countBonus(userLotto.indexOf(0))).isEqualTo(1);
     }

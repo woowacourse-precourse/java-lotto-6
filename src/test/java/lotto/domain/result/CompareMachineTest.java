@@ -24,6 +24,7 @@ class CompareMachineTest {
     @ParameterizedTest
     @MethodSource("validParameters")
     void checkCompareSystem(List<Integer> numbers, int number, EqualStatus equalStatus, int equalNumber) {
+        //given
         LottoCount lottoCount = LottoCount.from(INPUT_MONEY);
         UserLotto userLotto = new UserLotto(lottoCount);
         userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
@@ -32,9 +33,11 @@ class CompareMachineTest {
         Bonus bonus = new Bonus(number);
         WinLotto winLotto = new WinLotto(lotto, bonus);
 
+        //when
         CompareMachine compareMachine = new CompareMachine();
         compareMachine.compare(userLotto, winLotto);
 
+        //then
         assertThat(compareMachine.getWinStatus().get(new LottoResult(equalStatus))).isEqualTo(equalNumber);
     }
 
@@ -49,6 +52,7 @@ class CompareMachineTest {
     @Test
     @DisplayName("수익률을 제대로 계산하는지 확인한다.")
     void checkCalculateRate() {
+        //given
         LottoCount lottoCount = LottoCount.from(INPUT_MONEY);
         UserLotto userLotto = new UserLotto(lottoCount);
         userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
@@ -57,9 +61,11 @@ class CompareMachineTest {
         Bonus bonus = new Bonus(7);
         WinLotto winLotto = new WinLotto(lotto, bonus);
 
+        //when
         CompareMachine compareMachine = new CompareMachine();
         compareMachine.compare(userLotto, winLotto);
 
+        //then
         assertThat(compareMachine.calculateRate(userLotto)).isEqualTo(5000);
     }
 }

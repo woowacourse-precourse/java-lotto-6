@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -26,5 +27,12 @@ public class LottoLover {
         for (int i = 0; i < ea; i++) {
             bought.add(new Lotto());
         }
+    }
+
+    /**
+     * @return "immutable" Lotto List
+     */
+    public List<Lotto> bragAboutMyLottoButYouAreNotAllowedToTouchIt() {
+        return Collections.unmodifiableList(bought);
     }
 }

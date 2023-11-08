@@ -8,5 +8,6 @@ public class Application {
         LottoController lottoController = new LottoController();
         LottoLover lottoLover = new LottoLover();
         lottoController.giveMoneyTo(lottoLover);
+        lottoController.brag(lottoLover);
     }
 }

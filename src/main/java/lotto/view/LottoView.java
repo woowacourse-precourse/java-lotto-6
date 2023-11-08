@@ -1,6 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.Lotto;
 
 public class LottoView {
 
@@ -10,5 +12,14 @@ public class LottoView {
         System.out.println();
 
         return Integer.parseInt(input);
+    }
+
+    public static void printPurchaseList(List<Lotto> purchased) {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : purchased) {
+            sb.append(lotto.getImmutableSortedNumbers());
+            sb.append("\n");
+        }
+        System.out.println(sb);
     }
 }

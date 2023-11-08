@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import lotto.constant.LottoNumber;
+import lotto.game.LottoGameMessage;
 import lotto.model.Lotto;
 
 public final class LottoGameConsole {
@@ -12,6 +13,10 @@ public final class LottoGameConsole {
 
     private LottoGameConsole() {
         // Don't let anyone instantiate this class.
+    }
+
+    public static void print(LottoGameMessage message) {
+        System.out.println(message.getMessage());
     }
 
     public static int readCost() {

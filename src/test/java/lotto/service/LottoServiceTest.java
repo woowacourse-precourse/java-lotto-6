@@ -2,8 +2,6 @@ package lotto.service;
 
 import lotto.configuration.ScoreBoard;
 import lotto.configuration.Rank;
-import lotto.domain.Lotto;
-import lotto.util.Utils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,14 +33,10 @@ class LottoServiceTest {
     @Test
     void countMatchingWinningNumbers() {
         //given
-        Lotto lotto1 = new Lotto(Utils.convertToLottoIntegerList("1,2,3,4,5,6"));
-        Lotto lotto2 = new Lotto(Utils.convertToLottoIntegerList("1,2,3,4,5,6"));
-        List<Integer> winLotto1 = lotto1.getLotto();
-        List<Integer> myLotto1 = lotto2.getLotto();
-        Lotto lotto3 = new Lotto(Utils.convertToLottoIntegerList("1,2,3,4,7,8"));
-        Lotto lotto4 = new Lotto(Utils.convertToLottoIntegerList("1,2,3,4,5,6"));
-        List<Integer> winLotto2 = lotto3.getLotto();
-        List<Integer> myLotto2 = lotto4.getLotto();
+        List<Integer> winLotto1 = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> myLotto1 = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winLotto2 = List.of(1, 2, 3, 4, 7, 8);
+        List<Integer> myLotto2 = List.of(1, 2, 3, 4, 5, 6);
         LottoService lottoService = new LottoService();
 
         //when

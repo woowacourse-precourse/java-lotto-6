@@ -23,4 +23,17 @@ class PlayerBuyPriceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(exceptionMessage);
     }
+
+    @DisplayName("validateRangeFromAmount() : 구입 금액이 1,000원 이하, 10,000,000원 이상인 경우")
+    @ParameterizedTest
+    @ValueSource(strings = {"0","0100", "999", "1000000000"})
+    void validateRangeFromAmount_Fail(String amount) throws Exception {
+        //given
+        String exceptionMessage = "[ERROR] 구입 금액 범위를 벗어났습니다. 1,000원 ~ 10,000,000원 내 금액을 입력해주세요.";
+
+        //when //then
+        assertThatThrownBy(() -> new PlayerBuyPrice(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(exceptionMessage);
+    }
 }

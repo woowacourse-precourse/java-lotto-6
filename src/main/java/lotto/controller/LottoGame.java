@@ -14,13 +14,10 @@ public class LottoGame {
     public void run() {
         int purchaseAmount = InputView.getPurchaseAmount();
         List<Lotto> lottos = generateLottos(purchaseAmount);
-        OutputView.printLottoNumbers(lottos.size(), lottos);
+        printPurchasedLottos(lottos);
 
-        List<Integer> winningNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumber(new HashSet<>(winningNumbers));
-
-        WinningNumbers winningNumbersObject = new WinningNumbers(winningNumbers, bonusNumber);
-        LottoResult lottoResult = LottoResultCalculator.calculateResult(lottos, winningNumbersObject);
+        WinningNumbers winningNumbersObject = getWinningNumbers();
+        LottoResult lottoResult = calculateLottoResult(lottos, winningNumbersObject);
 
         OutputView.printResult(lottoResult);
 
@@ -30,5 +27,19 @@ public class LottoGame {
 
     private List<Lotto> generateLottos(int purchaseAmount) {
         return LottoGenerator.generateLottos(purchaseAmount / LottoGenerator.LOTTO_PRICE);
+    }
+
+    private void printPurchasedLottos(List<Lotto> lottos) {
+        OutputView.printLottoNumbers(lottos.size(), lottos);
+    }
+
+    private WinningNumbers getWinningNumbers() {
+        List<Integer> winningNumbers = InputView.getWinningNumbers();
+        int bonusNumber = InputView.getBonusNumber(new HashSet<>(winningNumbers));
+        return new WinningNumbers(winningNumbers, bonusNumber);
+    }
+
+    private LottoResult calculateLottoResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
+        return LottoResultCalculator.calculateResult(lottos, winningNumbers);
     }
 }

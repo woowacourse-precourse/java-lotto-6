@@ -18,7 +18,7 @@ public class LottoGame {
     public void start() {
         BuyCash buyCash = lottoGameController.inputBuyCash();
         Lottos lottos = lottoGameController.purchaseLotto(buyCash);
-        lottoGameController.printBuyLottosInformation(lottos);
+        lottoGameController.printLottosInformation(lottos);
 
         WinningLotto winningLotto = inputWinningLotto();
 
@@ -27,7 +27,7 @@ public class LottoGame {
     }
 
     private WinningLotto inputWinningLotto() {
-        Lotto winningNumbers = lottoGameController.inputWinningLotto();
+        Lotto winningNumbers = lottoGameController.inputWinningNumbers();
 
         while (true) {
             try {

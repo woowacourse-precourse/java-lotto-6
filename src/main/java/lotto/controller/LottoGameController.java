@@ -44,11 +44,11 @@ public class LottoGameController {
         return new Lottos(lottoService.generateAutoLottos(buyAmount));
     }
 
-    public void printBuyLottosInformation(Lottos lottos) {
+    public void printLottosInformation(Lottos lottos) {
         outputView.printUserLottos(lottos.getAllLottoNumbersMessage(), lottos.getLottoAmount());
     }
 
-    public Lotto inputWinningLotto() {
+    public Lotto inputWinningNumbers() {
         while (true) {
             try {
                 return lottoService.generateManualLotto(inputView.inputWinningNumbers());

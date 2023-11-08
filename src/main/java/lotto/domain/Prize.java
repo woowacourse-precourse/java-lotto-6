@@ -26,4 +26,8 @@ public enum Prize {
         }
         return FAIL;
     }
+
+    public int getPrizeMoney() {
+        return this.prizeMoney;
+    }
 }

@@ -3,7 +3,6 @@ package lotto.model;
 import lotto.constant.ModelConstant;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PrizeResult {
@@ -24,6 +23,10 @@ public class PrizeResult {
         int matchingNumbers = lottoMatch.get(index);
         boolean hasBonus = hasBonusMatch.get(index);
 
+        return comparePrize(matchingNumbers,hasBonus);
+    }
+
+    private Prize comparePrize(int matchingNumbers, boolean hasBonus) {
         if(matchingNumbers == ModelConstant.SIX_MATCHING_NUMBER) {
             return Prize.FIRST;
         } else if(matchingNumbers == ModelConstant.FIVE_MATCHING_NUMBER && hasBonus) {

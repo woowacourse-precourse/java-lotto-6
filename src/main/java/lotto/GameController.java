@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -20,11 +21,9 @@ public class GameController {
         Money count = insertMoney();
         List<Lotto> lottos = generateUserLotto(count);
         WinningLotto winningLotto = generateWinningLottto();
-        List<Integer> correctNumber = winningLotto.compareLottos(lottos);
-        printResult();
+        Map<Integer, String> resultLottos = winningLotto.compareLottos(lottos);
+        printResult(resultLottos);
     }
-
-
 
     private Money insertMoney(){
         System.out.println(GameMessage.OUT_REQUEST_MONEY_MESSAGE);
@@ -59,12 +58,15 @@ public class GameController {
                 .collect(Collectors.toList());
     }
 
-    private void printResult() {
-        System.out.println(GameMessage.OUT_RESULT_LOTTO_START_MESSAGE);
-        System.out.println(GameMessage.OUT_RESULT_CORRECT_THREE_MESSAGE);
-        System.out.println(GameMessage.OUT_RESULT_CORRECT_FOUR_MESSAGE);
-        System.out.println(GameMessage.OUT_RESULT_CORRECT_FIVE_MESSAGE);
-        System.out.println(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
-        System.out.println(GameMessage.OUT_RESULT_CORRECT_SIX_MESSAGE);
+    private void printResult(Map<Integer, String> resultLottos) {
+
+        for(int i = 0; i < 6; i++) {
+            System.out.println(GameMessage.OUT_RESULT_LOTTO_START_MESSAGE);
+            System.out.println(GameMessage.OUT_RESULT_CORRECT_THREE_MESSAGE);
+            System.out.println(GameMessage.OUT_RESULT_CORRECT_FOUR_MESSAGE);
+            System.out.println(GameMessage.OUT_RESULT_CORRECT_FIVE_MESSAGE);
+            System.out.println(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
+            System.out.println(GameMessage.OUT_RESULT_CORRECT_SIX_MESSAGE);
+        }
     }
 }

@@ -363,4 +363,17 @@ class LottoHandlerTest {
         assertThat(formattedPrice).isEqualTo("1,000,000");
     }
 
+    @DisplayName("입력 받은 값에 공백이 있으면 공백을 제거한다.")
+    @Test
+    void removeSpaces(){
+        //given
+        String inputValue = " 1, 2 , 3 4,5";
+
+        //when
+        String removedInputValue = lottoHandler.removeSpaces(inputValue);
+
+        //then
+        assertThat(removedInputValue).isEqualTo("1,2,34,5");
+    }
+
 }

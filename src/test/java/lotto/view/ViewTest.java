@@ -90,7 +90,7 @@ class ViewTest extends NsTest {
         });
     }
 
-    @DisplayName("당첨 로또에 숫자와 공백을 입력하면 공백을 무시한다.")
+    @DisplayName("보너스 번호에 숫자와 공백을 입력하면 공백을 무시한다.")
     @Test
     void inputBonusWithBlank() {
         assertRandomUniqueNumbersInRangeTest(

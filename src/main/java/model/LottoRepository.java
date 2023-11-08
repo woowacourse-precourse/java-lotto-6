@@ -6,12 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoRepository {
-    public static final int RANK_NONE = -1;
-    public static final int RANK_FIRST = 0;
-    public static final int RANK_SECOND = 1;
-    public static final int RANK_THIRD = 2;
-    public static final int RANK_FOURTH = 3;
-    public static final int RANK_FIFTH = 4;
+    public enum Rank {
+        FIRST, SECOND, THIRD, FOURTH, FIFTH, NONE
+    }
 
     List<Lotto> lottos = new ArrayList<>();
 
@@ -19,26 +16,24 @@ public class LottoRepository {
         lottos.add(lotto);
     }
 
-    public Map<Integer, Integer> printLottoResult(List<Integer> winnerNumbers, int bonusNumber) {
-        Map<Integer, Integer> lottoResult = new HashMap<>();
-        lottoResult.put(RANK_FIRST, 0);
-        lottoResult.put(RANK_SECOND, 0);
-        lottoResult.put(RANK_THIRD, 0);
-        lottoResult.put(RANK_FOURTH, 0);
-        lottoResult.put(RANK_FIFTH, 0);
+    public Map<Rank, Integer> printLottoResult(List<Integer> winnerNumbers, int bonusNumber) {
+        Map<Rank, Integer> lottoResult = new HashMap<>();
+        for (Rank rank: Rank.values()) {
+            lottoResult.put(rank, 0);
+        }
 
         for (Lotto lotto: lottos) {
             List<Integer> lottoNumbers = lotto.getNumber();
             int sameNumberCount = printSameNumberCount(lottoNumbers, winnerNumbers);
-            int rank = getRank(sameNumberCount);
+            Rank rank = getRank(sameNumberCount);
 
-            if (rank == -1) {
+            if (rank == Rank.NONE) {
                 continue;
             }
-            if (rank == RANK_THIRD && isMatchBonusNumber(lottoNumbers, bonusNumber)) {
-                rank = RANK_SECOND;
+            if (rank == Rank.THIRD && isMatchBonusNumber(lottoNumbers, bonusNumber)) {
+                rank = Rank.SECOND;
             }
-            lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+            lottoResult.put(rank, lottoResult.get(rank) + 1);
         }
         System.out.println(lottoResult);
         return lottoResult;
@@ -54,23 +49,23 @@ public class LottoRepository {
         return sameNumberCount;
     }
 
-    private int getRank(int sameNumberCount) {
+    private Rank getRank(int sameNumberCount) {
         if (sameNumberCount == 6) {
-            return RANK_FIRST;
+            return Rank.FIRST;
         }
         if (sameNumberCount == 5) {
-            return RANK_THIRD;
+            return Rank.THIRD;
         }
         if (sameNumberCount == 4) {
-            return RANK_FOURTH;
+            return Rank.FOURTH;
         }
         if (sameNumberCount == 3) {
-            return RANK_FIFTH;
+            return Rank.FIFTH;
         }
-        return RANK_NONE;
+        return Rank.NONE;
     }
 
     private boolean isMatchBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
-        return (lottoNumbers.contains(bonusNumber));
+        return lottoNumbers.contains(bonusNumber);
     }
 }

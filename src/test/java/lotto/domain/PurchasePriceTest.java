@@ -16,7 +16,7 @@ class PurchasePriceTest {
     @DisplayName("구매 금액이 1000 단위가 아니라면 에러가 발생한다.")
     void When_PurchasePriceIsNotThousandUnit_Then_Error() {
         assertThatThrownBy(() -> PurchasePrice.from(1009))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(error);
     }
 

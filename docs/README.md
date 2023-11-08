@@ -26,7 +26,7 @@
     - [X] 5등: 3개 번호 일치 / 5,000원
 -[X] 수익률을 계산한다. 수익률은 당첨 금액 / 구매 금액 X 100 이다.
   - [X] 소수점 둘째 자리에서 반올림한다.
-- [ ] 예외 상황 시 에러 문구를 출력해야 한다.
-  - [ ] 에러 문구는 "[ERROR]"로 시작해야 한다.
-  - [ ] 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-  - [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+- [X] 예외 상황 시 에러 문구를 출력해야 한다.
+  - [X] 에러 문구는 "[ERROR]"로 시작해야 한다.
+  - [X] 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+  - [X] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.

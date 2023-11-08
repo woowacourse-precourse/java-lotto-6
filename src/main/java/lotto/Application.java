@@ -2,7 +2,6 @@ package lotto;
 
 import controller.*;
 import model.*;
-import view.Input;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,7 +14,7 @@ public class Application {
         Lottos lottos = new Lottos();
         PrizeNumber prizeNumber = new PrizeNumber();
         PrizeChecker prizeChecker = new PrizeChecker();
-        Ranking ranking = new Ranking();
+        Ranking ranking;
 
         Message.start();
         purchase.Number(UserInput.purchasePrice());
@@ -24,10 +23,10 @@ public class Application {
         lottos.initLottos(LottoGenerator.createLottos(purchase.getPurchaseCount()));
         Message.printLotto(lottos);
 
-        Message.printPrize();
+        Message.inputPrize();
         prizeNumber.initPrizeNumber(UserInput.prizeNumber());
 
-        Message.printBonus();
+        Message.inputBonus();
         prizeNumber.initBonusNumber(UserInput.bonusNumber());
 
         Message.printOuttro();

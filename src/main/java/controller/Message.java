@@ -11,10 +11,10 @@ public class Message {
     public static void start(){
         Input.inputPrice();
     }
-    public static void printPrize(){
+    public static void inputPrize(){
         Input.inputPrize();
     }
-    public static void printBonus(){
+    public static void inputBonus(){
         Input.inputBonus();
     }
 
@@ -24,11 +24,11 @@ public class Message {
         }
     }
     public static void printOuttro(){
-        Output.outputResult();
+        Output.printResult();
     }
 
     public static void printCount(int purchase){
-        Output.outputCount(purchase);
+        Output.printCount(purchase);
     }
 
 }

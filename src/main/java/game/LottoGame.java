@@ -1,14 +1,15 @@
 package game;
 
 import base.Converter;
+import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lottoProfit.ProfitResultDisplay;
 import lottoProfit.ProfitCalculator;
+import lottoProfit.ProfitResultDisplay;
 import lottoResult.LottoResultDisplay;
-import lottoTicketPurchase.UserLottoNumbers;
 import lottoTicketPurchase.LottoTicketPurchase;
 import lottoTicketPurchase.LottoTicketQuantity;
+import lottoTicketPurchase.UserLottoNumbers;
 import lottoWinningNumber.BonusNumberInput;
 import lottoWinningNumber.Lotto;
 import lottoWinningNumber.WinningNumberInput;
@@ -57,5 +58,6 @@ public class LottoGame {
         lottoResultDisplay.outputLottoResult();
 
         outputResult.outputProfitResult(profitCalculator, lottoResultDisplay, purchaseAmount);
+        Console.close();
     }
 }

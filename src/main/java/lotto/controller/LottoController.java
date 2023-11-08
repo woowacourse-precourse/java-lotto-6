@@ -13,11 +13,12 @@ public class LottoController {
     private LottoTickets lottoTickets;
     private WinningNumber winningNumber;
     private BonusNumber bonusNumber;
-    private Result result;
 
     public void run() {
         set();
-        calculate();
+
+        Result result = calculateResult();
+        display(result);
     }
 
     private void set() {
@@ -27,9 +28,9 @@ public class LottoController {
         setBonusNumber();
     }
 
-    private void calculate() {
-        calculateResult();
-        calculateRateOfReturn();
+    private void display(Result result) {
+        displayResult(result);
+        displayRateOfReturn(result);
     }
 
     private void setTicketAmountAndCount() {
@@ -53,15 +54,21 @@ public class LottoController {
         bonusNumber = InputController.setBonusNumber(winningNumber);
     }
 
-    private void calculateResult() {
+    private Result calculateResult() {
+        return lottoTickets.calculateLottoRank(winningNumber, bonusNumber);
+    }
+
+    private void displayResult(Result result) {
         OutputView.printWinningStatusMessage();
-        result = lottoTickets.calculateLottoRank(winningNumber, bonusNumber);
         OutputView.printLottoResultMessage(result);
     }
 
-    private void calculateRateOfReturn() {
-        double rateOfReturn = ticketAmount.calculateRateOfReturn(result);
-        OutputView.printRateOfReturn(rateOfReturn);
+    private double calculateRateOfReturn(Result result) {
+        return ticketAmount.calculateRateOfReturn(result);
     }
 
+    private void displayRateOfReturn(Result result) {
+        double rateOfReturn = calculateRateOfReturn(result);
+        OutputView.printRateOfReturn(rateOfReturn);
+    }
 }

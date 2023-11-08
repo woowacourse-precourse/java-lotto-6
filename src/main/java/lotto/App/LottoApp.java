@@ -3,9 +3,9 @@ package lotto.App;
 import lotto.Controller.LottoController;
 
 public class LottoApp {
-    private LottoConsole lottoConsole;
-    private LottoView lottoView;
-    private LottoController lottoController;
+    private final LottoConsole lottoConsole;
+    private final LottoView lottoView;
+    private final LottoController lottoController;
 
     public LottoApp(LottoConsole lottoConsole, LottoView lottoView) {
         this.lottoConsole = lottoConsole;

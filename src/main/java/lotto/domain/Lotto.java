@@ -1,13 +1,11 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.utils.DuplicateException;
 import lotto.utils.ErrorMessage;
 import lotto.utils.LottoPlace;
 import lotto.utils.LottoResult;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class Lotto {
     }
 
     private void sizeValidate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIZE) {
             throw new IllegalArgumentException();
         }
     }

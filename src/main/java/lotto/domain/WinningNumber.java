@@ -2,8 +2,6 @@ package lotto.domain;
 
 import lotto.utils.ErrorMessage;
 
-import java.util.Objects;
-
 public class WinningNumber {
     private static final int MIN_VALUE = 1;
     private static final int MAX_VALUE = 45;

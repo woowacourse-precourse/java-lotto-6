@@ -13,18 +13,21 @@
 - [x] 해당 숫자 포함여부 판별 기능
 
 ## PurchaseAmount
-- [ ]구입 금액의 유효성 검사(e)
-- [ ] 구매할 로또 개수를 구하는 기능
+- [x]구입 금액의 유효성 검사(e)
+- [x] 구매할 로또 개수를 구하는 기능
 
 ## RandomNumbersGenerator
-- [ ] 로또 발행에 사용할 랜덤 숫자 발생
-- [ ] 숫자가 유효하지 않을 경우 다시 생성
+- [x] 로또 발행에 사용할 랜덤 숫자 발생
+- [x] 숫자가 유효하지 않을 경우 다시 생성
 
 ## LottoTicket
-- [ ] 발행된 로또들을  보유한 클래스
+- [x] 발행된 로또들을  보유한 클래스
 
 ## LottoTicketFactory
-- [ ] 입력 개수만큼 로또를 발행하고 LottoTicket을 반환
+- [x] 입력 개수만큼 로또를 발행하고 LottoTicket을 반환
+
+## Parser
+- [x]입력을 형식에 맞게 파싱하는 기능
 
 ## WinningLotto
 - [ ] 당첨번호 및 보너스 넘버 유효성 검사
@@ -36,4 +39,14 @@
 
 ## WinningResult
 - [ ] 전체 수익률을 계산하는 기능
+
+## Controller
+- 로또 진행
+
+## InputView
+- 입력기능
+
+## OutputView
+- 출력기능
+
 

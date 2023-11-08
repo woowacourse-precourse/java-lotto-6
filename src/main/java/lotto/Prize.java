@@ -10,6 +10,7 @@ public class Prize {
         for(Lotto lotto: lottos){
             Rank rank = new Rank(winningNumbers, lotto, bonusNumber);
             this.total += getPrize(rank.toString());
+
         }
     }
 
@@ -26,8 +27,9 @@ public class Prize {
             default:
                 return 0;
         }
-
     }
 
-
+    public double calculate(int payedMoney){
+        return (this.total - payedMoney) / payedMoney * 100;
+    }
 }

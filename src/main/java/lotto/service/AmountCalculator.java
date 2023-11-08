@@ -3,14 +3,11 @@ package lotto.service;
 public class AmountCalculator {
     private static final int ZERO = 0;
     private static final int LOTTO_PRICE = 1000;
-    private final int amount;
     private final int numberOfLottoPurchased;
 
     public AmountCalculator(int amount) {
         validate(amount);
-        this.amount = amount;
         this.numberOfLottoPurchased = calculateNumberOfLottoPurchasedByAmount(amount);
-
     }
 
     public int getNumberOfLottoPurchased() {

@@ -19,13 +19,13 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (!isSixNumbers(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         if (!isBetweenLottoRange(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
         if (!isDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.");
         }
     }
     private boolean isSixNumbers(List<Integer> numbers) {

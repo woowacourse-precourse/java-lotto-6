@@ -4,6 +4,8 @@ import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import lotto.view.Message;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -35,6 +37,8 @@ class PromptTest {
         prompt = new Prompt(reader, promptParser, message);
     }
 
+    @Order(1)
+    @DisplayName("구매 금액 입력")
     @Test
     void promptMoney_성공() {
         when(reader.readLine()).thenReturn(validMoneyInput);
@@ -49,6 +53,8 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validMoneyInput);
     }
 
+    @Order(2)
+    @DisplayName("구매 금액이 숫자가 아니면 에러 발생")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "　", "8000a", "abc", "..."})
     void promptMoney_숫자가아닌입력(String invalidMoneyInput) {
@@ -67,6 +73,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validMoneyInput);
     }
 
+    @DisplayName("구매 금액이 1000의 배수가 아니면 에러 발생")
     @ParameterizedTest
     @CsvSource(value = {"1,1", "22,22", "333,333", "4444,4444", "55555,55555"})
     void promptMoney_1000의배수가아닌숫자(String invalidMoneyInput, int invalidAmount) {
@@ -85,6 +92,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validMoneyInput);
     }
 
+    @DisplayName("구매 금액이 음수면 에러 발생")
     @ParameterizedTest
     @CsvSource(value = {"-1, -1", "-1111,-1111", "-1000,-1000", "-19000,-19000"})
     void promptMoney_음수(String invalidMoneyInput, int invalidAmount) {
@@ -103,6 +111,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validMoneyInput);
     }
 
+    @DisplayName("로또 번호, 보너스 번호 입력")
     @Test
     void promptWinningLotto_성공() {
         when(reader.readLine()).thenReturn(validLottoInput).thenReturn(validBonusInput);
@@ -121,6 +130,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validBonusInput.strip());
     }
 
+    @DisplayName("로또 번호가 숫자가 아니면 에러 발생")
     @ParameterizedTest
     @ValueSource(strings = {"a,b,c,d,e,f", "a,,c,...,e,f", "1,2,3, ,e,　"})
     void promptWinningLotto_숫자가아닌로또번호(String invalidLottoInput) {
@@ -142,6 +152,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validBonusInput.strip());
     }
 
+    @DisplayName("로또 번호 개수 6개 아니면 에러 발생")
     @ParameterizedTest
     @ValueSource(strings = {"1", "1,2,3,4,5,6,7", "1,2,3,4,5"})
     void promptWinningLotto_길이가맞지않는로또번호(String invalidLottoInput) {
@@ -164,6 +175,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validBonusInput.strip());
     }
 
+    @DisplayName("로또 번호가 중복되면 에러 발생")
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,1", "1,2,2,3,4,5", "1,1,1,1,1,1"})
     void promptWinningLotto_중복된로또번호(String invalidLottoInput) {
@@ -186,6 +198,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validBonusInput.strip());
     }
 
+    @DisplayName("로또 번호 1부터 45사이가 아니면 에러 발생")
     @ParameterizedTest
     @ValueSource(strings = {"46,1,2,3,4,5", "1,2,3,4,5,-1", "46,47,48,49,50,51"})
     void promptWinningLotto_유효하지않은숫자로또번호(String invalidLottoInput) {
@@ -208,6 +221,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validBonusInput.strip());
     }
 
+    @DisplayName("보너스 번호가 숫자가 아니면 에러 발생")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "　", "8a", "abc", "..."})
     void promptWinningLotto_숫자가아닌보너스번호(String invalidBonusInput) {
@@ -229,6 +243,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validBonusInput.strip());
     }
 
+    @DisplayName("보너스 번호 1부터 45사이가 아니면 에러 발생")
     @ParameterizedTest
     @CsvSource(value = {"-1,-1", "46,46", "48,48", "-19,-19"})
     void promptWinningLotto_유효하지않은숫자보너스번호(String invalidBonusInput, int invalidBonusNumber) {
@@ -250,6 +265,7 @@ class PromptTest {
         verify(promptParser, times(1)).integer(validBonusInput.strip());
     }
 
+    @DisplayName("보너스 번호가 로또 번호와 중복되면 에러 발생")
     @ParameterizedTest
     @CsvSource(value = {"1,1", "2,2", "3,3", "4,4", "5,5", "6,6"})
     void promptWinningLotto_로또번호와중복되는보너스번호(String invalidBonusInput, int invalidBonusNumber) {

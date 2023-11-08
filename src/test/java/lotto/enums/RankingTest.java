@@ -1,5 +1,6 @@
 package lotto.enums;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -18,6 +19,7 @@ class RankingTest {
     private static final Ranking[] RANKINGS = {BLANK, FIFTH, FORTH, THIRD, SECOND, FIRST};
     private static final List<String> RANKINGS_STRINGS = List.of("BLANK", "FIFTH", "FORTH", "THIRD", "SECOND", "FIRST");
 
+    @DisplayName("일치 개수와 보너스 여부를 입력받아 등수 반환")
     @ParameterizedTest
     @CsvSource(value = {"0,true,BLANK", "0,false,BLANK", "1,true,BLANK", "1,false,BLANK", "2,true,BLANK", "2,false,BLANK",
             "3,true,FIFTH", "3,false,FIFTH", "4,true,FORTH", "4,false,FORTH", "5,true,SECOND", "5,false,THIRD", "6,false,FIRST"})
@@ -25,18 +27,21 @@ class RankingTest {
         assertThat(Ranking.findRanking(corrects, bonus)).isEqualTo(Ranking.valueOf(expected));
     }
 
+    @DisplayName("일치 개수가 음수거나 7이상일 때 예외 발생")
     @ParameterizedTest
     @CsvSource(value = {"-1,true", "-1,false", "7,true", "7,false"})
     void findRanking_불가능한일치개수(int corrects, boolean bonus) {
         assertThatThrownBy(() -> Ranking.findRanking(corrects, bonus)).isInstanceOf(IllegalStateException.class);
     }
 
+    @DisplayName("6개 일치하고 보너스 번호까지 일치할 때 예외 발생")
     @ParameterizedTest
     @CsvSource(value = {"6,true"})
     void findRanking_불가능한일치개수보너스(int corrects, boolean bonus) {
         assertThatThrownBy(() -> Ranking.findRanking(corrects, bonus)).isInstanceOf(IllegalStateException.class);
     }
 
+    @DisplayName("등수에 해당하는 상금 반환")
     @Test
     void getPrize() {
         Ranking[] rankings = Ranking.values();
@@ -46,6 +51,7 @@ class RankingTest {
         }
     }
 
+    @DisplayName("등수에 해당하는 출력 문구 반환")
     @Test
     void getResult() {
         Ranking[] rankings = Ranking.values();
@@ -55,11 +61,13 @@ class RankingTest {
         }
     }
 
+    @DisplayName("Ranking.values() 테스트")
     @Test
     void values() {
         assertThat(Ranking.values()).isEqualTo(RANKINGS);
     }
 
+    @DisplayName("Ranking.valueOf() 테스트")
     @Test
     void valueOf() {
         for (int i = 0; i < RANKINGS_STRINGS.size(); i++) {

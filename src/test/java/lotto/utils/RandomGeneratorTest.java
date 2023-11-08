@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RandomGeneratorTest {
 
@@ -16,6 +16,7 @@ class RandomGeneratorTest {
     void setUp() {
     }
 
+    @DisplayName("지정된 범위에 해당하는 지정된 개수의 서로 다른 난수 배열 생성")
     @Test
     void generate_성공() {
         List<Integer> expected = List.of(8, 21, 23, 41, 42, 43);
@@ -28,6 +29,7 @@ class RandomGeneratorTest {
         );
     }
 
+    @DisplayName("개수가 로또 번호의 개수와 다를 때 에러 발생")
     @Test
     void generate_길이가맞지않음() {
         assertRandomUniqueNumbersInRangeTest(
@@ -41,6 +43,7 @@ class RandomGeneratorTest {
         );
     }
 
+    @DisplayName("중복된 숫자가 생성될 때 에러 발생")
     @Test
     void generate_중복() {
         assertRandomUniqueNumbersInRangeTest(
@@ -53,6 +56,7 @@ class RandomGeneratorTest {
         );
     }
 
+    @DisplayName("생성된 숫자가 1부터 45사이가 아닐 때 예외 발생")
     @Test
     void generate_유효하지않은숫자() {
         assertRandomUniqueNumbersInRangeTest(

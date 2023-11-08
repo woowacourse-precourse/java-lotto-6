@@ -1,5 +1,6 @@
 package lotto.enums;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -33,16 +34,19 @@ class LottoNumbersTest {
             "FORTY_ONE", "FORTY_TWO", "FORTY_THREE", "FORTY_FOUR", "FORTY_FIVE"
     );
 
+    @DisplayName("로또 번호 최소값 반환")
     @Test
     void getStart() {
         assertThat(LottoNumbers.getStart()).isEqualTo(MIN_LOTTO_NUMBER);
     }
 
+    @DisplayName("로또 번호 최대값 반환")
     @Test
     void getEnd() {
         assertThat(LottoNumbers.getEnd()).isEqualTo(MAX_LOTTO_NUMBER);
     }
 
+    @DisplayName("로또 번호 enum에 포함되는지 확인: 포함")
     @Test
     void contains_포함() {
         for(int lottoNumber : LOTTO_NUMBERS_INTEGERS) {
@@ -50,12 +54,14 @@ class LottoNumbersTest {
         }
     }
 
+    @DisplayName("로또 번호 enum에 포함되는지 확인: 미포함")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46, 47, 48, 49, 50})
     void contains_비포함(int number) {
         assertThat(LottoNumbers.contains(number)).isFalse();
     }
 
+    @DisplayName("로또 번호 정수 반환")
     @Test
     void getNumber() {
         LottoNumbers[] lottoNumbers = LottoNumbers.values();
@@ -65,11 +71,13 @@ class LottoNumbersTest {
         }
     }
 
+    @DisplayName("LottoNumbers.values() 테스트")
     @Test
     void values() {
         assertThat(LottoNumbers.values()).isEqualTo(LOTTO_NUMBERS);
     }
 
+    @DisplayName("LottoNumbers.valueOf() 테스트")
     @Test
     void valueOf() {
         for (int i = 0; i < LOTTO_NUMBERS_STRINGS.size(); i++) {

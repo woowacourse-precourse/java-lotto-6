@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -27,11 +28,13 @@ class LottosTest {
         lottos = new Lottos(LOTTOS);
     }
 
+    @DisplayName("로또 개수 반환")
     @Test
     void getSize() {
         assertThat(lottos.getSize()).isEqualTo(LOTTOS.size());
     }
 
+    @DisplayName("이터레이터 테스트")
     @Test
     void iterator() {
         List<Lotto> result = new ArrayList<>();

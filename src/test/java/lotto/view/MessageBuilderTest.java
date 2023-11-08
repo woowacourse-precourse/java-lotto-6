@@ -3,17 +3,14 @@ package lotto.view;
 import lotto.domain.*;
 import lotto.enums.Ranking;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class MessageBuilderTest {
@@ -30,6 +27,7 @@ class MessageBuilderTest {
         messageBuilder = new MessageBuilder();
     }
 
+    @DisplayName("로또 발행 메시지 생성")
     @Test
     void build_로또발행() {
         String expected = "8개를 구매했습니다." + System.lineSeparator()
@@ -60,6 +58,7 @@ class MessageBuilderTest {
         verify(player, times(1)).getLottos();
     }
 
+    @DisplayName("당첨 통계 메시지 생성")
     @Test
     void build_당첨통계() {
         String expected = "당첨 통계" + System.lineSeparator()

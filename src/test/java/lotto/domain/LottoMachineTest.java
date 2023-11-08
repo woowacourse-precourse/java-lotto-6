@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.enums.Ranking;
 import lotto.utils.RandomGenerator;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
@@ -41,11 +42,13 @@ class LottoMachineTest {
         lottoMachine = new LottoMachine();
     }
 
+    @DisplayName("로또 가격 반환")
     @Test
     void getLottoPrice() {
         assertThat(LottoMachine.getLottoPrice()).isEqualTo(LOTTO_PRICE);
     }
 
+    @DisplayName("로또 발행")
     @Test
     void issueLottos() {
         try (MockedStatic<RandomGenerator> randomGeneratorMockedStatic = mockStatic(RandomGenerator.class)) {
@@ -76,6 +79,7 @@ class LottoMachineTest {
         }
     }
 
+    @DisplayName("당첨 결과 계산")
     @Test
     void rank() {
         WinningLotto winningLotto = mock(WinningLotto.class);

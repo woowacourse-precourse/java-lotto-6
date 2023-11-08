@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
@@ -17,6 +18,7 @@ class ConsoleReaderTest {
         consoleReader = new ConsoleReader();
     }
 
+    @DisplayName("Console.readline()과 같은 값인지 확인")
     @Test
     void readLine() {
         try(MockedStatic<Console> consoleMockedStatic = mockStatic(Console.class)) {
@@ -27,6 +29,7 @@ class ConsoleReaderTest {
         }
     }
 
+    @DisplayName("Console.close()가 호출되었는지 확인")
     @Test
     void close() {
         try(MockedStatic<Console> consoleMockedStatic = mockStatic(Console.class)) {

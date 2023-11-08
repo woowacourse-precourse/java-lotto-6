@@ -2,6 +2,7 @@ package lotto.utils;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -21,6 +22,7 @@ class WriterTest {
         System.setOut(new PrintStream(captor));
     }
 
+    @DisplayName("출력 테스트")
     @Test
     void print() {
         String input = "my message";

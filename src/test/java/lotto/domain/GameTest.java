@@ -4,6 +4,7 @@ import lotto.controller.Prompt;
 import lotto.enums.Ranking;
 import lotto.view.Message;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -49,6 +50,7 @@ class GameTest {
         game = new Game(message, prompt, lottoMachine);
     }
 
+    @DisplayName("게임 실행 테스트")
     @Test
     void run() {
         when(prompt.promptMoney()).thenReturn(MONEY);

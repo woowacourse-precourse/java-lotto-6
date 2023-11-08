@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.enums.Ranking;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -31,6 +32,7 @@ class LottoResultTest {
         lottoResult = new LottoResult(RANKING_COUNTS);
     }
 
+    @DisplayName("수익률 계산")
     @Test
     void calculatePrizeRate() {
         Money money = mock(Money.class);
@@ -42,6 +44,7 @@ class LottoResultTest {
         verify(money, times(1)).getAmount();
     }
 
+    @DisplayName("당첨 결과 반환")
     @Test
     void getRankingCounts() {
         assertThat(lottoResult.getRankingCounts()).isEqualTo(RANKING_COUNTS);

@@ -2,6 +2,7 @@ package lotto.view;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -24,6 +25,7 @@ class WriterMessengerTest {
         writerMessenger = new WriterMessenger();
     }
 
+    @DisplayName("메시지 출력 테스트")
     @Test
     void print() {
         String input = "message";

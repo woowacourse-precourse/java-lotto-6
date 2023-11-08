@@ -4,6 +4,7 @@ import lotto.domain.LottoResult;
 import lotto.domain.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -11,7 +12,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class MessageTest {
@@ -39,6 +39,7 @@ class MessageTest {
         message = new Message(messenger, messageBuilder);
     }
 
+    @DisplayName("로또 발행 메시지 출력")
     @Test
     void print_로또발행() {
         String expected = "8개를 구매했습니다." + System.lineSeparator()
@@ -60,6 +61,7 @@ class MessageTest {
         verify(messageBuilder, times(1)).build(player);
     }
 
+    @DisplayName("당첨 통계 메시지 출력")
     @Test
     void print_당첨통계() {
         String expected = "당첨 통계" + System.lineSeparator()
@@ -81,42 +83,49 @@ class MessageTest {
         verify(messageBuilder, times(1)).build(player, lottoResult);
     }
 
+    @DisplayName("줄바꿈 문자열 출력")
     @Test
     void newLine() {
         message.newLine();
         assertThat(captor.toString()).isEqualTo(NEW_LINE + System.lineSeparator());
     }
 
+    @DisplayName("구매 금액 입력받는 메시지 출력")
     @Test
     void promptMoney() {
         message.promptMoney();
         assertThat(captor.toString()).isEqualTo(PROMPT_MONEY + System.lineSeparator());
     }
 
+    @DisplayName("당첨 번호 입력받는 메시지 출력")
     @Test
     void promptWinningNumbers() {
         message.promptWinningNumbers();
         assertThat(captor.toString()).isEqualTo(PROMPT_WINNING_NUMBERS + System.lineSeparator());
     }
 
+    @DisplayName("보너스 번호 입력받는 메시지 출력")
     @Test
     void promptBonusNumber() {
         message.promptBonusNumber();
         assertThat(captor.toString()).isEqualTo(PROMPT_BONUS_NUMBER + System.lineSeparator());
     }
 
+    @DisplayName("구입 금액 입력 에러 메시지 출력")
     @Test
     void invalidMoneyError() {
         message.invalidMoneyError();
         assertThat(captor.toString()).isEqualTo(INVALID_MONEY_ERROR + System.lineSeparator());
     }
 
+    @DisplayName("당첨 번호 입력 에러 메시지 출력")
     @Test
     void invalidWinningNumbersError() {
         message.invalidWinningNumbersError();
         assertThat(captor.toString()).isEqualTo(INVALID_WINNING_NUMBERS_ERROR + System.lineSeparator());
     }
 
+    @DisplayName("보너스 번호 입력 에러 메시지 출력")
     @Test
     void invalidBonusNumberError() {
         message.invalidBonusNumberError();

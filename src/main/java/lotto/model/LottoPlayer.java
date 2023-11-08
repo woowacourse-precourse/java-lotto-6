@@ -33,7 +33,7 @@ public class LottoPlayer {
 
     private void validatePurchaseMoney(String purchaseMoney) {
         if (isNotDivisibleWithLottoPrice(purchaseMoney)) {
-            throw new IllegalStateException(ErrorMessage.INVALID_INPUT_PURCHASE_MONEY.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_PURCHASE_MONEY.getMessage());
         }
     }
 

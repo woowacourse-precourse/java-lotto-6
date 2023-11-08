@@ -17,8 +17,8 @@ public class InputView {
     public int getLottoBudget() {
         System.out.println(INPUT_LOTTO_BUDGET_MESSAGE);
         int money = turnToInteger(Console.readLine());
-        validateInputBudget(money);
 
+        validateInputBudget(money);
         return money;
     }
 

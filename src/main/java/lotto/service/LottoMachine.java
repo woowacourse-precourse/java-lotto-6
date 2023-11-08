@@ -16,7 +16,7 @@ import static lotto.util.Constants.TICKET_PRICE;
 public class LottoMachine {
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoTickets lottoTickets;
+    private final LottoTickets lottoTickets;
 
     public LottoMachine(RandomNumberGenerator numberGenerator) {
         this.inputView = new InputView();
@@ -34,8 +34,8 @@ public class LottoMachine {
         outputView.printLottoTickets(lottoTickets.getLottoTickets());
 
         WinningLotto winningLotto = getWinningLotto();
-        HashMap<Result, Integer> resultIntegerHashMap = lottoTickets.calculateWinningLotto(winningLotto);
-        outputView.printResult(resultIntegerHashMap, getScore(resultIntegerHashMap));
+        HashMap<Result, Integer> resultMap = lottoTickets.calculateWinningLotto(winningLotto);
+        outputView.printResult(resultMap, getScore(resultMap));
     }
 
     public double getScore(HashMap<Result, Integer> resultMap) {
@@ -49,7 +49,6 @@ public class LottoMachine {
 
         int totalCost = ticketCount * TICKET_PRICE;
         return sum / totalCost * 100;
-
     }
 
     private WinningLotto getWinningLotto() {

@@ -87,4 +87,12 @@ public class Game {
         }
         matchResult.set(checkCount, matchResult.get(checkCount) + 1);
     }
+
+    public int getPrice() {
+        return this.result.get(3) * Condition.THREE_MATCH.getPrice() +
+                this.result.get(4) * Condition.FOUR_MATCH.getPrice() +
+                this.result.get(5) * Condition.FIVE_MATCH.getPrice() +
+                this.result.get(6) * Condition.SIX_MATCH.getPrice() +
+                this.result.get(7) * Condition.FIVE_BONUS_MATCH.getPrice();
+    }
 }

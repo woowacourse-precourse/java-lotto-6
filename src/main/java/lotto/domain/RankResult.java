@@ -13,8 +13,8 @@ public class RankResult {
         rankToCount = initialize();
     }
 
-    private EnumMap<Rank, Integer> initialize() {
-        EnumMap<Rank, Integer> rankToCount = new EnumMap<>(Rank.class);
+    private Map<Rank, Integer> initialize() {
+        Map<Rank, Integer> rankToCount = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
             rankToCount.put(rank, 0);
         }

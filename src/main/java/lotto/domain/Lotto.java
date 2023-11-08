@@ -6,6 +6,7 @@ import static lotto.common.exception.ExceptionMessages.INVALID_LOTTO_SIZE;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -35,7 +36,7 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        HashSet<Integer> distinctNumbers = new HashSet<>();
+        Set<Integer> distinctNumbers = new HashSet<>();
         for (Integer number : numbers) {
             if (!distinctNumbers.add(number)) {
                 throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());

@@ -23,7 +23,7 @@ public class Output {
             System.out.println(message+" - "+count+"개");
         }
         String profitRate = String.format("%,.1f",profit.getProfitRate());
-        System.out.println("총 수익률은 "+profitRate+"%입니다.\n");
+        System.out.println("총 수익률은 "+profitRate+"%입니다.");
     }
     public void lottoResult(List<Lotto> lottos){
         System.out.println(lottos.size()+"개를 구매했습니다.");

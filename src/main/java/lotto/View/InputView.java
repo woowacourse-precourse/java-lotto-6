@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    public List<Integer> getWinningNumbers() {
+    public List<Integer> getWinningNumber() {
         List<Integer> input = new ArrayList<>();
 
         return input;

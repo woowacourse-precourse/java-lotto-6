@@ -18,7 +18,7 @@ public class GameController {
     }
 
     private void Draw() {
-        drawMachine.makeWinningNumbers();
+        drawMachine.makeWinningNumber();
         drawMachine.makeBonusNumber();
     }
 

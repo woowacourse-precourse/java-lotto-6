@@ -7,7 +7,7 @@ import lotto.domain.LottoTicket;
 public class LottoTicketGenerator {
     public static LottoTicket generateLottoTickets(int lottoTicketCount) {
         LottoTicket ticket = new LottoTicket();
-        List<Lotto> lottoRandomNumbers = LottoTicket.generateRandomLotto(lottoTicketCount);
+        List<Lotto> lottoRandomNumbers = LottoTicket.randomLottoNumbers(lottoTicketCount);
 
         for (Lotto lotto : lottoRandomNumbers) {
             ticket.addLottoGame(lotto);

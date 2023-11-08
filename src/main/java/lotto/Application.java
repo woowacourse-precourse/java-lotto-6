@@ -6,5 +6,6 @@ public class Application {
 
         lottoGame.startGame();
 
+
     }
 }

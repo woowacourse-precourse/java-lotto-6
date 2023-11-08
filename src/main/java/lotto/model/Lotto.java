@@ -2,20 +2,27 @@ package lotto.model;
 
 import lotto.constant.message.ErrorMessage;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+
+import static lotto.constant.SystemData.MAX_IN_LOTTO_NUMBER;
+import static lotto.constant.SystemData.MIN_IN_LOTTO_NUMBER;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        validateDuplicate(numbers);
+        validateNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateNumbers(List<Integer> numbers){
+        validateNumberLength(numbers);
+        validateDuplicate(numbers);
+        validateNumberRange(numbers);
+    }
+
+    private void validateNumberLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
@@ -28,6 +35,14 @@ public class Lotto {
                 throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER);
             }
             hashSet.add(number);
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        for(int number : numbers){
+            if(number < MIN_IN_LOTTO_NUMBER || number > MAX_IN_LOTTO_NUMBER){
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBER);
+            }
         }
     }
 

@@ -38,4 +38,13 @@ public class Lottos {
 
         return result;
     }
+
+    public String printAllRandomLottos() {
+        StringBuilder lottoBuilder = new StringBuilder();
+
+        lottos.forEach(lotto -> lottoBuilder.append(lotto.getLottoNumbers())
+                .append("\n"));
+
+        return lottoBuilder.toString();
+    }
 }

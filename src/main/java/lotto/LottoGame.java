@@ -23,6 +23,10 @@ public class LottoGame {
 
         Lottos randomLottos = Lottos.create(ticketCount);
 
+        OutputView.printResult(
+                randomLottos.printAllRandomLottos()
+        );
+
         return randomLottos;
     }
 

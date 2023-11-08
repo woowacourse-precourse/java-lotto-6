@@ -13,19 +13,22 @@ import java.util.StringTokenizer;
 import static lotto.message.InputMessage.*;
 
 public class InputInitializer {
+    PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
+    LottoNumberValidator lottoNumberValidator = new LottoNumberValidator();
+    BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
+    String input;
+    boolean hasException;
 
-    public int inputtingPurchaseAmount() {
-        PurchaseAmountValidator validator = new PurchaseAmountValidator();
+
+    public int inputPurchaseAmount() {
         System.out.println(INPUT_PURCHASE_MONEY.getMessage());
-        String moneyInput;
-        boolean hasException;
 
         do {
             hasException = false;
-            moneyInput = Console.readLine();
+            input = Console.readLine();
 
             try {
-                validator.validate(moneyInput);
+                purchaseAmountValidator.validate(input);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 hasException = true;
@@ -33,21 +36,18 @@ public class InputInitializer {
 
         } while (hasException);
 
-        return Integer.parseInt(moneyInput) / 1000;
+        return Integer.parseInt(input) / 1000;
     }
 
-    public Lotto inputtingLottoNumber() {
-        LottoNumberValidator validator = new LottoNumberValidator();
-        String lottoNumbersInput;
-        boolean hasException;
+    public Lotto inputLottoNumber() {
 
         do {
             hasException = false;
             System.out.println(INPUT_WINNING_LOTTO_NUMBER.getMessage());
-            lottoNumbersInput = Console.readLine();
+            input = Console.readLine();
 
             try {
-                validator.validate(lottoNumbersInput);
+                lottoNumberValidator.validate(input);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 hasException = true;
@@ -55,7 +55,7 @@ public class InputInitializer {
 
         } while (hasException);
 
-        List<Integer> lottoNumbers = lottoNumberToList(lottoNumbersInput);
+        List<Integer> lottoNumbers = lottoNumberToList(input);
         return new Lotto(lottoNumbers);
     }
 
@@ -71,17 +71,14 @@ public class InputInitializer {
     }
 
     public int inputBonusNumber(Lotto lotto) {
-        BonusNumberValidator validator = new BonusNumberValidator();
-        String bonusNumberInput;
-        boolean hasException;
 
         do {
             hasException = false;
             System.out.println(INPUT_BONUS_NUMBER.getMessage());
-            bonusNumberInput = Console.readLine();
+            input = Console.readLine();
 
             try {
-                validator.validate(bonusNumberInput, lotto);
+                bonusNumberValidator.validate(input, lotto);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 hasException = true;
@@ -89,7 +86,7 @@ public class InputInitializer {
 
         } while (hasException);
 
-        return Integer.parseInt(bonusNumberInput);
+        return Integer.parseInt(input);
     }
 
 }

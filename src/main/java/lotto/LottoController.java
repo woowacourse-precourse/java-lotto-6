@@ -15,11 +15,11 @@ public class LottoController {
         InputInitializer inputInitializer = new InputInitializer();
         OutputView outputView = new OutputView();
 
-        int purchaseAmount = inputInitializer.inputtingPurchaseAmount();
+        int purchaseAmount = inputInitializer.inputPurchaseAmount();
         List<Lotto> userLotteries = new MyLotteries().BuyLotteries(purchaseAmount);
         outputView.printLotteries(purchaseAmount, userLotteries);
 
-        Lotto winningLotto = inputInitializer.inputtingLottoNumber();
+        Lotto winningLotto = inputInitializer.inputLottoNumber();
         int bonusNumber = inputInitializer.inputBonusNumber(winningLotto);
         LottoMachine lottoMachine = new LottoMachine(winningLotto, bonusNumber);
         EnumMap<LottoRank, Integer> lottoResultMap = lottoMachine.toLottoResult(userLotteries);

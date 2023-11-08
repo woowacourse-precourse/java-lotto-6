@@ -21,14 +21,14 @@ public class GameController {
      * 게임 시작하는 메서드
      */
     public void start() {
-        init();
+        purchaseLotto();
         setWinningLotto();
     }
 
     /**
      * 게임을 시작하기전에 구매할 금액에 따라 로또를 생성하고 출력하는 메서드
      */
-    private void init() {
+    private void purchaseLotto() {
         Price price = new Price(inputPurchaseView.printPurchasePrice()); //구입 금액 입력받기
         lottos.generateLotto(price.getAmount());// 입력받은 구입금액 만큼 lotto 생성
         outputPurchaseView.printPurchaseLotto(price.getAmount(), lottos);//구입한 로또들을 출력

@@ -60,10 +60,9 @@ public final class OutputView {
             String reward = applyRewardFormat(rank);
             if (rank.isSecond()) {
                 printSecondRankResult(matchingCount, reward, winningCount);
+                return;
             }
-            if (!rank.isSecond()) {
-                printRankResult(matchingCount, reward, winningCount);
-            }
+            printRankResult(matchingCount, reward, winningCount);
         });
     }
 

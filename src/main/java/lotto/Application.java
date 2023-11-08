@@ -12,6 +12,7 @@ public class Application {
         int purchaseAmount = getPurchaseAmount();
         List<Lotto> purchasedLottoTickets = generateLottoTickets(purchaseAmount);
         List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
     }
 
     private static int getPurchaseAmount() {
@@ -91,5 +92,30 @@ public class Application {
 
     private static boolean areNumbersDuplicated(List<Integer> numbers) {
         return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    private static int getBonusNumber() {
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String input = Console.readLine();
+
+            try {
+                int bonusNumber = parseBonusNumber(input);
+                validateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.err.println("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
+    private static int parseBonusNumber(String input) {
+        return Integer.parseInt(input);
+    }
+
+    private static void validateBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
     }
 }

@@ -9,18 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import static lotto.model.constants.IntegerConstants.*;
+
 public class LottoTickets {
     private List<Lotto> tickets = new ArrayList<>();
 
     public LottoTickets(int amount) {
-        for(int i=0; i<amount; i++){
-            Lotto lottoTicket = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            tickets.add(lottoTicket);
-        }
+        IntStream.range(ZERO.get(), amount)
+                .forEach(i -> tickets.add(makeRandomLottoTicket()));
     }
 
     public LottoTickets(List<Lotto> lotto){
         this.tickets = lotto;
+    }
+
+    private static Lotto makeRandomLottoTicket() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MINIMUM_OF_LOTTO.get(), MAXIMUM_OF_LOTTO.get(), SIZE_OF_LOTTO.get()));
     }
 
     public LottoResults calculateResult(WinningNumber winningNumber, BonusNumber bonusNumber){

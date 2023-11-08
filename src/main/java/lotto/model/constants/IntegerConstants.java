@@ -2,6 +2,8 @@ package lotto.model.constants;
 
 public enum IntegerConstants {
     SIZE_OF_LOTTO(6),
+    MINIMUM_OF_LOTTO(1),
+    MAXIMUM_OF_LOTTO(45),
 
     ZERO(0), TWO(2),
 

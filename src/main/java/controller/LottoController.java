@@ -41,7 +41,7 @@ public class LottoController {
         List<Integer> winningNumbers = InputMessage.printWinNumberInputMessage();
         try {
             lottoService.setPlayerWinningNumbers(winningNumbers);
-        } catch (IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             initPlayerWinningNumbers();
         }
     }
@@ -50,7 +50,7 @@ public class LottoController {
         int bonusNumber = InputMessage.printBonusNumberInputMessage();
         try {
             lottoService.setPlayerBonusMatchNumber(bonusNumber);
-        } catch (IllegalStateException e) {
+        } catch (IllegalArgumentException e) {
             initPlayerBonusNumber();
         }
     }

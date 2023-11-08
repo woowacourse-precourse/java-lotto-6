@@ -4,6 +4,7 @@ import static lotto.settings.ErrorMessage.INVALID_UNIT_FORMAT;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,5 +30,15 @@ class PurchaseAmountTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(()->PurchaseAmount.from(purchaseAmount))
                 .withMessage(INVALID_UNIT_FORMAT.getMessage());
+    }
+
+    @DisplayName("구입 금액으로 몇개의 복권을 살수있는지 계산해준다.")
+    @ParameterizedTest
+    @CsvSource(value = {"1000,1","5000,5","14000,14"})
+    void calculateCount(int money, int purchaseCount) {
+        // when
+        PurchaseAmount purchaseAmount = PurchaseAmount.from(money);
+        // then
+        Assertions.assertThat(purchaseAmount.calculateCount()).isEqualTo(purchaseCount);
     }
 }

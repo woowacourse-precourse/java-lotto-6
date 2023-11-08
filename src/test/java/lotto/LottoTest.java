@@ -135,7 +135,7 @@ class LottoTest {
         assertThat(buyLotto.has(bonusNumber)).isEqualTo(expected);
     }
 
-    @DisplayName("산 로또의 번호를 오름차순으로 ','로 구분하여 문자열로 변경해줍니다.")
+    @DisplayName("산 로또의 번호를 오름차순으로 ','로 구분하여 문자열로 변경해준다.")
     @Test
     void listToAscendingString() {
         //given

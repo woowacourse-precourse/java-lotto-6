@@ -12,4 +12,8 @@ public class BonusNumber {
         BonusNumberValidator.validateMaxNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

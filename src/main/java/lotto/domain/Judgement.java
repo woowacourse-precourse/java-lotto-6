@@ -19,7 +19,7 @@ public class Judgement {
     public HashMap<WinningRule, Integer> getResults(Buyer buyer, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         for (Lotto lotto : buyer.getPurchaseLotteries()) {
             int matchNumbers = countMatchNumbers(lotto, winningNumbers);
-            boolean matchBonusNumber = checkContainsBonusNumber(lotto, bonusNumber);
+            boolean matchBonusNumber = checkContainsBonusNumber(lotto, bonusNumber.getBonusNumber());
             WinningRule rank = determineRank(matchNumbers, matchBonusNumber);
             int count = results.get(rank) + 1;
             results.put(rank, count);
@@ -27,7 +27,7 @@ public class Judgement {
         return results;
     }
 
-    private int countMatchNumbers(Lotto lotto, WinningNumbers winningNumbers) {
+    public int countMatchNumbers(Lotto lotto, WinningNumbers winningNumbers) {
         int matchCount = 0;
         for (int number : winningNumbers.getWinningNumbers()) {
             if (lotto.getNumbers().contains(number)) {
@@ -37,14 +37,14 @@ public class Judgement {
         return matchCount;
     }
 
-    private boolean checkContainsBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
+    public boolean checkContainsBonusNumber(Lotto lotto, int bonusNumber) {
         if (lotto.getNumbers().contains(bonusNumber)) {
             return true;
         }
         return false;
     }
 
-    private WinningRule determineRank(int matchNumbers, boolean matchBonusNumber) {
+    public WinningRule determineRank(int matchNumbers, boolean matchBonusNumber) {
         if (matchNumbers == 6) {
             return WinningRule.FIRST_PRIZE;
         }

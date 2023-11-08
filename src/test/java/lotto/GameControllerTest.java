@@ -36,15 +36,15 @@ public class GameControllerTest {
                 .isEqualTo(matchNumberAmount);
     }
 
-    @DisplayName("등수에 따른 금액 반환")
-    @ParameterizedTest(name = "{index}: {2}" + "반환")
+    @DisplayName("일치하는 숫자 개수에 따른 등수 반환")
+    @ParameterizedTest(name = "{index}: {2}" + "등 반환")
     @MethodSource("ticketList")
-    void returnPrizeMoney(List<Integer> list, int matchNumberAmount, int prizeMoney) {
+    void returnRank(List<Integer> list, int matchNumberAmount, int rank) {
         GameController gameController = new GameController();
 
-        gameController.addPrize(list, matchNumberAmount, VALID_BONUS_NUMBER);
+        int result = gameController.getRank(list, matchNumberAmount, VALID_BONUS_NUMBER);
 
-        assertThat(prizeMoney).isEqualTo(gameController.getTotalPrizeMoney());
+        assertThat(rank).isEqualTo(result);
     }
 
     @DisplayName("당첨 금액에 따른 수익률 반환")
@@ -61,11 +61,11 @@ public class GameControllerTest {
 
     static Stream<Arguments> ticketList() {
         return Stream.of(
-                Arguments.of(VALID_FIFTH_PRIZE_TICKET, FIFTH.matchCondition(), FIFTH.prizeMoney()),
-                Arguments.of(VALID_FOURTH_PRIZE_TICKET, FOURTH.matchCondition(), FOURTH.prizeMoney()),
-                Arguments.of(VALID_THIRD_PRIZE_TICKET, THIRD.matchCondition(), THIRD.prizeMoney()),
-                Arguments.of(VALID_SECOND_PRIZE_TICKET, SECOND.matchCondition(), SECOND.prizeMoney()),
-                Arguments.of(VALID_FIRST_PRIZE_TICKET, FIRST.matchCondition(), FIRST.prizeMoney())
+                Arguments.of(VALID_FIFTH_PRIZE_TICKET, FIFTH.matchCondition(), 5),
+                Arguments.of(VALID_FOURTH_PRIZE_TICKET, FOURTH.matchCondition(), 4),
+                Arguments.of(VALID_THIRD_PRIZE_TICKET, THIRD.matchCondition(), 3),
+                Arguments.of(VALID_SECOND_PRIZE_TICKET, SECOND.matchCondition(), 2),
+                Arguments.of(VALID_FIRST_PRIZE_TICKET, FIRST.matchCondition(), 1)
         );
     }
 }

@@ -1,9 +1,5 @@
 package lotto.domain;
 
-import lotto.view.InputView;
-
-import java.util.List;
-
 public class LottoCompany {
     private WinningNumbers winningNumbers;
     private BonusNumbers bonusNumbers;
@@ -21,13 +17,7 @@ public class LottoCompany {
         return bonusNumbers;
     }
 
-    public static LottoCompany createlottoCompany() {
-        List<Integer> numbers;
-        numbers = (List<Integer>) InputView.INPUT_WINNING_NUMBER.activateView();
-        WinningNumbers winningNumbers = new WinningNumbers(numbers);
-        System.out.println();
-        numbers = (List<Integer>) InputView.INPUT_BONUS_NUMBER.activateView();
-        BonusNumbers bonusNumbers = new BonusNumbers(numbers);
+    public static LottoCompany createLottoCompany(WinningNumbers winningNumbers, BonusNumbers bonusNumbers) {
         return new LottoCompany(winningNumbers, bonusNumbers);
     }
 }

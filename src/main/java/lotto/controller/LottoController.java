@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Payment;
 import lotto.service.LottoService;
 import lotto.utils.InputValidator;
 import lotto.view.InputView;
+
+import java.util.List;
 
 public class LottoController {
     InputView inputView = new InputView();
@@ -14,6 +17,7 @@ public class LottoController {
     public void proceedLottos() {
         Payment userPayment = buyLottos();
         Lottos userLottos = lottoService.createUserLottos(userPayment.providePaymentStatus().get(1));
+        Lotto answerLotto = setAnswerLotto();
     }
 
     private Payment buyLottos() {
@@ -26,6 +30,18 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return buyLottos();
+        }
+    }
+
+    private Lotto setAnswerLotto() {
+        try {
+            String answerLottoNumbers = inputView.askAnswerLottoNumbers();
+            String preprocessedNumbers = inputValidator.preprocessUserInput(answerLottoNumbers);
+            List<Integer> validAnswerNumbers = inputValidator.convertInputToLottoNumbers(preprocessedNumbers);
+            return lottoService.createAnswerLotto(validAnswerNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return setAnswerLotto();
         }
     }
 }

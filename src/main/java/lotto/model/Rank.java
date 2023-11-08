@@ -8,7 +8,6 @@ public class Rank {
     private int thirdPlace = RankConstants.RANK_INITIAL_VALUE.getNumber();
     private int fourthPlace = RankConstants.RANK_INITIAL_VALUE.getNumber();
     private int fifthPlace = RankConstants.RANK_INITIAL_VALUE.getNumber();
-    private int totalWinningAmount = 0;
 
     public void addFirstPlace() {
         firstPlace += RankConstants.MATCHING_INCRESE_COUNT.getNumber();

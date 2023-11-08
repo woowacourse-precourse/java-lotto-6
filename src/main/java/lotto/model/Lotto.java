@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.model.constant.LottoConstants;
-import lotto.util.validator.InputValidator;
 import lotto.util.validator.constant.ErrorMessageConstant;
 
 import java.util.Collections;

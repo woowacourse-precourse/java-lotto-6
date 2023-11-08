@@ -50,6 +50,7 @@ public class Utils {
         return LottoInfoNumbers.ZERO;
     }
 
+    // 같은 숫자가 있는지 탐색
     public static int countMatchNumbers(List<Integer> winningNumbers, List<Integer> userNumbers) {
         int count = 0;
         for (Integer userNumber : userNumbers) {

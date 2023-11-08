@@ -22,6 +22,14 @@ public class LottoManager {
         return new Lotto(lottoNumbers);
     }
 
+    private int countMatchLottoNumbers(LottoValidation lottoValidation, Lotto lotto) {
+        return Utils.countMatchNumbers(lottoValidation.getWinningNumbers(), lotto.getNumbers());
+    }
+
+    private boolean hasBonusNumber(LottoValidation lottoValidation, Lotto lotto) {
+        return lotto.getNumbers().contains(lottoValidation.getBonusNumber());
+    }
+
     public void checkUserLotto(User user, LottoValidation lottoValidation) {
 
     }

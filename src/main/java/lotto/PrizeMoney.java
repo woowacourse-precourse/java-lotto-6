@@ -27,24 +27,17 @@ public class PrizeMoney {
   }
 
   public static void printResults(int[] results) {
-    System.out.println("당첨 통계");
-    System.out.println("---");
-
-    // 3개, 4개 일치
     for (int i = 0; i <= 2; i++) {
       int prizeAmount = Prize.values()[i].getAmount();
       String formattedAmount = NumberFormat.getNumberInstance(Locale.US).format(prizeAmount);
       System.out.println((i + 3) + "개 일치 (" + formattedAmount + "원) - " + results[i] + "개");
     }
-
     int prizeAmount = Prize.values()[3].getAmount();
     String formattedAmount = NumberFormat.getNumberInstance(Locale.US).format(prizeAmount);
     System.out.println("5개 일치, 보너스 볼 일치 (" + formattedAmount + "원) - " + results[4] + "개");
 
     prizeAmount = Prize.values()[4].getAmount();
     System.out.println("6개 일치 (" + formattedAmount + "원) - " + results[3] + "개");
-
-
   }
 
   static double calculateTotalRevenueRate(int[] results, int totalPurchaseCost) {

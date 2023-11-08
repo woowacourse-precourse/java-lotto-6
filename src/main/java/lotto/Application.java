@@ -21,6 +21,8 @@ public class Application {
 
     Lotto winningTicket = new Lotto(winningNumbers);
     lottoGame.setWinningTicket(winningTicket);
+    System.out.println("당첨 통계");
+    System.out.println("---");
 
     int[] results = lottoGame.calculateResults(bonusNumber);
 

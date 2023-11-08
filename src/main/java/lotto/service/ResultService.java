@@ -2,7 +2,6 @@ package lotto.service;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoAnswer;
 import lotto.model.Policy;
@@ -46,12 +45,11 @@ public class ResultService {
     public double getProfitRate(User user, Result result) {
         int amount = user.getPurchaseCount();
         int totalProfit = getTotalProfit(result);
-        return totalProfit / (double) amount * 100;
+        return (totalProfit / (double) (amount*1000)) * 100;
     }
 
     private int getTotalProfit(Result result) {
         int totalProfit = 0;
-        Map<Policy, Integer> results = result.getResults();
         for (Policy rank : result.getResults().keySet()) {
             if (rank == Policy.FAIL) {
                 continue;

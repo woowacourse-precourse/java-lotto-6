@@ -15,6 +15,9 @@ public class Application {
 
         Result checkedResult; //통계 결과 객체
 
+        Profit profit = new Profit(); //수익률 객체
+        double rounding; //수익률을 소수점 둘째자리까지 저장하는 변수
+
         System.out.println("구입금액을 입력해 주세요.");
         price.inputPrice();
 
@@ -35,6 +38,9 @@ public class Application {
         checkedResult = winning.checkWinning(allLotto, winning);
 
         printWinningStatistics();
+
+        rounding = profit.getRounding(price, checkedResult);
+        System.out.println("총 수익률은 "+ rounding + "%입니다.");
     }
 
     private static void printBoughtLotto(List<Lotto> allLotto) {

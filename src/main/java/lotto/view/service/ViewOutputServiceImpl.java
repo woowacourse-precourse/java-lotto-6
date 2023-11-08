@@ -10,7 +10,7 @@ public class ViewOutputServiceImpl implements ViewOutputService {
     @Override
     public void printPurchasedCount(List<LottoDto> lottoDtos) {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n").append(lottoDtos.size()).append(OutputMessage.MESSAGE_PURCHASED_COUNT.getValue()).append('\n');
+        sb.append("\n").append(lottoDtos.size()).append(OutputMessage.MESSAGE_PURCHASED_COUNT).append('\n');
 
         for (LottoDto lottoDto : lottoDtos) {
             sb.append(lottoDto.getNumbers()).append('\n');

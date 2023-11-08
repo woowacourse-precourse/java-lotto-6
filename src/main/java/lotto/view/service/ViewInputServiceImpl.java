@@ -13,7 +13,7 @@ public class ViewInputServiceImpl implements ViewInputService {
 
     @Override
     public void printMessagePurchaseAmount() {
-        System.out.println(InputMessage.MESSAGE_PURCHASE_AMOUNT.getValue());
+        System.out.println(InputMessage.MESSAGE_PURCHASE_AMOUNT);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ViewInputServiceImpl implements ViewInputService {
 
     @Override
     public void printMessageWinningNumbers() {
-        System.out.println(InputMessage.MESSAGE_WINNING_NUMBERS.getValue());
+        System.out.println(InputMessage.MESSAGE_WINNING_NUMBERS);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ViewInputServiceImpl implements ViewInputService {
 
     @Override
     public void printMessageBonusNumber() {
-        System.out.println("\n" + InputMessage.MESSAGE_BONUS_NUMBER.getValue());
+        System.out.println("\n" + InputMessage.MESSAGE_BONUS_NUMBER);
     }
 
     @Override

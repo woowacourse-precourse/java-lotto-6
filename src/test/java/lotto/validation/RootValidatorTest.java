@@ -32,15 +32,15 @@ public class RootValidatorTest {
                 .hasMessage(ErrorProperty.VALUE_CONTATIN_SPACE.toString());
     }
 
-    /*@Test
-    void 사용자_입력_값_숫자_아닌경우_검증_로직_테스트(){
+    @Test
+    void 사용자_입력_값_숫자_아닌경우_검증_로직_테스트() {
         //given
         String target = "일이삼사오육칠";
 
-        assertThatThrownBy(()->{
-                RootValidator.valueIsNumeric(target);
-            }
-                ).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(ErrorProperty.VALUE_IS_NOT_NUMERIC.toString());
-    }*/
+        assertThatThrownBy(() -> {
+                    RootValidator.valueIsNumeric(target);
+                }
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorProperty.VALUE_IS_NOT_NUMERIC.toString());
+    }
 }

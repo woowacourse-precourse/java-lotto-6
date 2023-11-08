@@ -18,6 +18,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        boolean isInvalidRange = numbers.stream()
+                .anyMatch(number -> number < 1 || 45 < number);
+        if(isInvalidRange)
+            throw new IllegalArgumentException();
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         boolean isDuplicated = numbers.size() != uniqueNumbers.size();
         if(isDuplicated)

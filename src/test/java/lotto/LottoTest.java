@@ -23,6 +23,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호 범위를 벗어난 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByOverRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 0, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호는 자동으로 오름차순 정렬되어 저장된다.")
     @Test
     void checkLottoIsSorted() {

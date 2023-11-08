@@ -42,28 +42,5 @@ public class InputView {
         }
     }
 
-    public String inputWinningNumber() {
-        String winningNumber = "";
-        while (true) {
-            winningNumber = Console.readLine();
-            try {
-                checkWinningNumber(winningNumber);
-                break;
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-                continue;
-            }
-        }
-        return winningNumber;
-    }
-
-    public void checkWinningNumber(String winningNumber) throws IllegalArgumentException {
-        if (!winningNumberInputValidator.isCommaFive(winningNumber)) {
-            lottoException.setNotSixLottoNumber();
-        }
-    }
-
-    public String inputBonusNumber() {
-        return null;
-    }
+    
 }

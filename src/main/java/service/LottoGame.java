@@ -8,7 +8,7 @@ import util.LottoNumberGenerator;
 import java.util.*;
 
 import static util.LottoStatistics.printStatistics;
-import static util.TicketPurchaseAmountValidator.validateTicketPurchaseAmount;
+import static util.TicketPurchaseAmountValidator.validatePurchaseAmount;
 
 public class LottoGame {
     static final int TICKET_PRICE = 1000;
@@ -65,7 +65,7 @@ public class LottoGame {
         } else if (matchedCount == LottoRank.FIFTH.getMatchedCount()) {
             return LottoRank.FIFTH;
         }
-        
+
         return LottoRank.FAIL;
     }
 
@@ -134,7 +134,7 @@ public class LottoGame {
     private int getTicketPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        validateTicketPurchaseAmount(input);
+        validatePurchaseAmount(input);
 
         return Integer.parseInt(input);
     }

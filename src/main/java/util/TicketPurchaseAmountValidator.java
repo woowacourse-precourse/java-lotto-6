@@ -16,7 +16,7 @@ public class TicketPurchaseAmountValidator {
         }
     }
 
-    public static void validateTicketPurchaseAmount(String input) {
+    public static void validatePurchaseAmount(String input) {
         validateNumberFormat(input);
         validateDivisor(input);
     }

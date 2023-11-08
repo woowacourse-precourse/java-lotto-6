@@ -18,4 +18,8 @@ public class Player {
     private void validate(int purchaseAmount) {
         PlayerValidation.validatePurchaseAmount(purchaseAmount);
     }
+
+    public void buyLotto(Lotto lotto) {
+        lottos.add(lotto);
+    }
 }

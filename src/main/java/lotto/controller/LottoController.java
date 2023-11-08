@@ -9,7 +9,7 @@ public class LottoController {
 
     public void run() {
         buyTickets();
-        printTickets();
+        showTickets();
         readWinningNumbers();
         showStatistics();
     }
@@ -18,12 +18,12 @@ public class LottoController {
         try {
             lottoService.buyTickets(InputView.readPayment());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             buyTickets();
         }
     }
 
-    private void printTickets() {
+    private void showTickets() {
         OutputView.printTickets(lottoService.tickets());
     }
 
@@ -37,7 +37,7 @@ public class LottoController {
         try {
             lottoService.initMainNumbers(InputView.readMainNumbers());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             readMainNumbers();
         }
     }
@@ -46,7 +46,7 @@ public class LottoController {
         try {
             lottoService.initBonusNumber(InputView.readBonusNumber());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
             readBonusNumber();
         }
     }
@@ -54,5 +54,4 @@ public class LottoController {
     private void showStatistics() {
         OutputView.printStatistics(lottoService.getPrizeResult());
     }
-
 }

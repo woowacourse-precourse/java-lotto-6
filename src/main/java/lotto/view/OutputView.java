@@ -35,4 +35,7 @@ public class OutputView {
         System.out.printf(ViewConstant.REVENUE_MESSAGE.toString(), ((double) prizeMoney / payment) * 100);
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

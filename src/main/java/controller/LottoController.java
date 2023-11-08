@@ -1,5 +1,6 @@
 package controller;
 
+import domain.BonusNumber;
 import domain.LottoMoney;
 import domain.Lottos;
 import domain.Lotto;
@@ -12,12 +13,14 @@ public class LottoController {
     private Input input;
     private Lottos lottos;
     private Lotto winningNumber;
+    private BonusNumber bonusNumber;
 
-    public LottoController(){
+    public LottoController() {
         input = new Input();
 
     }
-    public void start(){
+
+    public void start() {
         //lottoCostRequst = new LottoCostRequst(Input.getInputForLottoMoney());
         // 로또 살 금액 입력
         lottoMoney = getLottoMeney();
@@ -27,49 +30,66 @@ public class LottoController {
 
         // 당첨 번호 입력
         winningNumber = getWinningNumber();
+
+        // 보너스 번호 입력
+        bonusNumber = getBonusNumber();
+
     }
 
-    private LottoMoney getLottoMeney(){
+    private LottoMoney getLottoMeney() {
         LottoMoney tempLottoMoney;
-        while(true){
-            try{
+        while (true) {
+            try {
                 tempLottoMoney = new LottoMoney(input.getInputForLottoMoney());
                 return tempLottoMoney;
-            } catch (NumberFormatException error){
+            } catch (NumberFormatException error) {
                 Output.errorMessage(error);
-            }catch (IllegalArgumentException error){
+            } catch (IllegalArgumentException error) {
                 Output.errorMessage(error);
             }
         }
     }
 
-    private Lottos issueLottos(int issueCount){
+    private Lottos issueLottos(int issueCount) {
         return new Lottos(issueCount);
     }
 
-    private void printPublishedLottos(){
+    private void printPublishedLottos() {
         Output.print();
         Output.printLottoPurchaseMessage(lottos.getLottos().size());
-        for(Lotto lotto : lottos.getLottos()){
+        for (Lotto lotto : lottos.getLottos()) {
             Output.printLotto(lotto);
         }
     }
 
-    private Lotto getWinningNumber(){
+    private Lotto getWinningNumber() {
         Lotto tempWinningNumber;
-        while(true){
+        while (true) {
             try {
                 String userInputData = input.getInputForWinningNumber();
                 tempWinningNumber = new Lotto(LottoValidator.validNumberic(userInputData));
                 return tempWinningNumber;
 
-            }catch (NumberFormatException error){
+            } catch (NumberFormatException error) {
                 Output.errorMessage(error);
-            }catch (IllegalArgumentException error){
+            } catch (IllegalArgumentException error) {
                 Output.errorMessage(error);
             }
 
         }
+    }
 
+    public BonusNumber getBonusNumber() {
+        BonusNumber bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = new BonusNumber(input.getInputForBonusNumber());
+                return bonusNumber;
+            } catch (NumberFormatException error) {
+                Output.errorMessage(error);
+            } catch (IllegalArgumentException error) {
+                Output.errorMessage(error);
+            }
+        }
     }
 }

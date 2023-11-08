@@ -16,6 +16,10 @@ public class Output {
         System.out.println(UserRequestMessage.WINNING_NUMBER_REQUEST_MESSAGE);
     }
 
+    public static void printBonusNumberRequestMessage(){
+        System.out.println(UserRequestMessage.BONUS_NUMBER_REQUEST_MESSAGE);
+    }
+
     /* respone message */
     public static void printLottoPurchaseMessage(int count){
         System.out.println(String.format("%d%s", count, UserResponeMessage.PURCHASE_MESSAGE));

@@ -23,6 +23,12 @@ public class Input {
         return reanLineValidateNull();
     }
 
+    public String getInputForBonusNumber(){
+        Output.print();
+        Output.printBonusNumberRequestMessage();
+        return reanLineValidateNull();
+    }
+
     public String reanLineValidateNull(){
         String input = Console.readLine();
         while(true){

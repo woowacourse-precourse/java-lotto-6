@@ -16,13 +16,14 @@ public class WinningLotto {
         this.winninglottos = winninglottos;
         this.bonusNumber = bonusNumber;
     }
-    private void validate(List<Integer> winninglottos, Integer bonusNumber){
+
+    private void validate(List<Integer> winninglottos, Integer bonusNumber) {
         InputValidator inputValidator = new InputValidator();
         inputValidator.checkWinningNumberRange(winninglottos);
         inputValidator.checkBonusNumberRange(bonusNumber);
         inputValidator.checkWinningNumberLong(winninglottos);
         inputValidator.checkDuplicateWinningNumber(winninglottos);
-        inputValidator.checkDuplicateWinningAndBonus(winninglottos,bonusNumber);
+        inputValidator.checkDuplicateWinningAndBonus(winninglottos, bonusNumber);
     }
 
     public List<Integer> getWinninglottos() {

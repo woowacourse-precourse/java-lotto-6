@@ -3,11 +3,9 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
-import lotto.constants.Constants;
 import lotto.domain.Customer;
 import lotto.domain.Reward;
 import lotto.domain.WinningLotto;
-import lotto.utils.Utils;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,6 +20,7 @@ public class Controller {
     List<Integer> winningNumbers = new ArrayList<>();
     Customer customer;
     WinningLotto winningLotto;
+
     public void playLotto() {
         purchaseLotto();
         setWinningLotto();

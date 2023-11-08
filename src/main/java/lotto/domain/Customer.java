@@ -21,6 +21,7 @@ public class Customer {
         setPrizes();
 
     }
+
     private void validate(int number) {
         InputValidator inputValidator = new InputValidator();
         inputValidator.checkRemainder(number);
@@ -31,7 +32,7 @@ public class Customer {
     }
 
     public int getNumberOfLottoTicket() {
-        numberOfLottoTicket =Utils.figureOutQuotient(this.money, Constants.LOTTO_PRICE);
+        numberOfLottoTicket = Utils.figureOutQuotient(this.money, Constants.LOTTO_PRICE);
         return numberOfLottoTicket;
     }
 

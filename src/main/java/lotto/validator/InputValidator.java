@@ -40,7 +40,7 @@ public class InputValidator {
             checkDuplicateWinningNumber(winningNumbers);
             checkWinningNumberRange(winningNumbers);
             return winningNumbers;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw e;
         }
 
@@ -52,13 +52,13 @@ public class InputValidator {
         }
     }
 
-    public void checkDuplicateWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException{
-        try{
+    public void checkDuplicateWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
+        try {
             long number = winningNumbers.stream().distinct().count();
             if (winningNumbers.size() != number) {
                 throw new IllegalArgumentException("[ERROR] 중복되는 숫자를 입력하지 마세요");
             }
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw e;
         }
 
@@ -79,14 +79,13 @@ public class InputValidator {
         }
     }
 
-    public void checkWinningNumberLong(List<Integer> strings) throws IllegalArgumentException{
+    public void checkWinningNumberLong(List<Integer> strings) throws IllegalArgumentException {
         try {
             if (strings.size() != Constants.SIX) {
                 throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
             }
 
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw e;
         }
     }

@@ -56,13 +56,13 @@ public class PlayerTest {
     void calculateRewardTest(){
         //given
         Player player = new Player(3000);
-        player.countRanking(RankingStatus.FIRST_RANK);
-        player.countRanking(RankingStatus.FIRST_RANK);
+        player.countRanking(RankingStatus.BOOM);
+        player.countRanking(RankingStatus.FIFTH_RANK);
         player.countRanking(RankingStatus.THIRD_RANK);
         //when
-
+        double resultReward = player.calculateReward();
         //then
-
+        assertThat(resultReward).isEqualTo(50166.7);
     }
 
 

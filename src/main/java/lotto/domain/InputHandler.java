@@ -46,34 +46,6 @@ public class InputHandler {
         System.out.println(StaticMessage.INPUT_WINNING_NUMBERS);
         return Console.readLine();
     }
-//    public static User askPayment() {
-//        String input = "";
-//        do {
-//            try {
-//                System.out.println("구입금액을 입력해 주세요.");
-//                input = Console.readLine();
-//                Validator.validatePayment(input);
-//                return new User(input);
-//            } catch (IllegalArgumentException e) {
-//                System.out.println(ErrorMessage.NUMBER_FORMAT.getMessage());
-//            }
-//        } while (true);
-//    }
-
-//    public static String[] askWinningNumbers() {
-//        do {
-//            System.out.println(StaticMessage.INPUT_WINNING_NUMBERS);
-//            try {
-//                return convertStringToArray(Console.readLine());
-//            } catch (IllegalArgumentException e) {
-//                System.out.println(ErrorMessage.NUMBER_FORMAT.getMessage());
-//            }
-//        } while (true);
-//    }
-
-//    public static void inputController(String input) {
-//        //
-//    }
 
     public static void inputController(String[] input) {
         do {

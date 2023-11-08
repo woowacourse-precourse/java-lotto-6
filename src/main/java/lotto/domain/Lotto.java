@@ -38,15 +38,6 @@ public class Lotto {
                      .collect(Collectors.toList());
     }
 
-//    public static List<List<Integer>> publish(int payment) {
-//        List<List<Integer>> lottos = new ArrayList<>();
-//        while (lottos.size() < getLottoCount(payment)) {
-//            lottos.add(generateNumbers());
-//        }
-//        return lottos;
-//    }
-
-
     public List<Integer> getNumbers() {
         return numbers;
     }

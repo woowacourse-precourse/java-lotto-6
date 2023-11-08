@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.domain.Lotto;
 import lotto.domain.OutputHandler;
 import lotto.domain.User;
 

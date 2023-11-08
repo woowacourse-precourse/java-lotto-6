@@ -1,16 +1,15 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import java.util.List;
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoController {
 
-    private static List<Lotto> lottos = new ArrayList<>();
+    private static final List<Lotto> lottos = new ArrayList<>();
     private static List<Integer> answerlottoNumbers;
     private static List<Result> results;
 
@@ -38,7 +37,7 @@ public class LottoController {
 
     private static void buyLotto() {
         OutputView.printLottoCnt(lottoCnt);
-        for(int i = 0; i < lottoCnt; i++) {
+        for (int i = 0; i < lottoCnt; i++) {
             Lotto lotto = new Lotto(setLottoNumbers());
             lottos.add(lotto);
             OutputView.printLottoList(lotto.getNumbers());

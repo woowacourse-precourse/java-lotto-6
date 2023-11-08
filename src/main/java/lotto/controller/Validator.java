@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.domain.Lotto;
 
 public class Validator {
 
@@ -68,7 +65,7 @@ public class Validator {
                 return false;
             }
 
-            if(!isDisticnt(numbers)) {
+            if (!isDisticnt(numbers)) {
                 Exception.isNotDistinct();
                 return false;
             }

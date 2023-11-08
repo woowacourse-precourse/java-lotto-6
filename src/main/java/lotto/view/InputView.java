@@ -3,11 +3,10 @@ package lotto.view;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
-import lotto.controller.Exception;
 import lotto.controller.LottoController;
 import lotto.controller.Validator;
-import java.util.List;
 
 public class InputView {
     public static int getBuyAmount() {

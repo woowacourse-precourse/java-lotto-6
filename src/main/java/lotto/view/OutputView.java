@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,15 +12,16 @@ public class OutputView {
     }
 
     public static void printLottoCnt(int lottoCnt) {
-        System.out.println(String.format(Message.FOR_LOTTO_COUNT.label(), lottoCnt));
+        System.out.printf((Message.FOR_LOTTO_COUNT.label()) + "%n", lottoCnt);
     }
+
     public static void printLottoList(List<Integer> numbers) {
         List<Integer> mutableNumbers = new ArrayList<>(numbers);
         Collections.sort(mutableNumbers);
-        System.out.println(String.format(Message.FOR_LOTTO.label(),
+        System.out.printf((Message.FOR_LOTTO.label()) + "%n",
                 mutableNumbers.get(0), mutableNumbers.get(1), mutableNumbers.get(2),
                 mutableNumbers.get(3), mutableNumbers.get(4), mutableNumbers.get(5)
-        ));
+        );
     }
 
     public static void promptForAnswerLottoNumbers() {
@@ -36,7 +36,7 @@ public class OutputView {
         System.out.println(Message.FOR_RESULT.label());
 
         for (Result result : results) {
-            System.out.println(String.format(Message.FOR_LOTTO_RESULT.label(), result.label(), result.cnt()));
+            System.out.printf((Message.FOR_LOTTO_RESULT.label()) + "%n", result.label(), result.cnt());
         }
     }
 
@@ -45,6 +45,6 @@ public class OutputView {
         numberFormat.setMaximumFractionDigits(1);
         numberFormat.setMinimumFractionDigits(1);
         String formattedNumber = numberFormat.format(benefit);
-        System.out.print(String.format(Message.FOR_BENEFIT_RESILT.label(), formattedNumber));
+        System.out.printf(Message.FOR_BENEFIT_RESILT.label(), formattedNumber);
     }
 }

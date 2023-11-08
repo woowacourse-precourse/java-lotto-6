@@ -8,8 +8,8 @@ public enum Result {
     FIFTH("3개 일치 (5,000원)", 3, 5000);
 
     private final String label;
-    private int correctCnt;
-    private int price;
+    private final int correctCnt;
+    private final int price;
     private int cnt;
 
     Result(String label, int correctCnt, int price) {

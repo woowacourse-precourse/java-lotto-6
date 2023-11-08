@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +13,6 @@ import lotto.model.WinningNumbers;
 import lotto.model.dto.LottoPaper;
 import lotto.model.dto.LottoResult;
 import lotto.utils.LottoNumberValidator;
-import lotto.utils.MoneyParser;
 import lotto.utils.NumberParser;
 import lotto.view.InputView;
 import lotto.view.OuputView;

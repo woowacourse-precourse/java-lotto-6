@@ -77,7 +77,7 @@ public class OuputView {
 
         String detail = lottoStatus.getCorrectNumber()
                 + "개 일치"
-                + ifBounusRequired(lottoPlace.isBonusRequired())
+                + ifBounusRequired(lottoStatus.isBonusNumberCorrect())
                 + " ("
                 + formatDecimal(prize.getAmount())
                 + "원)"
@@ -88,8 +88,8 @@ public class OuputView {
         System.out.println(detail);
     }
 
-    private String ifBounusRequired(boolean isBonusRequired) {
-        if (isBonusRequired) {
+    private String ifBounusRequired(boolean isBonusNumberCorrect) {
+        if (isBonusNumberCorrect) {
             return ", 보너스 볼 일치";
         }
         return "";

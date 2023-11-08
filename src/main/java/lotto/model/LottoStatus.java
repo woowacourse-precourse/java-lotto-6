@@ -38,11 +38,11 @@ public class LottoStatus {
         }
     }
 
-    public boolean isSameStatus(LottoStatus lottoStatus, boolean isBonusRequired) {
+    public boolean isSameStatus(LottoStatus lottoStatus, boolean requireBonusJudge) {
         if (this.correctNumber != lottoStatus.correctNumber) {
             return false;
         }
-        if (isBonusRequired) {
+        if (requireBonusJudge) {
             return this.isBonusNumberCorrect == lottoStatus.isBonusNumberCorrect;
         }
         return true;

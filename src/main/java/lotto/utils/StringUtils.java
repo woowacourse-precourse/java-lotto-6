@@ -1,11 +1,13 @@
 package lotto.utils;
 
+import lotto.constant.ErrorMessage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class StringUtils {
+    private static final String SPLIT_DELIMITER = ",";
+
     private StringUtils() {
     }
 
@@ -13,19 +15,19 @@ public class StringUtils {
         try {
             return Integer.parseInt(inputString);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT);
         }
     }
 
     public static List<String> splitString(String inputString) {
-        return Arrays.stream(inputString.split(",")).toList();
+        return Arrays.stream(inputString.split(SPLIT_DELIMITER)).toList();
     }
 
     public static List<Integer> convertToIntegerList(List<String> stringList) {
         List<Integer> result = new ArrayList<>();
-        for (String s : stringList) {
+        stringList.forEach(s -> {
             result.add(StringUtils.stringToInt(s.trim()));
-        }
+        });
         return result;
     }
 }

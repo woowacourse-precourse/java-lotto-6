@@ -9,7 +9,7 @@ import lotto.observer.Observer;
 import lotto.service.LottoRank;
 
 public class PurchasedLotto extends Lotto implements Observer {
-    private LottoRank rank;
+    private LottoRank rank = LottoRank.NONE;
     public PurchasedLotto(List<Integer> numbers) {
         super(numbers);
     }
@@ -33,9 +33,9 @@ public class PurchasedLotto extends Lotto implements Observer {
     }
 
     @Override
-    public void compare(WinningLottoDto dto) {
-        int matchCount = countMatches(dto.numbers(), getNumbers());
-        boolean hasBonusMatched = matchBonus(matchCount, dto.bonusNumber(), getNumbers());
+    public void compare(WinningLottoDto winningLottoDto) {
+        int matchCount = countMatches(winningLottoDto.numbers(), getNumbers());
+        boolean hasBonusMatched = matchBonus(matchCount, winningLottoDto.bonusNumber(), getNumbers());
 
         rank = LottoRank.valueOf(matchCount, hasBonusMatched);
     }

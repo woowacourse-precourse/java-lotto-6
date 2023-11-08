@@ -20,7 +20,6 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -31,28 +30,33 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호와 일치하는 번호의 개수를 확인")
     @Test
-    void 당첨_번호와_일치하는_번호의_개수_확인() {
+    void checkNumberOfMatchingNumbers() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> winNumber = new ArrayList<>(List.of(1, 2, 3, 7, 8, 9));
         int equalNumber = lotto.lottoNumbersContains(winNumber);
         assertThat(equalNumber).isEqualTo(3);
     }
 
+    @DisplayName("당첨 번호의 값이 45보다 큰 경우")
     @Test
-    void 당첨_번호의_값이_45보다_큰_경우(){
+    void exceptionWhenWinningNumberIsGreaterThan45(){
         assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨 번호의 값이 1보다 작은 경우")
     @Test
-    void 당첨_번호의_값이_1보다_작은_경우(){
+    void exceptionWhenWinningNumberIsLessThan1(){
         assertThatThrownBy(() -> new Lotto(List.of(0,2,3,4,5,6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구매한 로또 번호에 보너스 번호가 포함되어 있는 경우")
     @Test
-    void 구매한_로또_번호에_보너스_번호가_포함되어_있는_경우(){
+    void bonusNumberIncludedInPurchasedLottoNumbers(){
         // 구매한 번호와 당첨 번호가 5개가 맞은 경우에만 해당
         // 당첨 번호가 1,2,3,4,5,7 가정
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));

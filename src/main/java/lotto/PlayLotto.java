@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -18,16 +16,20 @@ public class PlayLotto {
     Lotto lotto;
     BonusNumber bonusNumber;
     String[] inputLottoNumbers;
+    int[] rankCnt = new int[8];
     List<List<Integer>> userLottoNumbers = new ArrayList<>();
     List<Integer> lottoNumbers;
-
     int lottoCnt;
+    int matchedNumberCnt;
+    Map<Rank, Integer> result = new HashMap<>();
+    boolean hasBonusNumber;
 
     public void play(){
         getMoney();
         makeLotto();
         getLottoNumber();
         getBonusNumber();
+        getResult();
     }
 
     public void getMoney(){
@@ -98,6 +100,42 @@ public class PlayLotto {
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             getBonusNumber();
+        }
+    }
+
+    public void getResult(){
+        initResult();
+        for (List<Integer> userLottoNumber : userLottoNumbers){
+            hasBonusNumber = false;
+            matchedNumberCnt = getMatchedNumberCnt(userLottoNumber);
+            if (matchedNumberCnt == 5 && userLottoNumber.contains(bonusNumber.number)){
+                hasBonusNumber = true;
+            }
+            updateResult(matchedNumberCnt, hasBonusNumber);
+        }
+    }
+
+    public void initResult(){
+        for (Rank r : Rank.values()){
+            result.put(r, 0);
+        }
+    }
+
+    public int getMatchedNumberCnt(List<Integer> userLottoNumber){
+        int cnt = 0;
+        for (int num : userLottoNumber){
+            if (lottoNumbers.contains(num)){
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+
+    public void updateResult(int matchedNumberCnt, boolean hasBonusNumber){
+        for (Rank r : Rank.values()){
+            if (r.matchedCnt == matchedNumberCnt && r.hasBonusNumber == hasBonusNumber){
+                result.put(r, result.get(r) + 1);
+            }
         }
     }
 }

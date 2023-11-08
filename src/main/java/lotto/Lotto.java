@@ -15,9 +15,19 @@ public class Lotto {
         return this.numbers;
     }
 
-    public boolean isContained(int n) {
-        if (numbers.contains(n)) return true;
-        else return false;
+    public int howMany(List<Integer> numbers){
+        int howMany=0;
+        for(int number:numbers){
+            howMany=isContained(number, howMany);
+        }
+        return howMany;
+    }
+    public int isContained(int n, int value) {
+        if (numbers.contains(n)) {
+            value++;
+            return value;
+        }
+        else return value;
     }
 
     private void validate(List<Integer> numbers) {

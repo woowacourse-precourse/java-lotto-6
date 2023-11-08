@@ -3,16 +3,15 @@ package lotto.views;
 import java.util.ArrayList;
 
 public class GameEnd {
-    public void showResult(ArrayList<Integer> n){
+    public void showResult(ArrayList<Integer> n, String[] price){
         StringBuilder stringBuilder = new StringBuilder();
         ArrayList<String> result = new ArrayList<>();
 
-        for(int i=0;i<n.size(); i++){
+        for(int i=3;i<n.size(); i++){
             int rightNum = n.get(i);
-            int profit = rightNum*1000;
-            String desc =Integer.toString(rightNum)+"개 일치 ("+Integer.toString(profit)+"원): "+Integer.toString(rightNum)+"개\n";
-            result.add(desc);
-            stringBuilder.append(result.get(i));
+            String profit = price[i];
+            String desc =i+"개 일치 ("+profit+"원): "+rightNum+"개\n";
+            stringBuilder.append(desc);
         }
 
         System.out.println(stringBuilder);

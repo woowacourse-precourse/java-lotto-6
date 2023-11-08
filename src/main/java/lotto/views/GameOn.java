@@ -1,5 +1,7 @@
 package lotto.views;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Scanner;
 
 public class GameOn {
@@ -7,7 +9,7 @@ public class GameOn {
 
     public String showCase(){
         System.out.println("당첨번호를 입력해주세요.");
-        String inputLine = scan.nextLine();
+        String inputLine = Console.readLine();
 
         return inputLine;
     }

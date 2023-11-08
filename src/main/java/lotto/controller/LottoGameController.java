@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 import lotto.StringConstants;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.port.InputPort;
 import lotto.port.OutputPort;
 import lotto.service.LottoNumberGenerationService;
@@ -36,9 +37,8 @@ public class LottoGameController {
 
     public void playGame() {
         List<Lotto> userLottoNumbers = buyLottoTickets();
-        Lotto winningNumbers = inputWinningNumber();
-        int bonusNumber = inputBonusNumber(winningNumbers);
-        Map<Integer, Integer> matchingCounts = lottoResultCalculationService.calculateMatchingCounts(userLottoNumbers, winningNumbers, bonusNumber);
+        WinningLotto winningLotto = inputWinningAndBonusNumber();
+        Map<Integer, Integer> matchingCounts = lottoResultCalculationService.calculateMatchingCounts(userLottoNumbers, winningLotto);
         lottoResultCalculationService.printStatistics(matchingCounts);
         lottoResultCalculationService.printReturnRate(matchingCounts, userLottoNumbers.size());
     }
@@ -55,25 +55,16 @@ public class LottoGameController {
         );
     }
 
-    private Lotto inputWinningNumber() {
+    private WinningLotto inputWinningAndBonusNumber() {
         return getInputWithValidation(
                 () -> {
                     outputPort.printEmptyLine();
                     outputPort.printLine(StringConstants.INPUT_WINNING_NUMBER_MESSAGE);
                     String winningNumbers = inputPort.readLine();
-                    return lottoWinningNumberService.addLottoNumberToWinningNumbers(winningNumbers);
-                }
-        );
-    }
-
-    private int inputBonusNumber(Lotto winningNumbers) {
-        return getInputWithValidation(
-                () -> {
                     outputPort.printEmptyLine();
                     outputPort.printLine(StringConstants.INPUT_BONUS_NUMBER_MESSAGE);
                     String bonusNumber = inputPort.readLine();
-                    lottoWinningNumberService.validateBonusNumber(winningNumbers, bonusNumber);
-                    return Integer.parseInt(bonusNumber);
+                    return lottoWinningNumberService.createWinningLotto(winningNumbers,bonusNumber);
                 }
         );
     }

@@ -6,6 +6,7 @@ import java.util.Map;
 import lotto.LottoConstants;
 import lotto.StringConstants;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.port.OutputPort;
 
 public class LottoResultCalculationService {
@@ -16,20 +17,16 @@ public class LottoResultCalculationService {
         this.outputPort =outputPort;
     }
 
-    public Map<Integer, Integer> calculateMatchingCounts(List<Lotto> userLottos, Lotto winningLotto, int bonusNumber) {
+    public Map<Integer, Integer> calculateMatchingCounts(List<Lotto> userLottos, WinningLotto winningLotto) {
         Map<Integer, Integer> matchingCounts = new HashMap<>();
         for (Lotto userLotto : userLottos) {
             int count = winningLotto.countMatchedNumbers(userLotto);
-            if (count == LottoConstants.WINNING_FIVE_NUMBER.getValue() && userLotto.getNumbers().contains(bonusNumber)) {
+            if (count == LottoConstants.WINNING_FIVE_NUMBER.getValue() && winningLotto.isMatchedBonusNumber(userLotto)) {
                 count = LottoConstants.WINNING_FIVE_NUMBER_WITH_BONUS_NUMBER.getValue();
             }
             matchingCounts.put(count, matchingCounts.getOrDefault(count, 0) + 1);
         }
         return matchingCounts;
-    }
-
-    public boolean isMatchedBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
-        return lottoNumbers.contains(bonusNumber);
     }
 
     public void printStatistics(Map<Integer, Integer> matchingCounts) {

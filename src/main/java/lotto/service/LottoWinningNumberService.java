@@ -2,12 +2,12 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.LottoConstants;
 import lotto.StringConstants;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 
 public class LottoWinningNumberService {
-    public Lotto addLottoNumberToWinningNumbers(String lottoNumbersString) {
+    private Lotto addLottoNumberToWinningNumbers(String lottoNumbersString) {
         List<Integer> winningNumbers = convertStringToWinningNumbers(lottoNumbersString);
 
         return new Lotto(winningNumbers);
@@ -26,34 +26,9 @@ public class LottoWinningNumberService {
         return lottoNumbers;
     }
 
-    public void validateBonusNumber(Lotto lottoWinningNumbers, String bonusNumber) {
-        if (bonusNumberNotDigit(bonusNumber)) {
-            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE);
-        }
-        if (bonusNumberWrongRange(bonusNumber)) {
-            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_RANGE_EXCEPTION_MESSAGE);
-        }
-        if (bonusNumberDuplicateWinningNumbers(lottoWinningNumbers, bonusNumber)) {
-            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_WINNING_NUMBERS_DUPLICATE_EXCEPTION_MESSAGE);
-        }
+    public WinningLotto createWinningLotto(String lottoNumbersString, String bonusNumber) {
+        Lotto winningNumbers = addLottoNumberToWinningNumbers(lottoNumbersString);
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public boolean bonusNumberNotDigit(String bonusNumber) {
-        try {
-            Integer.parseInt(bonusNumber);
-            return false;
-        } catch (NumberFormatException e) {
-            return true;
-        }
-    }
-
-    public boolean bonusNumberWrongRange(String bonusNumber) {
-        int number = Integer.parseInt(bonusNumber);
-        return number < LottoConstants.NUMBER_MIN.getValue() || number > LottoConstants.NUMBER_MAX.getValue();
-    }
-
-    public boolean bonusNumberDuplicateWinningNumbers(Lotto lottoWinningNumbers, String bonusNumber) {
-        int bonusNumberInt = Integer.parseInt(bonusNumber);
-        return lottoWinningNumbers.contains(bonusNumberInt);
-    }
 }

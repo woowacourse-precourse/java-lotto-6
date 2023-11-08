@@ -38,7 +38,7 @@ public class LottoController {
         View.printLottoRank(lottoRank);
         View.printMessage(
                 Message.RATE_OF_RETURN_PREFIX.getMessage()
-                        + winnings.calculateRateOfReturn()
+                        + winnings.calculateRateOfReturn().toPlainString()
                         + Message.RATE_OF_RETURN_SUFFIX.getMessage());
     }
 
@@ -50,7 +50,6 @@ public class LottoController {
 
     private int inputBonusNumberFlow(Lotto winningLotto){
         int bonusNumber = InputController.inputBonusNumber(winningLotto);
-        ValidateObject.validateBonusNumber(winningLotto, bonusNumber);
         return bonusNumber;
     }
 }

@@ -57,7 +57,7 @@ public class LottoStore {
             case 3 -> LottoResult.FIFTH_RANK.getIndex();
             case 4 -> LottoResult.FOURTH_RANK.getIndex();
             case 5 -> LottoResult.THIRD_RANK.getIndex();
-            case 6 -> LottoResult.SECOND_RANK.getIndex();
+            case 6 -> LottoResult.FIRST_RANK.getIndex();
             default -> 0; // Handle other cases if needed.
         };
     }

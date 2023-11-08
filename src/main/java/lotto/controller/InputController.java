@@ -7,7 +7,7 @@ import lotto.constant.Message;
 import lotto.model.Customer;
 import lotto.model.Lotto;
 import lotto.model.Money;
-import lotto.validator.ExceptionHandler;
+import lotto.exceptions.ExceptionHandler;
 import lotto.validator.ValidateObject;
 
 public final class InputController {

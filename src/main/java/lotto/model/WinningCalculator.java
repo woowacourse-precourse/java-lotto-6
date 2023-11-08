@@ -43,4 +43,12 @@ public final class WinningCalculator {
                 .stripTrailingZeros();
     }
 
+//    public BigDecimal calculateRateOfReturn() {
+//        BigDecimal totalSalesAmount = BigDecimal.valueOf((long) this.lottoSales * LOTTO_COST);
+//        return totalWinningMoney.subtract(totalSalesAmount)
+//                .divide(totalWinningMoney, 3, RoundingMode.DOWN)
+//                .multiply(BigDecimal.valueOf(PERCENT))
+//                .stripTrailingZeros();
+//    }
+
 }

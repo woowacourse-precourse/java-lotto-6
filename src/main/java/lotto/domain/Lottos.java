@@ -26,7 +26,10 @@ public class Lottos {
     }
 
     private Lotto generateRandomLottoNumber() {
-        List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LUCKY_NUMBER_COUNT);
+        List<Integer> lottoNumber = new ArrayList<>(Randoms.pickUniqueNumbersInRange(
+                LOTTO_MIN_NUMBER,
+                LOTTO_MAX_NUMBER,
+                LUCKY_NUMBER_COUNT));
         Collections.sort(lottoNumber);
 
         return new Lotto(lottoNumber);

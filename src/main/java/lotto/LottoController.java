@@ -6,6 +6,8 @@ public class LottoController {
 
     public void run() {
         LottoPurchaseMoney lottoPurchaseMoney = getLottoPurchaseMoney();
+        int numberOfLottos = lottoPurchaseMoney.getNumberOfLottoAvailableForPurchase();
+        Lottos userLottos = new Lottos(numberOfLottos);
     }
 
     private static LottoPurchaseMoney getLottoPurchaseMoney() {

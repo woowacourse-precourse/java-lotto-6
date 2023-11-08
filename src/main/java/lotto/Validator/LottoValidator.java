@@ -7,7 +7,7 @@ import java.util.Set;
 import lotto.OutputService;
 
 public class LottoValidator {
-    private static final String ERROR_MESSAGE = "[ERROR] 당첨번호는 ";
+    private static final String ERROR_MESSAGE = "[ERROR] 로또 번호는 ";
     private static final int LOTTO_SIZE = 6;
 
     private static final int LOTTO_MIN = 1;

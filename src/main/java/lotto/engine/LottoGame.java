@@ -34,7 +34,7 @@ public final class LottoGame {
         List<Integer> numbers = viewer.interactForWinningNumber();
         viewer.printNewLine();
 
-        int bonus = viewer.interactForBonusNumber();
+        int bonus = viewer.interactForBonusNumber(numbers);
         viewer.printNewLine();
 
         Customer customer = new Customer(numbers, bonus);

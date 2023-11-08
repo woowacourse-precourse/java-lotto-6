@@ -61,13 +61,13 @@ public class LottoGameViewer {
         return lottoGameViewerMapper.toLottoNumbers(winningNumbers);
     }
 
-    public int interactForBonusNumber() {
+    public int interactForBonusNumber(List<Integer> numbers) {
         boolean isRetry = true;
         String bonusNumber = input(INPUT_BONUS_NUMBER);
 
         while (isRetry) {
             try {
-                validBonusNumber(bonusNumber);
+                validBonusNumber(bonusNumber,numbers);
                 isRetry = false;
             } catch (IllegalArgumentException exception) {
                 println(() -> ERROR_PREFIX.getMessage() + exception.getMessage());
@@ -104,10 +104,15 @@ public class LottoGameViewer {
         validator.verifyDivisible(verifiedNumber, LOTTO_PRICE.value());
     }
 
-    private void validBonusNumber(String bonusNumber) {
+    private void validBonusNumber(String bonusNumber, List<Integer> numbers) {
         validator.verifyNullAndBlank(bonusNumber);
         validator.verifyNumber(bonusNumber);
         Integer number = lottoGameViewerMapper.toInt(bonusNumber);
+
+        if(numbers.contains(number)){
+            throw new IllegalArgumentException("당첨번호와 같은 숫자는 입력할 수 없습니다.");
+        }
+
         validator.verifyInRangeClosed(
                 LOTTO_NUMBER_MINIMUM_VALUE.value(),
                 LOTTO_NUMBER_MAXIMUM_VALUE.value(),

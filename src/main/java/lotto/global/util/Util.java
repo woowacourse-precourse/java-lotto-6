@@ -22,4 +22,10 @@ public class Util {
                 .map(number -> parseIntOrThrowException(number))
                 .toList();
     }
+
+    public static List<Integer> sortAsc(List<Integer> unsorted) {
+        List<Integer> sortedNumbers = new ArrayList<>(unsorted);
+        sortedNumbers.sort(Comparator.naturalOrder());
+        return sortedNumbers;
+    }
 }

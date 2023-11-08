@@ -5,6 +5,9 @@ import static lotto.Option.ErrorMessage.NOT_NEGATIVE_NUMBER;
 import static lotto.Option.ErrorMessage.NOT_ZERO;
 
 public class LottoCountValidator {
+    private LottoCountValidator() {
+    }
+
     public static void check(int money) {
         validatePositiveNumber(money);
         validateZeroNumber(money);

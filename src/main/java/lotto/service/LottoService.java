@@ -17,6 +17,8 @@ public class LottoService {
 
     public User user;
     private Lotto winningLotto;
+
+    private int bonusNumber;
     private final int[] winningCount;
 
     public LottoService() {
@@ -29,23 +31,29 @@ public class LottoService {
     }
 
     public void initUser(int count) {
-        user = new User(count, makeRandomLotto(count));
+        user = new User(count, makeRandomLottos(count));
+    }
+
+
+    private List<Lotto> makeRandomLottos(int count) {
+        List<Lotto> lottoNumbers = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = makeRandomLotto();
+            lottoNumbers.add(lotto);
+        }
+
+        return lottoNumbers;
+    }
+
+    private Lotto makeRandomLotto() {
+        List<Integer> randomNumbers = sorting(RandomUtil.getRandomUniqueNumbers());
+        return new Lotto(randomNumbers);
     }
 
     private List<Integer> sorting(List<Integer> randomUniqueNumbers) {
         List<Integer> sortedNumbers = new ArrayList<>(randomUniqueNumbers);
         Collections.sort(sortedNumbers);
         return sortedNumbers;
-    }
-
-    private List<Lotto> makeRandomLotto(int count) {
-        List<Lotto> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            List<Integer> randomNumbers = sorting(RandomUtil.getRandomUniqueNumbers());
-            lottoNumbers.add(new Lotto(randomNumbers));
-        }
-
-        return lottoNumbers;
     }
 
     public void initWinningNumbers(List<Integer> winningNumbers) {
@@ -65,12 +73,11 @@ public class LottoService {
     }
 
 
-    public void initBonusNumber(String inputBonusNumber) {
-        int num = Validator.validateSingleNumber(inputBonusNumber);
-
+    public void initBonusNumber(int number) {
         List<Integer> lottoNumbers = winningLotto.getNumbers();
-        Validator.isDuplicatedBonus(lottoNumbers, num);
-        lottoNumbers.add(num);
+        Validator.isDuplicatedBonus(lottoNumbers, number);
+
+        bonusNumber = number;
     }
 
     public int[] calculateLottoRanks() {
@@ -83,13 +90,11 @@ public class LottoService {
         return winningCount;
     }
 
-    public LottoRank calculateLottoRank(Lotto lotto) {
+    private LottoRank calculateLottoRank(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         List<Integer> winningNumbers = winningLotto.getNumbers();
 
-        int bonusNumber = winningNumbers.get(winningNumbers.size() - 1);
-
-        long matchingCount = calculateMatchingCount(lottoNumbers, winningNumbers, bonusNumber);
+        long matchingCount = calculateMatchingCount(lottoNumbers, winningNumbers);
 
         if (isBonusWin(matchingCount, lottoNumbers, bonusNumber)) {
             return LottoRank.BONUS;
@@ -103,10 +108,9 @@ public class LottoService {
         return null;
     }
 
-    private long calculateMatchingCount(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+    private long calculateMatchingCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         return lottoNumbers.stream()
-                .filter(number -> number != bonusNumber)
-                .filter(winningNumbers.subList(0, winningNumbers.size() - 1)::contains)
+                .filter(winningNumbers::contains)
                 .count();
     }
 
@@ -116,16 +120,30 @@ public class LottoService {
     }
 
     public BigDecimal rateOfReturn() {
-        BigDecimal sum = BigDecimal.ZERO;
-        BigDecimal totalSpent = BigDecimal.valueOf(user.getCount() * Config.PRICE_UNIT);
+        BigDecimal totalPrize = caculateTotalPrize();
+        BigDecimal totalSpent = calculateTotalSpent();
 
+        return calculateRateOfReturn(totalPrize, totalSpent);
+    }
+
+    private BigDecimal caculateTotalPrize() {
+        BigDecimal sum = BigDecimal.ZERO;
         for (LottoRank rank : LottoRank.values()) {
             int count = winningCount[rank.getRank()];
             BigDecimal rankMoney = BigDecimal.valueOf(rank.getMoney());
             sum = sum.add(rankMoney.multiply(BigDecimal.valueOf(count)));
         }
+        return sum;
+    }
 
-        BigDecimal result = sum.multiply(BigDecimal.valueOf(Config.PERCENT))
+    private BigDecimal calculateTotalSpent() {
+        int totalLottoCount = user.getCount();
+        BigDecimal totalSpent = BigDecimal.valueOf(totalLottoCount * Config.PRICE_UNIT);
+        return totalSpent;
+    }
+
+    private BigDecimal calculateRateOfReturn(BigDecimal totalPrize, BigDecimal totalSpent) {
+        BigDecimal result = totalPrize.multiply(BigDecimal.valueOf(Config.PERCENT))
                 .divide(totalSpent, 1, RoundingMode.HALF_UP);
 
         return result;

@@ -12,8 +12,8 @@ public class Controller {
     WinningNumbers winningNumbers = new WinningNumbers();
 
     public void lottoGame() {
-        buyLottos();
-        showHowmanyLottosBuy();
+//        buyLottos();
+//        showHowmanyLottosBuy();
         putWinningNumber();
 //        checkWinningList()
 //        calculateRate();
@@ -30,11 +30,11 @@ public class Controller {
 
     public void putWinningNumber(){
         InputView.requestWinningNumbers();
-        winningNumbers.askWinningNumbers();
+        winningNumbers.askCommonWinningNumbers();
+
         InputView.requestBonusNumber();
         winningNumbers.askBonusNumber();
 
-        this.winnings = winningNumbers.getWinningNumbers();
-        winningNumbers.validateWinningNumbers(winnings);
+        winnings = winningNumbers.getWinningNumbers();
     }
 }

@@ -12,6 +12,7 @@ public class PurchaseAmount {
 
     public void generateLottoCount(){
         int inputPrice = tryToParseToInteger();
+        PurchaseAmountValidate(inputPrice);
         this.purchaseCount = calculateLottoCount(inputPrice);
     }
 

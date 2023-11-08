@@ -1,4 +1,4 @@
-package lotto;
+package lotto.consts;
 
 public enum LottoConstance {
     MIN_NUMBER_LOTTO_RANGE(1),

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.consts;
 
 public enum ErrorMessage {
     ERROR("[ERROR]"),

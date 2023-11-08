@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.LottoConstance.FIFTY_WINING_COUNT;
-import static lotto.LottoConstance.SECOND_AND_THIRD_WINING_COUNT;
+import static lotto.consts.LottoConstance.FIFTY_WINING_COUNT;
+import static lotto.consts.LottoConstance.SECOND_AND_THIRD_WINING_COUNT;
 
 import java.util.Arrays;
 import java.util.List;

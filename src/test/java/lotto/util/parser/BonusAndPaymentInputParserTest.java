@@ -1,7 +1,7 @@
 package lotto.util.parser;
 
-import static lotto.ErrorMessage.BONUS_AND_PAYMENT_WRONG_INPUT_ERROR_MESSAGE;
-import static lotto.ErrorMessage.PARSE_INT_ERROR_MESSAGE;
+import static lotto.consts.ErrorMessage.BONUS_AND_PAYMENT_WRONG_INPUT_ERROR_MESSAGE;
+import static lotto.consts.ErrorMessage.PARSE_INT_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;

@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.ErrorMessage.LOTTO_HAS_DUPLICATION_ERROR_MESSAGE;
-import static lotto.ErrorMessage.LOTTO_WRONG_RANGE_ERROR_MESSAGE;
-import static lotto.ErrorMessage.LOTTO_WRONG_SIZE_ERROR_MESSAGE;
+import static lotto.consts.ErrorMessage.LOTTO_HAS_DUPLICATION_ERROR_MESSAGE;
+import static lotto.consts.ErrorMessage.LOTTO_WRONG_RANGE_ERROR_MESSAGE;
+import static lotto.consts.ErrorMessage.LOTTO_WRONG_SIZE_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

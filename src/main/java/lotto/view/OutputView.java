@@ -1,11 +1,11 @@
 package lotto.view;
 
-import static lotto.ViewMessage.BONUS_PROMPT_MESSAGE;
-import static lotto.ViewMessage.NUMBER_OF_PURCHASED_FORMAT;
-import static lotto.ViewMessage.PAYMENT_PROMPT_MESSAGE;
-import static lotto.ViewMessage.RATE_OF_REVENUE_FORMAT;
-import static lotto.ViewMessage.WINNING_NUMBERS_PROMPT_MESSAGE;
-import static lotto.ViewMessage.WINNING_RESULT_MESSAGE;
+import static lotto.consts.ViewMessage.BONUS_PROMPT_MESSAGE;
+import static lotto.consts.ViewMessage.NUMBER_OF_PURCHASED_FORMAT;
+import static lotto.consts.ViewMessage.PAYMENT_PROMPT_MESSAGE;
+import static lotto.consts.ViewMessage.RATE_OF_REVENUE_FORMAT;
+import static lotto.consts.ViewMessage.WINNING_NUMBERS_PROMPT_MESSAGE;
+import static lotto.consts.ViewMessage.WINNING_RESULT_MESSAGE;
 
 import java.util.List;
 

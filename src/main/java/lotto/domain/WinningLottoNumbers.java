@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.ErrorMessage.BONUS_DUPLICATION_ERROR_MESSAGE;
-import static lotto.ErrorMessage.throwException;
+import static lotto.consts.ErrorMessage.BONUS_DUPLICATION_ERROR_MESSAGE;
+import static lotto.consts.ErrorMessage.throwException;
 
 public class WinningLottoNumbers {
     private final Lotto winingLotto;

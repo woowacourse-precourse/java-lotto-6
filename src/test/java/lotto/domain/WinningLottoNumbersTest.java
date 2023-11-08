@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.ErrorMessage.BONUS_DUPLICATION_ERROR_MESSAGE;
+import static lotto.consts.ErrorMessage.BONUS_DUPLICATION_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

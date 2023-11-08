@@ -1,4 +1,4 @@
-package lotto;
+package lotto.consts;
 
 public enum ViewMessage {
     PAYMENT_PROMPT_MESSAGE("구입금액을 입력해 주세요."),

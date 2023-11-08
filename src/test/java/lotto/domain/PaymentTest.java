@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.ErrorMessage.PAYMENT_LESS_THAN_1000;
-import static lotto.ErrorMessage.PAYMENT_MORE_THAN_100000;
-import static lotto.ErrorMessage.PAYMENT_NOT_DIVISIBLE_BY_1000;
+import static lotto.consts.ErrorMessage.PAYMENT_LESS_THAN_1000;
+import static lotto.consts.ErrorMessage.PAYMENT_MORE_THAN_100000;
+import static lotto.consts.ErrorMessage.PAYMENT_NOT_DIVISIBLE_BY_1000;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

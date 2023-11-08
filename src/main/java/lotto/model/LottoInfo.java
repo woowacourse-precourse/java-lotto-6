@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
+
 public class LottoInfo {
     public static final int START_NUMBER = 1;
     public static final int END_NUMBER = 45;
@@ -16,10 +18,18 @@ public class LottoInfo {
         PRIZE_5ST(5_000),
         ;
 
-        final int money;
+        private final int money;
 
         Prize(int money) {
             this.money=money;
+        }
+
+        public int getMoney() {
+            return money;
+        }
+        public String getMoneyString(){
+            DecimalFormat df = new DecimalFormat("###,###");
+            return df.format(this.money);
         }
     }
 }

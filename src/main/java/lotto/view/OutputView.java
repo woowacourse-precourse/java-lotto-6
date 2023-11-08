@@ -34,11 +34,11 @@ public class OutputView {
         int[] results = result.getResults();
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 ("+PRIZE_5ST+") - "+results[5]+"개");
-        System.out.println("4개 일치 ("+PRIZE_4ST+") - "+results[4]+"개");
-        System.out.println("5개 일치 ("+PRIZE_3ST+") - "+results[3]+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 ("+PRIZE_2ST+") - "+results[2]+"개");
-        System.out.println("6개 일치 ("+PRIZE_1ST+") - "+results[1]+"개");
+        System.out.println("3개 일치 ("+ PRIZE_5ST.getMoneyString()+"원) - "+results[5]+"개");
+        System.out.println("4개 일치 ("+PRIZE_4ST.getMoneyString()+"원) - "+results[4]+"개");
+        System.out.println("5개 일치 ("+PRIZE_3ST.getMoneyString()+"원) - "+results[3]+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 ("+PRIZE_2ST.getMoneyString()+"원) - "+results[2]+"개");
+        System.out.println("6개 일치 ("+PRIZE_1ST.getMoneyString()+"원) - "+results[1]+"개");
         System.out.println("총 수익률은 "+ Math.round(((double) result.getTotalPrize()/money*100)*10)/10.0+"%입니다.");
     }
 }

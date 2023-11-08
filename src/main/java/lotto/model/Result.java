@@ -18,7 +18,7 @@ public class Result {
     public int getTotalPrize(){
         int total=0;
         for(int idx=0;idx<results.length;idx++){
-            total += results[idx]* LottoInfo.Prize.values()[idx].money;
+            total += results[idx]* LottoInfo.Prize.values()[idx].getMoney();
         }
         return total;
     }

@@ -15,7 +15,12 @@ public class BonusNumber {
     }
 
     private void validate(int bonusNumber) {
-
+        if (!isInRange(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위가 맞지 않습니다.");
+        }
     }
 
+    private boolean isInRange(int number) {
+        return number >= BONUS_MIN_NUMBER && number <= BONUS_MAX_NUMBER;
+    }
 }

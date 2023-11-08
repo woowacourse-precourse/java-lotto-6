@@ -13,14 +13,24 @@ public class LottoUtils {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
 
-        validate(numbers);
+        validateLotto(numbers);
 
         return numbers;
     }
 
-    private static void validate(List<Integer> numbers) {
+    public static Integer bonusNumberParser(String inputBonusNumber) {
+        Integer bonusNumber = Integer.parseInt(inputBonusNumber);
+        validateBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private static void validateLotto(List<Integer> numbers) {
         validateSize(numbers);
-        validateRange(numbers);
+        validateNumbersRange(numbers);
+    }
+
+    private static void validateBonusNumber(Integer bonusNumber) {
+        validateRange(bonusNumber);
     }
 
     private static void validateSize(List<Integer> numbers) {
@@ -29,10 +39,13 @@ public class LottoUtils {
         }
     }
 
-    private static void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> !(LottoConsts.MIN_RANGE <= number && number <= LottoConsts.MAX_RANGE))) {
+    private static void validateNumbersRange(List<Integer> numbers) {
+        numbers.forEach(LottoUtils::validateRange);
+    }
+
+    private static void validateRange(Integer number) {
+        if (!(LottoConsts.MIN_RANGE <= number && number <= LottoConsts.MAX_RANGE)) {
             throw new WrongRangeLottoNumberException();
         }
-
     }
 }

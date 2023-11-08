@@ -17,18 +17,11 @@ public class WinningLotto {
 
     private void validateBonusNumber(List<Integer> winningLotto, Integer bonusNumber) {
         validateDuplicate(winningLotto, bonusNumber);
-        validateRange(bonusNumber);
     }
 
     private void validateDuplicate(List<Integer> winningLotto, Integer number) {
         if (winningLotto.contains(number) || winningLotto.size() > LottoConsts.LOTTO_SIZE) {
             throw new DuplicateLottoNumberException();
-        }
-    }
-
-    private void validateRange(Integer number) {
-        if (!(LottoConsts.MIN_RANGE <= number && number <= LottoConsts.MAX_RANGE)) {
-            throw new WrongRangeLottoNumberException();
         }
     }
 

@@ -73,7 +73,7 @@ public class LottoController {
         try {
             String bonus = InputView.inputBonusNumber();
             validateBonusNumberInput(bonus);
-            int bonusNumber = Integer.parseInt(bonus);
+            int bonusNumber = LottoUtils.bonusNumberParser(bonus);
             this.winningLotto = new WinningLotto(lottoNumbers, bonusNumber);
         } catch (WrongBonusNumberPatternException | DuplicateLottoNumberException | WrongRangeLottoNumberException e) {
             System.out.println(e.getMessage());

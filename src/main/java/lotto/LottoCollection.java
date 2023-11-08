@@ -12,10 +12,12 @@ public class LottoCollection {
     private final int numberOfLotto;
 
     private final Map<Integer, Integer> rankingCount = new HashMap<>();
+    private final Map<Integer, Integer> rankMapping = new HashMap<>();
 
     public LottoCollection(int purchaseAmount) {
         this.numberOfLotto = purchaseAmount / 1000;
         this.lottoCollection = new ArrayList<>();
+        setRankMapping();
         generateLottoNumbers(numberOfLotto);
     }
 
@@ -44,19 +46,20 @@ public class LottoCollection {
     }
 
     private void setRank(int matchingCount, boolean matchingBonusCount) {
-        int rank = 0;
-        if (matchingCount == 3) {
-            rank = 5;
-        } else if (matchingCount == 4) {
-            rank = 4;
-        } else if (matchingCount == 5 && !matchingBonusCount) {
-            rank = 3;
-        } else if (matchingCount == 5) {
+        int rank = rankMapping.getOrDefault(matchingCount, 0);
+
+        if (rank == 3 && matchingBonusCount) {
             rank = 2;
-        } else if (matchingCount == 6) {
-            rank = 1;
         }
+
         rankingCount.put(rank, rankingCount.getOrDefault(rank, 0) + 1);
+    }
+
+    private void setRankMapping() {
+        rankMapping.put(3, 5);
+        rankMapping.put(4, 4);
+        rankMapping.put(5, 3);
+        rankMapping.put(6, 1);
     }
 
     public void printWinningStatistics() {

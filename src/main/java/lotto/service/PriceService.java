@@ -32,6 +32,6 @@ public class PriceService {
     }
 
     public float getEarningRate() {
-        return winningPrice.getWinningPrice() / purchasePrice.getPurchasePrice() * PERCENTAGE;
+        return (float) winningPrice.getWinningPrice() / purchasePrice.getPurchasePrice() * PERCENTAGE;
     }
 }

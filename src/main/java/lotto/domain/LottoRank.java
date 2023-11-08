@@ -1,10 +1,7 @@
 package lotto.domain;
 
 import lotto.common.LottoFinalConsts;
-import net.bytebuddy.pool.TypePool;
-
 import java.util.Arrays;
-import java.util.Collections;
 
 public enum LottoRank implements LottoFinalConsts{
 

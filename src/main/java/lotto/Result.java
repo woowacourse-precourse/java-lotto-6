@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.utils.Rank;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -22,20 +23,25 @@ public class Result {
         printRank(statistics, Rank.FIFTH);
         printRank(statistics, Rank.FOURTH);
         printRank(statistics, Rank.THIRD);
-        printSecondRank(statistics);
+        printSecondRank(statistics, Rank.SECOND);
         printRank(statistics, Rank.FIRST);
     }
 
     private void printRank(Map<Rank, Integer> statistics, Rank rank) {
-        System.out.printf("%d개 일치 (%s원)- %d개\n",
+        if (!statistics.containsKey(rank)){
+            statistics.put(rank,0);
+        }
+        System.out.printf("%d개 일치 (%s원) - %d개\n",
                 rank.getMatchCount(),
                 formatPrize(rank.getPrize()),
                 statistics.get(rank));
-
     }
 
-    private void printSecondRank(Map<Rank, Integer> statistics) {
-        System.out.printf("5개 일치, 보너스 볼 일치 (%s원)- %d개\n",
+    private void printSecondRank(Map<Rank, Integer> statistics, Rank rank) {
+        if (!statistics.containsKey(rank)){
+            statistics.put(rank,0);
+        }
+        System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n",
                 formatPrize(Rank.SECOND.getPrize()),
                 statistics.get(Rank.SECOND));
 
@@ -51,9 +57,7 @@ public class Result {
     }
 
     private String formatProfitRate(double profitRate) {
-        if (profitRate % 1.0 == 0) {
-            return String.valueOf((int)profitRate);
-        }
-        return String.format("%.2f", profitRate);
+        DecimalFormat profitRateFormat = new DecimalFormat("0.##");
+        return profitRateFormat.format(profitRate);
     }
 }

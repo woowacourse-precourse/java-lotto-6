@@ -32,7 +32,7 @@ public class LottoTicketStore {
 
     private List<Integer> generateLotto() {
         List<Integer> numbers = generateRandomNumbers();
-        List<Integer> sortedNumbers = new ArrayList<>(numbers); // 새로운 리스트를 생성하여 복사
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
         try {
             Lotto lotto = new Lotto(numbers);

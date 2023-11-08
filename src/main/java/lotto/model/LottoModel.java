@@ -16,6 +16,10 @@ public class LottoModel {
         this.inputPrice = price;
     }
 
+    public int getInputPrice() {
+        return this.inputPrice;
+    }
+
     public void calcPurchasedCount() {
         this.purchasedCount = this.inputPrice / LOTTO_PRICE;
     }

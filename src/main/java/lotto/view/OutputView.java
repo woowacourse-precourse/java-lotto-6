@@ -2,9 +2,9 @@ package lotto.view;
 
 import java.util.Arrays;
 import lotto.constants.LottoReward;
-import lotto.domain.TicketCount;
-import lotto.domain.Lottos;
+import lotto.dto.LottosDto;
 import lotto.dto.ReturnsRateDto;
+import lotto.dto.TicketCountDto;
 import lotto.dto.WinningResultDto;
 
 public class OutputView {
@@ -17,12 +17,12 @@ public class OutputView {
         return INSTANCE;
     }
 
-    public void displayTicketCount(TicketCount TicketCount) {
-        System.out.printf(Message.LOTTO_COUNT.getMessage() + System.lineSeparator(), TicketCount.getTicketCount());
+    public void displayTicketCount(TicketCountDto TicketCountdto) {
+        System.out.printf(Message.LOTTO_COUNT.getMessage() + System.lineSeparator(), TicketCountdto.ticketCount());
     }
 
-    public void displayLottos(Lottos lottos) {
-        lottos.getLottos().forEach(System.out::println);
+    public void displayLottos(LottosDto lottosdto) {
+        lottosdto.lottos().forEach(System.out::println);
         System.out.println();
     }
 

@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Lotto;
 import lotto.dto.LottoResultAndProfitResponseDto;
 import lotto.dto.LottoResultResponseDto;
 import lotto.dto.ValidateAmountDto;
@@ -36,18 +37,19 @@ public class LottoService {
         }
         return winningLottoNumbers;
     }
-    public List<List<Integer>> getUserLottoNum(int lottoCount){
-        List<List<Integer>> lottoNumbers = new ArrayList<>();
+    public List<Lotto> getUserLottoNum(int lottoCount){
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
-            lottoNumbers.add(numbers);
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
         }
         System.out.println(lottoCount + "개를 구매했습니다.");
-        for (List<Integer> numbers : lottoNumbers) {
-            System.out.println(numbers);
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
-        return lottoNumbers;
+        return lottos;
     }
     public int getBonusNum(){
         System.out.println("보너스 번호를 입력해주세요.");

@@ -1,6 +1,7 @@
 package lotto;
 
 import lombok.RequiredArgsConstructor;
+import lotto.domain.Lotto;
 import lotto.dto.LottoResultAndProfitResponseDto;
 import lotto.service.LottoService;
 
@@ -13,7 +14,7 @@ public class Application {
         // TODO: 프로그램 구현
         LottoService lottoService = new LottoService();
         int lottoCount = lottoService.inputAmountAndGetLottoCount();
-        List<List<Integer>> userLottoNum = lottoService.getUserLottoNum(lottoCount);
+        List<Lotto> userLottoNum = lottoService.getUserLottoNum(lottoCount);
         List<Integer> lottoNum = lottoService.inputLottoNum();
         int bonusNum = lottoService.getBonusNum();
         LottoResultAndProfitResponseDto lottoResultAndProfitResponseDto = lottoService.getLottoResultResponse(userLottoNum, lottoNum,bonusNum);

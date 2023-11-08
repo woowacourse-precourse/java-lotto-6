@@ -24,13 +24,16 @@ public class LottoService {
         );
     }
 
+    public Lotto createTargetLotto(final List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
     public GameResult calculateResult(
-            final List<Integer> numbers,
+            final Lotto target,
             final int bonusNumber,
             final User user
     ) {
-        Lotto lotto = new Lotto(numbers);
-        LottoManager lottoManager = new LottoManager(lotto, bonusNumber);
+        LottoManager lottoManager = new LottoManager(target, bonusNumber);
         lottoManager.calculateTotalRanking(user.getLottos());
 
         return new GameResult(

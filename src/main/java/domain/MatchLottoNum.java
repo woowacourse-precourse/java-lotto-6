@@ -26,15 +26,22 @@ public class MatchLottoNum {
             if (matched >= 3 && matched != 5) {
                 matchCounts[matched - 3]++;
             }
-            if (matched == 5 && ticket.contains(bonusNumber)) {
-                matchCounts[3]++; // 5개 일치 + 보너스
-            }
-            if (matched == 5 && !ticket.contains(bonusNumber)) {
-                matchCounts[2]++; // 5개 일치
+            if (matched == 5) {
+                updateMatchCountsForFive(matchCounts, ticket, bonusNumber);
             }
         }
         return matchCounts;
     }
+
+    private void updateMatchCountsForFive(int[] matchCounts, List<Integer> ticket, int bonusNumber) {
+        if (ticket.contains(bonusNumber)) {
+            matchCounts[3]++; // 5개 일치 + 보너스
+        }
+        if (!ticket.contains(bonusNumber)) {
+            matchCounts[2]++; // 5개 일치
+        }
+    }
+
 
     private int calculateTotalEarnings(int[] matchCounts, int[] prizes) {
         int totalEarnings = 0;

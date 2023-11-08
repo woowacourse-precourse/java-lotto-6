@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
 public class LottoDataService {
@@ -17,6 +16,7 @@ public class LottoDataService {
     }
 
     private List<Integer> create_lotto_Numbers(String lotto_numbers){
+        Validation.validateLottoNumberType(lotto_numbers);
         List<Integer> lottoNumbers = new ArrayList<>();
         Arrays.stream(lotto_numbers.split(","))
                 .map(number -> lottoNumbers.add(Integer.parseInt(number)))
@@ -30,7 +30,6 @@ public class LottoDataService {
         validation.validateNumberType(bonus_Number);
         return Integer.parseInt(bonus_Number);
     }
-
     private Lotto create_Lotto(List<Integer> lotto_numbers, int bonus_number){
         Lotto lotto = new Lotto(lotto_numbers);
         lotto.addBonusNumber(bonus_number);

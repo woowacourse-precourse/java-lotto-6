@@ -14,7 +14,7 @@ public class IssuedLottosTest {
         IssuedLotto lotto1 = new IssuedLotto(List.of(1, 2, 3, 4, 5, 6));
         IssuedLotto lotto2 = new IssuedLotto(List.of(7, 8, 9, 10, 11, 12));
 
-        assertThatCode(() -> new IssuedLottos(List.of(lotto1, lotto2)))
+        assertThatCode(() -> new IssuedLottos(List.of(lotto1, lotto2),2))
                 .doesNotThrowAnyException();
     }
 
@@ -23,7 +23,7 @@ public class IssuedLottosTest {
     void findAllLottoNumbers(){
         IssuedLotto lotto1 = new IssuedLotto(List.of(1, 2, 3, 4, 5, 6));
         IssuedLotto lotto2 = new IssuedLotto(List.of(7, 8, 9, 10, 11, 12));
-        IssuedLottos issuedLottos = new IssuedLottos(List.of(lotto1, lotto2));
+        IssuedLottos issuedLottos = new IssuedLottos(List.of(lotto1, lotto2), 2);
 
         List<Integer> User_Lotto_Group_1 = issuedLottos.find_issued_lotto_by_index(0);
 

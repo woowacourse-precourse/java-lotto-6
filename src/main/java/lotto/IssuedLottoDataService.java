@@ -2,17 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class UserLottoDataService {
-    InputView inputView;
-    Validation validation;
-
+public class IssuedLottoDataService {
+    InputView inputView = new InputView();
     public IssuedLottos create_issued_lottos(){
-        IssuedLottos issuedLottos = new IssuedLottos(new ArrayList<>());
+        int amount = purchaceAmount()/1000;
+        IssuedLottos issuedLottos = new IssuedLottos(new ArrayList<>(), amount);
         IssuedLotto issuedLotto;
         int purchaseAmount = purchaceAmount();
         for(int i = 0 ; i < purchaseAmount ; i++){
@@ -23,7 +20,7 @@ public class UserLottoDataService {
     }
     private int purchaceAmount(){
         String money = inputView.InputpurchaseAmount();
-        validation.validateNumberType(money);
+        Validation.validateNumberType(money);
         return Integer.parseInt(money);
     }
 
@@ -33,5 +30,7 @@ public class UserLottoDataService {
             numbers.add(Randoms.pickNumberInRange(1, 45));
         }
         return new IssuedLotto(numbers);
+
+
     }
 }

@@ -45,11 +45,6 @@ public class Lotto {
         }
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString() + "\n";
-    }
-
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }

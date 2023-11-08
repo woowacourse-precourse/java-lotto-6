@@ -2,9 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static lotto.configuration.Constants.*;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -17,15 +14,6 @@ public class Lottos {
             lottos.add(lotto);
         }
         this.lottos = lottos;
-    }
-
-    @Override
-    public String toString() {
-        return "\n" +
-                lottos.size() + Message.BUY_LOTTO +
-                lottos.stream()
-                        .map(Lotto::toString)
-                        .collect(Collectors.joining());
     }
 
     public List<Lotto> getRandomLottos() {

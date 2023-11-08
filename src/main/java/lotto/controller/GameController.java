@@ -26,7 +26,7 @@ public class GameController {
         Lotto winningLotto = getWinningLotto();
         Bonus bonus = getBonus(winningLotto);
         Result result = getResult(winningLotto, lottos, bonus);
-        getRate(money.getMoney(), result.getReward());
+        createRate(money.getMoney(), result.getReward());
     }
 
     private Money getMoney() {
@@ -37,7 +37,7 @@ public class GameController {
 
                 return new Money(money);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printException(e);
             }
         }
     }
@@ -45,7 +45,8 @@ public class GameController {
     private Lottos getLottos(int lottoCount) {
         List<List<Integer>> randomNumberLists = numberGenerator.createRandomNumberLists(lottoCount);
         Lottos lottos = new Lottos(randomNumberLists);
-        outputView.println(lottos);
+        outputView.printLottos(lottos);
+
         return lottos;
     }
 
@@ -57,7 +58,7 @@ public class GameController {
 
                 return new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printException(e);
             }
         }
     }
@@ -70,20 +71,20 @@ public class GameController {
 
                 return new Bonus(bonus, winningLotto);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printException(e);
             }
         }
     }
 
     private Result getResult(Lotto winningLotto, Lottos lottos, Bonus bonus) {
         Result result = new Result(winningLotto, lottos, bonus);
-        outputView.println(result);
+        outputView.printResult(result);
         return result;
     }
 
-    private void getRate(int purchaseMoney, int reward) {
+    private void createRate(int purchaseMoney, int reward) {
         Rate rate = new Rate(purchaseMoney, reward);
-        outputView.println(rate);
+        outputView.printRate(rate);
     }
 
 }

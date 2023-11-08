@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

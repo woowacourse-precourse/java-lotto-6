@@ -1,0 +1,14 @@
+로또
+- inputPurchaseAmount: 구매 금액 입력
+- inputWinningNumber: 당첨 번호 입력
+- inputBonusNumber: 보너스 번호 입력
+  - 각 입력은 모두 예외처리
+- LottoGame: 랜덤 숫자를 뽑아 로또 수량, 번호 출력
+  - printLottoTickets:몇개 구매했는지 출력
+- checkWinning: 당첨되었는지 확인하는 메소드
+  - calculateWinningResult: 보너스 넘버와 lottoRank에 맞는지 확인
+  - getMatchCount: enum 클래스인 LottoRank와 비교
+- printStatistics: 당첨 통계 출력
+  - printRankStatistics: 몇개 일치하는지 출력
+  - getBonusMatchString: 보너스 볼 일치 여부
+  - calculateProfitRate: 수익률 계산

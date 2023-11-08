@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final int MIN_NUMBER = 1;
-    private final int MAX_NUMBER = 45;
-    private final String ERROR_MESSAGE = "[ERROR] ";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,7 +19,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "6개의 숫자가 아닙니다.");
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자가 아닙니다.");
         }
     }
 
@@ -30,7 +27,7 @@ public class Lotto {
         Set<Integer> unique = new HashSet<Integer>();
         for (int number : numbers) {
             if (!unique.add(number)) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + "중복된 값이 있습니다.");
+                throw new IllegalArgumentException("[ERROR] 중복된 값이 있습니다.");
             }
         }
 
@@ -38,8 +35,8 @@ public class Lotto {
 
     private void validateNumberRange(List<Integer> numbers) throws IllegalArgumentException {
         for (int number : numbers) {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + "값이 범위를 벗어납니다.");
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 값이 범위를 벗어납니다.");
             }
         }
     }

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import domain.Lotto;
 import domain.Rank;
 import domain.WinningNumber;
+import random.Random;
 import utility.Utility;
 import validator.Validator;
 
@@ -36,7 +37,7 @@ public class Service {
     }
 
     private List<Integer> generateRandomNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = new Random().create();
         return numbers;
     }
 

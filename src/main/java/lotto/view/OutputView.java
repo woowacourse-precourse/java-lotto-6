@@ -7,7 +7,6 @@ import lotto.dto.YieldResult;
 import lotto.util.message.LottoRankingMessage;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class OutputView {
 

@@ -48,4 +48,20 @@ class PurchaseCostTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.CHECK_UNIT_PRICE.getMessage());
     }
+
+    @Test
+    @DisplayName("구매 금액이 1000원 미만일 경우 예외를 던진다.")
+    void invalidPurchaseAmountUnder1000won() {
+        // Given
+        Long invalidAmount = 0L;
+        Long invalidAmount2 = -1000L;
+
+        // When, Then
+        assertThatThrownBy(() -> PurchaseCost.of(invalidAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.CHECK_POSITIVE_NATURAL_NUMBER.getMessage());
+        assertThatThrownBy(() -> PurchaseCost.of(invalidAmount2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.CHECK_POSITIVE_NATURAL_NUMBER.getMessage());
+    }
 }

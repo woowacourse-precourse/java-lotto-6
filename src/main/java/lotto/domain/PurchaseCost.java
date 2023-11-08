@@ -13,13 +13,20 @@ public class PurchaseCost {
     }
 
     private PurchaseCost(Long money) {
-        validateCost(money);
+        validateCostMultiple(money);
+        validatePositiveNaturalNumber(money);
         this.money = money;
     }
 
-    private void validateCost(Long amount) {
-        if (amount % Lotto.PRICE != 0) {
+    private void validateCostMultiple(Long value) {
+        if (value % Lotto.PRICE != 0) {
             throw new IllegalArgumentException(ExceptionMessage.CHECK_UNIT_PRICE.getMessage());
+        }
+    }
+
+    private void validatePositiveNaturalNumber(Long value) {
+        if (value < Lotto.PRICE) {
+            throw new IllegalArgumentException(ExceptionMessage.CHECK_POSITIVE_NATURAL_NUMBER.getMessage());
         }
     }
 

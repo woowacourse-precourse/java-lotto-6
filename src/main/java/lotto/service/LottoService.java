@@ -9,8 +9,8 @@ import lotto.dto.PurchaseResult;
 import lotto.dto.YieldResult;
 import lotto.util.RandomNumbersGenerator;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class LottoService {

@@ -9,8 +9,6 @@ import lotto.util.ExceptionHandler;
 import lotto.view.InputViewProxy;
 import lotto.view.OutputView;
 
-import java.util.List;
-
 public class GameController {
 
     private final LottoService lottoService;

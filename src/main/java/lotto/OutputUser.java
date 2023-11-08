@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Game.LottoRank;
 
 public class OutputUser {
     public void outputBuyLotto(Integer totalLottoCount) {

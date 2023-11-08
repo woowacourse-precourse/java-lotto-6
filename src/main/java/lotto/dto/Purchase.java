@@ -1,6 +1,6 @@
-package dto;
+package lotto.dto;
 
-import model.Lotto;
+import lotto.model.Lotto;
 
 import java.util.List;
 

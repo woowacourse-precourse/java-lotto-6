@@ -1,7 +1,7 @@
-package model;
+package lotto.model;
 
-import common.Constant;
-import common.ErrorMessage;
+import lotto.common.Constant;
+import lotto.common.ErrorMessage;
 
 public class Amount {
 

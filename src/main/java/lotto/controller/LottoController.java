@@ -1,14 +1,14 @@
-package controller;
+package lotto.controller;
 
-import common.Converter;
-import dto.Purchase;
-import model.Amount;
-import model.Bonus;
-import model.Lotto;
-import model.Reward;
-import service.LottoService;
-import view.InputView;
-import view.OutputView;
+import lotto.common.Converter;
+import lotto.dto.Purchase;
+import lotto.model.Amount;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Reward;
+import lotto.service.LottoService;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.EnumMap;
 import java.util.List;

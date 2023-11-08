@@ -1,10 +1,8 @@
-package model;
+package lotto.model;
 
-import common.Constant;
-import common.ErrorMessage;
+import lotto.common.Constant;
+import lotto.common.ErrorMessage;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,4 +1,4 @@
-package common;
+package lotto.common;
 
 public class Constant {
     public final static int LOTTO_MIN = 1;

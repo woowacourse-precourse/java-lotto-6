@@ -1,12 +1,12 @@
-package service;
+package lotto.service;
 
-import common.Constant;
-import common.LottoNumberGenerator;
-import dto.Purchase;
-import model.Amount;
-import model.Bonus;
-import model.Lotto;
-import model.Reward;
+import lotto.common.Constant;
+import lotto.common.LottoNumberGenerator;
+import lotto.dto.Purchase;
+import lotto.model.Amount;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.Reward;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,8 +1,8 @@
-package view;
+package lotto.view;
 
-import dto.Purchase;
-import model.Lotto;
-import model.Reward;
+import lotto.dto.Purchase;
+import lotto.model.Lotto;
+import lotto.model.Reward;
 
 import java.util.EnumMap;
 import java.util.List;

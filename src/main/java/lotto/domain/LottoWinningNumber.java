@@ -17,4 +17,12 @@ public class LottoWinningNumber {
             throw new IllegalArgumentException();
         }
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getSpecialNumber() {
+        return specialNumber;
+    }
 }

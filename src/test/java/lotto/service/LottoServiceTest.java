@@ -90,9 +90,9 @@ class LottoServiceTest {
 
         Money money = new Money("8000");
         //when
-        String revenue = lottoService.getRevenue(result, money);
+        double revenue = lottoService.getRevenue(result, money);
         //then
-        assertThat(revenue).isEqualTo("62.5%");
+        assertThat(revenue).isEqualTo(62.5);
     }
 
 }

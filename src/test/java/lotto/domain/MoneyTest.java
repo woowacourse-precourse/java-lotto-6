@@ -44,8 +44,8 @@ class MoneyTest {
         Money money2 = new Money(input2);
         //then
         assertAll(
-                () -> assertEquals("62.5%", money1.calculateRevenue(rewards1)),
-                () -> assertEquals("20,000,000.0%", money2.calculateRevenue(rewards2))
+                () -> assertEquals(62.5, money1.calculateRevenue(rewards1)),
+                () -> assertEquals(20000000.0, money2.calculateRevenue(rewards2))
         );
     }
 

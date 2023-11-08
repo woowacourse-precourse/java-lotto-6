@@ -12,24 +12,24 @@ public class Lottos {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoAmount; i++) {
-            lottos.add(new Lotto(createLotto()));
+            lottos.add(createLotto());
         }
 
         this.lottos = lottos;
     }
 
-    private List<Integer> createLotto() {
-        List<Integer> lotto = new ArrayList<>();
+    private Lotto createLotto() {
+        List<Integer> numbers = new ArrayList<>();
 
-        while (lotto.size() != 6) {
-            int randomNumber = GetRandomNumber.getRandomNumber();
-
-            if (!lotto.contains(randomNumber)) {
-                lotto.add(randomNumber);
-            }
+        while (numbers.size() != 6) {
+            numbers.add(GetRandomNumber.getRandomNumber());
         }
 
-        return lotto;
+        try {
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            return createLotto();
+        }
     }
 
     public List<Lotto> getLottoList() {

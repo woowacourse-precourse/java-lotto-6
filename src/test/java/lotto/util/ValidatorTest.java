@@ -38,7 +38,7 @@ public class ValidatorTest {
                 .hasMessageContaining("로또 번호는 중복되면 안됩니다");
     }
     @Test
-    void shouldThrowIllegalException_whenLottoNumberIsBiggerThan45() {
+    void shouldThrowIllegalException_whenLottoNumberIsBiggerThan_45() {
         List<Integer> lottoNumber = List.of(1, 2, 3, 4, 5, 46);
 
         assertThatThrownBy(() -> validateLottoNumbers(lottoNumber))
@@ -47,11 +47,20 @@ public class ValidatorTest {
     }
 
     @Test
-    void shouldThrowIllegalException_whenLottoNumberIsLowerThan1() {
+    void shouldThrowIllegalException_whenLottoNumberIsLowerThan_1() {
         List<Integer> lottoNumber = List.of(1, 2, 3, 4, 5, 0);
 
         assertThatThrownBy(() -> validateLottoNumbers(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 번호는 1이상 이어야 합니다");
+    }
+
+    @Test
+    void shouldThrowIllegalException_whenLottoNumberSizeIsNot_6() {
+        List<Integer> lottoNumber = List.of(1, 2, 3, 4, 5, 6, 7);
+
+        assertThatThrownBy(() -> validateLottoNumbers(lottoNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("로또 번호는 6개 이어야 합니다");
     }
 }

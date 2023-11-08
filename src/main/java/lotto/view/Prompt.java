@@ -16,7 +16,7 @@ public class Prompt {
     }
 
     public static String forInputLottoNumbers() {
-        System.out.println("당첨 번호를 입력해주세요");
+        System.out.println("\n당첨 번호를 입력해주세요");
         String lottoNumber = readLine();
 
         return lottoNumber;
@@ -26,5 +26,12 @@ public class Prompt {
         int size = boughtLotto.size();
         System.out.println(size + "개를 구매하였습니다");
         boughtLotto.stream().forEach(a -> System.out.println(a.getNumbers()));
+    }
+
+    public static String forInputBonusNumber() {
+        System.out.println("\n당첨 번호를 입력해주세요");
+        String bonusNumber = readLine();
+
+        return bonusNumber;
     }
 }

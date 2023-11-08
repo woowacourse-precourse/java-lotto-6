@@ -20,7 +20,8 @@ public class Validator {
 
     }
     public static void validateLottoNumbers(List<Integer> lottoNumberList) {
-
+        if(lottoNumberList.size()!=6)
+            throw new IllegalArgumentException("로또 번호는 6개 이어야 합니다");
         if(hasDuplicatedNumber(lottoNumberList))
             throw new IllegalArgumentException("로또 번호는 중복되면 안됩니다");
         if (lottoNumberList.stream().anyMatch(a -> a > 45))

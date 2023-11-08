@@ -48,5 +48,4 @@ public class Service {
         throw new IllegalArgumentException();
     }
 
-    // 5. 집계 Map 만들기
 }

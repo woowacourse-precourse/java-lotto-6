@@ -58,13 +58,28 @@ public class Application {
             lotteries.add(new Lottery(lottoNumbers, bonusNumber)); //로또 발행
         }
 
-        //5. 통계 내기
+        //5. 집계하기
         Map<Rank, Long> result = lotteries.stream()
-                .collect(Collectors.groupingBy(Lottery::getRank, Collectors.counting()));
-
-        System.out.println(result);
+                .collect(Collectors.groupingBy(Lottery::getRank, Collectors.summingLong(l -> 1)));
+        for (Rank rank : Rank.values()) {
+            result.putIfAbsent(rank, 0L);
+        }
 
 
         //6. 출력
+        System.out.println(numberOfLotteries + "개를 구매했습니다.");
+        for (Lottery lottery : lotteries) {
+            System.out.println(lottery.getWinningNumbers());
+        }
+
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + result.get(Rank.FIFTH) + "개");
+        System.out.println("4개 일치 (50,000원) - " + result.get(Rank.FORTH) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + result.get(Rank.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(Rank.SECOND) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + result.get(Rank.FIRST) + "개");
+
     }
 }

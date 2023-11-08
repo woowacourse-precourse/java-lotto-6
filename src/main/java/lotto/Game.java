@@ -47,12 +47,16 @@ public class Game {
     }
     private void resultLottoGame(List<Lotto> numberTickets, WinningLotto winningLotto){
         for (Lotto lotto : numberTickets){
-            System.out.println(calculateLottoGame(lotto, winningLotto.getLotto()));
+            System.out.println(calculateLottoGame(lotto, winningLotto));
+            System.out.println(calculateLottoGameBonus(lotto, winningLotto));
         }
     }
-    private int calculateLottoGame(Lotto lotto, Lotto winningLotto){
+    private int calculateLottoGame(Lotto lotto, WinningLotto winningLotto){
         List<Integer> resultLotto = new ArrayList<>(lotto.getNumbers());
-        resultLotto.retainAll(winningLotto.getNumbers());
+        resultLotto.retainAll(winningLotto.getLotto().getNumbers());
         return resultLotto.size();
+    }
+    private boolean calculateLottoGameBonus(Lotto lotto, WinningLotto winningLotto){
+        return lotto.getNumbers().contains(winningLotto.getBonusNumber());
     }
 }

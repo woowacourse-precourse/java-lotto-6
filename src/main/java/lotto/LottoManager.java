@@ -4,6 +4,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static constants.Constant.*;
@@ -16,7 +18,7 @@ public class LottoManager {
 
         //로또 구매 입력 및 검증
         String priceString = inputPurchasePrice();
-        validateTypePrice(priceString);
+        validateTypeNumeric(priceString);
         Integer priceInteger = Integer.parseInt(priceString);
         validateValuePrice(priceInteger);
 
@@ -29,12 +31,25 @@ public class LottoManager {
             Lotto lotto = new Lotto(numbers);
             lottoList.add(lotto);
         }
-
         printGeneratedLotto(lottoCount, lottoList);
 
+        String winningNumberString = inputWinningNumber();
+        validateTypeNumeric(winningNumberString);
+        List<Integer>winningNumberList = convertToList(winningNumberString);
+        Lotto winningNumber = new Lotto(winningNumberList);
+
+//        String bonusNumberString = inputBonusNumber();
+//        validateTypeNumeric(bonusNumberString);
+//        Integer bonusNumberInteger = Integer.parseInt(bonusNumberString());
+//        validateRangeNumber(bonusNumberInteger);
+//
+//        HashMap<Integer, Integer> result = calucateResult(lottoList, winningNumbers, bonusNumberInteger);
 
 
+    }
 
+    private List<Integer>convertToList(String input){
+        return new ArrayList(Arrays.asList(input.split(SEP_COMMA)));
     }
 
     private List<Integer> generateLottoNumbers(){
@@ -46,12 +61,12 @@ public class LottoManager {
         return priceInt%PRICE_MOD;
     }
 
-    private void validateTypePrice(String priceString){
+    private void validateTypeNumeric(String priceString){
         for(int i=0;i<priceString.length();i++){
             char c = priceString.charAt(i);
             if(c<'0'||c>'9')
             {
-                throw new IllegalArgumentException(ERROR_STRING+priceString +
+                throw new IllegalArgumentException(ERROR_STRING +
                         "\nExpect : 숫자 문자열" + "\nInput : " + priceString);
             }
         }
@@ -59,7 +74,7 @@ public class LottoManager {
 
     private void validateValuePrice(Integer priceInteger){
         if(priceInteger%PRICE_MOD!=0)
-            throw new IllegalArgumentException(ERROR_STRING+priceInteger +
+            throw new IllegalArgumentException(ERROR_STRING +
                     "\nExpect : 1000으로 떨어지는 정수" + "\nInput : " + priceInteger);
     }
 }

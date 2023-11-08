@@ -10,34 +10,40 @@ public class ValidationImpl implements Validation {
     private final String DELIMITER = ",";
     private final int NUMBER_START = 1;
     private final int NUMBER_END = 45;
+    private final int NUMBER_COUNT = 6;
     private final Pattern WINNING_NUMBER_PATTERN = Pattern.compile("[^,\\d]");
     private final Pattern DIGITS_PATTERN = Pattern.compile("\\D");
 
     @Override
     public boolean isValidWinningNumbers(String input) {
-        try {
-            hasSpecialCharExceptCommaDigits(input);
-            String[] strings = input.split(DELIMITER);
-            for (String string : strings) {
-                existDigitBetweenComma(string);
-                isBetween(Integer.parseInt(string));
-            }
-            isDistinctNumbers(input);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+        int numberCount = 0;
+        hasSpecialCharExceptCommaDigits(input);
+        String[] strings = input.split(DELIMITER);
+        for (String string : strings) {
+            existDigitBetweenComma(string);
+            isBetween(Integer.parseInt(string));
+            numberCount++;
         }
+        isDistinctNumbers(input);
+        isEqualToWinningNumberCount(numberCount);
         return true;
+    }
+
+    private void isEqualToWinningNumberCount(int numberCount) {
+        if (numberCount != NUMBER_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력해주세요.");
+        }
     }
 
     private void hasSpecialCharExceptCommaDigits(String input) throws IllegalArgumentException {
         if (WINNING_NUMBER_PATTERN.matcher(input).find()) {
-            throw new IllegalArgumentException("[ERROR] 오직 숫자와 콤마만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 오직 숫자와 쉼표만 입력 가능합니다.");
         }
     }
 
     private void existDigitBetweenComma(String stringDigit) throws IllegalArgumentException {
         if (stringDigit.length() < 1) {
-            throw new IllegalArgumentException("[ERROR] 콤마 사이에 숫자를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 쉼표 사이에 숫자를 입력해주세요.");
         }
     }
 
@@ -60,13 +66,9 @@ public class ValidationImpl implements Validation {
 
     @Override
     public boolean isValidBonusNumber(String input, List<Integer> winningNumbers) {
-        try {
-            hasAllCharExceptDigits(input);
-            isBetween(Integer.parseInt(input));
-            isDuplicatedInput(input, winningNumbers);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+        hasAllCharExceptDigits(input);
+        isBetween(Integer.parseInt(input));
+        isDuplicatedInput(input, winningNumbers);
         return true;
     }
 
@@ -84,11 +86,7 @@ public class ValidationImpl implements Validation {
 
     @Override
     public boolean isValidMoney(String input) {
-        try {
-            hasAllCharExceptDigits(input);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+        hasAllCharExceptDigits(input);
         return true;
     }
 }

@@ -50,7 +50,7 @@ public class LottoGame {
 		try {
 			return lottoInputProvider.getInputBonusNumber("보너스 번호를 입력해 주세요.");
 		} catch (IllegalArgumentException e) {
-			return lottoInputProvider.getInputBonusNumber("올바른 보너스 번호를 입력해 주세요.");
+			return lottoInputProvider.getInputBonusNumber("올바른 보너스 번호를 입력해 주세요. (당첨 번호와 중복되지 않는 1~45 사이 숫자)");
 		}
 	}
 
@@ -58,7 +58,7 @@ public class LottoGame {
 		try {
 			return lottoInputProvider.getInputWinningNumber("당첨 번호를 입력해 주세요.");
 		} catch (IllegalArgumentException e) {
-			return lottoInputProvider.getInputWinningNumber("올바른 당첨 번호를 입력해 주세요.");
+			return lottoInputProvider.getInputWinningNumber("올바른 당첨 번호를 입력해 주세요. (중복없이 쉼표로 구분해서 1~45 사이 숫자 6개)");
 		}
 	}
 
@@ -66,7 +66,7 @@ public class LottoGame {
 		try {
 			return lottoInputProvider.getInputPrice("구입금액을 입력해 주세요.");
 		} catch (IllegalArgumentException e) {
-			return lottoInputProvider.getInputPrice("올바른 구입금액을 입력해 주세요.");
+			return lottoInputProvider.getInputPrice("올바른 구입금액을 입력해 주세요. (1,000원 단위)");
 		}
 	}
 }

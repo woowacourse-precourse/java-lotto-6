@@ -73,7 +73,7 @@ public class LottoResult {
         }
     }
 
-    public Integer getWinningResult(int place) {
+    public int getWinningResult(int place) {
         return result.get(place);
     }
 

@@ -33,4 +33,8 @@ public class Lotto {
 						.anyMatch(Predicate.isEqual(number)))
 				.count();
 	}
+
+	public int countLotto(Lotto lotto) {
+		return lotto.countNumberList(this.numbers);
+	}
 }

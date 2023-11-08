@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.Lotto;
 
@@ -33,6 +34,20 @@ public class LottoResult {
         System.out.print("5개 일치 (1,500,000원) - " + this.thirdPrizeCount + "개\n");
         System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + this.secondPrizeCount + "개\n");
         System.out.print("6개 일치 (2,000,000,000원) - " + this.firstPrizeCount + "개\n");
+    }
+
+    public void printMyROI() {
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        System.out.print("총 수익률은 " + decimalFormat.format(calculateROI()) + "%입니다.\n");
+    }
+
+    private double calculateROI() {
+        double myReturn =
+                ((this.fivethPrizeCount * 5) + (this.fourthPrizeCount * 50) + (this.thirdPrizeCount * 1500) + (
+                        this.secondPrizeCount * 30000) + (this.firstPrizeCount * 2000000)) * 100;
+        double myInvestment = lottos.size();
+
+        return myReturn / myInvestment;
     }
 
     private boolean checkWinning(int matchedCount) {

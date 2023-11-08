@@ -16,5 +16,6 @@ public class Application {
         LottoResult lottoResult = new LottoResult(lottoDraw.getLottos());
         lottoResult.configurePrizeCount(input.getWinningNumbers());
         lottoResult.printWinningHistory();
+        lottoResult.printMyROI();
     }
 }

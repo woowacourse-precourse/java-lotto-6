@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.domain.vo.Money;
 import lotto.validation.Validator;
-import lotto.validation.validators.InvalidAmount;
+import lotto.validation.validators.InvalidInputAmount;
 import lotto.validation.validators.LottoGameValidator;
 
 public class LottoKiosk {
@@ -11,7 +11,7 @@ public class LottoKiosk {
 
 	public LottoKiosk(int money) {
 		Validator.of(new LottoGameValidator[]{
-				new InvalidAmount()
+				new InvalidInputAmount()
 		}).validate(money);
 		this.inputAmount = new Money(money);
 	}

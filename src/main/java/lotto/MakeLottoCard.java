@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.io.Output.printPickedNumber;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +11,7 @@ public class MakeLottoCard {
 
     public MakeLottoCard(Integer number) {
         makeCard(number);
-        for (List<Integer> nums : numbers) {
-            System.out.println(nums);
-        }
+        printPickedNumber(numbers);
     }
 
     public List<Integer> pickNumbers() {

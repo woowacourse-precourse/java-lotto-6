@@ -19,4 +19,10 @@ public class Output {
         String s6 = String.format("총 수익률은 %s%%입니다.", profitCalculation(alignRanking));
         System.out.println(s6);
     }
+
+    public static void printPickedNumber(List<List<Integer>> numbers) {
+        for (List<Integer> nums : numbers) {
+            System.out.println(nums);
+        }
+    }
 }

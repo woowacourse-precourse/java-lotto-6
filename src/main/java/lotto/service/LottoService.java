@@ -28,7 +28,9 @@ public class LottoService {
     public Map<Rank, Integer> checkwin(String winningNumber, String bonusNumber, List<Lotto> lottos) {
         List<Integer> winningLottoNumbers = convertStringToList(winningNumber);
         validateWinningNumbers(winningLottoNumbers);
+
         int bonusLottoNumber = convertToInt(bonusNumber);
+        validateBonusNumber(bonusLottoNumber);
 
         return checkRankCounts(lottos, winningLottoNumbers,bonusLottoNumber);
     }
@@ -36,6 +38,12 @@ public class LottoService {
     private void validateWinningNumbers(List<Integer> winningLottoNumbers) {
         if(!winningLottoNumbers.stream()
                 .allMatch(number -> number >= 1 && number <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber) {
+        if(!(bonusNumber >= 1 && bonusNumber <= 45)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }

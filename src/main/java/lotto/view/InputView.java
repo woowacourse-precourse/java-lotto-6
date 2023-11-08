@@ -1,21 +1,26 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.NumberGenerator;
 import lotto.enums.Instructions;
 
 public class InputView {
-    public String readPurchaseAmount() {
+    public Integer readPurchaseAmount() {
         System.out.println(Instructions.PURCHASE_AMOUNT.getInstruction());
-        return Console.readLine();
+        String input = Console.readLine();
+        return NumberGenerator.formatNumber(input);
     }
 
-    public String readWinnerNumber() {
+    public List<Integer> readWinnerNumbers() {
         System.out.println(Instructions.WINNING_NUMBER.getInstruction());
-        return Console.readLine();
+        String input = Console.readLine();
+        return NumberGenerator.formatNumbers(input);
     }
 
-    public String readBonusNumber() {
+    public Integer readBonusNumber() {
         System.out.println(Instructions.BONUS_NUMBER.getInstruction());
-        return Console.readLine();
+        String input = Console.readLine();
+        return NumberGenerator.formatNumber(input);
     }
 }

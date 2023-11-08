@@ -56,4 +56,10 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_PURCHASE_AMOUNT);
     }
+
+    @DisplayName("유효한 당첨 번호를 입력하면 예외가 발생하지 않는다.")
+    @Test
+    public void testValidNumbers() {
+        assertDoesNotThrow(() -> inputView.validateNumbers("1,2,3,4,5,6"));
+    }
 }

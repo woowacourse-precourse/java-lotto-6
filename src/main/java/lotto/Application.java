@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.List;
 import lotto.game.LottoGame;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -11,7 +12,8 @@ public class Application {
 
         int numberOfGames = lottoGame.getNumberOfGames();
         OutputView.printBuyGames(numberOfGames);
-        lottoGame.createLottoList(numberOfGames);
 
+        List<Lotto> lottoList = lottoGame.createLottoList(numberOfGames);
+        OutputView.printLottoList(lottoList);
     }
 }

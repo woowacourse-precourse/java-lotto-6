@@ -17,4 +17,6 @@ public enum BudgetInputErrorMessage {
     public void displayMessage(){
         System.out.println(message);
     }
+
+    
 }

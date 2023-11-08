@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import lotto.validator.system.BudgetValidator;
-import lotto.validator.system.SystemValidator;
+import lotto.validator.system.domain.BudgetValidator;
 
 public class Budget {
     private final int budget;

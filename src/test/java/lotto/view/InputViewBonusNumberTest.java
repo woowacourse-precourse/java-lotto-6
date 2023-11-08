@@ -34,7 +34,7 @@ class InputViewBonusNumberTest {
     @Test
     void testInputBudgetNotNumber(){
         String expectedBudget = "aaa";
-        setUp("aaaa");
+        setUp(expectedBudget);
 
         assertThatThrownBy(inputView::InputBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -47,7 +47,7 @@ class InputViewBonusNumberTest {
     @Test
     void testInputBudgetEmpty() {
         String expectedBudget = "\n";
-        setUp("\n");
+        setUp(expectedBudget);
 
         assertThatThrownBy(inputView::InputBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
@@ -60,7 +60,7 @@ class InputViewBonusNumberTest {
     @Test
     void testInputBudgetDouble() {
         String expectedBudget = "10000.11";
-        setUp("1000.11");
+        setUp(expectedBudget);
 
         assertThatThrownBy(inputView::InputBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)

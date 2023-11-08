@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.validator.system.WinningCombinationValidator;
+import lotto.validator.system.domain.WinningCombinationValidator;
 
 public class BonusNumber {
     private final int bonusNumber;

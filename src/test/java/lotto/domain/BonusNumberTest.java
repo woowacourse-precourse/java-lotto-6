@@ -13,6 +13,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class BonusNumberTest {
     List<Integer> numbers;
@@ -32,26 +33,11 @@ class BonusNumberTest {
         assertThat(bonusNumber.getNumber()).isEqualTo(expected);
     }
 
-    @DisplayName("보너스번호에 1보다 작은 숫자를 뽑는다면 오류가 발생합니다")
-    @Test
-    void validateSmallNumber() {
-        // when
-        int smallNumber = 0;
-
-        // then
-        assertThatThrownBy(()-> BonusNumber.from(lotto, smallNumber))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_RANGE.getMessage());
-    }
-
-    @DisplayName("보너스번호에 45보다 큰 숫자를 뽑는다면 오류가 발생합니다")
-    @Test
-    void validateLargeNumber() {
-        // when
-        int LargeNum = 46;
-
-        // then
-        assertThatThrownBy(()-> BonusNumber.from(lotto, LargeNum))
+    @DisplayName("보너스번호에 1~45를 벗어난 숫자를 뽑는다면 오류가 발생합니다")
+    @ParameterizedTest
+    @ValueSource(ints = {0,46})
+    void validateSmallNumber(int inpunt) {
+        assertThatThrownBy(()-> BonusNumber.from(lotto, inpunt))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_RANGE.getMessage());
     }
@@ -59,10 +45,10 @@ class BonusNumberTest {
     @DisplayName("보너스번호가 당첨번호에 있는 번호라면 오류가 발생합니다.")
     @Test
     void validateBonusNumInLotto() {
-        // when
+        // given
         int duplicateNum = 2;
 
-        // then
+        // when // then
         assertThatThrownBy(()-> BonusNumber.from(lotto, duplicateNum))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATE_NUM.getMessage());

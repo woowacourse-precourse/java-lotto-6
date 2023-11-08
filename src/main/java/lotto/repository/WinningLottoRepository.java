@@ -1,7 +1,5 @@
 package lotto.repository;
 
-import static lotto.settings.ErrorMessage.DUPLICATE_NUM;
-
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 

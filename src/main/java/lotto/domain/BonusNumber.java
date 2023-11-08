@@ -16,7 +16,17 @@ public class BonusNumber {
 
         int result = Integer.parseInt(bonusNumberInput);
         compareWinningAndBonus();
-        this.BONUS_NUMBER = result;
+        BONUS_NUMBER = bonusNumberInput;
+    }
+
+    private int validateFormat(String bonusNumberInput) {
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자 1개를 입력해주세요.");
+        }
+        return bonusNumber;
     }
 
     //메서드

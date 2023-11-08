@@ -26,6 +26,10 @@ class LottoResultTest {
         assertThat(result_Fourth_2).isEqualTo(LottoResult.FOURTH);
         assertThat(result_Fifth_1).isEqualTo(LottoResult.FIFTH);
         assertThat(result_Fifth_2).isEqualTo(LottoResult.FIFTH);
+        assertThat(LottoResult.getSizeOfLottoResult()).isEqualTo(5);
+        assertThat(LottoResult.getSomeLottoResult(0)).isEqualTo(LottoResult.FIFTH);
+        assertThat(LottoResult.getSomeLottoResult(1)).isEqualTo(LottoResult.FOURTH);
+        assertThat(LottoResult.getSomeLottoResult(2)).isEqualTo(LottoResult.THIRD);
     }
 
     @DisplayName("로또 결과 저장소를 초기화 하기 알맞은 Map 을 반환한다.")

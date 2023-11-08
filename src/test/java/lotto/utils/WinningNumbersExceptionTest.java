@@ -9,6 +9,14 @@ public class WinningNumbersExceptionTest {
     WinningNumbersException winningNumbersException = new WinningNumbersException();
 
     @Test
+    void 당첨_번호_6개_미만_입력 () {
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+                winningNumbersException.underLength("1"));
+
+        assertEquals("[ERROR]숫자 6개 입력하세요.", exception.getMessage());
+    }
+
+    @Test
     void 당첨_번호_6개_초과_입력 () {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
                 winningNumbersException.exceedsLength("1,2,3,4,5,6,7"));

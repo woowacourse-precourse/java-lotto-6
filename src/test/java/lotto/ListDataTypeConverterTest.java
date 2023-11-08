@@ -33,4 +33,17 @@ class ListDataTypeConverterTest {
                 NumberFormatException.class)
             .hasMessage("변환 하려는 문자열이 숫자로만 이루어져 있지 않습니다.");
     }
+
+    @Test
+    @DisplayName(("List 데이터 타입을 String -> Integer로 변경 할때 문자열이 숫자로만 이루어져 있을 경우 Integer 리스트로 변환된다."))
+    void convertListDataTypeStringToInteger() {
+        //given
+        List<String> strings = List.of("1000","1000","044");
+
+        //when
+        List<Integer> integers = ListDataTypeConverter.stringToInteger(strings);
+
+        //then
+        Assertions.assertTrue(integers.stream().allMatch(item -> item instanceof Integer));
+    }
 }

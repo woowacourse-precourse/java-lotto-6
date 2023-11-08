@@ -29,9 +29,8 @@ public class LottoController {
         int quantity = calculateQuantity(money);
         outputView.printLottoQuantity(quantity);
 
-        List<Lotto> lottos = pickLottoNumbers(quantity);
-        userLotto.setLottos(lottos);
-        outputView.printLottoNumbers(lottos);
+        pickLottoNumbers(userLotto, quantity);
+        outputView.printLottoNumbers(userLotto.getLottos());
 
         WinningLotto winningLotto = inputView.getWinningNumbers();
         inputView.getBonusNumber(winningLotto);
@@ -89,7 +88,7 @@ public class LottoController {
                 .count());
     }
 
-    private List<Lotto> pickLottoNumbers(int quantity) {
+    private void pickLottoNumbers(UserLotto userLotto, int quantity) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -98,7 +97,7 @@ public class LottoController {
             Lotto lotto = new Lotto(sortedNumbers);
             lottos.add(lotto);
         }
-        return lottos;
+        userLotto.setLottos(lottos);
     }
 
     private int calculateQuantity(int money) {

@@ -38,14 +38,6 @@ public enum LottoRank {
         return this.matchCount == matchCount;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public boolean isBonusMatch() {
-        return isBonusMatch;
-    }
-
     public int getPrice() {
         return price;
     }

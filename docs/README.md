@@ -135,18 +135,6 @@ classDiagram
     LottoMachine --> Generator
     Customer --> LottoResult
     WinningLotto --> LottoResult
-    classDiagram
-    Application --> LottoController
-    LottoController --> InputView
-    LottoController --> LottoService
-    LottoController --> OutputView
-    LottoService --> Cashier
-    LottoService --> LottoMachine
-    LottoService --> WinningLotto
-    LottoService --> Customer
-    LottoMachine --> Generator
-    Customer --> LottoResult
-    WinningLotto --> LottoResult
 
     class Application {
         new LottoController

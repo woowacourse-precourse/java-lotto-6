@@ -33,5 +33,12 @@ public class CustomerTest {
                 .hasMessage("[ERROR] 로또 구입 금액은 1000으로 나누어 떨어져야 합니다.");
     }
 
-
+    @DisplayName("수익율 계산하기 결과 확인")
+    @Test
+    void calculateRateOfReturnTest(){
+        double totlaReward = 5000.0;
+        double expected = 62.5;
+        customer.buyLotto(lottoStore, "8000");
+        assertThat(customer.calculateRateOfReturn(totlaReward)).isEqualTo(expected);
+    }
 }

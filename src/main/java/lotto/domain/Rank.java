@@ -17,4 +17,35 @@ public enum Rank {
         this.hasBonusNumber = hasBonusNumber;
         this.prize = prize;
     }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public static Rank valueOf(int matchCount, boolean hasBonusNumber) {
+        if (matchCount == 6) {
+            return FIRST;
+        }
+        if (matchCount == 5 && hasBonusNumber) {
+            return SECOND;
+        }
+        for (Rank rank : values()) {
+            if (rank.matchCount == matchCount) {
+                return rank;
+            }
+        }
+        throw new IllegalArgumentException("유효하지 않은 등수입니다.");
+    }
+
+    public void printResult(int count) {
+        if (this == FIRST) {
+            System.out.printf("%d개 일치 (%s) - %d개%n", matchCount, getPrizeString(), count);
+        } else {
+            System.out.printf("%d개 일치%s (%s) - %d개%n", matchCount, hasBonusNumber ? ", 보너스 볼 일치" : "", getPrizeString(), count);
+        }
+    }
+
+    private String getPrizeString() {
+        return String.format("%,d원", prize);
+    }
 }

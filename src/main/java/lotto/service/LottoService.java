@@ -25,6 +25,8 @@ public class LottoService {
             validateLottoNum(numbers,numberStr);
         }
     }
+
+    }
     private List<Integer> validateLottoNum(List<Integer> numbers, String numberStr){
         try {
             int number = Integer.parseInt(numberStr);
@@ -43,8 +45,6 @@ public class LottoService {
             int amount = Integer.parseInt(amountStr);
             if (amount % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 금액입니다.");
-            } else {
-                System.out.println(amount);
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

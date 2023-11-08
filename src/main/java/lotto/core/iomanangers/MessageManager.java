@@ -12,7 +12,7 @@ import lotto.core.exception.LottoApplicationException;
 import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.ScratchedLottoTicketList;
 
-public class OutputManager {
+public class MessageManager {
 
     private record findCount(Integer threeMatchCount, Integer fourMatchCount, Integer fiveMatchCount,
                              Integer fiveAndBonusMatchCount, Integer sixMatchCount) {
@@ -33,43 +33,35 @@ public class OutputManager {
                 sixMatchCount);
     }
 
-    public String makeRateOfReturnForm(BigDecimal rateOfReturn) {
+    public String printOut(BigDecimal rateOfReturn) {
         return ("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
     public void printWinningNumberAsk() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        ConsoleOutputManager.printOut("당첨 번호를 입력해 주세요.");
     }
 
     public void printBonusNumberAsk() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        ConsoleOutputManager.printOut("보너스 번호를 입력해 주세요.");
     }
 
     public void printWinningChartAnnounce() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        ConsoleOutputManager.printOut("당첨 통계" + System.lineSeparator() + "---");
     }
     public void printPurchaseAmountAsk() {
-        System.out.println("구입 금액을 입력해 주세요.");
+        ConsoleOutputManager.printOut("구입 금액을 입력해 주세요.");
     }
 
     public void printQuantityAnnounce(Integer NumberOfPurchase) {
-        System.out.println(NumberOfPurchase + "개를 구매했습니다.");
+        ConsoleOutputManager.printOut(NumberOfPurchase + "개를 구매했습니다.");
     }
     public String printWinningChart(ScratchedLottoTicketList scratchedLottoTicketList) {
-        OutputManager.findCount findCount = getFindCount(scratchedLottoTicketList);
+        MessageManager.findCount findCount = getFindCount(scratchedLottoTicketList);
         return (THREE_MATCH.getDescription() + " - " + findCount.threeMatchCount() + "개") + System.lineSeparator()
                 + (FOUR_MATCH.getDescription() + " - " + findCount.fourMatchCount() + "개") + System.lineSeparator()
                 + (FIVE_MATCH.getDescription() + " - " + findCount.fiveMatchCount() + "개") + System.lineSeparator()
                 + (FIVE_AND_BONUS_MATCH.getDescription() + " - " + findCount.fiveAndBonusMatchCount() + "개")
                 + System.lineSeparator()
                 + (SIX_MATCH.getDescription() + " - " + findCount.sixMatchCount() + "개");
-    }
-    public void makeRateOfReturnForm(String input) {
-        System.out.println(input);
-    }
-
-    public static void printException(LottoApplicationException e) {
-        System.out.println(e.getMessage());
     }
 }

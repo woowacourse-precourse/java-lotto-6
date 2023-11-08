@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.core.calculator.Calculator;
-import lotto.core.iomanangers.OutputManager;
+import lotto.core.iomanangers.MessageManager;
 import lotto.core.lotto.BonusNumber;
 import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.LottoTicketScratcher;
@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 class LottoSystemTest {
     private final static RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
     private final static NumberGenerator numberGenerator = new NumberGenerator(randomNumberGenerator);
-    private final static OutputManager outputManager = new OutputManager();
+    private final static MessageManager CONSOLE_OUTPUT_MANAGER = new MessageManager();
     private final static Calculator calculator = new Calculator();
     private final static LottoTicketScratcher LottoTicketScratcher = new LottoTicketScratcher();
 
@@ -29,7 +29,8 @@ class LottoSystemTest {
     void chooseAmount() {
 
         //given
-        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator, outputManager);
+        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
+                CONSOLE_OUTPUT_MANAGER);
         //when
         Integer amountToQuantity = lottoSystem.chooseAmount("8000");
 
@@ -42,7 +43,8 @@ class LottoSystemTest {
     void saveLottoTickets() {
 
         //given
-        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator, outputManager);
+        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
+                CONSOLE_OUTPUT_MANAGER);
 
         //when
         List<LottoTicket> lottoTickets = lottoSystem.saveLottoTickets(8);
@@ -56,7 +58,8 @@ class LottoSystemTest {
     void chooseWinningNumber() {
 
         //given
-        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator, outputManager);
+        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
+                CONSOLE_OUTPUT_MANAGER);
 
         //when
         WinningNumbers winningNumbers = lottoSystem.chooseWinningNumber("1,2,3,4,5,6");
@@ -76,7 +79,8 @@ class LottoSystemTest {
         WinningNumbers winningNumbers = new WinningNumbers(winningNumber);
         BonusNumber bonusNumber = new BonusNumber(7);
 
-        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator, outputManager);
+        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
+                CONSOLE_OUTPUT_MANAGER);
 
         //when
         ScratchedLottoTicketList scratchedLottoTicketList = lottoSystem.calculateWinningChart(lottoTickets,
@@ -96,7 +100,8 @@ class LottoSystemTest {
         lottoTickets.add(lottoTicket);
         WinningNumbers winningNumbers = new WinningNumbers(winningNumber);
         BonusNumber bonusNumber = new BonusNumber(7);
-        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator, outputManager);
+        LottoSystem lottoSystem = new LottoSystem(calculator, LottoTicketScratcher, numberGenerator,
+                CONSOLE_OUTPUT_MANAGER);
 
         ScratchedLottoTicketList scratchedLottoTicketList = lottoSystem.calculateWinningChart(lottoTickets,
                 winningNumbers, bonusNumber);

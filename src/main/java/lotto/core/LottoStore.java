@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.function.Function;
 import lotto.core.calculator.Calculator;
 import lotto.core.exception.LottoApplicationException;
-import lotto.core.iomanangers.OutputManager;
+import lotto.core.iomanangers.ConsoleOutputManager;
+import lotto.core.iomanangers.MessageManager;
 import lotto.core.lotto.BonusNumber;
 import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.ScratchedLottoTicketList;
@@ -22,18 +23,20 @@ public class LottoStore {
     }
 
     public static LottoStore createStore (){
-        OutputManager outputManager = new OutputManager();
+        MessageManager messageManager = new MessageManager();
         LottoTicketScratcher lottoTicketScratcher = new LottoTicketScratcher();
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         NumberGenerator numberGenerator = new NumberGenerator(randomNumberGenerator);
         Calculator calculator = new Calculator();
-        LottoSystem lottoSystem = new LottoSystem(calculator,lottoTicketScratcher,numberGenerator, outputManager);
+        LottoSystem lottoSystem = new LottoSystem(calculator,lottoTicketScratcher,numberGenerator, messageManager);
         return new LottoStore(lottoSystem);
     }
 
 
-    public static LottoStore createStoreForTest(LottoTicketScratcher lottoTicketScratcher,Calculator calculator,NumberGenerator numberGenerator,OutputManager outputManager) {
-        LottoSystem customLottoSystem = new LottoSystem(calculator, lottoTicketScratcher, numberGenerator, outputManager);
+    public static LottoStore createStoreForTest(LottoTicketScratcher lottoTicketScratcher, Calculator calculator, NumberGenerator numberGenerator,
+                                                MessageManager messageManager) {
+        LottoSystem customLottoSystem = new LottoSystem(calculator, lottoTicketScratcher, numberGenerator,
+                messageManager);
         return new LottoStore(customLottoSystem);
     }
 
@@ -75,7 +78,7 @@ public class LottoStore {
                 String input = this.readLine();
                 return processor.apply(input);
             } catch (LottoApplicationException e) {
-                OutputManager.printException(e);
+                ConsoleOutputManager.printException(e);
             }
         }
     }

@@ -10,7 +10,7 @@ import lotto.core.exception.IllegalAmountException;
 import lotto.core.exception.IllegalLottoRangeException;
 import lotto.core.exception.IllegalNullTypeException;
 import lotto.core.exception.IllegalNumberTypeException;
-import lotto.core.exception.IllegalRangeException;
+import lotto.core.exception.IllegalNumberRangeException;
 import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.WinningNumbers;
 
@@ -104,7 +104,7 @@ public class NumberGenerator {
         try {
             Integer.parseInt(unprocessedNumbers);
         } catch (NumberFormatException e) {
-            throw new IllegalRangeException();
+            throw new IllegalNumberRangeException();
         }
     }
 

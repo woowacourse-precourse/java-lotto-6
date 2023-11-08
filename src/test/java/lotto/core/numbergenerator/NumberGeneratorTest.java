@@ -12,7 +12,7 @@ import lotto.core.exception.IllegalAmountException;
 import lotto.core.exception.IllegalLottoRangeException;
 import lotto.core.exception.IllegalNullTypeException;
 import lotto.core.exception.IllegalNumberTypeException;
-import lotto.core.exception.IllegalRangeException;
+import lotto.core.exception.IllegalNumberRangeException;
 import lotto.core.lotto.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -71,7 +71,7 @@ class NumberGeneratorTest {
     //TODO:필
     void createWinningNumbersFromConsoleExceptionForRange() {
         assertThatThrownBy(()->numberGenerator.createWinningNumbersFromConsole(OVER_VALUE))
-                .isInstanceOf(IllegalRangeException.class);
+                .isInstanceOf(IllegalNumberRangeException.class);
     }
     @DisplayName("최소금액이 1000인 금액을 수량으로 환산한다.")
     @Test

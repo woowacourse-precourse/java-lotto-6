@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.core.calculator.Calculator;
-import lotto.core.iomanangers.OutputManager;
+import lotto.core.iomanangers.ConsoleOutputManager;
+import lotto.core.iomanangers.MessageManager;
 import lotto.core.lotto.BonusNumber;
 import lotto.core.lotto.LottoTicket;
 import lotto.core.lotto.LottoTicketScratcher;
@@ -16,14 +17,14 @@ public class LottoSystem {
     private final Calculator calculator;
     private final NumberGenerator numberGenerator;
     private final LottoTicketScratcher lottoTicketScratcher;
-    private final OutputManager outputManager;
+    private final MessageManager messageManager;
 
     public LottoSystem(Calculator calculator, LottoTicketScratcher lottoTicketScratcher,
-                       NumberGenerator numberGenerator, OutputManager outputManager) {
+                       NumberGenerator numberGenerator, MessageManager messageManager) {
         this.calculator = calculator;
         this.numberGenerator = numberGenerator;
         this.lottoTicketScratcher = lottoTicketScratcher;
-        this.outputManager = outputManager;
+        this.messageManager = messageManager;
     }
 
     public ScratchedLottoTicketList calculateWinningChart(List<LottoTicket> lottoTickets,
@@ -33,7 +34,7 @@ public class LottoSystem {
     }
 
     public void printPurchaseAmountAsk() {
-        outputManager.printPurchaseAmountAsk();
+        messageManager.printPurchaseAmountAsk();
     }
 
     public Integer chooseAmount(String input) {
@@ -41,19 +42,19 @@ public class LottoSystem {
     }
 
     public List<LottoTicket> saveLottoTickets(Integer amountToQuantity) {
-        outputManager.printQuantityAnnounce(amountToQuantity);
+        messageManager.printQuantityAnnounce(amountToQuantity);
         List<LottoTicket> lottoTickets = new ArrayList<>();
         for (int i = 0; i < amountToQuantity; i++) {
             List<Integer> randomUniqueNumber = numberGenerator.createRandomUniqueNumber();
             LottoTicket lottoTicket = new LottoTicket(randomUniqueNumber);
-            outputManager.printOneLottoTicketAnnounce(lottoTicket);
+            messageManager.printOneLottoTicketAnnounce(lottoTicket);
             lottoTickets.add(lottoTicket);
         }
         return lottoTickets;
     }
 
     public void printWinningNumberAsk() {
-        outputManager.printWinningNumberAsk();
+        messageManager.printWinningNumberAsk();
     }
 
     public WinningNumbers chooseWinningNumber(String input) {
@@ -61,7 +62,7 @@ public class LottoSystem {
     }
 
     public void printBonusNumberAsk() {
-        outputManager.printBonusNumberAsk();
+        messageManager.printBonusNumberAsk();
     }
 
     public BonusNumber chooseBonusNumber(String input) {
@@ -71,15 +72,15 @@ public class LottoSystem {
 
     public String printWinningChart(Integer amountToQuantity, ScratchedLottoTicketList scratchedLottoTicketList) {
 
-        outputManager.printWinningChartAnnounce();
-        String chartContent = outputManager.printWinningChart(scratchedLottoTicketList);
+        messageManager.printWinningChartAnnounce();
+        String chartContent = messageManager.printWinningChart(scratchedLottoTicketList);
 
         calculator.calculate(scratchedLottoTicketList, amountToQuantity);
         BigDecimal rateOfReturn = calculator.getRateOfReturn();
-        String rateOfReturnContent = outputManager.makeRateOfReturnForm(rateOfReturn);
+        String rateOfReturnContent = messageManager.printOut(rateOfReturn);
 
         String winningChart = chartContent + System.lineSeparator() + rateOfReturnContent;
-        outputManager.makeRateOfReturnForm(winningChart);
+        ConsoleOutputManager.printOut(winningChart);
         return winningChart;
     }
 

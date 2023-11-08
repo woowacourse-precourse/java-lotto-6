@@ -22,10 +22,17 @@ public class WinningLottoSaveController implements Controller {
                                     .map(Integer::parseInt).toList();
 
         int bonus = Integer.parseInt(input.get(1));
-        //TODO: 예외처리 해야힘
+
+        validate(numbers, bonus);
 
         winningLottoService.saveWinningLotto(new Lotto(numbers), bonus);
 
         return new BasicView();
+    }
+
+    private void validate(List<Integer> numbers, int bonus) {
+        if(numbers.contains(bonus)) {
+            throw new IllegalArgumentException("당첨 번호와 보너스 번호는 서로 달라야 합니다.");
+        }
     }
 }

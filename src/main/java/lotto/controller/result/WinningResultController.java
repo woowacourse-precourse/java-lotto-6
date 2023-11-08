@@ -6,7 +6,6 @@ import lotto.domain.Money;
 import lotto.domain.WinningResult;
 import lotto.service.UserService;
 import lotto.service.WinningLottoService;
-import lotto.view.BasicView;
 import lotto.view.View;
 import lotto.view.WinningResultView;
 

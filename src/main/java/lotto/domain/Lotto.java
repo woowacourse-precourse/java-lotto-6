@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.data.Messages;
+
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,9 +19,9 @@ public class Lotto {
         validOutOfRange(numbers);
     }
 
-    private void validateLottoSize(List<Integer> numbers){
-        if (numbers.size() != 6 ) {
-            throw new IllegalArgumentException("로또 번호는 6개 이어야 합니다.\n");
+    private void validateLottoSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(Messages.LOTTO_SIZE_ERROR_MESSAGE);
         }
     }
 
@@ -28,8 +30,8 @@ public class Lotto {
                 .distinct()
                 .count() != numbers.size();
 
-        if(isDuplicate) {
-            throw new IllegalArgumentException("로또 번호는 중복 되어서는 안됩니다.\n");
+        if (isDuplicate) {
+            throw new IllegalArgumentException(Messages.LOTTO_DUPLICATE_ERROR_MESSAGE);
         }
     }
 
@@ -37,11 +39,12 @@ public class Lotto {
         boolean outOfRange = numbers.stream()
                 .anyMatch(num -> num < 1 || 45 < num);
 
-        if(outOfRange) {
-            throw new IllegalArgumentException("로또 1부터 45까지 입니다.\n");
+        if (outOfRange) {
+            throw new IllegalArgumentException(Messages.LOTTO_RANGE_ERROR_MESSAGE);
         }
     }
-    public int matchNumbers(Lotto player){
+
+    public int matchNumbers(Lotto player) {
         List<Integer> playerNumbers = player.getNumbers();
 
         List<Integer> matchList = playerNumbers.stream().filter(o -> this.numbers.stream()
@@ -50,11 +53,11 @@ public class Lotto {
         return matchList.size();
     }
 
-    public boolean matchBonusNum(int bonusNum){
+    public boolean matchBonusNum(int bonusNum) {
         return numbers.contains(bonusNum);
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 

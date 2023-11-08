@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.data.Messages;
+
 public class Asset {
     private final Double money;
     private Double income;
@@ -15,34 +17,38 @@ public class Asset {
         validateRange(money);
         validateModulate(money);
     }
-    private void validateModulate(Double money){
-        if(money % 1000 != 0){
-            throw new IllegalArgumentException("wrong money input");
-        }
-    }
-    private void validateRange(Double number){
-        if(number > Double.MAX_VALUE){
-            throw new IllegalArgumentException("overflow");
+
+    private void validateModulate(Double money) {
+        if (money % 1000 != 0) {
+            throw new IllegalArgumentException(Messages.INPUT_ERROR_MESSAGE);
         }
     }
 
-    public void increaseIncome(Grade grade){
+    private void validateRange(Double number) {
+        if (number > Double.MAX_VALUE) {
+            throw new IllegalArgumentException(Messages.OVERFLOW_ERROR_MESSAGE);
+        }
+    }
+
+    public void increaseIncome(Grade grade) {
         income += grade.getPrize();
 
         validateRange(income);
     }
 
-    public Double getRate(){
+    public Double getRate() {
         if (money == 0) return 0D;
 
         return (income / money) * 100;
     }
 
-    public Double getMoney(){
+    public Double getMoney() {
         return money;
     }
 
-    public Double getIncome() { return income; }
+    public Double getIncome() {
+        return income;
+    }
 
     public void setIncome(Double income) {
         validateRange(income);

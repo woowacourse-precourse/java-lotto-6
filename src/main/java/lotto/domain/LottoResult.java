@@ -34,6 +34,12 @@ public enum LottoResult {
         return calculateResult(count, hasBonus);
     }
 
+    public static List<LottoResult> getValidLottoResults() {
+        return Arrays.stream(LottoResult.values())
+                .filter(result -> result != LottoResult.NOTHING)
+                .toList();
+    }
+
     private static long calculateCount(Lotto my, Lotto win) {
         List<Integer> winNumbers = win.getNumbers();
         return my.getNumbers().stream()
@@ -43,10 +49,23 @@ public enum LottoResult {
 
     private static LottoResult calculateResult(int count, boolean hasBonus) {
         return Arrays.stream(values())
-                .filter(rank -> rank.count == count)
-                .filter(rank -> rank.hasBonus == hasBonus)
+                .filter(result -> result.count == count)
+                .filter(result -> result.hasBonus == hasBonus)
                 .findAny()
                 .orElse(NOTHING);
+    }
+
+    public long calculateTotalCount(List<LottoResult> results) {
+        return results.stream()
+                .filter(result -> result.count == this.count)
+                .filter(rank -> rank.hasBonus == this.hasBonus)
+                .count();
+    }
+
+    public static long calculateTotalPrize(List<LottoResult> results) {
+        return results.stream()
+                .mapToLong(LottoResult::getPrize)
+                .sum();
     }
 
     public int getPrize() {

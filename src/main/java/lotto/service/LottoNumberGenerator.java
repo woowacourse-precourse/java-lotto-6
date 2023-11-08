@@ -9,7 +9,6 @@ import static lotto.constant.ConstantNumber.*;
 
 public class LottoNumberGenerator {
 
-
     public List<Integer> generateLotto() {
         Set<Integer> numbers = new HashSet<>();
         while(numbers.size() < LOTTO_SIZE) {

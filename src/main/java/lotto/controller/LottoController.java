@@ -28,6 +28,7 @@ public class LottoController {
         outputView.printPurchasedLotto(purchased);
         WinningLotto winningLotto = inputView.getWinningLotto();
         List<LottoResult> lottoResultList = lottoService.getLottoResultList(purchased, winningLotto);
+        outputView.printResult(customer, lottoResultList);
     }
 
 

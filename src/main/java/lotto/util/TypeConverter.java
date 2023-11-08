@@ -67,8 +67,8 @@ public class TypeConverter {
     }
 
     private void validateNumberRange(int number) {
-        if(number < MAX_LOTTO_NUM || number > MAX_LOTTO_NUM) {
-            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR);
+        if(number < MIN_LOTTO_NUM || number > MAX_LOTTO_NUM) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR);
         }
     }
 

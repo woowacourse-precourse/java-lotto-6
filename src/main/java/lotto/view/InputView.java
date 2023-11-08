@@ -9,8 +9,8 @@ import lotto.util.TypeConverter;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_INPUT = "구입금액을 입력해 주세요.";
-    private static final String WINNING_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
+    private static final String WINNING_NUMBER_INPUT = "\n당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT = "\n보너스 번호를 입력해 주세요.";
     private final TypeConverter typeConverter;
 
     public InputView(TypeConverter typeConverter) {

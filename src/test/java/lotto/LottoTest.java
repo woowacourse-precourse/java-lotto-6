@@ -1,13 +1,27 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import lotto.lotto.model.Lotto;
 
 class LottoTest {
+
+    private static final int LOTTO_SIZE = 6;
+    private static final String LOTTO_RESULT = "[1, 2, 3, 4, 5, 6]";
+    private Lotto lotto;
+
+    @BeforeEach
+    void setUp(){
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        lotto = new Lotto(numbers);
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -24,4 +38,27 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 출력을 위한 문자열 반환")
+    @Test
+    void 로또_문자열_반환(){
+        assertThat(lotto.toString()).isEqualTo(LOTTO_RESULT);
+    }
+
+    @DisplayName("로또 사이즈 반환")
+    @Test
+    void 로또_사이즈_반환(){
+        assertThat(lotto.length()).isEqualTo(LOTTO_SIZE);
+    }
+
+    @DisplayName("로또에서 인덱스를 통해 값 가져오기")
+    @Test
+    void 로또_인덱스(){
+        assertThat(lotto.get(0)).isEqualTo(1);
+    }
+
+    @DisplayName("로또 전체 값 가져오기")
+    @Test
+    void 로또_전체_조회(){
+        assertThat(lotto.getAll()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+    }
 }

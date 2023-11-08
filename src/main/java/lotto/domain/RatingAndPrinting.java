@@ -21,8 +21,12 @@ public class RatingAndPrinting {
             if (win == WinningDetails.MISS) continue;
             System.out.println(getString(win, key));
         }
-        double result = getRate(rank)/money;
+        double result = caculateRate(rank, money);
         System.out.printf((RATE_OF_RETURN) + "\n", result);
+    }
+
+    public double caculateRate(Map<WinningDetails, Integer> rank, int money) {
+        return (double) (getRate(rank) * 100) / (double) money;
     }
 
     private String getString(WinningDetails win, int key) {

@@ -47,13 +47,13 @@ class CalculateTest {
         int bonusNumber = 7;
         List<Integer> answerNumber = Arrays.asList(1, 2, 3, 4, 5, 6);
         int money = 8000;
+        calc = new Calculate(lottos, answerNumber, bonusNumber);
 
         // when
         calc.countAll();
         Map<WinningDetails, Integer> rank = calc.getRank();
         RatingAndPrinting printer = new RatingAndPrinting(lottos);
-        long result = printer.getRate(rank);
-        double rate = result / 8000;
+        double rate = printer.caculateRate(rank, money);
 
         assertThat(rate).isEqualTo(62.5);
     }

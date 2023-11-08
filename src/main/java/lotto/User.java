@@ -2,10 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import  java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
 public class User {
 
     static List<Integer> userLotto = new ArrayList<>();
@@ -21,12 +19,17 @@ public class User {
     // TODO: input이 숫자6개가 ,로 되어있는지, 1~45까지인지, 숫자와 컴마로만 이루어져있는지, 중복이 없는지 확인
         String[] userInput = input.split(",");
         for(String inputParsing : userInput){
+            int number;
+            try {
+                number = Integer.parseInt(inputParsing);
+            }catch (IllegalArgumentException e){
+                throw new IllegalArgumentException();
+            }
 
-            int number = Integer.parseInt(inputParsing);
             userLotto.add(number);
 
         }
-        Collections.sort(userLotto);
+        userLotto.sort(Comparator.naturalOrder());
 
     }
 

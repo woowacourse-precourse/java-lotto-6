@@ -3,6 +3,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.ArrayList;
 
 
@@ -15,7 +17,9 @@ public class Application {
         ArrayList<Lotto> lottos = new ArrayList<>();
         for(int i=0;i<Money.lottoNum;i++){
 
-            Lotto lotto = new Lotto(Lotto.makeLotto());
+            List<Integer> lottoNumbers = Lotto.makeLotto();
+            lottoNumbers.sort(Comparator.naturalOrder());
+            Lotto lotto = new Lotto(lottoNumbers);
             lottos.add(lotto);
             lotto.printLotto();
 

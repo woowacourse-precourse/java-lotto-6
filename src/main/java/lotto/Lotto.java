@@ -14,13 +14,28 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
+        checkItemUnique(numbers);
         this.numbers = numbers;
-
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkItemUnique(List<Integer> numbers){
+
+        boolean unique = false;
+        Set<Integer> uniqueElements = new HashSet<>();
+        for (Integer element : numbers) {
+
+            if (!(uniqueElements.add(element))) {
+                unique = true;
+            }
+
+        }
+        if(unique){
             throw new IllegalArgumentException();
         }
     }
@@ -33,7 +48,7 @@ public class Lotto {
 
     public static List<Integer> makeLotto(){
 
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, MAX_LOTTO_SIZE);
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, MAX_LOTTO_SIZE));
 
     }
 

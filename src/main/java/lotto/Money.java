@@ -9,13 +9,15 @@ public class Money {
     static void inputMoney(){
 
         System.out.println("구입 금액을 입력해 주세요.");
-        String input = Console.readLine();
-        for (char c : input.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        while (true) {
+            try {
+                String input = Console.readLine();
+                money = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 유효한 정수를 입력하세요.");
             }
         }
-        money = Integer.parseInt(input);
 
     }
 

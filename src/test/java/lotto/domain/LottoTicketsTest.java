@@ -1,12 +1,15 @@
 package lotto.domain;
 
 import lotto.enums.ErrorMessages;
+import lotto.enums.Rank;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -59,6 +62,12 @@ class LottoTicketsTest {
         assertThatThrownBy(() -> LottoTickets.createdByNumber(0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
+    }
+
+    @DisplayName("만약 WinninResult가 들어오지 않는다면 예외를 발생시킨다.")
+    @Test
+    void calculateWinningResultByNull() {
+        assertThatThrownBy(() -> lottoTickets.calculateWinningResult(null)).isInstanceOf(IllegalStateException.class);
     }
 
     @Test

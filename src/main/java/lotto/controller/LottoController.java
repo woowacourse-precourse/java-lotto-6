@@ -36,12 +36,15 @@ public class LottoController {
     }
 
     private void requestMoney() {
-        try {
-            String inputMoney = InputView.getAmountOfMoney();
-            money = new Money(inputMoney);
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            requestMoney();
+        while(true) {
+            try {
+                String inputMoney = InputView.getAmountOfMoney();
+                money = new Money(inputMoney);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
     }
 
@@ -64,31 +67,41 @@ public class LottoController {
     }
 
     private Lotto requestLotto() {
-        try {
-            String inputNumbers = InputView.getWinningNumbers();
-            List<Integer> lottoNumbers = Converter.stringToIntegerList(inputNumbers);
+        Lotto lotto;
 
-            Lotto lotto = new Lotto(lottoNumbers);
+        while(true) {
+            try {
+                String inputNumbers = InputView.getWinningNumbers();
+                List<Integer> lottoNumbers = Converter.stringToIntegerList(inputNumbers);
 
-            return lotto;
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return requestLotto();
+                lotto = new Lotto(lottoNumbers);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
+
+        return lotto;
     }
 
     private Bonus requestBonus() {
-        try {
-            String inputNumber = InputView.getBonusNumber();
-            Integer bonusNumber = Converter.stringToInteger(inputNumber);
+        Bonus bonus;
 
-            Bonus bonus = new Bonus(bonusNumber);
+        while(true) {
+            try {
+                String inputNumber = InputView.getBonusNumber();
+                Integer bonusNumber = Converter.stringToInteger(inputNumber);
 
-            return bonus;
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return requestBonus();
+                bonus = new Bonus(bonusNumber);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
+
+        return bonus;
     }
 
     private void requestCalculateLottery() {

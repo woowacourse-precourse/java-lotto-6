@@ -10,8 +10,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
-        sorting(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -23,10 +23,6 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public String toString(){
         return numbers.toString();
-    }
-
-    private void sorting(List<Integer> numbers){
-        Collections.sort(numbers);
     }
 
     public int length(){

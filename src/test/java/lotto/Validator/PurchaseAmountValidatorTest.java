@@ -2,6 +2,8 @@ package lotto.Validator;
 
 import static lotto.config.ErrorMessage.INPUT_AMOUNT_CHARACTER_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_AMOUNT_DIVISION_ERROR_MESSAGE;
+import static lotto.config.ErrorMessage.INPUT_AMOUNT_TOO_LARGE_ERROR_MESSAGE;
+import static lotto.config.ErrorMessage.TOO_LONG_INPUT_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,5 +39,21 @@ public class PurchaseAmountValidatorTest {
         assertThatThrownBy(() -> validator.valid(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INPUT_AMOUNT_DIVISION_ERROR_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"10000000", "11000000", "123000000", "12340000"})
+    void 로또_10000장_이상을_구매하는_입력값에_예외를_발생한다(String input) {
+        assertThatThrownBy(() -> validator.valid(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INPUT_AMOUNT_TOO_LARGE_ERROR_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1234567890", "1234567000", "abcdefghij"})
+    void 너무_긴_입력값에_예외를_발생한다(String input) {
+        assertThatThrownBy(() -> validator.valid(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(TOO_LONG_INPUT_ERROR_MESSAGE.getMessage());
     }
 }

@@ -85,13 +85,13 @@ public class Application {
                 continue;
             long count = countResultByType(results, resultType);
             System.out.printf("%s (%,d원) - %d개\n", resultType.getDescription(), resultType.getPrize(), count);
-            totalPrize += resultType.getPrize();
+            totalPrize += count * resultType.getPrize();
         }
         return totalPrize;
     }
 
     public static void printProfitRate(long totalPrize, long budget) {
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", (double) totalPrize / budget);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", (double) totalPrize / budget * 100);
     }
 
     public static void main(String[] args) {

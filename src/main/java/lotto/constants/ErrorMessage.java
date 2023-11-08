@@ -11,4 +11,6 @@ public class ErrorMessage {
     public static final String BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE = "당첨 번호와 보너스 번호는 중복될 수 없습니다.";
 
     public static final String IS_NOT_NUMERIC_ERROR_MESSAGE = "입력에 숫자가 아닌 문자가 포함되어 있거나 숫자가 너무 큽니다.";
+
+    public static final String ERROR_NOTICE = "[ERROR] ";
 }

@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.PlayerLottoAmount;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
@@ -19,10 +20,11 @@ public class LottoController {
     public void start() {
         int ticketCount = inputPlayerAmount();
 
-        String playCount = InputView.inputPlayerPrice();
-        new PlayerLottoAmount(playCount);
-
         List<Integer> list = InputView.inputLottoNumber();
+
+        int bonusNum = InputView.inputBonusNumber();
+
+        OutputView.printPurchaseCount(ticketCount);
     }
 
     private int inputPlayerAmount() {

@@ -9,11 +9,13 @@ import java.util.stream.Collectors;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.WinningNumber;
+import lotto.view.UserOutput;
 
 public class LottoGame {
     private final BuyPriceController buyPriceController = new BuyPriceController();
     private final LottoController lottoController = new LottoController();
     private final WinningNumberController winningNumberController = new WinningNumberController();
+    private UserOutput userOutput =new UserOutput();
     private List<Lotto> lottos;
     private WinningNumber winningNumber;
     private Map<Rank, Integer> randIndex = new HashMap<>();
@@ -29,14 +31,15 @@ public class LottoGame {
         this.lottos = lottoController.lottoIndexGenerate(money);
 
         this.winningNumber = winningNumberController.setWinningNumber();
-        int profit = calculateProfit(money);
-        System.out.println(profit+"%");
+        float profit = calculateProfit(money);
+        userOutput.outputResult(randIndex);
+        System.out.println("총 수익률은 "+profit+"%입니다.");
     }
 
-    private int calculateProfit(int money) {
+    private float calculateProfit(float money) {
         List<Integer> store = new ArrayList<>();
-        int prize = 0;
-        int profit = 0;
+        float prize = 0;
+        float profit = 0;
         for (Lotto lotto : this.lottos) {
             store.add(compareLottoIndex(lotto));
         }
@@ -44,16 +47,18 @@ public class LottoGame {
             decideRank(number);
         }
         for(Rank k : randIndex.keySet()){
-            prize =+ randIndex.get(k)*k.getPrize();
+            prize += randIndex.get(k)*k.getPrize();
         }
         profit = (prize/money)*100;
-        profit =+ (prize%money)*100;
         return profit;
     }
-    private int compareLottoIndex(Lotto lotto) {
+    public int compareLottoIndex(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         List<Integer> count = numbers.stream().filter(n -> winningNumber.getWinNumber().stream()
                 .anyMatch(Predicate.isEqual(n))).collect(Collectors.toList());
+        if(count.size()==5){
+            return bonusNumberCheck(numbers);
+        }
 
         return count.size();
     }
@@ -68,5 +73,11 @@ public class LottoGame {
             return;
         }
         randIndex.put(r, randIndex.get(r)+1);
+    }
+    private int bonusNumberCheck(List<Integer> numbers){
+        if(numbers.contains(winningNumber.getBonusNumber())){
+            return 7;
+        }
+        return 5;
     }
 }

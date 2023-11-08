@@ -11,14 +11,14 @@ public class UserInput {
          return number;
     }
     public List<Integer> inputWinnerNumber(){
-        List<Integer> realLotto = new ArrayList<>();
+        List<Integer> winnerNumber = new ArrayList<>();
 
         String lottoStr = Console.readLine();
         String[] lottoStrArr = lottoStr.split(",");
         for(int i=0; i<lottoStrArr.length; i++){
-            realLotto.add(Integer.parseInt(lottoStrArr[i]));
+            winnerNumber.add(Integer.parseInt(lottoStrArr[i]));
         }
-        return realLotto;
+        return winnerNumber;
     }
     public Integer inputBonusNumber(){
         System.out.println("보너스 번호를 입력하세요");

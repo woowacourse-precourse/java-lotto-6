@@ -18,6 +18,10 @@ public class Lotto {
         }
     }
 
+    public boolean hasBonusNumber(int bonus) {
+        return numbers.contains(bonus);
+    }
+
     public int countLottery(List<Integer> lotteryList) {
         int res = 0;
         

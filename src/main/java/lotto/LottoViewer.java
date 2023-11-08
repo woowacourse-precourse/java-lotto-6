@@ -5,6 +5,7 @@ import lotto.variables.LottoVariables;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoViewer {
@@ -38,7 +39,7 @@ public class LottoViewer {
         System.out.println(String.format("총 수익률은 %.1f%% 입니다.", profit));
     }
 
-    void printLottoResult(){
+    void printLottoResult(Map<Integer, Integer> lotteryResult){
         System.out.println("당첨 통계");
         System.out.println("---");
     }

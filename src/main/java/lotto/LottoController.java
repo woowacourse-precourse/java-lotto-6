@@ -1,17 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.variables.LottoVariables;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoController {
     private List<Integer> lotteryNumber = new ArrayList<>();
     private int bonusNumber;
     private final List<Lotto> lottos = new ArrayList<>();
     private final LottoViewer lottoViewer;
+
+    private Map<Integer, Integer> lotteryResult = new HashMap<>();
     private double profit;
 
     public LottoController(LottoViewer lottoViewer) {
@@ -19,16 +19,56 @@ public class LottoController {
     }
 
     public void startLottery(){
-        int lottoCnt = lottoViewer.getMoney();
-        generateLottos(lottoCnt);
+        int lottoMoney = lottoViewer.getMoney();
+        generateLottos(lottoMoney / 1000);
         lottoViewer.printLottos(lottos);
         lotteryNumber = lottoViewer.getLotteryNumbers();
         bonusNumber = lottoViewer.getBonus();
 
         // TODO : 결과를 계산하는 로직 추가하기.
+        initLotteryResult();
+        countLottery();
+        calcProfit();
 
-        lottoViewer.printLottoResult();
+        lottoViewer.printLottoResult(lotteryResult);
         lottoViewer.printProfitResult(profit);
+    }
+
+    private void calcProfit() {
+        profit = 0;
+        profit += calcProfit(LottoVariables.LOTTO_FIRST);
+        profit += calcProfit(LottoVariables.LOTTO_SECOND);
+        profit += calcProfit(LottoVariables.LOTTO_THIRD);
+        profit += calcProfit(LottoVariables.LOTTO_FOURTH);
+        profit += calcProfit(LottoVariables.LOTTO_FIFTH);
+    }
+
+    private int calcProfit(LottoVariables lottoVariables) {
+        return lotteryResult.get(lottoVariables.getPrice()) * lottoVariables.getPrice();
+    }
+
+    private void initLotteryResult() {
+        lotteryResult.put(LottoVariables.LOTTO_FIRST.getPrice(), 0);
+        lotteryResult.put(LottoVariables.LOTTO_SECOND.getPrice(), 0);
+        lotteryResult.put(LottoVariables.LOTTO_THIRD.getPrice(), 0);
+        lotteryResult.put(LottoVariables.LOTTO_FOURTH.getPrice(), 0);
+        lotteryResult.put(LottoVariables.LOTTO_FIFTH.getPrice(), 0);
+    }
+
+    private void countLottery(){
+        for (Lotto lotto: lottos) checkLottery(lotto);
+    }
+
+    private void checkLottery(Lotto lotto) {
+        if (lotto.countLottery(lotteryNumber) == 6) lotteryResult.put(LottoVariables.LOTTO_FIRST.getPrice(), lotteryResult.get(LottoVariables.LOTTO_FIRST.getPrice()) + 1);
+
+        if (lotto.countLottery(lotteryNumber) == 5 && lotto.hasBonusNumber(bonusNumber)) lotteryResult.put(LottoVariables.LOTTO_SECOND.getPrice(), lotteryResult.get(LottoVariables.LOTTO_SECOND.getPrice()) + 1);
+
+        if (lotto.countLottery(lotteryNumber) == 5 && !lotto.hasBonusNumber(bonusNumber)) lotteryResult.put(LottoVariables.LOTTO_THIRD.getPrice(), lotteryResult.get(LottoVariables.LOTTO_THIRD.getPrice()) + 1);
+
+        if (lotto.countLottery(lotteryNumber) == 4) lotteryResult.put(LottoVariables.LOTTO_FOURTH.getPrice(), lotteryResult.get(LottoVariables.LOTTO_FOURTH.getPrice()) + 1);
+
+        if (lotto.countLottery(lotteryNumber) == 3) lotteryResult.put(LottoVariables.LOTTO_FIFTH.getPrice(), lotteryResult.get(LottoVariables.LOTTO_FIFTH.getPrice()) + 1);
     }
 
     private void generateLottos(int lottoCnt) {

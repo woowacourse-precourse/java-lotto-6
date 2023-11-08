@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static String[] winningNumbers;
+    private static List<String> winningNumbers;
 
     public static Integer inputPurchaseAmount() {
         String purchaseAmount = null;
@@ -35,7 +35,7 @@ public class InputView {
 
         while (!flag) {
             System.out.println(MessageConstants.WINNING_NUMBERS_GUIDE);
-            winningNumbers = Console.readLine().split(",");
+            winningNumbers = Arrays.stream(Console.readLine().split(",")).toList();
             try {
                 WinningNumbersValidator.validateLength(winningNumbers);
                 WinningNumbersValidator.validateType(winningNumbers);
@@ -48,8 +48,8 @@ public class InputView {
         return parseStringToInteger(winningNumbers);
     }
 
-    private static List<Integer> parseStringToInteger(String[] winningNumbers) {
-        List<Integer> winningIntNumbers = Arrays.stream(winningNumbers).map(v -> Integer.parseInt(v)).collect(Collectors.toList());
+    private static List<Integer> parseStringToInteger(List<String> winningNumbers) {
+        List<Integer> winningIntNumbers = winningNumbers.stream().map(v -> Integer.parseInt(v)).collect(Collectors.toList());
         return winningIntNumbers;
     }
 

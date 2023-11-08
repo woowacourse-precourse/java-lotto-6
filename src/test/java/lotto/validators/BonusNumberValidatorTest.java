@@ -3,6 +3,8 @@ package lotto.validators;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class BonusNumberValidatorTest {
@@ -24,7 +26,7 @@ class BonusNumberValidatorTest {
     @DisplayName("보너스 번호가 당첨 번호와 동일하다면 예외가 발생한다.")
     @Test
     void validateDuplicate() {
-        assertThatThrownBy(() -> BonusNumberValidator.validateDuplicate("5", new String[]{"1","2","3","4","5","6"}))
+        assertThatThrownBy(() -> BonusNumberValidator.validateDuplicate("5", List.of("1", "2", "3", "4", "5", "6")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

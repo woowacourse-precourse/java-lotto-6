@@ -4,6 +4,7 @@ import lotto.utils.NumericUtil;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 public class BonusNumberValidator {
 
@@ -23,8 +24,8 @@ public class BonusNumberValidator {
         }
     }
 
-    public static void validateDuplicate(String bonusNumber, String[] winningNumbers) {
-        HashSet<String> set = new HashSet<>(Arrays.stream(winningNumbers).toList());
+    public static void validateDuplicate(String bonusNumber, List<String> winningNumbers) {
+        HashSet<String> set = new HashSet<>(winningNumbers);
         if(set.contains(bonusNumber)) {
             System.out.println("[ERROR] 보너스 번호는 당첨 번호와 같을 수 없음!");
             throw new IllegalArgumentException();

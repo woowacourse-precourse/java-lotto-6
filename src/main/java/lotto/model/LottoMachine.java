@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.ConsoleMessage;
 import lotto.constant.LotteryRank;
 
 public class LottoMachine {
@@ -8,8 +9,15 @@ public class LottoMachine {
     private int bonusNumber;
 
     public LottoMachine(Lotto lotto, int bonusNumber) {
+        validate(lotto, bonusNumber);
         this.winningLotto = lotto;
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validate(Lotto lotto, int bonusNumber) {
+        if (lotto.containsNumber(bonusNumber)) {
+            throw new IllegalArgumentException(ConsoleMessage.DUPLICATED_BONUS_NUMBER_ERROR_MESSAGE);
+        }
     }
 
     /**

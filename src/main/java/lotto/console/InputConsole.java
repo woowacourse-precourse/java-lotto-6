@@ -8,9 +8,7 @@ import lotto.utils.StringUtil;
 
 public class InputConsole {
     public static Capital getCapital() {
-        OutputConsole.printInputPrompt(ConsoleMessage.PURCHASE_INPUT);
-
-        String input = Console.readLine();
+        String input = getInput(ConsoleMessage.PURCHASE_INPUT);
 
         try {
             return StringUtil.stringToCapital(input);
@@ -21,9 +19,7 @@ public class InputConsole {
     }
 
     public static Lotto getWinningNumbers() {
-        OutputConsole.printInputPrompt(ConsoleMessage.WINNING_NUMBERS_INPUT);
-
-        String input = Console.readLine();
+        String input = getInput(ConsoleMessage.WINNING_NUMBERS_INPUT);
 
         try {
             return StringUtil.stringToLottery(input);
@@ -33,16 +29,23 @@ public class InputConsole {
         }
     }
 
-    public static int getBonusNumber() {
-        OutputConsole.printInputPrompt(ConsoleMessage.BONUS_NUMBER_INPUT);
-
-        String input = Console.readLine();
-
+    public static int getBonusNumber(Lotto winningLotto) {
+        String input = getInput(ConsoleMessage.BONUS_NUMBER_INPUT);
+        
         try {
-            return StringUtil.stringToInt(input);
+            int bonusNumber = StringUtil.stringToInt(input);
+            if (winningLotto.containsNumber(bonusNumber)) {
+                throw new IllegalArgumentException(ConsoleMessage.DUPLICATED_BONUS_NUMBER_ERROR_MESSAGE);
+            }
+            return bonusNumber;
         } catch (IllegalArgumentException exception) {
             OutputConsole.printErrorMessage(exception);
-            return getBonusNumber();
+            return getBonusNumber(winningLotto);
         }
+    }
+
+    private static String getInput(String promptMessage) {
+        OutputConsole.printInputPrompt(promptMessage);
+        return Console.readLine();
     }
 }

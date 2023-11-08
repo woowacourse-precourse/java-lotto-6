@@ -23,6 +23,8 @@ public class ConsoleMessage {
 
     public static final String DUPLICATED_NUMBER_ERROR_MESSAGE = "로또 번호에 중복되는 숫자가 존재합니다.";
 
+    public static final String DUPLICATED_BONUS_NUMBER_ERROR_MESSAGE = "로또 번호들 중 보너스 번호와 중복되는 숫자가 존재합니다.";
+
     public static final String INVALID_INPUT_FORMAT_ERROR_MESSAGE = "번호는 쉼표(,)를 기준으로 구분되어야 합니다.";
 
     public static final String INVALID_INPUT_AMOUNT_ERROR_MESSAGE = "구입 금액은 1000원 단위여야 합니다.";

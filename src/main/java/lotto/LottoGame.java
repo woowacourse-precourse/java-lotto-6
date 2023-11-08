@@ -11,17 +11,24 @@ import lotto.model.LottoMachine;
 public class LottoGame {
 
     void run() {
-        Capital capital = InputConsole.getCapital();
-        Player player = new Player(capital);
-
+        Player player = initPlayer();
         OutputConsole.printPlayerPurchases(player);
 
-        Lotto winningNumbers = InputConsole.getWinningNumbers();
-        int bonusNumber = InputConsole.getBonusNumber();
+        LottoMachine lottoMachine = initLottoMachine();
 
-        LottoMachine lottoMachine = new LottoMachine(winningNumbers, bonusNumber);
         WinningDetails winningDetails = player.getWinningDetails(lottoMachine);
-
         OutputConsole.printWinningDetails(winningDetails);
+    }
+
+    private Player initPlayer() {
+        Capital capital = InputConsole.getCapital();
+        return new Player(capital);
+    }
+
+    private LottoMachine initLottoMachine() {
+        Lotto winningNumbers = InputConsole.getWinningNumbers();
+        int bonusNumber = InputConsole.getBonusNumber(winningNumbers);
+
+        return new LottoMachine(winningNumbers, bonusNumber);
     }
 }

@@ -1,10 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.constant.constants.Config;
 import lotto.constant.messages.Error;
 
@@ -14,30 +11,26 @@ public class LottoGenerator {
 
 
     public void configMoney(String input) {
-        checkInputFormat(input);
+        validate(input);
         this.numberOfLotto = Integer.parseInt(input) / Config.LOTTO_PRICE.getConfig();
     }
 
 
-    private List<Integer> generateLottoNumber() {
-        Set<Integer> numbers = new HashSet<>();
-        while (numbers.size() < Config.LOTTO_SIZE.getConfig()) {
-            numbers.add(Randoms.pickNumberInRange(Config.LOTTO_MIN_NUMBER.getConfig(),
-                    Config.LOTTO_MAX_NUMBER.getConfig()));
-        }
-        return new ArrayList<>(numbers.stream().toList());
+    private List<Integer> generateLotto() {
+        return Randoms.pickUniqueNumbersInRange(Config.LOTTO_MIN_NUMBER.getConfig(),
+                Config.LOTTO_MAX_NUMBER.getConfig(), Config.LOTTO_SIZE.getConfig());
     }
 
-    public Lottos generateMyLottos() {
+    public Lottos generateLottos() {
         Lottos lottos = new Lottos();
         for (int i = 0; i < numberOfLotto; i++) {
-            lottos.add(new Lotto(generateLottoNumber()));
+            lottos.add(new Lotto(generateLotto()));
         }
         return lottos;
     }
 
 
-    public void checkInputFormat(String input) {
+    private void validate(String input) {
         isAllDigit(input);
         isParsible(input);
         isDividable(input);

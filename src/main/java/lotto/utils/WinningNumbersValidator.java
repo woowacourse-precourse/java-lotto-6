@@ -1,8 +1,11 @@
 package lotto.utils;
 
+import static lotto.enums.ExceptionMessageType.DUPLICATE_BONUS_NUMBER;
+import static lotto.enums.ExceptionMessageType.DUPLICATE_WINNING_NUMBERS;
 import static lotto.enums.ExceptionMessageType.INVALID_SEPARATOR_OR_NUMBER_COUNT;
 import static lotto.enums.ExceptionMessageType.NUMBER_OUT_OF_RANGE;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class WinningNumbersValidator extends GeneralValidator {
@@ -22,4 +25,22 @@ public class WinningNumbersValidator extends GeneralValidator {
         }
     }
 
+    public static void validateDuplicateWinningNumbers(List<Integer> numbers) {
+        if (
+                numbers.size() != numbers.stream()
+                                        .distinct()
+                                        .count()
+        ) {
+            throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBERS.getMessage());
+        }
+    }
+
+    public static void validateDuplicateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if (
+                winningNumbers.stream()
+                        .anyMatch(winningNum -> winningNum == bonusNumber)
+        ) {
+            throw new IllegalArgumentException(DUPLICATE_BONUS_NUMBER.getMessage());
+        }
+    }
 }

@@ -7,22 +7,22 @@ import java.util.function.Predicate;
 
 public class LottoResult {
     private static final int MATCH_COUNT_FOR_BONUS_CHECK = 5;
-    private Map<WinningStrategy, Integer> numberMatchResult;
+    private Map<WinningCriteria, Integer> numberMatchResult;
 
-    public LottoResult(PurchasedLottos purchasedLottos, LotteryNumbers lotteryNumbers) {
-        calculateWinningResults(purchasedLottos, lotteryNumbers);
+    public LottoResult(Lottos lottos, LotteryNumbers lotteryNumbers) {
+        calculateWinningResults(lottos, lotteryNumbers);
     }
 
-    public void calculateWinningResults(PurchasedLottos purchasedLottos, LotteryNumbers lotteryNumbers) {
+    private void calculateWinningResults(Lottos lottos, LotteryNumbers lotteryNumbers) {
         this.numberMatchResult = new HashMap<>();
 
-        purchasedLottos.forEach(lotto -> {
+        lottos.forEach(lotto -> {
             int matchCount = getMatchCount(lotto, lotteryNumbers);
             boolean bonusMatchResult = checkBonusNumber(matchCount, lotto, lotteryNumbers.getBonusNumber());
 
-            Optional<WinningStrategy> strategyOptional = WinningStrategy.find(matchCount, bonusMatchResult);
-            strategyOptional.ifPresent(winningStrategy -> {
-                numberMatchResult.put(winningStrategy, numberMatchResult.getOrDefault(winningStrategy, 0) + 1);
+            Optional<WinningCriteria> criteriaOptional = WinningCriteria.find(matchCount, bonusMatchResult);
+            criteriaOptional.ifPresent(criteria -> {
+                numberMatchResult.put(criteria, numberMatchResult.getOrDefault(criteria, 0) + 1);
             });
         });
     }
@@ -44,7 +44,7 @@ public class LottoResult {
         return matchCount == MATCH_COUNT_FOR_BONUS_CHECK;
     }
 
-    public Map<WinningStrategy, Integer> getNumberMatchResult() {
+    public Map<WinningCriteria, Integer> getNumberMatchResult() {
         return numberMatchResult;
     }
 }

@@ -7,6 +7,7 @@ import lotto.message.ConsoleMessage;
 
 public class WinningLotto {
     private final List<WinningNumber> winningNumbers;
+    private static final int LOTTO_NUM_SIZE = 6;
 
     private WinningLotto(List<WinningNumber> winningNumbers) {
         this.winningNumbers = winningNumbers;
@@ -19,6 +20,14 @@ public class WinningLotto {
         return new WinningLotto(resultNumbers);
     }
 
+    public int getSize() {
+        return this.winningNumbers.size();
+    }
+
+    public List<WinningNumber> getWinnigNumbers() {
+        return this.winningNumbers;
+    }
+
     private static List<WinningNumber> validateDuplicate(List<WinningNumber> numbers) {
         List<Integer> numberList = numbers.stream().map(WinningNumber::getWinningNum).toList();
         HashSet hashSet = new HashSet(numberList);
@@ -27,6 +36,5 @@ public class WinningLotto {
         }
         return numbers;
     }
-
 
 }

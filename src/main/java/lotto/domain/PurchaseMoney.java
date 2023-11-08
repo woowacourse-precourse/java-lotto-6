@@ -20,6 +20,10 @@ public class PurchaseMoney {
         }
     }
 
+    public int getPurchaseMoney() {
+        return money;
+    }
+
     public int buyCount() {
         return this.money/1000;
     }

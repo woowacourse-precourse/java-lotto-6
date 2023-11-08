@@ -10,6 +10,15 @@ public enum ConsoleMessage {
 
     //Output Message
     CREATE_LOTTOS_COUNT("개를 구매했습니다."),
+    PRINT_LOTTO_RESULT("당첨 통계"),
+    PRINT_SEPERATE_STRING("---"),
+    PRINT_5_RANK_RESULT("3개 일치 (5,000원) - "),
+    PRINT_4_RANK_RESULT("4개 일치 (50,000원) - "),
+    PRINT_3_RANK_RESULT("5개 일치 (1,500,000원) - "),
+    PRINT_2_RANK_RESULT("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
+    PRINT_1_RANK_RESULT("6개 일치 (2,000,000,000원) - "),
+    PRINT_TOTAL_RESULT("총 수익률은 "),
+    PRINT_TOTAL_RESULT_END_WORD("%입니다."),
 
     //Error Message
     ERROR_STRING("[ERROR] "),

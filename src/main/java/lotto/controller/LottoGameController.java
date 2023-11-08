@@ -3,6 +3,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.LottoGenerator;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.enumerte.NumberType;
 import lotto.domain.PurchaseMoney;
@@ -28,6 +29,8 @@ public class LottoGameController {
 
         WinningLotto winningLotto = getBonusNumber(onlyWinningNumber);
 
+        LottoResult result = lottos.determine(winningLotto);
+        OutputView.printLottoResult(result.getRanks(), result.calculateRate(purchaseMoney));
     }
 
     private List<WinningNumber> createWinningLotto() {

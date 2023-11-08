@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import lotto.domain.enumerte.NumberType;
+import lotto.domain.enumerte.Rank;
 import lotto.message.ConsoleMessage;
 import lotto.util.LottoNumberGenerator;
 
@@ -13,7 +16,6 @@ public class Lotto {
         validate(numbers);
         validateDuplicate(numbers);
 
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -32,6 +34,36 @@ public class Lotto {
             throw new IllegalArgumentException(ConsoleMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
+
+    public Rank compare(WinningLotto winningLotto) {
+        List<WinningNumber> winningNumber = winningLotto.getWinnigNumbers();
+        int matchNumber = matchWinningNumber(winningNumber);
+        int bonusMatch = matchBonus(winningNumber);
+        return Rank.of(matchNumber, bonusMatch);
+    }
+
+
+    private int matchWinningNumber(List<WinningNumber> winningNumbers) {
+        List<WinningNumber> withoutBonus = winningNumbers.stream()
+                .filter(winNum -> winNum.getWinningType() == NumberType.ORIGINAL).toList();
+
+        return (int) numbers.stream().filter(number -> withoutBonus.stream()
+                        .anyMatch(winningNumber -> Objects.equals(winningNumber.getWinningNum(), number)))
+                .count();
+
+    }
+
+    private int matchBonus(List<WinningNumber> winningNumbers) {
+        List<WinningNumber> withoutBonus = winningNumbers.stream()
+                .filter(winNum -> winNum.getWinningType() == NumberType.BONUS)
+                .toList();
+
+        return (int) numbers.stream()
+                .filter(number -> withoutBonus.stream()
+                        .anyMatch(winningNumber -> Objects.equals(winningNumber.getWinningNum(), number)))
+                .count();
+    }
+
 
 
 }

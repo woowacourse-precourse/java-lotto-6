@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.List;
+import lotto.domain.enumerte.NumberType;
 import lotto.message.ConsoleMessage;
 
 public class WinningNumber {

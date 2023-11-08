@@ -1,7 +1,10 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import lotto.domain.enumerte.Rank;
 import lotto.util.LottoNumberGenerator;
 
 public class Lottos {
@@ -31,4 +34,16 @@ public class Lottos {
         }
         return lottos;
     }
+
+    public LottoResult determine(WinningLotto winningLotto) {
+        Map<Rank, Integer> ranks = new HashMap<>();
+
+        for (Lotto lotto : lottos) {
+            Rank rank = lotto.compare(winningLotto);
+            ranks.put(rank, ranks.getOrDefault(rank, 0) + 1);
+        }
+
+        return new LottoResult(ranks);
+    }
+
 }

@@ -25,7 +25,7 @@ public class PurchaseAmountValidatorTest {
         //then
         assertThatThrownBy(() -> PurchaseAmountValidator.checkAmountRange(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 최소 1000원, 최대 100000원까지 구매 가능합니다.\n");
+                .hasMessage("[ERROR] 최소 1000원, 최대 100000원까지 구매 가능합니다.");
     }
 
     @ParameterizedTest
@@ -45,6 +45,6 @@ public class PurchaseAmountValidatorTest {
         //then
         assertThatThrownBy(() -> PurchaseAmountValidator.checkRemainder(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 금액이 나누어 떨어지지 않습니다.\n");
+                .hasMessage("[ERROR] 금액이 나누어 떨어지지 않습니다.");
     }
 }

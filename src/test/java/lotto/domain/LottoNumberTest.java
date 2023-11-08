@@ -28,6 +28,6 @@ class LottoNumberTest {
         //then
         assertThatThrownBy(() -> new LottoNumber(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1과 45사이의 숫자만 번호로 등록 가능 합니다.\n");
+                .hasMessage("[ERROR] 1과 45사이의 숫자만 번호로 등록 가능 합니다.");
     }
 }

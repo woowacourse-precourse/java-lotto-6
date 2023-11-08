@@ -16,6 +16,6 @@ class MoneyTest {
         //then
         Assertions.assertThatThrownBy(() -> money.decrease(purchasedAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 금액은 음수가 될 수 없습니다.\n");
+                .hasMessage("[ERROR] 금액은 음수가 될 수 없습니다.");
     }
 }

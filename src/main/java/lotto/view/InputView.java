@@ -6,4 +6,8 @@ public class InputView {
     public String readPurchaseAmount() {
         return Console.readLine();
     }
+
+    public String readWinningNumber() {
+        return Console.readLine();
+    }
 }

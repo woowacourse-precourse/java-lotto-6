@@ -44,4 +44,16 @@ class WinningNumbersTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new WinningNumbers(Collections.singletonList(input)));
     }
+
+    @ParameterizedTest
+    @DisplayName("당첨번호 입력 시 맨 앞, 또는 맨 뒤에 쉼표가 있으면 예외가 발생한다.")
+    @CsvSource({
+            ",1,2,3,4,5,6,",
+            "1,2,3,4,5,6,",
+            ",1,2,3,4,5,6"
+    })
+    void testLeadingTrailingCommasInInput(String input) {
+        assertThrows(IllegalArgumentException.class,
+                () -> new WinningNumbers(Collections.singletonList(input)));
+    }
 }

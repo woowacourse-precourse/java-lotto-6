@@ -69,6 +69,7 @@ public class Computer {
         }
         if (matchedNumbers == 5 && bonusNumberMatched(lotto, bonusNumber)) {
             winningStats.put(2, winningStats.get(2) + 1);
+            return;
         }
         if (matchedNumbers == 5) {
             winningStats.put(3, winningStats.get(3) + 1);

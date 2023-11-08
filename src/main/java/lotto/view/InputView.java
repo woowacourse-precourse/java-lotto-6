@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.LottoNumNotNumException;
 import lotto.exception.LottoNumRangeException;
 
 import java.util.Arrays;
@@ -27,13 +28,13 @@ public class InputView {
         return Integer.parseInt(Console.readLine());
     }
 
-    public static List<Integer> separateInputLottoNums(String inputLottoNums){
+    public static List<Integer> separateInputLottoNums(String inputLottoNums) {
         return Arrays.stream(inputLottoNums.split(","))
                 .map(str -> {
                     try {
                         return Integer.parseInt(str);
                     } catch (NumberFormatException e) {
-                        throw new LottoNumRangeException();
+                        throw new LottoNumNotNumException();
                     }
                 })
                 .collect(Collectors.toList());

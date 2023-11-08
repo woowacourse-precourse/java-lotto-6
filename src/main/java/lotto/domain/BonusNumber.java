@@ -24,7 +24,7 @@ public class BonusNumber {
         winningLottoNumbers.add(convertStrToInt(bonusNumber));
 
         if (winningLottoNumbers.size() == NumberConstant.LOTTO_COUNT.getNumber()) {
-            throw new IllegalArgumentException(ExceptionConstant.LOTTO_NUMBER_DUPlICATE.getMessage());
+            throw new IllegalArgumentException(ExceptionConstant.LOTTO_NUMBER_DUPLICATE.getMessage());
         }
     }
 

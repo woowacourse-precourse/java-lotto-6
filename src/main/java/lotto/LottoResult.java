@@ -24,4 +24,8 @@ public enum LottoResult {
     public int getMoney() {
         return money;
     }
+
+    public String getWon() {
+        return won;
+    }
 }

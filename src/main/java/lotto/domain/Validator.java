@@ -19,7 +19,6 @@ public class Validator {
         validateDivided(purchaseAmount, NOT_DIVIDED_PURCHASE_AMOUNT);
     }
 
-
     private void validatePositiveNumber(Integer number, String error) {
         if (number <= 0) {
             throw new IllegalArgumentException(error);

@@ -81,7 +81,7 @@ public class OutputViewTest {
     @Test
     public void 당첨내역과_수익률을_출력() {
         // given
-        ResultDto resultDto = ResultDto.create(Arrays.asList(1, 0, 0, 2, 0), 1002.54);
+        ResultDto resultDto = ResultDto.create(Arrays.asList(1, 0, 0, 2, 0), 1002.5);
 
         //when
         OutputView.printResult(resultDto);
@@ -97,7 +97,7 @@ public class OutputViewTest {
                 "5개 일치 (1,500,000원) - 0개",
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                 "6개 일치 (2,000,000,000원) - 1개",
-                "총 수익률은 1002.54%입니다."
+                "총 수익률은 1002.5%입니다."
         );
         assertThat(outContent.toString()).isEqualToIgnoringWhitespace(expectedOutput);
     }

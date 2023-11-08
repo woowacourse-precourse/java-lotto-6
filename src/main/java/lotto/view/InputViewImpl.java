@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.Validation;
 
-public class InputViewImpl implements InputView {
+public class InputViewImpl extends View implements InputView {
     private final String DELIMITER = ",";
     private final String INSERT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private final String INSERT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
@@ -22,6 +22,7 @@ public class InputViewImpl implements InputView {
         do {
             printInsertWinningNumbersMessage();
             input = Console.readLine();
+            printNewLineForSeparation();
         } while (!isValidWinningNumbers(input));
         return convertToNumbers(input);
     }
@@ -54,6 +55,7 @@ public class InputViewImpl implements InputView {
         do {
             printInsertBonusNumberMessage();
             input = Console.readLine();
+            printNewLineForSeparation();
         } while (!isValidBonusNumber(input, winningNumbers));
         return Integer.parseInt(input);
     }
@@ -77,6 +79,7 @@ public class InputViewImpl implements InputView {
         do {
             printInsertMoneyMessage();
             input = Console.readLine();
+            printNewLineForSeparation();
         } while (!isValidMoney(input));
         return Integer.parseInt(input);
     }

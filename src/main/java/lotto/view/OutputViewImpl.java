@@ -5,27 +5,28 @@ import lotto.domain.Prize;
 import lotto.domain.dto.LottosDto;
 import lotto.domain.dto.StatisticsDto;
 
-public class OutputViewImpl implements OutputView {
-    private final String PURCHASE_START_MESSAGE = "%d개를 구매했습니다.";
+public class OutputViewImpl extends View implements OutputView {
+    private final String PURCHASE_START_MESSAGE = "%d개를 구매했습니다.\n";
     private final String STATISTICS_START_MESSAGE = "당첨 통계\n---";
     private final String FIFTH_PRIZE_MESSAGE = "3개 일치 (%,d원) - %d개\n";
     private final String FORTH_PRIZE_MESSAGE = "4개 일치 (%,d원) - %d개\n";
     private final String THIRD_PRIZE_MESSAGE = "5개 일치 (%,d원) - %d개\n";
     private final String SECOND_PRIZE_MESSAGE = "5개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
     private final String FIRST_PRIZE_MESSAGE = "6개 일치 (%,d원) - %d개\n";
-    private final String ROR_MESSAGE = "총 수익률은 %.1f%입니다.";
+    private final String ROR_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     @Override
     public void printPurchase(LottosDto lottosDto) {
         List<String> lottosToString = lottosDto.getLottosToString();
-        printPurchaseStartMessage();
+        printPurchaseStartMessage(lottosToString.size());
         for (String lottoString : lottosToString) {
             System.out.println(lottoString);
         }
+        printNewLineForSeparation();
     }
 
-    private void printPurchaseStartMessage() {
-        System.out.println(PURCHASE_START_MESSAGE);
+    private void printPurchaseStartMessage(int lottoCount) {
+        System.out.printf(PURCHASE_START_MESSAGE, lottoCount);
     }
 
     @Override
@@ -61,11 +62,6 @@ public class OutputViewImpl implements OutputView {
 
     private void printRoRMessage(float ror) {
         System.out.printf(ROR_MESSAGE, ror);
-    }
-
-    @Override
-    public void printNewLineForSeparation() {
-        System.out.println();
     }
 
     private void printStatisticsStartMessage() {

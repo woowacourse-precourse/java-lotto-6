@@ -1,5 +1,6 @@
 package lottomachine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoChecker {
@@ -14,11 +15,15 @@ public class LottoChecker {
         this.bonusNumber = bonusNumber;
     }
 
-    public void checkLottos() {
+    public List<LottoResult> checkLottos() {
+        List<LottoResult> results = new ArrayList<>();
         for (Lotto lotto : lottoList) {
             int matchCount = compareLottoNumbers(lotto);
             boolean bonusMatch = compareBonusNumber(lotto);
+            LottoResult result = new LottoResult(matchCount, bonusMatch);
+            results.add(result);
         }
+        return results;
     }
 
     private int compareLottoNumbers(Lotto lotto) {
@@ -37,5 +42,8 @@ public class LottoChecker {
         List<Integer> numbers = lotto.getLottoNumbers();
         return numbers.contains(bonusNumber);
     }
+
+
+
 
 }

@@ -3,6 +3,7 @@ package lotto.model;
 import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.Map;
+import lotto.model.enums.WinningMoney;
 
 public class LotteryResult {
 

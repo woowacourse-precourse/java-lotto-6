@@ -5,6 +5,7 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import lotto.model.enums.WinningMoney;
 import lotto.util.NumbersGenerator;
 import lotto.util.TestFixNumbersGenerator;
 import lotto.util.TestRandomNumbersGenerator;

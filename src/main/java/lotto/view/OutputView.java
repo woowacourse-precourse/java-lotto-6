@@ -4,7 +4,7 @@ import java.util.Map;
 import lotto.model.LotteryResult;
 import lotto.model.PersonLotto;
 import lotto.model.PurchaseMoney;
-import lotto.model.WinningMoney;
+import lotto.model.enums.WinningMoney;
 import lotto.util.SpecialSign;
 
 public class OutputView {

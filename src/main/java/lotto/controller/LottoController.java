@@ -1,9 +1,7 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
-import lotto.exception.ErrorType;
 import lotto.model.Bonus;
 import lotto.model.LotteryMachine;
 import lotto.model.LotteryResult;
@@ -12,7 +10,7 @@ import lotto.model.Number;
 import lotto.model.PersonLotto;
 import lotto.model.PurchaseMoney;
 import lotto.model.WinningLotto;
-import lotto.model.WinningMoney;
+import lotto.model.enums.WinningMoney;
 import lotto.util.NumbersGenerator;
 import lotto.util.RandomNumbersGenerator;
 import lotto.view.InputView;

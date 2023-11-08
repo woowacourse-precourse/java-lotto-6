@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import lotto.constant.ValidateConstant;
+
 import java.util.*;
 
 public class Lotto {
@@ -27,7 +29,7 @@ public class Lotto {
         Set<Integer> set = new HashSet<>();
         for (Integer number : numbers) {
             if (!set.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호에 중복이 있습니다.");
+                throw new IllegalArgumentException(ValidateConstant.ERROR_DUPLICATE_NUMBERS());
             }
         }
     }

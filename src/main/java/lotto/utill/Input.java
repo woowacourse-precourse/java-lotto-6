@@ -48,6 +48,6 @@ public class Input {
         ValidateException.includeBlank(inputStringLine);
         ValidateException.blankCheck(inputStringLine);
         ValidateException.negative(inputStringLine);
-        ValidateException.zeroNum(inputStringLine);
+        ValidateException.zeroNumber(inputStringLine);
     }
 }

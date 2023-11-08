@@ -1,6 +1,7 @@
 package lotto.domain.seller;
 
 import lotto.config.Config;
+import lotto.constant.MyConstant;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 
@@ -29,7 +30,8 @@ public class LottoSeller {
     }
 
     public String tellNumberLotto() {
-        return lottoEnvelop.size() + "개를 구매했습니다.";
+        Integer lottoEnvelopSize = lottoEnvelop.size();
+        return MyConstant.MSG_SIZE_LOTTO_ENVELOP(lottoEnvelopSize);
     }
 
     private Lotto createLotto() {

@@ -1,7 +1,9 @@
 package lotto.view;
 
 import lotto.config.Config;
+import lotto.constant.MyConstant;
 import lotto.control.Process;
+import lotto.utill.Output;
 
 public class ShowLottoProcess {
     private Process process;
@@ -11,83 +13,76 @@ public class ShowLottoProcess {
     }
 
     public void printBuyLotto() {
-        System.out.println("구입금액을 입력해 주세요.");
+        Output.printMsg(MyConstant.MSG_INPUT_MONEY());
         while (true) {
             try {
                 process.buyLotto();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.printMsg(e.getMessage());
             }
         }
-        System.out.println();
+        Output.printNewLine();
     }
 
     public void printNumberBuyLotto() {
-        System.out.println(process.tellNumberLotto());
+        Output.printMsg(process.tellNumberLotto());
     }
 
     public void printInformationUserLotto() {
-        System.out.println(process.showLottosInformation());
-        System.out.println();
+        Output.printMsg(process.showLottosInformation());
+        Output.printNewLine();
     }
 
     public void printPickWinNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        Output.printMsg(MyConstant.MSG_INPUT_WIN_NUMBERS());
         while (true) {
             try {
                 process.pickWinNumber();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.printMsg(e.getMessage());
             }
         }
-        System.out.println();
+        Output.printNewLine();
     }
 
     public void printPickBonusNumbers() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        Output.printMsg(MyConstant.MSG_INPUT_BONUS_NUMBER());
         while (true) {
             try {
                 process.pickBonusNumber();
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                Output.printMsg(e.getMessage());
             }
         }
-        System.out.println();
+        Output.printNewLine();
     }
 
     public void printStatisticResult() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println(process.showStatisticResult());
+        Output.printMsg(MyConstant.MSG_START_WIN_STATISTIC());
+        Output.printMsg(MyConstant.MSG_SEPARATOR_DASH());
+        Output.printMsg(process.showStatisticResult());
     }
 
     public void printRateResult() {
-        System.out.println(process.showRateResult());
+        Output.printMsg(process.showRateResult());
     }
 
     public void run() {
-        // 로또를 구매한다.
         printBuyLotto();
 
-        // 판매한 로또갯수를 알려준다.
         printNumberBuyLotto();
 
-        // 사용자가 로또의 정보를 보여준다.
         printInformationUserLotto();
 
-        // 게임 호스트가 당첨 번호를 입력한다.
         printPickWinNumbers();
 
-        // 게임 호스트가 보너스 번호를 입력한다.
         printPickBonusNumbers();
 
-        // 사용자가 당첨 통계의 결과를 알려준다.
         printStatisticResult();
 
-        // 사용자가 총수익률을 알려준다.
         printRateResult();
     }
 }

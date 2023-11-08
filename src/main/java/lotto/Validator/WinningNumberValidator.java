@@ -10,12 +10,14 @@ public class WinningNumberValidator {
     private static final int MAXIMUM_VALUE = 45;
     private static final int BLANK_NUMBER = 0;
     private static final int LIMITED_NUMBER = 7;
+    private static final int USE_INVALID_SIGN = 1;
 
     public static String validateWinningNumber(String input) {
         String[] numbers = input.split(COMMA_SEPARATOR);
 
         validateNumberRange(numbers);
         validateNumberOfNumbers(numbers);
+        validateNumberFormat(numbers);
 
         return input;
     }
@@ -35,6 +37,18 @@ public class WinningNumberValidator {
         }
         if (numbers.length > LIMITED_NUMBER) {
             throw new IllegalArgumentException(WinningNumberErrorMessage.TOO_MANY_WINNING_NUMBERS.getMessage());
+        }
+    }
+
+    private static void validateNumberFormat(String[] numbers) {
+        if (numbers.length == USE_INVALID_SIGN) {
+            throw new IllegalArgumentException(WinningNumberErrorMessage.INVALID_WINNING_NUMBER_FORMAT.getMessage());
+        }
+        for (String numberStr : numbers) {
+            if (numberStr.trim().isEmpty()) {
+                throw new IllegalArgumentException(
+                        WinningNumberErrorMessage.INVALID_WINNING_NUMBER_FORMAT.getMessage());
+            }
         }
     }
 

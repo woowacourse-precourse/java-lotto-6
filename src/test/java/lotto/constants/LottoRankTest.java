@@ -37,6 +37,6 @@ public class LottoRankTest {
         assertEquals("5개 일치 (1,500,000원)", LottoRank.THIRD.getDescription());
         assertEquals("5개 일치, 보너스 볼 일치 (30,000,000원)", LottoRank.SECOND.getDescription());
         assertEquals("6개 일치 (2,000,000,000원)", LottoRank.FIRST.getDescription());
-        assertEquals("일치하는 숫자 없음", LottoRank.NONE.getDescription());
+        assertEquals("", LottoRank.NONE.getDescription());
     }
 }

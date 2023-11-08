@@ -17,6 +17,7 @@ public class ValidationNumbers {
     public static void validateNumbers(String numbers) {
         validateNumber(numbers);
         validateLength(numbers);
+        validateNumberRange(numbers);
     }
 
     private static void validateNumber(String numbers) {
@@ -32,6 +33,17 @@ public class ValidationNumbers {
         List<String> numbersList = List.of(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER));
         if (numbersList.size() != LottoPrinciples.LIMIT_NUMBER.getNumber()) {
             throw new IllegalArgumentException(ValidationNumbersMessages.INVALID_LENGTH.getMessage());
+        }
+    }
+
+    private static void validateNumberRange(String numbers) {
+        List<String> numbersList = List.of(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER));
+        Integer filteredNumberListCount = (int) numbersList.stream().map(Integer::parseInt)
+                .filter(number -> number >= LottoPrinciples.MIN_NUMBER.getNumber()
+                        && number <= LottoPrinciples.MAX_NUMBER.getNumber())
+                .count();
+        if (filteredNumberListCount != LottoPrinciples.LIMIT_NUMBER.getNumber()) {
+            throw new IllegalArgumentException(ValidationNumbersMessages.INVALID_NUMBER.getMessage());
         }
     }
 }

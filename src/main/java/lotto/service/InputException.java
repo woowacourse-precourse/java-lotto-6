@@ -10,8 +10,6 @@ import lotto.constant.RuleConstant;
 import lotto.constant.ViewConstant;
 
 public class InputException {
-    private static final String ERROR_MESSAGE = "[ERROR] ";
-
     public static int validMoney(String input) {
         int money = validMoneyInteger(input);
         validMoneyPositive(money);
@@ -42,19 +40,22 @@ public class InputException {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                    + ExceptionConstant.NUMBER_EXCEPTION.getMessage());
         }
     }
 
     private static void validMoneyPositive(int money) {
         if (money <= RuleConstant.DEFAULT_VALUE.getValue()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.POSITIVE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                    + ExceptionConstant.POSITIVE_EXCEPTION.getMessage());
         }
     }
 
     private static void validMoneyDivide(int money) {
         if (money % RuleConstant.LOTTO_PRICE.getValue() != RuleConstant.DEFAULT_VALUE.getValue()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.DIVIDE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                    + ExceptionConstant.DIVIDE_EXCEPTION.getMessage());
         }
     }
 
@@ -71,12 +72,14 @@ public class InputException {
         List<Integer> lottoNumbers = new ArrayList<>();
         for (String str : strArr) {
             if (isLottoContainBlank(str)) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.BLANK_EXCEPTION.getMessage());
+                throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                        + ExceptionConstant.BLANK_EXCEPTION.getMessage());
             }
             try {
                 lottoNumbers.add(Integer.parseInt(str));
             } catch (NumberFormatException ex) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_EXCEPTION.getMessage());
+                throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                        + ExceptionConstant.NUMBER_EXCEPTION.getMessage());
             }
         }
         return lottoNumbers;
@@ -84,15 +87,16 @@ public class InputException {
 
     private static void validLottoLength(List<Integer> numbers) {
         if (numbers.size() != RuleConstant.LOTTO_RANGE.getValue()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_LENGTH_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                    + ExceptionConstant.NUMBER_LENGTH_EXCEPTION.getMessage());
         }
     }
 
     private static void validLottoNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < RuleConstant.MIN_NUMBER.getValue() || number > RuleConstant.MAX_NUMBER.getValue()) {
-                throw new IllegalArgumentException(
-                        ERROR_MESSAGE + ExceptionConstant.NUMBER_RANGE_EXCEPTION.getMessage());
+                throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                                + ExceptionConstant.NUMBER_RANGE_EXCEPTION.getMessage());
             }
         }
     }
@@ -100,8 +104,8 @@ public class InputException {
     private static void validLottoDuplicate(List<Integer> numbers) {
         Set<Integer> sNumbers = new HashSet<>(numbers);
         if (sNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(
-                    ERROR_MESSAGE + ExceptionConstant.NUMBER_DUPLICATE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                    + ExceptionConstant.NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 
@@ -109,13 +113,15 @@ public class InputException {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                    + ExceptionConstant.NUMBER_EXCEPTION.getMessage());
         }
     }
 
     private static void validBonusRange(int number) {
         if (number < RuleConstant.MIN_NUMBER.getValue() || number > RuleConstant.MAX_NUMBER.getValue()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_RANGE_EXCEPTION);
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                    + ExceptionConstant.NUMBER_RANGE_EXCEPTION);
         }
     }
 
@@ -123,8 +129,8 @@ public class InputException {
         Set<Integer> sNumbers = new HashSet<>(numbers);
         sNumbers.add(number);
         if (sNumbers.size() != numbers.size() + 1) {
-            throw new IllegalArgumentException(
-                    ERROR_MESSAGE + ExceptionConstant.NUMBER_DUPLICATE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE.getMessage()
+                    + ExceptionConstant.NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 }

@@ -8,10 +8,10 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    private LottoMachine lottoMachine;
     private final Bank bank;
     private final InputView input;
     private final OutputView output;
+    private LottoMachine lottoMachine;
 
     public LottoController() {
         bank = new Bank();

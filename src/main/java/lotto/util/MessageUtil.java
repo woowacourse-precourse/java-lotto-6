@@ -1,6 +1,6 @@
 package lotto.util;
 
-import java.util.ArrayList;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -27,18 +27,14 @@ public class MessageUtil {
     }
 
     public void printPurchaseInfo(List<Integer> lottoNums) {
-        // 테스트 시 받은 리스트는 불변 객체이기 때문에 정렬을 위해 따로 받아서 처리
-        List<Integer> sortLottoNums = new ArrayList<>(lottoNums);
-        sortLottoNums.sort(Comparator.naturalOrder());
-
-        StringBuilder lottoNum = new StringBuilder("");
+        lottoNums.sort(Comparator.naturalOrder());
+        StringBuilder lottoNum = new StringBuilder(" ");
 
         lottoNum.append("[");
-        for (Integer number : sortLottoNums) {
-            lottoNum.append(number).append(", ");
+        for (Integer number : lottoNums) {
+            lottoNum.append(number).append(",");
         }
-        lottoNum.delete(lottoNum.length()-2, lottoNum.length()).append("]");
-
+        lottoNum.deleteCharAt(lottoNum.lastIndexOf(",")).append("]");
         System.out.println(lottoNum);
     }
 

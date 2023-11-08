@@ -1,5 +1,6 @@
 package lotto.lottosystem.bussiness;
 
+import lotto.lottosystem.presentation.printer.StatisticsVO;
 import lotto.lottosystem.presentation.printer.TicketsVO;
 import lotto.lottosystem.presentation.reader.MoneyVO;
 
@@ -10,9 +11,15 @@ public class LottoService {
 
     private static final int ONE_LOTTO_EXPENCE = 1000;
     private final LottoGenerator lottoGenerator;
+    private Lotto answerLotto;
 
     public LottoService(LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
+        this.answerLotto = makeAnswerLotto();
+    }
+
+    private Lotto makeAnswerLotto() {
+        return new Lotto(lottoGenerator.generateLotto());
     }
 
     public TicketsVO issueTickets(MoneyVO moneyVO) {
@@ -34,5 +41,9 @@ public class LottoService {
 
     private int calcCount(int money) {
         return (money / ONE_LOTTO_EXPENCE);
+    }
+
+    public StatisticsVO calcStatistics() {
+
     }
 }

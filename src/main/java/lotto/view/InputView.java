@@ -8,17 +8,17 @@ import static lotto.util.Parser.*;
 
 public class InputView {
 
-    public long requestMoney() {
+    public long requestMoney() throws IllegalArgumentException{
         System.out.println("구입금액을 입력해 주세요");
         return stringToLong(Console.readLine());
     }
 
-    public List<Integer> requestWinningNumbers() {
+    public List<Integer> requestWinningNumbers() throws IllegalArgumentException{
         System.out.println("당첨 번호를 입력해 주세요.");
         return stringToList(Console.readLine());
     }
 
-    public int requestBonusNumber() {
+    public int requestBonusNumber() throws IllegalArgumentException{
         System.out.println("보너스 번호를 입력해 주세요.");
         return stringToInt(Console.readLine());
     }

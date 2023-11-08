@@ -9,6 +9,7 @@ public class Parser {
         try {
             return Long.parseLong(str);
         }catch (NumberFormatException e){
+            System.out.println("[ERROR] 정수가 아닌 입력이 들어왔습니다.");
             throw new IllegalArgumentException();
         }
     }
@@ -16,8 +17,7 @@ public class Parser {
         try{
             return Integer.parseInt(str);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException();
-
+            throw new IllegalArgumentException("[ERROR] 정수가 아닌 입력이 들어왔습니다.");
         }
     }
 
@@ -25,7 +25,7 @@ public class Parser {
         try {
             return Stream.of(str.split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 번호 중 정수가 아닌 것이 있습니다.");
         }
     }
 }

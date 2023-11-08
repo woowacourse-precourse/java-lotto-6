@@ -1,10 +1,10 @@
 package lotto.domain;
 
-public class WinningNumbers {
+public class TotalWinningNumbers {
     Lotto winningLotto;
     int bonusNumber;
 
-    public WinningNumbers(Lotto lotto, int bonusNumber) throws IllegalArgumentException {
+    public TotalWinningNumbers(Lotto lotto, int bonusNumber) throws IllegalArgumentException {
         validateBonusNumber(lotto,bonusNumber);
         this.winningLotto = lotto;
         this.bonusNumber = bonusNumber;
@@ -18,24 +18,27 @@ public class WinningNumbers {
     }
 
     private Rank checkLotto(Lotto userLotto) {
-        return Rank.decideRank(checkCollectCount(userLotto), checkBonusNumber(userLotto));
+        return Rank.decideRank(countCollectNumbers(userLotto), checkBonusNumber(userLotto));
     }
+
     private void validateBonusNumber(Lotto lotto, int bonusNumber) throws IllegalArgumentException{
-        validateNumberBoundry(bonusNumber);
+        validateNumberBoundary(bonusNumber);
         validateDuplication(lotto, bonusNumber);
     }
 
-    private void validateNumberBoundry(int bonusNumber) throws IllegalArgumentException{
-        if(bonusNumber<1 || bonusNumber>45)
-            throw new IllegalArgumentException();
+    private void validateNumberBoundary(int bonusNumber) throws IllegalArgumentException{
+        if(bonusNumber<1 || bonusNumber>45){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호의 범위는 1부터 45 사이여야 합니다.");
+        }
     }
 
     private void validateDuplication(Lotto lotto, int bonusNumber) throws IllegalArgumentException{
-        if(lotto.getNumbers().contains(bonusNumber))
-            throw new IllegalArgumentException();
+        if(lotto.getNumbers().contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 중복 됐습니다.");
+        }
     }
 
-    private int checkCollectCount(Lotto userLotto) {
+    private int countCollectNumbers(Lotto userLotto) {
         return (int)winningLotto.getNumbers().stream()
                 .filter(userLotto::hasNumber)
                 .count();

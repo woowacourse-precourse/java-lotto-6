@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,22 +13,20 @@ public class LottoResult {
         Arrays.stream(Rank.values())
                 .forEach(rank -> results.put(rank, 0));
     }
+
     public void addResult(Rank rank){
         results.put(rank, results.get(rank)+ 1);
     }
 
-    public int getResult(Rank rank) {
-        return results.get(rank);
+    public Map<Rank, Integer> getResults() {
+        return Collections.unmodifiableMap(results);
     }
 
-    public double getRateOfReturn(){
+    public double getRateOfReturn(Money money){
         double sumPrize = 0;
-        double lottoCount = 0;
         for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
             sumPrize += entry.getKey().getPrize() * entry.getValue();
-            lottoCount++;
         }
-
-        return sumPrize/lottoCount;
+        return sumPrize / money.getMoney() * 100;
     }
 }

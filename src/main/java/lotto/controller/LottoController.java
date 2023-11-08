@@ -4,9 +4,6 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.Arrays;
-
-
 public class LottoController {
 
     private final InputView inputView = new InputView();
@@ -14,47 +11,67 @@ public class LottoController {
 
     public void run() {
         Money money = askMoney();
-        int count = money.getCount();
-        Lottos lottos = buyLottos(count);
-        printBuyResult(lottos, count);
-        WinningNumbers winningNumbers = makeWinningNumbers();
+
+        Lottos lottos = buyLottos(money.getCount());
+
+        TotalWinningNumbers winningNumbers = askTotalWinningNumbers();
+
         LottoResult lottoResult = winningNumbers.checkLottos(lottos);
-        (Arrays.stream(Rank.values())).forEach(rank->outputView.printLottosResult(rank, lottoResult.getResult(rank)));
-        outputView.printRateOfReturn(lottoResult.getRateOfReturn());
+
+        outputView.printLottosResult(lottoResult.getResults());
+
+        outputView.printRateOfReturn(lottoResult.getRateOfReturn(money));
     }
 
     private Money askMoney() {
-        Money money = new Money(inputView.requestMoney());
+        Money money;
+        try{
+            money = new Money(inputView.requestMoney());
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askMoney();
+        }
         outputView.printLottoCount(money.getCount());
         return money;
     }
 
     private Lottos buyLottos(int count) {
         Lottos lottos = new Lottos();
-        lottos.generateLottos(count);
+        try{
+            lottos.generateLottos(count);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return buyLottos(count);
+        }
+        printBuyResult(lottos);
         return lottos;
     }
 
-    private void printBuyResult(Lottos lottos, int count){
-        outputView.printLottoCount(count);
+    private void printBuyResult(Lottos lottos){
         lottos.getLottos().forEach(lotto -> outputView.printLottoNumbers(lotto.getNumbers()));
     }
 
-    private WinningNumbers makeWinningNumbers() {
-        Lotto lotto;
-        int bonusNum;
+    private TotalWinningNumbers askTotalWinningNumbers() {
+        Lotto winningNumbers = askWinningNumbers();
+        return makeTotalWinningNumbers(winningNumbers);
+    }
+
+    private Lotto askWinningNumbers() {
         try{
-            lotto = new Lotto(inputView.requestWinningNumbers());
+            return new Lotto(inputView.requestWinningNumbers());
         }catch (IllegalArgumentException e) {
-            lotto = new Lotto(inputView.requestWinningNumbers());
-        }
-        bonusNum = inputView.requestBonusNumber();
-        try {
-            return new WinningNumbers(lotto, bonusNum);
-        } catch (IllegalArgumentException e){
-            bonusNum = inputView.requestBonusNumber();
-            return new WinningNumbers(lotto, bonusNum);
+            System.out.println(e.getMessage());
+            return askWinningNumbers();
         }
     }
 
+    private TotalWinningNumbers makeTotalWinningNumbers(Lotto lotto) {
+        int bonus = inputView.requestBonusNumber();
+        try{
+            return new TotalWinningNumbers(lotto, bonus);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return makeTotalWinningNumbers(lotto);
+        }
+    }
 }

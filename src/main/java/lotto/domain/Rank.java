@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum Rank {
     FIRST(6,  2_000_000_000),
@@ -13,19 +12,18 @@ public enum Rank {
 
     private final int collectCount;
     private final long prize;
+
     Rank(int collectCount, long prize) {
         this.collectCount = collectCount;
         this.prize = prize;
     }
 
-    public static Rank decideRank(int count, boolean isBonus) {
-        if (isBonus && count == 5) {
-            return Rank.SECOND;
+    public static Rank decideRank(int collectCount, boolean bonusCheck) {
+        if (collectCount == 5 && !bonusCheck) {
+            return Rank.THIRD;
         }
-
-        return Arrays.stream(values())
-                .filter(value -> value != Rank.SECOND)
-                .filter(value -> value.collectCount == count)
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank.collectCount == collectCount)
                 .findFirst()
                 .orElse(NOTHING);
     }
@@ -33,9 +31,4 @@ public enum Rank {
     public long getPrize() {
         return prize;
     }
-
-    public int getCollectCount(){
-        return collectCount;
-    }
-
 }

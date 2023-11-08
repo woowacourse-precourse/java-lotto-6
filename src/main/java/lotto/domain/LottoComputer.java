@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Application;
 import lotto.object.LottoNumber;
+import java.util.Collections;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.core.AbstractMasterDetailListProcessor;
 
 public class LottoComputer {
     public static List<Integer> madeNumber = new ArrayList<>();
 
     public static void numberMaker() {
         madeNumber = Randoms.pickUniqueNumbersInRange(1,45,6);
+        Collections.sort(madeNumber);
         System.out.println(madeNumber);
     }
     public static List<LottoNumber> makingLottoIndex() {

@@ -1,5 +1,9 @@
 package lotto.input;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class InputValidator {
     public static void isValidPurchaseAmount(String purchaseAmount) throws IllegalArgumentException {
         isNotEmpty(purchaseAmount);
@@ -9,12 +13,22 @@ public class InputValidator {
 
     public static void isValidWinningNumbers(String[] winningNumbers) throws IllegalArgumentException {
         if (winningNumbers.length == 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 입력값이 있어야 합니다.");
         }
         for (String number : winningNumbers) {
             isNotEmpty(number);
             isNumber(number);
             isValidRange(number);
+        }
+    }
+
+    public static void isValidWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
+        }
+        Set<Integer> winningNumberSet = new HashSet<>(winningNumbers);
+        if (winningNumberSet.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
         }
     }
 

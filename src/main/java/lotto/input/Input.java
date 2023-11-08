@@ -43,6 +43,7 @@ public class Input {
         for (String number : winningNumbers) {
             numbers.add(Integer.parseInt(number));
         }
+        InputValidator.isValidWinningNumber(numbers);
         return numbers;
     }
 

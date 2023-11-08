@@ -11,11 +11,11 @@ public class Budget {
         this.budget = budget;
     }
 
-    public boolean canBuyALotto(int sumPayment) {
+    public boolean canBuyALotto(final int sumPayment) {
         return this.budget > sumPayment;
     }
 
-    private void budgetValidation(int budget) {
+    private void budgetValidation(final int budget) {
         if (budget < 0) {
             throw new IllegalArgumentException(ErrorMessage.ONLY_ZERO_OR_MORE.getErrorMessage());
         }
@@ -25,7 +25,7 @@ public class Budget {
         }
     }
 
-    public double getProfit(long rewardSum) {
+    public double getProfit(final long rewardSum) {
         return (rewardSum / (double) budget) * 100;
     }
 }

@@ -9,7 +9,7 @@ public enum OutputMessage {
     OUTPUT_WINNING_STATISTIC("\n당첨 통계\n---\n"),
     OUTPUT_ROI("총 수익률은 %.1f%%입니다.\n");
 
-    String message;
+    private final String message;
 
     OutputMessage(String message) {
         this.message = message;

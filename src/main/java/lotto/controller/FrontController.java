@@ -1,6 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.BonusNumber;
+import lotto.domain.Budget;
+import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
+import lotto.domain.WinningScores;
 
 public class FrontController {
 

@@ -9,11 +9,11 @@ public class GameView {
         print(OutputMessage.INPUT_BUDGET.getMessage());
     }
 
-    public void printLottosSize(String lottosSize) {
+    public void printLottosSize(final String lottosSize) {
         print(String.format(OutputMessage.OUTPUT_LOTTOS_SIZE.getMessage(), lottosSize));
     }
 
-    public void printLottosNumbers(String lottosNumbers) {
+    public void printLottosNumbers(final String lottosNumbers) {
         StringBuilder sb = new StringBuilder(lottosNumbers);
         sb.append("\n\n");
 
@@ -28,16 +28,16 @@ public class GameView {
         print(OutputMessage.INPUT_BONUS_NUMBER.getMessage());
     }
 
-    public void printWinningStatistic(String winningScores) {
+    public void printWinningStatistic(final String winningScores) {
         print(OutputMessage.OUTPUT_WINNING_STATISTIC.getMessage());
         print(winningScores);
     }
 
-    public void printROI(double roi) {
+    public void printROI(final double roi) {
         print(String.format(OutputMessage.OUTPUT_ROI.getMessage(), roi));
     }
 
-    private void print(String message) {
+    private void print(final String message) {
         System.out.print(message);
     }
 }

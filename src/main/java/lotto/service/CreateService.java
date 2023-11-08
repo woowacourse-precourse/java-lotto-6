@@ -3,9 +3,9 @@ package lotto.service;
 import lotto.utils.ErrorMessageUtil;
 
 abstract class CreateService {
-    abstract public Object createObject(Object... inputs);
+    abstract public Object createObject(final Object... inputs);
 
-    public Object create(Object... inputs) {
+    public Object create(final Object... inputs) {
         Object object = null;
         boolean flag = false;
 

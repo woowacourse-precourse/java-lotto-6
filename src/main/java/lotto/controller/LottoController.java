@@ -15,7 +15,7 @@ public class LottoController {
         gameView = new GameView();
     }
 
-    public Lottos createLottos(Budget budget) {
+    public Lottos createLottos(final Budget budget) {
         Lottos lottos = lottoService.createLottos(budget);
         LottoSize lottosSize = lottoService.getLottosSize(lottos);
         gameView.printLottosSize(lottosSize.toString());
@@ -23,7 +23,7 @@ public class LottoController {
         return lottos;
     }
 
-    public void printLottos(Lottos lottos){
+    public void printLottos(final Lottos lottos){
         String lottosNumbers = lottoService.getLottosNumbers(lottos);
 
         gameView.printLottosNumbers(lottosNumbers);

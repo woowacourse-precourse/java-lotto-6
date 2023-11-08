@@ -11,11 +11,11 @@ public class Lottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
+    public Lottos(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static Lottos createLottos(Budget budget) {
+    public static Lottos createLottos(final Budget budget) {
         List<Lotto> initialLottos = new ArrayList<>();
 
         int sumLottoPrices = 0;
@@ -28,6 +28,7 @@ public class Lottos {
         return new Lottos(initialLottos);
     }
 
+    //todo: naming
     public String getLottosNumbers() {
         StringJoiner sj = new StringJoiner("\n");
 
@@ -42,7 +43,7 @@ public class Lottos {
         return lottos.size();
     }
 
-    public WinningScores calWinningScores(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public WinningScores calWinningScores(final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
         WinningScores winningScores = new WinningScores();
 
         for (Lotto lotto : lottos) {

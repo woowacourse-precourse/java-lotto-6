@@ -8,11 +8,11 @@ public class WinningNumber {
 
     private final int winningNumber;
 
-    public WinningNumber(int winningNumber) {
+    public WinningNumber(final int winningNumber) {
         this.winningNumber = winningNumber;
     }
 
-    public static WinningNumber createWinningNumber(String number) {
+    public static WinningNumber createWinningNumber(final String number) {
         validateAtStringLevel(number);
 
         int convertedIntegerNumber = Integer.parseInt(number);
@@ -21,11 +21,11 @@ public class WinningNumber {
         return new WinningNumber(convertedIntegerNumber);
     }
 
-    public boolean isNumberExist(int number) {
+    public boolean isNumberExist(final int number) {
         return winningNumber == number;
     }
 
-    private static void validateAtStringLevel(String number) {
+    private static void validateAtStringLevel(final String number) {
         if (number.length() == 0) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY.getErrorMessage());
         }
@@ -37,7 +37,7 @@ public class WinningNumber {
         }
     }
 
-    private static void sizeValidate(int number) {
+    private static void sizeValidate(final int number) {
         if (number < MIN_VALUE || number > MAX_VALUE) {
             throw new IllegalArgumentException(ErrorMessage.NON_WINNING_NUMBER.getErrorMessage());
         }

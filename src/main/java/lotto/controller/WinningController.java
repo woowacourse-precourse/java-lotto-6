@@ -1,6 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lottos;
+import lotto.domain.Budget;
+import lotto.domain.WinningNumbers;
+import lotto.domain.WinningScores;
 import lotto.service.BonusNumberService;
 import lotto.service.WinningNumbersService;
 import lotto.service.WinningService;
@@ -26,14 +30,14 @@ public class WinningController {
         return winningNumbers;
     }
 
-    public BonusNumber createBonusNumber(WinningNumbers winningNumbers) {
+    public BonusNumber createBonusNumber(final WinningNumbers winningNumbers) {
         gameView.printInputBonusNumberMessage();
 
         BonusNumber bonusNumber = bonusNumberService.createBonusNumber(winningNumbers);
         return bonusNumber;
     }
 
-    public WinningScores compileStatistic(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public WinningScores compileStatistic(final Lottos lottos, final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
         WinningScores winningScores = winningService.calWinningScores(lottos, winningNumbers, bonusNumber);
         String winningStatisticOutput = winningService.getWinningScoresResult(winningScores);
         gameView.printWinningStatistic(winningStatisticOutput);
@@ -41,7 +45,7 @@ public class WinningController {
         return winningScores;
     }
 
-    public void printProfit(WinningScores winningScores, Budget budget){
+    public void printProfit(final WinningScores winningScores, final Budget budget){
         double profit = winningService.getReturnOfLottos(winningScores, budget);
 
         gameView.printROI(profit);

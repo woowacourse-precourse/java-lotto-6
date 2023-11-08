@@ -4,7 +4,7 @@ package lotto.domain;
 public class LottoSize {
     private final int lottoSize;
 
-    public LottoSize(int lottoSize) {
+    public LottoSize(final int lottoSize) {
         this.lottoSize = lottoSize;
     }
 

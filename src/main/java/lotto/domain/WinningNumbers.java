@@ -2,7 +2,9 @@ package lotto.domain;
 
 import lotto.utils.ErrorMessage;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+
 
 public class WinningNumbers {
 
@@ -10,11 +12,11 @@ public class WinningNumbers {
 
     private final Set<WinningNumber> winningNumbers;
 
-    public WinningNumbers(Set<WinningNumber> winningNumbers) {
+    public WinningNumbers(final Set<WinningNumber> winningNumbers) {
         this.winningNumbers = winningNumbers;
     }
 
-    public static WinningNumbers createWinningNumbers(String[] inputWinningNumbers) {
+    public static WinningNumbers createWinningNumbers(final String[] inputWinningNumbers) {
         validateSize(inputWinningNumbers);
 
         Set<WinningNumber> initialWinningNumbers = new HashSet<>();
@@ -26,17 +28,17 @@ public class WinningNumbers {
         return new WinningNumbers(initialWinningNumbers);
     }
 
-    public boolean isNumberExist(WinningNumber number) {
+    public boolean isNumberExist(final WinningNumber number) {
         return winningNumbers.contains(number);
     }
 
-    private static void validateSize(String[] inputWinningNumbers) {
+    private static void validateSize(final String[] inputWinningNumbers) {
         if (inputWinningNumbers.length != SIZE) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_SIZE.getErrorMessage());
         }
     }
 
-    private static void validateDuplication(Set<WinningNumber> inputWinningNumbers) {
+    private static void validateDuplication(final Set<WinningNumber> inputWinningNumbers) {
         if (inputWinningNumbers.size() != SIZE) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_VALUES.getErrorMessage());
         }

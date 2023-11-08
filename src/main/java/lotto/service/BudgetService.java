@@ -13,14 +13,14 @@ public class BudgetService extends CreateService {
     }
 
     @Override
-    public Object createObject(Object... inputs) {
+    public Object createObject(final Object... inputs) {
         String inputBudget = Console.readLine();
         budgetIntegerValidation(inputBudget);
 
         return new Budget(Integer.parseInt(inputBudget));
     }
 
-    private void budgetIntegerValidation(String inputBudget) {
+    private void budgetIntegerValidation(final String inputBudget) {
         if (inputBudget.length() == 0) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_EMPTY.getErrorMessage());
         }

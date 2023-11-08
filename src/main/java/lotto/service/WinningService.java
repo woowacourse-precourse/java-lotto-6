@@ -4,15 +4,15 @@ import lotto.domain.*;
 
 public class WinningService {
 
-    public WinningScores calWinningScores(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber){
+    public WinningScores calWinningScores(final Lottos lottos, final WinningNumbers winningNumbers, final BonusNumber bonusNumber){
         return lottos.calWinningScores(winningNumbers, bonusNumber);
     }
 
-    public String getWinningScoresResult(WinningScores winningScores){
+    public String getWinningScoresResult(final WinningScores winningScores){
         return winningScores.toString();
     }
 
-    public double getReturnOfLottos(WinningScores winningScores, Budget budget){
+    public double getReturnOfLottos(final WinningScores winningScores, final Budget budget){
         long lottosSum = winningScores.getWinningProfit();
 
         return budget.getProfit(lottosSum);

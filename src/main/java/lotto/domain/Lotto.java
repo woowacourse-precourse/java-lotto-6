@@ -16,14 +16,14 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         sizeValidate(numbers);
         uniqueValidate(numbers);
 
         this.numbers = numbers;
     }
 
-    private void sizeValidate(List<Integer> numbers) {
+    private void sizeValidate(final List<Integer> numbers) {
         if (numbers.size() != SIZE) {
             throw new IllegalArgumentException();
         }
@@ -42,7 +42,7 @@ public class Lotto {
         return numbers.toString();
     }
 
-    public LottoPlace calLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public LottoPlace calLottoResult(final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
 
         LottoResult correctResult = countCorrectNumbers(winningNumbers);
 
@@ -53,7 +53,7 @@ public class Lotto {
         return calLottoPlaceWithBonusNumber(bonusNumber);
     }
 
-    private LottoPlace calLottoPlaceWithBonusNumber(BonusNumber bonusNumber) {
+    private LottoPlace calLottoPlaceWithBonusNumber(final BonusNumber bonusNumber) {
         for (int number : numbers) {
             if (bonusNumber.isBonusNumber(number)) {
                 return LottoPlace.SECOND;
@@ -63,13 +63,13 @@ public class Lotto {
         return LottoPlace.THIRD;
     }
 
-    private LottoResult countCorrectNumbers(WinningNumbers winningNumbers) {
+    private LottoResult countCorrectNumbers(final WinningNumbers winningNumbers) {
         int count = countCorrectLottoNumber(winningNumbers);
 
         return getLottoCompareResult(count);
     }
 
-    private int countCorrectLottoNumber(WinningNumbers winningNumbers) {
+    private int countCorrectLottoNumber(final WinningNumbers winningNumbers) {
         int count = 0;
 
         for (int number : numbers) {
@@ -94,7 +94,7 @@ public class Lotto {
         return lottoResult;
     }
 
-    private static void uniqueValidate(List<Integer> pickedNumbers) {
+    private static void uniqueValidate(final List<Integer> pickedNumbers) {
         boolean[] alreadyChecked = new boolean[MAX_VALUE + 1];
 
         for (int number : pickedNumbers) {

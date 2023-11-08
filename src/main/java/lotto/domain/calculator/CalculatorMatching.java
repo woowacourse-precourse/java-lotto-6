@@ -4,7 +4,19 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CalculatorMatching {
+    public List<Rank> calculateRanks(List<Lotto> tickets, WinningNumber winningNumber, int bonusNumber) {
+        List<Rank> ranks = new ArrayList<>();
+        for (Lotto ticket : tickets) {
+            Rank rank = calculateRank(ticket, winningNumber, bonusNumber);
+            ranks.add(rank);
+        }
+        return ranks;
+    }
+
     private Rank calculateRank(Lotto ticket, WinningNumber winningNumber, int bonusNumber) {
         int matchingNumbers = countMatchingNumbers(ticket, winningNumber);
         boolean hasBonusNumber = ticket.getNumbers().contains(bonusNumber);

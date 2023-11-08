@@ -19,7 +19,6 @@ public class UserInputAdapter implements InputPort {
     public Integer readBudget() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
 
-        System.out.println(INPUT_PURCHASE_AMOUNT);
         while (true) {
             String input = Console.readLine();
             try {
@@ -42,7 +41,7 @@ public class UserInputAdapter implements InputPort {
                 if (isBudgetAmountZero) {
                     ExceptionHandler.handleException(new IllegalStateException(), "로또 구입 금액은 0원이 될 수 없습니다.");
                 }
-                boolean isBudgetAmountInvalid = Integer.parseInt(input) % 1000 == 0;
+                boolean isBudgetAmountInvalid = Integer.parseInt(input) % 1000 != 0;
                 if (isBudgetAmountInvalid) {
                     ExceptionHandler.handleException(new IllegalArgumentException(), "로또 구입 금액은 1000원 단위여야 합니다.");
                 }
@@ -52,6 +51,7 @@ public class UserInputAdapter implements InputPort {
 
             return Integer.parseInt(input);
         }
+
     }
 
     @Override

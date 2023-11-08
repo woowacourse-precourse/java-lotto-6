@@ -21,4 +21,8 @@ public class Lottos {
                 .mapToObj(i -> new Lotto(NumberGenerator.generateNumber()))
                 .collect(Collectors.toList());
     }
+
+    public Lotto getLotto(int index) {
+        return lottos.get(index);
+    }
 }

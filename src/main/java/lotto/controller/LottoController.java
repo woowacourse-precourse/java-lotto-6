@@ -13,7 +13,7 @@ import lotto.view.OrderView;
 import lotto.view.ResultView;
 
 public class LottoController {
-    public void run() {
+    public static void run() {
         int lottoCount = queryLottoCount();
 
         List<Lotto> randomLottos = new ArrayList<>();
@@ -30,7 +30,7 @@ public class LottoController {
         ResultView.printLottoStatistic(lottoStatistic);
     }
 
-    private WinningLotto tryGenerateWinningLotto(String numbers) {
+    private static WinningLotto tryGenerateWinningLotto(String numbers) {
         while (true) {
             try {
                 int bonusNumber = queryLottoBonusNumber();
@@ -41,7 +41,7 @@ public class LottoController {
         }
     }
 
-    private int queryLottoCount() {
+    private static int queryLottoCount() {
         while (true) {
             try {
                 String orderPrice = OrderView.askOrderPrice();
@@ -53,7 +53,7 @@ public class LottoController {
         }
     }
 
-    private String queryLottoNumbers() {
+    private static String queryLottoNumbers() {
         while (true) {
             try {
                 String numbers = LottoView.askLottoNumbers();
@@ -65,7 +65,7 @@ public class LottoController {
         }
     }
 
-    private int queryLottoBonusNumber() {
+    private static int queryLottoBonusNumber() {
         while (true) {
             try {
                 String bonus = LottoView.askBonusNumber();

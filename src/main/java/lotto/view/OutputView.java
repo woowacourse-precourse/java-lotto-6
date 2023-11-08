@@ -1,7 +1,6 @@
 package lotto.view;
 
 import lotto.constant.Rank;
-import lotto.domain.Lotto;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,9 +16,9 @@ public final class OutputView extends ConsoleView {
     private static final String ROI_FORMAT = "총 수익률은 %.1f%%입니다.";
     private static final String PRIZE_WITH_COMMA = "%,d";
 
-    public void displayLottos(List<Lotto> lottos) {
-        println(String.format(LOTTO_COUNT_MESSAGE, lottos.size()));
-        lottos.forEach(lotto -> println(lotto.numbers().toString()));
+    public void displayLottos(List<String> purchasedLotto) {
+        println(String.format(LOTTO_COUNT_MESSAGE, purchasedLotto.size()));
+        purchasedLotto.forEach(this::println);
         this.lineBreak();
     }
 

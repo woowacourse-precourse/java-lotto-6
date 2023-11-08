@@ -1,10 +1,13 @@
 package lotto.domain;
-import static java.util.Collections.*;
-import static lotto.utils.LottoValidateUtils.*;
+
+import static java.util.Collections.unmodifiableList;
+import static lotto.utils.LottoValidateUtils.validateLottoNumbers;
 
 import java.util.List;
 
-public record Lotto(List<Integer> numbers) {
+public final class Lotto {
+
+    private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {
         validateLottoNumbers(numbers);
@@ -13,8 +16,13 @@ public record Lotto(List<Integer> numbers) {
             .toList();
     }
 
-    @Override
     public List<Integer> numbers() {
         return unmodifiableList(numbers);
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }

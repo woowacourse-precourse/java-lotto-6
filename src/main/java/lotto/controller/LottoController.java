@@ -38,7 +38,10 @@ public final class LottoController {
 
     private List<Lotto> purchaseLotto(int purchaseAmount) {
         List<Lotto> lottos = lottoPurchaseService.buyLottos(purchaseAmount);
-        outputView.displayLottos(lottos);
+        List<String> purchasedLotto = lottos.stream()
+            .map(Lotto::toString)
+            .toList();
+        outputView.displayLottos(purchasedLotto);
         return lottos;
     }
 

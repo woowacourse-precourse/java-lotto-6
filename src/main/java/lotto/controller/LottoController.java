@@ -21,6 +21,7 @@ public class LottoController {
         bonusNumber = InputView.inputBonusNumber();
         OutputView.printAlertResultMessage();
         checkWinning();
+        calculateReturnRate(Money.amount);
     }
 
     public void buyLottos(int trial) {
@@ -52,5 +53,16 @@ public class LottoController {
             }
         }
         return count;
+    }
+
+    public void calculateReturnRate(int inputMoney) {
+        double profit = 0;
+        double returnRate;
+        for (int index = 0; index < 5; index++) {
+            Winning winning = Winning.values()[index];
+            profit += winning.getReward() * resultCounter[index];
+        }
+        returnRate = profit / inputMoney * 100;
+        OutputView.printReturnRate(returnRate);
     }
 }

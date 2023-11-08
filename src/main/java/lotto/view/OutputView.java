@@ -52,4 +52,8 @@ public class OutputView {
             System.out.println(status + " (" + reward + "원) - " + counter + "개");
         }
     }
+
+    public static void printReturnRate(double returnRate) {
+        System.out.println("총 수익률은 " + String.format("%.1f", returnRate) + "%입니다.");
+    }
 }

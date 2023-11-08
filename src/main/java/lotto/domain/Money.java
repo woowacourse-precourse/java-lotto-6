@@ -3,7 +3,7 @@ package lotto.domain;
 import lotto.view.InputView;
 
 public class Money {
-    private int amount;
+    public static int amount;
     public static final int DIVIDE_CONDITION = 1000;
 
     public Money() {

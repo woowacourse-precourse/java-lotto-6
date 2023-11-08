@@ -1,9 +1,7 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.enums.LottoInfo;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static lotto.enums.LottoInfo.MAX_NUMBER;

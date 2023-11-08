@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.enums.LottoPrize.*;
-
 /*
 public List<LottoResult> getCountingMatches(Lotto lotto, int bonus, List<List<Integer>> myLottos) {
     List<LottoResult> count = new ArrayList<>();

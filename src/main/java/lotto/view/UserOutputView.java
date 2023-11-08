@@ -42,7 +42,7 @@ public class UserOutputView {
     public static void winningStatistics(){
         System.out.println();
         System.out.println("당첨 통계");
-        LottoCompareController.lottoTicketsCompareNum();
+        LottoCompareController.getInstance().lottoTicketsCompareNum();
         System.out.println("---");
     }
 
@@ -55,7 +55,7 @@ public class UserOutputView {
     }
 
     public static void winningLottoRateResult(){
-        System.out.println("총 수익률은 " + LottoCompareController.winningLottoRate()+"%입니다.");
+        System.out.println("총 수익률은 " + LottoCompareController.getInstance().winningLottoRate()+"%입니다.");
     }
 
 

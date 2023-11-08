@@ -5,9 +5,17 @@ import lotto.domain.*;
 public class LottoCompareController {
 
 
+    public LottoCompareController() {
+    }
 
+    private static class LottoCompareControllerHolder{
+        private static final LottoCompareController lottoCompareController = new LottoCompareController();
+    }
 
-    public static void lottoTicketsCompareNum(){
+    public static LottoCompareController getInstance(){
+        return LottoCompareControllerHolder.lottoCompareController;
+    }
+    public  void lottoTicketsCompareNum(){
         WinningLotto.WinningLottoInit();
         for(Lotto lotto : LottoTickets.getBuyLottoTickets()){
             lottoCompareNum(lotto);
@@ -15,14 +23,14 @@ public class LottoCompareController {
 
     }
 
-    public static double winningLottoRate(){
+    public  double winningLottoRate(){
         double purchaseAmount = LottoTickets.getBuyLottoTickets().size() * 1000;
         double winningMoney =  winningMoney();
         double resultRate = winningMoney/purchaseAmount * 100;
         return Math.round(resultRate*100)/100.0;
     }
 
-    private static void lottoCompareNum(Lotto lotto){
+    private  void lottoCompareNum(Lotto lotto){
         int mathNum = 0;
         boolean bonusNum = false;
         for(Integer lottoNum : lotto.getNumbers()){
@@ -35,7 +43,7 @@ public class LottoCompareController {
         }
         increaseWinningDetails(mathNum,bonusNum);
     }
-    private static void increaseWinningDetails(int mathNum, boolean bonusNum){
+    private void increaseWinningDetails(int mathNum, boolean bonusNum){
         if(mathNum == 3){
             WinningLotto.increaseTreeSameNumLotto();
         }
@@ -55,7 +63,7 @@ public class LottoCompareController {
         }
     }
 
-    private static long winningMoney(){
+    private  long winningMoney(){
 
         return WinningMoney.FIRST.getWinningMoney() * WinningLotto.getSixSameNumLotto()
                 + WinningMoney.SECOND.getWinningMoney() * WinningLotto.getFiveAndBonusSameNumLotto()

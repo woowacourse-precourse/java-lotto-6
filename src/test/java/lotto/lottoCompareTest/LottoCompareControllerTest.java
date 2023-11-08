@@ -48,7 +48,7 @@ public class LottoCompareControllerTest extends NsTest {
                     run("8000", "1,2,3,4,5,6", "7");
 
 
-                    Assertions.assertThat(LottoCompareController.winningLottoRate()).isEqualTo(62.5);
+                    Assertions.assertThat(LottoCompareController.getInstance().winningLottoRate()).isEqualTo(62.5);
 
 
                 },

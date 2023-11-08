@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -12,7 +14,7 @@ public class Application {
         int purchaseAmount = getPurchaseAmount(console);
         int numberOfLottos = purchaseAmount / PRICE_LOTTO;
 
-        List<Lotto> lottos =
+        List<Lotto> lottos = buyLottos(numberOfLottos);
     }
 
     private static int getPurchaseAmount(Console console) {
@@ -32,5 +34,15 @@ public class Application {
             }
         }
         return purchaseAmount;
+    }
+
+    private static List<Lotto> buyLottos(int numberOfLottos) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < numberOfLottos; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
+        }
+        return lottos;
     }
 }

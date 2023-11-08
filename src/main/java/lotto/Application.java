@@ -25,4 +25,22 @@ public class Application {
 
         printResult(matchCounts, profitRate);
     }
+    private static int getPurchaseAmount() {
+        int purchaseAmount;
+        do {
+            System.out.print("구입 금액을 입력해주세요: ");
+            try {
+                purchaseAmount = Integer.parseInt(Console.readLine());
+                if (purchaseAmount < LOTTO_PRICE) {
+                    throw new IllegalArgumentException("[ERROR] 최소 1,000원 이상 입력하세요.");
+                }
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 올바른 숫자를 입력하세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
+        return purchaseAmount;
+
 }

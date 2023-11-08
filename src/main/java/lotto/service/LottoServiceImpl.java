@@ -1,9 +1,14 @@
 package lotto.service;
 
+import static lotto.enums.ViewMessageType.INPUT_SEPARATOR;
+
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.utils.GeneralValidator;
+
+import lotto.enums.ViewMessageType;
+import lotto.utils.LottoNumbersValidator;
 import lotto.utils.PaymentValidator;
 import lotto.utils.RandomNumberGenerator;
 
@@ -40,6 +45,16 @@ public class LottoServiceImpl implements LottoService {
                         MAX_LOTTO_NUMBER,
                         LOTTO_SIZE
                 )
+        );
+    }
+
+    @Override
+    public Lotto drawWinningNumbers(String numbersInput) {
+        LottoNumbersValidator.validateSeparator(numbersInput);
+        return new Lotto(
+                Arrays.stream(numbersInput.split(INPUT_SEPARATOR.getMessage()))
+                        .map(Integer::parseInt)
+                        .toList()
         );
     }
 }

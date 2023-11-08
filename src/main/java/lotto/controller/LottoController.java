@@ -1,22 +1,24 @@
 package lotto.controller;
 
 import static lotto.view.InputView.inputPayment;
+import static lotto.view.InputView.inputWinningNumbers;
 import static lotto.view.OutputView.printBuyLottoCount;
 
 import lotto.domain.Lottos;
-import lotto.domain.WinningNumbers;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.service.LottoServiceImpl;
-import lotto.view.InputView;
-import lotto.view.OutputView;
 
 public class LottoController {
     private Lottos lottos;
+    private WinningLotto winningLotto;
     private LottoService lottoService = LottoServiceImpl.getInstance();
 
     public void run() {
         buyLottos();
-        printBuyLottoCount(lottos.getLottoCount());
+        drawWinningNumbers();
+//        drawBonusNumber();
+//        calculateLotto();
     }
 
     private void buyLottos() {
@@ -28,6 +30,17 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
+        printBuyLottoCount(lottos.getLottoCount());
     }
 
+    private void drawWinningNumbers() {
+        while (true) {
+            try {
+                winningLotto.setWinningLotto(lottoService.drawWinningNumbers(inputWinningNumbers()));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

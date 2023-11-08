@@ -3,6 +3,8 @@ package lotto.domain;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Map;
+
 public class LottoGame {
     private LottoMachine lottoMachine;
     private Player player;
@@ -12,6 +14,7 @@ public class LottoGame {
     }
 
     public void run() {
+        int bonusNumber;
         int inputMoney = InputView.inputBuyMoney();
 
         player = purchaseLotto(inputMoney);
@@ -19,7 +22,10 @@ public class LottoGame {
         OutputView.showPlayerLotto(player, lottoMachine.calculatePurchaseCount());
 
         winningNumber = new Lotto(InputView.inputDrawingNumber());
-        int bonusNumber = InputView.inputBonusNumber();
+        bonusNumber = InputView.inputBonusNumber();
+        winningNumber.validateContainsBonusInLotto(bonusNumber);
+
+        Map<Rank, Integer> playerWinningDetails = player.checkWinning(winningNumber, bonusNumber);
     }
 
     private Player purchaseLotto(int inputMoney) {

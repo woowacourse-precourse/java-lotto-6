@@ -34,4 +34,13 @@ class LottoTest {
 
         assertThat(lotto.getNumbers()).isSorted();
     }
+
+    @DisplayName("보너스 번호가 당첨 번호에 중복되어 있으면 예외가 발생한다.")
+    @Test
+    void validateContainsBonusInLotto() {
+        assertThatThrownBy(
+                () -> new Lotto(List.of(1, 2, 3, 4, 5, 6)).validateContainsBonusInLotto(6))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
 }

@@ -19,6 +19,12 @@ public class Lotto {
                 .collect(Collectors.toList());
     }
 
+    public void validateContainsBonusInLotto(int bonus) {
+        if (numbers.contains(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또는 6개의 숫자가 필요합니다.");

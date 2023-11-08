@@ -25,4 +25,8 @@ public class Money {
             return validInputMoney(new InputView().askPrice());
         }
     }
+
+    public int getMoney() {
+        return money;
+    }
 }

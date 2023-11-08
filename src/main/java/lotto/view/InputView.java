@@ -1,18 +1,19 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.service.LottoService;
+import lotto.service.Validator;
 
 public class InputView {
+
     public static int inputPurchaseAmount() {
         try {
             String input = inputNotBlank();
-            Lotto.validateInputString(input);
-            int purchaseInput = Integer.parseInt(input);
-            Lotto.validateInputPurchaseAmount(purchaseInput);
-            return LottoService.amountPurchaseDivide(purchaseInput);
+            int purchaseAmount = Validator.purchaseAmountAndGet(input);
+            return LottoService.amountPurchaseDivide(purchaseAmount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputPurchaseAmount();
@@ -22,10 +23,7 @@ public class InputView {
     public static Lotto inputWinningNum() {
         try {
             String input = inputNotBlank();
-            List<Integer> winNumberList = Lotto.validateInputWinningNumber(input);
-            Lotto.validateNoDuplicates(winNumberList);
-            Lotto.validateNumberRange(winNumberList);
-            Lotto.validateSixNumbers(winNumberList);
+            List<Integer> winNumberList = Validator.lottoNumberAndGet(toIntList(input));
             return new Lotto(winNumberList);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -36,10 +34,7 @@ public class InputView {
     public static int inputBonusNum(Lotto winningNumbers) {
         try {
             String input = inputNotBlank();
-            Lotto.validateInputString(input);
-            Lotto.validateBonusNumberRange(Integer.parseInt(input), winningNumbers);
-            int bonusNumber = Integer.parseInt(input);
-            return bonusNumber;
+            return Validator.bonusNumberAndGet(input, winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBonusNum(winningNumbers);
@@ -48,7 +43,13 @@ public class InputView {
 
     private static String inputNotBlank() {
         String input = Console.readLine();
-        Lotto.validateIsBlank(input);
+        Validator.isBlank(input);
         return input;
+    }
+
+    private static List<Integer> toIntList(String input) {
+        return Arrays.asList(input.split(",")).stream()
+            .map(Integer::parseInt)
+            .toList();
     }
 }

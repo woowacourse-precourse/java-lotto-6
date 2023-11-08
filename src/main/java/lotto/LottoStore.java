@@ -17,9 +17,16 @@ public class LottoStore {
         myLottos = new ArrayList<Lotto>();
     }
     public void receiveMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        validateMoney(input);
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String input = Console.readLine();
+                validateMoney(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void validateMoney(String number) {

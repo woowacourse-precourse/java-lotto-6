@@ -16,7 +16,6 @@ public class LottoGameController {
     private boolean isGameOver = false;
 
     public void playGame() {
-        printStartMessage();
         while (!isGameOver) {
             try {
                 inputLottoPurchaseAmount();
@@ -34,10 +33,6 @@ public class LottoGameController {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    public void printStartMessage() {
-        inputView.printInputPurchaseAmountMessage();
     }
 
     public void inputLottoPurchaseAmount() {

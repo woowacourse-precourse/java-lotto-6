@@ -8,11 +8,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    public void printInputPurchaseAmountMessage() {
-        System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE.getMessage());
-    }
-
     public String inputPurchaseAmount() {
+        System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE.getMessage());
         return Console.readLine();
     }
 

@@ -51,13 +51,8 @@ public class LottoGameMachine {
 
     public List<Integer> createNumbers() {
         List<Integer> lottoNumbers = new ArrayList<>();
-        while (lottoNumbers.size() < 6) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!lottoNumbers.contains(randomNumber)) {
-                lottoNumbers.add(randomNumber);
-            }
-        }
-        Collections.sort(lottoNumbers);
+        lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        //Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
 

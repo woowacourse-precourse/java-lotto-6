@@ -1,6 +1,7 @@
 package lotto.model.entity;
 
 import java.util.List;
+import lotto.utils.Constants;
 import lotto.view.ExceptionMessage;
 
 public class Lotto {
@@ -13,7 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constants.CNT_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_COUNT.getMessage());
         }
     }

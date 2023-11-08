@@ -10,7 +10,8 @@ public class InputController {
 
     public static Cost inputPurchaseCost() {
         try {
-            return new Cost(InputTool.readLineByInputTool());
+            String inputPurchaseCost = InputTool.readLineByInputTool();
+            return new Cost(inputPurchaseCost);
         } catch (IllegalArgumentException e) {
             OutputView.outputFormatting(e.getMessage().toString());
             return inputPurchaseCost();
@@ -19,19 +20,21 @@ public class InputController {
 
     public static Winning inputWinningNumbers() {
         try {
-            return new Winning(InputTool.readLineByInputTool());
+            String inputWinningNumbers = InputTool.readLineByInputTool();
+            return new Winning(inputWinningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.outputFormatting(e.getMessage().toString());
             return inputWinningNumbers();
         }
     }
 
-    public static Bonus inputBonusNumber() {
+    public static Bonus inputBonusNumber(Winning winning) {
         try {
-            return new Bonus(InputTool.readLineByInputTool());
+            String inputBonusNumber = InputTool.readLineByInputTool();
+            return new Bonus(inputBonusNumber, winning);
         } catch (IllegalArgumentException e) {
             OutputView.outputFormatting(e.getMessage().toString());
-            return inputBonusNumber();
+            return inputBonusNumber(winning);
         }
     }
 }

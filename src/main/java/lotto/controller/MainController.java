@@ -87,7 +87,7 @@ public class MainController {
     private WeekWinning publishWeekWinning() {
         Winning winning = inputWinning();
         outputLineBreak();
-        Bonus bonus = inputBonus();
+        Bonus bonus = inputBonus(winning);
         outputLineBreak();
         return new WeekWinning(winning.getWinningNumbers(), bonus.getBonusNumber());
     }
@@ -97,9 +97,9 @@ public class MainController {
         return InputController.inputWinningNumbers();
     }
 
-    private Bonus inputBonus() {
+    private Bonus inputBonus(Winning winning) {
         outputFormatting(INPUT_BONUS.toString());
-        return InputController.inputBonusNumber();
+        return InputController.inputBonusNumber(winning);
     }
 
     private Long calculatePurchaseCount(Cost cost) {

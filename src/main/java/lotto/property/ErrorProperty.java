@@ -15,7 +15,8 @@ public enum ErrorProperty {
     FILED_MAPPER_IS_NOT_CORRECT_PARAMETER("Getter 사용시 잘못된 값이 포함되었습니다."),
     LOTTO_SIZE_IS_NOT_STANDARD("로또의 개수는 %s개 이어야합니다.".formatted(WINNING_SIZE)),
     LOTTO_RESULT_GENERATE_ERROR("로또 결과 생성중 에러가 발생하였습니다."),
-    WINNING_NUMBER_IS_DUPLICATE("당첨번호가 중복되어선 안됩니다");
+    WINNING_NUMBER_IS_DUPLICATE("당첨번호가 중복되어선 안됩니다"),
+    BONUS_NUMBER_IS_DUPLICATE("보너스 번호가 중복되어선 안됩니다");
 
     private String errorMessage;
 

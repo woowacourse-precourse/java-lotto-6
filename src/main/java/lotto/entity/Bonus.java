@@ -1,6 +1,7 @@
 package lotto.entity;
 
 import lotto.entity.mapper.FiledMapper;
+import lotto.property.ErrorProperty;
 import lotto.property.MethodProperty;
 
 import static lotto.property.ValidationProperty.BONUS;
@@ -10,17 +11,20 @@ public class Bonus {
 
     private final Integer bonusNumber;
 
-    public Bonus(String inputBonusNumber) {
-        this.bonusNumber = bonusNumberParsingForFieldValue(inputBonusNumber);
+    public Bonus(String inputBonusNumber, Winning winning) {
+        this.bonusNumber = bonusNumberParsingForFieldValue(inputBonusNumber, winning);
     }
 
-    private Integer bonusNumberParsingForFieldValue(String inputBonusNumber) {
-        validate(inputBonusNumber);
+    private Integer bonusNumberParsingForFieldValue(String inputBonusNumber, Winning winning) {
+        validate(inputBonusNumber, winning);
         return Integer.parseInt(inputBonusNumber);
     }
 
-    private void validate(String bonusNumber) {
+    private void validate(String bonusNumber, Winning winning) {
         verifyFormatForInputValue(BONUS, bonusNumber);
+        if (winning.getWinningNumbers().contains(Integer.parseInt(bonusNumber))) {
+            throw new IllegalArgumentException(ErrorProperty.BONUS_NUMBER_IS_DUPLICATE.toString());
+        }
     }
 
     public Integer getBonusNumber() {

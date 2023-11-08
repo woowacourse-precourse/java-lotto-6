@@ -1,10 +1,14 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Purchase {
     private int cost;
     private int amount;
+    private ArrayList<List<Integer>> tickets = new ArrayList<>();
 
     private void checkCost(String raw) {
         try {
@@ -39,10 +43,24 @@ public class Purchase {
         this.amount = this.cost / 1000;
     }
 
-    public int getAmount() {
+    private void randomNubmers() {
+        for (int i = 0; i < this.amount; i++) {
+            this.tickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        }
+    }
+
+    private void printTickets() {
+        for (List ticket: this.tickets) {
+            System.out.println(ticket.toString());
+        }
+    }
+
+    public void getTickets() {
         totalCost();
         calcAmount();
-        System.out.printf("\n%d개를 구매했습니다.", this.amount);
-        return this.amount;
+        System.out.printf("\n%d개를 구매했습니다.\n", this.amount);
+
+        randomNubmers();
+        printTickets();
     }
 }

@@ -62,6 +62,6 @@ class PurchaseLottoTest extends NsTest {
     @Override
     public void runMain() {
         purchase = new Purchase();
-        purchase.getAmount();
+        purchase.getTickets();
     }
 }

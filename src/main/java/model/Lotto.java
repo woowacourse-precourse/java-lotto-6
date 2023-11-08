@@ -31,5 +31,14 @@ public class Lotto {
 
         return count;
     }
-    // TODO: 추가 기능 구현
+
+    public boolean getLottoMatchBonus(int lottoBonusNumber) {
+        boolean result = false;
+        for (Integer number : numbers) {
+            if (number == lottoBonusNumber) {
+                result = true;
+            }
+        }
+        return result;
+    }
 }

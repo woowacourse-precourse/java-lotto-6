@@ -10,7 +10,7 @@
 - [X] 로또 개수만큼 중복되지 않는 6개의 무작위 숫자 생성 - LottoGenerator#getSeveralLotteries
   - [X] 6개의 무작위 숫자 생성 - RandomNumberGenerator#generateLottoNumbers
   - [X] 오름차순으로 정렬 - Lotto#Lotto
-- [ ] 발행한 로또 수량 및 번호 출력
+- [X] 발행한 로또 수량 및 번호 출력
 - [ ] 쉼표로 구분된 당첨 번호(6개의 숫자)를 입력 받음
   - [ ] 입력 예외 처리(콤마로 구분된 개수가 6개가 아닌 경우, 각 자리가 숫자가 아닌 경우, 1~45의 숫자가 아닌 경우, 숫자가 중복되는 경우)
   - [ ] 예외 처리 발생 시 다시 입력 받기

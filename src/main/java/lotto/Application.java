@@ -9,11 +9,6 @@ public class Application {
 
         List<Lotto> Lotteries = LottoGenerator.getSeveralLotteries(numPurchase);
 
-
-
-        System.out.println(numPurchase);
-        for (int i = 0; i < numPurchase; i++)  {
-            System.out.println(Lotteries.get(i).toString());
-        }
+        OutputPrinter.printLotteries(numPurchase, Lotteries);
     }
 }

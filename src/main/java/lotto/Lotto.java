@@ -16,6 +16,12 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public void printLottoNumber() {
+        System.out.print("[");
+        for (int i = 0; i < 6; i++) {
+            System.out.print(numbers.get(i));
+        }
+        System.out.println("]");
+    }
 
 }

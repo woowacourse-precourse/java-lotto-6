@@ -44,13 +44,12 @@ public class User {
         }
     }
 
-    public int inputValidatedBonusNumber() {
+    public WinningNumber inputValidatedWinningNumber(Lotto lotto) {
         while (true) {
             try {
                 System.out.println(Prompt.INPUT_BONUS_NUMBER.getMessage());
                 int bonusNumber = Integer.parseInt(Console.readLine().trim());
-                // WinningNumber 클래스 내의 검증 로직을 호출해야 함
-                return bonusNumber; // 검증에 성공하면 반환
+                return new WinningNumber(lotto, bonusNumber); // WinningNumber 객체 생성 시 검증
             } catch (NumberFormatException e) {
                 System.out.println(Error.INVALID_BONUS_NUMBER.getMessage());
             } catch (IllegalArgumentException e) {

@@ -10,6 +10,7 @@ public class Lotto {
     private static final Integer LOTTO_SIZE = 6;
     private static final String NOT_SIX_NUMBERS_ERROR_MESSAGE = "[ERROR] 로또 번호는 중복되선 안됩니다.";
     private static final String NOT_CORRECT_NUMBER_RANGE_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.";
+    private static final String SIZE_INSUFFICIENT_ERROR = "[ERROR] 로또 번호는 6개여야 합니다.";
 
     private final List<Integer> numbers;
 
@@ -22,7 +23,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(SIZE_INSUFFICIENT_ERROR);
         }
     }
 

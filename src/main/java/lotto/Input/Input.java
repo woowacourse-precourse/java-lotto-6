@@ -1,14 +1,8 @@
 package lotto.Input;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Lotto.Lotto;
-import lotto.Print.ErrorMessage;
 import lotto.Print.Print;
 import lotto.Validator.Validator;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Input {
 

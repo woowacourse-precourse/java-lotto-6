@@ -26,16 +26,18 @@ public class LottoService {
         }
         return validateAmountResponseDto.getLottoCount();
     }
-    public List<Integer> inputLottoNum(){
+    public Lotto inputLottoNum(){
         System.out.println("당첨 번호를 입력해주세요.");
         List<Integer> winningLottoNumbers = new ArrayList<>();
+
         String inputStr = Console.readLine();
         String[] input = inputStr.split(",");
 
         for (String numberStr : input) {
             winningLottoNumbers.add(validateLottoNum(numberStr));
         }
-        return winningLottoNumbers;
+        Lotto lotto = new Lotto(winningLottoNumbers);
+        return lotto;
     }
     public List<Lotto> getUserLottoNum(int lottoCount){
         List<Lotto> lottos = new ArrayList<>();
@@ -57,7 +59,7 @@ public class LottoService {
         int bonusNum = validateBonusNum(inputStr);
         return bonusNum;
     }
-    public LottoResultAndProfitResponseDto getLottoResultResponse(List<List<Integer>> lottoNumbers, List<Integer> winningLottoNumbers, int bonusNum){
+    public LottoResultAndProfitResponseDto getLottoResultResponse(List<Lotto> lottoNumbers, Lotto winningLottoNumbers, int bonusNum){
         int threeMatchingPrizeCount = 0;
         int fourMatchingPrizeCount = 0;
         int fiveMatchingPrizeCount = 0;
@@ -65,7 +67,7 @@ public class LottoService {
         int sixMatchingPrizeCount = 0;
         int matchingCount=0;
         LottoResultResponseDto lottoResultResponseDto = new LottoResultResponseDto();
-        for (List<Integer> userLotto : lottoNumbers) {
+        for (Lotto userLotto : lottoNumbers) {
             matchingCount = countMatchingNumbers(userLotto, winningLottoNumbers);
             lottoResultResponseDto.plus(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount, calculatePrizeCount(matchingCount,userLotto,bonusNum));
         }
@@ -91,8 +93,8 @@ public class LottoService {
         double totalProfitRate = (double) totalPrizeAmount / totalPurchasedAmount;
         return totalProfitRate * 100;
     }
-    private LottoResultResponseDto calculatePrizeCount(int matchingCount,List<Integer> userLotto,int bonusNum){
-
+    private LottoResultResponseDto calculatePrizeCount(int matchingCount,Lotto userLotto,int bonusNum){
+        List<Integer> userNumbers = userLotto.getNumbers();
         int threeMatchingPrizeCount = 0;
         int fourMatchingPrizeCount = 0;
         int fiveMatchingPrizeCount = 0;
@@ -104,7 +106,7 @@ public class LottoService {
             } else if (matchingCount == 4) {
                 fourMatchingPrizeCount++;
             } else if (matchingCount == 5) {
-                if (userLotto.contains(bonusNum)) {
+                if (userNumbers.contains(bonusNum)) {
                     fiveMatchingWithBonusBallPrizeCount++;
                 } else {
                     fiveMatchingPrizeCount++;
@@ -116,9 +118,11 @@ public class LottoService {
 
         return LottoResultResponseDto.of(threeMatchingPrizeCount, fourMatchingPrizeCount, fiveMatchingPrizeCount, fiveMatchingWithBonusBallPrizeCount, sixMatchingPrizeCount);
     }
-    private int countMatchingNumbers(List<Integer> userLotto, List<Integer> winningLottoNumbers) {
-        return (int) userLotto.stream()
-                .filter(winningLottoNumbers::contains)
+    private int countMatchingNumbers(Lotto userLotto, Lotto winningLottoNumbers) {
+        List<Integer> userNumbers = userLotto.getNumbers();
+        List<Integer> winningNumbers = winningLottoNumbers.getNumbers();
+        return (int) userNumbers.stream()
+                .filter(winningNumbers::contains)
                 .count();
     }
     private int validateBonusNum(String inputStr){

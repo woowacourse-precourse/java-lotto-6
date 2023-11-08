@@ -15,7 +15,7 @@ public class Application {
         LottoService lottoService = new LottoService();
         int lottoCount = lottoService.inputAmountAndGetLottoCount();
         List<Lotto> userLottoNum = lottoService.getUserLottoNum(lottoCount);
-        List<Integer> lottoNum = lottoService.inputLottoNum();
+        Lotto lottoNum = lottoService.inputLottoNum();
         int bonusNum = lottoService.getBonusNum();
         LottoResultAndProfitResponseDto lottoResultAndProfitResponseDto = lottoService.getLottoResultResponse(userLottoNum, lottoNum,bonusNum);
         lottoService.PrintResult(lottoResultAndProfitResponseDto);

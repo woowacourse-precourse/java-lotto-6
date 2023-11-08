@@ -67,4 +67,18 @@ public class LottoAgencyTest {
 
         assertThat(result).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("수익률을 구한다.")
+    void calculateTotalReturnRate() {
+        // given
+        long winningAmount = 5000L;
+        Integer purchasePrice = 1000;
+
+        // when
+        double result = lottoAgency.calculateTotalReturnRate(winningAmount, purchasePrice);
+
+        // then
+        assertThat(result).isEqualTo((double) 5000 / 1000 * 100);
+    }
 }

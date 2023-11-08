@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class PurchaseAmountTest {
     @DisplayName("model_PurchaseAmount_0이_입력_했을_때_예외_처리")
     @Test
-    public void model_PurchaseAmount_0_input() {
+    void model_PurchaseAmount_0_input() {
         int inputPurchaseAmount = 0;
 
         assertThatThrownBy(() -> new PurchaseAmount(inputPurchaseAmount))
@@ -19,7 +19,7 @@ class PurchaseAmountTest {
 
     @DisplayName("model_PurchaseAmount_1000000이_입력_했을_때_예외_처리")
     @Test
-    public void model_PurchaseAmount_1000000_input() {
+    void model_PurchaseAmount_1000000_input() {
         int inputPurchaseAmount = 1000000;
 
         assertThatThrownBy(() -> new PurchaseAmount(inputPurchaseAmount))
@@ -29,7 +29,7 @@ class PurchaseAmountTest {
 
     @DisplayName("model_PurchaseAmount_2001이_입력_했을_때_예외_처리")
     @Test
-    public void model_PurchaseAmount_2001_input() {
+    void model_PurchaseAmount_2001_input() {
         int inputPurchaseAmount = 2001;
 
         assertThatThrownBy(() -> new PurchaseAmount(inputPurchaseAmount))
@@ -39,7 +39,7 @@ class PurchaseAmountTest {
 
     @DisplayName("model_PurchaseAmount_2000이_입력_했을_때")
     @Test
-    public void model_PurchaseAmount_2000_input() {
+    void model_PurchaseAmount_2000_input() {
         int inputPurchaseAmount = 2000;
         PurchaseAmount purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
 
@@ -48,7 +48,7 @@ class PurchaseAmountTest {
 
     @DisplayName("model_PurchaseAmount_2000이_입력_했을_때_로또_수량")
     @Test
-    public void model_PurchaseAmount_count_lottoQuantity() {
+    void model_PurchaseAmount_count_lottoQuantity() {
         int inputPurchaseAmount = 2000;
         PurchaseAmount purchaseAmount = new PurchaseAmount(inputPurchaseAmount);
 

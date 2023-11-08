@@ -4,39 +4,62 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.List;;
+
 import lotto.config.WinningResultConfig;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 class WinningResultTest {
-    @DisplayName("model_Winning_result_개수에_따라_값_추가")
-    @Test
-    public void model_WinningResult_addResult() {
-        List<List<Integer>> userLottoNumbers = Arrays.asList(
+    private static List<List<Integer>> userLottoNumbers;
+    private static List<Integer> equalCounts;
+    private static List<String> bonus;
+    private static List<Result> results = new ArrayList<>();
+    private static WinningResult winningResult = new WinningResult();
+
+    @DisplayName("model_Winning_result_초기화")
+    @BeforeAll
+    static void model_Winning_result_initialize() {
+        userLottoNumbers = Arrays.asList(
                 Arrays.asList(3, 6, 8, 26, 44, 34),//2
                 Arrays.asList(1, 2, 3, 4, 29, 30),//4
                 Arrays.asList(1, 2, 3, 4, 5, 8),//5
                 Arrays.asList(1, 2, 3, 4, 5, 7),//5, 보너스 볼
                 Arrays.asList(1, 2, 3, 4, 5, 6)//6
         );
-        int bonusNumber = 7;
-        List<Integer> equalCounts = Arrays.asList(2 ,4 ,5, 5, 6);
-        List<String> bonus = Arrays.asList("","","","보너스 볼", "");
-        List<Result> results = new ArrayList<>();
+        equalCounts = Arrays.asList(2 ,4 ,5, 5, 6);
+        bonus = Arrays.asList("","","","보너스 볼", "");
 
         for (List<Integer> userNumbers : userLottoNumbers) {
-            Result result = new Result(userNumbers,
-                    equalCounts.get(userLottoNumbers.indexOf(userNumbers)),
-                    bonus.get(userLottoNumbers.indexOf(userNumbers)));
+            int currentIndex = userLottoNumbers.indexOf(userNumbers);
+
+            Result result = new Result(userNumbers, equalCounts.get(currentIndex), bonus.get(currentIndex));
             results.add(result);
         }
+    }
 
+    @DisplayName("model_WinningResult_object_생성")
+    @Test
+    @Order(1)
+    void model_WinningResult_object_create() {
+        assertAll(
+                () -> assertThat(winningResult.getWinningResults().keySet())
+                        .containsExactly(WinningResultConfig.THREE, WinningResultConfig.FOUR, WinningResultConfig.FIVE, WinningResultConfig.FIVE_AND_BONUS, WinningResultConfig.SIX),
+                () -> assertThat(winningResult.getWinningResults().values().stream()
+                        .filter(List::isEmpty).count()).isEqualTo(5)
+        );
+    }
+
+    @DisplayName("model_Winning_result_개수에_따라_값_추가")
+    @Test
+    @Order(2)
+    void model_WinningResult_addResult() {
         List<Result> filterResults =  results.stream()
                 .filter(result -> result.getEqualCount() >= Integer.parseInt(WinningResultConfig.THREE.getResultStatus()))
                 .toList();
 
-        WinningResult winningResult = new WinningResult();
         winningResult.addResult(filterResults);
 
         assertAll(

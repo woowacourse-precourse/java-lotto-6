@@ -20,10 +20,10 @@ public enum WinningResultConfig {
     }
 
     private static final Map<String, WinningResultConfig> byEqual =
-            Stream.of(values()).collect(Collectors.toMap(WinningResultConfig::getResultStatus, e -> e));
+            Stream.of(values()).collect(Collectors.toMap(WinningResultConfig::getResultStatus, status -> status));
 
-    public static WinningResultConfig objectOfEqual(String equal) {
-        return byEqual.get(equal);
+    private static WinningResultConfig objectOfEqual(String equalStatus) {
+        return byEqual.get(equalStatus);
     }
 
     public static WinningResultConfig findWinningResultConfig(int equalCount, String bonus) {
@@ -32,7 +32,6 @@ public enum WinningResultConfig {
             return WinningResultConfig.FIVE_AND_BONUS;
         }
         return objectOfEqual(Long.toString(equalCount));
-
     }
 
     public String getResultStatus() { return resultStatus; }

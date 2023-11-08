@@ -1,20 +1,14 @@
 package lotto.model;
 
 import lotto.config.WinningResultConfig;
-import java.util.Map;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.ArrayList;
+
+import java.util.*;
 
 public class WinningResult {
     private final Map<WinningResultConfig, List<Result>> winningResults = new LinkedHashMap<>();
 
     public WinningResult() {
-        winningResults.put(WinningResultConfig.THREE, new ArrayList<>(10));
-        winningResults.put(WinningResultConfig.FOUR, new ArrayList<>(10));
-        winningResults.put(WinningResultConfig.FIVE, new ArrayList<>(10));
-        winningResults.put(WinningResultConfig.FIVE_AND_BONUS, new ArrayList<>(10));
-        winningResults.put(WinningResultConfig.SIX, new ArrayList<>(10));
+        Arrays.asList(WinningResultConfig.values()).forEach(config -> winningResults.put(config, new ArrayList<>(10)));
     }
 
     public void addResult(List<Result> results) {

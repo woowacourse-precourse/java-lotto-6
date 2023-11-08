@@ -13,15 +13,15 @@ public class UserLotto {
         autoSelectLotto(lottoQuantity);
     }
 
-    private List<Integer> sortedUserLottoNumbers(List<Integer> randomPickNumbers) {
-        return randomPickNumbers.stream().sorted().collect(Collectors.toList());
-    }
-
     private void autoSelectLotto(int lottoQuantity) {
         while (lottoQuantity > ZERO.getValue()) {
             userLottoNumbers.add(sortedUserLottoNumbers(randomPickNumber()));
             lottoQuantity--;
         }
+    }
+
+    private List<Integer> sortedUserLottoNumbers(List<Integer> randomPickNumbers) {
+        return randomPickNumbers.stream().sorted().collect(Collectors.toList());
     }
 
     private List<Integer> randomPickNumber() {

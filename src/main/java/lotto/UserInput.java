@@ -50,15 +50,12 @@ public class UserInput {
                 //Array보다는  Collections 사용! - 1주차 피드백
                 //변수 이름에 자료형&자료구조 사용하지 마! - 2주차 피드백
                 splittedWinningNumbersInput = splitNumbers(winningNumbersInput);
+
                 validateWinningNumbers(splittedWinningNumbersInput);
 
                 validateDuplicates(splittedWinningNumbersInput);
 
-                //나중에 for-each 문 개별 함수화 리팩토링!
-                for (var number : splittedWinningNumbersInput) {
-                    Integer.parseInt(number);
-                    winningNumbers.add(Integer.valueOf(number));
-                }
+                saveIntWinningNumbers(splittedWinningNumbersInput, winningNumbers);
 
                 break;
             } catch (NumberFormatException e) {
@@ -77,6 +74,16 @@ public class UserInput {
         splittedWinningNumbersInput = Arrays.asList(winningNumbersInput.split(","));
 
         return splittedWinningNumbersInput;
+    }
+
+    private List<Integer> saveIntWinningNumbers(List<String> splittedWinningNumbersInput, List<Integer> winningNumbers){
+
+        for (var number : splittedWinningNumbersInput) {
+            Integer.parseInt(number);
+            winningNumbers.add(Integer.valueOf(number));
+        }
+
+        return winningNumbers;
     }
 
 

@@ -52,6 +52,35 @@ class LottoControllerTest extends NsTest {
         );
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2", "1", "\n", "1,2,3,4,5,6,7"})
+    void 당첨_번호_길이_입력_예외_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException("5000", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {",,,,,,", "1/2/3/4/5/6", "1.2.3.4.5.6", "1?2?3,4?5,6"})
+    void 당첨_번호_특수_입력_예외_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException("5000", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6", "4,5,6,7,8,9"})
+    void 당첨_번호_정상_입력_테스트(String input) {
+        assertSimpleTest(
+                () -> {
+                    runException("5000", input);
+                    assertThat(output()).contains();
+                }
+        );
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

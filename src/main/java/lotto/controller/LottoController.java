@@ -35,15 +35,13 @@ public class LottoController {
     }
 
     private Money generateMoney() {
-        Money money;
         try {
             output.printInputPurchaseAmountMessage();
-            money = new Money(input.getUserAmount());
+            return new Money(input.getUserAmount());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            money = generateMoney();
+            return (generateMoney());
         }
-        return money;
     }
 
     private List<Lotto> buyLottos(LottoQuantity lottoQuantity) {

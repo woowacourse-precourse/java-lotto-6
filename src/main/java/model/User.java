@@ -1,6 +1,6 @@
 package model;
 
-import service.LottoEnum;
+import service.Lottoenum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +40,11 @@ public class User {
         }
     }
     public void giveMoney(){
-        this.money = this.fifth * LottoEnum.FIFTH.getMoney()+
-                this.fourth * LottoEnum.FOURTH.getMoney()+
-                this.third * LottoEnum.THIRD.getMoney()+
-                this.second * LottoEnum.SECOND.getMoney()+
-                this.first * LottoEnum.FIRST.getMoney();
+        this.money = this.fifth * Lottoenum.FIFTH.getMoney()+
+                this.fourth * Lottoenum.FOURTH.getMoney()+
+                this.third * Lottoenum.THIRD.getMoney()+
+                this.second * Lottoenum.SECOND.getMoney()+
+                this.first * Lottoenum.FIRST.getMoney();
     }
 
     public int getPrice() {

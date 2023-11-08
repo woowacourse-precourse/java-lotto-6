@@ -15,9 +15,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
         Validator validator = new Validator();
         validator.checkNull(numbers.toString());
         validator.checkDuplicate(numbers);
+
     }
 
     public List<Integer> getNumbers() {

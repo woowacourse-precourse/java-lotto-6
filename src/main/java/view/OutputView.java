@@ -2,13 +2,13 @@ package view;
 
 import model.Lotto;
 import model.User;
-import service.LottoEnum;
+import service.Lottoenum;
 
 import java.util.List;
 
 public class OutputView {
     public void printLottoCount(User user){
-        System.out.printf("%d개를 구매했습니다.\n", user.getPrice()/LottoEnum.LOTTOPRICE.getMoney());
+        System.out.printf("%d개를 구매했습니다.\n", user.getPrice()/ Lottoenum.LOTTOPRICE.getMoney());
         printLottoNumbers(user.getLottoList());
     }
     public void printLottoNumbers(List<Lotto> lottoList){

@@ -7,8 +7,6 @@ import model.WinningNumber;
 import validate.ErrorMessageenum;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LottoService {
     public List<Integer> makeWinningNumber(String number){
@@ -29,7 +27,7 @@ public class LottoService {
 
     public List<Lotto> makeLottoList(int price){
         List<Lotto> lottoList = new ArrayList<>();
-        int lotto_count = price/LottoEnum.LOTTOPRICE.getMoney();
+        int lotto_count = price/ Lottoenum.LOTTOPRICE.getMoney();
         for(int i = 0; i<lotto_count;i++){
             lottoList.add(generateLottoNumber());
         }

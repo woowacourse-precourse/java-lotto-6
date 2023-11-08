@@ -1,6 +1,6 @@
 package service;
 
-public enum LottoEnum {
+public enum Lottoenum {
     LOTTOPRICE(1000),
     FIFTH(5000),
     FOURTH(50000),
@@ -9,7 +9,7 @@ public enum LottoEnum {
     FIRST(2000000000);
     private int money;
 
-    LottoEnum( int money) {
+    Lottoenum(int money) {
         this.money = money;
     }
 

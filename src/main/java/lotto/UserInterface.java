@@ -15,10 +15,10 @@ public class UserInterface {
         try {
             System.out.println("구입금액을 입력해 주세요");
             Integer money = Integer.parseInt(Console.readLine());
-
             return money;
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
+        }catch(NumberFormatException t){
+            System.out.println("[ERROR] 숫자를 입력해 주세요");
+            return buyLottoInput();
         }
     }
     public static Integer moneyValidate(Integer money){
@@ -95,8 +95,8 @@ public class UserInterface {
         System.out.println("6개 일치 (2,000,000,000원) - " + judgeresult.get(0).getCounts() + "개");
     }
     // 수익률을 출력하기
-    public void printPrizeRate(long prizeRate){
-        System.out.println("총 수익률은 " + prizeRate + "입니다.");
+    public void printPrizeRate(Double prizeRate){
+        System.out.println("총 수익률은 " + prizeRate + "%입니다.");
     }
 
 

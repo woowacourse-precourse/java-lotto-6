@@ -67,9 +67,10 @@ public class Customer {
         prize += (results.get(4).getCounts() * 5000);
         return prize;
     }
-    public long calculatePrizeRate(Integer prize, Integer money){
+    public Double calculatePrizeRate(Integer prize, Integer money){
         Double prizeRate = Double.valueOf(prize) / Double.valueOf(money);
+        Double result = ((prizeRate * 100.0) * 10.0) / 10.0;
 
-        return Math.round(prizeRate);
+        return result;
     }
 }

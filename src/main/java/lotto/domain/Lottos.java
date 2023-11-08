@@ -27,6 +27,4 @@ public class Lottos {
         return lottos.stream().map(Lotto::getNumber)
                 .collect(Collectors.toList());
     }
-
-
 }

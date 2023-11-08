@@ -12,6 +12,5 @@ public class Application {
         } catch (Exception e) {
             System.out.println(ERROR_PREFIX + e.getMessage());
         }
-
     }
 }

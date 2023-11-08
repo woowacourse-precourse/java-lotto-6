@@ -39,7 +39,5 @@ public class OutputView {
 
         System.out.println(String.format(PRINT_PROFIT_MESSAGE, profit));
     }
-
-
 }
 

@@ -18,9 +18,9 @@ class LottoResultTest {
     @DisplayName("수익률 계산 성공 테스트")
     @ParameterizedTest()
     @MethodSource("calculateBenefitSuccessDummy")
-    void calculateBenefitSuccessTest(LottoResult lottoResult, Integer totalSpendAmount,
-        Double expected) {
-        Double result = lottoResult.getRoundedTotalBenefit(totalSpendAmount);
+    void calculateBenefitSuccessTest(final LottoResult lottoResult, final Integer totalSpendAmount,
+        final Double expected) {
+        final Double result = lottoResult.getRoundedTotalBenefit(totalSpendAmount);
         assertEquals(expected, result);
     }
 

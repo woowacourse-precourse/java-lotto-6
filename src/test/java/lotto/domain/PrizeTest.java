@@ -20,8 +20,8 @@ class PrizeTest {
 	@DisplayName("생성 성공 테스트")
 	@ParameterizedTest()
 	@MethodSource("createPrizeSuccessDummy")
-	void createPrizeSuccessTest(Integer countOfSameNumber, Boolean checkBonus, Prize expected) {
-		Prize result = Prize.of(countOfSameNumber, checkBonus);
+	void createPrizeSuccessTest(final Integer countOfSameNumber, final Boolean checkBonus, final Prize expected) {
+		final Prize result = Prize.of(countOfSameNumber, checkBonus);
 		assertEquals(expected.getCountOfMatchedNumber(), result.getCountOfMatchedNumber());
 		assertEquals(expected.isBonusNumber(), result.isBonusNumber());
 		assertEquals(expected.getReward(), result.getReward());

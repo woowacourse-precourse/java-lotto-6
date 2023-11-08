@@ -8,26 +8,26 @@ import static lotto.util.CharacterUnits.SEPARATOR;
 
 public class Parser {
 
-	public static List<Integer> parseNumbers(String input) {
+	public static List<Integer> parseNumbers(final String input) {
 		List<String> numberDummy = parseSeparator(input);
 		return parseNumberDummy(numberDummy);
 	}
 
 
-	public static List<String> parseSeparator(String input) {
+	public static List<String> parseSeparator(final String input) {
 		return Arrays.stream(input
 				.split(SEPARATOR.getUnit()))
 			.toList();
 	}
 
-	public static List<Integer> parseNumberDummy(List<String> numberDummy) {
+	public static List<Integer> parseNumberDummy(final List<String> numberDummy) {
 		return numberDummy.stream()
 			.map(Parser::parseInt)
 			.collect(Collectors.toList());
 	}
 
 
-	public static Integer parseInt(String input) {
+	public static Integer parseInt(final String input) {
 		try {
 			return Integer.parseInt(input);
 		} catch (NumberFormatException e) {

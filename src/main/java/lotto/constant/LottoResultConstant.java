@@ -10,7 +10,7 @@ public enum LottoResultConstant {
 
     private final Double setting;
 
-    LottoResultConstant(Double setting) {
+    LottoResultConstant(final Double setting) {
         this.setting = setting;
     }
 

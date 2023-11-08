@@ -6,7 +6,7 @@ public enum CashConstant {
 
 	private final Integer setting;
 
-	CashConstant(Integer setting) {
+	CashConstant(final Integer setting) {
 		this.setting = setting;
 	}
 

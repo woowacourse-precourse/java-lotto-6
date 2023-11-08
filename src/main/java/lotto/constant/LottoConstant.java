@@ -1,7 +1,6 @@
 package lotto.constant;
 
 public enum LottoConstant {
-    INIT_BUILDER_SIZE(0),
     REPLACE_SIZE(2),
     LOTTO_LENGTH(6),
     RANGE_START_NUMBER(1),
@@ -9,7 +8,7 @@ public enum LottoConstant {
 
     private final Integer setting;
 
-    LottoConstant(Integer setting) {
+    LottoConstant(final Integer setting) {
         this.setting = setting;
     }
 

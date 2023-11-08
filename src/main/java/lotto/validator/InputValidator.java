@@ -38,7 +38,7 @@ public class InputValidator {
 	}
 
 	public static void validateWinnerNumberFormat(final String winnerNumberFormat) {
-		List<String> winnerNumberDummy = Parser.parseSeparator(winnerNumberFormat);
+		final List<String> winnerNumberDummy = Parser.parseSeparator(winnerNumberFormat);
 		validateSpecialSign(winnerNumberDummy);
 		validatePositiveNumbers(winnerNumberDummy);
 		validateNumbers(winnerNumberDummy);
@@ -53,20 +53,20 @@ public class InputValidator {
 	}
 
 	private static void validatePositiveNumbers(final List<String> numberDummy) {
-		for (String number : numberDummy) {
+		for (final String number : numberDummy) {
 			validatePositiveNumber(number);
 		}
 	}
 
 	private static void validatePositiveNumber(final String input) {
-		Integer number = Parser.parseInt(input);
+		final Integer number = Parser.parseInt(input);
 		if (ZERO > number) {
 			throw new IllegalArgumentException(NOT_POSITIVE_NUMBER.getMessage());
 		}
 	}
 
 	private static void validateNumber(final String input) {
-		for (char token : input.toCharArray()) {
+		for (final char token : input.toCharArray()) {
 			if (isNotNumberToken(token)) {
 				throw new IllegalArgumentException(NOT_NUMBER.getMessage());
 			}
@@ -80,7 +80,7 @@ public class InputValidator {
 	}
 
 	private static void validateRangeNumber(final String number) {
-		Integer parsedNumber = Parser.parseInt(number);
+		final Integer parsedNumber = Parser.parseInt(number);
 		if (!(RANGE_START_NUMBER.getSetting() <= parsedNumber
 			&& parsedNumber <= RANGE_END_NUMBER.getSetting())) {
 			throw new IllegalArgumentException(WRONG_BONUS_NUMBER_RANGE.getMessage());
@@ -108,14 +108,14 @@ public class InputValidator {
 	}
 
 	private static void validateNumbers(final List<String> numbers) {
-		for (String number : numbers) {
+		for (final String number : numbers) {
 			validateRangeNumber(number);
 			validateNumber(number);
 		}
 	}
 
 	private static void validateSpecialSign(final List<String> numbers) {
-		for (String number : numbers) {
+		for (final String number : numbers) {
 			validateSpecialSignToken(number);
 		}
 	}

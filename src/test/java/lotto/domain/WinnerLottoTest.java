@@ -15,8 +15,8 @@ class WinnerLottoTest {
 	@DisplayName("입력한 번호의 개수가 6개가 아니면 예외 발생")
 	@ParameterizedTest
 	@MethodSource("wrongNumbersSizeDummy")
-	void createWinnerLottoWithWrongNumberSizeExceptionTest(List<Integer> winnerNumbers,
-		Integer bonusNumber) {
+	void createWinnerLottoWithWrongNumberSizeExceptionTest(final List<Integer> winnerNumbers,
+		final Integer bonusNumber) {
 		assertThatThrownBy(() -> WinnerLotto.create(winnerNumbers, bonusNumber))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
@@ -24,8 +24,8 @@ class WinnerLottoTest {
 	@DisplayName("당첨 번호에 중복된 숫자를 입력한 경우 예외 발생")
 	@ParameterizedTest
 	@MethodSource("duplicatedNumberInNumbersDummy")
-	void createWinnerLottoWithDuplicatedNumberInNumbersExceptionTest(List<Integer> winnerNumbers,
-		Integer bonusNumber) {
+	void createWinnerLottoWithDuplicatedNumberInNumbersExceptionTest(final List<Integer> winnerNumbers,
+		final Integer bonusNumber) {
 		assertThatThrownBy(() -> WinnerLotto.create(winnerNumbers, bonusNumber))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
@@ -34,7 +34,7 @@ class WinnerLottoTest {
 	@ParameterizedTest
 	@MethodSource("duplicatedNumberBetweenNumbersAndBonusNumber")
 	void createWinnerLottoWithDuplicatedNumberBetweenNumbersAndBonusNumberExceptionTest(
-		List<Integer> winnerNumbers, Integer bonusNumber) {
+		final List<Integer> winnerNumbers, final Integer bonusNumber) {
 		assertThatThrownBy(() -> WinnerLotto.create(winnerNumbers, bonusNumber))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
@@ -42,7 +42,7 @@ class WinnerLottoTest {
 	@DisplayName("당첨 로또 생성 성공")
 	@ParameterizedTest
 	@MethodSource("createWinneLottoSuccessDummy")
-	void createWinnerLottoSuccessTest(List<Integer> winnerNumbers, Integer bonusNumber) {
+	void createWinnerLottoSuccessTest(final List<Integer> winnerNumbers, final Integer bonusNumber) {
 		assertDoesNotThrow(() -> WinnerLotto.create(winnerNumbers, bonusNumber));
 	}
 

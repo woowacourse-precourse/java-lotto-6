@@ -7,7 +7,7 @@ public enum LottoExceptionMessage {
 
 	private final String message;
 
-	LottoExceptionMessage(String message) {
+	LottoExceptionMessage(final String message) {
 		this.message = message;
 	}
 

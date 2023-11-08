@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import static lotto.exception.WinnerExceptionMessage.DUPLICATED_NUMBER_BETWEEN_WINNER_NUMBER_AND_BONUS_NUMBER;
 
-
 public class WinnerLotto {
 
 	private final List<Integer> winnerNumbers;

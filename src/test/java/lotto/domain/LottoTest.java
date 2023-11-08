@@ -34,7 +34,7 @@ class LottoTest {
 	@DisplayName("로또 번호의 개수가 6개가 넘어가면 예외 발생")
 	@ParameterizedTest
 	@MethodSource("numbersOverSizeDummy")
-	void createLottoByOverSizeTest(List<Integer> numbersOverSize) {
+	void createLottoByOverSizeTest(final List<Integer> numbersOverSize) {
 		assertThrows(IllegalArgumentException.class,
 			() -> Lotto.create(numbersOverSize));
 
@@ -43,7 +43,7 @@ class LottoTest {
 	@DisplayName("로또 번호의 개수가 6개 보다 적으면 예외 발생")
 	@ParameterizedTest
 	@MethodSource("numbersSmallSizeDummy")
-	void createLottoBySmallSizeTest(List<Integer> numbersSmallSize) {
+	void createLottoBySmallSizeTest(final List<Integer> numbersSmallSize) {
 		assertThrows(IllegalArgumentException.class,
 			() -> Lotto.create(numbersSmallSize));
 
@@ -52,7 +52,7 @@ class LottoTest {
 	@DisplayName("로또 번호에 중복된 숫자가 있으면 예외 발생")
 	@ParameterizedTest
 	@MethodSource("duplicatedNumbersDummy")
-	void createLottoByDuplicatedNumbersTest(List<Integer> duplicatedNumbers) {
+	void createLottoByDuplicatedNumbersTest(final List<Integer> duplicatedNumbers) {
 		assertThrows(IllegalArgumentException.class,
 			() -> Lotto.create(duplicatedNumbers));
 	}
@@ -60,7 +60,7 @@ class LottoTest {
 	@DisplayName("로또 번호에 허용 범위를 벗어난 숫자가 있으면 예외 발생")
 	@ParameterizedTest
 	@MethodSource("overRangeNumbersDummy")
-	void createLottoByOverRangeNumbersTest(List<Integer> overRangeNumbers) {
+	void createLottoByOverRangeNumbersTest(final List<Integer> overRangeNumbers) {
 		assertThrows(IllegalArgumentException.class,
 			() -> Lotto.create(overRangeNumbers));
 	}
@@ -69,16 +69,16 @@ class LottoTest {
 	@DisplayName("생성 성공 테스트")
 	@ParameterizedTest()
 	@MethodSource("lottoNumbersDummy")
-	void createLottoSuccessTest(List<Integer> lottoNumbers) {
+	void createLottoSuccessTest(final List<Integer> lottoNumbers) {
 		assertDoesNotThrow(() -> Lotto.create(lottoNumbers));
 	}
 
 	@DisplayName("당첨 로또와 비교 기능 테스트")
 	@ParameterizedTest()
 	@MethodSource("compareWinnerLottoSuccessDummy")
-	void compareWinnerLottoSuccessTest(Lotto lotto, List<Integer> winnerNumbers,
-		Integer bonusNumber, Prize expected) {
-		Prize result = lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber);
+	void compareWinnerLottoSuccessTest(final Lotto lotto, final List<Integer> winnerNumbers,
+		final Integer bonusNumber, Prize expected) {
+		final Prize result = lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber);
 		assertEquals(expected.getCountOfMatchedNumber(), result.getCountOfMatchedNumber());
 		assertEquals(expected.isBonusNumber(), result.isBonusNumber());
 	}
@@ -86,8 +86,8 @@ class LottoTest {
 	@DisplayName("로또 번호 문자열로 표현하는 기능 테스트")
 	@ParameterizedTest
 	@MethodSource("toStringSuccessDummy")
-	void toStringSuccessTest(Lotto lotto, String expected) {
-		String result = lotto.toString();
+	void toStringSuccessTest(final Lotto lotto, final String expected) {
+		final String result = lotto.toString();
 		assertThat(result.equals(expected)).isTrue();
 	}
 

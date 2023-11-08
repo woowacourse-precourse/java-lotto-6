@@ -9,7 +9,7 @@ public enum WinnerExceptionMessage {
 		"[ERROR] 입력하신 당첨 번호와 보너스 번호 중에 중복된 숫자가 있습니다. 중복되지 않는 숫자를 입력해주세요.");
 	private final String message;
 
-	WinnerExceptionMessage(String message) {
+	WinnerExceptionMessage(final String message) {
 		this.message = message;
 	}
 

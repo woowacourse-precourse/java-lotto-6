@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @DisplayName("입력 처리")
 class InputViewTest extends IOTest {
 
-	private InputView inputView = new InputView();
+	private final InputView inputView = new InputView();
 
 
 	@DisplayName("현금 입력값 정상적으로 받아오는 경우")
 	@ParameterizedTest()
 	@ValueSource(strings = {"1000", "2000", "3000", "4000", "5000"})
-	void createCashByInputSuccessTest(String input) {
+	void createCashByInputSuccessTest(final String input) {
 		assertDoesNotThrow(() -> {
 			systemIn(input);
 			inputView.requestCash();
@@ -27,7 +27,7 @@ class InputViewTest extends IOTest {
 	@DisplayName("현금 입력시 숫자 이외의 값을 입력한 경우 예외 발생")
 	@ParameterizedTest()
 	@ValueSource(strings = {"100f", "hello", "$%%", "40re", "ㅋㅋㅋ"})
-	void createCashByNotNumberInputExceptionTest(String input) {
+	void createCashByNotNumberInputExceptionTest(final String input) {
 		assertThrows(IllegalArgumentException.class,
 			() -> {
 				systemIn(input);
@@ -40,7 +40,7 @@ class InputViewTest extends IOTest {
 	@DisplayName("현금 입력시 공백을 입력한 경우 예외 발생")
 	@ParameterizedTest()
 	@ValueSource(strings = {" "})
-	void createCashByBlankInputExceptionTest(String input) {
+	void createCashByBlankInputExceptionTest(final String input) {
 		assertThrows(IllegalStateException.class,
 			() -> {
 				systemIn(input);
@@ -53,7 +53,7 @@ class InputViewTest extends IOTest {
 	@ParameterizedTest()
 	@ValueSource(strings = {"1,2,3,4,5,6", "1,2,3,4,5,9", "1,2,3,4,5,11", "1,2,3,4,5,12",
 		"1,2,3,4,5,42"})
-	void createWinnerNumbersSuccessTest(String input) {
+	void createWinnerNumbersSuccessTest(final String input) {
 		assertDoesNotThrow(() -> {
 			systemIn(input);
 			inputView.requestWinnerNumbers();
@@ -65,7 +65,7 @@ class InputViewTest extends IOTest {
 	@ParameterizedTest()
 	@ValueSource(strings = {"1,2,3,4,5,z", "1,2,3,4,5,% ", "1,2,3,4,5,ㅎ ", "1,2,3,4,5,!",
 		"1,2,3,4,5,."})
-	void createWinnerNumbersWithNotNumberExceptionTest(String input) {
+	void createWinnerNumbersWithNotNumberExceptionTest(final String input) {
 		assertThrows(IllegalArgumentException.class,
 			() -> {
 				systemIn(input);
@@ -78,7 +78,7 @@ class InputViewTest extends IOTest {
 	@ParameterizedTest()
 	@ValueSource(strings = {"1, 2, 3, 4, 5, 6", "1/2/3/4/5/6 ", "1-2-3-4-5-6", "1,2,3,4,5,6,",
 		",1,2,3,4,5,6"})
-	void createWinnerNumbersWithWrongNumbersSizeExceptionTest(String input) {
+	void createWinnerNumbersWithWrongNumbersSizeExceptionTest(final String input) {
 		assertThrows(IllegalArgumentException.class,
 			() -> {
 				systemIn(input);
@@ -91,7 +91,7 @@ class InputViewTest extends IOTest {
 	@DisplayName("당첨 번호 입력시 공백을 입력한 경우 예외 발생")
 	@ParameterizedTest()
 	@ValueSource(strings = {" "})
-	void createWinnerNumbersWithBlankExceptionTest(String input) {
+	void createWinnerNumbersWithBlankExceptionTest(final String input) {
 		assertThrows(IllegalStateException.class,
 			() -> {
 				systemIn(input);
@@ -104,7 +104,7 @@ class InputViewTest extends IOTest {
 	@DisplayName("보너스 번호를 정상적으로 받아오는 경우")
 	@ParameterizedTest()
 	@ValueSource(strings = {"1", "12", "22", "38", "39"})
-	void createBonusNumberSuccessTest(String input) {
+	void createBonusNumberSuccessTest(final String input) {
 		assertDoesNotThrow(() -> {
 			systemIn(input);
 			inputView.requestBonusNumber();
@@ -115,7 +115,7 @@ class InputViewTest extends IOTest {
 	@DisplayName("입력한 보너스 번호에 숫자가 아닌 값이 있는 경우 예외 발생")
 	@ParameterizedTest()
 	@ValueSource(strings = {"1ㅋ", "12#", "..", "hello", "3 "})
-	void createBonusNumberWithNotNumberExceptionTest(String input) {
+	void createBonusNumberWithNotNumberExceptionTest(final String input) {
 		assertThrows(IllegalArgumentException.class,
 			() -> {
 				systemIn(input);
@@ -127,7 +127,7 @@ class InputViewTest extends IOTest {
 	@DisplayName("보너스 번호를 입력시 공백을 입력한 경우 예외 발생")
 	@ParameterizedTest()
 	@ValueSource(strings = {" "})
-	void createBonusNumberWithBlankExceptionTest(String input) {
+	void createBonusNumberWithBlankExceptionTest(final String input) {
 		assertThrows(IllegalStateException.class,
 			() -> {
 				systemIn(input);

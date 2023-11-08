@@ -35,7 +35,7 @@ public class OutputView {
 			.append(String.format(PURCHASED_LOTTOS_MESSAGE_FORMAT.getMessage(), lottos.getCount()))
 			.append(ENTER.getUnit());
 
-		for (Lotto lotto : lottos.getLottos()) {
+		for (final Lotto lotto : lottos.getLottos()) {
 			outputBuilder.append(lotto.toString())
 				.append(ENTER.getUnit());
 		}
@@ -51,7 +51,7 @@ public class OutputView {
 
 	private static void generateStaticResultOutputBuilder(final LottoResult lottoResult) {
 		outputBuilder.append(WINNING_STATIC_MESSAGE.getMessage());
-		for (Prize prize : Prize.values()) {
+		for (final Prize prize : Prize.values()) {
 			generateRankingResultOutputBuilder(prize,
 				lottoResult.countPrize(prize));
 			outputBuilder.append(ENTER.getUnit());

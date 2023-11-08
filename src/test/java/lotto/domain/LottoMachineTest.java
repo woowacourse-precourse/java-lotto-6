@@ -26,10 +26,10 @@ class LottoMachineTest {
 	@DisplayName("로또 구매 기능 성공 테스트")
 	@Test
 	void purchaseLottosSuccessTest() {
-		Lotto expected = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
+		final Lotto expected = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
 
-		RequestLottos requestLottos = lottoMachine.purchaseLottos();
-		List<Lotto> lottoDummy = requestLottos.createLottoDummy();
+		final RequestLottos requestLottos = lottoMachine.purchaseLottos();
+		final List<Lotto> lottoDummy = requestLottos.createLottoDummy();
 		assertThat(lottoDummy.get(0)
 			.equals(expected))
 			.isTrue();

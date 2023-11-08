@@ -12,7 +12,7 @@ public abstract class IOTest {
 	private ByteArrayOutputStream outputStreamCaptor;
 	private PrintStream standardOut;
 
-	protected void systemIn(String input) {
+	protected void systemIn(final String input) {
 		System.setIn(new ByteArrayInputStream(
 			input.getBytes()
 		));

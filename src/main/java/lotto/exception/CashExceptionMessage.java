@@ -6,7 +6,7 @@ public enum CashExceptionMessage {
 	WRONG_INIT_AMOUNT("[ERROR] 캐시 생성 실패. 지출 금액 초기 필드 값이 잘못되었습니다.");
 	private final String message;
 
-	CashExceptionMessage(String message) {
+	CashExceptionMessage(final String message) {
 		this.message = message;
 	}
 

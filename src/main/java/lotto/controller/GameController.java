@@ -20,7 +20,7 @@ public class GameController {
     private static final OutputView outputView = new OutputView();
     private final NumberGenerator numberGenerator;
 
-    public GameController(NumberGenerator numberGeneratorImp) {
+    public GameController(final NumberGenerator numberGeneratorImp) {
         this.numberGenerator = numberGeneratorImp;
     }
 
@@ -31,11 +31,11 @@ public class GameController {
 
     private void gameProcess() {
         try {
-            Cash cash = depositCash();
-            Lottos lottos = purchaseLotto(cash);
-            WinnerLotto winnerLotto = getWinnerLotto();
+            final Cash cash = depositCash();
+            final Lottos lottos = purchaseLotto(cash);
+            final WinnerLotto winnerLotto = getWinnerLotto();
             compareLottosWithWinnerLotto(lottos, winnerLotto, cash);
-        } catch (Exception e) {
+        } catch (final Exception e) {
             outputView.printErrorMessage(e);
         } finally {
             inputView.close();
@@ -45,7 +45,7 @@ public class GameController {
 
     private Cash depositCash() {
         try {
-            RequestCash requestCash = inputView.requestCash();
+            final RequestCash requestCash = inputView.requestCash();
             return Cash.create(requestCash.depositAmount(),
                 requestCash.spendAmount());
         } catch (IllegalArgumentException e) {
@@ -56,26 +56,26 @@ public class GameController {
         }
     }
 
-    private Lottos purchaseLotto(Cash cash) {
-        LottoMachine lottoMachine = LottoMachine.create(numberGenerator, cash);
-        RequestLottos requestLottos = lottoMachine.purchaseLottos();
-        Lottos lottos = Lottos.create(requestLottos.createLottoDummy());
+    private Lottos purchaseLotto(final Cash cash) {
+        final LottoMachine lottoMachine = LottoMachine.create(numberGenerator, cash);
+        final RequestLottos requestLottos = lottoMachine.purchaseLottos();
+        final Lottos lottos = Lottos.create(requestLottos.createLottoDummy());
         outputView.printPurchasedLottos(lottos);
         return lottos;
     }
 
     private WinnerLotto getWinnerLotto() {
         try {
-            List<Integer> winnerNumbers = getWinnerNumbers();
-            Integer bonusNumber = getBonusNumber();
-            RequestWinnerLotto requestWinnerLotto = RequestWinnerLotto.of(winnerNumbers,
+            final List<Integer> winnerNumbers = getWinnerNumbers();
+            final Integer bonusNumber = getBonusNumber();
+            final RequestWinnerLotto requestWinnerLotto = RequestWinnerLotto.of(winnerNumbers,
                 bonusNumber);
             return WinnerLotto.create(requestWinnerLotto.winnerNumbers(),
                 requestWinnerLotto.bonusNumber());
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return getWinnerLotto();
-        } catch (IllegalStateException e) {
+        } catch (final IllegalStateException e) {
             throw e;
         }
     }
@@ -83,32 +83,32 @@ public class GameController {
 
     private List<Integer> getWinnerNumbers() {
         try {
-            List<Integer> winnerNumbers = inputView.requestWinnerNumbers();
+            final List<Integer> winnerNumbers = inputView.requestWinnerNumbers();
             return winnerNumbers;
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return getWinnerNumbers();
-        } catch (IllegalStateException e) {
+        } catch (final IllegalStateException e) {
             throw e;
         }
     }
 
     private Integer getBonusNumber() {
         try {
-            Integer bonusNumber = inputView.requestBonusNumber();
+            final Integer bonusNumber = inputView.requestBonusNumber();
             return bonusNumber;
-        } catch (IllegalArgumentException e) {
+        } catch (final IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return getBonusNumber();
-        } catch (IllegalStateException e) {
+        } catch (final IllegalStateException e) {
             throw e;
         }
     }
 
 
-    private void compareLottosWithWinnerLotto(Lottos lottos, WinnerLotto winnerLotto, Cash cash) {
-        RequestLottoResult requestLottoResult = lottos.compareWithWinnerLotto(winnerLotto);
-        LottoResult lottoResult = LottoResult.create(requestLottoResult.results());
+    private void compareLottosWithWinnerLotto(final Lottos lottos, final WinnerLotto winnerLotto, final Cash cash) {
+        final RequestLottoResult requestLottoResult = lottos.compareWithWinnerLotto(winnerLotto);
+        final LottoResult lottoResult = LottoResult.create(requestLottoResult.results());
         lottoResult.getRoundedTotalBenefit(cash.getDepositAmount());
         outputView.printStaticResult(lottoResult, cash);
     }

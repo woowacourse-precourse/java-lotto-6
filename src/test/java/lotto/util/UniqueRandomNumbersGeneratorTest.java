@@ -17,8 +17,8 @@ class UniqueRandomNumbersGeneratorTest {
 	@DisplayName("발행된 숫자 번호 허용 범위 테스트")
 	@RepeatedTest(5)
 	void generateNumbersIncludeRangeTest() {
-		List<Integer> numbers = numberGenerator.generateNumbers();
-		boolean result = numbers.stream()
+		final List<Integer> numbers = numberGenerator.generateNumbers();
+		final boolean result = numbers.stream()
 			.allMatch(number
 				-> RANGE_START_NUMBER <= number && number <= RANGE_END_NUMBER
 			);
@@ -29,8 +29,8 @@ class UniqueRandomNumbersGeneratorTest {
 	@DisplayName("발행된 숫자 번호 중복 여부 테스트")
 	@RepeatedTest(5)
 	void generateNumbersDuplicatedNumberTest() {
-		List<Integer> numbers = numberGenerator.generateNumbers();
-		int result = numbers.stream()
+		final List<Integer> numbers = numberGenerator.generateNumbers();
+		final int result = numbers.stream()
 			.collect(Collectors.toSet())
 			.size();
 
@@ -41,8 +41,8 @@ class UniqueRandomNumbersGeneratorTest {
 	@DisplayName("발행된 숫자 개수 테스트")
 	@RepeatedTest(5)
 	void generateNumbersSizeTest() {
-		List<Integer> numbers = numberGenerator.generateNumbers();
-		int result = numbers.size();
+		final List<Integer> numbers = numberGenerator.generateNumbers();
+		final int result = numbers.size();
 		assertEquals(LOTTO_LENGTH, result);
 	}
 

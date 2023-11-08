@@ -77,7 +77,7 @@ public class LottoController {
             int matchingNumberCount = countMatchingNumbers(userNumbers, winningNumbers);
             Rank rank = RankingService.getRank(userNumbers, matchingNumberCount, bonusNumber);
 
-            RankingService.calculateWinnersByRank(rank, rankBoard);
+            rankBoard = RankingService.calculateWinnersByRank(rank, rankBoard);
         }
     }
 

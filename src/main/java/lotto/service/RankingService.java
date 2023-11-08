@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.model.Lotto;
 import lotto.model.Rank;
 
 import java.util.List;
@@ -9,24 +8,27 @@ import static lotto.model.Rank.*;
 import static lotto.model.Rank.LOOSE;
 
 public class RankingService {
-    public static void calculateWinnersByRank(Rank rank, int[] rankBoard) {
-        switch (rank) {
-            case FIRST:
-                rankBoard[1] += 1;
-                break;
-            case SECOND:
-                rankBoard[2] += 2;
-                break;
-            case THIRD:
-                rankBoard[3] += 1;
-                break;
-            case FOURTH:
-                rankBoard[4] += 1;
-                break;
-            case FIFTH:
-                rankBoard[5] += 1;
-                break;
-        }
+    public static int[] calculateWinnersByRank(Rank rank, int[] rankBoard) {
+//        switch (rank) {
+//            case FIRST:
+//                rankBoard[1] += 1;
+//                break;
+//            case SECOND:
+//                rankBoard[2] += 2;
+//                break;
+//            case THIRD:
+//                rankBoard[3] += 1;
+//                break;
+//            case FOURTH:
+//                rankBoard[4] += 1;
+//                break;
+//            case FIFTH:
+//                rankBoard[5] += 1;
+//                break;
+//        }
+
+        rankBoard[getRankNumber(rank)] += 1;
+        return rankBoard;
     }
 
     public static Rank getRank(List<Integer> userNumbers, int matchCount, int bonusNumber) {
@@ -46,7 +48,7 @@ public class RankingService {
             case 2, 1, 0:
                 return LOOSE;
         }
-
         return LOOSE;
     }
+
 }

@@ -1,13 +1,18 @@
 package lotto.view;
 
-import lotto.constant.errorMessage.amount.AmountExceptionStatus;
-import lotto.constant.errorMessage.amount.NotNumericAmountException;
-import lotto.constant.errorMessage.amount.NullAmountException;
+import java.util.Arrays;
+import java.util.List;
+import lotto.constant.errorMessage.input.InputExceptionStatus;
+import lotto.constant.errorMessage.input.NumberFormatAmountException;
+import lotto.constant.errorMessage.input.NullPointAmountException;
 import lotto.view.reader.Reader;
 
 public class InputView {
 
-    private static final String PRINT_READ_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String PRINT_READ_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String PRINT_READ_WINNING_NUMBERS_MESSAGE = "\n당첨 번호를 입력해 주세요.";
+    private static final String PRINT_READ_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
+    private static final String DELIMITER_COMMA = ",";
 
     private final Reader reader;
 
@@ -16,23 +21,38 @@ public class InputView {
     }
 
     public int readAmount() {
-        System.out.println(PRINT_READ_AMOUNT);
+        System.out.println(PRINT_READ_AMOUNT_MESSAGE);
         return convertToNumber(reader.readLine());
+    }
+
+    public List<Integer> readWinningNumbers() {
+        System.out.println(PRINT_READ_WINNING_NUMBERS_MESSAGE);
+        return convertToSplitNumbers(reader.readLine());
     }
 
     private int convertToNumber(final String input) {
         try {
-            return Integer.parseInt(checkAmountIsNull(input));
+            return Integer.parseInt(checkNumberIsNull(input));
         } catch (NumberFormatException e) {
-            throw new NotNumericAmountException(AmountExceptionStatus.AMOUNT_IS_NOT_NUMERIC);
+            throw new NumberFormatAmountException(InputExceptionStatus.READ_IS_NOT_NUMERIC);
         }
     }
 
-    private String checkAmountIsNull(final String input) {
+    private String checkNumberIsNull(final String input) {
         try {
             return input.trim();
         } catch (NullPointerException e) {
-            throw new NullAmountException(AmountExceptionStatus.AMOUNT_IS_NULL);
+            throw new NullPointAmountException(InputExceptionStatus.READ_IS_NULL);
         }
+    }
+
+    private List<Integer> convertToSplitNumbers(final String input) {
+        return Arrays.stream(splitWithComma(checkNumberIsNull(input)))
+                .map(this::convertToNumber)
+                .toList();
+    }
+
+    private static String[] splitWithComma(final String input) {
+        return input.split(DELIMITER_COMMA);
     }
 }

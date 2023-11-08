@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import lotto.exception.DuplicateLottoNumbersException;
+import lotto.exception.DuplicateNumberException;
+import lotto.exception.InvalidNumbersSizeException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Lotto {
 
     private void isLengthLottoNumber(List<Integer> numbers) {
         if (numbers.size() != Constant.LOTTO_MAX_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new InvalidNumbersSizeException();
         }
     }
 
@@ -28,7 +29,7 @@ public class Lotto {
         boolean hasDuplicates = number.size() != new HashSet<>(number).size();
 
         if (hasDuplicates) {
-            throw new DuplicateLottoNumbersException();
+            throw new DuplicateNumberException();
         }
     }
 

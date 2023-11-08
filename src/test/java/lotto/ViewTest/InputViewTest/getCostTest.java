@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class getCostTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]"
+    private static final String ERROR_MESSAGE = "[ERROR]";
 
     @DisplayName("음수의 금액이 들어오면 [ERROR]를 출력한 후 다시 입력을 받습니다.")
     @Test

@@ -1,7 +1,7 @@
 package lotto.config;
 
-import lotto.generator.LottoGenerator;
 import lotto.controller.LottoGameController;
+import lotto.generator.LottoGenerator;
 import lotto.model.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,7 +9,7 @@ import lotto.view.OutputView;
 public class ApplicationConfig {
 
     public LottoGameController gameController() {
-        return new LottoGameController(outputView(), inputView(), lottoGenerator(),lottoMachine());
+        return new LottoGameController(outputView(), inputView(), lottoGenerator(), lottoMachine());
     }
 
     private OutputView outputView() {
@@ -24,7 +24,8 @@ public class ApplicationConfig {
         return new LottoGenerator();
     }
 
-    private LottoMachine lottoMachine(){
+    private LottoMachine lottoMachine() {
         return new LottoMachine();
     }
+
 }

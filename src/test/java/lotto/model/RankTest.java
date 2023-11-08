@@ -18,11 +18,9 @@ class RankTest {
     @ParameterizedTest
     @CsvSource(value = {"FIRST:2,000,000,000", "SECOND:30,000,000", "THIRD:1,500,000", "FOURTH:50,000", "FIFTH:5,000"},
             delimiter = ':')
-    void someTestMethod(Rank rank,String estimate) {
+    void someTestMethod(Rank rank, String estimate) {
 
         Assertions.assertThat(rank.rewardNumberFormat()).isEqualTo(estimate);
     }
-
-
 
 }

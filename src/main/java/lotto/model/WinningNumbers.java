@@ -12,8 +12,8 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningNumbers createWinningNumbers(Lotto winningNumbers, int bonusNumber){
-        return new WinningNumbers(winningNumbers,bonusNumber);
+    public static WinningNumbers createWinningNumbers(Lotto winningNumbers, int bonusNumber) {
+        return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
     public Rank determineRank(Lotto lotto) {
@@ -21,7 +21,7 @@ public class WinningNumbers {
         int matchNumberCount = lotto.countCommonNumberFromAnotherLotto(this.winningNumbers);
         boolean bonus = checkExistBonusNumber(lotto, matchNumberCount);
 
-        return Rank.judge(matchNumberCount,bonus);
+        return Rank.judge(matchNumberCount, bonus);
     }
 
     public boolean checkExistBonusNumber(Lotto lotto, int matchNumberCount) {

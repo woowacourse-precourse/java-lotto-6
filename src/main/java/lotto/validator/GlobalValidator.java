@@ -18,4 +18,5 @@ public class GlobalValidator {
             throw new IllegalArgumentException(NOT_BLANK.getMessage());
         }
     }
+
 }

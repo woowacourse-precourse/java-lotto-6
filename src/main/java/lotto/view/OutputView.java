@@ -48,7 +48,6 @@ public class OutputView {
     public void printWinningResultStatistics(Map<Rank, Integer> winningResult) {
         winningResult.entrySet().stream().filter(entry -> entry.getKey() != Rank.PASS)
                 .forEach(entry -> {
-
                     int winningCount = entry.getKey().getMatchedNumberCount();
                     String reward = entry.getKey().rewardNumberFormat();
                     int myWinningCount = entry.getValue();

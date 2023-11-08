@@ -47,9 +47,9 @@ class LottoMachineTest {
 
     @Test
     @DisplayName("수익률을 둘째 자리에서 반올림한다.")
-    public void calculateEarningRateTest(){
-        int lottoCount = 7 ;
-        double earningRate ;
+    public void calculateEarningRateTest() {
+        int lottoCount = 7;
+        double earningRate;
 
         lottoMachine.updateWinningRecord(Rank.FIFTH);
         earningRate = lottoMachine.calculateEarningRate(lottoCount);
@@ -64,7 +64,5 @@ class LottoMachineTest {
         assertThat(earningRate).isEqualTo(22214.3);
 
     }
-
-
 
 }

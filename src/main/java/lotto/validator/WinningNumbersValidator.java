@@ -45,4 +45,5 @@ public class WinningNumbersValidator {
     public static boolean isLottoNumberInRange(int lottoNumber) {
         return lottoNumber >= LOTTO_NUMBER_START_INCLUSIVE.value() && lottoNumber <= LOTTO_NUMBER_END_INCLUSIVE.value();
     }
+
 }

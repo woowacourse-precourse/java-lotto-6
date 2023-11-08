@@ -28,14 +28,6 @@ public enum Rank {
                 .orElse(PASS);
     }
 
-    private static boolean isSameBonusStatus(boolean requiredBonusMatch, Rank rank) {
-        return rank.requiredBonusMatch == requiredBonusMatch;
-    }
-
-    private static boolean isSameMatchedNumberCount(int matchedNumberCount, Rank rank) {
-        return rank.matchedNumberCount == matchedNumberCount;
-    }
-
     public int getMatchedNumberCount() {
         return matchedNumberCount;
     }
@@ -44,7 +36,7 @@ public enum Rank {
         return reward;
     }
 
-    public String rewardNumberFormat(){
+    public String rewardNumberFormat() {
         NumberFormat formatter = NumberFormat.getNumberInstance();
         return formatter.format(reward);
     }
@@ -52,4 +44,13 @@ public enum Rank {
     public boolean isRequiredBonusMatch() {
         return requiredBonusMatch;
     }
+
+    private static boolean isSameBonusStatus(boolean requiredBonusMatch, Rank rank) {
+        return rank.requiredBonusMatch == requiredBonusMatch;
+    }
+
+    private static boolean isSameMatchedNumberCount(int matchedNumberCount, Rank rank) {
+        return rank.matchedNumberCount == matchedNumberCount;
+    }
+
 }

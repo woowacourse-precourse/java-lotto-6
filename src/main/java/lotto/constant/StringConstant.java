@@ -15,4 +15,5 @@ public enum StringConstant {
     public String value() {
         return this.constant;
     }
+
 }

@@ -21,12 +21,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE.value()) {
-            throw new IllegalArgumentException(INVALID_SIZE.getMessage());
-        }
-    }
-
     // TODO: 추가 기능 구현
     public static Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START_INCLUSIVE.value(), LOTTO_NUMBER_END_INCLUSIVE.value(), LOTTO_SIZE.value());
@@ -38,13 +32,6 @@ public class Lotto {
                 .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(stringConstant.value()));
-    }
-
-    private void validateDuplicate(List<Integer> numbers) {
-        Set<Integer> numberSet = new HashSet<>(numbers);
-        if (numberSet.size() != LOTTO_SIZE.value()) {
-            throw new IllegalArgumentException(EXIST_DUPLICATE.getMessage());
-        }
     }
 
     public boolean containsBonusNumber(int bonusNumber) {
@@ -59,6 +46,19 @@ public class Lotto {
         return (int) this.numbers.stream()
                 .filter(compareNumbers::contains)
                 .count();
+    }
+
+    private void validateLottoSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE.value()) {
+            throw new IllegalArgumentException(INVALID_SIZE.getMessage());
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if (numberSet.size() != LOTTO_SIZE.value()) {
+            throw new IllegalArgumentException(EXIST_DUPLICATE.getMessage());
+        }
     }
 
 }

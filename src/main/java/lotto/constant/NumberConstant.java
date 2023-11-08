@@ -16,4 +16,5 @@ public enum NumberConstant {
     public int value() {
         return this.number;
     }
+
 }

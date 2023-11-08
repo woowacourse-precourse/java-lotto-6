@@ -35,12 +35,5 @@ public class Lotto {
         }
     }
 
-//    @Override
-//    public String toString() {
-//        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-//        Collections.sort(sortedNumbers);
-//        return numbers.toString();
-//    }
-
 }
 

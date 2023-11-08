@@ -4,9 +4,10 @@ import lotto.input.PurchaseHandler;
 
 import static lotto.output.Constants.LottoConstants.LOTTO_COUNT_MESSAGE;
 import static lotto.output.Constants.PurchaseHandlerConstants.AMOUNT_INPUT;
+import static lotto.output.Constants.PurchaseHandlerConstants.THOUSAND;
 
 public class PurchaseResultHandler {
-    public static int purchaseRequest() {
+    public static int requestPurchase() {
         System.out.println(AMOUNT_INPUT);
         int amount = getValidAmount();
         System.out.println();
@@ -28,7 +29,7 @@ public class PurchaseResultHandler {
     }
 
     private static int numberOfLotto(int amount) {
-        int lotto = amount / 1000;
+        int lotto = amount / THOUSAND;
         System.out.println(lotto + LOTTO_COUNT_MESSAGE);
         return lotto;
     }

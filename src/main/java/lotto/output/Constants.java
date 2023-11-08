@@ -5,6 +5,7 @@ public class Constants {
         public static final String AMOUNT_INPUT = "구입금액을 입력해 주세요.";
         public static final String THOUSAND_FORMAT_ERROR_MESSAGE = "[ERROR] 올바른 형식이 아닙니다. 1000원 단위로 다시 입력해주세요.";
         public static final String MINIMUM_AMOUNT_ERROR_MESSAGE = "[ERROR] 구입 금액은 1000원 이상이어야 합니다.";
+        public static final int THOUSAND = 1000;
 
     }
 

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.dto.LottosDto;
 import lotto.service.RandomNumbers;
 import lotto.view.InputView;
 
@@ -29,5 +30,13 @@ public class Lottos {
             result.add(winningLotto.matchLottoWithWinningOne(lotto));
         }
         return result;
+    }
+
+    public LottosDto toLottosDto() {
+        List<String> lottosToString = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottosToString.add(lotto.toString());
+        }
+        return new LottosDto(lottosToString);
     }
 }

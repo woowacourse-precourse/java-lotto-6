@@ -1,12 +1,13 @@
 package lotto;
 
-import lotto.domain.*;
+import lotto.domain.LottoComputer;
+import lotto.domain.LottoPlayer;
 
 public class Application {
         public static String money;
+        public static int ticketNumber;
     public static void main(String[] args) {
-        LottoPlayer lottoPlayer = new LottoPlayer();
-            lottoPlayer.buyLotto();
-            lottoPlayer.lottoTicket(money);
+        LottoPlayer.buyLotto();
+        LottoComputer.makingLottoIndex();
     }
 }

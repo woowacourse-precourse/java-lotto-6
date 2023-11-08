@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Application {
     private static final int LOTTO_PRICE = 1000;
@@ -60,7 +61,8 @@ public class Application {
     private static Lotto[] createLottoNums(int bought) {
         Lotto[] lottoNum = new Lotto[bought];
         for(int i = 0; i < bought; i++) {
-            lottoNum[i] = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT));
+            lottoNum[i] = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT).stream()
+                    .sorted().collect(Collectors.toList()));
         }
         return lottoNum;
     }

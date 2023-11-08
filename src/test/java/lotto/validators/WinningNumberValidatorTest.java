@@ -1,6 +1,7 @@
 package lotto.validators;
 
 import static lotto.constant.ErrorMessage.INPUT_WINNING_NUMBER_COUNT_IS_INCORRECT;
+import static lotto.constant.ErrorMessage.INPUT_WINNING_NUMBER_DUPLICATED;
 import static lotto.constant.ErrorMessage.INPUT_WINNING_NUMBER_VALUE_OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -34,5 +35,18 @@ public class WinningNumberValidatorTest {
                 () -> WinningNumberValidator.validWinningNumberValueInRange(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_WINNING_NUMBER_VALUE_OUT_OF_RANGE);
+    }
+
+    @Test
+    @DisplayName("로또 당첨 번호가 중복된 값을 가지는 경우 예외가 발생한다.")
+    void validWinningNumberDuplicated() {
+        // given
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 6, 6);
+
+        // when & then
+        assertThatThrownBy(
+                () -> WinningNumberValidator.validWinningNumberDuplicated(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INPUT_WINNING_NUMBER_DUPLICATED);
     }
 }

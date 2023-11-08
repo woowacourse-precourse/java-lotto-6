@@ -13,6 +13,35 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
+    void 당첨_결과_확인하기() {
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Lotto> boughtLottos = List.of(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 33)),
+                new Lotto(List.of(1, 2, 3, 4, 5, 7)),
+                new Lotto(List.of(1, 2, 3, 4, 7, 8)),
+                new Lotto(List.of(1, 2, 3, 7, 8, 9)),
+                new Lotto(List.of(10, 11, 12, 13, 14, 15))
+        );
+        int bonusNumber = 33;
+
+        assertThat(Application.makeWinningResult(winningLotto, bonusNumber, boughtLottos))
+                .containsEntry(LottoRank.FIRST, 1)
+                .containsEntry(LottoRank.SECOND, 1)
+                .containsEntry(LottoRank.THIRD, 1)
+                .containsEntry(LottoRank.FOURTH, 1)
+                .containsEntry(LottoRank.FIFTH, 1)
+                .containsEntry(LottoRank.NO_WIN, 1);
+    }
+
+    @Test
+    void 로또_구매하기() {
+        int purchaseAmount = 10;
+
+        assertThat(Application.buyLotto(purchaseAmount)).hasSize(10);
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {

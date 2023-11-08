@@ -50,12 +50,10 @@ public class Buyer {
         if(matchCount == 6){
             winningLotto.put(RANK-matchCount,winningLotto.getOrDefault(RANK-matchCount,0)+1);
         }
-        else if(matchCount==5){
+        if(matchCount==5){
             judgeSecondAndThird(correctBonus);
         }
-        else {
-            winningLotto.put(RANK+1-matchCount, winningLotto.getOrDefault(RANK - matchCount, 0) + 1);
-        }
+        winningLotto.put(RANK+1-matchCount, winningLotto.getOrDefault(RANK - matchCount, 0) + 1);
     }
 
     private void judgeSecondAndThird(boolean correctBonus){

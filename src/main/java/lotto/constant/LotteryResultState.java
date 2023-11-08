@@ -1,10 +1,10 @@
 package lotto.constant;
 
-public enum StateType {
+public enum LotteryResultState {
     THREE_MATCH, FOUR_MATCH, FIVE_MATCH_NO_BONUS, FIVE_MATCH_BONUS, SIX_MATCH, UNDEFINED, NO_PRIZE;
 
-    public static final StateType[] STATES = StateType.values();
-    public static StateType valueOf(int correctCount, boolean correctBonus) {
+    public static final LotteryResultState[] STATES = LotteryResultState.values();
+    public static LotteryResultState valueOf(int correctCount, boolean correctBonus) {
         if (correctCount == 3) {
             return THREE_MATCH;
         }

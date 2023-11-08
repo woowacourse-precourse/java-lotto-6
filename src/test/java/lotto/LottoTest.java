@@ -3,7 +3,7 @@ package lotto;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
-import lotto.constant.StateType;
+import lotto.constant.LotteryResultState;
 import lotto.dto.LottoDto;
 import lotto.model.domain.Lotto;
 import lotto.model.repository.LottoRepository;
@@ -69,9 +69,9 @@ class LottoTest {
         lottoDto.setBonusNumber("10");
         lottoService.createGame(lottoDto);
 
-        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 10)); // five match with bonus
-        lottoRepository.saveLottos(List.of(13, 14, 15, 16, 17, 18)); // No match
-        lottoRepository.saveLottos(List.of(1, 2, 3, 11, 12, 13)); // three match
+        lottoRepository.saveLotto(List.of(1, 2, 3, 4, 5, 10)); // five match with bonus
+        lottoRepository.saveLotto(List.of(13, 14, 15, 16, 17, 18)); // No match
+        lottoRepository.saveLotto(List.of(1, 2, 3, 11, 12, 13)); // three match
         lottoService.compareLottosWithWinningNumbers();
 
         //then
@@ -86,23 +86,23 @@ class LottoTest {
         LottoRepository lottoRepository = new LottoRepository();
         LottoService lottoService = new LottoService(lottoRepository);
         //when
-        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 6)); // SIX_MATCH
-        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 8)); // FIVE_MATCH_BONUS
-        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 7)); // FIVE_MATCH_NO_BONUS
-        lottoRepository.saveLottos(List.of(1, 2, 3, 4, 8, 9));  // FOUR_MATCH
-        lottoRepository.saveLottos(List.of(1, 2, 3, 7, 8, 9)); // THREE_MATCH
-        lottoRepository.saveLottos(List.of(1, 2, 7, 8, 9, 10)); // NO_PRIZE
+        lottoRepository.saveLotto(List.of(1, 2, 3, 4, 5, 6)); // SIX_MATCH
+        lottoRepository.saveLotto(List.of(1, 2, 3, 4, 5, 8)); // FIVE_MATCH_BONUS
+        lottoRepository.saveLotto(List.of(1, 2, 3, 4, 5, 7)); // FIVE_MATCH_NO_BONUS
+        lottoRepository.saveLotto(List.of(1, 2, 3, 4, 8, 9));  // FOUR_MATCH
+        lottoRepository.saveLotto(List.of(1, 2, 3, 7, 8, 9)); // THREE_MATCH
+        lottoRepository.saveLotto(List.of(1, 2, 7, 8, 9, 10)); // NO_PRIZE
 
         lottoRepository.saveGame(List.of(1, 2, 3, 4, 5, 6), 8);
         lottoService.compareLottosWithWinningNumbers();
-        HashMap<StateType, Integer> result = lottoService.getResult();
+        HashMap<LotteryResultState, Integer> result = lottoService.getResult();
         //then;
 
-        assertThat(result.get(StateType.SIX_MATCH)).isEqualTo(1);
-        assertThat(result.get(StateType.FIVE_MATCH_BONUS)).isEqualTo(1);
-        assertThat(result.get(StateType.FIVE_MATCH_NO_BONUS)).isEqualTo(1);
-        assertThat(result.get(StateType.FOUR_MATCH)).isEqualTo(1);
-        assertThat(result.get(StateType.THREE_MATCH)).isEqualTo(1);
+        assertThat(result.get(LotteryResultState.SIX_MATCH)).isEqualTo(1);
+        assertThat(result.get(LotteryResultState.FIVE_MATCH_BONUS)).isEqualTo(1);
+        assertThat(result.get(LotteryResultState.FIVE_MATCH_NO_BONUS)).isEqualTo(1);
+        assertThat(result.get(LotteryResultState.FOUR_MATCH)).isEqualTo(1);
+        assertThat(result.get(LotteryResultState.THREE_MATCH)).isEqualTo(1);
     }
 
     @Nested
@@ -139,8 +139,8 @@ class LottoTest {
         void outputLottoNumbersTest() {
             LottoRepository lottoRepository = new LottoRepository();
 
-            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 6));
-            lottoRepository.saveLottos(List.of(2, 3, 4, 5, 6, 7));
+            lottoRepository.saveLotto(List.of(1, 2, 3, 4, 5, 6));
+            lottoRepository.saveLotto(List.of(2, 3, 4, 5, 6, 7));
 
             OutputView.outputAllLottoNumbers(lottoRepository.findLottos());
 
@@ -155,12 +155,12 @@ class LottoTest {
             LottoRepository lottoRepository = new LottoRepository();
             LottoService lottoService = new LottoService(lottoRepository);
             //when
-            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 6)); // SIX_MATCH
-            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 8)); // FIVE_MATCH_BONUS
-            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 7)); // FIVE_MATCH_NO_BONUS
-            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 8, 9));  // FOUR_MATCH
-            lottoRepository.saveLottos(List.of(1, 2, 3, 7, 8, 9)); // THREE_MATCH
-            lottoRepository.saveLottos(List.of(1, 2, 7, 8, 9, 10)); // NO_PRIZE
+            lottoRepository.saveLotto(List.of(1, 2, 3, 4, 5, 6)); // SIX_MATCH
+            lottoRepository.saveLotto(List.of(1, 2, 3, 4, 5, 8)); // FIVE_MATCH_BONUS
+            lottoRepository.saveLotto(List.of(1, 2, 3, 4, 5, 7)); // FIVE_MATCH_NO_BONUS
+            lottoRepository.saveLotto(List.of(1, 2, 3, 4, 8, 9));  // FOUR_MATCH
+            lottoRepository.saveLotto(List.of(1, 2, 3, 7, 8, 9)); // THREE_MATCH
+            lottoRepository.saveLotto(List.of(1, 2, 7, 8, 9, 10)); // NO_PRIZE
 
             lottoRepository.saveGame(List.of(1, 2, 3, 4, 5, 6), 8);
             lottoService.compareLottosWithWinningNumbers();
@@ -189,9 +189,9 @@ class LottoTest {
             lottoDto.setBonusNumber("10");
             lottoService.createGame(lottoDto);
 
-            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 10)); // five match with bonus
-            lottoRepository.saveLottos(List.of(13, 14, 15, 16, 17, 18)); // No match
-            lottoRepository.saveLottos(List.of(1, 2, 3, 11, 12, 13)); // three match
+            lottoRepository.saveLotto(List.of(1, 2, 3, 4, 5, 10)); // five match with bonus
+            lottoRepository.saveLotto(List.of(13, 14, 15, 16, 17, 18)); // No match
+            lottoRepository.saveLotto(List.of(1, 2, 3, 11, 12, 13)); // three match
             lottoService.compareLottosWithWinningNumbers();
             OutputView.outputProfitRate(lottoService.getProfitRate());
 

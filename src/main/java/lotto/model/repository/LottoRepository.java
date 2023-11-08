@@ -8,7 +8,7 @@ public class LottoRepository {
     private final Lottos lottos = new Lottos();
     private Game lottoGame;
 
-    public void saveLottos(List<Integer> lottoNumbers) {
+    public void saveLotto(List<Integer> lottoNumbers) {
         lottos.addLotto(lottoNumbers);
     }
 

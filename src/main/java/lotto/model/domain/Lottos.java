@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import lotto.constant.StateType;
+import lotto.constant.LotteryResultState;
 
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
-    private final HashMap<StateType, Integer> countByState = new HashMap<>();
+    private final HashMap<LotteryResultState, Integer> countByState = new HashMap<>();
 
     public void addLotto(List<Integer> lottoNumbers) {
         if(!isSortedList(lottoNumbers)){
@@ -30,11 +30,11 @@ public class Lottos {
         return lottos;
     }
 
-    public void increaseStateCount(StateType stateType) {
-        countByState.put(stateType, countByState.getOrDefault(stateType, 0) + 1);
+    public void increaseStateCount(LotteryResultState lotteryResultState) {
+        countByState.put(lotteryResultState, countByState.getOrDefault(lotteryResultState, 0) + 1);
     }
 
-    public HashMap<StateType, Integer> getAllResult() {
+    public HashMap<LotteryResultState, Integer> getAllResult() {
         return countByState;
     }
 }

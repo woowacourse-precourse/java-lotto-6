@@ -1,11 +1,11 @@
 package lotto.model.service;
 
-import static lotto.constant.StateType.STATES;
+import static lotto.constant.LotteryResultState.STATES;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.List;
-import lotto.constant.StateType;
+import lotto.constant.LotteryResultState;
 import lotto.dto.LottoDto;
 import lotto.model.domain.Game;
 import lotto.model.domain.Lotto;
@@ -13,7 +13,7 @@ import lotto.model.domain.Lottos;
 import lotto.model.repository.LottoRepository;
 
 public class LottoService {
-    private static final HashMap<StateType, Integer> PRIZE_BY_STATE = new HashMap<>();
+    private static final HashMap<LotteryResultState, Integer> PRIZE_BY_STATE = new HashMap<>();
     private final LottoRepository lottoRepository;
     
     private static final int LOTTO_PRICE = 1000;
@@ -22,11 +22,11 @@ public class LottoService {
 
 
     static {
-        PRIZE_BY_STATE.put(StateType.THREE_MATCH, 5000);
-        PRIZE_BY_STATE.put(StateType.FOUR_MATCH, 50000);
-        PRIZE_BY_STATE.put(StateType.FIVE_MATCH_NO_BONUS, 1500000);
-        PRIZE_BY_STATE.put(StateType.FIVE_MATCH_BONUS, 30000000);
-        PRIZE_BY_STATE.put(StateType.SIX_MATCH, 2000000000);
+        PRIZE_BY_STATE.put(LotteryResultState.THREE_MATCH, 5000);
+        PRIZE_BY_STATE.put(LotteryResultState.FOUR_MATCH, 50000);
+        PRIZE_BY_STATE.put(LotteryResultState.FIVE_MATCH_NO_BONUS, 1500000);
+        PRIZE_BY_STATE.put(LotteryResultState.FIVE_MATCH_BONUS, 30000000);
+        PRIZE_BY_STATE.put(LotteryResultState.SIX_MATCH, 2000000000);
     }
 
     public LottoService(LottoRepository lottoRepository) {
@@ -37,7 +37,7 @@ public class LottoService {
         int lottoCount = getLottoCount(lottoDto.getLottoPurchaseAmount());
 
         while (lottoCount > 0) {
-            lottoRepository.saveLottos(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lottoRepository.saveLotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottoCount--;
         }
     }
@@ -62,7 +62,7 @@ public class LottoService {
                 lottos.increaseStateCount(compareWinningNumbers(lotto, lottoGame)));
     }
 
-    private StateType compareWinningNumbers(Lotto lotto, Game lottoGame) {
+    private LotteryResultState compareWinningNumbers(Lotto lotto, Game lottoGame) {
         List<Integer> winningNumbers = lottoGame.getWinningNumbers();
         int bonusNumber = lottoGame.getBonusNumber();
         int correctCount = 0;
@@ -78,15 +78,15 @@ public class LottoService {
             }
         }
 
-        return StateType.valueOf(correctCount, correctBonus);
+        return LotteryResultState.valueOf(correctCount, correctBonus);
     }
 
-    public HashMap<StateType,Integer> getResult() {
+    public HashMap<LotteryResultState,Integer> getResult() {
         return lottoRepository.findLottos().getAllResult();
     }
 
     public double getProfitRate() {
-        HashMap<StateType, Integer> resultOfLottoGame = lottoRepository.findLottos().getAllResult();
+        HashMap<LotteryResultState, Integer> resultOfLottoGame = lottoRepository.findLottos().getAllResult();
         double profit = 0f;
         double totalLottosCount = (float) lottoRepository.findLottos()
                 .getAllLotto()

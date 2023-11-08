@@ -4,7 +4,12 @@ public class MoneyValidator {
     public static void moneyValidate(String money) {
         moneyNotNull(money);
         moneyIsNumber(money);
-        int moneyNumber = Integer.parseInt(money);
+        int moneyNumber;
+        try {
+            moneyNumber = Integer.parseInt(money);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 양의 정수를 입력해주세요.");
+        }
         moneyNotZero(moneyNumber);
         moneyDivideBy1000(moneyNumber);
     }

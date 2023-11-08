@@ -1,4 +1,4 @@
-package lotto.domain.entity;
+package lotto.service.manager;
 
 public class Count {
 

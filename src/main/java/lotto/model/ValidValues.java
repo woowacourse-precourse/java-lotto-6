@@ -32,11 +32,11 @@ public class ValidValues {
     }
 
 
-    public Bonus validBonus(String input) {
+    public Bonus validBonus(String input, List<Integer> winning) {
         int bonus;
         try {
             bonus = Integer.parseInt(input);
-            Exception.bonus(bonus);
+            Exception.bonus(bonus, winning);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Errorcode.NOT_NUMBER.getMessage());
         }

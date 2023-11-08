@@ -70,11 +70,11 @@ public class Controller {
 
     //
 
-    public Bonus getBonusNumber() {
+    public Bonus getBonusNumber(List<Integer> winning) {
         Bonus bonus;
         while (true) {
             try {
-                bonus = validValues.validBonus(input.getBonusNumberInput());
+                bonus = validValues.validBonus(input.getBonusNumberInput(), winning);
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println("[ERROR] " + e.getMessage());
@@ -88,6 +88,7 @@ public class Controller {
         for (int i = 0; i < 5; i++) {
             counts.add(0);
         }
+
         for (int i = 0; i < lottoNumbers.size(); i++) {
             int count = countWinning(winning, lottoNumbers.get(i));
             boolean bonus = countBonus(bonusAnswer,lottoNumbers.get(i));
@@ -97,23 +98,22 @@ public class Controller {
     }
 
     public List<Integer> getCounts(int count, List<Integer> counts, boolean bonus) {
-        List<Integer> answer = counts;
         if (count == 3) {
             counts.set(0, counts.get(0) + 1);
         }
         if (count == 4) {
-            counts.set(0, counts.get(1) + 1);
+            counts.set(1, counts.get(1) + 1);
         }
         if (count == 5 && !bonus) {
-            counts.set(0, counts.get(2) + 1);
+            counts.set(2, counts.get(2) + 1);
         }
         if (count == 5 && bonus) {
-            counts.set(0, counts.get(3) + 1);
+            counts.set(3, counts.get(3) + 1);
         }
         if (count == 6) {
-            counts.set(0, counts.get(4) + 1);
+            counts.set(4, counts.get(4) + 1);
         }
-        return answer;
+        return counts;
     }
 
     public int countWinning(List<Integer> winning, List<Integer> input) {

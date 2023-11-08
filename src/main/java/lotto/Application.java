@@ -18,7 +18,8 @@ public class Application {
         int price = controller.getPurchasePrice().price;
         List<List<Integer>> tickets = controller.generateLottoTickets(price);
         output.printLottoTickets(tickets);
-        output.printResult(controller.judge(controller.winningNumbers().getNumbers(),controller.getBonusNumber().getBonus(), tickets));
+        List<Integer> numbers = controller.winningNumbers().getNumbers();
+        output.printResult(controller.judge(numbers,controller.getBonusNumber(numbers).getBonus(), tickets));
 
     }
 }

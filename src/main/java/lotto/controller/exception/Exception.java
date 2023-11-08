@@ -29,12 +29,12 @@ public class Exception extends IllegalArgumentException{
         }
     }
 
-    public static void bonus(int number){
+    public static void bonus(int number, List<Integer> winning){
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(Errorcode.NOT_IN_RANGE.getMessage());
         }
-//        if (Lotto.getNumbers.contains(number)) {
-//            throw new IllegalArgumentException("입력된 로또 번호에 중복이 있습니다.");
-//        }
+        if (winning.contains(number)) {
+            throw new IllegalArgumentException("입력된 로또 번호에 중복이 있습니다.");
+        }
     }
 }

@@ -16,11 +16,14 @@ public class LottoGenerator {
     }
 
     private void generateLotto() {
-        lottos = IntStream.range(0, lottoCount).mapToObj(i -> new Lotto(generateRandomNumber())).collect(Collectors.toList());
+        lottos = IntStream.range(0, lottoCount)
+                .mapToObj(i -> new Lotto(generateRandomNumber())).collect(Collectors.toList());
     }
 
     private List<Integer> generateRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_LOTTO_NUMBER, LottoConstants.MAX_LOTTO_NUMBER, LottoConstants.TOTAL_LOTTO_NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(LottoConstants.MIN_LOTTO_NUMBER,
+                LottoConstants.MAX_LOTTO_NUMBER,
+                LottoConstants.TOTAL_LOTTO_NUMBER_COUNT);
     }
 
     public List<Lotto> getLottos() {

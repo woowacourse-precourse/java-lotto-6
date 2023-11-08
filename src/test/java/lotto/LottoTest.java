@@ -1,10 +1,7 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
 import lotto.enums.ErrorMessage;
 import lotto.model.Lotto;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

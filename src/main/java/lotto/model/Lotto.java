@@ -18,7 +18,6 @@ public class Lotto {
     }
 
     public static Lotto issue(List<Integer> numbers) {
-//        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 

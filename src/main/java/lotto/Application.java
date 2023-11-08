@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
+import java.util.stream.Collectors;
+
 public class Application {
     private static int moneyValidate(){
         int money;
@@ -45,6 +47,28 @@ public class Application {
             lottos.get(i).printLotto();
     }
 
+    private static String[] getWinningnumber(){
+        String input;
+        String[] numbers;
+        while(true){
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                input = Console.readLine();
+                numbers = input.split(",");
+
+                if(numbers.length != 6){
+                    throw new IllegalArgumentException("6개의 당첨 번호를 입력하세요.");
+                }
+                break;
+            }
+            catch (NumberFormatException e){
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다.");
+            }
+        }
+        return numbers;
+    }
+
+
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -58,6 +82,8 @@ public class Application {
         lottes = generateLottes(ticket);
 
         printLottes(lottes,ticket);
+
+        System.out.println("당첨 번호를 입력해 주세요.");
 
         winningnumber = getWinningnumber();
 

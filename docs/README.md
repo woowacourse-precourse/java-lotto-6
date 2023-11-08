@@ -79,9 +79,9 @@
     - validateIsDuplicated(): 당첨 번호의 원소가 중복된다면 IllegalArgumentException을 발생시킨다.
 - BonusNumber: 보너스 번호를 추상화한 클래스
   - 유효성 검증
+    - validateIsNumber(): 보너스 번호 입력 시, 숫자가 아닌 문자가 입력된다면 IllegalArgumentException을 발생시킨다.
+    - validateBonusIsPositive(): 보너스 번호 입력 시, 음수가 입력된다면 IllegalArgumentException을 발생시킨다. 
     - validateBonusNumber(): 보너스 번호가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
-    - [ ] 보너스 번호 입력 시, 숫자가 아닌 문자가 입력된다면 IllegalArgumentException을 발생시킨다.
-    - [ ] 보너스 번호 입력 시, 음수가 입력된다면 IllegalArgumentException을 발생시킨다.
 - LottoRanking: 로또 당첨 등수를 추상화한 ENUM
   - determineRanking(): 당첨 번호와 보너스 번호 일치 여부를 판단하고 당첨 등수를 반환한다.
 - WinningResult : 로또 당첨 결과를 추상화한 클래스

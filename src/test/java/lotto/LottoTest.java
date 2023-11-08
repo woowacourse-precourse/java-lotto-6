@@ -1,16 +1,14 @@
 package lotto;
 
-import lotto.model.BonusNum;
-import lotto.model.BuyingMoney;
-import lotto.model.CorrectNum;
-import lotto.model.Lotto;
+import lotto.model.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
@@ -64,5 +62,20 @@ class LottoTest {
     void BuyingMoney_숫자테스트(){
         assertThatThrownBy(() -> new BuyingMoney("팔천"))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void LottoCalculator_lottocalculator테스트(){
+        LottoCalculator lottoCalculator = new LottoCalculator();
+        lottoCalculator.lottoCalculator(6,false);
+        lottoCalculator.lottoCalculator(6,false);
+        assertThat(lottoCalculator.getCounts()[0]).isEqualTo(2);
+    }
+    @Test
+    void LottoCalculator_earningPercentage테스트(){
+        LottoCalculator lottoCalculator = new LottoCalculator();
+        lottoCalculator.lottoCalculator(3,false);
+        lottoCalculator.lottoCalculator(3,false);
+        assertThat(lottoCalculator.earningPercentage(2)).isEqualTo(500000.0);
     }
 }

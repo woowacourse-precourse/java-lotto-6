@@ -1,10 +1,10 @@
-package generalexception;
+package validate;
 
-import static generalexception.GeneralExceptionHandler.EMPTY_ERROR_MESSAGE;
-import static generalexception.GeneralExceptionHandler.NOT_NUMBER_ERROR_MESSAGE;
-import static generalexception.GeneralExceptionHandler.validateEmpty;
-import static generalexception.GeneralExceptionHandler.validateNumber;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static validate.GeneralExceptionHandler.EMPTY_ERROR_MESSAGE;
+import static validate.GeneralExceptionHandler.NOT_NUMBER_ERROR_MESSAGE;
+import static validate.GeneralExceptionHandler.validateEmpty;
+import static validate.GeneralExceptionHandler.validateNumber;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

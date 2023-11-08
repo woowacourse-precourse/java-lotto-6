@@ -1,3 +1,5 @@
+package domain;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.ArrayList;

@@ -1,6 +1,7 @@
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import domain.WinningStatistics;
 import java.util.List;
 import lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;

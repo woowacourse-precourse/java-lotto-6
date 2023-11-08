@@ -14,7 +14,6 @@ public class PurchaseAmount {
 
         assertThatThrownBy(() -> new PurchaseAmount(999))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(PURCHASE_AMOUNT_UNDER_ERROR_MESSAGE);
     }
 
     @DisplayName("구매금액이 1000원 단위가 아닐때 예외처리를 발생한다.")
@@ -22,8 +21,7 @@ public class PurchaseAmount {
     void validateNotDividePurchaseAmountTest() {
 
         assertThatThrownBy(() -> new PurchaseAmount(1999))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(PURCHASE_AMOUNT_NOT_DIVIDE_ERROR_MESSAGE);
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

@@ -29,7 +29,7 @@ public class LottoController {
             LottoList.add(lotto);
         }
         for(int i=0; i<LottoList.size(); i++){
-            System.out.println(LottoList.get(i).numbers);
+            System.out.println(LottoList.get(i).getNumbers());
         }
         return LottoList;
     }

@@ -2,9 +2,8 @@ package lotto.module.result;
 
 import lotto.module.domain.TotalPrize;
 import lotto.module.lotto.Lotto;
+import lotto.module.lotto.UserLottoTickets;
 import lotto.module.lotto.WinningLotto;
-
-import java.util.List;
 
 import static lotto.module.rank.LottoPrizeTable.*;
 
@@ -21,12 +20,12 @@ public class LottoResultChecker {
         return new LottoResultChecker();
     }
 
-    public LottoResult getResult(List<Lotto> userLottoTicket, WinningLotto winningLotto) {
+    public LottoResult getResult(UserLottoTickets userLottoTicket, WinningLotto winningLotto) {
         lottoResult = LottoResult.newInstance();
 
-        for (Lotto lotto : userLottoTicket) {
+        for (Lotto lotto : userLottoTicket.tickets()) {
             int matchCount = winningLotto.getIncludedNumbersCount(lotto);
-            check(matchCount, lotto, winningLotto);
+            checkWinningStatus(matchCount, lotto, winningLotto);
         }
 
         return lottoResult;
@@ -36,42 +35,62 @@ public class LottoResultChecker {
         return lottoResult.getTotalPrize();
     }
 
-    private void check(int matchCount, Lotto lotto, WinningLotto winningLotto) {
-        checkFifthPlace(matchCount);
-        checkFourthPlace(matchCount);
-        checkThirdPlace(matchCount);
-        checkSecondPlace(winningLotto, lotto, matchCount);
-        checkFirstPlace(matchCount);
-    }
-
-    private void checkFifthPlace(int matchCount) {
-        if (matchCount == FIFTH_PLACE.getMatchCount()) {
-            lottoResult.add(FIFTH_PLACE.getRank());
+    private void checkWinningStatus(int matchCount, Lotto lotto, WinningLotto winningLotto) {
+        if (isFirstPlaceWinner(matchCount)) {
+            return;
+        }
+        if (isSecondPlaceWinner(winningLotto, lotto, matchCount)) {
+            return;
+        }
+        if (isThirdPlaceWinner(matchCount)) {
+            return;
+        }
+        if (isFourthPlaceWinner(matchCount)) {
+            return;
+        }
+        if (isFifthPlaceWinner(matchCount)) {
+            return;
         }
     }
 
-    private void checkFourthPlace(int matchCount) {
-        if (matchCount == FOURTH_PLACE.getMatchCount()) {
-            lottoResult.add(FOURTH_PLACE.getRank());
-        }
-    }
-
-    private void checkThirdPlace(int matchCount) {
-        if (matchCount == THIRD_PLACE.getMatchCount()) {
-            lottoResult.add(THIRD_PLACE.getRank());
-        }
-    }
-
-    private void checkSecondPlace(WinningLotto winningLotto, Lotto lotto, int matchCount) {
-        if (matchCount == SECOND_PLACE.getMatchCount() && winningLotto.isMatchesBonusNumber(lotto)) {
-            lottoResult.add(SECOND_PLACE.getRank());
-        }
-    }
-
-    private void checkFirstPlace(int matchCount) {
+    private boolean isFirstPlaceWinner(int matchCount) {
         if (matchCount == FIRST_PLACE.getMatchCount()) {
             lottoResult.add(FIRST_PLACE.getRank());
+            return true;
         }
+        return false;
+    }
+
+    private boolean isSecondPlaceWinner(WinningLotto winningLotto, Lotto lotto, int matchCount) {
+        if (matchCount == SECOND_PLACE.getMatchCount() && winningLotto.isMatchesBonusNumber(lotto)) {
+            lottoResult.add(SECOND_PLACE.getRank());
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isThirdPlaceWinner(int matchCount) {
+        if (matchCount == THIRD_PLACE.getMatchCount()) {
+            lottoResult.add(THIRD_PLACE.getRank());
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isFourthPlaceWinner(int matchCount) {
+        if (matchCount == FOURTH_PLACE.getMatchCount()) {
+            lottoResult.add(FOURTH_PLACE.getRank());
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isFifthPlaceWinner(int matchCount) {
+        if (matchCount == FIFTH_PLACE.getMatchCount()) {
+            lottoResult.add(FIFTH_PLACE.getRank());
+            return true;
+        }
+        return false;
     }
 
 }

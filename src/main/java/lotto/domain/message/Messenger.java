@@ -1,8 +1,10 @@
 package lotto.domain.message;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.dto.LottoNumbersDTO;
+import lotto.dto.WinStateInformationDTO;
 
 public class Messenger {
 
@@ -12,6 +14,8 @@ public class Messenger {
     private final String LOTTERIES_NUMBERS_DELIMITER = ", ";
     private final String NEXT_LINE = "\n";
 
+    private final String WINNING_STATISTIC_INFORMATION_FORMAT = "%s (%s원) - %d개";
+    private final DecimalFormat PRIZE_FORMAT = new DecimalFormat("###,###,###");
 
     public String getLotteriesNumbersMessage(List<LottoNumbersDTO> lottoNumbersDTOs) {
         return lottoNumbersDTOs.stream()
@@ -30,6 +34,17 @@ public class Messenger {
 
     public String getPurchasedLotteriesCount(int count) {
         return String.format(PURCHASED_LOTTERIES_FORMAT, count);
+    }
+
+    public String getWinningStatisticInformation(WinStateInformationDTO winStateInformationDTO) {
+        return String.format(
+                WINNING_STATISTIC_INFORMATION_FORMAT,
+                winStateInformationDTO.description(),
+                PRIZE_FORMAT.format(
+                        winStateInformationDTO.prize()
+                ),
+                winStateInformationDTO.winningCount()
+        );
     }
 
 }

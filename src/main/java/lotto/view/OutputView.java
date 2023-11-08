@@ -2,9 +2,11 @@ package lotto.view;
 
 import static lotto.config.LottoMessage.PURCHASED_AMOUNT_RESULT_MESSAGE;
 import static lotto.config.LottoMessage.PURCHASE_AMOUNT_REQUEST_MESSAGE;
-import static lotto.config.LottoMessage.WINNING_BONUS_NUMBER_REQUEST_MESSAGE;
+import static lotto.config.LottoMessage.BONUS_NUMBER_REQUEST_MESSAGE;
 import static lotto.config.LottoMessage.WINNING_NUMBER_REQUEST_MESSAGE;
 import static lotto.config.LottoMessage.WINNING_STATISTICS;
+
+import java.util.List;
 
 public class OutputView {
     public static void printPurchaseAmountRequestMessage() {
@@ -19,13 +21,21 @@ public class OutputView {
         System.out.println(WINNING_NUMBER_REQUEST_MESSAGE.getMessage());
     }
 
-    public static void printWinningBonusNumberRequestMessage() {
-        System.out.println(WINNING_BONUS_NUMBER_REQUEST_MESSAGE.getMessage());
+    public static void printBonusNumberRequestMessage() {
+        System.out.println(BONUS_NUMBER_REQUEST_MESSAGE.getMessage());
     }
 
-    public static void printWinningStatistics(int matchThreeCount, int matchFourCount, int matchFiveCount,
-                                              int matchFiveBonusCount, int matchSixCount, String profitRate) {
-        System.out.print(WINNING_STATISTICS.getFormatMessage(matchThreeCount, matchFourCount, matchFiveCount,
-                matchFiveBonusCount, matchSixCount, profitRate));
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
+    public static void printPurchasedLotto(List<Integer> numbers) {
+        System.out.println(numbers);
+    }
+
+    public static void printWinningStatistics(int fifthPrizeCount, int fourthPrizeCount, int thirdPrizeCount,
+                                              int secondPrizeCount, int firstPrizeCount, String profitRate) {
+        System.out.print(WINNING_STATISTICS.getFormatMessage(fifthPrizeCount, fourthPrizeCount, thirdPrizeCount,
+                secondPrizeCount, firstPrizeCount, profitRate));
     }
 }

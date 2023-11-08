@@ -31,6 +31,10 @@ public class LottoService {
             updatePrizeQuantity(LottoPrize.SECOND, count);
             return;
         }
+        if (count == LottoPrize.SECOND.getMatchCount() && !hasBonusNum) {
+            updatePrizeQuantity(LottoPrize.THIRD, count);
+            return;
+        }
         for (LottoPrize prize : LottoPrize.values()) {
             updatePrizeQuantity(prize, count);
         }

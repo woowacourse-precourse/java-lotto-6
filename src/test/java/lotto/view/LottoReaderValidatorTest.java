@@ -1,8 +1,14 @@
 package lotto.view;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -57,5 +63,37 @@ class LottoReaderValidatorTest {
 
         assertThatThrownBy(() -> LottoReaderValidator.validateBonusNumber(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스번호 중복 검사가 성공합니다.")
+    @MethodSource("provideWinningNumbersAndBonusNumber")
+    @ParameterizedTest
+    void validateDuplicationWithWinningNumbersAndBonusNumberSuccessTest(
+            List<Integer> winningNumbers, int bonusNumber
+    ) {
+
+        LottoReaderValidator.validateDuplicationWithWinningNumbersAndBonusNumber(
+                winningNumbers, bonusNumber
+        );
+    }
+
+    @DisplayName("보너스번호 중복 검사가 실패합니다.")
+    @Test
+    void validateDuplicationWithWinningNumbersAndBonusNumberFailTest() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 6;
+
+        assertThatThrownBy(
+                () -> LottoReaderValidator.validateDuplicationWithWinningNumbersAndBonusNumber(
+                        winningNumbers, bonusNumber
+                )
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    private static Stream<Arguments> provideWinningNumbersAndBonusNumber() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 7),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 45), 44)
+        );
     }
 }

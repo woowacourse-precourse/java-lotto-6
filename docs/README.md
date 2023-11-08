@@ -14,12 +14,6 @@
    │        │  ├─ RunningLotto.java
    │        │  ├─ Setting.java
    │        │  └─ SettingLotto.java
-   │        ├─ Factory
-   │        │  ├─ BonusNumberChecker.java
-   │        │  ├─ Lotto.java
-   │        │  ├─ LottoContainer.java
-   │        │  ├─ LottoRank.java
-   │        │  └─ LottoRankChecker.java
    │        ├─ IO
    │        │  └─ IO.java
    │        ├─ LottoFactory
@@ -51,18 +45,17 @@ Controller 객체를 생성하고 set(), run(), printResult()를 통해 전체 �
 ## Util
 프로그램 내의 모든 도구클래스 모아둔 패키지
 * Validate : 잘못된 입력형식이 있을때 오류반환
-* DivideDelimeter : 사용자의 입력에서 ,를 제거하는 역할
-* RankCalculator : 수익률 계산해주는 클래스
+* Divide : 사용자의 입력에서 ,를 제거하는 역할
+* RateCalculator : 수익률 계산해주는 클래스
 * Sorting : 로또의 번호를 담은 리스트를 내림차순으로 정렬해주는 역할
 
-## Factory
+## LottoFactory
 Lotto를 생성하고 순위를 판단하는 클래스
 * Lotto : 로또 객체를 생성하는 클래스
-* LottoContainer : List의 각 인덱스에 Lotto 객체를 담아줄 클래스
-* LottoRank : 로또 랭크의 정보를 갖고 있는 enum 클래스
-* LottoRankChecker : 사용자의 번호와 로또 번호가 몇 개 정도 맞는지 판별하는 클래스
-* BonusNumberChecker : 이 메소드는 보너스 번호가 당첨 번호와 중복되는지를 확인하는 기능을 제공합니다.
-  * 외부에서 해당 인터페이스를 사용하면 LottoContainer의 private한 자료구조인 WinningLotto 리스트를 활용하여 보너스 번호의 중복 여부를 확인할 수 있습니다. 이를 통해 LottoContainer의 내부 구현을 노출시키지 않고도 보너스 번호를 검사할 수 있습니다.
+* LottoChecker : LottoContainer 내의 private한 자료구조를 외부에서 활용하기 위한 함수가 담긴 인터페이스
+* LottoContainer : 사용자의 로또와 당첨로또의 값이 들어간 자료구조를 private으로 관리 및 LottoChecker 인터페이스 구현
+* LottoController : 외부에서 사용자의 로또와 당첨로또의 값이 들어간 private한 자료구조에 대한 요청을 LottoContainer에게 전달 및 요청처리
+* LottoRank : 로또 당첨 순위를 표현하고 관리하는 열거형으로, 주어진 숫자 일치 개수와 보너스 볼 일치 여부에 따라 각 순위의 정보를 저장하고, 당첨금 총액을 계산하는 기능을 제공
 
 ## Controller
 * LottoConfiguration : LottoContainer와 LottoController에 대한 의존성 관리 클래스

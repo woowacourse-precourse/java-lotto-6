@@ -15,7 +15,7 @@ public class Utils {
                 return false;
             }
         }
-        return true;
+        return !(str.isEmpty());
     }
 
     public static boolean isNumeric(String str, List<String> toExclude){
@@ -27,7 +27,7 @@ public class Utils {
                 return false;
             }
         }
-        return true;
+        return !(str.isEmpty());
     }
 
     public static List<Integer> makeRandomNumbers(int start, int end, int cnt){

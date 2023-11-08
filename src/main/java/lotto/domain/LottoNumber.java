@@ -8,7 +8,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
     private static final int UPPER_BOUND_NUMBER = 45;
     private static final int LOWER_BOUND_NUMBER = 1;
 
-    private int value;
+    private final int value;
 
     public LottoNumber(int value) {
         if (isInvalidNumber(value)) {

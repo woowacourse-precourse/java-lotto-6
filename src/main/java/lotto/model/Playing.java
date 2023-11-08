@@ -25,16 +25,24 @@ public class Playing {
     }
 
     public static void compareLottosAndWinningNumbers(List<Integer> winningNumbers, Integer bonus){
-        for ( Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
-            for (Integer number : lottoNumbers){
-                if (winningNumbers.contains(number)){
-                    lotto.updateCorrectLottoCnt();
-                }
-                if (bonus == number){
-                    lotto.updateBonus();
-                }
+            updateLottoBasedOnWinningNumbers(lotto, lottoNumbers, winningNumbers);
+            updateLottoBasedOnBonusNumber(lotto, lottoNumbers, bonus);
+        }
+    }
+
+    private static void updateLottoBasedOnWinningNumbers(Lotto lotto, List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        for (Integer number : lottoNumbers) {
+            if (winningNumbers.contains(number)) {
+                lotto.updateCorrectLottoCnt();
             }
+        }
+    }
+
+    private static void updateLottoBasedOnBonusNumber(Lotto lotto, List<Integer> lottoNumbers, Integer bonus) {
+        if (bonus != null && lottoNumbers.contains(bonus)) {
+            lotto.updateBonus();
         }
     }
 

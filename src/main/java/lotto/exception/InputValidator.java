@@ -24,15 +24,12 @@ public class InputValidator {
     public static Integer checkValidBonusNumberInput(List<Integer> winningNumbers){
         Integer bonus = 0;
         while(true) {
-
         try{
             String input = Console.readLine();
             bonus = convertInputToNumber(input);
             checkBonusDuplicated(bonus, winningNumbers);
             checkNullOrEmpty(input);
             checkValidRange(bonus);
-
-
             break;
         } catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -101,7 +98,6 @@ public class InputValidator {
     }
 
     public static List<Integer> checkWinningNumbersInput() {
-
         while (true) {
             try {
                 String input = Console.readLine();

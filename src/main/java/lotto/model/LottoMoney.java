@@ -1,5 +1,8 @@
 package lotto.model;
 
+import lotto.exception.ClientException;
+import lotto.exception.ExceptionMessage;
+
 public class LottoMoney {
 
     private final static int LOTTO_PRICE = 1000;
@@ -20,13 +23,13 @@ public class LottoMoney {
 
     private void validateThousandUnit(int money) {
         if (money % LOTTO_PRICE > REMAINDER_ZERO) {
-            throw new IllegalArgumentException();
+            throw new ClientException(ExceptionMessage.MESSAGE_THOUSAND_UNIT);
         }
     }
 
     private void validateLimit(int money) {
         if (money > LIMIT_MONEY) {
-            throw new IllegalArgumentException();
+            throw new ClientException(ExceptionMessage.MESSAGE_LIMIT_MONEY);
         }
     }
 

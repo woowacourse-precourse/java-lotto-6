@@ -34,7 +34,7 @@ public class OutputView {
           System.out.println(MATCHES_SIX_NUMBER_MESSAGE + matchedNumber + "개");
      }
 
-     public static void printProfitRate(int profitRate) {
+     public static void printProfitRate(float profitRate) {
           System.out.println("총 수익률은 " + profitRate + "%입니다.");
      }
 

@@ -4,12 +4,12 @@ import java.util.List;
 
 public class WinningNumbers {
 
-    private static String WINNING_NUMBERS_MUST_BE_6 = "당첨 번호는 6개를 입력해 주세요.";
-    private static String WINNING_NUMBER_RANGE_IS_1_TO_45 = "1부터 45까지의 당첨번호를 입력해 주세요.";
-    private static String WINNING_NUMBERS_MUST_BE_DISTINCT = "당첨 번호는 중복이 아니여야 합니다.";
-    private static int BONUS_NUMBER_INDEX = 6;
+    private static final String WINNING_NUMBERS_MUST_BE_6 = "당첨 번호는 6개를 입력해 주세요.";
+    private static final String WINNING_NUMBER_RANGE_IS_1_TO_45 = "1부터 45까지의 당첨번호를 입력해 주세요.";
+    private static final String WINNING_NUMBERS_MUST_BE_DISTINCT = "당첨 번호는 중복이 아니여야 합니다.";
+    private static final int BONUS_NUMBER_INDEX = 6;
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public WinningNumbers(List<Integer> numbers) {
         validate(numbers);

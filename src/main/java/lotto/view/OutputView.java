@@ -1,5 +1,8 @@
 package lotto.view;
 
+import static lotto.view.Messages.BLANK;
+import static lotto.view.Messages.COUNT_UNIT;
+import static lotto.view.Messages.DASH;
 import static lotto.view.Messages.RESULT_MESSAGE;
 
 import lotto.domain.Ranking;
@@ -17,7 +20,11 @@ public class OutputView {
         for (Ranking ranking : Ranking.values()) {
             final int count = results.findCountByRanking(ranking);
 
-            System.out.println(ranking.getMessage() + " - " + count + "개");
+            System.out.println(ranking.getMessage() + BLANK + DASH + BLANK + count + COUNT_UNIT);
         }
+    }
+
+    public static void printProfitRate() {
+
     }
 }

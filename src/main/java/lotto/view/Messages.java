@@ -7,6 +7,8 @@ public class Messages {
     public static final String WINNING_LOTTO_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
     public static final String RESULT_MESSAGE = "당첨 통계 \n ---";
+    public static final String DASH = "-";
+    public static final String COUNT_UNIT = "개";
     public static final String OPEN_BRACKET = "[";
     public static final String CLOSE_BRACKET = "]";
     public static final String COMMA = ",";

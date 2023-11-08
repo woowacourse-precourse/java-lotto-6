@@ -27,11 +27,12 @@ public class LottoController {
         lottoPurchaseMoney = inputView.inputMoney();
         List<Lotto> tickets = buyTicket();
 
+        outputView.printAllTickets(tickets);
+
         Lotto winTicket = getWinNumber();
 
         BonusNumber bonusNumber = inputView.getBonusNumber();
 
-        outputView.printAllTickets(tickets);
         calculateReward(tickets, winTicket, bonusNumber);
         printResult(lottoPurchaseMoney.getMoney());
     }

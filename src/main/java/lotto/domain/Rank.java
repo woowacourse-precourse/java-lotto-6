@@ -11,10 +11,10 @@ public enum Rank {
     SECOND(5, true, "5개 일치, 보너스 볼 일치 (30,000,000원) - ", reward -> reward + 30_000_000L),
     FIRST(6, false, "6개 일치 (2,000,000,000원) - ", reward -> reward + 2_000_000_000L);
 
-    private int matchNumbers;
-    private boolean matchBonus;
-    private String message;
-    private Function<Long, Long> calc;
+    private final int matchNumbers;
+    private final boolean matchBonus;
+    private final String message;
+    private final Function<Long, Long> calc;
 
     Rank(int matchNumbers, boolean matchBonus, String message, Function<Long, Long> calc) {
         this.matchNumbers = matchNumbers;

@@ -12,10 +12,6 @@ public class LottoController {
 
     private User user;
     private LottoStore lottoStore;
-
-    private List<Integer> winningNumbers;
-    private int bonusNumber;
-
     private LottoController(User user, LottoStore lottoStore) {
         this.user = user;
         this.lottoStore = lottoStore;
@@ -25,9 +21,9 @@ public class LottoController {
         return new LottoController(User.buyLotto(),new LottoStore());
     }
 
-    public void runLottoGame(){
-        winningNumbers = InputView.inputWinningNumbers();
-        bonusNumber = InputView.inputBonusNumbers();
+    private void runLottoGame(){
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        int bonusNumber = InputView.inputBonusNumbers();
 
         double rateOfReturn = user.calculateRateOfReturn(winningNumbers,bonusNumber);
         int[] lottoResult = user.getLottoResults(winningNumbers,bonusNumber);

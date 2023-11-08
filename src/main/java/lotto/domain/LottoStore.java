@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.ui.OutputView;
 import lotto.util.LottoRank;
 
 import java.util.ArrayList;

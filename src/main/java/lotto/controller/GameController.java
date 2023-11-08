@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import lotto.domain.Error;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.GameService;
+import lotto.view.ExceptionView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,22 +24,47 @@ public class GameController {
     }
 
     public void startGame() {
-        String rawInput = inputView.requestInputLottoMoney();
-        int lottoMoney = convertRawInputLottoMoneyToInt(rawInput);
+        int lottoMoney;
+
+        while(true){
+            String rawInput = inputView.requestInputLottoMoney();
+            try {
+                lottoMoney = convertRawInputLottoMoneyToInt(rawInput);
+                break;
+            } catch (Exception e) {
+                ExceptionView.printErrorMessage(e.getMessage());
+            }
+        }
 
         gameService.initGame(lottoMoney);
-
         outputView.printLottoCount(gameService.getLottoCount());
         outputView.printWinningLottos(gameService.getWinningLottos());
     }
 
     public void playGame() {
-        String rawInputLottoNumbers = inputView.requestInputLottoNumbers();
-        Lotto playerLotto = convertRawInputLottoNumbersToLotto(rawInputLottoNumbers);
+        Lotto playerLotto;
+        int bonusNumber;
+
+        while(true){
+            String rawInputLottoNumbers = inputView.requestInputLottoNumbers();
+            try {
+                playerLotto = convertRawInputLottoNumbersToLotto(rawInputLottoNumbers);
+                break;
+            } catch (Exception e) {
+                ExceptionView.printErrorMessage(e.getMessage());
+            }
+        }
         gameService.setPlayerLotto(playerLotto);
 
-        String rawInputBonusNumber = inputView.requestInputBonusNumber();
-        int bonusNumber = convertRawInputBonusNumberToInt(rawInputBonusNumber, playerLotto);
+        while(true){
+            String rawInputBonusNumber = inputView.requestInputBonusNumber();
+            try {
+                bonusNumber = convertRawInputBonusNumberToInt(rawInputBonusNumber, playerLotto);
+                break;
+            } catch (Exception e) {
+                ExceptionView.printErrorMessage(e.getMessage());
+            }
+        }
         gameService.setBonusNumber(bonusNumber);
 
         gameService.comparePlayerLottoWithWinningLottos();
@@ -63,15 +90,15 @@ public class GameController {
         try{
             lottoMoney = Integer.parseInt(rawInput);
         } catch (IllegalArgumentException e) {
-            System.out.println("숫자가 아닙니다.");
+            throw new IllegalArgumentException(Error.INVALID_NUMBER_INPUT);
         }
         // 1000보다 작은지 검증
         if(lottoMoney < 1000) {
-            throw new IllegalArgumentException("1000이상 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(Error.INVALID_LOTTO_MONEY);
         }
         // 1000원 단위인지 검증
         if(lottoMoney % 1000 != 0) {
-            throw new IllegalArgumentException("1000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException(Error.INVALID_LOTTO_MONEY_UNIT);
         }
     }
 
@@ -89,7 +116,7 @@ public class GameController {
             try{
                 lottoNumbers.add(Integer.parseInt(number));
             } catch (IllegalArgumentException e) {
-                System.out.println("숫자가 아닙니다.");
+                throw new IllegalArgumentException(Error.INVALID_NUMBER_INPUT);
             }
         }
 
@@ -108,15 +135,15 @@ public class GameController {
         try{
             bonusNumber = Integer.parseInt(rawInput);
         } catch (IllegalArgumentException e) {
-            System.out.println("숫자가 아닙니다.");
+            throw new IllegalArgumentException(Error.INVALID_NUMBER_INPUT);
         }
         // 1~45 사이의 숫자인지 검증
         if(bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("1~45 사이의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(Error.INVALID_LOTTO_NUMBER_RANGE);
         }
         // 로또 번호와 중복되는지 검증
         if(playerLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("로또 번호와 중복되는 숫자입니다.");
+            throw new IllegalArgumentException(Error.DUPLICATE_LOTTO_NUMBER);
         }
     }
 }

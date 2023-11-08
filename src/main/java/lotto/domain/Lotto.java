@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.ExceptionView;
+
 import java.util.List;
 
 public class Lotto {
@@ -28,20 +30,20 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.INVALID_LOTTO_NUMBER_SIZE);
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Error.DUPLICATE_LOTTO_NUMBER);
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(Error.INVALID_LOTTO_NUMBER_RANGE);
             }
         }
     }

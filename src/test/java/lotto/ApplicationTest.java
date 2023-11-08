@@ -53,6 +53,13 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    void 천으로_나누어_떨어지지_않는_경우() {
+        assertSimpleTest(() -> {
+            runException("1313");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     @Override
     public void runMain() {

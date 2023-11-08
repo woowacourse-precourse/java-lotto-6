@@ -3,7 +3,7 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashSet;
-import lotto.Lotto;
+import lotto.domain.PurchasedLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class LottoPurchaseServiceTest {
         LottoPurchaseService purchase = new LottoPurchaseService();
         int purchaseAmount = 10;
         // when
-        HashSet<Lotto> purchasedLotto = purchase.purchase(purchaseAmount);
+        HashSet<PurchasedLotto> purchasedLotto = purchase.purchase(purchaseAmount);
         // then
         assertThat(purchasedLotto.size()).isEqualTo(purchaseAmount);
     }

@@ -76,4 +76,17 @@ class JackpotTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨번호에 중복된 숫자가 들어갈 수 없습니다.");
     }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 경우 Exception 발생한다.")
+    @Test
+    void validateDuplicateBonusNumber() {
+        // given
+        String inputWinningNumbers = "1,2,3,4,5,6";
+        String inputBonusNumber = "1";
+
+        // when // then
+        assertThatThrownBy(() -> new Jackpot(inputWinningNumbers, inputBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
 }

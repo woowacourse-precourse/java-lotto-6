@@ -2,14 +2,13 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoService {
 
     public List<List<Integer>> numbersList = new ArrayList<>();
+    public Lotto lotto;
 
     public void saveWinNumber(String winNumber){
         List<String> tempNumbers = Arrays.asList(winNumber.split(","));
@@ -17,14 +16,16 @@ public class LottoService {
         for(String number: tempNumbers){
             numbers.add(Integer.parseInt(number));
         }
-        Lotto lotto = new Lotto(numbers);
+        lotto = new Lotto(numbers);
     }
 
     public List<Integer> createLottoList(){
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
-        Collections.sort(randomNumbers);
-        numbersList.add(randomNumbers);
-        return randomNumbers;
+        List<Integer> sortedNumbers = randomNumbers.stream()
+                                                    .sorted()
+                                                    .collect(Collectors.toList());
+        numbersList.add(sortedNumbers);
+        return sortedNumbers;
     }
 
     public void compareWinNumber(List<Integer> numbers, int bonusNumber){
@@ -76,7 +77,7 @@ public class LottoService {
                 Ranking.THIRD.getRankingNumber() * 1500000 +
                 Ranking.SECOND.getRankingNumber() * 30000000 +
                 Ranking.FIRST.getRankingNumber() * 2000000000;
-        double percentage = (double) profit /price;
+        double percentage = (double) profit /price * 100;
         return percentage;
     }
 

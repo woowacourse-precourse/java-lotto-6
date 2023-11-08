@@ -1,7 +1,7 @@
 package lotto;
 
 public enum Ranking {
-    FIRST("6개 일치 (2,000,000,000원 - ", 0),
+    FIRST("6개 일치 (2,000,000,000원) - ", 0),
     SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - ", 0),
     THIRD("5개 일치 (1,500,000원) - ", 0),
     FOURTH("4개 일치 (50,000원) - ",0),
@@ -16,7 +16,7 @@ public enum Ranking {
     }
 
     public void setRankingNumber(int number){
-        this.number += number;
+        this.number = this.number + number;
     }
 
     public int getRankingNumber(){

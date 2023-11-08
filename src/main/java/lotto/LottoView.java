@@ -10,22 +10,35 @@ public class LottoView {
     public int number;
     public String winNumber;
     public int bonusNumber;
-
     LottoService lottoService = new LottoService();
 
     public void inputPrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        price = Integer.parseInt(Console.readLine());
+        String numberRead = Console.readLine();
+        while(true){
+            try{
+                price = Integer.parseInt(numberRead);
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+                System.out.println("구입금액을 다시 입력해 주세요.");
+                numberRead = Console.readLine();
+            }
+        }
     }
 
     public void inputValidate(){
         double tempNumber = 0;
         while(true){
-            try {
-                tempNumber = price/1000;
-                break;
+            try{
+                if (price % 1000 == 0){
+                    tempNumber = price/1000;
+                    break;
+                }
+                IllegalArgumentException e = new IllegalArgumentException("[ERROR] 가격은 1000단위여야 합니다.");
+                throw e;
             } catch (IllegalArgumentException e){
-                System.out.println("[ERROR] 가격은 1000단위여야 합니다.");
+                System.out.println(e.getMessage());
                 System.out.println("구입금액을 다시 입력해 주세요.");
                 price = Integer.parseInt(Console.readLine());
             }

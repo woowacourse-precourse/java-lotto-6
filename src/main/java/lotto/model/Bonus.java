@@ -4,6 +4,7 @@ import lotto.config.LottoConstants;
 import lotto.view.Messages;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Bonus {
 
@@ -13,6 +14,10 @@ public class Bonus {
     public Bonus(String number, List<Integer> winningLotto) {
         validate(number, winningLotto);
         this.number = Integer.parseInt(number);
+    }
+
+    public int getNumber() {
+        return this.number;
     }
 
     private void validate(String number, List<Integer> winningLotto) {
@@ -32,4 +37,6 @@ public class Bonus {
             throw new IllegalArgumentException(Messages.LOTTO_BONUS_DUPLICATE_MESSAGE);
         }
     }
+
+
 }

@@ -12,6 +12,7 @@ public class Validation {
         validateNumberInRange(purchaseAmount, LottoRules.PURCHASE_AMOUNT_MIN.getValue(), LottoRules.PURCHASE_AMOUNT_MAX.getValue());
         validateNumberMultipleOf(purchaseAmount, LottoRules.LOTTO_PRICE.getValue());
     }
+
     public static void validateLotto(List<Integer> winningNumbers) {
         validateListNumberCount(winningNumbers, LottoRules.LOTTO_NUMBER_COUNT.getValue());
         validateListNumberInRange(winningNumbers, LottoRules.MIN_LOTTO_NUMBER.getValue(), LottoRules.MAX_LOTTO_NUMBER.getValue());
@@ -22,6 +23,7 @@ public class Validation {
         validateNumberInRange(bonusNumber.bonusNumber(), LottoRules.MIN_LOTTO_NUMBER.getValue(), LottoRules.MAX_LOTTO_NUMBER.getValue());
         validateBonusNumberNotInWinningNumber(bonusNumber.bonusNumber(), lotto.getNumbers());
     }
+
     public static void validateStringToInteger(String string) {
         if (string.isEmpty()) {
             ExceptionMessages.STRING_TO_INTEGER.throwException();

@@ -49,7 +49,7 @@ public static void main(String[] args) {
 
 클래스 간 관계는 다음과 같습니다.
 
-![클래스 관계](pic1.PNG)
+![클래스 관계](./pic1.png)
 
 - `Application` : 에러 발생시 main에서 에러정보를 출력 후 프로그램 종료
 - `InputSystem` : 값을 입력받음

@@ -27,7 +27,7 @@ public class Purchase {
     public int countLottos(){
         return money / ONE_LOTTO_PRICE;
     }
-    public int getMoney(){
+    public int getLottos(){
         return this.money;
     }
 

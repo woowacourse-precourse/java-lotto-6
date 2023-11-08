@@ -4,16 +4,16 @@ import lotto.model.*;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import static lotto.model.RandomNumber.LottoGenerator;
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 
 
-public class StateController {
+public class LottoController {
 
     private Purchase purchase;
     private PlayLotto playLotto;
@@ -21,12 +21,11 @@ public class StateController {
     private BonusNumber bonusNumber;
 
     public void run() {
-        calculateResult();
-        purchaseLotto();
         giveMoney();
+        purchaseLotto();
         inputAnswer();
         inputBonus();
-
+        calculateResult();
     }
 
     private void giveMoney() {
@@ -38,18 +37,6 @@ public class StateController {
         }
     }
 
-    private void calculateResult() {
-        Map<Price, Integer> scores = playLotto.calculateScore(answerLotto, bonusNumber);
-        printResult();
-        for (Map.Entry<Price, Integer> score : scores.entrySet()) {
-            printPrice(
-                    score.getKey().printStr(),
-                    NumberFormat.getInstance().format(score.getKey().getReward()),
-                    score.getValue()
-            );
-        }
-        printProfit(playLotto.calculateProfit(scores, purchase.getMoney()));
-    }
 
     private void purchaseLotto() {
         int numberOfLottosToPurchase = purchase.countLottos();
@@ -70,22 +57,15 @@ public class StateController {
 
 
     private void inputAnswer() {
-        List<Integer> answerLotto;
-        boolean validInput = false;
-
-        while (!validInput) {
-            String input = readAnswer().trim();
-            try {
-                answerLotto = Arrays.stream(input.split(","))
-                        .map(Integer::parseInt)
-                        .toList();
-                this.answerLotto = new Lotto(answerLotto);
-                validInput = true;
-            } catch (NumberFormatException e) {
-                printException("올바른 숫자 입력 형식을 유지해주세요.");
-            } catch (IllegalArgumentException e) {
-                printException(e.getMessage());
-            }
+        List<Integer> answerLotto = Stream
+                .of(readAnswer().trim().split(","))
+                .map(Integer::parseInt)
+                .toList();
+        try {
+            this.answerLotto = new Lotto(answerLotto);
+        } catch (IllegalArgumentException exception) {
+            printException(exception.getMessage());
+            inputAnswer();
         }
     }
 
@@ -99,5 +79,17 @@ public class StateController {
         }
     }
 
+    private void calculateResult() {
+        Map<Price, Integer> scores = playLotto.calculateScore(answerLotto, bonusNumber);
+        printResult();
+        for (Map.Entry<Price, Integer> score : scores.entrySet()) {
+            printPrice(
+                    score.getKey().printStr(),
+                    NumberFormat.getInstance().format(score.getKey().getReward()),
+                    score.getValue()
+            );
+        }
+        printProfit(playLotto.calculateProfit(scores, purchase.getLottos()));
+    }
 
 }

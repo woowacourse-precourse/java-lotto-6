@@ -31,11 +31,9 @@ public class Application {
     Prize.printResults(results);
     
     int totalPurchaseCost =    numberOfTickets * 1000;
-    double totalRevenueRate = Prize.calculateTotalRevenueRate(results, totalPurchaseCost);
-    double roundedRevenueRate = Math.round(totalRevenueRate * 100.0) / 100.0;
-    DecimalFormat df = new DecimalFormat("#,###,###,###,###.##%");
-    String formattedNumber = df.format(roundedRevenueRate / 100);  // 소수점 둘째 자리에서 반올림
-    System.out.println("총 수익률은 " + formattedNumber+"입니다.");
+    double totalRevenueRate = Prize.calculateTotalRevenueRate(results, totalPurchaseCost) / 100.0;
+    String formattedRevenueRate = Prize.formatRevenueRate(totalRevenueRate);
+    System.out.println("총 수익률은 " + formattedRevenueRate + "입니다.");
 
   }
 

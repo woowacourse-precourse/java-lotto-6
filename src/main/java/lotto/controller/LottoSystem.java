@@ -10,6 +10,7 @@ import java.util.Map;
 public class LottoSystem {
     private final InputView inputView;
     private final OutputView outputView;
+
     private Lottos lottos;
     private WinningCombination winningCombination;
     private Budget budget;

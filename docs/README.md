@@ -213,11 +213,11 @@
   - while문 안에 if문이 있으면 들여쓰기는 2이다.
 ## ▶ 보완할 사항 목록
 - [x] 직관적인 변수명 사용
-- [ ] 패키지마다 정확한 목적
-- [ ] 객체 따로 생성
-- [ ] InputView와 OutputView의 역할을 확실히 하기
-- [ ] List로 추상화하기
-- [ ] Console.close() 까먹지 말기
-- [ ] 구현 순서
-- [ ] 하드 코딩 X
-- [ ] private public protected 확인
+- [x] 패키지마다 정확한 목적
+- [x] 객체 분리
+- [x] InputView와 OutputView의 역할을 확실히 하기
+- [x] List로 추상화하기
+- [x] Console.close() 까먹지 말기
+- [x] 구현 순서 준수
+- [x] 하드 코딩 X
+- [x] private public protected 확인

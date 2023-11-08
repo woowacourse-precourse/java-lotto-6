@@ -8,7 +8,7 @@ import lotto.dto.PurchaseAmountRequest;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 
-public class LottoService {
+public class LottoMakeService {
 
     public Lottos makeRandomLottos(PurchaseAmountRequest purchaseAmountRequest) {
         Integer purchaseCount =

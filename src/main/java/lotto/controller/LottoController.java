@@ -2,22 +2,22 @@ package lotto.controller;
 
 import lotto.dto.PurchaseAmountRequest;
 import lotto.model.Lottos;
-import lotto.service.LottoService;
+import lotto.service.LottoMakeService;
 import lotto.view.LottoView;
 
 public class LottoController {
 
     private final LottoView view;
-    private final LottoService service;
+    private final LottoMakeService lottoMakeService;
 
-    public LottoController(LottoView view, LottoService service) {
+    public LottoController(LottoView view, LottoMakeService lottoMakeService) {
         this.view = view;
-        this.service = service;
+        this.lottoMakeService = lottoMakeService;
     }
 
     public void run() {
         PurchaseAmountRequest purchaseAmountRequest = view.readPurchaseAmount();
-        Lottos lottos = service.makeRandomLottos(purchaseAmountRequest);
+        Lottos lottos = lottoMakeService.makeRandomLottos(purchaseAmountRequest);
         view.writeLottosInfo(lottos.getLottoInfoResponse());
         view.readWinningNumber();
     }

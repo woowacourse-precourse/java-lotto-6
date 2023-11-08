@@ -8,6 +8,7 @@ public class WinningNumbers {
     private static final String CONSECUTIVE_COMMA_ERROR_MESSAGE = "[ERROR] 입력에 쉼표가 연속해서 있습니다.";
     private static final String SPECIAL_CHARACTER_ERROR_MESSAGE = "[ERROR] 쉼표를 제외한 특수문자는 사용할 수 없습니다.";
     private static final String SPACE_ERROR_MESSAGE = "[ERROR] 쉼표 앞뒤에 공백이 있습니다.";
+    private static final String LEADING_TRAILING_COMMA_ERROR_MESSAGE = "[ERROR] 입력 맨 앞, 또는 맨 뒤에 쉼표가 있습니다.";
     private static final Pattern WINNING_NUMBERS_REGEX = Pattern.compile("^(\\s*\\d+\\s*,\\s*)*\\d+\\s*$");
     public WinningNumbers(List<Integer> numbers) {
         validate(numbers);
@@ -19,6 +20,7 @@ public class WinningNumbers {
         validateConsecutiveCommas(numbers);
         validateSpecialCharacters(numbers);
         validateSpaceAroundCommas(numbers);
+        validateLeadingTrailingCommas(numbers);
     }
 
     private void validateLotto(List<Integer> numbers) {
@@ -44,6 +46,13 @@ public class WinningNumbers {
         String winningNumbersString = numbers.toString().replaceAll("\\s*,\\s*", ",");
         if (winningNumbersString.contains(" ,") || winningNumbersString.contains(", ") || winningNumbersString.startsWith(" ") || winningNumbersString.endsWith(" ")) {
             throw new IllegalArgumentException(SPACE_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateLeadingTrailingCommas(List<Integer> numbers) {
+        String winningNumbersString = numbers.toString().replaceAll("\\s*,\\s*", ",");
+        if (winningNumbersString.startsWith(",") || winningNumbersString.endsWith(",")) {
+            throw new IllegalArgumentException(LEADING_TRAILING_COMMA_ERROR_MESSAGE);
         }
     }
 }

@@ -24,16 +24,16 @@ public class LottoGame {
 
   // 당첨된 숫자 3개 이상인 티켓 처리
   public int[] calculateResults() {
-    int[] results = new int[6];
+    int[] results = new int[7];
 
     for (Lotto ticket : purchasedTickets) {
-      int matchingNumbers = ticket.countMatchingNumbers(winningTicket);
-      if (matchingNumbers >= 3) {
-        results[matchingNumbers]++;
-      }
+        int matchingNumbers = ticket.countMatchingNumbers(winningTicket);
+        if (matchingNumbers >= 3) {
+            results[matchingNumbers]++;
+        }
     }
     return results;
-  }
+}
 
 
   private Lotto generateRandomLotto() {

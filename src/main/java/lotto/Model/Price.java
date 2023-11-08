@@ -1,9 +1,8 @@
 package lotto.Model;
 
-import static lotto.Constants.DEFAULT;
 import static lotto.Constants.MAX_LOTTO_PURCHASE_PRICE;
 import static lotto.Constants.MAX_LOTTO_PURCHASE_PRICE_TO_STRING;
-import static lotto.Constants.ONE_HUNDRED_PERCENT;
+import static lotto.Constants.ONE_HUNDRED;
 import static lotto.Constants.TENTHS;
 import static lotto.Constants.UNIT_OF_ONE_LOTTO_PRICE;
 import static lotto.Utils.toInt;
@@ -18,6 +17,8 @@ public class Price {
     public static final String ERROR_OVER_MAX_PRICE_OF_LOTTO_FOR_PURCHASE =
             String.format("[ERROR] 로또구입금액은 최대 %s입니다.", MAX_LOTTO_PURCHASE_PRICE_TO_STRING);
 
+    private static final int NONE_PRICE = 0;
+
     int purchasePrice;
 
     public Price(String input) {
@@ -29,11 +30,11 @@ public class Price {
         return purchasePrice / UNIT_OF_ONE_LOTTO_PRICE;
     }
 
-    public double makeWinningRate(int totalWinningPrize) {
-        if (isZero(totalWinningPrize)) {
-            return DEFAULT;
+    public double makeWinningRate(int totalPrize) {
+        if (!has(totalPrize)) {
+            return NONE_PRICE;
         }
-        return (double) Math.round(dividePurchasePriceWith(totalWinningPrize) * ONE_HUNDRED_PERCENT * TENTHS) / TENTHS;
+        return (double) Math.round(makePercentage(totalPrize) * TENTHS) / TENTHS;
     }
 
     private void validate(String input) throws IllegalArgumentException {
@@ -50,26 +51,26 @@ public class Price {
         }
     }
 
-    private void validateDividingUnitOfOneLottoPrice(int validInput) {
-        if (validInput % UNIT_OF_ONE_LOTTO_PRICE != DEFAULT) {
+    private void validateDividingUnitOfOneLottoPrice(int numberInput) {
+        if (numberInput % UNIT_OF_ONE_LOTTO_PRICE != NONE_PRICE) {
             throw new IllegalArgumentException(ERROR_UNIT_PRICE_OF_PURCHASED_LOTTO);
         }
     }
 
-    private void validateNumberRange(int validInput) {
-        if (validInput < UNIT_OF_ONE_LOTTO_PRICE) {
+    private void validateNumberRange(int numberInput) {
+        if (numberInput < UNIT_OF_ONE_LOTTO_PRICE) {
             throw new IllegalArgumentException(ERROR_NOT_PURCHASE_LOTTO);
         }
-        if (validInput > MAX_LOTTO_PURCHASE_PRICE) {
+        if (numberInput > MAX_LOTTO_PURCHASE_PRICE) {
             throw new IllegalArgumentException(ERROR_OVER_MAX_PRICE_OF_LOTTO_FOR_PURCHASE);
         }
     }
 
-    private boolean isZero(int totalPrize) {
-        return totalPrize == DEFAULT;
+    private boolean has(int totalPrize) {
+        return totalPrize != NONE_PRICE;
     }
 
-    private double dividePurchasePriceWith(int totalPrize) {
-        return (double) totalPrize / purchasePrice;
+    private double makePercentage(int totalPrize) {
+        return (double) totalPrize / purchasePrice * ONE_HUNDRED;
     }
 }

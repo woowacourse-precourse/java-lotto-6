@@ -42,4 +42,12 @@ class InputValidatorTest {
         assertThatThrownBy(() -> inputValidator.validateDigitAndDelimiter(inputValue))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2", "1, 2", ",1,"})
+    @DisplayName("사용자 입력 값이 숫자 또는 쉼표일 경우 그대로 반환한다.(띄어쓰기 허용)")
+    void inputNumberAndComma(String inputValue) {
+        String result = inputValidator.validateDigitAndDelimiter(inputValue);
+        assertThat(result).isEqualTo(inputValue);
+    }
 }

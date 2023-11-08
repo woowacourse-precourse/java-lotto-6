@@ -98,7 +98,7 @@ public class LottoGame {
     }
 
     // 문자열 Integer 변환
-    private Integer parseInteger(String s) {
+    protected Integer parseInteger(String s) {
         try {
             return Integer.valueOf(s);
         } catch (NumberFormatException e) {

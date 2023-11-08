@@ -27,10 +27,9 @@ public class Lotto {
             if (hasDuplicate(numbers)) {
                 throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
             }
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            throw e;
+            BallNumber.canUse = true;
         }
 
     }

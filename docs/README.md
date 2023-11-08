@@ -39,3 +39,4 @@
 1. [V] 당첨번호 입력 값을 String[] -> int[] 로 변경했는데,   
    Lotto 클래스를 활용하기 위해서는 List<Intager> 로 변경해야 한다.
 2. [V] 구매내역 오름차순 정렬을 하면 ApplicationTest가 통과안됨.
+3. [V] ERROR 메시지 발생 후 전 단계로 안 돌아감.

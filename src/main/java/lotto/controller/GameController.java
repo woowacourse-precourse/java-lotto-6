@@ -1,12 +1,15 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.Message;
 import lotto.domain.WinningResult;
 import lotto.service.GameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+
+import static lotto.domain.Message.*;
 
 public class GameController {
     private final GameService gameService;
@@ -29,11 +32,11 @@ public class GameController {
 
     private void inputPurchaseAmount() {
         try {
-            OutputView.println("구입금액을 입력해 주세요.");
+            OutputView.println(PURCHASE_AMOUNT_MESSAGE.getMessage());
             gameService.setPurchaseAmount(InputView.readPurchaseAmount());
-            OutputView.println("");
+            OutputView.println(BLANK.getMessage());
         } catch (IllegalArgumentException e) {
-            OutputView.println(e.getMessage() + "\n");
+            OutputView.println(e.getMessage());
             inputPurchaseAmount();
         }
     }
@@ -69,7 +72,7 @@ public class GameController {
             winningLotto = gameService.createWinningLotto(InputView.readWinningNumbers());
             OutputView.println("");
         } catch (IllegalArgumentException e) {
-            OutputView.println(e.getMessage() + "\n");
+            OutputView.println(e.getMessage());
             return inputWinningNumbers();
         }
 
@@ -82,7 +85,7 @@ public class GameController {
             gameService.setBonusNumber(InputView.readBonusNumber(winningNumbers));
             OutputView.println("");
         } catch (IllegalArgumentException e) {
-            OutputView.println(e.getMessage() + "\n");
+            OutputView.println(e.getMessage());
             inputBonusNumber(winningNumbers);
         }
     }

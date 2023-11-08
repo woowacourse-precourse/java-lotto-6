@@ -77,7 +77,7 @@ public class LottoController {
         ArrayList<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < purchaseAmount / 1000; i++) {
-            createLottoTicket();
+            lottoTickets.add(createLottoTicket());
         }
 
         buyer = new Buyer(purchaseAmount, lottoTickets);

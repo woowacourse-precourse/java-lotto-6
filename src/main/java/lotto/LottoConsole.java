@@ -12,12 +12,6 @@ public class LottoConsole {
         while (true) {
             try {
                 int number = numberOfPurchases();
-
-                if (!isFit(number, LOTTO_PRICE)) {
-                    throw new IllegalArgumentException("1000원 단위로 구입할 수 있습니다.");
-                }
-
-                number /= 1000;
                 System.out.println("\n" + number + "개를 구매했습니다.");
 
                 List<Lotto> lottos = new ArrayList<>(number);
@@ -33,20 +27,32 @@ public class LottoConsole {
         }
     }
 
-    public static boolean isFit(int leftNumber, int rightNumber) {
-        return leftNumber % rightNumber == 0;
+    public static boolean isNotFit(int leftNumber, int rightNumber) {
+        return leftNumber % rightNumber != 0;
     }
 
     public static int numberOfPurchases() {
         System.out.println("구입금액을 입력해 주세요.");
+        int number = of(Console.readLine());
+        if (isNotFit(number, LOTTO_PRICE)) {
+            throw new IllegalArgumentException("로또는 1000원 단위로 구매 가능합니다.");
+        }
+        return number / LOTTO_PRICE;
+    }
+
+    public static int of(String word) {
         int number;
         try {
-            number = Integer.parseInt(Console.readLine());
+            number = Integer.parseInt(word);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("구입금액은 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException();
         }
         return number;
     }
 
+//    public static Lotto getWinningNumber() {
+//        System.out.println("구입금액을 입력해 주세요.");
+//
+//    }
 
 }

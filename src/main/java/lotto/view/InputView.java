@@ -9,6 +9,8 @@ import lotto.domain.Lotto;
 
 public class InputView {
 
+    private static final int TICKET_PRICE = 1000;
+
     private static String testInput; // 테스트용 입력값
 
     public static String inputLine() {
@@ -29,7 +31,7 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         try {
             String input = inputLine();
-            return parseLongOrThrowError(input);
+            return divideWithTicketPrice(input);
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 숫자 형식이 아닌 값이 포함되어 있습니다.");
         }
@@ -43,6 +45,16 @@ public class InputView {
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
         }
+    }
+
+    private static long divideWithTicketPrice(String input) {
+        long purchaseAmount = parseLongOrThrowError(input);
+
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
+        }
+
+        return purchaseAmount;
     }
 
     private static long parseLongOrThrowError(String input) {

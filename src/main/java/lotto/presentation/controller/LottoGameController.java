@@ -1,10 +1,7 @@
 package lotto.presentation.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
-import lotto.model.Lotto;
-import lotto.model.LottoTicket;
 import lotto.model.LottoWinningNumbers;
 import lotto.presentation.view.View;
 import lotto.repository.LottoTicketRepository;
@@ -18,17 +15,20 @@ public class LottoGameController {
     private Referee referee;
     private LottoTicketRepository ticketRepository;
     private PurchaseLogicController purchaseLogicController;
+    private WinningNumberController winningNumberController;
+    private LottoWinningNumbers lottoWinningNumbers;
 
     public LottoGameController(View view, Referee referee, LottoTicketRepository ticketRepository) {
         this.view = view;
         this.referee = referee;
         this.ticketRepository = ticketRepository;
         this.purchaseLogicController = new PurchaseLogicController(view, referee, ticketRepository);
+        this.winningNumberController = new WinningNumberController(view, referee, ticketRepository);
     }
 
     public void run() {
         purchaseLogicController.lottoPurchaseLogic();
-        LottoWinningNumbers lottoWinningNumbers = lottoWinningNumbersGenerationLogic();
+        lottoWinningNumbers = winningNumberController.lottoWinningNumbersGenerationLogic();
         List<Rank> ranks = referee.calculateRanks(lottoWinningNumbers);
         displayWinningStatistics(ranks);
         Console.close();
@@ -37,73 +37,6 @@ public class LottoGameController {
     public static String readAndRemoveSpace() {
         return Console.readLine().replaceAll(" ", "");
     }
-
-
-    private LottoWinningNumbers lottoWinningNumbersGenerationLogic() {
-        while (true) {
-            try {
-                Lotto winningLotto = readAndGenerateWinningNumber();
-                int BonusNumber = readAndGenerateBonusNumber();
-                return new LottoWinningNumbers(winningLotto.getNumbers(), BonusNumber);
-            } catch (IllegalArgumentException e) {
-                view.promptForError(e);
-            }
-        }
-    }
-
-    private Lotto readAndGenerateWinningNumber() {
-        while (true) {
-            view.promptForWinningNumber();
-            List<String> inputWinningNumbers = Arrays.asList(readAndRemoveSpace().split(","));
-            try {
-                getValidWinningNumber(inputWinningNumbers);
-                List<Integer> winningNumbers = parseWinningNumbers(inputWinningNumbers);
-                return createLottoWithWinningNumbers(winningNumbers);
-            } catch (IllegalArgumentException e) {
-                handleInvalidWinningNumbers(e);
-            }
-        }
-    }
-
-    private void getValidWinningNumber(List<String> inputWinningNumbers) {
-        inputWinningNumbers.forEach(inputNumber -> {
-            isNotBlankValue(inputNumber);
-            isNotIntegerValue(inputNumber);
-        });
-    }
-
-    private List<Integer> parseWinningNumbers(List<String> inputWinningNumbers) {
-        return inputWinningNumbers.stream()
-                .map(Integer::parseInt)
-                .toList();
-    }
-
-    private Lotto createLottoWithWinningNumbers(List<Integer> winningNumbers) {
-        return new Lotto(winningNumbers);
-    }
-
-    private void handleInvalidWinningNumbers(IllegalArgumentException e) {
-        view.promptForError(e);
-    }
-
-    private int readAndGenerateBonusNumber() {
-        while (true) {
-            view.promptForBonusNumber();
-            String inputBonusNumber = readAndRemoveSpace();
-            try {
-                getValidBonusNumber(inputBonusNumber);
-                return Integer.parseInt(inputBonusNumber);
-            } catch (IllegalArgumentException e) {
-                view.promptForError(e);
-            }
-        }
-    }
-
-    private void getValidBonusNumber(String inputBonusNumber) {
-        isNotBlankValue(inputBonusNumber);
-        isNotIntegerValue(inputBonusNumber);
-    }
-
 
     public static void isNotBlankValue(final String inputValue) {
         if (inputValue.isBlank()) {

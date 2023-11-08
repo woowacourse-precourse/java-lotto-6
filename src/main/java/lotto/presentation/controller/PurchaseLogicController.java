@@ -10,6 +10,7 @@ public class PurchaseLogicController {
     private View view;
     private Referee referee;
     private LottoTicketRepository ticketRepository;
+
     public PurchaseLogicController(View view, Referee referee, LottoTicketRepository ticketRepository) {
         this.view = view;
         this.referee = referee;
@@ -30,7 +31,8 @@ public class PurchaseLogicController {
                 getValidPurchaseAmount(inputPurchaseAmount);
                 return parseInt(inputPurchaseAmount);
             } catch (IllegalArgumentException e) {
-                handleInvalidAmount(e);
+                view.promptForError(e);
+                view.promptForPurchaseAmount();
             }
         }
     }
@@ -43,11 +45,6 @@ public class PurchaseLogicController {
         LottoGameController.isNotBlankValue(inputPurchaseAmount);
         LottoGameController.isNotIntegerValue(inputPurchaseAmount);
         LottoTicket.isNotMultipleOfLottoPrice(Integer.parseInt(inputPurchaseAmount));
-    }
-
-    private void handleInvalidAmount(IllegalArgumentException e) {
-        view.promptForError(e);
-        view.promptForPurchaseAmount();
     }
 
     private void displayPurchaseResults() {

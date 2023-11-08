@@ -4,19 +4,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.view.constant.InputConstant;
-import lotto.view.validator.BonusNumberValidator;
+import lotto.view.validator.BonusNumberInputValidator;
 import lotto.view.validator.UserMoneyInputValidator;
 import lotto.view.validator.WinningLottoNumbersInputValidator;
 
 public class InputParser {
     private final UserMoneyInputValidator userMoneyInputValidator;
     private final WinningLottoNumbersInputValidator winningLottoNumbersInputValidator;
-    private final BonusNumberValidator bonusNumberValidator;
+    private final BonusNumberInputValidator bonusNumberInputValidator;
 
     public InputParser() {
         userMoneyInputValidator = new UserMoneyInputValidator();
         winningLottoNumbersInputValidator = new WinningLottoNumbersInputValidator();
-        bonusNumberValidator = new BonusNumberValidator();
+        bonusNumberInputValidator = new BonusNumberInputValidator();
     }
 
     public Long parseUserMoney(String userMoney) {
@@ -33,7 +33,7 @@ public class InputParser {
 
     public Integer parseBonusNumber(String bonusNumber) {
         bonusNumber = removeBlank(bonusNumber);
-        bonusNumberValidator.validate(bonusNumber);
+        bonusNumberInputValidator.validate(bonusNumber);
         return parseToInteger(bonusNumber);
     }
 

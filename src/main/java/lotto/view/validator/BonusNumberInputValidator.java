@@ -3,7 +3,7 @@ package lotto.view.validator;
 import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 
-public class BonusNumberValidator {
+public class BonusNumberInputValidator {
     public void validate(final String bonusNumber) {
         isNotEmpty(bonusNumber);
         isNumeric(bonusNumber);

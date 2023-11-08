@@ -1,9 +1,10 @@
 package lotto;
 
+import lotto.validation.LottoValidation;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import static constant.LottoValue.*;
 import static exception.ExceptionMessage.*;
@@ -18,9 +19,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateSize(numbers);
-        validateRange(numbers);
-        validateDuplicate(numbers);
+        LottoValidation lottoValidation = new LottoValidation();
+        lottoValidation.lottoValidate(numbers);
     }
 
     // TODO: 추가 기능 구현
@@ -51,25 +51,5 @@ public class Lotto {
         return numbers;
     }
 
-    private static void validateSize(List<Integer> numbers) {
-        if(numbers.size() != LOTTO_SIZE.value()){
-            throw new IllegalArgumentException(LOTTO_NUMBERS_SIZE.message());
-        }
-    }
-
-    private static void validateRange(List<Integer> numbers) {
-        for (int i = 0; i < LOTTO_SIZE.value(); i++) {
-            Integer num = numbers.get(i);
-            if (num < LOTTO_MINIMUM_NUMBER.value() || num > LOTTO_MAXIMUM_NUMBER.value()){
-                throw new IllegalArgumentException(LOTTO_NUMBERS_RANGE.message());
-            }
-        }
-    }
-
-    private void validateDuplicate(List<Integer> numbers) {
-        if(numbers.size() != numbers.stream().distinct().count()){
-            throw new IllegalArgumentException(LOTTO_NUMBERS_DUPLICATE.message());
-        }
-    }
 
 }

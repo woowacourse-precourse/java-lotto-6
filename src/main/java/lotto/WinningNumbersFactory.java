@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.validation.LottoValidation;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -44,31 +46,10 @@ public class WinningNumbersFactory {
     }
 
     private void validateIntegers(List<Integer> winning) {
-        validateSize(winning);
-        validateRange(winning);
-        validateDuplicate(winning);
+        LottoValidation lottoValidation = new LottoValidation();
+        lottoValidation.lottoValidate(winning);
     }
 
-    private static void validateSize(List<Integer> winning) {
-        if(winning.size() != LOTTO_SIZE.value()){
-            throw new IllegalArgumentException(WINNING_NUMBERS_SIZE.message());
-        }
-    }
-
-    private static void validateRange(List<Integer> winning) {
-        for (int i = 0; i < LOTTO_SIZE.value(); i++) {
-            Integer num = winning.get(i);
-            if (num < LOTTO_MINIMUM_NUMBER.value() || num > LOTTO_MAXIMUM_NUMBER.value()){
-                throw new IllegalArgumentException(WINNING_NUMBERS_RANGE.message());
-            }
-        }
-    }
-
-    private void validateDuplicate(List<Integer> winning) {
-        if(winning.size() != winning.stream().distinct().count()){
-            throw new IllegalArgumentException(WINNING_NUMBERS_DUPLICATE.message());
-        }
-    }
 
     public void setBonus(List<Integer> winning){
         System.out.println("\n보너스 번호를 입력해 주세요.");

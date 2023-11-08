@@ -20,7 +20,6 @@ public class LottoFactory {
         for (int i = 0; i < lottoNumber; i++) {
             List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MINIMUM_NUMBER.value(), LOTTO_MAXIMUM_NUMBER.value(), LOTTO_SIZE.value()));
             Collections.sort(numbers);
-//            numbers.sort(Comparator.naturalOrder());
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
@@ -31,9 +30,6 @@ public class LottoFactory {
     public void printLottos(){
         System.out.println();
         System.out.println(lottoNumber+"개를 구매했습니다.");
-//        lottos = lottos.stream()
-//                .sorted()
-//                .collect(Collectors.toList());
         for (int i = 0; i < lottoNumber; i++) {
             lottos.get(i).printLotto();
         }

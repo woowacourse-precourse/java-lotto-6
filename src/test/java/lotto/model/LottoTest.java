@@ -31,10 +31,10 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 정보가 잘 출력된다.")
+    @DisplayName("로또 정보가 오름차순으로 잘 출력된다.")
     @Test
     void printLottoInformation() {
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(2,6,5,4,1,3));
         assertThat(lotto.toString()).contains("[1, 2, 3, 4, 5, 6]");
     }
 }

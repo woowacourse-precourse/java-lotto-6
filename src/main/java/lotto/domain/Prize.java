@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum Prize {
-    NONE(0, 0, (matchCount, isMatchBonus) -> matchCount < 3),
-    FIRST(6, 2000000000, (matchCount, isMatchBonus) -> matchCount == 6),
-    SECOND(5, 30000000, (matchCount, isMatchBonus) -> matchCount == 5 && isMatchBonus),
-    THIRD(5, 1500000, (matchCount, isMatchBonus) -> matchCount == 5 && !isMatchBonus),
+    FIFTH(3, 5000, (matchCount, isMatchBonus) -> matchCount == 3),
     FOURTH(4, 50000, (matchCount, isMatchBonus) -> matchCount == 4),
-    FIFTH(3, 5000, (matchCount, isMatchBonus) -> matchCount == 3);
+    THIRD(5, 1500000, (matchCount, isMatchBonus) -> matchCount == 5 && !isMatchBonus),
+    SECOND(5, 30000000, (matchCount, isMatchBonus) -> matchCount == 5 && isMatchBonus),
+    FIRST(6, 2000000000, (matchCount, isMatchBonus) -> matchCount == 6),
+    NONE(0, 0, (matchCount, isMatchBonus) -> matchCount < 3);
 
     private final int matchCount;
     private final int reward;

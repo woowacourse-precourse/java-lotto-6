@@ -58,11 +58,11 @@
 
 ## Validator
 ### BonusNumberValidator
-- [ ] 보너스 번호의 유효성을 검증한다.
-    - [ ] 번호가 공백이 아닌지 검증한다.
-    - [ ] 번호가 정수인지 검증한다.
-    - [ ] 번호가 1부터 45 사이의 숫자인지 검증한다.
-    - [ ] 번호가 당첨 번호와 중복되지 않는지 검증한다.
+- [x] 보너스 번호의 유효성을 검증한다.
+    - [x] 번호가 공백이 아닌지 검증한다.
+    - [x] 번호가 정수인지 검증한다.
+    - [x] 번호가 1부터 45 사이의 숫자인지 검증한다.
+    - [x] 번호가 당첨 번호와 중복되지 않는지 검증한다.
 
 ### PurchaseValidator
 - [ ] 로또 구입 금액의 유효성을 검증한다.
@@ -80,10 +80,10 @@
     - [x] 숫자가 중복되지 않는지 검증한다.
 
 ## Exception
-- [ ] INVALID_BONUS_NUMBER_TYPE: 보너스 번호는 정수값
-- [ ] INVALID_BONUS_NUMBER_RANGE: 보너스 번호는 1부터 45 사이의 숫자
-- [ ] NULL_OR_EMPTY_BONUS_NUMBER: 보너스 번호는 null이나 공백일 수 없음
-- [ ] DUPLICATE_BONUS_NUMBER: 보너스 번호는 당첨 번호와 중복될 수 없음
+- [x] INVALID_BONUS_NUMBER_TYPE: 보너스 번호는 정수값
+- [x] INVALID_BONUS_NUMBER_RANGE: 보너스 번호는 1부터 45 사이의 숫자
+- [x] NULL_OR_EMPTY_BONUS_NUMBER: 보너스 번호는 null이나 공백일 수 없음
+- [x] DUPLICATE_BONUS_NUMBER: 보너스 번호는 당첨 번호와 중복될 수 없음
 
 - [ ] INVALID_PURCHASE_AMOUNT: 구매 금액은 자연수 값
 - [ ] NULL_OR_EMPTY_PURCHASE_AMOUNT: 구매 금액은 null이나 공백일 수 없음

@@ -9,6 +9,7 @@ public class Payment {
     private int payment;
 
     private Payment(String inputValue) throws LottoGameException {
+        validateIntegerValue(inputValue);
         validateNullValue(inputValue);
         validateNoRemainderValue(inputValue);
         this.payment = Parser.parseStringToInt(inputValue);

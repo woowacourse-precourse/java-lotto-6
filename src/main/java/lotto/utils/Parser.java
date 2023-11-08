@@ -1,19 +1,12 @@
 package lotto.utils;
 
-import lotto.exception.LottoGameException;
-
 import static lotto.enums.UtilNumber.LOTTO_COST;
-import static lotto.enums.ErrorMessage.NOT_INTEGER_ERROR_MESSAGE;
 
 public class Parser {
 
-    public static int parseStringToInt(String stringValue) throws LottoGameException {
-        try {
-            int intValue = Integer.parseInt(stringValue);
-            return intValue;
-        } catch (Exception e) {
-            throw new LottoGameException(NOT_INTEGER_ERROR_MESSAGE);
-        }
+    public static int parseStringToInt(String stringValue) {
+        int intValue = Integer.parseInt(stringValue);
+        return intValue;
     }
 
     public static int parsePaymentToCoin(int payment) {

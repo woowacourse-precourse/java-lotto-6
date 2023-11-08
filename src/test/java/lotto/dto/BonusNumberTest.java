@@ -21,4 +21,11 @@ public class BonusNumberTest {
         assertThatThrownBy(() -> BonusNumber.create("46"))
                 .isInstanceOf(LottoGameException.class);
     }
+
+    @DisplayName("정수가 아닌 값 입력 시 예외 발생")
+    @Test
+    void createNotInteger(){
+        assertThatThrownBy(() -> BonusNumber.create("정수가 아님"))
+                .isInstanceOf(LottoGameException.class);
+    }
 }

@@ -45,4 +45,13 @@ public class LottoValidator {
             throw new LottoGameException(LENGTH_ERROR_MESSAGE);
         }
     }
+
+    public static void validateIntegerValue(String numbers) throws LottoGameException{
+        for(char number : numbers.toCharArray()){
+            int isIntger = number - '0';
+            if(isIntger<0 || isIntger>9){
+                throw new LottoGameException(NOT_INTEGER_ERROR_MESSAGE);
+            }
+        }
+    }
 }

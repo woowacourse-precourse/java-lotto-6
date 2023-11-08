@@ -10,6 +10,7 @@ public class BonusNumber {
 
     private BonusNumber(String userInput) throws LottoGameException {
         validateNullValue(userInput);
+        validateIntegerValue(userInput);
         this.bonusNumber = Parser.parseStringToInt(userInput);
         validInRangeNumber(bonusNumber);
     }

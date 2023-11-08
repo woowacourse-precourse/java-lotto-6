@@ -7,7 +7,7 @@ public enum LottoRule {
 
     private final int value;
 
-    LottoRule(int value) {
+    LottoRule(final int value) {
         this.value = value;
     }
 
@@ -15,7 +15,7 @@ public enum LottoRule {
         return value;
     }
 
-    public static boolean outOfRange(int number) {
+    public static boolean outOfRange(final int number) {
         return number < MIN.value || number > MAX.value;
     }
 }

@@ -15,7 +15,7 @@ public enum Rank {
     private int amount;
 
     Rank() {}
-    Rank(String description, int matches, int amount) {
+    Rank(final String description, final int matches, final int amount) {
         this.description = description;
         this.matches = matches;
         this.amount = amount;
@@ -29,28 +29,28 @@ public enum Rank {
         return amount;
     }
 
-    public static Rank from(int matches, boolean bonusMatched) {
+    public static Rank from(final int matches, final boolean bonusMatched) {
         if (matches == 5) {
             return selectBy(bonusMatched);
         }
         return findRank(matches);
     }
 
-    private static Rank selectBy(boolean bonusMatched) {
+    private static Rank selectBy(final boolean bonusMatched) {
         if (bonusMatched) {
             return SECOND;
         }
         return THIRD;
     }
 
-    private static Rank findRank(int matches) {
+    private static Rank findRank(final int matches) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matches == matches)
                 .findFirst()
                 .orElse(BLANK);
     }
 
-    public int amountOf(int times) {
+    public int amountOf(final int times) {
         return amount * times;
     }
 }

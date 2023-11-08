@@ -13,7 +13,7 @@ public class RankCounter {
                 .forEach(rank -> map.put(rank, 0));
     }
 
-    public void increaseCount(Rank rank) {
+    public void increaseCount(final Rank rank) {
         Integer value = map.get(rank);
         map.put(rank, value + 1);
     }

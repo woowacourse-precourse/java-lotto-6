@@ -7,48 +7,48 @@ import lotto.exception.ExceptionMessage;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         validateSize(numbers);
         validateNotDuplicated(numbers);
         validateRange(numbers);
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LottoRule.SIZE.value()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_SIZE.getMessage());
         }
     }
 
-    private void validateNotDuplicated(List<Integer> numbers) {
+    private void validateNotDuplicated(final List<Integer> numbers) {
         if (duplicated(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_NUMBERS.getMessage());
         }
     }
 
-    private boolean duplicated(List<Integer> numbers) {
+    private boolean duplicated(final List<Integer> numbers) {
         long distinctSize = numbers.stream().
                 distinct().
                 count();
         return numbers.size() != distinctSize;
     }
 
-    private void validateRange(List<Integer> numbers) {
+    private void validateRange(final List<Integer> numbers) {
         if (outOfRange(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
 
-    private boolean outOfRange(List<Integer> numbers) {
+    private boolean outOfRange(final List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(LottoRule::outOfRange);
     }
 
-    public Rank rank(Lotto winningLotto, int bonus) {
+    public Rank rank(final Lotto winningLotto, final int bonus) {
         int matches = (int) numbers.stream()
                 .filter(winningLotto.numbers::contains)
                 .count();
@@ -56,7 +56,7 @@ public class Lotto {
         return Rank.from(matches, bonusMatched);
     }
 
-    public boolean contains(int number) {
+    public boolean contains(final int number) {
         return numbers.contains(number);
     }
 }

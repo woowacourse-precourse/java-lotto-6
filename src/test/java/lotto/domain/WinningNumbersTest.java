@@ -32,7 +32,7 @@ public class WinningNumbersTest {
     @DisplayName("당첨 기준에 맞게 등수를 구한다.")
     @Nested
     class RankLotto {
-        private void assertLottoRank(Lotto lotto, Rank expected) {
+        private void assertLottoRank(final Lotto lotto, final Rank expected) {
             WinningNumbers winningNumbers = LottoFixture.standard();
             assertEquals(winningNumbers.rank(lotto), expected);
         }

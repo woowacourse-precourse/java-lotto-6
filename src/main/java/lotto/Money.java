@@ -9,18 +9,18 @@ public record Money(int amount) {
         validate(amount);
     }
 
-    private void validate(int amount) {
+    private void validate(final int amount) {
         validateUnit(amount);
         validateNotZero(amount);
     }
 
-    private void validateUnit(int amount) {
+    private void validateUnit(final int amount) {
         if (amount % MINIMAL_UNIT != 0) {
             throw new IllegalArgumentException(ExceptionMessage.UNIT_ERROR.getMessage());
         }
     }
 
-    private void validateNotZero(int amount) {
+    private void validateNotZero(final int amount) {
         if (amount == 0) {
             throw new IllegalArgumentException(ExceptionMessage.ZERO_VALUE.getMessage());
         }

@@ -9,7 +9,7 @@ public class LottoMachine {
 
     private final List<List<Integer>> lottoCandidates = new ArrayList<>();
 
-    public List<List<Integer>> generateLotto(Money money) {
+    public List<List<Integer>> generateLotto(final Money money) {
         int numberOfLotto = money.perUnit();
         for (int i = 0; i < numberOfLotto; i++) {
             pickAndSave();

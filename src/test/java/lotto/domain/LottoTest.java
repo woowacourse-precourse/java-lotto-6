@@ -36,7 +36,7 @@ class LottoTest {
     @Nested
     @DisplayName("당첨 기준에 맞게 등수를 구한다.")
     class RankWithWinningLotto {
-        private void assertLottoRank(Lotto lotto, Rank expected) {
+        private void assertLottoRank(final Lotto lotto, final Rank expected) {
             Lotto winningLotto = LottoFixture.STANDARD;
             int bonus = LottoFixture.BONUS;
             assertEquals(lotto.rank(winningLotto, bonus), expected);

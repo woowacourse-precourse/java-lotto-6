@@ -8,11 +8,11 @@ import lotto.domain.LottoMachine;
 public class LottoMachineService {
     private final LottoMachine lottoMachine;
 
-    public LottoMachineService(LottoMachine lottoMachine) {
+    public LottoMachineService(final LottoMachine lottoMachine) {
         this.lottoMachine = lottoMachine;
     }
 
-    public List<List<Integer>> generateLotto(Money money) {
+    public List<List<Integer>> generateLotto(final Money money) {
         return lottoMachine.generateLotto(money);
     }
 

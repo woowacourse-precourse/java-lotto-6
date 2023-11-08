@@ -19,7 +19,11 @@ public class Controller {
     private final LottoMachineService lottoMachineService;
     private LottoResultService lottoResultService;
 
-    public Controller(InputView inputView, OutputView outputView, LottoMachineService lottoMachineService) {
+    public Controller(
+            final InputView inputView,
+            final OutputView outputView,
+            final LottoMachineService lottoMachineService
+    ) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoMachineService = lottoMachineService;

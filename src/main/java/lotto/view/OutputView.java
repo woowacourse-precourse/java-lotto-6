@@ -14,7 +14,7 @@ public class OutputView {
         System.out.println(ENTER_AMOUNT_MESSAGE);
     }
 
-    public void printLottoPurchases(List<List<Integer>> lottoNumbers) {
+    public void printLottoPurchases(final List<List<Integer>> lottoNumbers) {
         System.out.println();
         System.out.println(lottoNumbers.size() + PURCHASE_MESSAGE);
         for (List<Integer> lottoNumber : lottoNumbers) {
@@ -23,7 +23,7 @@ public class OutputView {
         }
     }
 
-    private void printLottoNumber(List<Integer> lottoNumber) {
+    private void printLottoNumber(final List<Integer> lottoNumber) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
 
@@ -52,12 +52,12 @@ public class OutputView {
         System.out.println("당첨 통계\n---");
     }
 
-    public void printStats(String description, int amount, int number) {
+    public void printStats(final String description, final int amount, final int number) {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         System.out.println(description + " (" + decimalFormat.format(amount) + "원) - " + number + "개");
     }
 
-    public void printRateOfReturn(double rateOfReturn) {
+    public void printRateOfReturn(final double rateOfReturn) {
         DecimalFormat decimalFormat = new DecimalFormat("0.0");
         System.out.println("총 수익률은 " + decimalFormat.format(rateOfReturn * 100) + "%입니다.");
     }

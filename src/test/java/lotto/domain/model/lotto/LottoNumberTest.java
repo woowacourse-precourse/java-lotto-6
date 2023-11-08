@@ -20,14 +20,14 @@ class LottoNumberTest {
     @DisplayName("번호가 로또 숫자 범위(1~45)에 맞는 숫자를 생성한다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 13, 45})
-    void createNumberInRangeNumber(int number) {
+    void createNumberInRangeNumberSuccessfully(int number) {
         LottoNumber lottoNumber = LottoNumber.from(number);
 
         assertThat(lottoNumber.getNumber())
                 .isEqualTo(number);
     }
 
-    @DisplayName("번호가 로또 숫자 범위(1~45)를 벗어나면 예외가 발생한다.")
+    @DisplayName("같은 숫자면 같은 인스턴스를 사용한다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 13, 45})
     void testEquals(int number) {

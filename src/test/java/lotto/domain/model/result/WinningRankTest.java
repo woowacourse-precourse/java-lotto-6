@@ -1,11 +1,10 @@
-package lotto;
+package lotto.domain.model.result;
 
-import lotto.domain.model.result.WinningRank;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class WinningRankTest {
 

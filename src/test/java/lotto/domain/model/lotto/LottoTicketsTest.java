@@ -1,20 +1,25 @@
-package lotto;
+package lotto.domain.model.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.domain.model.result.WinningRank;
 import lotto.domain.model.result.WinningRankCalculator;
-import lotto.domain.model.lotto.LottoNumber;
-import lotto.domain.model.lotto.Lotto;
-import lotto.domain.model.lotto.LottoTickets;
-import lotto.domain.model.lotto.LottoWinningNumbers;
 import lotto.domain.model.result.WinningRankCounts;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 
 class LottoTicketsTest {
+
+    @DisplayName("lottoTickets 생성에 성공한다.")
+    @Test
+    void createLottoWithoutDuplicatedNumber() {
+        Lotto lotto1 = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = Lotto.from(List.of(2, 3, 4, 5, 6, 8));
+        Lotto lotto3 = Lotto.from(List.of(2, 3, 4, 5, 6, 7));
+        LottoTickets lottoTickets = new LottoTickets(List.of(lotto1, lotto2, lotto3));
+        assertThat(lottoTickets).isNotNull();
+    }
 
     @DisplayName("LottoTickets의 모든 lotto의 WinningRank를 결정하여 각각 등수별 개수를 계산한다.")
     @Test

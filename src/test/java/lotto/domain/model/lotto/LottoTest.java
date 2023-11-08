@@ -1,16 +1,13 @@
-package lotto;
+package lotto.domain.model.lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.model.lotto.LottoNumber;
-import lotto.domain.model.lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-
 import java.util.List;
 
 class LottoTest {
@@ -34,6 +31,14 @@ class LottoTest {
     void createLottoByNotInRangeNumber(Integer number) {
         assertThatThrownBy(() -> Lotto.from(List.of(1, 2, number, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 중복된 숫자가 없으면 로또 생성에 성공한다.")
+    @Test
+    void createLottoWithoutDuplicatedNumber() {
+        Lotto lotto = Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto).isNotNull();
     }
 
     @DisplayName("당첨번호와 로또번호 사이에 일치하는 개수를 구한다.")

@@ -67,7 +67,10 @@ public class LottoService {
     }
 
     public String typeConvertIncomeRate(float incomeRate) {
+        double roundedIncomeRate = Math.round(incomeRate * 1000) / 10.0;
+        String converted = Double.toString(roundedIncomeRate) + PERCENT;
 
+        return converted;
     }
 
     public String calculateIncomeRate(int totalIncomde, int spentAmount) {return "A";}

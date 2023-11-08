@@ -30,6 +30,11 @@ public class InputView {
         return convertToSplitNumbers(reader.readLine());
     }
 
+    public int readBonusNumber() {
+        System.out.println(PRINT_READ_BONUS_NUMBER_MESSAGE);
+        return convertToNumber(reader.readLine());
+    }
+
     private int convertToNumber(final String input) {
         try {
             return Integer.parseInt(checkNumberIsNull(input));

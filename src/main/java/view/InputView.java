@@ -19,30 +19,58 @@ public class InputView {
     public static int inputPurchasePrice(){
         System.out.println(PURCHASE_MESSAGE);
 
+        int purchasePrice = checkingPurchasePrice();
+
+        return purchasePrice;
+    }
+
+    private static int checkingPurchasePrice() {
         int purchasePrice=0;
         boolean validate = false;
 
         while(!validate){
             try{
-                purchasePrice = Integer.parseInt(readLine());
+                purchasePrice = checkingPurchaseWrongInputException();
                 checkingPurchaseException(purchasePrice);
                 validate = true;
             }catch (IllegalArgumentException e){
-                System.out.println("[ERROR] 로또는 천원 단위 입니다.");
+                if(e.getMessage().equals("WrongInput")){
+                    System.out.println("[ERROR] 숫자가 아닙니다.");
+                }
+                else if(e.getMessage().equals("CantBuy")){
+                    System.out.println("[ERROR] 로또는 천원 단위 입니다.");
+                }
+
             }
+        }
+        return purchasePrice;
+    }
+
+    private static int checkingPurchaseWrongInputException() {
+        int purchasePrice;
+        try{
+            purchasePrice = Integer.parseInt(readLine());
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("WrongInput");
         }
         return purchasePrice;
     }
 
     private static void checkingPurchaseException(int purchasePrice) {
         if(purchasePrice % LOTTO_PRICE != 0 ){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("CantBuy");
         }
     }
 
     public static List<Integer> inputWinningNumber(){
         System.out.println(WINNING_NUMBER_MESSAGE);
 
+        List<Integer> winningNumbers = checkingWinningNumbers();
+
+        return winningNumbers;
+    }
+
+    private static List<Integer> checkingWinningNumbers() {
         List<Integer> winningNumber = new ArrayList<>();
         boolean validate = false;
 
@@ -69,7 +97,6 @@ public class InputView {
                 }
             }
         }
-
         return winningNumber;
     }
 
@@ -96,6 +123,11 @@ public class InputView {
 
     public static int inputBonusNumber(List<Integer> winningNumber){
         System.out.println(BONUS_NUMBER_MESSAGE);
+        int BonusNumber = checkingBonusNumber(winningNumber);
+        return BonusNumber;
+    }
+
+    private static int checkingBonusNumber(List<Integer> winningNumber) {
         int BonusNumber =  0;
 
         boolean validate = false;
@@ -117,8 +149,6 @@ public class InputView {
                 }
             }
         }
-
-
         return BonusNumber;
     }
 

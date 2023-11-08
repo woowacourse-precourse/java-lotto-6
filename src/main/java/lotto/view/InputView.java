@@ -34,7 +34,7 @@ public class InputView {
             String input = getPlayerInput("당첨 번호를 입력해 주세요");
             try {
                 WinningNumbersValidator.validateInputFormat(input);
-                List<Integer> winningNumbers = StringUtil.convertToIntegerList(input, ",");
+                List<Integer> winningNumbers = StringUtil.splitAndParse(input, ",");
                 WinningNumbersValidator.validateWinningNumbers(input);
                 OutputView.printEmptyLine();
                 return winningNumbers;

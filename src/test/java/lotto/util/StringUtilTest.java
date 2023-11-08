@@ -9,11 +9,11 @@ class StringUtilTest {
 
     @Test
     @DisplayName("문자열을 정수 리스트로 변환하는지 테스트")
-    void convertToIntegerList() {
+    void splitAndParse() {
         String input = "1, 2, 3, 4, 5";
         String delimiter = ", ";
 
-        List<Integer> result = StringUtil.convertToIntegerList(input, delimiter);
+        List<Integer> result = StringUtil.splitAndParse(input, delimiter);
 
         assertEquals(5, result.size());
         assertEquals(1, result.get(0));

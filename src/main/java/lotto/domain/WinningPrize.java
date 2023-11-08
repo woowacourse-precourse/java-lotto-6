@@ -1,8 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.List;
-
 public enum WinningPrize {
     EMPTY_PRIZE(0, 0),
     FIFTH_PRIZE(3, 5_000),

@@ -5,7 +5,6 @@ import static lotto.domain.Lotto.LOTTO_MIN_NUMBER;
 import static lotto.domain.Lotto.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {

@@ -13,6 +13,7 @@ public class LottoGame {
         int lottoBuyCount = Input.getLottoBuyCount();
         List<Lotto> paidLottos = LottoGame.getPaidLottoNumbers(lottoBuyCount);
         Print.printPaidLottoResult(paidLottos,lottoBuyCount);
+        WinningLotto winningLotto = LottoGame.getWinningLotto();
     }
 
     //구입한 로또 리스트 구하기
@@ -27,5 +28,12 @@ public class LottoGame {
     //랜덤 로또 번호 구하기
     public static Lotto getRandomLottoNumber() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
+
+    //로또 당첨 번호와 보너스번호를 한 클래스로 받는 메서드
+    public static WinningLotto getWinningLotto(){
+        Lotto winnigNumbers = Input.getWinningLottoNumbers();
+        int bonusNumber = Input.getBonusNumber();
+        return new WinningLotto(winnigNumbers,bonusNumber);
     }
 }

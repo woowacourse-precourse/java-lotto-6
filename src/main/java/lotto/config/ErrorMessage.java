@@ -18,6 +18,7 @@ public enum ErrorMessage {
 
     INPUT_WINNING_NUMBER_SIZE_ERROR_MESSAGE(String.format("당첨 번호는 %d개여야 합니다.", LOTTO_SIZE.getValue())),
     INPUT_WINNING_CHARACTER_ERROR_MESSAGE("당첨 번호에는 숫자만 있어야 합니다."),
+    INPUT_WINNING_FORMAT_ERROR_MESSAGE("당첨 번호의 형식이 올바르지 않습니다."),
 
     INPUT_BONUS_CHARACTER_ERROR_MESSAGE("보너스 번호에는 숫자만 있어야 합니다."),
 

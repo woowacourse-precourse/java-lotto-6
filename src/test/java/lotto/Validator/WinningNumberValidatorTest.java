@@ -1,6 +1,7 @@
 package lotto.Validator;
 
 import static lotto.config.ErrorMessage.INPUT_WINNING_CHARACTER_ERROR_MESSAGE;
+import static lotto.config.ErrorMessage.INPUT_WINNING_FORMAT_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_WINNING_NUMBER_SIZE_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.LOTTO_NUMBER_ERROR_MESSAGE;
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("WinningNumberValidator 클래스 테스트")
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -82,5 +85,13 @@ public class WinningNumberValidatorTest {
         assertThatThrownBy(() -> validator.valid(list))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_DUPLICATION_ERROR_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,", "1, 2,3,4,5,6", "1,,2,3,4,5,6"})
+    void 입력_형식이_올바르지_않는_경우를_확인한다(String input) {
+        assertThatThrownBy(() -> validator.vaildFormat(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INPUT_WINNING_FORMAT_ERROR_MESSAGE.getMessage());
     }
 }

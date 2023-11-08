@@ -17,6 +17,10 @@ public class LottoWinningResult {
         return LottoProfitRateCalculator.calculateLottoProfitRate(lottoResult, purchaseAmount);
     }
 
+    public EnumMap<LottoRanking, Integer> getLottoResult() {
+        return new EnumMap<>(lottoResult);
+    }
+
     private EnumMap<LottoRanking, Integer> countRankings(List<LottoRanking> lottoRankings) {
         return lottoRankings
             .stream()

@@ -12,8 +12,6 @@ import lotto.view.OutputValue;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.domain.WinningCriteria.SECOND_PRIZE;
-
 
 public class LottoController {
 
@@ -21,12 +19,15 @@ public class LottoController {
     private PriceService priceService = new PriceService();
 
     public LottoController() {
-        lottoInit();
-        lottoProcess();
-        lottoEnd();
+
+        lottoPurchaseLogic();
+
+        setWinningLottoAndBonusNumberLogic();
+
+        resultMessageOutputLogic();
     }
 
-    private void lottoInit() {
+    private void lottoPurchaseLogic() {
 
         purchasePriceInputLogic();
 
@@ -46,7 +47,6 @@ public class LottoController {
             OutputValue.changeLine();
             purchasePriceInputLogic();
         }
-
     }
 
     private void purchaseLottoNumberOutputLogic() {
@@ -62,7 +62,8 @@ public class LottoController {
         OutputValue.changeLine();
     }
 
-    private void lottoProcess() {
+
+    private void setWinningLottoAndBonusNumberLogic() {
         winningLottoNumbersInputLogic();
         bonusNumberInputLogic();
     }
@@ -98,25 +99,30 @@ public class LottoController {
     }
 
 
-    private void lottoEnd() {
+    private void resultMessageOutputLogic() {
         WinningDetails winningDetails = lottoService.calculateWinningDetails();
         priceService.calculateWinningPrice(winningDetails);
 
         OutputValue.winStatisticsMessage();
 
-        for (WinningCriteria winningCriteria : WinningCriteria.values()) {
-            if (winningCriteria.getRank() == SECOND_PRIZE.getRank()) {
-                OutputValue.winningLottoSecondPrizeMessage(winningCriteria.getNumberMatch(), winningCriteria.getOutputPrice(),
-                        winningDetails.getWinningCount(winningCriteria.getRank()));
-                continue;
-            }
-            OutputValue.winningLottoResultMessage(winningCriteria.getNumberMatch(), winningCriteria.getOutputPrice(),
-                    winningDetails.getWinningCount(winningCriteria.getRank()));
-        }
+        winningLottoResultOutputLogic(winningDetails);
 
         OutputValue.revenueMessage(priceService.getEarningRate());
     }
 
-    //private void
+    private void winningLottoResultOutputLogic(WinningDetails winningDetails) {
+
+        for (WinningCriteria winningCriteria : WinningCriteria.values()) {
+
+            if (winningCriteria.getRank() == WinningCriteria.SECOND_PRIZE.getRank()) {
+                OutputValue.winningLottoSecondPrizeMessage(winningCriteria.getNumberMatch(), winningCriteria.getOutputPrice(),
+                        winningDetails.getWinningCount(winningCriteria.getRank()));
+                continue;
+            }
+
+            OutputValue.winningLottoResultMessage(winningCriteria.getNumberMatch(), winningCriteria.getOutputPrice(),
+                    winningDetails.getWinningCount(winningCriteria.getRank()));
+        }
+    }
 }
 

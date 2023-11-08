@@ -1,15 +1,12 @@
 package lotto.util;
 
-import lotto.domain.Lotto;
-
 import java.util.List;
 
 public class CompareNumber {
-
     public int compareWinnerNum(List<Integer> userWin, List<Integer> randomWin) {
         int sameCount = 0;
-        for (Integer number : userWin){
-            if(randomWin.contains(number)){
+        for (Integer number : userWin) {
+            if (randomWin.contains(number)) {
                 sameCount++;
             }
         }
@@ -18,10 +15,7 @@ public class CompareNumber {
 
     public boolean compareBonusNum(int bonusNumber, List<Integer> randomWin) {
         int bonusCount = 0;
-        if(randomWin.contains(bonusNumber)){
-            return true;
-        }
-        return false;
+        return randomWin.contains(bonusNumber);
     }
 
 }

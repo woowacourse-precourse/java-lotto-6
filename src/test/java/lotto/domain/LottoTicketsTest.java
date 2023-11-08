@@ -2,12 +2,14 @@ package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoTicketsTest {
 
+    @DisplayName("로또 티켓 발행")
     @Test
-    void 구매_개수만큼_로또티켓_발행() {
+    void createLottoTickets() {
         Money money = new Money(1_000);
         LottoTickets lottoTickets = new LottoTickets(money);
 

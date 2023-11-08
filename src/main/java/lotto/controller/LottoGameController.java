@@ -53,6 +53,18 @@ public class LottoGameController {
         }
     }
 
+    private int inputBonusNumber() {
+        try {
+            inputView.printInputBonusNumberPrompt();
+            String rawBonusNumber = Console.readLine();
+            InputValidator.validateUserInputBonusNumber(rawBonusNumber);
+            return Integer.parseInt(rawBonusNumber);
+        } catch (IllegalArgumentException e) {
+            resultView.printErrorMessage(e.getMessage());
+            return inputBonusNumber();
+        }
+    }
+
     public void process() {
         this.gameService.setPurchaseAmount(inputPurchasePrice());
         this.gameService.purchaseTickets();

@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 public class InputValidation {
     public static final int  THOUSAND = 1000;
     private final int  ZERO = 0;
-    private final String NUMBER_REG_EXP = "^[1-9]{1}$|^[1-3]{1}[0-9]{1}$|^4{1}[0-5]{1}$";
+    private final String NUMBER_REG_EXP = "^(?:45|[1-4]?[0-9])(?:,(?:45|[1-4]?[0-9]))*$";
     private final String ONLY_1_45_NUMBER = "[ERROR] 1-45 사이의 숫자만 입력하세요.";
     private final String ONLY_DIVIDED_THOUSAND = "[ERROR] 금액은 1000단위로 입력하세요.";
 
@@ -41,7 +41,7 @@ public class InputValidation {
 
     // 6자리 숫자가 ,로 구분되어 있는지
     public void isNumbersDivied6NumbersWithComma(String numbers) {
-        if (numbers.replaceAll(",", "").length() != 6) {
+        if (numbers.split(",").length != 6) {
             throw new IllegalArgumentException("[ERROR] ,로 구분된 6자리 숫자를 입력해 주세요.");
         }
     }

@@ -17,8 +17,16 @@ public class LottoPaper {
         return lottoPaper.stream().map(lotto -> calculateRanking(lotto, winningLotto, bonusNumber)).toList();
     }
 
-    private static Ranking calculateRanking(Lotto lotto, WinningLotto winningLotto, BonusNumber bonusNumber) {
-        return Ranking.calculateRanking(winningLotto.getMatchNumberCount(lotto), lotto.hasBonusNumber(bonusNumber));
+    private Ranking calculateRanking(Lotto lotto, WinningLotto winningLotto, BonusNumber bonusNumber) {
+        return Ranking.calculateRanking(getMatchNumberCount(lotto, winningLotto), isBonusMatch(lotto, bonusNumber));
+    }
+
+    private boolean isBonusMatch(Lotto lotto, BonusNumber bonusNumber) {
+        return lotto.hasBonusNumber(bonusNumber);
+    }
+
+    private Integer getMatchNumberCount(Lotto lotto, WinningLotto winningLotto) {
+        return winningLotto.getMatchNumberCount(lotto);
     }
 
     public List<String> getLottoPaperMessage() {

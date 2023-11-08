@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.constants.LottoConstant;
 import lotto.model.Lotto;
+import lotto.model.LottoResultCalculator;
 import lotto.model.NumberGenerator;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -15,14 +16,15 @@ public class LottoController {
     int bonusNum;
     int [] lottoSameSize;
     NumberGenerator numberGenerator;
+    LottoResultCalculator calculator;
     Input input;
     Output output;
 
     public LottoController() {
         lottos = new ArrayList<>();
         prizeNum = new ArrayList<>();
-        lottoSameSize = new int [LottoConstant.LOTTO_SIZE.getConstant() + 2];
         numberGenerator = new NumberGenerator();
+        calculator = new LottoResultCalculator();
         input = new Input();
         output = new Output();
     }
@@ -37,7 +39,7 @@ public class LottoController {
         prizeNum = input.requestLottoPrizeNums();
         bonusNum = input.requestBonusNums(prizeNum);
 
-        checkWinningLotto();
+        lottoSameSize = calculator.getWinningLottoSameSize(lottos, prizeNum, bonusNum);
         output.printLottoProfit(lottoSameSize);
     }
 
@@ -48,10 +50,6 @@ public class LottoController {
         }
     }
 
-    public void checkWinningLotto() {
-        for(Lotto lotto : lottos) {
-            int index = lotto.getComparePrizeNumSameSize(prizeNum, bonusNum);
-            lottoSameSize[index]++;
-        }
-    }
+
+
 }

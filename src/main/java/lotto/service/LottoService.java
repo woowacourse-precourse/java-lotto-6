@@ -93,4 +93,26 @@ public class LottoService {
         prizeLotto.setPrimaryNumbers(new Lotto(primaryNumber));
     }
 
+    // 보너스 번호 추출
+    public void inputBonusNumber() {
+        String input = Console.readLine();
+        int bonusNum = -1;
+        try {
+            bonusNum = Integer.parseInt(input);
+            if (bonusNum < 1 || bonusNum > 45) throw new NotRangeException();
+            if(prizeLotto.getPrimaryNumbers().getNumbers().contains(bonusNum)) throw new DuplicatedNumber();
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+            inputBonusNumber();
+        } catch (NotRangeException e) {
+            System.out.println("[ERROR] 범위 내의 숫자를 입력해주세요.");
+            inputBonusNumber();
+        } catch (DuplicatedNumber e){
+            System.out.println("[ERROR] 주요 당첨 번호에 없는 숫자를 입력해주세요.");
+            inputBonusNumber();
+        }
+        prizeLotto.setBonusNumber(bonusNum);
+    }
+
+
 }

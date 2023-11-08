@@ -1,6 +1,11 @@
 package lotto.controller;
 
-import lotto.exception.LottoValidationException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
+import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.ResultView;
@@ -16,54 +21,36 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    private int receivePurchaseAmount() {
-        int purchaseAmount = InputView.inputPurchaseAmount();
-        try {
-            lottoService.validatePurchaseAmount(purchaseAmount);
-            return purchaseAmount;
-        } catch (LottoValidationException e) {
-            ResultView.printErrorMessage(e.getMessage());
-            return -1;
-        }
-    }
-
-    public void createLottoTickets() {
-        // TODO: 구매 금액에 따라 로또 티켓을 생성하는 메서드 구현
-    }
-
-    public void receiveWinningNumbers() {
-        // TODO: 사용자로부터 당첨 번호를 입력받는 메서드 구현
-    }
-
-    public void calculateResults() {
-        // TODO: 당첨 결과를 계산하는 메서드 구현
-    }
-
-    public void displayResults() {
-        // TODO: 결과를 출력하는 메서드 구현
-    }
-
-    /**
-     * 로또 게임을 실행하는 메인 메서드.
-     */
     public void run() {
-        // 로또 구매 금액 입력받기
-        int purchaseAmount = receivePurchaseAmount();
+        int purchaseAmount = inputPurchaseAmount();
+        List<Lotto> lottos = createLottoTickets(purchaseAmount);
+        WinningNumbers winningNumbers = inputWinningNumbers();
+        displayResults(lottos, winningNumbers);
+    }
 
-        if (purchaseAmount == -1) {
-            return;
+    private int inputPurchaseAmount() {
+        return InputView.inputPurchaseAmount();
+    }
+
+    private List<Lotto> createLottoTickets(int purchaseAmount) {
+        int ticketCount = lottoService.calculateNumberOfLottoTickets(purchaseAmount);
+        List<Lotto> lottos = lottoService.generateLottos(ticketCount);
+        ResultView.printPurchasedLottos(lottos);
+        return lottos;
+    }
+
+    private WinningNumbers inputWinningNumbers() {
+        return new WinningNumbers(InputView.inputWinningNumbers(), InputView.inputBonusNumber());
+    }
+
+    private void displayResults(List<Lotto> lottos, WinningNumbers winningNumbers) {
+        Map<LottoRank, Integer> results = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            int matchCount = winningNumbers.matchCount(lotto);
+            boolean matchBonusNumber = winningNumbers.matchBonusNumber(lotto);
+            LottoRank lottoRank = LottoRank.valueOf(matchCount, matchBonusNumber);
+            results.put(lottoRank, results.getOrDefault(lottoRank, 0) + 1);
         }
-
-        // 로또 티켓 생성
-        createLottoTickets();
-
-        // 당첨 번호 입력받기
-        receiveWinningNumbers();
-
-        // 당첨 결과 계산
-        calculateResults();
-
-        // 결과 출력
-        displayResults();
+        ResultView.printWinningResults(results);
     }
 }

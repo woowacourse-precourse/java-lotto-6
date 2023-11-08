@@ -1,9 +1,13 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import lotto.exception.LottoError;
+import lotto.exception.LottoValidationException;
 
 public class WinningNumbers {
 
+    private static final int WINNING_NUMBER_COUNT = 6;
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
@@ -14,26 +18,41 @@ public class WinningNumbers {
     }
 
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
-        // TODO: 당첨 번호의 유효성을 검사하는 로직 구현
-        // 당첨 번호가 6개인지 확인
-        // 보너스 번호가 당첨 번호와 중복되지 않는지 확인
+        validateNumberCount(winningNumbers);
+        validateUniqueNumbers(winningNumbers);
+        validateRange(winningNumbers);
+        validateBonusNumber(winningNumbers, bonusNumber);
     }
 
-    public boolean isWinningNumber(LottoNumber lottoNumber) {
-        // TODO: 주어진 LottoNumber가 당첨 번호 중 하나인지 확인하는 로직 구현
-        return false;
+    private void validateNumberCount(List<Integer> numbers) {
+        if (numbers == null || numbers.size() != WINNING_NUMBER_COUNT) {
+            throw new LottoValidationException(LottoError.INVALID_WINNING_NUMBER_COUNT.toString());
+        }
     }
 
-    public boolean isBonusNumber(LottoNumber lottoNumber) {
-        // TODO: 주어진 LottoNumber가 보너스 번호인지 확인하는 로직 구현
-        return false;
+    private void validateUniqueNumbers(List<Integer> numbers) {
+        if (new HashSet<>(numbers).size() != WINNING_NUMBER_COUNT) {
+            throw new LottoValidationException(LottoError.DUPLICATE_WINNING_NUMBER.toString());
+        }
     }
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+    private void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(n -> n < 1 || n > 45)) {
+            throw new LottoValidationException(LottoError.NUMBER_OUT_OF_RANGE.toString());
+        }
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new LottoValidationException(LottoError.BONUS_NUMBER_DUPLICATED_WITH_WINNING_NUMBER.toString());
+        }
+    }
+
+    public int matchCount(Lotto lotto) {
+        return lotto.countMatches(winningNumbers);
+    }
+
+    public boolean matchBonusNumber(Lotto lotto) {
+        return lotto.contains(bonusNumber);
     }
 }

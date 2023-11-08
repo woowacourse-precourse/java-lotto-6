@@ -35,10 +35,6 @@ public class LotteryService {
     public void purchaseLotto(){
         outputSets.printProgressMessage(Progress.PURCHASE);
         this.totalPurchasePayment = inputSets.userInputPayment();
-
-        if(validator.isPaymentDivided(totalPurchasePayment)){
-            throw new IllegalArgumentException();
-        }
         this.totalLottoAmount = totalPurchasePayment / 1000;
 
         System.out.print(this.totalLottoAmount);

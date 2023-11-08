@@ -8,8 +8,6 @@ import java.util.StringTokenizer;
 public class DataInput {
     Validation validator = new Validation();
 
-    DataInput(){}
-
     public int userInputPayment(){
         String userInput;
         int userPayment;
@@ -18,12 +16,12 @@ public class DataInput {
             userInput = Console.readLine();
             try{
                 userPayment = Integer.parseInt(userInput);
-                if(validator.isPaymentDivided(userPayment)){
-                    throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위이어야 합니다.");
-                }
+                validator.isPaymentDivided(userPayment);
                 return userPayment;
+            } catch(NumberFormatException e){
+                System.out.println(Progress.ERROR_INTEGER.getMessage());
             } catch (IllegalArgumentException e){
-                System.out.println("[ERROR] 유효하지 않은 값입니다.");
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -39,20 +37,15 @@ public class DataInput {
                 while(winningNumbersTokenizer.hasMoreTokens()){
                     curToken = winningNumbersTokenizer.nextToken();
                     curNumber = Integer.parseInt(curToken);
-                    if(curNumber > 45 || curNumber < 1){
-                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                    }
-                    if(winningNumbers.contains(curNumber)){
-                        throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
-                    }
+                    validator.isWinningValidate(winningNumbers, curNumber);
                     winningNumbers.add(curNumber);
                 }
-                if(winningNumbers.size() != 6){
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
-                }
+                validator.isWinningSetValidate(winningNumbers);
                 return winningNumbers;
+            } catch(NumberFormatException e){
+                System.out.println(Progress.ERROR_INTEGER.getMessage());
             } catch (IllegalArgumentException e){
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -60,19 +53,17 @@ public class DataInput {
     public int userInputBonusNumber(List<Integer> winningNumbers){
         String userBonusNumberInput;
         int userBonusNumber;
+
         while(true){
             try{
                 userBonusNumberInput = Console.readLine();
                 userBonusNumber = Integer.parseInt(userBonusNumberInput);
-                if(winningNumbers.contains(userBonusNumber)){
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복으로 입력할 수 없습니다.");
-                }
-                if(userBonusNumber > 45 || userBonusNumber < 1){
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                }
+                validator.isBonusValidate(winningNumbers, userBonusNumber);
                 return userBonusNumber;
+            } catch(NumberFormatException e){
+                System.out.println(Progress.ERROR_INTEGER.getMessage());
             } catch (IllegalArgumentException e){
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         }
     }

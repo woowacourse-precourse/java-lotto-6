@@ -8,12 +8,19 @@ import java.util.Map;
 public class Statistics {
     public static final int DEFAULT_COUNT = 0;
     public static final int INCREMENT_COUNT = 1;
+    public static final double PERCENTAGE_MULTIPLIER = 100.0;
     private final Map<Rank, Integer> winningResult;
-    private final Money rateOfReturn;
 
-    public Statistics(Map<Rank, Integer> winningResult, Money rateOfReturn) {
+    public Statistics(Map<Rank, Integer> winningResult) {
         this.winningResult = winningResult;
-        this.rateOfReturn = rateOfReturn;
+    }
+
+    public double calculateRateOfReturn(Money purchaseMoney){
+        double winningAmount = Arrays.stream(Rank.values())
+            .mapToInt(rank -> winningResult.get(rank) * rank.getWinningMoney())
+            .sum();
+        double rateOfReturn = (winningAmount / purchaseMoney.amount()) * PERCENTAGE_MULTIPLIER;
+        return rateOfReturn;
     }
 
     public static Map<Rank, Integer> calculateWinningResult(

@@ -2,12 +2,9 @@ package lotto.domain;
 
 import static lotto.constants.LottoConstant.LOTTO_PRICE_UNIT;
 
-public class Money {
-    private final long amount;
-
-    public Money(long amount) {
+public record Money(long amount) {
+    public Money {
         validate(amount);
-        this.amount = amount;
     }
 
     private void validate(long amount) throws IllegalArgumentException {

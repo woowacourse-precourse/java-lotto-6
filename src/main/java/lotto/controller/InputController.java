@@ -33,7 +33,7 @@ public class InputController {
             winnerNumber = new WinnerNumber(winnerNum);
             return winnerNumber.getWinnerNumber();
         } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            OutputView.printError(e.getMessage());
             return getWinnerNumber();
         }
     }
@@ -44,7 +44,7 @@ public class InputController {
             bonusNumber = new BonusNumber(bonusNum,winnerNumber.getWinnerNumber());
             return bonusNumber.getBonusNumber();
         } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            OutputView.printError(e.getMessage());
             return getBonusNumber();
         }
     }

@@ -6,19 +6,21 @@ import java.util.*;
 
 public class Purchace {
     private static int times;
+    protected static List<Lotto> lottoes;
 
     public Purchace(int times) {
         this.times = times;
-        allPurchase();
+        this.lottoes = allPurchase();
     }
 
-    private static void allPurchase() {
+    private static List<Lotto> allPurchase() {
         List<Lotto> purchaseLottoes = new ArrayList<>();
 
         for (int i = 0; i < times; i++) {
             purchaseLottoes.add(eachPurchase());
         }
         printLottoNumbers(purchaseLottoes);
+        return purchaseLottoes;
     }
 
     private static Lotto eachPurchase() {

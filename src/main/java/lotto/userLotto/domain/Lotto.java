@@ -1,10 +1,15 @@
-package lotto;
+package lotto.userLotto.domain;
+
+import static java.util.Collections.sort;
+import static lotto.util.LottoConstant.LOTTO_SIZE;
 
 import java.util.List;
+import lotto.util.LottoConstant;
+import lotto.winningLotto.domain.LottoBonusNumber;
 
 public class Lotto {
 
-    private static final int LOTTO_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,7 +19,9 @@ public class Lotto {
         validateOutOfRangeOneToFortyFive(numbers);
         this.numbers = numbers;
     }
-
+    public List<Integer> getLotto(){
+        return numbers;
+    }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
@@ -23,6 +30,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public boolean contains(LottoBonusNumber bonusNumber){
+        return numbers.contains(bonusNumber.getNumber());
+    }
+
     private void validateDuplicated(List<Integer> numbers) {
         if (isDuplicated(numbers)) {
             throw new IllegalArgumentException();
@@ -53,10 +64,11 @@ public class Lotto {
     }
 
     private void checkOutOfRangeRangeOneToFortyFive(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LottoConstant.BEGIN_NUMBER || number > LottoConstant.LAST_NUMBER) {
             throw new IllegalArgumentException();
         }
     }
+
 
 
 }

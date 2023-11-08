@@ -32,8 +32,16 @@ public class LottoService {
         lottos.addLotto(new Lotto(numbers));
     }
 
-    public void setPlayer(List<Integer> winningNumbers, int bonusNumber, int money) {
-        player = new Player(winningNumbers, bonusNumber, money);
+    public void generatePlayer(int money) {
+        player = new Player(money);
+    }
+
+    public void setPlayerWinningNumbers(List<Integer> winningNumbers) {
+        player.setWinningLotto(winningNumbers);
+    }
+
+    public void setPlayerBonusMatchNumber(int bonusNumber) {
+        player.setBonusNumber(bonusNumber);
     }
 
     public HashMap getWinningResult() {

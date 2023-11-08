@@ -10,10 +10,20 @@ public class Player {
     private double money;
     private double lottoSum = 0;
 
-    public Player(List<Integer> numbers, int bonusNumber, int money) {
-        validate(numbers, bonusNumber);
-        winningLotto = new Lotto(numbers);
+    public Player(int money) {
         this.money = money;
+    }
+    private Player(List<Integer> numbers, int bonusNumber, int money) {
+    }
+
+    public void setWinningLotto(List<Integer> numbers) {
+        validateWinningNumber(numbers);
+        winningLotto = new Lotto(numbers);
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        validateBonusNumber(winningLotto.getLottoNumbers(), bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public void earn(int sum) {
@@ -24,9 +34,12 @@ public class Player {
         lottoSum -= sum;
     }
 
-    private void validate(List<Integer> numbers, int bonusNumber) {
+    private void validateWinningNumber(List<Integer> numbers) {
         Validator.checkLottoSizeNumberInput(numbers);
         Validator.checkLottoDuplicatedNumberInput(numbers);
+    }
+
+    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         Validator.checkLottoBonusNumber(numbers, bonusNumber);
     }
 

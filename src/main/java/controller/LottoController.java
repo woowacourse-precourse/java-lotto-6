@@ -18,6 +18,8 @@ public class LottoController {
     public void play() {
         int money = init();
         initPlayer(money);
+        initPlayerWinningNumbers();
+        initPlayerBonusNumber();
         result();
         end();
     }
@@ -32,9 +34,25 @@ public class LottoController {
     }
 
     public void initPlayer(int money) {
+        lottoService.generatePlayer(money);
+    }
+
+    public void initPlayerWinningNumbers() {
         List<Integer> winningNumbers = InputMessage.printWinNumberInputMessage();
+        try {
+            lottoService.setPlayerWinningNumbers(winningNumbers);
+        } catch (IllegalStateException e) {
+            initPlayerWinningNumbers();
+        }
+    }
+
+    public void initPlayerBonusNumber() {
         int bonusNumber = InputMessage.printBonusNumberInputMessage();
-        lottoService.setPlayer(winningNumbers, bonusNumber, money);
+        try {
+            lottoService.setPlayerBonusMatchNumber(bonusNumber);
+        } catch (IllegalStateException e) {
+            initPlayerBonusNumber();
+        }
     }
 
     public void end() {

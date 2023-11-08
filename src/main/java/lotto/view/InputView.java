@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.InputConstants;
 import lotto.util.Utils;
 import lotto.validator.BonusLottoValidator;
 import lotto.validator.MoneyValidator;
@@ -18,7 +19,7 @@ public class InputView {
     }
 
     private static String printMoneyInputMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(InputConstants.INPUT_MONEY_MESSAGE);
         return Console.readLine();
     }
 
@@ -40,7 +41,7 @@ public class InputView {
     }
 
     private static String printWinningLottoInputMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(InputConstants.INPUT_WINNING_LOTTO_MESSAGE);
         return Console.readLine();
     }
 
@@ -64,7 +65,7 @@ public class InputView {
     }
 
     private static String printBonusLottoInputMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(InputConstants.BONUS_LOTTO_MESSAGE);
         return Console.readLine();
     }
 

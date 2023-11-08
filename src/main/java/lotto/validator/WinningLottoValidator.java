@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import lotto.constant.ErrorConstants;
+import lotto.constant.InputConstants;
+import lotto.constant.LottoConstants;
 import lotto.util.Utils;
 
 import java.util.List;
@@ -9,15 +12,15 @@ public class WinningLottoValidator {
         try {
             Utils.convertStringToList(winningLotto);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자를 입력해주셔야 합니다.");
+            System.out.println(ErrorConstants.ERROR + ErrorConstants.INVALID_INPUT);
             return true;
         }
         return false;
     }
 
     public static boolean hasSpecialCharacter(String winningLotto) {
-        if(!winningLotto.matches("[0-9, ]+")) {
-            System.out.println("[ERROR] 쉼표 외에 다른 특수문자는 사용할 수 없습니다.");
+        if(!winningLotto.matches(InputConstants.INVALID_CHARACTER)) {
+            System.out.println(ErrorConstants.ERROR + ErrorConstants.INVALID_CHARACTER);
             return true;
         }
         return false;
@@ -26,7 +29,7 @@ public class WinningLottoValidator {
     public static boolean isInvalidSize(String winningLotto) {
         List<Integer> winningLottos = Utils.convertStringToList(winningLotto);
         if(winningLottos.size() != 6) {
-            System.out.println("[ERROR] 6개의 당첨 번호를 입력해주셔야 합니다.");
+            System.out.println(ErrorConstants.ERROR + ErrorConstants.INVALID_WINNING_LOTTO_COUNT);
             return true;
         }
         return false;
@@ -35,7 +38,7 @@ public class WinningLottoValidator {
     public static boolean isDuplicated(String winningLotto) {
         List<Integer> winningLottos = Utils.convertStringToList(winningLotto);
         if (winningLottos.stream().distinct().count() != winningLottos.size()) {
-            System.out.println("[ERROR] 당첨 번호는 중복되어서는 안됩니다.");
+            System.out.println(ErrorConstants.ERROR + ErrorConstants.DUPLICATE_WINNING_LOTTO);
             return true;
         }
         return false;
@@ -43,8 +46,8 @@ public class WinningLottoValidator {
 
     public static boolean isInvalidNumber(String winningLotto) {
         List<Integer> winningLottos = Utils.convertStringToList(winningLotto);
-        if(winningLottos.stream().anyMatch(number -> number > 45 || number < 1)) {
-            System.out.println("[ERROR] 당첨 번호는 1 ~ 45 사이의 숫자이어야 합니다.");
+        if(winningLottos.stream().anyMatch(number -> number > LottoConstants.MAX_LOTTO_NUMBER || number < LottoConstants.MIN_LOTTO_NUMBER)) {
+            System.out.println(ErrorConstants.ERROR + ErrorConstants.WINNING_LOTTO_OUT_OF_RANGE);
             return true;
         }
         return false;

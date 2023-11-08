@@ -3,9 +3,11 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
+import java.util.Map;
 import lotto.enums.ExceptionMessages;
+import lotto.enums.LottoPrize;
 import lotto.enums.Patterns;
 
 public class User {
@@ -14,13 +16,21 @@ public class User {
     private final static Integer AMOUNT_UNIT = 1000;
     private Integer lottoTicketCount;
     private List<Lotto> lottos;
-    private List<Integer> result;
+    private Map<LottoPrize, Integer> lottoResult;
+    private Integer amount;
+    private Double profitability;
 
     public User(String amount) {
         validateAmount(amount);
+        this.amount = Integer.valueOf(amount);
         this.lottoTicketCount = Integer.valueOf(amount) / AMOUNT_UNIT;
-        this.lottos = this.generateRandomLottos();
-        this.result = new ArrayList<>(Collections.nCopies(6, 0));
+        initializeResultCounts();
+    }
+
+    private void initializeResultCounts() {
+        for (LottoPrize prize : LottoPrize.values()) {
+            this.lottoResult.put(prize, 0);
+        }
     }
 
     private void validateAmount(String amount) {
@@ -43,10 +53,17 @@ public class User {
 
     public void saveLottoRankResult(Lotto winningLotto, Integer bonusNumber) {
         this.lottos.stream().forEach(lotto -> {
-            int rank;
-            rank = lotto.getLottoRank(winningLotto, bonusNumber);
-            this.result.set(rank, this.result.get(rank) + 1);
+            LottoPrize prize = lotto.getLottoRank(winningLotto, bonusNumber);
+            this.lottoResult.put(prize, lottoResult.get(prize) + 1);
         });
+    }
+
+    public void calculateProfitability() {
+        double totalPrize = 0;
+        for (LottoPrize lottoPrize : this.lottoResult.keySet()) {
+            totalPrize += lottoPrize.getPrizeAmount() * this.lottoResult.get(lottoPrize);
+        }
+        this.profitability = Math.round(((this.amount / totalPrize) * 100)) / 100.0;
     }
 
     public Integer getLottoTicketCount() {
@@ -57,7 +74,7 @@ public class User {
         return lottos;
     }
 
-    public List<Integer> getResult() {
-        return result;
+    public Map<LottoPrize, Integer> getLottoResult() {
+        return lottoResult;
     }
 }

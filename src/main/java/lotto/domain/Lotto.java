@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.enums.ExceptionMessages;
+import lotto.enums.LottoPrize;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,21 +26,21 @@ public class Lotto {
         return compareNumbers.size() != numbers.size();
     }
 
-    public Integer getLottoRank(Lotto winningNumber, Integer bonusNumber) {
+    public LottoPrize getLottoRank(Lotto winningNumber, Integer bonusNumber) {
         Integer matchingCount = compareLotto(winningNumber.getNumbers());
         Boolean hasBonusNumber = this.numbers.contains(bonusNumber);
         if (matchingCount == 6) {
-            return 1;
+            return LottoPrize.SIX_MATCH;
         } else if (matchingCount == 5 && hasBonusNumber) {
-            return 2;
+            return LottoPrize.FIVE_MATCH_BONUS;
         } else if (matchingCount == 5) {
-            return 3;
+            return LottoPrize.THREE_MATCH;
         } else if (matchingCount == 4) {
-            return 4;
+            return LottoPrize.FOUR_MATCH;
         } else if (matchingCount == 3) {
-            return 5;
+            return LottoPrize.THREE_MATCH;
         }
-        return 0;
+        return LottoPrize.NOT_THING_MATCH;
     }
 
     private Integer compareLotto(List<Integer> winningLotto) {

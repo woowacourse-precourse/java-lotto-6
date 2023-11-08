@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.Lotto;
+import lotto.enums.LottoPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,7 @@ class LottoTest {
         Integer bonusNumber = 25;
         Lotto userLotto = new Lotto(List.of(1, 5, 10, 15, 20, 25));
         Lotto winningLotto = new Lotto(List.of(1, 5, 10, 15, 20, 30));
-        Integer rank = userLotto.getLottoRank(winningLotto, bonusNumber);
-        assertThat(rank).isEqualTo(2);
+        LottoPrize prize = userLotto.getLottoRank(winningLotto, bonusNumber);
+        assertThat(prize).isEqualTo(LottoPrize.FIVE_MATCH_BONUS);
     }
 }

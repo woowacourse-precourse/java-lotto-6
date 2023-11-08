@@ -38,7 +38,7 @@ public class InputView {
     public List<Integer> inputForPrizeNumber() {
         boolean flag = FLAG_PRIZE_BEFORE.getMessage();
         List<Integer> result = new ArrayList<>();
-        while (flag != FLAG_PRIZE_BEFORE.getMessage()) {
+        while (flag != FLAG_PRIZE_AFTER.getMessage()) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String prize = Console.readLine();

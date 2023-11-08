@@ -35,3 +35,39 @@
 - [x] `4.2` 일치하는 수만큼 당첨 통계를 출력한다.
   - [x] `4.2.1` 보너스 번호에 따른 2, 3등을 구분할 수 있다. 
 - [x] `4.3` 수익률을 출력한다.
+
+---
+# 클래스 구조
+
+`lotto`
+- `controller` : **MVC**의 **Controller**
+  - `BuyerController`
+  - `LottoController`
+  - `MainController` : `LottoController`, `BuyerController`를 호출하며 run()을 통한 메인 로직 구현 
+- `domain` : **MVC**의 **Model**의 **Domain**
+  - `constants` : 상수 패키지
+    - `LottoConfig` : 로또 게임과 관련된 설정을 저장하는 enum
+    - `LottoStatiscticsConstants` : 로또 당첨 통계량 생성 시 쓰이는 상수를 저장하는 enum
+    - `LottoStatisticsContent` : 로또 당첨 통계량 형식을 상수화한 enum
+  - `Bonus` : 보너스 번호 객체
+  - `Buyer` : 구매금액과 구매 개수를 갖고 있는 구매자
+  - `Lotto` : 구매자의 정보로 생성되는 로또
+  - `Lottos` : 로또 일급컬렉션
+  - `LottoStatistics` : 로또 당첨 통계량 객체
+  - `NumberChecker` : 로또, 보너스, 구매자의 정보를 통해 로또 번호를 체킹하는 객체
+- `exception`
+  - `constants` 
+    - `ErrorMessage` : 로또 예외 관련 메시지 상수 enum
+  - `LottoException` : 커스텀 예외
+- `service` **MVC**의 **Model**의 **Service**
+  - `BuyerService` : `Buyer`과 관련된 비즈니스 로직을 구현한 서비스
+  - `LottoService` : `Lotto`와 관련된 비즈니스 로직을 구현한 서비스 
+  - `NumberCheckerService` : `NumberChecker`와 관련된 비즈니스 로직을 구현한 서비스
+- `validator`
+  - `BuyerPurchaseAmountValidator` : `Buyer`가 구매 금액을 입력받을 때 검증하는 검증자
+  - `Validator` : 검증자 인터페이스
+- `view` : **MVC**의 **View**
+  - `constants`
+    - `ViewMessage` : 입출력 관련 상수 enum
+  - `InputView` : 입력 UI
+  - `OutputView` : 출력 UI

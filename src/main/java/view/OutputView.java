@@ -6,7 +6,7 @@ import domain.PurchaseAmount;
 import domain.WinningLottoCalculator;
 
 public class OutputView {
-	public static void printLotto(Lotto lotto) {
+	public void printLotto(Lotto lotto) {
 		System.out.println("[" + lotto.getLottoNumbersAsString() + "]");
 	}
 

@@ -34,4 +34,5 @@ public class LottoResultCalculatorTest {
         assertEquals(result.getMatchCount(), result.getMatchCount());
         assertEquals(result.isBonusMatch(), result.isBonusMatch());
     }
+
 }

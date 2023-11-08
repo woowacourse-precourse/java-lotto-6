@@ -24,6 +24,7 @@ public class LottoResultCalculator {
     }
 
     public void printResultSummary(Map<LottoRank, Integer> rankCount) {
+        System.out.println("");
         System.out.println("당첨 통계");
         System.out.println("---");
 
@@ -62,8 +63,9 @@ public class LottoResultCalculator {
         return (double) totalWinningMoney / purchaseAmount;
     }
 
-    public static void printYield(double yield) {
-        System.out.printf("총 수익률은 %.2f입니다.\n", yield);
+    public static void printYield(double yield, Map<LottoRank, Integer> rankCount) {
+        System.out.println("");
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
     }
 
 }

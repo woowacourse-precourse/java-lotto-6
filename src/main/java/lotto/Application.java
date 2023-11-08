@@ -1,5 +1,7 @@
 package lotto;
 
+import static lotto.LottoResultCalculator.printYield;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -35,8 +37,7 @@ public class Application {
 
         lottoResultCalculator.printResultSummary(rankCount);
 
-        double yield = LottoResultCalculator.calculateYield(purchaseAmount, rankCount);
-        System.out.printf("총 수익률은 %.2f입니다.\n", yield);
+        printYield(purchaseAmount, rankCount);
 
 
     }

@@ -15,6 +15,7 @@ public class LottoWinningNumberInput {
     public Set<Integer> requestLottoWinningNumbers() {
         while (true) {
             try {
+                System.out.println("");
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String input = Console.readLine();
 
@@ -71,6 +72,7 @@ public class LottoWinningNumberInput {
     public int requestBonusNumber(Set<Integer> winningNumbers) {
         while (true) {
             try {
+                System.out.println("");
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String input = Console.readLine();
                 int bonusNumber = parseAndValidateBonusNumber(input, winningNumbers);

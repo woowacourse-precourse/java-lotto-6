@@ -50,4 +50,8 @@ public class Lotto {
                 .filter(winNumber::isContain)
                 .count();
     }
+
+    public String toString() {
+        return numbers.toString();
+    }
 }

@@ -34,7 +34,7 @@ public record Lotto(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
 
         if(numbers.size() != set.size()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS_ERROR_MESSAGE.getMessage());
         }
     }
 }

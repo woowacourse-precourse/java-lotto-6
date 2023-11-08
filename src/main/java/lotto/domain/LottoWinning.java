@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import lotto.view.ErrorMessage;
 
 public class LottoWinning {
     private Lotto winningNumbers;
@@ -36,7 +37,7 @@ public class LottoWinning {
 
     private void validate(int bonusNumber){
         if(Objects.nonNull(winningNumbers) && winningNumbers.contains(bonusNumber)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_CONTAIN_BONUS_NUMBER_ERROR_MESSAGE.getMessage());
         }
     }
 }

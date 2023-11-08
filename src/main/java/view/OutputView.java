@@ -1,8 +1,7 @@
 package view;
 
 import model.Lotto;
-
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class OutputView {
@@ -18,19 +17,15 @@ public class OutputView {
         System.out.println(MONEY_INPUT_REQUEST_MESSAGE);
     }
 
-    public static void printPurchasingResultMessage(int purchasingNumber, ArrayList<Lotto> lottos) {
+    public static void printPurchasingResultMessage(int purchasingNumber, List<Lotto> lottos) {
         System.out.println(purchasingNumber + PURCHASING_RESULT_MESSAGE);
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            System.out.println(lotto.getNumbers());
         }
     }
 
     public static void printBonusNumberInputRequestMessage() {
         System.out.println(BONUS_NUMBER_INPUT_REQUEST_MESSAGE);
-    }
-
-    public static void printPurchasingResultMessage() {
-        System.out.println(PURCHASING_RESULT_MESSAGE);
     }
 
     public static void printWinningNumberInputRequestMessage() {

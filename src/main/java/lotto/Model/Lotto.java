@@ -35,21 +35,18 @@ public class Lotto {
     }
 
     private Prize getRankByScore(int matchCount,boolean isBonusMatch){
-        if (matchCount == 6) {
+
+        if (matchCount == 6)
             return Prize.FIRST;
-        }
-        if (matchCount == 5 && isBonusMatch) {
+        if (matchCount == 5 && isBonusMatch)
             return Prize.SECOND;
-        }
-        if (matchCount == 5) {
+        if (matchCount == 5)
             return Prize.THIRD;
-        }
-        if (matchCount == 4) {
+        if (matchCount == 4)
             return Prize.FOURTH;
-        }
-        if (matchCount == 3) {
+        if (matchCount == 3)
             return Prize.FIFTH;
-        }
+
         return Prize.NO_RANK;
     }
 
@@ -62,7 +59,6 @@ public class Lotto {
         }
         return matchCount;
     }
-
 
 
 

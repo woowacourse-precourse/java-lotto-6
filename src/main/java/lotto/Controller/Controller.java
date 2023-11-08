@@ -50,6 +50,7 @@ public class Controller {
                 Output.printError(error.getMessage());
             }
         }
+
     }
     private void createAnswerLotto(){
         boolean errorChecker = true;
@@ -66,6 +67,7 @@ public class Controller {
                 Output.printError(error.getMessage());
             }
         }
+
     }
     private void createBonusNumber(){
         boolean errorChecker = true;
@@ -82,6 +84,7 @@ public class Controller {
                 Output.printError(error.getMessage());
             }
         }
+
     }
 
     private void finshGame(){

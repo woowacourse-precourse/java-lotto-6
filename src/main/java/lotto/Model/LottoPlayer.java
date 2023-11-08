@@ -34,6 +34,7 @@ public class LottoPlayer {
 
         public ScoreBoard calculateScore(LottoData answerLotto,Integer bonusNumber){
             ScoreBoard roundScore = new ScoreBoard();
+
             List<Integer> answerNumbers = answerLotto.getNumbers();
             for (Lotto lotto : ownedLottos) {
                 Prize prize = lotto.calculatePrize(answerNumbers,bonusNumber);

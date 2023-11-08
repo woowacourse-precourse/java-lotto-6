@@ -65,9 +65,9 @@ public class OutputView {
         System.out.println(totalEarning);
     }
 
-    public static void printEarningDetail() {
+    public static void printEarningDetail(IncomeCalculator incomeCalculator) {
         System.out.println(RANK_RESULT);
-        Map<Prize, Integer> prizeCountMap = IncomeCalculator.getPrizeCountMap();
+        Map<Prize, Integer> prizeCountMap = incomeCalculator.getPrizeCountMap();
         for (Map.Entry<Prize, Integer> entry : prizeCountMap.entrySet()) {
             printDetails(entry);
         }

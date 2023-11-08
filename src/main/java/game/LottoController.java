@@ -19,16 +19,18 @@ public class LottoController {
 
         Lottos randomLottos = generateRandomLottosByTrialCount(trialCount);
 
-        StandardLotto standardLotto = getStandardLottoByUserInputs();
-        
-        randomLottos.calculateWinning(standardLotto);
+        IncomeCalculator incomeCalculator = new IncomeCalculator();
 
-        printEarnings(userAccount);
+        StandardLotto standardLotto = getStandardLottoByUserInputs();
+
+        randomLottos.calculateWinning(standardLotto, incomeCalculator);
+
+        printEarnings(userAccount, incomeCalculator);
     }
 
-    private static void printEarnings(UserAccount userAccount) {
-        OutputView.printEarningDetail();
-        long totalWinning = IncomeCalculator.getTotalIncome();
+    private static void printEarnings(UserAccount userAccount, IncomeCalculator incomeCalculator) {
+        OutputView.printEarningDetail(incomeCalculator);
+        long totalWinning = incomeCalculator.getTotalIncome();
         double earningRate = userAccount.getEarningRate(totalWinning);
         OutputView.printTotalEarningRate(earningRate);
     }

@@ -31,9 +31,10 @@ class UserAccountTest {
         //given
         int inputMoney = 100000;
         UserAccount userAccount = new UserAccount(inputMoney);
+        IncomeCalculator incomeCalculator = new IncomeCalculator();
         //when
-        IncomeCalculator.addCount(Prize.FIFTH);
-        long totalWinning = IncomeCalculator.getTotalIncome();
+        incomeCalculator.addCount(Prize.FIFTH);
+        long totalWinning = incomeCalculator.getTotalIncome();
         //then
         double earningRate = userAccount.getEarningRate(totalWinning);
         double expected = (double) Prize.FIFTH.getWinning() / inputMoney;

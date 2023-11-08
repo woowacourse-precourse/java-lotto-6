@@ -37,7 +37,7 @@ public class Lottos {
         return new ArrayList<>(lottos);
     }
 
-    public void calculateWinning(StandardLotto standardLotto) {
-        this.lottos.forEach(lotto -> IncomeCalculator.addCount(standardLotto.matchPrize(lotto)));
+    public void calculateWinning(StandardLotto standardLotto, IncomeCalculator incomeCalculator) {
+        this.lottos.forEach(lotto -> incomeCalculator.addCount(standardLotto.matchPrize(lotto)));
     }
 }

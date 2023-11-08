@@ -58,7 +58,7 @@ public class InputView {
         }
     }
 
-    public static int inputBonusNumber(Set<Integer> winningNumbers) {
+    public static int inputBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");

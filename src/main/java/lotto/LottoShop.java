@@ -32,12 +32,8 @@ public class LottoShop {
         println();
         List<Lotto> lottoList = buyLotto(lottoAmount);
         println();
-        List<Integer> winningNumbers = drawWinningNumbers();
-        println();
-        int bonusNumber = drawBonusNumber();
-        println();
 
-        WinningLotto winningLotto = drawWinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = drawWinningLotto();
         WinningStatistics winningStatistics = makeWinningStatistics(lottoAmount, lottoList, winningLotto);
         printLottoStatistics(winningStatistics);
     }
@@ -52,14 +48,18 @@ public class LottoShop {
         }
     }
 
-    private List<Lotto> buyLotto(LottoAmount lottoAmount) {
+    public List<Lotto> buyLotto(LottoAmount lottoAmount) {
         List<Lotto> lottoList = lottoMachine.buyLottos(lottoAmount);
         printLottoList(lottoList);
         return lottoList;
     }
+    private WinningLotto drawWinningLotto() {
+        List<Integer> winningNumbers = drawWinningNumbers();
+        println();
+        int bonusNumber = drawBonusNumber(winningNumbers);
+        println();
 
-    private WinningLotto drawWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
-        return new WinningLotto(winningNumbers, bonusNumber);
+        return WinningLotto.of(winningNumbers, bonusNumber);
     }
 
     private List<Integer> drawWinningNumbers() {
@@ -68,22 +68,21 @@ public class LottoShop {
             return inputWinningNumbers();
         } catch (IllegalArgumentException e) {
             println(e.getMessage());
-            return inputWinningNumbers();
+            return drawWinningNumbers();
         }
     }
 
-    private int drawBonusNumber() {
+    private int drawBonusNumber(List<Integer> winningNumbers) {
         println(INPUT_BONUS_NUMBER_COMMENT);
         try {
-            return inputBonusNumber();
+            return inputBonusNumber(winningNumbers);
         } catch (IllegalArgumentException e) {
             println(e.getMessage());
-            return inputBonusNumber();
+            return drawBonusNumber(winningNumbers);
         }
     }
 
-    private WinningStatistics makeWinningStatistics(LottoAmount lottoAmount, List<Lotto> lottoList,
-                                                    WinningLotto winningLotto) {
+    private WinningStatistics makeWinningStatistics(LottoAmount lottoAmount, List<Lotto> lottoList, WinningLotto winningLotto) {
         return statistician.makeLottoStatistics(lottoAmount, lottoList, winningLotto);
     }
 }

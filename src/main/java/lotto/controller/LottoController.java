@@ -81,12 +81,17 @@ public class LottoController {
     }
 
     private void inputBonus() {
-        try {
-            String tempBonus = inputView.inputBonus();
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            try {
+                String tempBonus = inputView.inputBonus();
 
-            this.bonus = new Bonus(tempBonus, this.winingLotto);
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+                this.bonus = new Bonus(tempBonus, this.winingLotto);
+
+                isValidInput = true;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
     }
 

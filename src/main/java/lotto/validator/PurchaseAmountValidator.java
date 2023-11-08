@@ -2,20 +2,27 @@ package lotto.validator;
 
 public class PurchaseAmountValidator {
     public static int parseAndValidatePurchaseAmount(String input) {
-        int amount = validateNumericInput(input);
-        validateAmountUnit(amount);
-        return amount;
+        int parsedAmount = validateNumericInput(input);
+        validateMinimumAmount(parsedAmount);
+        validateAmountUnit(parsedAmount);
+        return parsedAmount;
     }
 
     private static int validateNumericInput(String input) {
-        if (!input.matches("\\d+")) {
+        if (!isNumeric(input)) {
             throw new IllegalArgumentException("[ERROR] 올바른 금액을 입력해 주세요.");
         }
-        int parsedAmount = Integer.parseInt(input);
-        if (parsedAmount <= 1000) {
-            throw new IllegalArgumentException("[ERROR] 최소 구입 금액은 1000원입니다.");
+        return Integer.parseInt(input);
+    }
+
+    private static boolean isNumeric(String input) {
+        return input.matches("\\d+");
+    }
+
+    private static void validateMinimumAmount(int amount) {
+        if (amount < 1000) {
+            throw new IllegalArgumentException("[ERROR] 최소 구입 금액은 1,000원입니다.");
         }
-        return parsedAmount;
     }
 
     private static void validateAmountUnit(int amount) {

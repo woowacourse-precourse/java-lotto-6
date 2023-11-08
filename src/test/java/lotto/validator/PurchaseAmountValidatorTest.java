@@ -18,7 +18,7 @@ class PurchaseAmountValidatorTest {
         String lessThanMinimumInput = "500";
         IllegalArgumentException lessThanMinimumException = assertThrows(IllegalArgumentException.class,
                 () -> PurchaseAmountValidator.parseAndValidatePurchaseAmount(lessThanMinimumInput));
-        assertEquals("[ERROR] 최소 구입 금액은 1000원입니다.", lessThanMinimumException.getMessage());
+        assertEquals("[ERROR] 최소 구입 금액은 1,000원입니다.", lessThanMinimumException.getMessage());
 
         // 1000원 단위가 아닌 경우
         String nonMultipleOf1000Input = "2500";

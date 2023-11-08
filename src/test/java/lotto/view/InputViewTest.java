@@ -23,7 +23,7 @@ class InputViewTest {
         String invalidAmount1 = "500";
         IllegalArgumentException invalidAmountException1 = assertThrows(IllegalArgumentException.class,
                 () -> PurchaseAmountValidator.parseAndValidatePurchaseAmount(invalidAmount1));
-        assertEquals("[ERROR] 최소 구입 금액은 1000원입니다.", invalidAmountException1.getMessage());
+        assertEquals("[ERROR] 최소 구입 금액은 1,000원입니다.", invalidAmountException1.getMessage());
 
         // 유효하지 않은 금액 입력 (1000원 단위가 아님)
         String invalidAmount2 = "2500";

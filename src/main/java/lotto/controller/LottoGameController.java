@@ -1,12 +1,11 @@
 package lotto.controller;
 
-import lotto.LottoWinningRank;
+import java.util.HashMap;
+import java.util.Map;
+import lotto.domain.LottoWinningRank;
 import lotto.utils.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class LottoGameController {
 

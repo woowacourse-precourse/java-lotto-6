@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.ExceptionMessage.ERROR_PREFIX;
+import static lotto.constants.ExceptionMessage.EXCEPTION_DUPLICATED;
 import static lotto.constants.LottoConstants.LOTTO_LENGTH;
 import static lotto.constants.LottoConstants.MAXIMUM_NUM;
 import static lotto.constants.LottoConstants.MINIMUM_NUM;
@@ -12,7 +14,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLength(numbers);
+        validateDuplicated(numbers);
         this.numbers = numbers;
     }
 
@@ -20,9 +23,17 @@ public class Lotto {
         this.numbers = makeSixSortedLottoNum();
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_DUPLICATED);
+        }
+    }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (numbers.contains(number)) {
+                throw new IllegalArgumentException(ERROR_PREFIX + EXCEPTION_DUPLICATED);
+            }
         }
     }
 

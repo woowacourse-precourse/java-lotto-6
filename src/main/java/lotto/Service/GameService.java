@@ -93,5 +93,8 @@ public class GameService {
         this.askBonusNumber();
 
         Player player = new Player(this.money/1000);
+        GameResultService gameResultService = new GameResultService();
+        gameResultService.calculateResult(player , this.winningLotto, bonusNumber);
+        gameResultService.printResult(this.money);
     }
 }

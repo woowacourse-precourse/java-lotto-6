@@ -2,11 +2,24 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
+
+    public List<Lotto> buyLottos(int lottoCounts) {
+        System.out.println(lottoCounts + "개를 구매했습니다.");
+
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCounts; i++) {
+            Lotto lotto = new Lotto(generateLottoNums());
+            lottos.add(lotto);
+            System.out.println(lotto);
+        }
+        return lottos;
+    }
 
     public List<Integer> generateLottoNums() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);

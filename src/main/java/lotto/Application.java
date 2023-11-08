@@ -16,5 +16,10 @@ public class Application {
 
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonus = Console.readLine();
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Lotto.compare(InputWinningNum.input(winningNum, bonus));
+        System.out.println("총 수익률은 " + Lotto.revenue(Integer.parseInt(amount)) + "%입니다.");
     }
 }

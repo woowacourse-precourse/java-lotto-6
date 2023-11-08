@@ -1,10 +1,9 @@
-package lotto.domain;
+package lotto.dto;
 
 import static lotto.util.validator.WinningNumbersDtoValidator.WINNING_NUMBERS_IS_INVALID_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.dto.WinningNumbersDto;
 import lotto.util.validator.Validator;
 import lotto.util.validator.WinningNumbersDtoValidator;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class WinningNumbersTest {
+public class WinningNumbersDtoTest {
 
     @DisplayName("WinningNumbersDto 클래스 지원")
     @Test

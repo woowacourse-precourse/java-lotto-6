@@ -23,4 +23,8 @@ public class Lotto {
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
     }
+
+    public boolean hasNumber(int number) {
+        return numbers.contains(number);
+    }
 }

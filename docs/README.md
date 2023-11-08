@@ -37,3 +37,4 @@
 5. [x] LottoWinningNumberTest 당첨 번호에 1이상 45 이하의 수가 있으면 예외가 발생
 6. [x] LottoBonusNumberTest 보너스 번호 당첨 번호와 중복시 예외가 발생
 7. [x] LottoBonusNumberTest 보너스 번호에 1이상 45 이하의 수가 있으면 예외가 발생
+8. [x] PrintWinningResult 로또와 당첨 번호 비교 결과에 따른 올바른 결과가 출력

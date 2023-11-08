@@ -63,10 +63,10 @@ public class LottoStart {
 
         int[] lottoCalculateResult = calculateMachine.lottoResult();
         printWinningResult = new PrintWinningResult(lottoCalculateResult);
-        printWinningResult.printLottoResult();
+        System.out.println(printWinningResult.printLottoResult());
 
         double lottoProfitResult = calculateMachine.profitResult(buyer.getMoney(), lottoCalculateResult);
-        printWinningResult.printProfitResult(lottoProfitResult);
+        System.out.println(printWinningResult.printProfitResult(lottoProfitResult));
 
     }
 

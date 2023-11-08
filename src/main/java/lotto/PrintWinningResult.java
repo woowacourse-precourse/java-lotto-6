@@ -7,20 +7,24 @@ public class PrintWinningResult {
         PrintWinningResult.lottoResult = lottoResult;
     }
 
-    public void printLottoResult() {
+    public String printLottoResult() {
 
         int[] result = lottoResult;
 
-        System.out.println("3개 일치 (5,000원) - " + result[1] + "개");
-        System.out.println("4개 일치 (50,000원) - " + result[2] + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + result[3] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result[4] + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + result[5] + "개");
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("3개 일치 (5,000원) - ").append(result[1]).append("개\n");
+        stringBuilder.append("4개 일치 (50,000원) - ").append(result[2]).append("개\n");
+        stringBuilder.append("5개 일치 (1,500,000원) - ").append(result[3]).append("개\n");
+        stringBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(result[4]).append("개\n");
+        stringBuilder.append("6개 일치 (2,000,000,000원) - ").append(result[5]).append("개\n");
+
+        return stringBuilder.toString();
 
     }
 
-    public void printProfitResult(double profitPercentage) {
+    public String printProfitResult(double profitPercentage) {
 
-        System.out.println("총 수익률은 " + profitPercentage + "%입니다.");
+        return "총 수익률은 " + profitPercentage + "%입니다.";
     }
 }

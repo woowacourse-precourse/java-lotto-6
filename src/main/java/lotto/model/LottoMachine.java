@@ -36,10 +36,7 @@ public class LottoMachine {
 
     private static void filterBonusNumber(List<RankTable> matchLottoCalculate, List<Integer> lottoNumber,
                                           int bonusNumber, int matchCount) {
-        boolean bonus = false;
-        if (lottoNumber.contains(bonusNumber)) {
-            bonus = true;
-        }
+        boolean bonus = lottoNumber.contains(bonusNumber);
         if (matchCount == 5 && bonus) {
             matchLottoCalculate.add(RankTable.BONUS);
         }

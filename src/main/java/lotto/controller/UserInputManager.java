@@ -32,9 +32,8 @@ public class UserInputManager {
         return bonusNumberInput;
     }
 
-    public String getWinningNumbersInput() {
-        return readLine();
-    }
+
+    public String getWinningNumbersInput() { return readLine();}
 
     private boolean isThousandUnit(String input) {
         return Integer.parseInt(input) % 1000 == 0;

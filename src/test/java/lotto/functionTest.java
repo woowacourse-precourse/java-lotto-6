@@ -62,7 +62,6 @@ class functionTest {
         Lotto userLotto = new Lotto(Arrays.asList(1, 2, 3, 10, 20, 30));
         testManager.getUserLottos().add(userLotto);
 
-        // 결과를 확인
         testManager.JudgementOfWinning();
 
         assertEquals(1, testManager.getMatchCounts().get(WinningRanking.FIFTH.getRank() - 1));

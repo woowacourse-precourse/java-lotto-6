@@ -2,16 +2,13 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Utils {
-    public static int convertStringToInt(String purchasePriceInput)
-    {
+    public static int convertStringToInt(String purchasePriceInput) {
         int purchasePrice = 0;
-        for (int i = purchasePriceInput.length() - 1, numberOfDigit = 1; i >= 0; i--, numberOfDigit *= 10)
-        {
+        for (int i = purchasePriceInput.length() - 1, numberOfDigit = 1; i >= 0; i--, numberOfDigit *= 10) {
             purchasePrice += ((purchasePriceInput.charAt(i) - '0') * numberOfDigit);
         }
 
@@ -23,9 +20,12 @@ public class Utils {
     }
 
     public static List<Integer> convertStringToIntegers(String numbers) {
-        return Arrays.stream(numbers.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        String[] numberStrings = numbers.split(",");
+        List<Integer> integerList = new ArrayList<>();
+        for (String numberString : numberStrings) {
+            integerList.add(Integer.parseInt(numberString.trim()));
+        }
+        return integerList;
     }
+
 }

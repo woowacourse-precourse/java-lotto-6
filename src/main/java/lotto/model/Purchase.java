@@ -8,7 +8,7 @@ public class Purchase {
     private int lottoCount;
 
     public Purchase(String purchasePriceInput) {
-        this.purchasePrice = convertStringToInt(purchasePriceInput);
+        purchasePrice = convertStringToInt(purchasePriceInput);
         calculateLottoCount();
     }
 

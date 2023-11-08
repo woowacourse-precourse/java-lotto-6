@@ -26,8 +26,6 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-
-
     public static Lotto makeLotto() {
         List<Integer> lottoNumbers = makeLottoNumber();
         return new Lotto(lottoNumbers);
@@ -55,7 +53,8 @@ public class Lotto {
             return WinningRanking.FOURTH;
         } else if (matchCount == 3) {
             return WinningRanking.FIFTH;
-        } return WinningRanking.LOSING;
+        }
+        return WinningRanking.LOSING;
     }
 
 }

@@ -37,6 +37,6 @@ public class LottoController {
     }
 
     public void winningBonusNumberSet() {
-
+        InputView.inputWinningBonusNumber();
     }
 }

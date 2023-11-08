@@ -38,15 +38,17 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = inputLine();
         return parseWinningNumbersOrThrowError(input);
     }
 
-    public static List<Integer> inputWinningBonusNumber() {
+    public static int inputWinningBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = inputLine();
-        return parseWinningBonusNumberOrThrowError(input);
+        return WinningBonusNumberOrThrowError(input);
     }
 
     private static long divideWithTicketPrice(String input) {
@@ -68,7 +70,12 @@ public class InputView {
     }
 
     private static List<Integer> parseWinningNumbersOrThrowError(String input) {
-        String[] inputNumbers = input.split(",");
+        String[] inputNumbers;
+        try {
+            inputNumbers = input.split(",");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 쉼표(,)로 구분하여 당첨 번호를 입력해 주세요.");
+        }
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (String inputNumber : inputNumbers) {
@@ -81,18 +88,20 @@ public class InputView {
         return winningNumbers;
     }
 
-    private static List<Integer> parseWinningBonusNumberOrThrowError(String input) {
-        String[] inputNumbers = input.split(",");
-        List<Integer> winningNumbers = new ArrayList<>();
-
-        for (String inputNumber : inputNumbers) {
-            Integer parsedNumber = parseIntegerOrThrowError(inputNumber);
-            winningNumbers.add(parsedNumber);
+    private static int WinningBonusNumberOrThrowError(String input) {
+        int winningBonusNumber = parseWinningBonusNumberOrThrowError(input);
+        if (winningBonusNumber < 1 || winningBonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1~45 사이의 숫자여야 합니다.");
         }
+        return winningBonusNumber;
+    }
 
-        new Lotto(winningNumbers);
-
-        return winningNumbers;
+    private static int parseWinningBonusNumberOrThrowError(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 숫자 형식으로 입력해 주세요.");
+        }
     }
 
     private static Integer parseIntegerOrThrowError(String inputNumber) {

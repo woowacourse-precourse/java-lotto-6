@@ -8,7 +8,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
-import java.util.Map;
 
 public class Controller {
     List<Integer> winnings;
@@ -20,7 +19,7 @@ public class Controller {
         buyLottos();
         showHowManyLottosBuy();
         putWinningNumber();
-        showWinningsResult();
+        confirmWinningResult();
     }
 
     public void buyLottos() {
@@ -54,17 +53,20 @@ public class Controller {
         this.winningBonusNumber = winningNumbers.getBonusNumber();
     }
 
-
-    public void showWinningsResult() {
+    public void confirmWinningResult(){
         ConfirmationWinning confirmationWinning = new ConfirmationWinning(winningBonusNumber);
         List<Lotto> BunchOfLotto = lottoGame.getBunchOfLotto();
         confirmationWinning.checkWinnings(winnings,BunchOfLotto);
 
+        showWinningsResult(confirmationWinning)
+    }
+
+
+    public void showWinningsResult(ConfirmationWinning confirmationWinning) {
         OutputView.printLottoResultMessage();
         confirmationWinning.showLottoGameResult(confirmationWinning.getLottoResultCount());
 
         showTotalRate(confirmationWinning);
-
     }
 
     public void showTotalRate(ConfirmationWinning confirmationWinning){

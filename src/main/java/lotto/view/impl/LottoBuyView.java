@@ -11,8 +11,8 @@ import lotto.view.Outputable;
 import lotto.view.View;
 
 public class LottoBuyView extends View implements Inputable, Outputable{
-    private final static String moneyInputText = "구입금액을 입력해 주세요.";
-    private final static String outputText = "개를 구매했습니다.";
+    private final static String INPUT_TEXT = "구입금액을 입력해 주세요.";
+    private final static String OUTPUT_TEXT = "개를 구매했습니다.";
 
     private final static String DELIMITER = ", ";
     private final static String BEGIN_MARKER = "[";
@@ -20,8 +20,22 @@ public class LottoBuyView extends View implements Inputable, Outputable{
 
     @Override
     public Object inputView() {
-        printView(moneyInputText);
-        return new Money(Console.readLine());
+        Money money = null;
+        boolean validInput = false;
+
+        while (!validInput) {
+            printView(INPUT_TEXT);
+
+            try {
+                money = new Money(Console.readLine());
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                printView(ERROR_MSG + INPUT_ERROR_MSG);
+
+            }
+        }
+
+        return money;
     }
 
     @Override
@@ -34,7 +48,7 @@ public class LottoBuyView extends View implements Inputable, Outputable{
     }
 
     private static void lottoCountView(Integer lottoCount) {
-        printView(lottoCount + outputText);
+        printView(lottoCount + OUTPUT_TEXT);
     }
 
     private static void lottoNumberView(Lottos lottos) {

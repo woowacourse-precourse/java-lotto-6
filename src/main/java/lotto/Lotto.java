@@ -20,6 +20,13 @@ public class Lotto {
         if(numbers.size() != numbers.stream().distinct().count()){
             throw new IllegalArgumentException();
         }
+
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) > Issue.MAXIMUM_OF_NUMBER || numbers.get(i) < Issue.MINIMUM_OF_NUMBER) {
+                throw new IllegalArgumentException();
+            }
+        }
+
     }
 
     List<Integer> sort(List<Integer> numbers) {

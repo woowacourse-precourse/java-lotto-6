@@ -6,22 +6,38 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
     public static void main(String[] args) {
-        int cash = getInputFir();
+        List<Lotto> lottoList = new ArrayList<>();
 
-//        List<Integer> numbers = getInputSec();
+        int lottoCnt = getInputFir();
 
+        System.out.println(lottoCnt + "개를 구매했습니다.");
 
+        int produceCnt = 0;
+
+        while (produceCnt < lottoCnt){
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(randomNumbers);
+            lottoList.add(lotto);
+
+            printLottoNumbers(lotto);
+
+            produceCnt++;
+        }
+
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
 
     }
 
     private static int getInputFir() {
-        int processedCash = 0;
+
+        int cash = 0;
 
         while (true){
             System.out.println("구입금액을 입력해 주세요.");
             try{
                 String cashStr = Console.readLine();
-                processedCash = validInputOne(cashStr);
+                cash = validInputOne(cashStr);
                 break;
             }
 
@@ -30,7 +46,7 @@ public class Application {
             }
         }
 
-        return processedCash;
+        return cash / 1000;
     }
 
     private static int validInputOne(String cashStr){
@@ -49,4 +65,16 @@ public class Application {
         }
     }
 
+    private static void printLottoNumbers(Lotto lotto){
+        List<Integer> numbers = lotto.getNumbers();
+
+        System.out.print("[");
+        for (int i = 0; i < numbers.size(); i++) {
+            System.out.print(numbers.get(i));
+            if (i < numbers.size() - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+    }
 }

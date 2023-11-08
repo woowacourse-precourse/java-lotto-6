@@ -15,7 +15,7 @@ class LottoTicketQuantityTest {
 
     @DisplayName("숫자를 넣으면 1000으로 나눈 값을 반환한다.")
     @Test
-    void inputNumber() {
+    void divideNumberBy1000() {
         Assertions.assertEquals(1, ticketQuantity.getPurchaseQuantity(1000));
         Assertions.assertEquals(100, ticketQuantity.getPurchaseQuantity(100000));
     }

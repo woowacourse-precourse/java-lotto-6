@@ -9,12 +9,14 @@ public class ValidationBonusNumber {
 
     }
 
-    public static void validateBonusNumber(String bonusNumberString) {
+    public static void validateBonusNumber(String bonusNumberString, List<Integer> winningNumbers) {
         validateNumber(bonusNumberString);
         validateNumberRange(bonusNumberString);
+        validateDuplicateBonusNumber(winningNumbers, bonusNumberString);
     }
 
-    public static void validateDuplicateBonusNumber(List<Integer> numbers, Integer bonusNumber) {
+    public static void validateDuplicateBonusNumber(List<Integer> numbers, String bonusNumberString) {
+        Integer bonusNumber = Integer.parseInt(bonusNumberString);
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ValidationBonusNumberMessages.DUPLICATE_NUMBER.getMessage());
         }

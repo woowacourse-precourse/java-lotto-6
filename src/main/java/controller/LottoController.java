@@ -27,20 +27,12 @@ public class LottoController {
     }
 
     public void startGame() {
-        while (true) {
-            try {
-                initGame();
-                break;
-            } catch (IllegalArgumentException errorMessage) {
-                System.out.println(errorMessage.getMessage());
-            }
-        }
+        initGame();
     }
 
     public void createUser() {
         List<Integer> numbers = InputView.inputWinningNumbers();
-        Integer bonusNumber = InputView.inputBonusNumber();
-        ValidationBonusNumber.validateDuplicateBonusNumber(numbers, bonusNumber);
+        Integer bonusNumber = InputView.inputBonusNumber(numbers);
         user = new User(numbers, bonusNumber);
     }
 

@@ -9,6 +9,7 @@ public class IssuedLottoDataService {
     public IssuedLottos create_issued_lottos(){
         int amount = purchaceAmount()/1000;
         IssuedLottos issuedLottos = new IssuedLottos(new ArrayList<>(), amount);
+        OutputView.printAmount(amount);
         for(int i = 0 ; i < amount ; i++){
             IssuedLotto issuedLotto = create_issued_lotto_Numbers();
             issuedLottos.add(issuedLotto);
@@ -16,8 +17,10 @@ public class IssuedLottoDataService {
         return issuedLottos;
     }
     private int purchaceAmount(){
-        String money = InputView.InputpurchaseAmount();
-        Validation.validateNumberType(money);
+        String money;
+        do {
+            money = InputView.InputpurchaseAmount();
+        } while (Validation.validatepurchaseAmount(money));
         return Integer.parseInt(money);
     }
 

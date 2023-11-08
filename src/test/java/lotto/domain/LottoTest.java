@@ -20,13 +20,13 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("입력한 로또 번호와 다른 양식의 문자열 반환 시 예외 발생")
+    @DisplayName("입력한 로또 번호와 다른 양식의 문자열 반환 시 실패")
     void getLottoString() {
         Assertions.assertEquals(lotto.getLottoString(), "[1, 2, 3, 4, 5, 6]");
     }
 
     @Test
-    @DisplayName("입력한 로또 번호와 다른 리스트 반환 시 예외 발생")
+    @DisplayName("입력한 로또 번호와 다른 리스트 반환 시 실패")
     void getNumbers() {
         Assertions.assertEquals(lotto.getNumbers(), numbers);
     }

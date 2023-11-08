@@ -47,6 +47,7 @@ public class UserLottos {
         return purhcasedLotto;
     }
 
+    // 사용자의 로또 구매 금액 반환
     public int getAmount() {
         return size * 1000;
     }

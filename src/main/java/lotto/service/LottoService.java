@@ -30,6 +30,11 @@ public class LottoService {
         return generateLottos(purchaseAmountInput);
     }
 
+    public void putWinningNumbers(String input) {
+        inputValidator.validateWinningNumber(input);
+        player.insertWinningNumbers(input);
+    }
+
     private PurchaseResultDto generateLottos(int purchaseAmountInput) {
         for (int i = 0; i < purchaseAmountInput / LOTTO_COST; i++) {
             Lotto lotto = generateLottoWithRandomNumber();

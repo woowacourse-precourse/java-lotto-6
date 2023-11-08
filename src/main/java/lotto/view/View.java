@@ -3,17 +3,21 @@ package lotto.view;
 import static lotto.view.constants.MessageType.BONUS_NUMBER_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
-import static lotto.view.constants.MessageType.LOTTO_RESULT_MESSAGE;
 import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
+import static lotto.view.constants.MessageType.WINNING_RESULT_INFORMATION;
+import static lotto.view.constants.MessageType.WINNING_RESULT_NOTICE;
 import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
 import static lotto.view.constants.SymbolType.OUTPUT_SEPARATOR;
 import static lotto.view.constants.SymbolType.POSTFIX;
 import static lotto.view.constants.SymbolType.PREFIX;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningResult;
+import lotto.domain.WinningType;
 import lotto.global.exception.ErrorMessage;
 import lotto.global.exception.LottoException;
 import lotto.view.constants.MessageType;
@@ -39,9 +43,19 @@ public final class View {
         return Validator.validateBonusNumber(enterMessage());
     }
 
-    public static void printLottoResult() {
-        printlnMessage(LOTTO_RESULT_MESSAGE);
-        
+    public static void printWinningResult(WinningResult winningResult, int cost) {
+        printlnMessage(WINNING_RESULT_NOTICE);
+
+        Arrays.stream(WinningType.values())
+                .filter(winningType -> !winningType.equals(WinningType.NONE))
+                .forEach(winningType -> printWinningNumbers(winningType, winningResult));
+    }
+
+    private static void printWinningNumbers(WinningType winningType, WinningResult winningResult) {
+        printlnFormat(WINNING_RESULT_INFORMATION,
+                winningType.getWinningCount(),
+                winningType.getPrice(),
+                winningResult.getValue(winningType));
     }
 
     private static void printLottosCount(int count) {

@@ -12,7 +12,7 @@ public class readInput {
                 purchaseException.isDividedByThousand(amount);
                 return amount;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(MessageUtil.MSG_ERROR+ e.getMessage());
             }
         }
     }
@@ -24,7 +24,7 @@ public class readInput {
                 winningNumberException.getBeWinningNumbers(inputWinningNumbers);
                 return inputWinningNumbers;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(MessageUtil.MSG_ERROR+ e.getMessage());
             }
         }
     }
@@ -38,7 +38,7 @@ public class readInput {
                 bonusNumberException.validateBonusNotDuplicate(bonusNumber);
                 return inputBonusNumber;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(MessageUtil.MSG_ERROR+ e.getMessage());
             }
         }
     }

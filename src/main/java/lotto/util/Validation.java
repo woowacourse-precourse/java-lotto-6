@@ -25,6 +25,7 @@ public class Validation {
         int inputToInteger;
         try {
             inputToInteger = Integer.parseInt(input);
+            validatePositiveInteger(inputToInteger);
         }catch (NumberFormatException e){
             throw LottoException.triggeredBy(UNABLE_TO_PARSE_INT);
         }

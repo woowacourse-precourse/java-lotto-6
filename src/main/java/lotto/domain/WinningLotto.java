@@ -13,7 +13,7 @@ public class WinningLotto {
         return bonusNumber;
     }
 
-    public void addBonusNumber(String number) throws IllegalArgumentException {
+    public void addBonusNumber(String number) {
         validator.validateWholeNumber(number);
         int bonusNumber = Integer.parseInt(number);
         validator.validateNumberRange(bonusNumber);
@@ -21,7 +21,7 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public WinningLotto(String lotto) throws IllegalArgumentException {
+    public WinningLotto(String lotto) {
         List<Integer> numbers = createLottos(lotto);
         validator.validateNumbersRange(numbers);
         winningLotto = new Lotto(numbers);

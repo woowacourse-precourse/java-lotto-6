@@ -48,12 +48,12 @@ public class Validator {
             int endInclusive
     ) {
         validateRange(startInclusive, endInclusive);
-        boolean isNotValidateNumbers = (
+        boolean isNotValidNumbers = (
                 numbers.stream()
                         .filter(number -> number >= startInclusive && number <= endInclusive)
                         .distinct().count() != numbers.size()
         );
-        if (isNotValidateNumbers) {
+        if (isNotValidNumbers) {
             raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " 중복되지 않는 " +
                     startInclusive + "이상 " + endInclusive + "이하의 숫자만 입력해주세요.");
         }

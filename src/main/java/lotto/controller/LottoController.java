@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import lotto.domain.WinningNumber;
 import lotto.domain.calculator.CalculatorMatching;
 import lotto.domain.calculator.CalculatorProfit;
 import lotto.domain.generator.LottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class LottoController {
     private final InputView inputView;
@@ -28,6 +31,19 @@ public class LottoController {
                 outputView.printPurchaseAmountMessage();
                 purchaseAmount = inputView.getPurchaseAmount();
                 return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorCode(e.getMessage());
+            }
+        }
+    }
+
+    private WinningNumber inputWinningNumbers() {
+        List<Integer> winningNumbers;
+        while (true) {
+            try {
+                outputView.printWinningNumberstMessage();
+                winningNumbers = inputView.getWinningNumbers();
+                return new WinningNumber(winningNumbers, 0);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorCode(e.getMessage());
             }

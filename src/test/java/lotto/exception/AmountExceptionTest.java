@@ -10,10 +10,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class AmountExceptionTest {
     AmountException amountException = new AmountException();
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "      "})
     @DisplayName("빈칸을 입력 하면 예외가 발생 한다.")
-    void checkBlank() {
-        assertThatThrownBy(() -> amountException.checkBlank(""))
+    void checkBlank(String input) {
+        assertThatThrownBy(() -> amountException.checkBlank(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -41,11 +42,19 @@ class AmountExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void checkEmptySpace() {
+    @ParameterizedTest
+    @ValueSource(strings = {" 12345 ", "12 34"})
+    @DisplayName("로또 구매 가능 금액을 넘어 가면 예외가 발생 한다.")
+    void checkEmptySpace(String input) {
+        assertThatThrownBy(() -> amountException.checkEmptySpace(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void checkThousandUnits() {
+    @ParameterizedTest
+    @ValueSource(strings = {"1001", "5100", "2020"})
+    @DisplayName("로또 구매 가능 금액을 넘어 가면 예외가 발생 한다.")
+    void checkThousandUnits(String input) {
+        assertThatThrownBy(() -> amountException.checkThousandUnits(input))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

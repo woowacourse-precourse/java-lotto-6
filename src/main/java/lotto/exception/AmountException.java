@@ -9,7 +9,7 @@ public class AmountException {
     private final static String MAX_INTEGER = "2147483647";
 
     public void checkBlank(String input) {
-        if (input.isEmpty()) {
+        if (input.trim().isEmpty()) {
             throw new IllegalArgumentException(ErrorText.BLANK.getMessage());
         }
     }

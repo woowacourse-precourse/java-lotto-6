@@ -1,12 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.CalculateStats;
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.UserNumberInput;
-
-import java.util.List;
 
 public class Application {
     public static void main(String[] args) {

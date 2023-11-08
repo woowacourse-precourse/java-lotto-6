@@ -14,6 +14,7 @@ public class StartLotto {
     }
 
     private void initLotto() {
+
     }
 
     private void purchaseLotto() {

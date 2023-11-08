@@ -41,6 +41,6 @@ public class Validator {
     private boolean outOfRange(String number, Integer start, Integer end) {
         Integer num = Integer.parseInt(number);
 
-        return (num <= start || end <= num);
+        return (num < start || end < num);
     }
 }

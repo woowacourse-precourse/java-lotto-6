@@ -103,11 +103,12 @@ public class Game {
             validator.validateAnswer(number, START, END);
             result.add(Integer.parseInt(number));
         }
+        Collections.sort(result);
         return result;
     }
 
     private Integer generateBonus() {
-        String bonus = message.inputString();
+        String bonus = message.inputBonus();
 
         validator.validateBonus(bonus, START, END);
         return Integer.parseInt(bonus);

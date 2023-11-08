@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -46,10 +47,29 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("구매 금액을 1000단위로 금액 입력하지 않을시 예외가 발생한다.")
     @Test
-    void 예외_테스트() {
+    void notMultipleOf1000() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("당첨 로또 번호를 포맷에 맞게 입력하지 않을시 예외가 발생한다.")
+    @Test
+    void notFormatOfWinningNumbers(){
+        assertSimpleTest(() ->{
+            runException("1000", "123");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호를 포맷에 맞게 입력하지 않을시 예외가 발생한다.")
+    @Test
+    void notFormatOfBonusNumber(){
+        assertSimpleTest(() ->{
+            runException("1000", "1,2,3,4,5,6", "123");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

@@ -33,9 +33,12 @@
 ```
 - `print_lottery_numbers()` : 로또 번호 출력
 
+---
+
 ## LottoManager (enum 클래스)
 - 로또 등수와 그에 따른 상금에 맞게 계산
 
+---
 ## Application 클래스
 
 ### 변수

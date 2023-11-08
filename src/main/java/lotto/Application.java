@@ -5,7 +5,7 @@ import lotto.component.LottoController;
 import lotto.component.LottoViewResolver;
 import lotto.context.ApplicationContext;
 import lotto.domain.result.Result;
-import lotto.dto.LottoArgumentDTO;
+import lotto.dto.LottoArgument;
 
 public class Application {
 
@@ -16,14 +16,14 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        LottoArgumentDTO lottoArgumentDTO = LottoArgumentResolver.of(
+        LottoArgument lottoArgument = LottoArgumentResolver.of(
                         context.getInputView(),
                         context.getPrinter(),
                         context.getValidator())
                 .resolve();
 
         LottoController controller = context.getLottoController();
-        Result result = controller.run(lottoArgumentDTO.getLottos(), lottoArgumentDTO.getWinning());
+        Result result = controller.run(lottoArgument.getLottos(), lottoArgument.getWinning());
 
         LottoViewResolver viewResolver = context.getViewResolver();
         viewResolver.showResult(result);

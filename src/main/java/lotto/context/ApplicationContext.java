@@ -1,10 +1,10 @@
 package lotto.context;
 
 import lotto.component.LottoController;
+import lotto.component.LottoValidator;
 import lotto.component.LottoViewResolver;
 import lotto.service.LottoMessagePrinter;
 import lotto.service.LottoService;
-import lotto.validation.LottoValidator;
 import lotto.view.read.InputView;
 import lotto.view.write.OutputView;
 

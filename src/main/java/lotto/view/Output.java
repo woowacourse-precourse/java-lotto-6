@@ -12,6 +12,8 @@ public class Output {
     public void showRevenue(int[] result, int cash) {
         int revenue = (5000 * result[3]) + (50000 * result[4]) + (1500000 * result[5])
                 + (30000000 * result[7]) + (2000000000 * result[6]);
-        System.out.println("총 수익률은 " + (revenue / (double) cash) * 100 + "%입니다.");
+        double value = (revenue / (double) cash) * 100;
+
+        System.out.println("총 수익률은 " + String.format("%.2f%%", value) + "%입니다.");
     }
 }

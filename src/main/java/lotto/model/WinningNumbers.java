@@ -8,6 +8,7 @@ public class WinningNumbers {
     private final Lotto lotto;
     private final Number bonusNumber;
 
+
     public WinningNumbers(Lotto lotto, Number bonusNumber) {
         validate(lotto, bonusNumber);
         this.lotto = lotto;
@@ -25,7 +26,11 @@ public class WinningNumbers {
 
     private static Number parseAndValidateBonusNumber(String bonusNumber) {
         validateBonusNumber(bonusNumber);
-        return Number.of(Integer.parseInt(bonusNumber));
+        try {
+            return Number.of(Integer.parseInt(bonusNumber));
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_FORMAT.get());
+        }
     }
 
     private void validate(Lotto lotto, Number bonusNumber) {

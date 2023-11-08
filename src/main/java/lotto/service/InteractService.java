@@ -14,8 +14,8 @@ public class InteractService {
     private static final Integer LOTTO_PRICE = 1000;
 
     public static Integer purchasePhase() {
-        System.out.println("구입금액을 입력해 주세요.");
         while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
             try {
                 Integer tryNum = checkParseIntException(Console.readLine());
                 checkThousandException(tryNum, LOTTO_PRICE);

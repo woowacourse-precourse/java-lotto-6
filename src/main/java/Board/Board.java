@@ -1,5 +1,11 @@
 package Board;
 
+import Util.CheckInteger;
+import View.MoneyInputErrorText;
+import View.WinningNumberInputErrorText;
+import lotto.LottoOutcome;
+import lotto.LottoPrice;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +15,8 @@ public class Board {
     private int prize;
 
     public Board(int money){
+        CheckInteger.notZero(money, MoneyInputErrorText.zeroInserted());
+        CheckInteger.checkNumMultipleOfDivider(money, LottoPrice.nomal.getValue(), MoneyInputErrorText.notMultipleOfThousand());
         this.money = money;
         this.prize = 0;
         winningRecord = new HashMap<LottoOutcome, Integer>();

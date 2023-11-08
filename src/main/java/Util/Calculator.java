@@ -1,6 +1,6 @@
 package Util;
 
-import Board.LottoOutcome;
+import lotto.LottoOutcome;
 import WinningNumber.WinningNumber;
 import lotto.Lotto;
 

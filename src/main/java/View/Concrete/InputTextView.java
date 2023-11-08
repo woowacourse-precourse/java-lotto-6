@@ -7,7 +7,7 @@ public class InputTextView implements InputView {
         System.out.println("구입금액을 입력해 주세요");
     }
 
-    public void introduceWinningNumberInput(){
+    public void introduceNumbersInput(){
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 

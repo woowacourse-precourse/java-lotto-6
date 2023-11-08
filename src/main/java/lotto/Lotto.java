@@ -1,5 +1,9 @@
 package lotto;
 
+import Util.CheckInteger;
+import Util.CheckList;
+import View.WinningNumberInputErrorText;
+
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        CheckList.checkDuplicate(numbers, WinningNumberInputErrorText.dupilicateNumber());
         this.numbers = numbers;
     }
 

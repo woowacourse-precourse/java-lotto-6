@@ -1,4 +1,4 @@
-package Board;
+package lotto;
 
 public enum LottoOutcome {
     rank1(6, 0, 2000000000),

@@ -50,4 +50,9 @@ class LottoTest {
         assertThat(lotto.length()).isEqualTo(LOTTO_SIZE);
     }
 
+    @DisplayName("로또에서 인덱스를 통해 값 가져오기")
+    @Test
+    void 로또_인덱스(){
+        assertThat(lotto.get(0)).isEqualTo(1);
+    }
 }

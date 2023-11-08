@@ -23,10 +23,14 @@ public class LottoController {
 
     public void start(){
         UserController userController = UserController.getInstance();
+        CalculationController calculationController = CalculationController.getInstance();
+
         int money = userController.purchaseInput();
-        makeLotto(money);
+        List<Lotto> lottos = makeLotto(money);
         List<Integer> numbers = userController.lottoNumberInput();
         int bonus = userController.lottoBonusNumberInput(numbers);
+        int totalAmount = calculationController.calculation(lottos, numbers, bonus);
+        calculationController.calcRevenue(money, totalAmount);
     }
 
     public List<Lotto> makeLotto(int money){

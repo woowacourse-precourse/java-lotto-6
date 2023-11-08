@@ -33,6 +33,10 @@ public class Profit {
         this.totalProfit = totalProfit;
     }
 
+    public Map<WinningDetails, Integer> getWinningResult() {
+        return this.winningResult;
+    }
+
     public void setProfitRatio(int purchaseAmount) {
         this.profitRatio = matchDecimalPlace(((double) purchaseAmount) / totalProfit);
     }
@@ -40,5 +44,9 @@ public class Profit {
     public String matchDecimalPlace(Double ratio) {
         DecimalFormat df = new DecimalFormat("0.0");
         return df.format(ratio);
+    }
+
+    public String getProfitRatio() {
+        return this.profitRatio;
     }
 }

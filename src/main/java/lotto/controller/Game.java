@@ -19,6 +19,7 @@ public class Game {
         showPurchaseResult();
         registerWinningLotto();
         calculateResult();
+        showResult();
     }
 
     void purchaseLotto() {
@@ -29,6 +30,15 @@ public class Game {
     void showPurchaseResult() {
         OutputView.outputPurchaseCount(lottoPurchaseInfo.getPurchaseLottoCount());
         OutputView.outputPurchaseLottos(lottoPurchaseInfo.getLottos());
+    }
+
+    void showResult() {
+        OutputView.outputResult(profit.getWinningResult());
+        OutputView.outputProfitRatio(profit.getProfitRatio());
+    }
+
+    void showProfitRatio() {
+
     }
 
     void registerWinningLotto() {

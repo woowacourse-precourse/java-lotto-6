@@ -46,6 +46,7 @@ public class MatchingNumber {
 
     private void updateRank(int matchCount, int bonusMatchCount) {
         String rank = null;
+
         if(matchCount == 6) {
             rank = MATCHING_6.grade;
         } else if(matchCount == 5 && bonusMatchCount == 1) {
@@ -65,11 +66,12 @@ public class MatchingNumber {
 
     private Map<String, Integer> initializeRankMap() {
         Map<String, Integer> ranks = new LinkedHashMap<>();
-        ranks.put(MATCHING_6.grade, 0);
-        ranks.put(MATCHING_5_AND_BONUS.grade, 0);
-        ranks.put(MATCHING_5.grade, 0);
-        ranks.put(MATCHING_4.grade, 0);
         ranks.put(MATCHING_3.grade, 0);
+        ranks.put(MATCHING_4.grade, 0);
+        ranks.put(MATCHING_5.grade, 0);
+        ranks.put(MATCHING_5_AND_BONUS.grade, 0);
+        ranks.put(MATCHING_6.grade, 0);
+
         return ranks;
     }
     public Map<String, Integer> getLottoRankList() {

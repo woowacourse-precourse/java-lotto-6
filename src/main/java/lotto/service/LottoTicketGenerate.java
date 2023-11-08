@@ -13,9 +13,7 @@ public class LottoTicketGenerate {
     private List<LottoTicketEntity> lottoTicketEntities = new ArrayList<>();
 
 
-    public LottoTicketGenerate(int price) {
-        int lottoTicketCount = price / LOTTO_TICKET_PRICE.getValue();
-
+    public LottoTicketGenerate(int lottoTicketCount) {
         for (int i = 0; i < lottoTicketCount; i++) {
             List<Integer> lottoNumbers = randomNumberGenerate();
             LottoTicketEntity lottoTicketEntity = new LottoTicketEntity();
@@ -41,7 +39,9 @@ public class LottoTicketGenerate {
 
     public void sortLottoTicketEntities() {
         for (LottoTicketEntity lottoTicketEntity : lottoTicketEntities) {
-            lottoTicketEntity.getLottoNumbers().sort(Integer::compareTo);
+            List<Integer> lottoNumbers = new ArrayList<>(lottoTicketEntity.getLottoNumbers());
+            lottoNumbers.sort(Integer::compareTo);
+            lottoTicketEntity.setLottoNumbers(lottoNumbers);
         }
     }
 

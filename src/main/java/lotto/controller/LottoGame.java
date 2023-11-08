@@ -1,13 +1,15 @@
 package lotto.controller;
 
-import lotto.service.BonusLotto;
-import lotto.service.Lotto;
-import lotto.service.LottoTicketGenerate;
+import lotto.service.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static lotto.model.AppConstants.lottoConstants.LOTTO_TICKET_PRICE;
+import static lotto.service.PrizeCalculator.calculateProfitRate;
 
 public class LottoGame {
     private LottoTicketGenerate lottoTicketGenerate;
@@ -22,7 +24,18 @@ public class LottoGame {
         setWinningLotto();
         setBonusLotto();
 
+        Map<String, Integer> lottoMatchingResult =  LottoMatching();
+        int totalPrice = PrizeCalculator.calculate(lottoMatchingResult);
 
+        float profitPercent = calculateProfitRate(totalPrice, inputPrice);
+
+        OutputView.printLottoMatchingResult(lottoMatchingResult, profitPercent);
+    }
+
+    private Map<String, Integer> LottoMatching() {
+        MatchingNumber matchingNumber = new MatchingNumber(lottoTicketGenerate.getLottoTicketEntities(), lotto.getLottoNumbers(), bonusLotto.getBonusNumber());
+
+        return matchingNumber.getLottoRankList();
     }
 
     private void setBonusLotto() {
@@ -39,8 +52,9 @@ public class LottoGame {
     }
 
     private void buyLottoTicket(int inputPrice) { //금액만큼 로또 구입 후 출력
-
-        lottoTicketGenerate = new LottoTicketGenerate(inputPrice);
+        int lottoTicketCount = inputPrice / LOTTO_TICKET_PRICE.getValue();
+        OutputView.printTicketCount(lottoTicketCount);
+        lottoTicketGenerate = new LottoTicketGenerate(lottoTicketCount);
         lottoTicketGenerate.sortLottoTicketEntities();
 
         OutputView.printLottoTickets(lottoTicketGenerate.getLottoTicketEntities());
@@ -49,10 +63,10 @@ public class LottoGame {
     private void setWinningLotto() {
         while(true) {
             try {
-                String winningNumbers = inputView.inputWinningNumbers();
-                List<Integer> winningNumberList = splitList(winningNumbers);
+                String inputWinningNumbers = inputView.inputWinningNumbers();
+                List<Integer> winningNumbers = splitList(inputWinningNumbers);
 
-                this.lotto = new Lotto(winningNumberList);
+                this.lotto = new Lotto(winningNumbers);
                 break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -60,14 +74,14 @@ public class LottoGame {
         }
     }
 
-    private List<Integer> splitList(String winningNumbers) {
-        String[] splitNumbers = winningNumbers.split(",");
-        List<Integer> winningNumberList = new ArrayList<>();
+    private List<Integer> splitList(String inputWinningNumbers) {
+        String[] splitNumbers = inputWinningNumbers.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
 
         for (String number : splitNumbers) {
-            winningNumberList.add(Integer.parseInt(number));
+            winningNumbers.add(Integer.parseInt(number));
         }
 
-        return winningNumberList;
+        return winningNumbers;
     }
 }

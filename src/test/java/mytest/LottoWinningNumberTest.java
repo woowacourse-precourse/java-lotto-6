@@ -70,7 +70,7 @@ public class LottoWinningNumberTest {
             winningNumbers.add(Integer.parseInt(number));
         }
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
             Lotto lotto = new Lotto(winningNumbers);
             lotto.isContainNumber(bonusInput);
 

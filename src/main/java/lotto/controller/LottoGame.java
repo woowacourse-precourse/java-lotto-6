@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.model.Constants;
 import lotto.model.Lotto;
 import lotto.service.LottoGenerator;
 import lotto.service.LottoProfitCalculator;
@@ -11,8 +12,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
-
-    private static final int LOTTO_PRICE = 1000;
 
     private int purchaseAmount;
     private List<Lotto> lottoTickets;
@@ -27,7 +26,7 @@ public class LottoGame {
 
     private void purchaseLotto() {
         purchaseAmount = getPurchaseAmount();
-        int lottoTicketCount = purchaseAmount / LOTTO_PRICE;
+        int lottoTicketCount = purchaseAmount / Constants.LOTTO_PRICE;
 
         OutputView.printLottoBuy(lottoTicketCount);
         lottoTickets = LottoGenerator.generateLottoTickets(lottoTicketCount);

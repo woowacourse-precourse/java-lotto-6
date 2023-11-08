@@ -2,17 +2,16 @@ package lotto.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Constants;
 
 public class InputParser {
-
-    private static final String SEPARATOR = ",";
 
     public static int parsePurchaseAmount(String purchaseAmount) {
         return Integer.parseInt(purchaseAmount);
     }
 
     public static List<Integer> parseWinningNumbers(String undividedWinningNumbers) {
-        String[] dividedWinningNumbers = undividedWinningNumbers.split(SEPARATOR);
+        String[] dividedWinningNumbers = undividedWinningNumbers.split(Constants.SEPARATOR);
         List<Integer> winningNumbers = new ArrayList<>();
         for (String winningNumber : dividedWinningNumbers) {
             winningNumbers.add(Integer.parseInt(winningNumber));

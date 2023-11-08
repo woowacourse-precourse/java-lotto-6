@@ -24,40 +24,41 @@ public class InputValidator {
 
     private void validateInputBlank(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 빈 값을 입력할 수 없습니다");
+            throw new IllegalArgumentException(ErrorMessage.BLANK_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateInputInt(String input) {
         if (!input.chars().allMatch(Character::isDigit)) {
-            throw new IllegalArgumentException("[ERROR] 정수가 아닌 다른 문자는 입력할 수 없습니다");
+            throw new IllegalArgumentException(ErrorMessage.INT_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateWinningNumberSplitSize(List<String> winningNumbers) {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 쉼표를 기준으로 당첨 번호 6개를 입력해 주세요");
+        if (winningNumbers.size() != Condition.SIZE.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_SIZE_ERROR_MESSAGE.getMessage());
         }
     }
 
-    private void validateWinningNumberOutOfSize(String winningNumber) {
+    private void validateWinningNumberOutOfRange(String winningNumber) {
         int winningNumberToInt = StringParser.parseStringToInt(winningNumber);
-        if (winningNumberToInt < 1 || winningNumberToInt > 45) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45까지의 숫자만 가능합니다");
+        if (winningNumberToInt < Condition.MIN_RANGE.getNumber()
+                || winningNumberToInt > Condition.MAX_RANGE.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateWinningNumberDuplication(List<String> winningNumbers) {
         List<String> distinctWinningNumbers = winningNumbers.stream().distinct().toList();
         if (winningNumbers.size() != distinctWinningNumbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되어선 안됩니다");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_DUPLICATION_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateWinningNumberEach(List<String> winningNumbers) {
-        for(String number : winningNumbers) {
+        for (String number : winningNumbers) {
             validateInputInt(number);
-            validateWinningNumberOutOfSize(number);
+            validateWinningNumberOutOfRange(number);
         }
     }
 }

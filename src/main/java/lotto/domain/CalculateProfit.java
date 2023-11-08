@@ -6,7 +6,7 @@ import java.util.List;
 public class CalculateProfit {
 
 
-    private final int lottoPurchaseCnt;
+    private final int lottoPurchase;
 
     private final List<Integer> lottoResult;
 
@@ -32,8 +32,8 @@ public class CalculateProfit {
 
 
 
-    public CalculateProfit(int lottoPurchaseCnt ,List<Integer> lottoResult, List<Boolean> bonusCheck) {
-        this.lottoPurchaseCnt = lottoPurchaseCnt;
+    public CalculateProfit(int lottoPurchase ,List<Integer> lottoResult, List<Boolean> bonusCheck) {
+        this.lottoPurchase = lottoPurchase;
         this.lottoResult = lottoResult;
         this.bonusCheck = bonusCheck;
 
@@ -50,7 +50,7 @@ public class CalculateProfit {
         if (lottoResult.isEmpty())
             return cntProfit;
 
-        for(int i = 0; i < lottoPurchaseCnt; i++) {
+        for(int i = 0; i < lottoResult.size(); i++) {
             int cnt = lottoResult.get(i);
             int profit = 0;
 
@@ -76,7 +76,7 @@ public class CalculateProfit {
         if (lottoResult.isEmpty())
                 return bonusProfit;
 
-        for(int i = 0; i < lottoPurchaseCnt; i++) {
+        for(int i = 0; i < lottoResult.size(); i++) {
             int cnt = lottoResult.get(i);
             boolean bonus = bonusCheck.get(i);
             int profit = 0;
@@ -98,7 +98,7 @@ public class CalculateProfit {
         if (lottoResult.isEmpty())
             return totalProfit;
 
-        for(int i = 0; i < lottoPurchaseCnt; i++)
+        for(int i = 0; i < lottoResult.size(); i++)
         {
             int profit = cntProfit.get(i) + bonusProfit.get(i);
             totalProfit.add(profit);
@@ -110,10 +110,10 @@ public class CalculateProfit {
     private double calculateRateOfReturn() {
         long sum = 0;
 
-        for (int n : lottoResult) {
+        for (int n : totalProfit) {
             sum += n;
         }
 
-        return (double) sum / lottoPurchaseCnt;
+        return (double) sum / lottoPurchase;
     }
 }

@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 import lotto.model.Wallet;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -80,7 +82,7 @@ public class WalletTest {
         assertEquals(walletPrivateMoney, Integer.parseInt(money));
     }
 
-    @DisplayName("로또를 구입할 금액이 있으면 true를 반환한다")
+    @DisplayName("로또를 구입할 금액이 있으면 true를 반환한다.")
     @Test
     void CanBuyLottoInGeneralCase() {
         Wallet wallet = new Wallet("2000");
@@ -88,7 +90,7 @@ public class WalletTest {
         assertTrue(wallet.canBuyLotto());
     }
 
-    @DisplayName("로또를 구입할 금액이 없으면 false를 반환한다")
+    @DisplayName("로또를 구입할 금액이 없으면 false를 반환한다.")
     @Test
     void CanBuyLottoInFailedCase() {
         Wallet wallet = new Wallet("1000");
@@ -98,7 +100,7 @@ public class WalletTest {
         assertFalse(wallet.canBuyLotto());
     }
 
-    @DisplayName("수익률 계산이 잘 이루어지는지 확인한다 (소수점 둘째 자리에서 반올림)")
+    @DisplayName("수익률 계산이 잘 이루어지는지 확인한다. (소수점 둘째 자리에서 반올림)")
     @Test
     void testCalculateProfitRate() {
         Wallet wallet = new Wallet("10000");
@@ -106,5 +108,18 @@ public class WalletTest {
         assertEquals(4.3, wallet.calculateProfitRate(2300));
         assertEquals(4.2, wallet.calculateProfitRate(2400));
         assertEquals(0.0, wallet.calculateProfitRate(0));
+    }
+
+    @DisplayName("수익 계산이 잘 이루어지는지 확인한다.")
+    @Test
+    void testCalculateProfit() {
+        Wallet wallet = new Wallet("10000");
+        Map<Integer, Integer> lottoesResult = new HashMap<>();
+
+        for (int lottoRank = 1; lottoRank <= 5; lottoRank++) {
+            lottoesResult.put(lottoRank, lottoRank);
+        }
+
+        assertEquals(2064725000L, wallet.calculateProfit(lottoesResult));
     }
 }

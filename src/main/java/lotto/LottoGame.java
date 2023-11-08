@@ -3,13 +3,15 @@ package lotto;
 import java.util.*;
 
 public class LottoGame {
+    private static int buyMoney;
     private static final InputResolver inputResolver = new InputResolver();
     private static final LottoGenerator lottoGenerator = new LottoGenerator();
     private static List<Lotto> lottoList = new ArrayList<>();
     private static LottoWinningNumber lottoWinningNumber;
     private static Map<LottoWinningSpec, Integer> winningResult = new HashMap<>();
     public static void play() {
-        lottoList = lottoGenerator.buyLotto(inputResolver.inputLottoBuy());
+        buyMoney = inputResolver.inputLottoBuy();
+        lottoList = lottoGenerator.buyLotto(buyMoney);
         List<Integer> winningNumber = inputResolver.inputWinningNumber();
         lottoWinningNumber = new LottoWinningNumber(winningNumber, inputResolver.inputBonusNumber(winningNumber));
         checkLottoResult(lottoList);
@@ -54,9 +56,12 @@ public class LottoGame {
     }
 
     private static void printResult() {
+        int sum = 0;
         System.out.println("당첨통계 \n---");
         for (LottoWinningSpec prize :LottoWinningSpec.values()) {
             System.out.println(prize.getWinInformation() + " - " + winningResult.get(prize) + "개");
+            sum += prize.getPrizeMoney() * winningResult.get(prize);
         }
+        System.out.println("총 수익률은 " + String.format("%.2f", (double)sum / buyMoney * 100) + "%입니다.");
     }
 }

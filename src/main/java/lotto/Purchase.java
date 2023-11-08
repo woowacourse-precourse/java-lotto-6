@@ -14,7 +14,7 @@ public class Purchase {
     private void checkCost(String raw) {
         try {
             this.cost = Integer.parseInt(raw);
-            if (cost < 0) {
+            if (cost <= 0) {
                 throw new IllegalArgumentException(Message.INPUT_NUMBER_NEGATIVE.getMessage());
             }
             if (cost % 1000 != 0) {

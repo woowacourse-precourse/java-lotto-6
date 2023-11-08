@@ -36,8 +36,8 @@
 ### 2️⃣️ 구매한 금액만큼 로또 객체 생성
 
 - [x] 돈 다 떨어질 때까지 반복하여 티켓 구매
-    - [x] [LottoNumberGenerator]: `pickUniqueNumbersInRange()`를 이용하여 로또 번호 생성
-    - [x] [Lotto]: `LottoNumberGenerator` 에서 생성해준 로또 번호를 받아 객체 생성
+    - [x] `pickUniqueNumbersInRange()`를 이용하여 로또 번호 생성
+    - [x] `LottoNumberGenerator` 에서 생성해준 로또 번호를 받아 로또 객체 생성
         - [x] 로또 번호 오름차순으로 정렬
         - 🚨검증: 에러 메세지 출력 후 다시 입력받기
             - [x] 번호가 6개 맞는지
@@ -53,27 +53,29 @@
 - [InputView]
     - [x] 로또 당첨 번호 입력하라는 문구 출력
     - [x] 사용자로부터 `쉼표(,)`를 기준으로 로또 당첨 번호 `6개` 입력받기
-    - [x] 당첨 번호 `List<Integer>`로 파싱 해주기
-    - [x] `WinningLottoNumbersDtoBuilder` 필드 주입
+    - [x] String인 당첨 번호 파싱(타입 변환) 해주기
+    - [x] `WinningLottoNumbersDtoBuilder` 필드에 당첨 번호 주입
         - 🚨검증: 에러 메세지 출력 후 다시 입력받기
-              - [x] 번호가 6개 맞는지
-              - [x] 중복된 번호가 없는지
-              - [x] 1 ~ 45 범위 내에 있는지
+            - [x] 번호가 6개 맞는지
+            - [x] 중복된 번호가 없는지
+            - [x] 1 ~ 45 범위 내에 있는지
 
 ### 5️⃣️ 사용자로부터 보너스 번호 입력받기
 
 - [InputView]
     - [x] 로또 보너스 번호 입력하라는 문구 출력
     - [x] 사용자로부터 보너스 번호 1개 입력받기
-    - [x] `LottoNumber` 반환
+    - [x] String인 보너스 번호 파싱(타입 변환) 해주기
+    - [x] `WinningLottoNumbersDtoBuilder` 필드에 보너스 번호 주입
         - 🚨검증: 에러 메세지 출력 후 다시 입력받기
             - [x] 1 ~ 45 범위 내에 있는지
             - [x] 로또 번호와 중복되지 않는지
 
 ### 6️⃣️ 당첨 통계 계산
 
-- [x] 당첨 번호, 보너스 번호 그리고 사용자가 지닌 로또 번호 비교하기
-- [x] enum 통해 결과 반환
+- 구매한 로또 개수 만큼 반복
+    - [x] 당첨 번호, 보너스 번호 그리고 사용자가 지닌 로또 번호 비교하기
+    - [x] enum 통해 결과 반환
 
 ### 7️⃣ 총 수익률 계산
 
@@ -83,20 +85,21 @@
 
 ### 8️⃣ 통계 및 수익률 출력
 
-- [x] 당첨 통계 및 수익률 데이터 반환
-- [x] 결과 출력
+- [OutputView]
+    - [x] 당첨 통계 및 수익률 데이터 반환
+    - [x] 결과 출력
 
 # ‼️ 기능 구현을 위해 지켜야 할 요구사항
 
-- [] 에러메세지 `[ERROR]` 로 시작할 것
-- [] indent depth 2이하
-- [] 메서드 길이 최대 15라인
-- [] Java Enum 사용
+- [x] 에러메세지 `[ERROR]` 로 시작할 것
+- [x] indent depth 2이하
+- [x] 메서드 길이 최대 15라인
+- [x] Java Enum 사용
 - [] 도메인 로직 단위 테스트 작성
-- [] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()` 활용
-- [] 사용자 입력값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()` 활용
-- [] 제공된 `Lotto` 클래스 활용
-- [] `Lotto`클래스 내 `numbers`의 접근 제어자인 private을 변경x
-- [] `Lotto`에 필드(인스턴스 변수)를 추가x
-- [] 변수 이름에 자료형 사용하지 않기
+- [x] Random 값 추출은 `camp.nextstep.edu.missionutils.Randoms`의 `pickUniqueNumbersInRange()` 활용
+- [x] 사용자 입력값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()` 활용
+- [x] 제공된 `Lotto` 클래스 활용
+- [x] `Lotto`클래스 내 `numbers`의 접근 제어자인 private을 변경x
+- [x] `Lotto`에 필드(인스턴스 변수)를 추가x
+- [x] 변수 이름에 자료형 사용하지 않기
 - [] 구현순서 (상수-인스턴스변수-생성자-메서드)

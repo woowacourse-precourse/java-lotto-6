@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.dto.output.DrawLottoDto;
+import lotto.domain.dto.output.DrawLottosResponse;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -51,14 +51,14 @@ public class DrawMachine {
         return statistic;
     }
 
-    public DrawLottoDto drawAll(Lottos lottos) {
+    public DrawLottosResponse drawAll(Lottos lottos) {
         Map<DrawResult, Integer> statistic = createStatistic();
         for (Lotto userLotto : lottos.getLottoTickets()) {
             DrawResult drawResult = drawEach(userLotto);
             Integer count = statistic.get(drawResult);
             statistic.replace(drawResult, count + 1);
         }
-        return new DrawLottoDto(
+        return new DrawLottosResponse(
                 statistic.get(FIRST),
                 statistic.get(SECOND),
                 statistic.get(THIRD),

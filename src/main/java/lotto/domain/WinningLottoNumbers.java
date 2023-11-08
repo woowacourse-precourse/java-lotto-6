@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.dto.input.WinningLottoNumbersDto;
+import lotto.domain.dto.input.WinningLottoRequest;
 
 import java.util.Objects;
 
@@ -13,8 +13,8 @@ public class WinningLottoNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLottoNumbers from(WinningLottoNumbersDto winningLottoNumbersDto) {
-        return new WinningLottoNumbers(winningLottoNumbersDto.winningNumbers(), winningLottoNumbersDto.bonusNumber());
+    public static WinningLottoNumbers from(WinningLottoRequest winningLottoRequest) {
+        return new WinningLottoNumbers(winningLottoRequest.winningNumbers(), winningLottoRequest.bonusNumber());
     }
 
     public boolean containBonusNumber(Lotto userLotto) {

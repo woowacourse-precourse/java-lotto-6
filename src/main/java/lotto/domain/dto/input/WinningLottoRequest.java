@@ -3,5 +3,5 @@ package lotto.domain.dto.input;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
-public record WinningLottoNumbersDto(Lotto winningNumbers, LottoNumber bonusNumber) {
+public record WinningLottoRequest(Lotto winningNumbers, LottoNumber bonusNumber) {
 }

@@ -5,12 +5,12 @@ import lotto.domain.LottoNumber;
 
 import java.util.List;
 
-public record LottoDto(List<Integer> numbers) {
+public record LottoResponse(List<Integer> numbers) {
 
-    public static LottoDto createLottoDto(Lotto lotto) {
+    public static LottoResponse createLottoResponse(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers().stream()
                 .map(LottoNumber::getNumber)
                 .toList();
-        return new LottoDto(lottoNumbers);
+        return new LottoResponse(lottoNumbers);
     }
 }

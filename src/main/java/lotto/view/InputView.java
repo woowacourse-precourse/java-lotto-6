@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.domain.dto.input.PurchaseLottoDto;
-import lotto.domain.dto.input.WinningLottoNumbersDto;
-import lotto.domain.dto.input.WinningLottoNumbersDtoBuilder;
+import lotto.domain.dto.input.PurchaseLottoRequest;
+import lotto.domain.dto.input.WinningLottoRequest;
+import lotto.domain.dto.input.WinningLottoRequestBuilder;
 import lotto.io.Reader;
 import lotto.io.Writer;
 import lotto.parser.Parser;
@@ -21,44 +21,44 @@ public class InputView {
         this.reader = reader;
     }
 
-    public PurchaseLottoDto getPurchaseAmount() {
+    public PurchaseLottoRequest getPurchaseAmount() {
         writer.writeln(INPUT_PURCHASE_AMOUNT);
         try {
             int amount = Parser.parseStrToInt(reader.readLine());
-            return new PurchaseLottoDto(amount);
+            return new PurchaseLottoRequest(amount);
         } catch (IllegalArgumentException exception) {
             writer.writeln(exception.getMessage());
             return getPurchaseAmount();
         }
     }
 
-    public WinningLottoNumbersDto getWinningLottoNumbers() {
-        WinningLottoNumbersDtoBuilder numbersDtoBuilder = WinningLottoNumbersDtoBuilder.create();
-        getWinningNumber(numbersDtoBuilder);
-        getBonusNumber(numbersDtoBuilder);
-        return numbersDtoBuilder.build();
+    public WinningLottoRequest getWinningLottoNumbers() {
+        WinningLottoRequestBuilder winningLottoBuilder = WinningLottoRequestBuilder.create();
+        getWinningNumber(winningLottoBuilder);
+        getBonusNumber(winningLottoBuilder);
+        return winningLottoBuilder.build();
     }
 
-    private WinningLottoNumbersDtoBuilder getWinningNumber(WinningLottoNumbersDtoBuilder numbersDtoBuilder) {
+    private WinningLottoRequestBuilder getWinningNumber(WinningLottoRequestBuilder winningLottoBuilder) {
         writer.writeln(INPUT_WINNING_NUMBERS);
         try {
             String inputNumbers = reader.readLine();
             List<Integer> winningNumbers = Parser.parseWinningNumbers(inputNumbers);
-            return numbersDtoBuilder.winningNumbers(winningNumbers);
+            return winningLottoBuilder.winningNumbers(winningNumbers);
         } catch (IllegalArgumentException exception) {
             writer.writeln(exception.getMessage());
-            return getWinningNumber(numbersDtoBuilder);
+            return getWinningNumber(winningLottoBuilder);
         }
     }
 
-    private WinningLottoNumbersDtoBuilder getBonusNumber(WinningLottoNumbersDtoBuilder numbersDtoBuilder) {
+    private WinningLottoRequestBuilder getBonusNumber(WinningLottoRequestBuilder winningLottoBuilder) {
         writer.writeln(INPUT_BONUS_NUMBERS);
         try {
             int bonusNumber = Parser.parseStrToInt(reader.readLine());
-            return numbersDtoBuilder.bonusNumber(bonusNumber);
+            return winningLottoBuilder.bonusNumber(bonusNumber);
         } catch (IllegalArgumentException exception) {
             writer.writeln(exception.getMessage());
-            return getBonusNumber(numbersDtoBuilder);
+            return getBonusNumber(winningLottoBuilder);
         }
     }
 }

@@ -1,10 +1,10 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.domain.dto.input.PurchaseLottoDto;
-import lotto.domain.dto.input.WinningLottoNumbersDto;
-import lotto.domain.dto.output.DrawLottoDto;
-import lotto.domain.dto.output.LottosDto;
+import lotto.domain.dto.input.PurchaseLottoRequest;
+import lotto.domain.dto.input.WinningLottoRequest;
+import lotto.domain.dto.output.DrawLottosResponse;
+import lotto.domain.dto.output.LottosResponse;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,19 +25,19 @@ public class GameController {
     }
 
     private Lottos purchaseLottos() {
-        PurchaseLottoDto purchaseAmount = inputView.getPurchaseAmount();
-        Money money = Money.from(purchaseAmount.amount());
+        PurchaseLottoRequest purchaseLottoRequest = inputView.getPurchaseAmount();
+        Money money = Money.from(purchaseLottoRequest.amount());
         Lottos lottos = lottoStore.purchaseLottoTickets(money);
-        LottosDto lottosDto = LottosDto.createLottosDto(lottos);
-        outputView.printPurchasedLotto(lottosDto);
+        LottosResponse lottosResponse = LottosResponse.createLottosResponse(lottos);
+        outputView.printPurchasedLotto(lottosResponse);
         return lottos;
     }
 
     private void draw(Lottos lottos) {
-        WinningLottoNumbersDto winningLottoNumbersDto = inputView.getWinningLottoNumbers();
-        WinningLottoNumbers winningLottoNumbers = WinningLottoNumbers.from(winningLottoNumbersDto);
+        WinningLottoRequest winningLottoRequest = inputView.getWinningLottoNumbers();
+        WinningLottoNumbers winningLottoNumbers = WinningLottoNumbers.from(winningLottoRequest);
         DrawMachine drawMachine = DrawMachine.from(winningLottoNumbers);
-        DrawLottoDto drawLottoDto = drawMachine.drawAll(lottos);
-        outputView.printDrawResult(drawLottoDto);
+        DrawLottosResponse drawLottosResponse = drawMachine.drawAll(lottos);
+        outputView.printDrawResult(drawLottosResponse);
     }
 }

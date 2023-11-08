@@ -6,30 +6,30 @@ import lotto.validator.LottoValidator;
 
 import java.util.List;
 
-public class WinningLottoNumbersDtoBuilder {
+public class WinningLottoRequestBuilder {
 
     private Lotto winningNumbers;
     private LottoNumber bonusNumber;
 
-    private WinningLottoNumbersDtoBuilder() {
+    private WinningLottoRequestBuilder() {
     }
 
-    public static WinningLottoNumbersDtoBuilder create() {
-        return new WinningLottoNumbersDtoBuilder();
+    public static WinningLottoRequestBuilder create() {
+        return new WinningLottoRequestBuilder();
     }
 
-    public WinningLottoNumbersDtoBuilder winningNumbers(List<Integer> numbers) {
+    public WinningLottoRequestBuilder winningNumbers(List<Integer> numbers) {
         this.winningNumbers = new Lotto(numbers);
         return this;
     }
 
-    public WinningLottoNumbersDtoBuilder bonusNumber(int number) {
+    public WinningLottoRequestBuilder bonusNumber(int number) {
         this.bonusNumber = new LottoNumber(number);
         LottoValidator.validateDuplicatedBonusNumber(winningNumbers, bonusNumber);
         return this;
     }
 
-    public WinningLottoNumbersDto build() {
-        return new WinningLottoNumbersDto(winningNumbers, bonusNumber);
+    public WinningLottoRequest build() {
+        return new WinningLottoRequest(winningNumbers, bonusNumber);
     }
 }

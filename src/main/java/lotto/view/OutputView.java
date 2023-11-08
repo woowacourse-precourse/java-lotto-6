@@ -1,8 +1,8 @@
 package lotto.view;
 
-import lotto.domain.dto.output.DrawLottoDto;
-import lotto.domain.dto.output.LottoDto;
-import lotto.domain.dto.output.LottosDto;
+import lotto.domain.dto.output.DrawLottosResponse;
+import lotto.domain.dto.output.LottoResponse;
+import lotto.domain.dto.output.LottosResponse;
 import lotto.io.Writer;
 
 import java.util.List;
@@ -22,33 +22,33 @@ public class OutputView {
         this.writer = writer;
     }
 
-    private static String getQuantity(LottosDto lottosDto) {
-        return String.format(QUANTITY_MSG, lottosDto.quantity());
+    private static String getQuantity(LottosResponse lottosResponse) {
+        return String.format(QUANTITY_MSG, lottosResponse.quantity());
     }
 
-    private static String getNumbers(LottoDto lottoTicket) {
+    private static String getNumbers(LottoResponse lottoTicket) {
         return lottoTicket.numbers()
                 .toString();
     }
 
-    public void printPurchasedLotto(LottosDto lottosDto) {
-        writer.writeln(getQuantity(lottosDto));
-        List<LottoDto> lottoTickets = lottosDto.lottoNumbers();
-        for (LottoDto lottoTicket : lottoTickets) {
+    public void printPurchasedLotto(LottosResponse lottosResponse) {
+        writer.writeln(getQuantity(lottosResponse));
+        List<LottoResponse> lottoTickets = lottosResponse.lottoNumbers();
+        for (LottoResponse lottoTicket : lottoTickets) {
             writer.writeln(getNumbers(lottoTicket));
         }
     }
 
-    public void printDrawResult(DrawLottoDto drawLottoDto) {
+    public void printDrawResult(DrawLottosResponse drawLottosResponse) {
         writer.writeln(STATISTIC_MSG);
         writer.writeln(String.format(
                 STATISTIC_FORMAT,
-                drawLottoDto.fifth(),
-                drawLottoDto.fourth(),
-                drawLottoDto.third(),
-                drawLottoDto.second(),
-                drawLottoDto.first(),
-                drawLottoDto.rateOfReturn()));
+                drawLottosResponse.fifth(),
+                drawLottosResponse.fourth(),
+                drawLottosResponse.third(),
+                drawLottosResponse.second(),
+                drawLottosResponse.first(),
+                drawLottosResponse.rateOfReturn()));
     }
 }
 

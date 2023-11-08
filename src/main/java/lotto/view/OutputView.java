@@ -11,7 +11,7 @@ public class OutputView {
     private OutputView(){}; //생성자로 인스턴스 생성 막기
 
     public static void printLottoCount(int lottoCount){
-        System.out.println(lottoCount + Messages.LOTTO_COUNT_MESSAGE.getMessage());
+        System.out.println(String.format(Messages.LOTTO_COUNT_MESSAGE.getMessage(),lottoCount));
     }
 
     public static void printLottoNumbers(List<Integer> lottoNumbers){
@@ -28,7 +28,7 @@ public class OutputView {
     }
 
     public static void printLottoProfitRate(BigDecimal profitRate){
-        System.out.println(String.format(Messages.LOTTO_PROFIT_RATE_MESSAGE.getMessage(),profitRate.toString()));
+        System.out.print(String.format(Messages.LOTTO_PROFIT_RATE_MESSAGE.getMessage(),profitRate.toString()));
     }
 
 }

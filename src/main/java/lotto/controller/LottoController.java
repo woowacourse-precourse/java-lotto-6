@@ -28,9 +28,8 @@ public class LottoController {
     private final LottoCalculateService lottoCalculateService;
 
     public LottoController(DatabaseDto dto) { // 초기화
-        this.lottoService = new LottoService(dto.getUserLottoDataRepository());
-
         UserLottoRepository userLottoRepository = dto.getUserLottoDataRepository();
+        this.lottoService = new LottoService(userLottoRepository);
         LottoWinningRepository lottoWinningRepository = dto.getLottoWinningDataRepository();
         this.lottoCalculateService = new LottoCalculateService(userLottoRepository, lottoWinningRepository);
     }

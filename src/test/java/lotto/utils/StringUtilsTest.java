@@ -6,6 +6,8 @@ import static lotto.constant.ErrorMessage.INPUT_IS_NOT_INTEGER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -57,5 +59,18 @@ public class StringUtilsTest {
         assertThatThrownBy(() -> StringUtils.getIntegerValue(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_IS_NOT_INTEGER);
+    }
+
+    @Test
+    @DisplayName("문자열 배열로부터 정수 리스트를 추출한다.")
+    void getIntegerValueList_정수_리스트_추출() {
+        // given
+        String[] inputs = new String[]{"1", "2", "3"};
+
+        // when
+        List<Integer> result = StringUtils.getIntegerValueList(inputs);
+
+        // then
+        assertThat(result).isEqualTo(Arrays.asList(1, 2, 3));
     }
 }

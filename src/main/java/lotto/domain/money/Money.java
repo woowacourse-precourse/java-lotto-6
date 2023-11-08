@@ -35,8 +35,8 @@ public class Money {
     private void payValidate(Money price) {
         if (price.value > this.value) {
             throw new IllegalArgumentException(
-                String.format("잔액 %d원 으로는 %d원의 로또를 구매하실 수 없습니다."
-                    ,this.value, price.value)
+                String.format("잔액 %d원 으로는 %d원의 로또를 구매하실 수 없습니다.",
+                    this.value, price.value)
             );
         }
     }

@@ -55,7 +55,7 @@ public class LottoResult {
 
     public double getProfitMargin(int money) {
         double prize = getPrize();
-        double profitMargin = Math.round(((prize / money) * 100) * 10 / 10.0);
+        double profitMargin = Math.round(((prize / money) * 100) * 100) / 100.0;
 
         return profitMargin;
     }

@@ -18,7 +18,11 @@ public class Lotto {
         Collections.sort(unSortedNumbers);
         return unSortedNumbers;
     }
-
+    public ArrayList<List<Integer>> makeRandoms(List<Integer> numbers) {
+        System.out.println(sortNumber(numbers));
+        randomNumbers.add(numbers);
+        return randomNumbers;
+    }
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();

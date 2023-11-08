@@ -11,17 +11,20 @@ public class InputView {
 
     public int enterPurchaseAmount(){
         String input = commonReadLine(InputMessage.PURCHASE_AMOUNT);
+        System.out.println();
         return convertToInt(input);
     }
 
     public int enterBonusNumber(){
         String input = commonReadLine(InputMessage.BONUS_NUMBER);
+        System.out.println();
         return convertToInt(input);
     }
     public List<Integer> enterWinningNumber(){
         String input = commonReadLine(InputMessage.WINNING_NUMBER);
 
         isCommaValidate(input);
+        System.out.println();
         return convertToIntegerList(input);
     }
 

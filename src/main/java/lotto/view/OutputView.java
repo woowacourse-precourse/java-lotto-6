@@ -10,6 +10,7 @@ public class OutputView {
         System.out.println(consumer.getLottos().size() + "개를 구매했습니다.");
         consumer.getLottos()
                 .forEach(System.out::println);
+        System.out.println();
     }
 
     public void printTotalPrize(Map<Prize, Integer> totalPrize) {

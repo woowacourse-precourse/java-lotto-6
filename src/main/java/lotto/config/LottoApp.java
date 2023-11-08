@@ -9,6 +9,7 @@ import lotto.view.OutputView;
 public class LottoApp {
 
     private final LottoController lottoController;
+    private LottoCollector lottoCollector;
 
     public LottoApp() {
         lottoController = new LottoController(
@@ -21,6 +22,7 @@ public class LottoApp {
         requestPublishLotto();
         requestWinningNumber();
         requestBonusNumber();
+        requestPrizeMoney();
 
         Console.close();
     }
@@ -29,7 +31,7 @@ public class LottoApp {
         while (true) {
             try {
                 InputView.printInputBuyAmountRequest();
-                LottoCollector lottoCollector = lottoController.publishLotto(Console.readLine());
+                lottoCollector = lottoController.publishLotto(Console.readLine());
                 OutputView.printPublishedLottos(lottoCollector);
                 break;
             } catch (IllegalArgumentException e) {
@@ -64,5 +66,10 @@ public class LottoApp {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void requestPrizeMoney() {
+        String winningDetail = lottoController.getWinningDetail(lottoCollector);
+        OutputView.winningDetail(winningDetail);
     }
 }

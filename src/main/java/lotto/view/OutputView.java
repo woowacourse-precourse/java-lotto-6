@@ -11,4 +11,9 @@ public class OutputView {
         System.out.println(lottoCollector.getTicketCount() + TICKET_COUNT_MESSAGE);
         System.out.println(lottoCollector.convertLottoToString());
     }
+
+    public static void winningDetail(String winningDetail) {
+        System.out.println("\n당첨 통계\n---");
+        System.out.println(winningDetail);
+    }
 }

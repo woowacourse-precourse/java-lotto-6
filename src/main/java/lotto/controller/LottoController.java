@@ -32,6 +32,10 @@ public class LottoController {
         winningService.createBonusNumber(validateType(bonusNumber));
     }
 
+    public String getWinningDetail(LottoCollector lottoCollector) {
+        return winningService.calculateWinningDetail(lottoCollector);
+    }
+
     private int validateType(String inputPurchaseAmount) {
         try {
             return Integer.parseInt(inputPurchaseAmount);

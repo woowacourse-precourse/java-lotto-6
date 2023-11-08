@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 
@@ -22,5 +23,9 @@ public class LottoCollector {
         }
 
         return sb.toString();
+    }
+
+    public List<Lotto> getPublishedLotto() {
+        return new ArrayList<>(this.lottos);
     }
 }

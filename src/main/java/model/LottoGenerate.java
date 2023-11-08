@@ -16,8 +16,9 @@ public class LottoGenerate {
     }
 
     private static Lotto lottoAscendingOrder(List<Integer> numbers) {
-        Collections.sort(numbers);
-        Lotto lotto = new Lotto(numbers);
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        Collections.sort(mutableNumbers);
+        Lotto lotto = new Lotto(mutableNumbers);
         return lotto;
     }
 

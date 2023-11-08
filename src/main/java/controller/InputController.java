@@ -16,6 +16,7 @@ public class InputController {
         while (true) {
             try {
                 String money = Console.readLine();
+                Console.close();
                 moneyValidate(money);
                 int moneyNumber = Integer.parseInt(money);
                 return moneyNumber;
@@ -30,6 +31,7 @@ public class InputController {
         while (true) {
             try {
                 String winningNumbers = Console.readLine();
+                Console.close();
                 List<Integer> lottoWinningNumbers = winningNumbersValidate(winningNumbers);
                 return lottoWinningNumbers;
             } catch (Exception e) {
@@ -43,6 +45,7 @@ public class InputController {
         while (true) {
             try {
                 String BonusNumber = Console.readLine();
+                Console.close();
                 int lottoBonusNumber = bonusNumberValidate(BonusNumber, lottoWinningNumbers);
                 return lottoBonusNumber;
             } catch (Exception e) {

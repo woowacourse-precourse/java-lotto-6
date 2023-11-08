@@ -8,17 +8,17 @@ import lotto.Lotto;
 public class InputCheck {
 
     public int checkPaymentAmount(String input) {
-        int paymentAmount = Exception.checkInvalidNumber(input);
-        Exception.checkUnitPaymentAmount(paymentAmount);
-        Exception.checkRangePaymentAmount(paymentAmount);
+        int paymentAmount = LottoException.checkInvalidNumber(input);
+        LottoException.checkUnitPaymentAmount(paymentAmount);
+        LottoException.checkRangePaymentAmount(paymentAmount);
         return paymentAmount;
     }
 
     public Lotto checkWinningNumber(String input) {
         List<String> inputNumbers = Arrays.asList(input.split(","));
-        Exception.checkLastComma(input);
+        LottoException.checkLastComma(input);
         for (String number : inputNumbers) {
-            Exception.checkInvalidNumber(number);
+            LottoException.checkInvalidNumber(number);
         }
         return new Lotto(parseNumber(inputNumbers));
     }
@@ -32,9 +32,9 @@ public class InputCheck {
     }
 
     public int checkBonusNumber(String input, Lotto winningNumber) {
-        int bonusNumber = Exception.checkInvalidNumber(input);
-        Exception.checkRangeLottoNumber(bonusNumber);
-        Exception.checkDuplicationBonusNumber(winningNumber.getNumbers(), bonusNumber);
+        int bonusNumber = LottoException.checkInvalidNumber(input);
+        LottoException.checkRangeLottoNumber(bonusNumber);
+        LottoException.checkDuplicationBonusNumber(winningNumber.getNumbers(), bonusNumber);
         return bonusNumber;
     }
 }

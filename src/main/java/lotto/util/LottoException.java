@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoNumberRange;
 
-public class Exception {
+public class LottoException {
     public static int checkInvalidNumber(String input) {
         try {
             return Integer.parseInt(input);

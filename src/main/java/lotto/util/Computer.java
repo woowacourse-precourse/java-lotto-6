@@ -3,6 +3,7 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
 import lotto.enums.LottoNumberRange;
@@ -26,8 +27,9 @@ public class Computer {
     }
 
     public List<Integer> getRandomNumber() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LottoNumberRange.MIN_NUMBER.getValue(),
-                LottoNumberRange.MAX_NUMBER.getValue(), LottoNumberRange.MIN_SELECT_COUNT.getValue()));
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LottoNumberRange.MIN_NUMBER.getValue(),
+                        LottoNumberRange.MAX_NUMBER.getValue(), LottoNumberRange.MIN_SELECT_COUNT.getValue()));
         return sortNumber(numbers);
     }
 
@@ -36,29 +38,29 @@ public class Computer {
         return numbers;
     }
 
-    public void calculateLottoTicketCount(User user) {
-        user.setLottoTicketCount(user.getPaymentAmount() / 1000);
+    public int calculateLottoTicketCount(int paymentAmount) {
+        return (paymentAmount / 1000);
     }
 
-    public void calculateTotalPrize(Result result) {
+    public int calculateTotalPrize(HashMap<Integer, Integer> winningCount) {
         int totalPrize = 0;
         for (LottoRank lottoRank : LottoRank.values()) {
-            int rankCount = getRankCount(lottoRank.getRank(), result);
+            int rankCount = getRankCount(lottoRank.getRank(), winningCount);
             totalPrize += lottoRank.getPrize() * rankCount;
         }
-        result.setTotalPrize(totalPrize);
+        return totalPrize;
     }
 
-    public int getRankCount(int rank, Result result) {
+    public int getRankCount(int rank, HashMap<Integer, Integer> winningCount) {
         int rankCount = 0;
-        if (result.getWinningCount().containsKey(rank)) {
-            rankCount = result.getWinningCount().get(rank);
+        if (winningCount.containsKey(rank)) {
+            rankCount = winningCount.get(rank);
         }
         return rankCount;
     }
 
-    public void calculateTotalProfit(Result result, User user) {
-        double TotalProfit = ((double) result.getTotalPrize() / user.getPaymentAmount()) * 100;
-        result.setTotalProfit(String.format("%.1f%%", TotalProfit));
+    public String calculateTotalProfit(int totalPrize, int paymentAmount) {
+        double TotalProfit = ((double) totalPrize / paymentAmount) * 100;
+        return (String.format("%.1f%%", TotalProfit));
     }
 }

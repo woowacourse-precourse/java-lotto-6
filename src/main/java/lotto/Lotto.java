@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 import lotto.enums.ErrorMessage;
 import lotto.enums.LottoNumberRange;
-import lotto.util.Exception;
+import lotto.util.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,9 +22,9 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public void checkNumber(List<Integer> numbers) {
-        Exception.checkDuplicationNumber(numbers);
+        LottoException.checkDuplicationNumber(numbers);
         for (int number : numbers) {
-            Exception.checkRangeLottoNumber(number);
+            LottoException.checkRangeLottoNumber(number);
         }
     }
 

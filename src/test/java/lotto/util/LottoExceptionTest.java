@@ -10,13 +10,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class ExceptionTest {
+class LottoExceptionTest {
 
-    private Exception exception;
+    private LottoException lottoException;
 
     @BeforeEach
     void setUp() {
-        exception = new Exception();
+        lottoException = new LottoException();
     }
 
     @ParameterizedTest
@@ -30,11 +30,11 @@ class ExceptionTest {
     })
     void 유저가_입력한_지불_금액이_숫자가_맞는지_테스트(String input, boolean result) {
         if (result) {
-            assertThatCode(() -> exception.checkInvalidNumber(input))
+            assertThatCode(() -> lottoException.checkInvalidNumber(input))
                     .doesNotThrowAnyException();
         } else {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> exception.checkInvalidNumber(input));
+                    .isThrownBy(() -> lottoException.checkInvalidNumber(input));
         }
     }
 
@@ -49,10 +49,10 @@ class ExceptionTest {
     })
     void 지불금액이_1000원_단위인지_테스트(int inputAmount, boolean result) {
         if (result) {
-            assertThatCode(() -> exception.checkUnitPaymentAmount(inputAmount)).doesNotThrowAnyException();
+            assertThatCode(() -> lottoException.checkUnitPaymentAmount(inputAmount)).doesNotThrowAnyException();
         } else {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> exception.checkUnitPaymentAmount(inputAmount));
+                    .isThrownBy(() -> lottoException.checkUnitPaymentAmount(inputAmount));
         }
     }
 
@@ -67,10 +67,10 @@ class ExceptionTest {
     })
     void 지불금액이_1000_아래인지_확인하는_테스트(int inputAmount, boolean result) {
         if (result) {
-            assertThatCode(() -> exception.checkRangePaymentAmount(inputAmount)).doesNotThrowAnyException();
+            assertThatCode(() -> lottoException.checkRangePaymentAmount(inputAmount)).doesNotThrowAnyException();
         } else {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> exception.checkRangePaymentAmount(inputAmount));
+                    .isThrownBy(() -> lottoException.checkRangePaymentAmount(inputAmount));
         }
     }
 
@@ -83,10 +83,10 @@ class ExceptionTest {
     })
     void 입력한_당첨번호_마지막_글자_테스트(String input, boolean result) {
         if (result) {
-            assertThatCode(() -> exception.checkLastComma(input)).doesNotThrowAnyException();
+            assertThatCode(() -> lottoException.checkLastComma(input)).doesNotThrowAnyException();
         } else {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> exception.checkLastComma(input));
+                    .isThrownBy(() -> lottoException.checkLastComma(input));
         }
     }
 
@@ -99,11 +99,11 @@ class ExceptionTest {
     void 로또번호_중복_테스트(String input, boolean result) {
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt).collect(Collectors.toList());
-        if(result){
-            assertThatCode(() -> exception.checkDuplicationNumber(numbers)).doesNotThrowAnyException();
-        }else{
+        if (result) {
+            assertThatCode(() -> lottoException.checkDuplicationNumber(numbers)).doesNotThrowAnyException();
+        } else {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> exception.checkDuplicationNumber(numbers));
+                    .isThrownBy(() -> lottoException.checkDuplicationNumber(numbers));
         }
 
     }
@@ -119,10 +119,10 @@ class ExceptionTest {
     })
     void 로또번호_범위_테스트(int input, boolean result) {
         if (result) {
-            assertThatCode(() -> exception.checkRangeLottoNumber(input)).doesNotThrowAnyException();
+            assertThatCode(() -> lottoException.checkRangeLottoNumber(input)).doesNotThrowAnyException();
         } else {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> exception.checkRangeLottoNumber(input));
+                    .isThrownBy(() -> lottoException.checkRangeLottoNumber(input));
         }
     }
 }

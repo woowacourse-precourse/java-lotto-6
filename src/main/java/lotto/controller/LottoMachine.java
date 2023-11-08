@@ -9,11 +9,11 @@ import lotto.util.Computer;
 import lotto.view.InputView;
 
 public class LottoMachine {
+    User user = new User();
     Result result = new Result();
     Computer computer = new Computer();
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
-    User user = new User();
 
     public void startLottoGame() {
         buyLotto();
@@ -24,7 +24,7 @@ public class LottoMachine {
 
     public void buyLotto() {
         inputView.inputPaymentAmount(user);
-        computer.calculateLottoTicketCount(user);
+        user.setLottoTicketCount(computer.calculateLottoTicketCount(user.getPaymentAmount()));
     }
 
     public void drawLottoNumber() {
@@ -49,8 +49,8 @@ public class LottoMachine {
         for (Lotto lotto : result.getLottoTicket()) {
             compareNumber(lotto.getNumbers(), user.getWinningNumber().getNumbers());
         }
-        computer.calculateTotalPrize(result);
-        computer.calculateTotalProfit(result, user);
+        result.setTotalPrize(computer.calculateTotalPrize(result.getWinningCount()));
+        result.setTotalProfit(computer.calculateTotalProfit(result.getTotalPrize(), user.getPaymentAmount()));
     }
 
     public void compareNumber(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers) {

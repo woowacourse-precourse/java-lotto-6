@@ -16,12 +16,4 @@ public class PaymentServiceTest {
 
         assertThat(expectedLottoCount).isEqualTo(actualLottoCount);
     }
-//    @Test
-//    void testGetLottoCountWithNonMultipleOfLottoPrice() {
-//        int totalPrice = 5500;
-//
-//        assertThatThrownBy(() -> paymentService.getLottoCount(totalPrice))
-//            .isInstanceOf(IllegalArgumentException.class)
-//            .hasMessageContaining("로또 가격에 나누어 떨어지지 않는 금액입니다.");
-//    }
 }

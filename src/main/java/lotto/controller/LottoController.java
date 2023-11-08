@@ -22,6 +22,15 @@ public class LottoController {
     }
 
     public void play() {
+        try {
+            playOneGame();
+        } catch (IllegalArgumentException | ArithmeticException exception) {
+            outputView.printExceptionMessage(exception);
+            playOneGame();
+        }
+    }
+
+    private void playOneGame() {
         final Money purchaseAmount = generateValidMoney();
         final LottoTicket lottoTicket = LottoTicket.create(purchaseAmount);
 
@@ -36,13 +45,12 @@ public class LottoController {
     }
 
     private Money generateValidMoney() {
-        while (true) {
-            try {
-                outputView.printPurchaseAmountMessage();
-                return new Money(inputView.inputMoney());
-            } catch (final IllegalArgumentException illegalArgumentException) {
-                outputView.printExceptionMessage(illegalArgumentException);
-            }
+        try {
+            outputView.printPurchaseAmountMessage();
+            return new Money(inputView.inputMoney());
+        } catch (final IllegalArgumentException illegalArgumentException) {
+            outputView.printExceptionMessage(illegalArgumentException);
+            return generateValidMoney();
         }
     }
 
@@ -60,13 +68,12 @@ public class LottoController {
     }
 
     private Lotto createValidWinningLotto() {
-        while (true) {
-            try {
-                outputView.printWinningNumbersMessage();
-                return new Lotto(inputView.inputWinningNumbers());
-            } catch (final IllegalArgumentException illegalArgumentException) {
-                outputView.printExceptionMessage(illegalArgumentException);
-            }
+        try {
+            outputView.printWinningNumbersMessage();
+            return new Lotto(inputView.inputWinningNumbers());
+        } catch (final IllegalArgumentException illegalArgumentException) {
+            outputView.printExceptionMessage(illegalArgumentException);
+            return createValidWinningLotto();
         }
     }
 }

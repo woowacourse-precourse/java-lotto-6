@@ -14,6 +14,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
     }
 
     public List<Integer> getNumbers() {

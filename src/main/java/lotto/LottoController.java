@@ -19,8 +19,14 @@ public class LottoController {
         int LottoNum = moneyInput();
         List<Lotto> LottoList = buyLotto(LottoNum);
         List<Integer> WinningNum = winningNumInput();
-        bonusNumInput();
+        int BonusNum =  bonusNumInput();
+        Rating(LottoList, WinningNum, BonusNum);
     }
+
+    private void Rating(List<Lotto> lottoList, List<Integer> winningNum, int bonusNum) {
+
+    }
+
 
     private List<Lotto> buyLotto(int lottoNum) {
         List<Lotto> LottoList = new ArrayList<>();
@@ -29,8 +35,8 @@ public class LottoController {
             Lotto lotto = new Lotto(list);
             LottoList.add(lotto);
         }
-        for(int i=0; i<LottoList.size(); i++){
-            System.out.println(LottoList.get(i).getNumbers());
+        for (Lotto lotto : LottoList) {
+            System.out.println(lotto.getNumbers());
         }
         return LottoList;
     }
@@ -49,18 +55,17 @@ public class LottoController {
         return LottoNum;
     }
 
-    private void bonusNumInput() {
+    private int bonusNumInput() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        int BonusNum = Integer.parseInt(readLine());
+        return Integer.parseInt(readLine());
     }
 
 
     private List<Integer> winningNumInput(){
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> list = Arrays.stream(readLine().split(","))
+        return Arrays.stream(readLine().split(","))
                 .mapToInt(Integer::parseInt)
                 .boxed().collect(Collectors.toList());
-        return list;
     }
 
 

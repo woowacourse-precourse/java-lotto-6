@@ -1,7 +1,13 @@
 package lotto.domain.wrapper;
 
-import lotto.utils.ErrorMessage;
-import lotto.utils.LottoConstantValue;
+import static lotto.utils.ConstantValues.LOTTO_PRICE;
+import static lotto.utils.ConstantValues.MAX_NUMBER_OF_LOTTOS;
+import static lotto.utils.ConstantValues.NO_PURCHASE_AMOUNT;
+import static lotto.utils.ConstantValues.NO_REMAINING_CHANGE;
+import static lotto.utils.ConstantValues.PERCENTAGE_MULTIPLIER;
+import static lotto.utils.ErrorMessages.CHANGE_REMAINING;
+import static lotto.utils.ErrorMessages.PURCHASE_AMOUNT_LESS_THAN_OR_EQUAL_TO_ZERO;
+import static lotto.utils.ErrorMessages.TOO_MUCH_PURCHASE_AMOUNT;
 
 public class PurchaseAmount {
     private final int purchaseAmount;
@@ -18,30 +24,28 @@ public class PurchaseAmount {
     }
 
     private void validateMoreThanZero(int purchaseAmount) {
-        if (purchaseAmount <= LottoConstantValue.NO_PURCHASE_AMOUNT.get()) {
-            throw new IllegalArgumentException(ErrorMessage.NO_PURCHASE_AMOUNT.getWithPrefix());
+        if (purchaseAmount <= NO_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_LESS_THAN_OR_EQUAL_TO_ZERO);
         }
     }
 
     private void validateChangeNoRemaining(int purchaseAmount) {
-        if ((purchaseAmount % LottoConstantValue.LOTTO_PRICE.get()) != LottoConstantValue.NO_REMAINING_CHANGE.get()) {
-            throw new IllegalArgumentException(ErrorMessage.CHANGE_REMAINING.getWithPrefix());
+        if ((purchaseAmount % LOTTO_PRICE) > NO_REMAINING_CHANGE) {
+            throw new IllegalArgumentException(CHANGE_REMAINING);
         }
     }
 
     private void validateNotTooMuchPurchaseAmount(int purchaseAmount) {
-        if ((purchaseAmount / LottoConstantValue.LOTTO_PRICE.get()) > LottoConstantValue.MAX_NUMBER_OF_LOTTOS.get()) {
-            throw new IllegalArgumentException(ErrorMessage.TOO_MUCH_PURCHASE_AMOUNT.getWithFormatAndPrefix(
-                    LottoConstantValue.MAX_NUMBER_OF_LOTTOS.get())
-            );
+        if ((purchaseAmount / LOTTO_PRICE) > MAX_NUMBER_OF_LOTTOS) {
+            throw new IllegalArgumentException(String.format(TOO_MUCH_PURCHASE_AMOUNT, MAX_NUMBER_OF_LOTTOS));
         }
     }
 
     public int getAvailableLottoCount() {
-        return purchaseAmount / LottoConstantValue.LOTTO_PRICE.get();
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     public double calculateProfitRate(long allPrizeProfit) {
-        return (allPrizeProfit / (double) purchaseAmount) * LottoConstantValue.PERCENTAGE_MULTIPLIER.get();
+        return (allPrizeProfit / (double) purchaseAmount) * PERCENTAGE_MULTIPLIER;
     }
 }

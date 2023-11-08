@@ -31,4 +31,28 @@ public class LottoGame {
         }
     }
 
+    private Lotto getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                List<Integer> winningNumbers = StringParser.toIntegers(readLine());
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public LottoChecker getResult() {
+        Lotto winner = getWinningNumbers();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        while (true) {
+            try {
+                Integer bonus = StringParser.toInteger(readLine());
+                return new LottoChecker(winner, bonus);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

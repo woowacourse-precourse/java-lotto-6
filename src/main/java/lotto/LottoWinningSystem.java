@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +14,6 @@ public class LottoWinningSystem {
     int matchesFiveNumber;
     int matchesFiveAndBonusNumber;
     int matchesSixNumber;
-    private LottoRandomSystem lottoRandomSystem = new LottoRandomSystem();
     private Lotto lotto;
 
     void winningNumber(String numbers) {
@@ -34,22 +34,26 @@ public class LottoWinningSystem {
         }
     }
 
-    public List<Integer> winningCheck() {
-        List<List<Integer>> randomNumbers = lottoRandomSystem.getRandomLottoNumbers();
+    public List<Integer> winningCheck(List<List<Integer>> randomNumbers) {
+        List<List<Integer>> randoms = randomNumbers;
+        System.out.println(randoms);
         List<Integer> lottoNumbers = lotto.getLottoNumbers();
-        List<Integer> winningAmounts;
+        List<Integer> winningAmounts = new ArrayList<>();
         int bonusNumber = lotto.getBonusNumber();
 
-        winningAmounts = randomNumbers.stream().map(randomNumberList -> {
+        for (List<Integer> randomNumberList : randomNumbers) {
             int count = (int) randomNumberList.stream().filter(lottoNumbers::contains).count();
+
             if (count == 5 && randomNumberList.contains(bonusNumber)) {
-                return count + 2;
+                count += 2; // 일치하는 숫자가 5개이고 보너스 번호도 일치하는 경우
             }
-            return count;
-        }).collect(Collectors.toList());
+
+            winningAmounts.add(count);
+        }
 
         return winningAmounts;
     }
+
 
     public void winningStatics(List<Integer> winningAmounts) {
         for (int winningamount : winningAmounts) {

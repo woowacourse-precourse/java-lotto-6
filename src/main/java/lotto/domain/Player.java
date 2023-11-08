@@ -1,36 +1,47 @@
 package lotto.domain;
 
+import lotto.view.ErrorMessage;
+
 import java.util.ArrayList;
 
 public class Player {
-    private final ArrayList<Lotto> lottos;
-    private final Lotto WINNING_NUMBERS;
-    private final int BONUS_NUMBER;
-
     private final int PAYMENT;
+    private ArrayList<Lotto> lottos;
+    private WinningBonusLotto winningBonusLotto;
     private static int THREE_MATCH = 0;
     private static int FOUR_MATCH = 0;
     private static int FIVE_MATCH = 0;
     private static int FIVE_AND_BONUS_MATCH = 0;
     private static int SIX_MATCH = 0;
 
-    public Player(ArrayList<Lotto> lottos, Lotto winningnumbers, int bonus, int payment) {
+    public Player(int payment) {
+        try {
+            validatePaymentUnit(payment);
+            PAYMENT = payment;
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    private void validatePaymentUnit(int money) {
+        if (money % Payment.MONEY_UNIT.getPrize() != 0)
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_THOUSAND_MESSAGE.getValue());
+    }
+
+    public void setLottos(ArrayList<Lotto> lottos) {
         this.lottos = lottos;
-        WINNING_NUMBERS = winningnumbers;
-        BONUS_NUMBER = bonus;
-        PAYMENT = payment;
+    }
+
+    public void setWinningBonusLotto(WinningBonusLotto winningBonusLotto) {
+        this.winningBonusLotto = winningBonusLotto;
+    }
+
+    public WinningBonusLotto getWinningBonusLotto() {
+        return winningBonusLotto;
     }
 
     public ArrayList<Lotto> getLottos() {
         return lottos;
-    }
-
-    public Lotto getWINNING_NUMBERS() {
-        return WINNING_NUMBERS;
-    }
-
-    public int getBONUS_NUMBER() {
-        return BONUS_NUMBER;
     }
 
     public int getPayment() {

@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Player;
 import lotto.domain.PrizeMoney;
+import lotto.domain.WinningBonusLotto;
 import lotto.view.LottoView;
 
 import java.util.List;
@@ -10,28 +11,29 @@ import java.util.List;
 public class StatisticsController {
     private static final LottoView view = new LottoView();
     private Player player;
+    private WinningBonusLotto winningBonuslotto;
 
     public void CountWinningNumber(Player player) {
         this.player = player;
-        matchAllLottos(player.getLottos(), player.getWINNING_NUMBERS());
+        this.winningBonuslotto = player.getWinningBonusLotto();
+        matchAllLottos(player.getLottos(), winningBonuslotto.getWinningLotto());
         view.outputMatchResult(player.getMatches());
         double rate = calculateRate();
         view.outputStatisticsResult(rate);
     }
 
-    private void matchAllLottos(List<Lotto> lottos, Lotto winningNumbers) {
+    private void matchAllLottos(List<Lotto> lottos, Lotto winning) {
         for (Lotto lotto : lottos) {
-            int count = countMatchLotto(lotto, winningNumbers);
+            int count = countMatchLotto(lotto, winning);
             addMatchCount(lotto, count);
         }
     }
 
-    private int countMatchLotto(Lotto lotto, Lotto winningNumbers) {
+    private int countMatchLotto(Lotto lotto, Lotto winning) {
         int count = 0;
-        for (int number : lotto.getNumbers()) {
-            if (winningNumbers.getNumbers().contains(number))
+        for (int number : lotto.getNumbers())
+            if (winning.getNumbers().contains(number))
                 count++;
-        }
         return count;
     }
 
@@ -41,13 +43,13 @@ public class StatisticsController {
         if (count == 4)
             player.addFourMatch();
         if (count == 5)
-            matchBonusNumber(lotto, player.getBONUS_NUMBER());
+            matchBonusNumber(lotto);
         if (count == 6)
             player.addSixMatch();
     }
 
-    private void matchBonusNumber(Lotto lotto, int bonusNumber) {
-        if (lotto.getNumbers().contains(bonusNumber)) {
+    private void matchBonusNumber(Lotto lotto) {
+        if (lotto.getNumbers().contains(winningBonuslotto.getBonusNumber())) {
             player.addFiveAndBonusMatch();
             return;
         }

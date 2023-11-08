@@ -23,11 +23,6 @@ public class Lotto {
         return numbers;
     }
 
-    private void validateSix(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_SIX_MESSAGE.getValue());
-        }
-    }
     private void validateBoundaryNumbers(List<Integer> numbers) {
         try {
             for (int i = 0; i < numbers.size(); i++)
@@ -42,6 +37,11 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_1_TO_45_MESSAGE.getValue());
     }
 
+    private void validateSix(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_SIX_MESSAGE.getValue());
+        }
+    }
 
     private void validateOverlapNumber(List<Integer> numbers) {
         for (Integer i : numbers)

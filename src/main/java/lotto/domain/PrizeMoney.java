@@ -9,6 +9,11 @@ public enum PrizeMoney {
 
     private final int prize;
 
-    private PrizeMoney(int prize) { this.prize = prize; }
-    public int getPrize() { return prize; }
+    private PrizeMoney(int prize) {
+        this.prize = prize;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
 }

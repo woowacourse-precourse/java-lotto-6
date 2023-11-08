@@ -1,8 +1,10 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -24,4 +26,16 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호의 범위가 정상 범위 밖인 경우 예외가 발생한다.")
+    @Test
+    void createLottoByWrongRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,100))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 부족한 경우 예외가 발생한다.")
+    @Test
+    void createLottoByInsufficientNumbers() {
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3))).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

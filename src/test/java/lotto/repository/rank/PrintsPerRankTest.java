@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class PrintsPerRankTest {
 
-    @DisplayName("등수를 입력하면 그에 맞는 결과값을 출력합니다. ")
+    @DisplayName("등수를 입력하면 그에 맞는 출력값을 알려줍니다.")
     @ParameterizedTest
     @CsvSource(value = {"5:3개 일치","4:4개 일치","3:5개 일치","2:5개 일치, 보너스 볼 일치","1:6개 일치"},delimiter = ':')
     void getPrintBy(int rank, String result) {

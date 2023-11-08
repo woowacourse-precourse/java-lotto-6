@@ -28,10 +28,10 @@ public class Lotto {
 
     private List<LottoNumber> createLotto() {
         List<LottoNumber> lottoNumbers = new ArrayList<>();
-        while (numbers.size() < NUMBER_OF_LOTTO) {
+        while (lottoNumbers.size() < NUMBER_OF_LOTTO) {
             LottoNumber lottoNumber = new LottoNumber();
-            if (!numbers.contains(lottoNumber)) {
-                numbers.add(lottoNumber);
+            if (!lottoNumbers.contains(lottoNumber)) {
+                lottoNumbers.add(lottoNumber);
             }
         }
         return lottoNumbers;

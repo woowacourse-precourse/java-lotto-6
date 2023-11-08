@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;

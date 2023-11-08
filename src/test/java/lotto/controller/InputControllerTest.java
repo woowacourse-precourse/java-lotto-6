@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;

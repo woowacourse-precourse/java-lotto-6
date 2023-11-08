@@ -79,6 +79,19 @@ public class Application {
         return true;
     }
 
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String inputBonusNumber = Console.readLine();
+
+        while (Integer.parseInt(inputBonusNumber) < 1 || Integer.parseInt(inputBonusNumber) > 45) {
+            IllegalArgumentException e = new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            System.out.println(e.getMessage());
+            inputBonusNumber = Console.readLine();
+        }
+
+        return Integer.parseInt(inputBonusNumber);
+    }
+
     public static void main(String[] args) {
         String purchaseAmount = inputPurchaseAmount();
         System.out.println();
@@ -91,5 +104,8 @@ public class Application {
 
         List<Integer> winningNumbers = new ArrayList<>();
         inputWinningNumber(winningNumbers);
+        System.out.println();
+
+        int bonusNumber = inputBonusNumber();
     }
 }

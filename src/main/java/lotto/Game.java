@@ -80,12 +80,13 @@ public class Game {
     }
 
     private void printResult(){
+        double res_result = result();
         System.out.println("당첨 통계");
         System.out.println("---");
         for(int i=0;i<5;i++){
-            System.out.println("- "+this.correct[i]+"개");
+            System.out.println("- "+correct[i]+"개");
         }
-        System.out.println("총 수익률은 "+String.format("%.2f", result()) +"%입니다.");
+        System.out.println("총 수익률은 "+String.format("%.2f", res_result) +"%입니다.");
     }
 
     public void DoIt(){

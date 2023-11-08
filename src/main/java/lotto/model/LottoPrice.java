@@ -2,8 +2,6 @@ package lotto.model;
 
 import java.util.Arrays;
 
-import static java.time.chrono.JapaneseEra.values;
-
 public enum LottoPrice {
     FIRST_PRICE(1, 2_000_000_000),
     SECOND_PRICE(2, 30_000_000),

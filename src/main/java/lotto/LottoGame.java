@@ -39,6 +39,11 @@ public class LottoGame {
         winNumbersInput();
         bonusNumberInput();
         calculateResult();
+        printResult();
+    }
+
+    private void printResult() {
+        gameView.resultView(result, rateOfReturn);
     }
 
     private void calculateResult() {
@@ -48,7 +53,8 @@ public class LottoGame {
     }
 
     private double calculateRateOfReturn() {
-        return totalWinPrice / buyPrice * 100;
+        double num = ((double)totalWinPrice/ buyPrice) * 100;
+        return num;
     }
 
     private void buyLottoInput() {

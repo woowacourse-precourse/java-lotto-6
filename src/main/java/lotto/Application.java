@@ -32,8 +32,13 @@ public class Application {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
 
-        int bonusNumber = getInputThi();
+        int bonusNumber = getInputThi(winningNumbers);
 
+        int[] winningResults = winningCalculate(lottoList, winningNumbers, bonusNumber);
+
+        printStatistics(winningResults);
+
+        long winnings = calculateWinnings(winningResults);
     }
 
     private static int getInputFir() {
@@ -117,13 +122,13 @@ public class Application {
         return new Lotto(winningNumbers);
     }
 
-    private static int getInputThi() {
+    private static int getInputThi(Lotto winningNumbers) {
         int tempNumber;
 
         while (true){
             try{
                 String targetStr = Console.readLine();
-                tempNumber = validInputThi(targetStr);
+                tempNumber = validInputThi(targetStr, winningNumbers);
                 break;
             }
             catch(IllegalArgumentException e){
@@ -134,12 +139,16 @@ public class Application {
         return tempNumber;
     }
 
-    private static int validInputThi(String targetStr) {
+    private static int validInputThi(String targetStr, Lotto winningNumbers) {
         try {
             int number = Integer.parseInt(targetStr);
 
             if (1 > number || number > 45) {
                 System.out.print("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException();
+            }
+            if (IsDuplicated(number, winningNumbers)){
+                System.out.print("[ERROR] 보너스 번호가 당첨 번호와 겹칩니다.");
                 throw new IllegalArgumentException();
             }
 
@@ -149,5 +158,78 @@ public class Application {
             System.out.print("[ERROR] 숫자를 입력해주세요.");
             throw new IllegalArgumentException();
         }
+    }
+
+    private static boolean IsDuplicated(int number, Lotto winningNumbers){
+        List<Integer> targetNumbers = winningNumbers.getNumbers();
+
+        return targetNumbers.contains(number); // 중복된 숫자가 존재
+    }
+
+    private static int[] winningCalculate(List<Lotto> HaveList, Lotto winningNumbers, int bonusNumber){
+
+        int[] tempWinningResults = new int[5];
+
+        for (Lotto lottoNumbers : HaveList){
+            int tempCnt = CalculateCnt(lottoNumbers, winningNumbers);
+            boolean tempBonus = IsDuplicated(bonusNumber, lottoNumbers);
+
+            if (tempCnt == 6){
+                tempWinningResults[0]++;
+            }
+            else if (tempCnt == 5 && tempBonus){
+                tempWinningResults[1]++;
+            }
+            else if (tempCnt == 5){
+                tempWinningResults[2]++;
+            }
+            else if (tempCnt == 4){
+                tempWinningResults[3]++;
+            }
+            else if (tempCnt == 3){
+                tempWinningResults[4]++;
+            }
+        }
+
+        return tempWinningResults;
+    }
+
+    private static int CalculateCnt(Lotto lottoNumbers, Lotto winningNumbers){
+        int cnt = 0;
+
+        List<Integer> userNumbers = lottoNumbers.getNumbers();
+        List<Integer> targetNumbers = winningNumbers.getNumbers();
+
+        for (int userNumber : userNumbers) {
+            if (targetNumbers.contains(userNumber)) {
+                cnt++;
+            }
+        }
+
+        return cnt;
+    }
+
+    private static void printStatistics(int[] winningResults){
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        System.out.println("3개 일치 (5,000원) - " + winningResults[4] + "개");
+        System.out.println("4개 일치 (50,000원) - " + winningResults[3] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningResults[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResults[1] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningResults[0] + "개");
+    }
+
+    private static long calculateWinnings(int[] winningResults){
+        long tempMoney = 0;
+
+        tempMoney += 5000 * winningResults[4];
+        tempMoney += 50000 * winningResults[3];
+        tempMoney += 1500000 * winningResults[2];
+        tempMoney += 30000000 * winningResults[1];
+        tempMoney += 2000000000 * winningResults[0];
+
+        return tempMoney;
     }
 }

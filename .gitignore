@@ -30,3 +30,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Compiled class file
+*.class
+*.log
+
+### MAC OS ###
+*.DS_Store
+~/*.DS_Store

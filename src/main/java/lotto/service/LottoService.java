@@ -29,8 +29,11 @@ public class LottoService {
     public List<Lotto> getLottoNumbers(int buyAmount) {
         List<Lotto> userLottos = new ArrayList<>();
         for (int i = 0; i < buyAmount; ++i) {
-            List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_LOTTO_NUMBER,
-                    Lotto.MAX_LOTTO_NUMBER, Lotto.LOTTO_COUNT);
+            List<Integer> generatedNumbers =
+                    Randoms.pickUniqueNumbersInRange(
+                            Lotto.MIN_LOTTO_NUMBER,
+                            Lotto.MAX_LOTTO_NUMBER,
+                            Lotto.LOTTO_COUNT);
             List<Integer> numbers = new ArrayList<>(generatedNumbers);
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
@@ -64,7 +67,8 @@ public class LottoService {
     }
 
     private void checkSecondOrThird(Rank rank, boolean isMatchBonusNumber) {
-        if (rank.matchCount == SECOND_AND_THIRD_MATCH_COUNT && rank.isMatchBonusNumber == isMatchBonusNumber) {
+        if (rank.matchCount == SECOND_AND_THIRD_MATCH_COUNT
+                && rank.isMatchBonusNumber == isMatchBonusNumber) {
             addResult(rank);
         }
     }

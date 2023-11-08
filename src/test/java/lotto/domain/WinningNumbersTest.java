@@ -10,6 +10,14 @@ import org.junit.jupiter.api.Test;
 
 class WinningNumbersTest {
 
+    @Test
+    @DisplayName("WinningNumbers 생성 테스트")
+    void createWinningNumbers() {
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+        assertThat(winningNumbers.getGeneralNumbers())
+                .containsAll(List.of(1, 2, 3, 4, 5, 6));
+        assertEquals(winningNumbers.getBonusNumber(), 7);
+    }
 
     @Test
     @DisplayName("당첨 번호가 6개 미만일 경우 예외처리")
@@ -54,11 +62,33 @@ class WinningNumbersTest {
     }
 
     @Test
-    @DisplayName("WinningNumbers 생성 테스트")
-    void createWinningNumbersTest() {
+    @DisplayName("로또와 맞는 당첨 번호 세기 테스트")
+    void countMatchedNumberWithLotto() {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
-        assertThat(winningNumbers.getGeneralNumbers())
-                .containsAll(List.of(1, 2, 3, 4, 5, 6));
-        assertEquals(winningNumbers.getBonusNumber(), 7);
+
+        Lotto lotto = new Lotto(List.of(7, 8, 35, 42, 43, 44));
+        int matchedNumber = winningNumbers.countMatchedNumber(lotto);
+        assertThat(matchedNumber).isEqualTo(0);
+
+        lotto = new Lotto(List.of(1, 6, 35, 42, 43, 44));
+        matchedNumber = winningNumbers.countMatchedNumber(lotto);
+        assertThat(matchedNumber).isEqualTo(2);
+
+        lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        matchedNumber = winningNumbers.countMatchedNumber(lotto);
+        assertThat(matchedNumber).isEqualTo(6);
+    }
+    @Test
+    @DisplayName("로또와 맞는 보너스 번호 세기 테스트")
+    void hasBonusNumberWithLotto() {
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        Lotto lotto = new Lotto(List.of(1, 6, 35, 42, 43, 44));
+        boolean hasBonusNumber = winningNumbers.hasBonusNumber(lotto);
+        assertThat(hasBonusNumber).isEqualTo(false);
+
+        lotto = new Lotto(List.of(1, 6, 7, 42, 43, 44));
+        hasBonusNumber = winningNumbers.hasBonusNumber(lotto);
+        assertThat(hasBonusNumber).isEqualTo(true);
     }
 }

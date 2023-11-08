@@ -23,6 +23,11 @@ public class LottoGame {
 
     private Map<WinningResultType, Integer> winningResult = new HashMap<>();
     private List<Lotto> lottos = new ArrayList<>();
+
+    public void setLottoSystem(LottoSystem lottoSystem) {
+        this.lottoSystem = lottoSystem;
+    }
+
     private LottoSystem lottoSystem;
     private Player player;
 
@@ -40,7 +45,7 @@ public class LottoGame {
 
     }
 
-    private void init(){
+    public void init(){
         this.player = new Player();
         this.winningResult.put(WinningResultType.WINNING_RESULT_NOTHING, 0);
         this.winningResult.put(WinningResultType.WINNING_RESULT_3_MATCH, 0);
@@ -69,7 +74,7 @@ public class LottoGame {
 
     }
 
-    private void saveGeneratedLottosAndPrint(int lottoCount){
+    public void saveGeneratedLottosAndPrint(int lottoCount){
 
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(LottoSystem.generateLotto());
@@ -113,7 +118,7 @@ public class LottoGame {
         }
     }
 
-    private void saveWinningResultAndPrint(){
+    public void saveWinningResultAndPrint(){
 
         for(Lotto lotto:lottos){
 
@@ -132,6 +137,14 @@ public class LottoGame {
         this.winningResult.clear();
         this.lottoSystem = null;
         this.player = null;
+    }
+
+    public Map<WinningResultType, Integer> getWinningResult() {
+        return winningResult;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
 }

@@ -2,10 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoGame {
 
@@ -36,11 +33,17 @@ public class LottoGame {
         Map<Rank, Integer> rankCount = getRankCount(ranks);
 
         System.out.println("\n당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + rankCount.getOrDefault(Rank.FIFTH, 0) + "개");
-        System.out.println("4개 일치 (50,000원) - " + rankCount.getOrDefault(Rank.FOURTH, 0) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + rankCount.getOrDefault(Rank.THIRD, 0) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCount.getOrDefault(Rank.SECOND, 0) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + rankCount.getOrDefault(Rank.FIRST, 0) + "개");
+
+        List<Rank> rankValues = new ArrayList(List.of(Rank.values()));
+        Collections.reverse(rankValues);
+        rankValues.stream()
+                .filter(rank -> !rank.equals(Rank.OTHER))
+                .forEach(rank -> System.out.println(
+                    rank.getCorrectCount() + "개 일치"
+                    + (rank.isBonusCorrect() ? ", 보너스 볼 일치" : "")
+                    + " (" + Prize.valueOf(rank.name()).getPrintValue() + "원) - "
+                    + rankCount.getOrDefault(rank, 0) + "개"
+                ));
     }
 
     public Map<Rank, Integer> getRankCount(List<Rank> ranks) {

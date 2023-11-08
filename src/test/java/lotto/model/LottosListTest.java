@@ -18,7 +18,7 @@ class LottosListTest {
 
     }
 
-    @DisplayName("중복되지 않는 6개 번호 만들기")
+    @DisplayName("로또 번호 중복되지 않는 6개 번호 만들기")
     @Test
     void generateUniqueNumbers() {
         LottosList lottosList = new LottosList();

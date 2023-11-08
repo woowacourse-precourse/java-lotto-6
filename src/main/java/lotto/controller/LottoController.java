@@ -13,6 +13,7 @@ import java.util.stream.IntStream;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottosList;
+import lotto.service.LottoService;
 import lotto.view.ConsolePrint;
 
 public class LottoController {
@@ -26,15 +27,26 @@ public class LottoController {
     }
 
     public void start() {
-        lottosList = new LottosList(ConsolePrint.readPrice());
+        LottoService service = new LottoService();
+        readPrice(service);
         printLottos();
-        winningNumber = new Lotto(
-                ConsolePrint.readWinningNum().split(","));
-        bonus = new BonusNumber(ConsolePrint.readBonusNum());
+        readWinningNum(service);
+        readBonusNum(service);
         List<Integer> sames = compareNumbers();
         makeRank(sames);
         printRevenue((float) sumRevenues(sames));
+    }
 
+    void readPrice(LottoService service) {
+        lottosList = service.readPrice();
+    }
+
+    void readWinningNum(LottoService service) {
+        winningNumber = service.readWinningNum();
+    }
+
+    void readBonusNum(LottoService service) {
+        bonus = service.readBonusNum();
     }
 
     public List<Integer> compareNumbers() {

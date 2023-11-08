@@ -18,12 +18,12 @@ public class LottosList {
     public LottosList() {
     }
 
-    public LottosList(List<Lotto> lottos) {
+    public LottosList(List<Lotto> lottos) throws IllegalArgumentException {
         this.lottosList = lottos;
 
     }
 
-    public LottosList(String price) {
+    public LottosList(String price) throws IllegalArgumentException {
         lottosList = new ArrayList<>();
         int lottoNum = calculateNumberLottos(price);
         createLottos(lottoNum);
@@ -34,7 +34,7 @@ public class LottosList {
         return Collections.unmodifiableList(lottosList);
     }
 
-    public void createLottos(int lottoNum) {
+    public void createLottos(int lottoNum) throws IllegalArgumentException {
         bonusCheck = new ArrayList<>();
 
         for (int i = 0; i < lottoNum; i++) {

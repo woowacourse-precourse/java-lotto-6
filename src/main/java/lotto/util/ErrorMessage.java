@@ -8,7 +8,8 @@ public enum ErrorMessage {
     ERROR_VALIDATE_NUMBER_COUNT_MESSAGE("번호는 "+LottoValues.LOTTO_NUMBER_COUNT+"개 입니다."),
     ERROR_VALIDATE_NUMBER_DUPLICATE_MESSAGE("로또 번호는 중복될 수 없습니다."),
     ERROR_VALIDATE_NUMBER_IN_RANGE_MESSAGE("로또 번호는 "
-            + LottoValues.MIN_LOTTO_NUMBER + "부터 " + LottoValues.MAX_LOTTO_NUMBER + " 사이 값을 입력해야 합니다.");
+            + LottoValues.MIN_LOTTO_NUMBER + "부터 " + LottoValues.MAX_LOTTO_NUMBER + " 사이 값을 입력해야 합니다."),
+    ERROR_NOT_FOUND_LOTTO("해당 로또가 존재하지 않습니다.");
 
     private String message;
     private static final String ERROR_PREFIX = "[ERROR] ";

@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.exception.LottoValidator;
 import lotto.util.LottoValues;
 import lotto.util.RankingMessage;
 
@@ -32,6 +33,7 @@ public class Player {
 
     public void setLottoCorrectCount(Lotto lotto, CorrectCount correctCount){
         CorrectCount replace = lottos.replace(lotto, correctCount);
+        LottoValidator.validate(replace);
     }
 
     public int getNumberCount(String message, int rankCount) {

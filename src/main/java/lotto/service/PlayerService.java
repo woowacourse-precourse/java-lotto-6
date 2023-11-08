@@ -25,8 +25,12 @@ public class PlayerService {
 
     public void check(WinningNumbers winningNumbers) {
         for (Lotto lotto : player.getLottoPapers()) {
-            CorrectCount correctCount = winningLottoCalculator.calculate(winningNumbers, lotto);
-            player.setLottoCorrectCount(lotto, correctCount);
+            checkLotto(winningNumbers, lotto);
         }
+    }
+
+    private void checkLotto(WinningNumbers winningNumbers, Lotto lotto) {
+        CorrectCount correctCount = winningLottoCalculator.calculate(winningNumbers, lotto);
+        player.setLottoCorrectCount(lotto, correctCount);
     }
 }

@@ -33,4 +33,8 @@ public enum Rank {
     public void increaseCount() {
         count++;
     }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }

@@ -22,5 +22,15 @@ public class PrizeNumbers {
         }
     }
 
-    
+    public Integer matchedWinningNumberCount(Lotto lotto){
+        Integer count=0;
+        for(LottoNumber lottoNumber : lotto.getNumbers()){
+            if(winningNumbers.contains(lottoNumber)){ count++;}
+        }
+        return count;
+    }
+
+    public Boolean matchedBonusNumber(Lotto lotto){
+        return lotto.contains(bonusNumber);
+    }
 }

@@ -14,12 +14,6 @@ public class RatingAndPrinting {
         this.lottos = lottos;
     }
 
-    public void printLotto(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
-            lotto.printLotto();
-        }
-    }
-
     public void printResult(Map<WinningDetails, Integer> rank, int money) {
         System.out.println(END);
         for (WinningDetails win : rank.keySet()) {

@@ -31,8 +31,8 @@ public class User {
         purchasedLotto.add(lotto);
     }
 
-    public int getTotalPrize() {
-        int sum = 0;
+    public long getTotalPrize() {
+        long sum = 0L;
         for (Rank rank : lottoResult.keySet()) {
             sum += rank.getPrize() * lottoResult.get(rank);
         }
@@ -50,6 +50,9 @@ public class User {
         lottoResult.put(Rank.THIRD, 0);
         lottoResult.put(Rank.FOURTH, 0);
         lottoResult.put(Rank.FIFTH, 0);
+        lottoResult.put(Rank.TWO_MATCH, 0);
+        lottoResult.put(Rank.ONE_MATCH, 0);
+        lottoResult.put(Rank.ZERO_MATCH, 0);
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {

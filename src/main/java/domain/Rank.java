@@ -1,17 +1,20 @@
 package domain;
 
 public enum Rank {
-    FIRST(6, 2_000_000_000),
-    SECOND(5, 30_000_000),
-    THIRD(5, 1_500_000),
-    FOURTH(4, 50_000),
-    FIFTH(3, 5_000)
+    ZERO_MATCH(0, 0L),
+    ONE_MATCH(0, 0L),
+    TWO_MATCH(0, 0L),
+    FIFTH(3, 5_000L),
+    FOURTH(4, 50_000L),
+    THIRD(5, 1_500_000L),
+    FIRST(6, 2_000_000_000L),
+    SECOND(5, 30_000_000L)
     ;
 
     final private int match;
-    final private int prize;
+    final private long prize;
 
-    Rank(int match, int prize) {
+    Rank(int match, long prize) {
         this.match = match;
         this.prize = prize;
     }
@@ -20,7 +23,7 @@ public enum Rank {
         return match;
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 }

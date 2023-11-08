@@ -15,6 +15,9 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있으면 예외가 발생한다.");
+        }
     }
 
     // TODO: 추가 기능 구현

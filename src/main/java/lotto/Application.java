@@ -12,5 +12,6 @@ public class Application {
         Lotto winningLotto = lottoHandler.winningLotto();
         int bonusNumber = lottoHandler.bonusNumber();
         Map<WinningKind, Integer> winningResult = lottoHandler.winningResult(lottos, winningLotto, bonusNumber);
+        lottoHandler.rateOfReturnResult(numberOfLotto, winningResult);
     }
 }

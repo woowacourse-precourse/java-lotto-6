@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 public class LottoHandler {
@@ -76,9 +78,10 @@ public class LottoHandler {
         return winningResult;
     }
 
-    public double rateOfReturnResult(int numberOfLotto, Map<WinningKind, Integer> winningResult) {
+    public void rateOfReturnResult(int numberOfLotto, Map<WinningKind, Integer> winningResult) {
         int revenue = calculateRevenue(winningResult);
-        return 0;
+        double rateOfReturn = calculateRateOfReturn(numberOfLotto, revenue);
+        OutputHandler.printRateOfReturn(rateOfReturn);
     }
 
     public int calculateLottoTicketCount(String receivedPurchasePrice) {
@@ -185,8 +188,21 @@ public class LottoHandler {
         }
     }
 
-    private int calculateRevenue(Map<WinningKind, Integer> winningResult) {
+    public int calculateRevenue(Map<WinningKind, Integer> winningResult) {
+        int revenue = 0;
+        for (WinningKind winningKind : WinningKind.values()) {
+            revenue += (winningKind.getPrice() * winningResult.get(winningKind));
+        }
+        return revenue;
+    }
 
-        return 0;
+    public double calculateRateOfReturn(int numberOfLotto, int revenue) {
+        int investmentAmount = numberOfLotto * LOTTO_PRICE;
+        double rateOfReturn = (double) revenue / investmentAmount * 100;
+        return rounds(rateOfReturn, 1);
+    }
+
+    private double rounds(double number, int decimalPoint) {
+        return new BigDecimal(number).setScale(decimalPoint, RoundingMode.HALF_UP).doubleValue();
     }
 }

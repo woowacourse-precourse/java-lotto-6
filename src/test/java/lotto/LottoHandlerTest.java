@@ -276,6 +276,11 @@ class LottoHandlerTest {
         int winningNumberCount = 5;
         boolean bonusMatch = true;
         Map<WinningKind, Integer> winningResult = new HashMap<>();
+        winningResult.put(WinningKind.FIFTH, 0);
+        winningResult.put(WinningKind.FOURTH, 0);
+        winningResult.put(WinningKind.THIRD, 0);
+        winningResult.put(WinningKind.SECOND, 0);
+        winningResult.put(WinningKind.FIRST, 0);
 
         //when
         lottoHandler.calculateWinning(winningNumberCount, bonusMatch, winningResult);
@@ -297,5 +302,51 @@ class LottoHandlerTest {
 
         //then
         assertThat(winningNumberCount).isEqualTo(3);
+    }
+
+    @DisplayName("당첨 결과에 따른 수익을 계산한다.")
+    @Test
+    void calculateRevenue(){
+        //given
+        Map<WinningKind, Integer> winningResult = new HashMap<>();
+        winningResult.put(WinningKind.FIFTH, 2);
+        winningResult.put(WinningKind.FOURTH, 1);
+        winningResult.put(WinningKind.THIRD, 3);
+        winningResult.put(WinningKind.SECOND, 0);
+        winningResult.put(WinningKind.FIRST, 0);
+
+        //when
+        int revenue = lottoHandler.calculateRevenue(winningResult);
+
+        //then
+        assertThat(revenue).isEqualTo(4560000);
+    }
+
+    @DisplayName("로또 개수와 수익으로 수익률을 계산한다. 반올림하는 경우")
+    @Test
+    void calculateRateOfReturnRounds(){
+        //given
+        int numberOfLotto = 3;
+        int revenue = 1505000;
+
+        //when
+        double rateOfReturn = lottoHandler.calculateRateOfReturn(numberOfLotto, revenue);
+
+        //then
+        assertThat(rateOfReturn).isEqualTo(50166.7);
+    }
+
+    @DisplayName("로또 개수와 수익으로 수익률을 계산한다. 나누어떨어지는 경우")
+    @Test
+    void calculateRateOfReturnDivided(){
+        //given
+        int numberOfLotto = 5;
+        int revenue = 5000;
+
+        //when
+        double rateOfReturn = lottoHandler.calculateRateOfReturn(numberOfLotto, revenue);
+
+        //then
+        assertThat(rateOfReturn).isEqualTo(100.0);
     }
 }

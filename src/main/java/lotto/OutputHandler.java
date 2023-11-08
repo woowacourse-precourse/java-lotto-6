@@ -25,9 +25,13 @@ public class OutputHandler {
         for (WinningKind winningKind : WinningKind.values()) {
             printMessage(
                     winningKind.getExplanation()
-                            + " (" + String.format("%,d", winningKind.getPrice()) + ") - "
+                            + " (" + String.format("%,d", winningKind.getPrice()) + "원) - "
                             + winningResult.get(winningKind) + "개"
             );
         }
+    }
+
+    public static void printRateOfReturn(double rateOfReturn) {
+        printMessage("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 }

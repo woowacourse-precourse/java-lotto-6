@@ -17,7 +17,7 @@
 - [x] else 사용 말것
 - [x]  Enum 적용
 - [x] model, view, controller, util 분리
-- [ ] domain logic 단위 테스트
+- [x] domain logic 단위 테스트
 
 # 구현 설계
 
@@ -73,15 +73,19 @@
 - [x] RankTable : enum clas로 맞춘 번호 개수, bonus 여부, 획득 상금 여부에 따른 변수 생성
 - [x] ClientLottoData : 구매가격, 로또 티켓 개수, 로또 리스트, 순위표 리스트
     - ⚠️ 해당 변수를 private으로 변경 및 getter(), setter() 사용 여부 고민 -> private으로 변수 변경 및 getter() setter() 설정
+    - setLottoTicketNumber() : 로또 티켓 개수 발행
+    - setLottoTicket() : 로또 티켓 발행 - 여기서 new Lotto를 하는것이 맞을까?
+    - SetIncome() : 수익률 계산 - 소수점 2째자리서 반올림
 - [x] WinningLottoNumber : 당첨 번호, 보너스 번호
     - ⚠️ 해당 변수를 private으로 변경 및 getter(), setter() 사용 여부 고민 - setter() 안좋다는 얘기를 들었는데 확인하기 -> 생성자로만 값 설정? 빌더 패턴?
+    - matchLottoCalculate() : 동일 숫자만 list로 받아오기
 
-3. util package
+3. ✅ util package
 
-- [x] LottoMachine ~~LottoService~~
+- [x] ~~LottoMachine~~ ~~LottoService~~
     - ~~setLottoTicketNumber()~~ : 로또 티켓 개수 발행
     - [x] ⚠️ ~~setLottoTicket()~~ : 로또 티켓 발행 - 여기서 new Lotto를 하는것이 맞을까?
-    - [ ] ⚠️ matchLottoCalculate() : 당첨 번호와 가진 번호 비교 및 data 저장
+    - [x] ⚠️ ~~matchLottoCalculate()~~ : 당첨 번호와 가진 번호 비교 및 data 저장
         1. 내부 메서드를 줄일 수 잇지 않을까? countMatchNumber(), filterBonusNumber(), addMatchRank () 내부 메서드끼리 꼬리를 문다.
         2. 네이밍이 마땅한게 생각이 나지 않는다.
     - ~~setIncome()~~ ~~getRateOfReturn()~~ : 수익률 계산 - 소수점 2째자리서 반올림
@@ -92,11 +96,6 @@
     - divideMoney() : 1000원 단위로 잘 나뉘는지 확인
     - checkWinningNumber() : 올바른 숫자 들어왔는지, 중복 숫자 없는지
     - checkBonusNumber() :  올바른 숫자 들어왔는지, 중복 숫자 없는지
--  [x] ClientLottoData
-    - setLottoTicketNumber() : 로또 티켓 개수 발행
-    - setLottoTicket() : 로또 티켓 발행 - 여기서 new Lotto를 하는것이 맞을까?
-    - SetIncome() : 수익률 계산 - 소수점 2째자리서 반올림
--  [x] WinningLottoNumber
 
 4. ✅ controller
 

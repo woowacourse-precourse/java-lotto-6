@@ -75,5 +75,6 @@ public class LottoService {
         WinningResult winningResult = lottos.getWinningResult(winningNumbers);
         output.printMessage(Messages.WINNING_RESULT_PREFIX_MESSAGE.getMessage());
         output.printMessage(winningResult.getResultMessage());
+        output.printMessage(winningResult.getProfitRateMessage(lottos.getCount()));
     }
 }

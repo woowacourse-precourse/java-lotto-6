@@ -14,26 +14,40 @@ public class LottoGame {
 
     private final OutputHandler outputHandler = new OutputHandler();
     private final InputHandler inputHandler = new InputHandler(this.outputHandler);
+    private final LottoService lottoService = new LottoService();
 
     public void run () {
         int purchaseAmount = getPurchaseAmount();
         List<Lotto> lottoBundle = buyLottoBundle(purchaseAmount);
         printPurchaseHistory(lottoBundle);
 
-        String userInput = inputHandler.getWinningNumbersFromUser();
-        List<Integer> winnerNumbers = Arrays.stream(userInput.split(","))
-                .map(Integer::parseInt)
-                .sorted() // 오름차순으로 정렬
-                .toList(); // 리스트로 수집
+        WinningNumbers winnerNumbers = getWinningNumbers();
 
-        int bonusNumber = inputHandler.getBonusNumberFromUser();
-        LottoService lottoService = new LottoService();
-        lottoService.compareAll(lottoBundle, winnerNumbers, bonusNumber);
+        lottoService.compareAll(lottoBundle, winnerNumbers.getNumbers(), winnerNumbers.getBonusNumber());
         long profit = lottoService.getProfit();
         double profitRate = profit / (double) purchaseAmount * 100;
 
         printResults(lottoService, profitRate);
 
+    }
+
+    private WinningNumbers getWinningNumbers() {
+        List<Integer> numbers = getNumbers();
+        int bonusNumber = inputHandler.getBonusNumberFromUser();
+
+        return new WinningNumbers(numbers, bonusNumber);
+    }
+
+    private List<Integer> getNumbers() {
+        try {
+            String userInput = inputHandler.getWinningNumbersFromUser();
+            return Arrays.stream(userInput.split(","))
+                    .map(Integer::parseInt)
+                    .sorted()
+                    .toList();
+        } catch (IllegalArgumentException e) {
+            return getNumbers();
+        }
     }
 
     public void printPurchaseHistory(List<Lotto> lottoBundle) {
@@ -56,7 +70,9 @@ public class LottoGame {
 
     private List<Lotto> buyLottoBundle(int purchaseAmount) {
         List<Lotto> lottoBundle = new ArrayList<>();
-        for (int i = 0; i < purchaseAmount; i += 1000) {
+        int lottoCount = lottoService.calculateLottoCount(purchaseAmount);
+
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = new ArrayList<>(generateNumbers());
             Collections.sort(numbers);
             lottoBundle.add(new Lotto(numbers));

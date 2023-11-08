@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class LottoGame {
     public LottoGame() {
     }
 
-    public void start() {
+    public void run() {
         boolean isGaming = true;
 
         while (isGaming) {
@@ -27,7 +28,7 @@ public class LottoGame {
             System.out.println();
 
             lottoTickets = generateLottoTickets(inputMoney);
-            printTickets();
+            printSortedTickets();
             System.out.println();
 
             winningNumbers = inputWinningNumbers().getNumbers();
@@ -120,11 +121,13 @@ public class LottoGame {
         return lottos;
     }
 
-    private void printTickets() {
+    private void printSortedTickets() {
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
 
         for (Lotto lotto : lottoTickets) {
-            lotto.printNumbers();
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumbers);
+            System.out.println(sortedNumbers);
         }
     }
 
@@ -201,7 +204,7 @@ public class LottoGame {
     }
 
     private void printRoundedTotalIncome(Integer inputMoney, Integer totalIncome) {
-        double rateOfReturn = ((totalIncome - inputMoney) / (double) inputMoney) * 100;
+        double rateOfReturn = (totalIncome / (double) inputMoney) * 100;
 
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }

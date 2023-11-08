@@ -18,9 +18,8 @@
 - [x] 입력된 번호들의 숫자가 6개를 넘어선 안된다. 잘못 입력될시 다시 입력한다.
     - Lotto.validate() : 기존에 구현된 메소드 사용하기
     - LottoGame.inputNumbers() : 다시 입력하기 while, try-catch로 구현하기
-- [x] 발행된 티켓들의 번호를 출력한다
-    - LottoGame.printTickets()
-    - Lotto.printNumbers()
+- [x] 발행된 티켓들의 번호를 정렬하여 출력한다
+    - LottoGame.printSortedTickets()
     ```
     8개를 구매했습니다.
     [8, 21, 23, 41, 42, 43]
@@ -62,8 +61,6 @@
     ```
     - LottoGame.getMoneyForRank() : 등수를 입력받아 당첨금액을 반환
     - LottoGame.printRoundedTotalIncome()
-- [ ] Enum을 사용하여 문자열, 숫자등의 값은 상수로 관리
-    - Constant Enum 생성
 - [x] 로또 번호가 중복되도록 입력 할 수 없다.
     - Lotto.validate 수정
 - [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
@@ -71,6 +68,8 @@
     Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
     ```
     - Lotto.validate() : LottoGame이 아닌 Lotto 객체가 입력받을때 직접 검증하고 출력
+- [x] Enum을 사용하여 문자열, 숫자등의 값은 상수로 관리
+    - Constant Enum 생성
 
 ---
 

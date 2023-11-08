@@ -15,9 +15,6 @@ public enum Exception {
     WINNING_NUMBERS_DUPLICATE("로또 번호 6개와 보너스 번호는 중복될 수 없습니다."),
 
 
-
-
-
     private String message;
 
     Exception(String message) {

@@ -24,6 +24,10 @@ public class LottoResult {
         return this.prizeResult;
     }
 
+    public Double calculateProfitRate(Integer money, Map<Prize, Long> prizeResults) {
+        return (double) calculateProfit(prizeResults) / (double) money * HUNDRED;
+    }
+
     private Map<Prize, Long> processPrizeResult(Map<Prize, Long> prizeResults) {
         return Arrays.stream(Prize.values())
                 .skip(NUM_PRIZES_TO_SKIP)
@@ -39,10 +43,6 @@ public class LottoResult {
         return lottos.lottos().stream()
                 .map(lotto -> findPrize(lotto.countMatch(winnerLotto), lotto.countBonusMatch(winnerLotto)))
                 .collect(Collectors.groupingBy(prize -> prize, Collectors.counting()));
-    }
-
-    public Double calculateProfitRate(Integer money, Map<Prize, Long> prizeResults) {
-        return (double) calculateProfit(prizeResults) / (double) money * HUNDRED;
     }
 
     private Long calculateProfit(Map<Prize, Long> prizeResults) {

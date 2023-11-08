@@ -32,4 +32,16 @@ public class WinLottoTest {
         assertThatThrownBy(() -> winLotto.validDuplicateBonus(1)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 값의 범위가 알맞은 지 확인한다.")
+    @Test
+    void checkBonusRange(){
+
+        InputStream inWinLotto = new ByteArrayInputStream("1,2,3,4,5,6".getBytes());
+        System.setIn(inWinLotto);
+
+        WinLotto winLotto = new WinLotto();
+
+        assertThatThrownBy(() -> winLotto.validRange(47)).isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

@@ -1,7 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-import lotto.domain.Message;
+import lotto.domain.LottoPlayer;
+import lotto.domain.LottoPrize;
+import lotto.domain.Referee;
+import lotto.util.Message;
 
 public class ConsoleView {
 
@@ -21,10 +24,6 @@ public class ConsoleView {
         System.out.println(Message.inputBonusNumber);
     }
 
-    public static void printWinningStatistics() {
-        System.out.println(Message.winningStatistics);
-    }
-
     public static void printLottos(Lotto[] lottos) {
 
         for (Lotto lotto: lottos) {
@@ -36,5 +35,29 @@ public class ConsoleView {
             System.out.print(sb.substring(0, sb.length() - 2));
             System.out.println("]");
         }
+    }
+
+    public static void printResult(LottoPlayer lottoPlayer, Referee referee) {
+        System.out.println(Message.winningStatistics);
+
+        StringBuilder sb = new StringBuilder();
+        for (LottoPrize lottoPrize : LottoPrize.values()) {
+            int count = referee.countLottosWithMatches(lottoPlayer.getLottos(), lottoPrize);
+            sb.append(lottoPrize.getMessage()).append(" - ").append(count).append("개\n");
+            lottoPlayer.addProfit(count * lottoPrize.getPrizeMoney());
+        }
+
+        System.out.print(sb);
+
+        printYieldRateOfReturn(lottoPlayer.getProfit(), lottoPlayer.getPurchaseAmount());
+    }
+
+    private static void printYieldRateOfReturn(int profit, int purchaseAmount) {
+        double yieldRateOfReturn = (double) profit / purchaseAmount * 100.0;
+        System.out.printf("총 수익률은 %,.1f%%입니다.\n", yieldRateOfReturn);
+    }
+
+    public static void printLine() {
+        System.out.println();
     }
 }

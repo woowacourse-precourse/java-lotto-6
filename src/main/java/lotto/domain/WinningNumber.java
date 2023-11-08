@@ -19,4 +19,12 @@ public class WinningNumber {
         }
         this.bonusNumber = bonusNumber;
     }
+
+    public boolean containsWinningNumber(int number) {
+        return winningNumbers.contains(number);
+    }
+
+    public boolean containsBonusNumber(List<Integer> list) {
+        return list.contains(bonusNumber);
+    }
 }

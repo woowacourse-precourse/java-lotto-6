@@ -20,6 +20,7 @@ public class PrintGames {
             Collections.sort(lotto);
             System.out.println(lotto);
         }
+        System.out.println();
     }
 
     public String resultMessage(int rank) {
@@ -39,6 +40,8 @@ public class PrintGames {
 
     public void finalResults(Map<String, Integer> result, int resultAmount) {
         this.result = result;
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for (int rank = Prize.values().length; rank > 0; rank--) {
             System.out.println(resultMessage(rank));
         }

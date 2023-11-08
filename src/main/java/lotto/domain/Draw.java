@@ -30,10 +30,12 @@ public class Draw {
             String number = Console.readLine();
             winningNumber = exception.checkNumbers(number);
         }
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         while (bonusNumber < 1) {
             String bonus = Console.readLine();
             bonusNumber = exception.checkBonus(winningNumber, bonus);
         }
+        System.out.println();
     }
 }

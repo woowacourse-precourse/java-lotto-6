@@ -35,6 +35,7 @@ public class Buy {
             }
             correctAmount = exception.checkAmount(totalAmount, correctAmount);
         }
+        System.out.println();
         return totalAmount / Constants.LOTTOPRICE;
     }
 

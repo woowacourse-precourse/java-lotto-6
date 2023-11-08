@@ -90,21 +90,9 @@ public class ApplicationContext {
         }
         return argumentResolver;
     }
-
-    public InputView getInputView() {
-        return inputView;
-    }
-
+    
     public LottoViewResolver getViewResolver() {
         return viewResolver;
-    }
-
-    public LottoMessagePrinter getPrinter() {
-        return printer;
-    }
-
-    public LottoValidator getValidator() {
-        return validator;
     }
 
     public LottoController getLottoController() {

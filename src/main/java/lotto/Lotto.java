@@ -18,10 +18,14 @@ public class Lotto {
         }
         for (int i = 0; i < numbers.size() - 1; i++) {
             for (int j = i + 1; j < numbers.size(); j++) {
-                if (numbers.get(i).equals(numbers.get(j))) {
-                    throw new IllegalArgumentException(prefix + "중복된 숫자가 있습니다.");
-                }
+                checkDuplicate(numbers, i, j);
             }
+        }
+    }
+
+    private static void checkDuplicate(List<Integer> numbers, int i, int j) {
+        if (numbers.get(i).equals(numbers.get(j))) {
+            throw new IllegalArgumentException(prefix + "중복된 숫자가 있습니다.");
         }
     }
 

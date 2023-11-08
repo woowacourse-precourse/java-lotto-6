@@ -14,22 +14,14 @@ public class InputView {
     public int readPurchaseAmount() {
         try {
             System.out.println(PURCHASE_AMOUNT_INPUT_PROMPT);
-            int purchaseAmount = readLineAndParseInt();
+            String input = Console.readLine();
+            int purchaseAmount = InputValidator.isNumberFormat(input);
             InputValidator.greaterThanThousand(purchaseAmount);
             InputValidator.divisibleByThousand(purchaseAmount);
             return purchaseAmount;
         } catch (IllegalArgumentException e) {
             ErrorLogger.log(e);
             return readPurchaseAmount();
-        }
-    }
-
-    private int readLineAndParseInt() {
-        try {
-            String input = Console.readLine();
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("잘못된 입력입니다. 유효한 숫자를 입력해주세요.");
         }
     }
 
@@ -40,7 +32,6 @@ public class InputView {
             List<Integer> winningNumbers = Stream.of(input.split(","))
                     .map(Integer::parseInt)
                     .toList();
-
             return new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             ErrorLogger.log(e);
@@ -49,16 +40,16 @@ public class InputView {
     }
 
     public int readBonusNumber() {
-        try{
+        try {
             System.out.println(BONUS_NUMBER_INPUT_PROMPT);
-            int bonusNumber = readLineAndParseInt();
+            String input = Console.readLine();
+            int bonusNumber = InputValidator.isNumberFormat(input);
             InputValidator.inRange(bonusNumber);
             return bonusNumber;
-        }catch(IllegalArgumentException e ){
+        } catch (IllegalArgumentException e) {
             ErrorLogger.log(e);
             return readBonusNumber();
         }
-
     }
 
 

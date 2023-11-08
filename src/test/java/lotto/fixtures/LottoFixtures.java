@@ -33,10 +33,6 @@ public class LottoFixtures {
         return createLotto(List.of(1, 2, 8, 9, 10, 11));
     }
 
-    public static Lotto createNormalLotto() {
-        return createLotto(List.of(5, 3, 17, 18, 20, 21, 45));
-    }
-
     public static Lotto createDuplicateLotto() {
         return createLotto(List.of(10, 5, 40, 35, 17, 10));
     }
@@ -49,7 +45,4 @@ public class LottoFixtures {
         return createLotto(List.of(10, 1));
     }
 
-    public static Lotto createLottoOutOfRange() {
-        return createLotto(List.of(10, 1, 40, 35, 17, 42, 5));
-    }
 }

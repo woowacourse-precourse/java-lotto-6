@@ -51,13 +51,50 @@ public class User {
 
     public void calculate(List<Integer> targetNumbers, int bonusNumber) {
         for (int i = 0; i < lottoCount; i++) {
-            calcPrize(lottos.get(i),targetNumbers, bonusNumber);
+            int rate = lottos.get(i).calcMatch(targetNumbers,bonusNumber);
+            ratings.add(rate-1,ratings.get(rate-1)+1);
+        }
+        calcPrize();
+        printMatch();
+        printBenefit();
+    }
+    private int money(int num){
+        if(num == 1){
+            return 200000000;
+        }
+        if(num == 2){
+            return 30000000;
+        }
+        if(num == 3){
+            return 1500000;
+        }
+        if(num == 4){
+            return 50000;
+        }
+        if(num == 5){
+            return 5000;
+        }
+        return 0;
+    }
+
+    private void calcPrize() {
+        for (int i = 0; i < 5; i++) {
+            totalPrize += money(ratings.get(i));
         }
     }
 
-    private void calcPrize(Lotto lotto ,List<Integer> targetNumbers, int bonusNumber) {
-        for (int i = 0; i < 6; i++) {
-            targetNumbers.get(i)==lotto.
-        }
+    private void printMatch(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - "+ratings.get(4)+"개");
+        System.out.println("4개 일치 (50,000원) - "+ratings.get(3)+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+ratings.get(2)+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ratings.get(1)+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+ratings.get(0)+"개");
+    }
+
+    private void printBenefit(){
+        double benefit = totalPrize/lottoPrice*100;
+        System.out.println("총 수익률은 "+Math.round(benefit*10)/10.0+"%입니다.");
     }
 }

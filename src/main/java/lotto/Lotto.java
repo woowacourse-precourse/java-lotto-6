@@ -25,7 +25,7 @@ public class Lotto {
 
     public int calcMatch(List<Integer> targetNumbers, int bonusNumber) {
         int count = 0;
-        int bonus = 0
+        int bonus = 0;
         for (int i = 0; i < 6; i++) {
             if (targetNumbers.get(i) == numbers.get(i)) {
                 count++;
@@ -34,7 +34,7 @@ public class Lotto {
                 bonus = 1;
             }
         }
-        return matchToPrize(count, bonus)
+        return matchToPrize(count, bonus);
     }
 
     private int matchToPrize(int count, int bonus) {
@@ -53,5 +53,6 @@ public class Lotto {
         if (count == 3) {
             return 5;
         }
+        return 6;
     }
 }

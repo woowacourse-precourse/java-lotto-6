@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 
 import lotto.Lotto;
+import lotto.model.LottoInfo;
 import lotto.model.WinningInfo;
 import lotto.view.OutputView;
 
@@ -12,18 +13,26 @@ public class LottoStart {
     static NumberGenerator numbergenerator = new NumberGenerator();
     static WinningInfo winninginfo = new WinningInfo();
     static OutputView outputview = new OutputView();
+    static LottoInfo lottoinfo = new LottoInfo();
 
     public LottoStart(){
-        final int buycost = numbergenerator.inputBuyCost();
-        final int buycount = numbergenerator.createUnitLotto(buycost);
-        final List<List<Integer>> lottonumbers = numbergenerator.createLottoNumbers(buycount);
+        numbergenerator.inputBuyCost();
+        final int buycost = lottoinfo.getInputBuyCost();
+        numbergenerator.createUnitLotto(buycost);
+        final int buycount = lottoinfo.getCreateLottoNumber();
+
+        numbergenerator.createLottoNumbers(buycount);
+        final List<List<Integer>> lottonumbers = lottoinfo.getCreateLottoNumbers();
+
         lottonumbers(lottonumbers);
         correctNumberSet();
         
-        int bonusNumber = numbergenerator.InputBonusNumber(lotto.getLotto());
+        numbergenerator.InputBonusNumber(lotto.getLotto());
+        int bonusNumber = lottoinfo.getInputBonusNumber();
         
         for(List<Integer> i : lottonumbers){
-            int correctCount = judgment.correctCount(i , lotto.getLotto());
+            judgment.correctCount(i , lotto.getLotto());
+            int correctCount = lottoinfo.getCorrectCount();
             setWinningInfo(i, correctCount, bonusNumber);
         }
 

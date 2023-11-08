@@ -3,12 +3,17 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.model.LottoInfo;
+
 public class Judgment {
-    public int correctCount(List<Integer> computer, List<Integer> buyer){
+    static LottoInfo lottoinfo = new LottoInfo();
+
+    public void correctCount(List<Integer> computer, List<Integer> buyer){
         List<Integer> computercopy = new ArrayList<>(computer);
         computercopy.retainAll(buyer);
         int result = computercopy.size();
-        return result;
+        
+        lottoinfo.setCorrectCount(result);
     }
 
     public boolean correctBonus(List<Integer> computer, Integer bonusnumber){

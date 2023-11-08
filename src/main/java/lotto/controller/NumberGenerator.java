@@ -6,12 +6,14 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.LottoInfo;
 
 public class NumberGenerator {
     final static int LOTTOCOSTUNIT = 1000;
-    NumberGeneratorVaildation numbergeneratorvaildation = new NumberGeneratorVaildation();
+    static NumberGeneratorVaildation numbergeneratorvaildation = new NumberGeneratorVaildation();
+    LottoInfo lottoinfo = new LottoInfo();
 
-    public int inputBuyCost(){
+    public void inputBuyCost(){
         System.out.println("구입금액을 입력해 주세요.");
         String buycost = Console.readLine();
         
@@ -19,21 +21,21 @@ public class NumberGenerator {
                 numbergeneratorvaildation.inputBuyCostUnitVaildation(buycost)) {
             buycost = Console.readLine();
         }
-        return Integer.parseInt(buycost);
+        lottoinfo.setInputBuyCost(Integer.parseInt(buycost));
     }
 
-    public int createUnitLotto(int buycost){
+    public void createUnitLotto(int buycost){
         int buycount = buycost/LOTTOCOSTUNIT;
-        return buycount;
+        lottoinfo.setCreateLottoNumber(buycount);
     }
 
-    public List<List<Integer>> createLottoNumbers(int buycount){
+    public void createLottoNumbers(int buycount){
         System.out.println("\n"+buycount+"개를 구매했습니다.");
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         for (int i = 0 ; i < buycount ; i++){
             lottoNumbers.add(createRandomNumber());
         }
-        return lottoNumbers;
+        lottoinfo.setCreateLottoNumbers(lottoNumbers);
     }
 
     public List<Integer> createRandomNumber(){
@@ -72,7 +74,7 @@ public class NumberGenerator {
         return sortLottoNumbers;
     }
 
-    public int InputBonusNumber(List<Integer> correctNumber){
+    public void InputBonusNumber(List<Integer> correctNumber){
         String bonusNum = "";
         boolean end = true;
         while(end){
@@ -85,6 +87,6 @@ public class NumberGenerator {
                 System.out.println(e);
             }
         }
-        return Integer.parseInt(bonusNum);
+        lottoinfo.setInputBonusNumber(Integer.parseInt(bonusNum));
     }
 }

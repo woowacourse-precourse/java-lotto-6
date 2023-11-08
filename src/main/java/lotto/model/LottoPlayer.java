@@ -1,6 +1,7 @@
 package lotto.model;
 
-import lotto.util.Constant;
+import static lotto.util.Constant.*;
+
 import lotto.util.ErrorMessage;
 import lotto.util.ValidationManager;
 
@@ -26,7 +27,7 @@ public class LottoPlayer {
     }
 
     private int calculateNumberOfLottoTickets() {
-        return purchaseMoney / Constant.LOTTO_PRICE;
+        return purchaseMoney / LOTTO_PRICE;
     }
 
 
@@ -37,7 +38,7 @@ public class LottoPlayer {
     }
 
     private boolean isNotDivisibleWithLottoPrice(String purchaseMoney) {
-        return Integer.parseInt(purchaseMoney) % Constant.LOTTO_PRICE != 0;
+        return Integer.parseInt(purchaseMoney) % LOTTO_PRICE != 0;
     }
 
 

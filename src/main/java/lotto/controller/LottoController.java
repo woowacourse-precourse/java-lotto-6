@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
+import lotto.model.LottoWinner;
 import lotto.model.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,6 +16,7 @@ public class LottoController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     Money money = new Money();
+    LottoWinner lottoWinner = new LottoWinner();
 
     private final Set<Lotto> lottos = new HashSet<>();
 
@@ -24,6 +26,10 @@ public class LottoController {
         int quantity = money.countQuantity();
         outputView.showQuantityMessage(quantity);
         generateLotto(quantity);
+    }
+
+    public void checkLottoResult() {
+        lottoWinner.createWinnerLotto();
     }
 
     public void generateLotto(int quantityOfLotto) {

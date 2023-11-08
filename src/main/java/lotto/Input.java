@@ -18,24 +18,36 @@ public class Input {
 	}
 
 	public static List<Integer> numbers() {
+	    System.out.println();
+	    System.out.println("당첨 번호를 입력해 주세요.");
 
-		System.out.println();
-		System.out.println("당첨 번호를 입력해 주세요.");
-		
-		String inputNumber = Console.readLine();
-		
-		String[] usernums = inputNumber.split(",");
+	    while (true) {
+	        String inputNumber = Console.readLine();
+	        List<Integer> numbers = getValidNumbers(inputNumber);
+	        if (numbers != null) {
+	            return numbers;
+	        }
+	    }
+	}
 
-		List<Integer> numbers = new ArrayList<>();
-		
-		for (String usernum : usernums) {
-			CheckValid.string(usernum);
-			numbers.add(Integer.parseInt(usernum));
-		}
-		
-		CheckValid.numbers(numbers);
-		
-		return numbers;
+	private static List<Integer> getValidNumbers(String inputNumber) {
+	    String[] usernums = inputNumber.split(",");
+	    try {
+	        List<Integer> numbers = new ArrayList<>();
+
+	        for (String usernum : usernums) {
+	            CheckValid.string(usernum);
+	            numbers.add(Integer.parseInt(usernum));
+	        }
+
+	        CheckValid.numbers(numbers);
+
+	        return numbers;
+
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	    }
+	    return null;
 	}
 
 	public static int bonus(List<Integer> userNums) {
@@ -43,26 +55,36 @@ public class Input {
 		System.out.println();
 		System.out.println("보너스 번호를 입력해 주세요.");
 
-		String inputBonus = Console.readLine();
-		
-		CheckValid.string(inputBonus);
-		
-		int bonus = Integer.parseInt(inputBonus);
-		
-		CheckValid.bonus(userNums, bonus);
-		
-		return bonus;
+		while (true) {
+			String inputBonus = Console.readLine();
+			try {
+				CheckValid.string(inputBonus);
+
+				int bonus = Integer.parseInt(inputBonus);
+
+				CheckValid.bonus(userNums, bonus);
+
+				return bonus;
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+
+		}
 	}
 
-	public static String moneyInput() {
+	public static String money() {
 
 		System.out.println("구입금액을 입력해 주세요.");
 
-		String inputMoney = Console.readLine();
-		
-		CheckValid.money(inputMoney);
-		
-		return inputMoney;
+		while (true) {
+			String inputMoney = Console.readLine();
+			try {
+				CheckValid.money(inputMoney);
+				return inputMoney;
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 }

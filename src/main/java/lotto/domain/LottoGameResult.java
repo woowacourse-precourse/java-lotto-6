@@ -44,7 +44,7 @@ public class LottoGameResult {
         return sum;
     }
 
-    public int getNumberOfRank(LottoRank lottoRank) {
+    public int getCountOfRank(LottoRank lottoRank) {
         return lottoResult.get(lottoRank);
     }
 }

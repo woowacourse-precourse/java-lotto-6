@@ -6,7 +6,6 @@ import lotto.domain.Lotto;
 
 import lotto.domain.LottoFactory;
 import lotto.domain.LottoGameResult;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +38,7 @@ class LottoServiceTest {
 
         int lottoCount = 0;
         for (LottoRank rank : LottoRank.values()) {
-            lottoCount += result.getNumberOfRank(rank);
+            lottoCount += result.getCountOfRank(rank);
         }
 
         assertThat(lottoCount).isEqualTo(10); // 10장 구입
@@ -58,8 +57,8 @@ class LottoServiceTest {
 
         LottoGameResult lottoGameResult = lottoService.getResultOfLottos(winningLotto, bonusNumber);
 
-        int numberOfFourth = lottoGameResult.getNumberOfRank(LottoRank.FOURTH);
-        int numberOfFifth = lottoGameResult.getNumberOfRank(LottoRank.FIFTH);
+        int numberOfFourth = lottoGameResult.getCountOfRank(LottoRank.FOURTH);
+        int numberOfFifth = lottoGameResult.getCountOfRank(LottoRank.FIFTH);
         long totalProfit = (int) (numberOfFourth * LottoRank.FOURTH.getRewardMoney());
 
         assertThat(numberOfFourth).isEqualTo(lottoCount);

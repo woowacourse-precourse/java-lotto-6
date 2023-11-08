@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public enum LottoRank {
-    FIRST(6,  2_000_000_000),
+    FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000),
     THIRD(5, 1_500_000),
     FOURTH(4, 50_000),
@@ -15,27 +15,34 @@ public enum LottoRank {
 
     private final Integer sameCount;
     private final Long rewardMoney;
+
     LottoRank(Integer sameCount, long rewardMoney) {
         this.sameCount = sameCount;
         this.rewardMoney = rewardMoney;
     }
 
     public static LottoRank getRank(int sameCount, boolean isBonus) {
-        if(sameCount == FIRST.sameCount) {
+        if (sameCount == FIRST.sameCount) {
             return FIRST;
-        } if(sameCount == SECOND.sameCount && isBonus) {
+        }
+        if (sameCount == SECOND.sameCount && isBonus) {
             return SECOND;
-        } if(sameCount == THIRD.sameCount && !isBonus) {
+        }
+        if (sameCount == THIRD.sameCount && !isBonus) {
             return THIRD;
-        } if(sameCount == FOURTH.sameCount) {
+        }
+        if (sameCount == FOURTH.sameCount) {
             return FOURTH;
-        } if(sameCount == FIFTH.sameCount) {
+        }
+        if (sameCount == FIFTH.sameCount) {
             return FIFTH;
-        } if (sameCount < FIFTH.sameCount) {
+        }
+        if (sameCount < FIFTH.sameCount) {
             return NO_LUCK;
         }
         throw new IllegalStateException();
     }
+
     public int getSameCount() {
         return sameCount;
     }

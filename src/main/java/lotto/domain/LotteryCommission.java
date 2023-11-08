@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,31 +57,31 @@ public class LotteryCommission {
 	}
 
 	public void setLottoPaperResult(LottoPaper lottoPaper) {
-		Map<LottoResult, Integer> results = getDefaultResults();
+		Map<Integer, LottoResult> resultMapping = createResultMapping();
+		Map<LottoResult, Integer> results = createResults();
 
 		lottoPaper.getLottos().forEach(lotto -> {
-			if (getLottoResult(lotto) == 3) {
-				results.put(LottoResult.THREE, results.get(LottoResult.THREE) + 1);
-				return;
-			}
-			if (getLottoResult(lotto) == 4) {
-				results.put(LottoResult.FOUR, results.get(LottoResult.FOUR) + 1);
-				return;
-			}
-			if (getLottoResult(lotto) == 5 && !isBonusNumber(lotto)) {
-				results.put(LottoResult.FIVE, results.get(LottoResult.FIVE) + 1);
-				return;
-			}
-			if (getLottoResult(lotto) == 5 && isBonusNumber(lotto)) {
-				results.put(LottoResult.FIVE_BONUS, results.get(LottoResult.FIVE_BONUS) + 1);
-				return;
-			}
-			if (getLottoResult(lotto) == 6) {
-				results.put(LottoResult.SIX, results.get(LottoResult.SIX) + 1);
+			int lottoResult = getLottoResult(lotto);
+			LottoResult mappedResult = resultMapping.get(lottoResult);
+			if (mappedResult != null) {
+				updateResult(results, mappedResult);
 			}
 		});
 
 		lottoPaper.setResults(results);
+	}
+
+	private Map<Integer, LottoResult> createResultMapping() {
+		Map<Integer, LottoResult> resultMapping = new HashMap<>();
+		resultMapping.put(3, LottoResult.THREE);
+		resultMapping.put(4, LottoResult.FOUR);
+		resultMapping.put(5, LottoResult.FIVE);
+		resultMapping.put(6, LottoResult.SIX);
+		return resultMapping;
+	}
+
+	private void updateResult(Map<LottoResult, Integer> results, LottoResult lottoResult) {
+		results.put(lottoResult, results.get(lottoResult) + 1);
 	}
 
 	public Integer getLottoResult(Lotto lotto) {
@@ -98,7 +99,7 @@ public class LotteryCommission {
 		return lotto.getNumbers().contains(bonusNumber);
 	}
 
-	public Map<LottoResult, Integer> getDefaultResults() {
+	public Map<LottoResult, Integer> createResults() {
 		Map<LottoResult, Integer> results = new LinkedHashMap<>();
 		results.put(LottoResult.THREE, 0);
 		results.put(LottoResult.FOUR, 0);

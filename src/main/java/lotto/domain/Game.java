@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import lotto.exception.NumberTypeFormatException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.PrintMessage;
@@ -41,7 +43,14 @@ public class Game {
 
     private Money getMoney() {
         outputView.print(PrintMessage.INPUT_MONEY);
-        Money money = new Money(inputView.readNumber());
+        Integer input = null;
+        try {
+            input = inputView.readNumber();
+        } catch (IllegalArgumentException e) {
+            outputView.print(e.getMessage());
+            getMoney();
+        }
+        Money money = new Money(input);
         outputView.print(PrintMessage.EMPTY);
 
         return money;
@@ -55,14 +64,31 @@ public class Game {
 
     private AnswerLottos getAnswerLottos() {
         outputView.print(PrintMessage.INPUT_ANSWER_LOTTO);
-        Lotto lotto = new Lotto(inputView.readNumbers());
+        List<Integer> input = null;
+        try {
+            input = inputView.readNumbers();
+        } catch (IllegalArgumentException e) {
+            outputView.print(e.getMessage());
+            getAnswerLottos();
+        }
+
+        Lotto lotto = new Lotto(input);
         outputView.print(PrintMessage.EMPTY);
 
+        return new AnswerLottos(lotto, getBonusBall());
+    }
+
+    private BonusBall getBonusBall() {
         outputView.print(PrintMessage.INPUT_BONUS_LOTTO);
-        BonusBall bonusBall = new BonusBall(inputView.readNumber());
+        Integer input = null;
+        try {
+            input = inputView.readNumber();
+        } catch (NumberTypeFormatException e) {
+            outputView.print(e.getMessage());
+            getBonusBall();
+        }
         outputView.print(PrintMessage.EMPTY);
-
-        return new AnswerLottos(lotto, bonusBall);
+        return new BonusBall(input);
     }
 
     private void end(Results results, Money money) {

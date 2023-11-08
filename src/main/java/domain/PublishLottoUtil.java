@@ -23,6 +23,7 @@ public class PublishLottoUtil {
         return lottoCnt;
     }
 
+
     private List<Integer> pickLottoNumbers() {
         List<Integer> uniqueNumbersInRange = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER,
                 Constants.MAX_LOTTO_NUMBER, Constants.LOTTO_NUMBER_CNT);

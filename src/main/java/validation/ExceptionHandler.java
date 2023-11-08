@@ -23,12 +23,12 @@ public class ExceptionHandler {
         String getBonusNumber = Console.readLine();
         int bonusNumber = Integer.parseInt(getBonusNumber);
         validateIfOnlyNumber(getBonusNumber);
-        validateOneToFourtyFive(bonusNumber);
+        validateBonusNumberOneToFourtyFive(bonusNumber);
         validateExistInWinningNumbers(winningNumbers, bonusNumber);
         return bonusNumber;
     }
 
-    private void validateNumberOrComma(String getWinningNumbers) {
+    public void validateWinningNumberNumberOrComma(String getWinningNumbers) {
         for (int i = 0; i < getWinningNumbers.length(); i++) {
             if (!Character.isDigit(getWinningNumbers.charAt(i))
                     && getWinningNumbers.charAt(i) != ',') {
@@ -39,36 +39,36 @@ public class ExceptionHandler {
 
     public void validateMultipleOfThousand(int moneyToBuyLotto) {
         if (moneyToBuyLotto % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로 구매할 수 있습니다. 1000의 배수를 입력해주세요");
+            throw new IllegalStateException("[ERROR] 로또는 1000원 단위로 구매할 수 있습니다. 1000의 배수를 입력해주세요");
         }
     }
 
     public List<Integer> validateWinningNumber() {
         System.out.println(Constants.ENTER_WINNING_NUMBER_MESSAGE);
         String getWinningNumbers = Console.readLine();
-        validateNumberOrComma(getWinningNumbers);
+        validateWinningNumberNumberOrComma(getWinningNumbers);
         List<Integer> winningNumbers = Arrays.stream(getWinningNumbers.split(",")).map(Integer::parseInt)
                 .toList();
         validateOnlySixNumber(winningNumbers);
-        validateNumberOneToFourtyFive(winningNumbers);
-        validateNoSameNumber(winningNumbers);
+        validateWinningNumberOneToFourtyFive(winningNumbers);
+        validateWinningNumberNoSameNumber(winningNumbers);
         return winningNumbers;
     }
 
-    private void validateOneToFourtyFive(int bonusNumber) {
+    public void validateBonusNumberOneToFourtyFive(int bonusNumber) {
         if (bonusNumber < Constants.MIN_LOTTO_NUMBER || Constants.MAX_LOTTO_NUMBER < bonusNumber) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateNoSameNumber(List<Integer> winningNumbers) {
+    public void validateWinningNumberNoSameNumber(List<Integer> winningNumbers) {
         Set<Integer> uniqueWinningNumbers = new HashSet<>(winningNumbers);
         if (uniqueWinningNumbers.size() != winningNumbers.size()) {
             throw new IllegalComponentStateException();
         }
     }
 
-    private void validateNumberOneToFourtyFive(List<Integer> winningNumbers) {
+    public void validateWinningNumberOneToFourtyFive(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
             if (Constants.MIN_LOTTO_NUMBER > winningNumber || Constants.MAX_LOTTO_NUMBER < winningNumber) {
                 throw new NumberFormatException();
@@ -76,13 +76,13 @@ public class ExceptionHandler {
         }
     }
 
-    private void validateOnlySixNumber(List<Integer> winningNumbers) {
+    public void validateOnlySixNumber(List<Integer> winningNumbers) {
         if (winningNumbers.size() > 6) {
             throw new IllegalStateException();
         }
     }
 
-    private void validateExistInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public void validateExistInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalStateException();
         }

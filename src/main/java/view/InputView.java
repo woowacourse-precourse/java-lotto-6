@@ -15,20 +15,20 @@ public class InputView {
     }
 
     public Integer enterPriceToBuy() {
-        String priceToBuy;
         while (true) {
             try {
                 System.out.println(Constants.ENTER_PRICE_TO_BUY_MESSAGE);
-                priceToBuy = Console.readLine().trim();
+                String priceToBuy = Console.readLine().trim();
                 exceptionHandler.validateIfOnlyNumber(priceToBuy);
-                break;
+                int moneyToBuyLotto = Integer.parseInt(priceToBuy);
+                exceptionHandler.validateMultipleOfThousand(moneyToBuyLotto);
+                return moneyToBuyLotto;
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.onlyNumberMessage);
+            } catch (IllegalStateException e){
+                System.out.println(ErrorMessage.enterOnlyMultipleOfThounsandMessage);
             }
         }
-        int moneyToBuyLotto = Integer.parseInt(priceToBuy);
-        exceptionHandler.validateMultipleOfThousand(moneyToBuyLotto);
-        return moneyToBuyLotto;
     }
 
     public int enterBonusNumber(List<Integer> winningNumbers) {

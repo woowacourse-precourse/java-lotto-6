@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 public class UserInputErrorManager {
-    public static LottoTicket getuntilNotInvalidAmount() {
+    public static LottoTicket checkAmount() {
         System.out.println("구입금액을 입력해 주세요.");
 
         int number;
@@ -20,7 +20,7 @@ public class UserInputErrorManager {
         return lottoTicket;
     }
 
-    public static Lotto getuntilNotInvalidLotto() {
+    public static Lotto checkLotto() {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요");
 
@@ -37,7 +37,7 @@ public class UserInputErrorManager {
         return lotto;
     }
 
-    public static Bonus getuntilNotInvalidBonus(Lotto lotto) {
+    public static Bonus checkBonus(Lotto lotto) {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요");
 

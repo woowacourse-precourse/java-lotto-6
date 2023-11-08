@@ -12,7 +12,7 @@ public class ConsoleOutputAdapter implements OutputPort {
     private static final String OUTPUT_RANK_STATISTICS_START = "당첨 통계\n---";
     private static final String OUTPUT_RANK_STATISTICS = "%s개 일치%s (%s원) - %d개";
 
-    private static final String OUTPUT_BONUS_NUMBER = "총 수익률은 %f.2입니다.";
+    private static final String OUTPUT_BONUS_NUMBER = "총 수익률은 %.1f%%입니다.";
 
     public void printLottos(List<Lotto> lottos) {
         System.out.println(String.format(OUTPUT_PURCHASE_AMOUNT, lottos.size()));

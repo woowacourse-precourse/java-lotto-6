@@ -14,13 +14,13 @@ public class RankStatistics {
 
     public RankStatistics(List<Rank> ranks, Integer purchaseAmount) {
         this.rankInfos = getRankInfos(ranks);
-        this.profitRate = (double) getTotalPrize() / purchaseAmount;
+        this.profitRate =  (double) getTotalPrize() / (double) purchaseAmount * 100;
     }
 
     private List<RankInfo> getRankInfos(List<Rank> ranks) {
         Map<Rank, RankInfo> rankInfoMap = new HashMap<>();
         for (Rank rank : Rank.values()) {
-            rankInfoMap.put(rank, new RankInfo(rank, 0, rank.getPrize()));
+            rankInfoMap.put(rank, new RankInfo(rank, 0, 0));
         }
 
         for (Rank rank : ranks) {
@@ -32,9 +32,11 @@ public class RankStatistics {
             }
         }
 
-        return rankInfoMap.values().stream()
+        List<RankInfo> sortedRankInfos = rankInfoMap.values().stream()
                 .sorted(Comparator.comparingInt(rankInfo -> rankInfo.getRank().getMatchBallCount()))
                 .collect(Collectors.toList());
+
+        return sortedRankInfos;
     }
 
 

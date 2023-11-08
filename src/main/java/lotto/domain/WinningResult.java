@@ -77,8 +77,8 @@ public class WinningResult {
      * @param cost 로또를 구매한 총 비용
      * @return 총 수익에서 비용을 나눈 수익률
      */
-    public double calculateEarningsRate(final int cost) {
-        return (getEarnings() / cost) * 100;
+    public double calculateEarningsRate(final Cost cost) {
+        return cost.divided(getEarnings()) * 100;
     }
 
     private double getEarnings() {

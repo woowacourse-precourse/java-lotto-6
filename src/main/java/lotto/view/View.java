@@ -20,6 +20,7 @@ import static lotto.view.ui.Output.printlnResult;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Cost;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningResult;
@@ -46,7 +47,7 @@ public final class View {
         return Validator.validateBonusNumber(enterMessage());
     }
 
-    public static void printWinningResult(WinningResult winningResult, int cost) {
+    public static void printWinningResult(WinningResult winningResult, Cost cost) {
         printlnMessageWithNewLine(WINNING_RESULT_NOTICE);
 
         Arrays.stream(WinningType.values())

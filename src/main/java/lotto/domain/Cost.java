@@ -21,6 +21,10 @@ public class Cost {
         return cost / COST_UNIT.getValue();
     }
 
+    public double divided(double earnings) {
+        return earnings / cost;
+    }
+
     private static class Validator {
         private static int validate(int cost) {
             validateUnit(cost);

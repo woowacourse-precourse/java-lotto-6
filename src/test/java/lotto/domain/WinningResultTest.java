@@ -69,7 +69,7 @@ class WinningResultTest {
     @DisplayName("8000원의 비용으로 로또를 구매하고 1개의 로또가 2등인 경우 수익률은 ")
     void 비용이_8000원이고_1개의_로또가_2등인_경우_수익률을_계산한다() {
         // given
-        int cost = 8000;
+        Cost cost = Cost.from(8000);
 
         Map<WinningType, Integer> result = new EnumMap<>(WinningType.class);
         Arrays.stream(WinningType.values())

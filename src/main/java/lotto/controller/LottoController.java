@@ -31,12 +31,8 @@ public class LottoController {
         return DrawnNumbers.from(dto);
     }
 
-    private void conclude(Lottos lottos, DrawnNumbers drawnNumbers, int cost) {
+    private void conclude(Lottos lottos, DrawnNumbers drawnNumbers, Cost cost) {
         WinningResult winningResult = WinningResult.of(lottos, drawnNumbers);
         View.printWinningResult(winningResult, cost);
-    }
-
-    private int getCountFrom(int cost) {
-        return cost / COST_UNIT.getValue();
     }
 }

@@ -13,7 +13,7 @@ import lotto.request.RequestExecutor;
 
 public class LottoApplication {
     private static final FrontController frontController = new FrontController(new ControllerConfig());
-    private static final List<Request> requests = Arrays.asList(
+    private static final List<Request> requests = List.of(
                 new AskRequest(frontController, Command.INPUT_PURCHASE_AMOUNT),
                 new NonAskRequest(frontController, Command.BUY_LOTTO),
                 new NonAskRequest(frontController, Command.OUTPUT_USER_LOTTO),

@@ -26,7 +26,7 @@ class LottoTest {
     // 아래에 추가 테스트 작성 가능
     @Test
     @DisplayName("우승 로또 번호 생성")
-    void winningLotto() {
+    void generateWinningLotto() {
         List<Integer> winningNumber = List.of(1,2,3,4,5,6);
         assertEquals(new Lotto(winningNumber).getNumbers(),winningNumber);
     }

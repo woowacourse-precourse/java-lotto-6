@@ -12,7 +12,7 @@ public class LottoBuyer {
     public static Integer LOTTO_COUNT;
     public static final Integer LOTTO_PRICE = 1_000;
     private static final String LOTTO_BUY_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String LOTTO_PRICE_ERROR_MESSAGE = "입력한 금액은 로또 한 장 가격(1,000원)의 배수여야 합니다.";
+    private static final String LOTTO_PRICE_ERROR_MESSAGE = "%s 입력한 금액은 로또 한 장 가격(1,000원)의 배수여야 합니다.";
     private static final String LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.";
     public static Integer inputMoney() {
         System.out.println(LOTTO_BUY_MESSAGE);
@@ -23,7 +23,7 @@ public class LottoBuyer {
 
     private static void validateLottoPrice(Integer money) {
         if (money % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(LOTTO_PRICE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(String.format(LOTTO_PRICE_ERROR_MESSAGE,Lotto.ERROR_NOTICE));
         }
     }
 

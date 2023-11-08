@@ -23,9 +23,10 @@ class ResultTest {
     @DisplayName("결과가 주어졌을 때 수익률을 계산할 수 있다.")
     @Test
     void calculateRateOfReturn() {
+        LottoPurchaseMoney lottoPurchaseMoney = new LottoPurchaseMoney(2000);
         Result result = new Result();
         result.put(Ranking.FIFTH);
         result.put(Ranking.FAIL);
-        Assertions.assertThat(result.calculateRateOfReturn()).isEqualTo(2.5);
+        Assertions.assertThat(result.calculateRateOfReturn(lottoPurchaseMoney)).isEqualTo(2.5);
     }
 }

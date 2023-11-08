@@ -11,6 +11,8 @@ import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Ranking;
 import lotto.domain.Result;
+
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,8 +35,8 @@ public class OutputView {
         System.out.println(String.format(LOTTO_FORMAT, numbers));
     }
 
-    public static void printResult(Result result) {
-        result.getResult().entrySet().stream()
+    public static void printResult(EnumMap<Ranking, Integer> result, double rateOfReturn) {
+        result.entrySet().stream()
                 .filter(entry -> entry.getKey() != Ranking.FAIL)
                 .forEach(
                         entry -> {
@@ -43,6 +45,6 @@ public class OutputView {
                             System.out.println(String.format(LOTTO_RESULT_FORMAT, ranking.getDescription(), count));
                         }
                 );
-        System.out.println(String.format(RATE_OF_RETURN_FORMAT, result.calculateRateOfReturn() * 100));
+        System.out.println(String.format(RATE_OF_RETURN_FORMAT, rateOfReturn * 100));
     }
 }

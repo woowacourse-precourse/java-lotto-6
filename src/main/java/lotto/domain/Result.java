@@ -24,9 +24,8 @@ public class Result {
         return result.entrySet().stream().mapToInt(entry -> entry.getKey().getReward() * entry.getValue()).sum();
     }
 
-    public double calculateRateOfReturn() {
-        int lottoPurchaseMoney = result.entrySet().stream().mapToInt(entry -> entry.getValue()).sum() * 1000;
-        return getTotalReward() / (double) lottoPurchaseMoney;
+    public double calculateRateOfReturn(LottoPurchaseMoney lottoPurchaseMoney) {
+        return getTotalReward() / (double) lottoPurchaseMoney.getMoney();
     }
 
 }

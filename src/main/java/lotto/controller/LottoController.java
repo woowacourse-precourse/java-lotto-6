@@ -20,7 +20,7 @@ public class LottoController {
         Lotto winningNumbers = getWinningNumbers();
         BonusNumber bonusNumber = getBonusNumber(winningNumbers);
         Result result = getResult(userLottos, winningNumbers, bonusNumber);
-        OutputView.printResult(result);
+        OutputView.printResult(result.getResult(), result.calculateRateOfReturn(lottoPurchaseMoney));
     }
 
     private Result getResult(Lottos userLottos, Lotto winningNumbers, BonusNumber bonusNumber) {

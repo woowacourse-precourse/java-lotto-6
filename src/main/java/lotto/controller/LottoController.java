@@ -33,14 +33,13 @@ public class LottoController {
             runPrintUserLottoNumbers();
             runInputWinningNumbers();
             runInputBonusNumber();
-            runFindWinningResult();
+            runPrintWinningResult();
             runFindTotalRevenue();
     }
 
     private void runInputPurchaseAmount() {
         try {
             outputView.printPurchaseAmountMessage();
-
             purchaseAmount = new PurchaseAmount(Integer.parseInt(inputView.input()));
         } catch (NumberFormatException e) {
             outputView.printException(VALUE_IS_NOT_CONVERT_INTEGER.getMessage());
@@ -90,24 +89,27 @@ public class LottoController {
         }
     }
 
-    private void runFindWinningResult() {
+    private void runPrintWinningResult() {
         outputView.printWinningResultMessage();
         outputView.printLineSymbol();
+        runFindWinningResult();
 
+        for (Map.Entry<WinningResultConfig, Integer> lottoResult : lottoResults.entrySet()) {
+            if (lottoResult.getKey().getResultStatus().contains("보너스 볼")) {
+                outputView.printWinningBonusResult(lottoResult.getKey().getResultStatus().split(",")[0],
+                        lottoResult.getKey().getResultStatus().split(",")[1],
+                        lottoResult.getKey().getRevenueStatus(),
+                        lottoResult.getValue());
+                continue;
+            }
+            outputView.printWinningResult(lottoResult.getKey(), lottoResult.getValue());
+        }
+    }
+
+    private void runFindWinningResult() {
         try {
             lottoService = new LottoService(userLotto.getUserLottoNumbers(), lotto.getWinningNumbers(), bonusLotto.getBonusNumber());
             lottoResults = lottoService.findWinningResult();
-
-            for (Map.Entry<WinningResultConfig, Integer> lottoResult : lottoResults.entrySet()) {
-                if (lottoResult.getKey().getResultStatus().contains("보너스 볼")) {
-                    outputView.printWinningBonusResult(lottoResult.getKey().getResultStatus().split(",")[0],
-                            lottoResult.getKey().getResultStatus().split(",")[1],
-                            lottoResult.getKey().getRevenueStatus(),
-                            lottoResult.getValue());
-                    continue;
-                }
-                outputView.printWinningResult(lottoResult.getKey(),lottoResult.getValue());
-            }
         } catch (NullPointerException e) {
             throw new NullPointerException(e.getMessage());
         }

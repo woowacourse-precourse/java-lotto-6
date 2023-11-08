@@ -40,7 +40,28 @@
 ```
 총 수익률은 62.5%입니다.
 ```
+## 따로 생각한 예외
+로또 입력 금액을 100000(십만원)으로 지정했습니다. 실제 로또 구입 시 최대로 살 수 있는 금액입니다.
 
+## 모델
+- PurchaseAmount
+  - 구입금액을 저장하는 모델_int
+- UserLotto
+  - 사용자 복권 번호를 저장하는 모델_List<List<Integer>>
+- Lotto
+  - 당첨 번호를 저장하는 모델_List<Integer>
+- BonusLotto
+  - 보너스 번호를 저장하는 모델_int
+- WinningResult
+  - WinningResultConfig, List<Result>
+- Result
+  - 사용자 복권 번호_List<>, 당첨 번호와 일치수_int, 보너스 여부_String 를 저장하는 모델
+- Revenue
+  - 총 수익률을 저장하는 모델_double
+
+## Config
+- WinningResultConfig
+  - ("3", 5000)과 같은 당첨 통계의 정보를 저장하는 모델 
 ## 기능 목록
 - View
   - inputView
@@ -55,15 +76,50 @@
     - “—-”를 출력하는 기능
     - 당첨 내역을 출력하는 기능
     - 수익률을 출력하는 기능
-    - [ERROR] %d를 더 입력했습니다. 1000단위로 입력해 주세요. 출력하는 기능
-    - [ERROR] 1000단위 숫자를 입력해 주세요. 출력하는 기능
-    - [ERROR] 로또 번호는 1부터 45 사이의 숫자를 입력해 주세요. 출력하는 기능
-- Validator
-  - 입력 받은 돈의 단위가 1000으로 나누어져야 함
-  - 입력 받은 돈이 1 이상의 숫자형 이어야 함
-  - 입력 받은 로또 번호가 1 ~ 45 사이의 숫자여야 함
+    - 에러를 출력하는 기능 
+
+
+- Message
+  - [ERROR] 구입금액 값은 %d ~ %d 사이 숫자여야 합니다.
+  - [ERROR] 구입금액 값은 %d단위 숫자여야 합니다.
+  - [ERROR] 당첨 번호 값은 %d ~ %d 사이 숫자여야 합니다.
+  - [ERROR] 당첨 번호는 %d자리 여야 합니다.
+  - [ERROR] 당첨 번호가 중복 입니다.
+  - [ERROR] 보너스 번호가 중복 입니다.
+  - [ERROR] 입력 값을 정수로 바꿀 수 없습니다. 정수로 입력해 주세요.
+  - [ERROR] Null
+
+
+- Model
+  - PurchaseAmount
+    - 입력 받은 돈의 단위가 1000으로 나누어지는지 확인(validate)
+    - 입력 받은 돈이 1000 ~ 100000 사이 숫자인지 확인(validate)
+    - 입력 받은 구입 금액을 통해 로또 수량을 구하는 기능
+  - UserLotto
+    - 생성한 user의 로또 번호를 오름차순으로 정렬하는 기능
+    - 6가지 1~45 사이의 다른 랜덤 값을 로또 수량에 맞춰 구하는 기능
+  - Lotto
+    - 입력 받은 돈이 숫자형인지 확인(validate)
+    - 입력 받은 로또 번호가 1 ~ 45 사이 숫자인지 확인(validate)
+    - 입력 받은 로또 번호가 6자리인지 확인(validate)
+  - BonusLotto
+    - 입력 받은 보너스 번호가  1~45 사이 숫자인지 확인(validate)
+    - 입력 받은 보너스 번호가 중복인지 확인(validate)
+  - Result
+    - 사용자의 복권 숫자, 당첨 복권과 일치수, 보너스 정보를 담는 기능
+  - WinningResult
+    - WinningResultConfig enum을 객체에 담는 기능
+    - Result(usrNumbers, equalCount, bonus)를 WinningResult 객체에 더하는 기능
+  - WinningResultConfig
+    - Result의 당첨 복권과 일치수, Result의 보너스 정보를 통해 enum과 비교를 통해 WinningResultConfig 반환하는 기능
+  - Revenue 
+    - 총 수익률을 구하는 기능
+    - 반올림 하는 기능
+    
+
 - Service
-  - 입력 받은 구입 금액을 통해 로또 수량을 구하는 기능
-  - 6가지 1~45 사이의 다른 랜덤 값을 로또 수량에 맞춰 구하는 기능
-  - 당첨 번호+ 보너스 번호를 통해 당첨 통계를 구하는 기능
-  - 총 수익률을 구하는 기능
+  - 당첨 번호와 사용자의 복권 번호를 비교해 일치하는 개수를 구하는 기능
+  - 일치수가 5일 때, 보너스 번호와 사용자를 통해 보너스 여부를 구하는 기능
+  - 사용자 복권 정보와, 일치수, 보너스 여부를 Result()에 넘겨 객체 생성하는 기능
+  - Result 객체 중 일치수가 3개 이상인 것만 WinningResult()에 넘겨주는 기능
+  - WinningResultConfig에 맞는 Result 개수를 Map 형변환해서 controller에서 넘겨주는 기능

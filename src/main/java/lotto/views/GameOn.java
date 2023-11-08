@@ -14,9 +14,9 @@ public class GameOn {
         return inputLine;
     }
 
-    public String moreCase(){
+    public int moreCase(){
         System.out.println("보너스 번호를 입력해 주세요.");
-        String inputLine = scan.nextLine();
+        int inputLine = scan.nextInt();
 
         return inputLine;
     }

@@ -15,6 +15,7 @@ public class MainController {
     private final GameOn gameOn;
     private final GameEnd gameEnd;
 
+    private static int specialBall=0;
     private static int paperSize = 0;
 
     List<Lotto> lottoes = new ArrayList<Lotto>();
@@ -58,6 +59,9 @@ public class MainController {
         StringTokenizer stringTokenizer = new StringTokenizer(resultLine, token);
 
         ArrayList<Integer> resultList = new ArrayList<>();
+        if(stringTokenizer.countTokens()>6){
+            throw new IllegalArgumentException("[Error] 입력 가능한 로또 정답 수를 초과했습니다.");
+        }
         while (stringTokenizer.hasMoreTokens()) {
             int thisToken = Integer.valueOf(stringTokenizer.nextToken());
             resultList.add(thisToken);
@@ -68,12 +72,19 @@ public class MainController {
             int howMany = goal.howMany(lotto.getNumbers());
             int temp = collectNum.get(howMany);
 
+            if (howMany==5){
+                int newNumber=gameOn.moreCase();
+                if (goal.isContained(newNumber)) {
+                    specialBall+=1;
+                    continue;
+                }
+            }
             collectNum.set(howMany, temp + 1);
         }
     }
 
     public void endGame() {
-        gameEnd.showResult(collectNum, price);
+        gameEnd.showResult(collectNum, price, specialBall);
 
         int profit = 0;
         for (int i = 3; i < 7; i++) {
@@ -85,10 +96,14 @@ public class MainController {
             }
             if (i == 5) {
                 profit += 150000 * collectNum.get(i);
+
             }
             if (i == 6) {
                 profit += 2000000000 * collectNum.get(i);
             }
+        }
+        if(specialBall>0){
+            profit+= 30000000*specialBall;
         }
         double percent=(profit-paperSize)/paperSize;
 

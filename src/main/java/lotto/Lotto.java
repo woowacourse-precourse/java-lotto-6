@@ -22,12 +22,18 @@ public class Lotto {
         }
         return howMany;
     }
+    public boolean isContained(int n){
+        if(numbers.contains(n)){
+            return true;
+        }
+        return false;
+    }
     public int isContained(int n, int value) {
         if (numbers.contains(n)) {
             value++;
             return value;
         }
-        else return value;
+        return value;
     }
 
     private void validate(List<Integer> numbers) {

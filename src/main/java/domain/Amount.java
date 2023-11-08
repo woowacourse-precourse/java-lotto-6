@@ -26,10 +26,6 @@ public class Amount {
         }
     }
 
-    public long getAmount() {
-        return amount;
-    }
-
     public Amount calculateModAmountByUnitAmount(Amount amount) {
         return new Amount(this.amount % amount.amount);
     }

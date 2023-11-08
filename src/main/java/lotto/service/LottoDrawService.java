@@ -1,17 +1,17 @@
 package lotto.service;
 
-import java.util.List;
 import lotto.constants.LottoRankConstants;
 import lotto.dto.Lotto;
 import lotto.dto.LottoRanks;
+import lotto.dto.Lottos;
 import lotto.dto.WinningLotto;
 
 public class LottoDrawService {
     LottoRanks lottoRanks = new LottoRanks();
 
-    public LottoRanks evaluateRanks(WinningLotto winningLotto, List<Lotto> purchasedLottos) {
+    public LottoRanks evaluateRanks(WinningLotto winningLotto, Lottos purchasedLottos) {
         Comparator comparator = new Comparator(winningLotto);
-        for (Lotto purchasedLotto : purchasedLottos) {
+        for (Lotto purchasedLotto : purchasedLottos.lottos()) {
             LottoRankConstants rank = comparator.compareWithWinningLotto(purchasedLotto);
             storeRank(rank);
         }

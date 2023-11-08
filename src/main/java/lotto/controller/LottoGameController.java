@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.constants.LottoRankConstants;
 import lotto.dto.Lotto;
 import lotto.dto.LottoRanks;
+import lotto.dto.Lottos;
 import lotto.dto.WinningLotto;
 import lotto.service.LottoDrawService;
 import lotto.service.PurchaseService;
@@ -26,7 +27,7 @@ public class LottoGameController {
 
         LottoRanks lottoRanks = getRanks(
                 new WinningLotto(winningLotto, bonusNumber),
-                purchasedLottos
+                new Lottos(purchasedLottos)
         );
         int winningAmount = getWinningAmount();
         displayWinningResult(lottoRanks);
@@ -58,7 +59,7 @@ public class LottoGameController {
         return purchaseService.purchaseLottoForCount(countOfPurchasable);
     }
 
-    private LottoRanks getRanks(WinningLotto winningLotto, List<Lotto> purchasedLottos) {
+    private LottoRanks getRanks(WinningLotto winningLotto, Lottos purchasedLottos) {
         return lottoDrawService.evaluateRanks(winningLotto, purchasedLottos);
     }
 

@@ -8,7 +8,7 @@ public enum ErrorMessage {
     LOTTO_NUMBER_COUNT_INVALID("로또 번호의 개수가 유효하지 않습니다."),
     LOTTO_NUMBER_CONTAINS_DUPLICATED_NUMBER("로또 번호에 중복되는 숫자가 있습니다."),
     LOTTO_NUMBER_OUT_OF_RANGE("로또에 사용되는 숫자 범위를 벗어났습니다."),
-    WINNING_NUMBER_CONTAINS_BONUS_NUMBER("보너스 번호가 당첨 번호에 포함되어 있습니다.");
+    BONUS_NUMBER_CONTAINED_WINNING_NUMBER("보너스 번호가 당첨 번호에 포함되어 있습니다.");
 
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] %s";
 

@@ -1,5 +1,6 @@
 package view;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import message.InformationMessages;
@@ -39,6 +40,7 @@ public class OutputView {
         }
         if (prize.getBonus()) {
             branchBonus(lottoPrize, prize);
+            return;
         }
         if (lottoPrize.isWinning(prize)) {
             printWinning(prize, lottoPrize.getWinningCount(prize));

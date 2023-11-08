@@ -43,7 +43,7 @@ public class WinningNumbers{
         if (filteredNumbers.size() < numbers.length){
             throw new IllegalArgumentException(LottoExceptions.InputTypeError.getErrorMessage());
         }
-        if (filteredNumbers.size() < Constants.DRAW_COUNT){
+        if (filteredNumbers.size() != Constants.DRAW_COUNT){
             throw new IllegalArgumentException(LottoExceptions.InvalidCountError.getErrorMessage());
         }
         List<Integer> finalNumbers = filteredNumbers.stream().map(num -> Integer.parseInt(num.trim())).toList();

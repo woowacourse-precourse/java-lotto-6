@@ -39,17 +39,8 @@ public class Buyer {
 
     public void printLottos() {
 
-        StringBuilder sb = new StringBuilder();
-
-        for(Lotto lotto : lottos) {
-            List<Integer> lottoNumbers = lotto.getNumbers();
-            sb.append("[");
-            for(int i=0; i<LOTTO_NUMBER_SIZE-1; i++) {
-                sb.append(lottoNumbers.get(i) + ", ");
-            }
-            sb.append(lottoNumbers.get(lottoNumbers.size()));
-            sb.append("]");
-            sb.toString();
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
     }
     

@@ -11,7 +11,7 @@ public class InvalidConstant {
     // 구매 금액
     public static final String INVALID_INPUT_FORMAT = "숫자를 입력해주세요.";
     public static final String INVALID_THOUSAND_UNIT = "구입 금액은 1,000원 단위로 입력해야 합니다.";
-    public static final String INVALID_INPUT_RANGE = "구입 금액은 1,000원 이상 입력해야 합니다.";
+    public static final String INVALID_INPUT_RANGE = "구입 금액은 1,000원 이상 21억 이하로 입력해야 합니다.";
 
     // 로또 당첨 번호
     public static final String INVALID_UNIQUE_WINNING_NUMBERS = "입력한 로또 당첨 번호 중 중복된 숫자가 존재합니다.";

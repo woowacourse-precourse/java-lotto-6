@@ -1,11 +1,14 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import org.junit.jupiter.api.condition.DisabledOnOs;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -46,4 +49,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 객체가 잘 만들어지나")
+    @Test
+    void createLotto(){
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+        Lotto lotto = new Lotto(numbers);
+
+        assertThat(lotto.getNumbers()).containsExactly(1,2,3,4,5,6);
+
+    }
 }

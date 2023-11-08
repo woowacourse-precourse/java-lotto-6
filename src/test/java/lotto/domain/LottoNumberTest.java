@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.stream.IntStream;
+import lotto.exception.OutOfLottoNumberRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +16,7 @@ public class LottoNumberTest {
     @DisplayName("로또 번호의 범위를 벗어난 값으로 로또 번호를 생성하면 예외가 발생한다.")
     @ValueSource(ints = {-45, -1, 0, 46, 99})
     void createLottoNumberOutOfRange(int value) {
-        assertThrows(IllegalArgumentException.class, () -> new LottoNumber(value));
+        assertThrows(OutOfLottoNumberRangeException.class, () -> new LottoNumber(value));
     }
 
     @Test

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import lotto.dto.LottoStatisticsResult;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.exception.ImpossibleAmountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,7 +19,7 @@ public class LottoWinningStatisticsTest {
     @Test
     @DisplayName("불가능한 금액을 입력할 시 예외가 발생한다.")
     void calculateStatisticsByImpossibleAmount() {
-        assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(ImpossibleAmountException.class, () ->
                 lottoWinningStatistics.calculateStatistics(new Amount(-1_000),
                         List.of(LottoWinningTier.FIRST_TIER)));
     }

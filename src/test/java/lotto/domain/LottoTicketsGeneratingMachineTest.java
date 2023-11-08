@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.dto.LottoTickets;
+import lotto.exception.NotPositiveLottoTicketsSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,7 +17,7 @@ public class LottoTicketsGeneratingMachineTest {
     @DisplayName("로또 티켓 개수가 양수가 아닐 경우 예외가 발생한다.")
     @ValueSource(ints = {-1, 0})
     void createLottoTicketsNotPositiveInitSize(int initSize) {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(NotPositiveLottoTicketsSizeException.class,
                 () -> lottoTicketsGeneratingMachine.generateRandomLottoTickets(new TicketSize(initSize)));
     }
 

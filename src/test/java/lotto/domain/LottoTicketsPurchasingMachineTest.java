@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import lotto.dto.Bill;
 import java.util.stream.Stream;
 import lotto.exception.ImpossibleAmountException;
+import lotto.exception.NotCorrectUnitAmountException;
 import lotto.exception.NotPositivePurchaseAmountException;
+import lotto.exception.OverMaxPurchaseAmountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,14 +37,14 @@ public class LottoTicketsPurchasingMachineTest {
     @DisplayName("로또 금액으로 구매 금액 단위에 맞지 않는 수를 지불하면 예외가 발생한다.")
     @ValueSource(ints = {1, 11, 111, 1_111, 11_111})
     void purchaseOfLottoTicketsNotCorrectUnitAmount(int amount) {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(NotCorrectUnitAmountException.class,
                 () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(amount));
     }
 
     @Test
     @DisplayName("최대치를 넘는 금액을 입력하면 예외가 발생한다.")
     void purchaseOfLottoTicketsOverMaxAmount() {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(OverMaxPurchaseAmountException.class,
                 () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(Integer.MAX_VALUE));
     }
 

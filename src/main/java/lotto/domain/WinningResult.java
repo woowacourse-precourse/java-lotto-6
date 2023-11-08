@@ -20,6 +20,8 @@ public class WinningResult {
         return winning;
     }
 
+//    public String
+
     public int getMatchCount() {
         return matchCount;
     }

@@ -1,7 +1,6 @@
 package lotto.controller.result;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.controller.Controller;
 import lotto.domain.Money;
 import lotto.domain.WinningResult;
@@ -9,6 +8,7 @@ import lotto.service.UserService;
 import lotto.service.WinningLottoService;
 import lotto.view.BasicView;
 import lotto.view.View;
+import lotto.view.WinningResultView;
 
 public class WinningResultController implements Controller {
     private final WinningLottoService winningLottoService;
@@ -30,6 +30,6 @@ public class WinningResultController implements Controller {
 
         double rateOfReturn = userService.calculateRateOfReturn(totalProfit);
 
-        return new BasicView();
+        return new WinningResultView(winningResults, rateOfReturn);
     }
 }

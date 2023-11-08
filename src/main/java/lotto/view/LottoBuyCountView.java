@@ -1,7 +1,7 @@
 package lotto.view;
 
 public class LottoBuyCountView implements View {
-    private final String OUTPUT = "%d개를 구매하였습니다.";
+    private final String OUTPUT = "%d개를 구매했습니다.";
     private final int buyCount;
 
     public LottoBuyCountView(int buyCount) {

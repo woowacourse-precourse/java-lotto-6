@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.text.DecimalFormat;
 
-public class Money {
+public class Money implements Comparable<Money> {
     public static final Money ZERO = new Money(0);
 
     public Integer getAmount() {
@@ -34,5 +34,15 @@ public class Money {
 
     public double calculateRateOfReturn(Money finalAmount) {
         return ((finalAmount.amount - amount) / (double)amount) * 100;
+    }
+
+    public String formatWithCommas() {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(amount);
+    }
+
+    @Override
+    public int compareTo(Money money) {
+        return amount - money.amount;
     }
 }

@@ -38,12 +38,16 @@ public class LottoLogic implements Logic {
 
         List ranks = controller.getTotalRanking(winningNumbers, bonusNumber);
         view.printScoreDetails(ranks);
-        view.printTotalReturn(((float) getTotalRewards(ranks) / (float) payment) * 100);
+        view.printTotalReturn(getTotalReturn(payment, ranks));
     }
 
     private int getTotalRewards(List<Ranking> rankings) {
         return rankings.stream()
                 .mapToInt(rank -> rank.getReward())
                 .sum();
+    }
+
+    private float getTotalReturn(int payment, List ranks) {
+        return ((float) getTotalRewards(ranks) / (float) payment) * 100;
     }
 }

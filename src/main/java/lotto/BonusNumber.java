@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class BonusNumber extends LottoNumber{
 

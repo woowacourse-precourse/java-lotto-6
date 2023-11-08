@@ -7,7 +7,7 @@ public class Output {
         LOTTO_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
         WIN_STATISTICS("당첨 통계"),
         SEPERATION_LINE("---"),
-        TOTAL_PROFIT_RATING("총 수익률은 %f입니다."),
+        TOTAL_PROFIT_RATING("총 수익률은 %.1f%%입니다."),
         FIFTH_RANKING("3개 일치 (5,000원) - %d개%n"),
         FOURTH_RANKING("4개 일치 (50,000원) - %d개%n"),
         THIRD_RANKING("5개 일치 (1,500,000원) - %d개%n"),

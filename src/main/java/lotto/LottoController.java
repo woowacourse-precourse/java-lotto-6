@@ -17,21 +17,28 @@ public class LottoController {
     public LottoController() {
         buyLotto();
         showLotto();
-        inputLottoNumber();
+        inputLottoWinNumber();
+        inputLottoBonusNumber();
         aggregateWinResult();
         showWinResult();
         showProfit();
     }
 
     private void buyLotto() {
-        Output.printBuyAmount();
-        this.buyAmount = new BuyAmount(Input.user());
-        List<Lotto> lottos = new ArrayList<>();
-        for(int i = START; i < buyAmount.getBuyCount(); i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            lottos.add(lotto);
+        try {
+            Output.printBuyAmount();
+            this.buyAmount = new BuyAmount(Input.user());
+            List<Lotto> lottos = new ArrayList<>();
+            for(int i = START; i < buyAmount.getBuyCount(); i++) {
+                Lotto lotto = new Lotto(new ArrayList<>(Randoms.
+                        pickUniqueNumbersInRange(1, 45, 6)));
+                lottos.add(lotto);
+            }
+            this.lottos = new Lottos(lottos);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            buyLotto();
         }
-        this.lottos = new Lottos(lottos);
 
     }
 
@@ -47,13 +54,28 @@ public class LottoController {
         }
     }
 
-    private void inputLottoNumber() {
-        Output.printLottoWinNumber();
-        String winNumberInput = Input.user();
-        this.winNumbers = new WinNumbers(winNumberInput.split(","));
-        Output.printLottoBonusNumber();
-        String bonusNumberInput = Input.user();
-        this.bonusNumber = new BonusNumber(bonusNumberInput);
+    private void inputLottoWinNumber() {
+        try{
+            Output.printLottoWinNumber();
+            String winNumberInput = Input.user();
+            this.winNumbers = new WinNumbers(winNumberInput.split(","));
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            inputLottoWinNumber();
+        }
+
+    }
+
+    private void inputLottoBonusNumber() {
+        try{
+            Output.printLottoBonusNumber();
+            String bonusNumberInput = Input.user();
+            this.bonusNumber = new BonusNumber(bonusNumberInput);
+        } catch(IllegalStateException | IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputLottoBonusNumber();
+        }
+
     }
 
     private void aggregateWinResult() {

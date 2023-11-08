@@ -12,7 +12,6 @@ import static lotto.UserInputHandler.requestInputForBonusNumber;
 import static lotto.UserInputHandler.requestInputForWinningNumbers;
 import static lotto.UserInputHandler.requestPurchaseAmount;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -31,12 +30,13 @@ public class Application {
         }
 
         requestInputForWinningNumbers();
-        ArrayList<Integer> winningNumbers = inputWinningNumbers();
+        Lotto lotto = inputWinningNumbers();
+
         requestInputForBonusNumber();
-        int bonusNumber = inputBonusNumber(winningNumbers);
+        Bonus bonus = inputBonusNumber(lotto);
 
         printResultSubject();
-        WinnerStatsData data = getLottoResult(numbers, winningNumbers, bonusNumber);
+        WinnerStatsData data = getLottoResult(numbers, lotto.getNumbers(), bonus.getBonusNumber());
         printStats(data);
         double ratePerReturn = calculateReturnRate(data, purchaseQuantity * 1000);
         System.out.println("총 수익률은 " + ratePerReturn + "%입니다.");

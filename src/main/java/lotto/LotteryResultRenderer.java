@@ -10,26 +10,27 @@ public class LotteryResultRenderer {
         System.out.println("---");
     }
 
-    public static WinnerStatsData getLottoResult(List<List<Integer>> usernumbers, ArrayList<Integer> winnerNumbers, int bonusNumber) {
+    public static WinnerStatsData getLottoResult(List<List<Integer>> userNumbers, List<Integer> winnerNumbers,
+        int bonusNumber) {
         WinnerStatsData data = new WinnerStatsData();
 
-        for (int i = 0; i < usernumbers.size(); i++) {
-            List<Integer> usernumber = usernumbers.get(i);
-            WinningMatchCase c = matchOneLine(usernumber, winnerNumbers, bonusNumber);
+        for (int i = 0; i < userNumbers.size(); i++) {
+            List<Integer> userNumber = userNumbers.get(i);
+            WinningMatchCase c = matchOneLine(userNumber, winnerNumbers, bonusNumber);
 
-            if(WinningMatchCase.MATCH_3_NUMBER.equals(c)) {
+            if (WinningMatchCase.MATCH_3_NUMBER.equals(c)) {
                 data.increaseMatch3Numbers();
             }
-            if(WinningMatchCase.MATCH_4_NUMBER.equals(c)) {
+            if (WinningMatchCase.MATCH_4_NUMBER.equals(c)) {
                 data.increaseMatch4Numbers();
             }
-            if(WinningMatchCase.MATCH_5_NUMBER.equals(c)) {
+            if (WinningMatchCase.MATCH_5_NUMBER.equals(c)) {
                 data.increaseMatch5Numbers();
             }
-            if(WinningMatchCase.MATCH_6_NUMBER.equals(c)) {
+            if (WinningMatchCase.MATCH_6_NUMBER.equals(c)) {
                 data.increaseMatch6Numbers();
             }
-            if(WinningMatchCase.MATCH_5A_NUMBER.equals(c)) {
+            if (WinningMatchCase.MATCH_5A_NUMBER.equals(c)) {
                 data.increaseMatch5NumbersWithBonus();
             }
 
@@ -39,21 +40,21 @@ public class LotteryResultRenderer {
     }
 
 
-    public static WinningMatchCase matchOneLine(List<Integer> usernumber, ArrayList<Integer> winnerNumbers, int bonusNumber) {
-        int matchcount = 0;
-        for (int j = 0; j < usernumber.size(); j++) {
-            int num = usernumber.get(j);
+    public static WinningMatchCase matchOneLine(List<Integer> userNumber, List<Integer> winnerNumbers,
+        int bonusNumber) {
+        int matchCount = 0;
+        for (int j = 0; j < userNumber.size(); j++) {
+            int num = userNumber.get(j);
             if (winnerNumbers.contains(num)) {
-                matchcount++;
+                matchCount++;
             }
         }
 
-        if (matchcount == 5 && usernumber.contains(bonusNumber)) {
+        if (matchCount == 5 && userNumber.contains(bonusNumber)) {
             return WinningMatchCase.MATCH_5A_NUMBER;
         }
 
-
-        return WinningMatchCase.getcase(matchcount);
+        return WinningMatchCase.getcase(matchCount);
     }
 
     public static void printStats(WinnerStatsData data) {
@@ -65,11 +66,11 @@ public class LotteryResultRenderer {
     }
 
     public static double calculateReturnRate(WinnerStatsData data, int totalSale) {
-        int totalMoneyForWinner = data.getMatch3Numbers() * 5000 + data.getMatch4Numbers() * 50000 + data.getMatch5Numbers() * 1500000
-                + data.getMatch6Numbers() * 2000000000 + data.getMatch5NumbersWithBonus() * 30000000;
-        float a =  ((float) totalMoneyForWinner / totalSale) * 100;
-        double aa = Math.round(a * 100.0) / 100.0;
-        return aa;
+        int totalMoneyForWinner = data.getMatch3Numbers() * 5000 + data.getMatch4Numbers() * 50000
+            + data.getMatch5Numbers() * 1500000 + data.getMatch6Numbers() * 2000000000
+            + data.getMatch5NumbersWithBonus() * 30000000;
+        float fullRate = ((float) totalMoneyForWinner / totalSale) * 100;
+        return Math.round(fullRate * 100.0) / 100.0;
     }
 
 }

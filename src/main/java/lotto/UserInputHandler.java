@@ -31,16 +31,15 @@ public class UserInputHandler {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public static ArrayList<Integer> inputWinningNumbers() {
+    public static Lotto inputWinningNumbers() {
         while (true) {
 
             try {
+
                 String winning = Console.readLine();
                 ArrayList<String> winningNum = new ArrayList(Arrays.asList(winning.split(",")));
-                checkWinningNumbersValidity(winningNum);
                 ArrayList<Integer> intNumList = removeEmptySpaceWithParseInt(winningNum);
-
-                return intNumList;
+                return new Lotto(intNumList);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -66,14 +65,14 @@ public class UserInputHandler {
     }
 
 
-    public static int inputBonusNumber(ArrayList<Integer> winningNumbers) {
+    public static Bonus inputBonusNumber(Lotto lotto) {
         while (true) {
 
             try {
                 String bonusNum = Console.readLine();
                 bonusNum = bonusNum.replace(" ", "");
-                checkBonusNumber(bonusNum, winningNumbers);
-                return Integer.parseInt(bonusNum);
+                Integer bonusNumber = Integer.parseInt(String.valueOf(bonusNum));
+                return new Bonus(bonusNumber, lotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

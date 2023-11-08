@@ -1,22 +1,19 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExceptionHandler {
 
-    public static void checkWinningNumbersValidity(ArrayList<String> winningNumbers) {
+    public static void checkWinningNumbersValidity(List<Integer> winningNumbers) {
 
         ArrayList<Integer> duplication = new ArrayList<>();
 
         for (int i = 0; i < winningNumbers.size(); i++) {
-            String some = winningNumbers.get(i);
+            int some = winningNumbers.get(i);
             int winningNumber = -1;
 
-            try {
-                winningNumber = Integer.parseInt(String.valueOf(some));
-            }catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");
-            }
+            winningNumber = Integer.parseInt(String.valueOf(some));
 
             if (winningNumber > 45 || winningNumber < 1) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -41,14 +38,7 @@ public class ExceptionHandler {
         }
     }
 
-    public static void checkBonusNumber(String bonusNum, ArrayList<Integer> winningNumbers) {
-        int bonus = -1;
-
-        try {
-            bonus = Integer.parseInt(String.valueOf(bonusNum));
-        }catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자여야 합니다.");
-        }
+    public static void checkBonusNumber(Integer bonus, List<Integer> winningNumbers) {
 
         if (bonus > 45 || bonus <= 0) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");

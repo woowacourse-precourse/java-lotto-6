@@ -29,16 +29,17 @@ public class WinningResult {
     }
 
     public void addResults(int numberOfMatches, boolean bonusNumberMatches) {
-        if (numberOfMatches == 6) {
-            numberOfFirst++;
-        } else if (numberOfMatches == 5 && bonusNumberMatches) {
-            numberOfSecond++;
-        } else if (numberOfMatches == 5) {
-            numberOfThird++;
-        } else if (numberOfMatches == 4) {
-            numberOfFourth++;
-        } else if (numberOfMatches == 3) {
-            numberOfFifth++;
+        int[] matchCounts = new int[7];
+        //매치 수에 따라 배열에 저장
+        matchCounts[numberOfMatches]++;
+        if (numberOfMatches == 5 && bonusNumberMatches) {
+            matchCounts[5]--; // 보너스 번호 일치시 5 매치 중복 감소
+            matchCounts[6]++; // 6 매치 증가
         }
+        numberOfFirst = matchCounts[6];
+        numberOfSecond = matchCounts[5] - matchCounts[6];
+        numberOfThird = matchCounts[5];
+        numberOfFourth = matchCounts[4];
+        numberOfFifth = matchCounts[3];
     }
 }

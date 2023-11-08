@@ -43,7 +43,7 @@ public class LottoService {
     }
 
     private void printQuantity(Player player) {
-        outputView.printCount(player.getQuantity());
+        outputView.printCount(player.getQuantity(), player.getChange());
     }
 
     private void printLottos(Lottos lottos) {
@@ -89,10 +89,10 @@ public class LottoService {
     }
 
     private void accordStatistic(WinningLotto winningLotto) {
-        outputView.printResult(winningLotto);
+        outputView.printResult(winningLotto.getMatch());
     }
 
     public void totalPercent() {
-        outputView.printTotal(player);
+        outputView.printTotal(player.getPercent());
     }
 }

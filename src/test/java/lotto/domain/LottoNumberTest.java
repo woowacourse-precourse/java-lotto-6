@@ -11,8 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("로또 숫자 테스트")
 class LottoNumberTest {
-    // 로또 번호 숫자 범위 아닌 값 입력하면 예외 처리
-
     @ParameterizedTest(name = "[{index}] 공백 입력 예외 발생")
     @EmptySource
     void 공백_입력_예외_발생(String blank) {

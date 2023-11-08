@@ -17,6 +17,7 @@
   - [x] 몇 개의 번호가 일치하는지 비교한다. -> Judge#compareWinningNumber()
   - [x] 보너스 번호와 일치하는지 비교한다. -> Judge#compareBonusNumber()
 - [x] 당첨 내역을 출력한다. -> Printer#showResult()
+- [ ] 총 당첨 금액을 계산한다. -> Judge#calculatePrizeMoney()
 - [ ] 수익률을 계산한다. -> Judge#calculateProfit()
 - [ ] 수익률을 출력한다. -> Printer#showProfit()
 

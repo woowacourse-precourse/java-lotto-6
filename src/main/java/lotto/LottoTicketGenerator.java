@@ -8,9 +8,9 @@ public class LottoTicketGenerator {
     LottoTicketGenerator() {
     }
 
-    public Lottos generate(Payment payment) {
-        int count = calculateNumberOfLottoTickets(payment);
-        System.out.println("\n" + count + "개를 구매했습니다.");
+    public Lottos generate(Amount amount) {
+        int count = calculateNumberOfLottoTickets(amount);
+        System.out.printf((LottoStringFormat.LOTTO_BUY_COUNT_FORMAT) + "%n", count);
 
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -21,7 +21,7 @@ public class LottoTicketGenerator {
         return new Lottos(lottoTickets);
     }
 
-    private int calculateNumberOfLottoTickets(Payment payment) {
-        return payment.getValue() / Lotto.PRICE;
+    private int calculateNumberOfLottoTickets(Amount amount) {
+        return amount.getValue() / Lotto.PRICE;
     }
 }

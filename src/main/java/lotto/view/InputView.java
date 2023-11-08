@@ -14,18 +14,20 @@ import static lotto.view.InputValidator.*;
 
 public class InputView {
 
-    public static void payForLottery() {
+    public static Buyer payForLottery() {
         System.out.println(BUY_LOTTERY_INPUT);
         try {
             int paymentNumber = getPaymentNumber();
             int ticketCount = calculateTicketCount(paymentNumber);
             Buyer buyer = new Buyer(paymentNumber, ticketCount);
             printTickets(buyer);
+            return buyer;
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 
     public static Lotto inputWinningNum() {

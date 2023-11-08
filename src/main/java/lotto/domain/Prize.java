@@ -1,7 +1,6 @@
 package lotto.domain;
 
 public enum Prize {
-
     THREE_MATCH(1, "3개 일치 (5,000원) - ", 5000),
     FOUR_MATCH(2, "4개 일치 (50,000원) - ", 50000),
     FIVE_MATCH(3, "5개 일치 (1,500,000원) - ", 1500000),

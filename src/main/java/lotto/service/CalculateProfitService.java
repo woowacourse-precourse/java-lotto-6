@@ -6,13 +6,10 @@ import lotto.view.LottoOutputView;
 import lotto.view.View;
 
 public class CalculateProfitService implements Service {
-    private final LottoOutputView lottoOutputView;
-
-    CalculateProfitService(View lottoOutputView) {
-        this.lottoOutputView = (LottoOutputView) lottoOutputView;
+    CalculateProfitService() {
     }
 
-    public void calculateProfit(Integer money, Long totalReward) {
+    public void calculateProfit(Integer money, Long totalReward, LottoOutputView lottoOutputView) {
         Double profitRate = getProfitRate(money, totalReward);
         lottoOutputView.printProfitRate(profitRate);
     }

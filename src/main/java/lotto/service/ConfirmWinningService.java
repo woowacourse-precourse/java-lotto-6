@@ -12,16 +12,14 @@ import lotto.view.LottoOutputView;
 import lotto.view.View;
 
 public class ConfirmWinningService implements Service {
-    private final LottoOutputView lottoOutputView;
     private Long reward;
 
-    ConfirmWinningService(View lottoOutputView) {
-        this.lottoOutputView = (LottoOutputView) lottoOutputView;
+    ConfirmWinningService() {
         reward = 0L;
     }
 
-    public void confirmWinning(PublishedLotto publishedLotto, LottoBonusPair winnerNumberPair) {
-        List<Integer> rankList = winnerNumberPair.getResults(publishedLotto);
+    public void confirmWinning(PublishedLotto lotto, LottoBonusPair pair, LottoOutputView lottoOutputView) {
+        List<Integer> rankList = pair.getResults(lotto);
         Map<Integer, Integer> rankCount = new HashMap<>();
         for (Integer rank : rankList) {
             if (hasWon(rank)) {

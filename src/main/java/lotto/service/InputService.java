@@ -10,23 +10,21 @@ import lotto.view.LottoInputView;
 import lotto.view.View;
 
 public class InputService implements Service {
-    private final LottoInputView lottoInputView;
 
-    InputService(View lottoInputView) {
-        this.lottoInputView = (LottoInputView) lottoInputView;
+    InputService() {
     }
 
-    public Integer getInputMoney() {
+    public Integer getInputMoney(LottoInputView lottoInputView) {
         lottoInputView.requestMoney();
         return getValidMoney().sendInputData();
     }
 
-    public Lotto getInputWinnerNumbers() {
+    public Lotto getInputWinnerNumbers(LottoInputView lottoInputView) {
         lottoInputView.requestWinnerNumbers();
         return getValidNumbers();
     }
 
-    public LottoBonusPair getLottoBonusPair(Lotto winnerNumber) {
+    public LottoBonusPair getLottoBonusPair(Lotto winnerNumber, LottoInputView lottoInputView) {
         lottoInputView.requestBonusNumber();
         return getValidInputBonusNumber(winnerNumber);
     }

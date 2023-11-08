@@ -1,10 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Map;
 import java.util.List;
 import java.util.Set;
+import lotto.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.Validator;
 
@@ -36,7 +36,10 @@ public class View {
     public static int getPurchaseAmount() {
         while (true) {
             try {
-                return LottoGame.attemptToGetPurchaseAmount();
+                System.out.println("로또를 구매할 금액을 입력하세요.");
+                String input = Console.readLine().trim();
+                Validator.validatePurchaseInput(input);
+                return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -47,25 +50,31 @@ public class View {
     public static List<Integer> getWinningNumbers() {
         while (true) {
             try {
-                return LottoGame.attempToGetWinningNumbers();
+                System.out.println("당첨 번호를 쉼표로 구분하여 입력하세요.");
+                String input = Console.readLine().trim();
+                Validator.validateWinningNumbers(input);
+                return LottoGame.convertInputToIntegerList(input);
             } catch (IllegalArgumentException e) {
-                printErrorMessage(ErrorMessage.valueOf(e.getMessage()));
+                System.out.println(e.getMessage() + " 다시 입력해주세요.");
             }
         }
     }
+
 
 
     public static int getBonusNumber(List<Integer> winningNumbers) {
         while (true) {
             try {
-                return LottoGame.attemptToGetBonusNumber(winningNumbers);
+                System.out.println("보너스 번호를 입력하세요.");
+                String input = Console.readLine().trim();
+                Validator.isPositiveInteger(input);
+                Validator.validateBonusNumber(Integer.parseInt(input), winningNumbers);
+                return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
-
-
 
 
 
@@ -76,25 +85,43 @@ public class View {
     }
 
 
-    private static void validateBonusNumber(int number, Set<Integer> winningNumbers) {
-        validateWinningNumber(number); // Reuse the validation for winning numbers
-        if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.name());
-        }
-    }
+    public static void printWinningStatistics(Map<Integer, Integer> statistics, double earningRate) {
+        Map<Integer, Integer> prizeMoneyMap = LottoGame.getPrizeMoneyMap();
 
-    private static void validateAmount(int amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE.name());
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (int rank = 5; rank >= 1; rank--) {
+            int count = statistics.getOrDefault(rank, 0);
+            int prizeMoney = prizeMoneyMap.getOrDefault(rank, 0); // 상금 정보 가져오기
+            String description = getDescriptionForRank(rank); // 등수에 따른 설명 가져오기
+            System.out.println(description + " - " + count + "개");
         }
-        if (amount < 1000) { // 로또 가격이 1000원이라고 가정
-            throw new IllegalArgumentException(ErrorMessage.BELOW_MINIMUM_AMOUNT.name());
-        }
+        printEarningsRate(earningRate);
     }
-
+    private static String getDescriptionForRank(int rank) {
+        Map<Integer, String> rankDescriptionMap = Map.of(
+                1, "6개 일치 (2,000,000,000원)",
+                2, "5개 일치, 보너스 볼 일치 (30,000,000원)",
+                3, "5개 일치 (1,500,000원)",
+                4, "4개 일치 (50,000원)",
+                5, "3개 일치 (5,000원)"
+        );
+        return rankDescriptionMap.get(rank);
+    }
 
     private static void printErrorMessage(ErrorMessage errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage.getMessage());
     }
+    public static void printEarningsRate(double earningRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", earningRate);
+    }
+
+    public static void printMyLotto(int purchasedLottosAmount, List<Lotto> purchasedLottos) {
+        System.out.println(purchasedLottosAmount + "개를 구매했습니다.");
+        for (Lotto lotto : purchasedLottos) {
+            System.out.println(lotto.getNumbers());
+        }
+    }
+
 
 }

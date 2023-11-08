@@ -30,25 +30,24 @@ public class Validator {
     }
 
     // 총 6개의 숫자가 들어있는지 확인하는 로직
-    private static void isIncludeSixNumbers(String[] numbers){
-        if (numbers.length != LOTTO_NUMBERS_COUNT) {
+    private static void isIncludeSixNumbers(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException("[ERROR] 입력값은 " + LOTTO_NUMBERS_COUNT + "개의 숫자여야 합니다.");
         }
     }
 
     // 모든 숫자가 유니크한지 확인하는 로직 (종복이 없는지 검사하는 로직)
-    private static void isAllUniqueNumbers(String[] input){
-        if (Arrays.stream(input).distinct().count() != LOTTO_NUMBERS_COUNT) {
+    private static void isAllUniqueNumbers(List<Integer> input){
+        if (input.stream().distinct().count() != input.size()) {
             throw new IllegalArgumentException("[ERROR] 중복이 존재해선 안됩니다.");
         }
     }
 
     // 입력받은 숫자가 1부터 45사이에 들어있는지 확인하는 로직
-    private static void isWithinOneToFortyFive(String[] input){
-        for (String numberStr : input) {
-            int number = Integer.parseInt(numberStr); // 문자열을 숫자로 변환
-            if (number < 1 || number > 45) { // 변환된 숫자가 범위 내에 있는지 검사
-                throw new IllegalArgumentException("[ERROR] 숫자는 1부터 45 사이여야 합니다: " + numberStr);
+    private static void isWithinOneToFortyFive(List<Integer> input) {
+        for (Integer number : input) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 숫자는 1부터 45 사이여야 합니다: " + number);
             }
         }
     }
@@ -57,10 +56,10 @@ public class Validator {
 
     // 유저가 입력한 6개의 당첨번호가 유효하게 입력되었는지 검사하는 로직
     public static void validateWinningNumbers(String input) {
-        String[] numberStrings = input.split(",");
-        isIncludeSixNumbers(numberStrings);
-        isAllUniqueNumbers(numberStrings);
-        isWithinOneToFortyFive(numberStrings);
+        List<Integer> integerList = LottoGame.convertInputToIntegerList(input);
+        isIncludeSixNumbers(integerList);
+        isAllUniqueNumbers(integerList);
+        isWithinOneToFortyFive(integerList);
     }
 
     public static void validatePurchaseInput(String input) {

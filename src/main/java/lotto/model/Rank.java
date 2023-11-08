@@ -37,5 +37,12 @@ public enum Rank {
         return MISS;
     }
 
+    public int getCountOfMatch() {
+        return countOfMatch;
+    }
+
+    public int getGettingMoney() {
+        return gettingMoney;
+    }
 
 }

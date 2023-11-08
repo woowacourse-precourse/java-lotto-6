@@ -9,6 +9,7 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Rank;
 import lotto.model.WinningNumber;
+import lotto.view.OutputView;
 
 public class StatisticsController {
     private final Lottos lottos;
@@ -24,6 +25,7 @@ public class StatisticsController {
     public void process() {
         initStatistics();
         matchAllLottos();
+        printAllMatchResult();
     }
 
     public void initStatistics() {
@@ -51,6 +53,24 @@ public class StatisticsController {
         if (rank != Rank.MISS) {
             rankTable.replace(rank, rankTable.get(rank) + 1);
         }
+    }
+    public void printAllMatchResult(){
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        rankTable.forEach((rank,count)->{
+            printMatchResult(rank,count);
+        });
+    }
+
+    public void printMatchResult(Rank rank,Integer count){
+
+        if(rank==Rank.SECOND){
+            OutputView.printMatchResultBonus(rank.getCountOfMatch(),rank.getGettingMoney(),count);
+            return;
+        }
+        OutputView.printMatchResult(rank.getCountOfMatch(),rank.getGettingMoney(),count);
+
     }
 
 

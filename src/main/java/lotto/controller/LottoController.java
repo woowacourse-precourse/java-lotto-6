@@ -40,8 +40,12 @@ public class LottoController {
         while (checkBonusNumber) {
             initBonusNumber();
         }
+        calculateStatistics();
+    }
 
-
+    public void calculateStatistics() {
+        StatisticsController statisticsController = new StatisticsController(lottos, winningNumber);
+        statisticsController.process();
     }
 
     public void initPurchaseQuantity() {
@@ -85,7 +89,8 @@ public class LottoController {
         validateWinningNumberLength(integers.size());
         winningNumber.setWinningNumbers(integers); // 클래스에 저장.
     }
-    public void saveBonusNumber(String number){
+
+    public void saveBonusNumber(String number) {
         int num = Integer.parseInt(number);
         winningNumber.setBonusNumber(num);
     }
@@ -143,7 +148,7 @@ public class LottoController {
     }
 
     public void validateWinningNumberLength(int size) {
-        if(size!=6){
+        if (size != 6) {
             throw new IllegalArgumentException("[ERROR]당첨 번호는 6개의 숫자를 입력해주세요.");
         }
 

@@ -42,11 +42,11 @@ public class LottoService {
         return inputByExceptionTemplate(callback);
     }
 
-    public LottoWinningNumbers createWinningNumbers(final Lotto lotto, final InputCallback<Integer> callback) {
+    public LottoWinningNumbers createWinningNumbers(final Lotto numbers, final InputCallback<Integer> callback) {
         return inputByExceptionTemplate(
                 () -> {
                     int bonusNumber = inputByExceptionTemplate(callback);
-                    return LottoWinningNumbers.of(lotto, bonusNumber);
+                    return LottoWinningNumbers.of(numbers, bonusNumber);
                 },
                 INVALID_BONUS_NUMBER
         );
@@ -83,7 +83,7 @@ public class LottoService {
 
     private double sumPrizeMoney(final LottoPrizeCount prizeCount) {
         return LottoPrize.stream()
-                .mapToDouble(prize -> (double) prizeCount.getCountOf(prize) * prize.getAmount())
+                .mapToDouble(prize -> (double) prizeCount.getCountOf(prize) * prize.getPrizeMoney())
                 .sum();
     }
 

@@ -14,12 +14,12 @@ public enum LottoPrize {
 
     private final int matchCount;
     private final boolean hasBonus;
-    private final int amount;
+    private final int prizeMoney;
 
-    LottoPrize(final int matchCount, final boolean hasBonus, final int amount) {
+    LottoPrize(final int matchCount, final boolean hasBonus, final int prizeMoney) {
         this.matchCount = matchCount;
         this.hasBonus = hasBonus;
-        this.amount = amount;
+        this.prizeMoney = prizeMoney;
     }
 
     public static LottoPrize from(final LottoMatchResult result) {
@@ -41,7 +41,7 @@ public enum LottoPrize {
         return matchCount;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getPrizeMoney() {
+        return prizeMoney;
     }
 }

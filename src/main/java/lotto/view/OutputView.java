@@ -40,7 +40,7 @@ public class OutputView {
         System.out.printf(
                 getStatisticMessageByPrize(prize),
                 prize.getMatchCount(),
-                prize.getAmount(),
+                prize.getPrizeMoney(),
                 statistic.getCountOf(prize)
         );
     }

@@ -40,10 +40,7 @@ public class ResultDetails {
     }
 
     private Money calculateTotalPrize() {
-//        return Arrays.stream(Rank.values())
-//                .mapToInt(rank -> rank.getPrize() * getWinnerCountByRank(rank))
-//                .sum();
-        long sum = Arrays.stream(Rank.values())
+        final long sum = Arrays.stream(Rank.values())
                 .map(rank -> rank.multiply(getWinnerCountByRank(rank)))
                 .mapToLong(Money::getMoney)
                 .sum();

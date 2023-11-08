@@ -15,16 +15,16 @@ public class Money {
         this.money = money;
     }
 
-    public int getNumberOfLotto() {
-        return (int) (money / LottoConstants.LOTTO_PRICE_UNIT);
-    }
-
     public Money multiply(final int winningCount) {
         return new Money(money * winningCount);
     }
 
     public BigDecimal divide(final Money another) {
         return BigDecimal.valueOf(money).divide(BigDecimal.valueOf(another.getMoney()));
+    }
+
+    public int getNumberOfLotto() {
+        return (int) (money / LottoConstants.LOTTO_PRICE_UNIT);
     }
 
     public long getMoney() {

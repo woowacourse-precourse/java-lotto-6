@@ -2,10 +2,9 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class LottoGenerator {
     private static final int MIN_RANGE = 1;
@@ -21,9 +20,16 @@ public class LottoGenerator {
         return numbers;
     }
 
+    private static Lotto generateLotto() {
+        return new Lotto(generateLottoNumbers());
+    }
+
     public static List<Lotto> generateLottos(int lottoCount) {
-        return IntStream.range(0, lottoCount)
-                .mapToObj(i -> new Lotto(generateLottoNumbers()))
-                .collect(Collectors.toList());
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            Lotto lotto = generateLotto();
+            lottos.add(lotto);
+        }
+        return lottos;
     }
 }

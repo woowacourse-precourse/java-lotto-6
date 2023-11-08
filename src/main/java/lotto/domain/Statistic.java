@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.math.BigInteger;
 import java.util.Hashtable;
 
 public class Statistic {

@@ -7,7 +7,7 @@ public class InputValidator {
     private static final String DIVISIBILITY_ERROR = "구입 금액은 " + Lotto.PRICE + "으로 나누어져야 합니다.";
     private static final String MINIMUM_AMOUNT_ERROR = "구입 금액은 " + Lotto.PRICE + " 이상이어야 합니다.";
     private static final String INVALID_INPUT_ERROR = "잘못된 입력입니다. 유효한 숫자를 입력해주세요.";
-    private static final String BONUS_NUMBER_ERROR = "보너스 번호는 당첨 번호에 포함되지 않아야 합니다.";
+    private static final String BONUS_NUMBER_DUPLICATE_ERROR = "보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
 
     public static int validatePurchaseAmount(String input) {
         int purchaseAmount = InputValidator.isNumberFormat(input);
@@ -16,10 +16,9 @@ public class InputValidator {
         return purchaseAmount;
     }
 
-    public static int validateBonusNumber(String input, List<Integer> winningNumbers) {
+    public static int validateBonusNumber(String input) {
         int bonusNumber = InputValidator.isNumberFormat(input);
         InputValidator.inRange(bonusNumber);
-        InputValidator.notInWinningNumbers(winningNumbers, bonusNumber);
         return bonusNumber;
     }
 
@@ -49,9 +48,9 @@ public class InputValidator {
         }
     }
 
-    private static void notInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
+    public static void notInWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_ERROR);
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_ERROR);
         }
     }
 

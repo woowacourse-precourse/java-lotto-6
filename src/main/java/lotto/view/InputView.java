@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.ErrorLogger;
@@ -10,7 +11,7 @@ public class InputView {
     private static final String PURCHASE_AMOUNT_INPUT_PROMPT = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_INPUT_PROMPT = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_PROMPT = "\n보너스 번호를 입력해 주세요.";
-    private List<Integer> winningNumbers;
+    private List<Integer> winningNumbers = new ArrayList<>();
 
     public int readPurchaseAmount() {
         try {
@@ -22,6 +23,7 @@ public class InputView {
             return readPurchaseAmount();
         }
     }
+
 
     public Lotto readWinningNumbers() {
         try {
@@ -35,6 +37,7 @@ public class InputView {
         }
     }
 
+
     private List<Integer> parseInputNumbers(String input) {
         return Stream.of(input.split(","))
                 .map(String::trim)
@@ -46,11 +49,17 @@ public class InputView {
         try {
             System.out.println(BONUS_NUMBER_INPUT_PROMPT);
             String input = Console.readLine();
-            return InputValidator.validateBonusNumber(input,winningNumbers);
+            int bonusNumber = InputValidator.validateBonusNumber(input);
+            validateNotDuplicate(bonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
             ErrorLogger.log(e);
             return readBonusNumber();
         }
+    }
+
+    private void validateNotDuplicate(int bonusNumber) {
+        InputValidator.notInWinningNumbers(winningNumbers, bonusNumber);
     }
 
 

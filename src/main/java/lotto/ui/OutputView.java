@@ -11,6 +11,9 @@ import java.util.List;
 import lotto.constants.Result;
 
 public class OutputView {
+    public OutputView() {
+    }
+
     public static void printError(String message) {
         System.out.println(message);
     }

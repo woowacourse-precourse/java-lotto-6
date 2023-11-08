@@ -68,7 +68,7 @@ public class WinningComputer {
     private static int computeTotalReturn(Winnings winnings) {
         int totalReturn = 0;
 
-        for (int i = 3; i <= 7; i++) {
+        for (int i = 3; i <= 6; i++) {
             WinningCount winningCount = winnings.getWinningCount();
             Winning winning = FormatConverter.toWinningFromIntValue(i);
 

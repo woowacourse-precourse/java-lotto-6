@@ -34,6 +34,11 @@
 | LottoManager | Lotto 게임의 사용자 입력을 관리한다.              | - [X] `inputPurchasePrice` : 로또 구입 금액 입력을 관리한다. <br>- [X] `inputLotto` : 당첨 번호를 입력을 관리한다. <br>- [X] `inputBonusNumber` : 보너스 번호를 입력을 관리한다. <br>- [X] `read` : 잘못된 입력일 경우 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다. |
 | OutputView   | Lotto 게임의 화면을 출력한다.                  | - [X] `printPlayerLottoResultMessage` : 사용자의 로또 생셩 결과를 출력한다. <br>- [X] `printGameResultMessage` : 로또 게임 결과를 출력한다. <br>- [X] 이하 생략...                                                                     |
 
+| util 패키지 목록        | 역할               | 기능                                                   |
+|--------------------|------------------|------------------------------------------------------|
+| LottoRandomNumbers | 랜덤된 로또 번호를 생성한다. | -[X] `getRandomNumbers` : 1~45 사이의 랜덤된 6자리 숫자를 생성한다. |
+
+
 <details>
 	<summary style="font-size: 20px;">각 클래스 역할 책임 세부화</summary>
   	<div markdown="1"> 

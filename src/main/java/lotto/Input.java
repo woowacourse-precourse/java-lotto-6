@@ -12,10 +12,11 @@ public class Input {
 
     private int amount;
     private List<List<Integer>> lottos;
+    private final int lottoPrice = 1000;
     private String inputSpeech = "구입금액을 입력해 주세요.";
     private String amountSpeech = "개를 구매했습니다.";
     private String winningInputSpeech = "당첨 번호를 입력해 주세요.";
-    private String bonusInputSpeech = "보너스 번호를 입력해 주세요.";
+    private static String bonusInputSpeech = "보너스 번호를 입력해 주세요.";
 
 
     public Input() {
@@ -29,11 +30,11 @@ public class Input {
     }
 
     private void amountValidate(int amount) {
-        if (amount % 1000 != 0) {
+        if (amount == 0 || amount % lottoPrice != 0) {
             new ThrowNewException().amountException();
         }
 
-        lottoCount(amount / 1000);
+        lottoCount(amount / lottoPrice);
     }
 
     private void lottoCount(int divisionAmount) {
@@ -82,6 +83,11 @@ public class Input {
         }
 
         new Lotto(winningNumber);
+    }
+
+    public static int getBonusNumber(){
+        System.out.println(bonusInputSpeech);
+        return Integer.parseInt(Console.readLine());
     }
 
 

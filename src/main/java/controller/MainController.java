@@ -15,17 +15,17 @@ import static view.OutputResult.printOutputResult;
 public class MainController {
 
     public void start() {
-        LottoPrice money = inputLottoPrice();
-        printBuyLotto(money);
+        LottoPrice price = inputLottoPrice();
+        printBuyLotto(price);
 
-        LottoObjectManagement lottos = MyLottos(money);
+        LottoObjectManagement lottos = MyLottos(price);
         printLottoList(lottos);
 
         LotteryNumbers lotteryNumbers = getLotteryNumbers();
         WinningPriceResult winningPriceResult = new WinningPriceResult();
         calcLottoResult(winningPriceResult, lotteryNumbers, lottos);
 
-        ReturnRate rate = getRate(money, winningPriceResult);
+        ReturnRate rate = getRate(price, winningPriceResult);
         printOutputResult(winningPriceResult, rate);
     }
 

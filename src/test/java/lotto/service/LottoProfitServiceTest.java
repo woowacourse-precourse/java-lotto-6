@@ -62,13 +62,10 @@ public class LottoProfitServiceTest {
                 }
             }
         }
-        System.out.println(lottoCount);
-        System.out.println(winningAmount);
         double expectedProfit = (double) winningAmount / (lottoCount * LottoConstants.LOTTO_PRICE.getValue()) * 100.0;
         expectedProfit = Math.round(expectedProfit * 10.0) / 10.0;
 
         double actualProfit = profitService.calculateProfit(winningRankingCountMap, lottoCount);
-        System.out.println(actualProfit);
         assertThat(actualProfit).isEqualTo(expectedProfit);
     }
     

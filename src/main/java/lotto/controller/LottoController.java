@@ -76,4 +76,11 @@ public class LottoController {
         lottoManager.setWinningNumbers(numbers);
     }
 
+    private List<Integer> parseWinningNumbers(String inputWinNumbers) {
+        return Arrays.stream(inputWinNumbers.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .sorted().toList();
+    }
+
 }

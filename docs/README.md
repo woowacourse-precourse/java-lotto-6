@@ -9,6 +9,40 @@
 - 당첨번호와 보너스 번호를 각각 입력 받습니다.
 - 입력한 당첨번호와 보너스 번호를 바탕으로 로또 결과와 수익률을 출력합니다.
 
+## 패키지 구조
+```
+├── Application.java
+├── constants
+│   ├── ExceptionMessages.java
+│   ├── LottoRules.java
+│   └── OutputMessages.java
+├── controller
+│   └── LottoController.java
+├── domain
+│   ├── Amount.java
+│   ├── BonusNumber.java
+│   ├── Lotto.java
+│   ├── LottoData.java
+│   ├── User.java
+│   └── Winning.java
+├── service
+│   └── LottoService.java
+├── utils
+│   ├── InputProcessor.java
+│   ├── NumberGenerator.java
+│   ├── RandomNumberGenerator.java
+│   ├── Utils.java
+│   └── Validation.java
+└── view
+    ├── InputView.java
+    └── OutputView.java
+```
+
+## 프로그램 실행 방법
+- Application.java의 main 메소드를 실행시킨다.
+- 터미널에 출력되는 메시지를 따라 프로그램을 실행한다.
+- 터미널에 출력되는 메시지는 OutputMessages.java에 정의되어 있다.
+- 터미널에 입력하는 메시지는 InputMessages.java에 정의되어 있다.
 
 ## 프로그램 흐름 정리
 - [x] '구입금액을 입력해 주세요.' 출력

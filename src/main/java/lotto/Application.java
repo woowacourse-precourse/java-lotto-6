@@ -7,17 +7,15 @@ public class Application {
     public static void main(String[] args) {
 
         Amount amount = new Amount();
-        Draw draw = new Draw();
+        LottoIssuer lottoIssuer = new LottoIssuer();
         Print print = new Print();
 
         int money = amount.enterAmount();
-        List<Lotto> lottos = draw.issueLottos(money);
+        List<Lotto> lottos = lottoIssuer.issueLottos(money);
         print.printPurchasedLottos(lottos);
 
-        Lotto winningLotto = draw.enterWinningLottoNums();
-        int bonusNum = draw.enterBonusNum(winningLotto);
-
-        Map<Rank, Integer> drawResult = draw.draw(winningLotto, bonusNum, lottos);
+        LottoMachine lottoMachine = new LottoMachine();
+        Map<Rank, Integer> drawResult = lottoMachine.draw(lottos);
         print.printDrawResultStats(money, drawResult);
     }
 }

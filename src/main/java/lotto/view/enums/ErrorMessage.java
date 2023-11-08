@@ -10,7 +10,7 @@ public enum ErrorMessage {
     LOTTO_NUMBERS_WRONG_SIZE("6개의 번호로 구성되지 않은 로또는 발행할 수 없습니다."),
     LOTTO_NUMBER_OUT_OF_RANGE("1~45 범위를 벗어난 숫자가 포함된 로또는 발행할 수 없습니다."),
     LOTTO_NUMBER_DUPLICATED("중복된 숫자가 존재하는 로또는 발행할 수 없습니다."),
-    WINNING_NUMBERS_WRONG_SIZE("6개의 번호로 구성되지 않은 로또는 발행할 수 없습니다."),
+    WINNING_NUMBERS_WRONG_SIZE("6개의 번호로 구성되지 않은 당첨 번호는 생성할 수 없습니다."),
     WINNING_NUMBER_OUT_OF_RANGE("1~45 범위를 벗어난 숫자가 포함된 당첨 번호는 생성할 수 없습니다."),
     WINNING_NUMBER_DUPLICATED("중복이 존재하는 당첨 번호는 생성할 수 없습니다."),
     BONUS_NUMBER_OUT_OF_RANGE("1~45 범위를 벗어난 숫자의 보너스 번호는 생성할 수 없습니다."),

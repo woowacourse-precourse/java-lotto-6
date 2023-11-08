@@ -50,4 +50,13 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(0,2,3,4,5,6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 보너스_번호가_포함되어_있는_경우(){
+        // 구매한 번호와 당첨 번호가 5개가 맞은 경우에만 해당
+        // 당첨 번호가 1,2,3,4,5,7 가정
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        int equalNumbers = lotto.bonusNumberContains(5, 6);
+        assertThat(equalNumbers).isEqualTo(6);
+    }
 }

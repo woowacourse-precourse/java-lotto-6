@@ -33,7 +33,7 @@ public class NumberValidate {
 
     private void validateBonusUnit(String amount) {
         int parsedAmount = Integer.parseInt(amount);
-        if (parsedAmount < 1 || parsedAmount > 10) {
+        if (parsedAmount < 1 || parsedAmount > 45) {
             throw new IllegalArgumentException(ErrorConstants.INPUT_UNDER_10.getMessage());
         }
     }

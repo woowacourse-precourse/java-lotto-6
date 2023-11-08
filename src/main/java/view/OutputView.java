@@ -14,11 +14,12 @@ public class OutputView {
         return numberOfSheets;
     }
 
-    public void printLottoSheet(int numberOfSheets) {
+    public List<List<Integer>> printLottoSheet(int numberOfSheets) {
         List<List<Integer>> tickets = lottoService.generateLottoNumbers(numberOfSheets);
 
         for (List<Integer> ticket : tickets) {
             System.out.println(ticket);
         }
+        return tickets;
     }
 }

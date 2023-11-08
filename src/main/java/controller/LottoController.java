@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import view.InputView;
 import view.OutputView;
 
@@ -8,6 +10,10 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private int numberOfSheets;
+    private List<List<Integer>> customerLottoTickets = new ArrayList<>();
+    private List<Integer> winningNumber = new ArrayList<>();
+    private int bonusNumber;
+
 
     public LottoController() {
         inputView = new InputView();
@@ -27,11 +33,15 @@ public class LottoController {
     }
 
     private void buyLottoCount() {
-        outputView.printLottoSheet(numberOfSheets);
+        customerLottoTickets = outputView.printLottoSheet(numberOfSheets);
     }
 
     private void requestWinningNumber() {
-        inputView.inputWinningNumber();
-        inputView.inputBonusNumber();
+        winningNumber = inputView.inputWinningNumber();
+        bonusNumber = inputView.inputBonusNumber();
+    }
+
+    private void matchLottoNumber() {
+
     }
 }

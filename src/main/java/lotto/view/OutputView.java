@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +22,7 @@ public class OutputView {
 
     private static void printLotto(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
-        Collections.sort(lottoNumbers);
-        System.out.println(lottoNumbers);
+        System.out.println(lottoNumbers.stream().sorted().collect(Collectors.toList()));
     }
 
     public static void printStatistics(Statistics statistics, Money money) {

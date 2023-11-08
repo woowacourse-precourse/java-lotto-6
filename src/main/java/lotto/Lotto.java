@@ -60,4 +60,10 @@ public class Lotto {
         }
         return matchNumber;
     }
+    public boolean isContains(Integer number){
+        if (numbers.contains(number)){
+            return true;
+        }
+        return false;
+    }
 }

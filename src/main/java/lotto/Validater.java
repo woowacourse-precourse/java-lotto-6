@@ -70,4 +70,10 @@ public class Validater {
             }
         }
     }
+    public void numberIsContainedCheck(Lotto winningNumber, Integer checkNumber){
+        if (winningNumber.isContains(checkNumber)){
+            Print.printMessage(ErrorMessage.DUPLICATED_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getMessage());
+        }
+    }
 }

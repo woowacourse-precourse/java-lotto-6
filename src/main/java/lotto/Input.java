@@ -47,6 +47,7 @@ public class Input {
     public List<Integer> bonusNumberInput(String inputStr){
         List<Integer> conversionResult = new ArrayList<>();
         validater.inputValidation(InputType.BONUS_NUMBER, inputStr);
+        validater.numberIsContainedCheck(winningNumber, Integer.parseInt(inputStr));
         conversionResult.add(Integer.parseInt(inputStr));
         return conversionResult;
     }

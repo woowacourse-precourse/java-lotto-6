@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.model.LottoBuyer;
-import lotto.model.Winning;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,9 +13,9 @@ public class LottoController {
         LottoBuyer lottoBuyer = new LottoBuyer(cash);
         OutputView.printPurchaseResult(lottoBuyer.purchase());
         OutputView.printReadWinningNumberMessage();
-        Winning winning = new Winning(InputView.readWinningNumber());
+        WinningNumbers winningNumbers = new WinningNumbers(InputView.readWinningNumber());
         OutputView.printReadBonusNumberMessage();
-        winning.addBonusNumber(InputView.readBonusNumber());
+        winningNumbers.addBonusNumber(InputView.readBonusNumber());
     }
 
 }

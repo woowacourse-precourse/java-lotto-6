@@ -2,7 +2,7 @@ package lotto.model;
 
 import java.util.List;
 
-public class Winning {
+public class WinningNumbers {
 
     private static String WINNING_NUMBERS_MUST_BE_6 = "당첨 번호는 6개를 입력해 주세요.";
     private static String WINNING_NUMBER_RANGE_IS_1_TO_45 = "1부터 45까지의 당첨번호를 입력해 주세요.";
@@ -11,39 +11,39 @@ public class Winning {
 
     private List<Integer> numbers;
 
-    public Winning(List<Integer> numbers) {
-        validateWinningNumbers(numbers);
+    public WinningNumbers(List<Integer> numbers) {
+        validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validateWinningNumbers(List<Integer> numbers) {
-        validateWinningNumbersSize(numbers);
-        validateWinningNumbersDistinct(numbers);
-        numbers.forEach(this::validateNumberRange);
+    private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDistinct(numbers);
+        numbers.forEach(this::validateRange);
     }
 
-    private void validateWinningNumbersSize(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(WINNING_NUMBERS_MUST_BE_6);
         }
     }
 
-    private void validateWinningNumbersDistinct(List<Integer> numbers) {
+    private void validateDistinct(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(WINNING_NUMBERS_MUST_BE_DISTINCT);
         }
     }
 
-    private void validateNumberRange(int number) {
+    private void validateRange(int number) {
         if (number < 0 || 45 < number) {
             throw new IllegalArgumentException(WINNING_NUMBER_RANGE_IS_1_TO_45);
         }
     }
 
     public void addBonusNumber(int number) {
-        validateNumberRange(number);
+        validateRange(number);
         numbers.add(number);
-        validateWinningNumbersDistinct(numbers);
+        validateDistinct(numbers);
     }
 
 }

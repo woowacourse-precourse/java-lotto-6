@@ -42,15 +42,27 @@ public class InputController {
     }
 
     public Lotto askWinningNumbers() {
-        String winningNumbers = inputView.scanWinningNumbers();
-        WinningNumbersValidator.getInstance().validate(winningNumbers);
-        return createWinningNumbers(winningNumbers);
+        while (true) {
+            try {
+                String winningNumbers = inputView.scanWinningNumbers();
+                WinningNumbersValidator.getInstance().validate(winningNumbers);
+                return createWinningNumbers(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int askBonusNumber() {
-        String bonusNumber = inputView.scanBonusNumber();
-        BonusNumberValidator.getInstance().validate(bonusNumber);
-        return createBonusNumber(bonusNumber);
+        while (true) {
+            try {
+                String bonusNumber = inputView.scanBonusNumber();
+                BonusNumberValidator.getInstance().validate(bonusNumber);
+                return createBonusNumber(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int createBudget(String budget) {

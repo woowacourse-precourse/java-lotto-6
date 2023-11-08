@@ -34,7 +34,7 @@ public class NumberValidator {
     }
 
     private static boolean canChangeCountByLottoPrice(int customerPrice) {
-        return (customerPrice % LottoValues.LOTTO_PRICE != 0) || (customerPrice == 0);
+        return (customerPrice % LottoValues.LOTTO_PRICE != 0) || (customerPrice <= 0);
     }
 
     public static void validateNumberCount(List<Integer> numbers) throws IllegalArgumentException {

@@ -25,15 +25,15 @@ public class InputValidator {
         }
     }
 
-    public static void checkUserInputDuplicated(List<Integer> targetList) throws IllegalArgumentException {
-        Set<Integer> targetSet = new HashSet<>(targetList);
-        if (targetList.size() != targetSet.size()) {
+    public static void checkUserInputDuplicated(List<Integer> target) throws IllegalArgumentException {
+        Set<Integer> nonDuplicatedTarget = new HashSet<>(target);
+        if (target.size() != nonDuplicatedTarget.size()) {
             throw new IllegalArgumentException("[ERROR] 중복되는 번호가 있습니다.");
         }
     }
 
-    public static void checkUserInputIsIntegerNOutOfRange(List<String> targetList) throws IllegalArgumentException {
-        for (String s : targetList) {
+    public static void checkUserInputIsIntegerNOutOfRange(List<String> target) throws IllegalArgumentException {
+        for (String s : target) {
             InputValidator.checkUserInputIsInteger(s);
             InputValidator.checkUserInputOutOfRange(Integer.parseInt(s), MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
         }

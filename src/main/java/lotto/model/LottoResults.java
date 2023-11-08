@@ -25,17 +25,17 @@ public class LottoResults {
         results = Arrays.asList(0,0,0,0,0);
     }
 
-    private LottoConstants getLottoPrize(int LottoMatch, boolean BonusMatch) {
-        if (LottoMatch == 6) {return LottoConstants.FIRST_PRIZE;}
-        if (LottoMatch == 5 && BonusMatch) {return LottoConstants.SECOND_PRIZE;}
-        if (LottoMatch == 5) {return LottoConstants.THIRD_PRIZE;}
-        if (LottoMatch == 4) {return LottoConstants.FOURTH_PRIZE;}
-        if (LottoMatch == 3) {return LottoConstants.FIFTH_PRIZE;}
+    private LottoConstants getLottoPrize(int lottoMatch, boolean bonusMatch) {
+        if (lottoMatch == 6) {return LottoConstants.FIRST_PRIZE;}
+        if (lottoMatch == 5 && bonusMatch) {return LottoConstants.SECOND_PRIZE;}
+        if (lottoMatch == 5) {return LottoConstants.THIRD_PRIZE;}
+        if (lottoMatch == 4) {return LottoConstants.FOURTH_PRIZE;}
+        if (lottoMatch == 3) {return LottoConstants.FIFTH_PRIZE;}
         return LottoConstants.NOTHING;
     }
 
-    public void updateEachLottoResult(int LottoMatch, boolean BonusMatch) {
-        LottoConstants prize = getLottoPrize(LottoMatch,BonusMatch);
+    public void updateEachLottoResult(int lottoMatch, boolean bonusMatch) {
+        LottoConstants prize = getLottoPrize(lottoMatch,bonusMatch);
         if (prize != LottoConstants.NOTHING) {
             earnedMoney += prize.getValue();
             results.set(prize.ordinal(),results.get(prize.ordinal())+1);

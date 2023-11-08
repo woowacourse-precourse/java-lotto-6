@@ -7,6 +7,7 @@ import lotto.domain.PurchaseAmount;
 public class LottoResultBoard {
 
     public static final int NUMBER_PERCENT = 100;
+    public static final int INIT_WINNING_AMOUNT_SUM = 0;
     public final Map<LottoRank, Long> lottoRankBoard;
 
     private LottoResultBoard(final Map<LottoRank, Long> lottoRankBoard) {
@@ -22,7 +23,7 @@ public class LottoResultBoard {
     }
 
     public long calculateWinningAmountSum() {
-        long winningAmountSum = 0;
+        long winningAmountSum = INIT_WINNING_AMOUNT_SUM;
 
         for (Entry<LottoRank, Long> entrySet : lottoRankBoard.entrySet()) {
             long rank = entrySet.getKey().getWinningAmount();
@@ -34,7 +35,7 @@ public class LottoResultBoard {
 
     public double calculateProfitabilityPercent(final PurchaseAmount purchaseAmount) {
         long grossRevenue = calculateWinningAmountSum();
-        int cost = purchaseAmount.getPurchaseAmount();
+        long cost = purchaseAmount.getPurchaseAmount();
         double profitabilityRatio = (double) grossRevenue / cost;
 
         return profitabilityRatio * NUMBER_PERCENT;

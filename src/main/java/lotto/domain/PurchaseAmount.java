@@ -5,7 +5,7 @@ import lotto.domain.exception.PurchaseNotAvailableException;
 
 public class PurchaseAmount {
     public static final int LOTTO_PRICE = 1000;
-    private final int purchaseAmount;
+    private final long purchaseAmount;
 
     private PurchaseAmount(final int purchaseAmount) {
         validateInputValue(purchaseAmount);
@@ -41,11 +41,11 @@ public class PurchaseAmount {
         return purchaseAmount % LOTTO_PRICE != 0;
     }
 
-    public int getPurchaseAmount() {
+    public long getPurchaseAmount() {
         return purchaseAmount;
     }
 
     public int getPurchaseQuantity() {
-        return purchaseAmount / LOTTO_PRICE;
+        return (int) purchaseAmount / LOTTO_PRICE;
     }
 }

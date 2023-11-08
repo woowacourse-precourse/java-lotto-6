@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.*;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -44,11 +45,12 @@ public class View {
             Control.correctNumber = Arrays.stream(Console.readLine().split(","))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-            if(Control.isDuplication(Control.correctNumber)) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
-            }
-            if(Control.correctNumber.size() != 6)
+            if(!Control.isSizeCorrect(Control.correctNumber))
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리로 입력해주세요.");
+
+            if(Control.isDuplication(Control.correctNumber))
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             inputCorrectLottoNumber();
@@ -56,6 +58,15 @@ public class View {
     }
 
     public void inputBonusNumber() {
-        Control.bonusNumber = Integer.parseInt(Console.readLine());
+        try{
+            Control.bonusNumber = Integer.parseInt(Console.readLine());
+            if(Control.isBonusNumberInLottoNumber(Control.bonusNumber)){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            inputBonusNumber();
+        }
+
     }
 }

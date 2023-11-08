@@ -52,13 +52,29 @@ public class Control {
         return true;
     }
 
+    /* 입력받은 당첨 번호에 중복된 숫자가 있는지 체크 */
     static boolean isDuplication(List<Integer> correctNumber){
-        for(int num:correctNumber) {
-            if (Collections.frequency(correctNumber, num) > 2)
+        Set<Integer> temp = new HashSet<>(correctNumber);
+        return temp.size() != correctNumber.size();
+    }
+
+    /* 입력받은 로또 번호가 6개인지 체크 */
+    static boolean isSizeCorrect(List<Integer> correctNumber){
+        return correctNumber.size() == 6;
+    }
+
+
+    /* 입력받은 보너스 번호와 입력받은 당첨 번호가 중복되는지 체크 */
+    static boolean isBonusNumberInLottoNumber(int bonusNumber){
+        for(int correct: correctNumber){
+            if(bonusNumber == correct){
                 return true;
+            }
         }
         return false;
     }
+
+
 
     /* 로또 한 개를 불러와 로또 당첨 계산 메소드를 부른다 */
     static void calculateLotto(){

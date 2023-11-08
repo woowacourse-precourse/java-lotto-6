@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validate;
 
 import lotto.util.ValidateInputBuy;
 import lotto.util.ValidateNumber;

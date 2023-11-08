@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validate;
 
 import lotto.util.ValidateWinningNumber;
 import org.assertj.core.api.Assertions;

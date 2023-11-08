@@ -138,12 +138,21 @@ public class LottoSystemTest {
         assertThat(lottoSystem.lottoEqualNumber(3, lotto, 6))
                 .isEqualTo(0);
     }
+
     @Test
     void 구매한_로또_번호와_당첨된_로또_번호의_개수가_5개_일_때_보너스_번호가_구매번호에_포함되어_있는_경우(){
         LottoSystem lottoSystem = new LottoSystem();
         Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
         assertThat(lottoSystem.lottoEqualBonusNumber(5, lotto, 6))
                 .isEqualTo(3);
+    }
+
+    @Test
+    void 구매한_로또_번호와_당첨된_로또_번호의_개수가_5개_일_때_보너스_번호가_구매번호에_없는_경우(){
+        LottoSystem lottoSystem = new LottoSystem();
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        assertThat(lottoSystem.lottoEqualBonusNumber(5, lotto, 7))
+                .isEqualTo(2);
     }
 }
 

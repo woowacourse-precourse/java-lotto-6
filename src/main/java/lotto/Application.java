@@ -32,7 +32,12 @@ public class Application {
         readBonusNum();
 
         System.out.println("\n당첨 통계\n---");
+        setResult(lottoNum);
+        printResult();
+        printProfit();
+    }
 
+    private static void setResult(Lotto[] lottoNum) {
         for(Lotto l : lottoNum) {
             int winsCount = 0;
             boolean bonusCount = false;
@@ -45,38 +50,16 @@ public class Application {
                 bonusCount = l.getNumbers().contains(bonusNum);
             }
 
-            if(winsCount == Rank.FIRST.getWins()) {
-                lottoWinsCount[Rank.FIRST.ordinal()]++;
-                earned += Rank.FIRST.getPrize();
-                continue;
-            }
-
-            if(winsCount == Rank.SECOND.getWins() && bonusCount) {
-                lottoWinsCount[Rank.SECOND.ordinal()]++;
-                earned += Rank.SECOND.getPrize();
-                continue;
-            }
-
-            if(winsCount == Rank.THIRD.getWins()) {
-                lottoWinsCount[Rank.THIRD.ordinal()]++;
-                earned += Rank.THIRD.getPrize();
-                continue;
-            }
-
-            if(winsCount == Rank.FOURTH.getWins()) {
-                lottoWinsCount[Rank.FOURTH.ordinal()]++;
-                earned += Rank.FOURTH.getPrize();
-                continue;
-            }
-
-            if(winsCount == Rank.FIFTH.getWins()) {
-                lottoWinsCount[Rank.FIFTH.ordinal()]++;
-                earned += Rank.FIFTH.getPrize();
-            }
+            Rank rank = getRank(winsCount, bonusCount);
+            addResult(rank);
         }
+    }
 
-        printResult();
-        printProfit();
+    private static void addResult(Rank rank) {
+        if(rank != null) {
+            lottoWinsCount[rank.ordinal()]++;
+            earned += rank.getPrize();
+        }
     }
 
     private static void readPaid() {
@@ -184,6 +167,15 @@ public class Application {
         if (userNum.contains(bonusNum)) {
             throw new IllegalArgumentException("당첨 번호와 보너스 번호는 서로 중복되지 않아야 합니다.");
         }
+    }
+
+    public static Rank getRank(int winsCount, boolean bonusCount) {
+        for (Rank rank : Rank.values()) {
+            if (winsCount == rank.getWins() && (rank != Rank.SECOND || bonusCount)) {
+                return rank;
+            }
+        }
+        return null;
     }
 
     private static void printResult() {

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-public class MoneyTest extends NsTest {
+public class MoneyTest  {
     @DisplayName("생성자 매개변수 음수가 음수면 예외가 발생한다.")
     @Test
     void createMoneyByNegativeNumber() {
@@ -20,10 +20,5 @@ public class MoneyTest extends NsTest {
     void createMoneyByNotMultiple1000() {
         assertThatThrownBy(() -> new Money(5001))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Override
-    public void runMain() {
-        Application.main(new String[]{});
     }
 }

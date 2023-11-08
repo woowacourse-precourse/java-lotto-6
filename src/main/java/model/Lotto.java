@@ -8,9 +8,6 @@ import exception.Exception;
 
 public class Lotto {
 
-    protected static final int LOTTO_NUMBER_SIZE = 6;
-    protected static final int MIN_LOTTO_NUMBER = 1;
-    protected static final int MAX_LOTTO_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto (String numbers) {
@@ -38,7 +35,7 @@ public class Lotto {
     }
 
     void validateWinningNumberLength(List<Integer> winningNumber) {
-        if (winningNumber.size() != LOTTO_NUMBER_SIZE) {
+        if (LottoUtils.isInvalidLottoSize(winningNumber.size())) {
             Exception.raiseInvalidWinningNumberSizeException();
         }
     }
@@ -54,19 +51,16 @@ public class Lotto {
     }
 
     void validateWinningNumberNumeric(String winningNumber) {
-        try {
-            for (int winningNumberIndex = 0; winningNumberIndex < winningNumber.length(); winningNumberIndex++) {
-                if (!(Character.isDigit(winningNumber.charAt(winningNumberIndex)) || winningNumber.charAt(winningNumberIndex) == ',')) {
-                    Exception.raiseInvalidWinningNumberArgumentException();
-                }
+        for (int winningNumberIndex = 0; winningNumberIndex < winningNumber.length(); winningNumberIndex++) {
+            if (!(Character.isDigit(winningNumber.charAt(winningNumberIndex)) || winningNumber.charAt(winningNumberIndex) == ',')) {
+                Exception.raiseInvalidWinningNumberArgumentException();
             }
-        } catch (NumberFormatException numberFormatException) {
-            Exception.raiseInvalidWinningNumberRangeException();
         }
     }
+
     void validateWinningNumberRange(List<Integer> winningNumber) {
-        for (Integer lottoNumber : winningNumber) {
-            if (MIN_LOTTO_NUMBER > lottoNumber || MAX_LOTTO_NUMBER < lottoNumber) {
+        for (int lottoNumber : winningNumber) {
+            if (LottoUtils.isOutOfLottoRange(lottoNumber)) {
                 Exception.raiseInvalidWinningNumberRangeException();
             }
         }
@@ -77,10 +71,6 @@ public class Lotto {
         if (comparativeGroup.size() != winningNumber.size()) {
             Exception.raiseInvalidWinningNumberDuplicationException();
         }
-    }
-
-    boolean contains(int number){
-        return (numbers.contains(number));
     }
 
     public List<Integer> getNumbers() {

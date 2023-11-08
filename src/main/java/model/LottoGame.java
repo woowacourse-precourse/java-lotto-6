@@ -1,7 +1,6 @@
 package model;
 
-import static model.Lotto.*;
-import static model.WinningLotto.*;
+import static model.LottoUtils.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

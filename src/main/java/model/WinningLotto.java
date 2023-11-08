@@ -1,18 +1,15 @@
 package model;
 
-import java.util.List;
+import static model.LottoUtils.FIRST_PRIZE;
+import static model.LottoUtils.SECOND_PRIZE;
+
 import exception.Exception;
-import exception.ExceptionMessage;
+import java.util.List;
 
 public class WinningLotto extends Lotto {
 
     protected static final int MIN_BONUS_NUMBER_LENGTH = 1;
     protected static final int MAX_BONUS_NUMBER_LENGTH = 2;
-    public static final int FIRST_PRIZE = 7;
-    public static final int SECOND_PRIZE = 6;
-    public static final int THIRD_PRIZE = 5;
-    public static  final int FOURTH_PRIZE = 4;
-    public static final int FIFTH_PRIZE = 3;
 
     int bonusNumber;
 
@@ -54,13 +51,9 @@ public class WinningLotto extends Lotto {
     }
 
     void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+        if (LottoUtils.isOutOfLottoRange(bonusNumber)) {
             Exception.raiseInvalidBonusNumberRangeMessage();
         }
-    }
-
-    boolean equalsBonusNumber(int bonusNumber) {
-        return bonusNumber == this.bonusNumber;
     }
 
     int countContains(Lotto lotto) {

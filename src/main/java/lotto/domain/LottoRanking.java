@@ -27,6 +27,14 @@ public enum LottoRanking {
                 .orElse(LottoRanking.ZERO);
     }
 
+    public int getWinningCount() {
+        return winningCount;
+    }
+
+    public long getTotalPrizeMoney(int count) {
+        return prizeMoney * count;
+    }
+
     private boolean isMatchBonus(boolean matchBonus) {
         return this.matchBonus == matchBonus;
     }

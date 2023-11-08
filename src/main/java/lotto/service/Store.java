@@ -1,10 +1,10 @@
 package lotto.service;
 
+import static lotto.service.LottoGenerator.generateAutoLotto;
+
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.view.impl.LottoBuyView;
-
-import static lotto.service.LottoGenerator.generateAutoLotto;
 
 public class Store {
     private LottoBuyView lottoBuyView;

@@ -24,7 +24,7 @@ enum PrizeRank {
 public class Application {
     public static void main(String[] args) {
         int money = Money.InputMoney();
-        List<Integer> numbers = MyLotto.LottoPaper(Money.CorrectMoney(money));
+        List<Integer> numbers = MyLotto.LottoPaper(money/1000);
         List<Integer> num_lst = WinnigNum.LottoNum(WinnigNum.InputLottoNum());
         int bonus = WinnigNum.BonusNum(WinnigNum.InputBonus());
         Lotto lotto = new Lotto(num_lst);
@@ -38,7 +38,8 @@ class Money {
             try {
                 System.out.println("구입 금액을 입력해 주세요.");
                 String m = Console.readLine();
-                return ExceptMoney(m);
+                int money = ExceptMoney(m);
+                return CorrectMoney(money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -55,7 +56,7 @@ class Money {
 
     public static int CorrectMoney(int money) {
         if (money % 1000 == 0) {
-            return money / 1000;
+            return money;
         }
         throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
     }

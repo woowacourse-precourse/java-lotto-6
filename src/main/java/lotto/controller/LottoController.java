@@ -54,7 +54,7 @@ public class LottoController {
         Lotto lotto = this.getLotto();
         return this.inputWithRetry(() -> {
             LottoNumber bonus = this.getBonus();
-            return new WinningLotto(lotto, bonus);
+            return lottoMachine.createWinningLotto(lotto, bonus);
         });
     }
 

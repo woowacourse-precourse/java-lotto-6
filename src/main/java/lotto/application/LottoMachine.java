@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoTicket;
+import lotto.dto.WinningLotto;
 
 public class LottoMachine {
     private final NumberGenerator numberGenerator;
@@ -33,5 +34,9 @@ public class LottoMachine {
 
     public LottoNumber createLottoNumber(final int number) {
         return LottoNumber.from(number);
+    }
+
+    public WinningLotto createWinningLotto(final Lotto lotto, final LottoNumber bonus) {
+        return new WinningLotto(lotto, bonus);
     }
 }

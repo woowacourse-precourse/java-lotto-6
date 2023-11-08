@@ -84,6 +84,10 @@ public class LottoController {
     }
 
     private int computeIncome(HashMap<WinningCriteria, Integer> result) {
-        return 0;
+        int income = 0;
+        for (WinningCriteria key : result.keySet()) {
+            income += key.getPrizeAmount() * result.get(key);
+        }
+        return income;
     }
 }

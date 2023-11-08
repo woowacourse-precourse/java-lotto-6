@@ -49,6 +49,15 @@ class LottoServiceTest {
         assertEquals(cnt, 4);
     }
 
+    @DisplayName("보너스 번호 일치 확인")
+    @Test
+    void checkBonusNumberCorrect() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 2;
+        boolean result = lottoService.isBonusNumberCorrect(numbers, bonusNumber);
+        assertTrue(result);
+    }
+
     @Test
     void printLottos() {
         List<Lotto> lottos = new ArrayList<>();

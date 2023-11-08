@@ -17,23 +17,8 @@ public class OutputView {
 
         purchasedLottos.getCurrentPurchasedLottosList()
                 .stream()
-                .map(lotto -> lotto.stream().collect(Collectors.joining(",", "[","]")))
+                .map(lotto -> lotto.stream().collect(Collectors.joining(", ", "[","]")))
                 .forEach(System.out::println);
-    }
-
-    public static void printResult(Map<Rank, Integer> result, double yield) {
-        StringBuilder stringBuilder = new StringBuilder();
-        appendResultHeaderToStringBuilder(stringBuilder);
-        System.out.print(stringBuilder);
-        printYield(yield);
-    }
-
-
-    private static void appendResultHeaderToStringBuilder(StringBuilder stringBuilder) {
-        stringBuilder.append(RESULT_HEADER_MESSAGE)
-                .append(System.lineSeparator())
-                .append(DIVIDER)
-                .append(System.lineSeparator());
     }
 
     private static void printYield(double yield) {
@@ -54,7 +39,7 @@ public class OutputView {
     }
 
     private void outputProfitRate(LottoMatchResultDto lottoMatchResultDto) {
-        System.out.printf("총 수익률은 %.1ㄹ%%입니다.\n", lottoMatchResultDto.getProfitRate());
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", lottoMatchResultDto.getProfitRate());
     }
 
     private void outputLottoStatistic(LottoMatchResultDto lottoMatchResultDto) {
@@ -78,7 +63,7 @@ public class OutputView {
     }
 
     private void outputLottoStatisticPreinput() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(RESULT_HEADER_MESSAGE);
+        System.out.println(DIVIDER);
     }
 }

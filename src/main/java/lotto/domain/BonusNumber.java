@@ -52,4 +52,8 @@ public class BonusNumber {
     private boolean isDuplicated(int bonusNumber, Lotto lotto) {
         return lotto.getNumbers().contains(bonusNumber);
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

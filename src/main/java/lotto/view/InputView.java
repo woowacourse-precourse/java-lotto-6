@@ -44,18 +44,19 @@ public class InputView {
         }
     }
 
-    public static void getBonusNumber(List<Integer> winningNumber) {
+    public static int getBonusNumber(List<Integer> winningNumber) {
         System.out.println(BONUS_NUMBER_PROMPT);
         String bonusNumber = Console.readLine();
-        validateBonusNumber(bonusNumber, winningNumber);
+        return validateBonusNumber(bonusNumber, winningNumber);
     }
 
-    private static void validateBonusNumber(String bonusNumber, List<Integer> winningNumber) {
+    private static int validateBonusNumber(String bonusNumber, List<Integer> winningNumber) {
         try {
             InputValidator.validBonusNumber(bonusNumber, winningNumber);
+            return Integer.parseInt(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
-            getBonusNumber(winningNumber);
+            return getBonusNumber(winningNumber);
         }
     }
 

@@ -34,6 +34,19 @@ class LottoHandlerTest {
         assertThat(lottoTicket).isEqualTo(1);
     }
 
+    @DisplayName("구매 금액을 입력 받아 구입 금액에 해당하는 로또를 발행한다.")
+    @Test
+    void calculateLottoTicketCountRemoveSpaces() {
+        // given
+        String receivedPurchasePrice = " 1 0 0 0 ";
+
+        // when
+        int lottoTicket = lottoHandler.calculateLottoTicketCount(receivedPurchasePrice);
+
+        // then
+        assertThat(lottoTicket).isEqualTo(1);
+    }
+
     @DisplayName("구매 금액이 1,000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
     @Test
     void calculateLottoTicketCountByNotDivisibleBy1000() {
@@ -98,6 +111,19 @@ class LottoHandlerTest {
 
         // then
         assertThat(winningLotto.equals(new Lotto(List.of(1, 2, 3, 4, 5, 6)))).isTrue();
+    }
+
+    @DisplayName("당첨 번호를 입력 받아 Lotto 객체로 반환한다.")
+    @Test
+    void receiveWinningLottoRemoveSpaces() {
+        // given
+        String receivedWinningLotto = " 1 , 2 , 3 , 4 , 5 , 2 6 ";
+
+        // when
+        Lotto winningLotto = lottoHandler.receiveWinningLotto(receivedWinningLotto);
+
+        // then
+        assertThat(winningLotto.equals(new Lotto(List.of(1, 2, 3, 4, 5, 26)))).isTrue();
     }
 
     @DisplayName("당첨 번호를 입력 받아 오름차순으로 정렬하여 Lotto 객체로 반환한다.")
@@ -176,6 +202,19 @@ class LottoHandlerTest {
     @DisplayName("입력 받은 보너스 번호를 정수로 반환한다.")
     @Test
     void receiveBonusNumber() {
+        // given
+        String receivedBonusNumber = "1";
+
+        // when
+        int bonusNumber = lottoHandler.receiveBonusNumber(receivedBonusNumber);
+
+        // then
+        assertThat(bonusNumber).isEqualTo(1);
+    }
+
+    @DisplayName("입력 받은 보너스 번호를 정수로 반환한다.")
+    @Test
+    void receiveBonusNumberRemoveSpaces() {
         // given
         String receivedBonusNumber = "1";
 

@@ -23,7 +23,7 @@ class OutputViewTest {
         outputView = new OutputView();
     }
     @Test
-    @DisplayName("Test printAboutPurchase method")
+    @DisplayName("구매 내역 출력 테스트")
     void testPrintAboutPurchase() {
         // Arrange
         int amount = 2;
@@ -33,7 +33,6 @@ class OutputViewTest {
         );
 
         // Act
-        // Redirect console output for testing
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
@@ -54,7 +53,7 @@ class OutputViewTest {
     }
 
     @Test
-    @DisplayName("Test outputWinningResult method")
+    @DisplayName("당청 결과 출력 테스트")
     void testOutputWinningResult() {
         // Arrange
         LottoResultCount lottoResultCount = new LottoResultCount();
@@ -62,7 +61,6 @@ class OutputViewTest {
         double rate = 2500.0;
 
         // Act
-        // Redirect console output for testing
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 

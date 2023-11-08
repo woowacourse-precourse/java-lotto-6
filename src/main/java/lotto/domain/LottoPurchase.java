@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.constant.LottoNumber.PURCHASE_AMOUNT_COND;
 
 import java.util.List;
+import lotto.constant.message.ExceptionMessage;
 
 public class LottoPurchase {
 
@@ -10,8 +11,10 @@ public class LottoPurchase {
     private int amount;
 
     public void LottoPurchaseCreat(int purchaseMoney) {
-        purchaseMoney /= PURCHASE_AMOUNT_COND.getNumber();
-        this.amount = purchaseMoney;
+        if (purchaseMoney % PURCHASE_AMOUNT_COND.getNumber() != 0) {
+            throw new IllegalArgumentException(ExceptionMessage.PURCHASE_ERROR.getMessage());
+        }
+        this.amount = purchaseMoney / PURCHASE_AMOUNT_COND.getNumber();
     }
 
     public void getUserLotto(List<Lotto> purchaseLotto) {

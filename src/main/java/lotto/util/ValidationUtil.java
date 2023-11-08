@@ -15,6 +15,7 @@ public class ValidationUtil {
     private final InputUtil inputUtil = new InputUtil();
     private static final int ZERO = 0;
     private static final Pattern checkPattern = Pattern.compile("[0-9]+");
+    public static final String RE_INPUT = "다시 입력해주세요. : ";
 
     public int validatePurchase(String money) {
         while (true) {
@@ -23,7 +24,7 @@ public class ValidationUtil {
                 int purchase = validateDivision(money);
                 validateAmount(purchase);
                 return purchase;
-            } catch (NumberFormatException | ArithmeticException e) {
+            } catch (ArithmeticException | IllegalArgumentException e) {
                 System.out.println(e.getMessage());
                 money = reInput();
             }
@@ -157,8 +158,7 @@ public class ValidationUtil {
     }
 
     private String reInput() {
-        String reInputMessage = "다시 입력해주세요. : ";
-        System.out.print(reInputMessage);
+        System.out.print(RE_INPUT);
         return inputUtil.getInput();
     }
 }

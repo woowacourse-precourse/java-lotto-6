@@ -34,7 +34,7 @@ public class Judgement {
 
     }
 
-    public static int checkSpecialNumber(String spcialNumber) {
+    public static int checkOneLottoNumber(String spcialNumber) {
         int value;
         try {
             value = Integer.parseInt(spcialNumber);

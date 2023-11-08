@@ -15,23 +15,45 @@ public class LottoGame {
     }
 
     public void start() {
-        outputView.askForPurchaseAmount();
-        int amount = inputView.getPurchaseAmount();
+        int amount = getPurchase();
+        LottoManager lottoManager = createLottoManager(amount);
+        answerForPurchase(lottoManager);
 
-        LottoManager lottoManager = new LottoManager(amount);
-        lottoManager.issueLottos();
-
-        outputView.answerForPurchase(lottoManager.getLottoTicketCount(), lottoManager.getLottoNumbers());
-
-        outputView.askForWinningNumbers();
-        List<Integer> winningNumbers = inputView.getWinningNumbers();
-
-        outputView.askForBonusNumber();
-        int bonusNumber = inputView.getBonusNumber(winningNumbers);
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
 
         lottoManager.checkLottosResult(winningNumbers, bonusNumber);
         double rateOfReturn = lottoManager.getRateOfReturn();
 
+        printResult(lottoManager, rateOfReturn);
+    }
+
+    private void printResult(LottoManager lottoManager, double rateOfReturn) {
         outputView.printLottoResult(lottoManager.printLottosResult(), rateOfReturn);
+    }
+
+    private int getBonusNumber(List<Integer> winningNumbers) {
+        outputView.askForBonusNumber();
+        return inputView.getBonusNumber(winningNumbers);
+    }
+
+    private List<Integer> getWinningNumbers() {
+        outputView.askForWinningNumbers();
+        return inputView.getWinningNumbers();
+    }
+
+    private void answerForPurchase(LottoManager lottoManager) {
+        outputView.answerForPurchase(lottoManager.getLottoTicketCount(), lottoManager.getLottoNumbers());
+    }
+
+    private int getPurchase() {
+        outputView.askForPurchaseAmount();
+        return inputView.getPurchaseAmount();
+    }
+
+    private static LottoManager createLottoManager(int amount) {
+        LottoManager lottoManager = new LottoManager(amount);
+        lottoManager.issueLottos();
+        return lottoManager;
     }
 }

@@ -20,6 +20,10 @@ public class InputView {
             return inputData;
         }
 
+        return readUserInput();
+    }
+
+    private static String readUserInput() {
         try {
             return Console.readLine();
         } catch (Exception e) {
@@ -29,28 +33,20 @@ public class InputView {
 
     public static long inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        try {
-            String input = inputLine();
-            return divideWithTicketPrice(input);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 형식이 아닌 값이 포함되어 있습니다.");
-        }
+        String input = inputLine();
+        return divideWithTicketPrice(input);
     }
 
     public static List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        try {
-            String input = inputLine();
-            return parseWinningNumbersOrThrowError(input);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e);
-        }
+        String input = inputLine();
+        return parseWinningNumbersOrThrowError(input);
     }
 
     private static long divideWithTicketPrice(String input) {
         long purchaseAmount = parseLongOrThrowError(input);
 
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % TICKET_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해야 합니다.");
         }
 
@@ -66,8 +62,8 @@ public class InputView {
     }
 
     private static List<Integer> parseWinningNumbersOrThrowError(String input) {
-        List<Integer> winningNumbers = new ArrayList<>();
         String[] inputNumbers = input.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
 
         for (String inputNumber : inputNumbers) {
             Integer parsedNumber = parseIntegerOrThrowError(inputNumber);

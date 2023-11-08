@@ -1,9 +1,7 @@
 package lotto.dto;
 
-import lotto.util.consts.Consts;
-
-import static lotto.util.consts.ErrorMessage.MINUS_MONEY;
-import static lotto.util.consts.ErrorMessage.NOT_DIVIDED_BY_LOTTO_PRICE;
+import lotto.util.consts.ErrorMessage;
+import lotto.util.consts.IntValueConst;
 
 public record MoneyDto(int amount) {
     public MoneyDto {
@@ -17,13 +15,13 @@ public record MoneyDto(int amount) {
 
     private void validateNotMinus(int amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException(MINUS_MONEY.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.MINUS_MONEY.getMessage());
         }
     }
 
     private void validateDividedByLottoPrice(int amount) {
-        if (amount % Consts.SINGLE_LOTTO_PRICE.getValue() != 0) {
-            throw new IllegalArgumentException(NOT_DIVIDED_BY_LOTTO_PRICE.getMessage());
+        if (amount % IntValueConst.SINGLE_LOTTO_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVIDED_BY_LOTTO_PRICE.getMessage());
         }
     }
 }

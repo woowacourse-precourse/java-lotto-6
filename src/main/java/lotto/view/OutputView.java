@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
 
-public class OutputView {
-    private static final int NEVER_COUNTED = 0;
+import static lotto.util.consts.IntValueConst.NEVER_COUNTED;
 
+public class OutputView {
     public void beforeInputMoney() {
         System.out.println(PreviewSentence.INPUT_MONEY.getMessage());
     }
@@ -59,7 +59,7 @@ public class OutputView {
         Arrays.stream(Ranking.values())
                 .sorted(Comparator.reverseOrder()) // 5등 -> 1등 순으로 정렬
                 .forEach(ranking -> {
-                    Integer rankingCount = rankingCounts.getOrDefault(ranking, NEVER_COUNTED);
+                    Integer rankingCount = rankingCounts.getOrDefault(ranking, NEVER_COUNTED.getValue());
                     System.out.println(ranking.getMessage(rankingCount));
                 });
     }

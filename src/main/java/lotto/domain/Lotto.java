@@ -5,11 +5,11 @@ import lotto.util.consts.ErrorMessage;
 
 import java.util.List;
 
-public class Lotto {
-    private static final int LOTTO_FIXED_CIPHERS = 6;
-    private static final int START_INCLUSIVE_LOTTO_NUMBER = 1;
-    private static final int END_INCLUSIVE_LOTTO_NUMBER = 45;
+import static lotto.util.consts.IntValueConst.START_INCLUSIVE_LOTTO_NUMBER;
+import static lotto.util.consts.IntValueConst.END_INCLUSIVE_LOTTO_NUMBER;
+import static lotto.util.consts.IntValueConst.LOTTO_FIXED_CIPHER;
 
+public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto() {
@@ -37,7 +37,7 @@ public class Lotto {
     }
 
     private void validateNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_FIXED_CIPHERS) {
+        if (numbers.size() != LOTTO_FIXED_CIPHER.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.UNCORRECT_LOTTO_NUMBER_SIZE.getMessage());
         }
     }
@@ -53,13 +53,17 @@ public class Lotto {
     }
 
     private void validateEachNumberInRange(Integer n) {
-        if (n < START_INCLUSIVE_LOTTO_NUMBER || n > END_INCLUSIVE_LOTTO_NUMBER) {
+        if (n < START_INCLUSIVE_LOTTO_NUMBER.getValue() ||
+                n > END_INCLUSIVE_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private List<Integer> generateNumbers() {
-        return Randoms.pickUniqueNumbersInRange(START_INCLUSIVE_LOTTO_NUMBER, END_INCLUSIVE_LOTTO_NUMBER, LOTTO_FIXED_CIPHERS)
+        return Randoms.pickUniqueNumbersInRange(
+                        START_INCLUSIVE_LOTTO_NUMBER.getValue(),
+                        END_INCLUSIVE_LOTTO_NUMBER.getValue(),
+                        LOTTO_FIXED_CIPHER.getValue())
                 .stream()
                 .sorted()
                 .toList();

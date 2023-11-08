@@ -6,7 +6,7 @@ import lotto.dto.MoneyDto;
 import lotto.dto.ResultDto;
 import lotto.dto.WinNumbersDto;
 import lotto.repository.LottoRepository;
-import lotto.util.consts.Consts;
+import lotto.util.consts.IntValueConst;
 import lotto.util.consts.Ranking;
 
 import java.util.List;
@@ -17,7 +17,6 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class LottoService {
-    private static final int TWO_LOTTO_CIPHERS = 12;
     private static final double MULTIPLICATION_FOR_ROUND = 10.0;
     public static final double PERCENT_UNIT = 100.0;
 
@@ -32,7 +31,7 @@ public class LottoService {
     }
 
     private int calculateLottoCount(int money) {
-        return money / Consts.SINGLE_LOTTO_PRICE.getValue();
+        return money / IntValueConst.SINGLE_LOTTO_PRICE.getValue();
     }
 
     private List<LottoDto> generateLottoes(int lottoesCount) {
@@ -73,7 +72,7 @@ public class LottoService {
     private int countMatchedNumbers(List<Integer> winNumbers, List<Integer> lottoNumbers) {
         Set<Integer> matchingValidator = new HashSet<>(lottoNumbers);
         matchingValidator.addAll(winNumbers);
-        return TWO_LOTTO_CIPHERS - matchingValidator.size();
+        return IntValueConst.TWO_LOTTO_CIPHERS.getValue() - matchingValidator.size();
     }
 
     private boolean judgeBonusNumberMatched(int bonusNumber, List<Integer> lottoNumbers) {

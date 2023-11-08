@@ -1,16 +1,14 @@
 package lotto.util.validator;
 
 import lotto.domain.Lotto;
+import lotto.util.consts.ErrorMessage;
+import lotto.util.consts.IntValueConst;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.util.consts.ErrorMessage.NOT_NUMBER_INPUTTED;
-import static lotto.util.consts.ErrorMessage.TOO_LARGE_NUMBER;
-
 public class InputValidator {
-    private static final int MEMORY_SIZE_LIMIT = 2100000000;
     private static final String NUMBER_SPLITTER = ",";
 
     public int parseValidatedInt(String numberMessage) {
@@ -19,14 +17,14 @@ public class InputValidator {
             resultNumber = Integer.parseInt(numberMessage);
             validateMemorySizeLimit(resultNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_INPUTTED.getMessage(), e);
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER_INPUTTED.getMessage(), e);
         }
         return resultNumber;
     }
 
     private void validateMemorySizeLimit(int number) {
-        if (number >= MEMORY_SIZE_LIMIT) {
-            throw new IllegalArgumentException(TOO_LARGE_NUMBER.getMessage());
+        if (number >= IntValueConst.MEMORY_SIZE_LIMIT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.TOO_LARGE_NUMBER.getMessage());
         }
     }
 

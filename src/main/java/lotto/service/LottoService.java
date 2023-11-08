@@ -16,8 +16,11 @@ public class LottoService {
         int lottoCount = money / 1000;
 
         List<Lotto> boughtLotto = new ArrayList<>();
-        while (lottoCount > 0)
+        while (lottoCount > 0){
             boughtLotto.add(new Lotto(getLottoNumbers()));
+            lottoCount--;
+        }
+
 
         return boughtLotto;
     }

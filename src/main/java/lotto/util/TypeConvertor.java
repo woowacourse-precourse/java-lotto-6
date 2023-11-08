@@ -27,7 +27,7 @@ public class TypeConvertor {
 
         validateStringMoney(string);
 
-        Integer money = Integer.getInteger(string);
+        Integer money = Integer.parseInt(string);
 
         validateIntegerMoney(money);
         return money;

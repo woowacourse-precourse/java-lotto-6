@@ -1,13 +1,17 @@
 package lotto.entity;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        List<Integer> sortedNumber = numbers.stream().sorted().collect(Collectors.toList());
+
+        this.numbers = sortedNumber;
     }
 
     private void validate(List<Integer> numbers) {

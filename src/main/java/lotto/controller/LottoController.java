@@ -22,6 +22,23 @@ public class LottoController {
 
     }
 
+    public Integer getMoneyFromUser() {
+        boolean isDoneToValidateInput = false;
+//        Integer money = null;
+        while (!isDoneToValidateInput) {
+            String moneyString = Prompt.forInputMoney();
+            try {
+                Integer money = stringToInteger(moneyString);
+                return money;
+            } catch (IllegalArgumentException e) {
+                System.out.println(ERROR_TAG + e.getMessage());
+            }
+            isDoneToValidateInput = true;
+        }
+        return 0;
+//        return money;
+    }
+
     private List<Integer> getLottoNumbersFromUser() {
         boolean isDoneToValidateInput = false;
         List<Integer> lottoNumberList = null;
@@ -39,18 +56,5 @@ public class LottoController {
         return lottoNumberList;
     }
 
-    public Integer getMoneyFromUser() {
-        boolean isDoneToValidateInput = false;
-        Integer money = null;
-        while (!isDoneToValidateInput) {
-            String moneyString = Prompt.forInputMoney();
-            try {
-                money = stringToInteger(moneyString);
-            } catch (IllegalArgumentException e) {
-                System.out.println(ERROR_TAG + e.getMessage());
-            }
-            isDoneToValidateInput = true;
-        }
-        return money;
-    }
+
 }

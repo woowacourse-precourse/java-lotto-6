@@ -13,11 +13,11 @@ public class PrizeNumbers {
     }
 
     public void setBonusNumber(Integer bonusNumber) {
-        validateDuplication(bonusNumber);
+        validateBonusNumberDuplication(bonusNumber);
         this.bonusNumber = new LottoNumber(bonusNumber);
     }
 
-    public void validateDuplication(Integer bonusNumber) {
+    public void validateBonusNumberDuplication(Integer bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATE_BONUST_NUMBER_EXCEPTION_MESSAGE);
         }

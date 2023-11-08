@@ -10,51 +10,65 @@ import java.util.stream.Collectors;
 
 public class User {
 
-    public int inputValidatedPurchaseAmount() {
+    public int inputValidatedPurchaseAmount(LottoManager lottoManager) {
         while (true) {
-            try {
-                System.out.println(Prompt.INPUT_PURCHASE_AMOUNT.getMessage());
-                int amount = Integer.parseInt(Console.readLine().trim());
-                // LottoManager 클래스 내의 검증 로직을 호출해야 함
-                return amount; // 검증에 성공하면 반환
-            } catch (NumberFormatException e) {
-                System.out.println(Error.INVALID_PURCHASE_AMOUNT.getMessage());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            int amount = promptForPurchaseAmount();
+            if (lottoManager.verifyPurchaseAmount(amount)) {
+                return amount;
             }
+            System.out.println(Error.INVALID_PURCHASE_AMOUNT.getMessage());
+        }
+    }
+
+    private int promptForPurchaseAmount() {
+        System.out.println(Prompt.INPUT_PURCHASE_AMOUNT.getMessage());
+        try {
+            return Integer.parseInt(Console.readLine().trim());
+        } catch (NumberFormatException e) {
+            System.out.println(Error.INVALID_PURCHASE_AMOUNT.getMessage());
+            return 0; // Indicates invalid input
         }
     }
 
     public List<Integer> inputValidatedWinningNumbers() {
         while (true) {
             try {
-                System.out.println(Prompt.INPUT_WINNING_NUMBERS.getMessage());
-                String input = Console.readLine();
-                List<Integer> winningNumbers = Arrays.stream(input.split(","))
-                        .map(String::trim)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
-                new Lotto(winningNumbers); // Lotto 생성자에서 검증
-                return winningNumbers; // 검증에 성공하면 반환
-            } catch (NumberFormatException e) {
-                System.out.println(Error.INVALID_WINNING_NUMBER.getMessage());
+                List<Integer> winningNumbers = promptForWinningNumbers();
+                new Lotto(winningNumbers); // Lotto constructor validates numbers
+                return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
+    private List<Integer> promptForWinningNumbers() {
+        System.out.println(Prompt.INPUT_WINNING_NUMBERS.getMessage());
+        String input = Console.readLine();
+        return Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
     public WinningNumber inputValidatedWinningNumber(Lotto lotto) {
         while (true) {
+            int bonusNumber = promptForBonusNumber();
             try {
-                System.out.println(Prompt.INPUT_BONUS_NUMBER.getMessage());
-                int bonusNumber = Integer.parseInt(Console.readLine().trim());
-                return new WinningNumber(lotto, bonusNumber); // WinningNumber 객체 생성 시 검증
-            } catch (NumberFormatException e) {
-                System.out.println(Error.INVALID_BONUS_NUMBER.getMessage());
+                return new WinningNumber(lotto, bonusNumber); // WinningNumber constructor validates number
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private int promptForBonusNumber() {
+        System.out.println(Prompt.INPUT_BONUS_NUMBER.getMessage());
+        try {
+            return Integer.parseInt(Console.readLine().trim());
+        } catch (NumberFormatException e) {
+            System.out.println(Error.INVALID_BONUS_NUMBER.getMessage());
+            return 0; // Indicates invalid input
         }
     }
 }

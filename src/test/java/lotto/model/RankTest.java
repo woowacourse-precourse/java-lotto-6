@@ -17,7 +17,7 @@ class RankTest {
     @DisplayName("일치하는 번호의 수를 비교하여 당첨 등수를 알 수 있다.")
     @ParameterizedTest
     @MethodSource("rankData")
-    void calculate(int matchCount, boolean hasBonusNumber, Rank rank) {
+    void findBy(int matchCount, boolean hasBonusNumber, Rank rank) {
         assertThat(Rank.findBy(matchCount, hasBonusNumber)).isEqualTo(rank);
     }
 

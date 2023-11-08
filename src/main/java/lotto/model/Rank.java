@@ -42,10 +42,10 @@ public enum Rank {
                 .findFirst().orElse(LAST_PLACE);
     }
 
-    public static List<Rank> winningValues(){
+    public static List<Rank> winningValues() {
         List<Rank> winningRanks = new ArrayList<>();
-        for(Rank rank : values()){
-            if (!rank.equals(Rank.LAST_PLACE)){
+        for (Rank rank : values()) {
+            if (!rank.equals(Rank.LAST_PLACE)) {
                 winningRanks.add(rank);
             }
         }

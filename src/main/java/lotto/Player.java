@@ -23,7 +23,6 @@ public class Player{
                 this.amount = amount;
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1000 단위의 숫자를 입력해주세요. ");
             }
         }
     }

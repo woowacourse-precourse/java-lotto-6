@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Judgment{
@@ -15,14 +13,12 @@ public class Judgment{
         while(true) {
             try {
                 lotto = new Lotto(inputNumbers());
+                inputBonusNumber();
                 break;
             }
             catch (IllegalArgumentException e){
-                System.out.println("[ERROR] 잘못된 로또 개수가 입력되었습니다. ");
             }
         }
-
-        inputBonusNumber();
     }
 
     public List<Integer> inputNumbers(){
@@ -34,7 +30,6 @@ public class Judgment{
                 isInRange(numbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
             }
         }
         return numbers;
@@ -44,43 +39,69 @@ public class Judgment{
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
-                bonus = Integer.parseInt(Console.readLine());
+                bonus = duplicate(Console.readLine());
                 isInRange(bonus);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1 ~ 45 사이의 숫자를 입력해주세요.");
             }
         }
     }
 
-    public List<Integer> splitNumbers(String numbers){
-        String[] splitComma = numbers.split(",");
+    public int duplicate(String input){
+        int bonus = Integer.parseInt(input);
 
-        int[] intArray = Arrays.stream(splitComma)
-                .mapToInt(Integer::parseInt)
-                .toArray();
+        if(lotto.getNumbers().contains(bonus)){
+            System.out.println("[ERROR] 중복된 번호입니다. 다시입력해주세요. ");
+            throw new IllegalArgumentException();
+        }
+        return bonus;
+    }
 
-        return Arrays.stream(intArray).boxed().collect(Collectors.toList());
+    public List<Integer> splitNumbers(String input){
+        String[] splitComma = input.split(",");
+
+        int[] intArray = Arrays.stream(splitComma).mapToInt(Integer::parseInt).toArray();
+
+        List<Integer> numbers = Arrays.stream(intArray).boxed().collect(Collectors.toList());
+        // 입력받은 문자열을  String[] -> int[] -> List<Integer> 순으로 변환
+
+        Set<Integer> numbersSet = new HashSet<>(numbers);
+        if(numbersSet.size()!= numbers.size()){ // 입력된 로또 번호에 중복값이 있는지 확인
+            System.out.println("[ERROR] 중복된 번호입니다. 다시입력해주세요. ");
+            throw new IllegalArgumentException();
+        }
+        return numbers;
     }
 
     public void isInRange(List<Integer> numbers){
         for(int number : numbers){
-            if(number < 1 || number > 45)
+            if(number < 1 || number > 45) {
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 throw new IllegalArgumentException();
+            }
         }
     }
     public void isInRange(int number){
-            if(number < 1 || number > 45)
+            if(number < 1 || number > 45) {
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 throw new IllegalArgumentException();
+            }
     }
 
     public static int divisibleByThousand(int amount){
         int remain = amount % 1000;
         int numberOfTickets = amount / 1000;
 
-        if(remain != 0){
+        if(numberOfTickets < 1){
+            System.out.println("[ERROR] 1,000원 보다 작은 숫자가 입력되었습니다. ");
             throw new IllegalArgumentException();
         }
+
+        if(remain != 0){
+            System.out.println("[ERROR] 1,000원 단위로 숫자를 입력해주세요. ");
+            throw new IllegalArgumentException();
+        }
+
 
         return numberOfTickets;
     }

@@ -19,19 +19,14 @@ public class Input {
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
         System.out.println();
+
         int numOfTicket = Integer.parseInt(purchaseAmount)/1000;
         System.out.println(numOfTicket+"개를 구매했습니다.");
+
         for(int i=0; i<numOfTicket; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottoTicket.add(new Lotto(numbers));
-            System.out.print("[");
-            System.out.print(lottoTicket.get(i).getNumbers().get(0).intValue()+", ");
-            System.out.print(lottoTicket.get(i).getNumbers().get(1).intValue()+", ");
-            System.out.print(lottoTicket.get(i).getNumbers().get(2).intValue()+", ");
-            System.out.print(lottoTicket.get(i).getNumbers().get(3).intValue()+", ");
-            System.out.print(lottoTicket.get(i).getNumbers().get(4).intValue()+", ");
-            System.out.print(lottoTicket.get(i).getNumbers().get(5).intValue());
-            System.out.println("]");
+            printLottoTicket(lottoTicket.get(i));
         }
         System.out.println();
 
@@ -49,5 +44,9 @@ public class Input {
         System.out.println();
 
         return bonusNumber;
+    }
+
+    private void printLottoTicket(Lotto lo) {
+        System.out.println(lo.getNumbers());
     }
 }

@@ -25,7 +25,6 @@ public class LottoService {
 
     public ArrayList<Lotto> generateLotto(PurchaseAmount purchaseAmount) {
         ArrayList<Lotto> lottos = new ArrayList<>();
-
         int count = purchaseAmount.getMoney() / MIN_PURCHASE_AMOUNT;
 
         for (int i = START_INDEX; i < count; i++) {
@@ -34,12 +33,6 @@ public class LottoService {
         }
 
         return lottos;
-    }
-
-    public List<Integer> generateLottoNumbers() {
-        ArrayList<Integer> numbers = new ArrayList<>(pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT));
-        Collections.sort(numbers);
-        return numbers;
     }
 
     public Map<Rank, Integer> generateLottoStatistics(WinningLotto winningLotto, ArrayList<Lotto> lottos) {
@@ -61,5 +54,11 @@ public class LottoService {
         }
 
         return (double) totalWinningAmount / (double) purchaseAmount.getMoney() * PERCENTAGE_MULTIPLIER;
+    }
+
+    private List<Integer> generateLottoNumbers() {
+        ArrayList<Integer> numbers = new ArrayList<>(pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT));
+        Collections.sort(numbers);
+        return numbers;
     }
 }

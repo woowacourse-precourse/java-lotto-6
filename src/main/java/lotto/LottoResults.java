@@ -17,5 +17,10 @@ public class LottoResults {
     public int getCount(LottoRank rank) {
         return results.getOrDefault(rank, 0);
     }
-
+    public int calculateTotalPrize() {
+        return results.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
+                .sum();
+    }
+    
 }

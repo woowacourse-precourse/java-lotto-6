@@ -15,6 +15,7 @@ public class UserInput {
     private static final String WRONG_VALUE_MESSAGE = "%s 숫자가 아닌 값이 입력되었습니다.";
     private static final String DUPLICATE_MESSAGE = "%s 중복된 숫자가 입력되었습니다.";
     private static final String WRONG_LOTTO_NUMBER_MESSAGE = "%s %d 이상, %d 이하의 수를 입력해주세요.";
+    private static final String BONUS_ERROR_MESSAGE = "%s 당첨 숫자에 없는 수를 입력해주세요.";
 
 
     public static long getUserPayment() {
@@ -98,6 +99,31 @@ public class UserInput {
             throw new IllegalArgumentException(
                     String.format(WRONG_LOTTO_NUMBER_MESSAGE,
                             START_MESSAGE, Lotto.MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER));
+        }
+    }
+
+    public static int getBonusNumber(Lotto winningNumbers) {
+        String userInput = InputView.setBonusNumber();
+        checkEmpty(userInput);
+        int bonusNumber = checkInteger(userInput);
+        checkValidNumber(bonusNumber);
+        checkNotInWinningNumbers(winningNumbers, bonusNumber);
+        return bonusNumber;
+    }
+
+    private static int checkInteger(String userInput) {
+        try {
+            return Integer.parseInt(userInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(
+                    String.format(WRONG_VALUE_MESSAGE, START_MESSAGE));
+        }
+    }
+
+    private static void checkNotInWinningNumbers(Lotto winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(
+                    String.format(BONUS_ERROR_MESSAGE, START_MESSAGE));
         }
     }
 }

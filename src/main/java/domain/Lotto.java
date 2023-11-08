@@ -66,4 +66,12 @@ public class Lotto {
         }
         return totalLottoList;
     }
+
+    public List<Integer> cloneNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }

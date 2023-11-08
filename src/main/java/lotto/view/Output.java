@@ -33,10 +33,13 @@ public class Output {
         System.out.println();
     }
     public void lottoFormatOutput(List<Integer> lotto){
-        String result = lotto.stream()
+        List<Integer> sortedLotto = lotto.stream()
                 .sorted()
+                .toList();
+        String result = sortedLotto.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", "));
-        System.out.println("["+result+"]");
+        System.out.println("[" + result + "]");
+
     }
 }

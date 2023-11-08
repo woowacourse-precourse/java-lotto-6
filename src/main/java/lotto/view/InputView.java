@@ -86,6 +86,8 @@ public class InputView {
                 int bonusNumber = Integer.parseInt(input);
                 checkBonusNumberValidity(bonusNumber, winningNumbers);
                 return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해주세요." );
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

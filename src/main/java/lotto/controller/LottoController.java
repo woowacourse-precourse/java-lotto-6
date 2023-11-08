@@ -10,6 +10,7 @@ public class LottoController {
         OutputView.printReadCashMessage();
         int cash = InputView.readCash();
         LottoBuyer lottoBuyer = new LottoBuyer(cash);
+        lottoBuyer.purchase();
     }
 
 }

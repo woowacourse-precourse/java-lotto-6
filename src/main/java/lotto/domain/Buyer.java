@@ -2,17 +2,19 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.validation.Validation;
 
 public class Buyer {
-    private final Amount amount;
+    private final int amount;
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public Buyer(String amount) {
-        this.amount = new Amount(amount);
+    public Buyer(int amount) {
+        validateAmount(amount);
+        this.amount = amount;
     }
 
     public int getAmount() {
-        return this.amount.getAmount();
+        return this.amount;
     }
 
     public void setLottos(Lotto lotto) {
@@ -21,6 +23,12 @@ public class Buyer {
 
     public List<Lotto> getLottos() {
         return this.lottos;
+    }
+
+    private void validateAmount(int amount) {
+        Validation.validateDigit(amount);
+//        Validation.validateIsBlank(amount);
+//        Validation.validateStringToInteger(amount);
     }
 
 

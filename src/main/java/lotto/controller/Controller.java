@@ -1,28 +1,47 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Buyer;
 import lotto.domain.Game;
-import lotto.dto.PurchaseResult;
 import lotto.service.Service;
+import lotto.util.Utils;
 import lotto.view.Input;
 import lotto.view.Output;
 
 public class Controller {
     private final Service service = new Service();
 
+    private Buyer buyer;
+    private Game game;
+
     public void run() {
-        readyForGame();
-        proceedGame();
+        beforeGame();
+        processGame();
         endGame();
     }
 
-    private void readyForGame() {
+    private void beforeGame() {
         while (true) {
             try {
-                Output.printAmountMessage();
-                Buyer buyer = new Buyer(Input.getData());
-                PurchaseResult purchaseResult = service.purchaseLottos(buyer);
-                Output.printPurchasedLottos(purchaseResult);
+                buyer = new Buyer(getInputAmount());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        service.purchaseLottos(buyer);
+        Output.printPurchasedLottos(buyer);
+    }
+
+    private int getInputAmount() {
+        Output.printAmountMessage();
+        return Utils.stringToInt(Input.getData());
+    }
+
+    private void processGame() {
+        while (true) {
+            try {
+                game = new Game(getInputWinningNumbers(), getInputBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -30,32 +49,14 @@ public class Controller {
         }
     }
 
-    private void proceedGame() {
-        Game game = generateGame();
-        setBonusNumber(game);
+    private List<Integer> getInputWinningNumbers() {
+        Output.printWinningNumberMessage();
+        return Utils.stringToIntegerList(Input.getData());
     }
 
-    private Game generateGame() {
-        while (true) {
-            try {
-                Output.printWinningNumberMessage();
-                return new Game(Input.getData());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private void setBonusNumber(Game game) {
-        while (true) {
-            try {
-                Output.printBonusNumberMessage();
-                game.setBonusNumber(Input.getData());
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    private int getInputBonusNumber() {
+        Output.printBonusNumberMessage();
+        return Utils.stringToInt(Input.getData());
     }
 
     private void endGame() {

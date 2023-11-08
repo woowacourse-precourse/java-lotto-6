@@ -1,7 +1,7 @@
 package lotto.view;
 
+import lotto.domain.Buyer;
 import lotto.domain.Lotto;
-import lotto.dto.PurchaseResult;
 
 public class Output {
     public static final String PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -13,10 +13,10 @@ public class Output {
         System.out.println(PURCHASE_AMOUNT_MESSAGE);
     }
 
-    public static void printPurchasedLottos(PurchaseResult purchaseResult) {
-        System.out.println(purchaseResult.getLottosCount() + PURCHASED_LOTTO_MESSAGE);
+    public static void printPurchasedLottos(Buyer buyer) {
+        System.out.println(buyer.getLottos().size() + PURCHASED_LOTTO_MESSAGE);
 
-        for (Lotto lotto : purchaseResult.getLottos()) {
+        for (Lotto lotto : buyer.getLottos()) {
             System.out.println(lotto.getNumbers());
         }
     }

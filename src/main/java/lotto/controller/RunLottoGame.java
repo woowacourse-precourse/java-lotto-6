@@ -35,8 +35,8 @@ public class RunLottoGame {
         System.out.println();
     }
 
-    public void terminateGame(int[] counts, double rate) {
-        counts = calculation.countMatchingNumbers(lotto, lottoTicket);
+    public void terminateGame() {
+        int[] counts = calculation.countMatchingNumbers(lotto, lottoTicket);
         int start = 0;
         Printer.printResult();
         System.out.println("---");

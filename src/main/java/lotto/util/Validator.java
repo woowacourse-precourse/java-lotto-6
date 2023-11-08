@@ -18,7 +18,7 @@ public class Validator {
      * Description: Validate PurchaseAmount<br> rule1: PurchaseAmount must be greater than 0<br> rule2: PurchaseAmount
      * must be multiple of 1000<br>
      *
-     * @param amount
+     * @throws IllegalArgumentException
      */
     public static void validatePurchaseAmount(int amount) {
         Pattern pattern = Pattern.compile(PURCHASE_AMOUNT_REGEX);
@@ -32,8 +32,6 @@ public class Validator {
      * Description: Validate LottoNumbers<br> rule1: LottoNumbers must have 6 numbers<br> rule2: LottoNumbers must have
      * unique numbers<br>
      *
-     * @param numbers
-     * @return void
      * @throws IllegalArgumentException
      */
     public static void validateLottoNumbers(List<Integer> numbers) {
@@ -49,8 +47,6 @@ public class Validator {
     /**
      * Description: Validate LottoNumber<br> rule1: LottoNumber must be between 1 and 45<br>
      *
-     * @param number
-     * @return void
      * @throws IllegalArgumentException
      */
     public static void validateLottoNumber(int number) {
@@ -62,7 +58,6 @@ public class Validator {
     /**
      * Description: Validate LottoNumbers<br> rule1: matchCount must be between 3 and 6<br>
      *
-     * @param matchCount
      * @throws IllegalArgumentException
      */
     public static void validateMatchCount(int matchCount) {
@@ -74,8 +69,7 @@ public class Validator {
     /**
      * Description: Validate BonusNumber<br> rule1: BonusNumber must not be in LottoNumbers<br>
      *
-     * @param lotto
-     * @param bonusNumber
+     * @throws IllegalArgumentException
      */
     public static void validateBonusNumber(Lotto lotto, int bonusNumber) {
         if (lotto.getLottoNumbers().contains(bonusNumber)) {
@@ -85,9 +79,6 @@ public class Validator {
 
     /**
      * Description: Validate LottoNumbers<br> rule1: LottoNumbers must have 6 numbers
-     *
-     * @param numbers
-     * @return boolean
      */
     private static boolean isLotteryNumberSizeValid(List<Integer> numbers) {
         return numbers.size() != MAX_LOTTO_SIZE;
@@ -95,9 +86,6 @@ public class Validator {
 
     /**
      * Description: Validate LottoNumbers<br> rule2: LottoNumbers must have unique numbers
-     *
-     * @param numbers
-     * @return boolean
      */
     private static boolean isLottoNumberDuplicate(List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size();

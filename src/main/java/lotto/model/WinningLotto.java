@@ -15,9 +15,6 @@ public class WinningLotto {
 
     /**
      * Description: 몇 개의 번호가 일치하는지 반환
-     *
-     * @param lotto
-     * @return 일치 번호 개수
      */
     public int getMatchCount(Lotto lotto) {
         return (int) lotto.getLottoNumbers().stream()
@@ -27,9 +24,6 @@ public class WinningLotto {
 
     /**
      * Description: 매개변수로 받은 LottoNumber가 당첨 번호 안에 속하는지 여부
-     *
-     * @param lottoNumber
-     * @return 당첨 번호 안에 속하는지 여부
      */
     private boolean isContain(int lottoNumber) {
         return numbers.contains(lottoNumber);
@@ -37,9 +31,6 @@ public class WinningLotto {
 
     /**
      * Description: 매개변수로 받은 Lotto 안에 보너스 번호가 있는지 여부
-     *
-     * @param lotto
-     * @return 보너스 번호가 있는지 여부
      */
     public boolean isMatchBonusNumber(Lotto lotto) {
         return lotto.getLottoNumbers().contains(bonusNumber);

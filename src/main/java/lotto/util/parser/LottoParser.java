@@ -7,10 +7,6 @@ import lotto.model.WinningLotto;
 public class LottoParser extends Parser {
     /**
      * Description: Parse Lotto to Prize
-     *
-     * @param lotto
-     * @param winningLotto
-     * @return
      */
     public static Prize parseLottoToPrize(Lotto lotto, WinningLotto winningLotto) {
         int matchCount = winningLotto.getMatchCount(lotto);

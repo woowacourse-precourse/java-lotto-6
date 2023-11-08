@@ -19,9 +19,10 @@ public class Parser {
 
     /**
      * Description: Parse String to int
+     *
+     * @throws IllegalArgumentException
      */
     public static int parseStringToInt(String arg) {
-        //음수도 허용
         if (!arg.matches(INTEGER_REGEX)) {
             throw new IllegalArgumentException(ONLY_NUMBER_INPUT_MESSAGE);
         }

@@ -23,7 +23,7 @@ public class VerifierTest {
     @DisplayName("당첨 번호가 ,로 구분되지 않으면 예외가 발생한다.")
     @Test
     void validateWinningNumbersByNotComma() {
-        assertThatThrownBy(() -> Verifier.validateWinningNumbers("1 2 3 4 5 6"))
+        assertThatThrownBy(() -> Verifier.validateWinningNumberInput("1 2 3 4 5 6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

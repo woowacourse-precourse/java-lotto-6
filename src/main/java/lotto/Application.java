@@ -8,7 +8,6 @@ public class Application {
         while (true) {
             try {
                 String amountInput = LottoConsole.inputAmount();
-                System.out.println();
                 LottoStore lottoStore = new LottoStore();
                 lottos = lottoStore.purchaseLottoTickets(amountInput);
                 break;
@@ -18,24 +17,28 @@ public class Application {
         }
 
         LottoConsole.printLottoListInfo(lottos);
-        System.out.println();
 
-        LottoRewardsCenter center;
+        LottoChecker checker = new LottoChecker();
         while (true) {
             try {
                 String answerNumbers = LottoConsole.inputAnswerNumbers();
-                System.out.println();
+                checker.setAnswerNumber(answerNumbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        while (true) {
+            try {
                 String bonusNumber = LottoConsole.inputBonusNumber();
-                System.out.println();
-
-                LottoChecker checker = new LottoChecker(answerNumbers, bonusNumber);
-                center = new LottoRewardsCenter(checker);
+                checker.setBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
+        LottoRewardsCenter center = new LottoRewardsCenter(checker);
         List<LottoPrize> prizes = center.getPrizeResults(lottos);
         Double ROI = center.calculateROI(prizes);
 

@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import lotto.dto.Lotto;
-import lotto.validator.InputCSVNumbersValidator;
 import lotto.validator.InputNumberValidator;
+import lotto.validator.InputNumbersValidator;
 import lotto.validator.LottoNumbersValidator;
 import lotto.validator.LottoPurchaseValidator;
 
@@ -49,7 +49,7 @@ public class InputView {
                         .map(Integer::parseInt)
                         .toList(),
                 input -> {
-                    InputCSVNumbersValidator.validate(input.stream().map(String::valueOf).toList());
+                    InputNumbersValidator.validate(input.stream().map(String::valueOf).toList());
                     LottoNumbersValidator.validateLotto(input);
                     return true;
                 }
@@ -61,7 +61,7 @@ public class InputView {
                 Integer::parseInt,
                 input -> {
                     InputNumberValidator.validate(String.valueOf(input));
-                    LottoNumbersValidator.validateBonus(winningLotto.getNumbers(), input);
+                    LottoNumbersValidator.validateBonus(winningLotto.numbers(), input);
                     return true;
                 }
         );

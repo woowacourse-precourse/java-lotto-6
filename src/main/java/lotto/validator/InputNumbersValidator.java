@@ -1,13 +1,12 @@
 package lotto.validator;
 
+import java.util.List;
 import lotto.constants.ValidationConstants;
 
-import java.util.List;
-
-public class InputCSVNumbersValidator {
+public class InputNumbersValidator {
     private static final int MIN_NUMBER = 0;
 
-    private InputCSVNumbersValidator() {
+    private InputNumbersValidator() {
     }
 
     public static void validate(final List<String> inputs) {

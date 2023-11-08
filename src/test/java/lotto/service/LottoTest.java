@@ -40,7 +40,7 @@ class LottoTest {
         //given
         Lotto lotto = new Lotto(List.of(31, 5, 2, 6, 7, 14));
         //when & then
-        assertThat(lotto.getNumbers())
+        assertThat(lotto.numbers())
                 .isEqualTo(List.of(2, 5, 6, 7, 14, 31));
     }
 }

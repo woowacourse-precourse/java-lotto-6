@@ -19,13 +19,13 @@ public class Comparator {
     }
 
     private boolean isHasBonusNumber(Lotto purchasedLotto) {
-        return purchasedLotto.getNumbers().contains(winningLotto.getBonusNumber());
+        return purchasedLotto.numbers().contains(winningLotto.bonusNumber());
     }
 
     private int getHitCountOfLottoNumbers(Lotto purchasedLotto) {
         int hitCount = 0;
-        for (int number : winningLotto.getWinningLottoNumbers()) {
-            if (purchasedLotto.getNumbers().contains(number)) {
+        for (int number : winningLotto.winningLottoNumbers()) {
+            if (purchasedLotto.numbers().contains(number)) {
                 hitCount += 1;
             }
         }

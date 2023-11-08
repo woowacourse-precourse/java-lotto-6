@@ -73,7 +73,7 @@ public class LottoGameController {
 
     private void displayPurchasedLottos(List<Lotto> purchasedLottos) {
         for (Lotto lotto : purchasedLottos) {
-            OutputView.printGeneratedLottoResult(lotto.getNumbers());
+            OutputView.printGeneratedLottoResult(lotto.numbers());
         }
     }
 

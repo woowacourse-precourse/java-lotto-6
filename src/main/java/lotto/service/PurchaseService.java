@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.Comparator;
 import java.util.List;
 import lotto.dto.Lotto;
 import lotto.repository.PurchaseRepository;
@@ -23,6 +24,8 @@ public class PurchaseService {
 
     private Lotto generateEachLotto() {
         RandomNumberGenerator generator = new RandomNumberGenerator();
-        return new Lotto(generator.generateNumbers());
+        return new Lotto(generator.generateNumbers().stream()
+                .sorted(Comparator.naturalOrder())
+                .toList());
     }
 }

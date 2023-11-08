@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LottoTicket {
     private final List<Lotto> lottoTicket;
@@ -11,12 +13,9 @@ public class LottoTicket {
     }
 
     protected static LottoTicket createLottoTicket(int count) {
-        List<Lotto> lottoTicket = new ArrayList<>();
-
-        for (int index = 0; index < count; index++) {
-            Lotto lotto = Lotto.createLotto();
-            lottoTicket.add(lotto);
-        }
+        List<Lotto> lottoTicket = IntStream.range(0, count)
+                .mapToObj(element -> Lotto.createLotto())
+                .collect(Collectors.toList());
 
         return new LottoTicket(lottoTicket);
     }

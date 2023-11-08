@@ -34,4 +34,13 @@ class LottoTest {
         Assertions.assertEquals(lottoResultDto, new LottoResultDto(5, 1));
     }
 
+    @Test
+    void 로또_번호_조회() {
+        List<Integer> lottoNumbers = List.of(1,2,3,4,5,6);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        List<Integer> getNumbersResult = lotto.getNumbers();
+
+        Assertions.assertEquals(lottoNumbers, getNumbersResult);
+    }
 }

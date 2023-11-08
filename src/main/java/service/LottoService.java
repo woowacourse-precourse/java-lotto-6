@@ -4,10 +4,16 @@ import camp.nextstep.edu.missionutils.Randoms;
 import domain.Lotto;
 import domain.Lottos;
 import domain.Player;
+import type.PriceType;
 
 import java.util.*;
 
 public class LottoService {
+    public static final int FIFTH_PRICE = 5000;
+    public static final int FOURTH_PRICE = 50000;
+    public static final int THIRD_PRICE = 1500000;
+    public static final int FIRST_PRICE = 2000000000;
+    public static final int SECOND_PRICE = 30000000;
     private Player player;
     private Lottos lottos = new Lottos();
     private static int BONUS_MATCH_NUMBER = 7;
@@ -72,10 +78,11 @@ public class LottoService {
     }
 
     private static void setMoneyMap(HashMap<Integer, Integer> moneyMap) {
-        moneyMap.put(3, 5000);
-        moneyMap.put(4, 50000);
-        moneyMap.put(6, 2000000000);
-        moneyMap.put(7, 30000000);
+        moneyMap.put(PriceType.FIFTH.getCount(), FIFTH_PRICE);
+        moneyMap.put(PriceType.FOURTH.getCount(), FOURTH_PRICE);
+        moneyMap.put(PriceType.THIRD.getCount(), THIRD_PRICE);
+        moneyMap.put(PriceType.FIRST.getCount(), FIRST_PRICE);
+        moneyMap.put(PriceType.SECOND.getCount(), SECOND_PRICE);
     }
 
     private boolean isBonusNumberMatch(Lotto lotto) {
@@ -84,5 +91,9 @@ public class LottoService {
 
     public double getEarnRatio() {
         return (player.getLottoSum() / player.getMoney()) * 100.0;
+    }
+
+    public void addLotto(Lotto lotto) {
+        lottos.addLotto(lotto);
     }
 }

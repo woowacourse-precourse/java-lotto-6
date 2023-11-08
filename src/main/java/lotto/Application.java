@@ -19,18 +19,35 @@ public class Application {
     private static int bonusNumber;
 
     public static void main(String[] args) {
+        depositMoney();
+        createLotteryTicket();
+        checkMyLotteryTicket();
+        makeWinningTicket();
+        claculateMyRate();
+        printer.printResult(calc.getRank(), money);
+    }
+
+    private static void depositMoney() {
         money = user.enterAmount();
         numberOfLotto = user.getNumberOfLotto();
+    }
+
+    private static void createLotteryTicket() {
         lottos = publisher.publishLotto(numberOfLotto);
+    }
+
+    private static void checkMyLotteryTicket() {
         printer = new Printing(lottos);
         printer.printLotto(lottos);
+    }
 
+    private static void makeWinningTicket() {
         answer = user.enterWinningNumber();
         bonusNumber = user.enterBonusNumber();
+    }
 
+    private static void claculateMyRate() {
         calc = new Calculate(lottos, answer, bonusNumber);
         calc.countAll();
-
-        printer.printResult(calc.getRank(), money);
     }
 }

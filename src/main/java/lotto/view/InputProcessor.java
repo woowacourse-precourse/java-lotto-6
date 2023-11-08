@@ -2,12 +2,9 @@ package lotto.view;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class InputProcessor {
 
-    private static final Pattern NUMBER_PATTERN = Pattern.compile("^[0-9]+$");
     public Integer toPaidAmount(String input) {
         input = input.trim();
         validateNotNull(input);

@@ -2,7 +2,6 @@ package lotto.domain.model.lotto;
 
 import lotto.domain.model.result.WinningRankCalculator;
 import lotto.domain.model.result.WinningRankCounts;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -15,7 +14,8 @@ public class LottoTickets {
 
     }
 
-    public WinningRankCounts collectWinningRanks(WinningRankCalculator calculator, LottoWinningNumbers lottoWinningNumbers) {
+    public WinningRankCounts collectWinningRanks(WinningRankCalculator calculator,
+                                                 LottoWinningNumbers lottoWinningNumbers) {
         WinningRankCounts counts = new WinningRankCounts();
 
         lottos.stream()

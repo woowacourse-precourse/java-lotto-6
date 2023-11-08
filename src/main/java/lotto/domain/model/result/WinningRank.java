@@ -17,7 +17,8 @@ public enum WinningRank {
     private final long prize;
     private final BiFunction<Integer, Boolean, Boolean> conditionExpress;
 
-    WinningRank(int countOfMatchingNumbers, boolean requiresBonus, long prize, BiFunction<Integer, Boolean, Boolean> conditionExpress) {
+    WinningRank(int countOfMatchingNumbers, boolean requiresBonus, long prize,
+                BiFunction<Integer, Boolean, Boolean> conditionExpress) {
         this.countOfMatchingNumbers = countOfMatchingNumbers;
         this.requiresBonus = requiresBonus;
         this.prize = prize;

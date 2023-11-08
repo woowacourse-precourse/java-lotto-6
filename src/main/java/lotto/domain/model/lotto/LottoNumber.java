@@ -2,7 +2,6 @@ package lotto.domain.model.lotto;
 
 import lotto.error.ErrorMessage;
 import lotto.config.LottoConfig;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

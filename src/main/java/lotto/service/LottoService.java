@@ -15,7 +15,8 @@ public class LottoService {
     private final WinningRankCalculator winningRankCalculator;
     private final ProfitRateCalculator profitRateCalculator;
 
-    public LottoService(final LottoIssuer lottoIssuer, final WinningRankCalculator winningRankCalculator, final ProfitRateCalculator profitRateCalculator) {
+    public LottoService(final LottoIssuer lottoIssuer, final WinningRankCalculator winningRankCalculator,
+                        final ProfitRateCalculator profitRateCalculator) {
         this.lottoIssuer = lottoIssuer;
         this.winningRankCalculator = winningRankCalculator;
         this.profitRateCalculator = profitRateCalculator;

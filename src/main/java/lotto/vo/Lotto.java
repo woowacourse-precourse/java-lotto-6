@@ -35,17 +35,29 @@ public class Lotto {
 
     public StringBuilder getNumbersForPrint() {
         StringBuilder sb = new StringBuilder();
-
-        int min = LAST_LOTTO_NUMBER.getValue();
+        sb.append("[");
         int i = 0;
+        boolean[] isPrinted = new boolean[numbers.size()];
         while (i < TOTAL_LOTTO_NUMBER.getValue()) {
-            for (Integer number : this.numbers) {
-                Math.max(min, number);
-            }
-            sb.append(numbers);
+            int min = compareSize(isPrinted);
+            if(i!=0) sb.append(", ");
+            sb.append(min);
             i++;
         }
+        sb.append("]");
         return sb;
+    }
+
+    private int compareSize(boolean[] isPrinted){
+        int j;
+        int min = LAST_LOTTO_NUMBER.getValue();
+        for(j=0; j<isPrinted.length; j++){
+            if(!isPrinted[j]) {
+                min = Math.min(min, numbers.get(j));
+            }
+        }
+        isPrinted[numbers.indexOf(min)] = true;
+        return min;
     }
 
     public int countWinning(List<Integer> winningNumbers) {

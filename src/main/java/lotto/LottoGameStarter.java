@@ -1,10 +1,8 @@
 package lotto;
 
-import lotto.domain.LottoRanks;
-import lotto.view.InputView;
+import lotto.domain.InputView;
 import lotto.domain.Lotto;
 import lotto.domain.LottoDrawMachine;
-import lotto.domain.LottoRank;
 import lotto.domain.PurchaseMachine;
 import lotto.domain.WinningLotto;
 

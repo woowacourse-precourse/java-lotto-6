@@ -1,8 +1,8 @@
 package view;
 
-import domain.Coincide;
-import domain.Lotto;
-import domain.LottoNumbers;
+import lotto.Coincide;
+import lotto.Lotto;
+import lotto.LottoNumbers;
 
 
 import java.util.Collections;
@@ -27,7 +27,6 @@ public class outputView {
                 lottos[i] = new Lotto(LottoNumbers.setLottoNumbers());
             }
             System.out.println(number + OUTPUT_BUY);
-
             for (Lotto lotto : lottos) {
                 System.out.println(lotto.getLotto(lotto));
             }
@@ -122,9 +121,10 @@ public class outputView {
     }
 
     private static void rateOfReturn(int[] arr, int input) {
-        float sum = (float) ((arr[0] * Coincide.FIVE.getCountOfMoney()) + (arr[1] * Coincide.FOUR.getCountOfMoney()) + (arr[2] * Coincide.THIRD.getCountOfMoney()) + (arr[3] * Coincide.SECOND.getCountOfMoney()) + (arr[4] * Coincide.FIRST.getCountOfMoney())) / input;
+        float sum = (float) (input - ((arr[0] * Coincide.FIVE.getCountOfMoney()) + (arr[1] * Coincide.FOUR.getCountOfMoney()) + (arr[2] * Coincide.THIRD.getCountOfMoney()) + (arr[3] * Coincide.SECOND.getCountOfMoney()) + (arr[4] * Coincide.FIRST.getCountOfMoney()))) / input;
+        sum *= 100;
 
-        String result = String.format("%,.1f", sum);
+        String result = String.format("%,.1f", (100 - sum));
         System.out.println(OUTPUT_RATE_START + result + OUTPUT_RATE_END);
     }
 }

@@ -1,4 +1,4 @@
-package domain;
+package lotto;
 
 import view.ExceptionView;
 import view.InputView;

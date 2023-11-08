@@ -1,3 +1,5 @@
+package lotto;
+
 import controller.LottoController;
 
 public class Application {

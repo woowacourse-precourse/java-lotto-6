@@ -1,4 +1,4 @@
-package domain;
+package lotto;
 
 public enum Coincide {
     FIRST(6, "6개 일치 (2,000,000,000원) - ", 2000000000),

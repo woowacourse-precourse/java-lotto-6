@@ -1,7 +1,7 @@
 package controller;
 
-import domain.LottoAmount;
-import domain.Lotto;
+import lotto.LottoAmount;
+import lotto.Lotto;
 import view.InputView;
 import view.outputView;
 

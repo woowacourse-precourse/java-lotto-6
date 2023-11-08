@@ -7,16 +7,16 @@ public class InputView {
 
     public static int getPurchaseAmount() {
         String input = Console.readLine();
-        return Validation.isValidPurchaseAmount(input);
+        return Validation.validatePurchaseAmount(input);
     }
 
     public static List<Integer> getWinnerNumbers() {
         String input = Console.readLine();
-        return Validation.isValidWinnerNumbers(input);
+        return Validation.validateWinnerNumbers(input);
     }
 
     public static int getBonusNumber() {
         String input = Console.readLine();
-        return Validation.isValidBonusNumber(input);
+        return Validation.validateBonusNumber(input);
     }
 }

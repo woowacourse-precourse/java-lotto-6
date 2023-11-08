@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoPlayer;
@@ -14,8 +13,9 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     public void run() {
-        String purchaseMoney = InputView.inputPurchaseMoney();
-        LottoPlayer lottoPlayer = createLottoPlayer(purchaseMoney);
+
+        LottoPlayer lottoPlayer = createLottoPlayer();
+
         int numberOfLottoTickets = lottoPlayer.getNumberOfLottoTickets();
         OutputView.outputNumberOfLottoTicks(numberOfLottoTickets);
 
@@ -30,8 +30,13 @@ public class LottoGameController {
         OutputView.outputProfitRatio(profitCalculator);
     }
 
-    private LottoPlayer createLottoPlayer(String purchaseMoney) {
-        return new LottoPlayer(purchaseMoney);
+    private LottoPlayer createLottoPlayer() {
+        try {
+            return new LottoPlayer(InputView.inputPurchaseMoney());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createLottoPlayer();
+        }
     }
 
     private LottoPlayerNumbers generateLottoPlayerNumbers(int numberOfLottoTickets) {
@@ -46,13 +51,21 @@ public class LottoGameController {
     }
 
     private Lotto getLotto() {
-        List<Integer> winningLotto = InputView.inputWinningLottoNumber();
-        return new Lotto(winningLotto);
+        try {
+            return new Lotto(InputView.inputWinningLottoNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getLotto();
+        }
     }
 
     private BonusNumber getBonusNumber() {
-        String bonusNumber = InputView.inputBonusNumber();
-        return new BonusNumber(bonusNumber);
+        try {
+            return new BonusNumber(InputView.inputBonusNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber();
+        }
     }
 
     private Statistics calculateStatistics(LottoPlayerNumbers lottoPlayerNumbers, WinningLotto winningLotto) {

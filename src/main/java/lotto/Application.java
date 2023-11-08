@@ -9,7 +9,7 @@ public class Application {
 
         try {
             lottoGameController.run();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }

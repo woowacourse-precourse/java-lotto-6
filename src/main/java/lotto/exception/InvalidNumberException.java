@@ -1,8 +1,8 @@
 package lotto.exception;
 
-public class InvalidNumberException extends IllegalArgumentException {
-    private static final String INPUT_NON_NUMBER = "[ERROR] 입력값이 숫자가 아닙니다.";
+import static lotto.domain.enums.ExceptionMessage.INPUT_NON_NUMBER;
 
+public class InvalidNumberException extends IllegalArgumentException {
     public InvalidNumberException() {
         super(INPUT_NON_NUMBER);
     }

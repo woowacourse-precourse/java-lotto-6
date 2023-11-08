@@ -1,8 +1,8 @@
 package lotto.exception;
 
-public class BlankInputException extends IllegalArgumentException {
-    private static final String INPUT_IS_BLANK = "[ERROR] 빈값을 입력하면 안됩니다.";
+import static lotto.domain.enums.ExceptionMessage.INPUT_IS_BLANK;
 
+public class BlankInputException extends IllegalArgumentException {
     public BlankInputException() {
         super(INPUT_IS_BLANK);
     }

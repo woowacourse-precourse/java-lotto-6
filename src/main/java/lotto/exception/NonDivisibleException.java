@@ -1,8 +1,8 @@
 package lotto.exception;
 
-public class NonDivisibleException extends IllegalArgumentException {
-    private static final String NON_DIVISIBLE_MESSAGE = "[ERROR] 나누어 떨어지지 않는 금액입니다.";
+import static lotto.domain.enums.ExceptionMessage.NON_DIVISIBLE_MESSAGE;
 
+public class NonDivisibleException extends IllegalArgumentException {
     public NonDivisibleException() {
         super(NON_DIVISIBLE_MESSAGE);
     }

@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class MoneyTest {
     @DisplayName("구입 금액을 입력하면 1,000원 단위로 나눠 티켓 개수를 세어준다.")
     @Test
-    void countTicket() {
+    void getMoneyNormal() {
         // given
         int payMoney = 5000;
 
@@ -24,7 +24,7 @@ public class MoneyTest {
 
     @DisplayName("구입 금액이 1,000원 단위로 나누어지지 않는다면 예외가 발생한다.")
     @Test
-    void countTicketByRemainderExists() {
+    void getMoneyByRemainderExists() {
         // given
         int payMoney = 100;
 
@@ -33,9 +33,9 @@ public class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액이 비어있으면 예외가 발생한다.")
+    @DisplayName("구입 금액이 최소 금액보다 작으면 예외가 발생한다.")
     @Test
-    void countTicketByBlank() {
+    void getMoneyByMinValue() {
         // given
         int payMoney = 0;
 

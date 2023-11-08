@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoChecker;
-import lotto.domain.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +23,6 @@ class LottoCheckerTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 7))
         );
         lottoChecker.checkLottos(lottos);
-        lottoChecker.compareWithWinningNumbers();
 
         //when
         Map<Prize, Integer> result = lottoChecker.getResult();
@@ -78,12 +74,12 @@ class LottoCheckerTest {
         LottoChecker lottoChecker = new LottoChecker(WINNING_NUMBER, BONUS_NUMBER);
 
         //when
-        Prize first = lottoChecker.getPrize(6L, false);
-        Prize second = lottoChecker.getPrize(5L, true);
-        Prize third = lottoChecker.getPrize(5L, false);
-        Prize forth = lottoChecker.getPrize(4L, false);
-        Prize fifth = lottoChecker.getPrize(3L, false);
-        Prize none = lottoChecker.getPrize(2L, false);
+        Prize first = lottoChecker.getPrize(6, false);
+        Prize second = lottoChecker.getPrize(5, true);
+        Prize third = lottoChecker.getPrize(5, false);
+        Prize forth = lottoChecker.getPrize(4, false);
+        Prize fifth = lottoChecker.getPrize(3, false);
+        Prize none = lottoChecker.getPrize(2, false);
 
         //then
         assertThat(first).isEqualTo(Prize.FIRST);
@@ -108,9 +104,9 @@ class LottoCheckerTest {
 
         //when
         lottoChecker.checkLottos(lottos);
-        lottoChecker.compareWithWinningNumbers();
-        lottoChecker.calculateTotalPrize();
+
         long totalPrize = lottoChecker.getTotalPrize();
+        System.out.println(totalPrize);
 
         //then
         long expectedPrize = Prize.FIRST.money + Prize.SECOND.money + Prize.THIRD.money + Prize.FIFTH.money;
@@ -136,9 +132,7 @@ class LottoCheckerTest {
 
         //when
         lottoChecker.checkLottos(lottos);
-        lottoChecker.compareWithWinningNumbers();
-        lottoChecker.calculateTotalPrize();
-        lottoChecker.calculateProfitRate();
+
         String profitRate = lottoChecker.getProfitRate();
 
         //then

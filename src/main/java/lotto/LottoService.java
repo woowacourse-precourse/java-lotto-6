@@ -47,7 +47,7 @@ public class LottoService {
         return calculate(boughtLottos, goal, bonusNumber);
     }
 
-    private void validateMoney(final int moneyToBuy) {
+    public void validateMoney(final int moneyToBuy) {
         if (moneyToBuy < LOTTO_PRICE) {
             throw new IllegalArgumentException(LottoErrorCode.NOT_ENOUGH_MONEY.getMessage());
         }

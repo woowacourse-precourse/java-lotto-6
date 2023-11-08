@@ -11,6 +11,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import static lotto.constants.Message.*;
 
@@ -38,6 +39,7 @@ public class Program {
         outputView.showResult(lottoProfitResult);
     }
 
+
     private String buyLotto() {
         int money = askMoneyUntilValid();
 
@@ -50,29 +52,10 @@ public class Program {
         return key;
     }
 
-    private Lottery inputLotteryNumber() {
-
-        outputView.showMessage(INPUT_LOTTO_GOAL);
-
-        List<Integer> numbers = inputView.inputNumbersSplitByComma();
-
-        Lotto goal = new Lotto(numbers);
-        outputView.showMessage(INPUT_LOTTO_BONUS);
-
-        Integer bonusNumber = inputView.inputNumber();
-        return new Lottery(goal, bonusNumber);
-    }
-
 
     private int askMoneyUntilValid() {
         outputView.showMessage(INPUT_LOTTO_BUYING_MONEY);
-        while (true) {
-            try {
-                return askMoney();
-            } catch (IllegalArgumentException illegalArgumentException) {
-                outputView.showErrorMessage(illegalArgumentException.getMessage());
-            }
-        }
+        return executeWithRetry(this::askMoney);
     }
 
     private int askMoney() throws IllegalArgumentException {
@@ -86,5 +69,36 @@ public class Program {
         return money;
     }
 
+    private Lottery inputLotteryNumber() {
+        Lotto goal = inputNumbersUntilValid();
+        return inputBonusNumber(goal);
+    }
+
+    private Lotto inputNumbersUntilValid() {
+        outputView.showMessage(INPUT_LOTTO_GOAL);
+        return executeWithRetry(() -> {
+            List<Integer> numbers = inputView.inputNumbersSplitByComma();
+            return new Lotto(numbers);
+        });
+    }
+
+    private Lottery inputBonusNumber(Lotto goal) {
+        outputView.showMessage(INPUT_LOTTO_BONUS);
+        return executeWithRetry(() -> {
+            Integer bonusNumber = inputView.inputNumber();
+            return new Lottery(goal, bonusNumber);
+        });
+    }
+
+
+    private <T> T executeWithRetry(Supplier<T> function) {
+        while (true) {
+            try {
+                return function.get();
+            } catch (IllegalArgumentException exception) {
+                outputView.showErrorMessage(exception.getMessage());
+            }
+        }
+    }
 
 }

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.service.Validator;
-import lotto.utils.constants.ExceptionMessage;
 
 public class Lotto {
 

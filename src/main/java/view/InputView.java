@@ -8,31 +8,19 @@ public class InputView {
 
     public static String getMoneyForLottoPurchasing() {
         String money;
-        try {
-            money = Console.readLine();
-        } catch (NoSuchElementException noSuchElementException) {
-            throw new IllegalArgumentException();
-        }
+        money = Console.readLine();
         return money;
     }
 
     public static String getWinningNumber() {
         String winningNumber;
-        try {
-            winningNumber = Console.readLine();
-        } catch (NoSuchElementException noSuchElementException) {
-            throw new IllegalArgumentException();
-        }
+        winningNumber = Console.readLine();
         return winningNumber;
     }
 
     public static String getBonusNumber() {
         String bonusNumber;
-        try {
-            bonusNumber = Console.readLine();
-        } catch (NoSuchElementException noSuchElementException) {
-            throw new IllegalArgumentException();
-        }
+        bonusNumber = Console.readLine();
         return bonusNumber;
     }
 }

@@ -1,8 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-
-import java.util.List;
+import lotto.constants.LottoPrize;
 
 import static lotto.constants.ViewMessage.*;
 
@@ -17,7 +16,7 @@ public class View {
     }
 
     public void printNewLine() {
-        printMessage("\n");
+        System.out.println();
     }
 
     public void printPurchaseAmountPrompt() {
@@ -27,12 +26,6 @@ public class View {
     public void printPurchasedTickets(int numberOfTickets) {
         printNewLine();
         printMessage(PURCHASED_TICKETS.format(numberOfTickets));
-    }
-
-    public void printTickets(List<List<Integer>> tickets) {
-        for (List<Integer> ticket : tickets) {
-            System.out.println(ticket);
-        }
     }
 
     public void printWinningNumberPrompt() {
@@ -45,16 +38,26 @@ public class View {
         printMessage(INPUT_BONUS_NUMBER.message());
     }
 
-    public void printWinningStatistics(int[] matchCounts, long[] prizeAmounts, double profitRate) {
-        StringBuilder statistics = new StringBuilder(WINNING_STATISTICS.message());
-        for (int i = 0; i <= 4; i++) {
-            if (i == 3 && matchCounts[i] > 0) {
-                statistics.append("\n").append(MATCH_INCLUDE_BONUS.format(prizeAmounts[i], matchCounts[i]));
-            }
-            statistics.append("\n").append(MATCH_EXCEPT_BONUS.format(i, prizeAmounts[i], matchCounts[i]));
+    public void printMatchStatistics(int[] matchCounts, double profitRate) {
+        printNewLine();
+        printMessage(WINNING_STATISTICS.message());
+        for (int i = 3; i <= 6; i++) {
+            printFormattedMatchCount(i, matchCounts[i], LottoPrize.PRIZES[i]);
         }
-        statistics.append("\n").append(TOTAL_PROFIT_RATE.format(String.format("%.1f", profitRate)));
+        printFormattedMatchCountWithBonus(matchCounts[7], LottoPrize.PRIZES[7]);
+        printTotalProfitRate(profitRate);
+    }
 
-        printMessage(statistics.toString());
+
+    private void printFormattedMatchCount(int matchCount, int ticketCount, long prizeAmount) {
+        printMessage(MATCH_EXCEPT_BONUS.format(matchCount, prizeAmount, ticketCount));
+    }
+
+    private void printFormattedMatchCountWithBonus(int ticketCount, long prizeAmount) {
+        printMessage(MATCH_INCLUDE_BONUS.format( prizeAmount, ticketCount));
+    }
+
+    private void printTotalProfitRate(double profitRate) {
+        printMessage(String.format(TOTAL_PROFIT_RATE.message(), String.format("%.1f", profitRate)));
     }
 }

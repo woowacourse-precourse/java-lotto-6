@@ -1,8 +1,5 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,9 +47,13 @@ class ServiceTest {
         Lottery lottery = new Lottery(lottoNumbers, 7);
 
         Field winningNumberField = Lottery.class.getDeclaredField("winningNumbers");
+        Field rankField = Lottery.class.getDeclaredField("rank");
         winningNumberField.setAccessible(true);
+        rankField.setAccessible(true);
         winningNumberField.set(lottery, customWinningNumbers);
+        rankField.set(lottery, Rank.FIFTH);
         List<Lottery> lotteries = Arrays.asList(lottery);
+        System.out.println(lottery.getRank());
         //입력한 당첨 번호: 1,2,3,4,5,6
         //보너스 번호: 7
         //실제 당첨 번호: 1,2,3,21,22,23

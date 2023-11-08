@@ -24,11 +24,16 @@ public class LotteryTest {
         Lottery lottery = new Lottery(lottoNumbers, 7);
 
         Field winningNumberField = Lottery.class.getDeclaredField("winningNumbers");
+        Field rankField = Lottery.class.getDeclaredField("rank");
         winningNumberField.setAccessible(true);
+        rankField.setAccessible(true);
         winningNumberField.set(lottery, customWinningNumbers);
+        rankField.set(lottery, Rank.FIFTH);
+        System.out.println(lottery.getRank());
         //입력한 당첨 번호: 1,2,3,4,5,6
         //보너스 번호: 7
         //실제 당첨 번호: 1,2,3,21,22,23
+        //등수: FIFTH
 
         int matchingNumbers = lottery.matchingNumbers(lottoNumbers);
         Assertions.assertThat(matchingNumbers).isEqualTo(3);
@@ -42,11 +47,16 @@ public class LotteryTest {
         Lottery lottery = new Lottery(lottoNumbers, 7);
 
         Field winningNumberField = Lottery.class.getDeclaredField("winningNumbers");
+        Field rankField = Lottery.class.getDeclaredField("rank");
         winningNumberField.setAccessible(true);
+        rankField.setAccessible(true);
         winningNumberField.set(lottery, customWinningNumbers);
+        rankField.set(lottery, Rank.FIFTH);
+        System.out.println(lottery.getRank());
         //입력한 당첨 번호: 1,2,3,4,5,6
         //보너스 번호: 7
         //실제 당첨 번호: 1,2,3,21,22,23
+        //등수: FIFTH
 
         Rank rank = lottery.whatIsRank(lottoNumbers, 7);
         Assertions.assertThat(rank).isEqualTo(Rank.FIFTH);

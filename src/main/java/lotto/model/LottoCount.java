@@ -6,4 +6,8 @@ public class LottoCount {
     public LottoCount(Money money) {
         lottoCount = money.getMoney() / Money.DEFAULT_UNIT;
     }
+
+    public int getLottoCount() {
+        return lottoCount;
+    }
 }

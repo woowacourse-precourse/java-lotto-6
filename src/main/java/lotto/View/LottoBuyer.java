@@ -5,11 +5,10 @@ import camp.nextstep.edu.missionutils.Console;
 public class LottoBuyer {
     public static final Integer LOTTO_PRICE = 1_000;
     private static final String LOTTO_PRICE_ERROR_MESSAGE = "입력한 금액은 로또 한 장 가격(1,000원)의 배수여야 합니다.";
-    public static Integer getLottoCount() {
+    public static Integer inputMoney() {
         Integer money = Integer.valueOf(Console.readLine());
         validateLottoPrice(money);
-        Integer lottoCount = calculateLottoCount(money);
-        return lottoCount;
+        return money;
     }
 
     private static Integer calculateLottoCount(Integer money) {

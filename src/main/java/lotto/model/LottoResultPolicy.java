@@ -6,9 +6,15 @@ import java.util.List;
 import lotto.enums.ErrorMessage;
 
 public class LottoResultPolicy implements ResultPolicy {
-
     private List<Integer> winningNumbers;
     private int bonusNumber;
+
+    @Override
+    public LottoResult calculateResult(Lotto lotto) {
+        int winningCount = checkLottoNumber(lotto.getNumbers());
+        boolean bonusMatch = checkBonusNumber(lotto.getNumbers());
+        return new LottoResult(winningCount, bonusMatch);
+    }
 
     public void setWinningNumbers(List<Integer> winningNumbers) {
         validateWinningNumbers(winningNumbers);
@@ -18,13 +24,6 @@ public class LottoResultPolicy implements ResultPolicy {
     public void setBonusNumber(int bonusNumber) {
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
-    }
-
-    @Override
-    public LottoResult calculateResult(Lotto lotto) {
-        int winningCount = checkLottoNumber(lotto.getNumbers());
-        boolean bonusMatch = checkBonusNumber(lotto.getNumbers());
-        return new LottoResult(winningCount, bonusMatch);
     }
 
     private int checkLottoNumber(List<Integer> lottoNumbers) {

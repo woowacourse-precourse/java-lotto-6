@@ -51,6 +51,7 @@ public class LottoController {
     private List<Lotto> generateLottos(long purchaseAmount) {
         List<Lotto> lottos = lottoGenerator.generateLottos(purchaseAmount);
         outputView.printPurchasedLottoTickets(lottos);
+        outputView.println();
         return lottos;
     }
 
@@ -60,9 +61,11 @@ public class LottoController {
             try {
                 outputView.printPurchaseAmountMessage();
                 purchaseAmount = inputView.getPurchaseAmount();
+                outputView.println();
                 return purchaseAmount;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorCode(e.getMessage());
+                outputView.println();
             }
         }
     }
@@ -73,9 +76,11 @@ public class LottoController {
             try {
                 outputView.printWinningNumberstMessage();
                 winningNumbers = inputView.getWinningNumbers();
+                outputView.println();
                 return new WinningNumber(winningNumbers, 0);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorCode(e.getMessage());
+                outputView.println();
             }
         }
     }
@@ -87,12 +92,14 @@ public class LottoController {
                 return inputView.getBonusNumber(winningNumber.getNumbers());
             } catch (IllegalArgumentException e) {
                 outputView.printErrorCode(e.getMessage());
+                outputView.println();
             }
         }
     }
 
     private void calculateLottoResult(List<Lotto> tickets, WinningNumber winningNumber, int bonusNumber, long purchaseAmount) {
         List<Rank> ranks = calculatorMatching.calculateRanks(tickets, winningNumber, bonusNumber);
+        outputView.println();
         outputView.printWinningResults(ranks);
         calculateLottoProfit(ranks, purchaseAmount);
     }

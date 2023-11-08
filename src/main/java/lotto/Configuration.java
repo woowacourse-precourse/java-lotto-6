@@ -8,7 +8,11 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class Configuration {
+class Configuration {
+    private Configuration() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static LottoController controller() {
         return new LottoController(lottoService(),new InputView(), new OutputView());
     }

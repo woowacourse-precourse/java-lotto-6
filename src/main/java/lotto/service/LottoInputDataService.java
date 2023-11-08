@@ -22,4 +22,10 @@ public class LottoInputDataService {
         int bonusNumber = LottoUtil.bonusNumberParser(inputView.inputBonusNumberView());
         return bonusNumber;
     }
+
+    public Lotto setLotto(List<Integer> lottoNumbers, int bonusNumber) {
+        Lotto lotto = new Lotto(lottoNumbers);
+        lotto.setBonusNumber(bonusNumber);
+        return lotto;
+    }
 }

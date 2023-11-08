@@ -23,6 +23,7 @@ public class LottoGame {
     private List<Integer> winNumbers;
     private int bonusNumber;
     private int totalWinPrice;
+    private double rateOfReturn;
     private int[] result;
 
     public LottoGame() {
@@ -43,6 +44,11 @@ public class LottoGame {
     private void calculateResult() {
         result = lottoService.calculateResult(lottos,winNumbers,bonusNumber);
         totalWinPrice = lottoService.calculateTotalWinPrice(result);
+        rateOfReturn = calculateRateOfReturn();
+    }
+
+    private double calculateRateOfReturn() {
+        return totalWinPrice / buyPrice * 100;
     }
 
     private void buyLottoInput() {

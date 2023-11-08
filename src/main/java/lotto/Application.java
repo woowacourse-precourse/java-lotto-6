@@ -6,6 +6,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Application {
     private static final int LOTTO_MIN_NUMBER = 1;
@@ -22,8 +24,11 @@ public class Application {
 
         Lotto winningLotto = inputWinningNumbers();
         int bonusNumber = inputBonusNumber();
+        System.out.println();
 
         Map<Rank, Integer> results = calculateResults(lottos, winningLotto, bonusNumber);
+        printResults(results);
+        printYield(results, purchaseAmount);
     }
 
     private static int inputPurchaseAmount() {
@@ -39,6 +44,7 @@ public class Application {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
             }
         }
+        System.out.println();
         return purchaseAmount;
     }
 
@@ -49,6 +55,7 @@ public class Application {
         }
         return true;
     }
+
     private static List<Lotto> generateLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
@@ -65,6 +72,7 @@ public class Application {
             Collections.sort(numbers);
             System.out.println(numbers);
         }
+        System.out.println();
     }
 
     private static Lotto inputWinningNumbers() {
@@ -78,7 +86,7 @@ public class Application {
         if (winningNumbers.size() != 6 || new HashSet<>(winningNumbers).size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 6개의 숫자여야 합니다.");
         }
-
+        System.out.println();
         return new Lotto(winningNumbers);
     }
 
@@ -106,4 +114,30 @@ public class Application {
                 .count();
     }
 
+    private static void printResults(Map<Rank, Integer> results) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.NONE)
+                .sorted(Comparator.comparingInt(Rank::getPrizeMoney))
+                .forEach(rank -> {
+                    int count = results.getOrDefault(rank, 0);
+                    String prizeMoneyFormatted = NumberFormat.getNumberInstance(Locale.KOREA).format(rank.getPrizeMoney());
+
+                    if (rank == Rank.SECOND) {
+                        System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n", prizeMoneyFormatted, count);
+                        return;
+                    }
+                    System.out.printf("%d개 일치 (%s원) - %d개\n", rank.getMatchCount(), prizeMoneyFormatted, count);
+                });
+    }
+
+    private static void printYield(Map<Rank, Integer> results, int purchaseAmount) {
+        long totalPrize = results.entrySet().stream()
+                .mapToLong(entry -> (long) entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+        double yield = (double) totalPrize / purchaseAmount;
+        System.out.printf("총 수익률은 %.1f%%입니다.", yield * 100);
+    }
 }

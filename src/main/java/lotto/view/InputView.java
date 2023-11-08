@@ -110,7 +110,7 @@ public class InputView {
     private boolean validateBonusNumber(List<Integer> winNumbers, String bonusNumber) {
         try {
             checkNumberInRange(bonusNumber);
-            checkDuplicatedBonusNumber(winNumbers,bonusNumber);
+            checkDuplicatedBonusNumber(winNumbers, bonusNumber);
         } catch (IllegalArgumentException ie) {
             System.out.println("[ERROR] 보너스 번호는 1부터 45까지 당첨 번호와 중복되지 않는 숫자입니다.");
             return false;
@@ -118,7 +118,8 @@ public class InputView {
         return true;
     }
 
-    private void checkDuplicatedBonusNumber(List<Integer> winNumbers, String bonusNumber) throws IllegalArgumentException {
+    private void checkDuplicatedBonusNumber(List<Integer> winNumbers, String bonusNumber)
+            throws IllegalArgumentException {
         if (winNumbers.contains(Integer.parseInt(bonusNumber))) {
             throw new IllegalArgumentException();
         }

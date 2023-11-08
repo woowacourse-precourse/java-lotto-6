@@ -37,7 +37,11 @@ public class LottoController {
         return inputView.inputBonusNumber(winNumber);
     }
 
-    public void compareLottoNumbers(List<Lotto> lottos, List<Integer> winNumber, int bonusNumber) {
-        lottoService.compare(lottos, winNumber, bonusNumber);
+    public Prize[] compareLottoNumbers(List<Lotto> lottos, List<Integer> winNumber, int bonusNumber) {
+        return lottoService.compare(lottos, winNumber, bonusNumber);
+    }
+
+    public double benefitPercent(Prize[] prizes, int numberOfLotto) {
+        return lottoService.getStatistics(prizes, numberOfLotto);
     }
 }

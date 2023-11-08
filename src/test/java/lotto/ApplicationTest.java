@@ -92,8 +92,8 @@ class ApplicationTest extends NsTest {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         lottos.add(new Lotto(List.of(1, 3, 9, 7, 11, 13)));
-        lottoService.compare(lottos, List.of(1,2,3,4,5,6), 7);
-        assertThat(output()).isEqualTo("6 false" + "\n"+ "2 true");
+        lottoService.compare(lottos, List.of(1, 2, 3, 4, 5, 6), 7);
+        assertThat(output()).isEqualTo("6 false" + "\n" + "2 true");
     }
 
     @Test

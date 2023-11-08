@@ -15,6 +15,8 @@ public class Application {
         lottoController.printLotto(lottos);
         List<Integer> winNumbers = lottoController.getWinNumber();
         int bonusNumber = lottoController.getBonusNumber(winNumbers);
-        lottoController.compareLottoNumbers(lottos, winNumbers, bonusNumber);
+        Prize[] prizes = lottoController.compareLottoNumbers(lottos, winNumbers, bonusNumber);
+        double profit = lottoController.benefitPercent(prizes, lottos.size());
+        outputView.printStatistics(prizes, profit);
     }
 }

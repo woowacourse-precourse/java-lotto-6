@@ -20,10 +20,25 @@ public class LottoService {
         return lottos;
     }
 
-    public void compare(List<Lotto> userLotto, List<Integer> winNumber, int bonusNumber) {
+    public Prize[] compare(List<Lotto> userLotto, List<Integer> winNumber, int bonusNumber) {
+        Prize[] prizes = Prize.values();
         for (Lotto lotto : userLotto) {
-            System.out.println(getSameNumber(lotto, winNumber) + " " + hasBonusNumber(lotto,bonusNumber));
+            prizes[getPrize(lotto, winNumber, bonusNumber)].addCount();
         }
+
+        return prizes;
+    }
+
+    public int getPrize(Lotto lotto, List<Integer> winNumber, int bonusNumber) {
+        if (getSameNumber(lotto, winNumber) < 3) {
+            return 0;
+        }
+
+        if (hasBonusNumber(lotto, bonusNumber) && getSameNumber(lotto, winNumber) == 5) {
+            return 5;
+        }
+
+        return getSameNumber(lotto, winNumber) - 2;
     }
 
     private int getSameNumber(Lotto lotto, List<Integer> winNumber) {
@@ -43,5 +58,18 @@ public class LottoService {
             }
         }
         return false;
+    }
+
+    public double getStatistics(Prize[] prizes, int numberOfLotto) {
+        double profit = 0;
+        List<Integer> stats = new ArrayList<>();
+        int[] prices = {0, 5000, 50000, 1500000, 2000000000, 30000000};
+
+        for (int i = 1; i < prizes.length; i++) {
+            profit += prizes[i].getCount() * prices[i];
+        }
+        profit = profit / (numberOfLotto * 1000) * 100;
+        profit = Math.round(profit * 10) / 10.0;
+        return profit;
     }
 }

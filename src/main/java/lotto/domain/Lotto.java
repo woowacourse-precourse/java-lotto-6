@@ -8,7 +8,7 @@ public class Lotto {
     private static final int LOTTO_GAME_END_NUMBER = 45;
     private static final String IS_SIX_NUMBERS_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 6개여야 합니다.";
     private static final String IS_BETWEEN_LOTTO_RANGE_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String  IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.";
+    private static final String IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 중복되지 않는 숫자여야 합니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -31,6 +31,7 @@ public class Lotto {
             throw new IllegalArgumentException(IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE);
         }
     }
+
     private boolean isSixNumbers(List<Integer> numbers) {
         return numbers.size() == LOTTO_GAME_NUMBERS_SIZE;
     }

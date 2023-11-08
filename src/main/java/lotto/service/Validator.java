@@ -9,7 +9,7 @@ public class Validator {
     private static final int LOTTO_GAME_START_NUMBER = 1;
     private static final int LOTTO_GAME_END_NUMBER = 45;
     private static final String IS_BETWEEN_LOTTO_RANGE_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String  IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 중복되지 않는 숫자여야 합니다.";
+    private static final String IS_NOT_DUPPLICATE_NUMBER_EXCEPTION_MESSAGE = "[ERROR] 보너스 번호는 중복되지 않는 숫자여야 합니다.";
 
     public static void validateAmount(String amount) {
         if (!isNumbers(amount)) {

@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.service.*;
 import lotto.view.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

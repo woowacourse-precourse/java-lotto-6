@@ -24,8 +24,8 @@ public class LottoController {
         Lottos lottos = getUserLottos(money);
         Lotto winningLotto = getWinningLotto();
         int bonus = getBonusNumber(winningLotto);
-        lottoService.calculrateResult(lottos, winningLotto, bonus);
-        outputView.printLottoResult(lottoService.getFinalPrize(money));
+        lottoService.gradingLottos(lottos, winningLotto, bonus);
+        outputView.printLottoResult(lottoService.showLottoResult(money));
     }
 
     private long getMoney(){

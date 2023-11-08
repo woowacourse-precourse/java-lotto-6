@@ -11,7 +11,7 @@ public class LottoService {
         this.totalPrize = new TotalPrize();
     }
 
-    public void calculrateResult(Lottos lottos, Lotto winningLotto, int bonus) {
+    public void gradingLottos(Lottos lottos, Lotto winningLotto, int bonus) {
         for (Lotto userLotto : lottos.getLottos()) {
             int matchedNumber = userLotto.getMatchedNumber(winningLotto);
             if (matchedNumber < LottoRank.FIFTH.count()) continue;
@@ -36,16 +36,19 @@ public class LottoService {
         }
     }
 
-    public String getFinalPrize(long money) {
+    public String showLottoResult(long money) {
         StringBuilder sb = new StringBuilder();
-        int prize = 0;
         for (LottoRank rank : LottoRank.values()) {
             int count = totalPrize.getPrizeCount(rank);
             sb.append(rank.message() + String.format("%d", count) + "개\n");
-            if (count > 0) prize += rank.prize() * count;
         }
-        double rate = prize / (double) money * 100;
+        double rate = calculreateRateOfReturn(money);
         sb.append("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
         return sb.toString();
+    }
+
+    private double calculreateRateOfReturn(long money) {
+        long prize = totalPrize.sumTotalPrizeAmount();
+        return prize / (double) money * 100;
     }
 }

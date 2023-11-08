@@ -2,7 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.text.MessageFormat;
+import java.util.List;
 import lotto.enums.ConstVariable;
+import lotto.util.ValidationUtil;
 
 public class InputView {
 
@@ -14,15 +16,16 @@ public class InputView {
     public static int getGeneratedLottoCount() {
         System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
         String amount = Console.readLine();
+        ValidationUtil.isValidAmount(amount);
         int count = Integer.parseInt(amount) / ConstVariable.STANDARD.getValue();
         System.out.println(MessageFormat.format(LOTTO_COUNT_MESSAGE, count));
         return count;
     }
 
-    public static String getWinLottoNumbers() {
+    public static List<Integer> getWinLottoNumbers() {
         System.out.println(WIN_LOTTO_NUMBERS_INPUT_MESSAGE);
         String winNumbers = Console.readLine();
-        return winNumbers;
+        return ValidationUtil.isValidWinNumbers(winNumbers);
     }
 
     public static int getWinBonusNumber() {

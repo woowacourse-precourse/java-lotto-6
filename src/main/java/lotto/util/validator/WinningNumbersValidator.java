@@ -21,7 +21,7 @@ public class WinningNumbersValidator {
     }
 
     private void validateInputFormat() {
-        if (!numbers.matches(Constant.PATTERN_NUMBERS)) {
+        if (numbers.startsWith(Constant.NUMBER_DELIMITER) || !numbers.matches(Constant.PATTERN_NUMBERS)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT.getMessage());
         }
     }

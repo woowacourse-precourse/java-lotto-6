@@ -7,40 +7,47 @@ public class Positive implements Comparable<Positive> {
     public Positive(String value) {
         this(Integer.parseInt(value));
     }
+
     public Positive(int number) {
         validatePositive(number);
         this.number = number;
     }
 
     private void validatePositive(int number) {
-        if(isMinusOrZero(number)) {
-            throw new IllegalArgumentException("양수를 입력해주세요.");
+        if (isMinusOrZero(number)) {
+            throw new IllegalArgumentException();
         }
     }
 
-    public Positive add(Positive other){
+    public Positive add(Positive other) {
         return new Positive(this.number + other.number);
     }
-    public Positive divide(Positive other){
+
+    public Positive divide(Positive other) {
         validateBigger(other);
-        return new Positive(this.number / other.number);
+        return new Positive(doDivide(other));
+    }
+
+    private int doDivide(Positive other) {
+        return this.number / other.number;
     }
 
     private void validateBigger(Positive other) {
-        if(isSmallerThan(other)){
-            throw new IllegalArgumentException("작은값을 큰값으로 나눌수 없습니다.");
+        if (isNotPositive(other)) {
+            throw new IllegalArgumentException();
         }
     }
 
-    private boolean isSmallerThan(Positive other) {
+    private boolean isNotPositive(Positive other) {
         return this.number < other.number;
     }
 
     public int getNumber() {
         return number;
     }
-    private boolean isMinusOrZero(int number){
-        return number<=ZERO;
+
+    private boolean isMinusOrZero(int number) {
+        return number <= ZERO;
     }
 
     @Override

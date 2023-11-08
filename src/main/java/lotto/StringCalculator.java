@@ -8,16 +8,17 @@ public class StringCalculator {
 
     private static final String ONE_SPACE_BAR = " ";
     private static final String NO_SPACE_BAR = "";
+    private static final String SPLIT_DELIMITER = ",";
 
     public static List<Positive> withOutSpaceBarAndSplitAndPositives(String text){
         if(isBlank(text)){
-            throw new IllegalArgumentException("빈 값이면 안됩니다.");
+            throw new IllegalArgumentException();
         }
         return toPositives(split(withoutSpaceBar(text)));
     }
 
     public static List<String> split(String text){
-        return Arrays.stream(text.split(",")).toList();
+        return Arrays.stream(text.split(SPLIT_DELIMITER)).toList();
     }
 
     public static List<Positive> toPositives(List<String> values){

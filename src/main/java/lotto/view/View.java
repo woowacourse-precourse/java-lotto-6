@@ -17,6 +17,7 @@ public class View {
 
         int count = lottoController.getCount(money);
         countView(count);
+
         List<Lotto> lottoGenerate = lottoController.lottoGenerate(count);
         lottoView(lottoGenerate);
 

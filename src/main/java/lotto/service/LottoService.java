@@ -27,59 +27,6 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    public LottoScore lottoScore(List<Integer> results, List<Lotto> lottos, int bonusNumber){
-        LottoScore lottoScore = new LottoScore();
-        boolean bonus = false;
-
-        for (Lotto lotto : lottos) {
-            int matchingNumbers = countMatchingNumbers(lotto, results, bonusNumber, bonus);
-            addMatchingNumbers(lottoScore, matchingNumbers, bonus);
-        }
-
-        return lottoScore;
-
-    }
-
-    private int countMatchingNumbers(Lotto lotto, List<Integer> results, int bonusNumber, boolean bonus) {
-        List<Integer> lottoNumbers = lotto.getNumbers();
-
-        int matchingNumbers = 0;
-
-        for (int number : lottoNumbers) {
-            if (results.contains(number)) {
-                matchingNumbers++;
-            }
-            if(number == bonusNumber){
-                bonus = true;
-            }
-        }
-
-        return matchingNumbers;
-    }
-
-    public void addMatchingNumbers(LottoScore result, int matchNumbers, boolean bonus){
-        if(matchNumbers == 3){
-            int score = result.getCorrect3() +1;
-            result.setCorrect3(score);
-        }
-        if(matchNumbers == 4){
-            int score = result.getCorrect4() +1;
-            result.setCorrect4(score);
-        }
-        if(matchNumbers == 5 && !bonus){
-            int score = result.getCorrect5() +1;
-            result.setCorrect5(score);
-        }
-        if(matchNumbers == 5 && bonus){
-            int score = result.getCorrect5Bonus() +1;
-            result.setCorrect5Bouns(score);
-        }
-        if(matchNumbers == 6){
-            int score = result.getCorrect6() +1;
-            result.setCorrect6(score);
-        }
-    }
-
     public Double rateReturn(LottoScore lottoScore, int money) {
         int totalWinnings = (lottoScore.getCorrect3() * 5000) + (lottoScore.getCorrect4() * 50000)
                 + (lottoScore.getCorrect5() * 1500000) + (lottoScore.getCorrect5Bonus() * 30000000)

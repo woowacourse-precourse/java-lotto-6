@@ -2,7 +2,9 @@ package lotto.model.lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.model.Budget;
 import lotto.model.machine.LottoMachine;
@@ -21,13 +23,13 @@ public class LottoTicket {
     }
 
     private List<Lotto> createLottoTicket(Budget price) {
-        List<Lotto> tickets = new ArrayList<>();
+        Set<Lotto> tickets = new HashSet<>();
         int lottoQuantity = price.getLottoQuantity();
         while (lottoQuantity-- > 0) {
             Lotto newLotto = createLotto();
             tickets.add(newLotto);
         }
-        return tickets;
+        return new ArrayList<>(tickets);
     }
 
     private Lotto createLotto() {
@@ -35,7 +37,7 @@ public class LottoTicket {
     }
 
     public List<Lotto> getLottoTicket(){
-        return Collections.unmodifiableList(lottoTicket);
+        return lottoTicket;
     }
 
     @Override

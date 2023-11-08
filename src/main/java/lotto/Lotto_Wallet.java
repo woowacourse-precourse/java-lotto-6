@@ -63,11 +63,11 @@ public class Lotto_Wallet {
 
     public void Result_Print(){
         System.out.print("\n당첨 통계\n---\n");
-        System.out.print("3개 일치 (5,000원) - " + winning_count.get(Prize.Fifth.name())+"\n");
-        System.out.print("4개 일치 (50,000원) - " + winning_count.get(Prize.Fourth.name())+"\n");
-        System.out.print("5개 일치 (1,500,000원) - " + winning_count.get(Prize.Third.name())+"\n");
-        System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winning_count.get(Prize.Second.name())+"\n");
-        System.out.print("6개 일치 (2,000,000,000원) - " + winning_count.get(Prize.First.name())+"\n");
+        System.out.print("3개 일치 (5,000원) - " + winning_count.get(Prize.Fifth.name())+"개\n");
+        System.out.print("4개 일치 (50,000원) - " + winning_count.get(Prize.Fourth.name())+"개\n");
+        System.out.print("5개 일치 (1,500,000원) - " + winning_count.get(Prize.Third.name())+"개\n");
+        System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winning_count.get(Prize.Second.name())+"개\n");
+        System.out.print("6개 일치 (2,000,000,000원) - " + winning_count.get(Prize.First.name())+"개\n");
     }
 
     public HashMap<String, Integer> getWinning_count() {

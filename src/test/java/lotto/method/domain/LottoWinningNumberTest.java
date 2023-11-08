@@ -14,7 +14,7 @@ public class LottoWinningNumberTest {
 
     @Test
     @DisplayName("로또 번호와 보너스 번호가 겹치지 않으면 정상적으로 값이 저장된다.")
-    void 로또번호와_보너스번호_정상입력() {
+    void setLottoWinningNumber() {
         lottoWinningNumber.setLotto(new Lotto(List.of(1,2,3,4,5,6)));
         lottoWinningNumber.setBonusNumber(7);
         Assertions.assertThat(lottoWinningNumber.getBonusNumber()).isEqualTo(7);
@@ -23,7 +23,7 @@ public class LottoWinningNumberTest {
 
     @Test
     @DisplayName("입력시 로또 번호와 보너스 번호가 중복되면 예외를 발생한다. (로또 입력 -> 보너스 번호 입력)")
-    void 로또번호와_보너스번호_중복_순서1() {
+    void DuplicationBetweenLottoNumberAndBonusNumber() {
         Assertions.assertThatThrownBy(() -> {
             lottoWinningNumber.setLotto(new Lotto(List.of(1,2,3,4,5,6)));
             lottoWinningNumber.setBonusNumber(6);
@@ -32,7 +32,7 @@ public class LottoWinningNumberTest {
 
     @Test
     @DisplayName("입력시 로또 번호와 보너스 번호가 중복되면 예외를 발생한다. (보너스 번호 입력 -> 로또 입력)")
-    void 로또번호와_보너스번호_중복_순서2() {
+    void DuplicationBetweenLottoNumberAndBonusNumberReverse() {
         Assertions.assertThatThrownBy(() -> {
             lottoWinningNumber.setBonusNumber(6);
             lottoWinningNumber.setLotto(new Lotto(List.of(1,2,3,4,5,6)));
@@ -41,7 +41,7 @@ public class LottoWinningNumberTest {
 
     @Test
     @DisplayName("보너스 번호가 로또 번호의 범위 밖이면 예외가 발생한다.")
-    void 범위밖_보너스번호_입력() {
+    void inputBonusNumberOutOfRange() {
         Assertions.assertThatThrownBy(() -> {
             lottoWinningNumber.setBonusNumber(46);
         }).isInstanceOf(IllegalArgumentException.class);

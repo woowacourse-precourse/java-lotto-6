@@ -16,21 +16,21 @@ public class UserTest {
 
     @Test
     @DisplayName("로또 구입 금액을 입력하면 금액에 따라 로또를 반환한다.")
-    void 정상_로또_구입_금액_입력() {
+    void inputLottoPayment() {
         UserInterfaceLogic.setUserInput("8000");
         assertThat(user.buyLotto()).size().isEqualTo(8);
     }
 
     @Test
     @DisplayName("잘못된 로또 구입 금액을 입력하면 정상적인 값을 입력할 때까지 다시 요청한다.")
-    void 비정상_로또_구입_금액_입력시_재요청() {
+    void requestAgainWhenInputWrongPayment() {
         UserInterfaceLogic.setUserInput("8000q\n8111\n8000");
         assertThat(user.buyLotto()).size().isEqualTo(8);
     }
 
     @Test
     @DisplayName("로또 당첨 번호와 보너스 번호를 입력하면 해당 값을 가지는 LottoWinningNumber 객체를 반환한다.")
-    void 정상_당첨_로또번호_입력() {
+    void inputWinningNumberAndBonusNumber() {
         LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
         lottoWinningNumber.setLotto(new Lotto(List.of(1,2,3,4,5,6)));
         lottoWinningNumber.setBonusNumber(7);
@@ -41,7 +41,7 @@ public class UserTest {
 
     @Test
     @DisplayName("잘못된 로또 당첨 번호나 보너스 번호를 입력하면 잘못 입력된 부분부터 다시 요청한다.")
-    void 비정상_당첨_로또번호_입력시_재요청() {
+    void requestAgainWhenInputWrongWinningNumberAndBonusNumber() {
         LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
         lottoWinningNumber.setLotto(new Lotto(List.of(1,2,3,4,5,6)));
         lottoWinningNumber.setBonusNumber(7);

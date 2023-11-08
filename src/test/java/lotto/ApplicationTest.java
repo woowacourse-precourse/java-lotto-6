@@ -54,6 +54,57 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 나누어지지_않는_금액_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("555");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 금액_자료형_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨_번호_6자리_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 당첨_번호_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,66");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 당첨_번호_자료형_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6J");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 보너스_번호_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6","55");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 보너스_번호_자료형_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1000","1,2,3,4,5,6","7J");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

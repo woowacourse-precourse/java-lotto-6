@@ -19,6 +19,7 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호의 정상적인 입력")
     @Test
     void bonusNumberInRange() {
         BonusNumber bonusNumber = new BonusNumber(10);

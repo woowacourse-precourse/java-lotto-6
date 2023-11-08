@@ -20,6 +20,7 @@ public class MainNumbers {
 
     public static MainNumbers from(List<String> numbers) {
         return numbers.stream()
+                .map(String::trim)
                 .map(MainNumber::from)
                 .sorted(Comparator.comparingInt(MainNumber::getMainNumber))
                 .collect(collectingAndThen(toList(), MainNumbers::new));

@@ -36,7 +36,42 @@ class LottoTest {
         assertEquals(3, countWinningNumberInLotto(List.of(1, 2, 3, 4, 5, 6), new Lotto(List.of(2, 4, 6, 8, 10, 12))));
     }
 
+    @DisplayName("로또 번호, 보너스 번호, 당첨 번호로 등수 판단하는 메서드 테스트")
+    @Test
+    void testJudgeLottoRank() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
 
+        // Rank.NOT 테스트 (count < 3)
+        Lotto lottoRankNot = new Lotto(List.of(2, 4, 8, 9, 10, 12));
+        Rank resultRankNot = judgeLottoRank(winningNumbers, lottoRankNot, bonusNumber);
+        assertEquals(Rank.NOT, resultRankNot);
+
+        // Rank.FIFTH 테스트 (count == 3)
+        Lotto lottoRankFIFTH = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        Rank resultRankFIFTH = judgeLottoRank(winningNumbers, lottoRankFIFTH, bonusNumber);
+        assertEquals(Rank.FIFTH, resultRankFIFTH);
+
+        // Rank.FOURTH 테스트 (count == 4)
+        Lotto lottoRankFOURTH = new Lotto(List.of(1, 2, 3, 4, 8, 9));
+        Rank resultRankFOURTH = judgeLottoRank(winningNumbers, lottoRankFOURTH, bonusNumber);
+        assertEquals(Rank.FOURTH, resultRankFOURTH);
+
+        // Rank.THIRD 테스트 (count == 5, 보너스 번호가 없을 때)
+        Lotto lottoRankTHIRD = new Lotto(List.of(1,2,3,4,5,8));
+        Rank resultRankTHIRD = judgeLottoRank(winningNumbers, lottoRankTHIRD, bonusNumber);
+        assertEquals(Rank.THIRD, resultRankTHIRD);
+
+        // Rank.SECOND 테스트 (count == 5, 보너스 번호와 일치)
+        Lotto lottoRankSECOND = new Lotto(List.of(1,2,3,4,5,7));
+        Rank resultRankSECOND = judgeLottoRank(winningNumbers, lottoRankSECOND, 7);
+        assertEquals(Rank.SECOND, resultRankSECOND);
+
+        // Rank.FIRST 테스트 (count == 6)
+        Lotto lottoRankFIRST = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Rank resultRankFIRST = judgeLottoRank(winningNumbers, lottoRankFIRST, bonusNumber);
+        assertEquals(Rank.FIRST, resultRankFIRST);
+    }
 
 
 

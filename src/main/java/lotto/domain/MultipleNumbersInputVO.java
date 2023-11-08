@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class MultipleNumbersInputVO {
@@ -17,7 +18,6 @@ public class MultipleNumbersInputVO {
 
     private int convertToIntegerIfValid(String input) {
         checkNullOrEmpty(input);
-
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -39,7 +39,7 @@ public class MultipleNumbersInputVO {
     }
 
     private void checkNullOrEmpty(String input) {
-        if (input == null || input.replaceAll("\\s","").length() == 0) {
+        if (Objects.isNull(input) || input.replaceAll("\\s","").length() == 0) {
             throw new IllegalArgumentException("[ERROR] 입력이 존재하지 않습니다.");
         }
     }

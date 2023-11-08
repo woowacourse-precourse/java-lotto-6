@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Objects;
+
 public class SingleNumberInputVO {
     private int number;
 
@@ -21,7 +23,7 @@ public class SingleNumberInputVO {
     }
 
     private void checkNullOrEmpty(String input) {
-        if (input == null || input.replaceAll("\\s","").length() == 0) {
+        if (Objects.isNull(input) || input.replaceAll("\\s","").length() == 0) {
             throw new IllegalArgumentException("[ERROR] 입력이 존재하지 않습니다.");
         }
     }

@@ -8,9 +8,9 @@ public enum Ranking {
     SECOND("5개 일치, 보너스 볼 일치 (30,000,000원) - ", 30000000, (correct, bonus) -> correct == 5 && bonus),
     FIRST("6개 일치 (2,000,000,000원) - ", 2000000000, (correct, bonus) -> correct == 6);
 
-    private String condition;
-    private int profit;
-    private RankingFunction function;
+    private final String condition;
+    private final int profit;
+    private final RankingFunction function;
 
     private Ranking(String condition, int profit, RankingFunction function) {
         this.condition = condition;

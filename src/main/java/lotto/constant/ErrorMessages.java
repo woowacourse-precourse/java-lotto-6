@@ -1,0 +1,24 @@
+package lotto.constant;
+
+public enum ErrorMessages {
+
+    NOT_NUMBER("정수만 입력 가능합니다."),
+    NOT_THOUSAND("1000원 단위로 입력해야 합니다."),
+    NOT_ENOUGH_MONEY("1000원 이상의 금액을 입력해야 합니다."),
+    NOT_LOTTO_NUMBER("쉼표로 구분한 숫자만 입력 가능합니다."),
+    NOT_SIX("6개의 숫자를 입력해야 합니다."),
+    NOT_IN_RANGE("1부터 45까지의 숫자만 입력 가능합니다."),
+    NOT_UNIQUE("중복되는 숫자가 포함되어 있습니다.");
+
+    private static final String ERROR_FORM = "[ERROR]";
+
+    private final String message;
+
+    ErrorMessages(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return String.format("%s %s", ERROR_FORM, message);
+    }
+}

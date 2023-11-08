@@ -1,98 +1,63 @@
 package lotto;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
-import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
-import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 public class Game {
-    private static final String PRICE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String PURCHASE_QUANTITY_MESSAGE = "개를 구매했습니다.";
-    private static final String WINNING_NUMBERS_INPUT_MESSAGE = "\n당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_INPUT_MESSAGE = "\n보너스 번호를 입력해 주세요.";
-    private static final int PRICE_PER_QUANTITY = 1000;
-    private static final int LOTTO_NUMBER_MINIMUM = 1;
-    private static final int LOTTO_NUMBER_MAXIMUM = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
+    private LottoGenerator lottoGenerator;
+    private ResultChecker resultChecker;
+    private InputResolver inputResolver;
 
     public Game() {
+        lottoGenerator = new LottoGenerator();
+        resultChecker = new ResultChecker();
+        inputResolver = new InputResolver();
     }
 
     public void play() {
-        Integer price = getPriceInput();
-        Integer quantity = getPurchaseQuantity(price);
-        List<Lotto> lottos = makeLottoNumbers(quantity);
+        Integer price = inputResolver.getPriceInput();
+        Integer quantity = inputResolver.getPurchaseQuantity(price);
+        List<Lotto> lottos = lottoGenerator.makeLottoNumbers(quantity);
         printPurchasedLotto(lottos);
 
-        List<Integer> winningNumbers = getWinningNumbersInput();
-        Integer bonus = getBonusNumberInput();
-        WinningLotto winningLotto = getWinningLotto(winningNumbers, bonus);
-
+        List<Integer> winningNumbers = inputResolver.getWinningNumbersInput();
+        Integer bonus = inputResolver.getBonusNumberInput();
+        WinningLotto winningLotto = lottoGenerator.getWinningLotto(winningNumbers, bonus);
+        HashMap<Rank, Integer> results = resultChecker.checkLottoResult(lottos, winningLotto);
+        printResults(results);
     }
 
-    public Integer getPriceInput() {
-        printMessage(PRICE_INPUT_MESSAGE);
-        Integer price = Integer.parseInt(readLine());
-        printMessage("");
-        return price;
-    }
-
-    public Integer getPurchaseQuantity(Integer price) {
-        Integer quantity = price / PRICE_PER_QUANTITY;
-        printMessage(quantity + PURCHASE_QUANTITY_MESSAGE);
-        return quantity;
-    }
-
-    public List<Lotto> makeLottoNumbers(Integer quantity) {
-        List<Lotto> lottos = new ArrayList<>();
-        for(int i = 0; i < quantity; i++){
-            Lotto lotto = makeLotto();
-            lottos.add(lotto);
-        }
-        return lottos;
-    }
-
-    public Lotto makeLotto() {
-        List<Integer> randomNumbers = pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM, LOTTO_NUMBER_MAXIMUM, LOTTO_NUMBER_COUNT);
-        Lotto lotto = new Lotto(randomNumbers);
-        return lotto;
-    }
-
-    public List<Integer> getWinningNumbersInput() {
-        printMessage(WINNING_NUMBERS_INPUT_MESSAGE);
-        String numbersInput = readLine();
-        List<Integer> winningNumbers = Arrays.stream(numbersInput.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        return winningNumbers;
-    }
-
-    public Integer getBonusNumberInput() {
-        printMessage(BONUS_NUMBER_INPUT_MESSAGE);
-        Integer bonus = Integer.parseInt(readLine());
-        return bonus;
-    }
-
-    public WinningLotto getWinningLotto(List<Integer> winningNumbers, Integer bonus) {
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonus);
-        return winningLotto;
-    }
-
-    private void printMessage(String message) {
-        System.out.println(message);
-    }
-
-    private void printPurchasedLotto(List<Lotto> lottos) {
+    public void printPurchasedLotto(List<Lotto> lottos) {
         for(Lotto lotto : lottos){
             System.out.print("[");
             List<Integer> numbers = lotto.getNumbers();
             printNumberList(numbers);
             System.out.println("]");
         }
+    }
+
+    public void printResults(HashMap<Rank, Integer> results) {
+        results.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(entry -> {
+                    Rank rank = entry.getKey();
+                    int count = entry.getValue();
+                    String amount = rank.getPrizeAmountWon();
+                    String description = rank.getDescription();
+                    System.out.println(description + " (" + amount + ") - " + count +"개");
+                });
+        BigDecimal profit = resultChecker.calculateProfit(results);
+        String profitFormatted = getFormattedNumber(profit);
+        System.out.println("총 수익률은 "+ profitFormatted + "%입니다.");
+    }
+    private String getFormattedNumber(BigDecimal number){
+        DecimalFormat format = new DecimalFormat("###,###");
+        String formattedNumber = format.format(number);
+        return formattedNumber;
     }
 
     private void printNumberList(List<Integer> numbers) {

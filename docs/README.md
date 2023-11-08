@@ -21,6 +21,6 @@
 - Verify
   - verifyDuplicate : 입력받은 당첨번호 중복 확인하는 함수
   - verifyNumber : 입력받은 당첨번호 숫자인지 확인하는 함수
-- Random : 
+- Generator : 
   - GenerateNumbers : 랜덤으로 로또 발행하는 함수
 

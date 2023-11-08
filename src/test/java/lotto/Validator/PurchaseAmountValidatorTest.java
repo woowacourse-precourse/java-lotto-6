@@ -3,6 +3,7 @@ package lotto.Validator;
 import static lotto.config.ErrorMessage.INPUT_AMOUNT_CHARACTER_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_AMOUNT_DIVISION_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
@@ -15,6 +16,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class PurchaseAmountValidatorTest {
     private final PurchaseAmountValidator validator = new PurchaseAmountValidator();
+
+    @ParameterizedTest
+    @ValueSource(strings = {"3000", "10000", "5000000", "31000", "1500000"})
+    void 정상적인_구입_금액_입력값을_확인한다(String input) {
+        assertDoesNotThrow(() -> validator.valid(input));
+    }
 
     @ParameterizedTest
     @ValueSource(strings = {"1a928", "1 23", "1:23", "1,000", ",1230"})

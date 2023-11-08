@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
-import lotto.lottoPurchase.domain.LottoPurchase;
+import lotto.purchase.domain.Purchase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,13 +16,13 @@ public class LotteriesTest {
 
     @BeforeEach
     public void InsultMoneyEach() {
-        LottoPurchase lottoPurchase = new LottoPurchase();
+        Purchase purchase = new Purchase();
         String input = "6000";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        lottoPurchase.insult();
-        lottoPurchase.calculate();
-        this.purchaseAmount = lottoPurchase.getPurchaseAmount();
+        purchase.insult();
+        purchase.calculate();
+        this.purchaseAmount = purchase.getPurchaseAmount();
 
         Console.close();
     }

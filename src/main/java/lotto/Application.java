@@ -1,24 +1,24 @@
 package lotto;
 
 import lotto.lotto.domain.Lotteries;
-import lotto.lottoPurchase.service.LottoPurchaseService;
-import lotto.lottoResults.domain.LottoResults;
-import lotto.lottoResults.domain.LottoStatistics;
-import lotto.lottoResults.service.LottoResultsService;
-import lotto.lottoResults.service.LottoStatisticsService;
+import lotto.purchase.service.PurchaseService;
+import lotto.results.domain.Results;
+import lotto.results.domain.Statistics;
+import lotto.results.service.ResultsService;
+import lotto.results.service.StatisticsService;
 
 public class Application {
     public static void main(String[] args) {
-        LottoPurchaseService lottoPurchaseService = new LottoPurchaseService();
-        LottoResults lottoResults = new LottoResults();
-        LottoResultsService lottoResultsService = new LottoResultsService(lottoResults);
-        LottoStatistics lottoStatistics = new LottoStatistics();
-        LottoStatisticsService lottoStatisticsService = new LottoStatisticsService(lottoStatistics,
-                lottoResultsService);
+        PurchaseService purchaseService = new PurchaseService();
+        Results results = new Results();
+        ResultsService resultsService = new ResultsService(results);
+        Statistics statistics = new Statistics();
+        StatisticsService statisticsService = new StatisticsService(statistics,
+                resultsService);
 
-        Lotteries lotteries = lottoPurchaseService.process();
-        Integer spendMoney = lottoPurchaseService.getSpendMoney();
+        Lotteries lotteries = purchaseService.process();
+        Integer spendMoney = purchaseService.getSpendMoney();
         lotteries.printAllLotteries();
-        lottoStatisticsService.printTotalStatistics(lotteries, spendMoney);
+        statisticsService.printTotalStatistics(lotteries, spendMoney);
     }
 }

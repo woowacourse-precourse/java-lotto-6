@@ -1,6 +1,6 @@
 package lotto.lotto.domain;
 
-import static lotto.lottoNumberGenerator.domain.LottoNumberGenerator.makeLottoNumbers;
+import static lotto.numberGenerator.domain.NumberGenerator.makeLottoNumbers;
 
 import java.util.ArrayList;
 import java.util.List;

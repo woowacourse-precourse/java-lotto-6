@@ -1,6 +1,6 @@
 package lotto.lotto.domain;
 
-import static lotto.lottoChecker.domain.LottoChecker.calculateRank;
+import static lotto.checker.domain.Checker.calculateRank;
 
 import java.util.ArrayList;
 import java.util.Collections;

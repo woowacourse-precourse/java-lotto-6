@@ -26,6 +26,14 @@
   - 당첨 번호 검증 / 메소드 
   - 보너스 번호 검증 / 메소드
 
+**_InputException_**
+- NOT_IN_RANGE_MONEY
+- NOT_DIVIDED_BY_1000
+- NO_NUMBER
+- NOT_DISTINCTNESS
+- NOT_IN_RANGE_LOTTO_NUMBER
+- NOT_DISTINCT_BONUS_NUMBER
+
 **_InputView_**
 - 구입 금액 읽기 / 메소드
 - 당첨 번호 읽기 / 메소드

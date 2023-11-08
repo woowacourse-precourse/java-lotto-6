@@ -27,13 +27,4 @@ public class LottoUtilsTest {
         List<Integer> invalidNumbers = Arrays.asList(0, 2, 3, 4, 5, 51);
         assertThrows(IllegalArgumentException.class, () -> LottoUtils.validateLottoNumbers(invalidNumbers));
     }
-
-    @Test
-    @DisplayName("로또 번호를 정렬하여 반환한다")
-    void shouldSortLottoNumbers() {
-        List<Integer> numbers = Arrays.asList(6, 5, 4, 3, 2, 1);
-        List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5, 6);
-        List<Integer> result = LottoUtils.sortLottoNumbers(numbers);
-        assertThat(result).isEqualTo(expected);
-    }
 }

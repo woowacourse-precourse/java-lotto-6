@@ -1,16 +1,17 @@
 package lotto.utils;
 
+import lotto.exception.LottoGameException;
+
 import static lotto.utils.UtilNumber.LOTTO_COST;
-
+import static lotto.exception.ErrorMessage.NOT_INTEGER_ERROR_MESSAGE;
 public class Parser {
-    private static final String NOT_INTEGER_ERROR_MESSAGE = "[ERROR] 숫자를 입력해 주세요.";
 
-    public static int parseStringToInt(String stringValue) {
+    public static int parseStringToInt(String stringValue) throws LottoGameException {
         try {
             int intValue = Integer.parseInt(stringValue);
             return intValue;
         } catch (Exception e) {
-            throw new IllegalArgumentException(NOT_INTEGER_ERROR_MESSAGE);
+            throw new LottoGameException(NOT_INTEGER_ERROR_MESSAGE);
         }
     }
 

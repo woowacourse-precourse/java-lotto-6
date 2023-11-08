@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 
 public class Validate {
 
-
     public static void CashForm(String Cash){
 
         try {

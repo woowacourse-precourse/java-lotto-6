@@ -40,6 +40,7 @@ public class GameController {
 	}
 
 	private void setLottoResult(LottoNumbers winnings) {
+		output.printLineSpace();
 		while (true) {
 			try {
 				LottoNumber bonusNumber = LottoNumber.valueOf(input.inputBonusNumber());
@@ -49,7 +50,6 @@ public class GameController {
 			} catch (LottoException ignored) {
 			}
 		}
-
 	}
 
 	private LottoNumbers winningNumbers() {
@@ -57,8 +57,6 @@ public class GameController {
 			return new LottoNumbers(input.inputWinningNumbers());
 		} catch (LottoException ignored) {
 			return winningNumbers();
-		} finally {
-			output.printLineSpace();
 		}
 	}
 

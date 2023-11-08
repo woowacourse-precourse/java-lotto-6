@@ -52,10 +52,23 @@ class LottoMachineTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 당첨번호를 적절히 입력한 경우")
+    @Test
+    void BonusNumberTextToInt() {
+        String winningNumberText = "1,2,3,4,5,6";
+        String bonusNumberText = "7";
+
+        lottoMachine.textToLotto(winningNumberText);
+        int actual = lottoMachine.BonusNumberTextToInt(bonusNumberText);
+
+        assertThat(actual).isEqualTo(7);
+
+    }
+
     @DisplayName("보너스 번호가 1~45범위를 넘으면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"0", "46"})
-    void BonusNumberTextToInt(String value) {
+    void BonusNumberTextToInt_예외(String value) {
         String bonusNumberText = value;
 
         assertThatThrownBy(() -> lottoMachine.BonusNumberTextToInt(bonusNumberText))
@@ -64,7 +77,7 @@ class LottoMachineTest {
 
     @DisplayName("보너스 번호가 당첨번호와 중복되면 예외가 발생한다.")
     @Test
-    void BonusNumberTextToInt() {
+    void BonusNumberTextToInt_예외() {
         String winningNumberText = "1,2,3,4,5,6";
         String bonusNumberText = "1";
 

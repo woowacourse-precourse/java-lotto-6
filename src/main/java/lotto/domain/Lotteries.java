@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
@@ -30,7 +30,7 @@ public class Lotteries {
     }
 
     public Map<Rank, Integer> calculateTotalRankCount(final UserLotto userLotto) {
-        Map<Rank, Integer> result = new HashMap<>();
+        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
         for (Rank rank : getRanks(userLotto)) {
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }

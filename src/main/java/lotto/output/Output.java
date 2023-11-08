@@ -1,6 +1,8 @@
 package lotto.output;
 
+import java.util.Map;
 import lotto.domain.Lotteries;
+import lotto.domain.Rank;
 
 public class Output {
     public static final String PURCHASE_AMOUNT_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -14,5 +16,12 @@ public class Output {
     public static void printLotteries(final Lotteries lotteries) {
         System.out.println(lotteries);
         System.out.println();
+    }
+
+    public static void printWinningStatics(final Map<Rank, Integer> rankIntegerMap) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        rankIntegerMap.keySet()
+                .forEach(rank -> System.out.printf(rank + " - %d개%n", rankIntegerMap.get(rank)));
     }
 }

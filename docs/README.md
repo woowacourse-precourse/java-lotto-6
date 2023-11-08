@@ -2,6 +2,7 @@
 # 기능 상세 설명
 
 ## UML
+![java_lotto.png](..%2F..%2F..%2FDocuments%2Fjava_lotto.png)
 
 ## 기능 목록
 * Reader는 구입 금액을 숫자로 입력 받는다.

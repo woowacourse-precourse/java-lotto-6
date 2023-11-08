@@ -127,17 +127,27 @@ public class Application {
         result.printResult();
     }
 
-    public static void printEarningsRate(WinningResult result, int lottoCount) {
+    private static void printEarningsRate(WinningResult result, int lottoCount) {
+        double earningsRate = calculateEarningsRate(result, lottoCount);
+        System.out.println("총 수익률은 " + (earningsRate * 100) + "%입니다.");
+    }
+
+    private static double calculateEarningsRate(WinningResult result, int lottoCount) {
+        long totalPrize = calculateTotalPrize(result);
+        long investMoney = calculateInvestMoney(lottoCount);
+        return (double) totalPrize / investMoney;
+    }
+
+    private static long calculateTotalPrize(WinningResult result) {
         long totalPrize = 0;
         for (Rank rank : Rank.values()) {
             if (rank == Rank.MISS) continue;
             totalPrize += rank.getWinningMoney() * result.getCount(rank);
         }
+        return totalPrize;
+    }
 
-        long investMoney = 1000 * lottoCount;
-
-        double earningsRate = (double) totalPrize / investMoney;
-
-        System.out.println("총 수익률은 " + (earningsRate * 100) + "%입니다.");
+    private static long calculateInvestMoney(int lottoCount) {
+        return 1000 * lottoCount;
     }
 }

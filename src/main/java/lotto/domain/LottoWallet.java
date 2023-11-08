@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoWallet {
@@ -9,13 +10,22 @@ public class LottoWallet {
         this.lottos = LottoMachine.publish(lottoCount);
     }
 
-    public int getLottoCount() {
+    public float getLottoCount() {
         return lottos.size();
     }
-    
 
     public List<Integer> getSingleLottoNumbers(int index) {
         return lottos.get(index).getNumbers();
+    }
+
+    public List<WinningLotto> getLottoResult(WinningNumbers winningNumbers) {
+        List<WinningLotto> winningLottos = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            lotto.getWinningLotto(winningNumbers);
+        }
+
+        return winningLottos;
     }
 
     @Override

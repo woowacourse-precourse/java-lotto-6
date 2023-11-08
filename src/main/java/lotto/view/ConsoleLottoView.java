@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import lotto.domain.LottoWallet;
+import lotto.domain.WinningLotto;
 
 public class ConsoleLottoView implements LottoView {
 
@@ -71,9 +72,15 @@ public class ConsoleLottoView implements LottoView {
     }
 
     @Override
-    public void displayResult(HashMap<String, Integer> result) {
+    public void displayResult(List<WinningLotto> results, Float earningRate) {
+        display(Message.RESULT_DISPLAY_MESSAGE.getMessage());
+        display("---------");
 
+        // TODO: 당첨 통계를 출력해야 한다.
+
+        display("총 수익률은 " + earningRate + "% 입니다.");
     }
+
 
     @Override
     public void displayError(String message) {

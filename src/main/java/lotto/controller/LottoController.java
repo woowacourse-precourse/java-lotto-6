@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.LottoWallet;
 import lotto.domain.WinningNumbers;
 import lotto.service.LottoService;
@@ -24,7 +23,7 @@ public class LottoController {
         Integer bonusNumber = consoleLottoView.getBonusNumber();
         WinningNumbers winningNumbers = new WinningNumbers(inputWinningNumbers, bonusNumber);
 
-        
+        consoleLottoView.displayResult(lottoWallet.getLottoResult(winningNumbers), 0.0f);
     }
 
     private LottoWallet purchaseLotto() {

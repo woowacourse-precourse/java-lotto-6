@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.constant.NumberStrategy;
+import lotto.constant.WinningAmount;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,6 +15,23 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public WinningLotto getWinningLotto(WinningNumbers winningNumbers) {
+        int generalNumberMatchCount = getGeneralNumberMatchCount(winningNumbers);
+        boolean isBonusNumberMatch = isBonusNumberMatch(winningNumbers);
+
+        return new WinningLotto(isBonusNumberMatch, generalNumberMatchCount);
+    }
+
+    private int getGeneralNumberMatchCount(WinningNumbers winningNumbers) {
+        List<Integer> generalNumber = winningNumbers.getGeneralNumbers();
+
+        return (int) numbers.stream().filter(generalNumber::contains).count();
+    }
+
+    private boolean isBonusNumberMatch(WinningNumbers winningNumbers) {
+        return numbers.contains(winningNumbers.getBonusNumber());
     }
 
     private void validate(List<Integer> numbers) {

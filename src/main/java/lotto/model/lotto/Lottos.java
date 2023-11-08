@@ -20,10 +20,10 @@ public class Lottos {
                 .toList();
     }
 
-    public WinningResult createWinningResult(PickedLotto winningLotto) {
+    public WinningResult createWinningResult(PickedLotto pickedLotto) {
         WinningResult winningResult = new WinningResult();
         for (Lotto lotto : lottos) {
-            lotto.calculateLottoPlace(winningLotto)
+            lotto.calculateLottoPlace(pickedLotto)
                     .ifPresent(winningResult::plusLottoPlace);
         }
         return winningResult;

@@ -35,13 +35,13 @@ public class LottoController {
 
         ouputView.printPublishedLottos(lottoPapers);
 
-        final PickedLotto winningLotto = pickWinningLotto();
-        final LottoResult lottoResult = lottoBuyer.createLottoResult(winningLotto);
+        final PickedLotto pickedLotto = pickpickedLotto();
+        final LottoResult lottoResult = lottoBuyer.createLottoResult(pickedLotto);
 
         ouputView.printLottoResult(lottoResult);
     }
 
-    private PickedLotto pickWinningLotto() {
+    private PickedLotto pickpickedLotto() {
         final WinningNumbers winningNumbers = inputNumbers();
         final Integer bonusNumber = inputBonusNumber(winningNumbers);
         return new PickedLotto(winningNumbers, bonusNumber);

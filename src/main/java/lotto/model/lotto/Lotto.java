@@ -27,11 +27,11 @@ public class Lotto {
                 .toList();
     }
 
-    public Optional<LottoPlace> calculateLottoPlace(PickedLotto winningLotto) {
+    public Optional<LottoPlace> calculateLottoPlace(PickedLotto pickedLotto) {
         LottoStatus judgeStatus = LottoStatus.createEmptyStatus();
 
         for (Integer number : numbers) {
-            NumberStatus numberStatus = winningLotto.judgeNumber(number);
+            NumberStatus numberStatus = pickedLotto.judgeNumber(number);
             judgeStatus.update(numberStatus);
         }
         return LottoPlace.judgeLottoPlace(judgeStatus);

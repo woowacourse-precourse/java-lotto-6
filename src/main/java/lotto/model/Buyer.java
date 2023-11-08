@@ -29,8 +29,8 @@ public class Buyer {
         return lottos.createLottoPapers();
     }
 
-    public LottoResult createLottoResult(PickedLotto winningLotto) {
-        final WinningResult winningResult = lottos.createWinningResult(winningLotto);
+    public LottoResult createLottoResult(PickedLotto pickedLotto) {
+        final WinningResult winningResult = lottos.createWinningResult(pickedLotto);
         final Money revenue = winningResult.calculateTotalRevenue();
         final MarginRate marginRate = new MarginRate(this.purchasingMoney, revenue);
 

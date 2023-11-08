@@ -9,6 +9,10 @@ import java.util.List;
 
 public class User {
 
+    private static final Integer LOTTO_MIN_NUM = 1;
+    private static final Integer LOTTO_MAX_NUM = 45;
+    private static final Integer LOTTO_NUMBER_SIZE = 6;
+
     private List<Lotto> lottos;
     private Integer purchaseAmount;
 
@@ -27,7 +31,7 @@ public class User {
     private void publishLottos(Integer purchaseAmount, List<Lotto> lottos) {
         Integer usedAmount = 0;
         while(!usedAmount.equals(purchaseAmount)){
-            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUM, LOTTO_MAX_NUM, LOTTO_NUMBER_SIZE));
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
             usedAmount += 1000;

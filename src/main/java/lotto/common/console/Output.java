@@ -14,7 +14,7 @@ public class Output {
     public static final String DIVIDING_LINE = "---";
     public static final String WRITE_EACH_LOTTO_DRAW_RESULT_FORMAT = "%s (%s원) - %d개";
     public static final String DEFAULT_DECIMAL_FORMAT = "#,##0";
-    public static final String WRITE_RETURN_RATIO_FORMAT = "총 수익률은 %.0f%%입니다.";
+    public static final String WRITE_RETURN_RATIO_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static void writeMessage(String message) {
         System.out.println(message);

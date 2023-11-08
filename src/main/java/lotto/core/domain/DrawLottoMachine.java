@@ -34,7 +34,7 @@ public class DrawLottoMachine {
     private boolean isValidWinningLottoNumbers(String winningLottoNumbersInput) {
         try {
             List<Integer> winningLottoNumbers = convertWinningLottoNumbers(winningLottoNumbersInput);
-            validateWinningLottoNumbers(winningLottoNumbers);
+            Lotto.validate(winningLottoNumbers);
             return true;
         } catch (IllegalArgumentException e) {
             Output.writeMessage(e.getMessage());
@@ -52,13 +52,6 @@ public class DrawLottoMachine {
         }
 
         return winningLottoNumbers;
-    }
-    private void validateWinningLottoNumbers(List<Integer> winningLottoNumbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(winningLottoNumbers);
-
-        if (uniqueNumbers.size() != winningLottoNumbers.size()) {
-            throw LottoGameException.withType(ErrorType.DUPLICATE_NUMBERS);
-        }
     }
 
     private int readBonusNumber() {
@@ -136,7 +129,7 @@ public class DrawLottoMachine {
         WinningCondition.SECOND_PLACE.getReward() * drawLottoResult[3] +
         WinningCondition.FIRST_PLACE.getReward() * drawLottoResult[4];
 
-        Output.writeReturnRate(sum/purchaseAmount);
+        Output.writeReturnRate((float) sum / purchaseAmount * 100);
     }
 
     private WinningCondition getWinningResult(Lotto lotto) {

@@ -5,11 +5,20 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BonusNumberTest {
     private static final Lotto lotto = new Lotto("1,2,3,4,5,6");
+
+    @DisplayName("정상 값이 들어오면 성공")
+    @Test
+    void createBonusNumbersSuccess() {
+        BonusNumber bonusNumber = new BonusNumber("8", lotto);
+        assertThat(bonusNumber.getBonusNumber()).isEqualTo(8);
+
+    }
 
     @DisplayName("char 값이 들어오면 예외 발생")
     @Test

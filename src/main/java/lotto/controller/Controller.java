@@ -22,13 +22,53 @@ public class Controller {
     private Buyer buyer;
     private WinningNumbers winningNumbers;
     private BonusNumber bonusNumber;
+    private boolean getPurchasePriceFlag = false;
+    private boolean getPurchaseLotteriesInformationFlag = false;
+    private boolean getWinningNumbersFlag = false;
+    private boolean getBonusNumberFlag = false;
+
 
     public void run() {
-        getPurchasePrice();
-        getPurchaseLotteriesInformation(buyer.getLottoQuantity());
-        getWinningNumbers();
-        getBonusNumber();
+        do {
+            try {
+                runToGetPurchasePrice();
+                runToGetPurchaseLotteriesInformationFlag();
+                runToGetWinningNumbers();
+                runToGetBonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (true);
         getWinningStatistics();
+    }
+
+    private void runToGetPurchasePrice() {
+        if (!getPurchasePriceFlag) {
+            getPurchasePrice();
+            getPurchasePriceFlag = true;
+        }
+    }
+
+    private void runToGetPurchaseLotteriesInformationFlag() {
+        if (!getPurchaseLotteriesInformationFlag) {
+            getPurchaseLotteriesInformation(buyer.getLottoQuantity());
+            getPurchaseLotteriesInformationFlag = true;
+        }
+    }
+
+    private void runToGetWinningNumbers() {
+        if (!getWinningNumbersFlag) {
+            getWinningNumbers();
+            getWinningNumbersFlag = true;
+        }
+    }
+
+    private void runToGetBonusNumber() {
+        if (!getBonusNumberFlag) {
+            getBonusNumber();
+            getBonusNumberFlag = true;
+        }
     }
 
     private void getPurchasePrice() {

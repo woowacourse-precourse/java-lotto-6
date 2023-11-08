@@ -60,7 +60,7 @@ public class InputValidator {
     }
 
     public static boolean isUnit(String input) {
-        if (Integer.parseInt(input) >= Prize.UNIT.getPrize() && Integer.parseInt(input) % Prize.UNIT.getPrize() == 0) {
+        if (Integer.parseInt(input) >= LottoValue.UNIT && Integer.parseInt(input) % LottoValue.UNIT == 0) {
             return true;
         }
         sb.append(ErrorMessage.ERROR_PURCHASE_AMOUNT_UNIT);

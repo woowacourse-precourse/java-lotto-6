@@ -1,20 +1,45 @@
 package lotto.constant;
 
+import java.util.function.BiFunction;
+
 public enum Prize {
-    FIRST(2_000_000_000),
-    SECOND(30_000_000),
-    THIRD(1_500_000),
-    FOURTH(50_000),
-    FIFTH(5_000),
-    UNIT(1_000);
 
-    private final int prize;
+    NONE(0, false, 0, (count, bonus) -> count <= 2),
+    FIFTH(3, false, 5_000, (count, bonus) -> count == 3),
+    FOURTH(4, false, 50_000, (count, bonus) -> count == 4),
+    THIRD(5, false, 1_500_000, (count, bonus) -> count == 5 && !bonus),
+    SECOND(5, true, 30_000_000, (count, bonus) -> count == 5 && bonus),
+    FIRST(6, false, 2_000_000_000, (count, bonus) -> count == 6);
 
-    Prize(int prize) {
-        this.prize = prize;
+    private final int hitCount;
+    private final boolean bonus;
+    private final int reward;
+    private final BiFunction<Integer, Boolean, Boolean> expression;
+
+    Prize(int hitCount, boolean bonus, int reward, BiFunction<Integer, Boolean, Boolean> expression) {
+        this.hitCount = hitCount;
+        this.bonus = bonus;
+        this.reward = reward;
+        this.expression = expression;
     }
 
-    public int getPrize() {
-        return prize;
+    public int getHitCount() {
+        return hitCount;
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
+
+    public int getReward() {
+        return reward;
+    }
+
+    public BiFunction<Integer, Boolean, Boolean> getExpression() {
+        return expression;
+    }
+
+    public boolean find(int count, boolean bonus) {
+        return expression.apply(count, bonus);
     }
 }

@@ -23,4 +23,8 @@ public class PriceAmount {
     public int getPurchaseNumber() {
         return priceAmount / 1000;
     }
+
+    public int getPriceAmount() {
+        return priceAmount;
+    }
 }

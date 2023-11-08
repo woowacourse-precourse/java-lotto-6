@@ -32,4 +32,12 @@ public enum LottoRank {
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);
     }
+
+    public String getComent() {
+        return coment;
+    }
+
+    public int getWinningAmount() {
+        return winningAmount;
+    }
 }

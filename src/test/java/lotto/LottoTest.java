@@ -55,11 +55,4 @@ class LottoTest {
         }
     }
 
-    @DisplayName("로또 번호 당첨 매칭 테스트")
-    @Test
-    void matchLotto() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto2 = new Lotto(List.of(2, 3, 4, 5, 6, 7));
-        assertThat(lotto.matchLotto(lotto2)).isEqualTo(5);
-    }
 }

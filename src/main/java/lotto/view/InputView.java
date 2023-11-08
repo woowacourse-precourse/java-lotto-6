@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 import static lotto.Util.Paser.createWinningLotto;
+import static lotto.Util.Validate.validateTypeInt;
 
 public class InputView {
     private static final String INPUT_LOTTO_BUY = "구입금액을 입력해 주세요.";
@@ -23,6 +24,6 @@ public class InputView {
 
     public static int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        return validateTypeInt(Console.readLine());
     }
 }

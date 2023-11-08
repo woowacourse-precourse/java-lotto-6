@@ -23,7 +23,6 @@ public class Validate {
 
     public static void validateBonusNum(List<Integer> numbers, int bonusNumber){
         validateRange(bonusNumber);
-        validateBonusNumTypeInt(bonusNumber);
         validateBonusNumber(numbers, bonusNumber);
     }
 
@@ -87,15 +86,6 @@ public class Validate {
     public static int validateTypeInt(String inputNumber){
         try {
             return Integer.parseInt(inputNumber);
-        } catch (NumberFormatException e) {
-            System.out.println(INPUT_TYPE_ERROR);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private static int validateBonusNumTypeInt(int bonusNumber){
-        try {
-            return bonusNumber;
         } catch (NumberFormatException e) {
             System.out.println(INPUT_TYPE_ERROR);
             throw new IllegalArgumentException();

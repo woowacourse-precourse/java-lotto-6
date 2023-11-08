@@ -1,10 +1,12 @@
 package lotto.Util;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,5 +23,13 @@ class ValidateTest {
     void createBonusNumberByRange() {
         assertThatThrownBy(() -> Validate.validateBonusNum(List.of(1, 2, 3, 4, 5, 6), 46))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createBonusNumberByType() {
+        assertSimpleTest(() ->
+                Assertions.assertThatThrownBy(() -> Validate.validateTypeInt("c"))
+                        .isInstanceOf(IllegalArgumentException.class));
     }
 }

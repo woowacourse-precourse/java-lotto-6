@@ -1,0 +1,117 @@
+# 미션 - 로또 🔢🎯
+***
+## 주요 기능 요구 사항
+- [x] 로또 발행
+    - 로또 번호의 숫자 범위: 1~45 
+    - 중복되지 않는 6개의 숫자
+    - 로또 1장의 가격: 1,000원
+- [x] 로또 당첨 비교 / 판정
+    - 1등: 6개 번호 일치 / 2,000,000,000원
+    - 2등: 5개 번호 일치 + 보너스 번호 일치 /30,000,000원
+    - 3등: 5개 번호 일치 / 1,500,000원
+    - 4등: 4개 번호 일치 / 50,000원
+    - 5등: 3개 번호 일치 / 5,000원
+- [x] 당첨 번호 입력
+- [x] 당첨 내역, 수익률 출력
+- [x] 잘못된 입력 감지, 중복된 입력 감지 / 에러메시지 출력
+***
+## 기능 목록
+- [x] 게임진행: GameProcess
+    - [x] 로또 구입: buyLotto
+    - [x] 로또 발행: publishLotto
+    - [x] 당첨 번호 입력: enterWiningNumber
+    - [x] 당첨 결과 확인: checkWiningResult
+- [x] 로또: Lotto
+    - [x] 로또 보기: getLotto
+- [x] 결제: Payment
+    - [x] 결제: pay
+- [x] 발행: Publish
+    - [x] 번호 생성: makeNumbers
+- [x] 당첨 판정: Judgment
+    - [x] 당첨 번호 판정: judgeWinningNumber
+    - [x] 보너스 번호 판정: judgeBonusNumber
+    - [x] 순위 판정: judgeRanking
+- [x] 리스트 생성: MakeList
+    - [x] 문자열을 정수형 리스트로 변환: makeStringToIntegerList
+- [x] 당첨 통계: Statistics
+    - [x] 수익률 계산: calculateRateOfReturn
+- [x] 잘못된 입력 확인: WrongChecker
+    - 구입 금액 입력 오류 관련
+        - [x] 구입 금액 문제 확인: checkWrongAmount
+        - [x] 구입 금액 빈칸 확인: checkAmountNull
+        - [x] 구입 금액 문자 확인: checkAmountCharacter
+        - [x] 구입 금액 단위 확인: checkAmountUnit
+    - 구입 금액 입력 오류 관련
+        - [x] 당첨 번호 문제 확인: checkWrongWiningNumber
+        - [x] 당첨 번호 범위 확인: checkWiningNumberRange
+        - [x] 당첨 번호 문자 확인: checkWiningNumberCharacter
+        - [x] 당첨 번호 마이너스 확인: checkWiningNumberMinus
+        - [x] 당첨 번호 갯수 확인: checkWiningNumberSize
+        - [x] 당첨 번호 중복 확인: checkDoubleWiningNumber
+    - 보너스 번호 입력 오류 관련
+        - [x] 보너스 번호 문제 확인: checkWrongBonusNumber
+        - [x] 보너스 번호 범위 확인: checkBonusNumberRange
+        - [x] 보너스 번호 문자 확인: checkBonusNumberCharacter
+        - [x] 보너스 번호 충복 확인: checkDoubleBonusNumber
+    - 기타
+        - [x] 문자 확인: checkCharacter 
+- [x] 입력: Input
+    - [x] 구입금액 입력: enterAmount
+    - [x] 당첨 번호 입력: enterWiningNumber
+    - [x] 보너스 번호 입력: enterBonusNumber
+    - [x] 입력 닫기: inputClose
+- [x] 출력: Output
+    - [x] 구입금액 입력 요청: requestAmount
+    - [x] 구매 갯수 출력: printPurchaseCount
+    - [x] 구매 로또 출력: printLottos
+    - [x] 당첨 번호 입력 요청: requestWiningNumber
+    - [x] 보너스 번호 입력 요청: requestBonusNumber
+    - [x] 로또 결과 출력: printResultLotto
+    - [x] 당첨 통계 시작 문구: printWiningStatisticsStart
+    - [x] 당첨 갯수 출력: printWiningCount
+    - [x] 수익률 출력: printReturnRate
+***
+## 예외 처리
+- [x] 로또 구입 금액 입력 관련
+    - [x] 로또 구입 금액이 1,000원 단위가 아닐 경우
+    - [x] 로또 구입 금액 입력 값이 숫자가 아닌 다른 값이 입력 될 경우
+- [x] 당첨 번호 입력 관련
+    - [x] 당첨 번호 입력 값이 1~45 숫자 범위가 아닐 경우
+    - [x] 당첨 번호 입력 값이 숫자가 아닌 다른 값이 입력 될 경우
+    - [x] 당첨 번호 입력 값이 6개가 아닌 경우
+    - [x] 당첨 번호 입력 값 중 중복된 값이 존재 할 경우
+- [x] 보너스 번호 입력 관련
+  - [x] 보너스 번호 입력 값이 1~45 숫자 범위가 아닐 경우
+  - [x] 보너스 번호 입력 값이 숫자가 아닌 다른 값이 입력 될 경우
+  - [x] 보너스 번호 입력 값이 당첨 번호 입력 값과 중복 된 숫자 일 경우
+  - [x] 보너스 번호 입력 값이 1개가 아닌 경우
+***
+## 테스트 항목
+- [x] 발행 테스트: PublishTest
+    - [x] 번호생성테스트
+- [x] 결제 테스트: PaymentTest
+    - [x] 로또구매테스트
+- [x] 판정 테스트: JudgementTest
+    - [x] 당첨번호판정테스트
+    - [x] 보너스번호판정테스트
+    - [x] 랭크판정테스트
+- [x] 리스트 생성 테스트: MakeListTest
+    - [x] 문자열을정수형리스트로변환테스트
+- [x] 당첨 통계 테스트: StatisticsTest
+    - [x] 수익률계산테스트
+- [x] 잘못된 입력 확인 테스트: WrongCheckerTest
+    - [x] 잘못된구입금액종합테스트
+    - [x] 잘못된구입금액문자입력시
+    - [x] 올바른구입금액문자입력시
+    - [x] 잘못된구입금액입력시
+    - [x] 올바른구입금액입력시
+    - [x] 당첨번호종합테스트
+    - [x] 잘못된당첨번호숫자범위테스트
+    - [x] 잘못된당첨번호문자입력테스트
+    - [x] 잘못된당첨번호갯수입력테스트
+    - [x] 중복당첨번호입력테스트
+    - [x] 보너스번호입력에러종합테스트
+    - [x] 보너스번호잘못된문자입력테스트
+    - [x] 보너스번호잘못된숫자범위입력테스트
+    - [x] 보너스번호중복된숫자테스트
+    - [x] 문자확인테스트

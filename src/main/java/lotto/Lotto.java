@@ -8,10 +8,11 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        Collections.sort(numbers);
+//        Collections.sort(numbers);
         validateLengthLotto(numbers);
         validateRangeLotto(numbers);
         validateOrderLotto(numbers);
+        validateDuplicateLotto(numbers);
         this.numbers = numbers;
     }
 
@@ -32,6 +33,17 @@ public class Lotto {
                 throw new IllegalArgumentException(ERROR_STRING+
                         "\nExpect : 1~45 범위 숫자" + "\nInput : " + num);
             }
+        }
+    }
+
+    private void validateDuplicateLotto(List<Integer>numbers){
+        Set<Integer> numbersSet = new HashSet<>();
+        for(Integer num: numbers){
+            if(numbersSet.contains(num)){
+                throw new IllegalArgumentException(ERROR_STRING+
+                        "\n 중복된 숫자가 있습니다.");
+            }
+            numbersSet.add(num);
         }
     }
 

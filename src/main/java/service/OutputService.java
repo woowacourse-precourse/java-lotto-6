@@ -12,7 +12,7 @@ public class OutputService {
 
     public static void printGeneratedLotto(Integer lottoCount,
                                     List<Lotto> lottoList) {
-        System.out.println(lottoCount+PURCAHSED_STRING);
+        System.out.println("\n"+lottoCount+PURCAHSED_STRING);
 
         for(Lotto lotto : lottoList){
             System.out.println(

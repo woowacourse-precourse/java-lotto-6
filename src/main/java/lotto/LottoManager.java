@@ -15,7 +15,7 @@ public class LottoManager {
 
         //로또 구매 입력 및 검증
         String priceString = inputPurchasePrice();
-        validateTypeNumeric(priceString);
+        validateNumber(priceString);
         Integer priceInteger = Integer.parseInt(priceString);
         validateValuePrice(priceInteger);
 
@@ -39,10 +39,8 @@ public class LottoManager {
         validateTypeNumeric(bonusNumberString);
         Integer bonusNumberInteger = Integer.parseInt(bonusNumberString);
         validateRangeNumber(bonusNumberInteger);
-
         HashMap<String, Integer> stat = calculateStat(lottoList, winningNumber, bonusNumberInteger);
         printLottoStat(stat);
-
         Float profitRate = calculateProfit(stat, priceInteger);
         printProfit(profitRate);
     }
@@ -77,10 +75,17 @@ public class LottoManager {
             List<Lotto> lottoList, Lotto winningNumber, Integer bonusNumber){
 
         HashMap<String,Integer> result = new HashMap<>();
+        result.put("3",0);
+        result.put("4",0);
+        result.put("5",0);
+        result.put("5+",0);
+        result.put("6",0);
 
         for(int i=0;i<lottoList.size();i++){
             Lotto lotto = lottoList.get(i);
             String maximumHitCount = findMaxHit(lotto, winningNumber, bonusNumber);
+            if(maximumHitCount.charAt(0)<'3')
+                continue;
             result.put(maximumHitCount, result.get(maximumHitCount)+1);
         }
         return result;
@@ -89,22 +94,28 @@ public class LottoManager {
 
     public String findMaxHit(Lotto lotto, Lotto winningNumber, Integer bonusNumber){
 
-        boolean bonusNumberFlag = false;
+        boolean bonusFlag = false;
         Integer hitCount = 0;
 
         for(int i=0; i<Lotto_LENGTH;i++){
-            int lottoNum = lotto.getNumber(i);
+            boolean matchFlag = false;
             int winningNum = winningNumber.getNumber(i);
-            if(lottoNum==bonusNumber)
-                bonusNumberFlag=true;
-            if(lottoNum==winningNum)
-                hitCount++;
-            else{
-                break;
+
+            for(int j=0;j<Lotto_LENGTH;j++){
+                int lottoNum = lotto.getNumber(j);
+                if(lottoNum==winningNum)
+                {
+                    matchFlag=true;
+                }
+                if(lottoNum==bonusNumber)
+                    bonusFlag=true;
             }
+            if(matchFlag)
+                hitCount++;
         }
 
-        if(bonusNumberFlag&&hitCount==5)
+
+        if(bonusFlag&&hitCount==5)
             return "5+";
         else{
             return String.valueOf(hitCount);
@@ -113,7 +124,11 @@ public class LottoManager {
     }
 
     public List<Integer>convertToList(String input){
-        return new ArrayList(Arrays.asList(input.split(SEP_COMMA)));
+        List<Integer>list = new ArrayList<>();
+        for(String s : input.split(SEP_COMMA)){
+            list.add(Integer.parseInt(s));
+        }
+        return list;
     }
 
     public List<Integer> generateLottoNumbers(){
@@ -122,7 +137,7 @@ public class LottoManager {
     }
 
     public Integer calculateLottoCount(Integer priceInt){
-        return priceInt%PRICE_MOD;
+        return priceInt/LOTTO_PRICE;
     }
 
     public void validateRangeNumber(Integer number){
@@ -132,19 +147,31 @@ public class LottoManager {
         }
     }
 
-    public void validateTypeNumeric(String priceString){
-        for(int i=0;i<priceString.length();i++){
-            char c = priceString.charAt(i);
+    public void validateTypeNumeric(String WinningNumber){
+        for(int i=0;i<WinningNumber.length();i++){
+            char c = WinningNumber.charAt(i);
+            if(c==',')
+                continue;
             if(c<'0'||c>'9')
             {
-                throw new IllegalArgumentException(ERROR_STRING +
-                        "\nExpect : 숫자 문자열" + "\nInput : " + priceString);
+                throw new IllegalArgumentException("[ERROR] "+
+                        " Expect : 숫자 문자" + " Input : " + c);
             }
         }
     }
 
+    public static void validateNumber(String amount) throws IllegalArgumentException{
+        try {
+            Integer.parseInt(amount);
+        } catch (NumberFormatException e) {
+            System.out.print(ERROR_STRING+" 숫자 문자를 입력해주세요.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+
     public void validateValuePrice(Integer priceInteger){
-        if(priceInteger%PRICE_MOD!=0)
+        if(priceInteger%LOTTO_PRICE!=0)
             throw new IllegalArgumentException(ERROR_STRING +
                     "\nExpect : 1000으로 떨어지는 정수" + "\nInput : " + priceInteger);
     }

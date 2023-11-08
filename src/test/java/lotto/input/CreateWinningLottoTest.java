@@ -1,6 +1,7 @@
 package lotto.input;
 
 import static lotto.exception.ErrorType.BonusNumberDuplicatedException;
+import static lotto.exception.ErrorType.OverValueException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -26,5 +27,18 @@ public class CreateWinningLottoTest {
         assertThatThrownBy(() -> new WinningLotto(winningNumbers, bonusNumber))
                 .isInstanceOf(LottoException.class)
                 .hasFieldOrPropertyWithValue("exceptionType", BonusNumberDuplicatedException);
+    }
+
+    @Test
+    @DisplayName("보너스 숫자가 범위를 넘어 가는 값일 때 OverValueException 발생")
+    void invalidBonusNumberTest(){
+
+        //given때
+        int invalidBonusNumber = 500;
+
+        //when & then
+        assertThatThrownBy(() -> Number.from(invalidBonusNumber))
+                .isInstanceOf(LottoException.class)
+                .hasFieldOrPropertyWithValue("exceptionType", OverValueException);
     }
 }

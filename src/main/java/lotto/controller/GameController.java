@@ -1,8 +1,6 @@
 package lotto.controller;
 
-import static lotto.enums.NumberCondition.LOTTO_SIZE;
 import static lotto.enums.NumberCondition.LOWEST_PRIZE_RANK;
-import static lotto.enums.NumberCondition.MONEY_UNIT;
 import static lotto.enums.PrizeRank.FIFTH;
 import static lotto.enums.PrizeRank.FIRST;
 import static lotto.enums.PrizeRank.FOURTH;
@@ -11,9 +9,7 @@ import static lotto.enums.PrizeRank.THIRD;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.utils.Converter;
@@ -23,38 +19,38 @@ import lotto.view.OutputView;
 
 public class GameController {
     private static final int PERCENT_CONVERTER = 100;
+    private static final int DECIMAL_PLACE = 1;
     private final int[] nthPrizeNumber = new int[LOWEST_PRIZE_RANK.number() + 1];
     private User user;
     private Lotto lotto;
     private BigDecimal returnRate;
     private int count;
     private int bonusNumber;
+    private int totalPrizeMoney;
 
     public void run() {
-        setCount();
         setUser();
+        setCount();
         OutputView.printCountAndTickets(user, count);
         setLotto();
         setBonusNumber();
         setNthPrizeNumber();
         OutputView.printPrizeDetails(nthPrizeNumber);
-        calculateReturnRate();
+        this.returnRate = calculateReturnRate(count, totalPrizeMoney);
         OutputView.printReturnRate(returnRate);
     }
 
-    private void setCount() {
-        String money = InputView.money();
+    private void setUser() {
         try {
-            GameValidator.validateMoney(money);
-            count = Converter.moneyToCount(money);
+            user = new User(InputView.money());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            setCount();
+            setUser();
         }
     }
 
-    private void setUser() {
-        this.user = new User(count);
+    private void setCount() {
+        count = user.getCount();
     }
 
     private void setLotto() {
@@ -69,7 +65,7 @@ public class GameController {
     private List<Integer> setLottoNumbers() {
         String numbers = InputView.lottoNumbers();
         GameValidator.validateNumbers(numbers);
-        return Converter.stringToIntArray(numbers);
+        return Converter.stringToIntegerList(numbers);
     }
 
     private void setBonusNumber() {
@@ -87,63 +83,69 @@ public class GameController {
         for (int i = 0; i < count; i++) {
             List<Integer> userTicket = user.getTicket(i);
             List<Integer> lottoNumber = lotto.getNumbers();
-            addPrize(userTicket, matchNumberAmount(userTicket, lottoNumber));
+            addPrize(userTicket, matchNumberAmount(userTicket, lottoNumber), bonusNumber);
         }
     }
 
-    private void addPrize(List<Integer> userTicket, int differentNumberAmount) {
-        if (isNthPrize(userTicket, 5, differentNumberAmount)) {
+    public int matchNumberAmount(List<Integer> userTicket, List<Integer> lottoNumber) {
+        List<Integer> matchingList = userTicket.stream()
+                .filter(lottoNumber::contains)
+                .toList();
+        return matchingList.size();
+    }
+
+    public void addPrize(List<Integer> userTicket, int matchNumberAmount, int bonusNumber) {
+        if (isFifthPrize(matchNumberAmount)) {
             addNthPrize(5);
         }
-        if (isNthPrize(userTicket, 4, differentNumberAmount)) {
+        if (isFourthPrize(matchNumberAmount)) {
             addNthPrize(4);
         }
-        if (isNthPrize(userTicket, 3, differentNumberAmount)) {
+        if (isThirdPrize(userTicket, matchNumberAmount, bonusNumber)) {
             addNthPrize(3);
         }
-        if (isNthPrize(userTicket, 2, differentNumberAmount)) {
+        if (isSecondPrize(userTicket, matchNumberAmount, bonusNumber)) {
             addNthPrize(2);
         }
-        if (isNthPrize(userTicket, 1, differentNumberAmount)) {
+        if (isFirstPrize(matchNumberAmount)) {
             addNthPrize(1);
         }
     }
 
-    private int matchNumberAmount(List<Integer> userTicket, List<Integer> lottoNumber) {
-        Set<Integer> comparator = new HashSet<>();
-        comparator.addAll(userTicket);
-        comparator.addAll(lottoNumber);
-        return LOTTO_SIZE.number() * 2 - comparator.size();
+    private boolean isFifthPrize(int matchNumberAmount) {
+        return matchNumberAmount == FIFTH.matchCondition();
     }
 
-    private boolean isNthPrize(List<Integer> userTicket, int n, int matchNumberAmount) {
-        return switch (n) {
-            case 5 -> matchNumberAmount == FIFTH.matchCondition();
-            case 4 -> matchNumberAmount == FOURTH.matchCondition();
-            case 3 -> matchNumberAmount == THIRD.matchCondition() && !userTicket.contains(bonusNumber);
-            case 2 -> matchNumberAmount == SECOND.matchCondition() && userTicket.contains(bonusNumber);
-            case 1 -> matchNumberAmount == FIRST.matchCondition();
-            default -> false;
-        };
+    private boolean isFourthPrize(int matchNumberAmount) {
+        return matchNumberAmount == FOURTH.matchCondition();
+    }
+
+    private boolean isThirdPrize(List<Integer> userTicket, int matchNumberAmount, int bonusNumber) {
+        return matchNumberAmount == THIRD.matchCondition() && !userTicket.contains(bonusNumber);
+    }
+
+    private boolean isSecondPrize(List<Integer> userTicket, int matchNumberAmount, int bonusNumber) {
+        return matchNumberAmount == SECOND.matchCondition() && userTicket.contains(bonusNumber);
+    }
+
+    private boolean isFirstPrize(int matchNumberAmount) {
+        return matchNumberAmount == FIRST.matchCondition();
     }
 
     private void addNthPrize(int n) {
         nthPrizeNumber[n]++;
+        totalPrizeMoney += Converter.rankToPrize(n);
     }
 
-    private void calculateReturnRate() {
-        BigDecimal money = new BigDecimal(count * MONEY_UNIT.number());
-        BigDecimal totalPrizeMoney = new BigDecimal(totalPrizeMoney());
+    public BigDecimal calculateReturnRate(int count, int totalPrizeMoney) {
+        BigDecimal money = new BigDecimal(Converter.countToMoney(count));
+        BigDecimal earnedMoney = new BigDecimal(totalPrizeMoney);
         BigDecimal convertToPercent = new BigDecimal(PERCENT_CONVERTER);
-        returnRate = totalPrizeMoney.multiply(convertToPercent)
-                .divide(money, 1, RoundingMode.HALF_UP);
+        return earnedMoney.multiply(convertToPercent)
+                .divide(money, DECIMAL_PLACE, RoundingMode.HALF_UP);
     }
 
-    private int totalPrizeMoney() {
-        int totalPrizeMoney = 0;
-        for (int n = 1; n <= LOWEST_PRIZE_RANK.number(); n++) {
-            totalPrizeMoney += nthPrizeNumber[n] * Converter.rankToPrize(n);
-        }
+    public int getTotalPrizeMoney() {
         return totalPrizeMoney;
     }
 }

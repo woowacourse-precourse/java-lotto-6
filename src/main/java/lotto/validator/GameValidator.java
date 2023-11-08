@@ -1,12 +1,10 @@
 package lotto.validator;
 
 import static lotto.enums.ExceptionCase.INPUT_TYPE_MISMATCH;
-import static lotto.enums.ExceptionCase.MONEY_UNIT_MISMATCH;
 import static lotto.enums.ExceptionCase.NUMBER_DUPLICATION;
 import static lotto.enums.ExceptionCase.NUMBER_OUT_OF_RANGE;
 import static lotto.enums.NumberCondition.LOTTO_MAX;
 import static lotto.enums.NumberCondition.LOTTO_MIN;
-import static lotto.enums.NumberCondition.MONEY_UNIT;
 import static lotto.enums.RegularExpression.NUMBERS_AND_COMMA;
 import static lotto.enums.RegularExpression.POSITIVE_INTEGER;
 
@@ -14,14 +12,6 @@ import java.util.List;
 import lotto.model.Lotto;
 
 public class GameValidator {
-    public static void validateMoney(String money) {
-        if (!isPositiveInteger(money)) {
-            throw new IllegalArgumentException(INPUT_TYPE_MISMATCH.message());
-        }
-        if (!isCorrectUnit(money)) {
-            throw new IllegalArgumentException(MONEY_UNIT_MISMATCH.message());
-        }
-    }
 
     public static void validateNumbers(String numbers) {
         if (!isNumbers(numbers)) {
@@ -42,13 +32,8 @@ public class GameValidator {
         }
     }
 
-
-    private static boolean isPositiveInteger(String money) {
-        return money.matches(POSITIVE_INTEGER.regex());
-    }
-
-    private static boolean isCorrectUnit(String money) {
-        return Integer.parseInt(money) % MONEY_UNIT.number() == 0;
+    private static boolean isPositiveInteger(String number) {
+        return number.matches(POSITIVE_INTEGER.regex());
     }
 
     private static boolean isNumbers(String numbers) {

@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import static lotto.enums.NumberCondition.MONEY_UNIT;
 import static lotto.enums.PrizeRank.FIFTH;
 import static lotto.enums.PrizeRank.FIRST;
 import static lotto.enums.PrizeRank.FOURTH;
@@ -12,34 +13,54 @@ import java.util.stream.Collectors;
 
 public class Converter {
     public static int moneyToCount(String money) {
-        return Integer.parseInt(money) / 1000;
+        return Integer.parseInt(money) / MONEY_UNIT.number();
     }
 
-    public static List<Integer> stringToIntArray(String numbers) {
+    public static int countToMoney(int count) {
+        return count * MONEY_UNIT.number();
+    }
+
+    public static List<Integer> stringToIntegerList(String numbers) {
         return Arrays.stream(numbers.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
     public static int rankToPrize(int rank) {
-        return switch (rank) {
-            case 5 -> FIFTH.prize();
-            case 4 -> FOURTH.prize();
-            case 3 -> THIRD.prize();
-            case 2 -> SECOND.prize();
-            case 1 -> FIRST.prize();
-            default -> 0;
-        };
+        if (rank == 5) {
+            return FIFTH.prize();
+        }
+        if (rank == 4) {
+            return FOURTH.prize();
+        }
+        if (rank == 3) {
+            return THIRD.prize();
+        }
+        if (rank == 2) {
+            return SECOND.prize();
+        }
+        if (rank == 1) {
+            return FIRST.prize();
+        }
+        return 0;
     }
 
     public static int rankToSameNumbers(int rank) {
-        return switch (rank) {
-            case 5 -> FIFTH.matchCondition();
-            case 4 -> FOURTH.matchCondition();
-            case 3 -> THIRD.matchCondition();
-            case 2 -> SECOND.matchCondition();
-            case 1 -> FIRST.matchCondition();
-            default -> 0;
-        };
+        if (rank == 5) {
+            return FIFTH.matchCondition();
+        }
+        if (rank == 4) {
+            return FOURTH.matchCondition();
+        }
+        if (rank == 3) {
+            return THIRD.matchCondition();
+        }
+        if (rank == 2) {
+            return SECOND.matchCondition();
+        }
+        if (rank == 1) {
+            return FIRST.matchCondition();
+        }
+        return 0;
     }
 }

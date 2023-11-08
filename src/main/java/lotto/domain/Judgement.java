@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.PrintGames;
+
 import java.util.*;
 
 public class Judgement {
@@ -19,14 +21,14 @@ public class Judgement {
         }
     }
 
-    public void correctNumbers() {
+    public void correctNumbers(PrintGames printGames) {
         winningNumber = draw.getWinningNumber();
         bonusNumber = draw.getBonusNumber();
         lottoGames = buy.getLottoGames();
         for (Lotto lotto : lottoGames) {
             correctCount(lotto.getNumbers());
         }
-        System.out.println(result);
+        printGames.finalResults(result);
     }
 
     public void correctCount(List<Integer> lotto) {

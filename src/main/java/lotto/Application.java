@@ -4,6 +4,7 @@ import lotto.domain.Buy;
 import lotto.domain.Draw;
 import lotto.domain.Judgement;
 import lotto.domain.Prize;
+import lotto.view.PrintGames;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,16 +14,12 @@ public class Application {
         Buy buy = new Buy();
         Draw draw = new Draw();
         Judgement judgement = new Judgement(buy, draw);
+        PrintGames printGames = new PrintGames();
         // 로또 구매 및 발행
-        buy.createGames();
+        buy.createGames(printGames);
         // 당첨 번호 뽑기
         draw.winningNumbers();
         // 번호 비교하기
-        judgement.correctNumbers();
-//        Map<String, Integer> tMap = new HashMap<>();
-//        tMap.put("test", 10);
-//        tMap.put("test", tMap.get("test")+10);
-//        System.out.println(tMap);
-//        System.out.println(tMap.get("test"));
+        judgement.correctNumbers(printGames);
     }
 }

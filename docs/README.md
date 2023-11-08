@@ -53,8 +53,8 @@
   - [x] 로또 번호는 쉼표를 기준으로 구분
   - [x] 로또 번호는 오름차순으로 정렬
 
-- [ ] 당첨 내역 출력하기 - PrintGames#finalResults()
-  - [ ] 등수에 따른 금액과 당첨 개수 출력
+- [x] 당첨 내역 출력하기 - PrintGames#finalResults()
+  - [x] 등수에 따른 금액과 당첨 개수 출력 - PrintGames#resultMessage()
 
 - [ ] 수익률 출력하기 - PrintGames#returnRate()
   - [ ] 소수점 둘째 자리에서 반올림하여 출력

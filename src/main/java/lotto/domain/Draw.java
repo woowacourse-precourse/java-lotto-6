@@ -10,7 +10,6 @@ public class Draw {
     Exception exception = null;
     private List<Integer> winningNumber = null;
     private int bonusNumber = 0;
-    boolean exist = true;
 
     public Draw() {
         exception = new Exception();

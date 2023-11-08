@@ -12,11 +12,9 @@ public class Buy {
 
     NumberGenerator generator = null;
     Lotto lotto = null;
-    PrintGames printGames = null;
 
     public Buy() {
         generator = new NumberGenerator();
-        printGames = new PrintGames();
         lottoGames = new ArrayList<>();
     }
 
@@ -40,7 +38,7 @@ public class Buy {
         return totalAmount / Constants.LOTTOPRICE;
     }
 
-    public void createGames() {
+    public void createGames(PrintGames printGames) {
         int count = getGames();
         while (lottoGames.size() < count) {
             lotto = new Lotto(generator.createRandomNumbers());

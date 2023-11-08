@@ -7,10 +7,10 @@ public class Rate {
     }
 
     private long getAllMoney(WinningResult winningResult) {
-        int result = 1;
+        int result = 0;
 
         for(Winning winning : Winning.values()) {
-            result += winningResult.getWinningCount(winning) * winning.getMoney();
+            result += winningResult.getWinningCount(winning) * winning.getMoney() ;
         }
         return result;
     }

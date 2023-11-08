@@ -9,6 +9,7 @@ public class LottoController {
 
         InputView.inputPurchaseSum();
         InputView.inputWinningNumber();
+        InputView.inputBonusNumber();
     }
 
 }

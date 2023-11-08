@@ -23,7 +23,7 @@ public class InputView {
             checkInputPurchaseSumValid(input);
             return Integer.parseInt(input);
 
-        } catch (IllegalArgumentException e) {
+        } catch ( IllegalArgumentException e ) {
             InputView.inputPurchaseSum();
         }
 
@@ -36,16 +36,15 @@ public class InputView {
         Validation.checkNotDivided(input);
     }
 
-    public static List<Integer> inputWinningNumber(){
+    public static List<Integer> inputWinningNumber() {
         OutputView.printInputMessage(WINNING_NUMBER_INPUT_MESSAGE);
         String input = Console.readLine();
 
         try {
-
             List<Integer> result = checkInputWinningNumberValid(input);
-
             return result;
-        } catch (IllegalArgumentException e){
+
+        } catch ( IllegalArgumentException e ) {
             InputView.inputWinningNumber();
         }
         return null;
@@ -59,7 +58,7 @@ public class InputView {
         Collections.addAll(inputStrings, input.split(","));
         Validation.checkLength(inputStrings);
 
-        for(String str : inputStrings){
+        for( String str : inputStrings ) {
             Validation.checkNotNumber(str);
             Validation.checkNotInteger(str);
             Integer number = Integer.parseInt(str);
@@ -69,5 +68,28 @@ public class InputView {
         }
 
         return winningNumbers;
+    }
+
+    public static Integer inputBonusNumber() {
+        OutputView.printInputMessage(BONUS_NUMBER_INPUT_MESSAGE);
+        String input = Console.readLine();
+
+        try {
+            checkInputBonusNumberValid(input);
+            return Integer.parseInt(input);
+
+        } catch ( IllegalArgumentException e ) {
+            InputView.inputBonusNumber();
+        }
+
+        return null;
+    }
+
+    private static void checkInputBonusNumberValid(String input) {
+        Validation.checkNotBlank(input);
+        Validation.checkNotNumber(input);
+        Validation.checkNotInteger(input);
+        Integer number = Integer.parseInt(input);
+        Validation.checkNotInLottoRange(number);
     }
 }

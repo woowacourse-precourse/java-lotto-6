@@ -1,17 +1,13 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.util.constant.LottoConstant;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoMachine {
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
-    private static final int LOTTO_COUNT = 6;
-    private static final int LOTTO_PRICE = 1_000;
-
     private final List<Lotto> lottos;
 
     public LottoMachine(int purchaseAmount) {
@@ -20,7 +16,7 @@ public class LottoMachine {
     }
 
     private int parseMoneyToCount(int purchaseAmount) {
-        return purchaseAmount / LOTTO_PRICE;
+        return purchaseAmount / LottoConstant.LOTTO_PRICE;
     }
 
     private List<Lotto> issuedLottos(int purchaseCount) {
@@ -30,7 +26,8 @@ public class LottoMachine {
     }
 
     private List<Integer> createNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_COUNT)
+        return Randoms.pickUniqueNumbersInRange(LottoConstant.LOTTO_MIN_NUMBER, LottoConstant.LOTTO_MAX_NUMBER,
+                        LottoConstant.LOTTO_COUNT)
                 .stream()
                 .sorted()
                 .collect(Collectors.toList());

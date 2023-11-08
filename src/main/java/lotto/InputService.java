@@ -5,23 +5,22 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class InputService {
-    static private final String requestMoney ="구입금액을 입력해 주세요.";
-    static private final String requestWinningNums ="당첨 번호를 입력해 주세요.";
-    static private final String requestBonusNum ="보너스 번호를 입력해 주세요.";
-    public int howMuchMoney(){
-        System.out.println(requestMoney);
+
+    public static Integer howMuchMoney(){
+        OutputService.requestMoney();
         String tempMoney = Console.readLine();
         ValidateService.validateNumber(tempMoney);
         int money = Integer.parseInt(tempMoney);
         return money;
     }
 
-    public List<Integer> winningNumbers(){
-        System.out.println(requestWinningNums);
+    public static List<Integer> winningNumbers(){
+        OutputService.requestWinningNums();
         List<String> tempWinningNumbers = Arrays.asList(
                 Console.readLine().split(",")
         );
@@ -35,23 +34,35 @@ public class InputService {
         return winningNumbers;
     }
 
-    public int bonusNumber(List<Integer> winningNumbers){
-        System.out.println(requestBonusNum);
+    public static Integer bonusNumber(List<Integer> winningNumbers){
+        OutputService.requestBonusNum();
         String tempBonus = Console.readLine();
         ValidateService.validateNumber(tempBonus);
-        int bonus = Integer.parseInt(tempBonus);
+        Integer bonus = Integer.parseInt(tempBonus);
         ValidateService.validateBonusInWinningNums(bonus,winningNumbers);
         ValidateService.validateNumberInRange(bonus);
         ValidateService.validateDuplicatedNums(bonus,winningNumbers);
         return bonus;
     }
 
-    public <T> T iterWhenException(Supplier<T> userInput){
+    public static  <T> T iterWhenException(Supplier<T> supplier){
         T input = null;
         try{
-            input = userInput.get();
+            input = supplier.get();
         }catch (IllegalArgumentException illegalArgumentException){
-            return iterWhenException(userInput);
+            System.out.println(illegalArgumentException.getMessage());
+            return iterWhenException(supplier);
+        }
+        return input;
+    }
+
+    public static  <T,R> R iterWhenException(Function<T,R> supplier,T t){
+        R input = null;
+        try{
+            input = supplier.apply(t);
+        }catch (IllegalArgumentException illegalArgumentException){
+            System.out.println(illegalArgumentException.getMessage());
+            return iterWhenException(supplier,t);
         }
         return input;
     }

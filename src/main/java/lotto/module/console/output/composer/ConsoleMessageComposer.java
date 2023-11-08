@@ -2,6 +2,7 @@ package lotto.module.console.output.composer;
 
 import lotto.module.domain.LottoProfit;
 import lotto.module.lotto.Lotto;
+import lotto.module.lotto.UserLottoTickets;
 import lotto.module.rank.LottoPrizeTable;
 import lotto.module.result.LottoResult;
 
@@ -23,13 +24,14 @@ public class ConsoleMessageComposer {
         return new ConsoleMessageComposer();
     }
 
-    public String generatePurchasedLottoTicketMessage(List<Lotto> list) {
+    public String generatePurchasedLottoTicketMessage(UserLottoTickets purchasedLottoTickets) {
+        List<Lotto> tickets = purchasedLottoTickets.tickets();
         StringBuilder message = new StringBuilder(System.lineSeparator())
-                .append(list.size())
+                .append(tickets.size())
                 .append(PURCHASED_LOTTO_COUNT_MESSAGE)
                 .append(System.lineSeparator());
 
-        for (Lotto lotto : list) {
+        for (Lotto lotto : tickets) {
             message.append(lotto.getNumbers())
                     .append(System.lineSeparator());
         }

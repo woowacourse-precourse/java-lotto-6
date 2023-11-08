@@ -7,15 +7,14 @@ import java.util.Set;
 import lotto.OutputService;
 
 public class LottoValidator {
-    private static final String ERROR_MESSAGE = "[ERROR] 로또 번호는 ";
     private static final int LOTTO_SIZE = 6;
-
     private static final int LOTTO_MIN = 1;
     private static final int LOTTO_MAX = 45;
 
-    public static int getLottoSize(){
+    public static int getLottoSize() {
         return LOTTO_SIZE;
     }
+
     private static boolean rangeBetweenMinToMax(List<Integer> numbers) {
 
         for (Integer number :
@@ -39,16 +38,16 @@ public class LottoValidator {
     public static void validateLottoNumbers(List<Integer> numbers) {
 
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + LOTTO_SIZE + "개이어야 합니다.");
+            throw new IllegalArgumentException("로또 번호는" + LOTTO_SIZE + "개이어야 합니다.");
         }
 
         if (!hasDuplicate(numbers)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "중복되지 않는 숫자들로 구성되어있어야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 중복되지 않는 숫자들로 구성되어있어야 합니다.");
         }
 
         if (!rangeBetweenMinToMax(numbers)) {
             throw new IllegalArgumentException(
-                    ERROR_MESSAGE + LOTTO_MIN + "이상 " + LOTTO_MAX + "인 숫자들로 구성되어있어야 합니다.");
+                    "로또 번호는" + LOTTO_MIN + "이상 " + LOTTO_MAX + "인 숫자들로 구성되어있어야 합니다.");
         }
     }
 

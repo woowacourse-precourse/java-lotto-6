@@ -14,13 +14,13 @@ public class Input {
     }
 
     public String[] inputWinningNumber(){
-        System.out.println(INPUT_WINNING_NUMBER_COMMAND);
+        System.out.println("\n" + INPUT_WINNING_NUMBER_COMMAND);
         String[] winningNumber = readLine().split(",");
         return winningNumber;
     }
 
     public String inputBonusNumber(){
-        System.out.println(INPUT_BONUS_NUMBER_COMMAND);
+        System.out.println("\n" + INPUT_BONUS_NUMBER_COMMAND);
         String bonusNumber = readLine();
         return bonusNumber;
     }

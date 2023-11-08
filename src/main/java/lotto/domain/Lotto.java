@@ -14,15 +14,28 @@ public class Lotto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new LottoException(LottoError.UNAVAILABLE_NUMBER_QUANTITY);
-        }
+    private void validate(List<Integer> lottoNumbers) {
+        checkSize(lottoNumbers);
+        checkRange(lottoNumbers);
         checkDuplicate(lottoNumbers);
     }
 
     // TODO: 추가 기능 구현
+    /** 숫자의 갯수를 검사한다. */
+    private void checkSize(List<Integer> lottoNumbers) {
+        if (lottoNumbers.size() != 6) {
+            throw new LottoException(LottoError.UNAVAILABLE_NUMBER_QUANTITY);
+        }
+    }
 
+    /** 숫자들의 범위가 유효한지 검사한다. */
+    private void checkRange(List<Integer> lottoNumbers) {
+        for (Integer number : lottoNumbers) {
+            if (number < 1 || number > 45) {
+                throw new LottoException(LottoError.UNAVAILABLE_NUMBER_RANGE);
+            }
+        }
+    }
 
     /** 숫자 중복이 없는지 검사한다. */
     private void checkDuplicate(List<Integer> lottoNumbers) {

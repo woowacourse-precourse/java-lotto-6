@@ -8,7 +8,14 @@ import lotto.constant.Number;
 
 public class Validator {
 
-    public static void ParseIntNumber(String inputPurchase) {
+    public static void inputBlank(String inputPurchase) {
+        if (inputPurchase.isEmpty()) {
+            throw new IllegalArgumentException(ErrorMessage.ENTER_INPUT_BLANK.getMessage());
+        }
+    }
+
+    public static void parseIntNumber(String inputPurchase) {
+        inputBlank(inputPurchase);
         for (int numberOfDigits = 0; numberOfDigits < inputPurchase.length(); numberOfDigits++) {
             if (!Character.isDigit(inputPurchase.charAt(numberOfDigits))) {
                 throw new IllegalArgumentException(ErrorMessage.ENTER_NOT_INTEGER_NUMBER.getMessage());

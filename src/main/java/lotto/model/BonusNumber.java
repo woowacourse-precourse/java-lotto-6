@@ -8,6 +8,10 @@ public class BonusNumber {
         this.BonusNumber = BonusNumber;
     }
 
+    public int getBonusNumber() {
+        return BonusNumber;
+    }
+
     public static BonusNumber CreateBonusNumber(int BonusNumber) {
         return new BonusNumber(BonusNumber);
     }

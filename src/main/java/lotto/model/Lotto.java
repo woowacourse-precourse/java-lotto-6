@@ -15,6 +15,10 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         Validator.validateInputLength(numbers);
         Validator.duplicateInputWinningNumbers(numbers);

@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.LottoDatas;
+import lotto.view.OutputView;
 
 public class LottoService {
 
@@ -19,7 +20,7 @@ public class LottoService {
     }
 
     public int parseIntPurchase(String inputPurchase) {
-        Validator.ParseIntNumber(inputPurchase);
+        Validator.parseIntNumber(inputPurchase);
         return Integer.parseInt(inputPurchase);
     }
 
@@ -58,10 +59,36 @@ public class LottoService {
     public List<Integer> parseIntWinningNumbers(String[] arrayWinningNumbers) {
         List<Integer> listWinningNumbers = new ArrayList<>();
         for (int arrayIndex = 0; arrayIndex < arrayWinningNumbers.length; arrayIndex++) {
-            Validator.ParseIntNumber(arrayWinningNumbers[arrayIndex]);
+            Validator.parseIntNumber(arrayWinningNumbers[arrayIndex]);
             listWinningNumbers.add(Integer.valueOf(arrayWinningNumbers[arrayIndex]));
         }
         return listWinningNumbers;
+    }
+
+    public void printLottoCount() {
+        OutputView.printPurChaseCount(lottoDatas.getLottoCount());
+    }
+
+    public void printLottoNumbers() {
+
+        for (int lottoCountIndex = 0; lottoCountIndex < lottoDatas.getLottoCount(); lottoCountIndex++) {
+            StringBuilder printLottoNumbers = new StringBuilder();
+            printLottoNumbers.append("[");
+            printLottoNumbers = getEachLottoNumber(printLottoNumbers, lottoCountIndex);
+            printLottoNumbers.append("]");
+            OutputView.printLottoNumbers(printLottoNumbers);
+        }
+    }
+
+    private StringBuilder getEachLottoNumber(StringBuilder printLottoNumbers, int lottoCountIndex) {
+        List<Integer> lottoNumbers = lottoDatas.getlottoNumbers(lottoCountIndex);
+        for (int lottoLength = 0; lottoLength < lottoNumbers.size(); lottoLength++) {
+            printLottoNumbers.append(lottoNumbers.get(lottoLength));
+            if (lottoLength != lottoNumbers.size() - 1) {
+                printLottoNumbers.append(", ");
+            }
+        }
+        return printLottoNumbers;
     }
 
 }

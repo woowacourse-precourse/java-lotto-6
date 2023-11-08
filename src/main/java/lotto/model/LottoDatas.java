@@ -12,6 +12,13 @@ public class LottoDatas {
     private PurChase purchase;
     private Lotto winnigNumber;
 
+    public LottoDatas() {
+        this.lottoNumbers = new ArrayList<>();
+        this.bonusNumbers = null;
+        this.purchase = null;
+        this.winnigNumber = null;
+    }
+
 
     public void saveCount(int purchase) {
         this.purchase = PurChase.inputPurchase(purchase);
@@ -27,15 +34,14 @@ public class LottoDatas {
         this.winnigNumber = lotto;
     }
 
-    public int getLottoCount() {
-        return this.purchase.getLottoCount();
+    public List<Integer> getlottoNumbers(int index) {
+        List<Integer> lottoNumbersIntegers = new ArrayList<>();
+        lottoNumbersIntegers.addAll(lottoNumbers.get(index).getNumbers());
+        return lottoNumbersIntegers;
     }
 
-    public LottoDatas() {
-        this.lottoNumbers = new ArrayList<>();
-        this.bonusNumbers = null;
-        this.purchase = null;
-        this.winnigNumber = null;
+    public int getLottoCount() {
+        return purchase.getLottoCount();
     }
 
     public void generateLottoNumbers() {

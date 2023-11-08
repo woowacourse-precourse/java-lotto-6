@@ -61,8 +61,6 @@ class LottoControllerTest {
                 .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
     }
 
-//            - 중간에 2,,4 와 같은 입력
-//      - 마지막에 5, 와 같은 입력
 //    - [X] 문자 입력 시 예외 발생
     @Test
     @DisplayName("당첨 번호 입력 시 맨앞 공백 예외 발생")
@@ -82,6 +80,19 @@ class LottoControllerTest {
     void winningNumberBetweenSpace() {
         // Given
         String winningNumbers = "1,2,3,,5,6";
+
+        // When
+        // Then
+        assertThatThrownBy(() -> lottoController.createWinningNumber(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력 시 맨 뒤 공백 예외 발생")
+    void winningNumberEndSpace() {
+        // Given
+        String winningNumbers = "1,2,3,,5,";
 
         // When
         // Then

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class WinningStatisticsTest {
 
     enum CorrectWinningTier {
-        FIRST, SECOND, THIRD, FOUR, FIFTH, RETIER, NONE
+        FIRST, SECOND, THIRD, FOUR, FIFTH, NONE
     }
 
     @DisplayName("일치하는 번호 갯수가 6개일 때 1등인지 검증")

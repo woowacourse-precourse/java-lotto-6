@@ -3,7 +3,6 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.error.Error;
 import lotto.error.Error.ErrorType;
 
 public class LottoTicketGenerator {
@@ -27,13 +26,12 @@ public class LottoTicketGenerator {
     }
 
     public void insertMoney(int money) {
-        validate(money);
         this.ticketCount = money / 1000;
     }
 
-    private void validate(int money) {
+    public void validate(int money) {
         if (!(money % 1000 == 0) || money <= 0) {
-            Error.errorMessage(ErrorType.INVALID_AMOUNT);
+            throw new IllegalArgumentException(ErrorType.INVALID_MONEY_VALUE.getMessage());
         }
     }
 

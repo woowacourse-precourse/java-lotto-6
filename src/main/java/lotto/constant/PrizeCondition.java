@@ -37,7 +37,7 @@ public enum PrizeCondition {
     }
 
     static PrizeCondition distinguishSecondOrThird(boolean bonusMatch) {
-        if (bonusMatch) {
+        if (bonusMatch == SECOND.bonusMatch) {
             return SECOND;
         }
         return THIRD;

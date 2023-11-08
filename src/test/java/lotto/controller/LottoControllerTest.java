@@ -16,9 +16,8 @@ class LottoControllerTest {
     @Test
     void generateRandomLottoTest() {
         // when
-        List<Lotto> lottos = LottoController.generateLottos(6);
+        List<Lotto> lottos = LottoController.generateLottos(6000);
         // then
-        assert lottos != null;
         assertThat(lottos.size()).isEqualTo(6);
     }
 
@@ -28,7 +27,6 @@ class LottoControllerTest {
         // when
         List<Lotto> lottos = LottoController.generateLottos(0);
         // then
-        assert lottos != null;
         assertThat(lottos.size()).isEqualTo(0);
     }
 

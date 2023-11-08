@@ -9,9 +9,10 @@ import java.util.Map;
 
 public class LottoController {
 
-    public static List<Lotto> generateLottos(int number) {
+    public static List<Lotto> generateLottos(int price) {
+        int purchasedLottoAmount = price / 1000;
         ArrayList<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < number; i++) {
+        for (int i = 0; i < purchasedLottoAmount; i++) {
             Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             lottos.add(lotto);
         }

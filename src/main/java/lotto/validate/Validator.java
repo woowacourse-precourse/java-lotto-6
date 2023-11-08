@@ -33,6 +33,13 @@ public class Validator {
         return Arrays.stream(split).allMatch(s -> isNumeric(s));
     }
 
+    public static boolean isInRange(String input){
+        String[] split = input.split(",");
+        return Arrays.stream(split)
+                .map(Integer::parseInt)
+                .allMatch(number -> number >= 1 && number <= 45);
+    }
+
     public static boolean isNumeric(String str) {
         return str.chars().allMatch(Character::isDigit);
     }

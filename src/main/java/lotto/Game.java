@@ -3,17 +3,14 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Game {
     private int money, count;
     private List<Lotto> buy = new ArrayList<>();
     private Lotto answer; private int bonus;
-    private int[] correct = new int[5];
+    private HashMap<String, Integer> correct = new HashMap<>();
 
     private void start(){
         System.out.println("구입 금액을 입력해 주세요.");
@@ -50,34 +47,45 @@ public class Game {
         this.bonus = Integer.parseInt(Console.readLine());
     }
 
+    private void initHash(){
+        //System.out.println("initHash");
+        corType[] arr = corType.values();
+
+        for (corType rb : arr) {
+            //System.out.println(rb);
+            this.correct.put(rb.toString(),0);
+        }
+    }
+
     private void checkLottos(){
+        initHash();
         for(int i=0;i<this.count;i++){
             // 중복 여부 확인
             checkLotto(this.buy.get(i).compareOther(this.answer), this.buy.get(i));
         }
     }
     private void checkLotto(int check_count, Lotto here){
-        if(check_count ==3){this.correct[0] = this.correct[0]+1; }
-        if(check_count ==4){this.correct[1] = this.correct[1]+1; }
+        if(check_count ==3){this.correct.replace("THREE" , this.correct.get("THREE")+1); }
+        if(check_count ==4){this.correct.replace("FOUR" , this.correct.get("FOUR")+1);}
         if(check_count ==5){
-            this.correct[2] = this.correct[2]+1;
+            this.correct.replace("FIVE_V1" , this.correct.get("FIVE_V1")+1);
             checkFive(here);
         }
-        if(check_count ==6){this.correct[4] = this.correct[4]+1; }
+        if(check_count ==6){this.correct.replace("SIX" , this.correct.get("SIX")+1); }
 
     }
 
     private void checkFive(Lotto here){
         if(here.containNum(this.bonus)){
-            this.correct[2] = this.correct[2]-1;
-            this.correct[3] = this.correct[3]+1;
+            this.correct.replace("FIVE_V1" , this.correct.get("FIVE_V1")-1);
+            this.correct.replace("FIVE_V2" , this.correct.get("FIVE_V2")+1);
         }
     }
 
     private double result(){
         double res_result=0;
         checkLottos();
-        res_result = (this.correct[0]*5000)+(this.correct[1]*50000)+(this.correct[2]*1500000)+(correct[3]*30000000)+(correct[4]*2000000000);
+        res_result = (this.correct.get("THREE")*5000)+(this.correct.get("FOUR")*50000)+(this.correct.get("FIVE_V1")*1500000)+(this.correct.get("FIVE_V2")*30000000)+(this.correct.get("SIX")*2000000000);
         return ((double)res_result/(double)this.money)*100;
     }
 
@@ -86,8 +94,12 @@ public class Game {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-        for(int i=0;i<5;i++){
-            System.out.println("- "+correct[i]+"개");
+
+        corType[] arr = corType.values();
+
+        for (corType rb : arr) {
+            System.out.println( rb.getValue()+this.correct.get(rb.toString())+"개");
+//            this.correct.put(rb.toString(),0);
         }
         System.out.println("총 수익률은 "+String.format("%.1f", res_result) +"%입니다.");
     }

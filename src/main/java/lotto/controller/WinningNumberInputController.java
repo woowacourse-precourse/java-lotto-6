@@ -50,7 +50,32 @@ public class WinningNumberInputController {
         return new Lotto(numbers);
     }
 
-    public String inputBonusNumber() {
-        return null;
+    public int inputBonusNumber(Lotto winningLotto) {
+        String bonusNumber = "";
+        while (true) {
+            try {
+                bonusNumber = Console.readLine();
+                checkBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+                continue;
+            }
+        }
+        return Integer.parseInt(bonusNumber);
+    }
+
+    public void checkBonusNumber(String bonusNumber) throws IllegalArgumentException {
+        if (!inputValidator.isNumber(bonusNumber)) {
+            lottoException.notNumber();
+        }
+        checkBonusNumberRange(bonusNumber);
+    }
+
+    public void checkBonusNumberRange(String bonusNumber) throws IllegalArgumentException {
+        int realBonusNumber = Integer.parseInt(bonusNumber);
+        if (!winningNumberInputValidator.isLottoNumber(realBonusNumber)) {
+            lottoException.notLottoNumber();
+        }
     }
 }

@@ -8,6 +8,7 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,13 +18,13 @@ import static lotto.constant.ErrorMessage.ERROR_INTRO;
 public class LottoController {
     private LottoService lottoService = new LottoService();
     private Money mySpentAmount;
-    private List<Lotto> myLottoTickets;
+    private List<Lotto> myLottoTickets = new ArrayList<>();
     private Lotto winningLottoNumber;
     private BonusNumber bonusNumber;
     private Map<LottoWinningCase, Integer> winStatisticMap = new HashMap<>();
     private Integer totalIncome;
     private String incomeRate;
-    private Integer process = 0;
+    private Integer process;
 
     /*
      * run() {
@@ -37,7 +38,7 @@ public class LottoController {
      * */
 
     public void run() {
-        while(true){
+        process = 0;
             try{
                 savePurchaseAmount();
                 generateAndSaveRandomNumber();
@@ -45,11 +46,11 @@ public class LottoController {
                 saveBonusNumber();
                 performNumberComparisonLogic();
                 printWinningStatistics();
-                break;
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
+                System.out.println(ERROR_INTRO + e.getMessage());
+            } catch (IllegalStateException e) {
                 System.out.println(ERROR_INTRO + e.getMessage());
             }
-        }
     }
 
     private void savePurchaseAmount() {

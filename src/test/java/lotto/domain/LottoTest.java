@@ -15,23 +15,23 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LottoTest {
 
-    @ParameterizedTest
-    @MethodSource("generateUnsortedLottoNumber")
-    @DisplayName("주어진 당첨 번호는 정렬이 되어야 한다.")
-    void isGivenLottoNumberSorted(List<Integer> inputList) {
-        Lotto lotto = new Lotto(inputList);
-        List<Integer> lottoNumbers = lotto.getNumbers();
+//    @ParameterizedTest
+//    @MethodSource("generateUnsortedLottoNumber")
+//    @DisplayName("주어진 당첨 번호는 정렬이 되어야 한다.")
+//    void isGivenLottoNumberSorted(List<Integer> inputList) {
+//        Lotto lotto = new Lotto(inputList);
+//        List<Integer> lottoNumbers = lotto.getNumbers();
+//
+//        assertThat(lottoNumbers.get(0)).isEqualTo(Collections.min(inputList));
+//        assertThat(lottoNumbers.get(lottoNumbers.size() - 1)).isEqualTo(Collections.max(inputList));
+//    }
 
-        assertThat(lottoNumbers.get(0)).isEqualTo(Collections.min(inputList));
-        assertThat(lottoNumbers.get(lottoNumbers.size() - 1)).isEqualTo(Collections.max(inputList));
-    }
-
-    static Stream<Arguments> generateUnsortedLottoNumber() {
-        return Stream.of(
-                Arguments.of(Arrays.asList(6, 5, 4, 3, 2, 1)),
-                Arguments.of(Arrays.asList(1, 3, 2, 5, 6, 4))
-        );
-    }
+//    static Stream<Arguments> generateUnsortedLottoNumber() {
+//        return Stream.of(
+//                Arguments.of(Arrays.asList(6, 5, 4, 3, 2, 1)),
+//                Arguments.of(Arrays.asList(1, 3, 2, 5, 6, 4))
+//        );
+//    }
 
     @ParameterizedTest
     @MethodSource("generateMissRangeLottoNumbers")

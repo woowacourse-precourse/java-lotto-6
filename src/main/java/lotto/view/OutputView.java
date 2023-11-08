@@ -16,10 +16,10 @@ public class OutputView {
     private static final String THREE_MATCHES = "3개 일치 (5,000원) ";
     private static final String FOUR_MATCHES = "4개 일치 (50,000원) ";
     private static final String FIVE_MATCHES = "5개 일치 (1,500,000원) ";
-    private static final String FIVE_AND_BONUS_MATCHES = "5개 일치, 보너스 볼 일치 (30,000,000원)";
+    private static final String FIVE_AND_BONUS_MATCHES = "5개 일치, 보너스 볼 일치 (30,000,000원) ";
     private static final String SIX_MATCHES = "6개 일치 (2,000,000,000원) ";
-    private static final String HYPHEN = "-";
-    private static final String COUNT_UNIT = " 개";
+    private static final String HYPHEN = "- ";
+    private static final String COUNT_UNIT = "개";
     private static final String TOTAL_INCOME_RATE_PREFIX = "총 수익률은 ";
     private static final String TOTAL_INCOME_RATE_SUFFIX = "입니다.";
 

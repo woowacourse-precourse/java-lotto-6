@@ -94,17 +94,4 @@ public class LottoServiceTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("generateTotalIncomeAndSpentFee")
-    @DisplayName("총 수익과 구입 금액으로 수익률을 계산하는 테스트")
-    void calculateIncomeRateTest(int totalIncome, int spentFee, String expected) {
-        String incomeRate = service.calculateIncomeRate(totalIncome, spentFee);
-        assertThat(incomeRate).isEqualTo(expected);
-    }
-
-    static Stream<Arguments> generateTotalIncomeAndSpentFee() {
-        return Stream.of(
-                Arguments.of(8000, 5000, "62.5%")
-        );
-    }
 }

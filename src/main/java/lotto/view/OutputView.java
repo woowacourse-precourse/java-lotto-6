@@ -20,6 +20,10 @@ public class OutputView {
         System.out.println(result);
     }
 
+    public static void printTotalRate(float totalRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다", totalRate);
+    }
+
     private static void printWhiteSpace() {
         System.out.println();
     }

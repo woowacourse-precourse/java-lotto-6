@@ -59,6 +59,7 @@ public class LottoGame {
         OutputView.printResult(
                 result.calculateTotalRankStatus()
         );
+        OutputView.printTotalRate(result.calculateTotalRate());
     }
 
     private Integer convertToTicket(String userInput) {

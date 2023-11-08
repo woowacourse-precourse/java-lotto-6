@@ -77,21 +77,11 @@ public class Calculator {
     }
 
     private static int calculateProfit(Integer rank){
-        if(rank == 5){
-            return 5000;
-        }
-        if(rank == 4){
-            return 50000;
-        }
-        if(rank == 3){
-            return 1500000;
-        }
-        if(rank == 2){
-            return 30000000;
-        }
-        if(rank == 1){
-            return 2000000000;
-        }
+        if(rank == 5){return 5000;}
+        if(rank == 4){return 50000;}
+        if(rank == 3){return 1500000;}
+        if(rank == 2){return 30000000;}
+        if(rank == 1){return 2000000000;}
         return 0;
     }
 

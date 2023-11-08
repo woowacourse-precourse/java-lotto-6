@@ -31,7 +31,7 @@ public class Calculations {
         int existValue = winningTally.get(winningTable.get(winningRank));
         winningTally.put(winningTable.get(winningRank), existValue + 1);
         String stringWinningAmount = winningTable.get(winningRank).getLotteryWinningAmount();
-        winningAmount += Long.valueOf(stringWinningAmount.replace(",",""));
+        winningAmount += Long.valueOf(stringWinningAmount.replace(",", ""));
     }
 
     public Map<WinningRank, Integer> getWinningTally() {

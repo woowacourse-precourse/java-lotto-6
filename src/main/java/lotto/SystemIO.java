@@ -17,11 +17,11 @@ public class SystemIO {
     }
 
     public static List<Integer> requestWinningNumber() {
-        while(true){
-            try{
+        while (true) {
+            try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 return readWinningNumbers();
-            }catch (IllegalStateException e){
+            } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -41,11 +41,11 @@ public class SystemIO {
     }
 
     public static int requestBonusNumber() {
-        while(true){
-            try{
+        while (true) {
+            try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 return readBonusNumber();
-            }catch (IllegalStateException e){
+            } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -68,7 +68,7 @@ public class SystemIO {
     }
 
     public static void showResult(Map<WinningRank, Integer> winningTally, Long winningAmount, String purchaseAmount) {
-        Double rateOfReturn = (Double.valueOf(winningAmount) / Double.valueOf(purchaseAmount))*100;
+        Double rateOfReturn = (Double.valueOf(winningAmount) / Double.valueOf(purchaseAmount)) * 100;
         System.out.println("당첨 통계");
         System.out.println("---");
         showWinningAmountEachRank(winningTally, WinningRank.FIFTH_WINNING);
@@ -81,7 +81,7 @@ public class SystemIO {
 
     public static void showWinningAmountEachRank(Map<WinningRank, Integer> winningTally, WinningRank winningRank) {
         System.out.printf(winningRank.getConditionsForWinning());
-        System.out.printf(" ("+ winningRank.getLotteryWinningAmount()+"원) - ");
-        System.out.println(winningTally.get(winningRank)+"개");
+        System.out.printf(" (" + winningRank.getLotteryWinningAmount() + "원) - ");
+        System.out.println(winningTally.get(winningRank) + "개");
     }
 }

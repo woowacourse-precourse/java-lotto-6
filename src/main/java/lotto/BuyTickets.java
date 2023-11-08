@@ -21,7 +21,7 @@ public class BuyTickets {
                 LotteryNumbers = makeLotteryNumber(ticketAmounts);
                 SystemIO.showTickets(LotteryNumbers);
                 break;
-            }catch (IllegalStateException e){
+            } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
         }

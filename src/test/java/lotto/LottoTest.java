@@ -49,9 +49,9 @@ class LottoTest {
 
         //3,4,5등 확인
         for (int i = 0; i < 3; i++) {
-            lotteryNumber.set(i, i+10);
+            lotteryNumber.set(i, i + 10);
             lotto = new Lotto(lotteryNumber);
-            assertThat(lotto.getWinningRank(winningNumbers, bonusNumber)).isEqualTo(3+i);
+            assertThat(lotto.getWinningRank(winningNumbers, bonusNumber)).isEqualTo(3 + i);
         }
     }
 

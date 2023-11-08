@@ -81,9 +81,9 @@ public class LottoController {
 
     public static int getPrice(int correctCnt) {
         for (Result result : results) {
-            if (result.CorrectCnt() == correctCnt) {
-                result.plusCnt();
-                return result.Price();
+            if (result.correctCnt() == correctCnt) {
+                result.addCnt();
+                return result.price();
             }
         }
 

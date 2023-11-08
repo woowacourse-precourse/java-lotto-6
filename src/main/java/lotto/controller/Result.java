@@ -1,7 +1,7 @@
 package lotto.controller;
 
 public enum Result {
-    FIRST("6개 일치 (2,000,000,000원", 1, 2000000000),
+    FIRST("6개 일치 (2,000,000,000원)", 1, 2000000000),
     SECOND("5개 일치, 보너스 볼 일치 (30,000,000원)", -5, 30000000),
     THIRD("5개 일치 (1,500,000원)", 5, 1500000),
     FOURTH("4개 일치 (50,000원)", 4, 50000),
@@ -23,19 +23,19 @@ public enum Result {
         return label;
     }
 
-    public int CorrectCnt() {
+    public int correctCnt() {
         return correctCnt;
     }
 
-    public int Cnt() {
+    public int cnt() {
         return cnt;
     }
 
-    public void plusCnt() {
+    public void addCnt() {
         this.cnt++;
     }
 
-    public int Price() {
+    public int price() {
         return price;
     }
 }

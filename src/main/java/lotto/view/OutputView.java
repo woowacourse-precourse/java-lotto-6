@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.controller.Result;
 
 public class OutputView {
     public static void promptForBuyAmount() {
@@ -22,5 +23,13 @@ public class OutputView {
 
     public static void promptForBonusNumber() {
         System.out.println(Message.FOR_BONUS_NUMBER.label());
+    }
+
+    public static void printResults(List<Result> results) {
+        System.out.println(Message.FOR_RESULT.label());
+
+        for (Result result : results) {
+            System.out.println(String.format(Message.FOR_LOTTO_RESULT.label(), result.label(), result.cnt()));
+        }
     }
 }

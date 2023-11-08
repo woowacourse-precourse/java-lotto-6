@@ -35,7 +35,8 @@ public class LottoController {
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.calculateLottoResult(lotties, lotto, bonus);
-        showResult(lottoResult);
+        double rate = lottoResult.getRate(money.getValue());
+        showResult(lottoResult, rate);
     }
 
     private Money getMoney() {
@@ -56,8 +57,9 @@ public class LottoController {
         outputView.showLotties(lotties);
     }
 
-    private void showResult(LottoResult lottoResult) {
+    private void showResult(LottoResult lottoResult, Double rate) {
         outputView.showLottoResult(lottoResult);
+        outputView.showRate(rate);
     }
 
     private Lotto getLotto() {

@@ -44,6 +44,12 @@ public class OutputView {
         }
     }
 
+    public void showRate(Double rate) {
+        System.out.println(
+                Constant.OUTPUT_RESULT_MESSAGE + String.format(Constant.RATE_STRING_FORMAT, rate)
+                        + Constant.OUTPUT_RESULT_END_MESSAGE);
+    }
+
     private void lottoResultIntro() {
         System.out.println();
         System.out.println(Constant.OUTPUT_LOTTO_RESULT_INTRO_MESSAGE);

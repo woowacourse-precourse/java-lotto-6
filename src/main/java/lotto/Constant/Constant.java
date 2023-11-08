@@ -9,6 +9,8 @@ public class Constant {
     public static final String OUTPUT_LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
     public static final String OUTPUT_LOTTO_RESULT_INTRO_MESSAGE = "당첨 통계";
     public static final String OUTOUT_COUNT_MESSAGE = "개";
+    public static final String OUTPUT_RESULT_MESSAGE = "총 수익률은 ";
+    public static final String OUTPUT_RESULT_END_MESSAGE = "%입니다.";
 
     public static final String ERROR_PREFIX = "[ERROR] ";
     public static final String NUMBER_PREFIX = "구입금액은 ";
@@ -25,6 +27,7 @@ public class Constant {
     public static final String NUMBER_PATTERN = "[0-9]+";
     public static final String NUMBER_DELIMITER = ",";
     public static final String DIVIDE_LINE = "---";
+    public static final String RATE_STRING_FORMAT = "%,.1f";
 
     public static final String RANK_FIFTH = "3개 일치 (5,000원) - ";
     public static final String RANK_FOURTH = "4개 일치 (50,000원) - ";

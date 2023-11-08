@@ -25,6 +25,21 @@ public class LottoResult {
         }
     }
 
+    public double getRate(long money) {
+        return ((double) sumPrice() / money) * 100;
+    }
+
+    public long sumPrice() {
+        long sum = 0;
+        for (LottoRank rank : lottoResult.keySet()) {
+            Integer count = lottoResult.get(rank);
+            if (count > 0) {
+                sum += rank.getPrice();
+            }
+        }
+        return sum;
+    }
+
     private void initLottoResult() {
         lottoResult = new HashMap<>();
         for (LottoRank lottoRank : LottoRank.values()) {

@@ -1,7 +1,5 @@
 package lotto.view;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
@@ -16,7 +14,7 @@ public class OutputView {
     }
 
     public void printIssueNumbers(List<Integer>[] issueNumbers, int count) {
-        System.out.println("\n"+count + "개를 구매했습니다.");
+        System.out.println("\n" + count + "개를 구매했습니다.");
         for (int i = 0; i < count; i++) {
             System.out.println(issueNumbers[i]);
         }
@@ -33,6 +31,6 @@ public class OutputView {
     }
 
     public void printRate(float rate) {
-        System.out.printf("총 수익률은 %.1f%%입니다.%n",rate);
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rate);
     }
 }

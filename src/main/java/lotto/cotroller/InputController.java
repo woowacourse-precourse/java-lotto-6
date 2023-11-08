@@ -3,7 +3,7 @@ package lotto.cotroller;
 import java.util.Arrays;
 import java.util.List;
 import lotto.utils.Util;
-import lotto.utils.Validator;
+import lotto.utils.InputValidator;
 import lotto.view.InputView;
 
 public class InputController {
@@ -33,7 +33,7 @@ public class InputController {
 
     private void validateEachNumberIsInteger(String[] winningNumberArray) {
         Arrays.stream(winningNumberArray)
-                .forEach(Validator::validateIsInteger);
+                .forEach(InputValidator::validateIsInteger);
     }
 
     public int getBonusNumber() {

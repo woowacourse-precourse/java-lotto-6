@@ -2,7 +2,7 @@ package lotto.utils;
 
 import org.junit.platform.commons.util.StringUtils;
 
-public class Validator {
+public class InputValidator {
 
     private enum ErrorMessage {
         BLANK_OR_WHITE_SPACE("[ERROR] 빈값 혹은 공백입니다. 올바른 값을 입력해주세요."),

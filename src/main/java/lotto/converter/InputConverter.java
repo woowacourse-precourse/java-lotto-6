@@ -16,4 +16,8 @@ public class InputConverter {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public static Integer convertBonusNumber(String bonusNumberInput) {
+        return parseInt(bonusNumberInput);
+    }
 }

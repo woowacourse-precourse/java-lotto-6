@@ -4,7 +4,6 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static lotto.domain.Grade.*;
 import static lotto.domain.Lotto.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Map;

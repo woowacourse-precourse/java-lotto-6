@@ -2,6 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private int numberOfLotto;
     private int money;
@@ -14,6 +17,7 @@ public class User {
     private final static String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private final static String DIVIDE_ERROR = "[ERROR] 구입 금액을 1,000원 단위로 입력해주세요.";
     private final static String NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.";
+    private final static String WINNING_ERROR = "[ERROR] 중복된 숫자가 입력되었거나, 6개의 숫자가 입력되지 않았습니다.";
 
     public void enterAmount() {
         System.out.println(START);
@@ -31,7 +35,13 @@ public class User {
     }
 
     public void enterWinningNumber() {
-
+        String[] winNumber = Console.readLine().split(",");
+        List<Integer> numbers = new ArrayList<Integer>();
+        for (String s : winNumber) {
+            int number = Integer.parseInt(s);
+            numbers.add(number);
+        }
+        winningNumber = new Lotto(numbers);
     }
 
     public void enterBonusNumber() {
@@ -44,8 +54,17 @@ public class User {
         }
     }
 
-    private void validateLotto() {
-
+    private void inputAndValidate() {
+        while(true) {
+            try {
+                enterWinningNumber();
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println(NOT_NUMBER);
+            } catch (IllegalArgumentException e) {
+                System.out.println(WINNING_ERROR);
+            }
+        }
     }
 
     private void decideNumberOfLotto() {

@@ -35,7 +35,6 @@ public class Console {
         this.output = output;
     }
 
-
     private void validateNull(String value) {
         if (value == null) {
             throw new IllegalArgumentException("[ERROR] 입력값이 null이 될 수 없습니다.");

@@ -15,4 +15,8 @@ public class OutputView {
     public static void printNumbers(List<Integer> numbers) {
         System.out.println(numbers);
     }
+
+    public static void printWinningNumberMessage() {
+        System.out.println(GameMessage.WINNING_NUMBER_MESSAGE.getMessage());
+    }
 }

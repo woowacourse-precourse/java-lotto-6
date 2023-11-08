@@ -7,15 +7,24 @@ import java.util.Comparator;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
-
+    public static final int PRICE_OF_LOTTO = 1000;
     public static final int NUM_OF_LOTTO_NUMBERS = 6;
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+
     public static final int NUM_OF_RANKS = 5;
     public enum Ranks {
         FIRST, SECOND, THIRD, FOURTH, FIFTH
     }
+    public static class Rewards {
+        public static final int First = 2000000000;
+        public static final int Second = 30000000;
+        public static final int Third = 1500000;
+        public static final int Fourth = 50000;
+        public static final int Fifth = 5000;
 
-    public static final int MIN_LOTTO_NUMBER = 1;
-    public static final int MAX_LOTTO_NUMBER = 45;
+        public static final int[] rewards = {First, Second, Third, Fourth, Fifth};
+    }
 
     public static class Winner {
         List<Integer> winNums = new ArrayList<Integer>();
@@ -43,11 +52,11 @@ public class Application {
     public static int isBuyingValid(String inp) {
         int paying = strToNum(inp);
 
-        if ((paying % 1000) != 0) {
+        if ((paying % PRICE_OF_LOTTO) != 0) {
             throw new IllegalArgumentException();
         }
 
-        return paying % 1000;
+        return paying % PRICE_OF_LOTTO;
     }
 
     public static int buying() {
@@ -160,6 +169,17 @@ public class Application {
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", wins[Ranks.FIRST.ordinal()]);
     }
 
+    public static void printRate(int lottoCount, int[] wins) {
+        int payed = lottoCount * PRICE_OF_LOTTO;
+
+        int totalRewards = 0;
+        for (int i = 0; i < NUM_OF_RANKS; i++) {
+            totalRewards = totalRewards + (wins[i] * Rewards.rewards[i]);
+        }
+
+        System.out.printf("총 수익률은 %2f입니다.\n", totalRewards / payed);
+    }
+
     public static void lottery(int lottoCount, Lotto[] lottos, Winner winner) {
         int[] wins = {0, 0, 0, 0, 0};
 
@@ -168,7 +188,7 @@ public class Application {
         }
 
         printWins(wins);
-       
+        printRate(lottoCount, wins);
     }
 
     public static void main(String[] args) {

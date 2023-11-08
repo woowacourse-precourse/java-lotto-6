@@ -1,7 +1,8 @@
 package lotto.utilTest;
 
 import java.util.List;
-import lotto.util.RandomNumbersGenerator;
+import lotto.util.RandomSortedLottoNumberGenerator;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,9 +12,10 @@ public class RandomNumbersGeneratorTest {
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
 
+    @DisplayName("무작위 6자리 난수를 생성하고 조건테스트")
     @Test
     void generateSortedLottoTest() {
-        RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
+        RandomSortedLottoNumberGenerator randomNumbersGenerator = new RandomSortedLottoNumberGenerator();
 
         List<Integer> lottoNumbers = randomNumbersGenerator.generateSortedLotto();
 

@@ -7,9 +7,6 @@ import lotto.domain.WinningLotto;
 import lotto.enumeration.Constants;
 import lotto.enumeration.WinningType;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 

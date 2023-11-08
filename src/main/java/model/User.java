@@ -73,6 +73,7 @@ public class User {
     public int getFirst() {
         return first;
     }
+
     public int getMoney() {
         return money;
     }

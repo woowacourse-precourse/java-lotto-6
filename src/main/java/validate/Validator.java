@@ -8,7 +8,7 @@ public class Validator {
 
 
     public void checkNull(String number){
-        if (number == null){
+        if (number == null||number.equals("0")){
             System.out.println(ErrorMessageenum.ERROR1.getMessage());
             throw new NullPointerException();
         }
@@ -38,12 +38,19 @@ public class Validator {
             }
         }
     }
-    public void checkWinningDuplicate(List<Integer> lotto){
+    public void checkWinningDuplicate(List<Integer> lotto,int bonus){
         Set<Integer> lottoSet = new HashSet<>(lotto);
-        if(lottoSet.size() != 7){
-            System.out.println(ErrorMessageenum.ERROR4.getMessage());
+        if(lottoSet.contains(bonus)){
+            System.out.println(ErrorMessageenum.ERROR5.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
+    public void checkDuplicate(List<Integer> lotto){
+        Set<Integer> lottoSet = new HashSet<>(lotto);
+        if(lottoSet.size() != 6){
+            System.out.println(ErrorMessageenum.ERROR4.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
 }

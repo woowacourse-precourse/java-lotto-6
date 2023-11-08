@@ -29,7 +29,7 @@ public class LottoService {
 
     public List<Lotto> makeLottoList(int price){
         List<Lotto> lottoList = new ArrayList<>();
-        int lotto_count = price/1000;
+        int lotto_count = price/LottoEnum.LOTTOPRICE.getMoney();
         for(int i = 0; i<lotto_count;i++){
             lottoList.add(generateLottoNumber());
         }
@@ -78,8 +78,8 @@ public class LottoService {
         }
     }
 
-    public String rateReturn(User user){
-        String rate = String.format("%.1f",(double) user.getMoney() / (double) user.getPrice() * 100);
+    public String rateReturn(int money, int price){
+        String rate = String.format("%.1f",(double) money / (double) price * 100);
         return rate;
     }
 

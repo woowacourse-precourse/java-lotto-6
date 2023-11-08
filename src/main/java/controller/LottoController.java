@@ -21,15 +21,15 @@ public class LottoController {
     public void startLotto(){
         int price = AskPrice();
         User user = new User(price, lottoService.makeLottoList(price));
+        List<Integer> winningNumbers = AskWinningNumbers();
         outputView.printLottoCount(user);
 
-        WinningNumber winning_numbers = new WinningNumber(AskWinningNumbers(),AskBonus());
+        WinningNumber winning_numbers = new WinningNumber(winningNumbers,AskBonus(winningNumbers));
         for(Lotto lotto: user.getLottoList()){
             lottoService.awardLotto(lottoService.calculateRanking(lotto, winning_numbers),user);
         }
         user.giveMoney();
-        outputView.printResult(user,lottoService.rateReturn(user));
-
+        outputView.printResult(user,lottoService.rateReturn(user.getMoney(), user.getPrice()));
     }
 
     public int AskPrice(){
@@ -61,6 +61,7 @@ public class LottoController {
         try {
             winningNumberList = lottoService.makeWinningNumber(Console.readLine());
             validator.checkLottoRange(winningNumberList);
+            validator.checkDuplicate(winningNumberList);
         }catch (NumberFormatException e){
             return inputWinningNumber();
         }catch (IllegalArgumentException e){
@@ -69,20 +70,21 @@ public class LottoController {
         return winningNumberList;
     }
 
-    public int AskBonus(){
+    public int AskBonus(List<Integer> winningNumbers){
         inputView.printAskBonusNumber();
-        return inputBonus();
+        return inputBonus(winningNumbers);
     }
 
-    public int inputBonus(){
+    public int inputBonus(List<Integer> winningNumbers){
         String bonus = Console.readLine();
         try {
             validator.checkNull(bonus);
             validator.checkInteger(bonus);
+            validator.checkWinningDuplicate(winningNumbers,Integer.parseInt(bonus));
         }catch (NullPointerException e){
-            return AskBonus();
+            return AskBonus(winningNumbers);
         }catch (IllegalArgumentException e){
-            return AskBonus();
+            return AskBonus(winningNumbers);
         }
         return Integer.parseInt(bonus);
     }

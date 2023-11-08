@@ -22,4 +22,8 @@ public class WinningNumber {
         return this.winning_number;
     }
 
+    public void validate(){
+
+    }
+
 }

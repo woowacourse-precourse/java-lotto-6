@@ -20,4 +20,9 @@ public class UserInputDataService {
         int buyingPrice = inputView.inputBuyingPriceView();
         return buyingPrice;
     }
+
+    public void setUserLotto(User user) {
+        outputView.responseBuyingQuantity(user);
+        user.setLottos(getBuyingPrice(user));
+    }
 }

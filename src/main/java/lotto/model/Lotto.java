@@ -18,14 +18,7 @@ public class Lotto {
     public LottoPrize findPrize(WinningNumberAndBonusNumber winningNumberAndBonusNumber) {
         final Integer matchCount = getMatchCount(winningNumberAndBonusNumber.getWinningNumber());
         final Boolean isBonusCorrect = isContains(winningNumberAndBonusNumber.getBonusNumber());
-
-        for (LottoPrize prize : LottoPrize.values()) {
-            if (prize.canGetPrize(matchCount, isBonusCorrect)) {
-                return prize;
-            }
-        }
-
-        return LottoPrize.NO_MATCH;
+        return LottoPrize.findPrize(matchCount, isBonusCorrect);
     }
 
     private Integer getMatchCount(List<Integer> winningNumber) {

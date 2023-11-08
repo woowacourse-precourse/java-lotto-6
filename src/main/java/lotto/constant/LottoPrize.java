@@ -30,15 +30,20 @@ public enum LottoPrize {
         return prize;
     }
 
-    public Boolean canGetPrize(Integer correctCount, Boolean isBonusCorrect) {
-        if (this.isBonusCorrect) {
-            return isCorrectCountEqual(correctCount) && isBonusCorrect;
+    public static LottoPrize findPrize(Integer correctCount, Boolean isBonusCorrect) {
+        LottoPrize lottoPrize = NO_MATCH;
+        for (LottoPrize prize : LottoPrize.values()) {
+            final Boolean isCorrect = prize.getCorrectCount() == correctCount;
+            if (!isCorrect) {
+                continue;
+            }
+            if (isBonusCorrect && prize.getIsBonusCorrect()) {
+                return prize;
+            }
+            lottoPrize = prize;
         }
-        return isCorrectCountEqual(correctCount);
-    }
 
-    private Boolean isCorrectCountEqual(Integer correctCount) {
-        return this.correctCount == correctCount;
+        return lottoPrize;
     }
 }
 

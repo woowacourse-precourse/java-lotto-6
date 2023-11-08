@@ -57,7 +57,6 @@ class Money {
 class MyLotto{
     public static List<Integer> LottoPaper(int cnt) {
         ArrayList<List<Integer>> mylotto = new ArrayList<>();
-
         for (int i = 0; i < cnt; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             mylotto.add(numbers);
@@ -65,6 +64,13 @@ class MyLotto{
         PrintLottoPaper(cnt, mylotto);
         List<Integer> numbers = MakeFlattend(mylotto);
         return numbers;
+    }
+    public static List<Integer> MakeFlattend(ArrayList<List<Integer>> mylotto){
+        List<Integer> flattenedList = new ArrayList<>();
+        for (List<Integer> sublist : mylotto) {
+            flattenedList.addAll(sublist);
+        }
+        return flattenedList;
     }
     public static void PrintLottoPaper(int cnt, ArrayList<List<Integer>> mylotto){
         System.out.println();

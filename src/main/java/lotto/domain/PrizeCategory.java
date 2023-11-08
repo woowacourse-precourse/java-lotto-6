@@ -20,8 +20,7 @@ public enum PrizeCategory {
         return String.format("%s (%,d원) - ", numberOfMatchingNumbers, prizeMoney);
     }
 
-    public long getPrizeMoney(){
-        long prizeMoney = this.prizeMoney;
-        return prizeMoney;
+    public long getPrizeMoney() {
+        return this.prizeMoney;
     }
 }

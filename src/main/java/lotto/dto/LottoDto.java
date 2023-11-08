@@ -2,7 +2,7 @@ package lotto.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.LottoNumber;
+import lotto.domain.lottery.LottoNumber;
 
 public class LottoDto {
     private final List<Integer> lotto;
@@ -18,7 +18,7 @@ public class LottoDto {
         }
         return lotto;
     }
-    
+
     @Override
     public String toString() {
         return String.valueOf(lotto);

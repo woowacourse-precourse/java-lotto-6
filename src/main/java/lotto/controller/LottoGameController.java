@@ -1,11 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.PlayerLotto;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningInformation;
+import lotto.domain.lottery.Lotto;
+import lotto.domain.lottery.LottoNumber;
+import lotto.domain.lottery.PlayerLotto;
+import lotto.domain.lottery.WinningInformation;
 import lotto.dto.PurchaseLottoDto;
 import lotto.dto.WinningStatisticsDto;
 import lotto.service.LottoGameService;

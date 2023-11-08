@@ -6,10 +6,10 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.FinalGrade;
-import lotto.domain.Lotto;
-import lotto.domain.PlayerLotto;
 import lotto.domain.Rank;
-import lotto.domain.WinningInformation;
+import lotto.domain.lottery.Lotto;
+import lotto.domain.lottery.PlayerLotto;
+import lotto.domain.lottery.WinningInformation;
 import lotto.dto.WinningStatisticsDto;
 import lotto.service.numbergenerator.NumberGenerator;
 

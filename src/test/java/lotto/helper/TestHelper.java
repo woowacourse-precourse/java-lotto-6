@@ -3,8 +3,8 @@ package lotto.helper;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.Lotto;
-import lotto.domain.PlayerLotto;
+import lotto.domain.lottery.Lotto;
+import lotto.domain.lottery.PlayerLotto;
 
 public class TestHelper {
     public static List<Integer> parser(String charactersWithCommas) {

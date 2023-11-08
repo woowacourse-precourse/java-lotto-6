@@ -1,7 +1,9 @@
-package lotto.domain;
+package lotto.domain.lottery;
 
 import java.util.EnumMap;
 import java.util.List;
+import lotto.domain.FinalGrade;
+import lotto.domain.Rank;
 import lotto.helper.TestHelper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

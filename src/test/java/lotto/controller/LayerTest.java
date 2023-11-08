@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningInformation;
+import lotto.domain.lottery.Lotto;
+import lotto.domain.lottery.LottoNumber;
+import lotto.domain.lottery.WinningInformation;
 import lotto.utils.message.InputExceptionMessage;
 import lotto.utils.message.LottoExceptionMessage;
 import lotto.utils.message.PurchaseAmountExceptionMessage;

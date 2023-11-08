@@ -1,7 +1,9 @@
-package lotto.domain;
+package lotto.domain.lottery;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.FinalGrade;
+import lotto.domain.Rank;
 
 public class PlayerLotto {
     private final List<Lotto> lottos;

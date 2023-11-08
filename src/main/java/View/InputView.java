@@ -18,17 +18,17 @@ public class InputView {
     }
 
     public int inputPrice() {
-        System.out.println(OutputViewString.INPUT_PRICE_NOTIFICATION);
+        System.out.println(ViewString.INPUT_PRICE_NOTIFICATION);
         return Integer.parseInt(Console.readLine());
     }
 
     public String inputWinningNumber() {
-        System.out.println(OutputViewString.INPUT_WINNING_NUMBER_NOTIFICATION);
+        System.out.println(ViewString.INPUT_WINNING_NUMBER_NOTIFICATION);
         return Console.readLine();
     }
 
     public int inputBonusNumber() {
-        System.out.println(OutputViewString.INPUT_BONUS_NUMBER_NOTIFICATION);
+        System.out.println(ViewString.INPUT_BONUS_NUMBER_NOTIFICATION);
         return Integer.parseInt(Console.readLine());
     }
 }

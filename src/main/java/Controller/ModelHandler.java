@@ -34,4 +34,9 @@ public class ModelHandler {
         EXCEPTION.checkPriceUnit(price);
         return price;
     }
+
+    public void printMyLotto() {
+
+    }
+
 }

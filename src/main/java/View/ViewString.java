@@ -1,6 +1,6 @@
 package View;
 
-public enum OutputViewString {
+public enum ViewString {
     PURCHASE_NOTIFICATION(""),
     THREE_MATCH_NOTIFICATION("3개 일치 (5,000원) - "),
     FOUR_MATCH_NOTIFICATION("4개 일치 (50,000원) - "),
@@ -13,7 +13,7 @@ public enum OutputViewString {
 
     private final String SENTENCE;
 
-    OutputViewString(String sentence) {
+    ViewString(String sentence) {
         this.SENTENCE = sentence;
     }
 

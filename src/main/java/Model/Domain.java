@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Domain {
@@ -92,5 +93,16 @@ public class Domain {
         return false;
     }
 
+    public void printMyLotto() {
+        System.out.println(myLotto.size() + "개를 구매했습니다.");
+
+        for (var lotto : myLotto) {
+            String printLottoLine = lotto.getNumbers().stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(", "));
+
+            System.out.println("[" + printLottoLine + "]");
+        }
+    }
 
 }

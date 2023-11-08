@@ -9,6 +9,7 @@ public class Money {
     private static final String INVALID_INPUT_MESSAGE = "음수의 숫자를 받을 수 없습니다.";
     private static final String CURRENCY_UNIT = "원";
     private static final int ZERO_VALUE = 0;
+
     private final long value;
 
     public Money(long value) {
@@ -20,8 +21,12 @@ public class Money {
         return new Money(this.value + otherMoney.value);
     }
 
+    public Money multiply(Integer count) {
+        return new Money(this.value * count);
+    }
+
     public int quantityAvailableForPurchase(int lottoUnitPrice) {
-        if(isDivisible(lottoUnitPrice)) {
+        if (isDivisible(lottoUnitPrice)) {
             return (int) (this.value / lottoUnitPrice);
         }
 
@@ -29,8 +34,12 @@ public class Money {
     }
 
     public boolean isDivisible(long divisor) {
-        if(isZero()) return false;
+        if (isZero()) return false;
         return this.value % divisor == ZERO_VALUE;
+    }
+
+    public long getValue() {
+        return this.value;
     }
 
     @Override
@@ -53,7 +62,7 @@ public class Money {
     }
 
     private void validate(long value) {
-        if(value < ZERO_VALUE) {
+        if (value < ZERO_VALUE) {
             throw new IllegalArgumentException(INVALID_INPUT_MESSAGE);
         }
     }

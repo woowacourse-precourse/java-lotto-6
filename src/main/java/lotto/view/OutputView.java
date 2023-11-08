@@ -16,18 +16,17 @@ public class OutputView {
   public static final String RESULT_RATE_END = "%입니다.";
 
 
-
-  public static void printTicketNumber(int ticket){
+  public static void printTicketNumber(int ticket) {
     System.out.println(ticket + TICKET_NUMBER);
   }
 
-  public void printLottoList(int ticket, List<Lotto> lottos){
-    for(Lotto lotto : lottos){
+  public void printLottoList(int ticket, List<Lotto> lottos) {
+    for (Lotto lotto : lottos) {
       System.out.print(lotto);
     }
   }
 
-  public static void printPrizeResult(int[] results){
+  public static void printPrizeResult(int[] results) {
     System.out.println(RESULT_START);
     System.out.println(RESULT_5 + results[4] + "개");
     System.out.println(RESULT_4 + results[3] + "개");
@@ -36,8 +35,9 @@ public class OutputView {
     System.out.println(RESULT_1 + results[0] + "개");
   }
 
-  public static void printRate(double rate){
-    System.out.println(RESULT_RATE_START + (Math.round(rate*100)/100.0) + RESULT_RATE_END);
+  public static void printRate(double rate) {
+    String roundedRate = String.format("%.2f", rate);
+    System.out.println(RESULT_RATE_START + roundedRate + RESULT_RATE_END);
   }
 
 }

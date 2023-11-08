@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Payment;
 import lotto.model.WinningNumber;
@@ -12,80 +11,71 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-  InputView inputView = new InputView();
-  OutputView outputView = new OutputView();
-  Payment payment = new Payment();
-  CreateLotto createLotto = new CreateLotto();
-  CalcRate calcRate = new CalcRate();
+  private final InputView inputView = new InputView();
+  private final OutputView outputView = new OutputView();
+  private final Payment payment = new Payment();
+  private final CreateLotto createLotto = new CreateLotto();
+  private final CalcRate calcRate = new CalcRate();
 
-  public void playGame(){
+  public void run() {
     int money = getPayment();
-    int ticket = getTicket(money);
-    List<Lotto> lottos = getLottoList(ticket);
+    List<Lotto> lottos = getLottoList(money);
     List<Integer> winning = getWinningList();
     int bonus = getBonusNum(winning);
     int[] result = compareNumbers(lottos, winning, bonus);
     printResults(result, money);
   }
 
-  private int getPayment(){
+  private int getPayment() {
     int money;
-    while(true){
+    while (true) {
       try {
         money = inputView.getPaymentInput();
-        payment.ticketNumber(money);
         return money;
-      }catch (IllegalArgumentException e){
+      } catch (IllegalArgumentException e) {
         System.out.println("[ERROR] " + e.getMessage());
       }
     }
   }
 
-  private int getTicket(int money){
+  private List<Lotto> getLottoList(int money) {
     int ticket = payment.ticketNumber(money);
     outputView.printTicketNumber(ticket);
-    return ticket;
-  }
-
-  private List<Lotto> getLottoList(int ticket){
     List<Lotto> lottos = createLotto.createLottos(ticket);
     outputView.printLottoList(ticket, lottos);
     return lottos;
   }
 
-  private List<Integer> getWinningList(){
+  private List<Integer> getWinningList() {
     List<Integer> winning;
-    while (true){
+    while (true) {
       try {
         winning = inputView.getWinningInput();
         WinningNumber winningNumber = new WinningNumber(winning);
-        System.out.println(winning);
         return winning;
-      }catch (IllegalArgumentException e){
+      } catch (IllegalArgumentException e) {
         System.out.println("[ERROR] " + e.getMessage());
       }
     }
   }
 
-  private int getBonusNum(List<Integer> winning){
+  private int getBonusNum(List<Integer> winning) {
     int bonus;
-    while (true){
+    while (true) {
       try {
         bonus = inputView.getBonusInput(winning);
-        BonusNumber bonusNumber = new BonusNumber(bonus);
-        System.out.println(bonus);
         return bonus;
-      } catch (IllegalArgumentException e){
+      } catch (IllegalArgumentException e) {
         System.out.println("[ERROR] " + e.getMessage());
       }
     }
   }
 
-  private int[] compareNumbers(List<Lotto> lottos, List<Integer> winning, int bonus){
+  private int[] compareNumbers(List<Lotto> lottos, List<Integer> winning, int bonus) {
     return CompareNumber.compareNumber(lottos, winning, bonus);
   }
 
-  private void printResults(int[] result, int money){
+  private void printResults(int[] result, int money) {
     OutputView.printPrizeResult(result);
     double rate = calcRate.calcRate(result, money);
     OutputView.printRate(rate);

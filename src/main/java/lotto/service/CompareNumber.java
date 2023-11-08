@@ -7,10 +7,10 @@ import lotto.model.Prize;
 
 public class CompareNumber {
 
-  public static int[] compareNumber(List<Lotto> lottos, List<Integer> winning, int bonus){
+  public static int[] compareNumber(List<Lotto> lottos, List<Integer> winning, int bonus) {
     int[] result = new int[6];
 
-    for(Lotto lotto : lottos){
+    for (Lotto lotto : lottos) {
       int matchedNumbers = countMatchingNumbers(lotto, winning);
       boolean hasBonusNumber = containsNumber(lotto, bonus);
       updateResult(result, matchedNumbers, hasBonusNumber);
@@ -18,30 +18,31 @@ public class CompareNumber {
     return result;
   }
 
-  public static int countMatchingNumbers(Lotto lotto, List<Integer> winning){
+  public static int countMatchingNumbers(Lotto lotto, List<Integer> winning) {
     int count = 0;
     List<Integer> lottoNumbers = lotto.getNumbers();
-    for (int lottoNumber : lottoNumbers){
-      if(winning.contains(lottoNumber)){
+    for (int lottoNumber : lottoNumbers) {
+      if (winning.contains(lottoNumber)) {
         count++;
       }
     }
     return count;
   }
 
-  public static boolean containsNumber(Lotto lotto, int bonus){
+  public static boolean containsNumber(Lotto lotto, int bonus) {
     List<Integer> lottoNumbers = lotto.getNumbers();
-    for (int lottoNumber : lottoNumbers){
-      if(bonus==lottoNumber){
+    for (int lottoNumber : lottoNumbers) {
+      if (bonus == lottoNumber) {
         return true;
       }
     }
     return false;
   }
-  public static void updateResult(int[] result, int matchedNumbers, boolean hasBonusNumber){
+
+  public static void updateResult(int[] result, int matchedNumbers, boolean hasBonusNumber) {
     Prize prize = getPrize(matchedNumbers, hasBonusNumber);
 
-    if(prize != null){
+    if (prize != null) {
       result[prize.getIndex()]++;
     }
   }

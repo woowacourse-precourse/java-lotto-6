@@ -12,21 +12,21 @@ public enum Prize {
   private final int prizeMoney;
 
 
-  Prize(int index, int matchingCount, int prizeMoney){
+  Prize(int index, int matchingCount, int prizeMoney) {
     this.index = index;
     this.matchingCount = matchingCount;
     this.prizeMoney = prizeMoney;
   }
 
-  public int getIndex(){
+  public int getIndex() {
     return index;
   }
 
-  public int getMatchingCount(){
+  public int getMatchingCount() {
     return matchingCount;
   }
 
-  public int getPrizeMoney(){
+  public int getPrizeMoney() {
     return prizeMoney;
   }
 }

@@ -14,7 +14,7 @@ public class Payment {
     this.payment = payment;
   }
 
-  public int ticketNumber(int payment){
+  public int ticketNumber(int payment) {
     int ticket = payment / 1000;
     return ticket;
   }

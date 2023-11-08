@@ -16,12 +16,13 @@ public class InputView {
   public static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
 
-  public int getPaymentInput() throws IllegalStateException{
+  public int getPaymentInput() throws IllegalStateException {
     System.out.println(PAMENT_MESSAGE);
     int paymentInput = 0;
 
     try {
-      paymentInput = Integer.parseInt(Console.readLine());
+      String paymentInputString = Console.readLine();
+      paymentInput = Integer.parseInt(paymentInputString);
       if (paymentInput <= 0) {
         throw new IllegalArgumentException(INTEGER_ERROR);
       }
@@ -37,14 +38,13 @@ public class InputView {
     return paymentInput;
   }
 
-  public List<Integer> getWinningInput(){
+  public List<Integer> getWinningInput() {
     List<Integer> winningList = new ArrayList<>();
 
     System.out.println(WINNING_NUMBER_MESSAGE);
     String result = Console.readLine();
-    System.out.println("input: "+result);
     String[] winningInput = result.split(",");
-    for(int i = 0; i < winningInput.length; i++){
+    for (int i = 0; i < winningInput.length; i++) {
       try {
         int number = Integer.parseInt(winningInput[i].trim());
         winningList.add(number);
@@ -59,51 +59,20 @@ public class InputView {
 
 
   public int getBonusInput(List<Integer> winning) {
-    int bonusInput = 0;
-    boolean isValidInput = false;
     System.out.println(BONUS_NUMBER_MESSAGE);
-    while (!isValidInput){
+    while (true) {
       try {
-        bonusInput = Integer.parseInt(Console.readLine());
+        int bonusInput = Integer.parseInt(Console.readLine());
         if (bonusInput < 1 || bonusInput > 45) {
-            throw new IllegalArgumentException(WINNING_RANGE_ERROR);
-          }
-        if (winning.contains(bonusInput)) {
-            throw new IllegalArgumentException(WINNING_DUPLICATE_ERROR);
-          }
-        isValidInput = true;
+          throw new IllegalArgumentException(WINNING_RANGE_ERROR);
+        } else if (winning.contains(bonusInput)) {
+          throw new IllegalArgumentException(WINNING_DUPLICATE_ERROR);
+        } else {
+          return bonusInput;
+        }
       } catch (NumberFormatException e) {
         throw new IllegalArgumentException(INTEGER_ERROR);
-      } catch (IllegalArgumentException e) {
-        System.out.println("[ERROR] " + e.getMessage());
       }
     }
-    return bonusInput;
   }
-
-
-//  public int getBonusInput(){
-//    System.out.println(BONUS_NUMBER_MESSAGE);
-//    int BonusInput = 0;
-//    while (true){
-//      try {
-//        String input = Console.readLine().trim();
-//        if (input.matches("\\d+")){
-//          BonusInput = Integer.parseInt(input);
-//          return BonusInput;
-//        }else {
-//          System.out.println("올바른 숫자를 입력하세요.");
-//        }
-//      }catch (NumberFormatException e){
-//        System.out.println("올바른 숫자를 입력하세요.");
-//      }
-//    }
-//    try {
-//      BonusInput = Integer.parseInt(Console.readLine());
-//    } catch (NumberFormatException e) {
-//      ExceptionMessage.typeException();
-//      throw new IllegalStateException();
-//    }
-//    return BonusInput;
-
 }

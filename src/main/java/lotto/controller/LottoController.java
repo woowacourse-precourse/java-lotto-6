@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.dto.LottoDrawNumbersEnter;
+import lotto.dto.PriceEnter;
 import lotto.model.LottoBuySystem;
 import lotto.model.LottoDrawSystem;
 import lotto.utils.Utils;
@@ -80,22 +81,16 @@ public class LottoController {
 
 
     private String enterPrice() {
-        String res = "";
-        boolean isValidInput = false;
+        PriceEnter dto = new PriceEnter("", false);
 
-        while (!isValidInput) {
-            this.view.printEnterLottosCount();
-            try {
-                res = readLine();
-                lottoBuySystem.validatePrice(res);
-                isValidInput = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        while (!dto.isInputValid()) {
+            _enterPrice(dto);
         }
 
-        return res;
+        return dto.getPrice();
     }
+
+
 
 
     private String enterLottoDrawNumbers() {
@@ -106,12 +101,22 @@ public class LottoController {
         LottoDrawNumbersEnter dto = new LottoDrawNumbersEnter(numbers, bonusNumber, validInput);
 
         while (!dto.isValidInput()) {
-            innerEnter(dto);
+            _enterLottoDrawNumbers(dto);
         }
         return String.join(SEPERATOR, dto.getNumbers(), dto.getBonusNumber());
     }
 
-    private void innerEnter(LottoDrawNumbersEnter dto) {
+    private String enterLottoDrawWiningNumbers() {
+        this.view.printEnterLottoWinningNumbers();
+        return readLine();
+    }
+
+    private String enterLottoDrawBonusNumber() {
+        this.view.printEnterBonusNumber();
+        return readLine();
+    }
+
+    private void _enterLottoDrawNumbers(LottoDrawNumbersEnter dto) {
         dto.setNumbers(enterLottoDrawWiningNumbers());
         dto.setBonusNumber(enterLottoDrawBonusNumber());
         String fullInput = String.join(SEPERATOR, dto.getNumbers(), dto.getBonusNumber());
@@ -124,15 +129,18 @@ public class LottoController {
         }
     }
 
+    private void _enterPrice(PriceEnter dto) {
+        this.view.printEnterLottosCount();
+        try {
+            String price = readLine();
+            dto.setPrice(price);
+            lottoBuySystem.validatePrice(dto.getPrice());
 
-    private String enterLottoDrawWiningNumbers() {
-        this.view.printEnterLottoWinningNumbers();
-        return readLine();
+            dto.setInputValid(true);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    private String enterLottoDrawBonusNumber() {
-        this.view.printEnterBonusNumber();
-        return readLine();
-    }
 
 }

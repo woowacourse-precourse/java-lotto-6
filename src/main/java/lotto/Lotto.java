@@ -24,14 +24,15 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
+    private void validateNumbersInRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
     }
 }

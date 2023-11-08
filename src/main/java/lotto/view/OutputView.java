@@ -1,8 +1,6 @@
 package lotto.view;
 
 import lotto.Statistic;
-import lotto.domain.Player;
-import lotto.domain.WinningLotto;
 
 import java.util.List;
 import java.util.Map;

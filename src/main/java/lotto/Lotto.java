@@ -17,12 +17,26 @@ public class Lotto {
             throw new IllegalArgumentException(Message.Error.INVALID_WIN_NUMBER.getMessage());
         }
         NumberOverlapCheck(numbers);
+        NumberInRange(numbers);
     }
 
     public void NumberOverlapCheck(List<Integer> numbers){
         HashSet<Integer> overlapCheck = new HashSet<>(numbers);
         if (numbers.size() != overlapCheck.size()){
             throw new IllegalArgumentException(Message.Error.OVERLAP_INPUT.getMessage());
+        }
+    }
+
+    public void NumberInRange(List<Integer> numbers){
+        int min = LottoValue.Value.MIN.getValue();
+        int max = LottoValue.Value.MAX.getValue();
+        for (Integer number : numbers){
+            if (number < min){
+                throw new IllegalArgumentException(Message.Error.INVALID_INPUT_MIN.getMessage());
+            }
+            if (number > max){
+                throw new IllegalArgumentException(Message.Error.INVALID_INPUT_MAX.getMessage());
+            }
         }
     }
 

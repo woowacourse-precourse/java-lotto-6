@@ -5,9 +5,9 @@ import lotto.util.RandomUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoMachine {
+public class LottoFactory {
 
-    public Lottos createLottos(int lottoCount) {
+    public static Lottos createLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
         while (lottos.size() < lottoCount) {
@@ -17,7 +17,7 @@ public class LottoMachine {
         return new Lottos(lottos);
     }
 
-    private Lotto createLotto() {
+    private static Lotto createLotto() {
         return new Lotto(RandomUtil.createRandomNumbers());
     }
 }

@@ -77,10 +77,6 @@ public class LottoView {
 
     private void lottoResult() {
         CountScoreResponseDTO countScoreResponseDTO = lottoController.countScore();
-        printResult(countScoreResponseDTO);
-    }
-
-    private void printResult(CountScoreResponseDTO countScoreResponseDTO) {
         System.out.println(WINNING_STATISTICS);
         System.out.printf(THREE_SAME.toString(), countScoreResponseDTO.getFifthPlace());
         System.out.printf(FOUR_SAME.toString(), countScoreResponseDTO.getFourthPlace());

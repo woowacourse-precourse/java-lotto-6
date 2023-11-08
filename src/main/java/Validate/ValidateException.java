@@ -78,11 +78,11 @@ public class ValidateException {
         }
     }
 
-    public static void zeroNum(String strLine) {
+    public static void zeroNumber(String strLine) {
         Integer inputNum = Integer.valueOf(strLine);
 
         if (inputNum == ZERO_NUM) {
-            throw new NumberFormatException("[ERROR] 0은 입력할수 없습니다.");
+            throw new NumberFormatException(ValidateConstant.ERROR_INPUT_ZERO_NUMBER());
         }
     }
 

@@ -32,4 +32,8 @@ public class ValidateConstant {
     public static String ERROR_INPUT_NEGATIVE() {
         return "[ERROR] 양수만 입력해 주세요";
     }
+
+    public static String ERROR_INPUT_ZERO_NUMBER() {
+        return "[ERROR] 양수만 입력해 주세요";
+    }
 }

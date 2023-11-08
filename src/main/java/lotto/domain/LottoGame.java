@@ -6,6 +6,7 @@ import lotto.input.Input;
 import lotto.output.Output;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
@@ -31,6 +32,8 @@ public class LottoGame {
     }
 
     private List<Integer> makeRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return numbers;
     }
 }

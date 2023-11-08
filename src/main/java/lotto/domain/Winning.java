@@ -12,4 +12,7 @@ public enum Winning {
         this.label = label;
         this.price = price;
     }
+    public int getPrice() {
+        return price;
+    }
 }

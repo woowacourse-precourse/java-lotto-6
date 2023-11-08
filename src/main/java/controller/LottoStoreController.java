@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Lotto;
 import domain.PurchaseAmount;
 import domain.PurchaseLotto;
 import view.InputView;
@@ -14,6 +15,7 @@ public class LottoStoreController {
 	public void runLottoGame() {
 		try {
 			buyLotto();
+			showPurchaseLotto();
 		} catch (NumberFormatException exception) {
 			System.out.println("[ERROR] message");
 		} catch (IllegalArgumentException exception) {
@@ -26,6 +28,15 @@ public class LottoStoreController {
 		outputView.printBlank();
 
 		purchaseLotto = new PurchaseLotto(purchaseAmount);
+	}
+
+	private void showPurchaseLotto() {
+		outputView.printPurchaseAmount(purchaseAmount);
+		for (Lotto lotto : purchaseLotto.getLottos()) {
+			outputView.printLotto(lotto);
+		}
+
+		outputView.printBlank();
 	}
 
 }

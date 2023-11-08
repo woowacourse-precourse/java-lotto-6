@@ -58,7 +58,6 @@ public class LottoController {
                 .count();
     }
 
-    //feat(LottoController): Implement total prize calculation method
     public long calculateTotalPrize(Map<Rank, Integer> result) {
         long totalPrize = 0;
         for (Rank rank : Rank.values()) {
@@ -66,7 +65,7 @@ public class LottoController {
         }
         return totalPrize;
     }
-    
+
     public double calculateReturnRate(long totalPrize, int amount) {
         return (double) totalPrize / amount * 100;
     }

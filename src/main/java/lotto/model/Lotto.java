@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.ClientException;
+import lotto.exception.ExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,37 +21,41 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new ClientException(ExceptionMessage.MESSAGE_LIMIT_SIZE);
+        }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> validationDuplicate = new HashSet<>(numbers);
         if (numbers.size() != validationDuplicate.size()) {
-            throw new IllegalArgumentException("");
+            throw new ClientException(ExceptionMessage.MESSAGE_DUPLICATE_NUMBER);
         }
     }
 
-    private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+    private void validateRange(List<Integer> numbers) {
+        numbers.forEach((number) -> {
+            if (number < 1 || 45 < number) {
+                throw new ClientException(ExceptionMessage.MESSAGE_RANGE_NUMBER);
+            }
+        });
     }
 
-    public int compare(List<Integer> winingLotto) {
+    public int countCorrectNumbers(Lotto lotto) {
         int count = 0;
-        for (Integer winingNumber : winingLotto) {
-            if (numbers.contains(winingNumber)) {
+        for (Integer winingNumber : numbers) {
+            if (lotto.containNumber(winingNumber)) {
                 count++;
             }
         }
         return count;
     }
 
-    public boolean containBonus(int bonus) {
-        return numbers.contains(bonus);
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(numbers);
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
     }
 }

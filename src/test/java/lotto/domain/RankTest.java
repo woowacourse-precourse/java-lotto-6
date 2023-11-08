@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RankTest {
     @ParameterizedTest
-    @CsvSource(value = {
+    @CsvSource({
             "0, true, NONE",
             "0, false, NONE",
             "3, true, FIVE",
@@ -37,7 +37,7 @@ class RankTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
+    @CsvSource({
             "1, 5000",
             "2, 10000",
             "3, 15000",

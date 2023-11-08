@@ -52,7 +52,7 @@ class LottoTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
+    @CsvSource({
             "1, true",
             "2, true",
             "7, false",

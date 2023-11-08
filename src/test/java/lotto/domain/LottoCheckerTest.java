@@ -23,7 +23,7 @@ class LottoCheckerTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
+    @CsvSource({
             "ONE, 1",
             "TWO, 1",
             "THREE, 1",

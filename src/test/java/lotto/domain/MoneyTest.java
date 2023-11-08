@@ -19,7 +19,7 @@ class MoneyTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {
+    @CsvSource({
             "1000,1",
             "2000,2",
             "5000,5",

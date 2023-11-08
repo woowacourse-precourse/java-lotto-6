@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.model.Money;
 
 import java.util.ArrayList;
@@ -20,6 +21,13 @@ public class InputView {
         printPlayCountMessage(money);
         return money;
     }
+    public Lottos LottoListInfo(Money money){
+        Lottos lottos = new Lottos(money);
+        lottos.addLottoList();
+        return lottos;
+    }
+
+
     public Lotto answerLottoInfo(){
         printInputAnswerLotto();
         Lotto lotto = new Lotto(inputLotto());
@@ -50,6 +58,8 @@ public class InputView {
     private void printInputBonusNumber(){
         System.out.println("보너스 번호를 입력해주세요.");
     }
+
+
 
     private List<Integer> inputLotto() throws IllegalArgumentException {
         String answerLotto = Console.readLine();

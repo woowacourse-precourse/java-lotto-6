@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -19,6 +20,7 @@ public class MainController {
     }
     public void start(){
         Money money = inputview.inputMoneyInfo();
+        Lottos lottos = inputview.LottoListInfo(money);
         Lotto lotto = inputview.answerLottoInfo();
         BonusNumber bonusNumber = inputview.bonusNumberInfo(lotto.getNumbers());
 

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.error.LottoErrorMessage;
 import lotto.util.constant.LottoConstant;
 
 import java.util.HashSet;
@@ -16,11 +17,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (!validateNumbersSize(numbers)) {
-            throw new IllegalArgumentException(); //TODO added Exception Message
+            throw new IllegalArgumentException(LottoErrorMessage.OVER_LOTTO_FIX_SIZE_EXCEPTION.getMessage());
         }
 
         if (!validateDuplicationNumbers(numbers)) {
-            throw new IllegalArgumentException(); //TODO added Exception Message
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_NUMBER_EXCEPTION.getMessage());
         }
     }
 

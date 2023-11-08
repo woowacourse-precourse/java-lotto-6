@@ -44,14 +44,6 @@ public enum LottoRank {
         return lottoRank != MISS;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public boolean isSameBonus() {
-        return isSameBonus;
-    }
-
     public int getAmount() {
         return amount;
     }

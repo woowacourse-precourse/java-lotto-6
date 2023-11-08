@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.error.LottoErrorMessage;
 import lotto.util.constant.LottoConstant;
 
 import java.util.HashSet;
@@ -18,11 +19,11 @@ public class LottoWinningNumber {
 
     private void validate(List<Integer> numbers, int bonusNumber) {
         if (!validateDuplicationNumberSize(numbers)) {
-            throw new IllegalArgumentException(); //TODO Exception Message
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_NUMBER_EXCEPTION.getMessage());
         }
 
         if (!validateDuplicationBonusNumber(numbers, bonusNumber)) {
-            throw new IllegalArgumentException(); //TODO Exception Message
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_BONUS_NUMBER_EXCEPTION.getMessage());
         }
     }
 

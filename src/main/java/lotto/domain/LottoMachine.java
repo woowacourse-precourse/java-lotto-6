@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.error.LottoErrorMessage;
 import lotto.util.constant.LottoConstant;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class LottoMachine {
 
     private void validatePurchaseAmount(int purchaseAmount) {
         if (purchaseAmount % LottoConstant.LOTTO_PRICE > 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoErrorMessage.NOT_INSERT_COINS_EXCEPTION.getMessage());
         }
     }
 

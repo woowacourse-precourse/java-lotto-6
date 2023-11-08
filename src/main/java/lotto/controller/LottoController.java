@@ -80,9 +80,8 @@ public class LottoController {
      */
     private void printPurchasedLottos() {
         try {
-            purchasedLottos.lottos().forEach(lotto -> {
-                lottoOutputView.printLotto(lotto.getSortedLottoNumbers().toString());
-            });
+            purchasedLottos.lottos()
+                    .forEach(lotto -> lottoOutputView.printLotto(lotto.getSortedLottoNumbers().toString()));
         } catch (Exception e) {
             ExceptionPrinter.printExceptionMessage(e);
             printPurchasedLottos();
@@ -150,9 +149,7 @@ public class LottoController {
      */
     private void displayPrizeCounts(Map<Prize, Integer> prizeCounts) {
         try {
-            prizeCounts.keySet().forEach(prize -> {
-                prizeOutputView.printPrize(prize, prizeCounts.get(prize));
-            });
+            prizeCounts.keySet().forEach(prize -> prizeOutputView.printPrize(prize, prizeCounts.get(prize)));
         } catch (Exception e) {
             ExceptionPrinter.printExceptionMessage(e);
             displayPrizeCounts(prizeCounts);

@@ -12,6 +12,5 @@ public class LottoServiceTest {
     void createLotto() {
         Lotto lotto = LottoService.createLotto();
         assertEquals(lotto.getNumbers().size(), 6);
-
     }
 }

@@ -12,13 +12,13 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
-
     private static LottoGame lottoGame;
 
-    public static void Lotto() {
+    public static void LottoGameStart() {
         startGame();
         winningNumber();
         bonusNumber();
+        lottoStatistic();
     }
 
     private static void startGame() {
@@ -28,7 +28,7 @@ public class LottoController {
                 purchaseAmount = Validate.checkPurchaseAmountValidate(InputView.getPurchaseAmount());
             } catch (LottoGameException e) {
                 System.out.println(e.getMessage());
-                purchaseAmount = 0L;
+                System.out.println();
             }
         }
         lottoGame = new LottoGame(purchaseAmount);
@@ -48,6 +48,7 @@ public class LottoController {
                 winningNumber = LottoUtil.convertList(InputView.getWinningNumber());
             } catch (LottoGameException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
         lottoGame.setWinningNumber(winningNumber);
@@ -55,14 +56,19 @@ public class LottoController {
 
     private static void bonusNumber() {
         int bonusNumber = 0;
-        bonusNumber = Validate.checkBonusNumberValidate(InputView.getBonusNumber());
         while (bonusNumber == 0) {
             try {
-                bonusNumber = Validate.checkBonusNumberValidate(InputView.getBonusNumber());
+                bonusNumber = Validate.checkBonusNumberValidate(InputView.getBonusNumber(), lottoGame.getWinningNumber());
             } catch (LottoGameException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
         lottoGame.setBonusNumber(bonusNumber);
+    }
+
+    private static void lottoStatistic() {
+        LottoService.calculateLottoResult(lottoGame);
+        OutputView.printStatistic(lottoGame);
     }
 }

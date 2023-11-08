@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoController {
-    private Player player;
-    private Lottos lottos;
     private LottoService lottoService = new LottoService();
 
     public void play() {

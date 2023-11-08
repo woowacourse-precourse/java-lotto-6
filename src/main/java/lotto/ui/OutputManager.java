@@ -3,6 +3,7 @@ package lotto.ui;
 import lotto.Lotto;
 import lotto.Result;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static lotto.Result.*;
@@ -29,7 +30,10 @@ public class OutputManager {
 
         double returns = (double) totalPrize / totalAmount * 100;
 
-        System.out.println("총 수익률은 " + String.format("%.1f%%", returns) + "입니다.");
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.0%");
+        String formattedReturns = decimalFormat.format(returns / 100);
+
+        System.out.println("총 수익률은 " + formattedReturns + "입니다.");
     }
 
     public void printMatchAndPrize(List<Result> results) {

@@ -26,7 +26,9 @@ public class BudgetTest {
     @DisplayName("로또 수량 개수 확인 테스트")
     @Test
     void getLottoQuantity(){
+        //given
         Budget purchasePrice = new Budget(2000);
+        // when & then
         assertThat(purchasePrice.getLottoQuantity()).isEqualTo(2);
     }
 }

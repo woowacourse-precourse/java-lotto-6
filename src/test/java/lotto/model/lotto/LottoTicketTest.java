@@ -22,8 +22,11 @@ public class LottoTicketTest {
     @DisplayName("로또 수량은 금액/로또_금액 이어야 한다.")
     @Test
     void createLottoTicketTest(){
+        //given
         Budget price = new Budget(3000);
+        //when
         LottoTicket lottoTicket = new LottoTicket(price, lottoMachine);
+        //then
         assertThat(lottoTicket.getLottoTicketSize()).isEqualTo(3);
     }
 

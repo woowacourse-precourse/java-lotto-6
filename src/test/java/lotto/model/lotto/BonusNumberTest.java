@@ -17,6 +17,7 @@ public class BonusNumberTest {
     private WinningLotto winningLotto;
     @BeforeEach
     void setUp(){
+        //given
         List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
         winningLotto = new WinningLotto(numbers);
     }
@@ -24,6 +25,7 @@ public class BonusNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {0,46})
     void createBonusNumberOutOfRange(int input){
+        // when & then
         assertThatThrownBy(() -> new BonusNumber(input, winningLotto))
                 .isInstanceOf(LottoOutOfRangeException.class);
     }
@@ -32,6 +34,7 @@ public class BonusNumberTest {
     @ParameterizedTest
     @ValueSource(ints = {1,2})
     void createBonusNumberDuplicateWithWinningNumbers(int input){
+        // when & then
         assertThatThrownBy(() -> new BonusNumber(input, winningLotto))
                 .isInstanceOf(LottoDuplicateException.class);
     }

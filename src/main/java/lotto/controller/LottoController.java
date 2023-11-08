@@ -17,63 +17,100 @@ public class LottoController {
     LottoService lottoService = new LottoService();
 
     public void run() {
-        try {
-            PurchasePrice purchasePrice = getPurchasePrice();
-            int lottoCount = getLottoCount(purchasePrice);
-            Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
-            printLottoValues(lottos);
-            UserLotto userLotto = getUserLotto();
-            List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos);
-            returnGameResult(results, purchasePrice);
-        } catch (RuntimeException e) {
-            OutputView.printErrorMessage(e.getMessage());
-        }
+        PurchasePrice purchasePrice = getPurchasePrice();
+        int lottoCount = getLottoCount(purchasePrice);
+        Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
+        printLottoValues(lottos);
+        UserLotto userLotto = getUserLotto();
+        List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos);
+        returnGameResult(results, purchasePrice);
     }
 
     private void returnGameResult(List<LottoResult> results, PurchasePrice purchasePrice) {
-        List<ResultResponseDto> dtos = lottoService.convertToDto(results);
-        OutputView.printLottoResult(dtos);
-        extractEarningRate(purchasePrice, dtos);
+        try {
+            List<ResultResponseDto> dtos = lottoService.convertToDto(results);
+            OutputView.printLottoResult(dtos);
+            extractEarningRate(purchasePrice, dtos);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            returnGameResult(results, purchasePrice);
+        }
+
     }
 
     private static void printLottoValues(Lottos lottos) {
-        LottoResponseDtos responseDtos = lottos.toResponseDtos();
-        OutputView.printLottosValue(responseDtos);
+        try {
+            LottoResponseDtos responseDtos = lottos.toResponseDtos();
+            OutputView.printLottosValue(responseDtos);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            printLottoValues(lottos);
+        }
     }
 
     private UserLotto getUserLotto() {
-        Lotto userLotto = getUserLottoNumber();
-        int userBonusNumber = getUserBonusNumber();
-        return new UserLotto(userLotto, userBonusNumber);
+        try {
+            Lotto userLotto = getUserLottoNumber();
+            int userBonusNumber = getUserBonusNumber();
+            return new UserLotto(userLotto, userBonusNumber);
+        } catch (Exception e){
+            OutputView.printErrorMessage(e.getMessage());
+            return getUserLotto();
+        }
     }
 
     private int getLottoCount(PurchasePrice purchasePrice) {
-        int lottoCount = purchasePrice.getLottoCount();
-        OutputView.printPurchaseLotto(lottoCount);
-        return lottoCount;
+        try {
+            int lottoCount = purchasePrice.getLottoCount();
+            OutputView.printPurchaseLotto(lottoCount);
+            return lottoCount;
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getLottoCount(purchasePrice);
+        }
     }
 
     private static void extractEarningRate(PurchasePrice purchasePrice,
             List<ResultResponseDto> resultResponseDtos) {
-        double earningRate = purchasePrice.calculatePriceRate(resultResponseDtos);
-        OutputView.printEarningRate(earningRate);
+        try {
+            double earningRate = purchasePrice.calculatePriceRate(resultResponseDtos);
+            OutputView.printEarningRate(earningRate);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            extractEarningRate(purchasePrice, resultResponseDtos);
+        }
     }
 
     private static int getUserBonusNumber() {
-        OutputView.printGetBonusNumber();
-        return InputView.getUserBonusNumber();
+        try {
+            OutputView.printGetBonusNumber();
+            return InputView.getUserBonusNumber();
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getUserBonusNumber();
+        }
     }
 
     private static Lotto getUserLottoNumber() {
-        OutputView.printGetInputNumber();
-        List<Integer> userLottoNumbers = InputView.getUserLottoNumber();
-        return new Lotto(userLottoNumbers);
+        try {
+            OutputView.printGetInputNumber();
+            List<Integer> userLottoNumbers = InputView.getUserLottoNumber();
+            return new Lotto(userLottoNumbers);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getUserLottoNumber();
+        }
     }
 
     private PurchasePrice getPurchasePrice() {
-        OutputView.printInputPrice();
-        int price = InputView.getPurchaseLottoPrice();
-        return new PurchasePrice(price);
+        try {
+            OutputView.printInputPrice();
+            int price = InputView.getPurchaseLottoPrice();
+            return new PurchasePrice(price);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getPurchasePrice();
+        }
     }
 
 }

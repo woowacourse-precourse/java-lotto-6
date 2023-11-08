@@ -12,4 +12,7 @@ public class CalculateUtility {
         return sum;
     }
 
+    public static double calculateEarningsRate(long earnings, int cost) {
+        return ((double) earnings / cost) * 100;
+    }
 }

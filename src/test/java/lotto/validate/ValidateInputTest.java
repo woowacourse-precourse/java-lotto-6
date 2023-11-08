@@ -2,13 +2,14 @@ package lotto.validate;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.constant.LottoConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ValidateInputTest {
 
     private static final String EMPTY_STRING = "";
-    private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = LottoConstant.LOTTO_PRICE.getValue();
     private static final String NON_EMPTY_MESSAGE = "[ERROR] 값을 입력해주세요.";
     private static final String NON_BLANK_MESSAGE = "[ERROR] 비어있는 값은 입력할 수 없습니다.";
     private static final String WRONG_TYPE_INPUT_MESSAGE = "[ERROR] 정수형태로 입력해주세요";

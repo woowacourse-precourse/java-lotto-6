@@ -44,9 +44,12 @@ public class OutputView {
 
     private void printRankCountString(WinningResult winningResult) {
         List<String> rankCountStrings = new ArrayList<>();
-        winningResult.getRankCount().forEach((rank, count) -> {
-            rankCountStrings.add(buildRankCountString(rank, count));
-        });
+        winningResult.getRankCount()
+                .forEach((rank, count) -> {
+                    if (rank != Rank.MISS) {
+                        rankCountStrings.add(buildRankCountString(rank, count));
+                    }
+                });
         Collections.reverse(rankCountStrings);
         rankCountStrings.forEach(System.out::println);
     }

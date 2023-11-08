@@ -17,7 +17,7 @@ public class Input {
     private InputValidator inputValidator;
     private LottoNumberValidator lottoNumberValidator;
 
-    public Input() {
+    protected Input() {
         this.inputValidator = new InputValidator();
         this.lottoNumberValidator = new LottoNumberValidator();
     }

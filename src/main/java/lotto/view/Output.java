@@ -22,7 +22,7 @@ public class Output {
 
     private static Output output;
 
-    public Output() {
+    protected Output() {
     }
 
     public static Output getInstance() {

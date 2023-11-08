@@ -20,7 +20,7 @@ public class LottoResults {
                 .forEach(rank -> lottoResults.put(rank, 0));
         List<Rank> ranksOfLottos = lottos.getLottoCollection()
                 .stream()
-                .map(lotto -> getRank(lotto, winningNumbers))
+                .map(lotto -> lotto.getRank(winningNumbers))
                 .toList();
         ranksOfLottos
                 .forEach(rank -> lottoResults.put(rank, lottoResults.get(rank) + 1));
@@ -30,12 +30,6 @@ public class LottoResults {
     public double getRevenueRate(Money money) {
         Money revenue = Money.from(this);
         return (double) revenue.getMoney() / money.getMoney();
-    }
-
-    private static Rank getRank(Lotto lotto, WinningNumbers winningNumbers) {
-        int matchCount = winningNumbers.countMatchedNumber(lotto);
-        boolean hasBonus = winningNumbers.hasBonusNumber(lotto);
-        return Rank.of(matchCount, hasBonus);
     }
 
     public int getRankCount(Rank rank) {

@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import lotto.domain.constant.Rank;
 import lotto.domain.generator.LottoGenerator;
 import lotto.view.OutputView;
 
@@ -62,6 +63,12 @@ public class Lotto {
 
     public boolean containsNumber(int number) {
         return numbers.contains(number);
+    }
+
+    Rank getRank(WinningNumbers winningNumbers) {
+        int matchCount = winningNumbers.countMatchedNumber(this);
+        boolean hasBonus = winningNumbers.hasBonusNumber(this);
+        return Rank.of(matchCount, hasBonus);
     }
 
     public void printLotto() {

@@ -55,6 +55,7 @@ public class LottoGameView {
         while (true) {
             System.out.println(INPUT_BONUS_NUMBERS);
             String bonus = Console.readLine();
+            System.out.println();
             try {
                 validateBonusNumberInput(bonus);
                 winningNumbers.setBonus(Integer.parseInt(bonus));

@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 import lotto.Lotto;
 
 public class LottosGenerator {
-    private final int MINIMUM_LOTTOS_QUANTITY = 1;
+    private final int MINIMUM_LOTTOS_QUANTITY = 0;
     int purchaseQuntity;
     LottoGenerator lottoGenerator = new LottoGenerator();
     public LottosGenerator(int purchaseQuntity) {

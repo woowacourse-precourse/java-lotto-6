@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
@@ -33,11 +34,17 @@ public class LottoController {
     }
 
     private int getPurchasePrice() {
-        String input = inputView.getPurchasePrice();
-        PurchasePriceValidator.validIsInt(input);
-        int purchasePrice = Integer.parseInt(input);
-        PurchasePriceValidator.validIsMultiplesOfThousand(purchasePrice);
-        return purchasePrice;
+        while (true) {
+            try {
+                String input = inputView.getPurchasePrice();
+                PurchasePriceValidator.validIsInt(input);
+                int purchasePrice = Integer.parseInt(input);
+                PurchasePriceValidator.validIsMultiplesOfThousand(purchasePrice);
+                return purchasePrice;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private List<Lotto> purchaseLottos(int price) {
@@ -47,9 +54,15 @@ public class LottoController {
     }
 
     private Lotto getWinningNumbers() {
-        String input = inputView.getWinningNumbers();
-        WinningNumbersValidator.validate(input);
-        return convertStringToLotto(input);
+        while (true) {
+            try {
+                String input = inputView.getWinningNumbers();
+                WinningNumbersValidator.validate(input);
+                return convertStringToLotto(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Lotto convertStringToLotto(String input) {
@@ -59,15 +72,22 @@ public class LottoController {
             WinningNumbersValidator.validDigitIsInt(digit);
             winningNumbers.add(Integer.parseInt(digit));
         }
+        Collections.sort(winningNumbers);
         return new Lotto(winningNumbers);
     }
 
     private Bonus getBonusNumber(Lotto winningNumbers) {
-        String input = inputView.getBonusNumber();
-        BonusNumberValidator.validIsInt(input);
-        int bonusNumber = Integer.parseInt(input);
-        BonusNumberValidator.validIsNotDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
-        return new Bonus(bonusNumber);
+        while (true) {
+            try {
+                String input = inputView.getBonusNumber();
+                BonusNumberValidator.validIsInt(input);
+                int bonusNumber = Integer.parseInt(input);
+                BonusNumberValidator.validIsNotDuplicateWithWinningNumbers(bonusNumber, winningNumbers);
+                return new Bonus(bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private WinningStatics getWinningStatics(

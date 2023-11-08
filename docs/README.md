@@ -91,13 +91,9 @@
 - validate(List<Integer> numbers) : 6자가 아닌 경우 에러 반환
 - Lotto(List<Integer> numbers) : 로또번호 6자를 생성하는 생성자
 - getNumbers() : numbers 필드의 값을 반환
-- 3개 일치하는 경우 출력 메서드
-- 4개 일치하는 경우 출력 메서드
-- 5개 일치하는 경우 출력 메서드
-- 5개 + 보너스 출력 메서드
-- 6개 출력 메서드
-- UserHandler클래스에서 반환된 개수 * 일치하는 메서드 = 총수익률 출력 메서드
-  
+- 입력된 숫자 리스트에 중복된 숫자가 없는지 검증 (중복된 숫자가 있을 경우 예외를 발생)
+- getNumbers() : 현재 로또 티켓의 모든 숫자를 반환
+
 ### LottoGameController : 로또번호의 메인 로직을 담당하는 클래스
 - UserHandler클래스에서 반환된 개수로 로또 개수만큼 무작위 생성후 ResultView 클래스로 던져 결과출력
 - buyLottos() : 사용자가 구매할 로또의 개수(lottoCount)만큼 로또를 생성하는 기능

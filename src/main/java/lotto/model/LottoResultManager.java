@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,30 +9,38 @@ import lotto.enums.LottoRank;
 public class LottoResultManager {
 
     private final List<Lotto> lottos;
-    private final RankPolicy lottoRankPolicy;
-    private int winningAmount = 0;
-    private Map<String, Integer> lottoResult = new HashMap<>();
+    private final ResultPolicy lottoResultPolicy;
+    private long winningAmount = 0;
+    private Map<LottoRank, Integer> lottoResults = new EnumMap<>(LottoRank.class);
 
-    public LottoResultManager(List<Lotto> lottos, LottoRankPolicy lottoRankPolicy) {
+
+    public LottoResultManager(List<Lotto> lottos, LottoResultPolicy lottoResultPolicy) {
         this.lottos = lottos;
-        this.lottoRankPolicy = lottoRankPolicy;
+        this.lottoResultPolicy = lottoResultPolicy;
         calculateLottoResults();
     }
 
+    public long getWinningAmount() {
+        return winningAmount;
+    }
+    public Map<LottoRank, Integer> getLottoResults() {
+        return lottoResults;
+    }
+
     private void calculateLottoResults() {
-        //TODO 구조 개선 필요
+        for (LottoRank rank : LottoRank.values()) {
+            lottoResults.put(rank, 0);
+        }
+
         for (Lotto lotto : lottos) {
-            String lottoRank = lottoRankPolicy.calculateRank(lotto);
-            winningAmount += LottoRank.valueOf(lottoRank).getPrizeAmount();
-            lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, 0) + 1);
+            LottoResult lottoResult = lottoResultPolicy.calculateResult(lotto);
+            LottoRank rank = LottoRank.determineRank(lottoResult.getWinningCount(), lottoResult.isBonusMatch());
+            if (rank != null) {
+                int count = lottoResults.get(rank);
+                lottoResults.put(rank, count + 1);
+                winningAmount += rank.getPrizeAmount();
+            }
         }
     }
 
-    public Map<String, Integer> getLottoResult() {
-        return lottoResult;
-    }
-
-    public int getWinningAmount() {
-        return winningAmount;
-    }
 }

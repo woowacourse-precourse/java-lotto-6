@@ -1,8 +1,8 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
-import lotto.util.Reader;
 import lotto.util.Writer;
 
 public class Game {
@@ -32,8 +32,8 @@ public class Game {
     private void setLottos() {
         try {
             Writer.purchaseAmount();
-            purchaseAmount = Reader.purchaseAmount();
-            issuance(purchaseAmount);
+            String userInput = Console.readLine();
+            issuance(userInput);
         } catch (IllegalArgumentException exception) {
             Writer.exception(exception);
             setLottos();
@@ -43,9 +43,8 @@ public class Game {
     private void setBonusNumber() {
         try {
             Writer.bonusNumbers();
-            Integer bonusNumber = Reader.bonusNumber();
-            validator.validateBonusNumber(winningNumbers, bonusNumber);
-            this.bonusNumber = bonusNumber;
+            String userInput = Console.readLine();
+            this.bonusNumber = validator.validateBonusNumber(winningNumbers, userInput);
         } catch (IllegalArgumentException exception) {
             Writer.exception(exception);
             setBonusNumber();
@@ -60,8 +59,8 @@ public class Game {
         rateOfReturn = ((double) revenue / purchaseAmount) * 100;
     }
 
-    private void issuance(Integer purchaseAmount) {
-        validator.validatePurchaseAmount(purchaseAmount);
+    private void issuance(String input) {
+        purchaseAmount = validator.validatePurchaseAmount(input);
         lottos.issuance(purchaseAmount);
     }
 
@@ -72,9 +71,8 @@ public class Game {
     private void setWinningNumbers() {
         try {
             Writer.winningNumbers();
-            List<Integer> winningNumbers = Reader.winningNumbers();
-            validator.validateWinningNumbers(winningNumbers);
-            this.winningNumbers = winningNumbers;
+            String input = Console.readLine();
+            this.winningNumbers = validator.validateWinningNumbers(input);
         } catch (IllegalArgumentException exception) {
             Writer.exception(exception);
             setWinningNumbers();

@@ -23,13 +23,13 @@ class ValidatorTest {
     @Test
     void validatePurchaseAmountTest() {
         assertAll(
-                () -> assertThatThrownBy(() -> validator.validatePurchaseAmount(-1))
+                () -> assertThatThrownBy(() -> validator.validatePurchaseAmount("-1"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(NEGATIVE_PURCHASE_AMOUNT),
-                () -> assertThatThrownBy(() -> validator.validatePurchaseAmount(1))
+                () -> assertThatThrownBy(() -> validator.validatePurchaseAmount("1"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(NOT_DIVIDED_PURCHASE_AMOUNT),
-                () -> assertThatCode(() -> validator.validatePurchaseAmount(1000))
+                () -> assertThatCode(() -> validator.validatePurchaseAmount("1000"))
                         .doesNotThrowAnyException()
         );
     }
@@ -38,16 +38,16 @@ class ValidatorTest {
     @Test
     void validateWinningNumbersTest() {
         assertAll(
-                () -> assertThatThrownBy(() -> validator.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 6, 7)))
+                () -> assertThatThrownBy(() -> validator.validateWinningNumbers("1,2,3,4,5,6,7"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(INVALID_WINNING_NUMBER_LENGTH),
-                () -> assertThatThrownBy(() -> validator.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 46)))
+                () -> assertThatThrownBy(() -> validator.validateWinningNumbers("1,2,3,4,5,46"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(WINNING_NUMBER_OUT_OF_RANGE),
-                () -> assertThatThrownBy(() -> validator.validateWinningNumbers(List.of(1, 2, 3, 4, 6, 6)))
+                () -> assertThatThrownBy(() -> validator.validateWinningNumbers("1,2,3,4,6,6"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(DUPLICATE_WINNING_NUMBER),
-                () -> assertThatCode(() -> validator.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 6)))
+                () -> assertThatCode(() -> validator.validateWinningNumbers("1,2,3,4,5,6"))
                         .doesNotThrowAnyException()
         );
     }
@@ -56,13 +56,13 @@ class ValidatorTest {
     @Test
     void validateBonusNumberTest() {
         assertAll(
-                () -> assertThatThrownBy(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 46))
+                () -> assertThatThrownBy(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), "46"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(BONUS_NUMBER_OUT_OF_RANGE),
-                () -> assertThatThrownBy(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 6))
+                () -> assertThatThrownBy(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), "6"))
                         .isInstanceOf(IllegalArgumentException.class)
                         .hasMessageContaining(DUPLICATE_BONUS_NUMBER),
-                () -> assertThatCode(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 7))
+                () -> assertThatCode(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), "7"))
                         .doesNotThrowAnyException()
         );
     }

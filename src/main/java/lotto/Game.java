@@ -10,6 +10,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.constant.Rank;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Price;
@@ -22,7 +23,8 @@ public class Game {
         List<Lotto> lottos = makeLottos(price.getAmount());
         printLottos(lottos);
         Lotto winLotto = inputWinningNumbers();
-        Bonus bonusNumber = inputBonusNumber(winLotto);
+        Bonus bonus = inputBonusNumber(winLotto);
+        List<Rank> ranks = findRanks(lottos, winLotto, bonus);
     }
 
     private static Price inputBuyPrice() {
@@ -79,5 +81,34 @@ public class Game {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static List<Rank> findRanks(List<Lotto> lottos, Lotto winLotto, Bonus bonus) {
+        List<Rank> ranks = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            int matchCount = countMatchCount(lotto, winLotto);
+            Boolean isMatchBonus = checkMatchBonus(lotto, bonus);
+            ranks.add(Rank.findRank(matchCount, isMatchBonus));
+        }
+        return ranks;
+    }
+
+    private static int countMatchCount(Lotto lotto, Lotto winLotto) {
+        int matchCount = 0;
+        for (Integer number : lotto.getNumbers()) {
+            if (winLotto.getNumbers().contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    private static Boolean checkMatchBonus(Lotto lotto, Bonus bonus) {
+        for (Integer number : lotto.getNumbers()) {
+            if (number == bonus.getNumber()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

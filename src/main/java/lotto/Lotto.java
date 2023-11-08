@@ -39,26 +39,13 @@ public class Lotto {
     }
 
     private int getMatchCount(List<Integer> winnerNums) {
-        int matchCount = 0;
-        for (Integer number : numbers) {
-            for (Integer winnerNum : winnerNums) {
-                if (number.equals(winnerNum)) {
-                    matchCount++;
-                }
-            }
-        }
-        return matchCount;
+        return (int) numbers.stream()
+                .filter(winnerNums::contains)
+                .count();
     }
 
     private boolean isHitBonusNum(int bonusNum) {
-        boolean hitBonusNum = false;
-        for (Integer number : numbers) {
-            if (number == bonusNum) {
-                hitBonusNum = true;
-                break;
-            }
-        }
-        return hitBonusNum;
+        return numbers.contains(bonusNum);
     }
 
     private Result getResult(int matchCount, boolean hitBonusNum) {

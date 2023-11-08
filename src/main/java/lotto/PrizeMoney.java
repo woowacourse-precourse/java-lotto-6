@@ -21,4 +21,13 @@ public class PrizeMoney {
       return amount;
     }
   }
+
+  public static void printResults(int[] results) {
+    System.out.println("당첨 통계");
+    System.out.println("---");
+    for (int i = 3; i <= 6; i++) {
+      int prizeAmount = Prize.values()[i - 3].getAmount(); // i에 따른 Prize를 가져옵니다.
+      System.out.println(i + "개 일치 (" + prizeAmount + "원) - " + results[i - 3] + "개");
+    }
+  }
 }

@@ -1,10 +1,10 @@
-package lotto.module.manager;
+package lotto.module.console;
 
-import lotto.module.console.Console;
-import lotto.module.console.ConsoleMessageComposer;
+import lotto.module.console.output.composer.ConsoleMessageComposer;
+import lotto.module.domain.LottoProfit;
 import lotto.module.domain.PurchaseAmount;
-import lotto.module.domain.lotto.Lotto;
-import lotto.module.domain.lotto.WinningLotto;
+import lotto.module.lotto.Lotto;
+import lotto.module.lotto.WinningLotto;
 import lotto.module.result.LottoResult;
 
 import java.util.List;
@@ -36,13 +36,20 @@ public class LottoConsoleManager {
 
     public WinningLotto getWinningLottoNumbers() {
         List<Integer> winningLottoNumbers = console.getWinningLottoNumbers();
+        Lotto lotto = new Lotto(winningLottoNumbers);
+
         int lottoBonusNumber = console.getLottoBonusNumber();
 
-        return WinningLotto.of(winningLottoNumbers, lottoBonusNumber);
+        return WinningLotto.of(lotto, lottoBonusNumber);
     }
 
-    public void printLottoWinningResult(LottoResult lottoResult) {
+    public void printLottoWinningResult(LottoResult lottoResult, LottoProfit lottoProfit) {
+        String lottoResultMessage = consoleMessageComposer.generateLottoResultMessage(lottoResult, lottoProfit);
+        console.printLottoWinningResult(lottoResultMessage);
+    }
 
+    public void printErrorMessage(String errorMessage) {
+        console.printErrorMessage(errorMessage);
     }
 
 }

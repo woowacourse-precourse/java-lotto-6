@@ -10,4 +10,7 @@ public interface ConsoleWriter {
     void printPurchasedLottoTickets(final String purchasedLottoTicketsMessage);
 
     void printLottoWinningResult(final String lottoResultMessage);
+
+    void printErrorMessage(final String errorMessage);
+
 }

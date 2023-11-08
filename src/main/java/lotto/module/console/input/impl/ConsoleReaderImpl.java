@@ -41,6 +41,7 @@ public class ConsoleReaderImpl implements ConsoleReader {
         return Arrays.stream(numbers)
                 .peek(inputValidation::validateLottoNumbersRange)
                 .map(Integer::parseInt)
+                .sorted()
                 .collect(Collectors.toList());
     }
 

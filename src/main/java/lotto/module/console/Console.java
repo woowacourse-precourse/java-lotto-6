@@ -44,4 +44,8 @@ public class Console {
         consoleWriter.printLottoWinningResult(lottoResultMessage);
     }
 
+    public void printErrorMessage(final String errorMessage) {
+        consoleWriter.printErrorMessage(errorMessage);
+    }
+
 }

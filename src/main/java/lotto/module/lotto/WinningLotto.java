@@ -1,4 +1,4 @@
-package lotto.module.domain.lotto;
+package lotto.module.lotto;
 
 import lotto.global.exception.LottoException;
 
@@ -7,14 +7,14 @@ import java.util.List;
 public class WinningLotto extends Lotto {
     private final int bonusNumber;
 
-    private WinningLotto(final List<Integer> numbers, final int bonusNumber) {
-        super(numbers);
+    private WinningLotto(final Lotto lotto, final int bonusNumber) {
+        super(lotto.getNumbers());
         validateBonusNumberDuplicate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto of(final List<Integer> numbers, final int bonusNumber) {
-        return new WinningLotto(numbers, bonusNumber);
+    public static WinningLotto of(final Lotto lotto, final int bonusNumber) {
+        return new WinningLotto(lotto, bonusNumber);
     }
 
     public List<Integer> getNumbers() {
@@ -25,8 +25,8 @@ public class WinningLotto extends Lotto {
         return lotto.contains(bonusNumber);
     }
 
-    public int valuesContains(Lotto lotto) {
-        return super.valuesContains(lotto);
+    public int numbersContains(Lotto lotto) {
+        return super.numbersContains(lotto);
     }
 
     private void validateBonusNumberDuplicate(final int bonusNumber) {

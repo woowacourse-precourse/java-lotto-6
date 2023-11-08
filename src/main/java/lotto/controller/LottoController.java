@@ -5,12 +5,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumbers;
+import lotto.domain.RandomNum;
 import lotto.domain.PlayerLottoAmount;
 import lotto.domain.Ranking;
 import lotto.domain.WinningResult;
 import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.OutView;
 
 public class LottoController {
     public LottoController() {
@@ -35,7 +35,7 @@ public class LottoController {
 
     public void start() {
         int ticketCount = inputPlayerAmount();
-        OutputView.printTicketCount(ticketCount);
+        OutView.printTicketCount(ticketCount);
 
         lottoList = makeLottoList(ticketCount);
         winningResult = validateBonus();
@@ -71,7 +71,7 @@ public class LottoController {
 
 
     private static Lotto makeLotto() {
-        LottoNumbers lottoNumbers = new LottoNumbers();
+        RandomNum lottoNumbers = new RandomNum();
         lotto = new ArrayList<>();
 
         lotto = lottoNumbers.setRandomNumbers();
@@ -83,7 +83,7 @@ public class LottoController {
         Map<Ranking, Integer> result = setResult();
         Ranking rank;
 
-        OutputView.printSuccessResult();
+        OutView.printSuccessResult();
         for (int i = 0; i < lottoList.size(); i++) {
             rank = winningLotto.match(lottoList.get(i));
             result.put(rank, result.get(rank) + 1);
@@ -106,7 +106,7 @@ public class LottoController {
                             rank)) * (PERCENTAGE));
 
         }
-        OutputView.printRevenueRate(EarningRate);
+        OutView.printRevenueRate(EarningRate);
     }
 
 

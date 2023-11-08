@@ -5,24 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class PrizeTest {
-    @DisplayName("당첨 번호와 같은 번호가 3개 이상 포함된 로또면 일단 당첨인 것을 알려준다.")
-    @ParameterizedTest
-    @CsvSource({
-            "0,false",
-            "1,false",
-            "2,false",
-            "3,true",
-            "4,true",
-            "5,true",
-            "6,true"
-    })
-    void canGetPrizeWhenSameCountEnough(int sameCount, boolean canGetPrize) {
-        assertThat(Prize.canGetPrize(sameCount)).isEqualTo(canGetPrize);
-    }
-
-
+    
     @DisplayName("당첨 번호와 같은 번호의 개수와 보너스 번호 포함 여부를 알려주면 등수를 알려준다.")
     @ParameterizedTest
     @CsvSource({

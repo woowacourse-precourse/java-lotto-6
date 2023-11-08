@@ -35,10 +35,7 @@ public class WinnigMachine {
 
     public Prize getPrize(Lotto lotto) {
         int sameCount = lotto.getSameCount(winningLotto);
-        if (Prize.canGetPrize(sameCount)) {
-            boolean hasBonusNumber = lotto.hasNumber(bonusNumber);
-            return Prize.getPrize(sameCount, hasBonusNumber);
-        }
-        return Prize.NO_PRIZE;
+        boolean hasBonusNumber = lotto.hasNumber(bonusNumber);
+        return Prize.getPrize(sameCount, hasBonusNumber);
     }
 }

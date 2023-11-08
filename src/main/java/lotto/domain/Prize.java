@@ -27,10 +27,7 @@ public enum Prize {
         return prizeProfit;
     }
 
-    public static boolean canGetPrize(int sameCount) {
-        validateSameCount(sameCount);
-        return sameCount >= FIFTH.getSameCount();
-    }
+
 
     public static Prize getPrize(int sameCount, boolean hasBonusNumber) {
         validateSameCount(sameCount);
@@ -38,9 +35,6 @@ public enum Prize {
             return distinguishSecondOrThird(hasBonusNumber);
         }
         for (Prize prize : values()) {
-            if (prize == SECOND || prize == THIRD) {
-                continue;
-            }
             if (prize.getSameCount() == sameCount) {
                 return prize;
             }

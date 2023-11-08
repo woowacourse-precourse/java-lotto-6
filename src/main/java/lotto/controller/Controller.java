@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.model.ConfirmationWinning;
 import lotto.model.Lotto;
-import lotto.model.Lottos;
+import lotto.model.LottoGame;
 import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -13,7 +13,7 @@ import java.util.Map;
 public class Controller {
     List<Integer> winnings;
     int winningBonusNumber;
-    Lottos lottoGame = new Lottos();
+    LottoGame lottoGame = new LottoGame();
     WinningNumbers winningNumbers = new WinningNumbers();
     ConfirmationWinning confirmationWinning = new ConfirmationWinning(winningBonusNumber);
 
@@ -36,18 +36,29 @@ public class Controller {
     }
 
     public void putWinningNumber() {
-        InputView.requestWinningNumbers();
-        winningNumbers.askCommonWinningNumbers();
-
-        InputView.requestBonusNumber();
-        winningNumbers.askBonusNumber();
-
-        winnings = winningNumbers.getWinningNumbers();
-        winningBonusNumber = winningNumbers.getBonusNumber();
+        requestCommonWinningNumber();
+        requestBonusWinningNumber();
+        saveWinningNumbers();
     }
 
+    public void requestCommonWinningNumber(){
+        InputView.askCommonWinningNumbersMessage();
+        winningNumbers.askCommonWinningNumbers();
+    }
+
+    public void requestBonusWinningNumber(){
+        InputView.askBonusNumberMessage();
+        winningNumbers.askBonusNumber();
+    }
+
+    public void saveWinningNumbers(){
+        this.winnings = winningNumbers.getWinningNumbers();
+        this.winningBonusNumber = winningNumbers.getBonusNumber();
+    }
+
+
     public void showWinningsResult() {
-        List<Lotto> lottos = lottoGame.getLottos();
+        List<Lotto> lottos = lottoGame.getBunchOfLotto();
         Map<Integer, Integer> winningResult = confirmationWinning.checkWinnings(winnings,lottos);
         lottoGame.setWinningResult(winningResult);
 

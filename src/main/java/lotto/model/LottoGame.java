@@ -6,7 +6,7 @@ import lotto.view.OutputView;
 
 import java.util.*;
 
-public class Lottos {
+public class LottoGame {
     int lottoCount;
     int purchaseAmount;
     public Map<Integer, Integer> winningResult;
@@ -14,12 +14,12 @@ public class Lottos {
     private int START_NUMBER = LottoRules.START_NUMBER.getValue();
     private int END_NUMBER = LottoRules.END_NUMBER.getValue();
     private int LOTTO_NUMBER_COUNT = LottoRules.LOTTO_NUMBER_COUNT.getValue();
-    List<Lotto> lottos = new ArrayList<>();
+    List<Lotto> BunchOfLotto = new ArrayList<>();
 
 
-    public Lottos() {}
-    public List<Lotto> getLottos(){
-        return this.lottos;
+    public LottoGame() {}
+    public List<Lotto> getBunchOfLotto(){
+        return this.BunchOfLotto;
     }
 
     public Map<Integer, Integer>  getWinningResult(){
@@ -49,7 +49,7 @@ public class Lottos {
     private void generateLottos(int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> LottoNumber = generateRandomNumbersInOrder();
-            lottos.add(new Lotto(LottoNumber));
+            BunchOfLotto.add(new Lotto(LottoNumber));
         }
     }
 
@@ -61,7 +61,7 @@ public class Lottos {
     }
 
     public void showLottos(){
-        for(Lotto lotto : lottos){
+        for(Lotto lotto : BunchOfLotto){
             System.out.println(lotto.getNumbers());
         }
     }

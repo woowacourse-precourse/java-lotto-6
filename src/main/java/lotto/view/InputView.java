@@ -11,10 +11,10 @@ public class InputView {
     public static void requestPurchaseAmount(){
         System.out.println(PURCHASE_PIRCE_REQUEST_MESSAGE);
     }
-    public static void requestWinningNumbers(){
+    public static void askCommonWinningNumbersMessage(){
         System.out.println(WINNING_NUMBERS_REQUEST_MESSAGE);
     }
-    public static void requestBonusNumber(){
+    public static void askBonusNumberMessage(){
         System.out.println(BONUS_NUMBER_REQUEST_MESSAGE);
     }
 }

@@ -61,10 +61,10 @@ public class ConfirmationWinning {
 
 
     // 모든 로또의 당첨 개수 구해서 저장하기
-    public Map<Integer, Integer> countAllLottosResult(List<Lotto> lottos) {
+    public Map<Integer, Integer> countAllLottosResult(List<Lotto> BunchOfLotto) {
         Map<Integer, Integer> lottoResultCount = makeEmptyResult();
 
-        for (Lotto eachLotto : lottos) {
+        for (Lotto eachLotto : BunchOfLotto) {
             if (eachLotto.getWinningCount() == 3) {
                 lottoResultCount = countUpLottoResult(3, lottoResultCount);
 

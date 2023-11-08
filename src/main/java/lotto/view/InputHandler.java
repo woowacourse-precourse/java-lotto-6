@@ -16,6 +16,8 @@ public class InputHandler {
             exceptionStatus = ExceptionHandler.handleMoneyInputException(purchaseAmount);
         } while (exceptionStatus.isOccurred());
 
+        Printer.printLineBreak();
+
         return purchaseAmount;
     }
 
@@ -25,6 +27,8 @@ public class InputHandler {
             winningNumbers = Console.readLine();
             exceptionStatus = ExceptionHandler.handleWinningNumberInputException(winningNumbers);
         } while (exceptionStatus.isOccurred());
+
+        Printer.printLineBreak();
 
         return winningNumbers;
     }

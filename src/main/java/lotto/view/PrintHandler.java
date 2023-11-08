@@ -5,8 +5,6 @@ import lotto.domain.Lottos;
 
 public class PrintHandler {
     public static void printStartingPartOfLottoGame(LottoCount lottoCount, Lottos lottos) {
-        Printer.printLineBreak();
-
         Printer.printLottoCount(lottoCount);
         printLottos(lottos);
 

@@ -15,22 +15,19 @@ public class LottoPrizeCalculator {
             boolean matchBonusNumber = compareBonus(l, winningLotto);
             // 두 변수에 대해 Rank 결정
             Rank rank = checkRank(matchingCount, matchBonusNumber);
-            System.out.println(rank);
             winningStatistics.put(rank, winningStatistics.get(rank) + 1);
-            System.out.println("결과: "+winningStatistics.get(rank));
         }
     }
 
     public static void calculateProfitRate(LottoReceipt lottoReceipt, int purchaseAmount) {
         Map<Rank, Integer> winningStatistics = lottoReceipt.getWinningStatistics();
-
-        // (당첨금 - 구매 금액) / 구매 금액
-        long profitAmount = 0;
+        double profitAmount = 0;
         for (Map.Entry<Rank, Integer> entry : winningStatistics.entrySet()) {
             profitAmount += entry.getKey().getPrizeMoney() * entry.getValue();
         }
-        double rate = (profitAmount - purchaseAmount) / purchaseAmount;
-        lottoReceipt.setProfitRate(rate);
+        double rate = profitAmount / purchaseAmount * 100;
+        double roundedRate = Math.round(rate * 10.0) / 10.0;
+        lottoReceipt.setProfitRate(roundedRate);
     }
     public static Rank checkRank(int matchCount, boolean matchBonusNumber) {
         return Rank.from(matchCount, matchBonusNumber);
@@ -54,9 +51,5 @@ public class LottoPrizeCalculator {
             matchBonusNumber = true;
         }
         return matchBonusNumber;
-    }
-
-    public static void calculateProfitRate() {
-
     }
 }

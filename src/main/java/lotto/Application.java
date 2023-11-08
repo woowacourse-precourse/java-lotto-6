@@ -9,17 +9,21 @@ public class Application {
     static int lottoMoney = 0;
     static List<Integer> winningLottoNumber;
     static int bonusNumber = 0;
-    static Map<String, Integer> winningCount = new HashMap<>() {{
-        put("6개 일치 (2,000,000,000원)", 0);
-        put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
-        put("5개 일치 (1,500,000원)", 0);
-        put("4개 일치 (50,000원)", 0);
+    static Map<String, Integer> winningCount = new LinkedHashMap<>() {{
         put("3개 일치 (5,000원)", 0);
+        put("4개 일치 (50,000원)", 0);
+        put("5개 일치 (1,500,000원)", 0);
+        put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
+        put("6개 일치 (2,000,000,000원)", 0);
     }};
+    static long totalMoney = 0;
 
     public static boolean lottoMoneyInput() {
         try {
             String userInput = Console.readLine();
+            if (!userInput.chars().allMatch(Character::isDigit)) {
+                throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해 주세요.");
+            }
             lottoMoney = Integer.parseInt(userInput);
             if (lottoMoney % 1000 != 0) {
                 throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력해야 합니다.");
@@ -63,9 +67,20 @@ public class Application {
         Ranking[] ranks = Ranking.values();
         for (Ranking rank : ranks) {
             if (winningNumberCount == rank.winningNumberCount && bonusContain == rank.bounsContain) {
-                winningCount.put(rank.winningText, winningCount.get(rank.winningText)+1);
+                winningCount.replace(rank.winningText, winningCount.get(rank.winningText)+1);
             }
         }
+    }
+
+    public static int getWinningMoney(String winningText) {
+        int winningMoney = 0;
+        Ranking[] ranks = Ranking.values();
+        for (Ranking rank : ranks) {
+            if (winningText == rank.winningText) {
+                winningMoney =  rank.winningMoney;
+            }
+        }
+        return winningMoney;
     }
 
     public static void main(String[] args) {
@@ -84,7 +99,8 @@ public class Application {
         // 발행한 로또 번호 오름차순으로 출력하기
         List<List<Integer>> userLottoNumbers = new ArrayList<>();
         for (int i = 0; i < lottoAmount; i++) {
-            List<Integer> userLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> userRandomNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> userLottoNumber = new ArrayList<>(userRandomNumber);
             Collections.sort(userLottoNumber);
             userLottoNumbers.add(userLottoNumber);
             System.out.println(userLottoNumber);
@@ -133,6 +149,16 @@ public class Application {
         for (Map.Entry<String, Integer> entrySet : winningCount.entrySet()) {
             System.out.println(entrySet.getKey() + " - " + entrySet.getValue() + "개");
         }
+
+        // 수익률을 계산하여 소수점 둘째 자리에서 반올림한 뒤 출력하기
+        for (Map.Entry<String, Integer> entrySet : winningCount.entrySet()) {
+            if (entrySet.getValue() != 0) {
+                int winningMoney = getWinningMoney(entrySet.getKey());
+                totalMoney += (long) entrySet.getValue() * winningMoney;
+            }
+        }
+        double lottoWinningRate = (double) totalMoney / lottoMoney * 100.0;
+        System.out.println("총 수익률은 " + String.format("%.1f", lottoWinningRate) + "%입니다.");
 
     }
 }

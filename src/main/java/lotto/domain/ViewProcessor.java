@@ -7,6 +7,7 @@ import lotto.data.Rewards;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class ViewProcessor {
@@ -61,12 +62,25 @@ public class ViewProcessor {
 
     public boolean bonusBall(String tempBonus) {
         try {
-            this.bonusNum = checkValidBonusNum(tempBonus);
-            lottomodel.computeBonus(winningNums, bonusNum);
+            checkValidBonusNum(tempBonus);
+            lottomodel.computeBonus(bonusNum);
             return States.STATE_SUCESS.getState();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return States.STATE_FALSE.getState();
+        }
+    }
+
+
+    public void totalResult(HashMap<Rewards, Integer> winningTable, String computedRate) {
+
+        userView.totalResult(winningTable, computedRate);
+    }
+
+    public void checkRangeBonus(int bonus) {
+        if (bonus < MagicNums.LOTTONUM_MIN_RANGE.getValue()
+                || bonus > MagicNums.LOTTONUM_MAX_RANGE.getValue()) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
@@ -84,9 +98,9 @@ public class ViewProcessor {
         return true;
     }
 
-    public void checkExistWinning(List<Integer> winningNums, int winning) {
-        if (winningNums.contains(winning)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.");
+    public void checkExist(List<Integer> winningNums, int num) {
+        if (winningNums.contains(num)) {
+            throw new IllegalArgumentException("[ERROR] 입력 값과 중복되는 숫자가 이미 존재합니다.");
         }
     }
 
@@ -96,14 +110,13 @@ public class ViewProcessor {
         }
     }
 
-    public int checkValidBonusNum(String tempBonus) {
+    public void checkValidBonusNum(String tempBonus) {
         try {
+            checkIsNull(tempBonus);
             int bonusNum = Integer.parseInt(tempBonus);
-            if (bonusNum >= MagicNums.LOTTONUM_MIN_RANGE.getValue()
-                    && bonusNum <= MagicNums.LOTTONUM_MAX_RANGE.getValue()) {
-                return bonusNum;
-            }
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            checkRangeBonus(bonusNum);
+            checkExist(winningNums,bonusNum);
+            this.bonusNum = bonusNum;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
         }
@@ -154,7 +167,7 @@ public class ViewProcessor {
             for (String element : parsedWinnings) {
                 int winning = Integer.parseInt(element);
                 checkRangeWinning(winning);
-                checkExistWinning(winningNums, winning);
+                checkExist(winningNums, winning);
                 winningNums.add(winning);
             }
         } catch (NumberFormatException e) {

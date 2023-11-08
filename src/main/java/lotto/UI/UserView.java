@@ -41,7 +41,6 @@ public class UserView {
             String tempBonus = Console.readLine().trim();
             state = viewProcessor.bonusBall(tempBonus);
         }
-
     }
 
     public void winnings() {

@@ -77,5 +77,7 @@ public class LottoGameController {
     private void printLottoesResult() {
         Map<Integer, Integer> lottoesResult = user.checkLottoesRanking(winningLotto);
         OutputView.printLottoesResult(lottoesResult);
+        long profit = wallet.calculateProfit(lottoesResult);
+        OutputView.printProfitRate(wallet.calculateProfitRate(profit));
     }
 }

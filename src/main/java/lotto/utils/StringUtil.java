@@ -5,13 +5,13 @@ import lotto.constants.ErrorConstants;
 public class StringUtil {
 
     public static void checkNotNull(String string) {
-        if(! isNotNull(string)) {
+        if (!isNotNull(string)) {
             throw new IllegalArgumentException(ErrorConstants.PLEASE_ENTER_VALUE.getData());
         }
     }
 
     public static void checkNumeric(String string) {
-        if(!isNumeric(string)) {
+        if (!isNumeric(string)) {
             throw new IllegalArgumentException(ErrorConstants.ONLY_ENTER_NUMBERS.getData());
         }
     }

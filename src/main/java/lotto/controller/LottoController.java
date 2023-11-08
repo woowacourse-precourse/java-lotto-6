@@ -5,6 +5,8 @@ import lotto.validation.ValidationUtils;
 import lotto.view.LottoView;
 
 public class LottoController {
+    private boolean isValid;
+    private String userInput;
     private LottoView lottoView;
     private ValidationUtils validationUtils;
     private LottoNumberCreator lottoNumberCreator;
@@ -16,8 +18,19 @@ public class LottoController {
     }
 
     public void startLotto() {
-        String userInput = lottoView.inputUserAmount();
-        boolean isValid = validationUtils.validateUserAmount(userInput);
+        UserAmount userAmount = createUserAmount();
+        Lottos lottos = createLottos(userAmount);
+        WinningNumber winningNumber = createWinningNumber();
+
+        addBonusNumberToWinningNumber(winningNumber);
+
+        LottoResult lottoResult = createResult(userAmount, lottos, winningNumber);
+        lottoView.printWinningStatistics(lottoResult);
+    }
+
+    private UserAmount createUserAmount() {
+        userInput = lottoView.inputUserAmount();
+        isValid = validationUtils.validateUserAmount(userInput);
 
         while(!isValid) {
             userInput = lottoView.inputUserAmount();
@@ -25,16 +38,18 @@ public class LottoController {
         }
 
         UserAmount userAmount = new UserAmount(userInput);
+        return userAmount;
+    }
 
-
-
-
+    private Lottos createLottos(UserAmount userAmount) {
         Lottos lottos = lottoNumberCreator.createLottoNumbers(userAmount.getNumberOfLotto());
         lottoView.printLottoNumbers(lottos);
+        return lottos;
+    }
 
-
-
-
+    private WinningNumber createWinningNumber() {
+        String userInput;
+        boolean isValid;
         userInput = lottoView.inputWinningNumber();
         isValid = validationUtils.validateWinningNumber(userInput);
 
@@ -44,10 +59,10 @@ public class LottoController {
         }
 
         WinningNumber winningNumber = new WinningNumber(lottoNumberCreator.stringToList(userInput));
+        return winningNumber;
+    }
 
-
-
-
+    private void addBonusNumberToWinningNumber(WinningNumber winningNumber) {
         String bonusNumber = lottoView.inputBonusNumber();
         isValid = validationUtils.validateBonusNumber(winningNumber, bonusNumber);
 
@@ -57,11 +72,12 @@ public class LottoController {
         }
 
         winningNumber.addBonusNumber(bonusNumber);
-
-
-
-
-        LottoResult lottoResult = new LottoResult(lottos, winningNumber, userAmount);
-        lottoView.printWinningStatistics(lottoResult);
     }
+
+    private static LottoResult createResult(UserAmount userAmount, Lottos lottos, WinningNumber winningNumber) {
+        LottoResult lottoResult = new LottoResult(lottos, winningNumber, userAmount);
+        return lottoResult;
+    }
+
+
 }

@@ -17,15 +17,15 @@ public class Lottos {
 
     public String toString() {
         List<Integer> orderedLotto;
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder lottoNumbers = new StringBuilder();
 
         for (Lotto lotto : bundleLotto) {
             orderedLotto = new ArrayList<>(lotto.getNumbers());
             orderedLotto.sort(Comparator.naturalOrder());
-            stringBuilder.append(orderedLotto.toString() + "\n");
+            lottoNumbers.append(orderedLotto + "\n");
         }
 
-        return stringBuilder.toString();
+        return lottoNumbers.toString();
     }
 
     public int getSize() {

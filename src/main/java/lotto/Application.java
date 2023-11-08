@@ -46,7 +46,68 @@ public class Application {
             lottos.get(i).printNumbers();
         }
 
+        // 당첨 번호 입력받기
+        Lotto goal;
+        int bonusNumber;
+        while (true) {
+            List<Integer> numbers = new ArrayList<Integer>();
+            System.out.println("당첨 번호를 입력해 주세요.");
+            String strInput = readLine();
+            String[] strNumbers = strInput.split(",");
 
+            try {
+                for (int i = 0; i < strNumbers.length; i++) {
+                    int parseNumber = Integer.parseInt(strNumbers[i]);
+                    if (parseNumber < 1 || parseNumber > 45) {
+                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    }
+                    numbers.add(parseNumber);
+                }
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNumber = Integer.parseInt(readLine());
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                goal = new Lotto(numbers);
+                goal.inspectBouns(bonusNumber);
+
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+        }
+
+        int getPrice = 0;
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (int i = 0; i < lottos.size(); i++) {
+            int result = Lotto.equalCount(lottos.get(i), goal);
+            if (result == 5) {
+                goalCount[7]++;
+                getPrice += 2000000000;
+            } else if (result == 4) {
+                goalCount[6]++;
+                getPrice += 30000000;
+            } else if (result == 3) {
+                goalCount[5]++;
+                getPrice += 1500000;
+            } else if (result == 2) {
+                goalCount[4]++;
+                getPrice += 50000;
+            } else if (result == 1) {
+                goalCount[3]++;
+                getPrice += 5000;
+            }
+        }
+        System.out.println("3개 일치 (5,000원) - " + goalCount[3] + "개");
+        System.out.println("4개 일치 (50,000원) - " + goalCount[4] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + goalCount[5] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + goalCount[6] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + goalCount[7] + "개");
+        double result = ((double) getPrice / (double) price * 100.0);
+        result = Math.ceil(result * 100) / 100;
+        System.out.println("총 수익률은 " + result + "%입니다.");
     }
 }
 

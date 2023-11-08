@@ -32,12 +32,12 @@ public class EntireMatchResult {
             int countWithBonus = counts.getOrDefault(matchResultWithBonus, 0);
 
             System.out.printf("%d개 일치 (%s원) - %d개\n", matchCount,
-                formatPrize(new PrizeMoney().getPrizeMoney().get(matchResultWithoutBonus)),
+                formatPrize(PrizeMoney.getPrizeMoney().get(matchResultWithoutBonus)),
                 countWithoutBonus);
 
             if (matchCount == 5) {
                 System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n",
-                    formatPrize(new PrizeMoney().getPrizeMoney().get(matchResultWithBonus)),
+                    formatPrize(PrizeMoney.getPrizeMoney().get(matchResultWithBonus)),
                     countWithBonus);
             }
         }

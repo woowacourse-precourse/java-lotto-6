@@ -31,7 +31,7 @@ public class Statistics {
 
     private int calculateTotalEaringPrize(Map<MatchResult, Integer> matchCounts) {
         return matchCounts.entrySet().stream()
-            .mapToInt(entry -> entry.getValue() * new PrizeMoney().getPrizeMoney().getOrDefault(entry.getKey(), 0))
+            .mapToInt(entry -> entry.getValue() * PrizeMoney.getPrizeMoney().getOrDefault(entry.getKey(), 0))
             .sum();
     }
 

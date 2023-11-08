@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Prize;
-import lotto.domain.dto.WinningResult;
+import lotto.dto.WinningResult;
 
 public class OutputView {
     private static final String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";

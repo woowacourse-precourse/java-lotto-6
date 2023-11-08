@@ -11,10 +11,10 @@ import java.util.HashSet;
 import java.util.List;
 import lotto.Lotto;
 import lotto.domain.User;
-import lotto.domain.dto.WinningResult;
 import lotto.domain.lottery.WinningLotto;
 import lotto.domain.machine.LottoMachine;
 import lotto.domain.machine.LottoNumberGeneratorImpl;
+import lotto.dto.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

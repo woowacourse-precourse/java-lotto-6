@@ -6,13 +6,21 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class LottoStore {
+    private final int FIRST_PLACE = 6;
+    private final int SECOND_PLACE = 2;
+    private final int THIRD_PLACE = 5;
+    private final int FOURTH_PLACE = 4;
+    private final int FIFTH_PLACE = 3;
 
     private List<Lotto> myLottos;
     private Lotto winningNumber;
     private int bonusNumber;
+    private int money;
+    private int[] countRanking;
 
     public LottoStore() {
         myLottos = new ArrayList<Lotto>();
+        countRanking = new int[7];
     }
 
     public void purchaseLotto() {
@@ -21,7 +29,8 @@ public class LottoStore {
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
                 validateMoney(input);
-                issueLotto(Integer.parseInt(input));
+                this.money = Integer.parseInt(input);
+                issueLotto();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -62,6 +71,32 @@ public class LottoStore {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public void caculatePrize() {
+        for (Lotto lotto : this.myLottos) {
+            int count = this.winningNumber.countDuplicated(lotto);
+            if (count == 5 && lotto.isIncluded(this.bonusNumber)) {
+                this.countRanking[SECOND_PLACE]++;
+                continue;
+            }
+            this.countRanking[count]++;
+        }
+    }
+
+    public void printPrize() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.print("3개 일치 (5,000원) - ");
+        System.out.println(this.countRanking[FIFTH_PLACE] + "개");
+        System.out.print("4개 일치 (50,000원) - ");
+        System.out.println(this.countRanking[FOURTH_PLACE] + "개");
+        System.out.print("5개 일치 (1,500,000원) - ");
+        System.out.println(this.countRanking[THIRD_PLACE] + "개");
+        System.out.print("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
+        System.out.println(this.countRanking[SECOND_PLACE] + "개");
+        System.out.print("6개 일치 (30,000,000원) - ");
+        System.out.println(this.countRanking[FIRST_PLACE] + "개");
     }
 
     private void validateBonusNumber(String input) {
@@ -110,8 +145,8 @@ public class LottoStore {
         }
     }
 
-    private void issueLotto(int input) {
-        int number = input / Value.LOTTO_PRICE.get();
+    private void issueLotto() {
+        int number = this.money / Value.LOTTO_PRICE.get();
         for (int i = Value.ZERO.get(); i < number; ++i) {
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             myLottos.add(new Lotto(lottoNumbers));

@@ -10,5 +10,7 @@ public class Application {
         lottoStore.printLottos();
         lottoStore.getWinningNumber();
         lottoStore.getBonusNumber();
+        lottoStore.caculatePrize();
+        lottoStore.printPrize();
     }
 }

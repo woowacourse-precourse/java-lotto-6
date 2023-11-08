@@ -77,7 +77,7 @@ public class ValidateTest extends NsTest {
                 winningNumbers.add(number);
             }
 
-            Lotto lotto = new Lotto(winningNumbers);
+            new Lotto(winningNumbers);
         });
 
         assertThat(exception.getMessage()).isEqualTo("[ERROR] 숫자를 6개 입력하세요.");

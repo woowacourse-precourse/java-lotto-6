@@ -15,6 +15,8 @@ public class LottoController {
 
     private static final int LOTTO_PRICE_PER_GAME = 1000;
     private static final int HIT_TICK = 1;
+    private static final String SEPERATOR = ",";
+    private static final String NO_SPACE = "";
     private int purchasedAmount = 0;
     private List<Lotto> lottos = new ArrayList<>();
     private Lotto winnerLotto;
@@ -106,5 +108,19 @@ public class LottoController {
         }
 
         return results;
+    }
+
+    private double calcProfitRate(Map<String, Integer> results) {
+        int totalProfit = 0;
+
+        for (Result result : Result.values()) {
+            if (results.get(result.name()) > 0) {
+                totalProfit += Integer.parseInt(result.getReward()
+                                .replace(SEPERATOR, NO_SPACE))
+                        * results.get(result.name());
+            }
+        }
+
+        return ((double) totalProfit / (this.purchasedAmount * LOTTO_PRICE_PER_GAME) * 100);
     }
 }

@@ -19,4 +19,14 @@ public class Result {
     public EnumMap<Ranking, Integer> getResult() {
         return result;
     }
+
+    private int getTotalReward() {
+        return result.entrySet().stream().mapToInt(entry -> entry.getKey().getReward() * entry.getValue()).sum();
+    }
+
+    public double calculateRateOfReturn() {
+        int lottoPurchaseMoney = result.entrySet().stream().mapToInt(entry -> entry.getValue()).sum() * 1000;
+        return getTotalReward() / (double) lottoPurchaseMoney;
+    }
+
 }

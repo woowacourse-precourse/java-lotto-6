@@ -17,7 +17,8 @@ public class Application {
         List<Integer> winningNumbers = getInput("당첨 번호를 입력해 주세요.", InputProcessor::getWinningNumbers);
         Integer bonusNumber = getInput("보너스 번호를 입력해 주세요.", InputProcessor::getBonusNumber);
         buyer.drawWinningNumbersAndBonusNumber(winningNumbers, bonusNumber);
-        buyer.aggregateLotto();
+        LottoUI.printTotalPrize(buyer.aggregateLotto());
+        LottoUI.printProfit(buyer.getProfitRatio());
     }
 
     private static <T> T getInput(String message, Function<String, T> parser) {

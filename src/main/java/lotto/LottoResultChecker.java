@@ -1,6 +1,5 @@
 package lotto;
 
-import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,32 +23,9 @@ public class LottoResultChecker {
         }
     }
 
-    public void printTotalPrize() {
-        for (LottoRank lottoRank : LottoRank.values()) {
-            System.out.println(printPrize(lottoRank));
-        }
-    }
-
-    public String printPrize(LottoRank lottoRank) {
-        String commaPrize = NumberFormat.getInstance().format(lottoRank.getPrize());
-
-        if (lottoRank.isCorrectBonus()) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개",
-                    lottoRank.getCorrectCount(),
-                    commaPrize,
-                    this.lottoResult.get(lottoRank));
-        }
-
-        return String.format("%d개 일치 (%s원) - %d개",
-                lottoRank.getCorrectCount(),
-                commaPrize,
-                this.lottoResult.get(lottoRank));
-    }
-
-    public void printProfit(int price) {
+    public double getProfitRatio(int price) {
         int totalProfit = getTotalProfit();
-        double profitRatio = (double) Math.round((double) totalProfit * 10000 / price) / 100;
-        System.out.println("총 수익률은 " + profitRatio + "%입니다.");
+        return (double) Math.round((double) totalProfit * 10000 / price) / 100;
     }
 
     private int getTotalProfit() {
@@ -58,5 +34,9 @@ public class LottoResultChecker {
             totalProfit += lottoRank.getPrize() * this.lottoResult.get(lottoRank);
         }
         return totalProfit;
+    }
+
+    public HashMap<LottoRank, Integer> getLottoResult() {
+        return lottoResult;
     }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Buyer {
@@ -33,9 +34,12 @@ public class Buyer {
         this.winningLotto = new WinningLotto(lotto, bonusNumber);
     }
 
-    public void aggregateLotto() {
+    public HashMap<LottoRank, Integer> aggregateLotto() {
         lottoResultChecker.checkLotto(this.lottos, this.winningLotto);
-        lottoResultChecker.printTotalPrize();
-        lottoResultChecker.printProfit(this.price);
+        return lottoResultChecker.getLottoResult();
+    }
+
+    public double getProfitRatio() {
+        return lottoResultChecker.getProfitRatio(this.price);
     }
 }

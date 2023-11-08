@@ -12,7 +12,6 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class InputHandler {
     public String inputCost() {
         String input;
-
         while (true) {
             try {
                 System.out.println("구입금액을 입력해주세요.");
@@ -26,37 +25,37 @@ public class InputHandler {
         return input;
     }
 
-    public List<String> inputWinningNumbers() {
-        String input;
+    public List<Integer> inputWinningNumbers() {
+        String winningNumbers;
         while (true) {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
-                input = readLine();
-                winningNumberValidate(input);
-                if (splitedLottoNumbersValidate(input)) {
+                winningNumbers = readLine();
+                winningNumberValidate(winningNumbers);
+                if (splitedLottoNumbersValidate(winningNumbers)) {
                     break;
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return CommonHelper.splitComma(input);
+        return CommonHelper.splitComma(winningNumbers);
     }
 
-    public String inputBonusNumber() {
-        String input;
-
+    public String inputBonusNumber(List<Integer> lottoNumbers) {
+        String bonusNumber;
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
-                input = readLine();
-                if (numberValidate(input)) break;
-
+                bonusNumber = readLine();
+                if (numberValidate(bonusNumber) && bonusNumberAndLottoNumbersValidate(bonusNumber, lottoNumbers)) {
+                    break;
+                }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return input;
+        return bonusNumber;
     }
 
     private boolean costValidate(String input) {
@@ -85,7 +84,7 @@ public class InputHandler {
         return true;
     }
 
-    public boolean splitedLottoNumbersValidate(String input) {
+    private boolean splitedLottoNumbersValidate(String input) {
         List<String> splitedLottoNumbers = List.of(input.split(","));
 
         if (splitedLottoNumbers.size() != LottoEnum.LOTTO_SIZE.getValue()) {
@@ -96,6 +95,11 @@ public class InputHandler {
             numberValidate(splitedLottoNumbers.get(i));
             Validator.isDuplicate(splitedLottoNumbers, splitedLottoNumbers.get(i), i);
         }
+        return true;
+    }
+
+    private boolean bonusNumberAndLottoNumbersValidate(String bonusNumber, List<Integer> lottoNumbers) {
+        Validator.isDuplicate(lottoNumbers, CommonHelper.strToInt(bonusNumber));
         return true;
     }
 }

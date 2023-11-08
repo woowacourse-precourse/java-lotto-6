@@ -40,7 +40,7 @@ public class OutputView {
     }
 
     public void printTotalReturn(double totalReturn) {
-        DecimalFormat formatter = new DecimalFormat("###,###.0");
+        DecimalFormat formatter = new DecimalFormat("###,##0.0");
         String format = formatter.format(totalReturn);
         System.out.print("총 수익률은 " + format + "%입니다.");
     }

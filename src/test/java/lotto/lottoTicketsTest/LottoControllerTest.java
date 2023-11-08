@@ -1,8 +1,7 @@
-package lotto.lottoTest;
+package lotto.lottoTicketsTest;
 
 
 
-import lotto.Application;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;

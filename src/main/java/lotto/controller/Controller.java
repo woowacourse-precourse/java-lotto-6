@@ -20,7 +20,7 @@ public class Controller {
         while (true) {
             try {
                 Output.printAmountMessage();
-                Buyer buyer = new Buyer(Input.inputAmount());
+                Buyer buyer = new Buyer(Input.getData());
                 PurchaseResult purchaseResult = service.purchaseLottos(buyer);
                 Output.printPurchasedLottos(purchaseResult);
                 break;
@@ -31,10 +31,26 @@ public class Controller {
     }
 
     private void proceedGame() {
+        Game game = generateGame();
+        setBonusNumber(game);
+    }
+
+    private Game generateGame() {
         while (true) {
             try {
                 Output.printWinningNumberMessage();
-                Game game = new Game(Input.inputWinningNumbers());
+                return new Game(Input.getData());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void setBonusNumber(Game game) {
+        while (true) {
+            try {
+                Output.printBonusNumberMessage();
+                game.setBonusNumber(Input.getData());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

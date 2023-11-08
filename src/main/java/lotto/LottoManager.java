@@ -2,23 +2,25 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-
+import lotto.Lotto;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoManager {
     int buyMoney=0;
     int buyLottoAmount=0;
     List<List<Integer>> lottoCandidateSets = new ArrayList<>();
-
+    Lotto winlotto;
     public void insertMoney() {
         int money =0;
         boolean pass = true;
 
         System.out.println("구입금액을 입력해 주세요.");
-        money=Integer.parseInt(Console.readLine());
         do {
             try {
+                money=Integer.parseInt(Console.readLine());
+                pass=true;
                 checkMoney(money);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -57,6 +59,7 @@ public class LottoManager {
         for(List<Integer> candidateLottoSet: lottoCandidateSets){
             showLottoCandidateSet(candidateLottoSet);
         }
+        System.out.println();
     }
 
     private void showLottoCandidateSet(List<Integer> candidateLottoSet){
@@ -69,4 +72,16 @@ public class LottoManager {
         System.out.println("]");
     }
 
+    public void insertLottoNumbers(){
+        String winLottoNumbers;
+        List<String> tempWinLottoSet;
+        List<Integer> winLottoSet=new ArrayList<>();
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        tempWinLottoSet= Arrays.asList(Console.readLine().split(","));
+        for(String number : tempWinLottoSet){
+            winLottoSet.add(Integer.parseInt(number));
+        }
+        winlotto = new Lotto(winLottoSet);
+    }
 }

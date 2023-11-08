@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.LottoManager;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -9,6 +10,6 @@ public class Application {
         lottoManager.showBuyAmount();
         lottoManager.loopCreateLottoCandidateNumbers();
         lottoManager.showAllLottoCandidateSets();
-
+        lottoManager.insertLottoNumbers();
     }
 }

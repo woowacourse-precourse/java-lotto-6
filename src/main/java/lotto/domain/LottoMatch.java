@@ -4,10 +4,10 @@ import lotto.util.Constants;
 
 public enum LottoMatch {
     MISS(0, 0, ""),
-    THIRD(3, 5000, Constants.END_RESULT_MESSAGE_3 ),
-    FOURTH(4, 50000, Constants.END_RESULT_MESSAGE_4 ),
+    THIRD(3, 5000, Constants.END_RESULT_MESSAGE_3),
+    FOURTH(4, 50000, Constants.END_RESULT_MESSAGE_4),
     FIFTH(5, 1500000, Constants.END_RESULT_MESSAGE_5),
-    SECOND(5, 30000000, Constants.END_RESULT_MESSAGE_BONUS ),
+    FIFTH_BONUS(5, 30000000, Constants.END_RESULT_MESSAGE_BONUS), // 5개 일치, 보너스 볼 일치
     FIRST(6, 2000000000, Constants.END_RESULT_MESSAGE_6);
 
     private final int matchCount;
@@ -33,11 +33,8 @@ public enum LottoMatch {
     }
 
     public static LottoMatch findByMatchCount(int matchCount, boolean isBonusMatch) {
-        if (isBonusMatch) {
-            return SECOND;
-        }
         for (LottoMatch match : values()) {
-            if (match.matchCount == matchCount) {
+            if (match.matchCount == matchCount && (match != FIFTH_BONUS || isBonusMatch)) {
                 return match;
             }
         }

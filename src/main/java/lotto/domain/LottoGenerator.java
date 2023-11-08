@@ -5,24 +5,32 @@ import java.util.List;
 
 public class LottoGenerator {
     private int lottoCount;
-    public static List<Lotto> lottoGroup;
+    private List<Lotto> lottoGroup;
+
     public LottoGenerator(int lottoCount) {
         this.lottoCount = lottoCount;
-        lottoGroupGenerator();
+        this.lottoGroup = lottoGroupGenerator();
     }
 
-    public void lottoGroupGenerator(){
-        lottoGroup = new ArrayList<>();
-        while(lottoGroup.size()<lottoCount){
-            lottoGroup.add(gerneratorNum());
+    public List<Lotto> lottoGroupGenerator() {
+        List<Lotto> lottoGroup = new ArrayList<>();
+        while (lottoGroup.size() < lottoCount) {
+            lottoGroup.add(generateNum());
         }
-        sortLottoGroup();
+        sortLottoGroup(lottoGroup);
+        return lottoGroup;
     }
-    public Lotto gerneratorNum(){
+
+    public Lotto generateNum() {
         LottoNumberGenerator nums = new LottoNumberGenerator();
         return new Lotto(nums.generatorLottoNumbers());
     }
-    public void sortLottoGroup(){
-        lottoGroup.forEach(lotto -> lotto.sort());
+
+    public void sortLottoGroup(List<Lotto> lottoGroup) {
+        lottoGroup.forEach(Lotto::sort);
+    }
+
+    public List<Lotto> getLottoGroup() {
+        return lottoGroup;
     }
 }

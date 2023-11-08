@@ -28,13 +28,36 @@ public class LottoWinningBonusNumberTest {
 
     @Test
     @DisplayName("로또 보너스 번호 는 값이 같으면 동등 하다")
-    void 로또_보너스_번호_동등성_비교() {
+    void 로또_보너스_번호_동등성_성립O() {
         LottoWinningBonusNumber number1 = new LottoWinningBonusNumber(5);
         LottoWinningBonusNumber number2 = new LottoWinningBonusNumber(10);
         LottoWinningBonusNumber number3 = new LottoWinningBonusNumber(5);
 
-        assertThat(number1).isEqualTo(number3);
+        assertThat(number1).isEqualTo(number1);
+        assertThat(number1.equals(number1)).isTrue();
+
         assertThat(number1).isNotEqualTo(number2);
+        assertThat(number1.equals(number2)).isFalse();
+
+        assertThat(number1).isEqualTo(number3);
+        assertThat(number1.equals(number3)).isTrue();
+    }
+
+    @Test
+    @DisplayName("로또 보너스 번호 는 값이 다르면 동등하지 않다")
+    void 로또_보너스_번호_동등성_성립X() {
+        LottoWinningBonusNumber number1 = new LottoWinningBonusNumber(1);
+        LottoWinningBonusNumber number2 = new LottoWinningBonusNumber(2);
+        Integer number3 = 3;
+
+        assertThat(number1).isNotEqualTo(number2);
+        assertThat(number1.equals(number2)).isFalse();
+
+        assertThat(number1).isNotEqualTo(number3);
+        assertThat(number1.equals(number3)).isFalse();
+
+        assertThat(number2).isNotEqualTo(number3);
+        assertThat(number2.equals(number3)).isFalse();
     }
 
     @Test
@@ -50,7 +73,7 @@ public class LottoWinningBonusNumberTest {
 
     @Test
     @DisplayName("로또 보너스 번호(VO)는 값이 같으면 동등 하고, 같은 해시 코드를 가져도, 동일 하지 않다.")
-    void 로또_보너스_번호_동일성_비교() {
+    void 로또_보너스_번호_다른_객체_동일성_비교() {
         LottoWinningBonusNumber number1 = new LottoWinningBonusNumber(5);
         LottoWinningBonusNumber number2 = new LottoWinningBonusNumber(10);
         LottoWinningBonusNumber number3 = new LottoWinningBonusNumber(5);

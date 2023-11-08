@@ -1,8 +1,6 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.domain.lotto.Lotto;
-import lotto.domain.money.Money;
 import lotto.view.InputView;
 
 public class InputService {
@@ -12,7 +10,7 @@ public class InputService {
         this.inputView = inputView;
     }
 
-    public int inputMoney() {
+    public int inputNumber() {
         return inputView.inputNumber();
     }
 

@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
+import lotto.domain.lotto.WinningLotto;
 import lotto.domain.money.Money;
 
 public class LottoGameService {
@@ -17,7 +18,7 @@ public class LottoGameService {
     public Money purchaseAmount() {
         try {
             outputService.purchaseAmount();
-            int money = inputService.inputMoney();
+            int money = inputService.inputNumber();
             return new Money(money);
         } catch (IllegalArgumentException exception) {
             outputService.handleException(exception);
@@ -32,14 +33,30 @@ public class LottoGameService {
         return lottos;
     }
 
-    public Lotto winningLotto() {
+    public WinningLotto winningLotto() {
+        Lotto winningLotto = winningNumbers();
+        int bonusNumber = bonusNumber();
+        return new WinningLotto(winningLotto, bonusNumber);
+    }
+
+    private Lotto winningNumbers() {
         try {
-            outputService.winningLotto();
+            outputService.winningNumbers();
             List<Integer> numbers = inputService.inputWinningNumbers();
             return new Lotto(numbers);
-        }catch (IllegalArgumentException exception) {
+        } catch (IllegalArgumentException exception) {
             outputService.handleException(exception);
-            return winningLotto();
+            return winningNumbers();
+        }
+    }
+
+    public int bonusNumber() {
+        try {
+            outputService.bonusNumber();
+            return inputService.inputNumber();
+        } catch (IllegalArgumentException exception) {
+            outputService.handleException(exception);
+            return bonusNumber();
         }
     }
 }

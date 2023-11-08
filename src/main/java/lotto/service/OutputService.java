@@ -19,8 +19,12 @@ public class OutputService {
         outputView.lottos(money.ticketCount(), lottos.printLottos());
     }
 
-    public void winningLotto() {
+    public void winningNumbers() {
         outputView.winningNumbers();
+    }
+
+    public void bonusNumber() {
+        outputView.bonusNumber();
     }
 
     public void handleException(IllegalArgumentException exception) {

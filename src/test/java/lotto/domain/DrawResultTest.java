@@ -22,7 +22,7 @@ class DrawResultTest {
     @Test
     void 모든등수에_1명씩_당첨된경우의_수익률반환() {
         DrawResult drawResult = new DrawResult(rankMap);
-        double earningRate = drawResult.getEarningRate(new PriceAmount(1000));
+        double earningRate = drawResult.getEarningRate(1000);
         assertThat(earningRate).isEqualTo(203155500);
     }
 }

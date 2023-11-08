@@ -15,9 +15,9 @@ public class DrawResult {
         return rankMap;
     }
 
-    public double getEarningRate(PriceAmount priceAmount) {
+    public double getEarningRate(int price) {
         int sum = calculateEarningAmount();
-        return (double) sum * 100 / priceAmount.getPriceAmount();
+        return (double) sum * 100 / price;
 
     }
 

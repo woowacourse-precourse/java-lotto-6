@@ -8,9 +8,9 @@ public class DrawingMachine {
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    public DrawingMachine(List<Integer> winningNumbers, int bonusNumber) {
-        this.winningLotto = new Lotto(winningNumbers);
-        this.bonusNumber = new BonusNumber(bonusNumber);
+    public DrawingMachine(Lotto winningLotto, BonusNumber bonusNumber) {
+        this.winningLotto = winningLotto;
+        this.bonusNumber = bonusNumber;
     }
 
     public DrawResult compare(Lottos lottos) {

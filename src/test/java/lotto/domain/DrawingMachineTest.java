@@ -19,7 +19,7 @@ public class DrawingMachineTest {
                         , new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6))
                         , new Lotto(Arrays.asList(1, 2, 3, 11, 12, 13)));
         Lottos purchasedLottos = new Lottos(lottos);
-        DrawingMachine drawingMachine = new DrawingMachine(winningNumbers, 6);
+        DrawingMachine drawingMachine = new DrawingMachine(new Lotto(winningNumbers), new BonusNumber(6));
         //when
         DrawResult result = drawingMachine.compare(purchasedLottos);
         //then

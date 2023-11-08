@@ -16,7 +16,7 @@ public class Buyer {
 
     public void buyLotto() {
         while (true) {
-            String input = InputView.getAmount();
+            String input = InputView.getAmountInput();
             if (validator.isAmountRight(input)) {
                 buyCount = Integer.parseInt(input) / 1000;
                 break;

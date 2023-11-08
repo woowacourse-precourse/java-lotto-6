@@ -6,6 +6,7 @@ import java.util.function.IntToDoubleFunction;
 import lotto.View.OutputView;
 import lotto.constant.ErrorMessage;
 import lotto.constant.GameNumber;
+import lotto.domain.Lotto;
 
 public class Validator {
     public boolean isAmountRight(String input) {
@@ -41,5 +42,12 @@ public class Validator {
             return false;
 
         return true;
+    }
+
+    public void checkBonusNumberRight(int number, Lotto winningNumber) {
+        if (!isNumberInRange(number))
+            throw new IllegalArgumentException();
+        if (winningNumber.getNumbers().contains(number))
+            throw new IllegalArgumentException();
     }
 }

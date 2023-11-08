@@ -4,7 +4,7 @@ public enum ErrorMessage {
     ERROR("[ERROR] "),
     AMOUNT_WRONG("구매 금액은 1,000원 단위여야 합니다."),
     WINNING_NUMBER_WRONG("당첨 번호는 1부터 45 사이의 6개의 숫자여야 합니다."),
-    BONUS_NUMBER_COUNT_WRONG("보너스 번호는 1개의 숫자여야 합니다.");
+    BONUS_NUMBER_WRONG("보너스 번호는 당첨번호와 다른 1부터 45 사이의 1개의 숫자여야 합니다.");
 
     private final String message;
 

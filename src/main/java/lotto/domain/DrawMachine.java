@@ -14,7 +14,7 @@ public class DrawMachine {
 
     public void makeWinningNumber() {
         while (true) {
-            String input = InputView.getWinningNumber();
+            String input = InputView.getWinningNumberInput();
 
             try {
                 winningNumber = new Lotto(getWinningNumber(input));
@@ -40,6 +40,23 @@ public class DrawMachine {
     }
 
     public void makeBonusNumber() {
-        bonusNumber = InputView.getBonusNumber();
+        while (true) {
+            String input = InputView.getBonusNumberInput();
+
+            try {
+                bonusNumber = getBonusNumber(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(ErrorMessage.BONUS_NUMBER_WRONG.getMessage());
+            }
+        }
+    }
+
+    private int getBonusNumber(String input) {
+        int num = Integer.parseInt(input);
+
+        validator.checkBonusNumberRight(num, winningNumber);
+
+        return num;
     }
 }

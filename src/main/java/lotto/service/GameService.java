@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import lotto.constant.GameNumber;
 import lotto.domain.Lotto;
-import camp.nextstep.edu.missionutils.Randoms;
 
 public class GameService {
     public List<Lotto> makeLottos(int buyCount) {

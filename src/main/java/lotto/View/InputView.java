@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.GameMessage;
 
 public class InputView {
-    public static String getAmount() {
+    public static String getAmountInput() {
         System.out.println(GameMessage.INPUT_AMOUNT.getMessage());
 
         String input = Console.readLine();
@@ -12,7 +12,7 @@ public class InputView {
         return input;
     }
 
-    public static String getWinningNumber() {
+    public static String getWinningNumberInput() {
         System.out.println("\n" + GameMessage.INPUT_WINNING_NUMBER.getMessage());
 
         String input = Console.readLine();
@@ -20,8 +20,10 @@ public class InputView {
         return input;
     }
 
-    public static int getBonusNumber() {
-        int input = -1;
+    public static String getBonusNumberInput() {
+        System.out.println("\n" + GameMessage.INPUT_BONUS_NUMBER.getMessage());
+
+        String input = Console.readLine();
 
         return input;
     }

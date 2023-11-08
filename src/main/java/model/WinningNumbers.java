@@ -15,6 +15,10 @@ public class WinningNumbers extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public int getBonusNumber() {
+        return this.bonusNumber;
+    }
+
     private void validateBonusNumber(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");

@@ -2,15 +2,20 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
+
 public class LottoGame {
 
     private int purchaseAmount;
     private int numberOfPurchase;
+    private LottoRepository lottoRepository = new LottoRepository();
 
     public void start() {
         System.out.println("구입 금액을 입력해주세요.");
         inputPurchaseAmount();
         printNumberOfPurchase();
+        setRandomLottoNumber(this.numberOfPurchase);
         printRandomLottoNumber();
 
     }
@@ -49,6 +54,24 @@ public class LottoGame {
     }
 
     private void printRandomLottoNumber() {
+        lottoRepository.printLottoNumbers();
+        //System.out.println(lottoRepository.printLottoNumbers());
+        //for(int i = 0 ; i < l)
+        //System.out.println(lotto.getLotto());
 
+    }
+
+    private void setRandomLottoNumber(int numberOfPurchase) {
+        for (int i = 0; i < numberOfPurchase; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            setLotto(numbers);
+        }
+    }
+
+    private void setLotto(List<Integer> numbers) {
+        Lotto lotto = new Lotto(numbers);
+        lottoRepository.add(lotto);
+
+        //System.out.println(lotto.getLotto());
     }
 }

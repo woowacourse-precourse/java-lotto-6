@@ -16,4 +16,18 @@ public class RankCount {
     public int getCounts(LottoRank rank) {
         return rankCount.getOrDefault(rank, 0);
     }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank != LottoRank.FAIL) {
+                sb.append(rank.name())
+                        .append(": ")
+                        .append(getCounts(rank))
+                        .append(" 개\n");
+            }
+        }
+        return sb.toString();
+    }
 }

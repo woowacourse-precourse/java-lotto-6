@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
+
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
@@ -47,6 +49,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    @DisplayName("구매 금액에 잘못된 글자가 들어가면 오류 메시지를 출력한다.")
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");

@@ -1,4 +1,31 @@
 package lotto.controller;public class LottoController {
+package lotto.controller;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumbers;
+import lotto.domain.PlayerLottoAmount;
+import lotto.domain.Ranking;
+import lotto.domain.WinningResult;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+
+public class LottoController {
+    public LottoController() {
+    }
+
+    private static final int TICKET_PRICE = 1000;
+    private static final int PERCENTAGE = 100;
+
+    private static PlayerLottoAmount playerLottoAmount;
+    private static List<Integer> lotto = new ArrayList<>();
+    private static List<Lotto> lottoList;
+    private static WinningResult winningResult;
+
+
     public void run() {
         try {
             start();
@@ -51,5 +78,18 @@ package lotto.controller;public class LottoController {
         lotto = lottoNumbers.setRandomNumbers();
         System.out.println(lotto);
         return new Lotto(lotto);
+    }
+
+    private void lottoResult(List<Lotto> lottoList, WinningResult winningLotto, int amount) {
+        Map<Ranking, Integer> result = setResult();
+        Ranking rank;
+
+        OutputView.printSuccessResult();
+        for (int i = 0; i < lottoList.size(); i++) {
+            rank = winningLotto.match(lottoList.get(i));
+            result.put(rank, result.get(rank) + 1);
+        }
+        printResult(result);
+        printEarningRate(result, amount);
     }
 }

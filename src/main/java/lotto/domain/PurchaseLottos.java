@@ -1,13 +1,14 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.dto.BuyLottoInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import static lotto.Constant.*;
-import static lotto.Message.NOT_VALID_MONEY;
+import static lotto.ErrorMessage.NOT_VALID_MONEY;
 
 public class PurchaseLottos {
 
@@ -15,9 +16,11 @@ public class PurchaseLottos {
     private List<Lotto> userLottos = new ArrayList<>();
 
     private final int lottoTicketCount;
+    private final int amount;
 
     public PurchaseLottos(int amount) {
         validateNotHasRemainder(amount);
+        this.amount = amount;
         lottoTicketCount = amount / this.unitOfMoney;
         makeLotto();
     }
@@ -31,6 +34,8 @@ public class PurchaseLottos {
         return userLottos.stream().map(Lotto::getLottoNumbers).toList();
     }
 
+    public int getPurchaseAmount(){ return amount; }
+
     private void validateNotHasRemainder(int amount){
         if(amount % unitOfMoney != 0) throw new IllegalArgumentException(NOT_VALID_MONEY);
     }
@@ -38,8 +43,9 @@ public class PurchaseLottos {
     private void makeLotto(){
         for(int i=0; i<lottoTicketCount; i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(minimumLottoNumber, maximumLottoNumber, NUMBER_COUNT);
-            Collections.sort(numbers);
-            userLottos.add(new Lotto(numbers));
+            List<Integer> sortedNumbers = new ArrayList<>(numbers);
+            Collections.sort(sortedNumbers);
+            userLottos.add(new Lotto(sortedNumbers));
         }
     }
 

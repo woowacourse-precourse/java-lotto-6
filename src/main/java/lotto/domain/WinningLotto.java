@@ -3,18 +3,21 @@ package lotto.domain;
 import lotto.WinningRank;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WinningLotto extends Lotto {
-    private BonusNumber bonusNumber;
+    private final BonusNumber bonusNumber;
 
     public WinningLotto(List<Integer> numbers, BonusNumber bonusNumber){
         super(numbers);
         bonusNumber.validateDuplicateNumbers(numbers);
+        this.bonusNumber = bonusNumber;
     }
 
-    public HashMap<WinningRank, Integer> checkPrize(PurchaseLottos purchaseLottos) {
-        HashMap<WinningRank, Integer> winningRankCount = initMap();
+    public Map<WinningRank, Integer> checkPrize(PurchaseLottos purchaseLottos) {
+        Map<WinningRank, Integer> winningRankCount = initMap();
         List<List<Integer>> lottoNumbers = purchaseLottos.geBuyingLottoNumbers();
         for(List<Integer> numbers : lottoNumbers){
             int matchCount = this.compareLottoNumbers(numbers);
@@ -26,8 +29,8 @@ public class WinningLotto extends Lotto {
         return winningRankCount;
     }
 
-    private HashMap<WinningRank, Integer> initMap() {
-        HashMap<WinningRank, Integer> winningCount = new HashMap<>();
+    private Map<WinningRank, Integer> initMap() {
+        Map<WinningRank, Integer> winningCount = new LinkedHashMap<>();
         for(WinningRank winning : WinningRank.values()){
             winningCount.put(winning, 0);
         }

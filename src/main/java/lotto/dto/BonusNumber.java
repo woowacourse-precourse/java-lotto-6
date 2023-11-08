@@ -20,6 +20,7 @@ public record BonusNumber(Integer number) {
             throw new IllegalArgumentException(Message.LOTTO_NUMBER_RANGE_EXCEPTION);
         }
     }
+
     public Integer getNumber() {
         return number;
     }

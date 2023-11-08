@@ -1,6 +1,5 @@
 package lotto.dto;
 
-
 import static lotto.constants.Config.LOTTO_PRICE;
 
 import lotto.constants.Message;
@@ -9,7 +8,7 @@ public record UserInputMoney(Long amount) {
 
     public UserInputMoney {
         validatePositiveAmount(amount);
-        isValidateAmount(amount);
+        isMatchLottoPrice(amount);
     }
 
     private void validatePositiveAmount(Long amount) {
@@ -18,7 +17,7 @@ public record UserInputMoney(Long amount) {
         }
     }
 
-    private void isValidateAmount(Long amount) {
+    private void isMatchLottoPrice(Long amount) {
         if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(Message.LOTTO_PRICE_MISMATCH_EXCEPTION);
         }

@@ -13,6 +13,7 @@ public class LottoMachine {
 
     private UserInputMoney inputMoney;
     private List<Lotto> lottos = new ArrayList<>();
+
     public LottoMachine() {
 
     }

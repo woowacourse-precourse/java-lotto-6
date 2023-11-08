@@ -10,9 +10,9 @@ import lotto.domain.Result;
 import lotto.utils.Formatter;
 
 public class OutputView {
-    public void printGeneratedLottos(LottoMachine lottoMachine) {
+    public void printBoughtLottos(LottoMachine lottoMachine) {
         long lottoCount = lottoMachine.getInputAmount() / Config.LOTTO_PRICE;
-        System.out.println(lottoCount+"개를 구매했습니다.");
+        System.out.println(lottoCount + "개를 구매했습니다.");
         List<Lotto> lottos = lottoMachine.getLottos();
         lottos.forEach(System.out::println);
         System.out.println();
@@ -23,9 +23,9 @@ public class OutputView {
         System.out.println("---");
         printRankStatistics("3개 일치", Rank.FIFTH, result);
         printRankStatistics("4개 일치", Rank.FOURTH, result);
-        printRankStatistics( "5개 일치", Rank.THIRD, result);
-        printRankStatistics("5개 일치, 보너스 볼 일치",Rank.SECOND, result);
-        printRankStatistics("6개 일치",Rank.FIRST, result);
+        printRankStatistics("5개 일치", Rank.THIRD, result);
+        printRankStatistics("5개 일치, 보너스 볼 일치", Rank.SECOND, result);
+        printRankStatistics("6개 일치", Rank.FIRST, result);
         System.out.println("총 수익률은 " + result.getProfitRate() + "%입니다.");
     }
 

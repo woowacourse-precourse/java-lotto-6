@@ -11,8 +11,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != Value.LOTTO_NUMBER.get()) {
+            throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개여야 합니다.");
+        }
+        for (Integer i : numbers) {
+            if (i < Value.RAINGE_MIN.get() || i > Value.RAINGE_MAX.get()) {
+                throw new IllegalArgumentException("[ERROR] 숫자는 1~45여야 합니다.");
+            }
+        }
+        // 중복 검사
+        boolean[] used = new boolean[Value.RAINGE_MAX.get() + 1];
+        for (Integer i : numbers) {
+            if (used[i]) {
+                throw new IllegalArgumentException("[ERROR] 숫자가 중복되면 안됩니다.");
+            }
+            used[i] = true;
         }
     }
 

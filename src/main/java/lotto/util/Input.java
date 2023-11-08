@@ -85,8 +85,14 @@ public class Input {
             throw new IllegalArgumentException();
         }
     }
-
+    private static void validateContainBlank(String input){
+        if (input.contains(" ")){
+            throw new IllegalArgumentException();
+        }
+    }
     private static String userInput() {
-        return Console.readLine();
+        String input = Console.readLine();
+        validateContainBlank(input);
+        return input;
     }
 }

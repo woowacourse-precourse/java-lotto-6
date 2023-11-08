@@ -27,11 +27,7 @@ public class View {
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonus = inputController.getNumber();
 
-        System.out.println("당첨통계");
-        System.out.println("---");
-        LottoScore lottoScore = lottoController.lottoScore(results, lottoGenerate, bonus);
-        scoreView(lottoScore);
-        rateReturnView(lottoScore, money);
+        resultView(results,lottoGenerate,bonus,money);
 
     }
 
@@ -50,6 +46,14 @@ public class View {
         System.out.println("5개 일치 (1,500,000원) - " + lottoScore.getCorrect5() + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoScore.getCorrect5Bonus() + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoScore.getCorrect6() + "개");
+    }
+
+    public void resultView(List<Integer> results, List<Lotto> lottoGenerate, int bonus, int money){
+        System.out.println("당첨통계");
+        System.out.println("---");
+        LottoScore lottoScore = lottoController.lottoScore(results, lottoGenerate, bonus);
+        scoreView(lottoScore);
+        rateReturnView(lottoScore, money);
     }
 
     public void rateReturnView(LottoScore lottoScore,int money){

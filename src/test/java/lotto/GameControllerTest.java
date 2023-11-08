@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Stream;
 import lotto.controller.GameController;
 import lotto.model.Lotto;
-import lotto.validator.GameValidator;
+import lotto.validator.PrizeValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -36,7 +36,7 @@ public class GameControllerTest {
     @DisplayName("보너스 번호가 양의 정수가 아니면 예외가 발생한다")
     @Test
     void createBonusNumberNegativeInt() {
-        assertThatThrownBy(() -> GameValidator.validateBonusNumber("-50", VALID_LOTTO))
+        assertThatThrownBy(() -> PrizeValidator.validateBonusNumber("-50", VALID_LOTTO))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_TYPE_MISMATCH.message());
     }
@@ -44,7 +44,7 @@ public class GameControllerTest {
     @DisplayName("보너스 번호가 로또 번호와 중복되면 예외가 발생한다")
     @Test
     void createBonusNumberByDuplicatedNumber() {
-        assertThatThrownBy(() -> GameValidator.validateBonusNumber("1", VALID_LOTTO))
+        assertThatThrownBy(() -> PrizeValidator.validateBonusNumber("1", VALID_LOTTO))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NUMBER_DUPLICATION.message());
     }
@@ -52,7 +52,7 @@ public class GameControllerTest {
     @DisplayName("보너스 번호가 범위를 벗어나면 예외가 발생한다")
     @Test
     void createBonusNumberByOverRange() {
-        assertThatThrownBy(() -> GameValidator.validateBonusNumber("46", VALID_LOTTO))
+        assertThatThrownBy(() -> PrizeValidator.validateBonusNumber("46", VALID_LOTTO))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NUMBER_OUT_OF_RANGE.message());
     }

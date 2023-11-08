@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.utils.constant;
 
 public enum Rank {
     FIRST(6, "2,000,000,000"),

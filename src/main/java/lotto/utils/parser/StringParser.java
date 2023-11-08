@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.utils.parser;
 
 import java.util.Arrays;
 import java.util.HashSet;

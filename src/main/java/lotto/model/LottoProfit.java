@@ -1,7 +1,7 @@
 package lotto.model;
 
 import java.util.Map;
-import lotto.utils.Rank;
+import lotto.utils.constant.Rank;
 
 public class LottoProfit {
     private final Map<Rank, Integer> lottoResult;

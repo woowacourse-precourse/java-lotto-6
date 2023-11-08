@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.utils.constant;
 
 public enum ProcessMessage {
     WINNING_RESULT("%n당첨 통계%n"),
@@ -7,7 +7,7 @@ public enum ProcessMessage {
     GET_WINNING_NUMBER("%n당첨 번호를 입력해 주세요.%n"),
     GET_BONUS_NUMBER("%n보너스 번호를 입력해 주세요.%n");
 
-    private String message;
+    private final String message;
 
     ProcessMessage(String message) {
         this.message = message;

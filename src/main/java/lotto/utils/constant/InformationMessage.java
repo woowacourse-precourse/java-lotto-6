@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.utils.constant;
 
 public enum InformationMessage {
     BUY("%n%d개를 구매했습니다.%n"),

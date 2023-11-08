@@ -4,8 +4,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lotto.utils.Rank;
-import lotto.utils.StringParser;
+import lotto.utils.constant.Rank;
+import lotto.utils.parser.StringParser;
 
 public class WinningNumberChecker {
     private final List<Integer> winningNumber;

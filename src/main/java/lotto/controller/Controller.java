@@ -8,8 +8,8 @@ import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.WinningNumberChecker;
-import lotto.utils.Rank;
-import lotto.utils.StringParser;
+import lotto.utils.constant.Rank;
+import lotto.utils.parser.StringParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

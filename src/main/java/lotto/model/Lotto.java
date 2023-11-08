@@ -1,8 +1,8 @@
 package lotto.model;
 
 import java.util.List;
-import lotto.utils.Condition;
-import lotto.utils.ErrorMessage;
+import lotto.utils.constant.Condition;
+import lotto.utils.constant.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;

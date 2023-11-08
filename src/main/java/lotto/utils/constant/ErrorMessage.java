@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.utils.constant;
 
 public enum ErrorMessage {
     ERROR_HEAD("[ERROR] "),

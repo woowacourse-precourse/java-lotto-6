@@ -1,9 +1,9 @@
 package lotto.view;
 
 import java.util.Map;
-import lotto.utils.InformationMessage;
-import lotto.utils.ProcessMessage;
-import lotto.utils.Rank;
+import lotto.utils.constant.InformationMessage;
+import lotto.utils.constant.ProcessMessage;
+import lotto.utils.constant.Rank;
 
 public class OutputView {
     public static void printWinningResult(Map<Rank, Integer> result) {

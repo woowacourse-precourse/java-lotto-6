@@ -73,4 +73,37 @@ public class GameController {
             }
         }
     }
+
+    public void requestWinningNumberInput() {
+
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                GameView.printWinningNumberInputPhrase();
+                lotto = new Lotto(StringToInteger(splitInput(Console.readLine(), ",")));
+
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public List<Integer> StringToInteger(String[] input) {
+        List<Integer> intList = new ArrayList<>();
+        for (String str : input) {
+            try {
+                int number = Integer.parseInt(str);
+                intList.add(number);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해주세요.");
+            }
+        }
+        return intList;
+    }
+
+    public String[] splitInput(String input, String delimiter) {
+        return input.split(delimiter);
+    }
 }

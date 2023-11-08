@@ -28,13 +28,8 @@ public class LottoController {
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.countPrizes(lottoWallet, winningLotto);
-        outputView.println();
-        outputView.printPrizeCount(lottoResult.getResult());
 
-        TotalAmount totalAmount = new TotalAmount(lottoResult.getTotalAmount());
-        MoneyRate moneyRate = new MoneyRate(totalAmount, money);
-
-        outputView.printMoneyRate(moneyRate.getRate());
+        displayResult(money, lottoResult);
     }
 
     private Money getMoney() {
@@ -92,4 +87,13 @@ public class LottoController {
         }
     }
 
+    private void displayResult(Money money, LottoResult lottoResult) {
+        outputView.println();
+        outputView.printPrizeCount(lottoResult.getResult());
+
+        TotalAmount totalAmount = new TotalAmount(lottoResult.getTotalAmount());
+        MoneyRate moneyRate = new MoneyRate(totalAmount, money);
+
+        outputView.printMoneyRate(moneyRate.getRate());
+    }
 }

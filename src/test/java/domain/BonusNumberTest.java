@@ -21,7 +21,7 @@ class BonusNumberTest {
 				.isInstanceOf(IllegalArgumentException.class);
 	}
 
-	@DisplayName("보너스 번호가 1~45 사이의 값인지 검증 아정니라면 예외 발생")
+	@DisplayName("보너스 번호가 1~45 사이의 값인지 검증 아니라면 예외 발생")
 	@Test
 	public void checkOutOfRangeNumbers() {
 		// given

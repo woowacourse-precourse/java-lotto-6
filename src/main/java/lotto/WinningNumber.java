@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import lotto.PrintError;
+
 
 public class WinningNumber {
 
@@ -12,15 +14,13 @@ public class WinningNumber {
     private static final int LOTTO_MAX = 45;
     private static final int LOTTO_MIN = 1;
 
-
-    PrintError printError = new PrintError();
     private final String[] userInput;
     private final HashSet<Integer> numbers = new HashSet<>();
 
     public WinningNumber(String userInput){
-        this.userInput = ",".split(userInput);
-        inputValidate(this.userInput); //입력한 값에 대한 유효성 체크
-        makeNumbers(this.userInput); // 입력한 값 HashSet으로 변환
+        this.userInput = userInput.split(",");
+        inputValidate(); //입력한 값에 대한 유효성 체크
+        makeNumbers(); // 입력한 값 HashSet으로 변환
         numbersValidate(numbers); // HashSet에 대한 유효성 체크
     }
 
@@ -29,7 +29,7 @@ public class WinningNumber {
         duplicateValidate(numbers); //로또의 중복이 있는가
     }
 
-    private void inputValidate(String[] userInput) {
+    private void inputValidate() {
         decimalValidate(userInput); //입력한 값이 정수인가
         rangeValidation(userInput); //입력한 값의 범위가 유요한가
     }
@@ -43,7 +43,8 @@ public class WinningNumber {
 
     private void checkRange(int tempNum) {
         if((tempNum>LOTTO_MAX) && (tempNum <LOTTO_MIN)){
-            throw new IllegalArgumentException(printError.rangeError());
+            System.out.println(PrintError.rangeError());
+            throw new IllegalArgumentException();
         }
     }
 
@@ -55,23 +56,26 @@ public class WinningNumber {
 
     private void decimalCheck(String temp) {
         if (!temp.matches("\\d+")){
-            throw new IllegalArgumentException(printError.decimalException());
+            System.out.println(PrintError.decimalException());
+            throw new IllegalArgumentException();
         }
     }
 
-    public void makeNumbers(String[] userInput){
+    public void makeNumbers(){
         for(int i = 0; i < userInput.length; i++){
             numbers.add(Integer.parseInt(userInput[i]));
         }
     }
 
     private void duplicateValidate(HashSet<Integer> numbers) {
-        if(numbers.size() != LOTTO_SIZE ) throw new IllegalArgumentException(printError.duplicateError());
+        System.out.println(PrintError.duplicateError());
+        if(numbers.size() != LOTTO_SIZE ) throw new IllegalArgumentException();
 
     }
 
     private void sizeValidate (HashSet<Integer> numbers) {
-        if (numbers.size() != 6) throw new IllegalArgumentException(printError.countERROR());
+        System.out.println(PrintError.countERROR());
+        if (numbers.size() != 6) throw new IllegalArgumentException();
     }
 
     public HashSet<Integer> getWinningNumber(){

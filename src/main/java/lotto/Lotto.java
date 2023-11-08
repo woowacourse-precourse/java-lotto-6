@@ -1,17 +1,21 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import lotto.PrintError;
 
 public class Lotto {
 
-    PrintError printError = new PrintError();
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().collect(Collectors.toList());
+
     }
 
 
@@ -23,13 +27,15 @@ public class Lotto {
 
     private void sizeValidate(List<Integer> numbers){
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(printError.countERROR());
+            System.out.println(PrintError.countERROR());
+            throw new IllegalArgumentException();
         }
     }
     private void duplicateValidate(List<Integer> numbers) {
         Set<Integer> numSet = new HashSet<>(numbers);
         if(numSet.size() != numbers.size()){
-            throw new IllegalArgumentException(printError.duplicateError());
+            System.out.println(PrintError.duplicateError());
+            throw new IllegalArgumentException();
         }
     }
 

@@ -20,4 +20,8 @@ public class Lotto {
         return numbers;
     }
 
+    public boolean hasMatchedNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
 }

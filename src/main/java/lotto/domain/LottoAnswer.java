@@ -1,6 +1,8 @@
 package lotto.domain;
 
 
+import lotto.error.ErrorMessage;
+
 public class LottoAnswer extends Lotto {
     private BonusNumber bonusNumber;
 
@@ -24,7 +26,7 @@ public class LottoAnswer extends Lotto {
                 int num = Integer.parseInt(part);
                 getNumbers().add(num);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("올바른 당첨 번호를 입력해주세요.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_INPUT);
             }
         }
     }

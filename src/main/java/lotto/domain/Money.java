@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.error.ErrorMessage;
+
 public class Money {
     private final int amount;
 
@@ -13,14 +15,14 @@ public class Money {
     private void isPositive(String input) {
         int num = Integer.parseInt(input);
         if (num <= 0) {
-            throw new IllegalArgumentException("양수를 입력해주세요");
+            throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE);
         }
     }
 
     private void isDividedBy1000(String input) {
         int num = Integer.parseInt(input);
-        if (num % 1000 != 0) {
-            throw new IllegalArgumentException("1000의 배수를 입력해주세요");
+        if (num % Lotto.PRICE != 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_BY_PRICE);
         }
     }
 
@@ -28,7 +30,7 @@ public class Money {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해주세요");
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC);
         }
     }
 

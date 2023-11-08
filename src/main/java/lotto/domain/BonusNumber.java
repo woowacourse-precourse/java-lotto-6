@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.error.ErrorMessage;
+
 public class BonusNumber {
     private int number;
 
@@ -23,13 +25,13 @@ public class BonusNumber {
         try{
             return Integer.parseInt(input);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("숫자를 입력해주세요");
+            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC);
         }
     }
 
     private void isInRange(int number) {
         if (number < Lotto.MIN_VALUE || number > Lotto.MAX_VALUE) {
-            throw new IllegalArgumentException("보너스 번호는 1과 45사이의 수여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE);
         }
     }
 

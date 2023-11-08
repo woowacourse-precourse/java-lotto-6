@@ -6,18 +6,26 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoPaper {
-    List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     private LottoPaper() {
         lottos = new ArrayList<>();
+    }
+
+    private LottoPaper(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
     public static LottoPaper create() {
         return new LottoPaper();
     }
 
+    public static LottoPaper copy(LottoPaper lottoPaper) {
+        return new LottoPaper(lottoPaper.getLottos());
+    }
+
     public void add(Lotto lotto) {
-        lottos.add(lotto);
+        lottos.add(Lotto.copy(lotto));
     }
 
     public List<Lotto> getLottos() {

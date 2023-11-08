@@ -34,6 +34,10 @@ public class Lotto {
         return copied;
     }
 
+    public static Lotto copy(Lotto lotto) {
+        return new Lotto(lotto.getNumbers());
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

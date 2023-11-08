@@ -29,11 +29,11 @@ public class User {
     }
 
     public LottoPaper getLottoPaper() {
-        return lottoPaper;
+        return LottoPaper.copy(lottoPaper);
     }
 
     public void setLottoPaper(LottoPaper lottoPaper) {
-        this.lottoPaper = lottoPaper;
+        this.lottoPaper = LottoPaper.copy(lottoPaper);
     }
 
     public int getPayed() {

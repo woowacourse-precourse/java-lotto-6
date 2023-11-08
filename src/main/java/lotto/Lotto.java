@@ -7,6 +7,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
+
+    private static final String OPENING_BRACKET = "[";
+    private static final String CLOSING_BRACKET = "]";
+    private static final String DELIMITER = ", ";
+    private static final int LOTTO_NUMBER_SIZE = 6;
+    private static final int CHECK_BONUS = 5;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,13 +24,13 @@ public class Lotto {
 
     public void printNumbers() {
         StringBuilder sb = new StringBuilder();
-        sb.append("[");
+        sb.append(OPENING_BRACKET);
         String numberString = numbers.stream()
                 .sorted()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(DELIMITER));
         sb.append(numberString);
-        sb.append("]");
+        sb.append(CLOSING_BRACKET);
         System.out.println(sb.toString());
     }
 
@@ -31,7 +38,7 @@ public class Lotto {
         int matchCount = countMatchNumbers(winningNumber);
         boolean bonus = false;
 
-        if (matchCount == 5) {
+        if (matchCount == CHECK_BONUS) {
             bonus = this.numbers.contains(winningNumber.getBonus());
         }
 
@@ -51,7 +58,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException();
         }
     }

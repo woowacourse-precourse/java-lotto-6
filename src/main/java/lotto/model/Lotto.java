@@ -1,5 +1,4 @@
 package lotto.model;
-import lotto.model.Errors;
 
 import java.util.HashSet;
 import java.util.List;

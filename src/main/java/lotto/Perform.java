@@ -19,18 +19,26 @@ public class Perform {
     }
     public void total(int result) {
         for (Awards value : values) {
-            if (result == value.getMatching()) {value.addCount();}
+            if (result == value.getMatching()) {
+                value.addCount();
+            }
         }
     }
     public void result(int cnt) {
+        viewResult();
         int sum = 0;
-        System.out.println(PRINT_RESULT);
-        System.out.println(UPPER_SCORE);
         for (Awards value : values) {
             System.out.println(value.getMark()+value.getCount()+"개");
             sum += value.getAward()*value.getCount();
         }
-        System.out.println(PERFOEM_IS+calculateResult(sum, cnt*1000)+N_PERCENT);
+        viewResult(PERFOEM_IS+calculateResult(sum, cnt*1000)+N_PERCENT);
+    }
+    public void viewResult() {
+        System.out.println(PRINT_RESULT);
+        System.out.println(UPPER_SCORE);
+    }
+    public void viewResult(String perform) {
+        System.out.println(perform);
     }
     public String calculateResult(int winningSum,int ticketCnt) {
         return String.format("%.1f", (float) winningSum/ticketCnt*100);

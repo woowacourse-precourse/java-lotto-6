@@ -17,10 +17,10 @@ public enum Awards{
         this.mark = mark;
         this.matching = matching;
     }
+
     public void addCount() {
         this.count++;
     }
-
     public int getAward(){
         return this.award;
     }

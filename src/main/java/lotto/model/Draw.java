@@ -11,22 +11,29 @@ public class Draw {
     public Draw(List<Integer> ticket) {
         this.drawed = ticket;
     }
-    @Override
-    public String toString() {
-        return ""+drawed;
+    public int match(List<Integer> numbers, int number) {
+        return basic(numbers)+bonus(number);
     }
-    // 방법이 생각안나서 임시로 만듦 => 리팩토링 꼭 해야됨
-    public int match(List<Integer> numbers, int bonus) {
+    public int basic(List<Integer> numbers) {
         int match = 0;
         for (int i : drawed) {
             match += isMatch(numbers, i);
         }
-        if (drawed.contains(bonus)) match *= -1;
         return match;
     }
+    public int bonus(int bonus) {
+        if (drawed.contains(bonus))
+            return 1;
+        return 0 ;
+    }
     public int isMatch(List<Integer> numbers, int number) {
-        if (numbers.contains(number)) return 1;
+        if (numbers.contains(number))
+            return 1;
         return 0;
+    }
+    @Override
+    public String toString() {
+        return ""+drawed;
     }
 }
 

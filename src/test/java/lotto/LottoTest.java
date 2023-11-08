@@ -29,24 +29,24 @@ class LottoTest {
     @ParameterizedTest
     @ValueSource(strings = {""," ","6k", "*"})
     void createLottoByNonInteger(String input) {
-        InputSystem InputSystem = new InputSystem();
-        assertThatThrownBy(() -> InputSystem.isNumberValid(input))
+        Validation valid = new Validation();
+        assertThatThrownBy(() -> valid.isNumberValid(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("숫자가 1 ~ 45 사이 수인지")
     @Test
     void createBonusByOverValue() {
-        InputSystem InputSystem = new InputSystem();
-        assertThatThrownBy(() -> InputSystem.isRangeValid("56"))
+        Validation valid = new Validation();
+        assertThatThrownBy(() -> valid.isRangeValid("56"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("입력한 번호 6자리 중 보너스가 있을 때")
     @Test
     void isBonusInLotto() {
-        InputSystem InputSystem = new InputSystem();
-        assertThatThrownBy(() -> InputSystem.isDuplicate(List.of(1, 2, 3, 4, 5, 6), 6))
+        Validation valid = new Validation();
+        assertThatThrownBy(() -> valid.isDuplicate(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

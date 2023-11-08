@@ -42,7 +42,7 @@ class PurchaseAmountTest {
 	@DisplayName("구매 금액에 따라 로또가 몇개인지 체크")
 	@Test
 	public void LottoPurchaseCountForGivenPurchaseAmount() {
-		//given
+		// given
 		String input = "3000";
 		int excepted = 3;
 
@@ -50,7 +50,7 @@ class PurchaseAmountTest {
 		PurchaseAmount purchaseAmount = new PurchaseAmount(input);
 		int lottoPurchaseCount = purchaseAmount.getLottoPurchaseCount();
 
-		//then
+		// then
 		Assertions.assertThat(lottoPurchaseCount).isEqualTo(excepted);
 	}
 }

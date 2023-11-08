@@ -35,7 +35,7 @@ class BonusNumberTest {
 	@DisplayName("보너스 번호가 당첨 로또 번호에 존재하면 예외 발생")
 	@Test
 	public void BonusNumberInWinningNumbers() {
-		//given
+		// given
 		String input = "1";
 
 		// when & then

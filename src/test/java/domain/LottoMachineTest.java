@@ -9,7 +9,7 @@ class LottoMachineTest {
 	@DisplayName("랜덤 로또 번호 Lotto를 통해 유효성 검사")
 	@Test
 	public void createLottoWithRandomNumbers() {
-		//given
+		// given
 		LottoMachine lottoMachine = new LottoMachine();
 
 		// when

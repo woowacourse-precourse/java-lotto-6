@@ -12,7 +12,7 @@ class PurchaseLottoTest {
 	@ParameterizedTest
 	@ValueSource(strings = {"3000", "12000", "100000"})
 	public void CreateLottosForPurchaseAmount(String input) {
-		//given
+		// given
 		PurchaseAmount purchaseAmount = new PurchaseAmount(input);
 		int expected = purchaseAmount.getLottoPurchaseCount();
 
@@ -20,7 +20,7 @@ class PurchaseLottoTest {
 		PurchaseLotto purchaseLotto = new PurchaseLotto(purchaseAmount);
 		List<Lotto> lottos = purchaseLotto.getLottos();
 
-		//then
+		// then
 		Assertions.assertThat(lottos.size()).isEqualTo(expected);
 	}
 }

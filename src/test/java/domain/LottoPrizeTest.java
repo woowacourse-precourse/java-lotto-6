@@ -83,6 +83,7 @@ class LottoPrizeTest {
 	public void checkThreeMatch(int matchCount) {
 		// given
 		boolean isBonusNumber = false;
+
 		// when
 		LottoPrize lottoPrizeType = LottoPrize.getLottoPrizeType(matchCount, isBonusNumber);
 

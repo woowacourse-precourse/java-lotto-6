@@ -16,7 +16,6 @@ public class PlayLotto {
     Lotto lotto;
     BonusNumber bonusNumber;
     String[] inputLottoNumbers;
-    int[] rankCnt = new int[8];
     List<List<Integer>> userLottoNumbers = new ArrayList<>();
     List<Integer> lottoNumbers;
     int lottoCnt;
@@ -25,6 +24,7 @@ public class PlayLotto {
     boolean hasBonusNumber;
     double profit;
     double profitRate;
+    String userMoney;
 
     public void play(){
         getMoney();
@@ -38,8 +38,9 @@ public class PlayLotto {
 
     public void getMoney(){
         try{
-            System.out.println("구입 금액을 입력해주세요.");
-            money = new Money(readLine());
+            System.out.println("구입 금액을 입력해 주세요.");
+            userMoney = readLine();
+            money = new Money(userMoney);
             System.out.println();
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -63,16 +64,9 @@ public class PlayLotto {
     }
 
     public List<Integer> getGeneratedRandomNumbers(){
-
-        List<Integer> curNumbers = new ArrayList<>();
-        while (curNumbers.size() < LOTTO_NUM_CNT){
-            int randomNumber = Randoms.pickNumberInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
-            if (!curNumbers.contains(randomNumber)) {
-                curNumbers.add(randomNumber);
-            }
-        }
-
-        Collections.sort(curNumbers);
+        List<Integer> curNumbers;
+        curNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUM_CNT);
+        curNumbers.sort(Comparator.naturalOrder());
         return curNumbers;
     }
 

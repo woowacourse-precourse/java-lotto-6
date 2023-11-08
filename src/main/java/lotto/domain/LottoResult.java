@@ -1,34 +1,54 @@
 package lotto.domain;
 
-public enum LottoResult {
-    THREE_COUNT(3, 5_000,0)
-    , FOUR_COUNT(4, 50_000,0)
-    , FIVE_COUNT(5, 1_500_000,0)
-    , FIVE_COUNT_WITH_BONUS(50, 30_000_000, 0)
-    , SIX_COUNT(6, 2_000_000_000, 0);
+public class LottoResult {
 
-    private int number;
-    private int price;
-    private int matchCount;
+    private int threeCount;
 
-    LottoResult(int number, int price, int matchCount) {
-        this.number = number;
-        this.price=price;
-        this.matchCount = matchCount;
+    private int fourCount;
+
+    private int fiveCount;
+
+    private int fiveWithBonusCount;
+
+    private int sixCount;
+
+    public int getThreeCount() {
+        return threeCount;
     }
 
-    public void addMatchCount() {
-        this.matchCount += 1;
+    public int getFourCount() {
+        return fourCount;
     }
 
-    public int getNumber() {
-        return number;
-    }
-    public int getPrice() {
-        return price;
+    public int getFiveCount() {
+        return fiveCount;
     }
 
-    public int getMatchCount() {
-        return matchCount;
+    public int getFiveWithBonusCount() {
+        return fiveWithBonusCount;
+    }
+
+    public int getSixCount() {
+        return sixCount;
+    }
+
+    public void addThreeCount() {
+        this.threeCount += 1;
+    }
+
+    public void addFourCount() {
+        this.fourCount += 1;
+    }
+
+    public void addFiveCount() {
+        this.fiveCount += 1;
+    }
+
+    public void addFiveWithBonusCount() {
+        this.fiveWithBonusCount += 1;
+    }
+
+    public void addSixCount() {
+        this.sixCount += 1;
     }
 }

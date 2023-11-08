@@ -1,10 +1,10 @@
 package lotto.domain;
 
-
 import lotto.Lotto;
 import lotto.constant.LottoNumber;
 import lotto.util.InputUtil;
 import lotto.util.MessageUtil;
+import lotto.util.NumberUtil;
 import lotto.util.ValidationUtil;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class LottoPurchase {
 
     private final ValidationUtil validationUtil = new ValidationUtil();
 
-    private final NumberGenerator numberGenerator = new NumberGenerator();
+    private final NumberUtil numberUtil = new NumberUtil();
 
     private List<Lotto> userLottos;
 
@@ -41,11 +41,8 @@ public class LottoPurchase {
     }
 
     private int getUserPurchaseAmount() {
-        int purchaseAmount = Integer.parseInt(inputUtil.getUserInput());
-        validationUtil.validatePurchase(purchaseAmount);
-
-       String purchaseAmount= inputUtil.getUserInput();
-       return validationUtil.validatePurchase(purchaseAmount);
+        String purchaseAmount = inputUtil.getUserInput();
+        return validationUtil.validatePurchase(purchaseAmount);
     }
 
     private int getPurchaseCount(int purchaseAmount) {
@@ -56,12 +53,13 @@ public class LottoPurchase {
     }
 
     private Lotto generateLottoNumbers() {
-        List<Integer> lottoNumbers = numberGenerator.getLottoNumbers();
+        List<Integer> lottoNumbers = numberUtil.getLottoNumbers();
         Lotto lotto = new Lotto(lottoNumbers);
         messageUtil.printPurchaseInfo(lotto.getLottoNumbers());
 
         return lotto;
     }
+
     public List<Lotto> getUserLottos() {
         return userLottos;
     }

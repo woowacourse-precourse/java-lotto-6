@@ -21,13 +21,14 @@ public class LottoWinningNumber {
 
     private Integer bonusNum;
 
-    public LottoWinningNumber getWinningNumbersInfo(){
-        this.winningNums=getWinningNumbers();
-        this.bonusNum=getBonusNumbers();
+    public LottoWinningNumber getWinningNumbersInfo() {
+        this.winningNums = getWinningNumbers();
+        this.bonusNum = getBonusNumbers();
 
         return this;
     }
-    public List<Integer> getWinningNumbers() {
+
+    public List<Integer> getWinningNums() {
         return winningNums;
     }
 
@@ -35,10 +36,10 @@ public class LottoWinningNumber {
         return bonusNum;
     }
 
-    private List<Integer>getWinningNumbers(){
+    private List<Integer> getWinningNumbers() {
         messageUtil.printWinningInput();
         String winningNums = inputUtil.getUserInput();
-        String[] winningAmount =validationUtil.validateWinningAmount(winningNums);
+        String[] winningAmount = validationUtil.validateWinningAmount(winningNums);
 
         return Arrays.stream(winningAmount)
                 .map(Integer::parseInt)
@@ -50,6 +51,6 @@ public class LottoWinningNumber {
         int bonusNum = Integer.parseInt(inputUtil.getUserInput());
         validationUtil.validateBonusRange(bonusNum);
 
-    return bonusNum;
+        return bonusNum;
     }
 }

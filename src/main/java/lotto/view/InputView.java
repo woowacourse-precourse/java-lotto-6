@@ -1,7 +1,9 @@
 package lotto.view;
 
+import static lotto.constant.message.LottoMessage.INPUT_BONUS_NUMBER;
 import static lotto.constant.message.LottoMessage.INPUT_MONEY_MESSAGE;
 import static lotto.constant.message.LottoMessage.INPUT_WINNING_NUMBER;
+import static lotto.util.Parser.stringToInt;
 import static lotto.util.Parser.stringToList;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -27,7 +29,8 @@ public class InputView {
     }
 
     public int readBonusNumber() {
-        return 0;
+        System.out.println(INPUT_BONUS_NUMBER);
+        return stringToInt(Console.readLine());
     }
 
 }

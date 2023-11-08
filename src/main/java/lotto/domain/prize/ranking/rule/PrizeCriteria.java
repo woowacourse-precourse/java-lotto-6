@@ -4,11 +4,11 @@ import lotto.domain.prize.ranking.PrizeMatchingNumber;
 
 public enum PrizeCriteria {
 
-    FIRST((lotto, prize) -> prize.isWin(lotto, PrizeMatchingNumber.FIRST.getMatchCount())),
-    SECOND((lotto, prize) -> prize.isWinWithBonus(lotto, PrizeMatchingNumber.SECOND.getMatchCount())),
-    THIRD((lotto, prize) -> prize.isWinWithoutBonus(lotto, PrizeMatchingNumber.THIRD.getMatchCount())),
+    FIFTH((lotto, prize) -> prize.isWin(lotto, PrizeMatchingNumber.FIFTH.getMatchCount())),
     FOURTH((lotto, prize) -> prize.isWin(lotto, PrizeMatchingNumber.FOURTH.getMatchCount())),
-    FIFTH((lotto, prize) -> prize.isWin(lotto, PrizeMatchingNumber.FIFTH.getMatchCount()));
+    THIRD((lotto, prize) -> prize.isWinWithoutBonus(lotto, PrizeMatchingNumber.THIRD.getMatchCount())),
+    SECOND((lotto, prize) -> prize.isWinWithBonus(lotto, PrizeMatchingNumber.SECOND.getMatchCount())),
+    FIRST((lotto, prize) -> prize.isWin(lotto, PrizeMatchingNumber.FIRST.getMatchCount()));
 
     private final PrizeRule prizeRule;
 

@@ -3,11 +3,11 @@ package lotto.domain.prize.ranking.rule;
 import lotto.domain.prize.ranking.PrizeAmount;
 
 public enum PrizeRanking {
-    FIRST(PrizeCriteria.FIRST, PrizeAmount.FIRST),
-    SECOND(PrizeCriteria.SECOND, PrizeAmount.SECOND),
-    THIRD(PrizeCriteria.THIRD, PrizeAmount.THIRD),
+    FIFTH(PrizeCriteria.FIFTH, PrizeAmount.FIFTH),
     FOURTH(PrizeCriteria.FOURTH, PrizeAmount.FOURTH),
-    FIFTH(PrizeCriteria.FIFTH, PrizeAmount.FIFTH);
+    THIRD(PrizeCriteria.THIRD, PrizeAmount.THIRD),
+    SECOND(PrizeCriteria.SECOND, PrizeAmount.SECOND),
+    FIRST(PrizeCriteria.FIRST, PrizeAmount.FIRST);
 
     private final PrizeCriteria prizeCriteria;
     private final PrizeAmount prizeAmount;

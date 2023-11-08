@@ -4,11 +4,11 @@ import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 
 public enum PrizeMatchingNumber {
-    FIRST(6),
-    SECOND(5),
-    THIRD(5),
-    FOURTH(4),
     FIFTH(3),
+    FOURTH(4),
+    THIRD(5),
+    SECOND(5),
+    FIRST(6),
     ;
 
     private final int matchCount;

@@ -3,16 +3,13 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import lotto.domain.PrizeLotto;
+import lotto.domain.Rank;
 import lotto.util.GameUtil;
 import lotto.view.View;
 import lotto.util.Validator;
 import lotto.domain.Lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import java.util.*;
 
 public class Game {
     private static final int LOTTO_PRICE = 1000;
@@ -37,6 +34,7 @@ public class Game {
 
         getPrizeLotto();
 
+        showResult();
     }
 
     private void getMoney(){
@@ -80,7 +78,6 @@ public class Game {
         int bonusNum = getBonusNum();
 
         prizeLotto = new PrizeLotto(winLotto,bonusNum);
-
     }
 
     private List<Integer> getIntegerWinLotto(String input){
@@ -125,4 +122,34 @@ public class Game {
         }
     }
 
+    private void showResult(){
+        List<Rank> rankList = createRankList();
+        HashMap<Rank, Integer> rankIntegerHashMap = getRankIntegerHashMap(rankList);
+        GameUtil.printHittingResult(rankIntegerHashMap);
+
+        int totalHitMOney = caculateTotalHitMoney(rankIntegerHashMap);
+        GameUtil.printProfitResult(totalHitMOney,money);
+    }
+
+    private List<Rank> createRankList(){
+        List<Rank> rankList = new ArrayList<>();
+        purchasedLotto.forEach(lotto -> rankList.add(prizeLotto.match(lotto)));
+        return rankList;
+    }
+
+    private HashMap<Rank, Integer> getRankIntegerHashMap(List<Rank> rankList){
+        HashMap<Rank, Integer> rankIntegerHashMap = new LinkedHashMap<>();
+        calculateLottoHit(rankList,rankIntegerHashMap);
+        return rankIntegerHashMap;
+    }
+
+    private void calculateLottoHit(List<Rank> rankList, HashMap<Rank, Integer> rankIntegerHashMap){
+        Arrays.stream(Rank.values()).forEach(rank -> rankIntegerHashMap.put(rank, 0));
+        rankList.forEach(rank -> rankIntegerHashMap.put(rank, rankIntegerHashMap.get(rank)+1));
+    }
+
+    private int caculateTotalHitMoney(HashMap<Rank, Integer> rankIntegerHashMap){
+        return rankIntegerHashMap.entrySet().stream()
+                .mapToInt(e -> e.getKey().getWinningMoney() * e.getValue()).sum();
+    }
 }

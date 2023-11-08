@@ -1,8 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.INVALID_REQUIRED_LOTTO_NUM;
 import static lotto.validation.LottoValidation.validate_lottoNum;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -15,21 +15,16 @@ public class Lotto {
         validate(numbers);
         validateLottoNums(numbers);
         this.numbers = numbers;
-        ascendingNumbers();
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_REQUIRED_LOTTO_NUM);
         }
     }
 
     private void validateLottoNums(List<Integer> numbers) {
         validate_lottoNum(numbers);
-    }
-
-    private void ascendingNumbers(){
-        Collections.sort(numbers);
     }
 
     public int getRank(List<Integer> nums, int bonusNum){

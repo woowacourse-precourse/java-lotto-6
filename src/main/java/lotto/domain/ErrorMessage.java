@@ -12,6 +12,7 @@ public enum ErrorMessage {
 
     private static final String ERROR = "[ERROR] ";
     private final String message;
+
     ErrorMessage(String errorMessage) {
         this.message = ERROR + errorMessage;
     }

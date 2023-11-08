@@ -2,8 +2,6 @@ package lotto.model;
 
 public class WinningLotto {
     private static final String BONUS_NUMBER_DOES_NOT_DUPLICATED_WITH_WINNING_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.";
-    private static final int MIN_RANGE = 1;
-    private static final int MAX_RANGE = 45;
     private final Lotto winningLotto;
     private final int bonusNumber;
 

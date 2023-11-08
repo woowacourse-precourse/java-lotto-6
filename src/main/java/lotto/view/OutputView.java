@@ -10,6 +10,7 @@ import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.Rank;
 import lotto.model.Result;
+import lotto.model.constant.LottoNumber;
 import lotto.util.WinningsGenerator;
 
 public class OutputView {
@@ -24,7 +25,6 @@ public class OutputView {
     private static final String COMMA = ", ";
     private static final String MATCH_BONUS_BALL = "보너스 볼 일치";
     private static final String TOTAL_YIELD = "총 수익률은 %.1f%%입니다.";
-    private static final int ONE_HUNDRED_PERCENT = 100;
     private static final Map<Integer, String> winnings = WinningsGenerator.createWinnings();
 
     private OutputView() {
@@ -73,7 +73,7 @@ public class OutputView {
 
     public static void printYield(Result result, Money money) {
         double winnings = result.getWinnings();
-        double yield = (winnings / money.getMoney()) * ONE_HUNDRED_PERCENT;
+        double yield = (winnings / money.getMoney()) * LottoNumber.ONE_HUNDRED_PERCENT;
         System.out.printf(TOTAL_YIELD, yield);
     }
 

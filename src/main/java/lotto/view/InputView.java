@@ -2,7 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.InputValidator;
-import lotto.util.LottoValidator;
+import lotto.util.WinningLottoValidator;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class InputView {
         System.out.println(REQUEST_WINNING_NUMBERS_MESSAGE.getMessage());
         String playerInput = Console.readLine();
         List<Integer> winningNumbers = InputValidator.validateWinningNumbers(playerInput);
-        LottoValidator.validateLotto(winningNumbers);
+        WinningLottoValidator.validateLotto(winningNumbers);
         return winningNumbers;
     }
 
@@ -28,7 +28,7 @@ public class InputView {
         System.out.println(REQUEST_BONUS_NUMBER_MESSAGE.getMessage());
         String playerInput = Console.readLine();
         Integer bonusNumber = InputValidator.validateBonusNumber(playerInput);
-        LottoValidator.validateLottoNumberOutOfRange(bonusNumber);
+        WinningLottoValidator.validateLottoNumberOutOfRange(bonusNumber);
         return bonusNumber;
     }
 }

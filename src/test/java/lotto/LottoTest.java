@@ -87,5 +87,19 @@ class LottoTest {
         assertFalse(checkLottoNumberInWinningNumber(winningNumbers, numberFalse));
     }
 
+    @DisplayName("보너스 번호가 로또 번호 안에 있는지 판단하는 메서드 테스트")
+    @Test
+    void testIsBonusNumberInLotto() {
+        Lotto lotto = new Lotto(Arrays.asList(2, 4, 6, 8, 10, 12));
+
+        // 보너스 번호 포함하는 경우
+        int bonusNumberTrue = 6;
+        assertTrue(isBonusNumberInLotto(lotto, bonusNumberTrue));
+
+        // 보너스 번호 포함하지 않는 경우
+        int bonusNumberFalse = 7;
+        assertFalse(isBonusNumberInLotto(lotto, bonusNumberFalse));
+    }
+
 
 }

@@ -36,7 +36,7 @@ public class LottoSimulation {
             try {
                 return new Amount(Integer.parseInt(inputView.readPurchaseAmount()));
             } catch (IllegalArgumentException e) {
-                outputView.printMessage(String.format(PURCHASE_AMOUNT_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
+                outputView.printMessage(checkAmountErrorMessage(e));
             }
         }
     }
@@ -54,7 +54,7 @@ public class LottoSimulation {
             try {
                 return new WinningNumber(stringToNumberList(inputView.readWinningNumber()));
             } catch (IllegalArgumentException e) {
-                outputView.printMessage(checkErrorMessage(e));
+                outputView.printMessage(checkWinningNumberErrorMessage(e));
             }
         }
     }
@@ -84,7 +84,15 @@ public class LottoSimulation {
                 .toList();
     }
 
-    private String checkErrorMessage(IllegalArgumentException e) {
+    private String checkAmountErrorMessage(IllegalArgumentException e) {
+        if (e.getMessage().equals(PURCHASE_AMOUNT_NOT_A_NUMBER_ERROR_MESSAGE.getErrorMessage())) {
+            return String.format(PURCHASE_AMOUNT_NOT_A_NUMBER_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString());
+        }
+        return String.format(PURCHASE_AMOUNT_DIVIDE_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString());
+
+    }
+
+    private String checkWinningNumberErrorMessage(IllegalArgumentException e) {
         if (e.getMessage().equals(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage())) {
             return String.format(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString());
         }

@@ -39,13 +39,16 @@ class LottoTest {
     void 구입금액_예외처리_테스트() {
         assertThatThrownBy(() -> new Amount(8800))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(PURCHASE_AMOUNT_ERROR_MESSAGE.getErrorMessage());
+                .hasMessageContaining(PURCHASE_AMOUNT_DIVIDE_ERROR_MESSAGE.getErrorMessage());
+        assertThatThrownBy(() -> new Amount(-8000))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(PURCHASE_AMOUNT_NOT_A_NUMBER_ERROR_MESSAGE.getErrorMessage());
     }
 
     @Test
     void 당첨번호_입력테스트() {
         WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(List.of(1, 2, 3, 4, 5, 6)).isEqualTo(winningNumber.getWinningNumber());
+        assertThat(List.of(1, 2, 3, 4, 5, 6)).isEqualTo(winningNumber.getNumbers());
     }
 
     @Test

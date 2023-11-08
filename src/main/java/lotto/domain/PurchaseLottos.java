@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Validator;
 import lotto.domain.dto.BuyLottoInfo;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static lotto.Constant.*;
-import static lotto.ErrorMessage.NOT_VALID_MONEY;
+import static lotto.view.ErrorMessage.NOT_VALID_MONEY;
 import static lotto.Validator.validatePositiveNumber;
 
 public class PurchaseLottos {

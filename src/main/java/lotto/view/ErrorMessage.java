@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 public final class ErrorMessage {
     public static String EMPTY_INPUT_ERROR="[ERROR] 공백 입력은 불가능합니다.";

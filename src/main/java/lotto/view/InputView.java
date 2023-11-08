@@ -1,16 +1,11 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.ErrorMessage;
-import lotto.Validator;
-import lotto.domain.BonusNumber;
-import lotto.domain.WinningLotto;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.ErrorMessage.*;
+import static lotto.view.ErrorMessage.*;
 import static lotto.Validator.*;
 
 public class InputView {

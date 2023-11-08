@@ -1,12 +1,8 @@
 package lotto.domain;
 
-import lotto.Validator;
-
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.ErrorMessage.NOT_COMPOSED_OF_UNIQUE_NUMBERS;
-import static lotto.ErrorMessage.NOT_VALID_LENGTH;
 import static lotto.Validator.*;
 
 public class Lotto {

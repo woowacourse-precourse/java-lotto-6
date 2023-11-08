@@ -34,7 +34,7 @@ public class InputView {
         while (true) {
             try {
                 input = Integer.parseInt(Console.readLine());
-                validateBonusNumber(input);
+                validateLottoNumber(input);
                 break;
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(ERROR_PROMPT + "금액으로 숫자를 입력해주세요.");
@@ -43,7 +43,7 @@ public class InputView {
         return input;
     }
 
-    private void validateBonusNumber(int input) {
+    private void validateLottoNumber(int input) {
         if (input < 1 || 45 < input) {
             throw new IllegalArgumentException(ERROR_PROMPT + "로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
@@ -68,7 +68,7 @@ public class InputView {
 
     private void validateLottoNumbers(List<Integer> numbers) {
         for (int number : numbers) {
-            validateBonusNumber(number);
+            validateLottoNumber(number);
         }
     }
 }

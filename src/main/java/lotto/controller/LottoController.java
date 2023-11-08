@@ -18,8 +18,10 @@ public class LottoController {
 
     public void run() {
         LottoTicket lottoTicket = Retry.retryOnException(() -> buyLottoTicket());
+
         Lotto lotto = Retry.retryOnException(() -> inputWinLottoNumbers());
         WinLotto winLotto = Retry.retryOnException(() -> inputWinLottoNumbersWithBonus(lotto));
+
         calculateWinStatistics(lottoTicket, winLotto);
     }
 

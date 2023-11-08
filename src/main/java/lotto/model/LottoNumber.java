@@ -4,7 +4,6 @@ import lotto.utils.ErrorMessage;
 
 import java.util.Objects;
 
-
 public class LottoNumber {
     public static final Integer MIN_LOTTO_NUMBER_RANGE = 1;
     public static final Integer MAX_LOTTO_NUMBER_RANGE = 45;

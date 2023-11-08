@@ -18,6 +18,19 @@ public class Lotto {
         }
     }
 
+    public int countLottery(List<Integer> lotteryList) {
+        int res = 0;
+        
+        return countLottery(lotteryList, res);
+    }
+
+    private int countLottery(List<Integer> lotteryList, int res) {
+        for(int number : numbers){
+            if (lotteryList.contains(number)) res++;
+        }
+        return res;
+    }
+
     // TODO: 추가 기능 구현
     @Override
     public String toString(){

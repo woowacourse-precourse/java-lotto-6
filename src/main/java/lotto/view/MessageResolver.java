@@ -8,7 +8,7 @@ import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 
 public class MessageResolver {
-    private static final String PURCHASE_AMOUNT_MESSAGE_FORMAT = "%d개를 구매했습니다.\n";
+    private static final String PURCHASE_AMOUNT_MESSAGE_FORMAT = "\n%d개를 구매했습니다.\n";
     private static final String PROFIT_RATE_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
     private static final String NON_BONUS_RANK_DESCRIPTION = "%d개 일치 (%,d원) - %d개";
     private static final String BONUS_RANK_DESCRIPTION = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";

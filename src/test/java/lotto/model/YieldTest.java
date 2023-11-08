@@ -11,7 +11,6 @@ class YieldTest {
 
     @Test
     void 수익률_계산() {
-        LottoResult lottoResult = new LottoResult();
         MatchLotto matchLotto = new MatchLotto();
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
@@ -26,11 +25,11 @@ class YieldTest {
         purchaseHistory.add(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
 
         matchLotto.matchLotto(winningNumbers, bonusNumber, purchaseHistory);
-        lottoResult.checkResult(matchLotto.getMatchResult());
-        HashMap<LottoRankings, Integer> results = lottoResult.getLottoResult();
+        HashMap<LottoRankings, Integer> lottoResult = LottoResult.createLottoResult()
+                .checkResult(matchLotto.getMatchResult());
 
         String yield = Yield.createYield()
-                .calculateYield(8000, results);
+                .calculateYield(8000, lottoResult);
 
         assertThat(yield).isEqualTo("62.5");
     }

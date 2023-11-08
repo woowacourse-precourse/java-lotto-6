@@ -9,7 +9,6 @@ import lotto.dto.response.LottoResultsDto;
 import lotto.dto.response.LottoTicketsDto;
 import lotto.util.NumberGenerator;
 import lotto.util.ProfitCalculator;
-import lotto.view.InputView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,7 +50,7 @@ public class LottoService {
     // 로또 등수별로 몇 개의 당첨이 있는지 계산하는 메소드
     private Map<Rank, Long> countWinningRanks(LottoTicketsDto lottoTicketsDto,
                                                      WinningNumbers winningNumbers) {
-        return lottoTicketsDto.getLottoTickets().getLottoTickets().stream()
+        return lottoTicketsDto.getLottos().getLottoTickets().stream()
                 .map(lotto -> determineRank(lotto, winningNumbers.getNumbers(), winningNumbers.getBonus()))
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
     }

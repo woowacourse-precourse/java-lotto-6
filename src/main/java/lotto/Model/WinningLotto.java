@@ -25,7 +25,7 @@ public class WinningLotto {
         Set<Integer> NotDuplicateNumbers = new HashSet<>(winningLotto);
         NotDuplicateNumbers.add(number);
         if(NotDuplicateNumbers.size() != Rule.MAX_LENGTH + Rule.BONUSNUM_LENGTH) {
-            throw new IllegalArgumentException(Rule.LOTTO_NUM_SIZE_ERROR);
+            throw new IllegalArgumentException(Rule.LOTTO_NUM_DUPLICATE_ERROR);
         }
     }
     private void validateRange(Integer number) {

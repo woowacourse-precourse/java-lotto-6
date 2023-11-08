@@ -9,16 +9,16 @@ import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import lotto.view.Input;
 import lotto.view.Output;
+import lotto.Message.GameMessage;
 
 public class GameController {
 
     public void start() {
         Money count = insertMoney();
         List<Lotto> lottos = generateUserLotto(count);
+//        WinningLotto winningLotto = generateWinningLottto();
 
     }
-
-
 
     private Money insertMoney(){
         Money count = new Money(Integer.parseInt(Input.consoleLine()));
@@ -31,15 +31,16 @@ public class GameController {
         return lottos;
     }
 
-    private void generateWinningLottto(){
-        Output.consoleLine("~");
+    private WinningLotto generateWinningLottto(){
+        Output.consoleLine(GameMessage.OUT_REQUEST_WINNING_LOTTO_MESSAGE);
         String numbers = Input.consoleLine();
         //validation 실행
-        Output.consoleLine("~");
+        Output.consoleLine(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
         String bonusNumbers = Input.consoleLine();
         //validationtion실행
 //        WinningLotto winningLotto = new WinningLotto();
         //생성
     }
+    return
 
 }

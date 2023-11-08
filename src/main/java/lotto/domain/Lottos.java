@@ -8,8 +8,6 @@ import lotto.generator.LottoMaker;
 
 public class Lottos {
 
-
-
     public static List<Lotto> generateLotto(Money count)  {
             List<Lotto> lottos = new ArrayList<>();
             while(count.checkCount()) {
@@ -19,6 +17,4 @@ public class Lottos {
             }
             return lottos;
         }
-
-
 }

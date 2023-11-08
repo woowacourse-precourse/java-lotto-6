@@ -4,7 +4,6 @@ import lotto.model.*;
 
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.model.DrawResult;
 
 
 import java.util.List;
@@ -26,7 +25,6 @@ public class Controller {
         try {
             MyLottoNumbers myLottoNumbers = buyLotto();
             LottoDraw lottoDraw = drawLottoNumber();
-            //result 함수
             totalResult(myLottoNumbers, lottoDraw);
 
         } catch (IllegalArgumentException exception) {
@@ -49,9 +47,6 @@ public class Controller {
         LottoDraw lottoDraw = LottoDraw.by(winningNumbers, bonusNumbers);
         return lottoDraw;
     }
-    public static int getNumberOfLotto(){
-        return NumberOfLotto;
-    }
     private void totalResult(MyLottoNumbers myLottoNumbers, LottoDraw lottoDraw){
 
         WinningResult winningResult = new WinningResult();
@@ -59,7 +54,7 @@ public class Controller {
 
         outputView.printDrawResult(results);
         long totalRevenue = winningResult.calculateRevenue(results);
-        double totalRevenueRate = totalRevenue/(NumberOfLotto * 10);
+        double totalRevenueRate = (double)totalRevenue/(NumberOfLotto * 10);
         outputView.printRevenueResult(totalRevenueRate);
     }
 

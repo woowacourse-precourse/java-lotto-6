@@ -1,24 +1,21 @@
 package lotto.domain.message;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.dto.LottoNumbersDTO;
 import lotto.dto.WinStateInformationDTO;
 
+import static lotto.domain.message.MessageConstant.*;
+
 public class Messenger {
 
-    private final String PURCHASED_LOTTERIES_FORMAT = "\n%d개를 구매했습니다.";
+    public String getInputPurchaseCashAmountMessage() {
+        return INPUT_PURCHASE_CASH_AMOUNT;
+    }
 
-    private final String LOTTERIES_NUMBERS_FORMAT = "[%s]";
-    private final String LOTTERIES_NUMBERS_DELIMITER = ", ";
-    private final String NEXT_LINE = "\n";
-
-    private final String WINNING_STATISTIC_INFORMATION_FORMAT = "%s (%s원) - %d개";
-    private final DecimalFormat PRIZE_FORMAT = new DecimalFormat("###,###,###");
-
-    private final String YIELD_MESSAGE_FORMAT = "총 수익률은 %s%%입니다.";
-    private final DecimalFormat YIELD_FORMAT = new DecimalFormat("#.#");
+    public String getPurchasedLotteriesCountMessage(int count) {
+        return String.format(PURCHASED_LOTTERIES_FORMAT, count);
+    }
 
     public String getLotteriesNumbersMessage(List<LottoNumbersDTO> lottoNumbersDTOs) {
         return lottoNumbersDTOs.stream()
@@ -35,11 +32,19 @@ public class Messenger {
         return String.format(LOTTERIES_NUMBERS_FORMAT, lottoNumbers);
     }
 
-    public String getPurchasedLotteriesCount(int count) {
-        return String.format(PURCHASED_LOTTERIES_FORMAT, count);
+    public String getInputWinningNumbersMessage() {
+        return INPUT_WINNING_NUMBERS;
     }
 
-    public String getWinningStatisticInformation(WinStateInformationDTO winStateInformationDTO) {
+    public String getInputBonusNumberMessage() {
+        return INPUT_BONUS_NUMBER;
+    }
+
+    public String getWinningStatisticStartMessage() {
+        return WINNING_STATISTICS_START;
+    }
+
+    public String getWinningStatisticInformationMessage(WinStateInformationDTO winStateInformationDTO) {
         return String.format(
                 WINNING_STATISTIC_INFORMATION_FORMAT,
                 winStateInformationDTO.description(),

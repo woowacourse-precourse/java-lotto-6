@@ -8,7 +8,6 @@ import lotto.domain.lotto.LottoNumbersGenerator;
 import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
-import lotto.domain.message.Messages;
 import lotto.domain.message.Messenger;
 import lotto.domain.prize.Prize;
 import lotto.domain.shop.LottoShop;
@@ -46,12 +45,12 @@ public class LottoController {
     }
 
     private void purchaseLotteries() {
-        outputView.print(Messages.INPUT_PURCHASE_CASH_AMOUNT.getMessage());
+        outputView.print(messenger.getInputPurchaseCashAmountMessage());
         while(true) {
             try {
                 purchaseCash = new Cash(inputView.inputNumber());
                 int lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
-                outputView.print(messenger.getPurchasedLotteriesCount(lotteriesCount));
+                outputView.print(messenger.getPurchasedLotteriesCountMessage(lotteriesCount));
 
                 List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(lotteriesCount);
                 lotteries = lottoNumbersDTOs.stream()
@@ -68,7 +67,7 @@ public class LottoController {
 
     private void inputWinningLottoNumbers() {
 
-        outputView.print(Messages.INPUT_WINNING_NUMBERS.getMessage());
+        outputView.print(messenger.getInputWinningNumbersMessage());
         Lotto winningNumbers;
         while(true) {
             try {
@@ -79,7 +78,7 @@ public class LottoController {
             }
         }
 
-        outputView.print(Messages.INPUT_BONUS_NUMBERS.getMessage());
+        outputView.print(messenger.getInputBonusNumberMessage());
         LottoNumber bonusNumber;
         while(true) {
             try {
@@ -95,10 +94,10 @@ public class LottoController {
     private void printResult() {
         WinStatesCounter winStatesCounter = new WinStatesCounter(winningLottoNumbers, lotteries);
         List<WinStateInformationDTO> winStateInformationDTOs = winStatesCounter.getWinStateInformationDTOs();
-        outputView.print(Messages.WINNING_STATISTICS_START.getMessage());
+        outputView.print(messenger.getWinningStatisticStartMessage());
 
         winStateInformationDTOs.stream()
-                .map(messenger::getWinningStatisticInformation)
+                .map(messenger::getWinningStatisticInformationMessage)
                 .forEach(outputView::print);
 
         Prize prize = Prize.from(winStateInformationDTOs);

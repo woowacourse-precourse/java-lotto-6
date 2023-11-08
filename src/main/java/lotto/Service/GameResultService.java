@@ -61,7 +61,7 @@ public class GameResultService {
         GameResultOutputService.printFourMatch(this.matchFour);
         GameResultOutputService.printFiveWithoutBonus(this.matchFiveWithoutBonus);
         GameResultOutputService.printFiveWithBonus(this.matchFiveWithBonus);
-
+        GameResultOutputService.printSix(this.matchSix);
         GameResultOutputService.printRateOfReturn(this.getRateOfReturn(input, this.totalAmount));
     }
 

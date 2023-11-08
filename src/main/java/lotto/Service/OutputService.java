@@ -1,20 +1,20 @@
 package lotto.Service;
 
 import java.util.List;
+import lotto.Enum.LottoResult;
 import lotto.Lotto;
 
 public class OutputService {
+
+
     private static final String LOTTO_OPENING_BRACKET = "[";
     private static final String LOTTO_CLOSING_BRACKET = "]";
-
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    private static String getErrorMessage(String message){
-        return ERROR_MESSAGE.concat(" " + message);
-    }
-    public static void askStatmement(String askStatement){
+    public static void askStatmement(String askStatement) {
         System.out.println(askStatement);
     }
+
     private static String getSingleLottoNumber(List<Integer> numbers, int idx) {
         String ret = "";
 
@@ -41,7 +41,9 @@ public class OutputService {
         System.out.println(makeLottoPrintStatement(sortedNumbers));
     }
 
-    public static void printErrorMessage(String message){
-        System.out.println(getErrorMessage(message));
+    public static void printErrorMessage(String message) {
+
+        String errorMessage = ERROR_MESSAGE.concat(" " + message);
+        System.out.println(errorMessage);
     }
 }

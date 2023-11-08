@@ -6,9 +6,9 @@ public enum LottoResult {
 
     FIVE_WITH_NO_BONUS(1500000, "5개 일치 (1,500,000원)"),
     FIVE_WITH_BONUS(30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
-    SIX(2000000000, "6개 일치 (2,000,000,000원)")
-    private int money;
-    private String description;
+    SIX(2000000000, "6개 일치 (2,000,000,000원)");
+    private final int money;
+    private final String description;
 
     private LottoResult(int money, String description){
         this.money = money;

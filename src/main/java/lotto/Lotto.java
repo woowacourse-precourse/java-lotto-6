@@ -39,7 +39,7 @@ public class Lotto {
             if (number == bonus) {
                 return true;
             }
-        }gi
+        }
         return false;
     }
 

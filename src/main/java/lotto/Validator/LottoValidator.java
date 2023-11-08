@@ -4,7 +4,6 @@ package lotto.Validator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.OutputService;
 
 public class LottoValidator {
     private static final int LOTTO_SIZE = 6;

@@ -16,7 +16,7 @@ public class Player {
     }
 
     public void printLottos(){
-        System.out.print(lottos.size() + "개를 구매했습니다.");
+        System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto:
              lottos) {
             OutputService.printLottoNumbers(lotto);

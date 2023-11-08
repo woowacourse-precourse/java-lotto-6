@@ -76,7 +76,7 @@ public class GameService {
                 long money = Long.parseLong((input));
                 this.setMoney(money);
                 break;
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 OutputService.printErrorMessage(e.getMessage());
             }
         }

@@ -42,6 +42,12 @@ public class GameResultOutputService {
         System.out.println(statement);
     }
 
+    public static void printSix(int six){
+        String statement = getResultMessage(LottoResult.SIX);
+        statement = statement.concat(six + UNIT_STATEMENT);
+        System.out.println(statement);
+    }
+
     public static void printRateOfReturn(double rate){
         DecimalFormat decimalFormat = new DecimalFormat("###,##0.0");
         String str = decimalFormat.format(rate);

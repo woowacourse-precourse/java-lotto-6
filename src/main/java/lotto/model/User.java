@@ -15,7 +15,7 @@ public class User {
         return new User(lottos);
     }
 
-    public List<LottoResult> checkLottoTypes(WinningNumbers winningNumbers) {
+    public List<LottoResult> checkLottosResult(WinningNumbers winningNumbers) {
         return lottos.stream()
                 .map(lotto -> lotto.toLottoResult(winningNumbers))
                 .toList();

@@ -1,6 +1,8 @@
 package lotto;
 
+import lotto.model.LottoResult;
 import lotto.model.User;
+import lotto.model.WinningNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,15 +36,15 @@ public class UserTest {
     }
 
 
-//    @DisplayName("가지고 있는 로또들의 당첨여부를 확인한다.")
-//    @Test
-//    void givenLottoswhentoLottoTypesThenSuccess() {
-//        //Given
-//        User user = User.of(lottoList);
-//        WinningNumbers winningNumbers = WinningNumbers.of(List.of(1, 2, 3, 4, 5, 6), 7);
-//        //When
-//        List<LottoType> lottoTypes = lottos.checkLottoTypes(winningNumbers);
-//        //Then
-//        assertThat(lottoTypes).isNotNull();
-//    }
+    @DisplayName("가지고 있는 로또들의 당첨여부를 확인한다.")
+    @Test
+    void givenLottoswhentoLottoTypesThenSuccess() {
+        //Given
+        User user = User.of(lottoList);
+        WinningNumbers winningNumbers = WinningNumbers.of(List.of(1, 2, 3, 4, 5, 6), 7);
+        //When
+        List<LottoResult> lottoTypes = user.checkLottosResult(winningNumbers);
+        //Then
+        assertThat(lottoTypes).isNotNull();
+    }
 }

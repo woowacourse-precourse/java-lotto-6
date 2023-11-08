@@ -1,9 +1,9 @@
 package lotto.domain.constants;
 
 public enum LottoStatisticsConstants {
-    STATISTICS_NOTICE("당첨 통계"),
     DOTTED_LINE("---"),
-    INLINE("\n");
+    INLINE("\n"),
+    STATISTICS_NOTICE("당첨 통계");
 
     private String value;
 

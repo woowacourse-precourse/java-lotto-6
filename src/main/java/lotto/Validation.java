@@ -52,4 +52,10 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.NOT_DISTINCT_LIST.getMessage());
         }
     }
+
+    public static void validateDuplicate(Lotto lotto, int number) {
+        if (lotto.isInclude(number)) {
+            throw new IllegalArgumentException(ErrorMessage.ALREADY_INCLUDED_NUMBER.getMessage());
+        }
+    }
 }

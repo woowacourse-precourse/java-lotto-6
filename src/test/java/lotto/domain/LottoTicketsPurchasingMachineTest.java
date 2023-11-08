@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.dto.Bill;
 import java.util.stream.Stream;
+import lotto.exception.ImpossibleAmountException;
+import lotto.exception.NotPositivePurchaseAmountException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,11 +17,18 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class LottoTicketsPurchasingMachineTest {
     private final LottoTicketsPurchasingMachine lottoTicketsPurchasingMachine = new LottoTicketsPurchasingMachine();
     @ParameterizedTest
-    @DisplayName("로또 금액으로 양수가 아닌 수를 지불하면 예외가 발생한다.")
-    @ValueSource(ints = {-10_000, -1_000, 0})
+    @DisplayName("로또 금액으로 음수를 지불하면 예외가 발생한다.")
+    @ValueSource(ints = {-10_000, -1_000})
     void purchaseOfLottoTicketsNotPositiveAmount(int amount) {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(ImpossibleAmountException.class,
                 () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(amount));
+    }
+
+    @Test
+    @DisplayName("로또 금액으로 0원을 지불하면 예외가 발생한다.")
+    void purchaseOfLottoTicketsNotPositiveAmount() {
+        assertThrows(NotPositivePurchaseAmountException.class,
+                () -> lottoTicketsPurchasingMachine.purchaseOfLottoTickets(0));
     }
 
     @ParameterizedTest

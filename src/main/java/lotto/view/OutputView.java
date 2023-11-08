@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OutputView {
-    private static final String outputResultMessage = "당첨통계\n---";
+    private static final String outputResultMessage = "당첨 통계\n---";
     private static final String outputLottoStringBase = "%d개를 구매했습니다.\n";
     private static final String outputResultBase = "%s (%s원) - %d개\n";
     private static final String outputRateOfReturn = "총 수익률은 %.1f%%입니다.";

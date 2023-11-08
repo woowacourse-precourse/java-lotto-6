@@ -20,4 +20,8 @@ public class LottoController {
     public User setUserData() {
         return userInputDataService.inputUserData();
     }
+
+    public Lotto setLottoData(){
+        return lottoInputDataService.inputLottoData();
+    }
 }

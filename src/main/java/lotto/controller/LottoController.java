@@ -16,6 +16,7 @@ import java.util.List;
 public class LottoController {
     public static final int ONE_LOTTO_PRICE = 1000;
     private LottoService lottoService;
+    private Lotto answer;
 
     public LottoController() {
         this.lottoService = new LottoService();
@@ -34,8 +35,11 @@ public class LottoController {
     public int registerBonusNumber() {
         String userInput = readInput(ENTER_BONUS_NUMBER.getInputMessage());
         validateLottoNumber(userInput);
+        validateBonusLottoNumber(userInput, answer);
         return parseInt(userInput);
     }
+
+
 
     public int registerBonusNumberUntilPass() {
         return receiveInputUntilPass(this::registerBonusNumber);
@@ -45,7 +49,10 @@ public class LottoController {
         String userInput = readInput(ENTER_WINNING_LOTTO_NUMBER.getInputMessage());
         validateWinningLottoCombination(userInput);
         List<Integer> lottoCombination = userInputToLottoCombination(userInput);
-        return new Lotto(lottoCombination);
+        Lotto result = new Lotto(lottoCombination);
+        setAnswer(result);
+
+        return result;
     }
 
     public Lotto registerWinningLottoCombinationUntilPass() {
@@ -90,6 +97,13 @@ public class LottoController {
         }
     }
 
+    private void validateBonusLottoNumber(String userInput, Lotto answer) {
+        int number = parseInt(userInput);
+        if(answer.isNumberIn(number)){
+            throw new IllegalArgumentException(THAT_NUMBER_IS_ALREADY_CONTAINS_ANSWER_COMBINATION.getErrorMessage());
+        };
+    }
+
     private void validateWinningLottoCombination(String userInput) {
         String[] strArr = userInput.replace(" ", "").split(",");
 
@@ -124,6 +138,14 @@ public class LottoController {
         }
 
         return result;
+    }
+
+    public Lotto getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(Lotto answer) {
+        this.answer = answer;
     }
 
 }

@@ -170,6 +170,7 @@ class LottoControllerTest {
     void registerBonusNumberShouldTransformUserInputToBonusNumber() {
         // given
         System.setIn(createUserInput("1"));
+        lottoController.setAnswer(new Lotto(List.of(2, 3, 4, 5, 6, 7)));
 
         // when
         int result = lottoController.registerBonusNumber();
@@ -213,6 +214,20 @@ class LottoControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
     }
+
+    @Test
+    @DisplayName("기능40 테스트 : 보너스 번호로 입력한 값이 이미 정답 조합에 있는 값일 경우 예외가 발생한다.")
+    void throwIllegalArgumentExceptionWhenBonusNumberAlreadyContainedAnswerLottoCombination() {
+        // given
+        System.setIn(createUserInput("1"));
+        lottoController.setAnswer(new Lotto(List.of(1,2,3,4,5,6)));
+
+        // when, then
+        assertThatThrownBy(() -> lottoController.registerBonusNumber())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(THAT_NUMBER_IS_ALREADY_CONTAINS_ANSWER_COMBINATION.getErrorMessage());
+    }
+
 
     @Test
     @DisplayName("기능21 테스트 : 사용자의 입력을 로또 객체로 변환한다.")
@@ -265,4 +280,5 @@ class LottoControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
     }
+
 }

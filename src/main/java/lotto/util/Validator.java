@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import lotto.exception.ExceptionMessages;
+import lotto.model.Lotto;
 
 public class Validator {
     /**
@@ -67,6 +68,18 @@ public class Validator {
     public static void validateMatchCount(int matchCount) {
         if (matchCount < MIN_PRIZE_SIZE || matchCount > MAX_PRIZE_SIZE) {
             throw new IllegalArgumentException(ExceptionMessages.INVALID_MATCH_COUNT_MESSAGE);
+        }
+    }
+
+    /**
+     * Description: Validate BonusNumber<br> rule1: BonusNumber must not be in LottoNumbers<br>
+     *
+     * @param lotto
+     * @param bonusNumber
+     */
+    public static void validateBonusNumber(Lotto lotto, int bonusNumber) {
+        if (lotto.getLottoNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(ExceptionMessages.DUPLICATE_BONUS_NUMBER_MESSAGE);
         }
     }
 

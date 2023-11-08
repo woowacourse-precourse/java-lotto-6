@@ -30,7 +30,7 @@ public class Buy {
         String message = "[ERROR] 금액은 1000 단위 숫자로 입력해주세요.";
         while (!correctAmount) {
             totalAmount = exception.checkInt(Console.readLine());
-            if(totalAmount < Constants.LOTTOPRICE) {
+            if (totalAmount < Constants.LOTTOPRICE) {
                 System.out.println(message);
                 continue;
             }

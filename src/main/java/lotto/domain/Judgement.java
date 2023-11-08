@@ -52,7 +52,7 @@ public class Judgement {
         int total = 0;
         for (Prize prize : Prize.values()) {
             if (result.get(prize.name()) > 0) {
-                total += (prize.getAmount()*result.get(prize.name()));
+                total += (prize.getAmount() * result.get(prize.name()));
             }
         }
         return total;

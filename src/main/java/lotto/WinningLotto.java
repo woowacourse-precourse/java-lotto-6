@@ -19,6 +19,10 @@ public class WinningLotto {
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(s -> Integer.parseInt(s))
                 .collect(Collectors.toList());
+        createLotto(winningNumbers);
+    }
+
+    static public void createLotto(List<Integer> winningNumbers) {
         try {
             winningLotto = new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {

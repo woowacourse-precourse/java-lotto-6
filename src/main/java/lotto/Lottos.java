@@ -24,12 +24,12 @@ public class Lottos {
 
     private void validate(int price) {
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.NOT_DIVIDED_BY_UNIT_PRICE.getMessage());
         }
     }
 
     public void print() {
-        System.out.printf("\n%d개를 구매했습니다.\n", lottos.size());
+        System.out.printf(Message.NUMBER_OF_LOTTOS_MESSAGE.getMessage(), lottos.size());
         for (Lotto lotto : lottos) {
             lotto.print();
         }
@@ -37,7 +37,7 @@ public class Lottos {
 
     public void print(Result result) {
         result.print();
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", calculateEarnings(result));
+        System.out.printf(Message.EARNING_RATE_MESSAGE.getMessage(), calculateEarnings(result));
     }
 
     public void printResult(WinningLotto winningLotto) {

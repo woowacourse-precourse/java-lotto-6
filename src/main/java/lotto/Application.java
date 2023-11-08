@@ -19,17 +19,17 @@ public class Application {
     }
 
     public static int getPrice() {
-        OutputConsole.printMessage(OutputConsole.INPUT_PRICE_MESSAGE);
+        OutputConsole.printMessage(Message.INPUT_PRICE_MESSAGE);
         return InputConsole.inputPrice();
     }
 
     public static List<Integer> getWinningNumbers() {
-        OutputConsole.printMessage(OutputConsole.INPUT_WINNING_NUMBERS_MESSAGE);
+        OutputConsole.printMessage(Message.INPUT_WINNING_NUMBERS_MESSAGE);
         return InputConsole.inputWinningNumbers();
     }
 
     public static int getBonusNumber() {
-        OutputConsole.printMessage(OutputConsole.INPUT_BONUS_NUMBER_MESSAGE);
+        OutputConsole.printMessage(Message.INPUT_BONUS_NUMBER_MESSAGE);
         return InputConsole.inputBonusNumber();
     }
 

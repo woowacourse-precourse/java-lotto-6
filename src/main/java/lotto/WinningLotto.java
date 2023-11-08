@@ -14,10 +14,10 @@ public class WinningLotto extends Lotto {
 
     private void validate(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
         }
         if (!isCorrectRange(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.INCORRECT_RANGE.getMessage());
         }
     }
 

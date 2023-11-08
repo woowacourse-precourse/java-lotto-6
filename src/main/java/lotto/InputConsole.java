@@ -17,7 +17,7 @@ public class InputConsole {
     private static void validateDigit(String inputPrice) {
         for (int i = 0; i < inputPrice.length(); i++) {
             if (inputPrice.charAt(i) < '0' || inputPrice.charAt(i) > '9') {
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
+                throw new IllegalArgumentException(ErrorCode.CONTAIN_NON_NUMERIC_CHARACTER.getMessage());
             }
         }
     }
@@ -51,7 +51,7 @@ public class InputConsole {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력값에 숫자가 존재하지 않습니다.");
+            throw new IllegalArgumentException(ErrorCode.NOT_CONTAIN_NUMERIC_CHARACTER.getMessage());
         }
     }
 

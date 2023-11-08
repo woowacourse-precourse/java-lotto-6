@@ -21,11 +21,8 @@ public class LottoService {
     }
 
     private Lotto generateLotto() {
-        List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() < LOTTO_SIZE.getValue()) {
-            numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN.getValue(), LOTTO_NUMBER_MAX.getValue(),
-                    LOTTO_SIZE.getValue());
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                LOTTO_NUMBER_MIN.getValue(), LOTTO_NUMBER_MAX.getValue(), LOTTO_SIZE.getValue());
         return new Lotto(numbers);
     }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.RankMachine;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
@@ -22,9 +23,9 @@ public class RankMachineTest {
                 new Rank(RANK_FOURTH, REWARD_FOURTH, (ticket, winningTicket, bonusNumber) ->
                         ticket.countMatched(winningTicket) == 4),
                 new Rank(RANK_THIRD, REWARD_THIRD, (ticket, winningTicket, bonusNumber) ->
-                        ticket.countMatched(winningTicket) == 5 && !ticket.hasNumber(bonusNumber)),
+                        ticket.countMatched(winningTicket) == 5 && !ticket.hasNumber(bonusNumber.getLottoNumber())),
                 new Rank(RANK_SECOND, REWARD_SECOND, (ticket, winningTicket, bonusNumber) ->
-                        ticket.countMatched(winningTicket) == 5 && ticket.hasNumber(bonusNumber)),
+                        ticket.countMatched(winningTicket) == 5 && ticket.hasNumber(bonusNumber.getLottoNumber())),
                 new Rank(RANK_FIRST, REWARD_FIRST, (ticket, winningTicket, bonusNumber) ->
                         ticket.countMatched(winningTicket) == 6)
         ));
@@ -32,7 +33,7 @@ public class RankMachineTest {
 
     void applySampleTickets(RankMachine rankMachine) {
         Lotto winningTicket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoNumber bonusNumber = new LottoNumber(7);
+        BonusNumber bonusNumber = new BonusNumber(new LottoNumber(7), winningTicket);
         new ArrayList<>(List.of(
                 // 6개 일치
                 List.of(1, 2, 3, 4, 5, 6),

@@ -13,7 +13,7 @@ import static lotto.constant.ErrorMessage.PRICE_NEGATIVE;
  *                         LottoNumber: Bonus number
  */
 public record Rank(RankMessage message, long reward,
-                   TriFunction<Lotto, Lotto, LottoNumber, Boolean> winningPredicate) {
+                   TriFunction<Lotto, Lotto, BonusNumber, Boolean> winningPredicate) {
     public Rank {
         validatePositiveReward(reward);
     }

@@ -1,7 +1,7 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
 import lotto.domain.Tickets;
 
@@ -26,7 +26,7 @@ public class RankMachine {
         applyCount = 0;
     }
 
-    public void applyTicket(Lotto ticket, Lotto winningTicket, LottoNumber bonusNumber) {
+    public void applyTicket(Lotto ticket, Lotto winningTicket, BonusNumber bonusNumber) {
         for (int i = 0; i < ranks.size(); i++) {
             if (ranks.get(i).winningPredicate().apply(ticket, winningTicket, bonusNumber)) {
                 counts.set(i, counts.get(i) + 1);
@@ -35,7 +35,7 @@ public class RankMachine {
         applyCount++;
     }
 
-    public void applyTickets(Tickets tickets, Lotto winningTicket, LottoNumber bonusNumber) {
+    public void applyTickets(Tickets tickets, Lotto winningTicket, BonusNumber bonusNumber) {
         tickets.lottos().forEach(ticket -> applyTicket(ticket, winningTicket, bonusNumber));
     }
 
@@ -52,7 +52,7 @@ public class RankMachine {
     }
 
     public String getRateOfReturn() {
-        DecimalFormat formatter = new DecimalFormat("#,###.0");
+        DecimalFormat formatter = new DecimalFormat("#,##0.0");
         long amountWinning = IntStream
                 .range(0, ranks.size())
                 .mapToLong(index -> ranks.get(index).reward() * counts.get(index))

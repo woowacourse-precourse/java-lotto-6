@@ -21,7 +21,9 @@ public class SlotMachine {
 
         // 당첨 번호 및 보너스 번호 요청
         Lotto winningTicket = requestUntilValidated(() -> Lotto.from(InputView.askWinningNumbers()));
-        LottoNumber bonusNumber = requestUntilValidated(() -> LottoNumber.from(InputView.askBonusNumber()));
+        BonusNumber bonusNumber = requestUntilValidated(() ->
+                new BonusNumber(LottoNumber.from(InputView.askBonusNumber()), winningTicket)
+        );
 
         // 당첨 통계 계산 및 출력
         RankMachine rankMachine = createRankMachine();
@@ -46,9 +48,9 @@ public class SlotMachine {
                 new Rank(RANK_FOURTH, REWARD_FOURTH, (ticket, winningTicket, bonusNumber) ->
                         ticket.countMatched(winningTicket) == 4),
                 new Rank(RANK_THIRD, REWARD_THIRD, (ticket, winningTicket, bonusNumber) ->
-                        ticket.countMatched(winningTicket) == 5 && !ticket.hasNumber(bonusNumber)),
+                        ticket.countMatched(winningTicket) == 5 && !ticket.hasNumber(bonusNumber.getLottoNumber())),
                 new Rank(RANK_SECOND, REWARD_SECOND, (ticket, winningTicket, bonusNumber) ->
-                        ticket.countMatched(winningTicket) == 5 && ticket.hasNumber(bonusNumber)),
+                        ticket.countMatched(winningTicket) == 5 && ticket.hasNumber(bonusNumber.getLottoNumber())),
                 new Rank(RANK_FIRST, REWARD_FIRST, (ticket, winningTicket, bonusNumber) ->
                         ticket.countMatched(winningTicket) == 6)
         ));

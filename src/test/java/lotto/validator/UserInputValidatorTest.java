@@ -7,11 +7,6 @@ import lotto.constants.ExceptionMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-// 올바른 구입 금액을 입력받은 경우
-//         공백 혹은 Null값을 입력받은 경우
-//         숫자가 아닌 문자를 입력받은 경우
-//         1000원 미만의 금액을 입력받은 경우
-//         1000원 단위로 나누어 떨어지지 않는 수를 입력받은 경우
 public class UserInputValidatorTest {
     private static final String CORRECT_NUMBER_TEXT = "8000";
     private static final String BLANK_TEXT = "";

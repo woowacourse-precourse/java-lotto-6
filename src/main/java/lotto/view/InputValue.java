@@ -12,7 +12,6 @@ public class InputValue {
     private static final String SPACING = " ";
     private static final String EMPTY = "";
     private static final String NUMBER_CHECK_REGEX = "\\d*";
-    private static final Integer PRICE_UNIT = 1000;
     private static final String SEPARATOR = ",";
 
     public static int getPurchasePrice() {

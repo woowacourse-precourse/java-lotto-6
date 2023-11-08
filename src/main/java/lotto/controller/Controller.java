@@ -17,5 +17,7 @@ public class Controller {
         buyer = inputService.inputPurchaseAmount();
         lottos = lottoService.issueLottos(buyer);
         outputService.printLottos(lottos, buyer);
+        int[] buyerLottoNumbers = inputService.inputLottoNumber();
+        int buyerBonusNumber = inputService.inputBounusNumber(buyerLottoNumbers);
     }
 }

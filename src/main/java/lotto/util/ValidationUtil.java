@@ -19,12 +19,14 @@ public class ValidationUtil {
     * 당첨 번호에 대한 모든 것을 진행한다.
     * @param input입력한 당첨번호
     * */
-    public void validateWinningAmount(String input){
+    public String[] validateWinningAmount(String input){
         String[] winningAmounts = input.split(",");
         validateWinningCount(winningAmounts);
-        validateBlack(winningAmounts);
+        validateBlank(winningAmounts);
         validateDuplicate(winningAmounts);
         validateWinningRange(winningAmounts);
+
+        return winningAmounts;
     }
     /*
     * 당첨 번호를 6개 입력했는지 검증한다.
@@ -39,7 +41,7 @@ public class ValidationUtil {
     * 당첨 번호에 공백값을 입력했는지 검증한다.
     * @param inputNums 당첨번호 리스트
     * */
-    private void validateBlack(String[] inputNums){
+    private void validateBlank(String[] inputNums){
         boolean result = Array.stream(inputNums)
                 .noneMatch(str -> str.equals(" ")||str.equals(" "));
 

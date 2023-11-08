@@ -26,6 +26,7 @@ public class OutputView {
     }
 
     public static void printResult(HashMap<Rank, Integer> resultMap) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println(Rank.FIFTH.getMessage() + resultMap.get(Rank.FIFTH) + "개");
@@ -39,5 +40,9 @@ public class OutputView {
         System.out.print("총 수익률은 ");
         System.out.printf("%.1f", rateOfProfit);
         System.out.print("%입니다.");
+    }
+
+    public static void printOneLine() {
+        System.out.println();
     }
 }

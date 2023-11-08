@@ -44,6 +44,7 @@ public class LottoService {
     }
 
     public void getUserLotto() {
+        outputView.printOneLine();
         outputView.printLottoCount(lottoCount);
         List<Lotto> lottoList = lottoRepository.getUserLottoList();
 
@@ -53,10 +54,12 @@ public class LottoService {
     }
 
     public void setWinningLotto() {
+        outputView.printOneLine();
         lottoRepository.setWinningLotto(new Lotto(parser.parseWinningNum(inputView.inputWinningNum())));
     }
 
     public void setBonusNum() {
+        outputView.printOneLine();
         lottoRepository.setBounsNum(parser.parseBonusNum(inputView.inputBounsNum(), lottoRepository.getWinningLotto().getNumbers()));
     }
 

@@ -8,6 +8,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkDupliate(numbers);
+        checkRange(numbers);
         this.numbers = numbers;
     }
 
@@ -21,6 +22,15 @@ public class Lotto {
         if(numbers.size() != numbers.stream().distinct().count()) {
             System.out.println("[ERROR] 로또 입력 값은 중복 되지 않아야 합니다.");
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkRange(List<Integer> numbers) {
+        for(int number : numbers) {
+            if(number < 1 || number > 45) {
+                System.out.println("[ERROR] 로또 숫자는 1이상 45이하여야 합니다.");
+                throw new IllegalArgumentException();
+            }
         }
     }
 

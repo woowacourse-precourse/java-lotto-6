@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.dto.IssuedLottoTicketsDto;
 import lotto.dto.LottoDto;
 import lotto.dto.ResultDto;
@@ -27,15 +28,23 @@ public class GameController {
         displayResult();
     }
 
+    private <T> T executeWithRetry(Supplier<T> action) {
+        while (true) {
+            try {
+                return action.get();
+            } catch (IllegalArgumentException e) {
+                view.displayException(e.getMessage());
+            }
+        }
+    }
+
     private void purchaseLottoTickets() {
-        try {
+        executeWithRetry(() -> {
             String input = view.getPurchaseAmount();
             int purchaseAmount = PurchaseAmountConverter.convert(input);
             game.purchaseLottoTickets(purchaseAmount);
-        } catch (IllegalArgumentException e) {
-            view.displayException(e.getMessage());
-            purchaseLottoTickets();
-        }
+            return null;
+        });
     }
 
     private void displayIssuedLottoTickets() {
@@ -47,25 +56,21 @@ public class GameController {
     }
 
     private void inputWinningNumbers() {
-        try {
+        executeWithRetry(() -> {
             String input = view.getWinningNumbers();
             List<Integer> winningNumbers = WinningNumberConverter.convert(input);
             game.setWinningNumbers(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            view.displayException(e.getMessage());
-            inputWinningNumbers();
-        }
+            return null;
+        });
     }
 
     private void inputBonusNumber() {
-        try {
+        executeWithRetry(() -> {
             String input = view.getBonusNumber();
             int bonusNumber = BonusNumberConverter.convertAndValidate(input);
             game.setBonusNumber(bonusNumber);
-        } catch (IllegalArgumentException e) {
-            view.displayException(e.getMessage());
-            inputBonusNumber();
-        }
+            return null;
+        });
     }
 
     private void displayResult() {

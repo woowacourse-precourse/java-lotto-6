@@ -2,22 +2,29 @@
 로또 게임 기능을 구현해야 한다. 로또 게임은 아래와 같은 규칙으로 진행된다.
 
 ### 로또의 숫자 범위 
-- 로또 번호의 숫자 범위는 1~45까지이다.
-- 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
-- 당첨 번호 추첨 시 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑는다.
+- [ ] 로또 번호의 숫자 범위는 1~45까지이다.
+
+
+- [ ] 1개의 로또를 발행할 때 중복되지 않는 6개의 숫자를 뽑는다.
+
+
+- [ ] 당첨 번호 추첨 시 중복되지 않는 숫자 6개와 보너스 번호 1개를 뽑는다.
+
+
 - 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
   - 1등: 6개 번호 일치 / 2,000,000,000원
   - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
   - 3등: 5개 번호 일치 / 1,500,000원
   - 4등: 4개 번호 일치 / 50,000원
   - 5등: 3개 번호 일치 / 5,000원
-> contoller/Stadium/moving()
+
 
 ### 로또 구입 금액만큼 로또를 발행
 - 로또 1장의 가격은 1,000원이다.
 
 ### 당첨 번호와 보너스 번호를 입력받음
-- 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
+- [x] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
+> controller/LottoGame/setWinningNumber()
 
 ### 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
@@ -46,6 +53,7 @@
 [2, 13, 22, 32, 38, 45] 
 [1, 3, 5, 14, 22, 45]
 ```
+> view/InputView
 
 ### 당첨내역 출력
 ```
@@ -62,6 +70,7 @@
 ```
 
 ### 에러문구는 [ERROR]로 시작
+> global/ErrorMessages
 
 ### 최종 출력
 ```
@@ -93,7 +102,7 @@
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
 ```
-
+> view/OutputView
 
 # <프로그래밍 요구 사항>
 - JDK 17 버전에서 실행 가능해야 한다. 동작하지 않을 경우 0점 처리
@@ -133,13 +142,11 @@
 JDK에서 제공하는 Random 및 Scanner API 대신 camp.nextstep.edu.missionutils에서 제공하는 Randoms 및 Console API를 사용하여 구현해야 한다.
 Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickNumberInRange()를 활용한다.
 사용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
-- [x] 0~9까지의 정수 중 한개의 정수 반환
-```
-Randoms.pickNumberInRange(0,9);
-```
+- [x] 중복되지 않는 당첨번호 추첨 6개, 보너스 번호 1개
+> domain/Lotto/generateRandomLottoNumbers()
 
 # <Lotto 클래스>
-- 제공된 Lotto 클래스를 활용해 구현해야 한다.
+- [x] 제공된 Lotto 클래스를 활용해 구현해야 한다.
 - numbers의 접근 제어자인 private을 변경할 수 없다.
 - Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
 - Lotto의 패키지 변경은 가능하다.
@@ -162,6 +169,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
 }
 ```
+> domain/Lotto
 
 # <과제 진행 요구 사항>
 Git의 커밋 단위는 앞 단계에서 docs/README.md에 정리한 기능 목록 단위로 추가한다.

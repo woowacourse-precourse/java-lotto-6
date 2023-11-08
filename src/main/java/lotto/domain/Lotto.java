@@ -17,7 +17,8 @@ public class Lotto {
     }
 
     public boolean contains(final BonusNumber bonusNumber) {
-        return numbers.contains(bonusNumber.value());
+        return numbers.contains(bonusNumber.
+                value());
     }
 
     public int countMatchingNumbers(final Lotto other) {

@@ -7,7 +7,7 @@ import lotto.domain.number.NumberGenerator;
 public class LottoFactory {
     private final NumberGenerator generator;
 
-    public LottoFactory(NumberGenerator generator) {
+    public LottoFactory(final NumberGenerator generator) {
         this.generator = generator;
     }
 

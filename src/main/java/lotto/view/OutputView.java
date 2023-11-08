@@ -31,7 +31,7 @@ public class OutputView {
         System.out.println(RESULT_MSG);
     }
 
-    public static void printLottoResult(LottoResult lottoResult) {
+    public static void printLottoResult(final LottoResult lottoResult) {
         for (Rank rank : Rank.filterGetPrize()) {
             String formattedPrize = formatNumber(rank.getPrize());
             String formattedCount = formatNumber(lottoResult.countRank(rank));
@@ -46,7 +46,7 @@ public class OutputView {
         return SPACE;
     }
 
-    public static void printProfitRate(float rate) {
+    public static void printProfitRate(final float rate) {
         String formattedRate = formatDecimal(rate);
         System.out.printf(TOTAL_PROFIT_RATE_MSG, formattedRate);
     }
@@ -55,12 +55,12 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + e.getMessage() + System.lineSeparator());
     }
 
-    private static String formatNumber(int number) {
+    private static String formatNumber(final int number) {
         NumberFormat numberFormat = NumberFormat.getInstance();
         return numberFormat.format(number);
     }
 
-    private static String formatDecimal(float rate) {
+    private static String formatDecimal(final float rate) {
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
         return decimalFormat.format(rate);
     }

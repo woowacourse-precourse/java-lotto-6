@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.domain.prize.Prize;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -27,5 +28,11 @@ public class Lottos {
             sb.append("\n");
         });
         return sb.toString();
+    }
+
+    public List<Prize> match(WinningLotto winningLotto) {
+        return lottos.stream()
+                .map(winningLotto::match)
+                .toList();
     }
 }

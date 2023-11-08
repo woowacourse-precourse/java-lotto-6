@@ -19,7 +19,7 @@ class LottoResultTest {
         for (int i = 3; i < 8; i++) {
             testResult.put(i, 1);
         }
-        for (int i = 3; i < 8; i++) {
+        for (int i = 3; i < 7; i++) {
             LottoResult.statistics(i, false);
         }
         result = LottoResult.statistics(5, true);

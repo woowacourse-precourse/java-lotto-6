@@ -23,4 +23,10 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 중복되는 값이 있습니다.");
         }
     }
+
+    private void include(List<Integer> numbers){
+        if (numbers.contains(0)){
+            throw new IllegalArgumentException("[ERROR] 0이 포함되어 있습니다.");
+        }
+    }
 }

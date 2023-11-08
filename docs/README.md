@@ -19,8 +19,8 @@
   - [x] 5개 번호가 일치 할 때, 보너스 번호가 일치하는지 구한다.
 - [ ] 구입 금액에 해당하는 로또 개수를 구한다. - LottoGame#getLottoCounts()
 - [ ] 당첨 내역을 출력한다. - LottoGame#printResult()
-- [ ] 소수점 둘째 자리에서 반올림한 수익률을 출력한다. - LottoGame#printEarningRate()
-  - [ ] 수익을 구한다.
+- [x] 소수점 둘째 자리에서 반올림한 수익률을 출력한다. - LottoGame#printEarningRate()
+  - [x] 수익을 구한다.
 
 
 ## 기능 요구 사항

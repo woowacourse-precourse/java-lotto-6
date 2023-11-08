@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,7 +11,6 @@ public class Lotto {
         validateNumberRange(numbers);
         validateDuplicationNumber(numbers);
         this.numbers = numbers;
-        sortNumbers();
     }
 
     public List<Integer> getNumbers() {
@@ -19,11 +18,14 @@ public class Lotto {
     }
 
     public String toStringLotto() {
+        sortNumbers();
         return numbers.toString();
     }
 
     public void sortNumbers() {
-        Collections.sort(numbers);
+        numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public int matchCount(Lotto lotto) {

@@ -10,9 +10,11 @@ public class Application {
     private static final int LOTTO_START_NUMBER = 1;
     private static final int LOTTO_END_NUMBER = 45;
     private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int LOTTO_PRICE = 1000;
     private static int amount;
     private static int bonusNum;
     private static Lotto answer;
+    private static List<Lotto> lottos = new ArrayList<>();
 
     public static void main(String[] args) {
         getAmount();
@@ -20,6 +22,8 @@ public class Application {
         getAnswer();
 
         getBonusNum();
+
+        buyLotto();
 
         printResult();
     }
@@ -30,15 +34,6 @@ public class Application {
         for (WinningResult result : WinningResult.values()) {
             System.out.println(result.getPhrase() + " - " + result.getCount() + "개");
         }
-    }
-
-    private static List<Integer> generateRandomNumbers(){
-        Set<Integer> numbers = new HashSet<>();
-        while (numbers.size() < LOTTO_NUMBER_COUNT) {
-            int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
-            numbers.add(randomNumber);
-        }
-        return new ArrayList<>(numbers);
     }
 
     private static void getAmount(){
@@ -59,7 +54,7 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
         amount = Integer.parseInt(amountInput);
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
@@ -102,6 +97,32 @@ public class Application {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
             }catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void buyLotto(){
+        int lottoNum = amount / LOTTO_PRICE;
+        System.out.println(lottoNum+"개를 구매했습니다.");
+        for (int i=0; i<lottoNum; i++){
+            List<Integer> randomNums = generateRandomNumbers();
+            Lotto lotto = new Lotto(randomNums);
+            lottos.add(lotto);
+        }
+        System.out.println(lottos);
+    }
+
+    private static List<Integer> generateRandomNumbers() {
+        List<Integer> numbers = new ArrayList<>();
+        while (true) {
+            for (int i=0; i<LOTTO_NUMBER_COUNT; i++){
+                int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
+                numbers.add(randomNumber);
+            }
+            if (numbers.stream().distinct().count() == numbers.size()){
+                Collections.sort(numbers);
+                //System.out.println("numbers : "+numbers);
+                return numbers;
             }
         }
     }

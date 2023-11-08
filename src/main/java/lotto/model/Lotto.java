@@ -23,6 +23,10 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
+    public WinningNumbers addBonusNumber(int bonusNumber) {
+        return new WinningNumbers(this, bonusNumber);
+    }
+
     private void validate(List<Integer> numbers) {
         validateNumbersSize(numbers);
         validateNumbersDuplicate(numbers);

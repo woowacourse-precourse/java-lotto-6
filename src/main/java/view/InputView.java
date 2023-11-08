@@ -1,6 +1,7 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import util.ValidationBonusNumber;
 import util.ValidationNumbers;
 import util.ValidationPrice;
 
@@ -23,10 +24,12 @@ public class InputView {
         return winningNumbers;
     }
 
-    public static String inputBonusNumber() {
+    public static Integer inputBonusNumber() {
         String message = InputMessages.BONUS_NUMBER_MESSAGE.getMessage();
         System.out.println(message);
-        String bonusNumber = input();
+        String bonusNumberString = input();
+        ValidationBonusNumber.validateBonusNumber(bonusNumberString);
+        Integer bonusNumber = Integer.parseInt(bonusNumberString);
         return bonusNumber;
     }
 

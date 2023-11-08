@@ -111,4 +111,34 @@ class WinningNumberTest {
 
         assertThat(winningNumber.isContainLottoNumber(number)).isFalse();
     }
+
+    @Test
+    @DisplayName("당첨 번호에 숫자가 아닌 문자가 포함되거나 공백이 입력되면 예외를 던진다.")
+    void validateIsNumber_throwException() {
+        /**
+         * given : 당첨 번호에 문자(10j)가 포함된다.
+         * when : WinningNumber 객체를 생성한다.
+         * then : 예외를 발생시킨다.
+         */
+        String winningNumInput = "1,2,3,4,10j,47";
+
+        assertThatThrownBy(() -> new WinningNumber(winningNumInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("당첨 번호에 숫자 외의 문자와 공백은 포함될 수 없습니다. 1부터 45까지의 숫자를 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("당첨 번호에 음수가 포함되어 있다면, 예외를 던진다.")
+    void validateIsPositive_throwException() {
+        /**
+         * given : 당첨 번호 1,2,3,4,5,-1가 주어진다.
+         * when : WinningNumber 객체를 생성한다.
+         * then : 예외를 발생시킨다.
+         */
+        String winningNumInput = "1,2,3,4,10j,47";
+
+        assertThatThrownBy(() -> new WinningNumber(winningNumInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("당첨 번호에 숫자 외의 문자와 공백은 포함될 수 없습니다. 1부터 45까지의 숫자를 입력해주세요.");
+    }
 }

@@ -72,11 +72,11 @@
 - WinningNumber: 당첨 번호를 추상화한 클래스
   - isContainLottoNumber() 로또 번호가 당첨 번호에 포함되어 있는지 확인하고 boolean을 반환한다.
   - 유효성 검증: validateWinningNumbers()
+    - validateIsNumber(): 당첨 번호 입력 시, 숫자가 아닌 문자가 입력된다면 IllegalArgumentException을 발생시킨다.
+    - validateIsPositive(): 당첨 번호 입력 시, 음수가 입력된다면 IllegalArgumentException을 발생시킨다.
     - validateWinningNumSize(): 당첨 번호의 원소가 6개가 아니라면 IllegalArgumentException을 발생시킨다.
     - validateWinningNumRange(): 당첨 번호의 원소가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.
     - validateIsDuplicated(): 당첨 번호의 원소가 중복된다면 IllegalArgumentException을 발생시킨다.
-    - [ ] 당첨 번호 입력 시, 숫자가 아닌 문자가 입력된다면 IllegalArgumentException을 발생시킨다.
-    - [ ] 당첨 번호 입력 시, 음수가 입력된다면 IllegalArgumentException을 발생시킨다.
 - BonusNumber: 보너스 번호를 추상화한 클래스
   - 유효성 검증
     - validateBonusNumber(): 보너스 번호가 1부터 45까지의 숫자가 아니라면 IllegalArgumentException을 발생시킨다.

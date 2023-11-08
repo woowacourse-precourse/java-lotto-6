@@ -33,12 +33,9 @@ public class Validator {
         return price;
     }
 
-    public Set<Integer> validateWinningNumbers(String winningNumbersInput) {
-        Set<Integer> winningNumbers = new HashSet<>();
+    public List<Integer> validateWinningNumbers(String winningNumbersInput) {
+        List<Integer> winningNumbers = new ArrayList<>();
         String[] splittedNumbers = winningNumbersInput.trim().split(",");
-        if (splittedNumbers.length != 6) {
-            throw new IllegalArgumentException(prefix + "숫자 6개가 아닙니다.");
-        }
         for (int i = 0; i < splittedNumbers.length; i++) {
             int num = checkEachNumber(winningNumbers, splittedNumbers, i);
             winningNumbers.add(num);
@@ -46,25 +43,23 @@ public class Validator {
         return winningNumbers;
     }
 
-    private static int checkEachNumber(Set<Integer> winningNumbers, String[] splittedNumbers, int i) {
+    private static int checkEachNumber(List<Integer> winningNumbers, String[] splittedNumbers, int i) {
         String oneNum = splittedNumbers[i];
 
         validateNumberFormat(oneNum);
         int num = Integer.parseInt(oneNum);
         validateNumberScope(num);
-        if (winningNumbers.contains(num)) {
-            throw new IllegalArgumentException(prefix + "중복된 값을 포함하고 있습니다.");
-        }
+
         return num;
     }
 
-    public int validateBonusNumber(String bonusNumberInput, Set winningNumbers) {
+    public int validateBonusNumber(String bonusNumberInput, Lotto lotto) {
 
         validateNumberFormat(bonusNumberInput);
         int bonusNumber = Integer.parseInt(bonusNumberInput);
         validateNumberScope(bonusNumber);
 
-        if (winningNumbers.contains(bonusNumber)) {
+        if (lotto.containsNum(bonusNumber)) {
             throw new IllegalArgumentException(prefix + "당첨 번호와 겹치는 번호입니다.");
         }
         return bonusNumber;

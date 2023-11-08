@@ -2,7 +2,6 @@ package lotto.validator;
 
 import java.util.List;
 import java.util.stream.IntStream;
-
 public class LottoValidator{
 
     private static final int MIN_LOTTO_NUMBER = 1;

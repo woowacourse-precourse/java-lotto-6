@@ -1,5 +1,4 @@
 package lotto.validator;
-
 public class MoneyValidator{
 
     private static final int UNIT = 1000;

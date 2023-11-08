@@ -1,7 +1,6 @@
 package lotto.validator;
 
 import java.util.List;
-
 public class WinningValidator {
 
     private static final int MIN_WINNING_NUMBER = 1;

@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.validator.InputValidator;
 import lotto.validator.WinningValidator;
-
 import java.util.ArrayList;
 import java.util.List;
 

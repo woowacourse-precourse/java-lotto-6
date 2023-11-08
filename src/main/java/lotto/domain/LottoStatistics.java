@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-
 public class LottoStatistics {
 
     private static final double PERCENTAGE = 100.0;

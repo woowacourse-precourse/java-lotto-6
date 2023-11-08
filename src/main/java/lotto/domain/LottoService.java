@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-
 public class LottoService {
 
     private static final int HAS_BONUS_NUMBER = 1;

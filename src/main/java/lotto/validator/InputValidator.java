@@ -1,5 +1,4 @@
 package lotto.validator;
-
 public class InputValidator{
 
     private static final Character ZERO_LETTER = '0';

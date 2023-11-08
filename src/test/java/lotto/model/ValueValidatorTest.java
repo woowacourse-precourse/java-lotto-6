@@ -46,14 +46,21 @@ class ValueValidatorTest {
     @DisplayName("당첨 로또에 숫자외의 문자가 존재하면 예외를 발생합니다.")
     @Test
     void 보너스_숫자_테스트_1() {
-        assertThatThrownBy(() -> valueValidator.validateBonusNumber("1b"))
+        assertThatThrownBy(() -> valueValidator.validateBonusNumber("1b", List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 로또의 범위가 1 이상 45 이하가 아닌 경우 예외를 발생합니다.")
     @Test
     void 보너스_숫자_테스트_2() {
-        assertThatThrownBy(() -> valueValidator.validateBonusNumber("90"))
+        assertThatThrownBy(() -> valueValidator.validateBonusNumber("90", List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 로또에 보너스 넘버가 있는 경우 예외를 발생합니다.")
+    @Test
+    void 보너스_숫자_테스트_3() {
+        assertThatThrownBy(() -> valueValidator.validateBonusNumber("6", List.of(1, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

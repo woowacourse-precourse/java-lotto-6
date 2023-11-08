@@ -51,10 +51,10 @@ public class ValueValidator {
                 });
     }
 
-    public boolean validateBonusNumber(String inputBonusNumber) {
+    public boolean validateBonusNumber(String inputBonusNumber, List<Integer> winningNumbers) {
         validateBonusNumberValue(inputBonusNumber);
         validateBonusNumberValueRange(inputBonusNumber);
-
+        validateBonusNumberMatchWinningNumbers(inputBonusNumber,winningNumbers);
         return true;
     }
 
@@ -69,6 +69,12 @@ public class ValueValidator {
 
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void validateBonusNumberMatchWinningNumbers(String inputBonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(Integer.parseInt(inputBonusNumber))) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER_WITH_WINNING_NUMBER.getMessage());
         }
     }
 }

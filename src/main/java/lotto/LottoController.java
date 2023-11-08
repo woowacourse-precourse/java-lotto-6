@@ -85,7 +85,7 @@ public class LottoController {
         while (!isValidated) {
             try {
                 String inputBonusNumber = inputView.promptForBonusNumber();
-                isValidated = valueValidator.validateBonusNumber(inputBonusNumber);
+                isValidated = valueValidator.validateBonusNumber(inputBonusNumber, winningNumbers);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

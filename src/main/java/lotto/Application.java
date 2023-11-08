@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -40,12 +39,7 @@ public class Application {
     public static int strToNum(String inp) {
         int num;
 
-        try {
-            num = Integer.parseInt(inp);
-        }
-        catch (NumberFormatException exp){
-            throw new IllegalArgumentException();
-        }
+        num = Integer.parseInt(inp);
 
         return num;
     }
@@ -62,12 +56,18 @@ public class Application {
 
     public static int buying() {
         String inp;
-        int lottoCount;
+        int lottoCount = 0;
 
         System.out.println("구입금액을 입력해 주세요.");
 
-        inp = camp.nextstep.edu.missionutils.Console.readLine();
-        lottoCount = isBuyingValid(inp);
+        try {
+            inp = camp.nextstep.edu.missionutils.Console.readLine();
+            lottoCount = isBuyingValid(inp);
+        } catch (NumberFormatException exp) {
+            System.out.println("[ERROR] 로또 구입을 위한 금액을 숫자로 입력해주세요.");
+        } catch (IllegalArgumentException exp) {
+            System.out.println("[ERROR] 로또 구입을 위한 유효한 금액를 입력해주세요.");
+        } 
         
         System.out.printf("\n%d개를 구매했습니다.\n", lottoCount);
     
@@ -121,11 +121,18 @@ public class Application {
     public static Winner getWinner() {
         Winner winner = new Winner();
         
-        System.out.println("당첨 번호를 입력해 주세요.");
-        winner.winNums = isWinnersValid(camp.nextstep.edu.missionutils.Console.readLine());
-
-        System.out.printf("\n보너스 번호를 입력해 주세요.\n");
-        winner.bonusNum = isLottoNumValid(camp.nextstep.edu.missionutils.Console.readLine());
+        try{
+            System.out.println("당첨 번호를 입력해 주세요.");
+            winner.winNums = isWinnersValid(camp.nextstep.edu.missionutils.Console.readLine());
+        } catch (IllegalArgumentException exp) {
+            System.out.println("[ERROR] 유효한 로또 당첨 번호를 입력해주세요.");
+        }
+        try {
+            System.out.printf("\n보너스 번호를 입력해 주세요.\n");
+            winner.bonusNum = isLottoNumValid(camp.nextstep.edu.missionutils.Console.readLine());
+        } catch (IllegalArgumentException exp) {
+            System.out.println("[ERROR] 유효한 로또 보너스 번호를 입력해주세요.");
+        }
 
         return winner;
     }

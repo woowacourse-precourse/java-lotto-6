@@ -11,6 +11,7 @@ public class OutputView {
     private static final String NEW_LINE = System.lineSeparator();
     private static final String INPUT_MONEY = "구입금액을 입력해 주세요.";
     private static final String PURCHASED_LOTTO_COUNT = "%d개를 구매했습니다.";
+    private static final String INPUT_WINNING_LOTTO_NUMBERS = "당첨 번호를 입력해 주세요.";
 
     public static void printInputMoneyMessage() {
         System.out.println(INPUT_MONEY);
@@ -29,5 +30,9 @@ public class OutputView {
             System.out.println(numbers);
         }
         System.out.println(NEW_LINE);
+    }
+
+    public static void printInputWinningLottoNumbersMessage() {
+        System.out.println(INPUT_WINNING_LOTTO_NUMBERS);
     }
 }

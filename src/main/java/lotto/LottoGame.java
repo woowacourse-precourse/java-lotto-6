@@ -20,7 +20,10 @@ public class LottoGame {
         List<Lotto> lottoList = generateLotto(lottoCount);
         List<Integer> winningNumber = inputWinningNumbers();
         Integer bonusNumber = inputBonusNumber();
-        resultLotto(matchLottosWithWinningNumbers(lottoList, bonusNumber, winningNumber));
+        int[] result = matchLottosWithWinningNumbers(lottoList, bonusNumber, winningNumber);
+        resultLotto(result);
+        double returnRate = rateOfReturn(totalPrice, result);
+        System.out.println(String.format("총 수익률은 %1$,.1f%%입니다.", returnRate));
     }
 
     private Integer inputTotalPrice() {
@@ -89,8 +92,16 @@ public class LottoGame {
         System.out.println(String.format("5개 일치 (1,500,000원) - %d개", result[3]));
         System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", result[2]));
         System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", result[1]));
-        System.out.println("총 수익률은 입니다");
     }
-    
+
+    private double rateOfReturn(Integer totalPrice, int[] result) {
+        double revenue = 0;
+        revenue += 5000*result[5];
+        revenue += 50000*result[4];
+        revenue += 1500000*result[3];
+        revenue += 30000000*result[2];
+        revenue += 2000000000*result[1];
+        return revenue/totalPrice*100;
+    }
 
 }

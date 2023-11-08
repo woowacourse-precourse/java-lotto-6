@@ -1,17 +1,16 @@
 package lotto;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        System.out.println(numbers);
-        this.numbers = numbers;
+        List<Integer> list = new ArrayList<>(numbers);
+        list.sort(Comparator.naturalOrder());
+        System.out.println(list);
+        this.numbers = list;
     }
 
     private void validate(List<Integer> numbers) {

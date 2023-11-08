@@ -2,7 +2,6 @@ package lotto;
 
 
 import controller.Controller;
-import domain.LottoCount;
 import domain.LottoResult;
 import domain.WinningStatistics;
 
@@ -11,9 +10,9 @@ public class Application {
         // TODO: 프로그램 구현
         Controller controller = new Controller();
         controller.run();
-        LottoCount lottoCount = new LottoCount(cnt);
-        lottoCount.printLottoCount();
-        lottoCount.printLotties();
+        //LottoCount lottoCount = new LottoCount(cnt);
+        //lottoCount.printLottoCount();
+        //lottoCount.printLotties();
         LottoResult lottoResult = new LottoResult();
         WinningStatistics winningStatistics = new WinningStatistics(
                 lottoResult.getLottoResultNumber(),

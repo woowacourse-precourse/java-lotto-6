@@ -31,16 +31,4 @@ public class LottoCount {
         }
     }
 
-    public void printLottoCount() {
-        System.out.println();
-        System.out.println(lottoCount + "개를 구매했습니다.");
-    }
-
-    public void printLotties() {
-        lotties.stream().forEach(lotto -> {
-            List<Integer> numbers = lotto.getNumbers();
-            System.out.println(numbers);
-        });
-        System.out.println();
-    }
 }

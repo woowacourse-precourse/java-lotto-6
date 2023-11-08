@@ -21,17 +21,30 @@
 ### * 로또 번호 일치 확인
 ### * 수익률 계산 및 출력
 
-##### class 정리
-- (class) Lotto
-- validate(): 예외 처리
-- getRandomLotto(): 로또 번호 랜덤 설정
--  (class) InputData
-- inputMoney(): 금액 입력
-- inputWinNum(): 당첨 번호 입력
-- inputBonus(): 보너스 번호 입력
-- validate(): 예외 처리
-- (class) Check
-    - checkLottoNum(): 로또 번호 몇 개 맞추었는 지 확인
-    - checkRank(): 등수 확인
-- (class) Calculate
-    - calculateReturnRate(): 수익률 계산
+## <class 정리>
+
+(class) Application
+
+(class) Lotto
+
+validate(): 예외 처리
+(class) WinLotto
+
+inputWinNum(): 당첨 번호 입력
+setWinLotto(): 당첨 로또 설정
+inputBonus(): 보너스 번호 입력
+(class) UserData
+
+money
+inputMoney(): 금액 입력
+validateMoney(): 금액에 대한 예외 처리
+lottoCount
+setLottoCount(): 로또 개수 설정
+userLotto
+getRandomLotto(): 로또 번호 랜덤 설정
+setUserLotto(): 로또 수 만큼 로또 생성
+returnRate
+calculateReturnRate(): 수익률 계산
+lottoResult
+checkLotto(): 로또 번호 몇 개 맞추었는 지 확인
+checkRank(): 등수 확인

@@ -1,7 +1,5 @@
 package lotto;
 
-import lotto.dto.LottoNumberDTO;
-import lotto.model.Lotto;
 import lotto.service.LottoNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

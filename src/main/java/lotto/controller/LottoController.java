@@ -14,5 +14,6 @@ public class LottoController {
 
     public void play() {
         Lottos lottos = new Lottos(inputView.requirePurchas());
+        outputView.anounceLottos(lottos);
     }
 }

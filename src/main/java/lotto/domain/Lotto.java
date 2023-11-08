@@ -16,5 +16,9 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int[] convertArray() {
+        return numbers.stream()
+                .mapToInt(Integer::intValue)
+                .toArray();
+    }
 }

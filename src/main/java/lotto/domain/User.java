@@ -4,14 +4,14 @@ import java.util.List;
 
 public class User {
 
-    Computer computer = new Computer();
+    LottoMachine lottoMachine = new LottoMachine();
 
     private List<Lotto> lottos;
     private int money;
 
     public User(String money) {
         this.money = changeInteger(money);
-        lottos = computer.drawLottoRandomNumber(this.money);
+        lottos = lottoMachine.drawLottoRandomNumber(this.money);
     }
 
     public List<Lotto> getLottos() {

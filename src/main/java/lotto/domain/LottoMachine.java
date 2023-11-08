@@ -6,7 +6,7 @@ import lotto.constant.LottoInformation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Computer {
+public class LottoMachine {
 
     private Lotto lotto;
 

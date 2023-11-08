@@ -4,10 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static lotto.domain.Constant.*;
 
@@ -23,8 +21,10 @@ public class LottoBuilder {
 
     private List<Integer> createRandomNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public List<Integer> createWinningLotto(String winningNumber) {

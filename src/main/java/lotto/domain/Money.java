@@ -11,6 +11,10 @@ public class Money {
         this.purchasePrice = Integer.parseInt(money);
     }
 
+    public int getPurchasePrice() {
+        return purchasePrice;
+    }
+
     private void validateNumber(String money) {
         if (!money.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");

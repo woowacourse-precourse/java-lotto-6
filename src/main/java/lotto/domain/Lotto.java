@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.domain.Constant.*;
@@ -10,7 +11,16 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateInRange(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        for (int num : numbers) {
+            int cnt = Collections.frequency(numbers, num);
+            if (cnt >= 2)
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복 될 수 없습니다.");
+        }
     }
 
     private void validateInRange(List<Integer> numbers) {

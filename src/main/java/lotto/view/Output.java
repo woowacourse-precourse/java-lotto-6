@@ -13,6 +13,7 @@ public class Output {
     private static final String MESSAGE_WINNING_STATISTICS = "당첨 통계";
     private static final String FORMAT_PURCHASE_MESSAGE = "%d개를 구매했습니다.";
     private static final String FORMAT_RESULT_MESSAGE = "%s - %d개";
+    private static final String FORMAT_TOTAL_RETURN = "총 수익률은 %.1f%%입니다.";
 
 
     public static void getMessageOfPurchaseLotto() {
@@ -49,5 +50,9 @@ public class Output {
         for (Rank rank : rankOrder) {
             System.out.printf(FORMAT_RESULT_MESSAGE + "\n", rank.getSentence(), result.get(rank));
         }
+    }
+
+    public static void getFormatOfTotalReturn(double totalReturn) {
+        System.out.printf(FORMAT_TOTAL_RETURN, totalReturn);
     }
 }

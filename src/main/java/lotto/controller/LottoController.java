@@ -5,7 +5,6 @@ import lotto.view.Input;
 import lotto.view.Output;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class LottoController {
 
@@ -15,14 +14,20 @@ public class LottoController {
         printLottoList(lottoTicket);
         WinningLotto winningLotto = createWinningLottoTicket();
         setBonusNumber(winningLotto);
-        printLottoResult(lottoTicket, winningLotto);
+        printLottoResult(lottoTicket, winningLotto, money.getPurchasePrice());
     }
 
-    private void printLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto) {
+    private void printTotalReturn(double totalPrize, int money) {
+        double totalReturn = (totalPrize / money) * 100;
+        Output.getFormatOfTotalReturn(totalReturn);
+    }
+
+    private void printLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto, int money) {
         HashMap<Rank, Integer> result = new HashMap<>();
         LottoCalculator lottoCalculator = new LottoCalculator();
         result = lottoCalculator.crateResult(lottoTicket, winningLotto);
         Output.getMessageOfResult(result);
+        printTotalReturn(lottoCalculator.getTotalPrize(), money);
     }
 
     private void setBonusNumber(WinningLotto winningLotto) {

@@ -3,11 +3,8 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 
-import static lotto.domain.Constant.LOTTO_NUMBER_COUNT;
-
 public class LottoCalculator {
     private HashMap<Rank, Integer> lottoMap = new HashMap<>();
-    private int[] quantityArray = new int[]{0, 0, 0, 0, 0, 0, 0};
 
     public HashMap<Rank, Integer> crateResult(LottoTicket lottoTicket, WinningLotto winningLotto) {
         List<Integer> winningList = winningLotto.getWinningNumber().getNumbers();
@@ -39,5 +36,13 @@ public class LottoCalculator {
             init.put(rank, 0);
         }
         return init;
+    }
+
+    public long getTotalPrize() {
+        long totalPrize = 0;
+        for (Rank rank : lottoMap.keySet()) {
+            totalPrize += (long) rank.getWinningPrice() * lottoMap.get(rank);
+        }
+        return totalPrize;
     }
 }

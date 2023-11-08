@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import lotto.Lotto;
-import lotto.domain.Application;
+import lotto.Application;
 
 public class InputView {
 

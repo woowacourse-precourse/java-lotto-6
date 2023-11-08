@@ -1,10 +1,6 @@
 package lotto.util;
 
 import lotto.Lotto;
-import lotto.domain.*;
-import lotto.Enum.*;
-import lotto.view.*;
-
 
 
 public class LottoUtils {

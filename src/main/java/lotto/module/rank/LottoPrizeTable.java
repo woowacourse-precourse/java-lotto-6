@@ -17,10 +17,6 @@ public enum LottoPrizeTable {
         this.winningRecordMessage = winningRecordMessage;
     }
 
-    public int getPrize() {
-        return rank.getPrize();
-    }
-
     public int getMatchCount() {
         return rank.getMatchCount();
     }

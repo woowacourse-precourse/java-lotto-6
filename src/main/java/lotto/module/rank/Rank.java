@@ -5,5 +5,4 @@ public interface Rank {
 
     int getMatchCount();
 
-    int getRank();
 }

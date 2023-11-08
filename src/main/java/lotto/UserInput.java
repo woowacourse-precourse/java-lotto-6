@@ -7,32 +7,51 @@ import java.util.ArrayList;
 
 public class UserInput {
     public int insertMoney(String prompt){
-        System.out.println(prompt);
+        while (true) {
+            System.out.println(prompt);
+            String userInput = Console.readLine();
+            try {
+                int insertedMoney = Integer.parseInt(userInput);
+                return (insertedMoney / 1000);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 구입 금액은 정수로 입력해야 합니다.");
+            }
+        }
 
-        String userInput = Console.readLine();
-        int insertedMoney = Integer.parseInt(userInput);
-
-        return (insertedMoney/1000);
     }
 
     public List<Integer> inputWinnerNumbers(String prompt) {
-        System.out.println(prompt);
+        while(true) {
+            System.out.println(prompt);
 
-        String userInput = Console.readLine();
-        String[] splitStrings = userInput.split(",");
-        List<Integer> resultList = new ArrayList<>();
-        for (String str : splitStrings) {
-            int num = Integer.parseInt(str.trim());
-            resultList.add(num);
+            String userInput = Console.readLine();
+            try {
+                String[] splitStrings = userInput.split(",");
+                List<Integer> resultList = new ArrayList<>();
+                for (String str : splitStrings) {
+                    int num = Integer.parseInt(str.trim());
+                    resultList.add(num);
+                }
+                new Lotto(resultList);
+                return resultList;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return resultList;
     }
 
     public int inputBonusNumber(String prompt) {
-        System.out.println(prompt);
-        String userInput = Console.readLine();
-        int bonusNumber = Integer.parseInt(userInput);
+        while(true) {
 
-        return bonusNumber;
+            System.out.println(prompt);
+            String userInput = Console.readLine();
+            try {
+                int bonusNumber = Integer.parseInt(userInput);
+                return bonusNumber;
+            }catch (NumberFormatException e) {
+                System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+
+        }
     }
 }

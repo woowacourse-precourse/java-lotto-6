@@ -16,10 +16,8 @@ public class Application {
         List<List<Integer>> userLotto=randomNumberGenerator.getRandomNumbers();
 
         List<Integer> inputList = userInput.inputWinnerNumbers("당첨 번호를 입력해 주세요.");
-        System.out.println(inputList);
 
         int bonusNumber = userInput.inputBonusNumber("보너스 번호를 입력해 주세요.");
-        System.out.println(bonusNumber);
 
         Winner winner = new Winner();
         for(int i=0;i<insertedMoney;i++){
@@ -29,7 +27,7 @@ public class Application {
         winner.printLottoResult(result);
 
         Profit profit = new Profit();
-        double profitPercentage =profit.calculateProfit(result);
+        double profitPercentage =profit.calculateProfit(result,insertedMoney);
         profit.printProfit(profitPercentage);
     }
 }

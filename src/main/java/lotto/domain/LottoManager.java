@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,22 +17,18 @@ public class LottoManager {
     }
 
     public void countMatchingWinningLottoNumbers(LottoBuyer lottoBuyer) {
+
         List<Lotto> lottoTickets = lottoBuyer.getLottoTickets();
         Map<Integer, Boolean> lottoWinningResults = new HashMap<>();
-        for (Lotto lotto : lottoTickets) {
-            int count = 0;
-            boolean flag = false;
+
+        lottoTickets.forEach(lotto -> {
             List<Integer> numbers = lotto.getNumbers();
-            for (int winningLottoNumber : winningLottoNumbers) {
-                if (numbers.contains(winningLottoNumber)) {
-                    count += 1;
-                }
-                if (numbers.contains(bonusLottoNumber)) {
-                    flag = true;
-                }
-            }
+            int count = (int) winningLottoNumbers.stream()
+                    .filter(numbers::contains)
+                    .count();
+            boolean flag = numbers.contains(bonusLottoNumber);
             lottoWinningResults.put(count, flag);
-        }
+        });
     }
 
     private List<Integer> getWinningLottoNumbers() {

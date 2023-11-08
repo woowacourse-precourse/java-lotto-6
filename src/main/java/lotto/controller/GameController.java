@@ -22,7 +22,6 @@ public class GameController {
         LottoManager lottoManager = new LottoManager(winningLottoNumbers, bonusLottoNumber);
 
         lottoManager.countMatchingWinningLottoNumbers(lottoBuyer);
-//        lottoManager.checkWinningSumInformation();
     }
 
     private LottoBuyer purchaseLottoTickets() {

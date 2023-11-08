@@ -11,8 +11,8 @@ public class Application {
     private final static int LOTTO_MAX_NUMBER = 45;
 
     public static void main(String[] args) {
-        List<Lotto> lottos = buyLottos();
-        printLottos(lottos);
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        List<Lotto> lottos = lottoGenerator.buyLottos();
 
         Lotto winningLotto = getWinningLotto();
         int bonusNumber = getBonusNumber();

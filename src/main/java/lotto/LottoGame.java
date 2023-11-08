@@ -89,18 +89,22 @@ public class LottoGame {
 
     void calculateReward(){
         for(Lotto lotto : lottos){
-            int correct = 0;
-            boolean isBonusNumber = false;
-            for(int i=0;i<6;i++){
-                if(lotto.contain(winningLotto.returnNumber(i))){
-                    correct++;
-                }
-                if(lotto.contain(bonusNumber)){
-                    isBonusNumber=true;
-                }
-            }
-            countReward(correct,isBonusNumber);
+            reward(lotto);
         }
+    }
+
+    void reward(Lotto lotto){
+        int correct = 0;
+        boolean isBonusNumber = false;
+        for(int i=0;i<6;i++){
+            if(lotto.contain(winningLotto.returnNumber(i))){
+                correct++;
+            }
+            if(lotto.contain(bonusNumber)){
+                isBonusNumber=true;
+            }
+        }
+        countReward(correct,isBonusNumber);
     }
 
     void countReward(int correct,boolean isBonusNumber){

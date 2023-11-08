@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="lotto.ApplicationTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2023-11-08T14:50:41" hostname="상민의DESKTOP" time="1.13">
+  <properties/>
+  <testcase name="기능_테스트()" classname="lotto.ApplicationTest" time="1.13">
+    <failure message="java.lang.UnsupportedOperationException" type="java.lang.UnsupportedOperationException">java.lang.UnsupportedOperationException
+	at java.base/java.util.ImmutableCollections.uoe(ImmutableCollections.java:142)
+	at java.base/java.util.ImmutableCollections$AbstractImmutableList.sort(ImmutableCollections.java:261)
+	at java.base/java.util.Collections.sort(Collections.java:145)
+	at lotto.SeveralLotto.getSixRandomNumbers(SeveralLotto.java:25)
+	at lotto.SeveralLotto.makeOneLotto(SeveralLotto.java:31)
+	at lotto.SeveralLotto.makeAllLotto(SeveralLotto.java:36)
+	at lotto.SeveralLotto.&lt;init&gt;(SeveralLotto.java:17)
+	at lotto.InputNumber.initSeveralLotto(InputNumber.java:97)
+	at lotto.InputNumber.&lt;init&gt;(InputNumber.java:18)
+	at lotto.GameStart.&lt;init&gt;(GameStart.java:5)
+	at lotto.Application.main(Application.java:5)
+	at lotto.ApplicationTest.runMain(ApplicationTest.java:59)
+	at camp.nextstep.edu.missionutils.test.NsTest.run(NsTest.java:37)
+	at lotto.ApplicationTest.lambda$기능_테스트$0(ApplicationTest.java:19)
+	at camp.nextstep.edu.missionutils.test.Assertions.lambda$assertRandomTest$4(Assertions.java:89)
+	at org.junit.jupiter.api.AssertTimeout.lambda$assertTimeoutPreemptively$2(AssertTimeout.java:102)
+	at org.junit.jupiter.api.AssertTimeout.lambda$assertTimeoutPreemptively$4(AssertTimeout.java:138)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+</failure>
+  </testcase>
+  <system-out><![CDATA[구입금액을 입력해 주세요.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -21,7 +21,7 @@ public class LottoGame {
 
         OutputView.printLottoTickets(new LottoTicketsDto(lottoTickets));
 
-        WinningNumbers winningNumbers = getWinningNumbers();
+        WinningNumbers winningNumbers = getWinningNumbersWithBonusNumber();
 
         LottoResult lottoResult = getLottoResult(winningNumbers, lottoTickets);
 
@@ -55,8 +55,30 @@ public class LottoGame {
         return new LottoTicket(NumberGenerator.generate());
     }
 
-    public WinningNumbers getWinningNumbers() {
-        return new WinningNumbers(inputWinningNumbers(), inputBonusNumber());
+    public WinningNumbers getWinningNumbersWithBonusNumber() {
+        List<Integer> winningNumbers = getWinningNumbers();
+        Integer bonusNumber = getBonusNumber(winningNumbers);
+        return new WinningNumbers(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> getWinningNumbers() {
+        try {
+            return inputWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getWinningNumbers();
+        }
+    }
+
+    private Integer getBonusNumber(List<Integer> winningNumbers) {
+        try {
+            int bonusNumber = inputBonusNumber();
+            if (winningNumbers.contains(bonusNumber)) throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return getBonusNumber(winningNumbers);
+        }
     }
 
     public LottoResult getLottoResult(WinningNumbers winningNumbers, LottoTickets lottoTickets) {

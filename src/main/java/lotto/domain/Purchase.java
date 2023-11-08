@@ -1,0 +1,29 @@
+package lotto.domain;
+
+import lotto.exception.InputException;
+
+import static lotto.configuration.GameConfiguration.LOTTO_PRICE_PER_UNIT;
+import static lotto.exception.errorcode.InputErrorCode.INVALID_LOTTO_PURCHASE_PRICE;
+
+public class Purchase {
+    private final long price;
+
+    public Purchase(final long price) {
+        validatePrice(price);
+        this.price = price;
+    }
+
+    public double getProfitRate(final long revenue) {
+        return 100. * revenue / price;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    private void validatePrice(final long price) {
+        if (price % LOTTO_PRICE_PER_UNIT != 0) {
+            throw new InputException(INVALID_LOTTO_PURCHASE_PRICE);
+        }
+    }
+}

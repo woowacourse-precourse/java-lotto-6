@@ -6,6 +6,7 @@ import static lotto.utils.LottoUtils.divisionLottoPrice;
 import static lotto.utils.LottoUtils.generateRandomNumbers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.dto.LottoDto;
@@ -29,14 +30,14 @@ public class LottoController {
     public void run() {
         int priceLotto = inputView.parseInputFromUserInteger();
         int divisionLottoPrice = divisionLottoPrice(priceLotto);
-        List<LottoDto> generateLottoNumbersDto = createLottoGenerate(divisionLottoPrice);
+        List<LottoDto> generateLottoNumbers = createLottoGenerate(divisionLottoPrice);
         outView.lottoCommonNumberView(WINNING);
-        List<Integer> lottoWinningNumbers = lottoService.createWinningNumbers(inputView.commonInput());
+        List<Integer> lottoWinnerNumbers = lottoService.createWinningNumbers(inputView.commonInput());
         outView.lottoCommonNumberView(BONUS);
-        int lottoBonusNumber = lottoService.createBonusNumber(lottoWinningNumbers, inputView.commonInput());
-        Map<Integer, Integer> lottoFindWinner = lottoService.findWinners(lottoWinningNumbers,
-                lottoBonusNumber,
-                generateLottoNumbersDto);
+        int bonusNumber = lottoService.createBonusNumber(lottoWinnerNumbers, inputView.commonInput());
+        System.out.println();
+        List<Map<Integer, Integer>> lottoFindWinner = lottoService.findWinners(lottoWinnerNumbers, bonusNumber,
+                generateLottoNumbers);
         outView.winnersMsg(lottoFindWinner, priceLotto);
     }
 
@@ -46,7 +47,9 @@ public class LottoController {
         System.out.println();
         outView.lottoPriceView(divisionLottoPrice);
         for (int i = 0; i < divisionLottoPrice; i++) {
-            Lotto lotto = new Lotto(generateRandomNumbers());
+            List<Integer> generatorRandomNumber = new ArrayList<>(generateRandomNumbers());
+            Collections.sort(generatorRandomNumber);
+            Lotto lotto = new Lotto(generatorRandomNumber);
             lottoDtos.add(new LottoDto(lotto.getLotto(), lotto));
             outView.randomLottoOutView(lotto.getLotto());
         }

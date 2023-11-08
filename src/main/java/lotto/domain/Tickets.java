@@ -4,11 +4,13 @@ import lotto.utils.StringUtils;
 
 public class Tickets {
 
+    private static final int PRICE_OF_TICKET = 1000;
+
     private int numberOfTickets;
 
     public Tickets(String input) {
         int payment = validate(input);
-        numberOfTickets = payment / 1000;
+        numberOfTickets = payment / PRICE_OF_TICKET;
     }
 
     private int validate(String input) {
@@ -22,7 +24,7 @@ public class Tickets {
     }
 
     private boolean isInvalidPayment(int payment) {
-        return payment < 0 || payment % 1000 != 0;
+        return payment < 0 || payment % PRICE_OF_TICKET != 0;
     }
 
     public int getNumberOfTickets() {

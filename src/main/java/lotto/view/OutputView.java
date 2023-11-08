@@ -18,13 +18,15 @@ public class OutputView {
 
     public void result(Result result) {
         System.out.println(STATICS.getMessage());
-        System.out.printf(FIFTH.getMessage() + "%d\n" +
-                FOURTH.getMessage()+ "%d\n" +
-                THIRD.getMessage() +"%d\n" +
-                SECOND.getMessage() +"%d\n" +
-                FIRST.getMessage() + "%d\n",
+        System.out.printf(FIFTH.getMessage() +
+                FOURTH.getMessage() +
+                THIRD.getMessage() +
+                SECOND.getMessage() +
+                FIRST.getMessage(),
                 result.getFifth(), result.getFourth(), result.getThird(), result.getSecond(), result.getFirst());
     }
 
-
+    public void revenueRate(double revenueRate) {
+        System.out.printf(REVENUE.getMessage(), (revenueRate+"%"));
+    }
 }

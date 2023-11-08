@@ -45,9 +45,7 @@ public class Play {
             checkInt(number);
             checkPositive(number);
         }
-        List<Integer> jackpotInts = jackpotStrings.stream()
-                .map(Integer::valueOf)
-                .collect(Collectors.toList());
+        List<Integer> jackpotInts = jackpotStrings.stream().map(Integer::valueOf).collect(Collectors.toList());
         validateRange(jackpotInts);
         validateRepeat(jackpotInts);
         return jackpotInts;
@@ -77,7 +75,19 @@ public class Play {
     }
 
     // 여기서 enum  써야 할 듯
-    public void givePrize() {
-
-    }
+    public int givePrize(List<Integer> matchedResults) {
+        int matched = matchedResults.get(0);
+        int bonusMatched = matchedResults.get(1);
+        if (matched == 6) {
+            return 1;
+        } else if (matched == 5 && bonusMatched == 1) {
+            return 2;
+        } else if (matched == 5 && bonusMatched == 0) {
+            return 3;
+        } else if (matched == 4) {
+            return 4;
+        } else if (matched == 3) {
+            return 5;
+        }
+    return 0; }
 }

@@ -22,4 +22,12 @@ class PlayTest {
         List<Integer> compare2 = Arrays.asList(1,2,3,4,10,11,7);
         assertEquals(expected, play.compare(compare1, compare2));
     }
+    @Test
+    void givePrize() {
+        Play play = new Play();
+        int expected = 1;
+        List<Integer> test = Arrays.asList(6,1);
+        assertEquals(expected, play.givePrize(test));
+
+    }
 }

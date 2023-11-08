@@ -1,6 +1,7 @@
 package lotto.controller.dto;
 
 import java.util.List;
+import lotto.model.domain.vo.Lottos;
 
 public class PurchaseHistoryDto {
 
@@ -12,9 +13,9 @@ public class PurchaseHistoryDto {
         this.lottoNumbers = lottoNumbers;
     }
 
-    public static PurchaseHistoryDto toDto(MoneyLottosDto moneyLottosDto) {
-        int ea = moneyLottosDto.getLottos().getEA();
-        List<List<Integer>> history = moneyLottosDto.getLottos().getHistory();
+    public static PurchaseHistoryDto toDto(Lottos lottos) {
+        int ea = lottos.getEA();
+        List<List<Integer>> history = lottos.getHistory();
         return new PurchaseHistoryDto(ea, history);
     }
 

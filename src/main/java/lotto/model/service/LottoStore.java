@@ -3,7 +3,6 @@ package lotto.model.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.controller.dto.MoneyLottosDto;
 import lotto.model.domain.vo.Lotto;
 import lotto.model.domain.vo.Lottos;
 import lotto.model.domain.vo.Money;
@@ -22,10 +21,10 @@ public class LottoStore {
         return new LottoStore(numberGenerateStrategy);
     }
 
-    public MoneyLottosDto sellLotto(Money money) {
+    public Lottos sellLotto(Money money) {
         money.validateDivideBy1000();
         int quantity = calculatePurchaseQuantity(money.getMoney());
-        return MoneyLottosDto.from(money, createLottos(quantity));
+        return createLottos(quantity);
     }
 
     private int calculatePurchaseQuantity(int money) {

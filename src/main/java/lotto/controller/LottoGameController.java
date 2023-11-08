@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.dto.PurchaseHistoryDto;
 import lotto.controller.dto.WinningStatisticDto;
 import lotto.model.domain.LottoWinNumber;
-import lotto.controller.dto.MoneyLottosDto;
 import lotto.model.domain.RankingBoard;
+import lotto.model.domain.vo.Lottos;
 import lotto.model.service.LottoHeadQuarter;
 import lotto.model.service.LottoStore;
 import lotto.model.domain.vo.BonusNumber;
@@ -30,22 +30,32 @@ public class LottoGameController {
     }
 
     public void run() {
-        MoneyLottosDto moneyLottosDto = buyLotto();
+        Money money = inputNumber();
+        Lottos lottos = buyLotto(money);
         WinNumber winNumber = setWinNumber();
         BonusNumber bonusNumber = setBonusNumber();
-        playLottoGame(moneyLottosDto, winNumber, bonusNumber);
+        playLottoGame(money, lottos, winNumber, bonusNumber);
     }
 
-    private MoneyLottosDto buyLotto() {
+    private Money inputNumber() {
         while (true) {
             try {
                 outputView.printPurchaseInput();
                 Money money = new Money(input());
-                MoneyLottosDto moneyLottosDto = lottoStore.sellLotto(money);
-                PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(moneyLottosDto);
+                return money;
+            } catch (IllegalArgumentException e) {
+                errorView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+    private Lottos buyLotto(Money money) {
+        while (true) {
+            try {
+                Lottos lottos = lottoStore.sellLotto(money);
+                PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(lottos);
                 outputView.printPurchaseHistory(dto);
                 outputView.printLineSeparator();
-                return moneyLottosDto;
+                return lottos;
             } catch (IllegalArgumentException e) {
                 errorView.printErrorMessage(e.getMessage());
             }
@@ -78,12 +88,12 @@ public class LottoGameController {
         }
     }
 
-    private void playLottoGame(MoneyLottosDto moneyLottosDto, WinNumber winNumber, BonusNumber bonusNumber) {
+    private void playLottoGame(Money money, Lottos lottos, WinNumber winNumber, BonusNumber bonusNumber) {
         try {
             LottoWinNumber lottoWinNumber = lottoHeadQuarter.pickNumber(winNumber, bonusNumber);
-            RankingBoard rankingBoard = lottoHeadQuarter.drawWinner(lottoWinNumber, moneyLottosDto.getLottos());
+            RankingBoard rankingBoard = lottoHeadQuarter.drawWinner(lottoWinNumber, lottos);
 
-            double yield = lottoHeadQuarter.calculateYield(moneyLottosDto.getMoney(), rankingBoard);
+            double yield = lottoHeadQuarter.calculateYield(money, rankingBoard);
 
             WinningStatisticDto dto = WinningStatisticDto.from(rankingBoard, yield);
             outputView.printWinningStatistic(dto);

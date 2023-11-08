@@ -16,8 +16,8 @@ public class InputView {
         return Validation.validateWinnerNumbers(input);
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(List<Integer> winnerNumbers) {
         String input = Console.readLine();
-        return Validation.validateBonusNumber(input);
+        return Validation.validateBonusNumber(winnerNumbers, input);
     }
 }

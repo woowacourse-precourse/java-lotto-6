@@ -1,89 +1,64 @@
 package lotto.model;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-import lotto.constant.Ranking;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.WinningMoney;
+import lotto.constant.LottoResult;
 
 public class LottoStore {
-    private static final int LOTTO_COST = 1000;
-    private int lottoSales;
-    private BigDecimal totalWinningMoney;
 
-    public void setLottoSales(int lottoSales) {
-        this.lottoSales = lottoSales;
-    }
-
-    public void setTotalWinningMoney(List<Integer> lottoRankings) {
-        Stream<BigDecimal> winningAmounts = IntStream.range(1, lottoRankings.size())
-                .mapToObj(i -> BigDecimal.valueOf(lottoRankings.get(i))
-                        .multiply(BigDecimal.valueOf(WinningMoney.values()[i-1].getMoney())));
-
-        this.setTotalWinningMoney(winningAmounts.reduce(BigDecimal.ZERO, BigDecimal::add));
-    }
 
     public List<Integer> rankLottos(List<Lotto> customerLotto, Lotto winningLotto, int bonusNumber) {
-        List<Integer> lottoRank = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
+        List<Integer> lottoRank = initializeLottoRank();
+
         for (Lotto customer : customerLotto) {
-            int matchNumber = compareLotto(customer.getNumbers(), winningLotto.getNumbers(), bonusNumber);
-            lottoRank.set(
-                    setRanking(matchNumber),
-                    lottoRank.get(setRanking(matchNumber)) + 1
-            );
+            int matchingCount = compareLotto(customer.getNumbers(), winningLotto.getNumbers());
+            int matchingRankIndex = setRanking(matchingCount);
+            int currentRankCount = lottoRank.get(matchingRankIndex);
+
+            if (isThirdRankWithBonus(customer, matchingRankIndex, bonusNumber)) {
+                matchingRankIndex++;
+            }
+            lottoRank.set(matchingRankIndex, currentRankCount + 1);
         }
+
         return lottoRank;
     }
 
-    private int compareLotto(List<Integer> customerLotto, List<Integer> winningLotto, int bonusNumber) {
+    private int compareLotto(List<Integer> customerLotto, List<Integer> winningLotto) {
+        Set<Integer> winningNumbers = new HashSet<>(winningLotto);
         int matchCount = 0;
         for (Integer lotto : customerLotto) {
-            if (winningLotto.contains(lotto)) {
+            if (winningNumbers.contains(lotto)) {
                 matchCount++;
             }
         }
-        if (matchCount == 5 && isBonusInNumbers(customerLotto, bonusNumber)) {
-            matchCount = 7;
-        }
-
         return matchCount;
     }
 
-    private int setRanking(int matchNumber) {
-        int flag = 0;
-        if (matchNumber == 3) {
-            flag = Ranking.MATCH_THREE.getValue();
-        } else if (matchNumber == 4) {
-            flag = Ranking.MATCH_FOUR.getValue();
-        } else if (matchNumber == 5) {
-            flag = Ranking.MATCH_FIVE.getValue();
-        } else if (matchNumber == 6) {
-            flag = Ranking.MATCH_SIX.getValue();
-        } else if (matchNumber == 7) {
-            flag = Ranking.MATCH_BONUS.getValue();
-        }
-        return flag;
+    private List<Integer> initializeLottoRank() {
+        return new ArrayList<>(Collections.nCopies(6, 0));
     }
 
-    public BigDecimal calculateRateOfReturn() {
-        BigDecimal intDivisor = BigDecimal.valueOf((long) this.lottoSales * LOTTO_COST);
-        return this.totalWinningMoney.divide(intDivisor, 3, RoundingMode.DOWN)
-                .multiply(BigDecimal.valueOf(100)).stripTrailingZeros();
+    private boolean isThirdRankWithBonus(Lotto lotto, int matchingRankIndex, int bonusNumber) {
+        return matchingRankIndex == LottoResult.THIRD_RANK.getIndex() &&
+                isBonusInNumbers(lotto.getNumbers(), bonusNumber);
     }
-
 
     private boolean isBonusInNumbers(List<Integer> numbers, int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 
-    public BigDecimal getTotalWinningMoney() {
-        return totalWinningMoney;
-    }
 
-    public void setTotalWinningMoney(BigDecimal totalWinningMoney) {
-        this.totalWinningMoney = totalWinningMoney;
+    private int setRanking(int matchingCount) {
+        return switch (matchingCount) {
+            case 3 -> LottoResult.FIFTH_RANK.getIndex();
+            case 4 -> LottoResult.FOURTH_RANK.getIndex();
+            case 5 -> LottoResult.THIRD_RANK.getIndex();
+            case 6 -> LottoResult.SECOND_RANK.getIndex();
+            default -> 0; // Handle other cases if needed.
+        };
     }
 }

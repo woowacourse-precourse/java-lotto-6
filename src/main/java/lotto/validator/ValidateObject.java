@@ -4,6 +4,7 @@ import lotto.model.Lotto;
 
 public class ValidateObject{
     private static final String ERROR_MESSAGE = "[ERROR]";
+    private ValidateObject(){}
     public static void validateBonusNumber(Lotto winningLotto, int bonusNumber) {
         winningLotto.getNumbers().stream()
                 .filter(s -> s.equals(bonusNumber))

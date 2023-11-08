@@ -63,9 +63,16 @@ class WinnigNum {
     public static String InputLottoNum(){
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winningnum = Console.readLine(); // 문자열로 입력 받기
+        String winningnum = Console.readLine();
         return winningnum;
     }
-
+    public static List<Integer> LottoNum(String winningnum){
+        String[] num = winningnum.split(",");
+        List<Integer> num_lst = new ArrayList<>();
+        for (String str : num) {
+            num_lst.add(Integer.parseInt(str.trim()));
+        }
+        return num_lst;
+    }
 
 }

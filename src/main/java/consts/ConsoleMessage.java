@@ -7,9 +7,9 @@ public class ConsoleMessage {
 
     public static final String PURCHASED_LOTTO_COUNT = "%d개를 구매했습니다.";
     public static final String WINNING_STATISTICS = "당첨 통계\n---";
-    public static final String WINNING_STATISTICS_FORMAT = "%d개 일치 (%d원) - %d개";
-    public static final String WINNING_STATISTICS_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%d원) - %d개";
-    public static final String WINNING_STATISTICS_PROFIT_RATE = "총 수익률은 %.2f%%입니다.";
+    public static final String WINNING_STATISTICS_FORMAT = "%d개 일치 (%s원) - %d개";
+    public static final String WINNING_STATISTICS_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    public static final String WINNING_STATISTICS_PROFIT_RATE = "총 수익률은 %.1f%%입니다.";
 
     public static final String ERROR_MESSAGE = "[ERROR] %s";
 }

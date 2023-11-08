@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public enum Rank {
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
@@ -22,30 +25,22 @@ public enum Rank {
         return prize;
     }
 
-    public static Rank valueOf(int matchCount, boolean hasBonusNumber) {
-        if (matchCount == 6) {
-            return FIRST;
-        }
-        if (matchCount == 5 && hasBonusNumber) {
-            return SECOND;
-        }
-        for (Rank rank : values()) {
-            if (rank.matchCount == matchCount) {
-                return rank;
-            }
-        }
-        throw new IllegalArgumentException("유효하지 않은 등수입니다.");
+    public int getCountOfMatch() {
+        return matchCount;
     }
 
-    public void printResult(int count) {
-        if (this == FIRST) {
-            System.out.printf("%d개 일치 (%s) - %d개%n", matchCount, getPrizeString(), count);
-        } else {
-            System.out.printf("%d개 일치%s (%s) - %d개%n", matchCount, hasBonusNumber ? ", 보너스 볼 일치" : "", getPrizeString(), count);
-        }
+    public boolean isMatchBonus() {
+        return hasBonusNumber;
     }
 
-    private String getPrizeString() {
-        return String.format("%,d원", prize);
+    public static Rank valueOf(int countOfMatch, boolean matchBonus) {
+        return Arrays.stream(values())
+                .filter(rank -> rank.matchCount == countOfMatch)
+                .filter(rank -> !rank.hasBonusNumber || matchBonus)
+                .findFirst()
+                .orElse(MISS);
     }
+
+    public static final Comparator<Rank> PRIZE_ASCENDING_ORDER = Comparator.comparingInt(o -> o.prize);
+
 }

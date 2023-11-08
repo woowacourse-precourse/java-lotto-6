@@ -23,10 +23,10 @@
         - throw exception if not within 1~45
         - throw exception if non-integer
 
-  - Profit Percentage
+  - [x] Profit Percentage
     - round to the second place
     -  profit = total_jackpot / boughtAmount * 100
-  - Jackpot Stats
+  - [x] Jackpot Stats
     - (ex)
       -  3개 일치 (5,000원) - 1개
       -  4개 일치 (50,000원) - 0개

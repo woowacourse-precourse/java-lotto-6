@@ -1,12 +1,13 @@
 package lotto;
 
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        checkDuplicateNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +17,18 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public boolean contain(int number){
+        return this.numbers.contains(number);
+    }
+
+    public int returnNumber(int index){
+        return this.numbers.get(index);
+    }
+
+    private void checkDuplicateNumber(List<Integer> numbers){
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if(numbers.size()!=numberSet.size()){
+            throw new IllegalArgumentException();
+        }
+    }
 }

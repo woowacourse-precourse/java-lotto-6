@@ -1,7 +1,9 @@
 package lotto;
 
 public class Application {
+    private static final LottoGame lottogame = new LottoGame();
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        lottogame.StartGame();
     }
 }

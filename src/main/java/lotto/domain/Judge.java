@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Judge {
     //상수(static final) 또는 클래스 변수
+    Generator generator = new Generator();
+    Printer printer = new Printer();
 
     //인스턴스 변수
     int matchingThreeNumbers;
@@ -45,4 +47,14 @@ public class Judge {
         return false;
     }
 
+    public void calculateProfit() {
+        long prizeMoney = calculatePrizeMoney();
+        double profitPercent = ((double)prizeMoney/generator.getMoney()) * 100;
+        printer.showProfit(profitPercent);
+    }
+
+    private long calculatePrizeMoney() {
+        long prizeMoney = 0;
+        return prizeMoney;
+    }
 }

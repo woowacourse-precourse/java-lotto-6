@@ -18,7 +18,10 @@ public class LottoVendor {
         if (money <= 0) {
             throw new IllegalArgumentException("[ERROR] 지불하는 액수는 양수이어야 합니다.");
         }
-
+        if (money % price != 0) {
+            throw new IllegalArgumentException(
+                    "[ERROR] 지불하는 액수는 로또 가격인 " + LottoEnum.PRICE.getValue() + "의 배수이어야 합니다.");
+        }
         List<Lotto> purchased = new ArrayList<>();
         for (int i = 0; i < money / price; ++i) {
             purchased.add(createOne());

@@ -4,8 +4,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.message.LottoMessage.EXIST_BONUS_MESSAGE;
-import static lotto.message.LottoMessage.NOT_EXIST_BONUS_MESSEAGE;
+import static lotto.constant.NumberConstant.LOTTO_PRICE;
+import static lotto.message.LottoMessage.*;
 
 public class LottoMachine {
     private final Map<Rank, Integer> winningRecord;
@@ -22,6 +22,7 @@ public class LottoMachine {
         calculateResult(lottos, winningNumbers);
 
         printResult();
+        printEarningRate(lottos);
     }
 
     private void calculateResult(List<Lotto> lottos, WinningNumbers winningNumbers) {
@@ -55,6 +56,20 @@ public class LottoMachine {
                     }
 
                 });
+    }
+
+    private void printEarningRate(List<Lotto> lottos) {
+        double earningResult = calculateEarningRate(lottos);
+        System.out.printf(EARNING_RESULT_FORMAT.getMessage(), earningResult);
+    }
+
+    private double calculateEarningRate(List<Lotto> lottos) {
+        double totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.PASS) continue;
+            totalPrize += rank.getReward() * getRankValue(rank);
+        }
+        return (totalPrize / (lottos.size() * LOTTO_PRICE.value())) * 100;
     }
 
     public int getRankValue(Rank rank) {

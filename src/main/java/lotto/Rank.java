@@ -33,16 +33,19 @@ public class Rank {
 
     public int[] totalRankCount(int matchingNumCount, boolean includedBonus) {
         int[] rank = new int[6];
-
         if (matchingNumCount == 3) {
             rank[5] += 1;
-        } else if (matchingNumCount == 4) {
+        }
+        if (matchingNumCount == 4) {
             rank[4] += 1;
-        } else if (matchingNumCount == 5 && includedBonus) {
+        }
+        if (matchingNumCount == 5 && includedBonus) {
             rank[2] += 1;
-        } else if (matchingNumCount == 5) {
+        }
+        if (matchingNumCount == 5) {
             rank[3] += 1;
-        } else if (matchingNumCount == 6) {
+        }
+        if (matchingNumCount == 6) {
             rank[1] += 1;
         }
         return rank;

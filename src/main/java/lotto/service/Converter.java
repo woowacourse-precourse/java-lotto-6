@@ -1,6 +1,8 @@
 package lotto.service;
 
 import static lotto.constant.ExceptionMessage.REQUIRE_NONEMPTY_INPUT;
+import static lotto.constant.ExceptionMessage.REQUIRE_NOT_ENDS_WITH_COMMA;
+import static lotto.constant.ExceptionMessage.REQUIRE_NOT_STARTS_WITH_COMMA;
 import static lotto.constant.ExceptionMessage.REQUIRE_POSITIVE_INTEGER;
 import static lotto.constant.ExceptionMessage.REQUIRE_POSITIVE_LONG;
 import static lotto.constant.ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER;
@@ -28,6 +30,14 @@ public class Converter {
 
     public static List<Integer> winningNumbers(String numbersInput) throws IllegalArgumentException {
         InputChecker.nonEmpty(numbersInput);
+        if (numbersInput.startsWith(",")) {
+            OutputHandler.requireNotStartsWithComma();
+            throw new IllegalArgumentException(REQUIRE_NOT_STARTS_WITH_COMMA.getMessage());
+        }
+        if (numbersInput.endsWith(",")) {
+            OutputHandler.requireNotEndsWithComma();
+            throw new IllegalArgumentException(REQUIRE_NOT_ENDS_WITH_COMMA.getMessage());
+        }
         try {
             String[] numbers = numbersInput.split(",");
             return Arrays.stream(numbers)

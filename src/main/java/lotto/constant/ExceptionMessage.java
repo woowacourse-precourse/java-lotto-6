@@ -11,6 +11,8 @@ public enum ExceptionMessage {
     REQUIRE_POSITIVE_INTEGER("2,147,483,647 이하의 양수여야 합니다."),
     REQUIRE_MULTIPLE_OF_LOTTO_PRICE(
             String.format("구입 금액은 %s으로 나누어 떨어져야 합니다.", LOTTO_PRICE.getNumber())),
+    REQUIRE_NOT_ENDS_WITH_COMMA("입력은 ,로 끝나지 않아야 합니다."),
+    REQUIRE_NOT_STARTS_WITH_COMMA("입력은 ,로 시작하지 않아야 합니다."),
     REQUIRE_SIX_NUMBERS(String.format("숫자 개수는 %s개여야 합니다.", LOTTO_NUM_COUNT.getNumber())),
     REQUIRE_RIGHT_RANGE_NUMBER(String.format("%s~%s 사이의 정수를 입력해야 합니다.", Number.LOTTO_MIN_NUM.getNumber(),
             LOTTO_MAX_NUM.getNumber())),

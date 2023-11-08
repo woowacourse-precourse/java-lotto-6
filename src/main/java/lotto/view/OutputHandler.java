@@ -3,6 +3,8 @@ package lotto.view;
 import static lotto.constant.ExceptionMessage.REQUIRE_DIFFERENT_NUMBER_WITH_WINNING_NUMBERS;
 import static lotto.constant.ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE;
 import static lotto.constant.ExceptionMessage.REQUIRE_NONEMPTY_INPUT;
+import static lotto.constant.ExceptionMessage.REQUIRE_NOT_ENDS_WITH_COMMA;
+import static lotto.constant.ExceptionMessage.REQUIRE_NOT_STARTS_WITH_COMMA;
 import static lotto.constant.ExceptionMessage.REQUIRE_POSITIVE_INTEGER;
 import static lotto.constant.ExceptionMessage.REQUIRE_POSITIVE_LONG;
 import static lotto.constant.ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER;
@@ -58,6 +60,14 @@ public class OutputHandler {
 
     public static void requireNonemptyInput() {
         System.out.println(REQUIRE_NONEMPTY_INPUT.getMessage());
+    }
+
+    public static void requireNotEndsWithComma() {
+        System.out.println(REQUIRE_NOT_ENDS_WITH_COMMA.getMessage());
+    }
+
+    public static void requireNotStartsWithComma() {
+        System.out.println(REQUIRE_NOT_STARTS_WITH_COMMA.getMessage());
     }
 
     public static void requirePositiveLong() {

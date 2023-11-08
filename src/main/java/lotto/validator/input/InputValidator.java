@@ -2,6 +2,10 @@ package lotto.validator.input;
 
 import lotto.view.message.exception.BudgetInputErrorMessage;
 import lotto.view.message.exception.WinningCombinationInputErrorMessage;
+import org.junit.jupiter.api.Test;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InputValidator {
     public void validateInputBudgetIsNumber(String budget){
@@ -16,9 +20,13 @@ public class InputValidator {
     }
 
     public void validateInputWinningNumbers(String winningNumbers){
-        if(!isNumberWithComma(winningNumbers)){
+        if(isWrongInputWinningNumbers(winningNumbers)){
             throw new IllegalArgumentException(WinningCombinationInputErrorMessage.INCORRECT_FORMET_WINNING_NUMBERS.getMessage());
         }
+    }
+
+    public boolean isWrongInputWinningNumbers(String winningNumbers){
+        return !isNumberWithComma(winningNumbers) || isWrongSyntexCommaWinningNumbers(winningNumbers);
     }
 
     private boolean isNumber(String budget){
@@ -29,4 +37,9 @@ public class InputValidator {
         return  !winningNumbers.isEmpty() && winningNumbers.matches("^[0-9,]*$");
     }
 
+    private boolean isWrongSyntexCommaWinningNumbers(String winningNumbers){
+        Pattern pattern = Pattern.compile("^,|,,|,$");
+        Matcher matcher = pattern.matcher(winningNumbers);
+        return matcher.find();
+    }
 }

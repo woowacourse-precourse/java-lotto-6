@@ -12,6 +12,8 @@ public class Order {
         this.cost = convertStringToInteger(inputCost);
 
         validate(this.cost);
+
+        this.buyCount = this.cost / LOTTO_PRICE;
     }
 
     public int getBuyCount() {

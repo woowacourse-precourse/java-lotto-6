@@ -1,21 +1,26 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.view.OutputView;
 
 public class Buyer {
     private final Money money;
     private final List<Lotto> lottos;
 
-    public Buyer(String inputMoney) {
-        this.money = new Money(inputMoney);
+    public Buyer(Money inputMoney) {
+        this.money = inputMoney;
         lottos = LottoStore.buyLotto(money);
+        OutputView.printBuyLottoResultMessage(lottos);
     }
 
-    public void printLottos() {
-        lottos.forEach(lotto -> System.out.println(lotto.getLottoPrintMessage()));
+    public RewardResult guessLottery(WinningLotto winningLotto) {
+        RewardResult rewardResult = new RewardResult();
+        lottos.forEach(lotto -> rewardResult.addReward(lotto.getLottoResult(winningLotto)));
+
+        return rewardResult;
     }
 
-    public int getLottoCount() {
-        return lottos.size();
+    public double getRateOfReturn(RewardResult rewardResult) {
+        return money.calculateRateOfReturn(rewardResult.getTotalRewardMoney());
     }
 }

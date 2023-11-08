@@ -3,7 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.utils.ErrorMessage;
 import lotto.utils.LottoPlace;
-import lotto.utils.LottoResult;
+import lotto.utils.LottoCorrectResult;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,9 +44,9 @@ public class Lotto {
 
     public LottoPlace calLottoResult(final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
 
-        LottoResult correctResult = countCorrectNumbers(winningNumbers);
+        LottoCorrectResult correctResult = countCorrectNumbers(winningNumbers);
 
-        if (correctResult != LottoResult.FIVE) {
+        if (correctResult != LottoCorrectResult.FIVE) {
             return correctResult.getLottoPlace();
         }
 
@@ -63,7 +63,7 @@ public class Lotto {
         return LottoPlace.THIRD;
     }
 
-    private LottoResult countCorrectNumbers(final WinningNumbers winningNumbers) {
+    private LottoCorrectResult countCorrectNumbers(final WinningNumbers winningNumbers) {
         int count = countCorrectLottoNumber(winningNumbers);
 
         return getLottoCompareResult(count);
@@ -81,17 +81,17 @@ public class Lotto {
         return count;
     }
 
-    private LottoResult getLottoCompareResult(final int correctCount) {
-        LottoResult lottoResult = LottoResult.NONE;
+    private LottoCorrectResult getLottoCompareResult(final int correctCount) {
+        LottoCorrectResult lottoCorrectResult = LottoCorrectResult.NONE;
 
-        for (LottoResult result : LottoResult.values()) {
+        for (LottoCorrectResult result : LottoCorrectResult.values()) {
             if (result.getMinCorrectCount() > correctCount) {
                 break;
             }
-            lottoResult = result;
+            lottoCorrectResult = result;
         }
 
-        return lottoResult;
+        return lottoCorrectResult;
     }
 
     private static void uniqueValidate(final List<Integer> pickedNumbers) {

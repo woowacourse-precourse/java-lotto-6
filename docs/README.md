@@ -68,6 +68,10 @@ check new branch
   - input : null / return : double
   - checkLotto 실행 후 correct 값이 변경
   - correct 값을 통해 수익률 계산 
+- printResult()
+  - input : null / return : void
+  - correct 값 출력
+  - result()를 실행하여 수익률 출력
   
 ## (Class) Lotto
 - numbers(List<Integer>, 로또 번호)

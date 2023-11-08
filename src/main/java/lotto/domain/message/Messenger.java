@@ -17,6 +17,9 @@ public class Messenger {
     private final String WINNING_STATISTIC_INFORMATION_FORMAT = "%s (%s원) - %d개";
     private final DecimalFormat PRIZE_FORMAT = new DecimalFormat("###,###,###");
 
+    private final String YIELD_MESSAGE_FORMAT = "총 수익률은 %s%%입니다.";
+    private final DecimalFormat YIELD_FORMAT = new DecimalFormat("#.#");
+
     public String getLotteriesNumbersMessage(List<LottoNumbersDTO> lottoNumbersDTOs) {
         return lottoNumbersDTOs.stream()
                 .map(this::getLottoNumbersMessage)
@@ -40,11 +43,13 @@ public class Messenger {
         return String.format(
                 WINNING_STATISTIC_INFORMATION_FORMAT,
                 winStateInformationDTO.description(),
-                PRIZE_FORMAT.format(
-                        winStateInformationDTO.prize()
-                ),
+                PRIZE_FORMAT.format(winStateInformationDTO.prize()),
                 winStateInformationDTO.winningCount()
         );
+    }
+
+    public String getYieldMessage(double yield) {
+        return String.format(YIELD_MESSAGE_FORMAT, YIELD_FORMAT.format(yield));
     }
 
 }

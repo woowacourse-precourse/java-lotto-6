@@ -103,7 +103,7 @@ public class LottoController {
 
         Prize prize = Prize.from(winStateInformationDTOs);
         double yield = prize.getYield(purchaseCash);
-        outputView.print(Messages.YIELD_FORMAT.getMessage(yield));
+        outputView.print(messenger.getYieldMessage(yield));
     }
 
 }

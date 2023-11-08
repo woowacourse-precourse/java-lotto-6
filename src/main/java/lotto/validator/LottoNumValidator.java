@@ -7,9 +7,16 @@ import java.util.Set;
 public class LottoNumValidator implements BasicValidator<List<Integer>> {
     @Override
     public void validate(List<Integer> numbers) {
+        isInputEmpty(numbers);
         hasSixNums(numbers);
         isRangeValid(numbers);
         hasDuplicateNums(numbers);
+    }
+
+    public void isInputEmpty(List<Integer> numbers) {
+        if (numbers.isEmpty()) {
+            throw new IllegalArgumentException("입력값이 존재하지 않습니다.");
+        }
     }
 
     public void hasSixNums(List<Integer> numbers) {

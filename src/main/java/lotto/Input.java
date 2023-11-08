@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class Input {
@@ -22,7 +24,38 @@ public class Input {
     }
 
     public static List<Integer> validateWinNumsInput(String winNumsInput) {
-        return null;
+        try {
+            List<Integer> winNums = Arrays.stream(winNumsInput.split(","))
+                    .map(Integer::valueOf)
+                    .toList();
+            validateNumCounts(winNums);
+            validateNumRange(winNums);
+            validateDuplication(winNums);
+            return winNums;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 잘못된 타입의 입력입니다.");
+        }
+    }
+
+    private static void validateNumCounts(List<Integer> nums) {
+        if (nums.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호 개수는 6개여야 합니다.");
+        }
+    }
+
+    private static void validateNumRange(List<Integer> nums) {
+        nums.stream()
+                .forEach(winNum -> {
+                    if (winNum < 1 || winNum > 45) {
+                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    }
+                });
+    }
+
+    private static void validateDuplication(List<Integer> nums) {
+        if (new HashSet<>(nums).size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되면 안됩니다.");
+        }
     }
 
     public static int validateBonusNumInput(String bonusNumInput, List<Integer> winNums) {

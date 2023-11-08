@@ -47,7 +47,6 @@ public class Parser {
         List<Integer> winningNum = new ArrayList<>();
         for(String s : splitNum(input)) {
             validateSplit(s);
-            checkDuplicate(Integer.valueOf(s), winningNum);
             winningNum.add(Integer.valueOf(s));
         }
 
@@ -71,16 +70,8 @@ public class Parser {
         }
     }
 
-    private void checkDuplicate(int num, List<Integer> numList) throws IllegalArgumentException {
-        if(numList.contains(num)) {
-            System.out.println("[ERROR] 로또 입력 값은 중복 되지 않아야 합니다.");
-            throw new IllegalArgumentException();
-        }
-    }
-
     public int parseBonusNum(String input, List<Integer> winningNum) {
         validateBouns(input);
-        checkDuplicate(Integer.valueOf(input), winningNum);
         return Integer.valueOf(input);
     }
 

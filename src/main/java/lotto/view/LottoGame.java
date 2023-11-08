@@ -4,6 +4,7 @@ import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Price;
+import lotto.domain.SelectedLottoNumber;
 
 public class LottoGame {
 
@@ -29,5 +30,11 @@ public class LottoGame {
         }
 
         return lottos;
+    }
+
+    public SelectedLottoNumber selectLotto() {
+        SelectedLottoNumber selectedLottoNumber = lottoController.setSelectedNumber();
+
+        return selectedLottoNumber;
     }
 }

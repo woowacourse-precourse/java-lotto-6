@@ -18,11 +18,11 @@ public class FormatUtils {
     }
 
     public static String parseFormattedDoubleValue(double rate) {
-        return String.format("%.1f",rate);
+        return String.format(UtilsConstant.FORMAT_DOUBLE_VALUE,rate);
     }
 
     public static String formatPriceWithCommas(int price) {
-        return String.format("%,d",price);
+        return String.format(UtilsConstant.FORMAT_PRICE_WITH_COMMA,price);
     }
 
 }

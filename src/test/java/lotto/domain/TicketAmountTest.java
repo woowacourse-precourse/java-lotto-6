@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,5 +23,15 @@ public class TicketAmountTest {
 
         assertThatThrownBy(() -> new TicketAmount(input))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액에 맞는 로또 개수를 반환한다.")
+    @Test
+    void createTicketAmount() {
+        String input = "8000";
+        TicketAmount ticketAmount = new TicketAmount(input);
+        int ticketCount = 8;
+
+        assertEquals(ticketCount, ticketAmount.calculateTicketAmount());
     }
 }

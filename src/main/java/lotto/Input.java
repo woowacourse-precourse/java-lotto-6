@@ -6,4 +6,9 @@ public class Input {
         System.out.println(Output.LOTTO_PURCHASE_AMOUNT_MESSAGE);
         return Console.readLine();
     }
+
+    public static String getWinningNumbers(){
+        System.out.println(Output.LOTTO_WINNING_NUMBERS_MESSAGE);
+        return Console.readLine();
+    }
 }

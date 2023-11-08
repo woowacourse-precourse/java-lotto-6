@@ -33,6 +33,10 @@ public enum Ranking {
         return isMatchFunction.apply(count, isBonus);
     }
 
+    public boolean isSecond() {
+        return this.equals(SECOND);
+    }
+
     public int getReward() {
         return reward;
     }

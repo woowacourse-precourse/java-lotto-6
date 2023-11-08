@@ -34,7 +34,7 @@ public class OutputView {
     }
 
     private static String formatRank(Ranking rank, int count) {
-        if (rank.equals(Ranking.SECOND)) {
+        if (rank.isSecond()) {
             return MessageFormat.format(WIN_SECOND_INFORMATION_MESSAGE, rank.getMatchCount(), rank.getReward(), count);
         }
         return MessageFormat.format(WIN_INFORMATION_MESSAGE, rank.getMatchCount(), rank.getReward(), count);

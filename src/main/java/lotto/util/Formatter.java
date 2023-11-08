@@ -1,38 +1,14 @@
 package lotto.util;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.message.ExceptionMessage;
 import lotto.model.Rank;
 import lotto.model.RankResult;
 
-public class LottoUtil {
+public class Formatter {
     private static final String MATCH_COUNT_FORMAT = "%d개 일치 (%s원) - %d개\n";
     private static final String SECOND_RANK_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
-
-    public static void sortByAsc(List<Integer> numbers) {
-        numbers.sort(null);
-    }
-
-    public static int parseInputToNumber(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.INPUT_NOT_NUMBER.getMessage());
-        }
-    }
-
-    public static List<Integer> parseInputToList(String numbers) {
-        if (!numbers.contains(",")) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_DIVIDED_BY_COMMA.getMessage());
-        }
-        return Arrays.stream(numbers.split(","))
-                .map(String::trim)
-                .map(LottoUtil::parseInputToNumber)
-                .collect(Collectors.toList());
-    }
 
     public static String convertLottoToDisplayFormat(List<Integer> numbers) {
         return "[" + numbers.stream()
@@ -58,12 +34,12 @@ public class LottoUtil {
 
     private static String convertRankToDisplayFormat(Rank rank, int count) {
         return String.format(MATCH_COUNT_FORMAT, rank.getMatchingCount(),
-                LottoUtil.convertPrizeToDisplayFormat(rank.getPrize()), count);
+                Formatter.convertPrizeToDisplayFormat(rank.getPrize()), count);
     }
 
     public static String convertSecondRankToDisplayFormat(int count) {
         return String.format(SECOND_RANK_FORMAT, Rank.SECOND.getMatchingCount(),
-                LottoUtil.convertPrizeToDisplayFormat(Rank.SECOND.getPrize()),
+                Formatter.convertPrizeToDisplayFormat(Rank.SECOND.getPrize()),
                 count);
     }
 

@@ -7,9 +7,9 @@ import static lotto.util.Constants.MIN_LOTTO_NUM;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import lotto.message.ExceptionMessage;
-import lotto.util.LottoUtil;
 import lotto.validator.Validator;
 
 public class Lotto {
@@ -18,7 +18,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         List<Integer> numbersCopy = new ArrayList<>(numbers);
-        LottoUtil.sortByAsc(numbersCopy);
+        numbersCopy.sort(Comparator.naturalOrder());
         this.numbers = numbersCopy;
     }
 

@@ -42,8 +42,9 @@ public class LottoTickets {
                 Constant.LOTTO_NUMBER_MIN.getIntValue(),
                 Constant.LOTTO_NUMBER_MAX.getIntValue(),
                 Constant.LOTTO_NUMBERS_MAX_LENGTH.getIntValue());
-        randomNumbers.sort(Comparator.naturalOrder());
-        return randomNumbers;
-    }
 
+        List<Integer> mutableRandomNumbers = new ArrayList<>(randomNumbers);
+        mutableRandomNumbers.sort(Comparator.naturalOrder());
+        return mutableRandomNumbers;
+    }
 }

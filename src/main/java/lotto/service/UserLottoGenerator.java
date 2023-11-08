@@ -6,6 +6,7 @@ import lotto.domain.UserLotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserLottoGenerator {
 
@@ -13,7 +14,7 @@ public class UserLottoGenerator {
         List<UserLotto> userLottos = new ArrayList<>();
         for (int i = 0; i < lottoTicket; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
+            numbers = numbers.stream().sorted().collect(Collectors.toList());
             UserLotto userLotto = new UserLotto(numbers);
             userLottos.add(userLotto);
         }

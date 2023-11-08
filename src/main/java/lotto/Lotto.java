@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Comparator;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -18,6 +19,7 @@ public class Lotto {
 
 	static public Lotto createLotto() {
 		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM, LOTTO_NUM_RANGE);
+		numbers.sort(Integer::compare);
 		return new Lotto(numbers);
 	}
 

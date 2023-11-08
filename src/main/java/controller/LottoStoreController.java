@@ -7,11 +7,9 @@ import domain.PurchaseLotto;
 import domain.WinningLotto;
 import domain.WinningLottoCalculator;
 import service.LottoService;
-import view.InputView;
 import view.OutputView;
 
 public class LottoStoreController {
-	private final InputView inputView = new InputView();
 	private final OutputView outputView = new OutputView();
 	private PurchaseAmount purchaseAmount;
 	private PurchaseLotto purchaseLotto;

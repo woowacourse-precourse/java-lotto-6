@@ -1,9 +1,10 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.Rank;
-import lotto.util.GetLottoNumber;
 import lotto.util.Calculator;
+import lotto.util.GetLottoNumber;
 import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -40,6 +41,7 @@ public class LottoController {
     private void getPurchasePrice() {
         OutputView.printGetPurchasePriceMessage();
         purchasePrice = GetLottoNumber.purchasePrice();
+
     }
 
     public void getNumberOfLottoTickets() {

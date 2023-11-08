@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * 사용자로부터 값을 입력받고,
  * Validator 클래스의 메소드를 이용하여 검증한 후
+ * 자료형변환을 거쳐
  * LottoController에 값을 반환하는 클래스
  */
 
@@ -48,9 +49,7 @@ public class GetLottoNumber {
             List<Integer> winningNumbers = new ArrayList<>();
 
             for (String num : numbers) {
-                Validator.isEmpty(num);
-                Validator.isNumericInput(num);
-                Validator.isNumberInRange(num);
+                validateInput(num);
                 int number = Integer.parseInt(num);
                 winningNumbers.add(number);
             }
@@ -69,14 +68,18 @@ public class GetLottoNumber {
         int bonusNumber = 0;
         try {
             String input = InputView.inputBonusNumber();
-
-            Validator.isNumericInput(input);
-            Validator.isNumberInRange(input);
+            validateInput(input);
             bonusNumber = Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             bonusNumber();
         }
         return bonusNumber;
+    }
+
+    public static void validateInput(String num) {
+        Validator.isEmpty(num);
+        Validator.isNumericInput(num);
+        Validator.isNumberInRange(num);
     }
 }

@@ -17,17 +17,7 @@ public class BonusNumberValidationTest extends NsTest {
 
     @DisplayName("보너스 번호가 공백일 경우 예외 처리")
     @Test
-    void isWinningNumbersEmptyTest () {
-        String input = " ";
-        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            Validator.isEmpty(input);
-        });
-        assertThat(exception.getMessage()).isEqualTo("[ERROR] 숫자를 입력하세요.");
-    }
-
-    @DisplayName("보너스 번호가 공백일 경우 예외 처리")
-    @Test
-    void isWinningNumbersEmptyTest () {
+    void isBonusNumbersEmptyTest () {
         String input = " ";
         final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             Validator.isEmpty(input);

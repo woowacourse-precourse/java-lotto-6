@@ -2,13 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class LottoNumberInput {
-    List<Integer> numbers;
-    int countNum;
+    List<Integer> numbers = new ArrayList<>();
+    int Money;
     int bonusNum;
     public void run (){
         moneyInput();
@@ -32,8 +33,8 @@ public class LottoNumberInput {
 
     public void moneyInput(/*int testNum*/){
         System.out.println("구입금액을 입력해 주세요.?");
-        countNum = Integer.parseInt(Console.readLine());
-        if(countNum%1000 != 0){
+        Money = Integer.parseInt(Console.readLine());
+        if(Money%1000 != 0){
             throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해 주세요");
         }
     }

@@ -1,14 +1,23 @@
 package lotto.domain;
 
-import static lotto.domain.LottoValue.LOTTO_PRICE;
+import java.util.List;
 
 public class LottoStore {
 
-    public int getLottoQuantity(int money) {
-        return sellLotto(money);
+    public static final int LOTTO_PRICE = 1000;
+    private final Money money;
+    private int lottoQuantity = 0;
+
+    public LottoStore(Money money) {
+        this.money = money;
     }
 
-    private int sellLotto(int money) {
-        return money / LOTTO_PRICE;
+    public int getLottoQuantity(Money money) {
+        lottoQuantity = money.getMoney() / 1000;
+        return lottoQuantity;
+    }
+
+    public List<Lotto> generateLotto() {
+        return RandomLottoGenerator.issueRandomLottos(lottoQuantity);
     }
 }

@@ -37,6 +37,6 @@ public class LottoService {
     }
 
     public int getWinningPrice() {
-        return lottoPrize.getPrice();
+        return lottoPrize.getReword();
     }
 }

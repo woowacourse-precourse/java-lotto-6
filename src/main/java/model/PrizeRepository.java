@@ -1,11 +1,14 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class PrizeRepository {
     private final static int COUNT = 1;
-    HashMap<Prize, Integer> prizeRepository = new LinkedHashMap<>();
+    private HashMap<Prize, Integer> prizeRepository = new LinkedHashMap<>();
 
     public HashMap getPrizeRepository() {
         return prizeRepository;
@@ -25,6 +28,20 @@ public class PrizeRepository {
             return;
         }
         prizeRepository.put(prize, COUNT);
+    }
+
+    public int calculateTotalReword() {
+        int totalReword = 0;
+        Iterator<Entry<Prize, Integer>> iterator = prizeRepository.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Prize, Integer> entry = iterator.next();
+            totalReword = totalReword + calculateOnePrice(entry.getKey(), entry.getValue());
+        }
+        return totalReword;
+    }
+
+    public int calculateOnePrice(Prize key, int value) {
+        return key.getPrice() * value;
     }
 
 }

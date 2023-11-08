@@ -66,5 +66,14 @@ public class LottoSystemTest {
         assertThatThrownBy(() -> lottoSystem.getWinningNumbers(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 입력받은_보너스_번호가_잘못된_경우(){
+        LottoSystem lottoSystem = new LottoSystem();
+        String bonusNumber = "A";
+
+        assertThatThrownBy(() -> lottoSystem.getBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 

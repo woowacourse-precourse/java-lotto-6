@@ -28,6 +28,6 @@ public class WiningLottoTest {
     @DisplayName("당첨 숫자들을 전달한다.")
     @Test
     void createPassingWinNumbers() {
-        assertThat(new WiningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7).showWinNumber()).isInstanceOf(List.class);
+        assertThat(new WiningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7).getWinNumber()).isInstanceOf(List.class);
     }
 }

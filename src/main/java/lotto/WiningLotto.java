@@ -30,7 +30,7 @@ public class WiningLotto {
         }
     }
 
-    public List<Integer> showWinNumber() {
+    public List<Integer> getWinNumber() {
         return winNumber.getNumbers();
     }
 

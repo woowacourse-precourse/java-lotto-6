@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.constant.ErrorMessages.ONLY_NUMBERS_ALLOWED;
+
 
 public class LottoWinningNumberController {
     private final LottoWinningNumberInput winningNumberInput;
@@ -32,7 +34,7 @@ public class LottoWinningNumberController {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 형식의 번호를 입력해야 합니다.");
+            throw new IllegalArgumentException(ONLY_NUMBERS_ALLOWED);
         }
     }
 }

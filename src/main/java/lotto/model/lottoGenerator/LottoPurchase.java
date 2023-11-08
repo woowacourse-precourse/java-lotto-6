@@ -3,6 +3,8 @@ package lotto.model.lottoGenerator;
 import lotto.controller.inputController.LottoPurchaseController;
 import lotto.view.inputView.LottoPurchaseInput;
 
+import static lotto.constant.ErrorMessages.*;
+
 
 public class LottoPurchase {
 
@@ -28,7 +30,7 @@ public class LottoPurchase {
 
     private static int validatePurchaseAmount(String input) {
         if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력값이 비어있습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(EMPTY_INPUT);
         }
         int parsedAmount = parseInputToInt(input);
         validatePositiveAmount(parsedAmount);
@@ -42,19 +44,19 @@ public class LottoPurchase {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
+            throw new IllegalArgumentException(ONLY_NUMBERS_ALLOWED);
         }
     }
 
     private static void validatePositiveAmount(int amount) {
         if (amount <= 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 0원보다 커야 합니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(AMOUNT_GREATER_THAN_ZERO);
         }
     }
 
     private static void validateMultipleOfThousand(int amount) {
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 1000원 단위로 입력해야 합니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(AMOUNT_MULTIPLE_OF_THOUSAND);
         }
     }
 

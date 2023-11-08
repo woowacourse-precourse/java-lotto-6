@@ -1,10 +1,7 @@
 
 package lotto.controller.outputController;
 
-
 import lotto.view.outputView.LottoReturnsOutput;
-
-
 
 public class LottoReturnsController {
     private final LottoReturnsOutput returnsOutput;

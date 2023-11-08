@@ -11,7 +11,6 @@ public class LottoReturnsCalculator {
             return 0.0;
         }
 
-        // 수익률 계산 (얻은 금액 / 구매 금액 * 100)
         double returnRate = ((double) totalEarnings / totalCost) * 100;
         return Math.round(returnRate * 10.0) / 10.0;
     }

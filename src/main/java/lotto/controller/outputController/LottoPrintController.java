@@ -1,11 +1,7 @@
 package lotto.controller.outputController;
 
-
-
 import lotto.view.outputView.LottoPrintOutput;
-
 import java.util.List;
-
 
 public class LottoPrintController {
     private final LottoPrintOutput printOutput;

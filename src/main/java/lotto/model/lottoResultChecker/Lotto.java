@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.constant.ErrorMessages.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -15,17 +17,17 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers == null || numbers.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력된 번호가 없습니다.");
+            throw new IllegalArgumentException(EMPTY_INPUT);
         }
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 번호는 6개여야 합니다. 현재 개수: " + numbers.size());
+            throw new IllegalArgumentException(SIX_NUMBERS_REQUIRED + numbers.size());
         }
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1에서 45 사이여야 합니다.");
+            throw new IllegalArgumentException(NUMBER_RANGE);
         }
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER);
         }
     }
 

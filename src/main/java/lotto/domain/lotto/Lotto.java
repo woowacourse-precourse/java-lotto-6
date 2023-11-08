@@ -43,10 +43,4 @@ public class Lotto {
             throw new LottoIllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATION_ERROR);
         }
     }
-
-    public void checkDuplicationWithBonusNumber(LottoNumber bonusNumber) {
-        if (containsNumber(bonusNumber)) {
-            throw new LottoIllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION_ERROR);
-        }
-    }
 }

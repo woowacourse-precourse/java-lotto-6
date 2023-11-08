@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.List;
+import java.util.Optional;
 import lotto.domain.GameResult;
 import lotto.domain.Money;
 import lotto.domain.Rank;
@@ -24,8 +25,8 @@ public class LottoGame {
         Money money = inputMoneyAmount();
         List<Lotto> lottos = purchaseLottos(money);
 
-        Lotto winningLotto = createWinningLotto();
-        LottoNumber bonusNumber = createBonusNumber(winningLotto);
+        WinningLotto winningLotto = createWinningLotto();
+        BonusNumber bonusNumber = createBonusNumber(winningLotto);
 
         GameResult result = calculateGameResult(winningLotto, bonusNumber, lottos);
 
@@ -50,20 +51,20 @@ public class LottoGame {
         return lottos;
     }
 
-    private Lotto createWinningLotto() {
+    private WinningLotto createWinningLotto() {
         try {
             List<Integer> winningNumbers = inputView.readWinningNumbers();
-            return new Lotto(winningNumbers);
+            return new WinningLotto(winningNumbers);
         } catch (IllegalArgumentException error) {
             outputView.printErrorMessage(error);
             return createWinningLotto();
         }
     }
 
-    private LottoNumber createBonusNumber(Lotto winningLotto) {
+    private BonusNumber createBonusNumber(WinningLotto winningLotto) {
         try {
             int number = inputView.readBonusNumber();
-            LottoNumber bonusNumber = new LottoNumber(number);
+            BonusNumber bonusNumber = new BonusNumber(number);
             winningLotto.checkDuplicationWithBonusNumber(bonusNumber);
 
             return bonusNumber;
@@ -73,32 +74,14 @@ public class LottoGame {
         }
     }
 
-    private GameResult calculateGameResult(Lotto winningLotto, LottoNumber bonusNumber, List<Lotto> lottos) {
+    private GameResult calculateGameResult(WinningLotto winningLotto, BonusNumber bonusNumber, List<Lotto> lottos) {
         GameResult result = GameResult.create();
-        List<LottoNumber> winningNumbers = winningLotto.getNumbers();
-
         for (Lotto lotto : lottos) {
-            int matchCount = checkMatchCount(lotto, winningNumbers);
-            if (matchCount < Rank.FIFTH.getMatchCount()) {
-                continue;
-            }
-            boolean isBonusNumberMatched = lotto.containsNumber(bonusNumber);
-
-            Rank rank = Rank.judgeBy(matchCount, isBonusNumberMatched);
-            result.add(rank);
+            Optional<Rank> rank = winningLotto.compareNumbers(lotto, bonusNumber);
+            rank.ifPresent(result::add);
         }
 
         return result;
-    }
-
-    private int checkMatchCount(Lotto lotto, List<LottoNumber> winningNumbers) {
-        int matchCount = 0;
-        for (LottoNumber winningNumber : winningNumbers) {
-            if (lotto.containsNumber(winningNumber)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
     }
 
     private void printResult(GameResult result, double profitPercentage) {

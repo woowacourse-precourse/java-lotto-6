@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Prize;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoPrice;
 import lotto.domain.lotto.LottoRule;
@@ -17,9 +18,15 @@ public class LottoStore {
             List<Integer> numbers =
                     Randoms.pickUniqueNumbersInRange(LottoRule.MIN_RANGE, LottoRule.MAX_RANGE, LottoRule.LENGTH);
 
-            Collections.sort(numbers);
-            lottos.add(new Lotto(numbers));
+            lottos.add(new Lotto(sortNumbers(numbers)));
         }
         return lottos;
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers){
+        List<Integer> sortedNumber = new ArrayList<>(numbers);
+        Collections.sort(sortedNumber);
+
+        return sortedNumber;
     }
 }

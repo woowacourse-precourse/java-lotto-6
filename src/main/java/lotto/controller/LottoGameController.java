@@ -37,6 +37,18 @@ public class LottoGameController {
         playLottoGame(money, lottos, winNumber, bonusNumber);
     }
 
+    private String input() {
+        String input = Console.readLine();
+        validateBlank(input);
+        return input;
+    }
+
+    private void validateBlank(String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("빈 값을 입력하면 안됩니다.");
+        }
+    }
+
     private Money inputNumber() {
         while (true) {
             try {
@@ -48,6 +60,7 @@ public class LottoGameController {
             }
         }
     }
+
     private Lottos buyLotto(Money money) {
         while (true) {
             try {
@@ -101,13 +114,5 @@ public class LottoGameController {
             errorView.printErrorMessage(e.getMessage());
             setBonusNumber();
         }
-    }
-
-    private String input() {
-        String input = Console.readLine();
-        if (input.isBlank()) {
-            throw new IllegalArgumentException("빈 값을 입력하면 안됩니다.");
-        }
-        return input;
     }
 }

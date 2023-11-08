@@ -13,6 +13,8 @@ public class OutputView {
 //    public static final int MIN_NUM = 1;
 //    public static final int MAX_NUM = 45;
 //    public static final int LOTTO_NUMBER = 6;
+
+
     public static void purchaseLottoNumber(int lottoCount){
         System.out.println( lottoCount+"개를 구매했습니다.");
     }
@@ -32,7 +34,8 @@ public class OutputView {
         System.out.println("5개 일치 (1,500,000원) - "+ WinningAmounts.THIRD_AMOUNT.getCount() +"개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+ WinningAmounts.SECOND_AMOUNT.getCount() +"개");
         System.out.println("6개 일치 (2,000,000,000원) - "+ WinningAmounts.FIRST_AMOUNT.getCount() +"개");
-        System.out.println("총 수익률은 "+ CompareLottoValue.getRateOfTurn(amount) +"%입니다");
-        // 당첨 통계 + 총 수익률 출력
+    }
+    public static void winningRate(double rate){
+        System.out.println("총 수익률은 "+rate+"%입니다");
     }
 }

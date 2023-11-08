@@ -28,7 +28,7 @@ public class LottoController {
         System.out.println();
         inputAmountValidator(amount);
         lottoReady(amount);
-        OutputView.winningStatistics(Integer.parseInt(amount));
+        //OutputView.winningStatistics(Integer.parseInt(amount));
     }
 
     public static void inputAmountValidator(String amount){

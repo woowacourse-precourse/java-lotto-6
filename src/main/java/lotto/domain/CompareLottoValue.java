@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.view.OutputView;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +27,9 @@ public class CompareLottoValue {
         }
         // 함수 추가: 로또의 갯수만큼 전달 시(위의 반복문 수행완료시) 총 수익률 계산하고 로또결과와 수익률 출력하는 함수 호출
         lottoPrize();
-        getRateOfTurn(amount);
+//        getRateOfTurn(amount);
+        OutputView.winningStatistics(amount);
+        OutputView.winningRate(getRateOfTurn(amount));
     }
 
 
@@ -102,10 +107,13 @@ public class CompareLottoValue {
     }
 
     public static double getRateOfTurn(Integer amount){
-        double turn = (double)resultMoney / (double)amount ;
+        double turn = (double)resultMoney / amount ;
 //        System.out.println(turn);
         double rateOfTurn =  (double) Math.round(turn * 10000) / 100;
+//        DecimalFormat df = new DecimalFormat("0.000");
+//        String resultTurn = String.format("%.1f", turn*100);
+//        System.out.println(Integer.parseInt(resultTurn));
+//        Integer.parseInt(resultTurn);
         return rateOfTurn; // 수익률 계산 공식 : 상금 / 사용한 금액
     }
-
 }

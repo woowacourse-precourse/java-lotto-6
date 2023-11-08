@@ -1,16 +1,19 @@
 package lotto.model;
 
-import static lotto.util.Constant.LOTTO_MINIMUM_NUMBER;
-import static lotto.util.Constant.LOTTO_MAXIMUM_NUMBER;
-import static lotto.util.Constant.LOTTO_WINNING_NUMBER_LENGTH;
+import static lotto.util.Constant.LOTTO_MIN_NUMBER;
+import static lotto.util.Constant.LOTTO_MAX_NUMBER;
+import static lotto.util.Constant.LOTTO_LENGTH;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-
 import camp.nextstep.edu.missionutils.Randoms;
 
-
 public class LottoMaker {
-    public List<Integer> getLotto() { // 로또 만들기
-        return Randoms.pickUniqueNumbersInRange(LOTTO_MINIMUM_NUMBER, LOTTO_MAXIMUM_NUMBER, LOTTO_WINNING_NUMBER_LENGTH);
+    public List<Integer> getLotto() {
+        List<Integer> lotto = new ArrayList<>(Randoms
+                .pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_LENGTH));
+        lotto.sort(Comparator.naturalOrder());
+        return lotto;
     }
 }

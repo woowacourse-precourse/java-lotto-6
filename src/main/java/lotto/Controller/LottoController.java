@@ -3,6 +3,7 @@ package lotto.Controller;
 import static lotto.model.LottoResult.addCount;
 import static lotto.model.LottoResult.checkBonusNumber;
 import static lotto.model.LottoResult.matchResult;
+import static lotto.util.Constant.LOTTO_PER_PRICE;
 import static lotto.view.InputView.InputWinningNumbers;
 import static lotto.view.InputView.readLine;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoNumbers;
+import lotto.model.LottoProfit;
 import lotto.model.LottoPurchase;
 import lotto.view.OutputView;
 
@@ -52,7 +54,6 @@ public class LottoController {
 
     private static void printStatisticsResult() {
         OutputView.printWinningStatistics();
-
         for (List<Integer> lotto : lottoNumbers) {
             int match = matchResult(lotto, winningNumbers);
             addCount(checkBonusNumber(lotto, match, bonusNumber));
@@ -60,5 +61,11 @@ public class LottoController {
         OutputView.printLottoStatistics();
     }
 
+    private static void printLottoProfitResult() {
+        OutputView.printTotalProfitRate();
+        LottoProfit lottoProfit = new LottoProfit(lottoCount * LOTTO_PER_PRICE);
+        String lottoProfitResult = lottoProfit.getLottoProfit();
+        OutputView.printLottoProfit(lottoProfitResult);
+    }
 
 }

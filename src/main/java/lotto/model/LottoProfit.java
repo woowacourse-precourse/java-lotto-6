@@ -33,5 +33,7 @@ public class LottoProfit {
         return String.format(PERCENT_FORMAT, calculateProfit(totalPrizeMoney, totalPurchaseMoney));
     }
 
-
+    public String getLottoProfit() {
+        return lottoProfit;
+    }
 }

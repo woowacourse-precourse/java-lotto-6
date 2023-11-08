@@ -41,7 +41,7 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS);
     }
 
-    public static void printTOtalProfitRate() {
+    public static void printTotalProfitRate() {
         System.out.println(TOTAL_PROFIT_RATE);
     }
 

@@ -12,6 +12,7 @@ public class LottoController {
         showTickets();
         readWinningNumbers();
         showStatistics();
+        close();
     }
 
     private void buyTickets() {
@@ -53,5 +54,9 @@ public class LottoController {
 
     private void showStatistics() {
         OutputView.printStatistics(lottoService.getPrizeResult());
+    }
+
+    private void close(){
+        InputView.close();
     }
 }

@@ -41,4 +41,8 @@ public class InputView {
                 .map(Integer::parseInt)
                 .toList();
     }
+
+    public static void close(){
+        Console.close();
+    }
 }

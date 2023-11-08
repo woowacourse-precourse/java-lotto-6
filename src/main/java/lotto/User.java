@@ -9,8 +9,16 @@ import java.util.List;
 public class User {
     public int inputPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        int price = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
 
+        try {
+            Validate.isValidInput(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputPrice();
+        }
+
+        int price = Integer.parseInt(input);
         try {
             Validate.isValidPrice(price);
         } catch (IllegalArgumentException e) {
@@ -26,8 +34,8 @@ public class User {
         List<Integer> numbers = new ArrayList<>();
         String inputNumbers = Console.readLine();
         String[] inputArray = inputNumbers.split(",");
-        for (int i = 0; i < inputArray.length; i++) {
-            numbers.add(Integer.valueOf(inputArray[i]));
+        for (String s : inputArray) {
+            numbers.add(Integer.valueOf(s));
         }
 
         try {

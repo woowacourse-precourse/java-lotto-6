@@ -14,7 +14,7 @@ public class LottoGame {
     Money money;
     Lotto lotto;
     int bonusNumber;
-    int revenue;
+    double revenue;
     final int WINNING_LOCATION = 0;
     final int BONUS_LOCATION = 1;
     final List<String> BONUS_NUMBER = List.of("3", "4", "5", "5+", "6");
@@ -62,13 +62,13 @@ public class LottoGame {
         lottoView.printStatisticsMessage();
         revenue = 0;
         BONUS_NUMBER.forEach(num -> {
-            int sameCnt = resultStatistics.get(num);
+            int sameCnt = resultStatistics.getOrDefault(num, 0);
             System.out.println(lottoUtil.getStatisticsMessage(num) + sameCnt);
             if(sameCnt > 0) {
                 revenue += lottoUtil.getStatisticsValue(num) * sameCnt;
             }
         });
-        System.out.println("총 수익률은 " + revenue / money.getInputMoney() + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.0f", revenue / money.getInputMoney()) + "%입니다.");
     }
 
     public Map<String, Integer> getResultStatistics(List<List<Integer>> myLottos) {

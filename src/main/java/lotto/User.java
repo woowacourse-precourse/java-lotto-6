@@ -9,21 +9,18 @@ import java.util.List;
 public class User {
     public int inputPrice() {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
+        int price;
 
-        try {
-            Validate.isValidInput(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputPrice();
-        }
-
-        int price = Integer.parseInt(input);
-        try {
-            Validate.isValidPrice(price);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            inputPrice();
+        while(true) {
+            try {
+                String input = Console.readLine();
+                Validate.isValidInput(input);
+                price = Integer.parseInt(input);
+                Validate.isValidPrice(price);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         return price;

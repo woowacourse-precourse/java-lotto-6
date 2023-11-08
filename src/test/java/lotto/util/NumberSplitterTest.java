@@ -15,6 +15,6 @@ class NumberSplitterTest {
         // when
         List<Integer> numberSplit = NumberSplitter.splitNumbers(input);
         //then
-        assertThat(numberSplit).contains(1,2,3,5,10,24);
+        assertThat(numberSplit).contains(1, 2, 3, 5, 10, 24);
     }
 }

@@ -1,11 +1,5 @@
 package lotto.validator;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
 import static lotto.config.LottoErrorMessage.LOTTO_AMOUNT_MAX_ERROR_MESSAGE;
 import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_COMMA_ERROR_MESSAGE;
 import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_NUMERIC_ERROR_MESSAGE;
@@ -13,11 +7,17 @@ import static lotto.config.WinningLottoErrorMessage.WINNING_LOTTO_UNIQUE_ERROR_M
 import static lotto.validator.AssertException.assertExceptionTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 
 class WinningLottoValidatorTest {
     @Nested
     @DisplayName("로또 당첨 번호 입력에 대한 검증")
-    class create{
+    class create {
         @DisplayName("모든 검증 통과시 입력한 문자열 반환")
         @Test
         void success() {
@@ -32,8 +32,8 @@ class WinningLottoValidatorTest {
 
         @DisplayName("자연수나 콤마를 제외한 값을 입력시 예외를 발생시킨다.")
         @ParameterizedTest
-        @ValueSource(strings = {"1\n,2,3,4,5,6", "포비,로또1등,당첨,기원,굿,굿","Lisa,Lotto,1st,prize,good,good",
-        "!@!@#1,2,3,@!*&", "1 , 2, 3, 4, 5, 6", "-1,2,3,4,5,6", "1.0,2,3,4,5,6", "1+1,2,3,4,5,6"})
+        @ValueSource(strings = {"1\n,2,3,4,5,6", "포비,로또1등,당첨,기원,굿,굿", "Lisa,Lotto,1st,prize,good,good",
+                "!@!@#1,2,3,@!*&", "1 , 2, 3, 4, 5, 6", "-1,2,3,4,5,6", "1.0,2,3,4,5,6", "1+1,2,3,4,5,6"})
         void fail_NumericWithComma(String input) {
             // given
             Validator<String> validator = new WinningLottoValidator();

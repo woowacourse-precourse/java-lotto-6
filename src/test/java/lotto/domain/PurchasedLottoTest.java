@@ -15,15 +15,15 @@ class PurchasedLottoTest {
     void success_ToDto() {
         PurchasedLotto purchasedLotto = new PurchasedLotto(List.of(1, 2, 3, 4, 5, 6));
         PurchasedLottoDto dto = purchasedLotto.toDto();
-        assertThat(dto.numbers()).isEqualTo(List.of(1,2,3,4,5,6));
+        assertThat(dto.numbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @DisplayName("당첨 번호와 번호 비교 후 올바른 등수를 가지면 통과")
     @Test
     void success_compare() {
         // give
-        WinningLottoDto winningLottoDto = new WinningLottoDto(List.of(1,2,3,4,5,6), 7);
-        PurchasedLotto purchasedLotto = new PurchasedLotto(List.of(1,2,3,4,5,7));
+        WinningLottoDto winningLottoDto = new WinningLottoDto(List.of(1, 2, 3, 4, 5, 6), 7);
+        PurchasedLotto purchasedLotto = new PurchasedLotto(List.of(1, 2, 3, 4, 5, 7));
         // when
         purchasedLotto.compare(winningLottoDto);
         PurchasedLottoDto purchasedLottoDto = purchasedLotto.toDto();

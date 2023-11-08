@@ -18,9 +18,9 @@ class LottoResultServiceTest {
         LottoResultService lottoResultService = new LottoResultService();
         HashSet<PurchasedLotto> purchasedLotto = new HashSet<>();
 
-        List<Integer> purchasedNumbers1 = List.of(1,2,3,4,5,6);
-        List<Integer> purchasedNumbers2 = List.of(1,2,3,10,11,12);
-        List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
+        List<Integer> purchasedNumbers1 = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> purchasedNumbers2 = List.of(1, 2, 3, 10, 11, 12);
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 10;
 
         purchasedLotto.add(new PurchasedLotto(purchasedNumbers1));

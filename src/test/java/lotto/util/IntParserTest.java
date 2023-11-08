@@ -21,7 +21,8 @@ class IntParserTest {
 
     @DisplayName("번호 분리 실패시 예외를 발생시킨다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1234 5", "12,3", "1a2rt", "하이", "1.0"}) // give
+    @ValueSource(strings = {"1234 5", "12,3", "1a2rt", "하이", "1.0"})
+        // give
     void fail(String input) {
         // when, then
         assertThatThrownBy(() -> IntParser.parseInt(input))

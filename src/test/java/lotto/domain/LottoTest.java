@@ -11,7 +11,7 @@ class LottoTest {
     @Test
     void success_SortAscending() {
         // give
-        Lotto lotto = new Lotto(List.of(6,5,4,3,2,1));
+        Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         // when
         List<Integer> lottoNumber = lotto.getNumbers();
         // then

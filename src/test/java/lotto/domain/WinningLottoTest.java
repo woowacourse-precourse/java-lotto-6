@@ -13,11 +13,11 @@ class WinningLottoTest {
     @Test
     void success_ToDto() {
         // give
-        WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), 7);
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
         // when
         WinningLottoDto winningLottoDto = winningLotto.toDto();
         // then
-        assertThat(winningLottoDto.numbers()).isEqualTo(List.of(1,2,3,4,5,6));
+        assertThat(winningLottoDto.numbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
         assertThat(winningLottoDto.bonusNumber()).isEqualTo(7);
     }
 
@@ -25,8 +25,8 @@ class WinningLottoTest {
     @Test
     void success_StartCompare() {
         // give
-        WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), 7);
-        PurchasedLotto purchasedLotto = new PurchasedLotto(List.of(1,2,3,4,5,6));
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        PurchasedLotto purchasedLotto = new PurchasedLotto(List.of(1, 2, 3, 4, 5, 6));
         // when
         winningLotto.addObserver(purchasedLotto);
         winningLotto.startCompare();
@@ -38,8 +38,8 @@ class WinningLottoTest {
     @Test
     void success_RemoveObserver() {
         // give
-        WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), 7);
-        PurchasedLotto purchasedLotto = new PurchasedLotto(List.of(1,2,3,4,5,6));
+        WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+        PurchasedLotto purchasedLotto = new PurchasedLotto(List.of(1, 2, 3, 4, 5, 6));
         // when
         winningLotto.addObserver(purchasedLotto);
         winningLotto.removeObserver(purchasedLotto);

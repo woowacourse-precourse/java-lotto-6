@@ -72,7 +72,8 @@ class LottoSettingServiceTest {
             Runnable requestMessage = () -> {};
             Consumer<String> errorConsumer = e -> {};
             // when
-            int amount = lottoSettingService.selectPurchaseAmount(validator, inputSupplier, requestMessage, errorConsumer);
+            int amount = lottoSettingService.selectPurchaseAmount(validator, inputSupplier, requestMessage,
+                    errorConsumer);
             // then
             assertThat(amount).isEqualTo(6000);
         }
@@ -86,9 +87,10 @@ class LottoSettingServiceTest {
             Supplier<String> inputSupplier = () -> "1,2,3,4,5,6";
             Runnable requestMessage = () -> {};
             Consumer<String> errorConsumer = e -> {};
-            List<Integer> testNumbers = List.of(1,2,3,4,5,6);
+            List<Integer> testNumbers = List.of(1, 2, 3, 4, 5, 6);
             // when
-            List<Integer> winningNumbers = lottoSettingService.selectWinningNumbers(validator, inputSupplier, requestMessage, errorConsumer);
+            List<Integer> winningNumbers = lottoSettingService.selectWinningNumbers(validator, inputSupplier,
+                    requestMessage, errorConsumer);
             // then
             assertThat(winningNumbers).isEqualTo(testNumbers);
         }
@@ -97,14 +99,15 @@ class LottoSettingServiceTest {
         @Test
         void success_SelectBonusNumber() {
             // give
-            List<Integer> numbers = List.of(1,2,3,4,5,6);
+            List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
             LottoSettingService lottoSettingService = new LottoSettingService();
             BonusNumberValidator validator = new BonusNumberValidator(numbers);
             Supplier<String> inputSupplier = () -> "10";
             Runnable requestMessage = () -> {};
             Consumer<String> errorConsumer = e -> {};
             // when
-            int bonusNumber = lottoSettingService.selectBonusNumber(validator, inputSupplier, requestMessage, errorConsumer);
+            int bonusNumber = lottoSettingService.selectBonusNumber(validator, inputSupplier, requestMessage,
+                    errorConsumer);
             // then
             assertThat(bonusNumber).isEqualTo(10);
         }

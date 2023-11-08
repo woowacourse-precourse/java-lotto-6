@@ -12,10 +12,13 @@ import lotto.view.OutputView;
 public class LottoCalculateService {
     private static final int BONUS_ENUM_IDX = 7;
     private static final int BEFORE_BONUS_NUMBER_INDEX = 6;
+    private static final String DECIMAL_FORMAT = "###,##0.0";
     private Map<Ranking, Integer> countOfWinning = new HashMap<>();
 
     public void calculateWinning(Player player, LottoDrawingMachine lotto) {
         countLottoWinningCount(player, lotto);
+        OutputView.printWinningHistory(countOfWinning);
+        OutputView.responseYieldOfLotto(getYieldOfLotto(player, player.getWinningPrice()));
     }
 
     private void countLottoWinningCount(Player player, LottoDrawingMachine lotto) {
@@ -43,6 +46,7 @@ public class LottoCalculateService {
 
     private void winLotto(int value, Player player) {
         putValues(Ranking.FIND.valueOf(value));
+        player.addWinningPrice(Ranking.FIND.valueOf(value).getPrice());
     }
 
     private int countPlayerNumbersContainLotto(List<Integer> userNumbers, List<Integer> lottoNumbers) {
@@ -82,4 +86,11 @@ public class LottoCalculateService {
         return false;
     }
 
+    private String getYieldOfLotto(Player player, int totalPrice) {
+        if (player.getPlayerBuyPrice() == 0) {
+            return "0.0";
+        }
+        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
+        return decimalFormat.format((double) totalPrice / player.getPlayerBuyPrice() * 100);
+    }
 }

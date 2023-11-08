@@ -12,6 +12,7 @@ public class OutputView {
     private static final String START_SYMBOL = "[";
     private static final String END_SYMBOL = "]";
     private static final String DELIMITER = ", ";
+    private static final String THOUSAND_SEPARATOR =",";
 
     public void printPurchaseLotto(List<Lotto> lottos) {
         System.out.println();
@@ -49,17 +50,17 @@ public class OutputView {
         printNotWinning(prize);
     }
 
-    public String addComma(int priceNumber) {
+    public String addThousandSeparator(int priceNumber) {
         String price = String.valueOf(priceNumber);
-        return price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        return price.replaceAll("\\B(?=(\\d{3})+(?!\\d))", THOUSAND_SEPARATOR);
     }
 
     public void printNotWinning(Prize prize) {
-        System.out.printf(InformationMessages.WINNING_RESULT, prize.getWinNumberCount(), addComma(prize.getPrice()), 0);
+        System.out.printf(InformationMessages.WINNING_RESULT, prize.getWinNumberCount(), addThousandSeparator(prize.getPrice()), 0);
     }
 
     public void printWinning(Prize prize, int count) {
-        System.out.printf(InformationMessages.WINNING_RESULT, prize.getWinNumberCount(), addComma(prize.getPrice()), count);
+        System.out.printf(InformationMessages.WINNING_RESULT, prize.getWinNumberCount(), addThousandSeparator(prize.getPrice()), count);
     }
 
     public void branchBonus(LottoPrize lottoPrize, Prize prize){
@@ -70,7 +71,7 @@ public class OutputView {
         printWinningWithBonus(prize,0);
     }
     public void printWinningWithBonus(Prize prize, int count) {
-        System.out.printf(InformationMessages.WINNING_RESULT_BONUS, prize.getWinNumberCount(), addComma(prize.getPrice()), count);
+        System.out.printf(InformationMessages.WINNING_RESULT_BONUS, prize.getWinNumberCount(), addThousandSeparator(prize.getPrice()), count);
     }
 
     public String LottoWithDelimiter(Lotto lotto) {

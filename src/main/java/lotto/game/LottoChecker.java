@@ -14,10 +14,9 @@ import lotto.dto.LottoResults;
 public class LottoChecker {
     private final LottoDraw lottoDraw;
     private final List<Lotto> lottos;
+
     private int totalPrizeAmount = 0;
-
     List<LottoPrize> prizes = new ArrayList<>();
-
 
     public LottoChecker(LottoDraw lottoDraw, List<Lotto> userLottos) {
         this.lottoDraw = lottoDraw;
@@ -25,20 +24,22 @@ public class LottoChecker {
     }
 
     public LottoResults createLottoResults(int purchaseAmount) {
-        calculateResult();
+        calculateResults();
 
-        List<LottoResult> lottoResults = new ArrayList<>();
-
-        for (LottoPrize lottoPrize : LottoPrize.values()) {
-            lottoResults.add(LottoResult.of(lottoPrize, Collections.frequency(prizes, lottoPrize)));
-        }
+        List<LottoResult> lottoResults = Arrays.stream(LottoPrize.values())
+                .map(lottoPrize -> createLottoResult(lottoPrize, prizes))
+                .toList();
 
         float returnRate = (float) totalPrizeAmount / purchaseAmount;
 
-        return new LottoResults(lottoResults, returnRate);
+        return LottoResults.of(lottoResults, returnRate);
     }
 
-    private void calculateResult() {
+    private LottoResult createLottoResult(LottoPrize lottoPrize, List<LottoPrize> prizes) {
+        return LottoResult.of(lottoPrize, Collections.frequency(prizes, lottoPrize));
+    }
+
+    private void calculateResults() {
         for (Lotto lotto : lottos) {
             findMatchingPrize(lotto).ifPresent((p -> {
                 prizes.add(p);
@@ -48,6 +49,7 @@ public class LottoChecker {
     }
 
     private Optional<LottoPrize> findMatchingPrize(Lotto lotto) {
+        // 조건에 해당하는 prize 중 가장 큰 상금을 가진 prize로 확정
         return Arrays.stream(LottoPrize.values())
                 .filter(p -> p.getMatchingNumbers() == lottoDraw.countMatchingNumbersWith(lotto))
                 .filter(p -> lottoDraw.hasMatchingBonusNumberWith(lotto) || !p.getHasMatchingBonusNumber())

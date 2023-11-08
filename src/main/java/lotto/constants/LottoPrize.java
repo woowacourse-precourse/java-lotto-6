@@ -9,9 +9,9 @@ public enum LottoPrize {
     SECOND_PLACE(5, true, 30000000),
     FIRST_PLACE(6, false, 2000000000);
 
-    private final int matchingNumbers; // 맞아야 하는 숫자 개수
-    private final boolean hasMatchingBonusNumber; // 보너스 볼을 맞춰야 하는 여부
-    private final int prizeAmount; // 당첨 금액
+    private final int matchingNumbers;
+    private final boolean hasMatchingBonusNumber;
+    private final int prizeAmount;
 
     LottoPrize(int matchingNumbers, boolean hasMatchingBonusNumber, int prizeAmount) {
         this.matchingNumbers = matchingNumbers;
@@ -19,8 +19,8 @@ public enum LottoPrize {
         this.prizeAmount = prizeAmount;
     }
 
-    public static Comparator<LottoPrize> lottoPrizeComparator = (rank1, rank2) ->
-            rank1.getPrizeAmount() - rank2.getPrizeAmount();
+    public static final Comparator<LottoPrize> lottoPrizeComparator = Comparator.comparingInt(
+            LottoPrize::getPrizeAmount);
 
     public int getMatchingNumbers() {
         return matchingNumbers;

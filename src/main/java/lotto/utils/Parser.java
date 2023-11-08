@@ -3,6 +3,8 @@ package lotto.utils;
 import java.util.List;
 
 public class Parser {
+    public static final String WINNING_NUMBERS_SEPARATOR = ",";
+
     private Parser() {
     }
 
@@ -13,7 +15,7 @@ public class Parser {
     }
 
     public static List<Integer> parseWinningNumbers(String userInput) {
-        List<String> splitUserInput = List.of(userInput.split(","));
+        List<String> splitUserInput = List.of(userInput.split(WINNING_NUMBERS_SEPARATOR));
 
         return splitUserInput.stream()
                 .map(String::trim)

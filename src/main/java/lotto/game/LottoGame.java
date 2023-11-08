@@ -1,6 +1,8 @@
 package lotto.game;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.domain.Balance;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
@@ -15,24 +17,18 @@ import strategy.QuickpickIssuanceStrategy;
 
 public class LottoGame {
     public void play() {
-        Balance balance = RetryExecutor.execute(this::makeBalance, IllegalArgumentException.class);
-
+        Balance balance = withRetry(this::createBalance);
         List<Lotto> lottos = purchaseLottosWithQuckpick(balance);
 
-        Lotto winningLotto = RetryExecutor.execute(this::makeWinningLotto, IllegalArgumentException.class);
-        Bonus winningBonus = RetryExecutor.execute(() -> makeWinningBonus(winningLotto),
-                IllegalArgumentException.class);
-
+        Lotto winningLotto = withRetry(this::generateWinningLotto);
+        Bonus winningBonus = withRetry(() -> generateWinningBonus(winningLotto));
+        Console.close();
         LottoDraw lottoDraw = LottoDraw.of(winningLotto, winningBonus);
 
-        LottoChecker lottoChecker = new LottoChecker(lottoDraw, lottos);
-
-        int purchaseAmount = balance.getPurchaseAmount();
-        LottoResults lottoResults = lottoChecker.createLottoResults(purchaseAmount);
-        Output.printResults(lottoResults);
+        processLottoResults(lottoDraw, lottos, balance);
     }
 
-    private Balance makeBalance() {
+    private Balance createBalance() {
         String userInput = Input.getPurchaseAmount();
         int purchaseAmount = Parser.parsePurchaseAmount(userInput);
         return Balance.create(purchaseAmount);
@@ -48,18 +44,30 @@ public class LottoGame {
         return lottos;
     }
 
-    private Lotto makeWinningLotto() {
+    private Lotto generateWinningLotto() {
         String userInput = Input.getWinningNumbers();
         List<Integer> winningNumbers = Parser.parseWinningNumbers(userInput);
 
         return Lotto.from(winningNumbers);
     }
 
-    private Bonus makeWinningBonus(Lotto winningLotto) {
+    private Bonus generateWinningBonus(Lotto winningLotto) {
         String userInput = Input.getBonusNumber();
         int bonusNumber = Parser.parseBonusNumber(userInput);
 
         return Bonus.createWithValidate(bonusNumber, winningLotto);
+    }
+
+    private void processLottoResults(LottoDraw lottoDraw, List<Lotto> lottos, Balance balance) {
+        LottoChecker lottoChecker = new LottoChecker(lottoDraw, lottos);
+
+        int purchaseAmount = balance.getPurchaseAmount();
+        LottoResults lottoResults = lottoChecker.createLottoResults(purchaseAmount);
+        Output.printResults(lottoResults);
+    }
+
+    private <T> T withRetry(Supplier<T> function) {
+        return RetryExecutor.execute(function, IllegalArgumentException.class);
     }
 }
 

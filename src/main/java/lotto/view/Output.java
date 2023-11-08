@@ -19,7 +19,6 @@ public class Output {
 
     public static void printPurchasedLottoNumbers(List<Lotto> lottos) {
         StringBuilder resultStringBuilder = new StringBuilder();
-
         resultStringBuilder.append(String.format(LOTTO_COUNT_MESSAGE, lottos.size()));
 
         for (Lotto lotto : lottos) {
@@ -27,7 +26,6 @@ public class Output {
         }
 
         resultStringBuilder.append(NEW_LINE);
-
         System.out.println(resultStringBuilder);
     }
 

@@ -70,6 +70,7 @@ class LottoServiceTest {
         assertEquals(total, 30055000);
     }
 
+    @DisplayName("발행한 로또 번호 출력")
     @Test
     void printLottos() {
         List<Lotto> lottos = new ArrayList<>();

@@ -174,5 +174,30 @@ class LottoTest {
                     , "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개"
                     , "6개 일치 (2,000,000,000원) - 1개");
         }
+
+        @DisplayName("계산한 수익률을 출력한다.")
+        @Test
+        void outputProfitRateTest() {
+            //given
+            LottoRepository lottoRepository = new LottoRepository();
+            LottoService lottoService = new LottoService(lottoRepository);
+            LottoDto lottoDto = new LottoDto();
+
+            //when
+            lottoDto.setLottoPurchaseAmount("3000");
+            lottoDto.setWinningNumbers("1,2,3,4,5,6");
+            lottoDto.setBonusNumber("10");
+            lottoService.createGame(lottoDto);
+
+            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 10)); // five match with bonus
+            lottoRepository.saveLottos(List.of(13, 14, 15, 16, 17, 18)); // No match
+            lottoRepository.saveLottos(List.of(1, 2, 3, 11, 12, 13)); // three match
+            lottoService.compareLottosWithWinningNumbers();
+            OutputView.outputProfitRate(lottoService.getProfitRate());
+
+            //then
+            String output = outContent.toString();
+            assertThat(output).contains("총 수익률은 1000166.7%입니다.");
+        }
     }
 }

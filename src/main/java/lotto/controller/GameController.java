@@ -1,9 +1,12 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
+import lotto.domain.LottoPurchaseReceipt;
 import lotto.domain.Money;
+import lotto.domain.winning.WinningResult;
 import lotto.domain.winning.WinningStatistics;
 import lotto.service.GameService;
 import lotto.util.ExceptionRetryHandler;
@@ -22,48 +25,46 @@ public class GameController {
     }
 
     public void startGame() {
-        handlePurchaseLottos();
-        ExceptionRetryHandler.retryUntilValid(this::handleWinningStatistics);
+        LottoPurchaseReceipt receipt = ExceptionRetryHandler.retryUntilValid(this::handlePurchaseLottos);
+        ExceptionRetryHandler.retryUntilValid(this::handleWinningStatistics, receipt);
     }
 
-    private void handlePurchaseLottos() {
-        List<List<Integer>> lottos = ExceptionRetryHandler.retryUntilValid(this::purchaseLottos);
-        outputView.printLottos(lottos);
-    }
-
-    private List<List<Integer>> purchaseLottos() {
+    private LottoPurchaseReceipt handlePurchaseLottos() {
         int purchaseMoney = inputView.readPurchaseMoney();
-        return gameService.purchaseLottos(purchaseMoney);
+        LottoPurchaseReceipt receipt = gameService.purchaseLottos(purchaseMoney);
+        outputView.printLottos(receipt.purchasedLottos().getSortedLottos());
+
+        return receipt;
     }
 
-    private void handleWinningStatistics() {
-        Lotto winningLotto = ExceptionRetryHandler.retryUntilValid(this::createWinningLotto);
-        LottoNumber bonusLottoNumber = ExceptionRetryHandler.retryUntilValid(this::createBonusLottoNumber);
+    private void handleWinningStatistics(LottoPurchaseReceipt receipt) {
+        Lotto winningLotto = ExceptionRetryHandler.retryUntilValid(this::inputWinningLotto);
+        LottoNumber bonusNumber = ExceptionRetryHandler.retryUntilValid(this::inputBonusNumber);
 
-        WinningStatistics statistics = gameService.determineWinningStatistics(winningLotto, bonusLottoNumber);
-        printWinningStatistics(statistics);
-        printRateOfReturn(statistics.getTotalWinningMoney());
+        WinningStatistics statistics =
+                gameService.getWinningStatistics(winningLotto, bonusNumber, receipt.purchasedLottos());
+
+        printWinningStatistics(statistics.getSortedStatistics());
+        printRateOfReturn(statistics.getTotalWinningMoney(), receipt.purchaseMoney());
     }
 
-    private Lotto createWinningLotto() {
+    private Lotto inputWinningLotto() {
         List<Integer> winningNumbers = inputView.readWinningNumbers();
         return new Lotto(winningNumbers);
     }
 
-    private LottoNumber createBonusLottoNumber() {
+    private LottoNumber inputBonusNumber() {
         int bonusNumber = inputView.readBonusNumber();
         return LottoNumber.valueOf(bonusNumber);
     }
 
-    private void printWinningStatistics(WinningStatistics statistics) {
+    private void printWinningStatistics(Map<WinningResult, Integer> statistics) {
         outputView.printStatisticsHeader();
-
-        statistics.getSortedStatistics()
-                .forEach(outputView::printStatistics);
+        statistics.forEach(outputView::printStatistics);
     }
 
-    private void printRateOfReturn(Money totalWinningMoney) {
-        double rateOfReturn = gameService.getRateOfReturn(totalWinningMoney);
+    private void printRateOfReturn(Money totalWinningMoney, Money purchaseMoney) {
+        double rateOfReturn = totalWinningMoney.getRatio(purchaseMoney);
         outputView.printRateOfReturn(rateOfReturn);
     }
 }

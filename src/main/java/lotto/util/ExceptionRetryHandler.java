@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ExceptionRetryHandler {
@@ -13,10 +14,10 @@ public class ExceptionRetryHandler {
         }
     }
 
-    public static void retryUntilValid(Runnable runnable) {
+    public static <T> void retryUntilValid(Consumer<T> consumer, T argument) {
         while (true) {
             try {
-                runnable.run();
+                consumer.accept(argument);
                 return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

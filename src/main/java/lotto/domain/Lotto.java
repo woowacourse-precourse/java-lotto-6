@@ -1,60 +1,75 @@
 package lotto.domain;
 
+import static lotto.utils.ConstantValues.LOTTO_NUMBERS_LENGTH;
+import static lotto.utils.ConstantValues.MAX_LOTTO_NUMBER;
+import static lotto.utils.ConstantValues.MAX_NUMBER_OF_LOTTOS;
+import static lotto.utils.ConstantValues.MIN_LOTTO_NUMBER;
+import static lotto.utils.ErrorMessages.INVALID_LOTTO_NUMBERS_LENGTH;
+import static lotto.utils.ErrorMessages.LOTTO_NUMBER_DUPLICATION;
+import static lotto.utils.ErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE;
+
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.domain.wrapper.LottoNumber;
-import lotto.utils.ErrorMessage;
 import lotto.utils.LottoConstantValue;
 
 public class Lotto {
-    private final List<LottoNumber> lottoNumbers;
+    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> lottoNumbers) {
-        validate(lottoNumbers);
-        this.lottoNumbers = lottoNumbers.stream()
-                .map(LottoNumber::new)
-                .toList();
+    public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
     }
 
-    private void validate(List<Integer> lottoNumbers) {
-        validateLength(lottoNumbers);
-        validateDuplication(lottoNumbers);
+    public Lotto() {
+        this.numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_LENGTH);
     }
 
-    private void validateLength(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.INVALID_LOTTO_NUMBERS_LENGTH.getWithFormatAndPrefix(
-                            LottoConstantValue.LOTTO_NUMBERS_LENGTH.get()
-                    )
-            );
+    private void validate(List<Integer> numbers) {
+        validateLength(numbers);
+        validateDuplication(numbers);
+        validateRange(numbers);
+    }
+
+    private void validateLength(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
+            throw new IllegalArgumentException(String.format(INVALID_LOTTO_NUMBERS_LENGTH, LOTTO_NUMBERS_LENGTH));
         }
     }
 
-    private void validateDuplication(List<Integer> lottoNumbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
-        if (lottoNumbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATION.getWithPrefix());
+    private void validateDuplication(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (numbers.size() != uniqueNumbers.size()) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATION);
         }
     }
 
-    public boolean doesHaveLottoNumber(LottoNumber lottoNumber) {
-        return lottoNumbers.contains(lottoNumber);
+    private void validateRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+                throw new IllegalArgumentException(
+                        String.format(LOTTO_NUMBER_OUT_OF_RANGE, MIN_LOTTO_NUMBER, MAX_NUMBER_OF_LOTTOS));
+            }
+        }
+    }
+
+    public boolean doesHaveLottoNumber(int number) {
+        return numbers.contains(number);
     }
 
     public int getSameCount(Lotto otherLotto) {
-        Set<LottoNumber> intersection = new HashSet<>(lottoNumbers);
-        intersection.retainAll(new HashSet<>(otherLotto.lottoNumbers));
+        Set<Integer> intersection = new HashSet<>(numbers);
+        intersection.retainAll(new HashSet<>(otherLotto.numbers));
         return intersection.size();
     }
 
     @Override
     public String toString() {
-        List<LottoNumber> sortedLottoNumbers = new ArrayList<>(lottoNumbers);
-        Collections.sort(sortedLottoNumbers);
-        return sortedLottoNumbers.toString();
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
     }
 }

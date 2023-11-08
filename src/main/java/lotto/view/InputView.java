@@ -13,7 +13,7 @@ import lotto.exception.LottoGameException;
 
 
 public class InputView {
-    public static final String NUMBER_REGEX = "\\d+";
+    public static final String NUMBER_REGEX = "(-)?\\d+";
     public static final String LOTTO_NUMBER_STRING_REGEX = "((\\d)+,)*\\d+";
     public static final String LOTTO_NUMBER_DELIMITER = ",";
 

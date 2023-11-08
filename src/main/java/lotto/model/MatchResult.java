@@ -28,12 +28,4 @@ public class MatchResult {
     public int hashCode() {
         return Objects.hash(matchCount, bonusMatch);
     }
-
-    @Override
-    public String toString() {
-        return "MatchResult{" +
-            "matchCount=" + matchCount +
-            ", bonusMatch=" + bonusMatch +
-            '}';
-    }
 }

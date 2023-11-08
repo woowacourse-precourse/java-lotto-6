@@ -51,7 +51,6 @@ public class Statistics {
         return totalProfit;
     }
 
-
     private float getProfitRate(float totalWinnings) {
         float profitRate = (totalWinnings / totalAmount) * 100;
         return profitRate;

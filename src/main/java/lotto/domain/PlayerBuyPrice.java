@@ -12,7 +12,7 @@ public record PlayerBuyPrice(String amount) {
     private void validateCharacterFromAmount(String input) {
         for (int idx = 0; idx < input.length(); idx++) {
             if (!Character.isDigit(input.charAt(idx))){
-                throw new IllegalArgumentException("[ERROR] 구입 금액에 문자가 들어갈 수 없습니다. 구입 금액은 숫자만 입력해주세요.");
+                throw new IllegalArgumentException(INVALID_AMOUNT_FORMAT.getMessage());
             }
         }
     }

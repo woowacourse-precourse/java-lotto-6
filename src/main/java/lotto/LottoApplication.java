@@ -8,6 +8,7 @@ import lotto.request.AskRequest;
 import lotto.request.MultiAskRequest;
 import lotto.request.NonAskRequest;
 import lotto.request.Request;
+import lotto.view.ErrorView;
 
 public class LottoApplication {
     private static final List<Request> requests = Arrays.asList(
@@ -25,7 +26,7 @@ public class LottoApplication {
                 requests.get(index).process();
             }catch (IllegalArgumentException error) {
                 isOk = false;
-                System.out.println(error.getMessage());
+                new ErrorView(error.getMessage()).render();
             }
 
             if(isOk) {

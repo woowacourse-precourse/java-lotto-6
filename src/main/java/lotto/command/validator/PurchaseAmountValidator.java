@@ -9,7 +9,7 @@ public class PurchaseAmountValidator implements Validator {
 
     private void validateIsDivide(int number) {
         if(isNotDivide(number)) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
+            throw new IllegalArgumentException("1,000원 단위로 입력해 주세요.");
         }
     }
 
@@ -20,7 +20,7 @@ public class PurchaseAmountValidator implements Validator {
 
     private void validateIsNumber(String input) {
         if(isNotNumeric(input)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
     }
 

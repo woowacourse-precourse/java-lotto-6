@@ -19,7 +19,7 @@ public class LottoValidator implements Validator {
 
     private void validateCount(List<Integer> numbers) {
         if(numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력하세요");
+            throw new IllegalArgumentException("6개의 숫자를 입력하세요");
         }
     }
 
@@ -31,7 +31,7 @@ public class LottoValidator implements Validator {
 
     private void validateIsNumber(String input) {
         if(isNotNumeric(input)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
         }
     }
 
@@ -42,14 +42,14 @@ public class LottoValidator implements Validator {
     private void validateUnique(List<Integer> numbers) {
         int uniqueCount = (int) numbers.stream().distinct().count();
         if(uniqueCount != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 서로 다른 번호만 입력 가능합니다.");
+            throw new IllegalArgumentException("서로 다른 번호만 입력 가능합니다.");
         }
     }
 
     private void validateOverNumber(List<Integer> numbers) {
         numbers.forEach(number -> {
             if(number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         });
     }

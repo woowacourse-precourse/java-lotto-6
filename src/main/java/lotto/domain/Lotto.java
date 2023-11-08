@@ -13,7 +13,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("6개의 숫자만 가능합니다.");
+        }
+
+        validateUnique(numbers);
+    }
+
+    private void validateUnique(List<Integer> numbers) {
+        int uniqueCount = (int) numbers.stream().distinct().count();
+        if(uniqueCount != numbers.size()) {
+            throw new IllegalArgumentException("서로 다른 번호만 입력 가능합니다.");
         }
     }
 

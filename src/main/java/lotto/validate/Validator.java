@@ -17,6 +17,12 @@ public class Validator {
             throw new IllegalArgumentException(THOUSAND_OR_MORE_EXCEPTION.getMessage());
         }
     }
+
+    public static boolean hasBlank(String input) {
+        return input.contains(" ");
+    }
+
+
     public static boolean isNumeric(String str) {
         return str.chars().allMatch(Character::isDigit);
     }

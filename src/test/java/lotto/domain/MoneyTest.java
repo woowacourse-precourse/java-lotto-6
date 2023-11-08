@@ -6,6 +6,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class MoneyTest {
+    
+    @CsvSource({"1000", "19000", "1010000", "99000"})
+    @ParameterizedTest
+    public void 구매_금액_생성(String amount) {
+        new Money(Integer.parseInt(amount));
+    }
 
     @CsvSource({"1100", "13040", "11111"})
     @ParameterizedTest

@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Judgement;
-import lotto.domain.Lotto;
-import lotto.domain.LottoChanger;
-import lotto.domain.LottoGenerator;
+import lotto.domain.*;
 import lotto.dto.LottoResultDto;
 import lotto.dto.WinningNumberDto;
 import lotto.utility.Validation;
@@ -28,6 +25,7 @@ public class LottoManager {
 
     public void startLottoService() {
         WinningNumberDto winningNumberDto;
+        Result result;
         List<Lotto> userLottoCollection;
         List<LottoResultDto> lottosResult;
 
@@ -35,6 +33,7 @@ public class LottoManager {
         userLottoCollection = generateLotto(); //로또 생성하기
         winningNumberDto = setWinningAndBounsNumber(); //당첨 숫자 입력하기
         lottosResult = judgeLottoWinning(userLottoCollection, winningNumberDto); //로또와 당첨번호 비교하기
+        result = setLottosResult(lottosResult); //로또 최종결과 구하기
     }
 
     private void purchaseLotto() {
@@ -118,5 +117,9 @@ public class LottoManager {
         Collections.unmodifiableList(lottosResult); //불변리스트로 변경
 
         return lottosResult;
+    }
+
+    private Result setLottosResult(List<LottoResultDto> lottosResult){
+        return new Result(lottosResult);
     }
 }

@@ -34,6 +34,36 @@ BUILD SUCCESSFUL in 0s
 
 ---
 
+## 기능 목록
+
+- [x] 로또 구입 금액 입력받기 - InputLottoPrice#inputLottoPrice()
+   - [x] 1000원 단위로 입력 받는다 (1000원당 1장)
+- [x] 1 ~ 45까지의 6개의 서로 다른 임의의 숫자를 추출 - MyLottoNumbersGenerator#generateMyLottoNumbers()
+   - [x] 몇장인지 갯수 세기 - LottoPrice#lottoPaperCount()
+   - [x] 오름차순으로 정렬
+- [x] 당첨번호 입력(로또 번호 6개 입력) - InputLotteryNumbers#inputLotteryNumbers()
+   - [x] 제공된 Lotto 클래스를 활용하여 구현
+   - [x] 번호는 쉼표(,)를 기준으로 구분
+- [x] 보너스 번호 입력 - InputBonusNumber#inputBonusNumber()
+   - [x] 보너스 숫자 1개 뽑기
+- [x] 당첨내역 판별 - WinningPrice#getWinningPrice()
+   - [x] 1등 ~ 5등 까지 등수 선별
+- [x] 당첨 내역 출력 - OutputResult#getPrintResultPrize()
+   - [x] 6개 번호 일치 : 1등
+   - [x] 5개 번호 + 보너스 번호 일치 : 2등
+   - [x] 5개 번호 일치 : 3등
+   - [x] 4개 번호 일치 : 4등
+   - [x] 3개 번호 일치 : 5등
+- [x] 총 수익률 - OutputResult#getPrintResultPrize()
+   -[x] 총 수익률은 소수점 둘째 자리에서 반올림
+- [x] 에러 상황
+   - [x] 에러문구는 [ERROR] 로 시작
+   - [x] 1000원으로 나누어 떨어지지 않는 경우 예외 처리
+   - [x] 1 ~ 45 사이의 숫자를 입력하지 않으면 예외처리
+   - [x] 같은 숫자 입력하면 예외처리
+
+---
+
 ## 🚀 기능 요구 사항
 
 로또 게임 기능을 구현해야 한다. 로또 게임은 아래와 같은 규칙으로 진행된다.

@@ -33,19 +33,37 @@ public class LottoController {
     final static int MOD_VALUE = 1000;
     final static int MAX_LOTTO_PRICES = 2147483000;
     final static int MIN_LOTTO_PRICES = 1000;
-    List<Lotto> lottos = new ArrayList<>();
     int lottoCounts;
+    List<Integer> prizeNumbers = new ArrayList<>();
+    int bonusNumber;
+    List<Lotto> lottos = new ArrayList<>();
+
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public List<Integer> getPrizeNumbers() {
+        return prizeNumbers;
+    }
+
+    public int getLottoCounts() {
+        return lottoCounts;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 
     public void setLottoCounts(int lottoCounts) {
         this.lottoCounts = lottoCounts;
     }
 
     public String printLottoPrices() {
-        return "[ERROR] 구입금액을 입력해 주세요.";
+        return "구입금액을 입력해 주세요.";
     }
-    public int inputLottoPrices() {
-        String confirmString = "";
-        int lottoPrices = isInteger(confirmString);
+    public void inputLottoPrices() {
+        int lottoPrices = isInteger();
         if(!isPriceLowerThanMax(lottoPrices)) {
             throw new IllegalArgumentException("[ERROR] 최대 구입 가능 금액은 " + MAX_LOTTO_PRICES + "원 입니다.");
         }
@@ -55,11 +73,11 @@ public class LottoController {
         if(!isPriceModZero(lottoPrices)) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 " + MOD_VALUE + "원 단위 여야 합니다.");
         }
-        setLottoCounts(lottoPrices % MOD_VALUE);
-        return lottoPrices;
+        setLottoCounts(lottoPrices / MOD_VALUE);
     }
-    public int isInteger(String confirmString) {
+    public int isInteger() {
         try {
+            String confirmString = Console.readLine();
             return Integer.parseInt(confirmString);
         } catch (NumberFormatException numberFormatException) {
         throw new IllegalArgumentException("[ERROR] 숫자만 입력하실 수 있습니다");
@@ -76,7 +94,7 @@ public class LottoController {
     }
 
     public List<Integer> GenerateRandomNumber() {
-        List<Integer> lottoNumbers = new ArrayList<>();
+        List<Integer> lottoNumbers;
         lottoNumbers = pickUniqueNumbersInRange(1,45,6);
         return lottoNumbers;
     }
@@ -139,9 +157,10 @@ public class LottoController {
         iterateLottos();
 
         System.out.println(printPrizeNumbers());
-        inputPrizeNumbers();
+        this.prizeNumbers.addAll(inputPrizeNumbers());
         System.out.println(printBonusNumber());
-        inputBonusNumber();
+        this.bonusNumber = inputBonusNumber();
+
     }
 
 

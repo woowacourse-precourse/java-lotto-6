@@ -1,6 +1,7 @@
 package lotto;
 
 import domain.PurchaseInput;
+import domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -53,6 +54,38 @@ class LottoTest {
     void purchaseAmountNotANumber() {
         PurchaseInput purchaseInput = new PurchaseInput();
         assertThatThrownBy(() -> purchaseInput.readPurchaseAmount("abcd"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또번호 입력시 숫자가 아닌 값 입력하면 예외처리")
+    void inputLottoNotNumber() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        assertThatThrownBy(() -> winningNumbers.parseWinningNumbersInput("as,2,3,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또번호 입력 시 공백 값 입력하면 예외처리")
+    void inputLottoBlank() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        assertThatThrownBy(() -> winningNumbers.parseWinningNumbersInput("1, ,3,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또번호 1~45범위 이상 값 입력하면 예외처리")
+    void inputLottoRangeOver() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        assertThatThrownBy(() -> winningNumbers.parseWinningNumbersInput("1,2,46,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("로또번호 입력시 중복값 입력하면 예외처리")
+    void inputLottoDuplicate() {
+        WinningNumbers winningNumbers = new WinningNumbers();
+        assertThatThrownBy(() -> winningNumbers.parseWinningNumbersInput("1,2,3,4,5,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

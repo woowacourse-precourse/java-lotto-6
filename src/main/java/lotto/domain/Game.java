@@ -31,9 +31,7 @@ public class Game {
             int count = entry.getValue();
             totalPrize += (long) rank.getPrize() * count;
         }
-        double earningRate = (double) totalPrize / purchaseAmount;
-        earningRate = Math.round(earningRate * 10000) / 100.0;
-        return earningRate;
+        return (double) totalPrize / purchaseAmount * 100;
     }
 }
 

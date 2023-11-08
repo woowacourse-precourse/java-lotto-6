@@ -17,6 +17,17 @@ public class WinningResult {
         this.lotto = lotto;
     }
 
+    public static Map<Ranking, Integer> findRanks(Lotto lotto, LottoTickets lottoTickets,
+                                                  WinningNumbers winningNumbers) {
+        for (LottoTicket lottoTicket : lottoTickets.getTickets()) {
+            int currentRank = determineWinningRank(lotto, lottoTicket, winningNumbers);
+            Ranking ranking = getRankingForRank(currentRank);
+
+            result.put(ranking, result.getOrDefault(ranking, 0) + 1);
+        }
+        return result;
+    }
+
     public static double getProfit(Map<Ranking, Integer> result, int amount) {
         double totalPrize = calculateTotalPrize(result);
         return totalPrize / (double) amount;

@@ -13,10 +13,10 @@ public class LottoView {
 
     }
 
-    public int askPrice() {
+    public String askPrice() {
             System.out.println(ASK_BUY_PRICE.getMessage());
             String input = Console.readLine();
-            return Integer.parseInt(input);
+            return input;
 
     }
 

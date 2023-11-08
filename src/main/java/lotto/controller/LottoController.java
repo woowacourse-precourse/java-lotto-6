@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
+import static lotto.model.constants.ErrorMessage.ISNOTINTEGER;
 import static lotto.model.constants.LottoInformation.BUY_PRICE;
 import static lotto.model.constants.LottoPrize.*;
 
@@ -23,7 +24,8 @@ public class LottoController {
     }
 
     public static void setPrice(){
-       randomIntGenerator.makeLottoNumber(lottoView.askPrice());
+        randomIntGenerator.isStr();
+//       randomIntGenerator.makeLottoNumber(lottoView.askPrice());
     }
 
     public static void setBuyLottoNumberPrint() {
@@ -31,8 +33,9 @@ public class LottoController {
     }
 
     public static void setPrizeNumberInput() {
-        List<Integer> newList = lottoView.prizeNumberInput().stream()
-                .map(s -> Integer.parseInt(s))
+        List<String> prizeNumbers =  lottoView.prizeNumberInput();
+        List<Integer> newList = prizeNumbers.stream()
+                .map(Integer::parseInt)
                 .collect(Collectors.toList());
         Lotto lotto = new Lotto(newList);
         lotto.checkSame(lottoView.bonusNumberInput(),randomIntGenerator.getLottoNumber());
@@ -49,4 +52,11 @@ public class LottoController {
 
     }
 
+    public int checkCount() {
+        try{
+            return Integer.parseInt(lottoView.askPrice());
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException(ISNOTINTEGER.getMessage());
+        }
+    }
 }

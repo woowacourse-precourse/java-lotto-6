@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
 import lotto.exception.InvalidMoneyInput;
+import lotto.exception.LackOfMoneyException;
 
 public class UserLottoInput implements LottoInput {
     private final String DELIMITER = ",";
@@ -15,7 +16,7 @@ public class UserLottoInput implements LottoInput {
         String input = Console.readLine();
         validateNumericString(input);
         int amount = Integer.parseInt(input);
-        validateRange(amount);
+        validateNotZero(amount);
         return amount;
     }
 
@@ -57,9 +58,9 @@ public class UserLottoInput implements LottoInput {
         }
     }
 
-    private void validateRange(int amount) {
-        if (amount <= 0) {
-            throw new InvalidMoneyInput();
+    private void validateNotZero(int amount) {
+        if (amount == 0) {
+            throw new LackOfMoneyException();
         }
     }
 }

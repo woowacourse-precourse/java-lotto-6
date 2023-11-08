@@ -13,7 +13,6 @@ public class LottoStatisticsPrinter {
     private static final String BONUS_SUFFIX = ", 보너스 볼 일치";
     private static final String NULL_SUFFIX = "";
     private static final String RATE_OF_RETURN_PRINT_MESSAGE = "총 수익률은 %.1f%%입니다.";
-    private static final int NON_MAP_DEFAULT_VALUE = 0;
 
     private LottoStatisticsPrinter() {
     }

@@ -5,8 +5,8 @@ import lotto.domain.util.validator.InputValidator;
 import lotto.domain.view.inputer.manager.InputManager;
 import lotto.domain.view.printer.InputPrinter;
 
-public class Inputer {
-    private Inputer() {
+public class InputHandler {
+    private InputHandler() {
     }
 
     public static Integer inputPurchaseAmount() {

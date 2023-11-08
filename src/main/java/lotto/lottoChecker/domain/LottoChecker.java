@@ -4,9 +4,9 @@ import java.util.List;
 
 public class LottoChecker {
 
-    private final Integer BONUS_INDEX = 6;
+    private static final Integer BONUS_INDEX = 6;
 
-    public Integer calculateRank(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
+    public static Integer calculateRank(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
         Integer matchedCount = 0;
         Integer bonusMatched = 0;
         lottoNumbers.retainAll(winningNumbers);
@@ -18,7 +18,7 @@ public class LottoChecker {
         return convertRank(matchedCount, bonusMatched);
     }
 
-    public Integer convertRank(Integer matchedCount, Integer bonusMatched) {
+    public static Integer convertRank(Integer matchedCount, Integer bonusMatched) {
         if (matchedCount == 3) {
             return 5;
         } else if (matchedCount == 4) {

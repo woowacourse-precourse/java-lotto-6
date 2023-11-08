@@ -28,8 +28,8 @@ public class LottoStatistics {
 
     public void printStatistics() {
         System.out.println("당첨 통계\n" + "---");
-        for (int i = 5; i >= 1; i--) {
-            System.out.println(getStatistics(i + 1) + " - " + counts.get(i) + "개");
+        for (int i = 5; i > 0; i--) {
+            System.out.println(getStatistics(i) + " - " + counts.get(i) + "개");
         }
     }
 

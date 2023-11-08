@@ -19,4 +19,8 @@ public class LottoPurchaseService {
         return lotteries;
     }
 
+    public Integer getSpendMoney() {
+        return lottoPurchase.getSpendMoney();
+    }
+
 }

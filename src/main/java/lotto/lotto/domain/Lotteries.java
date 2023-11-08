@@ -41,4 +41,12 @@ public class Lotteries {
         }
     }
 
+    public List<Integer> calculateAllLottoRanks(List<Integer> winningNumbers) {
+        List<Integer> ranks = new ArrayList<>();
+        for (Lotto lotto : this.lotteries) {
+            ranks.add(lotto.calculateLottoRank(winningNumbers));
+        }
+        return ranks;
+    }
+
 }

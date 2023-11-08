@@ -1,5 +1,7 @@
 package lotto.lotto.domain;
 
+import static lotto.lottoChecker.domain.LottoChecker.calculateRank;
+
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -34,6 +36,10 @@ public class Lotto {
             System.out.print(", " + numbers.get(i).toString());
         }
         System.out.println("]");
+    }
+
+    public Integer calculateLottoRank(List<Integer> winningNumbers) {
+        return calculateRank(winningNumbers, this.numbers);
     }
 
 }

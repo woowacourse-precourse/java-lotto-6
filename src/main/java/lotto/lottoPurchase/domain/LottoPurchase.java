@@ -21,19 +21,23 @@ public class LottoPurchase {
             String insultedMoney = readLine();
             this.money = Integer.parseInt(insultedMoney);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("money must be a number");
+            throw new IllegalArgumentException("[ERROR] money must be a number");
         }
     }
 
     public void calculate() throws IllegalArgumentException {
         if (this.money % price != 0) {
-            throw new IllegalArgumentException("money must be dividable by 1000");
+            throw new IllegalArgumentException("[ERROR] money must be dividable by 1000");
         }
         this.purchaseAmount = this.money / price;
     }
 
     public Integer getPurchaseAmount() {
         return this.purchaseAmount;
+    }
+
+    public Integer getSpendMoney() {
+        return this.money;
     }
 
 }

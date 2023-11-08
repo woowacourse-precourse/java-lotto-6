@@ -47,7 +47,8 @@ public class AdminLottoService {
             List<Integer> correctLottoNumbers = userNumbers.stream()
                     .filter(admin.getWinnerNumber()::contains)
                     .collect(Collectors.toList());
-            statLottoService.findCorrectName(correctLottoNumbers, userNumbers, admin.getBonusNumber(), lottoCorrectStat);
+            statLottoService.findCorrectName(correctLottoNumbers, userNumbers, admin.getBonusNumber(),
+                    lottoCorrectStat);
         }
     }
 }

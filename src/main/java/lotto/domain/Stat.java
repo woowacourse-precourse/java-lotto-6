@@ -4,56 +4,55 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lotto.config.Config;
+import lotto.view.AdminInputOutputMessage;
 
 public class Stat {
 
     public enum Reward {
-        THREE(5000), FOUR(50000), FIVE(1500000), BONUS(30000000), SIX(2000000000);
+        THREE(3, 5_000, AdminInputOutputMessage.FIFTH_GRADE),
+        FOUR(4, 50_000, AdminInputOutputMessage.FOURTH_GRADE),
+        FIVE(5, 1_500_000, AdminInputOutputMessage.THIRD_GRADE),
+        BONUS(5, 30_000_000, AdminInputOutputMessage.SECOND_GRADE),
+        SIX(6, 2_000_000_000, AdminInputOutputMessage.FIRST_GRADE);
 
+        private final int correctNumberCount;
         private final int reward;
+        private final String message;
 
-        Reward(int reward) {
+        Reward(int correctNumberCount, int reward, String message) {
             this.reward = reward;
+            this.correctNumberCount = correctNumberCount;
+            this.message = message;
         }
 
         public int getReward() {
             return reward;
         }
-    }
 
-    public enum CorrectCount {
-        NOT(0), ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), BONUS(7), SIX(6);
-
-        private final int correctCount;
-
-        CorrectCount(int correctCount) {
-            this.correctCount = correctCount;
+        public int getCorrectNumberCount() {
+            return correctNumberCount;
         }
 
         public int getCorrectCount() {
-            return correctCount;
+            return correctNumberCount;
+        }
+
+        public String getMessage() {
+            return message;
         }
     }
 
     private final Map<String, Integer> lottoCorrectStat = new HashMap<>();
-    private static final Map<CorrectCount, Reward> rewardMapping = new HashMap<>();
     private int reward = 0;
 
-    static {
-        rewardMapping.put(CorrectCount.THREE, Reward.THREE);
-        rewardMapping.put(CorrectCount.FOUR, Reward.FOUR);
-        rewardMapping.put(CorrectCount.FIVE, Reward.FIVE);
-        rewardMapping.put(CorrectCount.SIX, Reward.SIX);
-    }
-
     public Stat() {
-        for (CorrectCount count : CorrectCount.values()) {
-            lottoCorrectStat.put(count.name(), Config.CORRECT_COUNT_INIT_VALUE);
+        for (Reward count : Reward.values()) {
+            lottoCorrectStat.put(count.name(), Config.INIT_VALUE_ZERO);
         }
     }
 
-    public void setReward(int addRewardAmount){
-        reward+=addRewardAmount;
+    public void setReward(int addRewardAmount) {
+        reward += addRewardAmount;
     }
 
     public int getReward() {
@@ -63,10 +62,4 @@ public class Stat {
     public Map<String, Integer> getLottoCorrectStat() {
         return lottoCorrectStat;
     }
-
-    public Map<CorrectCount, Reward> getRewardMapping() {
-        return rewardMapping;
-    }
-
-    
 }

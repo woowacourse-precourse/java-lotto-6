@@ -10,6 +10,7 @@ import lotto.validator.NumberValidator;
 import lotto.domain.Lotto;
 import lotto.domain.Stat;
 import lotto.domain.User;
+import lotto.domain.Stat.Reward;
 
 import java.util.List;
 
@@ -17,7 +18,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
-
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
@@ -67,8 +67,8 @@ class LottoTest {
     void calculatePrizeMoneyByMatchingNumbers() {
         StatLottoService statLottoService = new StatLottoService();
         Stat stat = new Stat();
-        Stat.CorrectCount enumValue = Stat.CorrectCount.FIVE;
-        statLottoService.addRewardToTotalReward(enumValue, stat);
-        assertEquals(stat.getReward(), 1500000);
+        Reward third = Reward.FIVE;
+        statLottoService.addRewardToTotalReward(third, stat);
+        assertEquals(stat.getReward(), 1_500_000);
     }
 }

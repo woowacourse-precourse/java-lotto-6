@@ -3,59 +3,61 @@ package lotto.service;
 import java.util.List;
 import java.util.Map;
 
+import lotto.config.Config;
 import lotto.domain.Stat;
-import lotto.domain.Stat.CorrectCount;
+import lotto.domain.Stat.Reward;
 
 public class StatLottoService {
     private Stat stat;
-    public Stat setStat(){
-        this.stat = new Stat();
+
+    public StatLottoService() {
+        stat = setStat();
+    }
+
+    public Stat setStat() {
+        stat = new Stat();
         return stat;
     }
 
-    public void findCorrectName(List<Integer> correctLottoNumbers, List<Integer> userNumbers, int bonusNumber, Stat stat) {
+    public void findCorrectName(List<Integer> correctLottoNumbers, List<Integer> userNumbers, int bonusNumber,
+            Stat stats) {
         int correctLottoCount = correctLottoNumbers.size();
-        if (correctLottoCount == 5) {
+        if (correctLottoCount == Config.BONUS_CORRECT_COUNT) {
             if (userNumbers.contains(bonusNumber)) {
-                addBonusStat();
+                addBonusStat(stats);
                 return;
             }
         }
-        for (CorrectCount count : CorrectCount.values()) {
-            if (count.getCorrectCount() == correctLottoCount) {
-                addRewardToTotalReward(count, stat);
-                addCorrectStat(stat.getLottoCorrectStat(), count);
+        for (Reward count : Reward.values()) {
+            if (count.getCorrectNumberCount() == correctLottoCount) {
+                addRewardToTotalReward(count, stats);
+                addCorrectStat(stats.getLottoCorrectStat(), count);
                 break;
             }
         }
     }
 
-    public void addRewardToTotalReward(CorrectCount count, Stat stat) {
-        if (count != null) {
-            Stat.Reward rewardName = stat.getRewardMapping().get(count);
-            if (rewardName != null) {
-                stat.setReward(rewardName.getReward());
-            }
+    public void addRewardToTotalReward(Reward count, Stat stats) {
+        stats.setReward(count.getReward());
+    }
+
+    public void addCorrectStat(Map<String, Integer> lottoCorrectStat, Reward matchingCount) {
+        if (lottoCorrectStat.containsKey(matchingCount.name())) {
+            int correctCount = lottoCorrectStat.get(matchingCount.name());
+            lottoCorrectStat.put(matchingCount.name(), correctCount + 1);
         }
     }
 
-    public void addCorrectStat(Map<String, Integer> lottoCorrectStat, CorrectCount matchingCount) {
-        String matchCountName = matchingCount.toString();
-        if (lottoCorrectStat.containsKey(matchCountName)) {
-            int count = lottoCorrectStat.get(matchCountName);
-            lottoCorrectStat.put(matchCountName, count + 1);
-        }
+    public void addBonusStat(Stat stats) {
+        String correctNumberCount = Reward.BONUS.name();
+        int bonusReward = Reward.BONUS.getReward();
+        int correctCount = stats.getLottoCorrectStat().get(correctNumberCount);
+        stats.getLottoCorrectStat().put(correctNumberCount, correctCount + 1);
+        stats.setReward(bonusReward);
     }
 
-    public void addBonusStat() {
-        String matchCountName = CorrectCount.BONUS.toString();
-        Stat.Reward bonusReward = Stat.Reward.BONUS;
-        stat.getLottoCorrectStat().put(matchCountName, 1);
-        stat.setReward(bonusReward.getReward());
-    }
-
-    public double calculateProfit(int purchaseAmount) {
-        return ((double) stat.getReward() / (double) purchaseAmount) * 100;
+    public double calculateProfit(int purchaseAmount, Stat stats) {
+        return ((double) stats.getReward() / (double) purchaseAmount) * 100;
     }
 
 }

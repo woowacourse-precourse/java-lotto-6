@@ -11,12 +11,12 @@ public class NumberValidator {
     public static void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         boolean hasDuplicate = numbers.stream()
-        .anyMatch(number -> !uniqueNumbers.add(number));
+                .anyMatch(number -> !uniqueNumbers.add(number));
         if (hasDuplicate) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_SIX_NUMBERS);
         }
     }
-    
+
     public static void validateNumberRange(int bonusNumber) {
         if (bonusNumber > Config.LOTTO_MAX_VALUE || bonusNumber < Config.LOTTO_MIN_VALUE) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_OUR_OF_RANGE);
@@ -24,7 +24,7 @@ public class NumberValidator {
     }
 
     public static void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Config.LOTTO_TICKER_NUMBERS) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_SIX_NUMBERS);
         }
     }

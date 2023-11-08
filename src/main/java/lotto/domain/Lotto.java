@@ -15,7 +15,7 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
 }

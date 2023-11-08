@@ -9,6 +9,7 @@ import lotto.view.AdminInputOutputMessage;
 import lotto.view.UserInputMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Stat;
+import lotto.domain.Stat.Reward;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class LottoController {
     private final UserLottoService userLottoService = new UserLottoService();
     private final StatLottoService statLottoService = new StatLottoService();
     private List<Integer> winningNumber = new ArrayList<>();
-    private Stat stat;
+    private Stat stat = new Stat();
     private int lottoPurchaseCount;
     private int purchaseAmount;
 
@@ -91,7 +92,6 @@ public class LottoController {
     }
 
     public void initStats() {
-        stat = statLottoService.setStat();
         adminLottoService.compareCorrectLottoNumbers(userLottoService.getUser(), stat);
     }
 
@@ -114,19 +114,20 @@ public class LottoController {
         System.out.println();
         System.out.println(AdminInputOutputMessage.WINNING_STATISTICS);
         System.out.println(AdminInputOutputMessage.HORIZONTAL_LINE);
-        System.out.println("3개 일치 (5,000원) - " + stat.getLottoCorrectStat().get("THREE") + "개");
-        System.out.println("4개 일치 (50,000원) - " + stat.getLottoCorrectStat().get("FOUR") + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + stat.getLottoCorrectStat().get("FIVE") + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + stat.getLottoCorrectStat().get("BONUS") + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + stat.getLottoCorrectStat().get("SIX") + "개");
+        for (Reward reward : Reward.values()) {
+            printRewardResult(reward);
+        }
     }
 
     public void printProfit() {
-        System.out.println(purchaseAmount);
-        double profit = statLottoService.calculateProfit(purchaseAmount);
+        double profit = statLottoService.calculateProfit(purchaseAmount, stat);
         String roundProfit = String.format("%.1f", profit);
-        System.out.print("총 수익률은 ");
-        System.out.print(roundProfit);
-        System.out.println("%입니다.");
+        System.out.printf(AdminInputOutputMessage.OUTPUT_PROFIT, roundProfit);
+    }
+
+    public void printRewardResult(Reward reward) {
+        String formattedNumber = String.format("%,d", reward.getReward());
+        int correctCount = stat.getLottoCorrectStat().get(reward.name());
+        System.out.printf(reward.getMessage(), formattedNumber, correctCount);
     }
 }

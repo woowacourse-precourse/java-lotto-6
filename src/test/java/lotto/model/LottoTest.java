@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
-    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 Exception 발생한다.")
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
@@ -19,7 +18,7 @@ class LottoTest {
                 .hasMessage("[ERROR] 로또 번호는 6개로 이루어져야 합니다.");
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 Exception 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
@@ -38,5 +37,29 @@ class LottoTest {
 
         // then
         assertThat(lotto.getNumbers()).isEqualTo(Arrays.asList(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("로또 번호가 1 보다 작은 숫자인 경우 Exception 발생한다. ")
+    @Test
+    void validateNumberInRange1() {
+        // given
+        List<Integer> numbers = Arrays.asList(0, 2, 3, 4, 5, 6);
+
+        // when // then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+    }
+
+    @DisplayName("로또 번호가 45 보다 큰 숫자인 경우 Exception 발생한다. ")
+    @Test
+    void validateNumberInRange2() {
+        // given
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 46);
+
+        // when // then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
     }
 }

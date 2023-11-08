@@ -22,18 +22,21 @@ public class Picker {
 
     private void validateWinNumbers(String winNumbersInput) {
         if(!winNumbersInput.contains(",")){
-            throw new IllegalArgumentException("[ERROR] ,로 구분하여 입력해주세요.");
+            System.out.println("[ERROR] ,로 구분하여 입력해주세요.");
+            throw new IllegalArgumentException();
         }
 
         for(String winNumberInput : winNumbersInput.split(",")){
             if (!Character.isDigit(winNumberInput.charAt(0))) {
-                throw new IllegalArgumentException("[ERROR] 공백없이 ,로 구분하여 숫자를 입력해주세요");
+                System.out.println("[ERROR] 공백없이 ,로 구분하여 숫자를 입력해주세요");
+                throw new IllegalArgumentException();
             }
         }
 
         for(String winNumberInput : winNumbersInput.split(",")){
             if (Integer.parseInt(winNumberInput)<1 || Integer.parseInt(winNumberInput)>45) {
-                throw new IllegalArgumentException("[ERROR] 1이상 45이하인 숫자만 입력해주세요.");
+                System.out.println("[ERROR] 1이상 45이하인 숫자만 입력해주세요.");
+                throw new IllegalArgumentException();
             }
         }
 
@@ -42,7 +45,8 @@ public class Picker {
             winNumbers.add(Integer.parseInt(winNumberInput));
         }
         if(winNumbers.size()!=6){
-            throw new IllegalArgumentException("[ERROR] 숫자 6개를 입력해주세요.");
+            System.out.println("[ERROR] 숫자 6개를 입력해주세요.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -55,16 +59,22 @@ public class Picker {
     }
 
     private void validateWinBonusNumber(String winBonusNumberInput) {
-        if (!Character.isDigit(winBonusNumberInput.charAt(0))) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+        for(String winBonusNumber : winBonusNumberInput.split("")){
+            if (!Character.isDigit(winBonusNumber.charAt(0))) {
+                System.out.println("[ERROR] 숫자를 입력해주세요");
+                throw new IllegalArgumentException();
+            }
         }
+
         int winBonusNumber = Integer.parseInt(winBonusNumberInput);
         if (winBonusNumber<1 || winBonusNumber>45) {
-            throw new IllegalArgumentException("[ERROR] 1이상 45이하인 숫자만 입력해주세요.");
+            System.out.println("[ERROR] 1이상 45이하인 숫자만 입력해주세요.");
+            throw new IllegalArgumentException();
         }
 
         if(this.winNumbers.contains(winBonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력해주세요.");
+            System.out.println("[ERROR] 중복되지 않는 숫자를 입력해주세요.");
+            throw new IllegalArgumentException();
         }
     }
 }

@@ -16,14 +16,16 @@ public class Player {
     private void validateTicketPrice(String ticketPriceInput) {
         for (int index = 0; index < ticketPriceInput.length(); index++) {
             if (!Character.isDigit(ticketPriceInput.charAt(index))) {
-                throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+                System.out.println("[ERROR] 숫자를 입력해주세요");
+                throw new IllegalArgumentException();
             }
         }
 
         int ticketPrice = Integer.parseInt(ticketPriceInput);
 
         if(ticketPrice%1000!=0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력하여 주십시오.");
+            System.out.println("[ERROR] 1,000원 단위로 입력하여 주십시오.");
+            throw new IllegalArgumentException();
         }
     }
 

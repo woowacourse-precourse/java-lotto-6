@@ -1,13 +1,15 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Player player = new Player();
-        player.payTicketPrice();
+        Integer consumeMoney = player.payTicketPrice();
+
         int myTicketCount = player.getMyTicketCount();
         player.printMyTicketCount();
 
@@ -26,12 +28,19 @@ public class Application {
 
         Picker picker = new Picker();
         List<Integer> winNumbers = picker.generateWinNumbers();
-        int winBonusNumber = picker.generateWinBonusNumber();
+        Integer winBonusNumber = picker.generateWinBonusNumber();
 
         for (Lotto lotto : lottos) {
             lotto.compareWinNumbers(winNumbers);
             lotto.compareWinBonusNumber(winBonusNumber);
         }
+
+        Board board = new Board(lottos);
+
+        board.calculateMatch();
+        board.calculateIncome();
+        board.calculateIncomeRate(consumeMoney);
+        board.printBoard();
 
     }
 }

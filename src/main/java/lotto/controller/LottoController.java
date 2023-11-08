@@ -5,7 +5,7 @@ import static lotto.constant.Format.DELIMITER;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import lotto.model.BounsNumber;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAmountofMoney;
 import lotto.model.LottoChecker;
@@ -25,8 +25,8 @@ public class LottoController {
         LottoAmountofMoney lottoAmountofMoney = controlLottoAmountOfMoney();
         RandomLottos randomLottos = getRandomLottos(lottoAmountofMoney);
         Lotto answerLotto = controlAnswerLotto();
-        BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
-        LottoChecker lottoChecker = new LottoChecker(randomLottos, answerLotto, bounsNumber);
+        BonusNumber bonusNumber = controlBonusNumber();
+        LottoChecker lottoChecker = new LottoChecker(randomLottos, answerLotto, bonusNumber);
         HashMap<String, Integer> winningStatics = getWinningStatics(lottoChecker);
         WinningReward winningRewardChecker = new WinningReward();
         Double winningReward = getWinningReward(winningStatics, lottoAmountofMoney.getLottoAmountofMoney(),
@@ -48,6 +48,16 @@ public class LottoController {
             try{
                 Lotto answerLotto = new Lotto(getAnswerLottoNumber());
                 return answerLotto;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private BonusNumber controlBonusNumber(){
+        while (EXCEPTIONLOOPCHECKER){
+            try{
+                BonusNumber bonusNumber = new BonusNumber(getBonusNumber());
+                return bonusNumber;
             }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }

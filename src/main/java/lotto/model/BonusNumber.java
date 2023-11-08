@@ -5,10 +5,10 @@ import static lotto.constant.ErrorMessage.LOTTONUMBERRANGEOVER;
 import static lotto.constant.Numbers.LOTTONUMBEREND;
 import static lotto.constant.Numbers.LOTTONUMBERSTART;
 
-public class BounsNumber {
+public class BonusNumber {
     private final Integer bonusNumber;
 
-    public BounsNumber(Integer bonusNumber) {
+    public BonusNumber(Integer bonusNumber) {
         validate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }

@@ -1,20 +1,19 @@
 package lotto.model;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 
 import org.junit.jupiter.api.Test;
 
-class BounsNumberTest {
+class BonusNumberTest {
     @Test
     void createBonusNumberRangeOverByNegative(){
-        assertThatThrownBy(() -> new BounsNumber(-1))
+        assertThatThrownBy(() -> new BonusNumber(-1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
     void createBonusNumberRangeOverByPositive(){
-        assertThatThrownBy(() -> new BounsNumber(50))
+        assertThatThrownBy(() -> new BonusNumber(50))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

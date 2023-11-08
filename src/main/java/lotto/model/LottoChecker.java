@@ -20,10 +20,10 @@ public class LottoChecker {
     private final Integer bounsNumber;
     private final HashMap<String, Integer> winningStatics;
 
-    public LottoChecker(RandomLottos randomLottos, Lotto answerLotto, BounsNumber bounsNumber) {
+    public LottoChecker(RandomLottos randomLottos, Lotto answerLotto, BonusNumber bonusNumber) {
         this.randomLottos = randomLottos.getRandomLottos();
         this.answerLotto = answerLotto.getLotto();
-        this.bounsNumber = bounsNumber.getBonusNumber();
+        this.bounsNumber = bonusNumber.getBonusNumber();
         this.winningStatics = new HashMap<>();
         winningStatics.put(FIRSTRANK.getValue(), 0);
         winningStatics.put(SECONDRANK.getValue(), 0);

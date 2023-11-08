@@ -21,11 +21,11 @@ public class PurchasedLotto {
         for (int i = 0; i < number; i++) {
             lottos.add(generateValidatedLotto());
         }
-        validDuplicate(lottos,number);
+        validDuplicate(lottos, number);
         return lottos;
     }
 
-    private void validDuplicate(List<Lotto> lottos,int number) {
+    private void validDuplicate(List<Lotto> lottos, int number) {
         Boolean distinct = lottos.stream().distinct().count() != lottos.size();
         if (distinct) {
             generateLottoNumbers(number);

@@ -11,7 +11,7 @@ class LottoTotalPriceTest {
 
     @DisplayName("정상적으로 로또 입력 개수를 뽑아오는지 확인")
     @Test
-    void createLottoCount(){
+    void createLottoCount() {
         String price = "14000";
         LottoTotalPrice lottoTotalPrice = new LottoTotalPrice(price);
 
@@ -20,7 +20,7 @@ class LottoTotalPriceTest {
 
     @DisplayName("정상적으로 로또 총 구입 금액을 받아오는지 확인")
     @Test
-    void createLottoAmount(){
+    void createLottoAmount() {
         String price = "14000";
         LottoTotalPrice lottoTotalPrice = new LottoTotalPrice(price);
 
@@ -30,28 +30,28 @@ class LottoTotalPriceTest {
     @DisplayName("숫자가 아닌 금액을 입력했을 때 예외 발생")
     @Test
     void createStringLottoPrice() {
-        assertThatThrownBy(()-> new LottoTotalPrice("abcde"))
+        assertThatThrownBy(() -> new LottoTotalPrice("abcde"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("1 미만 금액을 입력했을 때 예외 발생")
     @Test
     void createZeroLottoPrice() {
-        assertThatThrownBy(()-> new LottoTotalPrice("0"))
+        assertThatThrownBy(() -> new LottoTotalPrice("0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("1000원 단위 금액이 아닌 금액을 입력했을 때 예외 발생")
     @Test
     void createNotThousandLottoPrice() {
-        assertThatThrownBy(()-> new LottoTotalPrice("1355"))
+        assertThatThrownBy(() -> new LottoTotalPrice("1355"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("금액에 char을 함께 입력했을 때 예외 발생")
     @Test
     void createLottoPriceWithChar() {
-        assertThatThrownBy(()-> new LottoTotalPrice("1355a"))
+        assertThatThrownBy(() -> new LottoTotalPrice("1355a"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -68,7 +68,6 @@ class LottoTotalPriceTest {
         assertThatThrownBy(() -> new Lotto("    "))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 
 
 }

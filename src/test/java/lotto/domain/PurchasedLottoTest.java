@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class PurchasedLottoTest {
     @DisplayName("정상적으로 각각 다른 로또 배열들을 출력")
     @Test

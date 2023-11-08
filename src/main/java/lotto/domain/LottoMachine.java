@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class LottoMachine {
     private final List<Integer> randomNumbers;
+
     public LottoMachine() {
         this.randomNumbers = getRandomNumbers();
     }
@@ -27,6 +28,7 @@ public class LottoMachine {
             getRandomNumbers();
         }
     }
+
     private List<Integer> sortRandomNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }

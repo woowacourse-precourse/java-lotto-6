@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -28,7 +29,7 @@ public class Lotto {
 		String n = Console.readLine();
 		int money = Integer.parseInt(n); // 구매 금액
 		try {
-			if (money % 1000 != 0) { // 1000원으로 나눠떨어지지 않을 경우
+			if (money % 1000 != 0 && money != 0) { // 1000원으로 나눠떨어지지 않을 경우
 				throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요.");
 			}
 		}  catch (NumberFormatException e) {
@@ -42,16 +43,39 @@ public class Lotto {
 		System.out.println(num + "개를 구매했습니다.");
 		return num;
 	}
+	
+	public static int removeDuplicatesAndSort(List<Integer> numbers) { //중복 처리
+	    List<Integer> uniqueNumbers = numbers.stream()
+	            .distinct() // 중복 제거
+	            .collect(Collectors.toList());
+	    try {
+	    	if (uniqueNumbers.size() < numbers.size()) {
+		        throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+		    }
+		} catch (NumberFormatException e) {
+			System.out.println("[ERROR] 중복값이 있습니다.");
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return 1;
+		}
+	    return 0;
+	}
+	
 
 	public static List<Integer>[] make_lotto(int num) { // 로또 번호 받기
 		List<Integer>[] lottoArray = new List[num];
 		for (int i = 0; i < num; i++) {
 			lottoArray[i] = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 			Collections.sort(lottoArray[i]);
+			if(Lotto.removeDuplicatesAndSort(lottoArray[i])== 1 ) { //에러
+				return null;
+			}
 			System.out.println(lottoArray[i]);
 		}
 		return lottoArray;
 	}
+	
+
 
 	public static int check_lotto_len(String[] user) {
 		try {
@@ -59,7 +83,6 @@ public class Lotto {
 				throw new IllegalArgumentException("[ERROR] 6개 입력해주세요.");
 			}
 		} catch (NumberFormatException e) {
-			System.out.println();
 			System.out.println("[ERROR] 6개 입력해주세요.");
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -80,7 +103,6 @@ public class Lotto {
 			}
 
 		} catch (NumberFormatException e) {
-			System.out.println();
 			System.out.println("[ERROR] 중복값이 있습니다.");
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());

@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.List;
 
-import lotto.Lotto;
 
 public class Application {
 	public static void main(String[] args) {
@@ -11,13 +10,15 @@ public class Application {
 			user_input = Lotto.make_num();
 		}
 		
-		List<Integer>[] lotto = Lotto.make_lotto(user_input);
+		List<Integer>[] lotto = null;
+		while(lotto == null) {
+			lotto = Lotto.make_lotto(user_input);
+		}
 		
 		int[] num = null;
 		while(num == null) {
 			num = Lotto.get_num();
 		}
-		
 		
 		int bonus = Lotto.get_bonus();
 

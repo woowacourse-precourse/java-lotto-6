@@ -13,17 +13,18 @@ public final class PurchasedLottoStatistics {
     }
 
     public Long countWinningLotto(LottoWinning lottoWinning) {
-        return value.get(lottoWinning);
+        return value.getOrDefault(lottoWinning, 0L);
     }
 
     public BigDecimal calculateRevenueRatio() {
-        return getTotalPrice().divide(getPurchaseAmount(), 2, RoundingMode.HALF_DOWN);
+        return getTotalPrice().divide(getPurchaseAmount()).multiply(BigDecimal.valueOf(100L))
+                .setScale(1, RoundingMode.HALF_DOWN);
     }
 
     private BigDecimal getPurchaseAmount() {
         long purchaseAmount = this.value.values().stream()
                 .reduce(0L, Long::sum);
-        return BigDecimal.valueOf(purchaseAmount);
+        return BigDecimal.valueOf(purchaseAmount * Lotto.PRICE);
     }
 
     private BigDecimal getTotalPrice() {

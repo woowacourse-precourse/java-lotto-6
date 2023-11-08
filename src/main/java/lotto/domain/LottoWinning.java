@@ -42,7 +42,7 @@ public enum LottoWinning {
 
     public final long prize;
     public final Integer ruleOfMatchedCount;
-    public final boolean hasBonusMatch;
+    public final Boolean hasBonusMatch;
     private final LottoWinningStrategy lottoWinningStrategy;
 
     LottoWinning(

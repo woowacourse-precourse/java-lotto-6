@@ -22,6 +22,15 @@ public class Application {
         do {
             purchasedLottoTickets = gameRunner.purchaseLotto();
         } while (purchasedLottoTickets.isEmpty());
+        do {
+            winningLotto = gameRunner.createWinningLotto();
+        } while (winningLotto.isEmpty());
+        do {
+            purchasedLottoStatistics = gameRunner.createPurchasedLottoStatistics(
+                    purchasedLottoTickets.get(),
+                    winningLotto.get()
+            );
+        } while (purchasedLottoStatistics.isEmpty());
     }
 
     private static LottoGameRunner provideLottoGameController() {

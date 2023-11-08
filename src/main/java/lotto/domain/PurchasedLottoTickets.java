@@ -16,7 +16,9 @@ public class PurchasedLottoTickets {
 
     @Override
     public String toString() {
-        return String.join("", lottoTickets.toString());
+        return lottoTickets.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
     }
 
     public int size() {

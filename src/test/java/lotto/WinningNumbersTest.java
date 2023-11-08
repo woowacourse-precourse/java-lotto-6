@@ -20,16 +20,14 @@ public class WinningNumbersTest {
         winningNumbers.add(12);
         winningNumbers.add(14);
         winningNumbers.add(17);
-        int bonusNumber = 20;
 
-        WinningNumbers winningNumbersInstance = new WinningNumbers(winningNumbers, bonusNumber);
+        WinningNumbers winningNumbersInstance = new WinningNumbers(winningNumbers);
 
-        List<Integer> result = winningNumbersInstance.getWinningNumbersWithBonus();
+        List<Integer> result = winningNumbersInstance.getWinningNumbers();
 
-        assertEquals(7, result.size());
+        assertEquals(6, result.size());
         assertTrue(result.contains(3));
         assertTrue(result.contains(7));
         assertTrue(result.contains(12));
-        assertTrue(result.contains(20));
     }
 }

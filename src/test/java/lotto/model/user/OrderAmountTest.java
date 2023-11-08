@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.user;
 
 import lotto.model.user.LottoResults;
 import lotto.model.user.OrderAmount;

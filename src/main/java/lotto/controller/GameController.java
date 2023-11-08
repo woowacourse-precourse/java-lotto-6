@@ -60,6 +60,10 @@ public class GameController {
         inputBonusNumber();
     }
 
+    public void requestRevenueOutPut() {
+        GameView.printRevenue(game.getPrice(), game.getAmount());
+    }
+
     public void inputBonusNumber() {
         boolean validInput = false;
         while (!validInput) {

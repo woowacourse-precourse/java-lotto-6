@@ -20,9 +20,10 @@ public class Input {
         return Integer.parseInt(purchasePrice);
     }
 
-    public void inputWinning() {
+    public Winning inputWinning() {
         List<Integer> winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber();
+        return new Winning(winningNumbers, bonusNumber);
     }
 
     private List<Integer> inputWinningNumbers() {

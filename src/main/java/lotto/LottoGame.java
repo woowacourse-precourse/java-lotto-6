@@ -10,6 +10,7 @@ public class LottoGame {
     Input input = new Input();
     Print print = new Print();
     Lottos lottos;
+    Winning winning;
     int purchasePrice = 0;
     int lottoCount = 0;
 
@@ -17,7 +18,7 @@ public class LottoGame {
         purchasePrice = input.inputPurchasePrice();
         getLottoCountByPurchasePrice(purchasePrice);
         lottos = getLottoNumbers(lottoCount);
-        input.inputWinningNumbers();
+        winning = input.inputWinning();
     }
 
     private void getLottoCountByPurchasePrice(int price) {

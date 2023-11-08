@@ -28,11 +28,5 @@ public interface LottoService {
      * 로또 당첨 결과를 확인한다
      * @return 로또 당첨 결과 목록
      */
-    public List<WinningResult> checkWinningResult();
-
-    /**
-     * 로또 수익률을 확인한다
-     * @return 로또 수익률 (소수점 2자리에서 반올)
-     */
-    public double checkEarningRate(List<WinningResult> results);
+    public WinningResult checkWinningResult(int[] winningNumbers, int bonusNumber);
 }

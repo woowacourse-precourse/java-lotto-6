@@ -64,7 +64,7 @@ class LottoTest {
     @DisplayName("보너스 숫자를 포함하는 로또임을 확인한다.")
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4,5,6})
-    void name(int bonusNumber) {
+    void containsBonus(int bonusNumber) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.containsBonusNumber(bonusNumber)).isTrue();
     }

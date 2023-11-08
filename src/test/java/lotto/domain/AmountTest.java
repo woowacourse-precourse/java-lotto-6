@@ -8,9 +8,9 @@ public class AmountTest {
 
     @DisplayName("로또 가격으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
     @Test
-    void validateDividedByLottoPrice(){
+    void validateDividedByLottoPrice() {
         int money = 1001;
 
-        Assertions.assertThrows(IllegalArgumentException.class, ()-> new Amount(money));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Amount(money));
     }
 }

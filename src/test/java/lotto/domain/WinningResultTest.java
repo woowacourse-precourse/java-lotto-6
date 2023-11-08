@@ -10,7 +10,7 @@ public class WinningResultTest {
 
     @DisplayName("1등 당첨 개수를 증가시킨다.")
     @Test
-    void increaseFirstPlaceNumber(){
+    void increaseFirstPlaceNumber() {
         int numberOfMatches = 6;
         boolean bonusNumberMatches = false;
 
@@ -21,7 +21,7 @@ public class WinningResultTest {
 
     @DisplayName("2등 당첨 개수를 증가시킨다.")
     @Test
-    void increaseSecondPlaceNumber(){
+    void increaseSecondPlaceNumber() {
         int numberOfMatches = 5;
         boolean bonusNumberMatches = true;
 
@@ -32,7 +32,7 @@ public class WinningResultTest {
 
     @DisplayName("보너스 번호는 2등일 때만 유효하다.")
     @Test
-    void increaseFourthPlaceNumber(){
+    void increaseFourthPlaceNumber() {
         int numberOfMatches = 4;
         boolean bonusNumberMatches = true;
 

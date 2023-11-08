@@ -41,7 +41,6 @@ public class Output {
             }
             message += numbers.get(numbers.size() - 1) + RIGHT_BRACKET + NEW_LINE;
         }
-
         System.out.print(message);
     }
 

@@ -38,6 +38,5 @@ public class InputValidator {
                 throw new IllegalArgumentException();
             }
         }
-
     }
 }

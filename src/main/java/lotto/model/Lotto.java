@@ -21,9 +21,13 @@ public class Lotto {
         return numbers;
     }
 
-    public boolean compareNumbers(int number){
+    public boolean containNumbers(int number){
         return numbers.contains(number);
     }
+    public int countCorrect(Lotto lotto){
+        return (int) numbers.stream().filter(lotto::containNumbers).count();
+    }
+
 
     private void validate(List<Integer> numbers) {
         validCountBoundary(numbers);

@@ -1,11 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
-import lotto.model.Money;
+import lotto.model.*;
 
+import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +13,7 @@ public class InputView {
     public InputView(){
 
     }
-    public Money inputMoneyInfo(){
+    public Money inputMoneyInfo() {
         printInputMessage();
         Money money = new Money(inputMoney());
         printPlayCountMessage(money);
@@ -42,6 +40,12 @@ public class InputView {
 
     private int inputMoney() throws IllegalArgumentException {
         String input = Console.readLine();
+        try{
+
+        }
+        catch(IllegalArgumentException e){
+            Valid.ERROR.getErrorMessage();
+        }
         return Integer.parseInt(input);
     }
 

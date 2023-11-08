@@ -14,4 +14,7 @@ public class BonusNumber {
             throw new IllegalArgumentException();
         }
     }
+    public int getNumber(){
+        return this.number;
+    }
 }

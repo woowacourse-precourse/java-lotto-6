@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class LottoResult {
 
     private static final int NUMBER_OF_WINNING_CASE = 5;
+    private static final int CORRECTION_VALUE_OF_KEY = 1;
 
     private static HashMap<Integer, Integer> result = new HashMap<>();
 
@@ -37,25 +38,30 @@ public class LottoResult {
 
     public static HashMap statistics(int sameCount, Boolean bonusCheck) {
         if (sameCount == PrizeMoney.FIFTH.getNumberOfSame() || sameCount == PrizeMoney.FOURTH.getNumberOfSame()) {
-            statisticsPut(sameCount, 0);
+            statisticsPut(sameCount);
         }
         if (sameCount == PrizeMoney.FIRST.getNumberOfSame()) {
-            statisticsPut(sameCount, 1);
+            statisticsPut(sameCount, CORRECTION_VALUE_OF_KEY);
         }
         if (sameCount == PrizeMoney.THIRD.getNumberOfSame()) {
             if (bonusCheck) {
-                statisticsPut(sameCount, 1);
+                statisticsPut(sameCount, CORRECTION_VALUE_OF_KEY);
             }
             if (!bonusCheck) {
-                statisticsPut(sameCount, 0);
+                statisticsPut(sameCount);
             }
         }
         return result;
     }
 
-    public static void statisticsPut(int sameCount, int keyPlus) {
-        int num = result.get(sameCount + keyPlus);
-        result.put(sameCount + keyPlus, ++num);
+    public static void statisticsPut(int sameCount, int correctionValue) {
+        int num = result.get(sameCount + correctionValue);
+        result.put(sameCount + correctionValue, ++num);
+    }
+
+    public static void statisticsPut(int sameCount) {
+        int num = result.get(sameCount);
+        result.put(sameCount, ++num);
     }
 
     public static double calculateProfit(int purchase) {

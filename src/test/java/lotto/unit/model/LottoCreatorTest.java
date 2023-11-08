@@ -1,14 +1,13 @@
-package lotto.unitTest.model;
+package lotto.unit.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.rule.UserRule;
 import lotto.model.Lotto;
 import lotto.model.LottoCreator;
+import lotto.rule.UserRule;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

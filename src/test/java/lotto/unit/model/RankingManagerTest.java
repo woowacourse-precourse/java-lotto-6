@@ -1,4 +1,4 @@
-package lotto.unitTest.model;
+package lotto.unit.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mockStatic;
@@ -6,7 +6,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoBucket;
 import lotto.model.LottoCreator;

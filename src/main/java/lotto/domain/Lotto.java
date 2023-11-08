@@ -1,11 +1,8 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import lotto.exception.LottoError;
-import lotto.exception.LottoValidationException;
 import lotto.validation.LottoValidator;
 
 /**
@@ -17,8 +14,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         LottoValidator.validate(numbers);
-        this.numbers = numbers;
-        Collections.sort(this.numbers);
+        this.numbers = createSortedNumbers(numbers);
     }
 
     public int countMatches(List<Integer> winningNumbers) {
@@ -31,5 +27,11 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    private List<Integer> createSortedNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 }

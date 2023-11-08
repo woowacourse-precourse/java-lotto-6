@@ -2,7 +2,7 @@ package lotto.service;
 
 import java.util.Arrays;
 
-public class Prizes {
+public enum Prizes {
 
     FIRST(6,2_000_000_000,"6개 일치 (2,000,000,000원) - "),
 
@@ -23,6 +23,19 @@ public class Prizes {
         this.count_match_numbers = count_match_numbers;
         this.count_prize_numbers = count_prize_numbers;
         this.prize_message = prize_message;
+    }
+
+    private static final String ERROR_MESSAGE_single = "[ERROR]";
+
+    private static final int FIRST_match = 6;
+    private static final int THIRD_match = 5;
+    private static final int FOURTH_match = 4;
+    private static final int FIFTH_match = 3;
+
+    public static Prizes return_prize(int count_match_numbers, boolean check_match_bonus_number){
+        if (count_match_numbers < FIFTH_match) {
+            return MISS;
+        }
     }
 
 

@@ -1,7 +1,14 @@
 package lotto;
 
+import lotto.service.LottoService;
+
 public class Application {
+    public static LottoService service = new LottoService();
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        service.calLottoCount();
+        service.setCorrect();
+        service.runCheckUserLottos();
+        service.calReturnRate();
     }
 }

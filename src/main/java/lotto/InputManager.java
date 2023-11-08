@@ -37,23 +37,24 @@ public class InputManager {
         List<Integer> winningNumbers;
         while (true) {
             System.out.println("\n당첨 번호를 입력해 주세요.");
-
+    
             String input = Console.readLine();
-
+    
             try {
-                if (!input.matches("^(\\d+,)*\\d+$")) {
-                    throw new IllegalArgumentException("[ERROR] 숫자와 쉼표(,)로만 입력해야 합니다.");
+                String[] numberStrings = input.split(",");
+                if (numberStrings.length != 6) {
+                    throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 6개여야 합니다.");
                 }
-
-                winningNumbers = Arrays.stream(input.split(","))
+    
+                winningNumbers = Arrays.stream(numberStrings)
                         .map(Integer::parseInt)
                         .distinct() // 중복제거
                         .collect(Collectors.toList());
-
+    
                 if (winningNumbers.size() != 6) {
-                    throw new IllegalArgumentException("[ERROR] 로또 당첨 번호는 6개여야 하고 중복이 없어야 합니다.");
+                    throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
                 }
-
+    
                 for (int number : winningNumbers) {
                     if (number < MIN_NUMBER || number > MAX_NUMBER) {
                         throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -66,9 +67,10 @@ public class InputManager {
                 System.out.println(e.getMessage());
             }
         }
-
+    
         return winningNumbers;
     }
+    
 
     public int getBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber;

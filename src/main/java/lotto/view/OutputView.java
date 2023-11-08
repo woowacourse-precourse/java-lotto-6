@@ -38,7 +38,7 @@ public class OutputView {
     }
 
     public void printResultMessage() {
-        System.out.println(OutputMessageConstants.WINNING_RESULT_OUTPUT_MESSAGE);
-        System.out.println(OutputMessageConstants.DIVIDER_OUTPUT_MESSAGE);
+        System.out.println(OutputMessageConstants.WINNING_RESULT_OUTPUT_MESSAGE.getMessage());
+        System.out.println(OutputMessageConstants.DIVIDER_OUTPUT_MESSAGE.getMessage());
     }
 }

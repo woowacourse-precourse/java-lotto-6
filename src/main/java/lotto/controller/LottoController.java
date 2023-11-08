@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.*;
+import lotto.model.constant.PrizeConstants;
 import lotto.util.ConvertUtil;
 import lotto.util.LottoNumberGenerator;
 import lotto.util.NumberGenrator;
@@ -9,6 +10,8 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.model.constant.PrizeConstants.*;
 
 public class LottoController {
     private static final InputView inputView = new InputView();
@@ -22,10 +25,16 @@ public class LottoController {
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
 
         LottoResult lottoResult = createLottoResult(winningNumber, lottos, bonusNumber);
-
+        printWinningResult(lottoResult);
     }
     private void printWinningResult(LottoResult lottoResult) {
-
+        outputView.printNewLine();
+        outputView.printResultMessage();
+        outputView.printWinningResult(FIFTH_PRIZE.getCount(), FIFTH_PRIZE.getPrice(), lottoResult.getRank().getFifthPlace());
+        outputView.printWinningResult(FOURTH_PRIZE.getCount(), FOURTH_PRIZE.getPrice(), lottoResult.getRank().getFourthPlace());
+        outputView.printWinningResult(THIRD_PRIZE.getCount(), THIRD_PRIZE.getPrice(), lottoResult.getRank().getThirdPlace());
+        outputView.printSecondPlace(SECOND_PRIZE.getCount(), SECOND_PRIZE.getPrice(), lottoResult.getRank().getSecondPlace());
+        outputView.printWinningResult(FIRST_PRIZE.getCount(), FIRST_PRIZE.getPrice(), lottoResult.getRank().getFirstPlace());
     }
     private LottoResult createLottoResult(WinningNumber winningNumber, Lottos lottos, BonusNumber bonusNumber) {
         LottoResult lottoResult = new LottoResult(winningNumber, lottos, bonusNumber);
@@ -56,6 +65,7 @@ public class LottoController {
     }
 
     private BonusNumber getBonusNumber(WinningNumber winningNumber) {
+        outputView.printNewLine();
         outputView.printBonusNumberInputMessage();
         return new BonusNumber(inputView.readBonusNumber(),winningNumber);
     }

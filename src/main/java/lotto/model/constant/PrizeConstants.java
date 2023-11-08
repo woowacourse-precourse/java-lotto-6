@@ -14,4 +14,12 @@ public enum PrizeConstants {
         this.count = count;
         this.price = price;
     }
+
+    public int getCount() {
+        return count;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 }

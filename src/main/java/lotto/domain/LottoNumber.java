@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.List;
 
 public class LottoNumber {
+    private static final String NEW_LINE = "\n";
     private final List<Integer> lottoNumber;
 
     public LottoNumber(List<Integer> lottoNumber) {
@@ -15,6 +16,6 @@ public class LottoNumber {
 
     @Override
     public String toString() {
-        return lottoNumber.toString() + "\n";
+        return lottoNumber.toString() + NEW_LINE;
     }
 }

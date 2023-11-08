@@ -29,7 +29,7 @@ public class LottoService {
                 + dto.getFifth() * PrizeMoney.FIFTH.getValue();
 
         int cost = lottoPurchaseDto.getCost();
-        return Math.round(THOUSAND * totalPrizeMoney / (double) cost) / TEN_POINT_ZERO;
+        return roundUpToTheTenthPlace(totalPrizeMoney / (double) cost);
     }
 
     private LottoPrizeDto checkLottoWinnings(LottoList lottoList, Lotto winningLotto,
@@ -60,6 +60,10 @@ public class LottoService {
         return PrizeCondition.findPrize(
                 randomLotto.matchCount(winningLotto),
                 randomLotto.contains(bonusNumber.getNumber()));
+    }
+
+    private double roundUpToTheTenthPlace(double number) {
+        return Math.round(THOUSAND * number) / TEN_POINT_ZERO;
     }
 
 }

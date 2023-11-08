@@ -23,7 +23,6 @@ public class LottoController {
         LottoPurchaseDto lottoPurchaseDto = LottoPurchaseDto.Of(lottoList, winningLotto, bonusNumber);
 
         printStatistics(lottoPurchaseDto);
-        calculateRateOfReturn(lottoPurchaseDto);
         printRateOfReturn(lottoPurchaseDto);
     }
 

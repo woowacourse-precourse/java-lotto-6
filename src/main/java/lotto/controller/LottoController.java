@@ -15,7 +15,7 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void init() {
-        int purchaseAmount = fetchPurchaseAmount();
+        int purchaseAmount = createPurchaseAmount();
         StatisticsResult statisticsResult = new StatisticsResult(purchaseAmount, LottoConstant.LOTTO_PRICE.getValue());
         int lottoCount = statisticsResult.caculateLottoCount();
 
@@ -23,48 +23,48 @@ public class LottoController {
         Lottos lottos = new Lottos(LottoMachine.createLotto(lottoCount));
         lottos.printLottos(OutputView::printEachLotto);
 
-        GameNumbers gameNumbers = new GameNumbers(fetchWinningNumbers());
-        tryFetchBonusNumbers(gameNumbers);
+        GameNumbers gameNumbers = new GameNumbers(createWinningNumbers());
+        tryCreateBonusNumbers(gameNumbers);
 
         showWinningStatistics(lottos, gameNumbers, statisticsResult);
 
         OutputView.printFinalReturnRate(statisticsResult.getFinalReturnRate());
     }
 
-    private int fetchPurchaseAmount() {
+    private int createPurchaseAmount() {
         OutputView.printBuyAnnounce();
         try {
             return InputView.inputPurchaseAmount();
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
-            return fetchPurchaseAmount();
+            return createPurchaseAmount();
         }
     }
 
-    private WinningNumbers fetchWinningNumbers() {
+    private WinningNumbers createWinningNumbers() {
         OutputView.printWinningNumberInputAnnounce();
         try {
             List<Integer> inputNumbers = InputView.inputWinningNumber();
             return new WinningNumbers(inputNumbers);
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
-            return fetchWinningNumbers();
+            return createWinningNumbers();
         }
     }
 
-    private BonusNumber fetchBonusNumber() {
+    private BonusNumber createBonusNumber() {
         OutputView.printBonusNumberInputAnnounce();
         int inputNumber = InputView.inputBonusNumber();
         return new BonusNumber(inputNumber);
     }
 
-    private GameNumbers tryFetchBonusNumbers(final GameNumbers gameNumbers) {
+    private GameNumbers tryCreateBonusNumbers(final GameNumbers gameNumbers) {
         try {
-            gameNumbers.addBonusNumber(fetchBonusNumber());
+            gameNumbers.addBonusNumber(createBonusNumber());
             return gameNumbers;
         } catch (IllegalArgumentException exception) {
             OutputView.printErrorMessage(exception.getMessage());
-            return tryFetchBonusNumbers(gameNumbers);
+            return tryCreateBonusNumbers(gameNumbers);
         }
     }
 

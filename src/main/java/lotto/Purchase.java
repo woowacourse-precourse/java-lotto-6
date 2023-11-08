@@ -1,11 +1,10 @@
 package lotto;
 
+import static lotto.constant.Number.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
-import view.InputView;
-
-import static lotto.constant.Number.*;
 
 public class Purchase {
 
@@ -14,8 +13,10 @@ public class Purchase {
 
     public Purchase(String purchaseInput) {
         this.purchaseAmount = calculatePurchaseAmount(getPurchasePrice(purchaseInput));
-        this.myLotto = getMyLotto(purchaseAmount);
+        this.myLotto = makeMyLotto(purchaseAmount);
     }
+
+
 
     private int getPurchasePrice(String purchaseInput) {
         return Integer.parseInt(purchaseInput);
@@ -34,7 +35,7 @@ public class Purchase {
         return new Lotto(numbers);
     }
 
-    public List<Lotto> getMyLotto(int purchaseAmount) {
+    public List<Lotto> makeMyLotto(int purchaseAmount) {
         List<Lotto> myLotto = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
             Lotto lotto = generateLotto();
@@ -45,5 +46,9 @@ public class Purchase {
 
     public int getPurchaseAmount() {
         return purchaseAmount;
+    }
+
+    public List<Lotto> getMyLotto() {
+        return myLotto;
     }
 }

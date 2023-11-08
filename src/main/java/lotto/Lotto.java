@@ -2,6 +2,7 @@ package lotto;
 
 import static lotto.constant.message.Error.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDistinct(numbers);
+        validateRange(numbers);
         this.numbers = sortNumbers(numbers);
     }
 
@@ -42,7 +44,8 @@ public class Lotto {
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> sortNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortNumbers);
+        return sortNumbers;
     }
 }

@@ -1,9 +1,9 @@
 package lotto;
 
-import java.util.List;
-
 import static lotto.constant.message.Error.*;
 import static lotto.constant.Number.*;
+
+import java.util.List;
 
 public class Winning extends Lotto {
     private int bonusNumber;
@@ -22,6 +22,10 @@ public class Winning extends Lotto {
         if (bonusNumber < MIN.getRange() || bonusNumber > MAX.getRange()) {
             throw new IllegalArgumentException(BONUS_RANGE.getMessage());
         }
+    }
+
+    public List<Integer> getWinningNumber() {
+        return getNumbers();
     }
 
     public int getBonusNumber() {

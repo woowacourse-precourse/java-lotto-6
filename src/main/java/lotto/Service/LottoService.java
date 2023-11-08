@@ -19,4 +19,12 @@ public class LottoService {
 
         return new Lottos(lottoCount);
     }
+
+    /**
+     * 구입한 로또 정보를 출력
+     * @param lottos 구입한 로또들
+     */
+    public void printLottos(Lottos lottos) {
+        lottos.print();
+    }
 }

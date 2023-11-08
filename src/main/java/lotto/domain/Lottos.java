@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Util.RandomLottoNumberGenerator;
+import lotto.view.OutputView;
 
 /**
  * Lotto 객체들을 관리하는 클래스
@@ -17,6 +18,16 @@ public class Lottos {
     public Lottos(Integer count) {
         for (int i = 0; i < count; i++) {
             addLotto();
+        }
+    }
+
+    /**
+     * 구입한 로또 개수와 로또 목록을 출력하는 함수
+     */
+    public void print() {
+        OutputView.printTicketCount(lottos.size());
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
         }
     }
 

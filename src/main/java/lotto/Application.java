@@ -3,9 +3,9 @@ package lotto;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
-
-    private static final String START = "구입금액을 입력해 주세요.";
     private static final int LOTTO_PRICE = 1000;
+    private static final String START = "구입금액을 입력해 주세요.";
+
     private static final String PURCHASE = "개를 구매했습니다.";
     private static final String ERROR_PRICE = "[ERROR] 구입 금액은 1000원 단위여야 합니다.";
 
@@ -26,16 +26,15 @@ public class Application {
         System.out.println();
         System.out.println(numberOfLotto + PURCHASE);
 
-        Lotto.startLotto(numberOfLotto);
+        Lotto.startLotto(numberOfLotto, purchaseAmount);
 
-        Prize.startPrizeStatistics(purchaseAmount);
     }
+
 
     public static void checkPrice(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();
         }
     }
-
 
 }

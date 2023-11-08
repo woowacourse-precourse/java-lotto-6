@@ -79,5 +79,7 @@ public class StartLotto {
 
     private void printResult() {
         System.out.println(LottoString.announceresult());
+        controlLotto.checkResult(winningNumbers, bonusNumber);
+        controlLotto.printResult(this.money);
     }
 }

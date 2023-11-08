@@ -1,11 +1,13 @@
 package lotto.domain;
 
 public enum LottoRank {
-    RANK1(2000000000, 1),
     RANK2(30000000, 2),
-    RANK3(1500000, 3),
+    RANK5(5000, 5),
     RANK4(50000, 4),
-    RANK5(5000, 5);
+    RANK3(1500000, 3),
+    RANK1(2000000000, 1);
+
+
     private final Integer money;
     private Integer rank;
 

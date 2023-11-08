@@ -16,7 +16,6 @@ public class Application {
 
         List<List<Integer>> lottos = new ArrayList<>();
         List<Integer> winningNumbers = null;
-        Map<Integer, Integer> winRecordBoard;
 
 
         //구입 금액 입력
@@ -29,9 +28,9 @@ public class Application {
         System.out.println();
 
 
+        //로또 개수만큼 로또 객체의 로또 번호 출력
         System.out.printf("%d개를 구매했습니다.%n", purchaseCount); //
 
-        //로또 개수만큼 로또 객체의 로또 번호 출력
         Process startProcess = new Process();
         Print lottosPrint = new Print();
 
@@ -58,50 +57,8 @@ public class Application {
         System.out.println();
 
 
-        ///
-//        winRecordBoard = createWinRecordBoard();
-//        Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
-//        Integer firstPlaceCount = Integer.valueOf(0);
-//        Integer secondPlaceCount = Integer.valueOf(0);
-//        Integer thirdPlaceCount = Integer.valueOf(0);
-//        Integer fourthPlaceCount = Integer.valueOf(0);
-//        Integer fifthPlaceCount = Integer.valueOf(0);
-//
-//        winRecordBoard.put(1, firstPlaceCount);
-//        winRecordBoard.put(2, secondPlaceCount);
-//        winRecordBoard.put(3, thirdPlaceCount);
-//        winRecordBoard.put(4, fourthPlaceCount);
-//        winRecordBoard.put(5, fifthPlaceCount);
-
-        ///
-
-        // lottos에서 각 로또 번호와 당첨번호&보너스 번호를 비교하고, winRecordBoard에 기록하기
-//        for (var lottoNumber : lottos) {
-            Process middleProcess = new Process();
-//            List<Object> result = middleProcess.compareLottos(lottoNumber, winningNumbers, bonusNumber);
-//
-//            int mainMatchNumber = (int) result.get(0);
-//            boolean matchedBonusNumber = (boolean) result.get(1);
-//
-//            if (mainMatchNumber == 3) {
-//                winRecordBoard.put(5, ++fifthPlaceCount);
-//            }
-//            if (mainMatchNumber == 4) {
-//                winRecordBoard.put(4, ++fourthPlaceCount);
-//            }
-//            if (mainMatchNumber == 5 && !matchedBonusNumber) {
-//                winRecordBoard.put(3, ++thirdPlaceCount);
-//            }
-//
-//            if (mainMatchNumber == 5 && matchedBonusNumber) {
-//                winRecordBoard.put(2, ++secondPlaceCount);
-//            }
-//
-//            if (mainMatchNumber == 6) {
-//                winRecordBoard.put(1, ++firstPlaceCount);
-//            }
-//
-//        }
+        // lottos에서 각 로또 번호와 당첨번호&보너스 번호를 비교하고, WinningRankPrize에 업데이트
+        Process middleProcess = new Process();
         middleProcess.recordWins(lottos, winningNumbers, bonusNumber);
 
 
@@ -118,27 +75,6 @@ public class Application {
 
         float rateOfReturn = endProcess.calculateRateOfReturn(purchaseAmount);
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
-
     }
-
-    //개별 객체(Class)화?
-//    private static Map<Integer, Integer> createWinRecordBoard(){
-//        Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
-//
-//        Integer firstPlaceCount = Integer.valueOf(0);
-//        Integer secondPlaceCount = Integer.valueOf(0);
-//        Integer thirdPlaceCount = Integer.valueOf(0);
-//        Integer fourthPlaceCount = Integer.valueOf(0);
-//        Integer fifthPlaceCount = Integer.valueOf(0);
-//
-//        winRecordBoard.put(1, firstPlaceCount);
-//        winRecordBoard.put(2, secondPlaceCount);
-//        winRecordBoard.put(3, thirdPlaceCount);
-//        winRecordBoard.put(4, fourthPlaceCount);
-//        winRecordBoard.put(5, fifthPlaceCount);
-//
-//        return winRecordBoard;
-//    }
-
 
 }

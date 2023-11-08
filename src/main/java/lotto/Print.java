@@ -15,11 +15,11 @@ public class Print {
         }
     }
 
+
     public void printWinStatistic(){
         for (WinningRankPrize rankPlace : WinningRankPrize.values()){
             System.out.printf(rankPlace.getMatchCount() + " (%s원) - %d개%n", rankPlace.getPrizeAmount(), rankPlace.getWinCount());
         }
     }
-
 
 }

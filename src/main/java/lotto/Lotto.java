@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -20,25 +19,23 @@ public class Lotto {
         }
     }
 
-
     void printNumbers() {
         System.out.println(numbers);
     }
 
-    Integer compare(HashSet<Integer> luckyNumbers, Integer bonusNumber) {
-        List<Integer> lottoNumbers = this.numbers;
-        int count = 0;
-        for (int lottoNumber : lottoNumbers) {
-            for (int luckynumber : luckyNumbers) {
-                if (lottoNumber == luckynumber) {
-                    count++;
-                }
+    Prize compare(LuckyNumber luckyNumber) {
+        int matches = 0;
+        boolean bonus = false;
+
+        for (int lottoNumber : this.numbers) {
+            if (luckyNumber.has(lottoNumber)) {
+                matches++;
             }
         }
-        if (count == 5 & lottoNumbers.contains(bonusNumber)) {
-            System.out.println("2!!!");
+        if (luckyNumber.bonusIs(this.numbers)) {
+            bonus = true;
         }
-        return count;
+        return new Prize(matches, bonus);
     }
 
 

@@ -1,4 +1,4 @@
-package lotto.message;
+package lotto.exception;
 
 /**
  * 입력시 예외값 정의 enum

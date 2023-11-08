@@ -1,5 +1,13 @@
 package lotto;
 
+import lotto.Lotto;
+import camp.nextstep.edu.missionutils.Randoms;
+import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 public class Application {
     public static void main(String[] args) {
         LottoGame lottoGame = new LottoGame();
@@ -99,6 +107,29 @@ class InputValidator {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자이며, 당첨 번호와 중복될 수 없습니다.");
         }
         return bonusNumber;
+    }
+}
+
+class OutputView {
+    public static void printLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        lottos.forEach(System.out::println);
+    }
+
+    public static void printResults(int[] matchCounts, List<Integer> prizeMoney, int purchaseAmount) {
+        System.out.println("당첨 통계");
+        System.out.println("---------");
+        int totalPrize = 0;
+        for (int i = 3; i < matchCounts.length; i++) {
+            if (i == 7) {
+                System.out.println("5개 일치, 보너스 볼 일치 (" + prizeMoney.get(i) + "원)- " + matchCounts[i] + "개");
+            } else {
+                System.out.println(i + "개 일치 (" + prizeMoney.get(i) + "원)- " + matchCounts[i] + "개");
+            }
+            totalPrize += prizeMoney.get(i) * matchCounts[i];
+        }
+        double profitRate = (totalPrize / (double) purchaseAmount) * 100;
+        System.out.println("총 수익률은 " + String.format("%.2f", profitRate) + "%입니다.");
     }
 }
 

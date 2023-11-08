@@ -20,4 +20,7 @@ public class Lottos {
         return lottos;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

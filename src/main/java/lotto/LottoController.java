@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.view.InputView;
-
+import lotto.view.OutputView;
 import java.util.List;
 
 public class LottoController {
@@ -10,6 +10,7 @@ public class LottoController {
         LottoPurchaseMoney lottoPurchaseMoney = getLottoPurchaseMoney();
         int numberOfLottos = lottoPurchaseMoney.getNumberOfLottoAvailableForPurchase();
         Lottos userLottos = new Lottos(numberOfLottos);
+        OutputView.printLottos(userLottos);
         WinningLotto winningLotto = getWinningLotto();
     }
 

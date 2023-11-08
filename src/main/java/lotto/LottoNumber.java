@@ -5,7 +5,7 @@ import static lotto.constant.ErrorMessage.LOTTO_NUMBER_OVER_RANGE;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Objects;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber>{
 
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
@@ -42,5 +42,18 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
+    }
+
+    @Override
+    public int compareTo(LottoNumber lottoNumber) {
+        if (this.number > lottoNumber.number) {
+            return 1;
+        }
+        return -1;
     }
 }

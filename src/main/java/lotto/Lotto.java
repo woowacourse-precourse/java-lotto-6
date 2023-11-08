@@ -45,4 +45,7 @@ public class Lotto {
         return lottoNumbers;
     }
 
+    public List<LottoNumber> getNumbers() {
+        return numbers;
+    }
 }

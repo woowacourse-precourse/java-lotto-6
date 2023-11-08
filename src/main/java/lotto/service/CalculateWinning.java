@@ -4,9 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
+import lotto.domain.LottoStatistic;
 import lotto.domain.WinningLotto;
 
 public class CalculateWinning {
+    public static LottoStatistic generateStatistic(WinningLotto winning, List<Lotto> lottos) {
+        List<LottoResult> results = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            results.add(calculateResult(winning, lotto));
+        }
+
+        return new LottoStatistic(results);
+    }
+
     private static LottoResult calculateResult(WinningLotto lotto, Lotto myLotto) {
         int correctNum = countCorrectNumbers(lotto, myLotto);
 

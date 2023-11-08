@@ -47,3 +47,28 @@
 - InputView : 사용자의 입력을 필요로하는 뷰 
 - OutputView : 출력만을 필요로하는 뷰
 
+## 🤔 테스트 목록
+### 1️⃣ domainTest
+
+#### jackpotTest
+- isInRangeTest : 당첨 로또가 1 ~ 45 사이의 번호인지 여부 테스트
+- isRepeatedTest : 당첨 로또 속에 중복된 번호가 존재하는지 테스트
+- isSixValuesTest : 당첨 로또의 번호 수가 6개인지 테스트
+- isBonusRepeatedTest : 보너스 번호가 당첨 로또 번호와 중복이 되는지 테스트
+#### LottoTest
+- lottoSixValuesTest : 로또 입력 값이 6개 이상인지 테스트
+- lottoOrderedTest : 로또가 정렬된 채 저장이 되었는지 테스트
+#### RankTest
+- firstWinTest : 모든 번호가 일치할 경우 FIRST을 반환해야한다
+- secondWinTest : 다섯개의 번호와 보너스 번호가 맞을 경우 SECOND를 반환해야한다
+- thirdWinTest : 다섯개의 번호는 일치하고 보너스 번호는 일치하지 않을 경우 THIRD를 반환해야한다
+- noneWinTest : 한개의 번호만이 일치할 경우 NONE을 반환해야한다
+#### ResultTest
+- lottoOrderedTest : Result 배엘에 rank가 올바르게 저장되는지 확인하는 테스트
+#### UserTest
+- billToLottoTest : 사용자가 입력한 구매 금액이 1000원 단위인지 테스트
+- lottoCountTest : 사용자가 입력한 구매 금액에 따른 생성된 로또의 수가 올바른지 확인하는 테스트
+
+### 2️⃣ serviceTest
+#### DecideAwardTest
+- examineGettingAwardTest : 사용자의 로또와 당첨 로또에 대한 올바른 결과 반환 여부 테스트

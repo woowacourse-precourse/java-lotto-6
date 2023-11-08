@@ -7,11 +7,10 @@ import lotto.exception.NonNumericBonusNumberException;
 import lotto.exception.OutOfLottoNumberRangeException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class WinningsInitializer {
 
-    public Lotto initWinningLotto(String userInput) throws IllegalArgumentException{
+    public Lotto initWinningLotto(String userInput) throws IllegalArgumentException {
         validateFormat(userInput);
         List<Integer> winningNumbers = convertToList(userInput);
         return new Lotto(winningNumbers);
@@ -26,8 +25,8 @@ public class WinningsInitializer {
     }
 
     private void validateFormat(String userInput) {
-        String regex = "^([0-9],){" + (Constants.LOTTO_LENGTH - 1) + "}[0-9]$";
-        if (!Pattern.matches(userInput, regex)) {
+        String regex = "^\\d+(,\\d+){" + (Constants.LOTTO_LENGTH - 1) + "}$";
+        if (!userInput.matches(regex)) {
             throw new InvalidWinningLottoFormatException();
         }
     }
@@ -55,7 +54,7 @@ public class WinningsInitializer {
 
     private void validateNoDuplicates(int bonusNum, Lotto winningLotto) {
         boolean isDuplicate = winningLotto.getNumbers().contains(bonusNum);
-        if(isDuplicate){
+        if (isDuplicate) {
             throw new DuplicateBonusNumberException();
         }
     }

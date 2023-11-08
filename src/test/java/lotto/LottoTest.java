@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.validator.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @Test
+    void createLottoByInvalidRangeOfNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 45)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 45)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

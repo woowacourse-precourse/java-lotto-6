@@ -26,7 +26,7 @@ import lotto.exception.LottoException;
 import lotto.view.message.OutputMessage;
 import lotto.view.message.OutputMessage.WinningStatisticsDetails;
 
-public class LottoView {
+public class View {
     public String readInput() {
         return Console.readLine();
     }

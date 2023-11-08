@@ -81,4 +81,20 @@ class LottoResultTest {
         // then
         assertThat(matchCounts.get(LottoRank.THIRD)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("4개 번호가 일치할 경우 FOURTH 순위가 올바르게 계산되어야 한다.")
+    void shouldCalculateFourthRankCorrectly() {
+        // given
+        List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 4, 7, 8)));
+        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 9;  // Not relevant for FOURTH rank
+
+        // when
+        LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> matchCounts = lottoResult.getMatchCounts();
+
+        // then
+        assertThat(matchCounts.get(LottoRank.FOURTH)).isEqualTo(1);
+    }
 }

@@ -1,10 +1,10 @@
-package util;
+package errorhandler;
 
-public class CustomIllegalArgumentException extends IllegalArgumentException{
+public class CustomIllegalArgumentException extends IllegalArgumentException {
 
     private InputException inputException;
 
-    public CustomIllegalArgumentException(InputException inputExceptionEnum){
+    public CustomIllegalArgumentException(InputException inputExceptionEnum) {
         super(inputExceptionEnum.getMessage());
         this.inputException = inputExceptionEnum;
     }

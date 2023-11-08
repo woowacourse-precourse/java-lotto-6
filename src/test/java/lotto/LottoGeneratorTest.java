@@ -29,8 +29,7 @@ class LottoGeneratorTest {
     void generateLotto() {
         int amount = 5000;
 
-        LottoGenerator lottoGenerator = LottoGenerator.from(amount);
-        List<Lotto> lottos = lottoGenerator.generate();
+        List<Lotto> lottos = LottoGenerator.from(amount);
 
         lottos.stream().map(lotto -> assertThat(lotto.getClass()).isInstanceOf(Lotto.class));
     }
@@ -40,8 +39,7 @@ class LottoGeneratorTest {
     void generateCorrectNumbersOfLottos() {
         int amount = 5000;
 
-        LottoGenerator lottoGenerator = LottoGenerator.from(amount);
-        List<Lotto> lottos = lottoGenerator.generate();
+        List<Lotto> lottos = LottoGenerator.from(amount);
 
         assertThat(lottos.size()).isEqualTo(amount / 1000);
     }

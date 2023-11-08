@@ -1,6 +1,7 @@
 package lotto.constant;
 
 public enum ErrorMessage {
+
     NUMBER_SIZE_ERROR("[ERROR] 로또 하나 당 6개의 숫자를 가지고 있어야합니다."),
     WINNING_NUMBER_SIZE_ERROR("[ERROR] 당첨 번호는 6개의 숫자를 가지고 있어야합니다."),
     NUMBER_DUPLICATE_ERROR("[ERROR] 6개의 숫자는 중복된 값을 가질 수 없습니다."),

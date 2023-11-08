@@ -19,5 +19,4 @@ public class Lottos {
                 .map(lotto -> lotto.checkResult(gameNumbers))
                 .toList();
     }
-
 }

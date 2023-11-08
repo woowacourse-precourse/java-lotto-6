@@ -25,6 +25,4 @@ public class BonusNumber {
     private boolean isInRange(int bonusNumber) {
         return bonusNumber >= LottoConstant.MIN_VALUE.getValue() && bonusNumber <= LottoConstant.MAX_VALUE.getValue();
     }
-
-
 }

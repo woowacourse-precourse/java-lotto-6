@@ -6,6 +6,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public enum Result {
+
     SIX(6, BonusType.UNMATCHED, 2_000_000_000, "6개 일치 (2,000,000,000원) - "),
     BONUS(5, BonusType.MATCH, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     FIVE(5, BonusType.UNMATCHED, 1_500_000, "5개 일치 (1,500,000원) - "),

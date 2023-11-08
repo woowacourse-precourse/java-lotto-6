@@ -20,7 +20,6 @@ public class GameNumbers {
         return winningNumbers.containNumber(integer);
     }
 
-
     public BonusNumber getBonusNumber() {
         return bonusNumber;
     }

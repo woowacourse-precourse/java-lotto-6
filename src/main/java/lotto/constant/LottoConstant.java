@@ -1,6 +1,7 @@
 package lotto.constant;
 
 public enum LottoConstant {
+
     MIN_VALUE(1),
     MAX_VALUE(45),
     UNIQUE_NUMBERS(6),

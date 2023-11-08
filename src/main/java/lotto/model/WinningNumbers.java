@@ -6,6 +6,7 @@ import java.util.Set;
 import lotto.constant.ErrorMessage;
 
 public class WinningNumbers {
+
     private final List<Integer> numbers;
 
     public WinningNumbers(List<Integer> numbers) {

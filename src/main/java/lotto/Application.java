@@ -11,64 +11,34 @@ public class Application {
     private static final int LOTTO_COUNT = 6;
     private static final int RANKING = 5;
 
-    private static int paid;
-    private static int bought;
-    private static long earned;
-    private static int bonusNum;
-
     private static final int[] lottoWinsCount = new int[RANKING];
     private static final Rank[] ranks = Rank.values();
-    private static final List<Integer> userNum = new ArrayList<>();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        readPaid();
-        setBought();
+        int paid = readPaid();
+        int bought = setBought(paid);
 
-        Lotto[] lottoNum = createLottoNums();
+        Lotto[] lottoNum = createLottoNums(bought);
         printLottoNums(lottoNum);
 
-        readUserNum();
-        readBonusNum();
+        Lotto userNum = readUserNum();
+        int bonusNum = readBonusNum(userNum);
 
-        setResult(lottoNum);
+        long earned = 0;
+        setResult(lottoNum, userNum, bonusNum, earned);
         printResult();
-        printProfit();
+        printProfit(paid, earned);
     }
 
-    private static void setResult(Lotto[] lottoNum) {
-        for(Lotto l : lottoNum) {
-            int winsCount = 0;
-            boolean bonusCount = false;
-
-            for(int n : userNum) {
-                if(l.getNumbers().contains(n)) {
-                    winsCount++;
-                }
-
-                bonusCount = l.getNumbers().contains(bonusNum);
-            }
-
-            Rank rank = getRank(winsCount, bonusCount);
-            addResult(rank);
-        }
-    }
-
-    private static void addResult(Rank rank) {
-        if(rank != null) {
-            lottoWinsCount[rank.ordinal()]++;
-            earned += rank.getPrize();
-        }
-    }
-
-    private static void readPaid() {
+    private static int readPaid() {
         System.out.println("구입금액을 입력해 주세요.");
         while(true) {
             try {
-                paid = Integer.parseInt(Console.readLine());
+                int paid = Integer.parseInt(Console.readLine());
                 if(paid % LOTTO_PRICE != 0) throw new IllegalArgumentException("[ERROR] 구입금액은 " + LOTTO_PRICE + "의 배수여야 합니다.");
                 System.out.println();
-                break;
+                return paid;
             }
             catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자만 입력 가능합니다.");
@@ -79,12 +49,13 @@ public class Application {
         }
     }
 
-    private static void setBought() {
-        bought = paid / LOTTO_PRICE;
+    private static int setBought(int paid) {
+        int bought = paid / LOTTO_PRICE;
         System.out.println(bought + "개를 구매했습니다.");
+        return bought;
     }
 
-    private static Lotto[] createLottoNums() {
+    private static Lotto[] createLottoNums(int bought) {
         Lotto[] lottoNum = new Lotto[bought];
         for(int i = 0; i < bought; i++) {
             lottoNum[i] = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT));
@@ -99,16 +70,17 @@ public class Application {
         }
     }
 
-    private static void readUserNum() {
+    private static Lotto readUserNum() {
         while(true) {
             System.out.println("당첨 번호를 입력해 주세요.");
             try {
-                String[] str = Console.readLine().split(",");
-                checkUserNums(str);
-                addUserNums(str);
-                checkDuplicate();
+                List<Integer> nums = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
+                Lotto userNum = new Lotto(nums);
                 System.out.println();
-                break;
+                return userNum;
+            }
+            catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자만 입력 가능합니다.");
             }
             catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -116,39 +88,13 @@ public class Application {
         }
     }
 
-    private static void checkUserNums(String[] str) {
-        if (str.length != LOTTO_COUNT) {
-            throw new IllegalArgumentException("당첨 번호는 " + LOTTO_COUNT + "개를 입력해야 합니다.");
-        }
-    }
-
-    private static void addUserNums(String[] str) {
-        for (String s : str) {
-            int n = Integer.parseInt(s);
-            if (n < LOTTO_MIN || n > LOTTO_MAX) {
-                userNum.clear();
-                throw new IllegalArgumentException("당첨 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자여야 합니다.");
-            }
-            userNum.add(n);
-        }
-    }
-
-    private static void checkDuplicate() {
-        Set<Integer> userSet = new HashSet<>(Application.userNum);
-        if (Application.userNum.size() != userSet.size()) {
-            Application.userNum.clear();
-            throw new IllegalArgumentException("당첨 번호는 서로 중복되지 않아야 합니다.");
-        }
-    }
-
-    private static void readBonusNum() {
+    public static int readBonusNum(Lotto userNum) {
         while(true) {
             System.out.println("보너스 번호를 입력해 주세요.");
             try {
-                bonusNum = Integer.parseInt(Console.readLine());
-                checkBonusNumRange();
-                checkBonusNumDuplicate();
-                break;
+                int bonusNum = Integer.parseInt(Console.readLine());
+                userNum.validateBonusDuplicate(userNum.getNumbers(), bonusNum);
+                return bonusNum;
             }
             catch(IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -156,15 +102,21 @@ public class Application {
         }
     }
 
-    private static void checkBonusNumRange() {
-        if(bonusNum < LOTTO_MIN || bonusNum > LOTTO_MAX) {
-            throw new IllegalArgumentException("보너스 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자여야 합니다.");
-        }
-    }
+    private static void setResult(Lotto[] lottoNum, Lotto userNum, int bonusNum, long earned) {
+        for(Lotto l : lottoNum) {
+            int winsCount = 0;
+            boolean bonusCount = false;
 
-    private static void checkBonusNumDuplicate() {
-        if (userNum.contains(bonusNum)) {
-            throw new IllegalArgumentException("당첨 번호와 보너스 번호는 서로 중복되지 않아야 합니다.");
+            for(int n : userNum.getNumbers()) {
+                if(l.getNumbers().contains(n)) {
+                    winsCount++;
+                }
+
+                bonusCount = l.getNumbers().contains(bonusNum);
+            }
+
+            Rank rank = getRank(winsCount, bonusCount);
+            addResult(rank, earned);
         }
     }
 
@@ -175,6 +127,13 @@ public class Application {
             }
         }
         return null;
+    }
+
+    private static void addResult(Rank rank, long earned) {
+        if(rank != null) {
+            lottoWinsCount[rank.ordinal()]++;
+            earned += rank.getPrize();
+        }
     }
 
     private static void printResult() {
@@ -191,7 +150,7 @@ public class Application {
         }
     }
 
-    private static void printProfit() {
+    private static void printProfit(int paid, long earned) {
         double profit = (double)earned / paid * 100.0;
         System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
     }

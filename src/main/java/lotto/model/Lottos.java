@@ -1,8 +1,5 @@
 package lotto.model;
 
-import lotto.util.LottoNumberGenerator;
-import lotto.util.NumberGenrator;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +9,14 @@ public class Lottos {
     public Lottos(List<Lotto> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;
     }
-    public List<Integer> calcurateLottoResult(WinningNumber winningNumber) {
+    public List<Integer> calcurateLottoCounts(WinningNumber winningNumber) {
         List<Integer> lottoPrizes = new ArrayList<>();
         lottoNumbers.stream().forEach(lotto -> {
             lottoPrizes.add(matchingWinningNumbers(lotto.getNumbers(), winningNumber.getWinningNumbers()));
         });
         return lottoPrizes;
     }
-    
+
     private static int matchingWinningNumbers(List<Integer> purchaseLottoNumbers, List<Integer> winningNumbers) {
         int count = 0;
         for(int number : purchaseLottoNumbers) {

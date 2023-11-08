@@ -3,6 +3,8 @@ package lotto.domain.validator;
 import lotto.exception.ErrorCode;
 
 public class PurchaseValidator {
+    private static final int LOTTO_PRICE = 1000;
+
     public long validatePurchaseAmount(String inputPurchaseAmount) {
         validateNullorEmpty(inputPurchaseAmount);
 
@@ -33,7 +35,7 @@ public class PurchaseValidator {
     }
 
     private void validateAmountFormate(long amount) {
-        if (amount % 1000 != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorCode.INVALID_PURCHASE_AMOUNT_FORMAT.getMessage());
         }
     }

@@ -11,11 +11,12 @@ public class WinningNumberValidator {
     public static final int MIN_RANDOM_BOUND = 1;
     public static final int MAX_RANDOM_BOUND = 45;
     public static final int TOTAL_COUNT = 6;
+    public static final String SPLIT_INDICATOR = ",";
 
     public static List<Integer> validateWinningNumbers(String inputWinningNumbers) {
         validateNullorEmpty(inputWinningNumbers);
 
-        String[] numberStrings = inputWinningNumbers.replace(" ", "").split(",");
+        String[] numberStrings = inputWinningNumbers.replace(" ", "").split(SPLIT_INDICATOR);
         validateNumberCount(numberStrings);
 
         List<Integer> numbers = validateNumberFormate(numberStrings);

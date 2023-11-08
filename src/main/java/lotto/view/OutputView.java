@@ -47,4 +47,8 @@ public class OutputView {
     public void printErrorCode(String errorCode) {
         System.out.println(errorCode);
     }
+
+    public void println() {
+        System.out.println();
+    }
 }

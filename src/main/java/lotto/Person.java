@@ -24,6 +24,7 @@ public class Person {
 	        System.out.println(ticket);
 	    }
 	}
+	
 	public int compareNum(List<Integer> ticket, List<Integer> winnigNumbers) {
 		int count = 0;
 		for(int number : ticket) {
@@ -34,14 +35,40 @@ public class Person {
 		return count;
 	}
 	
-	public void displayResult(int count) {
+	public int[] checkWinningNumber(DrawLotto drawLotto) {
+		int result[] = new int[5];
+		List<Integer> winningNumber = drawLotto.getNumbers();
+    	List<Integer> bonusNumber = drawLotto.getBonusNumber();
+    	for(List<Integer> ticket : lottoTicket) {
+    		int count = compareNum(winningNumber, ticket);
+    		boolean hasBonusNumber = ticket.containsAll(bonusNumber);
+    		if(count == 3) {
+    			result[0]++;
+    		}
+    		if(count == 4) {
+    			result[1]++;
+    		}
+    		if(count == 5 && !hasBonusNumber) {
+    			result[2]++;
+    		}
+    		if(count == 5 && hasBonusNumber) {
+    			result[3]++;
+    		}
+    		if(count == 6) {
+    			result[4]++;
+    		}
+    	}
+    	return result;
+    }
+	
+	public void displayResult(int[] count) {
 		System.out.println("당첨 통계");
 		System.out.println("---");
-		System.out.println("3개 일치 (5,000원) - " + count + "개");
-		System.out.println("4개 일치 (50,000원) - " + count + "개");
-		System.out.println("5개 일치 (1,500,000원) - " + count + "개");
-		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count + "개");
-		System.out.println("6개 일치 (2,000,000,000원) - " + count + "개");
+		System.out.println("3개 일치 (5,000원) - " + count[0] + "개");
+		System.out.println("4개 일치 (50,000원) - " + count[1] + "개");
+		System.out.println("5개 일치 (1,500,000원) - " + count[2] + "개");
+		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count[3] + "개");
+		System.out.println("6개 일치 (2,000,000,000원) - " + count[4] + "개");
 	}
 	
 	public List<List<Integer>> getLottoTicket(){

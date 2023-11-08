@@ -41,26 +41,37 @@ public class Lotto {
     }
 
     public Place whichPlace(Lotto winningLotto, int bonusNumber){
-        Set<Integer> winningNumbers = new HashSet<>(winningLotto.numbers);
+        List<Integer> winningNumbers = winningLotto.numbers;
+        int correctNumbers=0;
 
-        int correctNumbers = (int)numbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
+        correctNumbers = getCorrectNumbers(winningNumbers, correctNumbers);
 
         boolean bonusOn = isBonusValidate(winningNumbers,bonusNumber);
 
         this.place = PlaceAndCorrectNumberMap.whichPlace(correctNumbers,bonusOn);
         return this.place;
     }
-    public boolean isBonusValidate(Set<Integer> winningLotto, int bonusNumber){
+
+    private int getCorrectNumbers(List<Integer> winningNumbers, int correctNumbers) {
+        for(int i=0; i<numbers.size(); i++){
+            if(winningNumbers.get(i).equals(numbers.get(i))){
+                correctNumbers++;
+            }
+        }
+        return correctNumbers;
+    }
+
+    public boolean isBonusValidate(List<Integer> winningLotto, int bonusNumber){
         if(winningLotto.contains(bonusNumber)){
             return false;
         }
+
         for(int number : numbers){
             if(number == bonusNumber){
                 return true;
             }
         }
+
         return false;
     }
     public Place getPlace(){

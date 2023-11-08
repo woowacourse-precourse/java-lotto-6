@@ -73,10 +73,10 @@ public class LottoService {
 
     private static void getBonus() {
         bonusNum = InputView.inputLine();
+        NumberValidation.isAllUnique(lotto.getUserNumbers(), bonusNum);
     }
 
     public int setBonusNumber() {
-        NumberValidation.isAllUnique(lotto.getUserNumbers(), bonusNum);
         NumberValidation.isACorrectNumber(bonusNum);
         int bonusNumber = Parsing.stringToInt(bonusNum);
         NumberValidation.isACorrectRange(bonusNumber);

@@ -26,7 +26,7 @@ public class LottoServiceTest {
         assertThatThrownBy(() -> lottoService.setLottoNumberList())
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    
+
 
 
 }

@@ -10,10 +10,8 @@ import lotto.view.OutputMessage;
 import java.util.List;
 
 public class LottoController {
-
     public static List<Integer> winningLotto;
     public static int bonusNumber;
-
 
     public void playLotto() {
         LottoTicketStore lottoTicketStore = new LottoTicketStore(getPurchaseAmount());

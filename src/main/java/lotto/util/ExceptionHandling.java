@@ -22,25 +22,29 @@ public class ExceptionHandling {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
         }
     }
-    public static void isSameNumber(List<Integer> numbers)throws IllegalArgumentException{
-         Set<Integer> set = new HashSet<>(numbers);
-         if(numbers.size()!=set.size()){
-             throw new IllegalArgumentException("[ERROR] 중복된 숫자는 로또번호가 될수 없습니다");
-         }
+
+    public static void isSameNumber(List<Integer> numbers) throws IllegalArgumentException {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (numbers.size() != set.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자는 로또번호가 될수 없습니다");
+        }
 
     }
-    public static void isSameBonusNumber(List<Integer> numbers,int bonusNumber)throws IllegalArgumentException{
-        if(numbers.contains(bonusNumber)){
+
+    public static void isSameBonusNumber(List<Integer> numbers, int bonusNumber) throws IllegalArgumentException {
+        if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자는 보너스 넘버가 될수 없습니다");
         }
 
     }
+
     public static void isOverSize(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개야 합니다");
         }
     }
-    public static void isNumberOverRange(List<Integer> numbers) throws IllegalArgumentException{
+
+    public static void isNumberOverRange(List<Integer> numbers) throws IllegalArgumentException {
         boolean isValid = numbers.stream().allMatch(number -> number >= MIN_NUMBER && number <= MAX_NUMBER);
 
         if (!isValid) {

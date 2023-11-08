@@ -17,7 +17,7 @@ public class OutputView {
         printEmptyLine();
         StringBuilder lottoStringBuilder = new StringBuilder();
 
-        lottoStringBuilder.append(lottoDtos.size() + "개를 구매했습니다.").append("\n");
+        lottoStringBuilder.append(lottoDtos.size()).append("개를 구매했습니다.").append("\n");
         for (LottoDto lottoDto : lottoDtos) {
             lottoStringBuilder.append(lottoDto.numbers()).append("\n");
         }

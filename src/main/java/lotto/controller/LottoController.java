@@ -39,28 +39,28 @@ public class LottoController {
 
     public void run() {
         process = 0;
-            try{
-                savePurchaseAmount();
-                generateAndSaveRandomNumber();
-                saveWinningNumber();
-                saveBonusNumber();
-                performNumberComparisonLogic();
-                printWinningStatistics();
-            } catch (NumberFormatException e) {
-                System.out.println(ERROR_INTRO + e.getMessage());
-            } catch (IllegalStateException e) {
-                System.out.println(ERROR_INTRO + e.getMessage());
-            }
+        try {
+            savePurchaseAmount();
+            generateAndSaveRandomNumber();
+            saveWinningNumber();
+            saveBonusNumber();
+            performNumberComparisonLogic();
+            printWinningStatistics();
+        } catch (NumberFormatException e) {
+            System.out.println(ERROR_INTRO + e.getMessage());
+        } catch (IllegalStateException e) {
+            System.out.println(ERROR_INTRO + e.getMessage());
+        }
     }
 
     private void savePurchaseAmount() {
-        if(process != 0) return;
+        if (process != 0) return;
         mySpentAmount = new Money(InputView.receiveSpentAmount());
         process++;
     }
 
     private void generateAndSaveRandomNumber() {
-        if(process != 1) return ;
+        if (process != 1) return;
         int availableNumberOfLotteryTickets = lottoService.calculateAvailableNumberOfLotteryTickets(mySpentAmount.getSpendAmount());
         myLottoTickets = lottoService.generateRandomLottoNums(availableNumberOfLotteryTickets);
 
@@ -69,22 +69,24 @@ public class LottoController {
     }
 
     private void saveWinningNumber() {
-        if(process != 2) return ;
+        if (process != 2) return;
         winningLottoNumber = lottoService.reshapeWinningNumber(InputView.receiveWinningNumber());
         process++;
     }
+
     private void saveBonusNumber() {
-        if(process != 3) return ;
+        if (process != 3) return;
         bonusNumber = new BonusNumber(InputView.receiveBonusNumber(), winningLottoNumber.getNumbers());
         process++;
     }
+
     private void performNumberComparisonLogic() {
-        if(process != 4) return ;
+        if (process != 4) return;
         initWinStatisticMap();
         for (Lotto myLottoTicket : myLottoTickets) {
             LottoWinningCase lottoWinningCase = lottoService.compareMyNumberWithWinningNumber(myLottoTicket, winningLottoNumber.getNumbers(), bonusNumber.getBonusNumber());
             Integer prevCaseCount = winStatisticMap.get(lottoWinningCase);
-            winStatisticMap.put(lottoWinningCase, prevCaseCount+1);
+            winStatisticMap.put(lottoWinningCase, prevCaseCount + 1);
         }
         totalIncome = lottoService.calculateTotalIncome(winStatisticMap);
         incomeRate = lottoService.calculateIncomeRate(totalIncome, mySpentAmount.getSpendAmount());
@@ -99,7 +101,7 @@ public class LottoController {
     }
 
     private void printWinningStatistics() {
-        if(process != 5) return ;
+        if (process != 5) return;
         OutputView.printWinningStatistics(winStatisticMap, incomeRate);
     }
 

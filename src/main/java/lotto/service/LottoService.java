@@ -76,7 +76,7 @@ public class LottoService {
     }
 
     public String calculateIncomeRate(int totalIncome, int spentAmount) {
-        if(totalIncome == 0) return "0"+PERCENT;
+        if (totalIncome == 0) return "0" + PERCENT;
         return typeConvertIncomeRate((double) totalIncome / (double) spentAmount);
     }
 }

@@ -9,11 +9,15 @@ import lotto.exception.LottoValidationException;
 
 public class InputView {
 
+    private static final int LOTTO_TICKET_PRICE = 1000;
+
     public static int inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = readLine();
         validateNotEmpty(input);
-        return parseToInteger(input);
+        int purchaseAmount = parseToInteger(input);
+        validatePurchaseAmount(purchaseAmount);
+        return purchaseAmount;
     }
 
     public static List<Integer> inputWinningNumbers() {
@@ -45,6 +49,13 @@ public class InputView {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new LottoValidationException(LottoError.INVALID_NUMBER.toString());
+        }
+    }
+
+    private static void validatePurchaseAmount(int amount) {
+        if (amount <= 0 || amount % LOTTO_TICKET_PRICE != 0) {
+            throw new LottoValidationException(
+                    LottoError.PURCHASE_AMOUNT_NOT_MULTIPLE_OF_THOUSAND.toString());
         }
     }
 

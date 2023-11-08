@@ -26,6 +26,7 @@ public class LottoController {
     public void run() {
         int purchaseAmount = inputPurchaseAmount();
         List<Lotto> lottos = lottoService.createLottoTickets(purchaseAmount);
+        ResultView.printPurchasedLottos(lottos);
         WinningNumbers winningNumbers = inputWinningNumbers();
         processWinningNumbers(lottos, winningNumbers, purchaseAmount);
     }

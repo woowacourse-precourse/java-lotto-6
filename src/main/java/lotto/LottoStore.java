@@ -73,6 +73,15 @@ public class LottoStore {
             if (s.isEmpty()) {
                 throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 값이 비어있습니다.");
             }
+            validateString(s);
+        }
+    }
+
+    private void validateString(String s) {
+        for (int i = 0; i < s.length(); ++i) {
+            if (s.charAt(i) < '0' || s.charAt(i) > '9') {
+                throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 값에는 숫자만 입력해야 합니다.");
+            }
         }
     }
 

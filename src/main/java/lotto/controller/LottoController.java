@@ -26,7 +26,7 @@ public class LottoController {
     public List<Ranking> getTotalRanking(List<Integer> winningNumber, int bonusNumber) {
         return lotteries.stream()
                 .map(lotto -> lotto.getRank(winningNumber, bonusNumber))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<Lotto> getLotteries() {

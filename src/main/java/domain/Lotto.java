@@ -22,7 +22,6 @@ public class Lotto {
     public static Lotto randomPick() {
         List<Integer> numbers = pickUniqueNumbersInRange(LottoNumber.MIN_LOTTO_NUMBER, LottoNumber.MAX_LOTTO_NUMBER,
                 LOTTO_SIZE);
-        numbers.sort(Comparator.naturalOrder());
         return new Lotto(numbers);
     }
 
@@ -46,5 +45,11 @@ public class Lotto {
 
     public List<LottoNumber> getLottoNumbers() {
         return Collections.unmodifiableList(lottoNumbers);
+    }
+
+    public List<LottoNumber> getSortedLottoNumbers() {
+        return lottoNumbers.stream()
+                .sorted()
+                .toList();
     }
 }

@@ -16,7 +16,7 @@ public class PlayerAmount {
     }
 
     private void validate(int amount) {
-        Validator.validateDivisibleBy(amount, DIVISOR);
+        Validator.validateDivisible(amount, DIVISOR);
     }
 
     public int getLottoCount() {

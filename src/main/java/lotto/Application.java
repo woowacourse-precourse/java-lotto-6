@@ -22,5 +22,6 @@ public class Application {
         LottoComputer.printTicket(lottoList);
         LottoPlayer.inputNumber();
         LottoResult.lottoCompare(lottoList);
+        LottoResult.resultPrint();
     }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.model.LottoRanking.FIRST;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 public class LottoResultTest {
 
-    @DisplayName("로또 번호와 당첨 번호 매칭 테스트")
+    @DisplayName("로또 번호와 당첨 번호가 매칭 되는지 검증한다.")
     @Test
     void testMatchBylottoNumbersAndWinningNumbers() {
         List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -21,7 +22,7 @@ public class LottoResultTest {
         assertThat(5).isEqualTo(matchResult);
     }
 
-    @DisplayName("보너스 번호 확인 테스트")
+    @DisplayName("보너스 번호가 잘 체크 되는지 검증한다.")
     @Test
     void testCheckBonusNumber() {
         List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -31,6 +32,15 @@ public class LottoResultTest {
         int matchResult = LottoResult.checkBonusNumber(lottoNumbers, match, bonusNumber);
 
         assertThat(35).isEqualTo(matchResult);
+    }
+
+    @DisplayName("당첨 등수에 맞게 잘 추가가 되는지 검증한다.")
+    @Test
+    void testAddCount() {
+        int match = 6;
+
+        LottoResult.addCount(match);
+        assertThat(1).isEqualTo(FIRST.getCount());
     }
 
 }

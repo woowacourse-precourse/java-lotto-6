@@ -2,6 +2,8 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class LottoView {
 
     public int price;
@@ -26,5 +28,13 @@ public class LottoView {
         }
         number = (int) tempNumber;
     }
+
+    public void printLottoList(List<Integer> randomNumbers){
+        System.out.println();
+        System.out.println(number + "개를 구매했습니다.");
+        System.out.println(randomNumbers);
+    }
+
+
 
 }

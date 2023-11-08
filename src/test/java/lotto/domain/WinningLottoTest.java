@@ -7,7 +7,7 @@ import lotto.constant.Message;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WinningNumberTest {
+public class WinningLottoTest {
     @DisplayName("당첨 번호의 개수가 6개 초과하면 예외가 발생한다.")
     @Test
     void createWinningNumberByOverSize() {

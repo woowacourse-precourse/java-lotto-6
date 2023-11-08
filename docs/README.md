@@ -15,3 +15,5 @@
 7. 사용할 winStatistic 메서드를 LottoRank 를 활용해서 여러개의 메서드로 나누기 
 8. initializePrizeCount 메서드를 구현하여 enum에 만들어 놓은 등수들의 당첨 횟수를 0으로 초기화
 9. calculatePrizes 메서드 구현
+10. determineLottoRank 메서드 구현하여 일치하는 번호 수와 보너스 번호 일치 여부에 따른 등수를 반환
+11. 

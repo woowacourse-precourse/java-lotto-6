@@ -54,9 +54,19 @@ public class Application {
         }
         return totalPrize;
     }
-    private static LottoRank determineLottoRank(Lotto lotto, Set<Integer> winningNumberSet, int bonusNumber){
-
+    private static LottoRank determineLottoRank(Lotto lotto, Set<Integer> winningNumberSet, int bonusNumber) {
+        int matchCount = 0;
+        boolean bonusMatch = false;
+        for (int number : lotto.getNumbers()) {
+            if (winningNumberSet.contains(number)) {
+                matchCount++;
+            } else if (number == bonusNumber) {
+                bonusMatch = true;
+            }
+        }
+        return LottoRank.valueOf(matchCount, bonusMatch);
     }
+
     private static void printStatistics(Map<LottoRank, Integer> prizeCount, long totalPrize, int buyMoney){
 
     }

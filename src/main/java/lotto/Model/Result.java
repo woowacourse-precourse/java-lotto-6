@@ -6,41 +6,41 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Result {
-    private Map<Rank, Integer> winningRankAndCounting;
+    private Map<Rank, Integer> countByWinningRank;
 
     public Result() {
-        this.winningRankAndCounting = new LinkedHashMap<>();
+        this.countByWinningRank = new LinkedHashMap<>();
         for (Rank rank : Rank.values()) {
-            winningRankAndCounting.put(rank, DEFAULT);
+            countByWinningRank.put(rank, DEFAULT);
         }
     }
 
-    public void makeWinningResultWith(RandomLottos randomLottos, WinningLotto winningLotto, Bonus bonus) {
+    public void countWinningRank(RandomLottos randomLottos, WinningLotto winningLotto, Bonus bonus) {
         for (Lotto randomLotto : randomLottos.getRandomLottos()) {
             Rank rank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
-            winningRankAndCounting.put(rank, winningRankAndCounting.get(rank) + 1);
+            countByWinningRank.put(rank, countByWinningRank.get(rank) + 1);
         }
     }
 
-    public Map<Rank, Integer> getWinningRankAndCounting() {
-        return winningRankAndCounting;
+    public Map<Rank, Integer> getCountByWinningRank() {
+        return countByWinningRank;
     }
 
-    public int calculateTotalWinningPrize() {
-        int winningPrize = DEFAULT;
-        for (Rank rank : winningRankAndCounting.keySet()) {
-            if (isNotDefault(getWinningCountingFrom(rank))) {
-                winningPrize += Rank.getPrize(rank) * getWinningCountingFrom(rank);
+    public int calculateTotalPrize() {
+        int prize = DEFAULT;
+        for (Rank rank : countByWinningRank.keySet()) {
+            if (!isDefault(getCount(rank))) {
+                prize += Rank.getPrize(rank) * getCount(rank);
             }
         }
-        return winningPrize;
+        return prize;
     }
 
-    private int getWinningCountingFrom(Rank rank) {
-        return winningRankAndCounting.get(rank);
+    private int getCount(Rank rank) {
+        return countByWinningRank.get(rank);
     }
 
-    private boolean isNotDefault(int winningCounts) {
-        return winningCounts != DEFAULT;
+    private boolean isDefault(int winningCounts) {
+        return winningCounts == DEFAULT;
     }
 }

@@ -22,6 +22,9 @@ public class Lotto {
             if (!uniqueNumbers.add(number)) {
                 throw new IllegalArgumentException();
             }
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
         }
     }
 }

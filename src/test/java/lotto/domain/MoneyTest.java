@@ -18,9 +18,17 @@ class MoneyTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구매 금액이 정수 이외의 숫자일 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"1000.1,", "200.0"})
+    void createMoneyByNotInteger(String userInput) {
+        assertThatThrownBy(() -> new Money(userInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("구매 금액이 양수 이외의 숫자일 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"1000.0,", "200.1", "0", "-1000"})
+    @ValueSource(strings = {"-1", "0"})
     void createMoneyByNotPositiveNumber(String userInput) {
         assertThatThrownBy(() -> new Money(userInput))
                 .isInstanceOf(IllegalArgumentException.class);

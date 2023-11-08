@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class WinningManager {
@@ -19,30 +17,14 @@ public class WinningManager {
         this.winningMoney = 0;
     }
 
-    public void calculateWinningRate(HashMap lotto,int lottoAmount){
-        for(int i=3; i<=7; i++){
-            if(lotto.get(i) != null) {
-                if (i == 3) {
-                    winningMoney += ((int)lotto.get(i) * 5000);
-                }
-                if (i == 4) {
-                    winningMoney += ((int)lotto.get(i) * 50000);
-                }
-                if (i == 5) {
-                    winningMoney += ((int)lotto.get(i) * 1500000);
-                }
-                if (i == 6) {
-                    winningMoney += ((int)lotto.get(i) * 2000000000);
-                }
-                if (i == 7) {
-                    winningMoney += ((int)lotto.get(i) * 30000000);
-                }
+    public void calculateRevenue(Buyer buyer){
+        for(int i=1; i<=5; i++){
+            Integer rankAmount = buyer.getWinningLotto().get(i);
+            if(rankAmount != null){
+                winningMoney += rankAmount * PrizeRank.getPrizeMoney(i);
             }
         }
-
-        this.winningRate = ((double)winningMoney / (double)(lottoAmount*1000)) * 100;
-//        System.out.println(winningMoney);
-//        System.out.printf("%.1f",winningRate);
+        this.winningRate = ((double)winningMoney / (double)(buyer.getLottoAmount()*1000)) * 100;
     }
 
     public List<Integer> getWinningNumber() {
@@ -51,9 +33,6 @@ public class WinningManager {
 
     public int getBonusNumber() {
         return bonusNumber;
-    }
-    public int getWinningMoney() {
-        return winningMoney;
     }
 
     public double getWinningRate() {

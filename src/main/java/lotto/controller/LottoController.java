@@ -17,8 +17,22 @@ package lotto.controller;public class LottoController {
         lottoResult(lottoList, winningResult, ticketCount);
 
     }
+
     public int inputPlayerAmount() {
         playerLottoAmount = new PlayerLottoAmount(InputView.inputPlayerAmount());
         return playerLottoAmount.calculateLottoCount();
     }
+
+    public WinningResult validateBonus() {
+        Lotto lotto = new Lotto(InputView.inputLottoWinningNum());
+        List<Integer> winningNumber = lotto.getLottoNumbers();
+
+        int ball = InputView.inputBonusNumber();
+        lotto.validateBonusNumber(winningNumber, ball);
+        winningResult = new WinningResult(new Lotto(winningNumber), ball);
+
+        return winningResult;
+    }
+
+
 }

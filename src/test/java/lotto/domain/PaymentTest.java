@@ -27,4 +27,17 @@ class PaymentTest {
         // then
         assertThat(profitPercentage).isEqualTo(200.0);
     }
+
+    @DisplayName("지불 금액으로 구매 가능한 개수를 반환한다.")
+    @Test
+    void countAffortableSuccessTest() {
+        // given
+        Payment payment = new Payment(5000);
+
+        // when
+        int countAffortable = payment.countAffortable(1000);
+
+        // then
+        assertThat(countAffortable).isEqualTo(5);
+    }
 }

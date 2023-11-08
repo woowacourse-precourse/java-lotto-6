@@ -6,6 +6,7 @@ public class LottoResult {
 
     private static final int NUMBER_OF_WINNING_CASE = 5;
     private static final int CORRECTION_VALUE_OF_KEY = 1;
+    private static final int KEY_INITIAL_VALUE = 0;
 
     private static HashMap<Integer, Integer> result = new HashMap<>();
 
@@ -33,7 +34,7 @@ public class LottoResult {
     public static void initialize() {
         for (int i = PrizeMoney.FIFTH.getNumberOfSame(); i < NUMBER_OF_WINNING_CASE
                 + PrizeMoney.FIFTH.getNumberOfSame(); i++) {
-            result.put(i, 0);
+            result.put(i, KEY_INITIAL_VALUE);
         }
     }
 

@@ -32,7 +32,9 @@ public class LottoController {
         System.out.println();
 
         winningCheck = bonusNum(winningNum());
+        System.out.println();
 
+        OutputView.printWinningResult();
         lottoResult(lottoTickets, winningCheck, lottoTicketCount);
     }
 
@@ -93,8 +95,6 @@ public class LottoController {
         Map<RankingLotto, Integer> result = setResult();
         RankingLotto rank;
 
-        System.out.println();
-        OutputView.printWinningResult();
         for (int i = 0; i < lottoTickets.size(); i++) {
             rank = winningNumAndBonusNum.match(lottoTickets.get(i));
             result.put(rank, result.get(rank) + 1);
@@ -127,7 +127,6 @@ public class LottoController {
             revenueRate =
                     revenueRate + ((double) (rank.getPrizeMoney()) / (lottoTicketCount * TICKET_PRICE) * (result.get(
                             rank)) * (PERCENTAGE));
-
         }
         OutputView.printRevenueRate(revenueRate);
     }

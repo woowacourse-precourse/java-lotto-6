@@ -29,18 +29,34 @@ public class LottoController {
 	}
 
 	private int setBonusNumber() {
-		int bonusNumber = InputView.inputBonusNumber();
+		while (true) {
+			try {
+				int bonusNumber = InputView.inputBonusNumber();
+				validateBonusNumber(bonusNumber);
+				return bonusNumber;
+			} catch (IllegalArgumentException e) {
+				System.out.println("[ERROR] 잘못된 입력입니다.");
+			}
+		}
+	}
+
+	private void validateBonusNumber(int bonusNumber) {
 		if (bonusNumber > MAX_NUM || bonusNumber < MIN_NUM) {
 			System.out.println("[ERROR] 보너스 번호는 1에서 45사이의 수여야 합니다.");
 			throw new IllegalArgumentException();
 		}
-		return bonusNumber;
 	}
 
 	private List<Integer> setPrizeNumber() {
-		List<Integer> prizeNumber = InputView.inputLottoPrizeNumber();
-		validatePrizeNumber(prizeNumber);
-		return prizeNumber;
+		while (true) {
+			try {
+				List<Integer> prizeNumber = InputView.inputLottoPrizeNumber();
+				validatePrizeNumber(prizeNumber);
+				return prizeNumber;
+			} catch (IllegalArgumentException e) {
+				System.out.println("[ERROR] 잘못된 입력입니다.");
+			}
+		}
 	}
 
 	private void validatePrizeNumber(List<Integer> prizeNumber) {

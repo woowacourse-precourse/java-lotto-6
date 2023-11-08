@@ -5,9 +5,9 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class CreateWinNumber {
-
     private final ValidateInputNumber
             validateInputNumber = new ValidateInputNumber();
+    
     public List<Integer> winNumber() {
         while (true) {
             List<Integer> allNumbers;

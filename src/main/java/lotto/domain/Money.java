@@ -13,6 +13,10 @@ public class Money {
         this.amount = amount;
     }
 
+    public Integer getAmount() {
+        return amount;
+    }
+
     private void validateAmount(Integer amount) {
         isNegative(amount);
         isValidUnit(amount);
@@ -34,7 +38,7 @@ public class Money {
     }
 
     public Integer divide(Money dividendMoney) {
-        if(amount < dividendMoney.amount) {
+        if(amount > dividendMoney.amount) {
             throw new IllegalArgumentException();
         }
         return dividendMoney.amount / this.amount;

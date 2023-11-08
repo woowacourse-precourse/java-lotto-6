@@ -7,10 +7,9 @@ public class LottoMachine {
     private final Money lottoPrice;
     private final NumberGenerator numberGenerator;
 
-    LottoMachine(Money lottoPrice, NumberGenerator numberGenerator) {
+    public LottoMachine(Money lottoPrice, NumberGenerator numberGenerator) {
         this.lottoPrice = lottoPrice;
         this.numberGenerator = numberGenerator;
-
     }
 
     public List<Lotto> buyLotto(Money purchaseMoney) {

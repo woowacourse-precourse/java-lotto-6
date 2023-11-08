@@ -60,7 +60,7 @@ public class LottoAnswer extends Lotto {
 
     private void validateInput(String input){
         int length = input.length();
-        if (input.charAt(length - 1) == ',') {
+        if (input.charAt(length - 1) == ',' || input.charAt(0) ==',') {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_INPUT);
         }
     }

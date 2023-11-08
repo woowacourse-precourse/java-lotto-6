@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.PrizeMoney;
+import lotto.Prize;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.MainNumbers;
@@ -78,7 +78,7 @@ public class LottoService {
 
     private int prizeMoney(PrizeCounter prizeCounter) {
         return prizeCounter.getCounter().entrySet().stream()
-                .mapToInt(entry -> PrizeMoney.valueOf(entry.getKey()).value() * entry.getValue()).sum();
+                .mapToInt(entry -> Prize.valueOf(entry.getKey()).value() * entry.getValue()).sum();
     }
 
     private PrizeCounter countPrize() {

@@ -1,7 +1,9 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import lotto.Prize;
 import lotto.dto.LottoTicket;
 import lotto.dto.StatisticsResult;
 
@@ -24,11 +26,8 @@ public class OutputView {
     }
 
     private static void printCountingResponse(Map<String, Integer> counter) {
-        System.out.printf(Message.FIFTH_PRIZE_MESSAGE.toString(), counter.get("FIFTH"));
-        System.out.printf(Message.FOURTH_PRIZE_MESSAGE.toString(), counter.get("FOURTH"));
-        System.out.printf(Message.THIRD_PRIZE_MESSAGE.toString(), counter.get("THIRD"));
-        System.out.printf(Message.SECOND_PRIZE_MESSAGE.toString(), counter.get("SECOND"));
-        System.out.printf(Message.FIRST_PRIZE_MESSAGE.toString(), counter.get("FIRST"));
+        Arrays.stream(Prize.values())
+                .forEach(prize -> System.out.printf(prize.toString(), counter.get(prize.name())));
     }
 
     private static void printRevenue(int prizeMoney, int payment) {

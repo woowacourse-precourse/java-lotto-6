@@ -1,8 +1,9 @@
 package lotto.machine;
 
+import lotto.constant.LottoValue;
 import lotto.constant.Prize;
 import lotto.lotto.controller.LottoController;
-//import lotto.statistics.controller.StatisticsController;
+import lotto.statistic.controller.StatisticController;
 import lotto.view.controller.ViewController;
 
 import java.util.List;
@@ -11,13 +12,15 @@ public class LottoMachine {
 
     private final ViewController viewController;
     private final LottoController lottoController;
+    private final StatisticController statisticController;
     private int purchaseAmount;
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
-    public LottoMachine(ViewController viewController, LottoController lottoController) {
+    public LottoMachine(ViewController viewController, LottoController lottoController, StatisticController statisticController) {
         this.viewController = viewController;
         this.lottoController = lottoController;
+        this.statisticController = statisticController;
         start();
     }
 
@@ -32,10 +35,8 @@ public class LottoMachine {
         setWinningNumbers(viewController.inputWinnerNumbers());
         // 보너스 번호 입력 및 저장
         setBonusNumber(viewController.inputBonusNumber(getWinningNumbers()));
-        // 번호 비교
-
         // 당첨 통계 생성
-
+        statisticController.generate(lottoController.getRandomLottos(), getWinningNumbers(), getBonusNumber());
         // 당첨 통계 출력
     }
 

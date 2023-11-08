@@ -5,11 +5,11 @@ import lotto.lotto.repository.LottoRepository;
 import lotto.lotto.repository.LottoRepositoryImpl;
 import lotto.lotto.service.LottoService;
 import lotto.lotto.service.LottoServiceImpl;
-import lotto.statistics.controller.StatisticsController;
-import lotto.statistics.repository.StatisticsRepository;
-import lotto.statistics.repository.StatisticsRepositoryImpl;
-import lotto.statistics.service.StatisticsService;
-import lotto.statistics.service.StatisticsServiceImpl;
+import lotto.statistic.controller.StatisticController;
+import lotto.statistic.repository.StatisticRepository;
+import lotto.statistic.repository.StatisticRepositoryImpl;
+import lotto.statistic.service.StatisticService;
+import lotto.statistic.service.StatisticServiceImpl;
 import lotto.view.controller.ViewController;
 import lotto.view.service.ViewInputService;
 import lotto.view.service.ViewInputServiceImpl;
@@ -19,7 +19,7 @@ import lotto.view.service.ViewOutputServiceImpl;
 public class Configuration {
 
     public LottoMachine init() {
-        return new LottoMachine(viewController(), lottoController());
+        return new LottoMachine(viewController(), lottoController(), statisticsController());
     }
 
     // View
@@ -49,15 +49,15 @@ public class Configuration {
     }
 
     // Statistics
-    public StatisticsController statisticsController() {
-        return new StatisticsController(statisticsService());
+    public StatisticController statisticsController() {
+        return new StatisticController(statisticService());
     }
 
-    public StatisticsService statisticsService() {
-        return new StatisticsServiceImpl(statisticsRepository());
+    public StatisticService statisticService() {
+        return new StatisticServiceImpl(statisticRepository());
     }
 
-    public StatisticsRepository statisticsRepository() {
-        return new StatisticsRepositoryImpl();
+    public StatisticRepository statisticRepository() {
+        return new StatisticRepositoryImpl();
     }
 }

@@ -8,6 +8,7 @@ import static lotto.views.UserOutput.askPurchasePrice;
 import static lotto.views.UserOutput.askWinningNumber;
 import static lotto.views.UserOutput.printNumberOfLottoPurchases;
 import static lotto.views.UserOutput.printPurchaseLottoInfo;
+import static lotto.views.UserOutput.printWinningStatistics;
 
 import java.util.List;
 import java.util.Map;
@@ -42,5 +43,6 @@ public class Application {
 
         Double totalReturnRate = lottoAgency.calculateTotalReturnRate(totalWinningAmount, purchasePrice);
 
+        printWinningStatistics(winningResult, totalReturnRate);
     }
 }

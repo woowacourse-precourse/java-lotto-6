@@ -2,6 +2,8 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class Bonus {
 
     private final int bonusNumber;
@@ -13,5 +15,9 @@ public class Bonus {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    public boolean isContainBonusNumber(List<Integer> lottoNumbers){
+        return lottoNumbers.contains(bonusNumber);
     }
 }

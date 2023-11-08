@@ -1,8 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.GuessLotto;
-import lotto.domain.WinningLottoList;
+import lotto.domain.WinningLotto;
+import lotto.domain.GuessLottoTickets;
 
 
 
@@ -25,12 +25,15 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
         }
 
-        WinningLottoList lotteries = new WinningLottoList(lottery);
-        lotteries.printWinningLottoList();
+        GuessLottoTickets guessLotto = new GuessLottoTickets(lottery);
+        guessLotto.printWinningLottoList();
 
         System.out.println(REQUEST_LOTTO_NUMBER);
+        WinningLotto winningLotto = new WinningLotto();
 
-        GuessLotto guessLotto = new GuessLotto();
+        guessLotto.countContainNumber(winningLotto);
+        System.out.println(SHOW_WINNING_STATISTICS);
+
 
 
 

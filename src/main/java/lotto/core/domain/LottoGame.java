@@ -17,10 +17,12 @@ public class LottoGame {
     public LottoGame() {}
 
     public void play(){
-        makeLottos();
+        // 1. 로또 구입 금액에 해당하는 만큼 로또를 발행한다.
+        List<Lotto> lottos = makeLottos();
+        // 2. 발행한 로또의 총 수량을 출력한다.
+        writeAllLottoNumbers(lottos);
     }
 
-    // 1. 로또 구입 금액에 해당하는 만큼 로또를 발행한다.
     private List<Lotto> makeLottos() {
         int count = getLottoCount();
 
@@ -70,5 +72,9 @@ public class LottoGame {
                 .limit(LOTTO_SIZE)
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    private void writeAllLottoNumbers(List<Lotto> lottos) {
+        lottos.forEach(Output::writeLottoNumbers);
     }
 }

@@ -15,9 +15,11 @@ import static lotto.constant.NumericConstant.MIN_LOTTO_NUMBER;
 
 public class LottoService {
 
+    private long totalPurchaseAmount = 0;
     private List<Lotto> userLottos = new ArrayList<>();
-    
+
     public List<Lotto> buyLotto(int money) {
+        totalPurchaseAmount += money;
         int count = money / LOTTO_PRICE;
 
         userLottos = createLottos(count);
@@ -25,7 +27,7 @@ public class LottoService {
     }
 
     public LottoGameResult getResultOfLottos(Lotto winningLotto, int bonusNumber) {
-        LottoGameResult lottoGameResult = new LottoGameResult();
+        LottoGameResult lottoGameResult = new LottoGameResult(totalPurchaseAmount);
 
         for (Lotto userLotto : userLottos) {
             LottoRank rank = userLotto.matching(winningLotto, bonusNumber);

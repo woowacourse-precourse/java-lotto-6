@@ -21,18 +21,19 @@ public class LottoController {
     }
 
     public void launch() {
-        int money = inputView.inputPurchaseMoney();
-
-        List<Lotto> userLottos = lottoService.buyLotto(money);
-        outputView.printPurchasedLottos(userLottos);
+        buyLottos();
 
         Lotto winningLotto = inputView.inputWinningLotto();
         int bonusNumber = inputView.inputBonusNumber();
 
         LottoGameResult lottoGameResult = lottoService.getResultOfLottos(winningLotto, bonusNumber);
         outputView.printLottoResult(lottoGameResult);
+    }
 
-        double profitRate = lottoGameResult.calculateProfitRate(money);
-        outputView.printProfitRate(profitRate);
+    private void buyLottos() {
+        int money = inputView.inputPurchaseMoney();
+
+        List<Lotto> userLottos = lottoService.buyLotto(money);
+        outputView.printPurchasedLottos(userLottos);
     }
 }

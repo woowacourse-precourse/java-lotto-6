@@ -22,7 +22,7 @@ public class PrizeMoneyTest {
         int invalidOrdinal = 8;
         assertThatThrownBy(() -> PrizeMoney.getByOrdinal(invalidOrdinal))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("Invalid ordinal: " + invalidOrdinal);
+                .hasMessage("[ERROR]" + invalidOrdinal);
     }
 
 }

@@ -1,8 +1,7 @@
 package lotto.service;
 
-import static camp.nextstep.edu.missionutils.Randoms.*;
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

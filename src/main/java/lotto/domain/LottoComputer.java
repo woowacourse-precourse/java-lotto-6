@@ -9,24 +9,34 @@ import java.util.Collections;
 import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.core.AbstractMasterDetailListProcessor;
 
 public class LottoComputer {
-    public static List<Integer> madeNumber = new ArrayList<>();
 
-    public static void numberMaker() {
-        madeNumber = Randoms.pickUniqueNumbersInRange(1,45,6);
-        Collections.sort(madeNumber);
-        System.out.println(madeNumber);
+    public static List<Integer> numberMaker() {
+        List<Integer> computerNumber = new ArrayList<Integer>();
+        computerNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(computerNumber); // 오름차순으로 정렬
+
+        return computerNumber; // 나중에 Application.computerNumber에 대입할 것
     }
-    public static List<LottoNumber> makingLottoIndex() {
-        List<LottoNumber> numbers = new ArrayList<LottoNumber>();
+
+    public static List<LottoNumber> lottoMaker() {
+        List<LottoNumber> lottoList = new ArrayList<LottoNumber>();
 
         // 각 로또 티켓별 인스턴스 생성
-        int lottoIndex = 0;
-        for(int i = 0; i < Application.ticketNumber; i++) {
-            numberMaker();
-            LottoNumber tmpObj = new LottoNumber(lottoIndex, madeNumber);
+
+        for (int i = 0; i < Application.ticketNumber; i++) {
+            int lottoIndex = 0;
+            LottoNumber tmpObj = new LottoNumber(lottoIndex, numberMaker());
             lottoIndex++;
-            numbers.add(tmpObj);
+            lottoList.add(tmpObj);
         }
-        return numbers;
+        return lottoList;
+    }
+
+    public static void printTicket(List<LottoNumber> lottoList) {
+        List<LottoNumber> lottoTicket = lottoList;
+        for (LottoNumber tmpObj : lottoTicket) {
+            System.out.println(tmpObj.getComputerNumber());
+
+        }
     }
 }

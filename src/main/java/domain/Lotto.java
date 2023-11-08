@@ -7,10 +7,13 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final int MIN_NUMBER = 1;
+    private final int MAX_NUMBER = 45;
     private final String ERROR_MESSAGE = "[ERROR] ";
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
+        validateNumberRange(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;
     }
@@ -29,6 +32,14 @@ public class Lotto {
             }
         }
 
+    }
+
+    private void validateNumberRange(List<Integer> numbers) throws IllegalArgumentException {
+        for(int number : numbers) {
+            if(number < MIN_NUMBER || number > MAX_NUMBER){
+                throw new IllegalArgumentException(ERROR_MESSAGE + "값이 범위를 벗어납니다.");
+            }
+        }
     }
 
     public List<Integer> getNumbers() {

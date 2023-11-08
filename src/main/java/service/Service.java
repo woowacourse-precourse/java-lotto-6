@@ -47,12 +47,11 @@ public class Service {
     public Lotto getWinNumbersByUserInput(String input) {
         validator.checkStartOrEndWithComma(input);
         List<String> splitNumbers = Utility.splitByComma(input);
-        validator.checkInputCount(splitNumbers);
         validator.checkWinNumbersIsNumber(splitNumbers);
-        return toParseInt(splitNumbers);
+        return toParseLotto(splitNumbers);
     }
 
-    private Lotto toParseInt(List<String> splitNumbers) {
+    private Lotto toParseLotto(List<String> splitNumbers) {
         List<Integer> winNumbers = new ArrayList<Integer>();
         for (String splitNumber : splitNumbers) {
             int number = Integer.parseInt(splitNumber);
@@ -64,7 +63,6 @@ public class Service {
     public WinningNumber getBonusNumberByUserInput(String input, Lotto winNumbers) {
         validator.checkIsNumber(input);
         int number = Integer.parseInt(input);
-        validator.checkNumberRange(number);
         return new WinningNumber(winNumbers,number);
     }
 

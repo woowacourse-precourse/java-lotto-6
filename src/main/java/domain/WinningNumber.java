@@ -1,12 +1,17 @@
 package domain;
 
 
+import java.util.List;
+
 public class WinningNumber {
+    private final int MIN_NUMBER = 1;
+    private final int MAX_NUMBER = 45;
     private final String ERROR_MESSAGE = "[ERROR] ";
     private final Lotto winningNumber;
     private final int bonusNumber;
     public WinningNumber(Lotto winningNumber, int bonusNumber) {
         validate(winningNumber,bonusNumber);
+        validateNumberRange(bonusNumber);
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
     }
@@ -15,6 +20,11 @@ public class WinningNumber {
         if (winningNumber.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "중복된 값이 있습니다.");
         }
+    }
+    private void validateNumberRange(int number) throws IllegalArgumentException {
+            if(number < MIN_NUMBER || number > MAX_NUMBER){
+                throw new IllegalArgumentException(ERROR_MESSAGE + "값이 범위를 벗어납니다.");
+            }
     }
 
     public int countMatch(Lotto lotto) {

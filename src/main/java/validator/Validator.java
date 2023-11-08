@@ -11,8 +11,6 @@ public class Validator {
     private final int TICKET_PRICE = 1000;
     private final int MAX_AMOUNT = 100000;
     private final int ZERO = 0;
-    private final int MIN_NUMBER = 1;
-    private final int MAX_NUMBER = 45;
     private final String ERROR_MESSAGE = "[ERROR] ";
 
     public void checkWinNumbersIsNumber(List<String> splitNumbers) throws IllegalArgumentException {
@@ -50,20 +48,6 @@ public class Validator {
     public void checkStartOrEndWithComma(String input) throws IllegalArgumentException {
         if (input.startsWith(",") || input.endsWith(",")) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "잘못된 입력 형식입니다.");
-        }
-    }
-
-    public void checkInputCount(List<String> numbers) throws IllegalArgumentException {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "입력 갯수가 잘못되었습니다.");
-        }
-    }
-
-
-
-    public void checkNumberRange(int number) throws IllegalArgumentException {
-        if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "값이 범위를 벗어납니다.");
         }
     }
 }

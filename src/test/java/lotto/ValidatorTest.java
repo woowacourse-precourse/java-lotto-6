@@ -52,24 +52,5 @@ public class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE + "잘못된 입력 형식입니다.");
     }
-    @Test
-    void 당첨_번호_입력_시_6개를_넘어갈_때_예외_발생() {
-        assertThatThrownBy(() -> validator.checkInputCount(List.of("1","2","3","4","5","6","7","8")))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE + "입력 갯수가 잘못되었습니다.");
-    }
-    @Test
-    void 당첨_번호_입력_시_6개보다_적을_때_예외_발생() {
-        assertThatThrownBy(() -> validator.checkInputCount(List.of("1","2","3")))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE + "입력 갯수가 잘못되었습니다.");
-    }
-
-    @Test
-    void 당첨_번호_입력_시_6개가_아닐_때_예외_발생() {
-        assertThatThrownBy(() -> validator.checkInputCount(List.of("1","2","3","4","5","6","7","8")))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE + "입력 갯수가 잘못되었습니다.");
-    }
 
 }

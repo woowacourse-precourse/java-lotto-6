@@ -9,7 +9,7 @@ import lotto.enums.LottoPrize;
 public class EarningRateCalculator {
     public static BigDecimal calculate(EnumMap<LottoPrize, Integer> prizes, int purchaseMoney) {
         BigDecimal totalWinnings = calculateTotalWinnings(prizes);
-        BigDecimal earningRate = calculateEarningRate(totalWinnings, purchaseMoney);
+        BigDecimal earningRate = calculateEarningRateInPercentage(totalWinnings, purchaseMoney);
         return earningRate.setScale(1, RoundingMode.HALF_UP);
     }
 
@@ -30,7 +30,11 @@ public class EarningRateCalculator {
     }
 
     private static BigDecimal calculateEarningRate(BigDecimal totalWinnings, int purchaseMoney) {
-        return totalWinnings.divide(BigDecimal.valueOf(purchaseMoney), 3, RoundingMode.DOWN)
-                .multiply(BigDecimal.valueOf(100));
+        return totalWinnings.divide(BigDecimal.valueOf(purchaseMoney), 3, RoundingMode.DOWN);
+    }
+
+    public static BigDecimal calculateEarningRateInPercentage(BigDecimal totalWinnings, int purchaseMoney) {
+        BigDecimal earningRate = calculateEarningRate(totalWinnings, purchaseMoney);
+        return earningRate.multiply(BigDecimal.valueOf(100));
     }
 }

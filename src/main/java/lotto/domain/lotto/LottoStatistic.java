@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import lotto.domain.amount.PurchaseAmount;
 import lotto.domain.amount.TotalAmount;
+import lotto.dto.LottoStatisticResponse;
 
 public class LottoStatistic {
 
@@ -28,5 +29,9 @@ public class LottoStatistic {
 
     public void calculateEarningRate(PurchaseAmount purchaseAmount) {
         earningRate = (double) totalAmount.dividedBy(purchaseAmount) * 100;
+    }
+
+    public LottoStatisticResponse createStatisticResponse() {
+        return LottoStatisticResponse.of(winningCounts, earningRate);
     }
 }

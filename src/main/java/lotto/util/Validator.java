@@ -13,7 +13,7 @@ public class Validator {
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
-    private static final Pattern NUMBER_PATTERN = Pattern.compile("[1-9]\\\\d*");
+    private static final Pattern NUMBER_PATTERN = Pattern.compile("[1-9]\\d*");
     private static final Pattern LOTTO_INPUT_PATTERN = Pattern.compile("(\\d{1,2},){5}\\d{1,2}");
 
 

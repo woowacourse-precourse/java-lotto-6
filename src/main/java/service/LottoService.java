@@ -19,9 +19,9 @@ public class LottoService {
     public static final int ONE = 1;
     public static final int END_INCLUSIVE = 45;
     public static final int MAX_SIZE = 6;
+    private static final int BONUS_MATCH_NUMBER = 7;
     private Player player;
     private Lottos lottos = new Lottos();
-    private static int BONUS_MATCH_NUMBER = 7;
 
     public List<Lotto> buyLotto(int input) {
         lottos = new Lottos();

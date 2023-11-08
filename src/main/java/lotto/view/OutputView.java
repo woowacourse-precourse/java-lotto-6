@@ -36,6 +36,10 @@ public class OutputView {
         write(LottoMessage.getBonusNumberInputMessage());
     }
 
+    public void writeLottoResultWriteStartMessage() {
+        write(LottoMessage.getLottoResultWriteStartMessage());
+    }
+
     private void write(String output) {
         System.out.println(output);
     }

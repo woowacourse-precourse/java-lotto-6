@@ -24,9 +24,14 @@ public class LottoController {
     public void run() {
         Lottos lottos = lottoMakeService.makeRandomLottos(readPurchaseAmount());
         output.writeEmptyLine();
+
         output.writeLottosInfo(lottos.getLottoInfoResponse());
         output.writeEmptyLine();
+
         WinningNumberAndBonusNumber winningNumberAndBonusNumber = readWinningNumberAndBonusNumber();
+        output.writeEmptyLine();
+
+        writeLottoResult(lottos, winningNumberAndBonusNumber);
     }
 
     private PurchaseAmountRequest readPurchaseAmount() {
@@ -45,6 +50,11 @@ public class LottoController {
         return readUntilValidInput(
             () -> new WinningNumberAndBonusNumber(winningNumberRequest, input.readBonusNumber())
         );
+    }
+
+    private void writeLottoResult(Lottos lottos,
+        WinningNumberAndBonusNumber winningNumberAndBonusNumber) {
+        output.writeLottoResultWriteStartMessage();
     }
 
     private <T> T readUntilValidInput(Supplier<T> inputSupplier) {

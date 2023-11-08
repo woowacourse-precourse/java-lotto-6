@@ -4,7 +4,7 @@ import lotto.exception.ErrorMessage;
 import lotto.exception.LottoException;
 
 public class WinningNumbersFormat implements LottoGameValidator<String> {
-	private static final String WINNING_NUMBERS_FORMAT = "(\\d{1,5},){5,10}(\\d{1,5})";
+	private static final String WINNING_NUMBERS_FORMAT = "(\\d{1,5},){1,10}(\\d{1,5})";
 
 	@Override
 	public void validate(String value) {

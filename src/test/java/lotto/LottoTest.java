@@ -24,4 +24,17 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호의 개수가 6개에 미달할 경우 예외가 발생한다.")
+    @Test
+    void createLottoBySmallSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 1 - 45 범위에 해당하지 않는 경우 예외가 발생한다.")
+    @Test
+    void createLottoByWrongRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 47)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

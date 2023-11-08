@@ -3,22 +3,11 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.Rankings;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-/*
-- [ ] 당첨 여부와 등수를 계산하는 기능
-- [ ] 수익률을 계산 하는 기능
-* JAVA ENUM 기능 사용해서 작성
- */
-/*
-- 당첨 번호가 로또 번호에 몇 개 있는지 contains로 비교, 6개 -> FIRST, 5개 -> 보너스 비교 -> 5+보너스 -> SECOND, 아니면 THIRD, 4개 -> FOURTH,
-3개 -> FIFTH.
- */
 public class CalculateController {
     private final double RATE_VALUE = 100;
-    Lotto lottos;
+    List<Lotto> lottos;
     List<Integer> prizeNumbers;
     int bonusNumber;
     int lottoPrices;
@@ -26,36 +15,47 @@ public class CalculateController {
     double profitRates;
 
 
-    public CalculateController(Lotto lottos, List<Integer> prizeNumbers, int bonusNumber,int lottoPrices) {
+    public CalculateController(List<Lotto> lottos, List<Integer> prizeNumbers, int bonusNumber,int lottoPrices) {
         this.lottos = lottos;
         this.prizeNumbers = prizeNumbers;
         this.bonusNumber = bonusNumber;
         this.lottoPrices = lottoPrices;
     }
 
-    public int whatOfRanking() {
+    public int[] getResults() {
+        return results;
+    }
+    public int whatOfRanking(Lotto lotto) {
         int rankings = 0;
         for (int findNumber :
                 prizeNumbers) {
-            if (lottos.getNumbers().contains(findNumber)) {
+            if (lotto.getNumbers().contains(findNumber)) {
                 rankings++;
             }
-        }
-        if(lottos.getNumbers().contains(bonusNumber)) {
+        } 
+        if(rankings == Rankings.RankingData.THIRD.getValues() && lotto.getNumbers().contains(bonusNumber)) {
             rankings = Rankings.RankingData.SECOND.getValues();
         }
         return rankings;
     }
-    public void calculateResults() {
-        results[Rankings.RankingData.returnRank(whatOfRanking()).getValues()]++;
+    public void calculateResults(Lotto lotto) {
+        Rankings.RankingData result = Rankings.RankingData.returnRank(whatOfRanking(lotto));
+        if(result != null && result.getValues() > 2) {
+            results[result.getValues()]++;
+        }
     }
     public double calculateRate() {
-        double sum = Arrays.stream(results).sum();
+        double sum = 0;
+        for (Rankings.RankingData rankingData:
+             Rankings.RankingData.values()) {
+            sum += (results[rankingData.getValues()] * rankingData.getPrizes());
+        }
         return (sum / lottoPrices) * RATE_VALUE;
     }
-    void run() {
-        for (int i = 0; i < lottoPrices / 1000; i++) {
-            calculateResults();
+    public void run() {
+        for (Lotto lotto:
+             lottos) {
+            calculateResults(lotto);
         }
         profitRates = calculateRate();
     }

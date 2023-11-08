@@ -30,24 +30,33 @@ public class LottoClient {
     }
 
     public void startLottery() {
-        lottoOutput.printAskingMoney();
-        int money = repeatUntilValid(lottoInput::getMoneyAmount);
-
-        LottoReceipt lottoReceipt = purchaseService.purchaseLotto(money);
+        LottoReceipt lottoReceipt = repeatUntilValid(this::purchaseLotto);
         lottoOutput.printLottoReceipt(lottoReceipt);
 
-        lottoOutput.printAskingWinningNumbers();
-        Lotto winningLotto = repeatUntilValid(lottoInput::getLotto);
-
-        lottoOutput.printAskingBonusNumber();
-        LottoBall bonusBall = repeatUntilValid(lottoInput::getBall);
-
+        Lotto winningLotto = repeatUntilValid(this::askAndGetWinningLotto);
+        LottoBall bonusBall = repeatUntilValid(this::askAndGetBonusBall);
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusBall);
+
         Map<Rank, Integer> results = lottoReceipt.getResults(winningNumbers);
         lottoOutput.printResults(results);
 
         double profitRateInPercentage = profitCalculator.calculateProfitRateInPercentage(results);
         lottoOutput.printProfitAsPercentage(profitRateInPercentage);
+    }
+    
+    private LottoReceipt purchaseLotto() {
+        lottoOutput.printAskingMoney();
+        int money = lottoInput.getMoneyAmount();
+        return purchaseService.purchaseLotto(money);
+    }
+
+    private Lotto askAndGetWinningLotto() {
+        lottoOutput.printAskingWinningNumbers();
+        return lottoInput.getLotto();
+    }
+    private LottoBall askAndGetBonusBall() {
+        lottoOutput.printAskingBonusNumber();
+        return lottoInput.getBall();
     }
 
     private <T> T repeatUntilValid(Supplier<T> function) {

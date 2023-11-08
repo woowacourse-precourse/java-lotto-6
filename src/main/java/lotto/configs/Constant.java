@@ -26,7 +26,7 @@ public class Constant {
     public static final String ERROR_MESSAGE_DUPLICATED_NUMBER = "중복된 숫자가 있습니다.";
     public static final String VIEW_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     public static final String VIEW_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    public static final String VIEW_RATE_OF_AMOUNT = "총 수익률은 %f%입니다.";
+    public static final String VIEW_RATE_OF_AMOUNT = "총 수익률은 %s%%입니다.";
     public static final String VIEW_LOTTO_COUNT = "%d개를 구매했습니다.";
     public static final String VIEW_STATISTIC =
             "당첨 통계\n"

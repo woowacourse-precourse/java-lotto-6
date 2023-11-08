@@ -1,5 +1,8 @@
 package lotto.util;
 
+/**
+ * 로또 게임 내의 로또, 정답 번호에 관련된 상수를 관리한다.
+ */
 public enum LottoDetails {
     COUNT_OF_LOTTO_NUMBER(6),
 

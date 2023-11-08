@@ -3,6 +3,9 @@ package lotto.util;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+/**
+ * 해당 등수의 상금에 관한 정보를 저장한다.
+ */
 public enum PrizeMoney {
     FIRST_PRIZE_MONEY(1, 2_000_000_000),
     SECOND_PRIZE_MONEY(2, 30_000_000),
@@ -18,6 +21,12 @@ public enum PrizeMoney {
         this.prizeMoney = prizeMoney;
     }
 
+    /**
+     * 특정 등수의 상금을 반환한다.
+     *
+     * @param prize 등수
+     * @return 해당 등수의 상금
+     */
     public static Integer getPrizeMoney(Integer prize) {
         for (PrizeMoney prizeMoney : PrizeMoney.values()) {
             if (prizeMoney.prize.equals(prize)) {
@@ -27,6 +36,12 @@ public enum PrizeMoney {
         return null;
     }
 
+    /**
+     * 출력 형식에 맞게 상금을 반환한다.
+     *
+     * @param prize 등수
+     * @return 해당 등수의 상금 (ex - 1,000,000)
+     */
     public static String getFormattedPrizeMoney(Integer prize) {
         for (PrizeMoney prizeMoney : PrizeMoney.values()) {
             if (prizeMoney.prize.equals(prize)) {

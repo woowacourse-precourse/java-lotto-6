@@ -1,5 +1,8 @@
 package lotto.util;
 
+/**
+ * 게임의 흐름을 관리하고 입력을 촉구하는 메시지를 관리한다.
+ */
 public enum Introduction {
     INPUT_AMOUNT_OF_LOTTO("구입금액을 입력해 주세요."),
     AMOUNT_OF_LOTTO_PURCHASE("%d개를 구매했습니다."),

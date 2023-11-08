@@ -2,8 +2,8 @@ package lotto.model.data;
 
 import static lotto.util.ExceptionMessage.INVALID_PRIZE_MONEY;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatNoException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -148,41 +148,55 @@ class WinningStatusTest {
 
     @ParameterizedTest(name = "{0} * {1}등 당첨 금액 = {2}")
     @CsvSource({
-            "5, 5, 25000",
-            "6, 4, 300000",
-            "4, 3, 6000000",
-            "3, 2, 90000000",
-            "1, 1, 2000000000"
+            "5, 5, 25000, 3, 0",
+            "6, 4, 300000, 4, 0",
+            "4, 3, 6000000, 5, 0",
+            "3, 2, 90000000, 5, 1",
+            "1, 1, 2000000000, 6, 0"
     })
-    void calculatePrizeMoneyTest(Integer countOfWinning, Integer prize, Long totalPrizeMoney) {
+    void calculatePrizeMoneyTest(Integer countOfWinning, Integer prize, Long totalPrizeMoney,
+                                 Integer countOfMatchedLottoNumber, Integer countOfMatchedBonusNumber) {
         // given
+        for (int i = 0; i < countOfWinning; i++) {
+            winningStatus.recordWinning(countOfMatchedLottoNumber, countOfMatchedBonusNumber);
+        }
+
         // when & then
-        assertThat(winningStatus.calculatePrizeMoney(prize, countOfWinning)).isEqualTo(totalPrizeMoney);
+        assertThat(winningStatus.calculatePrizeMoney(prize)).isEqualTo(totalPrizeMoney);
     }
 
     @ParameterizedTest()
     @CsvSource({
-            "2147483, 1",
-            "0, 5"
+            "2147483, 1, 6, 0",
+            "0, 5, 3, 0"
     })
     @DisplayName("당첨금을 0원 이상 4294966000000000원 이하로 수령했다면 어떠한 Exception도 감지되지 않는다.")
-    void supportedPrizeMoney(Integer countOfWinning, Integer prize) {
+    void supportedPrizeMoney(Integer countOfWinning, Integer prize,
+                             Integer countOfMatchedLottoNumber, Integer countOfMatchedBonusNumber) {
         // given
+        for (int i = 0; i < countOfWinning; i++) {
+            winningStatus.recordWinning(countOfMatchedLottoNumber, countOfMatchedBonusNumber);
+        }
+
         // when & then
-        assertThatNoException().isThrownBy(() -> winningStatus.calculatePrizeMoney(prize, countOfWinning));
+        assertThatNoException().isThrownBy(() -> winningStatus.calculatePrizeMoney(prize));
     }
 
     @ParameterizedTest()
     @CsvSource({
-            "2147484, 1",
-            "-1, 5"
+            "2147484, 1, 6, 0",
     })
-    @DisplayName("당첨금을 0원 미만 4294966000000000원 초과로 수령했다면 IllegalArgumentException이 반환된다.")
-    void notSupportedPrizeMoney(Integer countOfWinning, Integer prize) {
+    @DisplayName("당첨금을 4294966000000000원 초과로 수령했다면 IllegalArgumentException이 반환된다.")
+    void notSupportedPrizeMoney(Integer countOfWinning, Integer prize,
+                                Integer countOfMatchedLottoNumber, Integer countOfMatchedBonusNumber) {
         // given
+        for (int i = 0; i < countOfWinning; i++) {
+            winningStatus.recordWinning(countOfMatchedLottoNumber, countOfMatchedBonusNumber);
+        }
+
         // when & then
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> winningStatus.calculatePrizeMoney(prize, countOfWinning))
+                .isThrownBy(() -> winningStatus.calculatePrizeMoney(prize))
                 .withMessage(INVALID_PRIZE_MONEY.getMessage());
     }
 }

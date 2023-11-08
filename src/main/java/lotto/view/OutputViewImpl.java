@@ -24,18 +24,36 @@ import lotto.model.data.WinningPortfolio;
 import lotto.util.PrizeDetails;
 import lotto.util.PrizeMoney;
 
+/**
+ * {@code OutputView}의 구현부다.
+ */
 public class OutputViewImpl implements OutputView {
 
+    /**
+     * 안내 문구를 출력한다.
+     *
+     * @param introduction 안내 문구
+     */
     @Override
     public void printIntroduction(String introduction) {
         System.out.println(introduction);
     }
 
+    /**
+     * 예외 메시지를 출력한다.
+     *
+     * @param exceptionMessage 예외 메시지
+     */
     @Override
     public void printException(String exceptionMessage) {
         System.out.println(ERROR_PREFIX.getMessage() + exceptionMessage);
     }
 
+    /**
+     * 로또 번호를 출력한다. delimeter와 접두, 접미 문자를 붙여 출력한다.
+     *
+     * @param purchasedLottos 출력할 로또들
+     */
     @Override
     public void printLottos(List<Lotto> purchasedLottos) {
         System.out.println(String.format(AMOUNT_OF_LOTTO_PURCHASE.getIntroduction(), purchasedLottos.size()));
@@ -52,6 +70,11 @@ public class OutputViewImpl implements OutputView {
         }
     }
 
+    /**
+     * 당첨 내역을 출력한다. 5등부터 1등까지의 정보와 당첨 횟수를 출력한다.
+     *
+     * @param winningPortfolio 당첨 내역
+     */
     @Override
     public void printWinningStatistics(WinningPortfolio winningPortfolio) {
         printIntroduction(WINNING_STATISTICS.getIntroduction());
@@ -79,6 +102,11 @@ public class OutputViewImpl implements OutputView {
                 PrizeMoney.getFormattedPrizeMoney(prize), count));
     }
 
+    /**
+     * 수익률을 출력한다. %를 붙이고 그룹화하여 출력 형식에 맞추고 소수점 첫째 자리까지 출력한다.
+     *
+     * @param rateOfReturn 수익률
+     */
     @Override
     public void printRateOfReturn(Double rateOfReturn) {
         String formattedRateOfReturn = formatRateOfReturn(rateOfReturn);

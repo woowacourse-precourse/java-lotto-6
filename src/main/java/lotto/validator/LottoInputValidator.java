@@ -36,18 +36,6 @@ public class LottoInputValidator {
         validateBonusNumberRange(num);
     }
 
-    public static void validateWinningNumberNumeric(String number) {
-        if (!isNumber(number)) {
-            throw new IllegalArgumentException("[ERROR]: 당첨 번호는 1과 45사이의 숫자여야 합니다.");
-        }
-    }
-
-    public static void validateWinningNumberRange(int number) {
-        if (!isOverOneUnderFortyFive(number)) {
-            throw new IllegalArgumentException("[ERROR]: 당첨 번호는 1과 45사이의 숫자여야 합니다.");
-        }
-    }
-
     private static void validateWinningNumberCount(String[] numbersArray) {
         if (numbersArray.length != 6) {
             throw new IllegalArgumentException("[ERROR]: 입력된 숫자의 개수가 6개가 아닙니다.");
@@ -72,5 +60,28 @@ public class LottoInputValidator {
         }
     }
 
+    public static void validatePurchaseMoneyNumeric(String number) {
+        if (!isNumber(number)) {
+            throw new IllegalArgumentException("[ERROR]: 구입 금액은 1000의 배수로 된 숫자를 입력해야 합니다.");
+        }
+    }
 
+    public static void validateThousandMultiple(int number) {
+        if (number % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR]: 입력된 숫자가 1000의 배수가 아닙니다.");
+        }
+    }
+
+    public static void validateUnderThousand(int number) {
+        if (number < 1000) {
+            throw new IllegalArgumentException("[ERROR]: 입력된 숫자가 1000보다 작습니다.");
+        }
+    }
+
+    public static void validatePurchaseMoney(String number) {
+        validatePurchaseMoneyNumeric(number);
+        int num = changeStringToInt(number);
+        validateThousandMultiple(num);
+        validateUnderThousand(num);
+    }
 }

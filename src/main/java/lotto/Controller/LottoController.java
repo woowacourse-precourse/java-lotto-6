@@ -11,13 +11,13 @@ import lotto.model.LottoPurchaseManager;
 import lotto.util.ProfitCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import org.junit.jupiter.api.DisplayName;
 
-public class LottoController {
+public class LottoController implements Controller {
 
     private InputView inputView;
     private OutputView outputView;
     private LottoPurchaseManager lottoPurchaseManager;
-    int purchaseAmount = 0;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -26,56 +26,41 @@ public class LottoController {
 
     public void run() {
         purchaseLotto();
-        validateLotto();
+        generateLotto();
+        getWinningNumber();
+        checkLottoResult();
     }
 
     private void purchaseLotto() {
-        //구매할 로또 개수 받아와서 로또 객체 생성
-        try {
-            outputView.promptForPurchaseAmount();
-            purchaseAmount = inputView.readPurchaseAmount();
-        } catch (NumberFormatException e) {
-            System.out.println(NUMBER_FORMAT_ERROR.getMessage());
-            purchaseLotto();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            purchaseLotto();
-        }
-
+        outputView.promptForPurchaseAmount();
+        int purchaseAmount = inputView.readPurchaseAmount();
         lottoPurchaseManager = new LottoPurchaseManager(purchaseAmount);
-        lottoPurchaseManager.generateLottos();
+    }
 
-        //생성한 로또 출력
+    private void generateLotto() {
+        lottoPurchaseManager.generateLottos();
         outputView.displayPurchaseAmount(lottoPurchaseManager.getCount());
         outputView.displayPurchaseLotto(lottoPurchaseManager.getLottos());
     }
 
-    private void validateLotto() {
+    private void getWinningNumber() {
         //사용자에게 당첨될 로또 번호와 보너스 번호 받아오기
         List<Integer> winningNumbers = new ArrayList<Integer>();
         int bonusNumber = 0;
-        try {
-            outputView.promptForWinningNumbers();
-            winningNumbers = inputView.readWinningNumbers();
-            Collections.sort(winningNumbers);
-            outputView.promptForBonusNumbers();
-            bonusNumber = inputView.readBonusNumber();
-        } catch (NumberFormatException e) {
-            System.out.println(NUMBER_FORMAT_ERROR.getMessage());
-            validateLotto();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            validateLotto();
-        }
+        outputView.promptForWinningNumbers();
+        winningNumbers = inputView.readWinningNumbers();
+        Collections.sort(winningNumbers);
+        outputView.promptForBonusNumbers();
+        bonusNumber = inputView.readBonusNumber();
+    }
 
+    private void checkLottoResult() {
+        //TODO 구현
         //필요한 값 계산하기
         LottoResultManager lottoResultManager = new LottoResultManager(
             lottoPurchaseManager.getLottos(), new LottoRankPolicy(winningNumbers, bonusNumber));
         double lottoProfit = ProfitCalculator.calculateProfitPercentage(purchaseAmount,
             lottoResultManager.getWinningAmount());
-
-        //최종 결과 출력
-        //TODO 미구현
         outputView.displayResult(lottoResultManager.getLottoResult(), lottoProfit);
     }
 

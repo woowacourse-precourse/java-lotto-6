@@ -43,5 +43,14 @@ public class Lotto {
         return count;
     }
 
+    public boolean equalBonus(int bonusNumber) {
+        for (int i = 0; i < 6; i++) {
+            if (numbers.get(i).equals(bonusNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

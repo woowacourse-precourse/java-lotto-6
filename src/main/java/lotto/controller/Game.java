@@ -115,24 +115,31 @@ public class Game implements Runnable {
         outputView.print(buildDividerMessage());
     }
 
+    private void buildWinningResultMessage(StringBuilder sb,
+                                           Entry<FixedLottoPrizeStandard, Integer> lottoWinningResult) {
+        Long matchCount = lottoWinningResult.getKey().getMatchCount();
+        Integer prize = lottoWinningResult.getKey().getPrize();
+        Integer winning = lottoWinningResult.getValue();
+
+        if (lottoWinningResult.getKey().equals(FIVE_NUMBER_WITH_BONUS)) {
+            sb.append(buildLottoResultWithBonusMessage(matchCount, prize, winning));
+            return;
+        }
+
+        sb.append(buildLottoResultMessage(matchCount, prize, winning));
+    }
+
+    private StringBuilder getWinningResultsMessage(Map<FixedLottoPrizeStandard, Integer> lottoWinningResults) {
+        StringBuilder sb = new StringBuilder();
+        lottoWinningResults.entrySet()
+                .forEach(lottoWinningResult -> buildWinningResultMessage(sb, lottoWinningResult));
+        return sb;
+    }
+
     private void printWinningResult() {
         Map<FixedLottoPrizeStandard, Integer> lottoWinningResults =
                 lottoManager.getLottoWinningResults();
-
-        StringBuilder sb = new StringBuilder();
-        for (Entry<FixedLottoPrizeStandard, Integer> lottoWinningResult : lottoWinningResults.entrySet()) {
-            Long matchCount = lottoWinningResult.getKey().getMatchCount();
-            Integer prize = lottoWinningResult.getKey().getPrize();
-            Integer winning = lottoWinningResult.getValue();
-
-            if (lottoWinningResult.getKey().equals(FIVE_NUMBER_WITH_BONUS)) {
-                sb.append(buildLottoResultWithBonusMessage(matchCount, prize, winning));
-                continue;
-            }
-
-            sb.append(buildLottoResultMessage(matchCount, prize, winning));
-        }
-
+        StringBuilder sb = getWinningResultsMessage(lottoWinningResults);
         outputView.print(sb.toString());
     }
 

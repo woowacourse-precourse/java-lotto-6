@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.ConsoleMessage;
 import lotto.constant.LottoNumberRange;
 import lotto.utils.LottoGenerator;
 
@@ -21,12 +22,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ConsoleMessage.SIZE_MISMATCH_ERROR_MESSAGE);
         }
 
         for (Integer number : numbers) {
             if (number < LottoNumberRange.MIN.getValue() || number > LottoNumberRange.MAX.getValue()) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ConsoleMessage.LOTTO_OUT_OF_RANGE_ERROR_MESSAGE);
             }
         }
     }

@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.constant.ConsoleMessage;
 import lotto.constant.LottoNumberRange;
 import lotto.model.Lotto;
 import lotto.model.Capital;
@@ -23,7 +24,7 @@ public class StringUtil {
         try {
             amount = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ConsoleMessage.LOTTO_OUT_OF_RANGE_ERROR_MESSAGE);
         }
 
         return new Capital(amount);
@@ -39,7 +40,7 @@ public class StringUtil {
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.matches()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ConsoleMessage.INVALID_INPUT_FORMAT_ERROR_MESSAGE);
         }
     }
 
@@ -62,13 +63,17 @@ public class StringUtil {
     }
 
     public static int stringToInt(String input) {
-        int result = Integer.parseInt(input.strip());
+        try {
+            int result = Integer.parseInt(input.strip());
 
-        if (result < LottoNumberRange.MIN.getValue() || result > LottoNumberRange.MAX.getValue()) {
-            throw new IllegalArgumentException();
+            if (result < LottoNumberRange.MIN.getValue() || result > LottoNumberRange.MAX.getValue()) {
+                throw new IllegalArgumentException(ConsoleMessage.LOTTO_OUT_OF_RANGE_ERROR_MESSAGE);
+            }
+
+            return result;
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException(ConsoleMessage.LOTTO_OUT_OF_RANGE_ERROR_MESSAGE);
         }
-
-        return result;
     }
 
 }

@@ -15,6 +15,7 @@ public class InputConsole {
         try {
             return StringUtil.stringToCapital(input);
         } catch (IllegalArgumentException exception) {
+            OutputConsole.printErrorMessage(exception);
             return getCapital();
         }
     }
@@ -27,6 +28,7 @@ public class InputConsole {
         try {
             return StringUtil.stringToLottery(input);
         } catch (IllegalArgumentException exception) {
+            OutputConsole.printErrorMessage(exception);
             return getWinningNumbers();
         }
     }
@@ -39,6 +41,7 @@ public class InputConsole {
         try {
             return StringUtil.stringToInt(input);
         } catch (IllegalArgumentException exception) {
+            OutputConsole.printErrorMessage(exception);
             return getBonusNumber();
         }
     }

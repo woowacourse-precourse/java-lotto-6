@@ -47,4 +47,5 @@
 - 테스트 코드 통과를 위해 소수점 한 자리까지 표시 하도록 수정
     - 수익률 계산 : `double profitRate = Math.round(((totalPrize) / totalSpent) * 1000.0) / 10.0;`
 
----
+--- 
+

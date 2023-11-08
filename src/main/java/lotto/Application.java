@@ -25,9 +25,15 @@ public class Application {
                 System.out.println(lotto.getNumbers());
             }
 
+            // 당첨 번호와 보너스 번호 입력
             List<Integer> winningNumbers = getWinningNumbers(); // 당첨 번호 입력
             System.out.println();
+            Lotto winningLotto = new Lotto(winningNumbers); // 당첨 번호를 가지고 winningLotto 라는 객체 생성 -> 생성자 호출 -> validate
+
             int bonus = getBonusNumber(); // 보너스 점수 입력
+            System.out.println();
+            winningLotto.validateBonus(bonus); // 보너스 점수 확인
+
 
             int[] matchCounts = checkMatchingCounts(lottos, winningNumbers, bonus); //맞춘 로또 정보가 담긴 배열
 
@@ -56,7 +62,7 @@ public class Application {
     }
 
     private static List<Lotto> buyLottos(int numberOfLotto) {
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>(); //로또 객체의 목록을 담기 위한 ArrayList 생성
 
         //구매한 로또 개수만큼 숫자 뽑아내기
         for (int i = 0; i < numberOfLotto; i++) {
@@ -105,7 +111,6 @@ public class Application {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-
         String[] prizeNames = {"", "", "", "(5,000원)", "(50,000원)", "(1,500,000원)", "(30,000,000원)", "(2,000,000,000원)"}; // 0, 1, 2, 3, 4, 5, 5+b, 6
 
         for (int i = 3; i < matchCounts.length; i++) {
@@ -120,18 +125,15 @@ public class Application {
                 System.out.println("6개 일치 " + prizeNames[i] + " - " + count + "개");
             }
         }
-
         // 수익률 계산
-        double totalPrize = calculateTotalPrize(matchCounts); // 획득 금액 계산
-        double totalSpent = getTotalSpent(lottos); // 총 구매 금액 계산
-        double profitRate = Math.round(((totalPrize) / totalSpent) * 1000.0) / 10.0;
+        double profitRate = calculateProfitRate(matchCounts, lottos);
         System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 
 
     private static List<Integer> parseNumbers(String input) {
         String[] numbersStr = input.split(",");
-        List<Integer> numbers = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<>(); // 자료형은 정수형 ArrayList
         for (String number : numbersStr) {
             numbers.add(parseInt(number.trim()));
         }
@@ -169,6 +171,16 @@ public class Application {
             totalPrize += prizeMoney[i] * matchCounts[i];
         }
         return totalPrize;
+    }
+
+    private static double calculateProfitRate(int[] matchCounts, List<Lotto> lottos) {
+        double totalPrize = calculateTotalPrize(matchCounts); // 획득 금액 계산
+        double totalSpent = getTotalSpent(lottos); // 총 구매 금액 계산
+        return calculateProfitRate(totalPrize, totalSpent);
+    }
+
+    private static double calculateProfitRate(double totalPrize, double totalSpent) {
+        return Math.round((totalPrize / totalSpent) * 1000.0) / 10.0;
     }
 
 

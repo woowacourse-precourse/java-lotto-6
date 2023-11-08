@@ -11,9 +11,9 @@ public class Application {
     public static void main(String[] args) {
         //구매 금액 입력
         BuyTickets buyTickets = new BuyTickets();
+        Map<Integer, List<Integer>> lotteryNumbers = buyTickets.getLotteryNumbers();
         //당첨 번호 입력
         List<Integer> winningNumbers = SystemIO.requestWinningNumber();
-        Map<Integer, List<Integer>> lotteryNumbers = buyTickets.getLotteryNumbers();
         int bonusNumber = SystemIO.requestBonusNumber();
         //추첨 진행
         Calculations calculations = new Calculations();

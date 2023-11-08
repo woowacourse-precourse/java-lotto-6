@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.LottoNumbers;
 import lotto.domain.Lottos;
 import lotto.utils.constant.BuyPrice;
 import lotto.utils.view.Input;
@@ -34,5 +35,19 @@ public class LottoService {
     private void showBoughtLottoNumbers(Lottos lottos) {
         output.printMessage(lottos.getBuyMessage());
         output.printMessage(lottos.getLottoMessages());
+    }
+
+    public void setupWinningNumbers() {
+        LottoNumbers lottoNumbers = setupLottoNumbers();
+    }
+
+    private LottoNumbers setupLottoNumbers() {
+        try {
+            output.printMessage(Messages.SETUP_WINNING_NUMBERS_MESSAGE.getMessage());
+            return input.setupLottoNumbers();
+        } catch (IllegalArgumentException e) {
+            output.printErrorMessage(e.getMessage());
+            return setupLottoNumbers();
+        }
     }
 }

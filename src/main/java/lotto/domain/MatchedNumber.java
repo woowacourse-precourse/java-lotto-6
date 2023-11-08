@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import lotto.constants.LottoRank;
 
 public class MatchedNumber {
@@ -24,10 +23,9 @@ public class MatchedNumber {
     }
 
     public List<LottoRank> getLottoRanks(List<Lotto> lottos) {
-        return IntStream.range(0, lottos.size())
-                .mapToObj(i -> {
-                    int matchedCount = countMatchedNumbers(matchedNumber.getLottoNumbers(), lottos.get(i));
-                    boolean hasBonus = lottos.get(i).getLottoNumbers().contains(bonusNumber);
+        return lottos.stream().map(lotto -> {
+                    int matchedCount = countMatchedNumbers(matchedNumber.getLottoNumbers(), lotto);
+                    boolean hasBonus = lotto.getLottoNumbers().contains(bonusNumber);
                     return LottoRank.evaluateLottoRank(matchedCount, hasBonus);
                 })
                 .collect(Collectors.toList());

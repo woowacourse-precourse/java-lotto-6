@@ -25,4 +25,8 @@ public class Lotto {
         Validation.validateLottoNumbersCount(numbers);
         Validation.validateDuplicate(numbers);
     }
+
+    public boolean isInclude(int predict) {
+        return numbers.contains(predict);
+    }
 }

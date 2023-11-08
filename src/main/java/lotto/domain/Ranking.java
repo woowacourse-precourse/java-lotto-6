@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import lotto.view.OutputView;
+import lotto.view.OutView;
 
 public enum Ranking {
 
@@ -59,7 +59,7 @@ public enum Ranking {
 
     public void printMessage(int count) {
         if (this != MISS) {
-            OutputView.printSuccessMessage(message, count);
+            OutView.printSuccessMessage(message, count);
         }
     }
 }

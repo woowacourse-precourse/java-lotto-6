@@ -61,9 +61,9 @@ public class LottoController {
     public static int getBonusNumber() {
         try {
             OutputView.printBonusNumberMessage();
-            String input = InputView.readLine();
+            int input = InputView.readInteger();
             OutputView.printEmptyLine();
-            return Integer.parseInt(input);
+            return input;
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
             return getBonusNumber();

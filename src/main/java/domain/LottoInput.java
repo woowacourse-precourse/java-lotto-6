@@ -1,11 +1,10 @@
-package LottoNumber;
+package domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lottoBuy.LottoPurchase;
 
 public class LottoInput {
 	private List<Integer> lottoNumberList;

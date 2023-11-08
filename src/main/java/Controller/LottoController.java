@@ -3,12 +3,12 @@ package Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import LottoNumber.LottoInput;
-import LottoNumber.LottoWinningNumbersInput;
-import Ranking.RankPrize;
-import lotto.Lotto;
-import lotto.PrintLottoNumber;
-import lottoBuy.LottoPurchase;
+import domain.Lotto;
+import domain.LottoInput;
+import domain.LottoPurchase;
+import domain.LottoWinningNumbersInput;
+import domain.PrintLottoNumber;
+import domain.RankPrize;
 
 public class LottoController {
 	private LottoPurchase purchase;
@@ -33,10 +33,6 @@ public class LottoController {
 		purchase.printButLotto();
 	}
 
-	public List<Integer> randomLottoNumbers() {
-		lottonumber = input.setRandomNumber();
-		return lottonumber;
-	}
 
 	public void start() {
 		lotto = printnumber.makeLottoList();

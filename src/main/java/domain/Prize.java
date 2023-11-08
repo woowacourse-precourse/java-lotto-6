@@ -1,4 +1,4 @@
-package Ranking;
+package domain;
 
 public enum Prize {
 	THREE_MATCH(3, 5000),

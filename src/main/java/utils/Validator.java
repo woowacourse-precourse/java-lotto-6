@@ -1,5 +1,6 @@
 package utils;
 
+import error.*;
 import type.ErrorType;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class Validator {
     public static void checkLottoSizeNumberInput(List<Integer> numbers) {
         if (numbers.size() != 6) {
             System.out.println(ErrorType.INVALID_NUMBER_DIGITS.getText());
-            throw new IllegalArgumentException();
+            throw new NotValidLottoSizeException();
         }
     }
 
@@ -22,20 +23,20 @@ public class Validator {
                 .count();
         if (count != numbers.size()) {
             System.out.println(ErrorType.INVALID_NUMBER_DUPLICATED.getText());
-            throw new IllegalArgumentException();
+            throw new NotValidDuplicatedLottoException();
         }
     }
 
     public static void checkLottoBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (bonusNumber <= MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             System.out.println(ErrorType.INVALID_BONUS_NUMBER_RANGE.getText());
-            throw new IllegalArgumentException();
+            throw new NotValidBonusRangeException();
         }
 
         for (int number : numbers) {
             if (number == bonusNumber) {
                 System.out.println(ErrorType.INVALID_BONUS_NUMBER_DUPLICATED.getText());
-                throw new IllegalArgumentException();
+                throw new NotValidBonusDuplicatedException();
             }
         }
     }
@@ -43,7 +44,7 @@ public class Validator {
     public static void checkMoney(int money) {
         if (money % 1000 != MIN_NUMBER || money <= MIN_NUMBER) {
             System.out.println(ErrorType.INVALID_PRICE_INPUT.getText());
-            throw new IllegalArgumentException();
+            throw new NotValidMoneyInputException();
         }
     }
 }

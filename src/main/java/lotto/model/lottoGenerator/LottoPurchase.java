@@ -8,20 +8,23 @@ public class LottoPurchase {
 
     private final LottoPurchaseController purchaseController;
 
+    public LottoPurchase(LottoPurchaseController purchaseController) {
+        this.purchaseController = purchaseController;
+    }
     public LottoPurchase() {
         this.purchaseController = new LottoPurchaseController(new LottoPurchaseInput());
     }
 
     public int getValidatedPurchaseAmount() {
-        while (true) {
-            try {
-                String input = purchaseController.requestPurchaseAmount();
-                return validatePurchaseAmount(input);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            String input = purchaseController.requestPurchaseAmount();
+            return validatePurchaseAmount(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            throw e;
         }
     }
+
 
     private static int validatePurchaseAmount(String input) {
         if (input == null || input.trim().isEmpty()) {

@@ -3,6 +3,8 @@ package lotto.validate;
 import lotto.constant.Constant;
 import lotto.errormessage.InputError;
 
+import java.util.List;
+
 public class InputValidate {
     public static void validateIsNumber(String number) {
         for (int i = 0; i < number.length(); ++i) {
@@ -53,5 +55,11 @@ public class InputValidate {
         return str.chars()
                 .filter(c -> c == ch)
                 .count();
+    }
+
+    public static void validateDuplicateNumber(List<Integer> lottoNumbers, String number){
+        for(int num:lottoNumbers){
+            if(num==Integer.parseInt(number)) throw new IllegalArgumentException(InputError.INPUT_IS_DUPLICATE_NUMBER_ERROR_MESSAGE);
+        }
     }
 }

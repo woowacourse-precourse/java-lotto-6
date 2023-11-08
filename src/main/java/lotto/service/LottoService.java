@@ -9,4 +9,6 @@ public class LottoService {
     public List<Integer> generateLotto(){
         return Randoms.pickUniqueNumbersInRange(Constant.LOTTO_START_NUMBER, Constant.LOTTO_END_NUMBER, Constant.LOTTO_TOTAL_NUMBERS);
     }
+
+
 }

@@ -6,6 +6,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class InputValidateTest {
@@ -92,5 +95,20 @@ class InputValidateTest {
 
         // Then
         Assertions.assertThat(exception.getMessage()).isEqualTo(InputError.INPUT_NOT_CORRECT_SIZE_ERROR_MESSAGE);
+    }
+
+    @DisplayName("보너스번호_당첨번호_중복시")
+    @Test
+    void isBonusNumberDuplicateInput(){
+        // Given
+        String bonusNumber ="1";
+        List<Integer> lottoNumbers = Arrays.asList(1,2,3);
+
+        // When
+        final IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> InputValidate.validateDuplicateNumber(lottoNumbers,bonusNumber));
+
+        // Then
+        Assertions.assertThat(exception.getMessage()).isEqualTo(InputError.INPUT_IS_DUPLICATE_NUMBER_ERROR_MESSAGE);
     }
 }

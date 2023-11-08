@@ -7,4 +7,6 @@ public class InputError {
     final public static String INPUT_NOT_CORRECT_SIZE_ERROR_MESSAGE = "[ERROR]6개의 숫자가 입력되지 않았습니다.";
     final public static String INPUT_OUT_OF_RANGE_ERROR_MESSAGE = "[ERROR]1~45 범위 내의 수만 입력되어야 합니다.";
     final public static String INPUT_NOT_CORRECT_REST_ERROR_MESSAGE = "[ERROR]쉼표 입력이 부정확합니다.";
+    final public static String INPUT_IS_DUPLICATE_NUMBER_ERROR_MESSAGE = "[ERROR]당첨된 로또 번호에 중복되는 번호가 존재합니다.";
+
 }

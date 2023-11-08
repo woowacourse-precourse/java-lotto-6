@@ -14,6 +14,6 @@ public class Output {
                 + (30000000 * result[7]) + (2000000000 * result[6]);
         double value = (revenue / (double) cash) * 100;
 
-        System.out.println("총 수익률은 " + String.format("%.2f%%", value) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", value) + "%입니다.");
     }
 }

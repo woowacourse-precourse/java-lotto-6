@@ -29,4 +29,10 @@ public class Lotto {
         }
         return matched;
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
 }

@@ -30,7 +30,7 @@ public class Statistics {
         }
     }
 
-    public void printStatistics(OutputView outputView, Calculate calculate, int cost){
+    public void printStatistics(OutputView outputView){
         Arrays.stream(MatchNums.values()).forEach(o-> {
             outputView.printStatistics(o.getPrintComment(), countMap.get(o.getNum()));
         });

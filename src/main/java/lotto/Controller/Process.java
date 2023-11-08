@@ -101,7 +101,7 @@ public class Process {
     private void executeStatistics(List<Lotto> lottos, List<Integer> winningNums, int bonus, int cost){
         Statistics statistics = new Statistics();
         statistics.updateResult(new Calculate(), lottos, winningNums, bonus);
-        statistics.printStatistics(outputView, new Calculate(), cost);
+        statistics.printStatistics(outputView);
         statistics.printProfit(outputView, new Calculate(), cost);
     }
 }

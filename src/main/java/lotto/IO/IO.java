@@ -31,19 +31,31 @@ public class IO { //여긴 무조건 정적호출로 해보자
     }
 
     public static void printRanking(LottoRank[] ranks) {
-        Arrays.sort(ranks, Comparator.comparingLong(LottoRank::getPrizeMoney));  // 당첨금액을 기준으로 오름차순 정렬
+        Arrays.sort(ranks, Comparator.comparingLong(LottoRank::getPrizeMoney));
         NumberFormat formatter = NumberFormat.getInstance();
+
         for (LottoRank rank : ranks) {
-            Map<LottoRank, Integer> ranking = rank.getRanking();
-            String bonusBall = Optional.of(rank)
-                    .filter(LottoRank::isBonusBallMatch)
-                    .map(r -> ", 보너스 볼 일치")
-                    .orElse("");
+            String bonusBall = getBonusBallText(rank);
             String prizeMoney = formatter.format(rank.getPrizeMoney());
-            String rankDescription = rank.getMatchCount() + "개 일치" + bonusBall + " (" + prizeMoney + "원) - ";
-            System.out.println(rankDescription + ranking.getOrDefault(rank, 0) + "개");
+
+            printRank(rank, bonusBall, prizeMoney);
         }
     }
+
+    private static String getBonusBallText(LottoRank rank) {
+        return Optional.of(rank)
+                .filter(LottoRank::isBonusBallMatch)
+                .map(r -> ", 보너스 볼 일치")
+                .orElse("");
+    }
+
+    private static void printRank(LottoRank rank, String bonusBall, String prizeMoney) {
+        Map<LottoRank, Integer> ranking = rank.getRanking();
+        String rankDescription = rank.getMatchCount() + "개 일치" + bonusBall + " (" + prizeMoney + "원) - ";
+
+        System.out.println(rankDescription + ranking.getOrDefault(rank, 0) + "개");
+    }
+
 
     public static void printRate(double rate){
         System.out.println("총 수익률은 " + rate + "%입니다.");

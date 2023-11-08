@@ -16,7 +16,7 @@ public class Calculate {
         this.bonus = bonus;
     }
 
-    public int count(List<Integer> lotto) {
+    private int count(List<Integer> lotto) {
         int count = 0;
         for (Integer integer : answer) {
             if (lotto.contains(integer)) {

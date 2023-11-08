@@ -33,7 +33,10 @@ public class Application {
     }
 
     public static void printLottoTickets(List<Lotto> lottos) {
-
+        System.out.println("\n로또 번호를 출력합니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
     }
 
     public static List<Lotto> generateRandomLottoTickets(int buyAmount) {
@@ -55,7 +58,6 @@ public class Application {
             numbers.add(randomNumber);
         }
         numbers.sort(Comparator.naturalOrder());
-        System.out.println(numbers);
         return new Lotto(numbers);
     }
 

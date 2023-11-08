@@ -3,7 +3,6 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +15,8 @@ class BuyerTest {
         LottoMachine lottoMachine = new LottoMachine();
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
         Buyer buyer = new Buyer(lottoMachine, lottoResultChecker);
-        System.setIn(new ByteArrayInputStream("8000".getBytes()));
 
-        assertThatCode(buyer::buyLotto)
+        assertThatCode(() -> buyer.buyLotto(8000))
                 .doesNotThrowAnyException();
         Console.close();
     }

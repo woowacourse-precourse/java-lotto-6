@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constant.LottoInfo.LOTTO_NUMBER_COUNT;
+import static lotto.constant.LottoInfo.LOTTO_PRICE;
 import static lotto.constant.LottoInfo.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoInfo.MIN_LOTTO_NUMBER;
 
@@ -10,6 +11,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoStore {
+    private int getNumberOfLottoPurchases(Integer purchasePrice) {
+        return purchasePrice / LOTTO_PRICE;
+    }
 
     static class LottoMachine {
         public static Lotto generateLotto() {

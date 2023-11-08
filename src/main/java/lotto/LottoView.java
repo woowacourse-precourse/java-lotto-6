@@ -1,54 +1,104 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Console;
 
-public class LottoView {
+import java.util.ArrayList;
+import java.util.List;
 
-    public int getPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+import static java.lang.Integer.parseInt;
+
+public class LottoView {
+    private static final int LOTTO_PRICE = 1000;
+
+    public static int amountInput(){
+        int purchaseAmount;
+        while (true){
+            try{
+                System.out.println("구입금액을 입력해 주세요.");
+                purchaseAmount = parseInt(Console.readLine());
+
+                if(purchaseAmount % LOTTO_PRICE != 0){
+                    throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
+                }
+
+                purchaseAmount /= LOTTO_PRICE;
+                break;
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 올바른 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
+        return purchaseAmount;
     }
-    
-    public void displayLottos(List<Lotto> lottos) {
-        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers().toString());
+
+    public static List<List<Integer>> showLotto(int tickets){
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < tickets; i++) {
+            List<Integer> lottoNumbers = LottoModel.generateRandomLottoNumbers();
+            Lotto lotto = new Lotto(lottoNumbers);
+            result.add(lotto.getNumbers());
+            System.out.println(lotto.getNumbers());
+        }
+        return result;
+    }
+
+    public static List<Integer> winnerInput(){
+        System.out.println("당첨 번호를 입력해주세요.");
+        while (true){
+            try{
+                String[] numbers = Console.readLine().split(",");
+                if (numbers.length != 6) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
+                }
+                List<Integer> winningNumbers = new ArrayList<>();
+                for (int i = 0; i < 6; i++) {
+                    winningNumbers.add(parseInt(numbers[i].trim()));
+                }
+                Lotto lotto = new Lotto(winningNumbers);
+                return lotto.getNumbers();
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 올바른 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
-    
-    public Lotto getWinningLotto() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        List<Integer> numbers = Arrays.stream(input.split(","))
-                                      .map(String::trim)
-                                      .map(Integer::parseInt)
-                                      .collect(Collectors.toList());
-        return new Lotto(numbers);
+
+    public static int bonusInput(){
+        System.out.println("보너스 번호를 입력해주세요.");
+        while (true){
+            try{
+                int bonus = parseInt(Console.readLine());
+                validateNumberRange(bonus);
+                return bonus;
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 올바른 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
-    
-    public int getBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
-    }
-    
-    public void displayResults(LottoResult result) {
+
+    public static void printResult(List<List<Integer>> bought, List<Integer> winner, int bonus) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
-    
-        // Rank 열거형의 순서대로 출력
-        Arrays.stream(Rank.values())
-            .filter(rank -> rank != Rank.NONE) // NONE 등수는 제외
-            .sorted(Comparator.comparingInt(Rank::getMatchCount)) // 오름차순 정렬
-            .forEach(rank -> {
-                int count = result.getMatchResults().getOrDefault(rank, 0);
-                String bonusText = rank.isBonusMatch() ? ", 보너스 볼 일치" : "";
-                System.out.println(rank.getMatchCount() + "개 일치" + bonusText + " (" + rank.getPrize() + "원) - " + count + "개");
-            });
-    
-        System.out.printf("총 수익률은 %.1f%%입니다.\n", result.getProfitRate());
+        List<Integer> matchCounts = LottoModel.calculateMatches(bought, winner, bonus);
+        Rank[] ranks = Rank.values();
+        for (int i = 0; i < ranks.length; i++) {
+            int count = matchCounts.get(i);
+            System.out.println(ranks[i].getDescription() + " - " + count + "개");
+        }
+
+        int totalValue = LottoModel.prize(matchCounts);
+        double result = Math.round((double) totalValue / bought.size()) / 10.0;
+        System.out.println("총 수익률은 " + result + "%입니다.");
+    }
+
+    private static void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1 이상 45 이하의 숫자여야 합니다.");
+        }
     }
 }

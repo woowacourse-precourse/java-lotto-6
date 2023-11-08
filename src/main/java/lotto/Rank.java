@@ -1,55 +1,25 @@
 package lotto;
 
 public enum Rank {
-    FIRST(3, 5_000),
-    SECOND(4, 50_000),
-    THIRD(5, 1_500_000),
-    FOURTH(5, 30_000_000, true),
-    FIFTH(6, 2_000_000_000),
-    NONE(0, 0);
+    FIFTH(0, "3개 일치 (5,000원)"),
+    FOURTH(1, "4개 일치 (50,000원)"),
+    THIRD(2, "5개 일치 (1,500,000원)"),
+    SECOND(3, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    FIRST(4, "6개 일치 (2,000,000,000원)");
 
-    private final int matchCount;
-    private final int prize;
-    private final boolean bonusMatch;
+    private final int index;
+    private final String description;
 
-    Rank(int matchCount, int prize) {
-        this(matchCount, prize, false);
+    Rank(int index, String description) {
+        this.index = index;
+        this.description = description;
     }
 
-    Rank(int matchCount, int prize, boolean bonusMatch) {
-        this.matchCount = matchCount;
-        this.prize = prize;
-        this.bonusMatch = bonusMatch;
+    public int getIndex() {
+        return index;
     }
 
-    public static Rank calculateRank(Lotto userLotto, Lotto winningLotto, int bonusNumber) {
-        int matchCount = (int) userLotto.getNumbers().stream()
-                                        .filter(winningLotto.getNumbers()::contains)
-                                        .count();
-        boolean bonusMatch = userLotto.getNumbers().contains(bonusNumber);
-        
-        if (matchCount == 5 && bonusMatch) {
-            return SECOND;
-        }
-
-        for (Rank rank : values()) {
-            if (matchCount == rank.matchCount && (!rank.bonusMatch || bonusMatch)) {
-                return rank;
-            }
-        }
-
-        return NONE;
-    }
-
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public int getPrize() {
-        return prize;
-    }
-    
-    public boolean isBonusMatch() {
-        return bonusMatch;
+    public String getDescription() {
+        return description;
     }
 }

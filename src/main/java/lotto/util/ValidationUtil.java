@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static lotto.enums.message.ErrorMessage.*;
 import static lotto.enums.LottoNumber.*;
 
 public class ValidationUtil {
@@ -19,7 +20,7 @@ public class ValidationUtil {
         int buyAmount = Integer.parseInt(amount);
 
         if (buyAmount % LEAST_PURCHASE_AMOUNT.getNumber() != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BUY_REMAINDER);
         }
         return buyAmount;
     }
@@ -28,7 +29,7 @@ public class ValidationUtil {
         String regex = "[0-9]+";
 
         if (!Pattern.matches(regex, input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(BUY_TYPE);
         }
     }
     /*
@@ -53,7 +54,7 @@ public class ValidationUtil {
     }
     private void validateNumbersLength(String[] input){
         if(input.length != LENGTH.getNumber()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_COUNT);
         }
     }
 
@@ -62,7 +63,7 @@ public class ValidationUtil {
                 .noneMatch(str -> str.equals(" ") || str.equals(""));
 
         if(!isBlank) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_BLANK);
         }
     }
 
@@ -74,13 +75,13 @@ public class ValidationUtil {
     private void validateWinningNumbersRange(List<Integer> input){
         for(int num : input){
             if(isNotInRange(num)){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(NUMBER_RANGE);
             }
         }
     }
     public void validateBonusNumberRange(int number){
         if(isNotInRange(number)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_RANGE);
         }
     }
     private boolean isNotInRange(int number){
@@ -88,7 +89,7 @@ public class ValidationUtil {
     }
     private void validateDuplicate(String[] input){
         if(Arrays.stream(input).distinct().count() != LENGTH.getNumber()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_DUPLICATE);
         }
     }
 

@@ -15,16 +15,33 @@ public class MainGame {
 
     public void play(){
         messageUtil.printBuyInput();
-        try{
-            String amount = inputUtil.getInput();
-            LottoBuy buyInfo = lottoBuy.lottoBuyInfo(amount);
-            String playerNums = messageUtil.printWinningInput();
-            lottoWinCheck.getPlayerNumbersInfo(playerNums);
-            LottoStatistics lottoStatistics = new LottoStatistics(lottoWinCheck);
-            lottoStatistics.getLottoStatistics(buyInfo.getUserLottos(), buyInfo.getUserAmount());
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        boolean playing = true;
+        while(playing){
+            try{
+                String amount = inputUtil.getInput();
+                LottoBuy buyInfo = lottoBuy.lottoBuyInfo(amount);
+                seperatePlay(buyInfo);
+                playing = false;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+
         }
+    }
+    private void seperatePlay(LottoBuy buyInfo){
+        boolean playing = true;
+        while(playing){
+            try{
+                String playerNums = messageUtil.printWinningInput();
+                lottoWinCheck.getPlayerNumbersInfo(playerNums);
+                LottoStatistics lottoStatistics = new LottoStatistics(lottoWinCheck);
+                lottoStatistics.getLottoStatistics(buyInfo.getUserLottos(), buyInfo.getUserAmount());
+                playing = false;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 
 

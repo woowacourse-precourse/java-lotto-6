@@ -49,9 +49,16 @@ public class LottoWinCheck {
     }
     private List<Integer> getPlayerWinningNumbers(String playersNums){
         List<Integer> lottoNums = validationUtil.validateWinningNumber(playersNums);
-//        messageUtil.printLottoNums(lottoNums);
-        String playerBonusNums = messageUtil.printBonusInput();
-        this.bonusNum = getBonusNumbers(playerBonusNums);
+        boolean playing = true;
+        while(playing){
+            try{
+                String playerBonusNums = messageUtil.printBonusInput();
+                this.bonusNum = getBonusNumbers(playerBonusNums);
+                playing = false;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
         return lottoNums;
     }
     private int getBonusNumbers(String bonusNum){

@@ -16,5 +16,8 @@ public class Lotto {
         }
     }
 
+    public void callValidate(List<Integer> numbers){
+        validate(numbers);
+    }
     // TODO: 추가 기능 구현
 }

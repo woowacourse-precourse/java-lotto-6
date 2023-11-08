@@ -19,10 +19,13 @@ public class UserMoney {
     }
 
     public long getLottoAmount() {
-        return amount / LOTTO_PRICE;
+        return this.amount / LOTTO_PRICE;
     }
 
     public double getRevenueRate(long prize) {
-        return Math.round((double) amount / prize * 100) / 100.0;
+        if (prize != 0) {
+            return Math.round((double) this.amount / prize * 100) / 100.0;
+        }
+        return 0.0;
     }
 }

@@ -31,6 +31,7 @@ public class Controller {
         lottoService.checkLottoRanking(customer,winningNumber);
         OutputMessage.winningMessage();
         OutputMessage.showRank(customer.getLottoResult());
+        OutputMessage.showYieldResult(customer.getYield());
     }
 
     private void resultLotto(Customer customer) {

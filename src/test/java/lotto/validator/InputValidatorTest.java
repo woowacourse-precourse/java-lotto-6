@@ -20,6 +20,7 @@ class InputValidatorTest {
     void validInputWinningNumbersTest() {
         assertThat(InputValidator.validInputWinningNumbers("1,2,3,4,5,6")).isEqualTo("1,2,3,4,5,6");
         assertThatThrownBy(() -> InputValidator.validInputWinningNumbers("1,2,3,4,5,5")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> InputValidator.validInputWinningNumbers("1,[")).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

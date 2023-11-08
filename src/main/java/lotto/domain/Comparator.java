@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import lotto.constants.LottoRankConstants;
+import lotto.dto.Lotto;
+import lotto.dto.WinningLotto;
 
 public class Comparator {
     WinningLotto winningLotto;
@@ -23,8 +25,9 @@ public class Comparator {
     private int getHitCountOfLottoNumbers(Lotto purchasedLotto) {
         int hitCount = 0;
         for (int number : winningLotto.getWinningLottoNumbers()) {
-            if (purchasedLotto.getNumbers().contains(number))
+            if (purchasedLotto.getNumbers().contains(number)) {
                 hitCount += 1;
+            }
         }
         return hitCount;
     }

@@ -1,14 +1,12 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.repository.PurchaseRepository;
-import lotto.service.PurchaseService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.List;
 
 class PurchaseServiceTest {
     PurchaseService purchaseService = new PurchaseService();
@@ -21,7 +19,7 @@ class PurchaseServiceTest {
         // given
         int count = purchaseService.getCountOfPurchasable(payment);
         // when & then
-        Assertions.assertThat(count).isEqualTo(payment/1000);
+        Assertions.assertThat(count).isEqualTo(payment / 1000);
     }
 
     @DisplayName("100원단위로 입력시 버려지고 계산한다.")
@@ -31,7 +29,7 @@ class PurchaseServiceTest {
         // given
         int count = purchaseService.getCountOfPurchasable(payment);
         // when & then
-        Assertions.assertThat(count).isEqualTo(payment/1000);
+        Assertions.assertThat(count).isEqualTo(payment / 1000);
     }
 
     @DisplayName("구입한 장수만큼 레포지토리에 저장된다.")

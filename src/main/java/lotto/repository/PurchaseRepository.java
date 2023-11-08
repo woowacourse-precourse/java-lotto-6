@@ -2,7 +2,7 @@ package lotto.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.dto.Lotto;
 
 public class PurchaseRepository {
     private static final PurchaseRepository instance = new PurchaseRepository();

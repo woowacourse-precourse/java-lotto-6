@@ -1,11 +1,10 @@
-package lotto.domain;
-
-import lotto.constants.LottoRankConstants;
+package lotto.dto;
 
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.constants.LottoRankConstants;
 
 public record LottoRanks(Map<LottoRankConstants, Integer> ranks) {
 

@@ -1,13 +1,10 @@
-package lotto.domain;
-
-import lotto.validator.LottoNumbersValidator;
+package lotto.dto;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Lotto {
-    private final List<Integer> numbers;
+public record Lotto(List<Integer> numbers) {
 
     public Lotto(List<Integer> numbers) {
         this.numbers = sortNumberInAscending(numbers);

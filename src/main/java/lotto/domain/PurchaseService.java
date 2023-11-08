@@ -1,11 +1,10 @@
-package lotto.service;
+package lotto.domain;
 
-import lotto.domain.Lotto;
+import java.util.List;
+import lotto.dto.Lotto;
 import lotto.repository.PurchaseRepository;
 import lotto.utils.RandomNumberGenerator;
 import lotto.validator.LottoPurchaseValidator;
-
-import java.util.List;
 
 public class PurchaseService {
     private static PurchaseRepository purchaseRepository = PurchaseRepository.getInstance();

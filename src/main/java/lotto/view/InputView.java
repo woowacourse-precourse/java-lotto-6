@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import lotto.domain.Lotto;
+import lotto.dto.Lotto;
 import lotto.validator.InputCSVNumbersValidator;
 import lotto.validator.InputNumberValidator;
 import lotto.validator.LottoNumbersValidator;

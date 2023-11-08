@@ -1,12 +1,10 @@
-package lotto.service;
-
-import lotto.domain.Comparator;
-import lotto.domain.Lotto;
-import lotto.constants.LottoRankConstants;
-import lotto.domain.LottoRanks;
-import lotto.domain.WinningLotto;
+package lotto.domain;
 
 import java.util.List;
+import lotto.constants.LottoRankConstants;
+import lotto.dto.Lotto;
+import lotto.dto.LottoRanks;
+import lotto.dto.WinningLotto;
 
 public class LottoDrawService {
     LottoRanks lottoRanks = new LottoRanks();

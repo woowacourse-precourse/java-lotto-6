@@ -13,4 +13,14 @@ public class Result {
             result.put(score, 0);
         }
     }
+
+    public void count(Score score) {
+        result.compute(score, (s, i) -> {
+            if (i != null) {
+                return i + 1;
+            }
+            return 0;
+        });
+    }
+
 }

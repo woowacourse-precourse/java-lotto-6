@@ -1,15 +1,19 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Input {
-    private int totalPrice;
-    private String winningNumber;
-    private int bonusNumber;
+    private static int totalPrice;
+    private static List<Integer> winningNumber;
+    private static int bonusNumber;
 
 
-    private void setTotalPrice(){
+    public static void setTotalPrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        this.totalPrice = Integer.parseInt(Console.readLine());
+        totalPrice = Integer.parseInt(Console.readLine());
+        System.out.println();
 
         if (totalPrice % 1000 != 0) {
             System.out.println("[ERROR] 로또 금액을 잘못 입력하였습니다..");
@@ -17,25 +21,35 @@ public class Input {
         }
     }
 
-    private void setWinningNumber(){
+    public static void setWinningNumber(){
         System.out.println("당첨 번호를 입력해 주세요.");
-        this.winningNumber = Console.readLine();
+        numberList(Console.readLine());
+        System.out.println();
     }
 
-    private void setBonusNumber(){
+    public static void numberList(String winningNumberWithComma) {
+        String[] result = winningNumberWithComma.split(",");
+        winningNumber = new ArrayList<>();
+        for (int i = 0; i < result.length; i++) {
+            winningNumber.add(Integer.parseInt(result[i]));
+        }
+    }
+
+    public static void setBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
-        this.bonusNumber = Integer.parseInt(Console.readLine());
+        bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
     }
 
-    public int getTotalPrice() {
+    public static int getTotalPrice() {
         return totalPrice;
     }
 
-    public String getWinningNumber() {
+    public static List<Integer> getWinningNumber() {
         return winningNumber;
     }
 
-    public int getBonusNumber() {
+    public static int getBonusNumber() {
         return bonusNumber;
     }
 }

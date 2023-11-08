@@ -5,10 +5,18 @@ import camp.nextstep.edu.missionutils.Console;
 public class User {
     private int amount;
     private int totalPrize;
-    private int rate;
+    private double rate;
 
     public int getAmount() {
         return amount;
+    }
+
+    public int getTotalPrize() {
+        return totalPrize;
+    }
+
+    public double getRate() {
+        return rate;
     }
 
     public void insertAmount() {
@@ -16,6 +24,7 @@ public class User {
         while (true) {
             try {
                 this.amount = Integer.parseInt(Console.readLine());
+                System.out.println();
                 if ((this.amount % 1000) != 0) {
                     throw new IllegalArgumentException();
                 }
@@ -26,5 +35,17 @@ public class User {
                 System.out.println("[ERROR] 1,000단위 금액으로만 입력해 주세요.");
             }
         }
+    }
+
+    public void saveTotalPrize(int[] corrects) {
+        for (Prize prize : Prize.values()) {
+            if (corrects[prize.getIndex()] != 0) {
+                totalPrize = prize.getPrize() * corrects[prize.getIndex()];
+            }
+        }
+    }
+
+    public void saveRate(int totalPrize) {
+        rate = (double) totalPrize / (double) amount * 100;
     }
 }

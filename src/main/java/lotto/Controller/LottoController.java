@@ -37,16 +37,11 @@ public class LottoController {
     }
 
     private int getLottoAmountByReceivedMoney() {
-        try {
-            int moneyAmount = view.getLottoBuyAmout();
-            if (moneyAmount % LOTTO_SALES_AMOUNT_MONEY != 0) {
-                throw new IllegalArgumentException(LOTTO_PURCHASE_INPUT.getErrorPhrase());
-            }
-            return moneyAmount / LOTTO_SALES_AMOUNT_MONEY;
-        } catch (IllegalArgumentException e) {
-            view.printErrorMessage(e.getMessage());
-            return getLottoAmountByReceivedMoney();
+        int moneyAmount = view.getLottoBuyAmout();
+        if (moneyAmount % LOTTO_SALES_AMOUNT_MONEY != 0) {
+            throw new IllegalArgumentException(LOTTO_PURCHASE_INPUT.getErrorPhrase());
         }
+        return moneyAmount / LOTTO_SALES_AMOUNT_MONEY;
     }
 
     private void getWinningLottoInformation(Lotto winningLotto, int bonusNumber) {
@@ -84,22 +79,12 @@ public class LottoController {
     }
 
     private HashMap<String, Integer> getLottoResult() {
-        try {
-            HashMap<String, Integer> result = lottoMachine.getLottoWinningResult();
-            return result;
-        } catch (IllegalArgumentException e) {
-            view.printErrorMessage(e.getMessage());
-            return getLottoResult();
-        }
+        HashMap<String, Integer> result = lottoMachine.getLottoWinningResult();
+        return result;
     }
 
     private float getRateOfResult(HashMap<String, Integer> result) {
-        try {
-            float ratioOfResult = lottoMachine.getRateOfResult(result);
-            return ratioOfResult;
-        } catch (IllegalArgumentException e) {
-            view.printErrorMessage(e.getMessage());
-            return getRateOfResult(result);
-        }
+        float ratioOfResult = lottoMachine.getRateOfResult(result);
+        return ratioOfResult;
     }
 }

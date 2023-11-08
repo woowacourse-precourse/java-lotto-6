@@ -7,6 +7,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.HashMap;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -18,9 +19,10 @@ class LottoMachineTest {
     static LottoResultGenerator lottoResultGenerator = new LottoResultGenerator();
     static LottoMachine lottoMachine = new LottoMachine(lottoVendingMachine, lottoResultGenerator);
 
+    @DisplayName("로또 구매과정을 검증")
     @Order(1)
     @Test
-    void 로또_구매_검증() {
+    void lottoBuy() {
         int mount = 1;
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
@@ -30,18 +32,20 @@ class LottoMachineTest {
         );
     }
 
+    @DisplayName("당첨 로또 번호로 비정상값이 들어왔을 때를 검증")
     @Order(2)
     @Test
-    void 당첨_로또_비정상값_오류_검증() {
+    void winningLottoNumberInvalidate() {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 6;
         assertThatThrownBy(() -> lottoMachine.setWinningNumberInformation(winningLotto, bonusNumber)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 추첨 결과 생성 로직을 검증")
     @Order(3)
     @Test
-    void 로또_결과_생성_검증() {
+    void winningResult() {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 9;
         lottoMachine.setWinningNumberInformation(winningLotto, bonusNumber);
@@ -51,9 +55,10 @@ class LottoMachineTest {
         assertThat(result.get(FIRST_RESULT.name()).intValue() == 1);
     }
 
+    @DisplayName("로또 수익률 계산 로직을 검증")
     @Order(4)
     @Test
-    void 로또_수익률_검증() {
+    void rateOfResult() {
         float result = lottoMachine.getRateOfResult(lottoMachine.getLottoWinningResult());
         assertThat(result == 2000000000 / 1000 * 100);
     }

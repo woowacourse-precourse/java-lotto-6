@@ -21,6 +21,23 @@ class LottoServiceTest {
         lottoService = new LottoService();
     }
 
+    @DisplayName("로또 결과 추출")
+    @Test
+    void getLotteryStatistics() {
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6))));
+        lottos.add(new Lotto(new ArrayList<>(List.of(7, 8, 9, 10, 11, 12))));
+        Lotto winningNumbers = new Lotto(new ArrayList<>(List.of(2, 3, 4, 5, 6, 7)));
+        int bonusNumber = 1;
+
+        LottoResult lottoResult = lottoService.lotteryStatistics(lottos, winningNumbers, bonusNumber);
+        assertEquals(lottoResult.getThree(), 0);
+        assertEquals(lottoResult.getFour(), 0);
+        assertEquals(lottoResult.getFive(), 0);
+        assertEquals(lottoResult.getFive_bonus(), 1);
+        assertEquals(lottoResult.getSix(), 0);
+    }
+
     @Test
     void printLottos() {
         List<Lotto> lottos = new ArrayList<>();

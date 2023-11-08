@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final List<Integer> numbers;
-
     public static final String INVALID_MIN_VALUE = "[ERROR] 번호 생성 시 최소값(1) 보다 작은 값이 있습니다.";
     public static final String INVALID_MAX_VALUE = "[ERROR] 번호 생성 시 최대값(45) 보다 큰 값이 있습니다.";
     public static final String INVALID_SIZE = "[ERROR] 번호가 6개로 생성되지 않았습니다.";
     public static final String DUPLICATE_VALUES = "[ERROR] 번호 중 중복된 값이 있습니다.";
+
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         vaildRandomNumbers(numbers);

@@ -12,6 +12,16 @@ public class Bonus {
         if(winningNumbers.getNumbers().contains(number)) {
             throw new IllegalArgumentException();
         }
+        if(!isValidRange(number)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean isValidRange(int number) {
+        if(number < 1 || number > 45) {
+            return false;
+        }
+        return true;
     }
 
     public int getNumber() {

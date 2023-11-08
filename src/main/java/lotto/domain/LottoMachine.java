@@ -7,10 +7,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoMachine {
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
-    private static final int LOTTO_SIZE = 6;
-    private static final int defaultSalePrice = 1_000;
     private int amount;
 
     public LottoMachine() {
@@ -22,17 +18,20 @@ public class LottoMachine {
     }
 
     private void validateUnitOfMoney(int inputAmount) {
-        if (inputAmount % defaultSalePrice != 0) {
+        if (inputAmount % LottoConstant.defaultSalePrice != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위입니다.");
         }
     }
 
     public int calculatePurchaseCount() {
-        return amount / defaultSalePrice;
+        return amount / LottoConstant.defaultSalePrice;
     }
 
     public List<Integer> generateLotto() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        return Randoms.pickUniqueNumbersInRange(
+                LottoConstant.LOTTO_MIN_NUMBER,
+                LottoConstant.LOTTO_MAX_NUMBER,
+                LottoConstant.LOTTO_SIZE);
     }
 
     public Player generatePlayerLotto() {

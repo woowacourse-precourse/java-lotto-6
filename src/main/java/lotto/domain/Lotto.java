@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
-    private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,7 +23,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LottoConstant.LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또는 6개의 숫자가 필요합니다.");
         }
     }
@@ -44,13 +41,14 @@ public class Lotto {
                 .distinct()
                 .count();
 
-        if (lottoSize != LOTTO_SIZE) {
+        if (lottoSize != LottoConstant.LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 숫자는 중복될 수 없습니다.");
         }
     }
 
     private boolean isNotRange(int number) {
-        return !(LOTTO_MIN_NUMBER <= number && number <= LOTTO_MAX_NUMBER);
+        return !(LottoConstant.LOTTO_MIN_NUMBER <= number
+                && number <= LottoConstant.LOTTO_MAX_NUMBER);
     }
 
     public List<Integer> getNumbers() {

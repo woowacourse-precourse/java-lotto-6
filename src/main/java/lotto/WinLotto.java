@@ -13,7 +13,7 @@ public class WinLotto {
         this.winNumbers = winNumbers;
     }
 
-    private validateWinNumbers(List<Integer> winNumbers){
+    private void validateWinNumbers(List<Integer> winNumbers){
         final String RANGE_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 1~45 사이의 숫자여야합니다.";
         final String UNIQUE_NUMBER_EXCEPTION_MESSAGE ="[ERROR] 로또 번호는 중복되지 않아야합니다.";
         final String NUMBER_SIZE_EXCEPTION_MESSAGE = "[ERROR] 로또 번호는 6개입니다.";
@@ -33,6 +33,10 @@ public class WinLotto {
 
     public List<Integer> getWinNumbers(){
         return winNumbers;
+    }
+
+    public boolean isContainNumber(int num){
+        return winNumbers.contains(num);
     }
 
 }

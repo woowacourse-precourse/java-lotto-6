@@ -23,7 +23,9 @@ public class Application {
 
         WinLotto winLotto = computer.getWinningNumber();
         int bonusNumber = computer.getBonusNumber();
-        //computer.validateBonusNumber(bonusNumber, winLotto);
+        computer.validateBonusNumber(bonusNumber, winLotto);
 
+        computer.calculate(winLotto, lottos, bonusNumber);
+        computer.printWinningStatistics(money);
     }
 }

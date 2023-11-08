@@ -1,24 +1,30 @@
 package lotto.model;
 
+import static lotto.enums.ErrorMessage.NEGATIVE_NUM_ERROR;
+
 import java.util.List;
-import lotto.enums.LottoRank;
+import lotto.enums.ErrorMessage;
 
-public class LottoRankPolicy implements RankPolicy {
+public class LottoResultPolicy implements ResultPolicy {
 
-    //로또 번호를 확인하고 해당하는 결과값을 내보냄.
-    private final List<Integer> winningNumbers;
-    private final int bonusNumber;
+    private List<Integer> winningNumbers;
+    private int bonusNumber;
 
-    public LottoRankPolicy(List<Integer> winningNumbers, int bonusNumber) {
+    public void setWinningNumbers(List<Integer> winningNumbers) {
+        validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     @Override
-    public String calculateRank(Lotto lotto) {
+    public LottoResult calculateResult(Lotto lotto) {
         int winningCount = checkLottoNumber(lotto.getNumbers());
-        int bonusCount = checkBonusNumber(lotto.getNumbers());
-        return checkLottoRank(winningCount, bonusCount);
+        boolean bonusMatch = checkBonusNumber(lotto.getNumbers());
+        return new LottoResult(winningCount, bonusMatch);
     }
 
     private int checkLottoNumber(List<Integer> lottoNumbers) {
@@ -27,29 +33,40 @@ public class LottoRankPolicy implements RankPolicy {
             .count();
     }
 
-    private int checkBonusNumber(List<Integer> lottoNumbers) {
-        return (int) lottoNumbers.stream()
-            .filter(number -> number == bonusNumber)
-            .count();
+    private boolean checkBonusNumber(List<Integer> lottoNumbers) {
+        return lottoNumbers.stream()
+            .anyMatch(number -> number == bonusNumber);
     }
 
-    private String checkLottoRank(int winningCount, int bonusCount) {
-        //Enum 비교
-        if (winningCount == 3) {
-            return LottoRank.FIFTH_PRIZE.name();
-        }
-        if (winningCount == 4) {
-            return LottoRank.FOURTH_PRIZE.name();
-        }
-        if (winningCount == 5 && bonusCount == 1) {
-            return LottoRank.SECOND_PRIZE.name();
-        }
-        if (winningCount == 5) {
-            return LottoRank.THIRD_PRIZE.name();
-        }
-        if (winningCount == 6) {
-            return LottoRank.FIRST_PRIZE.name();
-        }
-        return LottoRank.NO_PRIZE.name();
+    private void validateWinningNumbers(List<Integer> numbers) {
+        LottoNumberValidator.validateNumbersSize(numbers);
+        LottoNumberValidator.validateNumberRange(numbers);
+        LottoNumberValidator.validateDuplicateNumbers(numbers);
     }
+
+    private void validateBonusNumber(int bonusNumbers) {
+        validateNegativeNum(bonusNumbers);
+        validateNumberRange(bonusNumbers);
+        validateDuplicateNumber(bonusNumbers);
+    }
+
+    private void validateNegativeNum(int bonusNumber) throws IllegalArgumentException{
+        if(bonusNumber < 0) {
+            throw new IllegalArgumentException(NEGATIVE_NUM_ERROR.getMessage());
+        }
+    }
+
+    private void validateNumberRange(int bonusNumber) throws IllegalArgumentException {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException(ErrorMessage.EXCEED_LOTTO_RANGE_ERROR.getMessage());
+        }
+    }
+
+    private void validateDuplicateNumber(int bonusNumber) throws IllegalArgumentException {
+        if(winningNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException(
+                ErrorMessage.DUPLICATE_WINNING_NUMBER_ERROR.getMessage());
+        }
+    }
+
 }

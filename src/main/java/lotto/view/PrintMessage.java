@@ -8,8 +8,8 @@ public enum PrintMessage {
     WINNING_STATISTICS_HEADER("---"),
     EMPTY(""),
     BUY_AMOUNT_FORMAT("%d개를 구매했습니다."),
-    WINNING_FORMAT("%d개 일치 (%d원) - %d개"),
-    WINNING_BONUS_FORMAT("%d개 일치, 보너스 볼 일치 (%d원) - %d개"),
+    WINNING_FORMAT("%d개 일치 (%,d원) - %d개"),
+    WINNING_BONUS_FORMAT("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
 
     RATE_FORMAT("총 수익률은 %.1f%%입니다.");
 

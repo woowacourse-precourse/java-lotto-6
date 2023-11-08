@@ -20,36 +20,6 @@ public class Lotto {
         this.numbers = sortNumbers(numbers);
     }
 
-    public String getNumbersToString() {
-        List<String> numbers = integerListToStringList(this.numbers);
-        String numbersLine = String.join(DELIMITER_OF_PURCHASE_LOTTO, numbers);
-        return String.format(FORMAT_OF_PURCHASE_LOTTO, numbersLine);
-    }
-
-    public int countSameNumbers(Lotto lotto) {
-        int correctCount = 0;
-        for (int number : lotto.numbers) {
-            if (isContains(number)) {
-                correctCount += 1;
-            }
-        }
-        return correctCount;
-    }
-
-    public boolean isContains(int number) {
-        return numbers.contains(number);
-    }
-
-    private List<Integer> sortNumbers(List<Integer> numbers) {
-        return numbers.stream().sorted().toList(); // TODO: check convention!
-    }
-
-    private List<String> integerListToStringList(List<Integer> beforeType) {
-        return beforeType.stream()
-                .map(number -> Integer.toString(number))
-                .toList();
-    }
-
     private void validate(List<Integer> numbers) {
         validateNumbersCount(numbers);
         validateNumbersRange(numbers);
@@ -79,5 +49,35 @@ public class Lotto {
 
     private boolean isOutOfLottoNumbersRange(int number) {
         return number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER;
+    }
+
+    public String getNumbersToString() {
+        List<String> numbers = integerListToStringList(this.numbers);
+        String numbersLine = String.join(DELIMITER_OF_PURCHASE_LOTTO, numbers);
+        return String.format(FORMAT_OF_PURCHASE_LOTTO, numbersLine);
+    }
+
+    public int countSameNumbers(Lotto lotto) {
+        int correctCount = 0;
+        for (int number : lotto.numbers) {
+            if (isContains(number)) {
+                correctCount += 1;
+            }
+        }
+        return correctCount;
+    }
+
+    public boolean isContains(int number) {
+        return numbers.contains(number);
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().toList(); // TODO: check convention!
+    }
+
+    private List<String> integerListToStringList(List<Integer> beforeType) {
+        return beforeType.stream()
+                .map(number -> Integer.toString(number))
+                .toList();
     }
 }

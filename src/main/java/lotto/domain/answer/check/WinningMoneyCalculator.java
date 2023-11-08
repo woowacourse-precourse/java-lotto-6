@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 public final class WinningMoneyCalculator {
+    // 총 상금액 계산
     public static Long calculateWinnigPrice(Map<Integer, Integer> rankToCount) {
         Set<Integer> keys = rankToCount.keySet();
         long winnigPriceSum = 0L;
@@ -14,6 +15,7 @@ public final class WinningMoneyCalculator {
         return winnigPriceSum;
     }
 
+    // 각 등수에 해당하는 상금액 계산
     static Long getPrice(Integer rank, Integer count) {
         Long price = Arrays.stream(WinningPolicyCondition.values())
                 .filter(winningPolicyCondition -> winningPolicyCondition.rank == rank)

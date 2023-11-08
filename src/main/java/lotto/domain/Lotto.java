@@ -22,6 +22,10 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    /**
+     * 중복수 검사
+     */
     private void verifyDuplicatedNumber(List<Integer> numbers) throws IllegalArgumentException {
         for (int i = 0; i < numbers.size(); i++) {
             for (int j = i + 1; j < numbers.size(); j++) {
@@ -45,6 +49,9 @@ public class Lotto {
         return numbers;
     }
 
+    /**
+     * 다른 로또에 대한 일치숫자 개수 계산
+     */
     public int getMatchNumberCount(Lotto thatLotto) {
         List<Integer> thatLottoNumbers = thatLotto.getNumbers();
         AtomicInteger matchCount = new AtomicInteger();
@@ -56,6 +63,9 @@ public class Lotto {
         return matchCount.get();
     }
 
+    /**
+     * 보너스 번호 계산
+     */
     public boolean hasBonusNumber(int bonus) {
         return this.numbers.contains(bonus);
     }

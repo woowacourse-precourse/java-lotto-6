@@ -14,8 +14,7 @@ public final class LottoAnswerMapper {
                 .collect(Collectors.toList());
         try {
             lottoAnswer = new Lotto(answers);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        } catch (Exception ignored) {
         }
         return lottoAnswer;
     }

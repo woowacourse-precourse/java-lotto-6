@@ -20,6 +20,7 @@ class LottoTest {
     @Test
     void init() {
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        lotto.lottosize=14;
         inputService=new InputService();
     }
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -45,5 +46,12 @@ class LottoTest {
         String price="14000";
         lotto.generateLottoSize(price);
         Assertions.assertThat(lotto.lottosize).isEqualTo(14);
+    }
+    @DisplayName("로또 발행 갯수만큼 로또번호를 생성하는 기능.")
+    @Test
+    void lotto4() {
+        lotto.generateLottoNum();
+        Assertions.assertThat(lotto.getLottoNum().size()).isEqualTo(14);
+
     }
 }

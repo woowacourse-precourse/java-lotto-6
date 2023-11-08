@@ -5,17 +5,27 @@ import static lotto.calculation.model.CalculationConstant.*;
 import java.util.Map;
 
 public class CalculationView {
+
+    private static final StringBuilder sb = new StringBuilder();
     public static void printResult(Map<Integer, Integer> result){
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println("3개 일치 (5,000원) - "+result.get(FIFTH_PLACE)+"개");
-        System.out.println("4개 일치 (50,000원) - "+result.get(FOURTH_PLACE)+"개");
-        System.out.println("5개 일치 (1,500,000원) - "+result.get(THIRD_PLACE)+"개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+result.get(SECOND_PLACE)+"개");
-        System.out.println("6개 일치 (2,000,000,000원) - "+result.get(FIRST_PLACE)+"개");
+        sb
+            .append("당첨 통계").append("\n")
+            .append("---").append("\n")
+            .append("3개 일치 (5,000원) - ").append(result.get(FIFTH_PLACE)).append("개").append("\n")
+            .append("4개 일치 (50,000원) - ").append(result.get(FOURTH_PLACE)).append("개").append("\n")
+            .append("5개 일치 (1,500,000원) - ").append(result.get(THIRD_PLACE)).append("개").append("\n")
+            .append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(result.get(SECOND_PLACE)).append("개").append("\n")
+            .append("6개 일치 (2,000,000,000원) - ").append(result.get(FIRST_PLACE)).append("개")
+        ;
+        System.out.println(sb);
     }
 
     public static void printRevenue(float revenue){
-        System.out.println("총 수익률은 "+String.format("%.1f", revenue)+"%입니다.");
+        sb
+            .append("총 수익률은 ")
+            .append(String.format("%.1f", revenue))
+            .append("%입니다.")
+        ;
+        System.out.println(sb);
     }
 }

@@ -18,6 +18,8 @@ public class LottoController {
     public LottoController(){
     }
 
+    private static final int TICKET_PRICE = 1000;
+    private static final int PERCENTAGE = 100;
     private static PlayerLottoAmount playerLottoAmount;
     private static List<Integer> lotto = new ArrayList<>();
     private static List<Lotto> lottoList;
@@ -69,11 +71,12 @@ public class LottoController {
         Ranking rank;
 
         OutputView.printSuccessResult();
-        for (Lotto value : lottoList) {
-            rank = winningLotto.match(value);
+        for (Lotto lotto : lottoList) {
+            rank = winningLotto.match(lotto);
             result.put(rank, result.get(rank) + 1);
         }
         printResult(result);
+        printEarningRate(result, amount);
     }
 
     private void printResult(Map<Ranking, Integer> result) {
@@ -89,5 +92,14 @@ public class LottoController {
             result.put(rank, 0);
         }
         return result;
+    }
+
+    private void printEarningRate(Map<Ranking, Integer> result, int lottoAmount) {
+        double earningRate = 0;
+        for (Ranking rank : result.keySet()){
+            earningRate = earningRate + ((double) (rank.getWinningAmount()) /
+                    (lottoAmount * TICKET_PRICE) * (result.get(rank)) * (PERCENTAGE));
+        }
+        OutputView.printRevenuRate(earningRate);
     }
 }

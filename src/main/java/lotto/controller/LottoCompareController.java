@@ -6,6 +6,7 @@ public class LottoCompareController {
 
     private final WinningLotto winningLotto = WinningLotto.getInstance();
     private final WinningNumber winningNumber = WinningNumber.getInstance();
+    private final LottoTickets lottoTickets = LottoTickets.getInstance();
 
     private LottoCompareController() {
     }
@@ -19,14 +20,14 @@ public class LottoCompareController {
     }
     public  void lottoTicketsCompareNum(){
         winningLotto.WinningLottoInit();
-        for(Lotto lotto : LottoTickets.getInstance().getBuyLottoTickets()){
+        for(Lotto lotto : lottoTickets.getBuyLottoTickets()){
             lottoCompareNum(lotto);
         }
 
     }
 
     public  double winningLottoRate(){
-        double purchaseAmount = LottoTickets.getInstance().getBuyLottoTickets().size() * 1000;
+        double purchaseAmount = lottoTickets.getBuyLottoTickets().size() * 1000;
         double winningMoney =  winningMoney();
         double resultRate = winningMoney/purchaseAmount * 100;
         return Math.round(resultRate*100)/100.0;

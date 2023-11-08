@@ -1,10 +1,7 @@
 package lotto.model;
 
-import static lotto.ErrorMessage.DUPLICATE_WIN_BONUS;
-
 import java.util.List;
 import lotto.validator.LottoValidator;
-import lotto.view.OutPutView;
 
 public class WinLotto {
     private final WinNumbers winNumbers;

@@ -4,7 +4,6 @@ import static lotto.configuration.LottoConfiguration.LOTTO_PRICE;
 
 import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
 public class Customer {
     private List<Lotto> lottos;

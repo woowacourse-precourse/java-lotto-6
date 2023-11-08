@@ -18,10 +18,16 @@ public class Exceptions {
         try {
             int bonusNumber = Integer.parseInt(bonus);
             if(bonusNumber <= 1 || bonusNumber >= 45){
-                throw new IllegalArgumentException("보너스 번호는 1 ~ 45까지 입력 가능합니다.");
+                throw new IllegalArgumentException("보너스 번호라 1 ~ 45까지 입력 가능합니다.");
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("유효하지 않은 숫자 형식입니다.");
+        }
+    }
+
+    public void isInvalidNullNumber(String number) {
+        if(number.contains(" ") || number.contains(",,")) {
+            throw new IllegalArgumentException("이름은 null값이 될 수 없습니다.");
         }
     }
 }

@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Model.Lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,6 +38,14 @@ public class LottoBuyer {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(lottoNumbers);
         return lottoNumbers;
+    }
+
+    public static List<Lotto> generateLottos(List<Integer> lottoNumbers) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < LOTTO_COUNT; i++) {
+            lottos.add(new Lotto(lottoNumbers));
+        }
+        return lottos;
     }
 
 }

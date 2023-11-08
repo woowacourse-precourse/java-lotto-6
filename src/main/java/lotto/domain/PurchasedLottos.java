@@ -37,4 +37,9 @@ public class PurchasedLottos {
                 .map(lotto -> lotto.getLottoNumberStrings())
                 .collect(Collectors.toList());
     }
+
+    public Amount spendAmount() {
+        int i = purchasedLottosCount() * 1000;
+        return new Amount(String.valueOf(i));
+    }
 }

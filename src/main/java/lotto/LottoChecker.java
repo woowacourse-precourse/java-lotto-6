@@ -24,4 +24,25 @@ public class LottoChecker {
         this.winnerBonus = winnerBonus;
     }
 
+    private Integer getSingleScore(Lotto target) {
+        int score = 0;
+        if (target.getNumbers().contains(this.winnerBonus)) {
+            score += LottoEnum.BONUS_BALL_SCORE.getValue();
+        }
+        for (Integer guessNumber : this.winner.getNumbers()) {
+            if (target.getNumbers().contains(guessNumber)) {
+                score += LottoEnum.NORMAL_BALL_SCORE.getValue();
+            }
+        }
+        return score;
+    }
+
+    public List<Integer> getTotalScores(List<Lotto> targets) {
+        List<Integer> scores = new ArrayList<>();
+        for (Lotto target : targets) {
+            scores.add(getSingleScore(target));
+        }
+        return scores;
+    }
+
 }

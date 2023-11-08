@@ -35,4 +35,12 @@ public enum Prize {
                 .filter(prize -> prize != LAST_PLACE)
                 .collect(Collectors.toList());
     }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public int getMatchLottoNumber() {
+        return matchNumber;
+    }
 }

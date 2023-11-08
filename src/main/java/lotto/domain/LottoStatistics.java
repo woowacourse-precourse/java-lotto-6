@@ -21,11 +21,15 @@ public class LottoStatistics {
         purchaseCount = buyer.getPurchaseCount();
 
         for (Lotto lotto : lottoTicket.getLottoTicket()) {
+            boolean bonusMatch = false;
             long count = lotto.getNumbers().stream()
                     .filter(winningNumber::contains)
                     .count();
-            LottoStatisticsContent.matchHitCount(count).increasePrizeCount();
-            totalPrize += LottoStatisticsContent.matchHitCount(count).getPrize();
+            if (count == 5 && lotto.getNumbers().contains(bonusNumber)){
+                bonusMatch = true;
+            }
+            LottoStatisticsContent.matchHitCount(count, bonusMatch).increasePrizeCount();
+            totalPrize += LottoStatisticsContent.matchHitCount(count,bonusMatch).getPrize();
         }
         lottoResult.addAll(Arrays.asList(LottoStatisticsContent.values()));
     }

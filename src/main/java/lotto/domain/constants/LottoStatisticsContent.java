@@ -24,11 +24,11 @@ public enum LottoStatisticsContent {
         this.message = message;
     }
 
-    public static LottoStatisticsContent matchHitCount(long hitCount) {
+    public static LottoStatisticsContent matchHitCount(long hitCount, boolean bonusMatch) {
         if (hitCount == FIRST.hitCount) {
             return FIRST;
         }
-        if (hitCount == SECOND.hitCount) {
+        if (hitCount == SECOND.hitCount && bonusMatch) {
             return SECOND;
         }
         if (hitCount == THIRD.hitCount) {

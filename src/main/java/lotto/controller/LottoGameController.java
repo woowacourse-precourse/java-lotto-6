@@ -37,7 +37,7 @@ public class LottoGameController {
         try {
             outputView.printInputPurchaseMoney();
             return new PurchaseAmount(inputView.readPurchaseMoney());
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalStateException e) {
             outputView.printErrorMessage(e.getMessage());
             return inputPurchaseAmount();
         }

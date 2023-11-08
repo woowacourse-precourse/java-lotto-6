@@ -6,8 +6,6 @@ import lotto.domain.Ranking;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.domain.lotto.LottoCondition.*;
-
 public class Lottos {
 
     private final NumberGenerator numberGenerator;
@@ -20,7 +18,7 @@ public class Lottos {
 
     private void generateLottos(int lottoAmount) {
         while (lottos.size() < lottoAmount) {
-            lottos.add(new Lotto(numberGenerator.generateNumbers(START_NUMBER.getValue(), END_NUMBER.getValue(), COUNT.getValue())));
+            lottos.add(new Lotto(numberGenerator.generateNumbers()));
         }
     }
 

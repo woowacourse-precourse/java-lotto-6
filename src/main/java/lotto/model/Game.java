@@ -46,38 +46,4 @@ public class Game {
         }
         return matchResult;
     }
-
-    public List<Integer> getMatchResult(List<Integer> lottoNumber) {
-        this.result = initMatchResult();
-        for (List<Integer> numbers : this.getUserLottoNumbers()) {
-            checkMatchResult(this.result, countMatchResult(numbers, lottoNumber), numbers);
-        }
-
-        return this.result;
-    }
-
-    public void checkMatchResult(List<Integer> matchResult, int checkCount, List<Integer> numbers) {
-        if (checkCount == 5 && checkBonusNumber(numbers)) {
-            matchResult.set(7, matchResult.get(7) + 1);
-            return;
-        }
-        matchResult.set(checkCount, matchResult.get(checkCount) + 1);
-    }
-
-    public int countMatchResult(List<Integer> numbers, List<Integer> lottoNumber) {
-        int checkCount = 0;
-        for (int number : lottoNumber) {
-            if (numbers.contains(number)) {
-                checkCount += 1;
-            }
-        }
-        return checkCount;
-    }
-
-    public boolean checkBonusNumber(List<Integer> numbers) {
-        if (numbers.contains(this.getBonusNumber())) {
-            return true;
-        }
-        return false;
-    }
 }

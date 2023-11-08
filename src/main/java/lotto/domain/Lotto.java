@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import lotto.exception.ExceptionMessage;
+import lotto.validator.LottoValidator;
 
 import java.util.List;
 import java.util.Objects;
-
-import static lotto.exception.ExceptionMessage.LOTTO_NUMBERS_DUPLICATED;
 
 
 public class Lotto {
@@ -13,15 +11,9 @@ public class Lotto {
     private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateNumbersLength(numbers);
-        validateDuplicatedNumber(numbers);
+        LottoValidator.validateNumbersLength(numbers);
+        LottoValidator.validateDuplicatedNumber(numbers);
         this.numbers = toSortedLottoNumbers(numbers);
-    }
-
-    private static long getDistinctLength(List<Integer> numbers) {
-        return numbers.stream()
-                .distinct()
-                .count();
     }
 
     private static List<LottoNumber> toSortedLottoNumbers(List<Integer> numbers) {
@@ -31,16 +23,8 @@ public class Lotto {
                 .toList();
     }
 
-    private static void validateNumbersLength(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
-            throw ExceptionMessage.LOTTO_NUMBERS_LENGTH.getException();
-        }
-    }
-
-    private static void validateDuplicatedNumber(List<Integer> numbers) {
-        if (getDistinctLength(numbers) != LOTTO_NUMBERS_LENGTH) {
-            throw LOTTO_NUMBERS_DUPLICATED.getException();
-        }
+    public List<LottoNumber> getNumbers() {
+        return numbers;
     }
 
     @Override
@@ -54,9 +38,5 @@ public class Lotto {
     @Override
     public int hashCode() {
         return Objects.hash(numbers);
-    }
-
-    public List<LottoNumber> getNumbers() {
-        return numbers;
     }
 }

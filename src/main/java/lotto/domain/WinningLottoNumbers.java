@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.dto.input.WinningLottoNumbersDto;
+
 import java.util.Objects;
 
 public class WinningLottoNumbers {
@@ -11,8 +13,8 @@ public class WinningLottoNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLottoNumbers of(Lotto winningNumbers, LottoNumber bonusNumber) {
-        return new WinningLottoNumbers(winningNumbers, bonusNumber);
+    public static WinningLottoNumbers of(WinningLottoNumbersDto winningLottoNumbersDto) {
+        return new WinningLottoNumbers(winningLottoNumbersDto.winningNumbers(), winningLottoNumbersDto.bonusNumber());
     }
 
     public boolean containBonusNumber(Lotto userLotto) {

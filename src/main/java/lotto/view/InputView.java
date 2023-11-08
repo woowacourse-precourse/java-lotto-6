@@ -1,9 +1,8 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 import lotto.domain.dto.input.PurchaseLottoDto;
-import lotto.exception.ExceptionMessage;
+import lotto.domain.dto.input.WinningLottoNumbersDto;
+import lotto.domain.dto.input.WinningLottoNumbersDtoBuilder;
 import lotto.io.Reader;
 import lotto.io.Writer;
 import lotto.parser.Parser;
@@ -33,29 +32,33 @@ public class InputView {
         }
     }
 
-    public Lotto getWinningNumber() {
+    public WinningLottoNumbersDto getWinningLottoNumbers() {
+        WinningLottoNumbersDtoBuilder numbersDtoBuilder = WinningLottoNumbersDtoBuilder.create();
+        getWinningNumber(numbersDtoBuilder);
+        getBonusNumber(numbersDtoBuilder);
+        return numbersDtoBuilder.build();
+    }
+
+    private WinningLottoNumbersDtoBuilder getWinningNumber(WinningLottoNumbersDtoBuilder numbersDtoBuilder) {
         writer.writeln(INPUT_WINNING_NUMBERS);
         try {
             String inputNumbers = reader.readLine();
             List<Integer> winningNumbers = Parser.parseWinningNumbers(inputNumbers);
-            return new Lotto(winningNumbers);
+            return numbersDtoBuilder.winningNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
             writer.writeln(e.getMessage());
-            return getWinningNumber();
+            return getWinningNumber(numbersDtoBuilder);
         }
     }
 
-    public LottoNumber getBonusNumber(Lotto lotto) {
+    private WinningLottoNumbersDtoBuilder getBonusNumber(WinningLottoNumbersDtoBuilder numbersDtoBuilder) {
         writer.writeln(INPUT_BONUS_NUMBERS);
         try {
             int bonusNumber = Parser.parseStrToInt(reader.readLine());
-            if (lotto.getNumbers().contains(new LottoNumber(bonusNumber))) {
-                throw ExceptionMessage.LOTTO_NUMBERS_DUPLICATED.getException();
-            }
-            return new LottoNumber(bonusNumber);
+            return numbersDtoBuilder.bonusNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
             writer.writeln(e.getMessage());
-            return getBonusNumber(lotto);
+            return getBonusNumber(numbersDtoBuilder);
         }
     }
 }

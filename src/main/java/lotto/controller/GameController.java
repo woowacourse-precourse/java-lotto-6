@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.domain.dto.input.PurchaseLottoDto;
+import lotto.domain.dto.input.WinningLottoNumbersDto;
 import lotto.domain.dto.output.DrawLottoDto;
 import lotto.domain.dto.output.LottosDto;
 import lotto.view.InputView;
@@ -23,7 +24,6 @@ public class GameController {
         draw(lottos);
     }
 
-
     private Lottos purchaseLottos() {
         PurchaseLottoDto purchaseAmount = inputView.getPurchaseAmount();
         Money money = Money.from(purchaseAmount.amount());
@@ -34,9 +34,8 @@ public class GameController {
     }
 
     private void draw(Lottos lottos) {
-        Lotto winningNumbers = inputView.getWinningNumber();
-        LottoNumber bonusNumber = inputView.getBonusNumber(winningNumbers);
-        WinningLottoNumbers winningLottoNumbers = WinningLottoNumbers.of(winningNumbers, bonusNumber);
+        WinningLottoNumbersDto winningLottoNumbersDto = inputView.getWinningLottoNumbers();
+        WinningLottoNumbers winningLottoNumbers = WinningLottoNumbers.of(winningLottoNumbersDto);
         DrawMachine drawMachine = DrawMachine.from(winningLottoNumbers);
         DrawLottoDto drawLottoDto = drawMachine.drawAllTicket(lottos);
         outputView.printDrawResult(drawLottoDto);

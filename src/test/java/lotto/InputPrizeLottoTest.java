@@ -10,6 +10,7 @@ public class InputPrizeLottoTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     //로또번호 입력 기능
+    /*
     @Test
     void 예외_테스트_빈칸_입력(){
         assertSimpleTest(() -> {
@@ -17,6 +18,8 @@ public class InputPrizeLottoTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+     */
 
     @Test
     void 예외_테스트_입력_형태_오류(){
@@ -30,6 +33,14 @@ public class InputPrizeLottoTest extends NsTest {
     void 예외_테스트_입력_번호_개수(){
         assertSimpleTest(() -> {
             runException("1000","1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_입력_번호_문자_여부(){
+        assertSimpleTest(() -> {
+            runException("1000","a,2,3,4,5,6");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

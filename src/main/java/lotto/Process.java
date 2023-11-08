@@ -16,7 +16,7 @@ public class Process {
     List<Integer> eachLottoNumber;
 
     //로또 개수 환산하기
-    public int countLottos(int purchaseAmount){
+    public int countLottos(int purchaseAmount) {
         int purchaseCount;
 
         purchaseCount = purchaseAmount / 1000;
@@ -26,7 +26,7 @@ public class Process {
 
 
     //로또 개수만큼 로또 번호 생성
-    public List<Integer> generateLottoNumbers(){
+    private List<Integer> generateLottoNumbers() {
 
         //값을 하드 코딩하지 않는다 - 2주차 피드백
         lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMEBER_RANGE_START, LOTTO_NUMEBER_RANGE_END, LOTTO_NUMBER_COUNT);
@@ -34,23 +34,45 @@ public class Process {
         return lottoNumbers;
     }
 
+
+    public List<List<Integer>> saveLottos(int purchaseCount) {
+        List<Integer> lottoNumbers = null;
+        List<Integer> eachLottoNumber = null;
+        List<List<Integer>> lottos = new ArrayList<>();
+
+
+        for (int i = 0; i < purchaseCount; i++) {
+            lottoNumbers = generateLottoNumbers();
+
+            sortLottoNumbers(lottoNumbers);
+
+            Lotto lotto = new Lotto(lottoNumbers);
+            eachLottoNumber = lotto.getLottoNumbers();
+
+            lottos.add(eachLottoNumber);
+        }
+
+        return lottos;
+    }
+
+
     //각 로또 번호들 오름차순으로 정리
-    public void sortLottoNumbers(List<Integer> lottoNumbers){
+    private void sortLottoNumbers(List<Integer> lottoNumbers) {
         Collections.sort(lottoNumbers);
     }
 
 
-    public List<Object> compareLottos(List<Integer> eachLottoNumber, List<Integer> winningNumbers, int bonusNumber){
+    public List<Object> compareLottos(List<Integer> eachLottoNumber, List<Integer> winningNumbers, int bonusNumber) {
         int mainNumberMatchCount = 0;
         boolean matchedBonusNumber = false;
         List<Object> result = new ArrayList<>();
 
 
-        for(var element : eachLottoNumber){
-            if(winningNumbers.contains(element)){
+        for (var element : eachLottoNumber) {
+            if (winningNumbers.contains(element)) {
                 mainNumberMatchCount++;
             }
-            if(element == bonusNumber){
+            if (element == bonusNumber) {
                 matchedBonusNumber = true;
             }
         }
@@ -63,21 +85,19 @@ public class Process {
 
 
     //수익률 계산
-    public float calculateRateOfReturn(int purchaseAmount, Map<Integer, Integer> winRecordBoard){
+    public float calculateRateOfReturn(int purchaseAmount, Map<Integer, Integer> winRecordBoard) {
 
         int totalPrizeAmount = 0;
         float rateOfReturn;
 
-        for(WinningRankPrize rank : WinningRankPrize.values()){
+        for (WinningRankPrize rank : WinningRankPrize.values()) {
             totalPrizeAmount += Integer.parseInt(rank.getPrizeAmount().replace(",", "")) * winRecordBoard.get(rank.getRank());
         }
 
-        rateOfReturn = (totalPrizeAmount / purchaseAmount);
+        rateOfReturn = (totalPrizeAmount / purchaseAmount) * 100;
 
         return rateOfReturn;
     }
-
-
 
 
     //
@@ -123,14 +143,10 @@ public class Process {
 //    }
 
 
-
-
-
 //    Lotto lotto = new Lotto(lottoNumbers);
 //    eachLottoNumber = lotto.getLottoNumbers();
 
 //    Lotto(lottoNumbers);
-
 
 
 }

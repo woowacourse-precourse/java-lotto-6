@@ -1,12 +1,16 @@
 package lotto.domain;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static lotto.domain.Grade.*;
+import static lotto.domain.Grade.FIVE;
+import static lotto.domain.Grade.FIVE_AND_BONUS;
+import static lotto.domain.Grade.FOUR;
+import static lotto.domain.Grade.NONE;
+import static lotto.domain.Grade.SIX;
+import static lotto.domain.Grade.THREE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

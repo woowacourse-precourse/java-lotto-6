@@ -7,7 +7,7 @@ import static lotto.error.ErrorMessage.WINNING_NUMBER_OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -36,11 +36,11 @@ class WinningNumbersTest {
 
     @DisplayName("당첨 숫자에 특정 숫자가 포함되었는지 확인 가능하다.")
     @Test
-    void containsTest(){
+    void containsTest() {
         WinningNumbers winningNumbers = WinningNumbers.of("1,2,3,4,5,6");
         assertAll(
-                ()->assertThat(winningNumbers.contains(1)).isEqualTo(true),
-                ()->assertThat(winningNumbers.contains(7)).isEqualTo(false)
+                () -> assertThat(winningNumbers.contains(1)).isEqualTo(true),
+                () -> assertThat(winningNumbers.contains(7)).isEqualTo(false)
         );
     }
 }

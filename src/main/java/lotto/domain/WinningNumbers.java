@@ -70,7 +70,7 @@ public class WinningNumbers {
         }
     }
 
-    public boolean contains(Integer number){
+    public boolean contains(Integer number) {
         return winningNumbers.contains(number);
     }
 }

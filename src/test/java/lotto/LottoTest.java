@@ -1,19 +1,21 @@
 package lotto;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Grade;
-import lotto.domain.Lotto;
-import lotto.domain.WinningNumbers;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static lotto.domain.Grade.*;
-import static org.assertj.core.api.Assertions.*;
+import static lotto.domain.Grade.FIVE;
+import static lotto.domain.Grade.FIVE_AND_BONUS;
+import static lotto.domain.Grade.FOUR;
+import static lotto.domain.Grade.NONE;
+import static lotto.domain.Grade.SIX;
+import static lotto.domain.Grade.THREE;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
+
+import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -43,7 +45,7 @@ class LottoTest {
     @Test
     void lottoGrade() {
         final WinningNumbers ANSWER = WinningNumbers.of("1,2,3,4,5,6");
-        final BonusNumber BONUS = BonusNumber.from("45",ANSWER);
+        final BonusNumber BONUS = BonusNumber.from("45", ANSWER);
         final Lotto none = new Lotto(List.of(6, 7, 8, 9, 10, 11));
         final Lotto three = new Lotto(List.of(4, 5, 6, 7, 8, 9));
         final Lotto four = new Lotto(List.of(3, 4, 5, 6, 7, 8));

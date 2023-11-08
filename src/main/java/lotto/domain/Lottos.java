@@ -1,7 +1,9 @@
 package lotto.domain;
 
-import static lotto.domain.Lotto.*;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.domain.Lotto.MAX_NUMBER;
+import static lotto.domain.Lotto.MIN_NUMBER;
+import static lotto.domain.Lotto.NUMBER_LENGTH;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

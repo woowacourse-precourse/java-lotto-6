@@ -21,8 +21,7 @@ public class LottoStatistics {
         }
     }
 
-    public void incrementCount(Integer matchedCount, Integer bonusMatched) {
-        Integer rank = convertRank(matchedCount, bonusMatched);
+    public void incrementCount(Integer rank) {
         counts.set(rank, counts.get(rank) + 1);
         totalReward += getReward(rank);
     }
@@ -39,21 +38,6 @@ public class LottoStatistics {
 
         String str = decFormat.format(calculateReturnRate(spendMoney));
         System.out.println("총 수익률은 " + str + "%입니다.");
-    }
-
-    private Integer convertRank(Integer matchedCount, Integer bonusMatched) {
-        if (matchedCount == 3) {
-            return 5;
-        } else if (matchedCount == 4) {
-            return 4;
-        } else if (matchedCount == 5 && bonusMatched == 0) {
-            return 3;
-        } else if (matchedCount == 5 && bonusMatched == 1) {
-            return 2;
-        } else if (matchedCount == 6) {
-            return 1;
-        }
-        return 6;
     }
 
     private Double calculateReturnRate(Integer spendMoney) {

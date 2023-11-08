@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import lotto.lottoChecker.domain.LottoChecker;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,11 +24,12 @@ public class LottoStatisticsTest {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
+        LottoChecker lottoChecker = new LottoChecker();
         LottoStatistics lottoStatistics = new LottoStatistics();
         for (int i = 0; i <= 6; i++) {
-            lottoStatistics.incrementCount(i, 1);
+            lottoStatistics.incrementCount(lottoChecker.convertRank(i, 1));
         }
-        lottoStatistics.incrementCount(5, 0);
+        lottoStatistics.incrementCount(lottoChecker.convertRank(5, 0));
 
         lottoStatistics.printStatistics();
         lottoStatistics.printReturnRate(7000);
@@ -41,11 +43,9 @@ public class LottoStatisticsTest {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
+        LottoChecker lottoChecker = new LottoChecker();
         LottoStatistics lottoStatistics = new LottoStatistics();
-        for (int i = 0; i <= 6; i++) {
-            lottoStatistics.incrementCount(1, 1);
-            lottoStatistics.incrementCount(2, 1);
-        }
+        lottoStatistics.incrementCount(lottoChecker.convertRank(2, 1));
 
         lottoStatistics.printStatistics();
         lottoStatistics.printReturnRate(7000);

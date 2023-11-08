@@ -13,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Numbers.SIX.getValue()) {
             throw new IllegalArgumentException();
         }
         for (Integer number : numbers) {

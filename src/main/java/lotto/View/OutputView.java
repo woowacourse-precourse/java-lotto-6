@@ -16,13 +16,13 @@ public class OutputView {
     }
 
     public static void printWinningStatistics(List<Integer> winningStatistics, int BonusNumberMatchCount) {
-        int fiveMatches = Collections.frequency(winningStatistics, 5);
+        int fiveMatches = Collections.frequency(winningStatistics, Numbers.FIVE);
         System.out.println(WINNING_STATISTICS_MESSAGE);
-        System.out.println(THREE_MATCHES_MESSAGE + Collections.frequency(winningStatistics, 3) + "개");
-        System.out.println(FOUR_MATCHES_MESSAGE + Collections.frequency(winningStatistics, 4) + "개");
+        System.out.println(THREE_MATCHES_MESSAGE + Collections.frequency(winningStatistics, Numbers.THREE) + "개");
+        System.out.println(FOUR_MATCHES_MESSAGE + Collections.frequency(winningStatistics, Numbers.FOUR) + "개");
         System.out.println(FIVE_MATCHES_MESSAGE + (fiveMatches - BonusNumberMatchCount) + "개");
         System.out.println(FIVE_MATCHES_WITH_BONUS_MESSAGE + BonusNumberMatchCount + "개");
-        System.out.println(SIX_MATCHES_MESSAGE + Collections.frequency(winningStatistics, 6) + "개");
+        System.out.println(SIX_MATCHES_MESSAGE + Collections.frequency(winningStatistics, Numbers.SIX) + "개");
     }
 
     public static void printReturnRate(double returnRate) {

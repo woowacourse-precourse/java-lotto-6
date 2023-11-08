@@ -22,7 +22,7 @@ public class Lotto {
         final Set<Integer> distinctNumbers = new HashSet<>(other.numbers);
         distinctNumbers.addAll(numbers);
 
-        return 2 * LOTTO_NUMBER_SIZE - distinctNumbers.size();
+        return LOTTO_NUMBER_SIZE + (LOTTO_NUMBER_SIZE - distinctNumbers.size());
     }
 
     public int getNumberFromIndex(final int index) {

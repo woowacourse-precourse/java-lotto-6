@@ -10,6 +10,7 @@ import static lotto.utils.OutputMessage.FIVE_MATCH_MESSAGE;
 import static lotto.utils.OutputMessage.FOUR_MATCH_MESSAGE;
 import static lotto.utils.OutputMessage.HYPHEN;
 import static lotto.utils.OutputMessage.HYPHENS;
+import static lotto.utils.OutputMessage.LOTTO_OUTPUT_MESSAGE;
 import static lotto.utils.OutputMessage.RESULT_OUTPUT_BACK_MESSAGE;
 import static lotto.utils.OutputMessage.RESULT_OUTPUT_FRONT_MESSAGE;
 import static lotto.utils.OutputMessage.SIX_MATCH_MESSAGE;
@@ -25,7 +26,8 @@ public class OutputView {
     }
 
     public void printEarningRate(double earningRate) {
-        System.out.println(RESULT_OUTPUT_FRONT_MESSAGE + Double.toString(earningRate) + RESULT_OUTPUT_BACK_MESSAGE);
+        System.out.println(RESULT_OUTPUT_FRONT_MESSAGE.getMessage() + Double.toString(earningRate)
+                + RESULT_OUTPUT_BACK_MESSAGE.getMessage());
     }
 
     public void printInsertBuyPrice() {
@@ -33,16 +35,15 @@ public class OutputView {
     }
 
     public void printInsertWinningNumber() {
-        System.out.println(WINNING_NUMBER_INSERT_MESSAGE.getMessage());
+        System.out.println("\n" + WINNING_NUMBER_INSERT_MESSAGE.getMessage());
     }
 
     public void printInsertBonusNumber() {
-        System.out.println(BONUS_NUMBER_INSERT_MESSAGE);
+        System.out.println("\n" + BONUS_NUMBER_INSERT_MESSAGE.getMessage());
     }
 
     public void printWinningStatisticMessage() {
-        System.out.println(WINNING_STATISTIC_MESSAGE);
-        System.out.println(HYPHENS);
+        System.out.print("\n" + WINNING_STATISTIC_MESSAGE.getMessage() + HYPHENS.getMessage());
     }
 
     public void printWinningStatistic(Map<WinningStatistics, Long> winningStatistics) {
@@ -71,7 +72,7 @@ public class OutputView {
     }
 
     public void printLottoCount(int lottoCount) {
-        System.out.println(lottoCount);
+        System.out.println("\n" + lottoCount + LOTTO_OUTPUT_MESSAGE.getMessage());
     }
 
 }

@@ -27,7 +27,7 @@ class BonusNumberTest {
 
     @DisplayName("보너스 번호 - NULL 입력")
     @Test
-    void bounsNullInput() {
+    void bonusNullInput() {
         String input = "";
 
         assertThatThrownBy(() -> new BonusNumber(input, lotto)).isInstanceOf(IllegalArgumentException.class);
@@ -35,7 +35,7 @@ class BonusNumberTest {
 
     @DisplayName("보너스 번호 - 문자 포함 입력")
     @Test
-    void bounsCharacterInclude() {
+    void bonusCharacterInclude() {
         String input = "12df";
 
         assertThatThrownBy(() -> new BonusNumber(input, lotto)).isInstanceOf(IllegalArgumentException.class);
@@ -43,7 +43,7 @@ class BonusNumberTest {
 
     @DisplayName("보너스 번호 - 문자만 입력")
     @Test
-    void bounsOnlyCharacter() {
+    void bonusOnlyCharacter() {
         String input = "df";
 
         assertThatThrownBy(() -> new BonusNumber(input, lotto)).isInstanceOf(IllegalArgumentException.class);
@@ -51,7 +51,7 @@ class BonusNumberTest {
 
     @DisplayName("보너스 번호 - 로또 숫자 범위 초과 입력")
     @Test
-    void bounsOverRange() {
+    void bonusOverRange() {
         String input = "46";
 
         assertThatThrownBy(() -> new BonusNumber(input, lotto)).isInstanceOf(IllegalArgumentException.class);
@@ -59,7 +59,7 @@ class BonusNumberTest {
 
     @DisplayName("보너스 번호 - 로또 숫자 범위 미만 입력")
     @Test
-    void bounsUnderRange() {
+    void bonusUnderRange() {
         String input = "0";
 
         assertThatThrownBy(() -> new BonusNumber(input, lotto)).isInstanceOf(IllegalArgumentException.class);
@@ -67,7 +67,7 @@ class BonusNumberTest {
 
     @DisplayName("보너스 번호 - 공백 포함 입력")
     @Test
-    void bounsSpaceInclude() {
+    void bonusSpaceInclude() {
         String input = "12 ";
 
         assertThatThrownBy(() -> new BonusNumber(input, lotto)).isInstanceOf(IllegalArgumentException.class);
@@ -75,7 +75,7 @@ class BonusNumberTest {
 
     @DisplayName("보너스 번호 - 공백만 입력")
     @Test
-    void bounsOnlySpace() {
+    void bonusOnlySpace() {
         String input = " ";
 
         assertThatThrownBy(() -> new BonusNumber(input, lotto)).isInstanceOf(IllegalArgumentException.class);
@@ -83,7 +83,7 @@ class BonusNumberTest {
 
     @DisplayName("보너스 번호 - 쉼표로 나눠서 입력")
     @Test
-    void bounsSeparatedNumber() {
+    void bonusSeparatedNumber() {
         String input = "1,2,3";
 
         assertThatThrownBy(() -> new BonusNumber(input, lotto)).isInstanceOf(IllegalArgumentException.class);

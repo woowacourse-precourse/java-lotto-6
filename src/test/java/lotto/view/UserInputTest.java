@@ -16,6 +16,6 @@ class UserInputTest {
     }
 
     @Test
-    void inputBounsNumber() {
+    void inputbonusNumber() {
     }
 }

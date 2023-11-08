@@ -17,7 +17,7 @@ public class UserInput {
         return Console.readLine();
     }
 
-    public static String inputBounsNumber() {
+    public static String inputbonusNumber() {
         System.out.println(BONUS_INPUT_MESSAGE);
         return Console.readLine();
     }

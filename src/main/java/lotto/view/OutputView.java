@@ -8,12 +8,32 @@ import lotto.model.LottoRankings;
 
 public class OutputView {
 
+    private enum Message {
+        PURCHASE_AMOUNT_INPUT("구입금액을 입력해 주세요."),
+        NUMBER_OF_PURCHASE("개를 구매했습니다."),
+        WINNING_NUMBERS_INPUT("당첨 번호를 입력해 주세요."),
+        BONUS_NUMBER_INPUT("보너스 번호를 입력해 주세요."),
+        WINNING_STATISTICS("당첨 통계"),
+        LINE("---"),
+        YIELD("총 수익률은 %s%%입니다.");
+
+        private final String message;
+
+        Message(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
+
     public static void printPurchaseAmountInputMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(Message.PURCHASE_AMOUNT_INPUT.getMessage());
     }
 
     public static void printNumberOfPurchaseMessage(int number) {
-        System.out.println(number + "개를 구매했습니다.");
+        System.out.println(number + Message.NUMBER_OF_PURCHASE.getMessage());
     }
 
     public static void printIssueLottoMessage(List<Integer> numbers) {
@@ -21,16 +41,16 @@ public class OutputView {
     }
 
     public static void printWinningNumbersInputMessage() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(Message.WINNING_NUMBERS_INPUT.getMessage());
     }
 
     public static void printBonusNumberInputMessage() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(Message.BONUS_NUMBER_INPUT.getMessage());
     }
 
     public static void printResultMessage(HashMap<LottoRankings, Integer> lottoResult) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(Message.WINNING_STATISTICS.getMessage());
+        System.out.println(Message.LINE.getMessage());
         printResult(lottoResult);
     }
 
@@ -50,7 +70,7 @@ public class OutputView {
     }
 
     public static void printYieldMessage(String yield) {
-        System.out.println("총 수익률은 " + yield + "%입니다.");
+        System.out.println(String.format(Message.YIELD.getMessage(), yield));
     }
 
     public static void printErrorMessage(IllegalArgumentException e) {

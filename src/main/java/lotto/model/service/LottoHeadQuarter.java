@@ -1,6 +1,6 @@
 package lotto.model.service;
 
-import java.util.List;
+import java.util.Map;
 import lotto.model.domain.LottoWinNumber;
 import lotto.model.domain.RankingBoard;
 import lotto.model.domain.vo.BonusNumber;
@@ -25,11 +25,11 @@ public class LottoHeadQuarter {
     }
 
     public double calculateYield(Money money, RankingBoard rankingBoard) {
-        List<Rank> ranks = rankingBoard.getRanks();
-        int lottoProfits = ranks.stream()
-                .mapToInt(rank -> rank.getMoney() * rank.getHeadCount())
-                .sum();
-
+        Map<Rank, Integer> rankCount = rankingBoard.getRankCount();
+        long lottoProfits = 0;
+        for (Rank rank : Rank.values()) {
+            lottoProfits += (rank.getMoney() * rankCount.get(rank));
+        }
         return ((double)lottoProfits / money.getMoney()) * 100.0;
     }
 }

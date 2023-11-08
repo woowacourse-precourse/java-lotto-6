@@ -1,30 +1,27 @@
 package lotto.model.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.model.domain.vo.Lotto;
 import lotto.model.domain.vo.Lottos;
-import lotto.model.domain.vo.Money;
 import lotto.model.domain.vo.Rank;
 
 public class RankingBoard {
 
     private LottoWinNumber lottoWinNumber;
-    private List<Rank> ranks;
+    private Map<Rank, Integer> rankCount;
 
-    private RankingBoard(LottoWinNumber lottoWinNumber, List<Rank> ranks) {
+    private RankingBoard(LottoWinNumber lottoWinNumber) {
         this.lottoWinNumber = lottoWinNumber;
-        this.ranks = ranks;
+        rankCount = new EnumMap<>(Rank.class);
+        Arrays.stream(Rank.values())
+                .forEach(rank -> rankCount.put(rank, 0));
     }
 
     public static RankingBoard from(LottoWinNumber lottoWinNumber) {
-        List<Rank> ranks = new ArrayList<>();
-        ranks.add(Rank.from("1등", new Money("2000000000")));
-        ranks.add(Rank.from("2등", new Money("30000000")));
-        ranks.add(Rank.from("3등", new Money("1500000")));
-        ranks.add(Rank.from("4등", new Money("50000")));
-        ranks.add(Rank.from("5등", new Money("5000")));
-        return new RankingBoard(lottoWinNumber, ranks);
+        return new RankingBoard(lottoWinNumber);
     }
 
     public void drawWinner(Lottos playerLottos) {
@@ -56,24 +53,12 @@ public class RankingBoard {
     }
 
     private void registerRanking(int winCount, int bonusCount) {
-        if (winCount == 6) {
-            ranks.get(0).addWinner();
-        }
-        if (winCount == 5 && bonusCount == 1) {
-            ranks.get(1).addWinner();
-        }
-        if (winCount == 5) {
-            ranks.get(2).addWinner();
-        }
-        if (winCount == 4) {
-            ranks.get(3).addWinner();
-        }
-        if (winCount == 3) {
-            ranks.get(4).addWinner();
-        }
+        Rank winner = Rank.winner(winCount, bonusCount);
+        Integer i = rankCount.get(winner);
+        rankCount.put(winner, ++i);
     }
 
-    public List<Rank> getRanks() {
-        return ranks;
+    public Map<Rank, Integer> getRankCount() {
+        return rankCount;
     }
 }

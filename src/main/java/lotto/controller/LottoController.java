@@ -15,7 +15,11 @@ import lotto.util.RandomLottoGenerator;
 import lotto.view.Output;
 
 public class LottoController {
-    final InputController inputController = new InputController();
+    final InputController inputController;
+
+    public LottoController(InputController inputController) {
+        this.inputController = inputController;
+    }
 
     public void start() {
         Money money = inputController.getMoney();

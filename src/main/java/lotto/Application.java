@@ -1,29 +1,63 @@
 package lotto;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Application {
 
     public static void main(String[] args) {
         View view = new View();
 
-        int purchaseMoney = view.askPurchaseMoney();
-        LottoMachine lottoMachine = new LottoMachine(purchaseMoney);
+        LottoMachine lottoMachine = purchaseLotto(view);
         showPurchaseLotto(lottoMachine, view);
 
-        List<Integer> winningNumbers = view.askWinningNumbers();
-        Lotto winningLottoTicket = new Lotto(winningNumbers);
+        Lotto winningLottoTicket = askWinningLottoTicket(view);
+        WinningLotto winningLotto = askWinningLotto(view, winningLottoTicket);
 
-        int bonusNumber = view.askBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(winningLottoTicket, bonusNumber);
         LottoResult lottoResult = lottoMachine.calculatePrize(winningLotto);
-
         view.showLottoResult(lottoResult);
+    }
+
+    private static LottoMachine purchaseLotto(View view) {
+        return runUntilValidInput(view, () -> createLottoMachine(view));
     }
 
     private static void showPurchaseLotto(LottoMachine lottoMachine,
                                           View view) {
         List<Lotto> lottoTickets = lottoMachine.getLottoTickets();
-        view.showLottoTickets(lottoTickets);
+        view.showPurchaseLotto(lottoTickets);
+    }
+
+    private static Lotto askWinningLottoTicket(View view) {
+        return runUntilValidInput(view, () -> createWinningNumbers(view));
+    }
+
+    private static WinningLotto askWinningLotto(View view, Lotto winningLottoTicket) {
+        return runUntilValidInput(view, () -> createWinningLotto(view, winningLottoTicket));
+    }
+
+    private static LottoMachine createLottoMachine(View view) {
+        int purchaseMoney = view.askPurchaseMoney();
+        return new LottoMachine(purchaseMoney);
+    }
+
+    private static Lotto createWinningNumbers(View view) {
+        List<Integer> winningNumbers = view.askWinningNumbers();
+        return new Lotto(winningNumbers);
+    }
+
+    private static WinningLotto createWinningLotto(View view, Lotto winningLottoTicket) {
+        int bonusNumber = view.askBonusNumber();
+        return new WinningLotto(winningLottoTicket, bonusNumber);
+    }
+
+    private static <T> T runUntilValidInput(View view, Supplier<T> inputFunction) {
+        while (true) {
+            try {
+                return inputFunction.get();
+            } catch (IllegalArgumentException e) {
+                view.showErrorMessage(e);
+            }
+        }
     }
 }

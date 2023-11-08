@@ -12,10 +12,6 @@ public record LottoResult(BigDecimal rateOfReturn, Map<LottoRank, Integer> rankT
         this(calculateRateOfReturn(purchaseMoney, earnMoney), rankToCount);
     }
 
-    public String rateOfReturnString() {
-        return rateOfReturn.toString();
-    }
-
     private static BigDecimal calculateRateOfReturn(int purchaseMoney, int earnMoney) {
         return BigDecimal.valueOf(earnMoney)
                 .divide(BigDecimal.valueOf(purchaseMoney), 3, RoundingMode.HALF_UP)

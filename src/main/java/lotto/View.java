@@ -37,7 +37,7 @@ public class View {
         return askNumber();
     }
 
-    public void showLottoTickets(List<Lotto> lottoTickets) {
+    public void showPurchaseLotto(List<Lotto> lottoTickets) {
         printBlankLine();
         println(lottoTickets.size() + SHOW_PURCHASE_LOTTO_COUNT);
         for (Lotto lotto : lottoTickets) {
@@ -53,6 +53,11 @@ public class View {
             println(showMatchCount(rank) + " " + showWinningMoney(rank) + " - " + showRankCount(rankToCount, rank));
         }
         println(SHOW_RATE_OF_RETURN.formatted(result.rateOfReturn()));
+    }
+
+    public void showErrorMessage(IllegalArgumentException e) {
+        printBlankLine();
+        println(e.getMessage());
     }
 
     private static String showRankCount(Map<LottoRank, Integer> rankToCount, LottoRank rank) {

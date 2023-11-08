@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.RankResult;
-import lotto.util.Formatter;
+import lotto.util.Converter;
 
 public class OutputView {
     private static final String READ_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -28,12 +28,12 @@ public class OutputView {
     public static void displayUserLottos(List<Lotto> userLottos) {
         System.out.printf(PURCHASE_INFO_MESSAGE, userLottos.size());
         userLottos.forEach(userLotto -> {
-            System.out.println(Formatter.convertLottoToDisplayFormat(userLotto.getNumbers()));
+            System.out.println(Converter.convertLottoToDisplayFormat(userLotto.getNumbers()));
         });
     }
 
     public static void displayResult(RankResult rankResult, float rateOfReturn) {
-        System.out.print(RESULT_HEADER + Formatter.convertResultToDisplayFormat(rankResult));
+        System.out.print(RESULT_HEADER + Converter.convertResultToDisplayFormat(rankResult));
         System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 

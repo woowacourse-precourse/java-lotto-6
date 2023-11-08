@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import lotto.model.Rank;
 import lotto.model.RankResult;
 
-public class Formatter {
+public class Converter {
     private static final String MATCH_COUNT_FORMAT = "%d개 일치 (%s원) - %d개\n";
     private static final String SECOND_RANK_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
     private static final String SEPARATOR = ", ";
@@ -37,12 +37,12 @@ public class Formatter {
 
     private static String convertRankToDisplayFormat(Rank rank, int count) {
         return String.format(MATCH_COUNT_FORMAT, rank.getMatchingCount(),
-                Formatter.convertPrizeToDisplayFormat(rank.getPrize()), count);
+                Converter.convertPrizeToDisplayFormat(rank.getPrize()), count);
     }
 
     public static String convertSecondRankToDisplayFormat(int count) {
         return String.format(SECOND_RANK_FORMAT, Rank.SECOND.getMatchingCount(),
-                Formatter.convertPrizeToDisplayFormat(Rank.SECOND.getPrize()),
+                Converter.convertPrizeToDisplayFormat(Rank.SECOND.getPrize()),
                 count);
     }
 

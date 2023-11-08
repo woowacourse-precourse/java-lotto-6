@@ -7,7 +7,7 @@ public enum ExceptionMessage {
     PURCHASE_AMOUNT_SHOULD_BE_MULTIPLE_OF_THOUSAND("1,000원 단위의 구매 금액을 입력해주세요."),
     LOTTO_NUMBER_LIST_SIZE("6개의 숫자를 콤마로 구분하여 입력해주세요."),
     LOTTO_NUMBER_HAS_DUPLICATED_NUMBER("중복된 숫자를 입력했습니다."),
-    INPUT_LOTTO_NUM_DUPLICATED_BONUSNUM("입력하신 당첨 번호와 중복되지 않은 보너스 숫자를 입력해주세요.");
+    INPUT_LOTTO_NUM_DUPLICATED_BONUS_NUMBER("입력하신 당첨 번호와 중복되지 않은 보너스 숫자를 입력해주세요.");
 
     private final String message;
 

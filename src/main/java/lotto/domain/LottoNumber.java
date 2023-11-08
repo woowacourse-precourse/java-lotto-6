@@ -9,6 +9,7 @@ public class LottoNumber {
         validate(lottoNumber);
         this.lottoNumber = Integer.parseInt(lottoNumber);
     }
+
     private void validate(String lottoNumber) {
         if (isInvalidType(lottoNumber)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 숫자여야 합니다.");

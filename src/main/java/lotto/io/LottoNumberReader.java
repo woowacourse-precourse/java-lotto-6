@@ -9,6 +9,7 @@ import lotto.service.HasDuplicateService;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.exception.DuplicateLottoNumbersException.checkForDuplicates;
 import static lotto.exception.LottoNumberException.LottoNumberException;
 
 public class LottoNumberReader {
@@ -17,9 +18,7 @@ public class LottoNumberReader {
         try {
             String input = Console.readLine();
             lottonumbers = LottoNumberException(input);
-            if (HasDuplicateService.hasDuplicates(lottonumbers)) {
-                throw new DuplicateLottoNumbersException("로또 번호에 중복된 값이 있습니다.");
-            }
+            checkForDuplicates(lottonumbers);
             Lotto lotto = new Lotto(lottonumbers);
             return lottonumbers;
         }catch (DuplicateLottoNumbersException e){

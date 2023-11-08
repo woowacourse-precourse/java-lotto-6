@@ -15,7 +15,6 @@ public class BonusNumberReader {
             LottoNumberRangeException.NumberRangeException(number);
             return number;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return bonusnumber(); // 예외가 발생한 경우 다시 입력하도록 재귀 호출
         }
     }

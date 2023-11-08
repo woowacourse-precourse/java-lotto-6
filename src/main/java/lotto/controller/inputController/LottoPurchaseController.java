@@ -1,17 +1,17 @@
 package lotto.controller.inputController;
-import lotto.model.validator.LottoPurchaseValidator;
 import lotto.view.inputView.LottoPurchaseInput;
 
 public class LottoPurchaseController {
+    private final LottoPurchaseInput inputView;
 
+    public LottoPurchaseController(LottoPurchaseInput inputView) {
+        this.inputView = inputView;
+    }
 
-    private final LottoPurchaseInput inputView = new LottoPurchaseInput();
-
-    public int getPurchaseAmount() {
+    public String requestPurchaseAmount() {
         while (true) {
             try {
-                String input = inputView.requestPurchaseAmount();
-                return LottoPurchaseValidator.validatePurchaseAmount(input);
+                return inputView.requestPurchaseAmount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

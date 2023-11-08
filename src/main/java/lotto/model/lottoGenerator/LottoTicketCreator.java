@@ -1,28 +1,19 @@
 package lotto.model.lottoGenerator;
 
-
-import lotto.model.lottoResultChecker.Lotto;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class LottoTicketCreator {
-    private final LottoNumberGenerator numberGenerator;
-    private final LottoTicketCalculator ticketCalculator;
+    public class LottoTicketCreator {
+        private final LottoNumberGenerator numberGenerator;
 
-    public LottoTicketCreator() {
-        this.numberGenerator = new LottoNumberGenerator();
-        this.ticketCalculator = new LottoTicketCalculator();
-    }
-
-    public List<Lotto> createLottoTickets(int purchaseAmount) {
-        int ticketCount = ticketCalculator.calculateNumberOfTickets(purchaseAmount);
-        List<Lotto> tickets = new ArrayList<>();
-
-        for (int i = 0; i < ticketCount; i++) {
-            tickets.add(new Lotto(numberGenerator.generateNumbers()));
+        public LottoTicketCreator(LottoNumberGenerator numberGenerator) {
+            this.numberGenerator = numberGenerator;
         }
 
-        return tickets;
+        public List<List<Integer>> createLottoTickets(int numberOfTickets) {
+            return IntStream.range(0, numberOfTickets)
+                    .mapToObj(i -> numberGenerator.generateNumbers())
+                    .collect(Collectors.toList());
+        }
     }
-}

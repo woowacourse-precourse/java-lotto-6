@@ -12,7 +12,13 @@ public class LottoBonusWinningNumberController {
     }
 
     public LottoBonus receiveAndCreateLottoBonus(List<Integer> winningNumbers) {
-        String input = bonusNumberInput.requestBonusNumber();
-        return new LottoBonus(input, winningNumbers);
+        while (true) {
+            try {
+                String input = bonusNumberInput.requestBonusNumber();
+                return new LottoBonus(input, winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

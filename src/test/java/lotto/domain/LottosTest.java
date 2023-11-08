@@ -23,4 +23,19 @@ class LottosTest {
         assertEquals(2, lottoList.size());
     }
 
+    @DisplayName("getLotto에서 Lotto를 받은 뒤, 비교 테스트")
+    @Test
+    public void testgetLottos() {
+        // Given
+        List<List<Integer> > numbers = Arrays.asList(
+                Arrays.asList(1, 2, 3, 4, 5, 6),
+                Arrays.asList(7, 8, 9, 10, 11, 12)
+        );
+        // When
+        Lottos lottos = new Lottos(numbers);
+        // Then
+        List<Lotto> lottoList = lottos.getLottos();
+        List<List<Integer>> expectedNumbers = numbers.subList(0, 2);
+        assertEquals(expectedNumbers, lottoList.stream().map(Lotto::getNumbers).toList());
+    }
 }

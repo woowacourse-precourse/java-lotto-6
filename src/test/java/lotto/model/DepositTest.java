@@ -1,6 +1,5 @@
 package lotto.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -9,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class DepositTest {
     private static Stream<Arguments> normalDepositAmountArguments() {
@@ -42,7 +42,8 @@ public class DepositTest {
         Deposit deposit = new Deposit(depositAmount);
 
         // then
-        assertThat(deposit.calculateBuyableLottoAmount()).isEqualTo(purchaseAmount);
+        assertThat(deposit.calculateBuyableLottoAmount())
+                    .isEqualTo(purchaseAmount);
     }
 
     @ParameterizedTest(name = "{0}")
@@ -50,7 +51,7 @@ public class DepositTest {
     @DisplayName("예외적인 구입 금액 테스트")
     void exceptionPurchaseAmountTest(String testName, String depositAmount) {
         // when, then
-        Assertions.assertThatThrownBy(() -> new Deposit(depositAmount))
+        assertThatThrownBy(() -> new Deposit(depositAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }

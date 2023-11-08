@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Result {
@@ -25,9 +26,10 @@ public class Result {
 
         Arrays.stream(ResultType.values())
                 .filter(resultType -> resultType != ResultType.NONE)
+                .sorted(Comparator.comparingInt(resultType -> resultType.matchCount))
                 .forEach(resultType -> resultType.printWinningResult(winningCount[resultType.ordinal()]));
 
-        double profitRate = ((double) totalPrize - totalCost) / totalCost * 100;
+        double profitRate = (double) totalPrize / totalCost * 100;
         profitRate = Math.round(profitRate * 10) / 10.0;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
@@ -81,7 +83,9 @@ public class Result {
         }
 
         public void printWinningResult(int count) {
-            System.out.printf("%d개 일치 (%,d원) - %d개%n", this.matchCount, this.prize, count);
+            String bonusBallInfo = this.hasBonusBall ? ", 보너스 볼 일치" : "";
+            String matchInfo = (this.matchCount == 5 && this.hasBonusBall) ? "5개 일치" + bonusBallInfo : this.matchCount + "개 일치";
+            System.out.printf("%s (%,d원) - %d개%n", matchInfo, this.prize, count);
 
         }
     }

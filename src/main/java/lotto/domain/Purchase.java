@@ -9,9 +9,13 @@ public class Purchase {
         while (true) {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
-                int purchaseQuantity = Integer.parseInt(Console.readLine());
+                String input = Console.readLine();
+                int purchaseQuantity = Integer.parseInt(input);
+                printQuantity(purchaseQuantity);
                 checkInputMoney(purchaseQuantity);
                 return purchaseQuantity;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 로또 구입금액은 숫자만 입력 가능합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -27,12 +31,12 @@ public class Purchase {
         }
     }
 
-    public static int calculateQuantity(int purchaseQuantity) {
-        return purchaseQuantity / LOTTO_PRICE;
+    public static int calculateQuantity(int actualAmount) {
+        return actualAmount / LOTTO_PRICE;
     }
 
-    private static void printQuantity(int purchaseQuantity) {
-        int confirmQuantity = calculateQuantity(purchaseQuantity);
+    public static void printQuantity(int realAmount) {
+        int confirmQuantity = calculateQuantity(realAmount);
         System.out.println(confirmQuantity + "개를 구매했습니다.");
     }
 

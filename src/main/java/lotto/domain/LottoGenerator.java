@@ -15,13 +15,12 @@ public class LottoGenerator {
         List<Lotto> pickLotto = new ArrayList<>();
 
         for (int i = 0; i < lottoQuantity; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_NUMBER);
-            Collections.sort(numbers);
+            List<Integer> numbers = new ArrayList<>();
+            numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, PICK_NUMBER);
             Lotto lotto = new Lotto(numbers);
             pickLotto.add(lotto);
             printLotto(lotto);
         }
-
         return pickLotto;
     }
 

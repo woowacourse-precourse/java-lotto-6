@@ -1,7 +1,8 @@
 package lotto.domain;
 
+import static lotto.view.Messages.BLANK;
 import static lotto.view.Messages.CLOSE_BRACKET;
-import static lotto.view.Messages.COMMA_WITH_SPACE;
+import static lotto.view.Messages.COMMA;
 import static lotto.view.Messages.OPEN_BRACKET;
 
 import java.util.Collections;
@@ -9,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.exception.LottoExceptionMessages;
+import lotto.view.OutputView;
 
 public class Lotto {
 
@@ -22,7 +25,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private static void validate(List<Integer> numbers) {
+    protected static void validate(List<Integer> numbers) {
         validateSize(numbers.size());
         validateNoDuplicates(numbers);
         validateRange(numbers);
@@ -33,6 +36,7 @@ public class Lotto {
 
         for (Integer number : numbers) {
             if (!uniqueNumbers.add(number)) {
+                OutputView.println(LottoExceptionMessages.EXPECTED_NO_DUPLICATE);
                 throw new IllegalArgumentException();
             }
         }
@@ -40,6 +44,7 @@ public class Lotto {
 
     private static void validateSize(final int size) {
         if (size != VALID_SIZE_OF_NUMBERS) {
+            OutputView.println(LottoExceptionMessages.EXPECTED_VALID_LENGTH);
             throw new IllegalArgumentException();
         }
     }
@@ -49,13 +54,14 @@ public class Lotto {
         int maxNumber = Collections.max(numbers);
 
         if (minNumber < LOWER_BOUND_OF_NUMBER || maxNumber > UPPER_BOUND_OF_NUMBER) {
+            OutputView.println(LottoExceptionMessages.EXPECTED_VALID_RANGE);
             throw new IllegalArgumentException();
         }
     }
 
     @Override
     public String toString() {
-        String result = String.join(COMMA_WITH_SPACE, converToStringList());
+        String result = String.join(COMMA + BLANK, converToStringList());
         return OPEN_BRACKET + result + CLOSE_BRACKET;
     }
 

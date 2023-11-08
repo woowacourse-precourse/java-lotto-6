@@ -12,6 +12,7 @@ import java.util.List;
 public class LottoMakingController {
     private static final LottoView view = new LottoView();
     private final int MONEY_UNIT = 1000;
+    private final String DIVISION_UNIT = ",";
     private int payment;
     private int lottoCount;
 
@@ -39,14 +40,18 @@ public class LottoMakingController {
         while (true) {
             try {
                 String input = view.inputMoney();
-                validateIsNumber(input);
-                payment = Integer.parseInt(input);
-                validatePaymentUnit(payment);
+                validateLottoCount(input);
+                payment = changeStringtoInteger(input);
                 break;
             } catch (IllegalArgumentException e) {
                 view.outputError(e.getMessage());
             }
         }
+    }
+
+    public void validateLottoCount(String number) {
+        validateIsNumber(number);
+        validatePaymentUnit(Integer.parseInt(number));
     }
 
     private void validateIsNumber(String number) {
@@ -55,6 +60,10 @@ public class LottoMakingController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
         }
+    }
+
+    private int changeStringtoInteger(String string) {
+        return Integer.parseInt(string);
     }
 
     private void validatePaymentUnit(int money) {
@@ -88,7 +97,7 @@ public class LottoMakingController {
 
     public Integer[] changeStringToIntegers(String input) {
         try {
-            String[] n = input.split(",");
+            String[] n = input.split(DIVISION_UNIT);
             Integer[] numbers = new Integer[n.length];
             for (int i = 0; i < numbers.length; i++)
                 numbers[i] = Integer.parseInt(n[i]);
@@ -120,7 +129,7 @@ public class LottoMakingController {
     }
 
     private void validateOverlapBonusNumber(Lotto winningNumbers, int bonusNumber) {
-        if(winningNumbers.getNumbers().contains(bonusNumber))
+        if (winningNumbers.getNumbers().contains(bonusNumber))
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_OVERLAP_MESSAGE.getValue());
     }
 

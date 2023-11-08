@@ -13,8 +13,8 @@ public class LottoService {
     private Lottos lottos;
 
     public void createLottos(int amountOfPurchasedLotto) {
-        List<Lotto> lottoList = LottoMaker.makeLotto(amountOfPurchasedLotto);
-        this.lottos = new Lottos(lottoList);
+        List<Lotto> lottos = LottoMaker.makeLotto(amountOfPurchasedLotto);
+        this.lottos = new Lottos(lottos);
     }
 
     public List<LottoDTO> getLottoDTOs() {

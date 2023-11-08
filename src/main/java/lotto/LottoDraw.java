@@ -15,7 +15,7 @@ public class LottoDraw {
     Lotto lotto;
     int drawCount;
 
-    
+
     LottoDraw() {
         drawCount = costomer.getDrawCount();
         System.out.println(drawCount + LottoDefaultMessage.TOTAL_LOTTO_COUNT.getString());
@@ -31,7 +31,6 @@ public class LottoDraw {
         Matched matched = new Matched();
         for (Lotto lot : costomer.lottos) {
             List<Integer> match = lot.compareNumbers(lotto.getNumbers());
-            System.out.println(match);
             matched.updateMatched(match.size(), lot.compareBonusNumber(bonusNum));
         }
         matched.showStatistics();

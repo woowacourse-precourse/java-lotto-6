@@ -23,7 +23,7 @@ public class Exception {
         }
     }
 
-    public static void winningNumberValidate(List<Integer> winningNumbers) {
+    public static void lottoNumberValidate(List<Integer> winningNumbers) {
         if(winningNumbers.size() != 6) {
             throw new IllegalArgumentException("6개의 숫자를 입력하셔야 합니다.");
         }

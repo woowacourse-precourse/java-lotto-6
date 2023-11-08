@@ -71,7 +71,7 @@ public class Application {
                 .collect(Collectors.toList());
 
         try {
-            Exception.winningNumberValidate(winningNumbers);
+            Lotto lotto = new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             Exception.printException(e.getMessage());
             inputWinningNumbers();

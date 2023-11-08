@@ -7,19 +7,16 @@ import java.util.List;
 
 import static lotto.view.OutputView.printTicketCount;
 import static lotto.view.OutputView.printLottoList;
-import static lotto.view.OutputView.printBlankLine;
 import static lotto.view.OutputView.printStatistics;
 
 public class LottoController {
     public void start() {
         Money money = inputLottoMoney();
         int ticketCount = money.getTicketCount();
-        printBlankLine();
         printTicketCount(ticketCount);
 
         Lottos lottos = getLottos(money);
         printLottoList(lottos);
-        printBlankLine();
 
         LottoWin lottoWin = getWinningLotto();
         Prize prize = new Prize();

@@ -9,11 +9,14 @@ import lotto.model.RankResult;
 public class Formatter {
     private static final String MATCH_COUNT_FORMAT = "%d개 일치 (%s원) - %d개\n";
     private static final String SECOND_RANK_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    private static final String SEPARATOR = ", ";
+    private static final String LOTTO_DISPLAY_PREFIX = "[";
+    private static final String LOTTO_DISPLAY_SUFFIX = "]";
 
     public static String convertLottoToDisplayFormat(List<Integer> numbers) {
-        return "[" + numbers.stream()
+        return LOTTO_DISPLAY_PREFIX + numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", ")) + "]";
+                .collect(Collectors.joining(SEPARATOR)) + LOTTO_DISPLAY_SUFFIX;
     }
 
     public static String convertResultToDisplayFormat(RankResult result) {

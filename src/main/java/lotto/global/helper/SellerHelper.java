@@ -21,4 +21,13 @@ public class SellerHelper {
         }
         return lottos;
     }
+
+    public static Result compareAndRecord(List<Lotto> lottos, Lotto win, Integer bonusNumber) {
+        Result result = new Result();
+        lottos.forEach(lotto -> {
+            Prize prize = win.compare(lotto.getNumbers(), bonusNumber);
+            result.record(prize);
+        });
+        return result;
+    }
 }

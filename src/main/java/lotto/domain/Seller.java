@@ -27,4 +27,8 @@ public class Seller {
         Print.getBonusNumber();
         bonusNumber = Input.getBonusNumber(win);
     }
+
+    public void check() {
+        Result result = SellerHelper.compareAndRecord(lottos, win, bonusNumber);
+    }
 }

@@ -13,6 +13,14 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public Prize compare(List<Integer> lottoNumber, Integer bonusNumber) {
+        Integer winCount = this.numbers.stream()
+                .filter(number -> lottoNumber.contains(number)).toList().size();
+        Boolean hasBonusNumber = lottoNumber.contains(bonusNumber);
+        
+        return LottoCondition.getRank(winCount, hasBonusNumber);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

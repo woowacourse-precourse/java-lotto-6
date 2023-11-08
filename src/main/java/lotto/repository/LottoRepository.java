@@ -23,6 +23,13 @@ public class LottoRepository {
         }
         return instance;
     }
+
+    public static void resetInstanceAndFields() {
+        instance = null;
+        lottos = new ConcurrentHashMap<>();
+        id = 0L;
+    }
+
     public static void setBudget(int budget) {
         LottoRepository.budget = budget;
     }

@@ -25,12 +25,12 @@ public class LottoController {
             OutputView.showPurchasedLotto(lotto.getLottoNumbers());
         }
 
-        LottoFromUser lottoFromUser = inputController.getWinnerNumbersFromUser();
-        lottery(lottoPurchasingAmount, lottos, lottoFromUser);
+        NumbersFromUser numbersFromUser = inputController.getNumbersFromUser();
+        lottery(lottoPurchasingAmount, lottos, numbersFromUser);
     }
 
-    public void lottery(LottoPurchasingAmount lottoPurchasingAmount, Lottos lottos, LottoFromUser lottoFromUser) {
-        Map<Prize, Integer> prizeCount = getLotteryPrizeCount(lottos, lottoFromUser);
+    public void lottery(LottoPurchasingAmount lottoPurchasingAmount, Lottos lottos, NumbersFromUser numbersFromUser) {
+        Map<Prize, Integer> prizeCount = getLotteryPrizeCount(lottos, numbersFromUser);
         double earningRate = 0;
 
         OutputView.showLottoResultHead();
@@ -43,11 +43,11 @@ public class LottoController {
         OutputView.showEarningRate(setEarningRateFormat(earningRate));
     }
 
-    public Map<Prize, Integer> getLotteryPrizeCount(Lottos lottos, LottoFromUser lottoFromUser) {   //당첨금 등수별 횟수 구하기
+    public Map<Prize, Integer> getLotteryPrizeCount(Lottos lottos, NumbersFromUser numbersFromUser) {   //당첨금 등수별 횟수 구하기
         Map<Prize, Integer> prizeCount = initPrizeCount();
         for (Lotto lotto : lottos.getLottoList()) {
-            int numberMatchCount = compareLotto(lotto, lottoFromUser);
-            boolean bonusCheck = lotto.getLottoNumbers().contains(lottoFromUser.getBonusNumber());
+            int numberMatchCount = compareLotto(lotto, numbersFromUser);
+            boolean bonusCheck = lotto.getLottoNumbers().contains(numbersFromUser.getBonusNumber());
 
             Prize prize = Prize.getPrize(numberMatchCount, bonusCheck);     //당첨금 등수 구하기
             prizeCount.put(prize, prizeCount.get(prize) + 1);
@@ -56,9 +56,9 @@ public class LottoController {
         return prizeCount;
     }
 
-    public int compareLotto(Lotto lotto, LottoFromUser lottoFromUser) {
+    public int compareLotto(Lotto lotto, NumbersFromUser numbersFromUser) {
         return (int) lotto.getLottoNumbers().stream().filter(
-                number -> lottoFromUser.getLotto().getLottoNumbers().contains(number)).count();
+                number -> numbersFromUser.getLotto().getLottoNumbers().contains(number)).count();
     }
 
     private Map<Prize, Integer> initPrizeCount() {

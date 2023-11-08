@@ -2,7 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
-import lotto.model.LottoFromUser;
+import lotto.model.NumbersFromUser;
 import lotto.model.LottoPurchasingAmount;
 import lotto.utils.ErrorMessage;
 import lotto.view.OutputView;
@@ -23,20 +23,20 @@ public class InputController {
         }
     }
 
-    public LottoFromUser getWinnerNumbersFromUser() {
-        Lotto lotto = getLottoNumberFromUser();
+    public NumbersFromUser getNumbersFromUser() {
+        Lotto lotto = getWinningNumberFromUser();
         int bonusNumber = getBonusNumberFromUser(lotto);
 
-        return new LottoFromUser(lotto, bonusNumber);
+        return new NumbersFromUser(lotto, bonusNumber);
     }
 
-    public Lotto getLottoNumberFromUser() {
+    public Lotto getWinningNumberFromUser() {
         OutputView.askLottoNumbers();
         try {
             List<String> splitNumbers = validateLength(Console.readLine());
             return new Lotto(convertToIntList(splitNumbers));
         } catch (IllegalArgumentException e) {
-            return getLottoNumberFromUser();
+            return getWinningNumberFromUser();
         }
     }
 

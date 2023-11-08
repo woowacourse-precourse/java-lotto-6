@@ -1,10 +1,10 @@
 package lotto.model;
 
-public class LottoFromUser {
+public class NumbersFromUser {
     private final Lotto lotto;
     private final int bonusNumber;
 
-    public LottoFromUser(Lotto lottoFromUser, int bonusNumberFromUser) {
+    public NumbersFromUser(Lotto lottoFromUser, int bonusNumberFromUser) {
         lotto = lottoFromUser;
         bonusNumber = bonusNumberFromUser;
     }

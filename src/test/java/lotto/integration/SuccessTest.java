@@ -149,7 +149,7 @@ class SuccessTest extends IntegrationTest {
     }
 
     @Test
-    void 상금이_21억초과되는_경우() {
+    void 상금이_int최댓값보다_초과되는_경우() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("2000", "1,2,3,4,5,6", "10");
@@ -167,6 +167,30 @@ class SuccessTest extends IntegrationTest {
                 },
                 List.of(1, 2, 3, 4, 5, 6),
                 List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
+
+    @Test
+    void 수익률이_반올림되는경우() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("3000", "1,2,3,4,5,6", "10");
+                    assertThat(output()).contains(
+                            "3개를 구매했습니다.",
+                            "[1, 2, 3, 4, 15, 16]",
+                            "[11, 12, 13, 14, 15, 16]",
+                            "[11, 12, 13, 14, 15, 16]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 1개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 1666.7%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 15, 16),
+                List.of(11, 12, 13, 14, 15, 16),
+                List.of(11, 12, 13, 14, 15, 16)
         );
     }
 }

@@ -17,7 +17,7 @@ public class LottoWinningStatisticsService {
 
         List<LottoRank> winningResult = calculateWinningResult(winningTicket, purchasedLottos);
         long totalPrize = calculatePrize(winningResult);
-        float profitRate = calculateProfitRate(purchaseAmount, totalPrize);
+        double profitRate = calculateProfitRate(purchaseAmount, totalPrize);
 
         return new WinningLottoResultDto(winningResult, profitRate);
     }
@@ -36,8 +36,8 @@ public class LottoWinningStatisticsService {
         return totalPrize;
     }
 
-    private float calculateProfitRate(LottoPurchaseAmount lottoPurchaseAmount, long totalPrize) {
+    private double calculateProfitRate(LottoPurchaseAmount lottoPurchaseAmount, long totalPrize) {
         int purchaseAmount = lottoPurchaseAmount.getValue();
-        return (float) totalPrize / purchaseAmount * PERCENTAGE;
+        return (double) totalPrize / purchaseAmount * PERCENTAGE;
     }
 }

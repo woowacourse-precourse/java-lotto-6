@@ -38,8 +38,20 @@ public class Lottos {
                     MIN_LOTTO_NUMBER.getValue(),
                     MAX_LOTTO_NUMBER.getValue(),
                     LOTTO_SIZE.getValue());
-            lottos.add(Lotto.from(numbers));
+            lottos.add(Lotto.from(parse(numbers)));
         }
+    }
+
+    /**
+     * 정수 리스트의 입력을 래퍼 클래스의 리스트로 파싱하는 메서드
+     *
+     * @param numbers 정수 리스트의 입력
+     * @return 래퍼 클래스의 리스트
+     */
+    public static List<Number> parse(final List<Integer> numbers) {
+        return numbers.stream()
+                .map(Number::valueOf)
+                .toList();
     }
 
     /**

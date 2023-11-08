@@ -24,20 +24,9 @@ public class Lotto {
      * @param numbers 로또 번호
      * @return 로또 객체
      */
-    public static Lotto from(final List<Integer> numbers) {
-        return new Lotto(parse(numbers));
-    }
 
-    /**
-     * 정수 리스트의 입력을 래퍼 클래스의 리스트로 파싱하는 메서드
-     *
-     * @param numbers 정수 리스트의 입력
-     * @return 래퍼 클래스의 리스트
-     */
-    public static List<Number> parse(final List<Integer> numbers) {
-        return numbers.stream()
-                .map(Number::valueOf)
-                .toList();
+    public static Lotto from(final List<Number> numbers) {
+        return new Lotto(numbers);
     }
 
     /**

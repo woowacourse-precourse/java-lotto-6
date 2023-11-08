@@ -73,11 +73,15 @@ public class LottoGame {
     }
 
     private void validateInputIsNull(String input) {
-        if(isNull(input)) throw new InputException(NOT_NULL);
+        if(isNull(input)) {
+            throw new InputException(NOT_NULL);
+        }
     }
 
     private void validateInputIsBlank(String input) {
-        if(input.isBlank()) throw new InputException(NOT_BLANK);
+        if(input.isBlank()) {
+            throw new InputException(NOT_BLANK);
+        }
     }
 
 }

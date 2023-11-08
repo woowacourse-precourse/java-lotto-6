@@ -21,7 +21,7 @@ public class OutputView {
     private static final String DIVIDING_LINE = "---";
     private static final String PREFIX_PROFIT = "총 수익률은 ";
     private static final String SUFFIX_PROFIT = "%입니다.";
-    private static final String DECIMAL_DIGITS = "%.2f";
+    private static final String DECIMAL_DIGITS = "%.1f";
     private static final String LOTTOS_SIZE_SUFFIX_MESSAGE = "개를 구매했습니다.";
     private static final String LOTTOS_BONUS_NUMBER_MATCH_MESSAGE = "개 일치, 보너스 볼 일치 (";
     private static final String WON_SUFFIX_MESSAGE = "원) - ";

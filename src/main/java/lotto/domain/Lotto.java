@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,7 +43,7 @@ public class Lotto {
     }
 
     public List<LottoNumber> createLotto() {
-        List<LottoNumber> lottoNumbers = IntStream.rangeClosed(LOTTO_MIN_NUMBER,LOTTO_MAX_NUMBER)
+        List<LottoNumber> lottoNumbers = IntStream.rangeClosed(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER)
                 .mapToObj(LottoNumber::new)
                 .collect(Collectors.toList());
         Collections.shuffle(lottoNumbers);

@@ -43,17 +43,23 @@ public class InputView {
 
     public static Integer getBonusNumberByUser(Lotto lotto) {
         try{
-            String userInput = Console.readLine();
-            Integer.parseInt(userInput);
-            int bonusNumber = getBonusNumberByUser(userInput);
-            if (lotto.containsBonusNumber(bonusNumber)){
-                throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED);
-            }
-            return bonusNumber;
+            return getBonusNumber(lotto);
+        } catch (NumberFormatException e){
+            OutputView.printError(NOT_NUMBER);
+            return getBonusNumberByUser(lotto);
         } catch (IllegalArgumentException e){
             OutputView.printError(e.getMessage());
             return getBonusNumberByUser(lotto);
         }
+    }
+
+    private static int getBonusNumber(Lotto lotto) {
+        String userInput = Console.readLine();
+        int bonusNumber = getIntegerInput(userInput);
+        if (lotto.containsBonusNumber(bonusNumber)){
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED);
+        }
+        return bonusNumber;
     }
 
     public static Lotto convertStringInputToLotto() {
@@ -66,7 +72,7 @@ public class InputView {
         return new Lotto(lottoNumberList);
     }
 
-    private static int getBonusNumberByUser(String userInput) {
+    private static int getIntegerInput(String userInput) {
         int bonusNumber = Integer.parseInt(userInput);
         if (bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {
             throw new IllegalArgumentException(INVALID_BOUND);

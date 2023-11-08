@@ -38,12 +38,6 @@ public enum WinningResult {
                 .forEach(value -> value.countResult++);
     }
 
-    public static void showResult() {
-        Arrays.stream(WinningResult.values())
-                .map(value -> String.format(value.message, value.countResult))
-                .forEach(System.out::println);
-    }
-
     public static int calculateTotalPrice() {
         int totalPrice = Arrays.stream(WinningResult.values())
                 .map(value -> value.countResult * value.price)

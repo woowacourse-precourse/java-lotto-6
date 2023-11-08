@@ -45,7 +45,7 @@ public class LottoController {
     }
 
     private long inputLottoAmount() {
-           try {
+        try {
             LottoAmount lottoAmountCount = new LottoAmount(InputView.inputAmount());
             long amount = lottoAmountCount.getLottoAmount();
             return lottoAmountCount.calculateLottoAmount((int) amount);

@@ -29,7 +29,7 @@ public class LottoResult {
         }
     }
 
-    public void addCount(LottoRank lottoRank) {
+    private void addCount(LottoRank lottoRank) {
         result.computeIfPresent(lottoRank, (LottoRank key, Integer value) -> ++value);
     }
 

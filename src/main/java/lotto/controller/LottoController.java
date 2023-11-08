@@ -10,6 +10,7 @@ public class LottoController {
         setLottoCount();
         setUserLotto();
         getUserLotto();
+        setWinningLotto();
     }
 
     public void setLottoCount() {
@@ -22,5 +23,9 @@ public class LottoController {
 
     public void getUserLotto() {
         lottoService.getUserLotto();
+    }
+
+    public void setWinningLotto() {
+        lottoService.setWinningLotto();
     }
 }

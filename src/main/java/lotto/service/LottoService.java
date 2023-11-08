@@ -50,4 +50,8 @@ public class LottoService {
             outputView.printLotto(lotto.getNumbers());
         }
     }
+
+    public void setWinningLotto() {
+        inputView.inputWinningNum();
+    }
 }

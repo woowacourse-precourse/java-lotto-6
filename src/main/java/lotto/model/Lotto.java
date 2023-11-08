@@ -9,8 +9,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        sortLottoNumbers(numbers);
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    private void sortLottoNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {

@@ -32,15 +32,9 @@ public class Game {
     public void generateLottoNumber(LottoGenerator lottoGenerator) {
         for (int i = 0; i < amountOfLotto; i++) {
             List<Integer> modifiable = new ArrayList<>(lottoGenerator.pickLottoNumber());
-            sortLottoNumbers(modifiable);
             lottoNumbers.add(new Lotto(modifiable));
         }
     }
-
-    private void sortLottoNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-    }
-
     public int getAmountOfLotto() {
         return amountOfLotto;
     }

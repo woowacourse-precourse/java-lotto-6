@@ -57,11 +57,7 @@ public class LottoGame {
     }
 
     public double calculateProfitRate(int totalPrize, int amount) {
-        return Math.round(totalPrize / amount * 1000) * 100.0;
-    }
-
-    public int getTotalPrize() {
-        return totalPrize;
+        return Math.round((float) totalPrize / amount) / 10.0;
     }
 
     public double getProfitRate() {

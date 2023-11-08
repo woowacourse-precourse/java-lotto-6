@@ -18,16 +18,23 @@ public class Lotto {
     }
 
     private static void validate(final List<Integer> numbers) {
+        isSizeNotSix(numbers);
         isEachNumberUnique(numbers);
     }
 
+    private static void isSizeNotSix(final List<Integer> numbers) {
+        if (numbers.size() != LottoConstant.LOTTO_ITEM_COUNT.getValue()) {
+            throw LottoInputException.of(LottoInputExceptionMessage.LOTTO_NUMBERS_SIZE_IS_NOT_SIX);
+        }
+    }
+
     private static void isEachNumberUnique(final List<Integer> numbers) {
-        if (isSizeLessThanSix(numbers)) {
+        if (eachNumberIsNotUnique(numbers)) {
             throw LottoInputException.of(LottoInputExceptionMessage.LOTTO_NUMBERS_ARE_DUPLICATED);
         }
     }
 
-    private static boolean isSizeLessThanSix(final List<Integer> numbers) {
+    private static boolean eachNumberIsNotUnique(final List<Integer> numbers) {
         return numbers.stream()
                 .distinct()
                 .count() < LottoConstant.LOTTO_ITEM_COUNT.getValue();

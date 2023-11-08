@@ -8,7 +8,7 @@ public enum LottoGameMessage {
     WINNING_STATS("당첨 통계\n---"),
     MATCH_COUNT("%d개 일치 (%,d원) - %d개"),
     MATCH_BONUS_COUNT("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    TOTAL_PROFIT_RATE("총 수익률은 %.2f%%입니다.");
+    TOTAL_PROFIT_RATE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 

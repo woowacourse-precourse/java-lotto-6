@@ -1,0 +1,19 @@
+package lotto.message;
+
+public enum Message {
+    WINNING_STATISTICS("당첨 통계"),
+    SEPARATOR("---"),
+    PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
+    WINNING_NUMBER("당첨 번호를 입력해 주세요."),
+    BONUS_NUMBER("보너스 번호를 입력해 주세요.");
+
+    private final String message;
+
+    Message(String message) {
+        this.message = message;
+    }
+
+    public String message() {
+        return message;
+    }
+}

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,8 +30,14 @@ public class Lotto {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
-    //TODO: 기능 구현
-    public static int matches(Lotto lotto) {
+    //TODO: 기능 구
+    public int matches(Lotto lotto) {
+        List<Integer> lotto1 = new ArrayList<>(this.numbers);
+        
         return 0;
+    }
+
+    public boolean matches(int bonus) {
+
     }
 }

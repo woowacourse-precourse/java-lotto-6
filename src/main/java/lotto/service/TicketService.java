@@ -1,7 +1,7 @@
 package lotto.service;
 
-import static lotto.util.Censor.validateAnnouncementNumber;
-import static lotto.util.Censor.validatePurchaseUnit;
+import static lotto.util.ModelCensor.validateAnnouncementNumber;
+import static lotto.util.ModelCensor.validatePurchaseUnit;
 import static lotto.util.rule.GameRule.RANK_SIZE;
 import static lotto.util.rule.GameRule.TICKET_PRICE;
 
@@ -13,7 +13,6 @@ import lotto.domain.Ticket;
 import lotto.domain.WinningTicket;
 import lotto.repository.MemoryTicketRepository;
 import lotto.util.AutomaticGenerator;
-import lotto.util.rule.GameRule;
 
 public class TicketService {
 
@@ -41,13 +40,17 @@ public class TicketService {
 
     public WinningTicket announcementNumber(String input) {
         WinningTicket ticket = new WinningTicket();
-        List<Integer> numbers = getWinningNumbers(input);
+        List<Integer> numbers = mapWinningNumbers(input);
         validateAnnouncementNumber(numbers);
         ticket.setNumbers(new Lotto(numbers));
         return memoryTicketRepository.announcement(ticket);
     }
 
-    private List<Integer> getWinningNumbers(String input) {
+    public Lotto getWinningTicket() {
+        return memoryTicketRepository.findNumbers().getLotto();
+    }
+
+    private List<Integer> mapWinningNumbers(String input) {
         String[] numberStrings = input.split(",");
         return Arrays.stream(numberStrings)
                 .map(String::trim)
@@ -104,4 +107,5 @@ public class TicketService {
         }
         return -1; // 어떤 상금에도 해당하지 않음
     }
+
 }

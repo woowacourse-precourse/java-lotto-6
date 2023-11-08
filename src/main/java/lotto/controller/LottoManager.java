@@ -19,31 +19,13 @@ public class LottoManager {
     }
 
     public void run() {
+        purchaseTickets(InputView.purchaseAmount());
+        winningTicket(InputView.winningNumbers());
+        bonusNumber(InputView.bonusNumber(ticketService.getWinningTicket()));
 
-        try {
-            purchaseTickets(InputView.purchaseAmount());
-        } catch (IllegalArgumentException e) {
-            OutputView.displayErrorMessage(e);
-            purchaseTickets(InputView.purchaseAmount());
-        }
-
-        try {
-            winningTicket(InputView.winningNumbers());
-        } catch (IllegalArgumentException e) {
-            OutputView.displayErrorMessage(e);
-            winningTicket(InputView.winningNumbers());
-        }
-
-        try {
-            bonusNumber(InputView.bonusNumber());
-        } catch (IllegalArgumentException e) {
-            OutputView.displayErrorMessage(e);
-            bonusNumber(InputView.bonusNumber());
-        }
-
-        OutputView.displayStatistic(ticketService.prizeCount(),
+        OutputView.displayStatistic(
+                ticketService.prizeCount(),
                 ticketService.getPurchaseAmount());
-
     }
 
     private void bonusNumber(String bonusNumber) {

@@ -7,6 +7,7 @@ import static lotto.util.content.DisplayMessage.POINT_FORMAT;
 import static lotto.util.content.DisplayMessage.RESULT_FORMAT;
 import static lotto.util.content.DisplayMessage.RESULT_TITLE;
 import static lotto.util.content.DisplayMessage.TOTAL_YIELD;
+import static lotto.util.content.ErrorMessage.ERROR_WORD;
 
 import java.util.List;
 import lotto.domain.Ticket;
@@ -43,7 +44,7 @@ public class OutputView {
     }
 
     public static void displayErrorMessage(IllegalArgumentException e) {
-        System.out.println(e.getMessage());
+        System.out.println(ERROR_WORD.getContent() + e.getMessage());
     }
 
 }

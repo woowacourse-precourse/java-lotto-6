@@ -41,13 +41,4 @@ class BonusNumberServiceTest {
         assertEquals(7, bonusNumber.getBonusNumber());
     }
 
-    @DisplayName("당첨 번호와 중복된 입력 이라면, 예외가 발생한다.")
-    @Test
-    void announcementBonusNumberMethodUniqueTest() {
-        String input = "1";
-
-        assertThrows(IllegalArgumentException.class,
-                () -> bonusNumberService.announcementBonusNumber(input));
-    }
-
 }

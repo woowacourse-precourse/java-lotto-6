@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.constant.LottoMessage;
 import lotto.dto.LottoInfoResponse;
+import lotto.model.LottoResult;
 
 public class OutputView {
 
@@ -38,6 +39,10 @@ public class OutputView {
 
     public void writeLottoResultWriteStartMessage() {
         write(LottoMessage.getLottoResultWriteStartMessage());
+    }
+
+    public void writeLottoResult(LottoResult lottoResult) {
+        write(outputMaker.makeLottoResultOutput(lottoResult));
     }
 
     private void write(String output) {

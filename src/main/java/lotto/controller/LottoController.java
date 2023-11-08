@@ -1,10 +1,11 @@
 package lotto.controller;
 
 import java.util.function.Supplier;
-import lotto.model.WinningNumberAndBonusNumber;
 import lotto.dto.PurchaseAmountRequest;
 import lotto.dto.WinningNumberRequest;
+import lotto.model.LottoResult;
 import lotto.model.Lottos;
+import lotto.model.WinningNumberAndBonusNumber;
 import lotto.service.LottoMakeService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -30,8 +31,8 @@ public class LottoController {
 
         WinningNumberAndBonusNumber winningNumberAndBonusNumber = readWinningNumberAndBonusNumber();
         output.writeEmptyLine();
-
-        writeLottoResult(lottos, winningNumberAndBonusNumber);
+        LottoResult lottoResult = lottos.getLottoResult(winningNumberAndBonusNumber);
+        writeLottoResult(lottoResult);
     }
 
     private PurchaseAmountRequest readPurchaseAmount() {
@@ -52,9 +53,9 @@ public class LottoController {
         );
     }
 
-    private void writeLottoResult(Lottos lottos,
-        WinningNumberAndBonusNumber winningNumberAndBonusNumber) {
+    private void writeLottoResult(LottoResult lottoResult) {
         output.writeLottoResultWriteStartMessage();
+        output.writeLottoResult(lottoResult);
     }
 
     private <T> T readUntilValidInput(Supplier<T> inputSupplier) {

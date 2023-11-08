@@ -68,11 +68,17 @@ public class UserHandler {
     }
 
     private static List<String> getAndValidateWinningNumbers() {
-        ResultView.printNewLine();
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winningNumberInput = Console.readLine();
+        while (true) {
+            try {
+                ResultView.printNewLine();
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String winningNumberInput = Console.readLine();
 
-        return validateWinningNumberInput(winningNumberInput);
+                return validateWinningNumberInput(winningNumberInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static int getAndValidateBonusNumber(List<String> winningNumbers) {
@@ -132,7 +138,7 @@ public class UserHandler {
         try {
             number = Integer.parseInt(winningNumber.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
 
         if (number < 1 || number > 45) {

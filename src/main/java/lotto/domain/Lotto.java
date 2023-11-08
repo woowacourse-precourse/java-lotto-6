@@ -31,4 +31,10 @@ public class Lotto {
                 .map(String::valueOf)
                 .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX));
     }
+
+    public int calculateSameCount(final Lotto compareLotto) {
+        return (int) numbers.stream()
+                .filter(compareLotto::contains)
+                .count();
+    }
 }

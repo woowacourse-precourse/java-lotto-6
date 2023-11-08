@@ -73,6 +73,7 @@ public class LottoCalculateService {
     }
 
     public boolean isNumberMatchedFiveWithBonus(int countContainsOfLotto, List<Integer> numbers, LottoDrawingMachine lotto) {
+        if (countContainsOfLotto == Ranking.THIRD.getMatchedCount() && numbers.contains(lotto.getLottoBonusBall().toInt())) {
 
             return true;
         }
@@ -80,6 +81,7 @@ public class LottoCalculateService {
     }
 
     public boolean isNumberMatchedFive(int countContainsOfLotto, List<Integer> numbers, LottoDrawingMachine lotto) {
+        if (countContainsOfLotto == Ranking.THIRD.getMatchedCount() && !numbers.contains(lotto.getLottoBonusBall().toInt())) {
             return true;
         }
         return false;

@@ -26,7 +26,7 @@ public class BuyingLotto {
             String input = BUYING_PRICE.scan();
             try {
                 validateNumberString(input);
-                int buyingPrice = Integer.parseInt(input));
+                int buyingPrice = Integer.parseInt(input);
                 validatePlusSign(buyingPrice);
                 validateDivision(buyingPrice);
                 return buyingPrice;

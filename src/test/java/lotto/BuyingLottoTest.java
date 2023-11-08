@@ -1,35 +1,46 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.domain.BuyingLotto;
+import static lotto.constants.Error.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-public class BuyingLottoTest {
+public class BuyingLottoTest extends NsTest {
+    @DisplayName("로또 구입금액이 1000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @Test
+    void createBuyingPriceByNotUnitOf1000() {
+        assertSimpleTest(() -> {
+            runException("5500");
+            assertThat(output()).contains(NOT_UNIT.getMessage());
+        });
+    }
     @DisplayName("로또 구입금액이 0 또는 음수이면 예외가 발생한다.")
     @Test
     void createBuyingPriceByNotPlusSign() {
-        assertThatThrownBy(() -> new BuyingLotto(-100))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("로또 구입금액이 1,000원으로 나누어 떨어지지 않으면 예외가 발생한다.")
-    @Test
-    void createBuyingPriceByNotUnitOf1000() {
-        assertThatThrownBy(() -> new BuyingLotto(2500))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(NOT_PLUS_SIGN.getMessage());
+        });
     }
 
     @DisplayName("로또 구입금액으로 발행할 수 있는 로또의 수를 알맞게 리턴한다.")
     @Test
     void testCalculateTicketNumber() {
-        int buyingPrice = 15000;
-        int result = new BuyingLotto(buyingPrice).getTicketNumber();
-        int answer = 15;
+        String input = "15000";
+        System.setIn(new ByteArrayInputStream(input.getBytes()));
+        BuyingLotto buyingLotto = new BuyingLotto();
+        assertThat(buyingLotto.getTicketNumber()).isEqualTo(15);
+    }
 
-        assertThat(result).isEqualTo(answer);
+    @Override
+    public void runMain() {
+        new BuyingLotto();
     }
 }

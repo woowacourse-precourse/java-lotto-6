@@ -125,7 +125,7 @@ public class Application {
         System.out.println("5개 일치 (1,500,000원) - "+prizes[3]+"개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+prizes[4]+"개");
         System.out.println("6개 일치 (2,000,000,000원) - "+prizes[5]+"개");
-        System.out.println("총 수익률은 "+percent+"%입니다.");
+        System.out.println("총 수익률은 "+ String.format("%.1f",percent)+"%입니다.");
     }
     private static void calculateTotalprice(int price, List<Integer> numbers, List<List<Integer>>answers, int bonus){
         float totalPrize = 0;
@@ -135,7 +135,7 @@ public class Application {
             totalPrize += prize.prize;
             prizes[prize.count]++;
         }
-        float percent = Math.round(totalPrize / price * 1000)/10;
+        float percent = totalPrize / (float)price * 100;
         printResult(percent, prizes);
     }
 

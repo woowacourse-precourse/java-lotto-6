@@ -1,0 +1,62 @@
+package lotto.v3.model;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.Set;
+
+import static org.assertj.core.api.Assertions.*;
+
+class LottoBonusNumberTest {
+    @Test
+    @DisplayName("보너스 번호가 1부터 45 사이 값인지 검증")
+    void testBonusNumberWithinRange() {
+        // Given
+        int validBonusNumber = 45;
+        Set<Integer> winningNumbers = Set.of(1, 2, 3, 4, 5, 6);
+
+        // When & Then
+        assertThatCode(() -> new LottoBonusNumber(validBonusNumber, winningNumbers))
+                .doesNotThrowAnyException();
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 1보다 작을 때 예외를 던지는지 검증")
+    void testBonusNumberBelowRange() {
+        // Given
+        int invalidBonusNumber = 0;
+        Set<Integer> winningNumbers = Set.of(1, 2, 3, 4, 5, 6);
+
+        // When & Then
+        assertThatThrownBy(() -> new LottoBonusNumber(invalidBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 값이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 45보다 클 때 예외를 던지는지 검증")
+    void testBonusNumberAboveRange() {
+        // Given
+        int invalidBonusNumber = 46;
+        Set<Integer> winningNumbers = Set.of(1, 2, 3, 4, 5, 6);
+
+        // When & Then
+        assertThatThrownBy(() -> new LottoBonusNumber(invalidBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 값이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 때 예외를 던지는지 검증")
+    void testBonusNumberDuplicatesWinningNumber() {
+        // Given
+        int duplicateBonusNumber = 6;
+        Set<Integer> winningNumbers = Set.of(1, 2, 3, 4, 5, 6);
+
+        // When & Then
+        assertThatThrownBy(() -> new LottoBonusNumber(duplicateBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+
+}

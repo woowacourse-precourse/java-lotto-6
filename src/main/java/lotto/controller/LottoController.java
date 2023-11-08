@@ -1,63 +1,73 @@
 package lotto.controller;
 
-import java.util.List;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.LottoFactory;
-import lotto.domain.LottoQuantity;
+import lotto.domain.LottoNumber;
+import lotto.domain.PrizeCount;
+import lotto.generator.LottosGenerator;
+import lotto.domain.Money;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningLottoFactory;
-import lotto.dto.IssuedLottoResponse;
-import lotto.dto.WinningResultResponse;
+import lotto.dto.LottoResponse;
+import lotto.generator.RandomLottosGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoController {
-
-    public static void run() {
-        int lottoQuantity = getLottoQuantity();
-
-        Lottos playerLottos = generateLottos(lottoQuantity);
-        printSortedLottos(playerLottos);
-
-        WinningLotto winningLotto = generateWinningLotto();
-
-        WinningResultResponse winningResult = getWinningResult(playerLottos, winningLotto);
-        printWinningResult(winningResult, lottoQuantity);
+public class LottoController  {
+    public void run() {
+        Money money = askMoney();
+        Lottos playerLottos = generateLottos(money);
+        printWinningResult(money, playerLottos);
     }
 
-    private static int getLottoQuantity( ) {
-        return LottoQuantity.of(InputView.inputBuyingPrice());
+    private Money askMoney() {
+        while (true) {
+            try {
+                return new Money(InputView.inputPrice());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println();
+            }
+        }
     }
 
-    private static Lottos generateLottos(int lottoQuantity) {
-        List<Lotto> lottos = LottoFactory.createLottos(lottoQuantity);
-        return new Lottos(lottos);
+    private Lottos generateLottos(Money money) {
+        LottosGenerator lottosGenerator = new RandomLottosGenerator();
+        Lottos lottos = lottosGenerator.generate(money);
+
+        OutputView.printPurchasedCount(money.countPurchasedCount());
+        OutputView.printPurchasedLottos(LottoResponse.of(lottos));
+
+        return lottos;
     }
 
-    private static void printSortedLottos(Lottos lottos) {
-        List<IssuedLottoResponse> lottoResponses = IssuedLottoResponse.of(lottos.getLottos());
-        OutputView.printIssuedLottoCountAndNumbers(lottoResponses);
+    private void printWinningResult(Money money, Lottos playerLottos) {
+        WinningLotto winningLotto = askWinningLottoNumbers();
+        askBonusNumber(winningLotto);
+        PrizeCount prizeCount = new PrizeCount(playerLottos.match(winningLotto));
+
+        OutputView.printPrizeCount(prizeCount);
+        OutputView.printReturnRate(prizeCount.calculateReturnRate(money));
     }
 
-    private static WinningLotto generateWinningLotto() {
-        WinningLotto winningLotto = WinningLottoFactory.of(InputView.inputWinningNumbers());
-        winningLotto.setBonusNumber(generateBonusNumber());
-        return winningLotto;
+    private WinningLotto askWinningLottoNumbers() {
+        while (true) {
+            try {
+                return WinningLottoFactory.of(InputView.inputWinningNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private static BonusNumber generateBonusNumber() {
-        return new BonusNumber(InputView.inputBonusNumber());
-    }
-
-    private static WinningResultResponse getWinningResult(Lottos playerLottos, WinningLotto winningLotto) {
-        return playerLottos.generateWinningResult(winningLotto);
-    }
-
-    public static void printWinningResult(WinningResultResponse winningResultResponse, int lottoQuantity) {
-        OutputView.printLottoResultTitle();
-        OutputView.printFullWinningResult(winningResultResponse);
-        OutputView.printTotalReturn(winningResultResponse, lottoQuantity);
+    private void askBonusNumber(WinningLotto winningLotto) {
+        while (true) {
+            try {
+                winningLotto.setBonusNumber(new LottoNumber(InputView.inputBonusNumber()));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+            break;
+        }
     }
 }

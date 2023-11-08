@@ -63,4 +63,8 @@ public class GameView {
     public void statisticView(HashMap<Prize, Integer> prizes){
         outputView.printPrizes(prizes);
     }
+
+    public void resultView(int useMoney, int payMoney){
+        outputView.printResult((double) payMoney / useMoney * 100);
+    }
 }

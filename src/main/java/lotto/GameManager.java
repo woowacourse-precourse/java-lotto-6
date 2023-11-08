@@ -25,5 +25,6 @@ public class GameManager {
         machine.setBonus(gameView.bonusView(machine.getLotto()));
         user.collectPrize(machine);
         gameView.statisticView(user.getPrizes());
+        gameView.resultView(user.getUseMoney(), machine.getPayMoney());
     }
 }

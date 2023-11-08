@@ -1,8 +1,8 @@
 package lotto.views;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
-import lotto.configs.ComparisonScore;
 import lotto.configs.Constant;
 import lotto.configs.Prize;
 import lotto.models.Lotto;
@@ -35,5 +35,10 @@ public class OutputView {
                         prizes.get(Prize.FIRST)
                 )
         );
+    }
+
+    public void printResult(double rateOfIncomes) {
+        DecimalFormat df = new DecimalFormat("0.##");
+        System.out.println(String.format(Constant.VIEW_RATE_OF_AMOUNT,  df.format(rateOfIncomes)));
     }
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningNumber {
+    private static final String ERROR_ISDUPLICATE = "[ERROR] 당첨번호와 보너스 번호가 중복됩니다.";
+    private static final String ERROR_RANGEOVER = "[ERROR] 숫자는 1부터 45 사이의 숫자여야 합니다.";
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
 
@@ -23,15 +25,23 @@ public class WinningNumber {
         validateDuplicateWinningNumber.add(bonusNumber);
         for (int number : winningNumber) {
             if (!validateDuplicateWinningNumber.add(number)) {
-                throw new IllegalArgumentException("당첨번호와 보너스 번호가 중복됩니다.");
+                throw new IllegalArgumentException(ERROR_ISDUPLICATE);
             }
         }
     }
 
     private int validateNumberInRange(int number) {
         if (number < MIN_RANGE || number > MAX_RANGE) {
-            throw new IllegalArgumentException("숫자는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_RANGEOVER);
         }
         return number;
+    }
+
+    public Lotto getWinningNumber() {
+        return winningNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

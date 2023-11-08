@@ -1,15 +1,14 @@
 package Validator;
 
 import static Constant.ErrorMessage.ERROR_MSG_INPUT_LOTTO_NUMBER_RANGE;
+import static Constant.ErrorMessage.ERROR_MSG_INPUT_NOT_EMPTY_VALUE;
+import static Constant.ErrorMessage.ERROR_MSG_INPUT_UNDER_INTEGER_RANGE;
+import static Constant.ErrorMessage.ERROR_MSG_INPUT_ZERO_OR_POSITIVE_INTEGER;
 import static Constant.GuideMessagePiece.EMPTY_STRING_VALUE;
 import static Constant.LottoSettingValue.LOTTO_MAXIMUM_NUMBER;
 import static Constant.LottoSettingValue.LOTTO_MINIMAL_NUMBER;
 
 public class IntegerValidator {
-
-    private static final String ERROR_MSG_INPUT_ZERO_OR_POSITIVE_INTEGER = "[ERROR] 0 혹은 양의 정수만 입력해 주세요.";
-    private static final String ERROR_MSG_INPUT_NOT_EMPTY_VALUE = "[ERROR] 하나 이상의 값을 입력해야 합니다.";
-    private static final String ERROR_MSG_INPUT_UNDER_INTEGER_RANGE = "[ERROR] 2147483647 이하의 숫자를 입력해 주세요.";
 
     public static void checkEmptyValue(String value) throws IllegalArgumentException{
         if(EMPTY_STRING_VALUE.equals(value)){

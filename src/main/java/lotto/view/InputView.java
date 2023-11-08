@@ -8,20 +8,34 @@ import lotto.common.Validation;
 
 public class InputView {
 
+    private String input;
+
     public Integer inputPrice() {
-        String strPrice = Console.readLine()
-                .trim();
+        while (true) {
+            try {
+                input = Console.readLine().trim();
+                Validation.onlyNumberCheck(input);
+                break;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-
-        Validation.onlyNumberCheck(strPrice);
-
-        return Integer.parseInt(strPrice);
+        return Integer.parseInt(input);
     }
 
     public String inputLotto() {
-        String lotto = Console.readLine();
-        lottoValidate(lotto);
-        return lotto;
+        while (true) {
+            try {
+                input = Console.readLine();
+                lottoValidate(input);
+                break;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return input;
     }
 
     private void lottoValidate(String lotto) {
@@ -36,9 +50,17 @@ public class InputView {
     }
 
     public String inputBonus() {
-        String bonus = Console.readLine();
-        bonusValidation(bonus);
-        return bonus;
+        while (true) {
+            try {
+                input = Console.readLine();
+                bonusValidation(input);
+                break;
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return input;
     }
 
     private void bonusValidation(String bonus) {

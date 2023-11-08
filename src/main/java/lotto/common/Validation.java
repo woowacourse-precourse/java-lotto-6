@@ -54,10 +54,7 @@ public final class Validation {
     }
 
     public static Integer lottoDuplicateBonusNumber(String lotto, String bonus) {
-        List<Integer> lottoList = Arrays.stream(lotto.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .toList();
+        List<Integer> lottoList = getIntegerList(lotto);
 
         int bonusNumber = Integer.parseInt(bonus.trim());
 
@@ -68,6 +65,19 @@ public final class Validation {
         }
 
         return Integer.parseInt(bonus);
+    }
+
+    private static List<Integer> getIntegerList(String lotto) {
+        return Arrays.stream(lotto.split(","))
+                .map(String::trim)
+                .filter(strNumber -> {
+                    if (strNumber.isEmpty()) {
+                        return false;
+                    }
+                    return true;
+                })
+                .map(Integer::parseInt)
+                .toList();
     }
 
     public static void blankCheck(String strLotto) {

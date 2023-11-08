@@ -26,14 +26,13 @@ public class LottoController {
         this.lottoService = lottoService;
     }
 
-    public boolean run() {
+    public void run() {
         start();
         buy();
         randomLotto();
         winningLotto();
         lottoResult();
         rate();
-        return true;
     }
 
     private void start() {

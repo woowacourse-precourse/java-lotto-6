@@ -32,3 +32,6 @@ check new branch
 - MC 말 출력 함수
 - 사용자 값 받는 함수
 - 수익률 함수
+
+## (Class) Game
+- money(int,구입 금액), buy(List<Lotto>,로또 번호), answer(List<Integer>, 당첨 번호+보너스 번호)

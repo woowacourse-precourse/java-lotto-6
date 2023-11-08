@@ -48,4 +48,18 @@ class ValidatorTest {
                         .doesNotThrowAnyException()
         );
     }
+
+    @Test
+    void 보너스_숫자_검증이_가능하다(){
+        assertAll(
+                () -> assertThatThrownBy(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6),46))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining(BONUS_NUMBER_OUT_OF_RANGE),
+                () -> assertThatThrownBy(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6),6))
+                        .isInstanceOf(IllegalArgumentException.class)
+                        .hasMessageContaining(DUPLICATE_BONUS_NUMBER),
+                () -> assertThatCode(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6),7))
+                        .doesNotThrowAnyException()
+        );
+    }
 }

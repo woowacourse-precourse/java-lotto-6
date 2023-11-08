@@ -1,6 +1,6 @@
 package lotto.common.constants;
 
-public enum LottoRankRule {
+public enum LottoRank {
     FIRST_RANK_MATCH_COUNT(6),
     SECOND_RANK_MATCH_COUNT(5),
     THIRD_RANK_MATCH_COUNT(5),
@@ -15,7 +15,7 @@ public enum LottoRankRule {
 
     private final int rank;
 
-    LottoRankRule(int rank) {
+    LottoRank(int rank) {
         this.rank = rank;
     }
 

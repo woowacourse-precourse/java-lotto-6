@@ -1,6 +1,6 @@
 package lotto.common.constants;
 
-public enum LottoDefaultRule {
+public enum LottoRule {
     PICK_HIT_NUMBER_TOTAL(6),
     PICK_MIN_NUMBER(1),
     PICK_MAX_NUMBER(45),
@@ -8,7 +8,7 @@ public enum LottoDefaultRule {
 
     private final int rule;
 
-    LottoDefaultRule(int rule) {
+    LottoRule(int rule) {
         this.rule = rule;
     }
 

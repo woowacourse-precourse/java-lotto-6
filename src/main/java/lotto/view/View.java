@@ -19,26 +19,26 @@ public class View {
         return input;
     }
 
-    public void buyPriceMessage() {
+    public void printBuyPriceMessage() {
         System.out.println(OutputMessage.INPUT_BUY_PRICE.getMessage());
     }
 
-    public void buyTicketCountMessage(int ticketCount) {
+    public void printBuyTicketCountMessage(int ticketCount) {
         System.out.println(ticketCount + OutputMessage.OUTPUT_BUY_LOTTO_COUNT.getMessage());
     }
 
-    public void lottoTicketInformation(ArrayList<ArrayList<Integer>> lottoTickets) {
-        lottoTickets(lottoTickets);
+    public void printLottoTicketInformation(ArrayList<ArrayList<Integer>> lottoTickets) {
+        printLottoTickets(lottoTickets);
         System.out.println();
     }
 
-    private void lottoTickets(ArrayList<ArrayList<Integer>> lottoTickets) {
+    private void printLottoTickets(ArrayList<ArrayList<Integer>> lottoTickets) {
         for (ArrayList<Integer> lottoTicket : lottoTickets) {
             System.out.println(lottoTicket);
         }
     }
 
-    public void lottoNumberMessage() {
+    public void printLottoNumberMessage() {
         System.out.println(OutputMessage.INPUT_HIT_NUMBER.getMessage());
     }
 
@@ -48,7 +48,7 @@ public class View {
         return Parser.stringListToIntegerList(inputSixNumber);
     }
 
-    public void bonusNumberMessage() {
+    public void printBonusNumberMessage() {
         System.out.println(OutputMessage.INPUT_BONUS_HIT_NUMBER.getMessage());
     }
 
@@ -58,12 +58,12 @@ public class View {
         return Integer.parseInt(inputBonusNumber);
     }
 
-    public void prizeStatsMessage() {
+    public void printPrizeStatsMessage() {
         System.out.println(OutputMessage.OUTPUT_PRIZE_STATS.getMessage());
         System.out.println(Symbol.DIVIDE_LINE.getSymbol());
     }
 
-    public void prizeStats(Map<String, Integer> matchRecords) {
+    public void printPrizeStats(Map<String, Integer> matchRecords) {
         System.out.println(RankMessage.FIFTH_RANK_MESSAGE.getMessage() + matchRecords.get(Rank.FIFTH_RANK.getRank()) + Unit.TOTAL_NUMBER.getUnit());
         System.out.println(RankMessage.FOURTH_RANK_MESSAGE.getMessage() + matchRecords.get(Rank.FOURTH_RANK.getRank()) + Unit.TOTAL_NUMBER.getUnit());
         System.out.println(RankMessage.THIRD_RANK_MESSAGE.getMessage() + matchRecords.get(Rank.THIRD_RANK.getRank()) + Unit.TOTAL_NUMBER.getUnit());
@@ -71,7 +71,7 @@ public class View {
         System.out.println(RankMessage.FIRST_RANK_MESSAGE.getMessage() + matchRecords.get(Rank.FIRST_RANK.getRank()) + Unit.TOTAL_NUMBER.getUnit());
     }
 
-    public void profitRate(double percentageResult) {
+    public void printProfitRate(double percentageResult) {
         System.out.println(
                 OutputMessage.OUTPUT_TOTAL_PROFIT_PRICE_START.getMessage() + String.format("%.1f", percentageResult) + OutputMessage.OUTPUT_TOTAL_PROFIT_PRICE_END.getMessage());
     }

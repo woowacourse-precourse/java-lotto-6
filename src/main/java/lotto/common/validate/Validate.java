@@ -2,11 +2,11 @@ package lotto.common.validate;
 
 import java.util.List;
 import lotto.common.constants.ErrorMessage;
-import lotto.common.constants.LottoDefaultRule;
-import lotto.common.constants.Symbol;
+import lotto.common.constants.LottoRule;
 
 public class Validate {
     private static final int ZERO = 0;
+    private static final String ONLY_NUMBER = "^[0-9]*$";
 
     public static void consoleBlankValidate(String input) {
         inBlank(input);
@@ -57,28 +57,28 @@ public class Validate {
     }
 
     private static void notNumber(String inputString) {
-        if (!inputString.matches(Symbol.ONLY_NUMBER.getSymbol())) {
+        if (!inputString.matches(ONLY_NUMBER)) {
             System.out.println(ErrorMessage.ERROR_NOT_NUMBER.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     private static void underThousand(String inputString) {
-        if (Integer.parseInt(inputString) < LottoDefaultRule.ONE_LOTTO_TICKET_PRICE.getRule()) {
+        if (Integer.parseInt(inputString) < LottoRule.ONE_LOTTO_TICKET_PRICE.getRule()) {
             System.out.println(ErrorMessage.ERROR_UNDER_THOUSAND.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     private static void notThousandUnit(String inputString) {
-        if (Integer.parseInt(inputString) % LottoDefaultRule.ONE_LOTTO_TICKET_PRICE.getRule() != ZERO) {
+        if (Integer.parseInt(inputString) % LottoRule.ONE_LOTTO_TICKET_PRICE.getRule() != ZERO) {
             System.out.println(ErrorMessage.ERROR_NOT_THOUSAND_UNITS.getMessage());
             throw new IllegalArgumentException();
         }
     }
 
     private static void overInput(List<Integer> input) {
-        if (input.size() != LottoDefaultRule.PICK_HIT_NUMBER_TOTAL.getRule()) {
+        if (input.size() != LottoRule.PICK_HIT_NUMBER_TOTAL.getRule()) {
             System.out.println(ErrorMessage.ERROR_NOT_SIX_LOTTO_NUMBER.getMessage());
             throw new IllegalArgumentException();
         }
@@ -91,7 +91,7 @@ public class Validate {
     }
 
     private static void outOfNumber(int inputNumber) {
-        if (inputNumber < LottoDefaultRule.PICK_MIN_NUMBER.getRule() || inputNumber > LottoDefaultRule.PICK_MAX_NUMBER.getRule()) {
+        if (inputNumber < LottoRule.PICK_MIN_NUMBER.getRule() || inputNumber > LottoRule.PICK_MAX_NUMBER.getRule()) {
             System.out.println(ErrorMessage.ERROR_NOT_LOTTO_RANGE.getMessage());
             throw new IllegalArgumentException();
         }

@@ -2,8 +2,7 @@ package lotto.common.constants;
 
 public enum Symbol {
     COMMA(","),
-    DIVIDE_LINE("---"),
-    ONLY_NUMBER("^[0-9]*$");
+    DIVIDE_LINE("---");
 
     private final String symbol;
 

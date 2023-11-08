@@ -8,6 +8,9 @@ import lotto.money.Money;
 
 public class InputView {
 
+    private InputView() {
+    }
+
     public static Money inputMoney() {
         while (true) {
             System.out.println(Message.INPUT_MONEY);

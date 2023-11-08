@@ -13,6 +13,9 @@ public class LottoMachine {
 
     private static final int LOTTO_PRICE = 1000;
 
+    private LottoMachine() {
+    }
+
     public static List<Lotto> buyLottos(Money money) {
         List<Lotto> lottos = new ArrayList<>();
         int lottoNum = money.divideBy(LOTTO_PRICE);

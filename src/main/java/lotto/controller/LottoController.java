@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import lotto.model.BonusNumber;
 import lotto.model.Budget;
 import lotto.model.Lotto;
 import lotto.model.Policy;
@@ -26,6 +27,7 @@ public class LottoController {
     private Policy lottoPolicy;
     private Budget budget;
     private Lotto winningLotto;
+    private BonusNumber bonusNumber;
 
 
     public LottoController(
@@ -114,6 +116,14 @@ public class LottoController {
 
     private boolean doReadBonus() {
         OutputView.printBounsInputDescription();
+
+        try {
+            int userInput = InputView.inputBonus();
+            bonusNumber = new BonusNumber(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
 
         return true;
     }

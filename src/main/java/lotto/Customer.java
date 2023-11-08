@@ -7,6 +7,7 @@ import java.util.Map;
 public class Customer {
     private final static Integer MIN_MONEY = 1000;
     private final static Integer ZERO = 0;
+    private final static String ERROR_1000_LESS_THAN = "1000원 단위로 입력해주세요.";
     private final Integer buyPrice;
     private  Map<Integer, List<Integer>> lottoNumbers = new LinkedHashMap<>();
     private Integer winPrice = 0;
@@ -19,7 +20,7 @@ public class Customer {
         validateBuyPrice(buyPrice);
         Integer price = Integer.parseInt(buyPrice);
         if(price % MIN_MONEY != ZERO || price.equals(ZERO)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_1000_LESS_THAN);
         }
         return new Customer(price, 0);
     }

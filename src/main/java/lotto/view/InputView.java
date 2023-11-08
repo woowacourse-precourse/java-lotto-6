@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import static lotto.util.Phrase.InputPhrase.INPUT_COST;
 import static lotto.util.Phrase.InputPhrase.INPUT_ORIGINALNUMBER;

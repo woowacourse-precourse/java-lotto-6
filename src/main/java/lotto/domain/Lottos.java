@@ -19,6 +19,13 @@ public class Lottos {
         return new Lottos(quantity);
     }
 
+    public GameResult getGameResult(WinningInfo winningInfo) {
+        GameResult gameResult = GameResult.create();
+        lottos.stream().map(winningInfo::getPrizeResult)
+                .filter(Prize::isNotDefault)
+                .forEach(gameResult::incrementPrizeCount);
+        return gameResult;
+    }
 
 
     public List<Lotto> getLottos() {

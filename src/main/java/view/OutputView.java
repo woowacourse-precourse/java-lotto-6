@@ -49,6 +49,6 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - " + winningResult.get(7) +"개");
     }
     public static void printEarningRateResultMessage(double earningRate) {
-        System.out.println("총 수익률은 " + earningRate + "% 입니다.");
+        System.out.println("총 수익률은 " + Math.round(earningRate * 100.0) / 100.0 + "% 입니다.");
     }
 }

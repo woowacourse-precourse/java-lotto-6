@@ -33,4 +33,11 @@ public class ViewController {
         // 당첨 번호 입력
         return viewInputService.inputWinningNumbers();
     }
+
+    public int inputBonusNumber() {
+        // 보너스 번호 입력 요구 메세지
+        viewInputService.printMessageBonusNumber();
+        // 보너스 번호 입력
+        return viewInputService.inputBonusNumber();
+    }
 }

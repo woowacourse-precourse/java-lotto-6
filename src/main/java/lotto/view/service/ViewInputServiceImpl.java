@@ -43,4 +43,19 @@ public class ViewInputServiceImpl implements ViewInputService {
             return inputWinningNumbers();
         }
     }
+
+    @Override
+    public void printMessageBonusNumber() {
+        System.out.println("\n" + InputMessage.MESSAGE_BONUS_NUMBER.getValue());
+    }
+
+    @Override
+    public int inputBonusNumber() {
+        try {
+            return Integer.parseInt(InputValidator.validInputBonus(readLine()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
+        }
+    }
 }

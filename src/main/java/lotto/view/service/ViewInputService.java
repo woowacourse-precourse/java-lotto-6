@@ -10,4 +10,8 @@ public interface ViewInputService {
     void printMessageWinningNumbers();
 
     List<Integer> inputWinningNumbers();
+
+    void printMessageBonusNumber();
+
+    int inputBonusNumber();
 }

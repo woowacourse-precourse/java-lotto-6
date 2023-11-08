@@ -29,6 +29,5 @@ class LottoRepositoryImplTest {
     @Test
     void findAllTest() {
         Assertions.assertThat(lottoRepository.findAll().size()).isEqualTo(2);
-
     }
 }

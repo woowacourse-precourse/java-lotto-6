@@ -11,33 +11,48 @@ public class Input {
     public String input() {
         try {
             return Console.readLine();
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException(INPUT_EMPTY.getErrMsg());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(INPUT_ERROR.getErrMsg());
         }
     }
 
     public int inputPurchaseAmount() {
-        String purchaseAmount = input();
-        validatePurchaseAmount(purchaseAmount);
-        return Integer.parseInt(purchaseAmount);
+        try {
+            String purchaseAmount = input();
+            validatePurchaseAmount(purchaseAmount);
+            return Integer.parseInt(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(INPUT_ERROR.getErrMsg());
+            return inputPurchaseAmount();
+        }
     }
 
     public List<Integer> inputWinningNumbers() {
-        String inputString = input();
-        List<Integer> winningNumbers = new ArrayList<>(stream(inputString.split(","))
-                .map(Integer::valueOf)
-                .toList());
-        Collections.sort(winningNumbers);
-        validateWinningNumbersSize(winningNumbers);
-        validateWinningNumbersVal(winningNumbers);
-        validateDuplication(winningNumbers);
-        return winningNumbers;
+        try {
+            String inputString = input();
+            List<Integer> winningNumbers = new ArrayList<>(stream(inputString.split(","))
+                    .map(Integer::valueOf)
+                    .toList());
+            Collections.sort(winningNumbers);
+            validateWinningNumbersSize(winningNumbers);
+            validateWinningNumbersVal(winningNumbers);
+            validateDuplication(winningNumbers);
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(INPUT_ERROR.getErrMsg());
+            return inputWinningNumbers();
+        }
     }
 
     public int inputBonusNumber() {
-        String bonusNumber = input();
-        validateBonusNumber(bonusNumber);
-        return Integer.parseInt(bonusNumber);
+        try {
+            String bonusNumber = input();
+            validateBonusNumber(bonusNumber);
+            return Integer.parseInt(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(INPUT_ERROR.getErrMsg());
+            return inputBonusNumber();
+        }
     }
 
     private void validateBonusNumber(String value) {

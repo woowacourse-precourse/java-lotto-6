@@ -3,13 +3,13 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class Application {
     private final Output output;
     private final Input input;
-    private final Lotto lotto;
     private final Analyzer analyzer;
 
     public static void main(String[] args) {
@@ -20,7 +20,6 @@ public class Application {
     private Application() {
         output = new Output();
         input = new Input();
-        lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         analyzer = new Analyzer();
     }
 
@@ -44,9 +43,16 @@ public class Application {
     private List<List<Integer>> generateAllTickets(int ticket) {
         List<List<Integer>> allTicketNumbers = new ArrayList<>();
         for (int i = 0; i < ticket; i++) {
-            allTicketNumbers.add(new ArrayList<>(lotto.generateLotto()));
+            allTicketNumbers.add(new ArrayList<>(generateLotto()));
         }
         output.outputTicketPurchaseHistory(ticket, allTicketNumbers);
         return allTicketNumbers;
+    }
+
+    private List<Integer> generateLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 }

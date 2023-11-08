@@ -1,8 +1,10 @@
+package Controller;
+
 import Board.Board;
+import Util.Calculator;
 import WinningNumber.WinningNumber;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
-
 import java.util.List;
 
 public class Controller {
@@ -10,8 +12,6 @@ public class Controller {
     WinningNumber winningNumber;
     List<Lotto> lotteries;
     int money;
-
-
 
     public Controller(Board board, WinningNumber winningNumber, List<Lotto> lotteries){
         this.board = board;

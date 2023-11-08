@@ -1,3 +1,5 @@
+package Util;
+
 import Board.LottoOutcome;
 import WinningNumber.WinningNumber;
 import lotto.Lotto;

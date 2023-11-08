@@ -49,4 +49,11 @@ class LottoTest {
         assertThat(lotto.getHowManySameNumbers(compare)).isEqualTo(3);
     }
 
+    @DisplayName("로또는 보너스 숫자를 포함하는지 여부를 확인한다.")
+    @ParameterizedTest
+    @CsvSource({"5,true", "6,true", "7,false", "8,false"})
+    void checkHasBonusinLotto(int number, boolean hasBonus){
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        assertThat(lotto.hasBonus(number)).isEqualTo(hasBonus);
+    }
 }

@@ -58,20 +58,20 @@ public class LottoController {
 
     private Money readMoneyToBuyLotto() {
         Supplier<Money> method = inputView::inputMoneyToBuyLotto;
-        return retryUntilSuccess(method);
+        return readUntilSuccess(method);
     }
 
     private WinningNumbers readWinningNumbers() {
         Supplier<WinningNumbers> method = inputView::inputWinningNumbers;
-        return retryUntilSuccess(method);
+        return readUntilSuccess(method);
     }
 
     private BonusNumber readBonusNumber() {
         Supplier<BonusNumber> method = inputView::inputBonusNumber;
-        return retryUntilSuccess(method);
+        return readUntilSuccess(method);
     }
 
-    private <T> T retryUntilSuccess(Supplier<T> supplier) {
+    private <T> T readUntilSuccess(Supplier<T> supplier) {
         while(true) {
             try {
                 return supplier.get();

@@ -30,7 +30,8 @@ public class ModelHandler {
     }
 
     public int setPrice() {
-        EXCEPTION.checkPriceUnit(INPUT_VIEW.inputPrice());
-        return INPUT_VIEW.inputPrice();
+        int price = INPUT_VIEW.inputPrice();
+        EXCEPTION.checkPriceUnit(price);
+        return price;
     }
 }

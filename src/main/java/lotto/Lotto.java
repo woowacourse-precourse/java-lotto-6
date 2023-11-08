@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -13,6 +14,13 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void duplicate(List<Integer> numbers){
+        HashSet<Integer> duplicatenum = new HashSet<>(numbers);
+        if (duplicatenum.size() != numbers.size()){
+            throw new IllegalArgumentException("[ERROR] 중복되는 값이 있습니다.");
         }
     }
 }

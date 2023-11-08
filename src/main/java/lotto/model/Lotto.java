@@ -20,7 +20,7 @@ public class Lotto {
         if (numbers.stream().distinct().count() != LottoNumber.COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMsg.INVALID_LOTTO_NUMBER_DUPLICATE.getErrMsg());
         }
-        if (numbers.stream().anyMatch(number -> !LottoNumber.isInRange(number))) {
+        if (numbers.stream().anyMatch(number -> LottoNumber.isOutOfRange(number))) {
             throw new IllegalArgumentException(ErrorMsg.INVALID_LOTTO_NUMBER_RANGE.getErrMsg());
         }
     }

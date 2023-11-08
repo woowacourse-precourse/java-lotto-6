@@ -16,7 +16,7 @@ public enum LottoNumber {
         return number;
     }
 
-    public static boolean isInRange(int number) {
-        return number >= MIN.getNumber() && number <= MAX.getNumber();
+    public static boolean isOutOfRange(int number) {
+        return number < MIN.getNumber() || number > MAX.getNumber();
     }
 }

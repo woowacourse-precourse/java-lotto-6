@@ -35,7 +35,7 @@ public class Verifier {
     }
 
     public static void validateBonusNumber(Integer bonusNumber, List<Integer> winningNumbers) {
-        if (!LottoNumber.isInRange(bonusNumber)) {
+        if (LottoNumber.isOutOfRange(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMsg.INVALID_BONUS_NUMBER_RANGE.getErrMsg());
         }
 

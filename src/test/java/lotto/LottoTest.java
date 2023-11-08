@@ -11,6 +11,8 @@ import java.util.List;
 import lotto.lotto.model.Lotto;
 
 class LottoTest {
+
+    private static final int LOTTO_SIZE = 6;
     private static final String LOTTO_RESULT = "[1, 2, 3, 4, 5, 6]";
     private Lotto lotto;
 
@@ -40,6 +42,12 @@ class LottoTest {
     @Test
     void 로또_문자열_반환(){
         assertThat(lotto.toString()).isEqualTo(LOTTO_RESULT);
+    }
+
+    @DisplayName("로또 사이즈 반환")
+    @Test
+    void 로또_사이즈_반환(){
+        assertThat(lotto.length()).isEqualTo(LOTTO_SIZE);
     }
 
 }

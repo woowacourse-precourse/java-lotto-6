@@ -15,5 +15,6 @@ public class Seller {
         purchaseAmount = Input.getPurchaseAmount();
 
         lottos = SellerHelper.buyLottos(purchaseAmount / LottoCondition.MONEY_UNIT);
+        Print.purchase(purchaseAmount, lottos);
     }
 }

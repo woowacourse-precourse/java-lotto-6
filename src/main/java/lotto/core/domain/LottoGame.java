@@ -18,14 +18,18 @@ public class LottoGame {
 
     public void play(){
         // 1. 로또 구입 금액에 해당하는 만큼 로또를 발행한다.
-        List<Lotto> lottos = makeLottos();
+        int lottoCount = getLottoCount();
+
+        List<Lotto> lottos = makeLottos(lottoCount);
+
+        // 2. 발행한 로또의 총 수량을 출력한다.
+        writeLottoCount(lottoCount);
+
         // 3. 발행한 로또의 번호를 오름차순으로 정렬하여 출력한다.
         writeAllLottoNumbers(lottos);
     }
 
-    private List<Lotto> makeLottos() {
-        int count = getLottoCount();
-
+    private List<Lotto> makeLottos(int count) {
         return IntStream.range(0, count)
                 .mapToObj(i -> new Lotto(makeLottoNumbers()))
                 .collect(Collectors.toList());
@@ -39,6 +43,10 @@ public class LottoGame {
         } while (!isValidPurchaseAmount(purchaseAmount));
 
         return Integer.parseInt(purchaseAmount) / LOTTO_PRICE;
+    }
+
+    private void writeLottoCount(int count) {
+        Output.writeLottoCount(count);
     }
 
     private boolean isValidPurchaseAmount(String purchaseAmountInput) {

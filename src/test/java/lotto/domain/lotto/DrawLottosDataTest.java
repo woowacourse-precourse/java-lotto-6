@@ -23,7 +23,7 @@ final class DrawLottosDataTest {
         // then
         assertThat(data)
                 .extracting("totalCost")
-                .isEqualTo(LottoStore.LOTTO_PRICE);
+                .isEqualTo(LottoSeller.LOTTO_PRICE);
 
         assertThat(data)
                 .extracting("totalEarning")
@@ -38,7 +38,7 @@ final class DrawLottosDataTest {
     @Test
     void returnOnRate_mustRound_() {
         // given
-        final LottoPrize lottoPrize = LottoPrize.NONE;
+        final LottoPrize lottoPrize = LottoPrize.X;
         final DrawLottosData data = new DrawLottosData();
         data.save(lottoPrize);
 
@@ -158,7 +158,7 @@ final class DrawLottosDataTest {
     @Test
     void verifyingData_whenNone() {
         // given
-        final LottoPrize lottoPrize = LottoPrize.NONE;
+        final LottoPrize lottoPrize = LottoPrize.X;
         final DrawLottosData data = new DrawLottosData();
         data.save(lottoPrize);
 

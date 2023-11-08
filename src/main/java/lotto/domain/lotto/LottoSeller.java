@@ -8,7 +8,7 @@ import lotto.domain.money.Wallet;
 /**
  * 사용자가 Money로 로또를 구매할 수 있는 로또 판매점을 표현
  */
-public final class LottoStore {
+public final class LottoSeller {
 
     /**
      * 로또 장당 가격
@@ -21,9 +21,9 @@ public final class LottoStore {
     private final LottoGenerator lottoGenerator;
 
     /**
-     * LottoStore 생성자, LottoGenerator interface type instance를 외부에서 주입받아야 하며, 용도에 따라 교체될 수 있습니다.
+     * LottoSeller 생성자, LottoGenerator interface type instance를 외부에서 주입받아야 하며, 용도에 따라 교체될 수 있습니다.
      */
-    public LottoStore(final LottoGenerator lottoGenerator) {
+    public LottoSeller(final LottoGenerator lottoGenerator) {
         this.lottoGenerator = lottoGenerator;
     }
 

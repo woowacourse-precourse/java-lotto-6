@@ -175,9 +175,9 @@ final class WinningLottoTest {
         assertThat(lottoPrize3).isEqualTo(LottoPrize.THIRD);
         assertThat(lottoPrize4).isEqualTo(LottoPrize.FOURTH);
         assertThat(lottoPrize5).isEqualTo(LottoPrize.FIFTH);
-        assertThat(lottoPrize6).isEqualTo(LottoPrize.NONE);
-        assertThat(lottoPrize7).isEqualTo(LottoPrize.NONE);
-        assertThat(lottoPrize8).isEqualTo(LottoPrize.NONE);
+        assertThat(lottoPrize6).isEqualTo(LottoPrize.X);
+        assertThat(lottoPrize7).isEqualTo(LottoPrize.X);
+        assertThat(lottoPrize8).isEqualTo(LottoPrize.X);
     }
 
 

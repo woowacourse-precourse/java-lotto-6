@@ -27,24 +27,18 @@ public final class WinningLotto extends Lotto {
      * 로또 한 장을 추첨하여 등수, 당첨금 등의 데이터가 담긴 `LottoPrize` 반환
      */
     public LottoPrize draw(final Lotto lotto) {
-        final int matchedCount = countContained(lotto);
-        final boolean hasBonusNumber = hasBonusNumber(lotto);
+        final int matchedCount = countMatchedNumbers(lotto);
+        final boolean hasBonusNumber = lotto.numbers.contains(bonusNumber);
         return LottoPrize.of(matchedCount, hasBonusNumber);
     }
 
     /**
      * 몇 개의 번호가 일치하는지 개수 반환
      */
-    private int countContained(final Lotto lotto) {
+    private int countMatchedNumbers(final Lotto lotto) {
         return (int) lotto.numbers.stream()
-                .filter(this::contains)
+                .filter(numbers::contains)
                 .count();
     }
 
-    /**
-     * 보너스 번호를 가지고 있는지 체크
-     */
-    private boolean hasBonusNumber(final Lotto lotto) {
-        return lotto.contains(bonusNumber);
-    }
 }

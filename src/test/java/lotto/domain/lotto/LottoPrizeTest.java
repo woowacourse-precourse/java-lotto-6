@@ -45,9 +45,9 @@ final class LottoPrizeTest {
         final LottoPrize lottoPrize4 = LottoPrize.of(7, false);
 
         // then
-        assertThat(lottoPrize1).isEqualTo(LottoPrize.NONE);
-        assertThat(lottoPrize2).isEqualTo(LottoPrize.NONE);
-        assertThat(lottoPrize3).isEqualTo(LottoPrize.NONE);
-        assertThat(lottoPrize4).isEqualTo(LottoPrize.NONE);
+        assertThat(lottoPrize1).isEqualTo(LottoPrize.X);
+        assertThat(lottoPrize2).isEqualTo(LottoPrize.X);
+        assertThat(lottoPrize3).isEqualTo(LottoPrize.X);
+        assertThat(lottoPrize4).isEqualTo(LottoPrize.X);
     }
 }

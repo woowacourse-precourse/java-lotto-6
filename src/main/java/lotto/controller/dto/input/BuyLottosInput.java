@@ -1,8 +1,8 @@
 package lotto.controller.dto.input;
 
 import lotto.controller.exception.InvalidLottoPriceUnitException;
-import lotto.domain.lotto.LottoStore;
 import lotto.controller.parser.StrictInputParser;
+import lotto.domain.lotto.LottoSeller;
 
 /**
  * 첫 번째 입력인 로또를 구매하기 위해 사용자가 입력한 '구입 금액'을 저장하는 Input Dto
@@ -41,7 +41,7 @@ public final class BuyLottosInput {
      * Wallet 내에 들어갈 잔액은 로또 가격으로 나누어 떨어져야 합니다.
      */
     public static void validateLottoPrice(final long amount) {
-        long isDivisibleByLottoPrice = amount % LottoStore.LOTTO_PRICE.toLong();
+        long isDivisibleByLottoPrice = amount % LottoSeller.LOTTO_PRICE.toLong();
         if (isDivisibleByLottoPrice != 0) {
             throw new InvalidLottoPriceUnitException();
         }

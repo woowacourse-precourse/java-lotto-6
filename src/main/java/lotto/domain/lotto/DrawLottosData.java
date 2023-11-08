@@ -47,7 +47,7 @@ public final class DrawLottosData {
      */
     public void save(final LottoPrize lottoPrize) {
         final int prevCount = data.get(lottoPrize);
-        totalCost = totalCost.increased(LottoStore.LOTTO_PRICE);
+        totalCost = totalCost.increased(LottoSeller.LOTTO_PRICE);
         totalEarning = totalEarning.increased(lottoPrize.getPrize());
         this.data.replace(lottoPrize, prevCount + 1);
     }

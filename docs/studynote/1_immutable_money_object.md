@@ -2,7 +2,7 @@
 
 로또를 구매하기 위한 금액을 `Money`로 추상화
 
-`LottoStore.buyUntilOutOfMoney`로 로또를 구매할 때,
+`LottoSeller.buyUntilOutOfMoney`로 로또를 구매할 때,
 
 Wrapper class인 `Money` 내의 잔액이 감소하게 됨
 

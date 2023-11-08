@@ -10,18 +10,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-final class LottoStoreTest {
+final class LottoSellerTest {
     @DisplayName("buyUntilOutOfMoney는 가진 잔액을 모두 소진할 때까지 로또를 매입한다.")
     @ParameterizedTest
     @ValueSource(longs = {1_000, 10_000, 100_000})
     void buyUntilOutOfMoney_withMoney_shouldSpendAllMoney(final long amount) {
         // given
         final LottoGenerator lottoGenerator = new FixedLottoGenerator(List.of(1, 2, 3, 4, 5, 6));
-        final LottoStore lottoStore = new LottoStore(lottoGenerator);
+        final LottoSeller lottoSeller = new LottoSeller(lottoGenerator);
         final Wallet wallet = Wallet.with(amount);
 
         // when
-        final Lottos lottos = lottoStore.buyUntilOutOfMoney(wallet);
+        final Lottos lottos = lottoSeller.buyUntilOutOfMoney(wallet);
 
         // then
         assertThat(wallet.hasEqualOrMoreThan(Money.zero())).isTrue();

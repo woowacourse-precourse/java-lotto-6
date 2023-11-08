@@ -7,12 +7,12 @@ import lotto.domain.money.Money;
  * WinningLotto와 Lotto를 비교하여 일치하는 번호 및 보너스 번호를 계산하여 로또 등 수를 나타낼 때 사용되는 클래스입니다.
  */
 public enum LottoPrize {
+    X(Money.zero(), 0, false),
     FIRST(Money.from(2_000_000_000), 6, false),
     SECOND(Money.from(30_000_000), 5, true),
     THIRD(Money.from(1_500_000), 5, false),
     FOURTH(Money.from(50_000), 4, false),
-    FIFTH(Money.from(5_000), 3, false),
-    NONE(Money.zero(), 0, false);
+    FIFTH(Money.from(5_000), 3, false);
 
     /**
      * 모든 enum constant를 List로 보관
@@ -58,7 +58,7 @@ public enum LottoPrize {
                 .filter(lottoPrize -> !lottoPrize.hasBonusNumber)
                 .filter(lottoPrize -> lottoPrize.matchedCount == matchedCount)
                 .findFirst()
-                .orElse(LottoPrize.NONE);
+                .orElse(LottoPrize.X);
     }
 
 

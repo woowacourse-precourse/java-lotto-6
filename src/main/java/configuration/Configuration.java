@@ -1,12 +1,12 @@
 package configuration;
 
 import io.output.ConsoleWriter;
-import lotto.service.LottoService;
+import lotto.controller.LottoController;
 import lotto.domain.lotto.LottoGenerator;
-import lotto.domain.lotto.LottoStore;
+import lotto.domain.lotto.LottoSeller;
 import lotto.domain.lotto.RandomLottoGenerator;
 import lotto.domain.lotto.repository.LottoRepository;
-import lotto.controller.LottoController;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -26,11 +26,11 @@ public final class Configuration {
         final InputView inputView = new InputView(new ConsoleWriter());
         final OutputView outputView = new OutputView(new ConsoleWriter());
         final LottoGenerator lottoGenerator = new RandomLottoGenerator();
-        final LottoStore lottoStore = new LottoStore(lottoGenerator);
+        final LottoSeller lottoSeller = new LottoSeller(lottoGenerator);
         final LottoRepository lottoRepository = new LottoRepository();
 
         final LottoService lottoService = new LottoService(
-                lottoStore,
+                lottoSeller,
                 lottoRepository
         );
 

@@ -6,7 +6,7 @@ import lotto.controller.dto.output.BuyLottosOutput;
 import lotto.controller.dto.output.DrawLottosOutput;
 import lotto.domain.lotto.DrawLottosData;
 import lotto.domain.lotto.LottoDrawer;
-import lotto.domain.lotto.LottoStore;
+import lotto.domain.lotto.LottoSeller;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.WinningLotto;
 import lotto.domain.lotto.repository.LottoRepository;
@@ -43,14 +43,14 @@ import lotto.service.mapper.WalletFromDtoMapper;
  * 그동안 공부하면서 유사한 사례들을 계속해서 봐왔기 때문에 비교해서 생각하면 좀 더 이해가 수월합니다.
  */
 public final class LottoService {
-    private final LottoStore lottoStore;
+    private final LottoSeller lottoSeller;
     private final LottoRepository lottoRepository;
 
     public LottoService(
-            final LottoStore lottoStore,
+            final LottoSeller lottoSeller,
             final LottoRepository lottoRepository
     ) {
-        this.lottoStore = lottoStore;
+        this.lottoSeller = lottoSeller;
         this.lottoRepository = lottoRepository;
     }
 
@@ -59,7 +59,7 @@ public final class LottoService {
      */
     public BuyLottosOutput buyLottos(final BuyLottosInput dto) {
         final Wallet wallet = WalletFromDtoMapper.from(dto);
-        final Lottos boughtLottos = lottoStore.buyUntilOutOfMoney(wallet);
+        final Lottos boughtLottos = lottoSeller.buyUntilOutOfMoney(wallet);
         final Lottos clonedLottos = boughtLottos.clone();
         lottoRepository.saveAll(boughtLottos);
 

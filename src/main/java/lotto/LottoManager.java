@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoManager {
     private final int pricePerLotto = 1000;
@@ -13,14 +14,13 @@ public class LottoManager {
     private final int maxLottoNumber = 45;
 
     public void launch() {
-        try {
-            int purchaseAmount = inputPurchaseAmount();
-            List<Lotto> lottos = purchaseLottos(purchaseAmount);
-            // 로또 게임의 나머지 진행 로직을 추가
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            // 에러 발생시 재시도 로직 추가
-        }
+
+        int purchaseAmount = inputPurchaseAmount();
+        List<Lotto> lottos = purchaseLottos(purchaseAmount);
+        printLottos(lottos);
+        // 로또 게임의 나머지 진행 로직을 추가
+        // 에러 발생시 재시도 로직 추가
+
     }
 
     private int inputPurchaseAmount() {
@@ -54,5 +54,14 @@ public class LottoManager {
         return new Lotto(numbers);
     }
 
+    public void printLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            List<Integer> sortedNumbers = lotto.getNumbers().stream()
+                    .sorted()
+                    .collect(Collectors.toList());
+            System.out.println(sortedNumbers);
+        }
+    }
 
 }

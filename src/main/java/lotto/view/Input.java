@@ -21,7 +21,6 @@ public class Input {
     public static Lotto readWinningNumbers() {
         String numberStr = Console.readLine();
         List<Integer> winningNumbers = Converter.stringToIntegerList(numberStr, ",");
-        validateNumberOfLottoNumbers(winningNumbers);
         return new Lotto(winningNumbers);
     }
 

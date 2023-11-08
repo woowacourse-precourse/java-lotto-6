@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.HashSet;
 import java.util.List;
 
 import static lotto.util.Validator.*;
@@ -14,14 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-
-        if (new HashSet<>(numbers).size() != 6) {
-            throw new IllegalArgumentException();
-        }
-
+        validateNumberOfLottoNumbers(numbers);
         validateLottoNumberDuplicate(numbers);
         validateRangeOfNumbers(numbers);
     }

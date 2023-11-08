@@ -6,6 +6,7 @@ import lotto.validation.LottoValidation;
 import java.util.List;
 
 public class Lotto {
+    public static final int PRICE = 1000;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,5 +18,15 @@ public class Lotto {
         LottoValidation.validateRange(numbers);
         LottoValidation.validateDuplicates(numbers);
         LottoValidation.validateLength(numbers);
+    }
+
+    public int countMatches(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean contains(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 }

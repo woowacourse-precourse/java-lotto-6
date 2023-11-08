@@ -23,5 +23,45 @@ public class LottoMachineTest {
         Assertions.assertEquals(firstInstance, secondInstance);
     }
 
+    @Test
+    void issue_메소드는_입력값_수량만큼_로또를_발행한다() {
+        LottoMachine lottoMachine = LottoMachine.getInstance();
+        List<Lotto> lottos = lottoMachine.issue(10, new LottoAutoIssuePolicy());
 
+        Assertions.assertEquals(lottos.size(), 10);
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideLottoNumbers")
+    void issue_메소드는_입력값으로_주어진_전략에_따라_로또를_발행한다(List<Integer> numbers) {
+        LottoMachine lottoMachine = LottoMachine.getInstance();
+        List<Lotto> lottos = lottoMachine.issue(1, new LottoManualIssuePolicy(numbers));
+
+        Assertions.assertTrue(isEquals(lottos.get(0), numbers));
+    }
+
+    private boolean isEquals(Lotto lotto, List<Integer> numbers) {
+        return numbers.stream()
+                .allMatch(number -> lotto.isContain(new LottoNumber(number)));
+    }
+
+    private static Stream<Arguments> provideLottoNumbers() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6)),
+                Arguments.of(List.of(12, 5, 28, 45, 34, 32))
+        );
+    }
+
+    static class LottoManualIssuePolicy implements LottoIssuePolicy {
+        private final List<Integer> numbers;
+
+        public LottoManualIssuePolicy(List<Integer> numbers) {
+            this.numbers = numbers;
+        }
+
+        @Override
+        public List<Integer> issue() {
+            return numbers;
+        }
+    }
 }

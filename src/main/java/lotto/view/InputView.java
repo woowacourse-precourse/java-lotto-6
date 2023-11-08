@@ -5,7 +5,6 @@ import java.util.List;
 import lotto.view.parser.InputParser;
 
 public class InputView {
-
     private final InputParser inputParser;
 
     public InputView() {

@@ -10,7 +10,8 @@ public enum OutputMessage {
     PRINT_FOURTH_RANK_PRIZE_RESULT_FORMAT("4개 일치 (%s원) - %d개"),
     PRINT_THIRD_RANK_PRIZE_RESULT_FORMAT("5개 일치 (%s원) - %d개"),
     PRINT_SECOND_RANK_PRIZE_RESULT_FORMAT("5개 일치, 보너스 볼 일치 (%s원) - %d개"),
-    PRINT_FIRST_RANK_PRIZE_RESULT_FORMAT("6개 일치 (%s원) - %d개");
+    PRINT_FIRST_RANK_PRIZE_RESULT_FORMAT("6개 일치 (%s원) - %d개"),
+    PRINT_RATE_OF_RETURN_RESULT_FORMAT("총 수익률은 %.1f%% 입니다.");
 
     private final String message;
 

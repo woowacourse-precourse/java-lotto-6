@@ -7,7 +7,6 @@ import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 
 public class WinningLottoNumbersInputValidator {
-
     public void validate(final String winningLottoNumbers) {
         isNotEmpty(winningLottoNumbers);
         containsDelimiter(winningLottoNumbers);

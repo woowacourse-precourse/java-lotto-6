@@ -81,7 +81,9 @@ public class OutputView {
     }
 
     private void printRateOfReturn(final double rateOfReturn) {
-        
+        String rateOfReturnResult = String.format(OutputMessage.PRINT_RATE_OF_RETURN_RESULT_FORMAT.getMessage(),
+                rateOfReturn);
+        printMessage(rateOfReturnResult);
     }
 
     public void printLine() {

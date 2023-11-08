@@ -31,15 +31,18 @@ public class LottoController {
     public void playGame() {
         UserMoney userMoney = initUserMoney();
         Lottos userLottos = lottoService.createUserLottos(userMoney.getUserMoney());
+        outputView.printLine();
         printNumberOfLottos(userLottos.getNumberOfLottos());
+        outputView.printLine();
         printLottoContents(userLottos.getLottos());
 
         WinningLottoNumbers winningLottoNumbers = initWinningLottoNumbers();
+        outputView.printLine();
         BonusNumber bonusNumber = initBonusNumber(winningLottoNumbers);
         LotteryResult lotteryResult = lottoService.generateLotteryResult(winningLottoNumbers, bonusNumber);
+
         UserLottoGameResult userLottoGameResult = lottoService.generateUserLottoGameResult(lotteryResult, userLottos);
         printUserLottoGameResult(userLottoGameResult.getUserLottoRanks(), userLottoGameResult.getRateOfReturn());
-
         endGame();
     }
 
@@ -59,7 +62,6 @@ public class LottoController {
     }
 
     private void printNumberOfLottos(final long numberOfLottos) {
-        outputView.printLine();
         outputView.printNumberOfLottos(numberOfLottos);
     }
 

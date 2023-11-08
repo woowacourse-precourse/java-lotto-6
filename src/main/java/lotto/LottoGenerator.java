@@ -1,15 +1,18 @@
 package lotto;
 
 import java.util.List;
-import camp.nextstep.edu.missionutils.Randoms;
-import camp.nextstep.edu.missionutils.Console;
 
-public class Lotto {
+public class LottoGenerator {
     private final List<Integer> numbers;
+    int lottoCount;
+    int bonus;
 
-    public Lotto(List<Integer> numbers) {
+
+    public LottoGenerator(List<Integer> numbers, int lottoCount, int bonus) {
         validate(numbers);
         this.numbers = numbers;
+        this.lottoCount = lottoCount;
+        this.bonus = bonus;
     }
 
     private void validate(List<Integer> numbers) {
@@ -18,5 +21,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void generator(){
+
+    }
+
+    private void checkWinning(){
+
+    }
 }

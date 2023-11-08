@@ -51,5 +51,4 @@ public class Analyst {
             lottoResult.put(LottoMessage.SIX, lottoResult.get(LottoMessage.SIX) + 1);
         }
     }
-
 }

@@ -1,7 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import utils.Parse;
+import utils.Parser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class Computer {
 
                 validateLottoNumberInputFormat(winningLottoNumber);
 
-                return new Lotto(Parse.parseInteger(winningLottoNumber));
+                return new Lotto(Parser.parseInteger(winningLottoNumber));
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

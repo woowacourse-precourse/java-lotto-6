@@ -30,5 +30,4 @@ public class LottoGenerator {
         Lotto lotto = new Lotto(generateLotteryNumber());
         return lotto;
     }
-
 }

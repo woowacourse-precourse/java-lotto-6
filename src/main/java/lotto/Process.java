@@ -25,16 +25,6 @@ public class Process {
     }
 
 
-    //로또 개수만큼 로또 번호 생성
-    private List<Integer> generateLottoNumbers() {
-
-        //값을 하드 코딩하지 않는다 - 2주차 피드백
-        lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMEBER_RANGE_START, LOTTO_NUMEBER_RANGE_END, LOTTO_NUMBER_COUNT);
-
-        return lottoNumbers;
-    }
-
-
     public List<List<Integer>> saveLottos(int purchaseCount) {
         List<Integer> lottoNumbers = null;
         List<Integer> eachLottoNumber = null;
@@ -53,6 +43,16 @@ public class Process {
         }
 
         return lottos;
+    }
+
+
+    //로또 개수만큼 로또 번호 생성
+    private List<Integer> generateLottoNumbers() {
+
+        //값을 하드 코딩하지 않는다 - 2주차 피드백
+        lottoNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMEBER_RANGE_START, LOTTO_NUMEBER_RANGE_END, LOTTO_NUMBER_COUNT);
+
+        return lottoNumbers;
     }
 
 

@@ -32,7 +32,6 @@ public class Application {
         Print lottoCountPrint = new Print();
         lottoCountPrint.printLottoCount(purchaseCount);
 
-
         Process startProcess = new Process();
         Print lottosPrint = new Print();
 

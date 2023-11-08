@@ -121,12 +121,6 @@ public class UserInput {
     }
 
 
-
-
-
-
-
-
     //보너스 번호 입력
     public int getBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber;
@@ -158,7 +152,6 @@ public class UserInput {
             throw new IllegalArgumentException("1부터 45 사이의 숫자를 하나 입력해 주세요.");
         }
 
-        return;
     }
 
 
@@ -170,7 +163,7 @@ public class UserInput {
             }
         }
 
-        return;
     }
+
 
 }

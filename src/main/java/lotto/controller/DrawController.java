@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.IssueLotto;
@@ -11,6 +10,7 @@ import lotto.model.MatchLotto;
 import lotto.model.PurchaseLotto;
 import lotto.model.Yield;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class DrawController {
 
@@ -39,18 +39,7 @@ public class DrawController {
         matchLotto.matchLotto(winningNumbers, bonusNumber.getBonusNumber(), issueLotto.getLottoPurchaseHistory());
         lottoResult.checkResult(matchLotto.getMatchResult());
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        for (LottoRankings rank : LottoRankings.values()) {
-            Integer count = lottoResult.getLottoResult().get(rank);
-            if (count != null) {
-                System.out.println(String.format(rank.getMessage(),
-                        formatWinningAmount(rank.getWinningAmount()),
-                        lottoResult.getLottoResult().get(rank)));
-                continue;
-            }
-            System.out.println(String.format(rank.getMessage(), formatWinningAmount(rank.getWinningAmount()), 0));
-        }
+        OutputView.printResultMessage(lottoResult.getLottoResult());
 
         checkYield();
     }
@@ -61,40 +50,36 @@ public class DrawController {
             totalPrizeMoney += rank.getWinningAmount() * lottoResult.getLottoResult().get(rank);
         }
         yield.calculateYield(totalPrizeMoney, purchaseLotto.getPurchaseAmount());
-        System.out.println("총 수익률은 " + yield.getYield() + "%입니다.");
+        OutputView.printYieldMessage(yield.getYield());
     }
 
     private void inputBonusNumber(List<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        OutputView.printBonusNumberInputMessage();
         try {
             bonusNumber.inputBonusNumber(InputView.input(), winningNumbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
             bonusNumber.inputBonusNumber(InputView.input(), winningNumbers);
         }
     }
 
     private Lotto inputWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        OutputView.printWinningNumberInputMessage();
         try {
             return Lotto.createWinningNumbers(InputView.input());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
             return Lotto.createWinningNumbers(InputView.input());
         }
     }
 
     private void inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        OutputView.printPurchaseAmountInputMessage();
         try {
             purchaseLotto.purchase(InputView.input());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
             purchaseLotto.purchase(InputView.input());
         }
-    }
-
-    private static String formatWinningAmount(int amount) {
-        return String.valueOf(amount).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
     }
 }

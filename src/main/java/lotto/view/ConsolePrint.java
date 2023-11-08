@@ -31,6 +31,7 @@ public class ConsolePrint {
     }
 
     public static void printPurchased(int num) {
+        System.out.println();
         System.out.println(num + PRINT_BUYNUMBER);
     }
 

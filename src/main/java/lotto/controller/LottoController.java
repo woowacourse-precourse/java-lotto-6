@@ -1,8 +1,8 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
@@ -25,8 +25,8 @@ public class LottoController {
         winningNumber = new Lotto(
                 ConsolePrint.readWinningNum().split(","));
         bonus = new BonusNumber(ConsolePrint.readBonusNum());
-        compareNumbers();
 
+        makeRank(compareNumbers());
     }
 
     public List<Integer> compareNumbers() {
@@ -34,15 +34,26 @@ public class LottoController {
 //                .mapToInt(lotto -> countSameNumbers(lotto.getNumbers(), winningNumber.getNumbers()))
 //                .boxed()
 //                .collect(Collectors.toList());
-        List<Lotto> lottos = lottosList.getLottosList();
-        return IntStream.range(0, lottos.size()) // 0부터 리스트 크기까지의 인덱스 스트림 생성
+        List<Integer> countList = new ArrayList<>();
+
+        IntStream.range(0, lottosList.getLottosList().size())
                 .filter(index -> {
-                    int count = countSameNumbers(lottos.get(index).getNumbers(),
+                    int count = countSameNumbers(lottosList.getLottosList().get(index).getNumbers(),
                             winningNumber.getNumbers());
+//                    System.out.println(count);
+//                    if (count == 5) {
+//                        processCountIs5(index, lottosList);
+//                    }
+                    countList.add(count); // 모든 count를 리스트에 추가
                     return count == 5;
                 })
-                .mapToObj(index -> processCountIs5(index, lottosList))
-                .collect(Collectors.toList());
+                .forEach(index -> {
+                    System.out.println("index:" + index);
+                    processCountIs5(index, lottosList);
+                });
+
+        System.out.println(countList);
+        return countList;
     }
 
     public int processCountIs5(int index, LottosList lottoBox) {
@@ -54,9 +65,11 @@ public class LottoController {
     }
 
     public int countSameNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        return (int) lottoNumbers.stream()
+        int result = (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
+        System.out.println(result);
+        return result;
     }
 
     void printLottos() {
@@ -68,9 +81,13 @@ public class LottoController {
     }
 
     public void makeRank(List<Integer> sames) {
+        System.out.println(sames);
         ConsolePrint.print3Same(Collections.frequency(sames, 3));
         ConsolePrint.print4Same(Collections.frequency(sames, 4));
-        ConsolePrint.printBonusX(Collections.frequency(sames, 5));
+        int result = Collections.frequency(sames, 5);
+        int bonusSame = Collections.frequency(lottosList.getBonusCheck(), true);
+        ConsolePrint.printBonusX(result - bonusSame);
+        ConsolePrint.printBonusO(bonusSame);
         ConsolePrint.print3Same(Collections.frequency(sames, 3));
     }
 

@@ -12,6 +12,7 @@ import java.util.List;
 
 public class LottosList {
     private List<Lotto> lottosList;
+
     private List<Boolean> bonusCheck;
 
     public LottosList() {
@@ -55,5 +56,10 @@ public class LottosList {
     public void checkBonus(int index) {
         bonusCheck.set(index, true);
     }
+
+    public List<Boolean> getBonusCheck() {
+        return bonusCheck;
+    }
+
 
 }

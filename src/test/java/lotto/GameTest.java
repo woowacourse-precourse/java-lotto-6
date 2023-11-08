@@ -16,6 +16,11 @@ public class GameTest extends NsTest {
         assertFalse(exception.checkInputInRange("0"));
     }
 
+    @Test
+    void 천원단위확인(){
+        assertTrue(exception.checkValidPurchase(4000));
+        assertFalse(exception.checkValidPurchase(4500));
+    }
 
     @Override
     public void runMain() {

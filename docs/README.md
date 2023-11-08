@@ -27,3 +27,23 @@
 - 당첨 내역과 수익률을 계산 및 저장하는 기능
 - 보너스 번호를 확인하는 기능
 - 총 수익률과 당첨내역을 출력하는 기능 
+
+## 🪜구조
+### domain
+- JackpotNumber : 당첨 로또 번호와 보너스 번호를 저장하는 도메인
+- Lotto : 한장의 로또 번호를 저장하는 도메인
+- Rank : 결과를 알려주는 Enum을 활용한 클래스
+- Result : 사용자의 결과를 저장하는 클래스
+- User : 로또 장 수와 사용자의 로또번호를 저장하는 클래스
+### service
+- DecideAward : 사용자의 로또와 JackpotNumber를 비교해 결과를 반환하는 서비스
+- ProfitCalculator : 로또 결과에 따른 수익률 계산 서비스
+- UserBillToAmount : 사용자 입력 금액에 따른 로또 장 수 게산 서비스
+- UserLottoService : 사용자 로또 생성 서비스
+### utils
+- BillException : 사용자가 입력한 금액에 대한 예외처리
+- JackpotNumberException : 사용자가 입력한 당첨 로또번호와 보너스 번호에 대한 예외처리
+### view
+- InputView : 사용자의 입력을 필요로하는 뷰 
+- OutputView : 출력만을 필요로하는 뷰
+

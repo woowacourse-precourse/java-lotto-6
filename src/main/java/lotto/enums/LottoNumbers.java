@@ -4,7 +4,7 @@ public enum LottoNumbers {
     MIN_RANGE(1),
     MAX_RANGE(45);
 
-    private int number;
+    private final int number;
 
     private LottoNumbers(int number) {
         this.number = number;

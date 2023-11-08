@@ -2,9 +2,10 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import lotto.enums.ErrorMessages;
+import lotto.enums.LottoNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,6 +26,10 @@ public class Lotto {
             System.out.println(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
             throw new IllegalArgumentException(ErrorMessages.NOT_DUPLICATE.getErrorMessage());
         }
+        if (isNotInRange(numbers)) {
+            System.out.println(ErrorMessages.IN_RANGE.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessages.IN_RANGE.getErrorMessage());
+        }
     }
 
     private static boolean isRightNumbers(List<Integer> numbers) {
@@ -32,7 +37,16 @@ public class Lotto {
     }
 
     private boolean isDuplicated(List<Integer> numbers) {
-        return numbers.size() != Set.of(numbers).size();
+        return numbers.size() != new HashSet<>(numbers).size();
+    }
+
+    private boolean isNotInRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < LottoNumbers.MIN_RANGE.getNumber() || number > LottoNumbers.MIN_RANGE.getNumber()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int matchCount(Lotto other) {

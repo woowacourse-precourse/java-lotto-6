@@ -141,6 +141,17 @@ class LottoTest {
         }
     }
 
+    @Test
+    @DisplayName("유효한 범위의 숫자로 이루어진 6개의 정렬된 로또를 확인")
+    void isContainsTest() {
+        Lotto lotto1 = new Lotto(List.of(1, 45, 35, 27, 16, 23));
+        List<LottoNumber> expectedLotto = List.of(
+                new LottoNumber(1), new LottoNumber(16), new LottoNumber(23),
+                new LottoNumber(27), new LottoNumber(35), new LottoNumber(45));
+
+        Assertions.assertThat(lotto1.getLottoNumbers()).isEqualTo(expectedLotto);
+    }
+
     private List<Integer> createLottoNumbers(String input) {
         return Lists.newArrayList(input.split(","))
                 .stream()

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class OutputFormatter {
 
-    static void formatRankCategory(StringBuilder sb, RankCategory rankCategory, int count) {
+    public static void formatRankCategory(StringBuilder sb, RankCategory rankCategory, int count) {
         sb.append(rankCategory.getMatchingNumbers())
                 .append("개 일치 (")
                 .append(formatPrize(rankCategory.getPrize()))
@@ -18,7 +18,7 @@ public class OutputFormatter {
                 .append("개\n");
     }
 
-    static void formatSecondCategory(StringBuilder sb, RankCategory rankCategory, int count) {
+    public static void formatSecondCategory(StringBuilder sb, RankCategory rankCategory, int count) {
         sb.append(rankCategory.getMatchingNumbers())
                 .append("개 일치, 보너스 볼 일치 (")
                 .append(formatPrize(rankCategory.getPrize()))
@@ -28,20 +28,20 @@ public class OutputFormatter {
     }
 
 
-    static void formatProfitRate(ProfitRate profitRate, StringBuilder sb) {
+    public static void formatProfitRate(ProfitRate profitRate, StringBuilder sb) {
         sb.append("총 수익률은 ")
                 .append(String.format("%.1f", profitRate.getRate()))
                 .append("%입니다.");
     }
 
+    public static String formatLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ","[","]"));
+    }
+
     private static String formatPrize(int prize) {
         DecimalFormat df = new DecimalFormat("###,###");
         return df.format(prize);
-    }
-
-    static String formatLottoNumbers(List<Integer> numbers) {
-        return numbers.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining(", ", "[", "]"));
     }
 }

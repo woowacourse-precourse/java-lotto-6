@@ -16,7 +16,8 @@ import static lotto.constant.RankCategory.*;
 
 public class LottoResultService {
 
-    public LottoResult calculateResults(LottoBundle lottoBundle, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+    public LottoResult calculateResults
+            (LottoBundle lottoBundle, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         EnumMap<RankCategory, Integer> results = getInitializedEnumMap();
         for (Lotto lotto : lottoBundle.getLottoBundle()) {
             int matchingNumbers = countMatchingNumbers(winningNumbers, lotto);
@@ -32,17 +33,12 @@ public class LottoResultService {
         return new ProfitRate(((double) profitSum / lottoPurchaseAmount.getAmount()) * 100);
     }
 
-    private int getProfitSum(LottoResult lottoResult) {
-        int profitSum = 0;
+    private EnumMap<RankCategory, Integer> getInitializedEnumMap() {
+        EnumMap<RankCategory, Integer> results = new EnumMap<>(RankCategory.class);
         for (RankCategory rankCategory : values()) {
-            int rankCount = lottoResult.getResults().get(rankCategory);
-            profitSum += rankCount * rankCategory.getPrize();
+            results.put(rankCategory, 0);
         }
-        return profitSum;
-    }
-
-    private boolean checkBonusStatus(BonusNumber bonusNumber, Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber.getNumber());
+        return results;
     }
 
     private int countMatchingNumbers(WinningNumbers winningNumbers, Lotto lotto) {
@@ -52,12 +48,18 @@ public class LottoResultService {
                 .count();
     }
 
-    private EnumMap<RankCategory, Integer> getInitializedEnumMap() {
-        EnumMap<RankCategory, Integer> results = new EnumMap<>(RankCategory.class);
-        for (RankCategory rankCategory : values()) {
-            results.put(rankCategory, 0);
-        }
-        return results;
+    private boolean checkBonusStatus(BonusNumber bonusNumber, Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber.getNumber());
     }
+
+    private int getProfitSum(LottoResult lottoResult) {
+        int profitSum = 0;
+        for (RankCategory rankCategory : values()) {
+            int rankCount = lottoResult.getResults().get(rankCategory);
+            profitSum += rankCount * rankCategory.getPrize();
+        }
+        return profitSum;
+    }
+
 
 }

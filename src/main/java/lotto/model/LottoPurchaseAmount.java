@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.LottoConfig;
 import lotto.exception.business.BusinessConditionException;
 
 import static lotto.view.message.ValidationErrorMessage.PURCHASE_AMOUNT_NOT_MULTIPLE_THOUSAND;
@@ -14,6 +15,10 @@ public class LottoPurchaseAmount {
         this.amount = amount;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     private void validatePositive(int amount) {
         if (amount <= 0) {
             throw new BusinessConditionException(PURCHASE_AMOUNT_NOT_POSITIVE.getMessage());
@@ -21,12 +26,8 @@ public class LottoPurchaseAmount {
     }
 
     private void validateMultipleOfThousand(int amount) {
-        if (amount % 1000 != 0) {
+        if ((amount % LottoConfig.TICKET_PRICE.getValue()) != 0) {
             throw new BusinessConditionException(PURCHASE_AMOUNT_NOT_MULTIPLE_THOUSAND.getMessage());
         }
-    }
-
-    public int getAmount() {
-        return amount;
     }
 }

@@ -33,7 +33,7 @@ public enum RankCategory {
 
     public static RankCategory of(int matchingNumbers, boolean bonusStatus) {
         if (matchingNumbers == RankCategory.SECOND.matchingNumbers) {
-            return checkBonusStatus(bonusStatus);
+            return determineSecondOrThird(bonusStatus);
         }
         for (RankCategory rankCategory : RankCategory.values()) {
             if (rankCategory.matchingNumbers == matchingNumbers) {
@@ -43,7 +43,7 @@ public enum RankCategory {
         return NONE;
     }
 
-    private static RankCategory checkBonusStatus(boolean bonusStatus) {
+    private static RankCategory determineSecondOrThird(boolean bonusStatus) {
         if (bonusStatus) {
             return SECOND;
         }

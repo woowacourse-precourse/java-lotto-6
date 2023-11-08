@@ -17,7 +17,6 @@ public class LottoTicketService {
     private final int startInclusive = LOTTO_START_NUMBER.getValue();
     private final int endInclusive = LOTTO_END_NUMBER.getValue();
     private final int count = LOTTO_COUNT_NUMBER.getValue();
-
     private final PurchaseAmountValidator purchaseAmountValidator = new PurchaseAmountValidator();
 
     public LottoPurchaseAmount parsePurchaseAmount(String userInput) {

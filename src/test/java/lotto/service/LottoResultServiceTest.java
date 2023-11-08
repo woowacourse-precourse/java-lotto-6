@@ -31,7 +31,6 @@ class LottoResultServiceTest {
     void calculateResults_6개_일치_FIRST() {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = new BonusNumber(30);
-
         LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle, winningNumbers, bonusNumber);
         Assertions.assertEquals(1, lottoResult.getResults().get(FIRST));
     }
@@ -40,7 +39,6 @@ class LottoResultServiceTest {
     void calculateResults_5개_일치_보너스_일치_SECOND() {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 10));
         BonusNumber bonusNumber = new BonusNumber(6);
-
         LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle, winningNumbers, bonusNumber);
         Assertions.assertEquals(1, lottoResult.getResults().get(SECOND));
     }
@@ -49,7 +47,6 @@ class LottoResultServiceTest {
     void calculateResults_5개_일치_보너스_불일치_THIRD() {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 10));
         BonusNumber bonusNumber = new BonusNumber(30);
-
         LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle, winningNumbers, bonusNumber);
         Assertions.assertEquals(1, lottoResult.getResults().get(THIRD));
     }
@@ -58,7 +55,6 @@ class LottoResultServiceTest {
     void calculateResults_4개_일치_보너스_일치_FOURTH() {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 20, 40));
         BonusNumber bonusNumber = new BonusNumber(6);
-
         LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle, winningNumbers, bonusNumber);
         Assertions.assertEquals(1, lottoResult.getResults().get(FOURTH));
     }
@@ -67,7 +63,6 @@ class LottoResultServiceTest {
     void calculateResults_4개_일치_보너스_불일치_FOURTH() {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 20, 40));
         BonusNumber bonusNumber = new BonusNumber(30);
-
         LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle, winningNumbers, bonusNumber);
         Assertions.assertEquals(1, lottoResult.getResults().get(FOURTH));
     }
@@ -76,7 +71,6 @@ class LottoResultServiceTest {
     void calculateResults_일치_없음_NONE() {
         WinningNumbers winningNumbers = new WinningNumbers(List.of(11, 12, 13, 14, 15, 16));
         BonusNumber bonusNumber = new BonusNumber(30);
-
         LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle, winningNumbers, bonusNumber);
         Assertions.assertEquals(1, lottoResult.getResults().get(NONE));
     }

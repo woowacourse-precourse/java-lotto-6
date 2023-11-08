@@ -11,6 +11,10 @@ import static lotto.view.message.ValidationErrorMessage.LOTTO_BUNDLE_NULL;
 public class LottoBundle {
     private final List<Lotto> lottoBundle;
 
+    public List<Lotto> getLottoBundle() {
+        return Collections.unmodifiableList(lottoBundle);
+    }
+
     public LottoBundle(List<Lotto> lottoBundle) {
         validateNull(lottoBundle);
         validateNotEmpty(lottoBundle);
@@ -27,9 +31,5 @@ public class LottoBundle {
         if (lottoBundle.isEmpty()) {
             throw new LottoException(LOTTO_BUNDLE_EMPTY.getMessage());
         }
-    }
-
-    public List<Lotto> getLottoBundle() {
-        return Collections.unmodifiableList(lottoBundle);
     }
 }

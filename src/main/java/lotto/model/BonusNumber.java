@@ -14,13 +14,13 @@ public class BonusNumber {
         this.number = number;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validateRange(int number) {
         if (number < LOTTO_START_NUMBER.getValue() || number > LOTTO_END_NUMBER.getValue()) {
             throw new BusinessConditionException(LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
-    }
-
-    public int getNumber() {
-        return number;
     }
 }

@@ -19,6 +19,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validateCounts(List<Integer> numbers) {
         if (numbers.size() != LOTTO_COUNT_NUMBER.getValue()) {
             throw new LottoException(LOTTO_INVALID_DIGITS.getMessage());
@@ -37,9 +41,5 @@ public class Lotto {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new LottoException(LOTTO_DUPLICATE_DIGITS.getMessage());
         }
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 }

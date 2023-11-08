@@ -18,4 +18,7 @@ public class Lotto {
     public void showLottoNumbers() {
         System.out.println(numbers.toString());
     }
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

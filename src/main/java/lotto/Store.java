@@ -18,7 +18,7 @@ public class Store {
             lotto_list.add(lotto);
         }
 
-        System.out.println("8개를 구매했습니다.");
+        System.out.printf("%d개를 구매했습니다.", lottopaperNumbers);
         return lotto_list;
     }
 }

@@ -20,6 +20,9 @@ public enum LottoRank {
         if (matchCount == SECOND.matchCount && hasBonusMatched) {
             return SECOND;
         }
+        else if (matchCount == SECOND.matchCount && !hasBonusMatched) {
+            return THIRD;
+        }
         for (LottoRank rank : values()) {
             if (rank.matchCount == matchCount) {
                 return rank;

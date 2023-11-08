@@ -9,9 +9,9 @@
 
 ## View
 - InputView :
-  - 로또 구입 금액
-  - 당첨번호 입력받기
-  - 보너스 번호 입력 받기
+  - getHowMuchLottoWillYouBuy: 로또 구입 금액
+  - getWinningLottoNumbers : 당첨번호 입력받기
+  - getBonusNumber: 보너스 번호 입력 받기
 - OutputView 
   - 발행 로또 및 번호 출력
   - 당첨 내역 출력
@@ -19,8 +19,8 @@
 
 ## util
 - Verify
-  - verifyDuplicate : 입력받은 당첨번호 중복 확인하는 함수.
-  - verifyNumber : 입력받은 당첨번호 숫자인지 확인하는 함수.
+  - verifyWinningNumbersStringToList : 입력받은 당첨번호 공백처리, Integer인지 판별을 확인하는 함수.
+  - verifyBonusNumber : 입력받은 보너스 숫자가 Integer인지 확인하는 함수.
   - verifyAmount : 입력받은 로또 구입 금액이 1000원 이상인지 확인하는 함수.
 - Generator : 
   - GenerateNumbers : 랜덤으로 로또 발행하는 함수

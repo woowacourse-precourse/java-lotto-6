@@ -55,7 +55,7 @@ public class LottoCompany {
         return results;
     }
 
-    public List<Lotto> collectLottosWithOption(final List<Lotto> lottos, final int matchSize, final boolean hasBonus) {
+    private List<Lotto> collectLottosWithOption(final List<Lotto> lottos, final int matchSize, final boolean hasBonus) {
         return lottos.stream()
                 .filter(lotto -> lotto.isContainsNumbersWithSize(goalNumbers.getNumbers(), matchSize))
                 .filter(lotto -> lotto.isContainsNumber(bonusNumber) == hasBonus)

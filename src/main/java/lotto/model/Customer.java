@@ -40,13 +40,6 @@ public class Customer {
         }
 
     }
-    public Lotto getLastLotto() {
-        return lottos.get(lottos.size()-1);
-    }
-
-    public void throwLastLotto() {
-        lottos.remove(lottos.size() -1);
-    }
 
     public int getLottosSize() {
         return lottos.size();

@@ -37,4 +37,14 @@ public class LottoManager {
         }
         return sameNumbers;
     }
+
+    public double earningsRate(List<Integer> result, int cost) {
+        long sum = 0;
+        sum += (long) result.get(3) * LottoEnum.LOTTO_EQUAL_THREE_PRIZE_MONEY.getValue();
+        sum += (long) result.get(4) * LottoEnum.LOTTO_EQUAL_FOUR_PRIZE_MONEY.getValue();
+        sum += (long) result.get(5) * LottoEnum.LOTTO_EQUAL_FIVE_PRIZE_MONEY.getValue();
+        sum += (long) result.get(6) * LottoEnum.LOTTO_EQUAL_SIX_PRIZE_MONEY.getValue();
+        sum += (long) result.get(7) * LottoEnum.LOTTO_EQUAL_FIVE_AND_BONUS_PRIZE_MONEY.getValue();
+        return (double) sum / cost * 100;
+    }
 }

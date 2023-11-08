@@ -71,7 +71,7 @@ public class RankingBoard {
                 .sum();
     }
 
-    public Map<Rank, Integer> getRankCount() {
-        return rankCount;
+    public List<Integer> getRankCount() {
+        return rankCount.values().stream().toList();
     }
 }

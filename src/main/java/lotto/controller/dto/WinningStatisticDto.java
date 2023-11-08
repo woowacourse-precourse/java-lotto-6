@@ -14,8 +14,7 @@ public class WinningStatisticDto {
     }
 
     public static WinningStatisticDto from(RankingBoard rankingBoard, double yield) {
-        List<Integer> count = rankingBoard.getRankCount()
-                .values().stream().toList();
+        List<Integer> count = rankingBoard.getRankCount();
         return new WinningStatisticDto(count, yield);
     }
 

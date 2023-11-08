@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.MessageConstant;
 
 public class InputView {
 
@@ -9,6 +10,6 @@ public class InputView {
     }
 
     private static String removeSpace(String input) {
-        return input.replaceAll(" ", "");
+        return input.replaceAll(MessageConstant.SPACE_REGEX, MessageConstant.SPACE_REPLACEMENT);
     }
 }

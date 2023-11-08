@@ -42,4 +42,8 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.NULL_ERROR.getError());
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

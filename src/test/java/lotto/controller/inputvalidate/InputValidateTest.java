@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.controller.inputvalidate;
 
 import lotto.domain.Lotto;
 import lotto.controller.inputvalidate.InputValidateAnswer;

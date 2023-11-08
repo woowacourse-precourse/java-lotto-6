@@ -10,4 +10,8 @@ public class UserOutput {
         System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", counts.get(3)));
         System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", counts.get(4)));
     }
+
+    public static String rateOfReturn(int winningAmount, int purchaseAmount) {
+        return String.format("%.1f", (double) winningAmount / purchaseAmount * 100);
+    }
 }

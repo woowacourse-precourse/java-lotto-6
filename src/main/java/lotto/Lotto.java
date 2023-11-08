@@ -21,10 +21,12 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         if (numbers.size() != 6) {
+            System.out.println("[ERROR] 숫자 여섯개를 입력해주세요.");
             throw new IllegalArgumentException();
         }
         for(Object object : numbers) {
             if( (int) object > 45 || (int) object <0) {
+                System.out.println("[ERROR] 숫자는 1~45 사이의 숫자여야합니다. 다시 입력해주세요.");
                 throw new IllegalArgumentException();
             }
         }

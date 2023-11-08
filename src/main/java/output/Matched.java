@@ -11,17 +11,18 @@ public class Matched {
     }
 
     public void showStatistics() {
-        System.out.println(LottoDefaultMessage.RESULT_STATISTICS.getString());
+        System.out.println("\n" + LottoDefaultMessage.RESULT_STATISTICS.getString());
         System.out.println(LottoDefaultMessage.FIFTH_PRIZE.getString() + count[5] + "개");
         System.out.println(LottoDefaultMessage.FOURTH_PRIZE.getString() + count[4] + "개");
         System.out.println(LottoDefaultMessage.THIRD_PRIZE.getString() + count[3] + "개");
         System.out.println(LottoDefaultMessage.SECOND_PRIZE.getString() + count[2] + "개");
         System.out.println(LottoDefaultMessage.FIRST_PRIZE.getString() + count[1] + "개");
+        float ratio = (float) calculateWinningPriceRatio();
+        String string = String.format("%.2f", ratio);
+        System.out.print(string);
         System.out.println(LottoDefaultMessage.TOTAL_EARN_RATIO_START.getString()
-                + calculateWinningPriceRatio()
+                + string
                 + LottoDefaultMessage.TOTAL_EARN_RATIO_END.getString());
-
-        System.out.println(Arrays.toString(count));
     }
 
     public float calculateWinningPriceRatio() {

@@ -26,9 +26,10 @@ public class LottoGameController {
         LottoGenerator lottoGenerator =  LottoGenerator.of(lottoNumberGenerator, purchaseMoney);
         Lottos lottos = createLottos(purchaseMoney, lottoGenerator);
         List<WinningNumber> onlyWinningNumber = createWinningLotto();
-        WinningNumber bonusNumber = getBonusNumber();
 
-        WinningLotto winningLotto = WinningLotto.of(onlyWinningNumber, bonusNumber);
+//        WinningNumber bonusNumber = getBonusNumber();
+        WinningLotto bonusNumber = getBonusNumber(onlyWinningNumber);
+//        WinningLotto winningLotto = WinningLotto.of(onlyWinningNumber, bonusNumber);
     }
 
 
@@ -51,13 +52,25 @@ public class LottoGameController {
     }
 
 
-    private static WinningNumber getBonusNumber() {
+//    private static WinningNumber getBonusNumber() {
+//        try{
+//            return WinningNumber.of(InputView.getBonusNumber(), NumberType.BONUS);
+//        } catch(IllegalArgumentException e) {
+//            OutputView.printErrorMessage(e.getMessage());
+//
+//            return getBonusNumber();
+//        }
+//    }
+
+
+    private static WinningLotto getBonusNumber(List<WinningNumber> winningNumbers) {
         try{
-            return WinningNumber.of(InputView.getBonusNumber(), NumberType.BONUS);
+            WinningNumber bonus = WinningNumber.of(InputView.getBonusNumber(), NumberType.BONUS);
+            return WinningLotto.of(winningNumbers, bonus);
         } catch(IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
 
-            return getBonusNumber();
+            return getBonusNumber(winningNumbers);
         }
     }
 

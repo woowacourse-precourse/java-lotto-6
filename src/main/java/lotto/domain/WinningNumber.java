@@ -22,4 +22,8 @@ public class WinningNumber {
             throw new IllegalArgumentException(ConsoleMessage.LOTTO_NUMBER_RANGE_ERROR.getMessage());
         }
     }
+
+    public Integer getWinningNum() {
+        return this.number;
+    }
 }

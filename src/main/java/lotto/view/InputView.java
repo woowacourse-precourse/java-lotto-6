@@ -7,6 +7,9 @@ import lotto.util.Validator;
 
 public class InputView {
     private static final String LOTTO_NUMBERS_DELIMITER = ",";
+    private static final String ASK_PLAYER_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String ASK_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String ASK_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     private String getInputValue() {
         String input = Console.readLine();
@@ -15,7 +18,7 @@ public class InputView {
     }
 
     public String getPlayerAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(ASK_PLAYER_AMOUNT_MESSAGE);
         String playAmount = getInputValue();
         System.out.println(playAmount);
         printNewLine();
@@ -25,7 +28,7 @@ public class InputView {
     }
 
     public List<String> getLottoWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(ASK_WINNING_NUMBER_MESSAGE);
         String winningNumbers = getInputValue();
         System.out.println(winningNumbers);
         printNewLine();
@@ -33,7 +36,7 @@ public class InputView {
     }
 
     public String getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(ASK_BONUS_NUMBER_MESSAGE);
         String bonusNumber = getInputValue();
         System.out.println(bonusNumber);
         printNewLine();

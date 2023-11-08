@@ -10,9 +10,11 @@ import lotto.domain.RankResult;
 import lotto.domain.enums.Rank;
 
 public class OutputView {
+    private static final String CREATE_LOTTO_MESSAGE = "%d개를 구매했습니다.";
+    private static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void printCreatedLotto(PlayerAmount playerAmount, Lottos lottos) {
-        System.out.println(String.format("%d개를 구매했습니다.", playerAmount.getLottoCount()));
+        System.out.println(String.format(CREATE_LOTTO_MESSAGE, playerAmount.getLottoCount()));
         System.out.println(lottos.toString());
     }
 
@@ -25,6 +27,6 @@ public class OutputView {
     }
 
     public void printLottoProfitRate(Profit profit) {
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profit.getRate()));
+        System.out.println(String.format(TOTAL_PROFIT_MESSAGE, profit.getRate()));
     }
 }

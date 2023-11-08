@@ -16,15 +16,15 @@ public class User {
     private void validate(int purchaseAmount) {
         validateAmount(purchaseAmount);
     }
-    public void printMyLottoNumbers() {
+    public void printLottoNumbers() {
         lottos.printLottoNumbers();
     }
 
-    public void matching(LottoResult result) {
+    public void matchLottoNumbers(LottoResult result) {
         lottos.matchLottoNumbers(result);
     }
 
-    public void printLottoStatistics() {
+    public void printWinningStatistics() {
         lottos.printWinningStatistics();
     }
 

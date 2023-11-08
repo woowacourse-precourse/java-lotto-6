@@ -4,6 +4,7 @@ import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.UserLotto;
 import lotto.model.UserMoney;
+import lotto.model.WinningNumbers;
 
 public class UserIoManager {
     private final InputView inputView;
@@ -54,5 +55,11 @@ public class UserIoManager {
 
     public void printUserLotto(UserLotto userLotto) {
         outputView.printUserLotto(userLotto);
+    }
+
+    public void printResult(UserLotto userLotto, WinningNumbers winningNumbers) {
+        outputView.printResultGuide();
+        outputView.printHorizontalLine();
+        outputView.printLottoRanks(userLotto, winningNumbers);
     }
 }

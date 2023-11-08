@@ -25,5 +25,6 @@ public class LottoController {
         Lotto lotto = userIoManager.readWinningNumbers();
         Bonus bonus = userIoManager.readBonusNumber();
         WinningNumbers winningNumbers = new WinningNumbers(lotto, bonus);
+        userIoManager.printResult(userLotto, winningNumbers);
     }
 }

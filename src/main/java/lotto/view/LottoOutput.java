@@ -12,7 +12,7 @@ public class LottoOutput {
     }
 
     public String printNumberOfTicketsMessage(int count) {
-        return count + "개를 구매했습니다.";
+        return "\n" + count + "개를 구매했습니다.";
     }
 
     public String getLottoNumbersMessage(List<Integer> lottoNumbers) {
@@ -24,11 +24,11 @@ public class LottoOutput {
     }
 
     public String requestWinningNumber() {
-        return "당첨 번호를 입력해 주세요.";
+        return "\n당첨 번호를 입력해 주세요.";
     }
 
     public String requestBonusNumber() {
-        return "보너스 번호를 입력해 주세요.";
+        return "\n보너스 번호를 입력해 주세요.";
     }
 
     public void printPrizeStatistics(List<String > statisticsLines) {
@@ -38,7 +38,7 @@ public class LottoOutput {
     }
 
     public void printPrizeStatisticsHeader() {
-        System.out.println("당첨 통계");
+        System.out.println("\n당첨 통계");
         System.out.println("---");
     }
 

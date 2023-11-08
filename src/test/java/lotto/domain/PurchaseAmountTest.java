@@ -4,6 +4,7 @@ import lotto.utils.message.PurchaseAmountExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchaseAmountTest {
@@ -22,5 +23,14 @@ class PurchaseAmountTest {
     void invalidAmountUnit(int wrongInput) {
         Assertions.assertThatThrownBy(() -> new PurchaseAmount(wrongInput))
                 .hasMessage(PurchaseAmountExceptionMessage.INVALID_AMOUNT_UNIT.getError());
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1000:1", "12000:12", "30000:30", "12345000:12345",
+            "111000:111", "59595000:59595", "100000000:100000"}, delimiter = ':')
+    @DisplayName("[Success] 1,000원 가격에 맞게 로또 개수를 반환")
+    void lottoTotalCount(int purchaseAmountInput, int expectedLottoCount) {
+        PurchaseAmount purchaseAmount = new PurchaseAmount(purchaseAmountInput);
+        Assertions.assertThat(purchaseAmount.getPurchaseLottoCount()).isEqualTo(expectedLottoCount);
     }
 }

@@ -66,11 +66,10 @@ class LottoTest {
                 .map(LottoNumber::of)
                 .toList());
         LottoNumber bonusNumber = LottoNumber.of(7);
-        WinningInformation winningInformation = new WinningInformation(answerLotto, bonusNumber);
 
         //When
         int expectedResult = 6;
-        int result = lotto.countMatchNumber(winningInformation.getAnswerLotto());
+        int result = lotto.countMatchNumber(answerLotto);
 
         //When & Then
         assertThat(result).isEqualTo(expectedResult);

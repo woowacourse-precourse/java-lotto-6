@@ -1,6 +1,6 @@
 package lotto.service;
 
-import static lotto.view.IO.viewLottoTickets;
+import static lotto.view.IO.showLottoTickets;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class Buyer {
     }
     public static int calculateLottoTickets(PurchaseAmount purchaseAmount){
         //금액을 쪼개서 몇개 로또를 살 수 있는지 리턴
-        int lottoTicketCount = Integer.parseInt(purchaseAmount.getPurchaseAmount()) / 1000;
+        int lottoTicketCount = purchaseAmount.getPurchaseAmount() / 1000;
         return lottoTicketCount;
     }
 
@@ -36,6 +36,10 @@ public class Buyer {
             Lotto lotto = new Lotto(generateLottoNumbers());
             lottoTickets.add(lotto);
         }
-        viewLottoTickets(lottoTickets);
+        showLottoTickets(lottoTickets);
+    }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 }

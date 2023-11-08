@@ -1,5 +1,12 @@
 package lotto.validator;
 
+import static lotto.constant.ErrorMessage.DUPLICATED_NUMBER_ERROR;
+import static lotto.constant.ErrorMessage.INCORRECT_INPUT_COUNT;
+import static lotto.constant.ErrorMessage.INDIVISIBLE_PRICE_ERROR;
+import static lotto.constant.ErrorMessage.NUMBER_RANGE_ERROR;
+import static lotto.constant.ErrorMessage.WRONG_TYPE_INPUT_ERROR;
+import static lotto.constant.ErrorMessage.WRONG_TYPE_PRICE_ERROR;
+
 import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
@@ -12,10 +19,10 @@ public class InputValidator {
             int budget = Integer.parseInt(inputBudget);
 
             if (budget % Lotto.PRICE != 0) {
-                throw new IllegalArgumentException("1000 원으로 나누어 떨어지지 않는 구입금액 입니다.");
+                throw new IllegalArgumentException(INDIVISIBLE_PRICE_ERROR.getMessage());
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("잘못된 형식의 구입금액 입니다.");
+            throw new IllegalArgumentException(WRONG_TYPE_PRICE_ERROR.getMessage());
         }
     }
 
@@ -24,7 +31,7 @@ public class InputValidator {
         List<String> numbers = Arrays.asList(winningNumberInput.split(","));
 
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("잘못된 개수의 입력값");
+            throw new IllegalArgumentException(INCORRECT_INPUT_COUNT.getMessage());
         }
 
         for (String number : numbers) {
@@ -32,7 +39,7 @@ public class InputValidator {
                 Integer parsedNumber = Integer.parseInt(number);
                 validateRange(parsedNumber);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("정수가 아닌 숫자가 포함되어 있습니다.");
+                throw new IllegalArgumentException(WRONG_TYPE_INPUT_ERROR.getMessage());
             }
         }
 
@@ -46,22 +53,22 @@ public class InputValidator {
             validateRange(bonusNumber);
 
             if (winningNumbers.contains(bonusNumber)) {
-                throw new IllegalArgumentException("중복된 숫자가 존재합니다.");
+                throw new IllegalArgumentException(DUPLICATED_NUMBER_ERROR.getMessage());
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("잘못된 형식의 보너스 번호 입니다.");
+            throw new IllegalArgumentException(WRONG_TYPE_INPUT_ERROR.getMessage());
         }
     }
 
     public static void validateRange(Integer number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("범위를 벗어난 로또 번호입니다.");
+            throw new IllegalArgumentException(NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
     public static void validateDuplicate(List<String> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("중복된 숫자가 존재합니다.");
+            throw new IllegalArgumentException(DUPLICATED_NUMBER_ERROR.getMessage());
         }
     }
 }

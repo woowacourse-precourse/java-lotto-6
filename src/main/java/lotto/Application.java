@@ -23,7 +23,6 @@ class Money {
             }
         }
     }
-
     public static int ExceptMoney(String money){
         try {
             return Integer.parseInt(money);
@@ -31,7 +30,6 @@ class Money {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
     }
-
     public static int CorrectMoney(int money) {
         if (money % 1000 == 0) {
             return money / 1000;
@@ -82,5 +80,14 @@ class WinnigNum {
     }
     public static int BonusNum(String bonusnum){
         return Integer.parseInt(bonusnum);
+    }
+}
+
+class WinningCaculate {
+    public static List<Integer> Calculate(List<Integer> nums, List<Integer> num_lst, int bonus) {
+        int mat_num = 0;
+        List<Integer> mat_cnt = List.of(0, 0, 0, 0, 0, 0, 0, 0);
+        List<Integer> match_cnt = MatchCount(nums, num_lst, mat_num, mat_cnt, bonus);
+        return match_cnt;
     }
 }

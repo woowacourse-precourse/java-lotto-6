@@ -1,9 +1,23 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
+/**
+ * A Lottery Ticket
+ */
 public class Lotto {
     private final List<Integer> numbers;
+
+    /**
+     * Lottery quick pick: Generate own numbers randomly
+     */
+    public Lotto() {
+        List<Integer> quickPicked
+                = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        validate(quickPicked);
+        numbers = quickPicked;
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

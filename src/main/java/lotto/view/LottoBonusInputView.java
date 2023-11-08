@@ -12,6 +12,7 @@ public class LottoBonusInputView {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusInput = Console.readLine();
         int bonus = parseBonusInput(winNumbers, bonusInput);
+        checkBonusIsValid(winNumbers, bonus);
         return bonus;
     }
 
@@ -19,13 +20,16 @@ public class LottoBonusInputView {
         int bonus;
         try {
             bonus = Integer.parseInt(bonusInput);
-            checkBonusRange(bonus);
-            checkBonusDuplication(winNumbers, bonus);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(
                     LottoErrorMessage.INVALID_LOTTO_NUMBER_TYPE.getMessage());
         }
         return bonus;
+    }
+
+    public void checkBonusIsValid(List<Integer> winNumbers, int bonus) {
+        checkBonusRange(bonus);
+        checkBonusDuplication(winNumbers, bonus);
     }
 
     private void checkBonusRange(int bonus) {

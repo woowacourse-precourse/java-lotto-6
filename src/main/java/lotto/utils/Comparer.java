@@ -7,7 +7,7 @@ import lotto.domain.Winning;
 
 public class Comparer {
 
-    private static int compareLottoToWinning(Lotto lotto, Winning winning) {
+    public static int compareLottoToWinning(Lotto lotto, Winning winning) {
         return Comparer.compareLottos(lotto, winning.getWinningLotto());
     }
 

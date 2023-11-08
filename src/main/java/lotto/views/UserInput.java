@@ -5,6 +5,8 @@ import static lotto.utils.StringUtils.getIntegerValue;
 import static lotto.utils.StringUtils.getIntegerValueList;
 import static lotto.utils.StringUtils.validContainsWhiteSpace;
 import static lotto.utils.StringUtils.validEmptyString;
+import static lotto.validators.BonusNumberValidator.validBonusNumberInRange;
+import static lotto.validators.BonusNumberValidator.validBonusNumberInWinningNumbers;
 import static lotto.validators.PurchaseValidator.validPurchasePrice;
 import static lotto.validators.WinningNumberValidator.validWinningNumberCount;
 import static lotto.validators.WinningNumberValidator.validWinningNumberDuplicated;
@@ -27,6 +29,16 @@ public class UserInput {
         while (true) {
             try {
                 return inputWinningNumber();
+            } catch (IllegalArgumentException e) {
+                ErrorOutput.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    public static Integer readBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                return inputBonusNumber(winningNumbers);
             } catch (IllegalArgumentException e) {
                 ErrorOutput.printErrorMessage(e.getMessage());
             }
@@ -57,5 +69,17 @@ public class UserInput {
         validWinningNumberDuplicated(winningNumbers);
 
         return winningNumbers;
+    }
+
+    private static Integer inputBonusNumber(List<Integer> winningNumbers) {
+        String inputLottoBonusNumber = readLine();
+        validEmptyString(inputLottoBonusNumber);
+        validContainsWhiteSpace(inputLottoBonusNumber);
+
+        Integer bonusNumber = getIntegerValue(inputLottoBonusNumber);
+        validBonusNumberInWinningNumbers(winningNumbers, bonusNumber);
+        validBonusNumberInRange(bonusNumber);
+
+        return bonusNumber;
     }
 }

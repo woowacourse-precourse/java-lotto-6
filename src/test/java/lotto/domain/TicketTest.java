@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Ticket의")
-public class TicketTest {
+class TicketTest {
 
     @Test
     @DisplayName("ticket이 null값이면 예외를 던지는가")

@@ -1,8 +1,8 @@
 package lotto.io.input;
 
-import lotto.constant.message.ExceptionMessage;
 import lotto.constant.LottoConstant;
 import lotto.constant.RegexPattern;
+import lotto.constant.message.ExceptionMessage;
 
 public class InputValidator {
 

@@ -14,8 +14,8 @@ public final class LottoConstant {
     public static final Integer UNNECESSARY_INDEX = 2;
     public static final Integer BONUS_NUMBER_CHECK = 5;
     public static final Integer ONE = 1;
-    public static final Double TEN_THOUSAND = 10_000.0;
-    public static final Double ONE_HUNDRED = 100.0;
+    public static final double TEN_THOUSAND = 10_000.0;
+    public static final double ONE_HUNDRED = 100.0;
 
     private LottoConstant() {
     }

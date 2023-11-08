@@ -45,6 +45,7 @@ class InputValidatorTest {
         //when & then
         assertThatNoException().isThrownBy(() -> inputValidator.validateNull(input));
     }
+
     @Test
     void validate_have_not_delimiter() {
         //given

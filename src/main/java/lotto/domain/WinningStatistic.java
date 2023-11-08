@@ -1,27 +1,26 @@
 package lotto.domain;
 
 import java.util.EnumMap;
+import java.util.Map;
 import lotto.constant.LottoResultRule;
 
 public class WinningStatistic {
 
     private final EnumMap<LottoResultRule, Integer> elements = new EnumMap<>(LottoResultRule.class);
 
-    public WinningStatistic(EnumMap<LottoResultRule, Integer> input) {
+    public WinningStatistic(Map<LottoResultRule, Integer> input) {
         for (LottoResultRule value : LottoResultRule.values()) {
             this.elements.put(value, input.getOrDefault(value, 0));
         }
     }
 
     public Integer getTotalPrize() {
-        Integer totalPrize = 0;
-        for (LottoResultRule rule : elements.keySet()) {
-            totalPrize += rule.toPrize() * elements.get(rule);
-        }
-        return totalPrize;
+        return elements.entrySet().stream()
+                .map(entry -> entry.getKey().toPrize() * entry.getValue())
+                .reduce(0, Integer::sum);
     }
 
-    public EnumMap<LottoResultRule, Integer> toElements() {
+    public Map<LottoResultRule, Integer> toElements() {
         return elements;
     }
 }

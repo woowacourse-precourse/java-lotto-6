@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("BonusNumber의")
-public class BonusNumberTest {
+class BonusNumberTest {
 
     @Test
     @DisplayName("입력 받은 숫자가 범위를 넘어가면 예외를 던지는가")

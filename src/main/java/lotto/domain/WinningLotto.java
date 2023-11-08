@@ -12,11 +12,11 @@ public class WinningLotto {
     }
 
     public void updateBonusNumber(final Integer value) {
-        validateDuplicateeNumber(value);
+        validateDuplicateNumber(value);
         this.bonusNumber = new BonusNumber(value);
     }
 
-    private void validateDuplicateeNumber(final Integer value) {
+    private void validateDuplicateNumber(final Integer value) {
         if (lotto.getNumbers().contains(value)) {
             throw new IllegalArgumentException(ExceptionMessage.HAS_DUPLICATE_NUMBER_ON_LOTTO.toMessage());
         }

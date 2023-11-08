@@ -3,9 +3,9 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.constant.message.ExceptionMessage;
 import lotto.constant.LottoConstant;
 import lotto.constant.RegexPattern;
+import lotto.constant.message.ExceptionMessage;
 
 public class Lotto {
 

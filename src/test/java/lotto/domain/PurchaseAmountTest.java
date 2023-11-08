@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("PurchaseAmount의")
-public class PurchaseAmountTest {
+class PurchaseAmountTest {
 
     @Test
     @DisplayName("1000으로 나눈 반환 값을 반환하는가")
@@ -54,6 +54,4 @@ public class PurchaseAmountTest {
         //when & then
         assertThatNoException().isThrownBy(() -> new PurchaseAmount(input));
     }
-
-
 }

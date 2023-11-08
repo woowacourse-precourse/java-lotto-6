@@ -32,7 +32,8 @@ class LottoTest {
         final List<Integer> inputs = Arrays.asList(0, 46, 47, 48, 49, 50);
 
         //when & then
-        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(inputs)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsForClassTypes.assertThatThrownBy(() -> new Lotto(inputs))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

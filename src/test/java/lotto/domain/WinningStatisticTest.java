@@ -16,11 +16,10 @@ class WinningStatisticTest {
         //given
         final Integer expectedTotalPrize = 1555000;
         final EnumMap<LottoResultRule, Integer> elements = new EnumMap<>(LottoResultRule.class);
-        elements.put(LottoResultRule.THREE_MATCH,1);
+        elements.put(LottoResultRule.THREE_MATCH, 1);
         elements.put(LottoResultRule.FOUR_MATCH, 1);
         elements.put(LottoResultRule.FIVE_MATCH, 1);
         final WinningStatistic winningStatistic = new WinningStatistic(elements);
-
 
         //when
         final Integer totalPrize = winningStatistic.getTotalPrize();

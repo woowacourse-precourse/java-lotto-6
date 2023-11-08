@@ -11,6 +11,6 @@ public class Lottos {
     }
 
     public List<Lotto> toElements() {
-        return elements;
+        return List.copyOf(elements);
     }
 }

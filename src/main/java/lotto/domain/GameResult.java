@@ -23,7 +23,7 @@ public class GameResult {
         prizeCounter.put(prize, prizeCounter.get(prize) + 1);
     }
 
-    public float getWinningPercentage(int buyAmount) {
+    private float getWinningPercentage(int buyAmount) {
         return (float) getTotalWinningAmount() * PERCENTAGE_MULTIPLIER / buyAmount;
     }
 

@@ -1,12 +1,12 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.List;
 
 public class Lottery {
     private final List<Integer> winningNumbers;
     private final Rank rank;
+
 
 
 
@@ -24,7 +24,7 @@ public class Lottery {
     }
 
     // 로또 당첨 번호와 입력한 당첨 번호가 몇 개나 일치하는지 확인하고 일치하는 번호 개수 반환
-    private int matchingNumbers(List<Integer> lottoNumbers) {
+    public int matchingNumbers(List<Integer> lottoNumbers) {
         List<Integer> winningNumbers = this.winningNumbers;
         int numberOfMatches = 0;
         for (int number : lottoNumbers) {
@@ -36,7 +36,7 @@ public class Lottery {
     }
 
     // 순위 정하기
-    private Rank whatIsRank(List<Integer> lottoNumbers, int bonusNumber) {
+    public Rank whatIsRank(List<Integer> lottoNumbers, int bonusNumber) {
         int numberOfMatches = this.matchingNumbers(lottoNumbers);
         if (numberOfMatches == 6) {
             return Rank.FIRST;

@@ -98,7 +98,8 @@ public class Purchace {
     }
 
     private static void calculateRateOrReturn(int totalMoney, int money) {
-        double rateOrReturn = (double) totalMoney / money * 100;
-        System.out.println("총 수익률은 " + rateOrReturn + "%입니다.");
+        double rateOfReturn = (double) totalMoney / money * 100;
+        double formatRateOfReturn = Math.round(rateOfReturn * 10) / 10.0;
+        System.out.println("총 수익률은 " + formatRateOfReturn + "%입니다.");
     }
 }

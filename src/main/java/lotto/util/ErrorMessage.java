@@ -2,7 +2,7 @@ package lotto.util;
 
 public enum ErrorMessage {
 
-    BONUS_NUMBER_IS_DUPLICATED_MESSAGE("[중복된 번호입니다."),
+    BONUS_NUMBER_IS_DUPLICATED_MESSAGE("중복된 번호입니다."),
     LOTTO_SIZE_IS_OVER("로또번호의 값이 6자리가 아닙니다."),
     LOTTO_NUMBER_IS_DUPLICATED("중복된 로또번호가 있습니다."),
     NUMBER_IS_OVER_RANGE("로또번호는 1부터 45까지의 값을 가져야 합니다."),

@@ -11,7 +11,7 @@ import lotto.domain.Price;
 
 public class Input {
 
-    public static Price inputBuyPrice() {
+    public static Price readBuyPrice() {
         while (true) {
             System.out.println(INPUT_BUY_PRICE.getMessage());
             try {
@@ -22,7 +22,7 @@ public class Input {
         }
     }
 
-    public static Lotto inputWinningNumbers() {
+    public static Lotto readWinningNumbers() {
         while (true) {
             System.out.println(INPUT_WIN_NUMBERS.getMessage());
             try {
@@ -34,8 +34,7 @@ public class Input {
         }
     }
 
-
-    public static Bonus inputBonusNumber(Lotto winLotto) {
+    public static Bonus readBonusNumber(Lotto winLotto) {
         while (true) {
             System.out.println(INPUT_BONUS_NUMBERS.getMessage());
             try {

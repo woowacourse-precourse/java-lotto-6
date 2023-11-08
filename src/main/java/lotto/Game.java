@@ -14,14 +14,14 @@ import lotto.ui.Output;
 public class Game {
 
     public static void start() {
-        Price price = Input.inputBuyPrice();
+        Price price = Input.readBuyPrice();
         Output.printBoughtAmount(price);
 
         List<Lotto> lottos = makeLottos(price.getAmount());
         Output.printLottos(lottos);
 
-        Lotto winLotto = Input.inputWinningNumbers();
-        Bonus bonus = Input.inputBonusNumber(winLotto);
+        Lotto winLotto = Input.readWinningNumbers();
+        Bonus bonus = Input.readBonusNumber(winLotto);
 
         List<Rank> ranks = findRanks(lottos, winLotto, bonus);
         EnumMap<Rank, Integer> result = getGameResult(ranks);

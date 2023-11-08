@@ -18,8 +18,25 @@ public class WinLotto {
     this.bonusNumber = isValidBonusNumber(bonusNumber);
   }
 
-  public static WinLotto setWinLotto(List<Integer> numbers, String bonusNumber) {
-    return new WinLotto(numbers, bonusNumber);
+  public static WinLotto setWinLotto(String winningLottery, String bonusNumber) {
+
+    List<Integer> winLotto = validateWinningNumbers(winningLottery);
+
+    return new WinLotto(new Lotto(winLotto), bonusNumber);
+  }
+
+  private static List<Integer> validateWinningNumbers(String winningLottery) {
+
+    List<Integer> checkValue = Arrays.stream(winningLottery.split(","))
+        .map(value -> {
+          if (value.matches(REGEX_ALPHABET_PATTERN))
+            throw new IllegalArgumentException(WINNING_NUMBER_FORMAT_ERROR_MESSAGE);
+
+          return Integer.parseInt(value);
+        })
+        .toList();
+
+    return new ArrayList<>(checkValue);
   }
 
   public int getBonusNumber() {

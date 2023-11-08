@@ -1,3 +1,5 @@
+# 로또 게임 App 🎰
+
 ## 진행 과정
 
 - [X] 사용자에게 금액, 당첨번호, 보너스번호를 입력 받는다.
@@ -29,26 +31,11 @@
     총 수익률은 1,000,000.0%입니다.
     ```
 
-## 플로우 차트
+## 클래스 및 기능 구현 목록
 
-```mermaid
-flowchart TD
-    A([Application<br>App 실행]) --> B[/OutputView<br>금액 입력 요청 메세지 출력/] --> C[/InputView<br>금액 입력/]
-    C --> D{Validator<br>금액 유효성 검증} -->|NO| C
-    D -->|YES| E[LottoController<br>로또 구입] --> F[/OutputView<br>구매한 로또 갯수 및 로또 번호 출력/]
-    F --> G[/OutputView<br>당첨 번호 입력 요청 메세지 출력/] --> H[/InputView<br>당첨 번호 입력/]
-    H --> I{Validator<br>당첨 번호 유효성 검증} -->|NO| H
-    I -->|YES| J[/OutputView<br>보너스 번호 입력 요청 메세지 출력/] --> K[/InputView<br>보너스 번호 입력/]
-    K --> L{Validator<br>보너스 번호 유효성 검증} -->|NO| K
-    L --> M[LottoService<br>당첨 결과 및 총 수익률 계산] --> N[/OutputView<br>당첨 결과 및 총 수익률 출력/]
-    N --> O([Application<br>App 종료]) 
-```
+### 1. domain
 
-## 클래스 설계 목록
-
-### domain
-
-### Lotto
+#### Lotto
 
 로또 번호를 저장하고, 관련된 기능을 수행한다.
 
@@ -60,7 +47,7 @@ flowchart TD
     - 로또 번호의 갯수가 6개가 아닐 경우
     - 각 로또 번호가 1과 45 사이를 벗어 나는 경우
 
-### LottoQuantity
+#### LottoQuantity
 
 발행된 로또를 저장하고, 관련된 기능을 수행한다.
 
@@ -68,7 +55,7 @@ flowchart TD
     - 1~45사이의 랜덤 숫자 6개를 티켓의 수만큼 생성하여 로또를 발행하는 형식이다.
 - [X] 발행된 로또들은 필드에 List<Lotto> 형태로 갖고 있는다.
 
-### Money
+#### Money
 
 금액을 저장하고, 관련된 기능을 수행한다.
 
@@ -80,8 +67,9 @@ flowchart TD
 - [X] 예외처리
     - 금액이 숫자가 아닌 경우
     - 금액이 1000원 단위가 아닌 경우
+    - 금액이 음수인 경우
 
-### Winning
+#### Winning
 
 당첨 번호를 저장하고, 관련된 기능을 수행한다.
 
@@ -93,7 +81,7 @@ flowchart TD
     - 당첨 번호의 갯수가 6개가 아닐 경우
     - 각 당첨 번호가 1과 45 사이를 벗어 나는 경우
 
-### Bonus
+#### Bonus
 
 보너스 번호를 저장하고, 관련된 기능을 수행한다.
 
@@ -104,7 +92,7 @@ flowchart TD
     - 당첨 번호와 중복이 될 경우
     - 번호가 1과 45 사이를 벗어 나는 경우
 
-### Prize
+#### Prize
 
 상금의 정보를 저장하고, 관련된 기능을 수행한다.
 
@@ -115,16 +103,16 @@ flowchart TD
     - 보너스 번호 일치 여부 (bonus)
 - [X] 당첨 번호와 일치 하는 숫자의 갯수 및 보너스 번호 일치 여부를 이용해서 상금의 정보를 찾는다.
 
-### PrizeResult
+#### PrizeResult
 
 <u>**FAIL을 제외한**</u> 상금 종류들의 갯수를 저장하고, 관련된 기능을 수행한다.
 
 - [X] 당첨된 상금 종류와 갯수를 필드에 Map<Prize,Integer> 타입으로 갖고 있는다.
     - 당첨된 상금 종류의 결과를 전달 받아 이를 Map타입으로 변환하여 갖고 있는 형식이다.
 
-## service
+### 2. service
 
-### LottoService
+#### LottoService
 
 비지니스 로직에 필요한 기능을 수행한다.
 
@@ -142,9 +130,9 @@ flowchart TD
     - 컨트롤러로 부터 당첨 결과와 Money 도메인을 전달 받아 총 수익률을 계산한다.
     - 직접적인 계산은 Money 도메인의 기능을 통해 수행한다.
 
-## view
+### 3. view
 
-### InputView
+#### InputView
 
 사용자가 입력한 값을 읽는 기능을 한다.
 
@@ -153,7 +141,7 @@ flowchart TD
     - 당첨번호
     - 보너스번호
 
-### OutputView
+#### OutputView
 
 입력 요청 메세지 및 게임의 결과를 사용자에게 보여주는 기능을 한다.
 
@@ -166,9 +154,9 @@ flowchart TD
     - 당첨된 상금의 종류와 갯수
     - 총 수익률
 
-## controller
+### 4. controller
 
-### LottoController
+#### LottoController
 
 애플리케이션 실행 시 view를 통해 사용자의 입력을 받고, 이를 서비스에 전달하여 비지니스 로직을 실행한다.
 완료 후 view를 통해 사용자에게 결과를 보여준다.
@@ -179,5 +167,201 @@ flowchart TD
 - [X] 입력 받은 당첨 번호와 보너스 번호를 이용해 당첨된 상금의 종류와 갯수를 출력한다.
 - [X] 총 수익률을 출력한다.
 
+## 다이어그램
+
+### 1. 어플리케이션 플로우
+
+```mermaid
+flowchart TD
+    A([Application<br>App 실행]) --> B[/OutputView<br>금액 입력 요청 메세지 출력/] --> C[/InputView<br>금액 입력/]
+    C --> D{Validator<br>금액 유효성 검증} -->|NO| C
+    D -->|YES| E[LottoController<br>로또 구입] --> F[/OutputView<br>구매한 로또 갯수 및 로또 번호 출력/]
+    F --> G[/OutputView<br>당첨 번호 입력 요청 메세지 출력/] --> H[/InputView<br>당첨 번호 입력/]
+    H --> I{Validator<br>당첨 번호 유효성 검증} -->|NO| H
+    I -->|YES| J[/OutputView<br>보너스 번호 입력 요청 메세지 출력/] --> K[/InputView<br>보너스 번호 입력/]
+    K --> L{Validator<br>보너스 번호 유효성 검증} -->|NO| K
+    L --> M[LottoService<br>당첨 결과 및 총 수익률 계산] --> N[/OutputView<br>당첨 결과 및 총 수익률 출력/]
+    N --> O([Application<br>App 종료]) 
+```
+
+### 2. 클래스
+
+#### controller -> service -> domain
+
+```mermaid
+classDiagram
+    direction BT
+    class Bonus {
+        - int number
+        + getNumber() int
+    }
+    class Lotto {
+        - List~Integer~ numbers
+        + countSameNumber(List~Integer~) int
+        + containsBonus(int) boolean
+        + getNumbers() List~Integer~
+    }
+    class LottoController {
+        - LottoService lottoService
+        - InputView inputView
+        - OutputView outputView
+        + run() void
+        - requestBonusNumber(List~Integer~) int
+        - requestMoney() Money
+        - buyLottos(Money) List~Lotto~
+        - responsePrizeResult(Map~Prize, Integer~) void
+        - responseLottos(List~Lotto~, Money) void
+        - responseRevenue(Map~Prize, Integer~, Money) void
+        - requestWinningNumbers() List~Integer~
+    }
+    class LottoQuantity {
+        - List~Lotto~ lottos
+        + getLottos() List~Lotto~
+        - createLottos(int) List~Lotto~
+        - putLotto(List~Lotto~) void
+    }
+    class LottoService {
+        + getMoney(String) Money
+        + getWinningNumbers(String) List~Integer~
+        + getLottos(Money) List~Lotto~
+        + getPrizeResult(List~Lotto~, List~Integer~, int) Map~Prize, Integer~
+        + getRevenue(Map~Prize, Integer~, Money) double
+        + getBonusNumber(String, List~Integer~) int
+        - findPrize(Lotto, List~Integer~, int) Prize
+        - calculatePrize(List~Lotto~, List~Integer~, int) List~Prize~
+        - calculateRewards(Map~Prize, Integer~) double
+    }
+    class Money {
+        - int money
+        + calculateTicket() int
+        + calculateRevenue(double) double
+    }
+    class Prize {
+        <<enumeration>>
+        +  FIRST
+        +  FOURTH
+        +  FAIL
+        +  THIRD
+        +  SECOND
+        +  FIFTH
+        - String message
+        - int reward
+        - boolean bonus
+        - int sameNumberCount
+        + getReward() int
+        + findBySameNumberCountAndBonus(int, boolean) Prize
+        + valueOf(String) Prize
+        + values() Prize[]
+        + getMessage() String
+        - existBySameNumberCountAndBonus(Prize, int, boolean) boolean
+    }
+    class PrizeResult {
+        - Map~Prize, Integer~ result
+        + getResult() Map~Prize, Integer~
+        - putPrize(List~Prize~, Map~Prize, Integer~) void
+        - createResult(List~Prize~) Map~ Prize, Integer~
+    }
+    class Winning {
+        - List~Integer~ numbers
+        + getNumbers() List~Integer~
+    }
+
+    LottoController ..> LottoService: «create»
+    LottoController "1" *--> "lottoService 1" LottoService
+    LottoQuantity "1" *--> "lottos *" Lotto
+    LottoQuantity ..> Lotto: «create»
+    LottoService ..> Bonus: «create»
+    LottoService ..> LottoQuantity: «create»
+    LottoService ..> Money: «create»
+    LottoService ..> PrizeResult: «create»
+    LottoService ..> Winning: «create»
+    PrizeResult "1" *--> "result *" Prize
+
+```
+
+#### view -> controller
+
+```mermaid
+classDiagram
+    direction BT
+    class InputView {
+        + readWinningNumbers() String
+        + readMoney() String
+        + readBonusNumber() String
+    }
+    class LottoController {
+        - LottoService lottoService
+        - InputView inputView
+        - OutputView outputView
+        - requestBonusNumber(List~Integer~) int
+        + run() void
+        - requestMoney() Money
+        - buyLottos(Money) List~Lotto~
+        - responsePrizeResult(Map~Prize, Integer~) void
+        - responseLottos(List~Lotto~, Money) void
+        - responseRevenue(Map~Prize, Integer~, Money) void
+        - requestWinningNumbers() List~Integer~
+    }
+    class OutputView {
+        - String REVENUE_MESSAGE
+        - String WINNING_NUMBERS_REQUEST_MESSAGE
+        - String BONUS_NUMBER_REQUEST_MESSAGE
+        - String MONEY_REQUEST_MESSAGE
+        - String PRIZE_RESULT_MESSAGE
+        - String BUY_MESSAGE
+        + printRequestWinningNumberMessage() void
+        + printPrizeResult(String) void
+        + printPrizeResultMessage() void
+        + printRequestBonusNumber() void
+        + printRevenue(double) void
+        + printLottos(String) void
+        + printBuyLottoMessage(int) void
+        + printRequestMoneyMessage() void
+    }
+
+    LottoController ..> InputView: «create»
+    LottoController "1" *--> "inputView 1" InputView
+    LottoController "1" *--> "outputView 1" OutputView
+    LottoController ..> OutputView: «create»
+
+```
+
+#### util & constant
+
+```mermaid
+classDiagram
+    direction BT
+    class Constant {
+        + int NUMBER_MIN
+        + int NUMBER_MAX
+        + int NUMBERS_SIZE
+        + int MONEY_UNIT
+    }
+    class Convertor {
+        + convertToIntegerList(String) List~Integer~
+        + convertToInt(String) int
+    }
+    class ErrorMessage {
+        + String HEAD
+        + String NUMBERS_WRONG_SIZE
+        + String NUMBERS_DUPLICATE
+        + String NUMBER_WRONG_RANGE
+        + String NUMBER_WRONG_FORMAT
+        + String BONUS_AND_WINNING_DUPLICATE
+        + String MONEY_WRONG_UNIT
+    }
+    class Validator {
+        - validateDuplicate(List~Integer~) void
+        - validateRangeBonusNumber(int) void
+        - validateRange(List~Integer~) void
+        - validateNumberFormat(int) void
+        - validateMoneyUnit(int) void
+        + validateLottoNumbers(List~Integer~) void
+        - validateSize(List~Integer~) void
+        + validateBonusNumber(int, List~Integer~) void
+        + validateMoney(int) void
+        - validateDuplicateBonusNumber(int, List~Integer~) void
+    }
 
 
+```

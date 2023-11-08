@@ -9,10 +9,10 @@ public class LottoResult {
 
     public double calculateEarningRate(List<Rank> ranks, int purchaseMoney) {
         Map<Rank, Integer> result = completeResult(ranks);
-        Rank[] rankSpreadInOrder = Rank.values();
+        Rank[] ranksSpreadInOrder = Rank.values();
         double profit = 0;
 
-        for (Rank rank : rankSpreadInOrder) {
+        for (Rank rank : ranksSpreadInOrder) {
             profit += result.get(rank) * rank.getPrize();
         }
 

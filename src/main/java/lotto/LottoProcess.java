@@ -31,7 +31,7 @@ public class LottoProcess {
         List<LottoComparison> lottoComparisons = new ArrayList<>();
 
         for (Lotto lotto : lottos) {
-            lottoComparisons.add(new LottoComparison(winningLotto.getLotto().countOverlappingNumbers(lotto),
+            lottoComparisons.add(new LottoComparison(winningLotto.getLotto().countDuplicatingNumbers(lotto),
                     lotto.isContainBonusNumber(winningLotto.getBonusNumber())));
         }
 

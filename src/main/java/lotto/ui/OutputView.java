@@ -12,7 +12,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String NEW_LINE = "\n";
     private static final String DASH = "-";
-    private static final String OVERLAP_NOTIFY_MESSAGE = "%d개 일치";
+    private static final String DUPLICATE_NOTIFY_MESSAGE = "%d개 일치";
     private static final String BONUS_NOTIFY_MESSAGE = ", 보너스 볼 일치";
     private static final String SPACE = " ";
     private static final String PRIZE_MESSAGE = "(%,d원)";
@@ -22,7 +22,7 @@ public class OutputView {
 
     public static void printLottoQuantity(int lottoQuantity) {
         System.out.print(NEW_LINE);
-        System.out.printf((LOTTO_QUANTITY_NOTIFY_MESSAGE) + "%n", lottoQuantity);
+        System.out.printf(String.format(LOTTO_QUANTITY_NOTIFY_MESSAGE, lottoQuantity));
     }
 
     public static void printLottos(List<Lotto> lottos) {
@@ -39,11 +39,11 @@ public class OutputView {
 
     public static void printStatistics(Map<Rank, Integer> finalResult) {
         System.out.println(NEW_LINE + WINNING_STATISTICS_MESSAGE + NEW_LINE + DASH.repeat(3));
-        Rank[] ranks = Rank.values();
+        Rank[] ranksSpreadInOrder = Rank.values();
 
-        for (Rank rank : ranks) {
+        for (Rank rank : ranksSpreadInOrder) {
             StringBuilder statistics = new StringBuilder();
-            statistics.append(String.format(OVERLAP_NOTIFY_MESSAGE, rank.getCountDuplication()));
+            statistics.append(String.format(DUPLICATE_NOTIFY_MESSAGE, rank.getCountDuplication()));
             if (rank.getCheckBonus()) {
                 statistics.append(BONUS_NOTIFY_MESSAGE);
             }
@@ -54,7 +54,7 @@ public class OutputView {
     }
 
     public static void printEarningRate(double earningRate) {
-        System.out.printf((EARNING_RATE_NOTIFY_MESSAGE) + "%n", earningRate);
+        System.out.printf(String.format(EARNING_RATE_NOTIFY_MESSAGE, earningRate));
     }
 
     public static void printErrorMessage(IllegalArgumentException e) {

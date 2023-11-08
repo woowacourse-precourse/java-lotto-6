@@ -18,9 +18,9 @@ public enum Rank {
     }
 
     public static Rank decideRank(int countDuplication, boolean checkBonus) {
-        Rank[] rankSpreadInOrder = Rank.values();
+        Rank[] ranksSpreadInOrder = Rank.values();
 
-        for (Rank rank : rankSpreadInOrder) {
+        for (Rank rank : ranksSpreadInOrder) {
             if (rank.getCountDuplication() == countDuplication && rank.getCheckBonus() == checkBonus) {
                 return rank;
             }

@@ -28,11 +28,13 @@ public class Application {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
+
         return runPurchaseMoneyStep();
     }
 
     private static PurchaseMoney makePurchaseMoney() {
         String purchaseMoney = InputView.inputPurchaseMoney();
+
         return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
     }
 
@@ -42,11 +44,13 @@ public class Application {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
+
         return runWinningNumbersStep();
     }
 
     private static Lotto makeWinningNumbers() {
         String winningNumbers = InputView.inputWinningNumbers();
+
         return new Lotto(Converter.convertWinningNumber(winningNumbers));
     }
 
@@ -56,6 +60,7 @@ public class Application {
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
+
         return runWinningLottoStep(winningNumbers);
     }
 
@@ -65,6 +70,7 @@ public class Application {
 
     private static int makeBonusNumber() {
         String bonusNumber = InputView.inputBonusNumber();
+
         return Converter.convertToNumeric(bonusNumber);
     }
 }

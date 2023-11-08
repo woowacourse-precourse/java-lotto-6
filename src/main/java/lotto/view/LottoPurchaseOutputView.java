@@ -6,17 +6,17 @@ import lotto.domain.Lottos;
 public class LottoPurchaseOutputView {
 
     private final static String LOTTO_COUNT = "개를 구매했습니다.";
-    private final static String INPUT_MONEY = "구입금액을 입력해 주세요.";
+    private final static String OUTPUT_MONEY = "구입금액을 입력해 주세요.";
 
-    public void printLotto(Lottos lottos, int lottoCount) {
+    public void outputLotto(Lottos lottos, int lottoCount) {
         System.out.println(lottoCount + LOTTO_COUNT);
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);
-            printOneLotto(lotto);
+            outputOneLotto(lotto);
         }
     }
 
-    public void printOneLotto(Lotto lotto) {
+    public void outputOneLotto(Lotto lotto) {
         System.out.print("[");
         for (int i = 0; i < lotto.size(); i++) {
             System.out.print(lotto.get(i));
@@ -27,8 +27,8 @@ public class LottoPurchaseOutputView {
         System.out.print("]");
     }
 
-    public void printInputMoneyMessage() {
-        System.out.println(INPUT_MONEY);
+    public void outputMoneyMessage() {
+        System.out.println(OUTPUT_MONEY);
     }
 
 }

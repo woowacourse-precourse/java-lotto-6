@@ -70,7 +70,7 @@ public class IOHandler {
 
     public void printWinningHistory(Map<LottoRank, Integer> winningHistory) {
         System.out.println("당첨 통계");
-        System.out.println("--_");
+        System.out.println("---");
         System.out.printf("3개 일치 (5,000원) - %d개\n", winningHistory.get(LottoRank.FIFTH));
         System.out.printf("4개 일치 (50,000원) - %d개\n", winningHistory.get(LottoRank.FOURTH));
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", winningHistory.get(LottoRank.THIRD));
@@ -80,5 +80,9 @@ public class IOHandler {
 
     public void printProfitRate(double profitRate) {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.println("[ERROR] " + message);
     }
 }

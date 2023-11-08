@@ -28,7 +28,7 @@ public class Result {
     }
 
     public void print() {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         for (Score score : Score.values()) {
             if (score == Score.NONE) {
                 continue;

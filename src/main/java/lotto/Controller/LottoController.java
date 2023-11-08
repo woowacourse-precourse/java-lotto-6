@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.LottoNumbers;
 import lotto.model.LottoPurchase;
 import lotto.view.InputView;
@@ -32,6 +33,7 @@ public class LottoController {
 
     private static void setWinningNumbers() {
         OutputView.printInputWinningNumbers();
+        Lotto lotto = new Lotto(InputView.InputWinningNumbers(InputView.readLine()));
     }
 
 

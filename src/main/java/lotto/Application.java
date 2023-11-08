@@ -18,7 +18,36 @@ public class Application {
     static List<Integer> inputWinningLotto = new ArrayList<>();
     static List<List<Integer>> lottoTotal = new ArrayList<>();
     // myWinningLotto = {미당첨, 1등, 2등, 3등, 4등, 5등}
-    static List<Integer> myWinningLotto = new ArrayList<>();    
+    static List<Integer> myWinningLotto = new ArrayList<>();
+
+    public enum LottoWinRank{
+        FIRST(1),
+        SECOND(2),
+        THIRD(3),
+        FOURTH(4),
+        FIFTH(5),
+        NOPE(0);
+
+        private final int rank;
+        LottoWinRank(int rank){
+            this.rank = rank;
+        }
+    }
+    
+    public enum ChangeLottoWinRank{
+        FIRST(6), 
+        SECOND(15), 
+        THIRD(5), 
+        FOURTH(4),
+        FOURTHPLUS(14),  
+        FIFTH(3), 
+        FIFTHPLUS(13);
+
+        private final int value;
+        ChangeLottoWinRank(int value){
+            this.value = value;
+        }
+    }
 
     public static void CoinValidate(String playerInput){
         try{
@@ -31,8 +60,7 @@ public class Application {
         if (inputCoin % coinStandard != 0){
             System.out.println("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");        
             throw new IllegalStateException();
-        }              
-        
+        }                      
     }
 
     public static void GetCoin(){
@@ -100,17 +128,17 @@ public class Application {
     }
 
     public static int CheckLottoRank(int lottoResult){
-        if (lottoResult == 6)
-            return 1;
-        if (lottoResult == 15)
-            return 2;
-        if (lottoResult == 5)
-            return 3;
-        if (lottoResult == 4 || lottoResult == 14)
-            return 4;
-        if (lottoResult == 3 || lottoResult == 13)
-            return 5;
-        return 0;
+        if (lottoResult == ChangeLottoWinRank.FIRST.value)
+            return LottoWinRank.FIRST.rank;
+        if (lottoResult == ChangeLottoWinRank.SECOND.value)
+            return LottoWinRank.SECOND.rank;
+        if (lottoResult == ChangeLottoWinRank.THIRD.value)
+            return LottoWinRank.THIRD.rank;
+        if (lottoResult == ChangeLottoWinRank.FOURTH.value || lottoResult == ChangeLottoWinRank.FOURTHPLUS.value)
+            return LottoWinRank.FOURTH.rank;
+        if (lottoResult == ChangeLottoWinRank.FIFTH.value || lottoResult == ChangeLottoWinRank.FIFTHPLUS.value)
+            return LottoWinRank.FIFTH.rank;
+        return LottoWinRank.NOPE.rank;
     }
 
     public static void MyLottoCheck(Lotto lotto){
@@ -129,15 +157,15 @@ public class Application {
     }
 
     public static int GetMoney(int rank, int lottoWinCount){
-        if (rank == 1)
+        if (rank == LottoWinRank.FIRST.rank)
             System.out.println("6개 일치 (2,000,000,000원) - " + lottoWinCount + "개");
-        if (rank == 2)
+        if (rank == LottoWinRank.SECOND.rank)
             System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + lottoWinCount + "개");
-        if (rank == 3)
+        if (rank == LottoWinRank.THIRD.rank)
             System.out.println("5개 일치 (1,500,000원) - " + lottoWinCount + "개");
-        if (rank == 4)
+        if (rank == LottoWinRank.FOURTH.rank)
             System.out.println("4개 일치 (50,000원) - " + lottoWinCount + "개");
-        if (rank == 5)
+        if (rank == LottoWinRank.FIFTH.rank)
             System.out.println("3개 일치 (5,000원) - " + lottoWinCount + "개");
 
         return lottoRankMoney[rank] * lottoWinCount;
@@ -156,8 +184,7 @@ public class Application {
         System.out.println("총 수익률은 "+String.format("%.1f",rate)+"%입니다.");        
     }
 
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
+    public static void main(String[] args) {        
         GetCoin();
         GetLottos();
         WinningLottoInput();

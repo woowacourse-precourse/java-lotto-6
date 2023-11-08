@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class NumberGeneratorTest {
+class LottoNumberGeneratorTest {
 
     @DisplayName("로또 번호 생성 테스트")
     @Test

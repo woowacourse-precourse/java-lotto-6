@@ -4,7 +4,7 @@ import static lotto.model.Prize.SECOND;
 
 import java.text.DecimalFormat;
 import java.util.Map;
-import lotto.model.LottoFactory;
+import lotto.model.Lotto;
 import lotto.model.PlayerLottos;
 import lotto.model.Prize;
 import lotto.model.ProfitCalculator;
@@ -32,9 +32,9 @@ public class OutputView {
     }
 
     public static void outputLottoPlayerNumbers(PlayerLottos playerLottos) {
-        playerLottos.getLottoPlayerNumbers()
+        playerLottos.getPlayerLottos()
                 .stream()
-                .map(LottoFactory::getLottoPlayerNumber)
+                .map(Lotto::getNumbers)
                 .forEach(System.out::println);
     }
 

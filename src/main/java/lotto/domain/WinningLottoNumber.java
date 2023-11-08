@@ -16,7 +16,7 @@ public class WinningLottoNumber {
     private final Lotto winLottoNumber;
     private final int bonusNumber;
 
-    public WinningLottoNumber(Lotto winLottoNumber, int bonusNumber) {
+    private WinningLottoNumber(Lotto winLottoNumber, int bonusNumber) {
         this.winLottoNumber = winLottoNumber;
         validate(winLottoNumber, bonusNumber);
         this.bonusNumber = bonusNumber;

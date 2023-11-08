@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 public class NumberComparatorTest {
 
-    private final WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+    private final WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
 
     private LottoNumberComparator comparator;
 

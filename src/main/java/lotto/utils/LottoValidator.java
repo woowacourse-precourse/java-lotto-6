@@ -3,6 +3,7 @@ package lotto.utils;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.Lotto;
 import lotto.enums.ExceptionMessage;
 
 public class LottoValidator {
@@ -26,12 +27,16 @@ public class LottoValidator {
         }
     }
 
-    public void validateNumberRange(List<Integer> numbers) {
+    public void validateNumbersRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                String error = String.format(ExceptionMessage.NUMBER_RANGE_ERROR.message, MIN_NUMBER, MAX_NUMBER);
-                throw new IllegalArgumentException(error);
-            }
+            validateNumberRange(number);
+        }
+    }
+
+    public void validateNumberRange(int number) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            String error = String.format(ExceptionMessage.NUMBER_RANGE_ERROR.message, MIN_NUMBER, MAX_NUMBER);
+            throw new IllegalArgumentException(error);
         }
     }
 
@@ -46,6 +51,13 @@ public class LottoValidator {
         if (numbers.size() != WINNING_NUMBERS_COUNT) {
             String error = String.format(ExceptionMessage.NUMBER_COUNT_ERROR.message, WINNING_NUMBERS_COUNT);
             throw new IllegalArgumentException(error);
+        }
+    }
+
+    public void validateDuplicateBounus(Lotto winning, int bonus) {
+        List<Integer> winningNumbers = winning.getNumbers();
+        if (winningNumbers.contains(bonus)) {
+            throw new IllegalArgumentException(ExceptionMessage.BONUS_NUMBER_DUPLICATE_ERROR.message);
         }
     }
 }

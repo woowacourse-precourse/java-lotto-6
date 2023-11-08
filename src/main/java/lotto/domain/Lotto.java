@@ -21,7 +21,7 @@ public class Lotto {
 
         lottoValidator.validateDuplicateNumbers(numbers);
         lottoValidator.validateNumbersCount(numbers);
-        lottoValidator.validateNumberRange(numbers);
+        lottoValidator.validateNumbersRange(numbers);
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

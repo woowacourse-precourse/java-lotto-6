@@ -44,7 +44,7 @@ public class LottoValidatorTest {
     @Test
     void invalidBonusNumberOutOfRange() {
         List<Integer> input = List.of(46, 1, 2, 3, 4, 5);
-        assertThatThrownBy(() -> lottoValidator.validateNumberRange(input))
+        assertThatThrownBy(() -> lottoValidator.validateNumbersRange(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 숫자는 1에서 45 사이어야 합니다.");
     }

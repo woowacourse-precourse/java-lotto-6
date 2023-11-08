@@ -6,44 +6,63 @@ import lotto.util.MessageUtil;
 import java.util.List;
 import java.util.function.Predicate;
 
+
+
 public class LottoPrize {
 
     private final MessageUtil messageUtil = new MessageUtil();
 
-    private final LottoWinningNumber winningNumInfo;
+    private final LottoResult lottoResult = new LottoResult();
 
-    private final Integer BONUS_AVAILABLE_NUM = 5;
+    private final LottoWinningNumber winningNumInfo;
 
     public LottoPrize(LottoWinningNumber lottoWinningNumber) {
         this.winningNumInfo = lottoWinningNumber;
     }
 
-    public void getLottoStats(List<Lotto> userLottos) {
+    public void getLottoStats(List<Lotto> userLottos, int purchaseAmount) {
         messageUtil.printWinningStats();
 
         for (Lotto userLotto : userLottos) {
             List<Integer> userLottoNums = userLotto.getLottoNumbers();
             int matchCount = getMatchCount(userLottoNums);
-            matchCount = checkBonusNumber(userLottoNums, matchCount);
+            addMatchCount(checkBonusNumber(userLottoNums, matchCount));
         }
+
     }
 
-    private int getMatchCount(List<Integer> userNums) {
-        return Long.valueOf(winningNumInfo.getWinningNums()
-                .stream()
-                .filter(lottoNum -> userNums.stream()
-                        .anyMatch(Predicate.isEqual(lottoNum)))
-                .count()).intValue();
+    private void addMatchCount(int matchCount) {
+        if (matchCount == THREE_COUNT.getNumber()) {
+            lottoResult.addThreeCount();
+        }
+        if (matchCount == FOUR_COUNT.getNumber()) {
+            lottoResult.addFourCount();
+        }
+        if (matchCount == FIVE_COUNT.getNumber()) {
+            lottoResult.addFiveCount();
+        }
+        if (matchCount == FIVE_COUNT_WITH_BONUS.getNumber()) {
+            lottoResult.addFiveWithBonusCount();
+        }
+        if (matchCount == SIX_COUNT.getNumber()) {
+            lottoResult.addSixCount();
+        }
     }
 
     private int checkBonusNumber(List<Integer> userNums, int matchCount) {
-        if (matchCount == BONUS_AVAILABLE_NUM && userNums.contains(matchCount)) {
+        if (matchCount == FIVE_COUNT.getNumber() && userNums.contains(winningNumInfo.getBonusNum())) {
             return matchCount * 10;
         }
+
         return matchCount;
     }
-        public String computeEarningRate(int purchaseAmount, int winningAmount) {
-            double earningRate = (double) (purchaseAmount / winningAmount) * 100;
-            return String.format("%.1f", earningRate);
+
+    private String computeEarningRate(int purchaseAmount, long winningAmount) {
+        if (winningAmount == 0) {
+            return "0";
         }
+
+        double earningRate = (double) winningAmount / (double) purchaseAmount * 100;
+        return String.format("%.1f", earningRate);
     }
+}

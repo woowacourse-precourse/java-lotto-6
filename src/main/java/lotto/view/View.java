@@ -2,9 +2,10 @@ package lotto.view;
 
 import static lotto.view.constants.MessageType.BONUS_NUMBER_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
+import static lotto.view.constants.MessageType.EARNINGS_RATE_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
-import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.WINNING_RESULT_INFORMATION;
+import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.WINNING_RESULT_NOTICE;
 import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
 import static lotto.view.constants.SymbolType.OUTPUT_SEPARATOR;
@@ -49,6 +50,8 @@ public final class View {
         Arrays.stream(WinningType.values())
                 .filter(winningType -> !winningType.equals(WinningType.NONE))
                 .forEach(winningType -> printWinningNumbers(winningType, winningResult));
+
+        printlnFormat(EARNINGS_RATE_MESSAGE, winningResult.calculateEarningsRate(cost));
     }
 
     private static void printWinningNumbers(WinningType winningType, WinningResult winningResult) {

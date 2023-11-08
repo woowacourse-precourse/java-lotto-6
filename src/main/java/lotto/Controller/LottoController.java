@@ -15,7 +15,7 @@ public class LottoController {
     private int lottoCount;
     private int bonusNumber;
     private double lottoRate;
-    private int BonusNumberMatchCount = 0;
+    private int bonusNumberMatches = 0;
 
     public LottoController() {
         set();
@@ -58,7 +58,7 @@ public class LottoController {
             if(resultLotto.get(i) == Numbers.FIVE.getValue()) {
                 if(randomLotto.get(i).isSameNumber(bonusNumber)) {
                     total = total + 30_000_000;
-                    BonusNumberMatchCount++;
+                    bonusNumberMatches++;
                     continue;
                 }
                 total = total +  1_500_000;
@@ -71,7 +71,7 @@ public class LottoController {
     }
 
     public void printResult() {
-        OutputView.printWinningStatistics(resultLotto, BonusNumberMatchCount);
+        OutputView.printWinningStatistics(resultLotto, bonusNumberMatches);
         OutputView.printReturnRate(Math.round(lottoRate * 10.0) / 10.0);
     }
 }

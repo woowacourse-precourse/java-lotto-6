@@ -15,13 +15,13 @@ public class OutputView {
         }
     }
 
-    public static void printWinningStatistics(List<Integer> winningStatistics, int BonusNumberMatchCount) {
+    public static void printWinningStatistics(List<Integer> winningStatistics, int bonusNumberMatches) {
         int fiveMatches = Collections.frequency(winningStatistics, Numbers.FIVE.getValue());
         System.out.println(WINNING_STATISTICS_MESSAGE);
         System.out.println(THREE_MATCHES_MESSAGE + Collections.frequency(winningStatistics, Numbers.THREE.getValue()) + "개");
         System.out.println(FOUR_MATCHES_MESSAGE + Collections.frequency(winningStatistics, Numbers.FOUR.getValue()) + "개");
-        System.out.println(FIVE_MATCHES_MESSAGE + (fiveMatches - BonusNumberMatchCount) + "개");
-        System.out.println(FIVE_MATCHES_WITH_BONUS_MESSAGE + BonusNumberMatchCount + "개");
+        System.out.println(FIVE_MATCHES_MESSAGE + (fiveMatches - bonusNumberMatches) + "개");
+        System.out.println(FIVE_MATCHES_WITH_BONUS_MESSAGE + bonusNumberMatches + "개");
         System.out.println(SIX_MATCHES_MESSAGE + Collections.frequency(winningStatistics, Numbers.SIX.getValue()) + "개");
     }
 

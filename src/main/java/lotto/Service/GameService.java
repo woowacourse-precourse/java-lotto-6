@@ -73,7 +73,6 @@ public class GameService {
             try {
                 String input = InputService.askMoney();
                 InputValidator.validateBlankString(input);
-
                 long money = Long.parseLong((input));
                 this.setMoney(money);
                 break;
@@ -89,10 +88,14 @@ public class GameService {
 
     public void playGame(){
         this.askMoney();
+        Player player = new Player(this.money/1000);
+        player.printLottos();
+
         this.askWinningNumbers();
         this.askBonusNumber();
 
-        Player player = new Player(this.money/1000);
+
+
         GameResultService gameResultService = new GameResultService();
         gameResultService.calculateResult(player , this.winningLotto, bonusNumber);
         gameResultService.printResult(this.money);

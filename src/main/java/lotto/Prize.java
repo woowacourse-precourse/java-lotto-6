@@ -18,6 +18,7 @@ public class Prize {
             countWinningLotto(rank.toString());
         }
 
+        this.totalPrize = calculateReturn();
     }
 
     private int getPrize(String rank){
@@ -63,4 +64,28 @@ public class Prize {
         return  (this.totalPrize - this.money) / this.money * 100;
     }
 
+    private static String matchMoney(int rank){
+        switch (rank){
+            case 1: return "5,000";
+            case 2: return "50,000";
+            case 3: return "1,500,000";
+            case 4: return "30,000,000";
+            case 5: return "2,000,000,000";
+            default: return "";
+        }
+    }
+
+    public void printResult(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for(int rank=1; rank < 6;rank++){
+            if(winningCount[rank] != 0){
+                System.out.println((rank+2)+"개 일치 ("+matchMoney(rank)+"원) - "+winningCount[rank]+" 개");
+            }
+        }
+
+        System.out.println("총 수익률은 " + this.totalReturn +"%입니다.");
+
+    }
 }

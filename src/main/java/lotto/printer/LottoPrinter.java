@@ -14,4 +14,6 @@ public interface LottoPrinter {
 	void askBonusNumber();
 
 	void noticeResult(int[] results, Double returnRate);
+
+	void printException(String exceptionMessage);
 }

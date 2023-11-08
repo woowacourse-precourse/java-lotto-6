@@ -129,7 +129,7 @@ public class LottoManager {
             try {
                 isReceived = validatePurchasePrice(lottoReceiver.receive());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                lottoPrinter.printException(e.getMessage());
             }
         }
         calculateLottoCount();
@@ -184,7 +184,7 @@ public class LottoManager {
             try {
                 isReceived = validateWinningNumber(lottoReceiver.receive());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                lottoPrinter.printException(e.getMessage());
             }
         }
     }
@@ -215,7 +215,7 @@ public class LottoManager {
             try {
                 isReceived = validateBonusNumber(lottoReceiver.receive());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                lottoPrinter.printException(e.getMessage());
             }
         }
     }

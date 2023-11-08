@@ -68,4 +68,9 @@ public class ConsoleLottoPrinter implements LottoPrinter {
 
         System.out.println(stringBuilder);
     }
+
+    @Override
+    public void printException(String exceptionMessage) {
+        System.out.println(exceptionMessage);
+    }
 }

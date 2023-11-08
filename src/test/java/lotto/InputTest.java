@@ -1,11 +1,14 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import java.io.ByteArrayInputStream;
-import java.util.NoSuchElementException;
+import java.util.List;
+import lotto.model.Cashier;
+import lotto.model.Lotto;
+import lotto.util.Parser;
+import lotto.util.StringUtil;
+import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
@@ -13,13 +16,12 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputTest {
-    Application application = new Application();
 
     @ParameterizedTest
     @EmptySource
     void 입력_하지_않았을_때_예외_발생(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> application.checkEmpty(input))
+                .isThrownBy(() -> StringUtil.checkEmpty(input))
                 .withMessage(ErrorMessage.REQUIRED_VALUE);
     }
 
@@ -27,51 +29,44 @@ public class InputTest {
     @ValueSource(strings = {" ", "eight"})
     void 입력_값이_숫자가_아닐_때_예외_발생(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> application.checkNumber(input))
+                .isThrownBy(() -> StringUtil.checkNumber(input))
                 .withMessage(ErrorMessage.IS_NOT_NUMBER);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {8001})
-    void 구입_금액이_천원_단위가_아닐_때_예외_발생(int purchaseAmount) {
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> application.checkUnit(purchaseAmount))
-                .withMessage(ErrorMessage.PURCHASE_AMOUNT_UNIT);
+    void 구입_금액이_천원_단위가_아닐_때_null_반환(int purchaseAmount) {
+        Cashier cashier = new Cashier();
+
+        List<Lotto> lottos = cashier.takeOrder(purchaseAmount);
+
+        assertThat(lottos).isNull();
     }
 
     @Test
-    void 구입_금액이_0원일_때_예외_발생() {
+    void 구입_금액이_0원일_때_null_반환() {
+        Cashier cashier = new Cashier();
         int purchaseAmount = 0;
 
-        assertThatIllegalArgumentException()
-                .isThrownBy(() -> application.checkZero(purchaseAmount))
-                .withMessage(ErrorMessage.PURCHASE_AMOUNT_ZERO);
+        List<Lotto> lottos = cashier.takeOrder(purchaseAmount);
+
+        assertThat(lottos).isNull();
     }
 
     @ParameterizedTest
     @NullSource
     void 입력_값이_null일_때_예외_발생(String input) {
         assertThatIllegalArgumentException()
-                .isThrownBy(() -> application.checkNull(input))
+                .isThrownBy(() -> StringUtil.checkNull(input))
                 .withMessage(ErrorMessage.NULL);
     }
 
     @Test
-    void 입력_받은_구입_금액을_검증한다_성공() {
+    void 입력_받은_구입_금액을_검증_및_정수형으로_파싱_성공() {
         String purchaseAmount = "8000";
 
-        int result = application.validate(purchaseAmount);
+        int result = Parser.stringToInt(purchaseAmount);
 
         assertThat(result).isEqualTo(8000);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {" "})
-    void 구입_금액을_잘못_입력_시_다시_입력한다(String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
-
-         assertThatExceptionOfType(NoSuchElementException.class)
-                 .isThrownBy(() -> application.inputPurchaseAmount())
-                 .withMessage("No line found");
     }
 }

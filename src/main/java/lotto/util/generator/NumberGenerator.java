@@ -1,6 +1,8 @@
 package lotto.util.generator;
 
+import java.util.List;
+
 @FunctionalInterface
 public interface NumberGenerator {
-    int generate(int min, int max);
+    List<Integer> generate(int min, int max, int length);
 }

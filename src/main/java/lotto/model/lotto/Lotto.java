@@ -4,7 +4,6 @@ import static lotto.util.message.ErrorMessages.LOTTO_DUPLICATION_EXCEPTION;
 import static lotto.util.message.ErrorMessages.LOTTO_LENGTH_EXCEPTION;
 import static lotto.util.message.ErrorMessages.LOTTO_RANGE_EXCEPTION;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.util.generator.NumberGenerator;
@@ -13,11 +12,12 @@ import lotto.util.validator.NumberRangeValidator;
 public class Lotto {
     private static final Integer LOTTO_MIN_NUMBER = 1;
     private static final Integer LOTTO_MAX_NUMBER = 45;
+    private static final Integer LOTTO_LENGTH = 6;
 
     private List<Integer> numbers;
 
     public Lotto(NumberGenerator numberGenerator) {
-        generateLotto(numberGenerator);
+        numbers = generateNumbers(numberGenerator);
         sortAscending();
     }
 
@@ -34,22 +34,12 @@ public class Lotto {
         return List.copyOf(numbers);
     }
 
-    private void generateLotto(NumberGenerator numberGenerator) {
-        numbers = new ArrayList<>();
-        while (numbers.size() < 6) {
-            int randomNumber = generateNumber(numberGenerator);
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber);
-            }
-        }
+    private List<Integer> generateNumbers(NumberGenerator numberGenerator) {
+        return numberGenerator.generate(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_LENGTH);
     }
 
     private void sortAscending() {
         numbers.sort(Comparator.naturalOrder());
-    }
-
-    private int generateNumber(NumberGenerator numberGenerator) {
-        return numberGenerator.generate(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
     }
 
     private void validate(List<Integer> numbers) {
@@ -59,7 +49,7 @@ public class Lotto {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(LOTTO_LENGTH_EXCEPTION);
         }
     }

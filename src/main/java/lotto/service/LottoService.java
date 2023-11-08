@@ -12,6 +12,7 @@ public class LottoService {
     private static final int VALID_LOTTO_SIZE = 6;
     private static final int LOTTO_MINIMUM_NUMBER = 1;
     private static final int LOTTO_MAXIMUM_NUMBER = 45;
+    private static final int LOTTO_PRICE_PER_TICKET = 1000;
 
     private static final String COMMON_ERROR_MESSAGE = "[ERROR] ";
     private static final String LOTTO_NUMBER_MESSAGE = COMMON_ERROR_MESSAGE + "당첨 번호는 ";
@@ -98,7 +99,7 @@ public class LottoService {
         }
 
         int buyLottoAmount = Integer.parseInt(inputBuyLottoAmount);
-        if (buyLottoAmount % 1000 != 0 || buyLottoAmount == 0) {
+        if (buyLottoAmount % LOTTO_PRICE_PER_TICKET != 0 || buyLottoAmount == 0) {
             throw new IllegalArgumentException(INVALID_BUY_AMOUNT);
         }
     }

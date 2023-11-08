@@ -11,10 +11,11 @@ public class LottoTicketGenerator {
     private static final int LOTTO_SIZE = 6;
     private static final int MINIMUM_LOTTO_NUMBER = 1;
     private static final int MAXIMUM_LOTTO_NUMBER = 45;
+    private static final int LOTTO_PRICE_PER_TICKET = 1000;
 
     public List<List<Integer>> createRandomLottoTickets(String inputBuyLottoAmount) {
         int buyLottoAmount = Integer.parseInt(inputBuyLottoAmount);
-        int lottoTicketCount = buyLottoAmount / 1000;
+        int lottoTicketCount = buyLottoAmount / LOTTO_PRICE_PER_TICKET;
 
         List<List<Integer>> lottoTickets = new ArrayList<>();
         while (lottoTickets.size() < lottoTicketCount) {

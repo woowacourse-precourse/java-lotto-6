@@ -9,4 +9,15 @@ public class WinningLotto {
         this.winningLotto = winningLotto;
     }
 
+    public void saveBonusNumber(LottoNumber bonusNumber) {
+        validateBonusNumberNotInWinningNumbers(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateBonusNumberNotInWinningNumbers(LottoNumber bonusNumber) {
+        if (winningLotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 넘버는 당첨 번호와 중복되어선 안됩니다");
+        }
+    }
+
 }

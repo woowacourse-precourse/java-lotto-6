@@ -17,4 +17,6 @@ public class InputView {
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
         return Console.readLine();
     }
+
+
 }

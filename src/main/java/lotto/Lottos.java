@@ -16,7 +16,7 @@ public class Lottos {
         this.price = price;
         int numberOfLotto = price / 1000;
         for (int i = 0; i < numberOfLotto; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             numbers.sort(Comparator.naturalOrder());
             lottos.add(new Lotto(numbers));
         }

@@ -1,5 +1,7 @@
 package lotto;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class Number {
     private final static String NOT_NUMBER_ERROR = "[ERROR] 숫자를 입력해 주세요.";
 
@@ -17,7 +19,8 @@ public class Number {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_ERROR);
+            System.out.println(NOT_NUMBER_ERROR);
+            return Integer.parseInt(readLine());
         }
     }
 

@@ -42,7 +42,7 @@ public class Output {
     private static String joinNumbers(List<Integer> numbers) {
         return "[" + numbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(",")) + "]";
+                .collect(Collectors.joining(", ")) + "]";
     }
 
     public static void printWinningResult(Winning winning) {

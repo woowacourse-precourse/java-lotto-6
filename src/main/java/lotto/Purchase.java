@@ -1,5 +1,7 @@
 package lotto;
 
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class Purchase {
     private static final String NOT_NUMBER_ERROR = "[ERROR] 구입할 금액을 숫자로 입력해 주세요.";
     private static final String NOT_DIVISIBLE_ERROR = "[ERROR] 1,000원 단위의 금액을 입력해 주세요.";
@@ -22,7 +24,8 @@ public class Purchase {
         try {
             return Integer.parseInt(money);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_NUMBER_ERROR);
+            System.out.println(NOT_NUMBER_ERROR);
+            return Integer.parseInt(readLine());
         }
     }
 

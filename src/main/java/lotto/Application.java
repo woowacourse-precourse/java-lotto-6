@@ -156,4 +156,7 @@ class WinningResult {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rank_cnt[1] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + rank_cnt[0] + "개");
     }
+    public static void EarningResult(double earningrate){
+        System.out.printf("총 수익률은 %.1f%%입니다.",earningrate);
+    }
 }

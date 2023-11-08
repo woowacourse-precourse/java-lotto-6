@@ -11,13 +11,16 @@ public class OutputHandler {
         System.out.println(count + StaticMessage.PRINT_LOTTO_COUNT.getMessage());
     }
 
-    public static void printNumbersOfLottos(List<List<Integer>> lottos) {
-        System.out.println("%n%d개를 구매했습니다.".formatted(lottos.size()));
-        lottos.forEach(System.out::println);
+    public static void printUserLottos(List<Lotto> lottos) {
+        System.out.printf("%n%d개를 구매했습니다.%n", lottos.size());
+
+        lottos.stream()
+              .map(Lotto::getNumbers)
+              .forEach(System.out::println);
     }
 
     public static void printResultHistory() {
-        for (ResultConfig rc: ResultConfig.values()) {
+        for (ResultConfig rc : ResultConfig.values()) {
             System.out.println(rc.getMessage());
         }
     }

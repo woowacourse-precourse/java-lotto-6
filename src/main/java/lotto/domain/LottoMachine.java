@@ -21,12 +21,15 @@ public class LottoMachine {
         lottos = new ArrayList<>();
     }
 
-    public List<Lotto> issuanceLotto(String inputAmount) {
+    public int inputMoney(String inputAmount){
         this.inputAmount = validate_inputMoney(inputAmount);
+        return this.inputAmount / LOTTO_PRICE;
+    }
+
+    public void issuanceLotto() {
         while (this.inputAmount > 0){
             createLotto();
         }
-        return lottos;
     }
 
     private void createLotto() {
@@ -44,7 +47,6 @@ public class LottoMachine {
     private LottoGameResultDto transToWinningLotto(String nums, String bonusNum){
         List<Integer> winningNums = Arrays.stream(nums.split(","))
             .map(Integer::parseInt).toList();
-        this.winningLotto = new WinningLotto(winningNums, Integer.parseInt(bonusNum));
         return getResult(winningNums, Integer.parseInt(bonusNum));
     }
 

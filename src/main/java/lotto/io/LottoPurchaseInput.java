@@ -12,7 +12,7 @@ import lotto.utils.Util;
 public class LottoPurchaseInput {
     public static Amount inputPurchaseAmount(BigDecimal lottoPrice) {
         try {
-            OutputMessage.ASK_PURCHASE_AMOUNT.printMessage();
+            LottoPurchaseOutput.ASK_PURCHASE_AMOUNT.printMessage();
             String input = Console.readLine().trim();
 
             validate(input);
@@ -27,7 +27,7 @@ public class LottoPurchaseInput {
 
     public static List<Integer> inputWinningNumbers() {
         try {
-            OutputMessage.ASK_WINNING_LOTTO_NUMBER.printMessage();
+            LottoPurchaseOutput.ASK_WINNING_LOTTO_NUMBER.printMessage();
             String inputNumbers = Console.readLine().trim();
 
             validate(inputNumbers);
@@ -44,7 +44,7 @@ public class LottoPurchaseInput {
 
     public static WinningCombination inputBonusNumber(List<Integer> winningNumbers) {
         try {
-            OutputMessage.ASK_BONUS_NUMBER.printMessage();
+            LottoPurchaseOutput.ASK_BONUS_NUMBER.printMessage();
             String inputBonusNumber = Console.readLine().trim();
 
             validate(inputBonusNumber);

@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.model.Constants.*;
+import static lotto.validator.InputValidator.checkUserInputIsIntegerNOutOfRange;
 import static lotto.view.InputView.*;
-import static lotto.view.InputView.getBonusNumberInput;
 import static lotto.view.OutputView.*;
 
 public class Controller {
@@ -21,7 +21,19 @@ public class Controller {
     private static Lotto Lotto;
     private static Bonus Bonus;
 
-    public static void gameEngineStart() {
+    public Controller(){
+        createLottoResults();
+        createRandomNumbers();
+        createLotto();
+        createBonus();
+    }
+
+    public void run() {
+        checkLottoResults();
+        printResults();
+    }
+
+    private static void createLottoResults() {
         printGetPurchasePriceInput();
         while(true) {
             try {
@@ -31,36 +43,48 @@ public class Controller {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    private static void createRandomNumbers() {
         int LottoPapers = LottoResults.getLottoPapers();
         RandomNumbers = new RandomNumbers(LottoPapers);
         printPurchasedLottoPapers(LottoPapers);
-        for (int i=0;i<LottoPapers;i++) {
+        for (int i = 0; i < LottoPapers; i++) {
             printPurchasedEachLottoResult(RandomNumbers.getEachLottoNumbers(i));
         }
     }
 
-    public static void gameEngine() {
+    private static void createLotto() {
         printGetWinningNumberInput();
         while (true) {
             try {
-                Lotto = new Lotto(splitToList(getWinningNumberInput()));
+                String numbers = getWinningNumberInput();
+                List<String> lotto = Arrays.asList(numbers.split(","));
+                checkUserInputIsIntegerNOutOfRange(lotto);
+                Lotto = new Lotto(lotto.stream()
+                        .mapToInt(Integer::parseInt)
+                        .boxed().collect(Collectors.toList()));
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    private static void createBonus() {
         printGetBonusNumberInput();
         while (true) {
             try {
-                Bonus = new Bonus(validateBonus(getBonusNumberInput()));
+                Bonus = new Bonus(getBonusNumberInput());
+                checkLottoContainBonus(Bonus.getBonus());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    private static void checkLottoResults() {
         for(int i=0;i<LottoResults.getLottoPapers();i++) {
             LottoResults.updateEachLottoResults(
                     Lotto.countMatchEachLotto(RandomNumbers.getEachLottoNumbers(i)),
@@ -69,34 +93,12 @@ public class Controller {
         }
     }
 
-    public static void gameEnd() {
+    private void printResults() {
         printLottoResults(LottoResults.getLottoResults());
         printProfit(LottoResults.getRateOfProfit());
     }
 
-    private static List<Integer> splitToList(String userInputLotto) {
-        List<String> lotto = Arrays.asList(userInputLotto.split(","));
-        InputValidator.checkUserInputLength(lotto,LOTTO_LENGTH);
-        for(int i=0;i<LOTTO_LENGTH;i++) {
-            InputValidator.checkUserInputIsInteger(lotto.get(i));
-            InputValidator.checkUserInputOutOfRange(Integer.parseInt(lotto.get(i)),MIN_LOTTO_NUMBER,MAX_LOTTO_NUMBER);
-        }
-        return lotto.stream()
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-    }
-
-    private static int validateBonus(String bonus) {
-        InputValidator.checkUserInputIsInteger(bonus);
-        int tmpBonus = Integer.parseInt(bonus);
-
-        InputValidator.checkUserInputOutOfRange(tmpBonus,MIN_LOTTO_NUMBER,MAX_LOTTO_NUMBER);
-        checkLottoContainBonus(tmpBonus);
-
-        return tmpBonus;
-    }
-
-    public static void checkLottoContainBonus(int bonus) throws IllegalArgumentException {
+    public static void checkLottoContainBonus(Integer bonus) throws IllegalArgumentException {
         if (Lotto.checkLottoContainBonus(bonus)) {
             throw new IllegalArgumentException("[ERROR] 이미 로또 번호에 포함된 보너스 번호입니다.");
         }

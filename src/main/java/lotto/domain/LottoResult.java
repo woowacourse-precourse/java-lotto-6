@@ -16,4 +16,8 @@ public class LottoResult {
     public void addRank(Rank rank) {
         ranksCount.put(rank, ranksCount.get(rank) + 1);
     }
+
+    public int getRankCount(Rank rank) {
+        return ranksCount.getOrDefault(rank, 0);
+    }
 }

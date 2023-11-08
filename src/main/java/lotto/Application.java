@@ -11,16 +11,20 @@ public class Application {
 
 	public static void main(String[] args) {
 
+		InputMessage.INPUT_PURCHASE.printMessage();
 		int number = purchase();
 		RandomGenerator generator = generate(number);
+
+		InputMessage.INPUT_WINNINGNUMBERS.printMessage();
 		List<Integer> winningNumbers = winningNumbers();
+
+		InputMessage.INPUT_BONUS.printMessage();
 		int bonus = bonus(winningNumbers);
 
 		result(winningNumbers, generator, bonus, number);
 	}
 
 	public static int purchase() {
-		System.out.println(InputMessage.INPUT_PURCHASE.getMessage());
 		int number = InputPurchase.purchaseAmount();
 		return number;
 	}
@@ -32,14 +36,12 @@ public class Application {
 	}
 
 	public static List<Integer> winningNumbers() {
-		System.out.println("\n" + InputMessage.INPUT_WINNINGNUMBERS.getMessage());
 		List<Integer> winningNumbers = new ArrayList<>();
 		winningNumbers = InputNumbers.winningNumbers();
 		return winningNumbers;
 	}
 
 	public static int bonus(List<Integer> winningNumbers) {
-		System.out.println("\n" + InputMessage.INPUT_BONUS.getMessage());
 		int bonus = InputBonus.bonusNumber(winningNumbers);
 		return bonus;
 	}

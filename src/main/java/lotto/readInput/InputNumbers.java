@@ -9,8 +9,7 @@ import lotto.validation.ErrorValidation;
 
 public class InputNumbers {
 	public static List<Integer> winningNumbers() {
-		
-		String input = Console.readLine();
+		String input = read();
 		try {
 			ErrorValidation.validateWinningNumbersFormat(input);
 			List<Integer> winningNumbers = new ArrayList<>();
@@ -18,8 +17,16 @@ public class InputNumbers {
 			ErrorValidation.validateWinningNumbers(winningNumbers);
 			return winningNumbers;
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			printErrorMessage(e.getMessage());
 			return winningNumbers();
 		}
+	}
+	
+	public static String read() {
+		return Console.readLine();
+	}
+	
+	public static void printErrorMessage(String message) {
+		System.out.println(message);
 	}
 }

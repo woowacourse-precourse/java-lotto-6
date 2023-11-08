@@ -5,6 +5,23 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class ErrorValidation {
+	// 전체에 적용
+	private static int validateInteger(String input) {
+		try {
+			Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NUMBER.getMessage());
+		}
+		return Integer.parseInt(input);
+	}
+	
+	private static void validateNumberRange(int number) {
+		if (number < 1 || number > 45) {
+			throw new IllegalArgumentException(ErrorMessage.ERROR_RANGE.getMessage());
+		}
+	}
+
+	// 당첨 번호
 	public static void validateWinningNumbersFormat(String input) {
 		validateCommaFormat(input);
 		String[] splitInput = input.split(",");
@@ -23,24 +40,10 @@ public class ErrorValidation {
 		}
 	}
 
-	private static void validateInteger(String input) {
-		try {
-			Integer.parseInt(input);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException(ErrorMessage.ERROR_IS_NUMBER.getMessage());
-		}
-	}
-
 	public static void validateWinningNumbers(List<Integer> winningNumbers) {
-		winningNumbers.forEach(ErrorValidation::validateLottoNumberRange);
+		winningNumbers.forEach(ErrorValidation::validateNumberRange);
 		validateWinningNumbersSize(winningNumbers);
 		validateDuplicateNumber(winningNumbers);
-	}
-
-	private static void validateLottoNumberRange(int number) {
-		if (number < 1 || number > 45) {
-			throw new IllegalArgumentException(ErrorMessage.ERROR_RANGE.getMessage());
-		}
 	}
 
 	private static void validateWinningNumbersSize(List<Integer> winningNumbers) {
@@ -55,38 +58,35 @@ public class ErrorValidation {
 		}
 	}
 
-	//
-	public static void validateBonusNumber(String input, List<Integer> winningNumbers) {
-		validateInteger(input);
-		int bonusNumber = Integer.parseInt(input);
-		validateDuplicateBonusNumber(winningNumbers, bonusNumber);
-		validateLottoNumberRange(bonusNumber);
+	// 보너스 점수
+	public static void validateBonus(String input, List<Integer> winningNumbers) {
+		int bonus = validateInteger(input);
+		validateDuplicateBonus(winningNumbers, bonus);
+		validateNumberRange(bonus);
 	}
 
-	private static void validateDuplicateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
-		if (winningNumbers.contains(bonusNumber)) {
+	private static void validateDuplicateBonus(List<Integer> winningNumbers, int bonus) {
+		if (winningNumbers.contains(bonus)) {
 			throw new IllegalArgumentException(ErrorMessage.ERROR_BONUS_RANGE_DUPLICATION.getMessage());
 		}
 	}
 
-	//
-	public static void validatePurchaseAmount(String input) {
-		validateInteger(input);
-		int purchaseAmount = Integer.parseInt(input);
-		validateAmountLimit(purchaseAmount);
-		validateDividedBy1000(purchaseAmount);
+	// 구입 금액
+	public static void validatePurchase(String input) {
+		int purchase = validateInteger(input);
+		validatePurchaseLimit(purchase);
+		validatePurchase1000(purchase);
 	}
 
-	private static void validateAmountLimit(int purchaseAmount) {
-		if (purchaseAmount > 100000 || purchaseAmount < 1000) {
+	private static void validatePurchaseLimit(int purchase) {
+		if (purchase < 1000 || purchase > 100000) {
 			throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_LIMIT.getMessage());
 		}
 	}
 
-	private static void validateDividedBy1000(int purchaseAmount) {
-		if (purchaseAmount % 1000 != 0) {
+	private static void validatePurchase1000(int purchase) {
+		if (purchase % 1000 != 0) {
 			throw new IllegalArgumentException(ErrorMessage.ERROR_PURCHASE_1000.getMessage());
 		}
 	}
-
 }

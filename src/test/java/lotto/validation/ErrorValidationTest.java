@@ -22,7 +22,7 @@ class ErrorValidationTest {
     @Test
     void testValidateBonusNumberRange() {
 		List<Integer> testWinningNumber = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        assertThatThrownBy(() -> ErrorValidation.validateBonusNumber("46", testWinningNumber))
+        assertThatThrownBy(() -> ErrorValidation.validateBonus("46", testWinningNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 	
@@ -30,21 +30,21 @@ class ErrorValidationTest {
     @Test
     void testValidateBonusNumberDuplication() {
 		List<Integer> testWinningNumber = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        assertThatThrownBy(() -> ErrorValidation.validateBonusNumber("1", testWinningNumber))
+        assertThatThrownBy(() -> ErrorValidation.validateBonus("1", testWinningNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 	
 	@DisplayName("1000-100000가 아닌 구매금액을 입력하면 예외가 발생한다.")
     @Test
     void testValidatePurchaseAmountLimit() {
-        assertThatThrownBy(() -> ErrorValidation.validatePurchaseAmount("999"))
+        assertThatThrownBy(() -> ErrorValidation.validatePurchase("999"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 	
 	@DisplayName("1000으로 나누어지지 않는 구매금액을 입력하면 예외가 발생한다.")
     @Test
     void testValidatePurchaseAmount1000() {
-        assertThatThrownBy(() -> ErrorValidation.validatePurchaseAmount("1001"))
+        assertThatThrownBy(() -> ErrorValidation.validatePurchase("1001"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 	

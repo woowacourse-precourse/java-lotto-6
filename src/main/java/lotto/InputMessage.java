@@ -11,8 +11,8 @@ public enum InputMessage {
 		this.message = message;
 	}
 
-	public String getMessage() {
-		return this.message;
+	public void printMessage() {
+		System.out.println(this.message);
 	}
 
 }

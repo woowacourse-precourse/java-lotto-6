@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import lotto.validation.ErrorMessage;
 
@@ -30,34 +31,35 @@ public class Lotto {
 			boolean b = lotto.contains(bonus);
 			lotto.retainAll(numbers);
 			int size = lotto.size();
-			int index = 0;
-			//수정
 			if (size < 3) {
 				continue;
-			}else if (size == 5 && b) {
-				index = 3;
-			}else if (size == 5 && !b) {
-				index = 2;
-			}else if (size == 4) {
-				index = 1;
-			}else if (size == 3) {
-				index = 0;
-			}else if (size == 6) {
-				index = 4;
 			}
+			int index = judgeCompare(size, b);
 			int value = result.get(index);
 			result.set(index, value + 1);
 		}
 		return result;
 	}
 
+	public int judgeCompare(int size, boolean b) {
+		HashMap<Integer,Integer> judgeIndex = new HashMap<Integer,Integer>();
+		judgeIndex.put(3, 0);
+		judgeIndex.put(4, 1);
+		judgeIndex.put(5, 2);
+		judgeIndex.put(0, 3);
+		judgeIndex.put(6, 4);
+		
+		if (size == 5 && b) {
+			return judgeIndex.get(0);
+		}
+		return judgeIndex.get(size);
+	}
+
 	public void printResult(List<Integer> result) {
-		System.out.println("\n당첨 통계" + "\n---" 
-				+ "\n3개 일치 (5,000원) - " + result.get(0) + "개" 
-				+ "\n4개 일치 (50,000원) - "+ result.get(1) + "개"
-				+ "\n5개 일치 (1,500,000원) - " + result.get(2) + "개"
-				+ "\n5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(3) + "개"
-				+ "\n6개 일치 (2,000,000,000원) - " + result.get(4) + "개");
+		System.out.println("\n당첨 통계" + "\n---" + "\n3개 일치 (5,000원) - " + result.get(0) + "개" + "\n4개 일치 (50,000원) - "
+				+ result.get(1) + "개" + "\n5개 일치 (1,500,000원) - " + result.get(2) + "개"
+				+ "\n5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(3) + "개" + "\n6개 일치 (2,000,000,000원) - "
+				+ result.get(4) + "개");
 	}
 
 	public void rateOfReturn(List<Integer> result, int purchase) { // 수익률 계산해서 반환

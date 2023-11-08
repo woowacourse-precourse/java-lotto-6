@@ -2,16 +2,19 @@ package lotto.domain.lottoresult;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
 public enum LottoResult {
-    NONE(0,0),
     FIFTH(3,5000),
     FOURTH(4,50000),
     THIRD(5,1500000),
     SECOND(5, 30000000),
-    FIRST(6,2000000000);
+    FIRST(6,2000000000),
+    NONE(0,0);
+
+    private static final List<LottoResult> lottoResults = getLottoResultsWihoutNone();
 
     private final int numberOfSame;
     private final long prizeMoney;
@@ -19,6 +22,11 @@ public enum LottoResult {
     LottoResult(int numberOfSame, long prizeMoney) {
         this.numberOfSame = numberOfSame;
         this.prizeMoney = prizeMoney;
+    }
+
+    private static List<LottoResult> getLottoResultsWihoutNone() {
+        return Arrays.stream(values())
+                .filter(lottoResult -> !lottoResult.isNone()).toList();
     }
 
     public static LottoResult getResult(int numberOfSame, boolean matchWithBonusNumber) {
@@ -46,6 +54,14 @@ public enum LottoResult {
             initialLottoResultsRepository.put(value, 0);
         }
         return initialLottoResultsRepository;
+    }
+
+    public static int getSizeOfLottoResult() {
+        return lottoResults.size();
+    }
+
+    public static LottoResult getSomeLottoResult(int index) {
+        return lottoResults.get(index);
     }
 
     public long getPrizeMoney() {

@@ -7,6 +7,7 @@ public class Jackpot {
     public static final String ERROR_MESSAGE_WINNING_NUMBERS_NUMERIC = "[ERROR] 당첨 번호는 숫자로만 이루어져야 합니다.";
     public static final String ERROR_MESSAGE_NOT_SIX_NUMBERS = "[ERROR] 당첨 번호는 6개로 이루어져야 합니다.";
     public static final String ERROR_MESSAGE_DUPLICATE_NUMBERS = "[ERROR] 당첨번호에 중복된 숫자가 들어갈 수 없습니다.";
+    public static final String ERROR_MESSAGE_NOT_CONTAINS_BONUS_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
@@ -20,6 +21,7 @@ public class Jackpot {
         this.winningNumbers = winningNumbers;
 
         validateNumeric(inputBonusNumber);
+        validateDuplicateBonusNumber(splitWinningNumbers, inputBonusNumber);
         this.bonusNumber = Integer.parseInt(inputBonusNumber);
     }
 
@@ -36,8 +38,8 @@ public class Jackpot {
         }
     }
 
-    private static void validateNumeric(String number) {
-        if (!number.matches(NUMBER_PATTERN)) {
+    private static void validateNumeric(String bonusNumber) {
+        if (!bonusNumber.matches(NUMBER_PATTERN)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_WINNING_NUMBERS_NUMERIC);
         }
     }
@@ -53,6 +55,14 @@ public class Jackpot {
         Set<String> uniqueWinningNumbers = new HashSet<>(winningNumbers);
         if (winningNumbers.size() != uniqueWinningNumbers.size()) {
             throw new IllegalArgumentException(ERROR_MESSAGE_DUPLICATE_NUMBERS);
+        }
+    }
+
+    private static void validateDuplicateBonusNumber(String[] splitWinningNumbers, String bonusNumber) {
+        for (String winningNumber : splitWinningNumbers) {
+            if (winningNumber.equals(bonusNumber)) {
+                throw new IllegalArgumentException(ERROR_MESSAGE_NOT_CONTAINS_BONUS_NUMBER);
+            }
         }
     }
 

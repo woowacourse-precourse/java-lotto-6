@@ -41,6 +41,24 @@ class LottoTest {
         assertTrue(numbers.stream().allMatch(n -> n <= 45 && n >= 1));
     }
 
+    @DisplayName("로또 발급시 잘못된 입력을 예외 처리한다.")
+    @ParameterizedTest
+    @MethodSource("provideInvalidInitializationParams")
+    void testExceptionOnInvalidInitialization(List<Integer> numbers) {
+        assertThatThrownBy(() -> {
+            new Lotto(numbers);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]");
+    }
+
+    static Stream<Arguments> provideInvalidInitializationParams() {
+        return Stream.of(
+                Arguments.of(List.of(1,2,3,4,5,6,7)),
+                Arguments.of(List.of(1,2,3,4,5,50)),
+                Arguments.of(List.of(1,2,3,4,5,5))
+        );
+    }
+
     @DisplayName("Lotto의 numbers와 주어진 숫자들의 일치하는 숫자를 센다.")
     @ParameterizedTest
     @MethodSource("provideTestLotto")

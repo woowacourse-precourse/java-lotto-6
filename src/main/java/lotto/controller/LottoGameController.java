@@ -16,9 +16,9 @@ public class LottoGameController {
     public LottoGameController() {
         this.view = getView();
         this.lottoGameManager = getLottoGameManager();
-        this.lottoCostController = new LottoCostController(view, lottoGameManager);
-        this.winningNumbersController = new WinningNumbersController(view, lottoGameManager);
-        this.bonusNumberController = new BonusNumberController(view, lottoGameManager);
+        this.lottoCostController = getLottoCostController();
+        this.winningNumbersController = getWinningNumbersController();
+        this.bonusNumberController = getBonusNumberController();
     }
 
     public void gameStart() {
@@ -28,7 +28,7 @@ public class LottoGameController {
         responseGameResult();
     }
 
-    public void responseGameResult() {
+    private void responseGameResult() {
         rankingManager = lottoGameManager.generateRankingManager();
         responseWinningDetails();
         responseEarningsRate();
@@ -48,5 +48,17 @@ public class LottoGameController {
 
     private LottoGameManager getLottoGameManager() {
         return new LottoGameManager();
+    }
+
+    private LottoCostController getLottoCostController() {
+        return new LottoCostController(view, lottoGameManager);
+    }
+
+    private WinningNumbersController getWinningNumbersController() {
+        return new WinningNumbersController(view, lottoGameManager);
+    }
+
+    private BonusNumberController getBonusNumberController() {
+        return new BonusNumberController(view, lottoGameManager);
     }
 }

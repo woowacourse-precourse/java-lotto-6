@@ -3,7 +3,9 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,8 +24,14 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    void calculateReturnTest(){
+        Map<Rank, Integer> ranking = new EnumMap<Rank,Integer>(Rank.class);
+        ranking.put(Rank.FIFTH,3);
+        ranking.put(Rank.FOURTH,1);
+    }
     /*
         단위테스트 조심할것들
         given(준비) : 어떠한 데이터가 준비되었을 때

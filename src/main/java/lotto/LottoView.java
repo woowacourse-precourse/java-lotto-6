@@ -37,51 +37,61 @@ public class LottoView {
     }
     static void initLottoList(int price){
         int lottonum = price / 1000;
-        System.out.println(lottonum+"개를 구매했습니다.");
         for(int i=0;i<lottonum;i++){
             List<Integer> pickedlotto = Randoms.pickUniqueNumbersInRange(1,45,6);
+            Collections.sort(pickedlotto);
             lottoList.add(pickedlotto);
         }
+        System.out.println(lottonum+"개를 구매했습니다.");
         for(List<Integer> picked:lottoList){
             System.out.println(picked);
         }
     }
 
     static void initRanking(){
-        System.out.println("당첨 통계");
         Ranking.put(Rank.FIRST,0);
         Ranking.put(Rank.SECOND,0);
         Ranking.put(Rank.THIRD,0);
         Ranking.put(Rank.FOURTH,0);
         Ranking.put(Rank.FIFTH,0);
-        System.out.println("---");
     }
-
-    public static void drawLottoRank(){
-        initRanking();
+    public static Map<Rank,Integer> drawLottoRank(Map<Rank, Integer> ranking){
         for(List<Integer> pickedNum : lottoList){
             int matchCount =  lotto.calculateNumbers(pickedNum);
             boolean isBonusMatched = lotto.isBonusinPicked(pickedNum);
-            if(matchCount == 6) Ranking.put(Rank.FIRST,Ranking.get(Rank.FIRST)+1);
-            if(matchCount == 5 && isBonusMatched) Ranking.put(Rank.SECOND,Ranking.get(Rank.SECOND)+1);
-            if(matchCount == 5 && !isBonusMatched) Ranking.put(Rank.THIRD,Ranking.get(Rank.THIRD)+1);
-            if(matchCount == 4) Ranking.put(Rank.FOURTH,Ranking.get(Rank.FOURTH)+1);
-            if(matchCount == 3) Ranking.put(Rank.FIFTH,Ranking.get(Rank.FIFTH)+1);
+            if(matchCount == 6) ranking.put(Rank.FIRST,ranking.get(Rank.FIRST)+1);
+            if(matchCount == 5 && isBonusMatched) ranking.put(Rank.SECOND,ranking.get(Rank.SECOND)+1);
+            if(matchCount == 5 && !isBonusMatched) ranking.put(Rank.THIRD,ranking.get(Rank.THIRD)+1);
+            if(matchCount == 4) ranking.put(Rank.FOURTH,ranking.get(Rank.FOURTH)+1);
+            if(matchCount == 3) ranking.put(Rank.FIFTH,ranking.get(Rank.FIFTH)+1);
         }
+        return ranking;
+    }
+
+    public static float calculateReturn(Map<Rank, Integer> ranking, int price){
+        float totalReturn = 0;
+        int totalEarned = 0;
+        for(Rank rank: ranking.keySet()){
+            totalEarned += rank.getReward() * ranking.get(rank);
+        }
+        totalReturn = (float) totalEarned /price*100;
+        return totalReturn;
+    }
+
+    static void printLottoRank(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Ranking = drawLottoRank(Ranking);
         for(Rank rank : Ranking.keySet()){
             System.out.println(rank.getStatus() + " - " + Ranking.get(rank)+"개");
         }
     }
 
-    public static void calculateReturn(){
-        float totalReturn = 0;
-        int totalEarned = 0;
-        for(Rank rank: Ranking.keySet()){
-            totalEarned += rank.getReward() * Ranking.get(rank);
-        }
-        totalReturn = (float) totalEarned /price*100;
+    static void printReturn(){
+        float totalReturn = calculateReturn(Ranking, price);
         System.out.println("총 수익률은 "+String.format("%.1f",totalReturn)+"%입니다.");
     }
+
     public void run(){
         enterBuyPrice();
         initLottoList(price);
@@ -90,7 +100,9 @@ public class LottoView {
 
         enterBonus();
 
-        drawLottoRank();
-        calculateReturn();
+        initRanking();
+        printLottoRank();
+
+        printReturn();
     }
 }

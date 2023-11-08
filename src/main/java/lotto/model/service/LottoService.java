@@ -1,9 +1,10 @@
-package lotto.model;
+package lotto.model.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.controller.InputController;
+import lotto.model.LottoNumbers;
 import lotto.model.entity.Lotto;
 
 public class LottoService {

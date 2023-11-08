@@ -26,6 +26,44 @@ public class OutputView {
     public static void printBonusNumberInputMessage(){
         System.out.println("\n보너스 번호를 입력해 주세요.");
     }
+
+    public static int[] countLottoResult(List<LottoResult> lottoResults){
+        int[] lottoResultCounts = new int[LottoResult.values().length-1];
+        for(LottoResult lottoResult : LottoResult.values()){
+            lottoResults.forEach(lr -> {
+                if(lr.getIndex()!=-1 && lottoResult.equals(lr)) {
+                    lottoResultCounts[lr.getIndex()] += 1;
+                }
+
+            });
+        }
+
+        return lottoResultCounts;
+    }
+    public static void printLottoResult(List<LottoResult> lottoResults){
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        int[] lottoResultCounts = countLottoResult(lottoResults);
+
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+        for(int i =0;i<lottoResultCounts.length ; i++){
+            LottoResult lottoResult = LottoResult.findByIndex(i);
+            if(lottoResult.matchedBonusNumber()){
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
+                        lottoResult.getMatchedWinningNumberCount(),
+                        formatter.format(lottoResult.getPrizeMoney()),
+                        lottoResultCounts[i]);
+                continue;
+
+            }
+            System.out.printf("%d개 일치 (%s원) - %d개\n",
+                    lottoResult.getMatchedWinningNumberCount(),
+                    formatter.format(lottoResult.getPrizeMoney()),
+                    lottoResultCounts[i]);
+        }
+
+
+    }
     
 
 

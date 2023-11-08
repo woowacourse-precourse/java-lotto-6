@@ -76,9 +76,13 @@ public class LottoController {
 
     private void getRate(RankContainer rankContainer, long cnt, int money) {
         double rate = (cnt * 0.1) / ((money) / THOUSANDS);
+        double roundRate = roundUp(rate);
+        SystemOutput.printRankResult(rankContainer, roundRate);
+    }
+    
+    private double roundUp(double rate) {
         BigDecimal bd = new BigDecimal(rate);
         bd = bd.setScale(ROUND_NUMBER, RoundingMode.HALF_UP);
-        double roundRate = bd.doubleValue();
-        SystemOutput.printRankResult(rankContainer, roundRate);
+        return bd.doubleValue();
     }
 }

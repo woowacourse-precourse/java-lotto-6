@@ -12,6 +12,7 @@ import java.util.Map;
 public class LottoController {
     private LottoService lottoService;
     public void lottoStart(){
+
         int purchasePrice = InputView.inputPurchasePrice();
         int numberOfLotto = OutputView.outputNumberOfLotto(purchasePrice);
 
@@ -24,8 +25,10 @@ public class LottoController {
             lottoService.addLotto(lotto);
         }
 
-        Lotto winningLotto = new Lotto(InputView.inputWinningNumber());
-        int bonusNumber = InputView.inputBonusNumber();
+        List<Integer> winningNumber = InputView.inputWinningNumber();
+        Lotto winningLotto = new Lotto(winningNumber);
+
+        int bonusNumber = InputView.inputBonusNumber(winningNumber);
 
         Map<Place, Integer> numberOfWins = lottoService.numberOfWins(winningLotto, bonusNumber);
 

@@ -106,7 +106,7 @@ public class LottoController {
         long totalPrizeMoney = prizeCalculator.getTotalPrizeMoney();
         BigDecimal earningsRate = LottoEarningCalculator.calculateEarningsRate(totalPrizeMoney, numberOfTickets, lottoPrice);
 
-        lottoOutput.printEarningsRate(earningsRate.doubleValue());
+        lottoOutput.printEarningsRate(earningsRate);
     }
 
     private List<String> prepareStatisticsLines(Map<Integer, Integer> prizeCountMap) {

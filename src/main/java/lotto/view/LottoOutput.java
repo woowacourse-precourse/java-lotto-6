@@ -1,9 +1,11 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 
 public class LottoOutput {
+    private static final DecimalFormat EARNINGS_RATE_FORMAT = new DecimalFormat("0.0%");
 
     public String requestAmountMessage() {
         return "구매금액을 입력해 주세요.";
@@ -42,10 +44,13 @@ public class LottoOutput {
 
 
 
-    public void printEarningsRate(double earningsRate) {
-        DecimalFormat df = new DecimalFormat("0.0%");
-        String formattedEarningsRate = df.format(earningsRate / 100);
-        System.out.println("총 수익률은 " + formattedEarningsRate + "입니다.");
+    public void printEarningsRate(BigDecimal earningsRate) {
+        System.out.println("총 수익률은 " + formatEarningsRate(earningsRate) + "입니다.");
+    }
+
+    private String formatEarningsRate(BigDecimal earningsRate) {
+        BigDecimal percentEarningsRate = earningsRate.divide(BigDecimal.valueOf(100));
+        return EARNINGS_RATE_FORMAT.format(percentEarningsRate);
     }
 
 }

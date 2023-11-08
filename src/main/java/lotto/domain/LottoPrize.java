@@ -23,20 +23,19 @@ public class LottoPrize {
         for (Lotto lotto : purchasedLotto) {
             int matchCount = countMatchingNumbers(lotto);
             LottoMatch match = LottoMatch.findByMatchCount(matchCount, lotto.getNumbers().contains(bonusNumber));
-
             prizeCounts[match.ordinal()]++;
         }
-
         printPrizes(prizeCounts);
         printRate(calculateRate(prizeCounts));
     }
+
 
     private void printPrizes(int[] prizeCounts) {
         OutputView.lottoResult();
         for (LottoMatch match : LottoMatch.values()) {
             if (match != LottoMatch.MISS) {
                 int prizeMoney = match.getPrizeMoney();
-                System.out.println(match.getResultMessage() + prizeCounts[match.ordinal()] + "개 - " + prizeMoney + "원");
+                System.out.println(match.getResultMessage() + prizeCounts[match.ordinal()] + "개");
             }
         }
     }
@@ -45,7 +44,6 @@ public class LottoPrize {
         double purchaseCost = purchasedLotto.size() * Constants.LOTTO_PRICE;
         return (totalPrize / purchaseCost) * 100.0;
     }
-
     private void printRate(double earningRate) {
         DecimalFormat df = new DecimalFormat("0.0");
         System.out.println("총 수익률은 " + df.format(earningRate) + "%입니다.");

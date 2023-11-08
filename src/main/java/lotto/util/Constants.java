@@ -36,17 +36,7 @@ public class Constants {
     public static final String END_RESULT_MESSAGE_5 = "5개 일치 (1,500,000원) - ";
     public static final String END_RESULT_MESSAGE_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String END_RESULT_MESSAGE_6 = "6개 일치 (2,000,000,000원) - ";
-    public static final String END_RESULT = "총 수익률은 %s%%입니다.";
 
-    public static final int[] PRIZE_MONEY = {
-            0, // 0개 일치 - 0원 (사실상 사용하지 않음)
-            0, // 1개 일치 - 0원 (사실상 사용하지 않음)
-            0, // 2개 일치 - 0원 (사실상 사용하지 않음)
-            5000, // 3개 일치 - 5,000원
-            50000, // 4개 일치 - 50,000원
-            1500000, // 5개 일치 - 1,500,000원
-            2000000000 // 6개 일치 - 2,000,000,000원
-    };
     public static final int LOTTO_PRICE = 1000;
 
 }

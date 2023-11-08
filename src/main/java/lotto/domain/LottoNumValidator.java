@@ -11,12 +11,9 @@ public class LottoNumValidator {
     private final String lottoInput;
     public static List<Integer> lottoNums = null;
     public LottoNumValidator(String inputLottoNum) {
-        lottoInput = inputLottoNum;
+        this.lottoInput = inputLottoNum;
         Lotto.isRightNums(lottoInput);
-        lottoNums = Util.toList(inputLottoNum);
-        Collections.sort(lottoNums);
-
+        this.lottoNums = Util.toList(inputLottoNum);
+        Collections.sort(this.lottoNums);
     }
-
-
 }

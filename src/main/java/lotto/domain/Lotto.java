@@ -4,15 +4,20 @@ import lotto.util.Constants;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.domain.LottoGenerator.lottoGroup;
+
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
     }
     private void validate(List<Integer> numbers) {
@@ -39,8 +44,12 @@ public class Lotto {
         }
     }
     public void sort() {
-        numbers.sort(Comparator.naturalOrder());
+        numbers = numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
+
     }
+
     public void printResult(){
         String result = numbers.stream()
                 .map(Object::toString)
@@ -49,12 +58,6 @@ public class Lotto {
     }
     public List<Integer> getNumbers() {
         return numbers;
-    }
-    public boolean contains(int number) {
-        return numbers.contains(number);
-    }
-    public List<Integer> cloneNumbers() {
-        return new ArrayList<>(numbers);
     }
 
 }

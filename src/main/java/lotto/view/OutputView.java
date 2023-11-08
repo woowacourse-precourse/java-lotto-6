@@ -18,7 +18,5 @@ public class OutputView {
     public static void lottoResult(){
         System.out.println(Constants.END_RESULT_MESSAGE);
     }
-    public void lottoRate(){
 
-    }
 }

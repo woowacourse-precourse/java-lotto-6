@@ -7,7 +7,7 @@ public class BonusNumValidator {
     public static int bonusNum;
     public BonusNumValidator(String lottoBonusNum) {
         this.bonusInput = lottoBonusNum;
-        bonusNum = Integer.parseInt(lottoBonusNum);
+        this.bonusNum = Integer.parseInt(lottoBonusNum);
         isRightString();
         isRightSize();
     }

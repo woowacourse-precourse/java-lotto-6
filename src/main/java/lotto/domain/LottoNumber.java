@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.LottoConstants.NUMBER_HIGH_BOUND;
 import static lotto.LottoConstants.NUMBER_LOW_BOUND;

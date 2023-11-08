@@ -1,5 +1,13 @@
 package lotto;
 
+import lotto.controller.LottoGameController;
+import lotto.domain.BuyCash;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.Lottos;
+import lotto.domain.Result;
+import lotto.domain.WinningLotto;
+
 public class LottoGame {
 
     private final LottoGameController controller;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -9,6 +9,13 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.BuyCash;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.Lottos;
+import lotto.domain.Rank;
+import lotto.domain.Result;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -55,20 +62,6 @@ public class LottoGameControllerTest extends NsTest {
                 List.of(13, 14, 16, 38, 42, 45)
         );
 
-    }
-
-    @DisplayName("입력한 로또 당첨번호 생성 로직")
-    @Test
-    void 당첨_로또_생성기능() {
-        //given
-        List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
-
-        //when
-        Lotto winningLotto = controller.generateWinningLotto(winningNumbers);
-
-        //then
-        assertThat(winningLotto.getNumbersMessage()).isEqualTo("[1, 2, 3, 4, 5, 6]");
-        winningNumbers.forEach((number) -> assertThat(winningLotto.isContains(new LottoNumber(number))).isTrue());
     }
 
     @DisplayName("구매 로또들과 당첨번호 비교 및 등수 결과 반환 기능")

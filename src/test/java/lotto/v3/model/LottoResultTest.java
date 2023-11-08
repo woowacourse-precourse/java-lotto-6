@@ -49,4 +49,20 @@ class LottoResultTest {
         // then
         assertThat(matchCounts.get(LottoRank.FIRST)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("5개 번호와 보너스 번호가 일치할 경우 SECOND 순위가 올바르게 계산되어야 한다.")
+    void shouldCalculateSecondRankCorrectly() {
+        // given
+        List<Set<Integer>> purchasedNumbers = List.of(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 7)));
+        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;  // Relevant for SECOND rank
+
+        // when
+        LottoResult lottoResult = new LottoResult(purchasedNumbers, winningNumbers, bonusNumber);
+        Map<LottoRank, Integer> matchCounts = lottoResult.getMatchCounts();
+
+        // then
+        assertThat(matchCounts.get(LottoRank.SECOND)).isEqualTo(1);
+    }
 }

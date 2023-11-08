@@ -1,6 +1,9 @@
 package lotto.controller;
 
+import lotto.exception.InvalidDuplicateNumberException;
+import lotto.exception.InvalidInputException;
 import lotto.exception.InvalidPaymentAmountException;
+import lotto.exception.InvalidRangeException;
 import lotto.model.Lotto;
 import lotto.service.LottoGameService;
 import lotto.validation.Validator;
@@ -41,19 +44,26 @@ public class LottoGameController {
                 ArrayList<Lotto> purchasedAllLotto = lottoGameService.checkPurchasedLotto();
                 outputView.printPurchasedLotto(purchasedLottoCount, purchasedAllLotto);
                 break;
-            } catch (InvalidPaymentAmountException e) {
+            } catch (InvalidInputException | InvalidPaymentAmountException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
     private void generateWinningNumber() {
-        String enteredWinningNumbers = inputView.enterWinningNumbers();
-        List<String> defaultWinningNumbers = List.of(enteredWinningNumbers.split(COMMA));
-        String enteredBonusWinningNumber = inputView.enterBonusWinningNumber();
-        int bonusWinningNumber = Validator.validateNumeric(enteredBonusWinningNumber, ERROR_CODE_CATEGORY_FOR_WINNING_NUMBER);
-        outputView.generateBlank();
-        lottoGameService.completeMakingWinningNumber(defaultWinningNumbers, bonusWinningNumber);
+        while (true) {
+            try{
+                String enteredWinningNumbers = inputView.enterWinningNumbers();
+                List<String> defaultWinningNumbers = List.of(enteredWinningNumbers.split(COMMA));
+                String enteredBonusWinningNumber = inputView.enterBonusWinningNumber();
+                int bonusWinningNumber = Validator.validateNumeric(enteredBonusWinningNumber, ERROR_CODE_CATEGORY_FOR_WINNING_NUMBER);
+                outputView.generateBlank();
+                lottoGameService.completeMakingWinningNumber(defaultWinningNumbers, bonusWinningNumber);
+                break;
+            } catch (InvalidDuplicateNumberException | InvalidInputException | InvalidRangeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void announceGameResult() {

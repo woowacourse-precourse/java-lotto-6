@@ -1,6 +1,7 @@
 package lotto.validation;
 
 import lotto.exception.InvalidDuplicateNumberException;
+import lotto.exception.InvalidInputException;
 import lotto.exception.InvalidPaymentAmountException;
 import lotto.exception.InvalidRangeException;
 
@@ -16,7 +17,7 @@ public class Validator {
 
     public static int validateNumeric(String number, String message) {
         if (!number.matches(INVALID_NUMERIC_REGEX)) {
-            throw new InvalidPaymentAmountException(ERROR_MESSAGE + message + " 입력시 숫자(정수)만 입력 가능합니다.");
+            throw new InvalidInputException(ERROR_MESSAGE + message + " 입력시 숫자(정수)만 입력 가능합니다.");
         }
         return Integer.parseInt(number);
     }

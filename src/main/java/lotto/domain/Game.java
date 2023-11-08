@@ -49,13 +49,6 @@ public class Game {
         }
     }
 
-    private void calculateLottoRankingCount(Lotto lotto) {
-        double lottoScore = lottos.get(lotto);
-        if (lottoScore >= 3.0) {
-            LottoRanking.valueOfScore(lottos.get(lotto)).plusCount();
-        }
-    }
-
     private void compareWinningNumbers(Lotto lotto) {
         for (int winningNumber : player.getWinningNumbers()) {
             if (lotto.containNumber(winningNumber)) {
@@ -67,6 +60,13 @@ public class Game {
     private void compareBonusNumber(Lotto lotto) {
         if (lotto.containNumber(player.getBonusNumber())) {
             lottos.replace(lotto, lottos.get(lotto) + 0.5);
+        }
+    }
+
+    private void calculateLottoRankingCount(Lotto lotto) {
+        double lottoScore = lottos.get(lotto);
+        if (lottoScore >= 3.0) {
+            LottoRanking.valueOfScore(lottos.get(lotto)).plusCount();
         }
     }
 

@@ -82,6 +82,13 @@ class WinningBonusNumberTest {
 		}).doesNotThrowAnyException();
 	}
 
+	@DisplayName("승리숫자가 세팅이 안되면 예외")
+	@Test
+	void createBonusNumByWinningNumber() {
+		assertThatThrownBy(() -> {
+			winningBonusNumber.setBonusNumber("1");
+		}).isInstanceOf(IllegalStateException.class);
+	}
 
 
 

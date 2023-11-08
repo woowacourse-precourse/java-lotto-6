@@ -25,10 +25,17 @@ public class WinningBonusNumber {
 	}
 
 	public void setBonusNumber(String bonusNumber) {
+		checkWinningNumber();
 		checkInputIsEmpty(bonusNumber);
 		ScopeCheck(Integer.parseInt(bonusNumber));
 		checkForOverlap(bonusNumber);
 		this.bonusNumber = bonusNumber;
+	}
+
+	private void checkWinningNumber() {
+		if(this.winningNumber == null) {
+			throw new IllegalStateException(ExceptionText.WINNING_NUMBERS_NULL.getText());
+		}
 	}
 
 	private void validateWinningInput(String winningNumber) {

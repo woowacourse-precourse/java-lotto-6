@@ -15,10 +15,6 @@ public class Price {
 		return price;
 	}
 
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
 	private void validatePriceInput(String input) {
 		checkInputIsEmpty(input);
 		checkInputIsNumber(input);

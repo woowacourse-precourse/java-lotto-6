@@ -3,17 +3,17 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Application {
     static int price = 0;
     static int bonusNumber = 0;
+    static int prizeMoney = 0;
 
     static List<Lotto> lottoes = new ArrayList<>();
     static List<Integer> winningNumbers = new ArrayList<>();
+    static Map<Rank, Integer> lottoResult = new TreeMap<>(Collections.reverseOrder());
 
     public static void main(String[] args) {
         startLotto();
@@ -28,6 +28,9 @@ public class Application {
         inputWinningNumbers();
         System.out.println();
         inputBonusNumber();
+        System.out.println();
+        checkResult();
+        printResult(calculateProfits());
     }
 
     public static void inputPrice() {
@@ -85,5 +88,51 @@ public class Application {
             Exception.printException(e.getMessage());
             inputBonusNumber();
         }
+    }
+
+    public static void initLottoResult() {
+        lottoResult.put(Rank.RANK_0, 0);
+        lottoResult.put(Rank.RANK_1, 0);
+        lottoResult.put(Rank.RANK_2, 0);
+        lottoResult.put(Rank.RANK_3, 0);
+        lottoResult.put(Rank.RANK_4, 0);
+        lottoResult.put(Rank.RANK_5, 0);
+    }
+
+    public static void checkResult() {
+        initLottoResult();
+        for(Lotto lotto : lottoes) {
+            Rank rank = Rank.checkResult(countMatchNumber(lotto), checkBonusNumber(lotto));
+            lottoResult.put(rank, lottoResult.getOrDefault(rank, 0) + 1);
+            prizeMoney += rank.getPrizeMoney();
+        }
+    }
+
+    public static int countMatchNumber(Lotto lotto) {
+        int count = 0;
+        for(int number : lotto.getNumbers()) {
+            if(winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static boolean checkBonusNumber(Lotto lotto) {
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public static double calculateProfits() {
+        return ((double) prizeMoney / (double) price) * 100.0;
+    }
+
+    public static void printResult(double profits) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for(Rank rank : lottoResult.keySet()) {
+            if(rank == Rank.RANK_0) continue;
+            System.out.println(rank.getPrintMessage() + " - " + lottoResult.get(rank) + "개");
+        }
+        System.out.println("총 수익률은 " + String.format("%.1f", profits) + "% 입니다.");
     }
 }

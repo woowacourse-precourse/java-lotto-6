@@ -143,7 +143,7 @@ public class LottoGame {
     }
 
     private int getTicketPurchaseAmount() {
-        int ticketPurchaseAmount = 0;
+        int ticketPurchaseAmount;
 
         while (true) {
             try {

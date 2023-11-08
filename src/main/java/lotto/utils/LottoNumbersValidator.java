@@ -13,7 +13,7 @@ public class LottoNumbersValidator extends GeneralValidator {
     private static int MAX_NUM = 45;
 
     public static void validateSeparator(String winningNumbers) {
-        String REGEX = "^\\d,\\d,\\d,\\d,\\d,\\d$";
+        String REGEX = "^\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2}$";
         if (!Pattern.matches(REGEX, winningNumbers)) {
             throw new IllegalArgumentException(INVALID_SEPARATOR_OR_NUMBER_COUNT.getMessage());
         }

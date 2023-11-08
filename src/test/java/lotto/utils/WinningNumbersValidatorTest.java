@@ -16,7 +16,7 @@ class WinningNumbersValidatorTest {
 
     @DisplayName("쉼표(,)로 구분된 6개 숫자가 아닌 경우 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"1,2abc,3,4,5,6", "1,2,,3,4,5", "1,2,3", "1,2,3,4,5,6,7"})
+    @ValueSource(strings = {"1,2abc,3,4,5,6", "1,2,,3,4,5", "1,2,3", "11,22,33,44,55,66,77"})
     void testValidateSeparator(String numbers) {
         assertThatThrownBy(() -> LottoNumbersValidator.validateSeparator(numbers))
                 .isInstanceOf(IllegalArgumentException.class)

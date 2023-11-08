@@ -38,7 +38,7 @@ public class InputValidation {
 
     public static void validateAmount(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_AMOUNT_LESS_THAN_MINIMUM);
+            throw new IllegalArgumentException(ERROR_MESSAGE_DIVISION_REMAINDER);
         }
     }
 }

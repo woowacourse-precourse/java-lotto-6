@@ -1,13 +1,13 @@
 package lotto.domain.lotto;
 
 import java.util.EnumMap;
-import lotto.controller.dto.output.LottosDrawingOutput;
+import lotto.controller.dto.output.DrawLottosOutput;
 import lotto.domain.money.Money;
 
 /**
  * Lotto 추첨의 중간 결과를 처리 및 저장하기 위한 클래스
  */
-public final class LottoDrawingData {
+public final class DrawLottosData {
 
     /**
      * EnumMap은 내부적으로 배열이기 때문에 enum size 만큼 capacity를 잡으며, enum constant 대로 배치하여 순서 보장이 되며, hashing 과정 생략하기 때문에 성능도
@@ -25,7 +25,7 @@ public final class LottoDrawingData {
      */
     private Money totalEarning;
 
-    public LottoDrawingData() {
+    public DrawLottosData() {
         this.totalCost = Money.zero();
         this.totalEarning = Money.zero();
         this.data = createDataMap();
@@ -56,8 +56,8 @@ public final class LottoDrawingData {
     /**
      * 중간 결과가 담긴 EnumMap을 최종적으로 DTO로 변환
      */
-    public LottosDrawingOutput toLottoDrawingResult() {
-        return new LottosDrawingOutput(
+    public DrawLottosOutput toDrawLottosOutput() {
+        return new DrawLottosOutput(
                 data.get(LottoPrize.FIRST),
                 data.get(LottoPrize.SECOND),
                 data.get(LottoPrize.THIRD),

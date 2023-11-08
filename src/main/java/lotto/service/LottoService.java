@@ -2,10 +2,10 @@ package lotto.service;
 
 import lotto.controller.dto.input.BuyLottosInput;
 import lotto.controller.dto.input.DrawLottosInput;
-import lotto.controller.dto.output.LottosBuyingOutput;
-import lotto.controller.dto.output.LottosDrawingOutput;
-import lotto.domain.lotto.LottoDrawingData;
-import lotto.domain.lotto.LottoDrawingMachine;
+import lotto.controller.dto.output.BuyLottosOutput;
+import lotto.controller.dto.output.DrawLottosOutput;
+import lotto.domain.lotto.DrawLottosData;
+import lotto.domain.lotto.LottoDrawer;
 import lotto.domain.lotto.LottoStore;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.WinningLotto;
@@ -57,7 +57,7 @@ public final class LottoService {
     /**
      * 로또 구매 입력에 대한 Dto를 받아서 구매 로직을 처리하고, 응답을 Dto로 변환 및 반환
      */
-    public LottosBuyingOutput buyLottos(final BuyLottosInput dto) {
+    public BuyLottosOutput buyLottos(final BuyLottosInput dto) {
         final Wallet wallet = WalletFromDtoMapper.from(dto);
         final Lottos boughtLottos = lottoStore.buyUntilOutOfMoney(wallet);
         final Lottos clonedLottos = boughtLottos.clone();
@@ -69,12 +69,12 @@ public final class LottoService {
     /**
      * 로또 추첨에 대한 입력 Dto를 받아서 추첨 로직을 처리하고, 응답을 Dto로 변환 및 반환
      */
-    public LottosDrawingOutput drawLottos(final DrawLottosInput dto) {
+    public DrawLottosOutput drawLottos(final DrawLottosInput dto) {
         final WinningLotto winningLotto = LottoFromDtoMapper.from(dto);
-        final LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningLotto);
+        final LottoDrawer lottoDrawer = new LottoDrawer(winningLotto);
         final Lottos lottos = new Lottos(lottoRepository.findAll());
 
-        final LottoDrawingData lottoDrawingData = lottoDrawingMachine.draw(lottos);
-        return lottoDrawingData.toLottoDrawingResult();
+        final DrawLottosData drawLottosData = lottoDrawer.draw(lottos);
+        return drawLottosData.toDrawLottosOutput();
     }
 }

@@ -1,7 +1,7 @@
 package lotto.service.mapper;
 
-import lotto.controller.dto.input.DrawLottosInput;
 import lotto.domain.lotto.WinningLotto;
+import lotto.controller.dto.input.DrawLottosInput;
 
 /**
  * Dto와 Domain 간의 매핑을 담당

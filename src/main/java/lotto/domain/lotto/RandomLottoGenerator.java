@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import static lotto.domain.lotto.LottoTicket.NUMBERS_COUNT;
+
 import java.util.List;
 import lotto.domain.lotto.boxed.LottoNumber;
 import numbers.SizedNumbersGenerator;
@@ -43,7 +45,7 @@ public final class RandomLottoGenerator implements LottoGenerator {
         return new SizedNumbersGenerator(
                 LottoNumber.MIN,
                 LottoNumber.MAX,
-                Lotto.NUMBERS_COUNT
+                NUMBERS_COUNT
         );
     }
 

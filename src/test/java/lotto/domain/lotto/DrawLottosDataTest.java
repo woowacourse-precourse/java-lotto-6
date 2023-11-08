@@ -3,19 +3,19 @@ package lotto.domain.lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.EnumMap;
-import lotto.controller.dto.output.LottosDrawingOutput;
+import lotto.controller.dto.output.DrawLottosOutput;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-final class LottoDrawingDataTest {
+final class DrawLottosDataTest {
     @DisplayName("로또 추첨 결과를 save하면 총 비용과 수익금이 증가하며, EnumMap의 count가 증가한다.")
     @ParameterizedTest
     @EnumSource(LottoPrize.class)
     void save_withLottoPrize_shouldAddTotalCostAndTotalEarning(final LottoPrize lottoPrize) {
         // given
-        final LottoDrawingData data = new LottoDrawingData();
+        final DrawLottosData data = new DrawLottosData();
 
         // when
         data.save(lottoPrize);
@@ -39,11 +39,11 @@ final class LottoDrawingDataTest {
     void returnOnRate_mustRound_() {
         // given
         final LottoPrize lottoPrize = LottoPrize.NONE;
-        final LottoDrawingData data = new LottoDrawingData();
+        final DrawLottosData data = new DrawLottosData();
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingOutput result = data.toLottoDrawingResult();
+        final DrawLottosOutput result = data.toDrawLottosOutput();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -59,11 +59,11 @@ final class LottoDrawingDataTest {
     void verifyingData_whenFirst() {
         // given
         final LottoPrize lottoPrize = LottoPrize.FIRST;
-        final LottoDrawingData data = new LottoDrawingData();
+        final DrawLottosData data = new DrawLottosData();
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingOutput result = data.toLottoDrawingResult();
+        final DrawLottosOutput result = data.toDrawLottosOutput();
 
         // then
         assertThat(result.firstCount()).isEqualTo(1);
@@ -79,11 +79,11 @@ final class LottoDrawingDataTest {
     void verifyingData_whenSecond() {
         // given
         final LottoPrize lottoPrize = LottoPrize.SECOND;
-        final LottoDrawingData data = new LottoDrawingData();
+        final DrawLottosData data = new DrawLottosData();
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingOutput result = data.toLottoDrawingResult();
+        final DrawLottosOutput result = data.toDrawLottosOutput();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -99,11 +99,11 @@ final class LottoDrawingDataTest {
     void verifyingData_whenThird() {
         // given
         final LottoPrize lottoPrize = LottoPrize.THIRD;
-        final LottoDrawingData data = new LottoDrawingData();
+        final DrawLottosData data = new DrawLottosData();
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingOutput result = data.toLottoDrawingResult();
+        final DrawLottosOutput result = data.toDrawLottosOutput();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -119,11 +119,11 @@ final class LottoDrawingDataTest {
     void verifyingData_whenFourth() {
         // given
         final LottoPrize lottoPrize = LottoPrize.FOURTH;
-        final LottoDrawingData data = new LottoDrawingData();
+        final DrawLottosData data = new DrawLottosData();
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingOutput result = data.toLottoDrawingResult();
+        final DrawLottosOutput result = data.toDrawLottosOutput();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -139,11 +139,11 @@ final class LottoDrawingDataTest {
     void verifyingData_whenFifth() {
         // given
         final LottoPrize lottoPrize = LottoPrize.FIFTH;
-        final LottoDrawingData data = new LottoDrawingData();
+        final DrawLottosData data = new DrawLottosData();
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingOutput result = data.toLottoDrawingResult();
+        final DrawLottosOutput result = data.toDrawLottosOutput();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -159,11 +159,11 @@ final class LottoDrawingDataTest {
     void verifyingData_whenNone() {
         // given
         final LottoPrize lottoPrize = LottoPrize.NONE;
-        final LottoDrawingData data = new LottoDrawingData();
+        final DrawLottosData data = new DrawLottosData();
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingOutput result = data.toLottoDrawingResult();
+        final DrawLottosOutput result = data.toDrawLottosOutput();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);

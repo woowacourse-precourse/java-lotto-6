@@ -2,8 +2,8 @@ package lotto.controller;
 
 import lotto.controller.dto.input.BuyLottosInput;
 import lotto.controller.dto.input.DrawLottosInput;
-import lotto.controller.dto.output.LottosBuyingOutput;
-import lotto.controller.dto.output.LottosDrawingOutput;
+import lotto.controller.dto.output.BuyLottosOutput;
+import lotto.controller.dto.output.DrawLottosOutput;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -52,7 +52,7 @@ public final class LottoController {
      */
     private void buyLottos() {
         final BuyLottosInput inputDto = inputView.inputBuyLottos();
-        final LottosBuyingOutput outputDto = lottoService.buyLottos(inputDto);
+        final BuyLottosOutput outputDto = lottoService.buyLottos(inputDto);
         outputView.printLottosBuyingResult(outputDto);
     }
 
@@ -70,7 +70,7 @@ public final class LottoController {
      */
     private void drawLottos() {
         final DrawLottosInput inputDto = inputView.inputDrawLottos();
-        final LottosDrawingOutput outputDto = lottoService.drawLottos(inputDto);
+        final DrawLottosOutput outputDto = lottoService.drawLottos(inputDto);
         outputView.printLottosDrawingResult(outputDto);
     }
 }

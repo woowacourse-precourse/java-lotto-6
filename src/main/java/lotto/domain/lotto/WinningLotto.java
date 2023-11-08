@@ -2,14 +2,9 @@ package lotto.domain.lotto;
 
 import java.util.List;
 import lotto.domain.lotto.boxed.BonusNumber;
-import lotto.domain.lotto.boxed.LottoNumber;
 import lotto.domain.lotto.validator.LottoValidator;
 
-public final class WinningLotto implements LottoTicket {
-    /**
-     * `Lotto` 객체의 유일한 필드이자 6자리의 로또 번호를 나타냅니다.
-     */
-    private final List<LottoNumber> winningNumbers;
+public final class WinningLotto extends Lotto {
 
     /**
      * 당첨 로또 번호 외 보너스 번호
@@ -23,9 +18,8 @@ public final class WinningLotto implements LottoTicket {
             final List<Integer> winningNumbers,
             final int bonusNumber
     ) {
-        LottoValidator.validateLottoLength(winningNumbers);
+        super(winningNumbers);
         LottoValidator.validateDuplicationWithBonusNumber(winningNumbers, bonusNumber);
-        this.winningNumbers = LottoTicket.intoLottoNumbers(winningNumbers);
         this.bonusNumber = new BonusNumber(bonusNumber);
     }
 
@@ -42,8 +36,8 @@ public final class WinningLotto implements LottoTicket {
      * 몇 개의 번호가 일치하는지 개수 반환
      */
     private int countContained(final Lotto lotto) {
-        return (int) winningNumbers.stream()
-                .filter(lotto::contains)
+        return (int) lotto.numbers.stream()
+                .filter(this::contains)
                 .count();
     }
 

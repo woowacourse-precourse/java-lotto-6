@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-final class LottoDrawingMachineTest {
+final class LottoDrawerTest {
     @DisplayName("수익률 계산 테스트")
     @Test
     void calculateReturnOfRateTest() {
@@ -31,17 +31,17 @@ final class LottoDrawingMachineTest {
         final Lottos lottos8 = new Lottos(List.of(new Lotto(numbers8)));
 
         final WinningLotto winningLotto = new WinningLotto(numbers1, bonusNumber);
-        final LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningLotto);
+        final LottoDrawer lottoDrawer = new LottoDrawer(winningLotto);
 
         // when
-        final LottoDrawingData data1 = lottoDrawingMachine.draw(lottos1);
-        final LottoDrawingData data2 = lottoDrawingMachine.draw(lottos2);
-        final LottoDrawingData data3 = lottoDrawingMachine.draw(lottos3);
-        final LottoDrawingData data4 = lottoDrawingMachine.draw(lottos4);
-        final LottoDrawingData data5 = lottoDrawingMachine.draw(lottos5);
-        final LottoDrawingData data6 = lottoDrawingMachine.draw(lottos6);
-        final LottoDrawingData data7 = lottoDrawingMachine.draw(lottos7);
-        final LottoDrawingData data8 = lottoDrawingMachine.draw(lottos8);
+        final DrawLottosData data1 = lottoDrawer.draw(lottos1);
+        final DrawLottosData data2 = lottoDrawer.draw(lottos2);
+        final DrawLottosData data3 = lottoDrawer.draw(lottos3);
+        final DrawLottosData data4 = lottoDrawer.draw(lottos4);
+        final DrawLottosData data5 = lottoDrawer.draw(lottos5);
+        final DrawLottosData data6 = lottoDrawer.draw(lottos6);
+        final DrawLottosData data7 = lottoDrawer.draw(lottos7);
+        final DrawLottosData data8 = lottoDrawer.draw(lottos8);
 
         // then
         assertThat(data1.calculateReturnOfRate()).isEqualTo(200_000_000.0);

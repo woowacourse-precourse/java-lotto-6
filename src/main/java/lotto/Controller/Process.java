@@ -93,7 +93,9 @@ public class Process {
     }
 
     private String listToString(List<Integer> nums){
-        return nums.stream().map(i -> i.toString()).collect(Collectors.joining(", ", "[", "]"));
+        return nums.stream()
+                .map(i -> i.toString())
+                .collect(Collectors.joining(", ", "[", "]"));
     }
 
 

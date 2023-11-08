@@ -43,8 +43,7 @@ public class ValidateInput extends Exceptable{
 
 
     private List<String> changeList(String input){
-        List<String> splitNums = Arrays.asList(input.split(SEPERATE));
-        return splitNums;
+        return Arrays.asList(input.split(SEPERATE));
     }
 
 }

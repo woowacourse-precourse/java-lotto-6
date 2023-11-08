@@ -13,7 +13,9 @@ public class Calculate {
     private static final double POINT = 10.0;
 
     public int getMatchCount(List<Integer> generatedNums, List<Integer> inputNums){
-        return (int)generatedNums.stream().filter(o -> inputNums.stream().anyMatch(Predicate.isEqual(o))).count();
+        return (int)generatedNums.stream()
+                .filter(o -> inputNums.stream().anyMatch(Predicate.isEqual(o)))
+                .count();
     }
 
     public boolean canBeBonus(List<Integer> generatedNums, List<Integer> winningNums, int bonus){
@@ -29,7 +31,9 @@ public class Calculate {
     }
 
     public int getProfitCost(Map<Integer, Integer> matchMap){
-        int profit = Arrays.stream(MatchNums.values()).map(o -> o.calculateCost(matchMap.get(o.getNum()))).reduce(0, Integer::sum);
+        int profit = Arrays.stream(MatchNums.values())
+                .map(o -> o.calculateCost(matchMap.get(o.getNum())))
+                .reduce(0, Integer::sum);
         return profit;
     }
 

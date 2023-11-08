@@ -14,7 +14,8 @@ public class Statistics {
     private HashMap<Integer, Integer> countMap = new HashMap<>();
 
     public Statistics(){
-        Arrays.stream(MatchNums.values()).forEach(o->countMap.put(o.getNum(), 0));
+        Arrays.stream(MatchNums.values())
+                .forEach(o->countMap.put(o.getNum(), 0));
     }
 
     public void updateResult(Calculate calculate, List<Lotto> lottos, List<Integer> winningNums, int bonus){

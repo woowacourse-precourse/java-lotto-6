@@ -60,13 +60,13 @@ public class GameController {
 
     private void printResult(Map<Integer, String> resultLottos) {
 
-        for(int i = 0; i < 6; i++) {
+
             System.out.println(GameMessage.OUT_RESULT_LOTTO_START_MESSAGE);
             System.out.println(GameMessage.OUT_RESULT_CORRECT_THREE_MESSAGE);
             System.out.println(GameMessage.OUT_RESULT_CORRECT_FOUR_MESSAGE);
             System.out.println(GameMessage.OUT_RESULT_CORRECT_FIVE_MESSAGE);
             System.out.println(GameMessage.OUT_REQUEST_BONUS_NUMBER_MESSAGE);
             System.out.println(GameMessage.OUT_RESULT_CORRECT_SIX_MESSAGE);
-        }
+
     }
 }

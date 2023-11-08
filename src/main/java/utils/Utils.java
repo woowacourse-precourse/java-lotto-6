@@ -18,7 +18,8 @@ public class Utils {
         return input.split("＼＼s*,＼＼s*");
     }
 
-    public static List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public static List<Integer> generateRandomUniqueNumbers(
+            int minValueInclusive, int maxValueInclusive, int selectionCount) {
+        return Randoms.pickUniqueNumbersInRange(minValueInclusive, maxValueInclusive, selectionCount);
     }
 }

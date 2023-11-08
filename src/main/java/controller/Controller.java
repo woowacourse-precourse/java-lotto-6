@@ -1,9 +1,9 @@
 package controller;
 
+import domain.Lotto;
 import domain.LottoMachine;
 import domain.WinningNumbers;
 import java.util.List;
-import domain.Lotto;
 import service.LottoGame;
 import utils.Utils;
 import view.InputView;
@@ -14,9 +14,13 @@ public class Controller {
     private LottoMachine lottoMachine;
 
     public void run() {
-        setupLottoMachine();
+        setupLottoGame();
         showPurchasedLottoInfo();
         setupWinningNumbers();
+    }
+
+    private void setupLottoGame() {
+        createLottoMachine();
     }
 
     private void showPurchasedLottoInfo() {
@@ -35,12 +39,10 @@ public class Controller {
         new WinningNumbers(winningNumbers, bonusNumber);
     }
 
-    private void setupLottoMachine() {
+    private void createLottoMachine() {
         OutputView.printInputSpend();
         int spend = InputView.inputSpend();
-        int lottoTicketCount = spend / 1000;
-        List<Integer> lottoNumbers = Utils.generateLottoNumbers();
-        List<Lotto> lottoTickets = lottoGame.generateLottoTickets(lottoTicketCount, lottoNumbers);
+        List<Lotto> lottoTickets = lottoGame.generateLottoTickets(spend);
         lottoMachine = new LottoMachine(spend, lottoTickets);
     }
 }

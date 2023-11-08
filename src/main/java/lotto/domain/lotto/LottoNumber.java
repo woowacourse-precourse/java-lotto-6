@@ -2,13 +2,14 @@ package lotto.domain.lotto;
 
 import static lotto.domain.lotto.LottoRule.*;
 
+import java.util.Objects;
 import lotto.domain.message.ErrorMessage;
 
-public class BonusNumber {
+public class LottoNumber {
 
     private final int number;
 
-    public BonusNumber(int number) {
+    public LottoNumber(int number) {
         validate(number);
         this.number = number;
     }
@@ -21,7 +22,24 @@ public class BonusNumber {
         }
     }
 
-    public boolean hasSameNumber(int number) {
-        return this.number == number;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoNumber that = (LottoNumber) o;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

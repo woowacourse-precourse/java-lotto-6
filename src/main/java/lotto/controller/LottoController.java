@@ -1,11 +1,12 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.controller.dto.LottosDto;
 import lotto.controller.dto.WinningResultDto;
 import lotto.domain.generator.AutoLottoGenerator;
 import lotto.domain.generator.LottosMachine;
 import lotto.domain.generator.RandomNumbersGenerator;
-import lotto.domain.lotto.BonusNumber;
+import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoMoney;
 import lotto.domain.lotto.Lottos;
@@ -51,12 +52,19 @@ public class LottoController {
     private WinningLotto createWinningLotto() {
         while (true) {
             try {
-                return new WinningLotto(new Lotto(lottoView.askLottoNumbers()),
-                        new BonusNumber(lottoView.askBonusNumber()));
+                List<LottoNumber> numbers = createLottoNumbers();
+                return new WinningLotto(new Lotto(numbers),
+                        new LottoNumber(lottoView.askBonusNumber()));
             } catch (IllegalArgumentException e) {
                 lottoView.printErrorMessage(e.getMessage());
             }
         }
+    }
+
+    private List<LottoNumber> createLottoNumbers() {
+        return lottoView.askLottoNumbers().stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
     private WinningResult createWinningResultWith(Lottos lottos, WinningLotto winningLotto) {

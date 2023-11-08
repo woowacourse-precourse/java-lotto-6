@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.domain.lotto.Lotto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,9 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,7 +20,7 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> new Lotto(createLottoNumbers(List.of(1, 2, 3, 4, 5, 6, 7))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -30,14 +28,14 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> new Lotto(createLottoNumbers(List.of(1, 2, 3, 4, 5, 5))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("로또 번호가 1에서 45사이가 아니라면 예외가 발생한다.")
     void 로또_생성_시_예외_발생() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 46, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> new Lotto(createLottoNumbers(List.of(0, 46, 3, 4, 5, 5))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -47,11 +45,8 @@ class LottoTest {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
-        //when
-        Lotto lotto = new Lotto(numbers);
-
-        //then
-        Assertions.assertDoesNotThrow(() -> new Lotto(numbers));
+        //when then
+        Assertions.assertDoesNotThrow(() -> new Lotto(createLottoNumbers(numbers)));
     }
 
     @ParameterizedTest(name = "로또 번호가 1,2,3,4,5,6 일때 보너스번호가 {0}이라면 결과 {1}")
@@ -59,10 +54,10 @@ class LottoTest {
     @CsvSource(value = {"1,true", "7,false"})
     void 로또가_보너스번호_가지고_있는지_여부_테스트(int number, boolean expected) {
         // given
-        BonusNumber bonusNumber = new BonusNumber(number);
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber lottoNumber = new LottoNumber(number);
+        Lotto lotto = new Lotto(createLottoNumbers(List.of(1, 2, 3, 4, 5, 6)));
         // when
-        boolean hasBonusNumber = lotto.hasSameNumber(bonusNumber);
+        boolean hasBonusNumber = lotto.hasSameNumber(lottoNumber);
 
         // then
         assertThat(hasBonusNumber).isEqualTo(expected);
@@ -72,8 +67,8 @@ class LottoTest {
     @DisplayName("두개의 로또를 비교하여 몇개가 일치하는지 확인")
     @MethodSource("argumentsLottoMatchCount")
     void 로또번호_비교_시_일치_개수_테스트(List<Integer> numbers, List<Integer> otherNumbers, int expected) {
-        Lotto lotto = new Lotto(numbers);
-        Lotto otherLotto = new Lotto(otherNumbers);
+        Lotto lotto = new Lotto(createLottoNumbers(numbers));
+        Lotto otherLotto = new Lotto(createLottoNumbers(otherNumbers));
         assertThat(lotto.calculateMatchCount(otherLotto)).isEqualTo(expected);
     }
 
@@ -94,5 +89,10 @@ class LottoTest {
                 Arguments.of(List.of(7, 8, 9, 10, 11, 12),
                         List.of(1, 2, 3, 4, 5, 6), 0)
         );
+    }
+    private static List<LottoNumber> createLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
     }
 }

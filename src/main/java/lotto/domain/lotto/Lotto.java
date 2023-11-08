@@ -6,20 +6,19 @@ import lotto.domain.message.ErrorMessage;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<LottoNumber> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<LottoNumber> numbers) {
         validateSize(numbers);
-        validateNumberRange(numbers);
         validateDuplication(numbers);
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(List<LottoNumber> numbers) {
 
         if (numbers.size() != LottoRule.LOTTO_NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(
@@ -27,28 +26,14 @@ public class Lotto {
         }
     }
 
-    private void validateNumberRange(List<Integer> numbers) {
-        if (isOutOfRange(numbers)) {
-            throw new IllegalArgumentException(
-                    ErrorMessage.NUMBER_RANGE_EXCEPTION_MESSAGE.getMessage());
-        }
-
-    }
-
-    private boolean isOutOfRange(List<Integer> numbers) {
-        return numbers.stream()
-                .anyMatch(number -> number < LottoRule.LOTTO_MIN_NUMBER_INCLUSION.getValue()
-                        || number > LottoRule.LOTTO_MAX_NUMBER_INCLUSION.getValue());
-    }
-
-    private void validateDuplication(List<Integer> numbers) {
+    private void validateDuplication(List<LottoNumber> numbers) {
         if (hasDistinctNumberIn(numbers)) {
             throw new IllegalArgumentException(
                     ErrorMessage.DUPLICATION_EXCEPTION_MESSAGE.getMessage());
         }
     }
 
-    private boolean hasDistinctNumberIn(List<Integer> numbers) {
+    private boolean hasDistinctNumberIn(List<LottoNumber> numbers) {
         return numbers.stream()
                 .distinct()
                 .toList()
@@ -58,25 +43,20 @@ public class Lotto {
 
     public int calculateMatchCount(Lotto otherLotto) {
         int result = 0;
-        for (int number : numbers) {
-            if (otherLotto.hasSameNumber(number)) {
+        for (LottoNumber lottoNumber : numbers) {
+            if (otherLotto.hasSameNumber(lottoNumber)) {
                 result++;
             }
         }
         return result;
     }
 
-    //todo : 메서드명 생각해보기
-    private boolean hasSameNumber(int number) {
-        return numbers.contains(number);
-    }
-
-    public boolean hasSameNumber(BonusNumber bonusNumber) {
+    public boolean hasSameNumber(LottoNumber lottoNumber) {
         return numbers.stream()
-                .anyMatch(bonusNumber::hasSameNumber);
+                .anyMatch(lottoNumber::equals);
     }
 
-    public List<Integer> getNumbers() {
+    public List<LottoNumber> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
 }

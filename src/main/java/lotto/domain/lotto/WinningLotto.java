@@ -6,24 +6,23 @@ import lotto.domain.result.WinningRank;
 public class WinningLotto {
 
     private final Lotto lotto;
-    private final BonusNumber bonusNumber;
+    private final LottoNumber lottoNumber;
 
-    public WinningLotto(Lotto lotto, BonusNumber bonusNumber) {
-        validate(lotto, bonusNumber);
+    public WinningLotto(Lotto lotto, LottoNumber lottoNumber) {
+        validate(lotto, lottoNumber);
         this.lotto = lotto;
-        this.bonusNumber = bonusNumber;
+        this.lottoNumber = lottoNumber;
     }
 
-    private void validate(Lotto lotto, BonusNumber bonusNumber) {
-        if (lotto.hasSameNumber(bonusNumber)) {
+    private void validate(Lotto lotto, LottoNumber lottoNumber) {
+        if (lotto.hasSameNumber(lottoNumber)) {
             throw new IllegalArgumentException(
                     ErrorMessage.DUPLICATION_EXCEPTION_MESSAGE.getMessage());
         }
     }
-
     public WinningRank findWinningRank(Lotto lotto) {
         int matchCount = lotto.calculateMatchCount(this.lotto);
-        boolean hasBonusNumber = lotto.hasSameNumber(bonusNumber);
+        boolean hasBonusNumber = lotto.hasSameNumber(lottoNumber);
         return WinningRank.findWinningRank(matchCount, hasBonusNumber);
     }
 }

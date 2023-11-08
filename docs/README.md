@@ -47,8 +47,8 @@
    2. lottoMoney에게 전체 당첨금액을 보내 몇퍼센트인지 구한다.
 
 ## WinningRank(enum)
-1. WinningResult 생성 기능(int matchCount, int money, boolean bonusNumber) [x]
-2. WinningResult 찾아주기(int matchCount, boolean bonusNumber) [x]
+1. WinningResult 생성 기능(int matchCount, int money, boolean lottoNumber) [x]
+2. WinningResult 찾아주기(int matchCount, boolean lottoNumber) [x]
    1. 5개라면 bonusNumber도 확인
    2. 아니라면 matchCount만 확인
 
@@ -63,7 +63,7 @@
    3. 숫자들의 크기는 6이어야한다. [x]
 2. 숫자가 몇개 같은지 확인 하는 기능(Lotto lotto) -> return count [x]
 3. 숫자를 가지고 있는지 확인하는 기능(int number) ->return boolean [x]
-4. 보너스 숫자를 가지고 있는지 확인하는 기능(BonusNumber bonusNumber) ->return boolean [x]
+4. 보너스 숫자를 가지고 있는지 확인하는 기능(BonusNumber lottoNumber) ->return boolean [x]
 
 ## WinningLotto(class)
 

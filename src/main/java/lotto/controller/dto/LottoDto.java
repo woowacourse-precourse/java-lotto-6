@@ -2,7 +2,9 @@ package lotto.controller.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 
 public class LottoDto {
 
@@ -13,7 +15,10 @@ public class LottoDto {
     }
 
     public static LottoDto from(Lotto lotto) {
-        return new LottoDto(new ArrayList<>(lotto.getNumbers()));
+        List<Integer> numbers = lotto.getNumbers().stream()
+                .map(LottoNumber::getNumber)
+                .toList();
+        return new LottoDto(numbers);
     }
 
     public List<Integer> getNumbers() {

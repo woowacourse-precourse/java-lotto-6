@@ -31,13 +31,12 @@ public class LottoResult {
         return resultCount.get(rank);
     }
 
-    public double calculateWinningRate(int purchaseAmount) {
-        int totalPrize = Rank.calculateTotalPrize(resultCount);
-        int profit = totalPrize - purchaseAmount;
-        return calculateWinningRate(profit < 0 ? totalPrize : profit, purchaseAmount);
+    private double calculateWinningRateWithPrizeAndAmount(int totalPrize, int purchaseAmount) {
+        return Math.round(((double) totalPrize / purchaseAmount) * LOTTO_PRICE) / 10.0;
     }
 
-    private double calculateWinningRate(int numerator, int denominator) {
-        return Math.round(((double) numerator / denominator) * LOTTO_PRICE) / 10.0;
+    public double calculateWinningRate(int purchaseAmount) {
+        int totalPrize = Rank.calculateTotalPrize(resultCount);
+        return calculateWinningRateWithPrizeAndAmount(totalPrize, purchaseAmount);
     }
 }

@@ -38,7 +38,7 @@ class LottoResultTest {
         lottoResult.addResult(6, false);
 
         int purchaseAmount = 5000;
-        double expectedWinningRate = 40631000.0;
+        double expectedWinningRate = 40631100.0;
         assertEquals(expectedWinningRate, lottoResult.calculateWinningRate(purchaseAmount));
     }
 }

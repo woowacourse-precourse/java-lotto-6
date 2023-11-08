@@ -1,5 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -27,9 +31,47 @@ public class Lotto {
         }
     }
 
+    // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    public static int inputCoin() {
+        System.out.println("구입금액을 입력해 주세요.");   //구입 금액 입력
+        int coin = 0;
+        while (true) {
+            String coinInput = Console.readLine();
+            if (validCoinInput(coinInput)) {
+                coin = Integer.parseInt(coinInput) / 1000;
+                return coin;
+            }
+            System.out.println("[ERROR] 1000원 단위로 다시 입력해 주세요.");
+        }
+    }
+
+
+    public static boolean validCoinInput(String coinInput) {
+        int coin;
+        try {
+            coin = Integer.parseInt(coinInput);
+            if (coin % 1000 != 0 || coin < 0) {
+                return false;
+            }
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static List<Lotto> toChangeLotto(int coin) {    //리턴될 로또목록
+        List<Lotto> lottoList = new ArrayList<>();
+        System.out.println("\n"+coin + "개를 구매했습니다.");
+        for (int i = 0; i < coin; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottoList.add(new Lotto(numbers));
+            System.out.println(numbers); // 각 로또 번호 출력
+        }
+        return lottoList;
+    }
+
 }

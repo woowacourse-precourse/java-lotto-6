@@ -71,13 +71,4 @@ public record Lotto(List<Integer> numbers) {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-    @Override
-    public String toString() {
-        String listString = numbers
-                .stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", "));
-        return "[" + listString + "]";
-    }
 }

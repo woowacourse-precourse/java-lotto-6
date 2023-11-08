@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public record Lottos(List<Lotto> lottoItems) {
 
@@ -13,13 +12,6 @@ public record Lottos(List<Lotto> lottoItems) {
             lottoItems.add(newLotto);
         }
         return new Lottos(lottoItems);
-    }
-
-
-    public String getLottosNumber() {
-        return lottoItems.stream()
-                .map(Lotto::toString)
-                .collect(Collectors.joining("\n"));
     }
 
     public List<Lotto> getLottoItems() {

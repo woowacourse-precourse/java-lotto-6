@@ -6,15 +6,31 @@ import static lotto.message.ViewMessage.OUTPUT_PURCHASE_COUNT;
 import static lotto.message.ViewMessage.OUTPUT_RESULT_HEADER;
 import static lotto.message.ViewMessage.PROFIT_FORMAT;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Rank;
 import lotto.domain.ResultSheet;
 import lotto.message.ExceptionMessage;
 
 public class OutputView {
+
+    public static final String LOTTO_NUMBER_DELIMITER = ", ";
+    public static final String PRINT_LOTTO_FORMAT = "[%s]\n";
+
     public static void printLottos(Lottos purchasedLotto) {
         System.out.printf(OUTPUT_PURCHASE_COUNT, purchasedLotto.size());
-        System.out.println(purchasedLotto.getLottosNumber());
+        List<Lotto> lottos = purchasedLotto.lottoItems();
+        lottos.forEach(OutputView::printLotto);
+    }
+
+    private static void printLotto(Lotto lotto) {
+        String listString = lotto.numbers()
+                .stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER));
+        System.out.printf(PRINT_LOTTO_FORMAT, listString);
     }
 
     public static void printException(IllegalArgumentException e) {

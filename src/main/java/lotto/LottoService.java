@@ -1,12 +1,12 @@
 package lotto;
 
 import lotto.domain.BonusNumber;
+import lotto.domain.WinningRank;
 import lotto.domain.dto.BuyLottoInfo;
 import lotto.domain.PurchaseLottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.dto.LottoWinResult;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

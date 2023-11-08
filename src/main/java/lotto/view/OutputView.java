@@ -1,11 +1,9 @@
 package lotto.view;
 
-import lotto.WinningRank;
+import lotto.domain.WinningRank;
 import lotto.domain.dto.BuyLottoInfo;
 import lotto.domain.dto.LottoWinResult;
-import org.w3c.dom.ls.LSOutput;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 

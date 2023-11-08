@@ -1,9 +1,8 @@
 package lotto.domain.dto;
 
-import lotto.WinningRank;
+import lotto.domain.WinningRank;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 public class LottoWinResult {

@@ -162,9 +162,6 @@ public class LottoGame {
 
     private String getInput() {
         System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        validatePurchaseAmount(input);
-
-        return Integer.parseInt(input);
+        return Console.readLine();
     }
 }

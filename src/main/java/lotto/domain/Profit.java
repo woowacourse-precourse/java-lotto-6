@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,8 +40,7 @@ public class Profit {
     }
 
     public String matchDecimalPlace(Double ratio) {
-        DecimalFormat df = new DecimalFormat("0.0");
-        return df.format(ratio);
+        return String.format("%.1f", ratio);
     }
 
     public String getProfitRatio() {

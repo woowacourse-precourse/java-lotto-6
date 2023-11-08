@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.config.LottoConfig;
@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 public class LottoMachine {
     private final List<Lotto> lottos;
 
-    LottoMachine(int money) {
+    public LottoMachine(int money) {
         lottos = new ArrayList<>();
         setLottos(getLottosCount(money));
     }

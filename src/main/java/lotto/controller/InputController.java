@@ -1,5 +1,8 @@
-package lotto.domain;
+package lotto.controller;
 
+import lotto.model.BonusNumber;
+import lotto.model.Money;
+import lotto.model.WinningNumbers;
 import lotto.view.InputView;
 
 import java.util.List;

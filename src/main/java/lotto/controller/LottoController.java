@@ -1,6 +1,13 @@
-package lotto.domain;
+package lotto.controller;
 
 import lotto.config.LottoPrize;
+import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+import lotto.model.Money;
+import lotto.model.WinningNumbers;
+import lotto.model.BonusNumber;
+import lotto.model.LottoResult;
+import lotto.model.LottoDraw;
 import lotto.view.OutputView;
 
 public class LottoController {

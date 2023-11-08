@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import lotto.config.LottoPrize;
 import lotto.util.Util;
@@ -7,13 +7,12 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
-
 public class LottoResult {
     private static final int INITIAL_COUNT = 0;
     private final Map<LottoPrize, Integer> lottoResult;
     private long totalPrizeMoney;
 
-    LottoResult() {
+    public LottoResult() {
         lottoResult = new EnumMap<>(LottoPrize.class);
         setLottoResult();
     }

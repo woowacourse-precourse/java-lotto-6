@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import lotto.config.LottoPrize;
 
@@ -10,7 +10,7 @@ public class LottoDraw {
     private final int matchCount;
     private final boolean matchBonus;
 
-    LottoDraw(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+    public LottoDraw(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
         this.matchCount = compareWinningNumber(lottoNumbers, winningNumbers);
         this.matchBonus = isContainBonusNumber(lottoNumbers, bonusNumber);
     }

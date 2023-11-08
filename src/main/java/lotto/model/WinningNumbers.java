@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import lotto.config.Constant;
 import lotto.util.validator.WinningNumbersValidator;
@@ -9,7 +9,7 @@ import java.util.List;
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
 
-    WinningNumbers(String numbers) {
+    public WinningNumbers(String numbers) {
         new WinningNumbersValidator(numbers);
         this.winningNumbers = parseWinningNumbers(numbers);
     }

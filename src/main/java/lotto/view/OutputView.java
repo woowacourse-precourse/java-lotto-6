@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.config.OutputMessage;
 import lotto.config.LottoPrize;
-import lotto.domain.Lotto;
+import lotto.model.Lotto;
 
 import java.util.Arrays;
 import java.util.List;

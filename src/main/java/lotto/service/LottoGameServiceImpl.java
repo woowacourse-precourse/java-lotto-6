@@ -35,6 +35,11 @@ public class LottoGameServiceImpl implements LottoGameService {
         return WinningNumbers.of(winningNumbers);
     }
 
+    @Override
+    public BonusNumber parseBonusNumber(String bonusNumberInput) {
+        return new BonusNumber(TypeConverter.convertStringToInt(bonusNumberInput));
+    }
+
     private Lotto generateLotto() {
         List<Integer> lottoNumbers = RandomNumberGenerator.generateNotDuplicatedRandomNumbersOrderByAsc();
         return new Lotto(lottoNumbers);

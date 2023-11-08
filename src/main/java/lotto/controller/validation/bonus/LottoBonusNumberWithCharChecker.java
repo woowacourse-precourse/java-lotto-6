@@ -3,10 +3,9 @@ package lotto.controller.validation.bonus;
 public class LottoBonusNumberWithCharChecker {
 
 	public void checkLottoBonusNumberWithChar(String scannedLottoBonusNumberString) {
-		try{
+		try {
 			Integer.parseInt(scannedLottoBonusNumberString);
-		}
-		catch(Exception exception){
+		} catch (Exception exception) {
 			throw new IllegalArgumentException();
 		}
 	}

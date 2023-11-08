@@ -18,7 +18,12 @@ public enum IntegerSymbolicConstantEnum {
 	MATH_ROUND_SETTER(100);
 
 	private final int value;
-	IntegerSymbolicConstantEnum(int value) { this.value = value; }
 
-	public int getValue() { return value; }
+	IntegerSymbolicConstantEnum(int value) {
+		this.value = value;
+	}
+
+	public int getValue() {
+		return value;
+	}
 }

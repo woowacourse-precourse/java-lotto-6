@@ -6,9 +6,12 @@ import java.util.Collections;
 import lotto.model.lotto.Lotto;
 
 public class LottoBonusNumberDuplicationChecker {
-	public void checkLottoBonusNumberDuplication(Lotto lotto, String scannedLottoBonusNumberString) {
+
+	public void checkLottoBonusNumberDuplication(Lotto lotto,
+		String scannedLottoBonusNumberString) {
 		Integer lottoBonusNumber = Integer.parseInt(scannedLottoBonusNumberString);
-		if (BONUS_FREQUENCY_MAX_VALUE.getValue() < Collections.frequency(lotto.getNumbers(),lottoBonusNumber)){
+		if (BONUS_FREQUENCY_MAX_VALUE.getValue() < Collections.frequency(lotto.getNumbers(),
+			lottoBonusNumber)) {
 			throw new IllegalArgumentException();
 		}
 	}

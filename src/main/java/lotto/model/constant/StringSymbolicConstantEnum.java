@@ -9,7 +9,12 @@ public enum StringSymbolicConstantEnum {
 
 
 	private final String value;
-	StringSymbolicConstantEnum(String value) { this.value = value; }
 
-	public String getValue() { return value; }
+	StringSymbolicConstantEnum(String value) {
+		this.value = value;
+	}
+
+	public String getValue() {
+		return value;
+	}
 }

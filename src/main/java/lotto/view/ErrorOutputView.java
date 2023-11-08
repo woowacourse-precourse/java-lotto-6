@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.model.constant.StringSymbolicConstantEnum.CHANGE_LINE;
 
 public class ErrorOutputView {
+
 	public void printErrorOfLottoPurchaseMoneyWithChar() {
 		System.out.print(CHANGE_LINE.getValue());
 		System.out.println("[ERROR] 로또 금액은 숫자로만 이루어져 있어야 합니다.");

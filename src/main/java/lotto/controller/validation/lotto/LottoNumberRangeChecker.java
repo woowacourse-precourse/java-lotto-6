@@ -8,19 +8,20 @@ import static lotto.model.constant.IntegerSymbolicConstantEnum.MIN_NUMBER_FOR_LO
 import java.util.List;
 
 public class LottoNumberRangeChecker {
+
 	Integer minValue = MIN_NUMBER_FOR_LOTTO_NUMBERS.getValue();
 	Integer maxValue = MAX_NUMBER_FOR_LOTTO_NUMBERS.getValue();
 
 	public void checkLottoNumberRange(List<Integer> lottoNumberList, int counterForIterate) {
-		if (lottoNumberList.get(counterForIterate)< minValue){
+		if (lottoNumberList.get(counterForIterate) < minValue) {
 			throw new IllegalArgumentException();
 		}
-		if (lottoNumberList.get(counterForIterate) > maxValue){
+		if (lottoNumberList.get(counterForIterate) > maxValue) {
 			throw new IllegalArgumentException();
 		}
-		if (counterForIterate == END_OF_COUNT.getValue()){
-			return ;
+		if (counterForIterate == END_OF_COUNT.getValue()) {
+			return;
 		}
-		checkLottoNumberRange(lottoNumberList, counterForIterate- INDEX_PIVOT_STEP.getValue());
+		checkLottoNumberRange(lottoNumberList, counterForIterate - INDEX_PIVOT_STEP.getValue());
 	}
 }

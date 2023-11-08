@@ -10,8 +10,11 @@ import lotto.model.lotto.LottoTicket;
 import lotto.model.lotto.LottoTicketList;
 
 public class LottoTicketListGenerateController {
-	public void generateLottoTicketList(LottoPurchaseMoney lottoPurchaseMoney, LottoTicketList lottoTicketList) {
-		Integer countForGeneratingLottoTickets = lottoPurchaseMoney.getLottoPurchaseMoney() / MONEY_UNIT.getValue();
+
+	public void generateLottoTicketList(LottoPurchaseMoney lottoPurchaseMoney,
+		LottoTicketList lottoTicketList) {
+		Integer countForGeneratingLottoTickets =
+			lottoPurchaseMoney.getLottoPurchaseMoney() / MONEY_UNIT.getValue();
 		lottoTicketList.setLottoTicketList(createLottoTicketList(countForGeneratingLottoTickets));
 	}
 
@@ -19,7 +22,7 @@ public class LottoTicketListGenerateController {
 		List<LottoTicket> lottoTicketList = new ArrayList<>();
 		LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator();
 		int count = countForGeneratingLottoTickets.intValue();
-		while (END_OF_COUNT.getValue() < count--){
+		while (END_OF_COUNT.getValue() < count--) {
 			LottoTicket lottoTicket = new LottoTicket();
 			lottoTicket.setTicketNumbers(lottoTicketGenerator.generateLottoTicket());
 			lottoTicketList.add(lottoTicket);

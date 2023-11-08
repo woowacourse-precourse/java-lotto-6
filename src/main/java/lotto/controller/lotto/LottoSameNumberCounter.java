@@ -12,14 +12,14 @@ public class LottoSameNumberCounter {
 		List<Integer> lottoNumberList = lotto.getNumbers();
 		List<Integer> lottoTicketNumberList = lottoTicket.getTicketNumbers();
 		int counterForSameNumber = START_OF_COUNT.getValue();
-		for (Integer lottoTicketNumber : lottoTicketNumberList){
-			counterForSameNumber += checkIfContainsNumber(lottoNumberList,lottoTicketNumber);
+		for (Integer lottoTicketNumber : lottoTicketNumberList) {
+			counterForSameNumber += checkIfContainsNumber(lottoNumberList, lottoTicketNumber);
 		}
 		return counterForSameNumber;
 	}
 
 	private int checkIfContainsNumber(List<Integer> lottoNumberList, Integer lottoTicketNumber) {
-		if (lottoNumberList.contains(lottoTicketNumber)){
+		if (lottoNumberList.contains(lottoTicketNumber)) {
 			return 1;
 		}
 		return 0;

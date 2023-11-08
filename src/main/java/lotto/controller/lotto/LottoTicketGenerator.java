@@ -20,7 +20,8 @@ public class LottoTicketGenerator {
 		Integer minNumber = MIN_NUMBER_FOR_LOTTO_NUMBERS.getValue();
 		Integer maxNumber = MAX_NUMBER_FOR_LOTTO_NUMBERS.getValue();
 		Integer sizeOfTicket = SIZE_OF_TICKET.getValue();
-		List<Integer> randomUniqueNumberList = new ArrayList<>(Randoms.pickUniqueNumbersInRange(minNumber, maxNumber, sizeOfTicket));
+		List<Integer> randomUniqueNumberList = new ArrayList<>(
+			Randoms.pickUniqueNumbersInRange(minNumber, maxNumber, sizeOfTicket));
 		randomUniqueNumberList.sort(Comparator.naturalOrder());
 		return randomUniqueNumberList;
 	}

@@ -3,6 +3,7 @@ package lotto.model.lotto;
 import java.util.List;
 
 public class LottoTicket {
+
 	private List<Integer> ticketNumbers;
 
 	public List<Integer> getTicketNumbers() {

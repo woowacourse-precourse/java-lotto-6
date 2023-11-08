@@ -11,19 +11,23 @@ import lotto.model.lotto.Lotto;
 import lotto.view.MessageOutputView;
 
 public class LottoNumberScanController {
+
 	MessageOutputView messageOutputView = new MessageOutputView();
 	InputController inputController = new InputController();
 	LottoNumberValueValidator lottoNumberValueValidator = new LottoNumberValueValidator();
+
 	public Lotto scanLottoNumber() {
-		try{
+		try {
 			messageOutputView.printScanningLottoNumberMessage();
 			String scannedLottoNumberListString = inputController.scanLottoNumberListString();
-			lottoNumberValueValidator.checkStringValidationOfLottoNumber(scannedLottoNumberListString);
-			List<String> lottoNumberStringList = Arrays.asList(scannedLottoNumberListString.split(SPLIT_POINT.getValue()));
-			List<Integer> number = lottoNumberStringList.stream().map(string -> Integer.parseInt(string)).collect(Collectors.toList());
+			lottoNumberValueValidator.checkStringValidationOfLottoNumber(
+				scannedLottoNumberListString);
+			List<String> lottoNumberStringList = Arrays.asList(
+				scannedLottoNumberListString.split(SPLIT_POINT.getValue()));
+			List<Integer> number = lottoNumberStringList.stream()
+				.map(string -> Integer.parseInt(string)).collect(Collectors.toList());
 			return new Lotto(number);
-		}
-		catch(IllegalArgumentException illegalArgumentException){
+		} catch (IllegalArgumentException illegalArgumentException) {
 			return scanLottoNumber();
 		}
 	}

@@ -13,12 +13,15 @@ import lotto.model.lotto.LottoTicket;
 import lotto.model.lotto.LottoWinningStatus;
 
 public class ProcessedValueOutputView {
+
 	public void printLottoPurchaseMoney(Integer lottoPurchaseMoney) {
 		System.out.println(lottoPurchaseMoney + CHANGE_LINE.getValue());
 	}
-	public void printCreatedLottoTicketList(List<LottoTicket> lottoTicketList, Integer lottoTicketPurchaseAmount) {
+
+	public void printCreatedLottoTicketList(List<LottoTicket> lottoTicketList,
+		Integer lottoTicketPurchaseAmount) {
 		System.out.println(lottoTicketPurchaseAmount + END_STRING_FOR_PURCHASE_AMOUNT.getValue());
-		for (LottoTicket lottoTicket : lottoTicketList){
+		for (LottoTicket lottoTicket : lottoTicketList) {
 			System.out.println(lottoTicket.getTicketNumbers());
 		}
 		System.out.print(CHANGE_LINE.getValue());
@@ -32,7 +35,7 @@ public class ProcessedValueOutputView {
 		LottoWinningCase[] lottoWinningCaselist = LottoWinningCase.values();
 		int startIndexPoint = START_OF_COUNT.getValue() + INDEX_PIVOT_STEP.getValue();
 		Integer endIndexPoint = END_OF_WINNING_CASE_COUNT.getValue();
-		for (int index = startIndexPoint; index < endIndexPoint; index++){
+		for (int index = startIndexPoint; index < endIndexPoint; index++) {
 			System.out.print(lottoWinningCaselist[index].getDescribingString());
 			System.out.println(lottoWinningCaseCountList.get(index) + "개");
 		}

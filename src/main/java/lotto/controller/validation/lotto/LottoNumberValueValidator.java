@@ -8,6 +8,7 @@ import java.util.List;
 import lotto.view.ErrorOutputView;
 
 public class LottoNumberValueValidator {
+
 	ErrorOutputView errorOutputView = new ErrorOutputView();
 	LottoNumberStringEndChecker lottoNumberStringEndChecker = new LottoNumberStringEndChecker();
 	LottoNumberWithCharChecker lottoNumberWithCharChecker = new LottoNumberWithCharChecker();
@@ -18,16 +19,17 @@ public class LottoNumberValueValidator {
 	public void checkStringValidationOfLottoNumber(String scannedLottoNumberListString) {
 		checkLottoNumberListStringEndsWithNumber(scannedLottoNumberListString);
 	}
+
 	public void checkValidationOfLottoNumber(List<Integer> scannedLottoNumberListString) {
 		checkLottoNumberCount(scannedLottoNumberListString);
 	}
 
 	private void checkLottoNumberListStringEndsWithNumber(String scannedLottoNumberListString) {
-		try{
-			char lastChar = scannedLottoNumberListString.charAt(scannedLottoNumberListString.length() - INDEX_FOCUS_NUMBER.getValue());
+		try {
+			char lastChar = scannedLottoNumberListString.charAt(
+				scannedLottoNumberListString.length() - INDEX_FOCUS_NUMBER.getValue());
 			lottoNumberStringEndChecker.checkLottoNumberStringEnd(lastChar);
-		}
-		catch (IllegalArgumentException illegalArgumentException){
+		} catch (IllegalArgumentException illegalArgumentException) {
 			errorOutputView.printErrorOfLottoNumberWithChar();
 			throw illegalArgumentException;
 		}
@@ -35,11 +37,11 @@ public class LottoNumberValueValidator {
 	}
 
 	private void checkLottoNumberWithChar(String scannedLottoNumberListString) {
-		try{
-			List<String> lottoNumberStringList = Arrays.asList(scannedLottoNumberListString.split(SPLIT_POINT.getValue()));
+		try {
+			List<String> lottoNumberStringList = Arrays.asList(
+				scannedLottoNumberListString.split(SPLIT_POINT.getValue()));
 			lottoNumberWithCharChecker.checkLottoNumberWithCharChecker(lottoNumberStringList);
-		}
-		catch (IllegalArgumentException illegalArgumentException){
+		} catch (IllegalArgumentException illegalArgumentException) {
 			errorOutputView.printErrorOfLottoNumberWithChar();
 			throw illegalArgumentException;
 		}
@@ -47,10 +49,9 @@ public class LottoNumberValueValidator {
 
 
 	private void checkLottoNumberCount(List<Integer> scannedLottoNumber) {
-		try{
+		try {
 			lottoNumberCountChecker.checkLottoNumberCount(scannedLottoNumber);
-		}
-		catch(IllegalArgumentException illegalArgumentException){
+		} catch (IllegalArgumentException illegalArgumentException) {
 			errorOutputView.printErrorOfLottoNumberCount();
 			throw illegalArgumentException;
 		}
@@ -58,11 +59,11 @@ public class LottoNumberValueValidator {
 	}
 
 	private void checkLottoNumberRange(List<Integer> scannedLottoNumberList) {
-		try{
+		try {
 			Integer indexFocus = INDEX_FOCUS_NUMBER.getValue();
-			lottoNumberRangeChecker.checkLottoNumberRange(scannedLottoNumberList, scannedLottoNumberList.size() - indexFocus);
-		}
-		catch(IllegalArgumentException illegalArgumentException){
+			lottoNumberRangeChecker.checkLottoNumberRange(scannedLottoNumberList,
+				scannedLottoNumberList.size() - indexFocus);
+		} catch (IllegalArgumentException illegalArgumentException) {
 			errorOutputView.printErrorOfLottoNumberRange();
 			throw illegalArgumentException;
 		}
@@ -71,11 +72,11 @@ public class LottoNumberValueValidator {
 
 
 	private void checkLottoNumberDuplication(List<Integer> scannedLottoNumberList) {
-		try{
+		try {
 			Integer indexFocus = INDEX_FOCUS_NUMBER.getValue();
-			lottoNumberDuplicationChecker.checkLottoNumberDuplication(scannedLottoNumberList, scannedLottoNumberList.size() - indexFocus);
-		}
-		catch(IllegalArgumentException illegalArgumentException){
+			lottoNumberDuplicationChecker.checkLottoNumberDuplication(scannedLottoNumberList,
+				scannedLottoNumberList.size() - indexFocus);
+		} catch (IllegalArgumentException illegalArgumentException) {
 			errorOutputView.printErrorOfLottoNumberDuplication();
 			throw illegalArgumentException;
 		}

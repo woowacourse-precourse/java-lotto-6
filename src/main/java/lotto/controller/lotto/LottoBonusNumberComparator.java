@@ -6,7 +6,7 @@ import lotto.model.lotto.LottoTicket;
 public class LottoBonusNumberComparator {
 
 	public Boolean compareLottoBonusNumber(LottoBonus lottoBonus, LottoTicket lottoTicket) {
-		if (lottoTicket.getTicketNumbers().contains(lottoBonus.getLottoBonusNumber())){
+		if (lottoTicket.getTicketNumbers().contains(lottoBonus.getLottoBonusNumber())) {
 			return true;
 		}
 		return false;

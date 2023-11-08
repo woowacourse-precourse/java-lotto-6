@@ -8,14 +8,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoNumberDuplicationChecker {
+
 	public void checkLottoNumberDuplication(List<Integer> lottoNumberList, int counterForIterate) {
 		Integer comparingFocusedLottoNumberString = lottoNumberList.get(counterForIterate);
-		if (FREQUENCY_MAX_VALUE.getValue() < Collections.frequency(lottoNumberList, comparingFocusedLottoNumberString)){
+		if (FREQUENCY_MAX_VALUE.getValue() < Collections.frequency(lottoNumberList,
+			comparingFocusedLottoNumberString)) {
 			throw new IllegalArgumentException();
 		}
-		if (counterForIterate == END_OF_COUNT.getValue()){
-			return ;
+		if (counterForIterate == END_OF_COUNT.getValue()) {
+			return;
 		}
-		checkLottoNumberDuplication(lottoNumberList, counterForIterate - INDEX_PIVOT_STEP.getValue());
+		checkLottoNumberDuplication(lottoNumberList,
+			counterForIterate - INDEX_PIVOT_STEP.getValue());
 	}
 }

@@ -8,8 +8,6 @@ import static lotto.message.Message.PAYMENT_REQUEST;
 import static lotto.message.Message.WINNING_NUMBER_REQUEST;
 import static lotto.message.Message.WINNING_STATISTICS_RESULT;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,43 +19,24 @@ public class LottoGame {
     public void start() {
 
         Money money = runMoneySavingProcess();
+
         printCountOfLotto(money.toString());
 
-        List<Lotto> lottoTicket = new ArrayList<>();
-        for (int count = 0; count < money.calculatePurchasedLotto(); count++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto attempt = new Lotto(numbers);
-            lottoTicket.add(attempt);
-        }
+        LottoTicket lottoTicket = new LottoTicket(new LottoTicketMaker().make(money.calculatePurchasedLotto()));
+        printLottoTicket(lottoTicket.makeLottoToString());
 
-        for (Lotto lotto : lottoTicket) {
-            lotto.sort();
-            OutputView.print(lotto.toString());
-            OutputView.print(LINE_BREAK.getMessage());
-        }
+        Lotto winingLotto = runWiningNumberSavingProcess();
 
-        OutputView.print(LINE_BREAK.getMessage());
-        OutputView.print(WINNING_NUMBER_REQUEST.getMessage());
-        OutputView.print(LINE_BREAK.getMessage());
-        String input = InputView.read();
-        InputValidator.validateInputRequirement(input);
+        /////////
 
-        List<Integer> winingNumbers = Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-
-        validateRange(winingNumbers);
-        validateSize(winingNumbers);
-        validateDuplicate(winingNumbers);
-
-        OutputView.print(LINE_BREAK.getMessage());
-        OutputView.print(BONUS_NUMBER_REQUEST.getMessage());
-        OutputView.print(LINE_BREAK.getMessage());
-        input = InputView.read();
-        InputValidator.validateNumber(input);
-        validateRangeOne(Integer.parseInt(input));
-        validateBonusDuplication(Integer.parseInt(input), winingNumbers);
-        int bonus = Integer.parseInt(input);
+//        OutputView.print(LINE_BREAK.getMessage());
+//        OutputView.print(BONUS_NUMBER_REQUEST.getMessage());
+//        OutputView.print(LINE_BREAK.getMessage());
+//        String input = InputView.read();
+//        InputValidator.validateNumber(input);
+//        validateRangeOne(Integer.parseInt(input));
+//        validateBonusDuplication(Integer.parseInt(input), winingLotto.getNumbers());
+//        int bonus = Integer.parseInt(input);
 
         OutputView.print(LINE_BREAK.getMessage());
         OutputView.print(WINNING_STATISTICS_RESULT.getMessage());
@@ -95,40 +74,64 @@ public class LottoGame {
         OutputView.print(LINE_BREAK.getMessage());
     }
 
-
-    public void validateRange(List<Integer> numbers) {
-        for (int num : numbers) {
-            if (num < 1 || num > 45) {
-                throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력하세요");
-            }
+    private void printLottoTicket(List<String> lottoInventory) {
+        for (String lottoNumber : lottoInventory) {
+            OutputView.print(lottoNumber);
+            OutputView.print(LINE_BREAK.getMessage());
         }
     }
 
-    public void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 숫자 6개를 입력하지 않았습나다.");
+    private Lotto runWiningNumberSavingProcess() {
+        try {
+            return new Lotto(receiveWinningNumber());
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            return runWiningNumberSavingProcess();
         }
     }
 
-    public void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream()
-                .distinct()
-                .count() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
-        }
+    private List<Integer> receiveWinningNumber() {
+        OutputView.print(LINE_BREAK.getMessage());
+        OutputView.print(WINNING_NUMBER_REQUEST.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
+        String input = InputView.read();
+        InputValidator.validateInputRequirement(input);
+
+        return convertNumber(input);
     }
 
-    public void validateRangeOne(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력하세요");
-        }
+    private List<Integer> convertNumber(String input) {
+        List<Integer> winingNumbers = Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        return winingNumbers;
     }
 
-    public void validateBonusDuplication(int num, List<Integer> numbers) {
-        if (numbers.contains(num)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 서로 중복된 숫자가 없어야 합니다.");
+    private BonusNumber runBonusNumberSavingProcess() {
+        try {
+            return new BonusNumber(receiveBonusNumber());
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            return runBonusNumberSavingProcess();
         }
+
+        validateRangeOne(Integer.parseInt(input));
+        validateBonusDuplication(Integer.parseInt(input), winingLotto.getNumbers());
+        int bonus = Integer.parseInt(input);
     }
+
+    private int receiveBonusNumber() {
+        OutputView.print(LINE_BREAK.getMessage());
+        OutputView.print(BONUS_NUMBER_REQUEST.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
+        String input = InputView.read();
+        InputValidator.validateNumber(input);
+
+        return Integer.parseInt(input);
+    }
+
+
 }
 
 

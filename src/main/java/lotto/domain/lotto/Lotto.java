@@ -3,6 +3,10 @@ package lotto.domain.lotto;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.config.GameConfig.LOTTO_NUMBERS_LENGTH;
+import static lotto.exception.ErrorMessage.LOTTO_NUMBER_DUPLICATED;
+import static lotto.exception.ErrorMessage.LOTTO_NUMBER_INPUT_LENGTH_INVALID;
+
 public class Lotto {
     private final List<LottoNumber> lottoNumbers;
 
@@ -21,14 +25,21 @@ public class Lotto {
     }
 
     private static void validateLottoNumbersLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호의 총 길이는 6이어야 합니다.");
+        if (isLengthInvalid(numbers)) {
+            throw new IllegalArgumentException(String.format(
+                    LOTTO_NUMBER_INPUT_LENGTH_INVALID.getMessage(),
+                    LOTTO_NUMBERS_LENGTH.getNumber())
+            );
         }
+    }
+
+    private static boolean isLengthInvalid(List<Integer> numbers) {
+        return numbers.size() != LOTTO_NUMBERS_LENGTH.getNumber();
     }
 
     private static void validateIsNumberDuplicate(List<Integer> numbers) {
         if (isNumberDuplicated(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 각 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 

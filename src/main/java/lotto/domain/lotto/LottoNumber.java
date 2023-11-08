@@ -1,5 +1,9 @@
 package lotto.domain.lotto;
 
+import static lotto.config.GameConfig.MAXIMUM_LOTTO_NUMBER;
+import static lotto.config.GameConfig.MINIMUM_LOTTO_NUMBER;
+import static lotto.exception.ErrorMessage.BONUS_NUMBER_RANGE_INVALID;
+
 public class LottoNumber {
 
     private Integer lottoNumber;
@@ -18,9 +22,17 @@ public class LottoNumber {
     }
 
     private static void validateLottoNumberRange(Integer lottoNumber) {
-        if (lottoNumber < 1 || lottoNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 각각의 당첨 번호는 1~45 범위의 정수이어야 합니다.");
+        if (isNumberRangeInvalid(lottoNumber)) {
+            throw new IllegalArgumentException(String.format(
+                    BONUS_NUMBER_RANGE_INVALID.getMessage(),
+                    MINIMUM_LOTTO_NUMBER.getNumber(),
+                    MAXIMUM_LOTTO_NUMBER.getNumber())
+            );
         }
+    }
+
+    private static boolean isNumberRangeInvalid(Integer lottoNumber) {
+        return lottoNumber < MINIMUM_LOTTO_NUMBER.getNumber() || lottoNumber > MAXIMUM_LOTTO_NUMBER.getNumber();
     }
 
     public Integer getLottoNumber() {

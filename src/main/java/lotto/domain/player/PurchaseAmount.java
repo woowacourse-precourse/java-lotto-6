@@ -1,5 +1,8 @@
 package lotto.domain.player;
 
+import static lotto.config.GameConfig.LOTTO_PRICE;
+import static lotto.exception.ErrorMessage.PURCHASE_UNIT_INVALID;
+
 public class PurchaseAmount {
 
     private Integer purchaseAmount;
@@ -18,9 +21,16 @@ public class PurchaseAmount {
     }
 
     private static void validatePurchaseUnit(Integer purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위이어야 합니다.");
+        if (isPurchaseUnitInvalid(purchaseAmount)) {
+            throw new IllegalArgumentException(String.format(
+                    PURCHASE_UNIT_INVALID.getMessage(),
+                    LOTTO_PRICE.getNumber())
+            );
         }
+    }
+
+    private static boolean isPurchaseUnitInvalid(Integer purchaseAmount) {
+        return purchaseAmount % LOTTO_PRICE.getNumber() != 0;
     }
 
     public int calculatePurchasedLottoCount(PurchaseAmount purchaseAmount) {

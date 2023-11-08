@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static java.lang.Integer.parseInt;
+import static lotto.config.GameConfig.*;
+import static lotto.exception.ErrorMessage.*;
 
 public class InputValidator {
 
@@ -21,7 +23,10 @@ public class InputValidator {
 
     private static void validatePurchaseUnit(String input) {
         if (parseInt(input) % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위이어야 합니다.");
+            throw new IllegalArgumentException(String.format(
+                    PURCHASE_UNIT_INVALID.getMessage(),
+                    LOTTO_PRICE.getNumber())
+            );
         }
     }
 
@@ -33,7 +38,7 @@ public class InputValidator {
 
     private static void validateIsDigit(String input) {
         if (!isDigit(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 정수이어야 합니다.");
+            throw new IllegalArgumentException(INPUT_NOT_DIGIT.getMessage());
         }
     }
 
@@ -48,7 +53,11 @@ public class InputValidator {
 
     private static void validateLottoNumberRange(String input) {
         if (parseInt(input) < 1 || parseInt(input) > 45) {
-            throw new IllegalArgumentException("[ERROR] 각각의 당첨 번호는 1~45 범위의 정수이어야 합니다.");
+            throw new IllegalArgumentException(String.format(
+                    BONUS_NUMBER_RANGE_INVALID.getMessage(),
+                    MINIMUM_LOTTO_NUMBER.getNumber(),
+                    MAXIMUM_LOTTO_NUMBER.getNumber())
+            );
         }
     }
 
@@ -62,13 +71,13 @@ public class InputValidator {
 
     private static void validateIsEmpty(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 비어있지 않아야 합니다.");
+            throw new IllegalArgumentException(INPUT_EMPTY.getMessage());
         }
     }
 
     private static void validateIsRightFormat(String input) {
         if (!isRightFormat(input)) {
-            throw new IllegalArgumentException("[ERROR] 입력값은 쉼표(,)를 기준으로 구분되어야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_INPUT_INVALID_FORMAT.getMessage());
         }
     }
 
@@ -81,13 +90,16 @@ public class InputValidator {
 
     private static void validateLottoNumbersLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호의 총 길이는 6이어야 합니다.");
+            throw new IllegalArgumentException(String.format(
+                    LOTTO_NUMBER_INPUT_LENGTH_INVALID.getMessage(),
+                    LOTTO_NUMBERS_LENGTH.getNumber())
+            );
         }
     }
 
     private static void validateIsNumberDuplicate(List<Integer> numbers) {
         if (isNumberDuplicated(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 각 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED.getMessage());
         }
     }
 

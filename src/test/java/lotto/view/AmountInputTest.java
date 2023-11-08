@@ -4,16 +4,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.AppConfig;
-import lotto.constant.errorMessage.amount.AmountExceptionStatus;
-import lotto.constant.errorMessage.amount.NotNumericAmountException;
-import lotto.constant.errorMessage.amount.NullAmountException;
+import lotto.constant.errorMessage.input.InputExceptionStatus;
+import lotto.constant.errorMessage.exception.CustomNumberFormatAmountException;
+import lotto.constant.errorMessage.exception.CustomNullPointAmountException;
 import lotto.view.reader.CustomReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 
-class InputViewTest {
+class AmountInputTest {
 
     private static final String PROVIDER_PATH = "lotto.view.provider.AmountInputTestProvider#";
     private static final AppConfig APP_CONFIG = AppConfig.getInstance();
@@ -23,22 +23,22 @@ class InputViewTest {
 
     @ParameterizedTest
     @NullSource
-    @DisplayName("NULL 값은 입력할 수 없다.")
+    @DisplayName("구입 금액에 NULL 값은 입력할 수 없다.")
     void amountNullExceptionTest(final String input) {
         customReader.initInput(input);
         assertThatThrownBy(inputView::readAmount)
-                .isInstanceOf(NullAmountException.class)
-                .hasMessageContaining(AmountExceptionStatus.AMOUNT_IS_NULL.getMessage());
+                .isInstanceOf(CustomNullPointAmountException.class)
+                .hasMessageContaining(InputExceptionStatus.READ_IS_NULL.getMessage());
     }
 
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideValuesForNotNumericException")
-    @DisplayName("숫자 이외의 값은 입력할 수 없다.")
+    @DisplayName("구입 금액에 숫자 이외의 값은 입력할 수 없다.")
     void amountNotNumericExceptionTest(final String input) {
         customReader.initInput(input);
         assertThatThrownBy(inputView::readAmount)
-                .isInstanceOf(NotNumericAmountException.class)
-                .hasMessageContaining(AmountExceptionStatus.AMOUNT_IS_NOT_NUMERIC.getMessage());
+                .isInstanceOf(CustomNumberFormatAmountException.class)
+                .hasMessageContaining(InputExceptionStatus.READ_IS_NOT_NUMERIC.getMessage());
     }
 
     @ParameterizedTest

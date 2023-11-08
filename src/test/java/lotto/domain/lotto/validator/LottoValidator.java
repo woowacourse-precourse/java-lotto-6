@@ -3,7 +3,7 @@ package lotto.domain.lotto.validator;
 import java.util.Collections;
 import java.util.List;
 import lotto.constant.Constant;
-import lotto.constant.errorMessage.amount.IllegalArgumentAmountException;
+import lotto.constant.errorMessage.exception.CustomIllegalArgumentException;
 import lotto.constant.errorMessage.lotto.LottoExceptionStatus;
 
 public class LottoValidator {
@@ -22,7 +22,7 @@ public class LottoValidator {
 
     private void validateNumbersOutOfSize(final List<Integer> numbers) {
         if (checkNumbersOutOfSize(numbers)) {
-            throw new IllegalArgumentAmountException(LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_SIZE);
+            throw new CustomIllegalArgumentException(LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_SIZE);
         }
     }
 
@@ -32,7 +32,7 @@ public class LottoValidator {
 
     private void validateNumbersOutOfRange(final List<Integer> numbers) {
         if (checkNumbersOutOfRange(numbers)) {
-            throw new IllegalArgumentAmountException(LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_RANGE);
+            throw new CustomIllegalArgumentException(LottoExceptionStatus.LOTTO_NUMBER_IS_OUT_OF_RANGE);
         }
     }
 
@@ -48,7 +48,7 @@ public class LottoValidator {
 
     private void validateNumbersDuplicated(final List<Integer> numbers) {
         if (checkNumbersDuplicated(numbers)) {
-            throw new IllegalArgumentAmountException(LottoExceptionStatus.LOTTO_NUMBER_IS_DUPLICATED);
+            throw new CustomIllegalArgumentException(LottoExceptionStatus.LOTTO_NUMBER_IS_DUPLICATED);
         }
     }
 

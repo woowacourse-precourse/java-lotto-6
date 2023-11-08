@@ -4,8 +4,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.constant.errorMessage.input.IllegalArgumentAmountException;
+import lotto.constant.errorMessage.exception.CustomIllegalArgumentException;
 import lotto.constant.errorMessage.lotto.LottoExceptionStatus;
+import lotto.domain.rank.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,7 +17,7 @@ class LottoTest {
 
     private void exceptionVerification(final List<Integer> numbers, final String message) {
         assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentAmountException.class)
+                .isInstanceOf(CustomIllegalArgumentException.class)
                 .hasMessageContaining(message);
     }
 
@@ -63,11 +64,22 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideValuesForNumbersMatchedCountTest")
     @DisplayName("당첨 번호와 목표값의 일치 개수는 같아야 한다.")
-    void lottoNumbersMatchedCountTest(final List<Integer> numbers, final List<Integer> winningNumbers, final int matchCount) {
+    void lottoNumbersMatchedCountTest(final List<Integer> numbers,
+                                      final List<Integer> winningNumbers, final int matchCount) {
         final Lotto lotto = new Lotto(numbers);
         final Lotto winningLotto = new Lotto(winningNumbers);
         final List<Integer> winningLottoNumbers = winningLotto.numbers();
-
         assertThat(lotto.matchedCount(winningLottoNumbers)).isEqualTo(matchCount);
+    }
+
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideValuesForCalculateRankTest")
+    @DisplayName("당첨 결과는 목표값과 일치해야 한다.")
+    void calculateRankTest(final List<Integer> numbers,
+                           final List<Integer> winningNumbers, final int bonusNumber, final Rank expectedRank) {
+        final Lotto lotto = new Lotto(numbers);
+        final Lotto winningLotto = new Lotto(winningNumbers);
+        final Rank rank = lotto.calculateRank(winningLotto, bonusNumber).orElse(null);
+        assertThat(rank).isEqualTo(expectedRank);
     }
 }

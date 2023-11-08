@@ -3,8 +3,8 @@ package lotto.domain.winning;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.constant.errorMessage.input.IllegalArgumentAmountException;
-import lotto.constant.errorMessage.input.IllegalStateAmountException;
+import lotto.constant.errorMessage.exception.CustomIllegalArgumentException;
+import lotto.constant.errorMessage.exception.CustomIllegalStateAmountException;
 import lotto.constant.errorMessage.winning.WinningExceptionStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +19,7 @@ class WinningNumbersTest {
     @DisplayName("보너스 번호는 1부터 45 사이의 숫자로 구성되어야 한다.")
     void bonusNumberIsOutOfRangeExceptionTest(final List<Integer> numbers, final int bonusNumber) {
         assertThatThrownBy(() -> new WinningNumbers(numbers, bonusNumber))
-                .isInstanceOf(IllegalStateAmountException.class)
+                .isInstanceOf(CustomIllegalStateAmountException.class)
                 .hasMessageContaining(WinningExceptionStatus.BONUS_NUMBER_IS_OUT_OF_RANGE.getMessage());
     }
 
@@ -28,7 +28,7 @@ class WinningNumbersTest {
     @DisplayName("보너스 번호는 당첨 번호와 중복될 수 없다.")
     void bonusNumberIsDuplicatedExceptionTest(final List<Integer> numbers, final int bonusNumber) {
         assertThatThrownBy(() -> new WinningNumbers(numbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentAmountException.class)
+                .isInstanceOf(CustomIllegalArgumentException.class)
                 .hasMessageContaining(WinningExceptionStatus.BONUS_NUMBER_IS_DUPLICATED.getMessage());
     }
 }

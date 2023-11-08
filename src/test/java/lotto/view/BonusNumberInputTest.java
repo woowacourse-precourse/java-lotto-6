@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.AppConfig;
 import lotto.constant.errorMessage.input.InputExceptionStatus;
-import lotto.constant.errorMessage.input.NullPointAmountException;
-import lotto.constant.errorMessage.input.NumberFormatAmountException;
+import lotto.constant.errorMessage.exception.CustomNullPointAmountException;
+import lotto.constant.errorMessage.exception.CustomNumberFormatAmountException;
 import lotto.view.reader.CustomReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,7 +27,7 @@ class BonusNumberInputTest {
     void bonusNumberNullExceptionTest(final String input) {
         customReader.initInput(input);
         assertThatThrownBy(inputView::readBonusNumber)
-                .isInstanceOf(NullPointAmountException.class)
+                .isInstanceOf(CustomNullPointAmountException.class)
                 .hasMessageContaining(InputExceptionStatus.READ_IS_NULL.getMessage());
     }
 
@@ -37,7 +37,7 @@ class BonusNumberInputTest {
     void bonusNumberNotNumericExceptionTest(final String input) {
         customReader.initInput(input);
         assertThatThrownBy(inputView::readBonusNumber)
-                .isInstanceOf(NumberFormatAmountException.class)
+                .isInstanceOf(CustomNumberFormatAmountException.class)
                 .hasMessageContaining(InputExceptionStatus.READ_IS_NOT_NUMERIC.getMessage());
     }
 

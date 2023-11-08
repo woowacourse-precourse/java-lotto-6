@@ -1,8 +1,8 @@
 package lotto.domain.amount.validator;
 
 import lotto.constant.Constant;
-import lotto.constant.errorMessage.amount.AmountExceptionStatus;
-import lotto.constant.errorMessage.amount.IllegalStateAmountException;
+import lotto.constant.errorMessage.input.InputExceptionStatus;
+import lotto.constant.errorMessage.exception.CustomIllegalStateAmountException;
 
 public class AmountValidator {
 
@@ -19,7 +19,7 @@ public class AmountValidator {
 
     private void validateAmountIsPositive(final int amount) {
         if (!isPositive(amount)) {
-            throw new IllegalStateAmountException(AmountExceptionStatus.AMOUNT_IS_NOT_POSITIVE);
+            throw new CustomIllegalStateAmountException(InputExceptionStatus.AMOUNT_IS_NOT_POSITIVE);
         }
     }
 
@@ -29,7 +29,7 @@ public class AmountValidator {
 
     private void validateAmountIsAbove(final int amount) {
         if (!isAbove(amount)) {
-            throw new IllegalStateAmountException(AmountExceptionStatus.AMOUNT_IS_NOT_ABOVE);
+            throw new CustomIllegalStateAmountException(InputExceptionStatus.AMOUNT_IS_NOT_ABOVE);
         }
     }
 
@@ -39,7 +39,7 @@ public class AmountValidator {
 
     private void validateAmountIsDivisible(final int amount) {
         if (!isDivisible(amount)) {
-            throw new IllegalStateAmountException(AmountExceptionStatus.AMOUNT_IS_NOT_DIVISIBLE);
+            throw new CustomIllegalStateAmountException(InputExceptionStatus.AMOUNT_IS_NOT_DIVISIBLE);
         }
     }
 

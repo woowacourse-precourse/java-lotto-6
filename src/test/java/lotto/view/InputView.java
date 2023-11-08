@@ -3,8 +3,8 @@ package lotto.view;
 import java.util.Arrays;
 import java.util.List;
 import lotto.constant.errorMessage.input.InputExceptionStatus;
-import lotto.constant.errorMessage.input.NumberFormatAmountException;
-import lotto.constant.errorMessage.input.NullPointAmountException;
+import lotto.constant.errorMessage.exception.CustomNumberFormatAmountException;
+import lotto.constant.errorMessage.exception.CustomNullPointAmountException;
 import lotto.view.reader.Reader;
 
 public class InputView {
@@ -39,7 +39,7 @@ public class InputView {
         try {
             return Integer.parseInt(checkNumberIsNull(input));
         } catch (NumberFormatException e) {
-            throw new NumberFormatAmountException(InputExceptionStatus.READ_IS_NOT_NUMERIC);
+            throw new CustomNumberFormatAmountException(InputExceptionStatus.READ_IS_NOT_NUMERIC);
         }
     }
 
@@ -47,7 +47,7 @@ public class InputView {
         try {
             return input.trim();
         } catch (NullPointerException e) {
-            throw new NullPointAmountException(InputExceptionStatus.READ_IS_NULL);
+            throw new CustomNullPointAmountException(InputExceptionStatus.READ_IS_NULL);
         }
     }
 

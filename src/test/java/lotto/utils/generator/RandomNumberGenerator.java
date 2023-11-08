@@ -9,9 +9,9 @@ public class RandomNumberGenerator implements RandomNumber {
 
     private List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(
-                Constant.ALLOWED_MINIMUM_BALL_NUMBER,
-                Constant.ALLOWED_MAXIMUM_BALL_NUMBER,
-                Constant.ALLOWED_BALLS_SIZE
+                Constant.ALLOWED_MINIMUM_LOTTO_NUMBER,
+                Constant.ALLOWED_MAXIMUM_LOTTO_NUMBER,
+                Constant.ALLOWED_LOTTO_SIZE
         );
     }
 

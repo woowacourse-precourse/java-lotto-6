@@ -2,6 +2,8 @@ package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import lotto.domain.rank.Rank;
 import lotto.dto.LottoDto;
 import lotto.utils.generator.RandomNumber;
 
@@ -20,6 +22,14 @@ public class Lottos {
         }
     }
 
+    public List<Rank> calculateRanks(final Lotto winningLotto, final int bonusNumber) {
+        return lottos.stream()
+                .map(lotto -> lotto.calculateRank(winningLotto, bonusNumber))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+
     public List<LottoDto> getLottoStatus() {
         return lottos.stream()
                 .map(this::convertToDto)
@@ -28,5 +38,9 @@ public class Lottos {
 
     private LottoDto convertToDto(final Lotto lotto) {
         return new LottoDto(lotto.getStringNumbers());
+    }
+
+    public int getSize() {
+        return lottos.size();
     }
 }

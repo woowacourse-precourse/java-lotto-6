@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Objects;
+
 public class LottoNumber {
 
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
@@ -47,5 +49,24 @@ public class LottoNumber {
 
     private boolean isBiggerThanMaximumNumber(int number) {
         return number > MAXIMUM_NUMBER_OF_LOTTO_NUMBER;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        LottoNumber that = (LottoNumber) obj;
+        return lottoNumber == that.lottoNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lottoNumber);
     }
 }

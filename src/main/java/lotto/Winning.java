@@ -7,10 +7,12 @@ import java.util.List;
 public class Winning {
     List<Integer> numbers;
     int bonus;
-    public Winning(List<Integer> numbers, int bonus){
+
+    public Winning(List<Integer> numbers, int bonus) {
         this.numbers = numbers;
         this.bonus = bonus;
     }
+
     public List<Integer> winningNum() {
         while (true) {
             try {
@@ -27,7 +29,8 @@ public class Winning {
             }
         }
     }
-    public void setWinningNumbers(String[] winningNumbers){
+
+    public void setWinningNumbers(String[] winningNumbers) {
         for (int i = 0; i < winningNumbers.length; i++) {
             numbers.add(Integer.parseInt(winningNumbers[i]));
         }

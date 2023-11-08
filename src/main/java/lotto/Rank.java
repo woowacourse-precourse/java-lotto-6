@@ -4,12 +4,14 @@ import java.util.List;
 
 public class Rank {
     private int[] rank = new int[6];
+
     public int[] rankAndWinning(int lottoTickets, List[] allTickets, int bonus, List<Integer> numbers) {
-        matching(lottoTickets, allTickets, bonus,numbers);
+        matching(lottoTickets, allTickets, bonus, numbers);
         statistics();
         return rank;
     }
-    public void matching(int lottoTickets, List[] allTickets, int bonus, List<Integer> numbers){
+
+    public void matching(int lottoTickets, List[] allTickets, int bonus, List<Integer> numbers) {
         //당첨여부
         boolean includedBonus = false;
         for (int i = 0; i < lottoTickets; i++) {

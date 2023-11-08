@@ -24,10 +24,12 @@ public class Rate {
     public double percent() {
         return (prizeMoney / purchaseMoney) * 100;
     }
-    public double round(){
+
+    public double round() {
         return Math.round(rateOfReturn * 10) / 10.0;
     }
-    public void result(){
+
+    public void result() {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", round());
     }
 }

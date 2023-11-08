@@ -74,7 +74,7 @@ public class LottoController {
         rateView.printPrize(resultCount, resultHit, resultPrize);
 
         RateCal rateCal = new RateCal(lottoCal.getPrizeCount());
-        DecimalFormat decFormat = new DecimalFormat("#,###.0");
+        DecimalFormat decFormat = new DecimalFormat("###,###.0");
         String formatResult = decFormat.format(rateCal.getReturnRate(userLottoPrice.getPrice()));
         rateView.printRate(formatResult);
 

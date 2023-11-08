@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.util.Error;
+import lotto.util.Utils;
 import lotto.view.outputMessage;
 
 import java.util.ArrayList;
@@ -35,7 +37,11 @@ public class Buyer {
         }
     }
 
-    private int calculationAmount(int price) {
+    public int calculationAmount(int price) {
+        if (price % ONE_LOTTO_PRICE != 0){
+            Error error = Error.PRICE_WRONG;
+            Utils.backFunction(error);
+        }
         return price / ONE_LOTTO_PRICE;
     }
 

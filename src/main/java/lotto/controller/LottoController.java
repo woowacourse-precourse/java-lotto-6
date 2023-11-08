@@ -33,4 +33,8 @@ public class LottoController {
     private void countLottoResult(RankResult rankResult, WinningNumberLotto winningNumberLotto, Lottos lottos){
         rankResult.countRankResult(winningNumberLotto, lottos);
     }
+
+    private Rate getRate(Price price, RankResult rankResult){
+        return new Rate(price, rankResult);
+    }
 }

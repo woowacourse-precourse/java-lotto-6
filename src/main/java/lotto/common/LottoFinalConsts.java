@@ -24,6 +24,8 @@ public interface LottoFinalConsts {
     String LOTTO_ERROR_MESSAGE = "[ERROR] ";
     String LOTTO_NOT_VALID_LOTTOPURCHASE = "구입 금액이 1000으로 나눠 떨어지지 않습니다.";
     String LOTTO_HAS_DUPLICATED = "로또 번호에 중복이 존재합니다.";
+    String LOTTO_WINNING_HAS_DUPLICATED = "로또 번호에 중복이 존재합니다.";
+    String LOTTO_RANGE_OUT_OF_BOUNDS = "로또 번호가 6개가 아닙니다.";
     String INPUT_LOTTO_PURCHASE = "구입금액을 입력해 주세요.";
     String PRINT_LOTTO_PURCHASE_COUNT = "개를 구매했습니다.";
     String INPUT_WIN_LOTTO = "당첨 번호를 입력해 주세요.";

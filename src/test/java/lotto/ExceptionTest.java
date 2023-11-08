@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static lotto.util.Parser.stringToInt;
+import static lotto.util.Parser.stringToList;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ExceptionTest {
@@ -71,5 +73,24 @@ public class ExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("단일 값 입력이 정수가 아닌 경우 예외가 발생한다.")
+    @Test
+    void 입력값_정수가_아닌_경우_테스트(){
+        //given
+        String str = "감사";
 
+        assertThatThrownBy(() -> stringToInt(str))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("번호 리스트 입력이 정수가 아닌 경우 예외가 발생한다.")
+    @Test
+    void 번호_리스트_입력이_정수가_아닌_경우_테스트() {
+        //given
+        String str = "테스트,2,3,4,5,6";
+
+        //then
+        assertThatThrownBy(() -> stringToList(str))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

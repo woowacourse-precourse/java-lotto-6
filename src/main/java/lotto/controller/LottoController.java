@@ -27,7 +27,6 @@ public class LottoController {
         Budget budget = budgetService.createBudget();
 
         Lottos lottos = lottoService.createLottos(budget);
-        //todo: 해당 과정이 controller에 들어있는 것이 적합한지 고려
         int lottosSize = lottoService.getLottosSize(lottos);
         gameView.printLottosSize(lottosSize);
 
@@ -38,8 +37,7 @@ public class LottoController {
         WinningNumbers winningNumbers = winningNumbersService.createWinningNumbers();
 
         gameView.printInputBonusNumberMessage();
-        //todo: winningNumbers와 중복 검사 필요
-        WinningNumber bonusNumber = bonusNumberService.createBonusNumber();
+        WinningNumber bonusNumber = bonusNumberService.createBonusNumber(winningNumbers);
 
         //todo: 이 클래스의 존재가 올바른지?
         WinningManager winningManager = new WinningManager(winningNumbers, bonusNumber);

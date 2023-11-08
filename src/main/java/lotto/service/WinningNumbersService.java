@@ -16,7 +16,7 @@ public class WinningNumbersService extends CreateService {
     }
 
     @Override
-    public Object createObject() {
+    public Object createObject(Object... inputs) {
         String inputWinningNumbers = Console.readLine();
         String[] splitWinningNumbers = splitInputWinningNumbers(inputWinningNumbers);
 

@@ -4,9 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Budget;
 import lotto.utils.ErrorMessage;
 
-public class BudgetService extends CreateService{
+public class BudgetService extends CreateService {
 
-    public Budget createBudget(){
+    public Budget createBudget() {
         Object budget = this.create();
 
         return (Budget) budget;
@@ -25,7 +25,7 @@ public class BudgetService extends CreateService{
     }
 
     @Override
-    public Object createObject() {
+    public Object createObject(Object... inputs) {
         String inputBudget = Console.readLine();
         budgetIntegerValidation(inputBudget);
 

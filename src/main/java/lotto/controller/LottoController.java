@@ -77,7 +77,7 @@ public class LottoController {
     }
 
     public void getIncome(ClientLottoData clientLottoData) {
-        double income = LottoMachine.setIncome(clientLottoData);
+        String income = LottoTypeConverter.percent(clientLottoData.setIncome());
         OutputView.income(income);
     }
 }

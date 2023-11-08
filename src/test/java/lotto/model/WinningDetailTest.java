@@ -21,7 +21,8 @@ class WinningDetailTest {
     private static final int ONE = 1;
     private static final int TWO = 2;
     private static final long TOTAL_PROFIT = 4_033_060_000L;
-    private static final WinningNumbers WINNING_NUMBER = new WinningNumbers(WINNING_NUMBERS,
+    private static final WinningNumbers WINNING_NUMBER = new WinningNumbers(
+            WINNING_NUMBERS.stream().mapToInt(Integer::valueOf).toArray(),
             Integer.parseInt(BONUS_NUMBER));
     private static final List<Lotto> LOTTOS = new ArrayList<>();
 

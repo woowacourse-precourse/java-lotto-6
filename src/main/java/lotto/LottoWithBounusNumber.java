@@ -16,9 +16,22 @@ public class LottoWithBounusNumber {
     }
 
     public static LottoWithBounusNumber createLottoWithBonusNumber() {
-        Lotto lotto = Lotto.inputLotto();
-        Integer bounusNumber = inputBonusNumber();
-        // 보너스 숫자가 입력받은 로또와 중복되지는 않는지 체크하는 기능 호출부
+        Lotto lotto;
+        Integer bounusNumber;
+
+        try {
+            lotto = Lotto.inputLotto();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            lotto = Lotto.inputLotto();
+        }
+
+        try {
+            bounusNumber = inputBonusNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            bounusNumber = inputBonusNumber();
+        }
         return new LottoWithBounusNumber(lotto, bounusNumber);
     }
 

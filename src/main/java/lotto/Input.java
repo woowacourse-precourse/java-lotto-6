@@ -36,5 +36,18 @@ public class Input {
             throw new IllegalArgumentException(ERROR_MESSAGE +" 당첨 번호는 총 6개로 이루어져 있습니다.");
         }
 
+
+    }
+
+    private void checkSameNumber(List<Integer> numbers){
+        boolean[] visited = new boolean[46];
+
+        for(int i=0;i<6;i++){
+            if(!visited[numbers.get(i)]){
+                visited[numbers.get(i)] = true;
+            }
+
+            throw new IllegalArgumentException(ERROR_MESSAGE+" 중복된 당첨 번호가 있습니다.");
+        }
     }
 }

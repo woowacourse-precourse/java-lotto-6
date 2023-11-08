@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Set;
+
 public class Application {
     public static void main(String[] args) {
         LottoPurchase lottoPurchase = new LottoPurchase();
@@ -8,6 +10,9 @@ public class Application {
 
         int purchaseAmount = lottoPurchase.requestPurchaseAmount();
         lottoMachine.printLottoTickets(lottoMachine.issueLottoTickets(purchaseAmount));
+
+        LottoWinningNumberInput lottoWinningNumberInput = new LottoWinningNumberInput();
+        Set<Integer> winningNumbers = lottoWinningNumberInput.requestLottoWinningNumbers();
 
     }
 }

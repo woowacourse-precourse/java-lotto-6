@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.ErrorCode;
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class Lotto {
         boolean hasDuplicates = number.size() != new HashSet<>(number).size();
 
         if (hasDuplicates) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorCode.DUPLICATE_LOTTO_NUMBERS.getMessage());
         }
     }
 

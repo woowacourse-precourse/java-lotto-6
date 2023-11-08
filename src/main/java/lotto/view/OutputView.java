@@ -8,6 +8,7 @@ public class OutputView {
     }
 
     public static void showPurchasedLottoQuantity(int lottoQuantity) {
+        System.out.println();
         System.out.println(lottoQuantity + "개를 구매했습니다.");
     }
 
@@ -16,10 +17,12 @@ public class OutputView {
     }
 
     public static void askLottoNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     public static void askBonusNumber() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 

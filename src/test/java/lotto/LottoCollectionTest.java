@@ -86,6 +86,40 @@ public class LottoCollectionTest {
         );
     }
 
+    @DisplayName("당첨된 금액의 수익률을 출력한다.")
+    @Test
+    void printProfitRate() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    int purchaseAmount = 5000;
+                    LottoCollection lottoCollection = new LottoCollection(purchaseAmount);
+
+                    List<Integer> numbers = createLottoNumbers();
+                    int bonusNumber = 8;
+
+                    LottoResult result = new LottoResult(numbers, bonusNumber);
+                    lottoCollection.matchLottoNumbers(result);
+
+                    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                    System.setOut(new PrintStream(outputStream));
+
+                    lottoCollection.printProfitRate();
+
+                    String captured = outputStream.toString().trim();
+
+                    assertThat(captured).contains(
+                            "총 수익률은 40631100.0%입니다."
+                    );
+
+
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 8),
+                List.of(1, 2, 3, 8, 9, 10),
+                List.of(1, 2, 3, 4, 9, 10),
+                List.of(1, 2, 3, 4, 5, 11)
+        );
+    }
     List<Integer> createLottoNumbers() {
         List<Integer> numbers = new ArrayList<>();
         for (int i = 1; i < 7; i++) {

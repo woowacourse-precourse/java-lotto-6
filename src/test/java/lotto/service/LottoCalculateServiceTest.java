@@ -32,7 +32,7 @@ public class LottoCalculateServiceTest {
         List<Integer> userNumbers = List.of(1, 2, 3, 7, 8, 9);
         List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         // when
-        int count = lottoCalculateService.countUserNumbersContainLotto(userNumbers, lottoNumbers);
+        int count = lottoCalculateService.countUserNumbersContainsLotto(userNumbers, lottoNumbers);
         // then
         assertThat(count).isEqualTo(3);
     }

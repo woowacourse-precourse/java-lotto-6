@@ -1,7 +1,17 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoService lottoService = new LottoService();
+        int moneyInput = lottoService.moneyInput();
+        List<Lotto> lottos = lottoService.lottoIssuance(lottoService.lottoCount(moneyInput));
+        lottoService.lottosPrint(lottos);
+        int[] winningNumberInput = lottoService.winningNumberInput();
+        int bonusNumber = lottoService.bonusNumberInput();
+        lottoService.lottoResult(lottos, winningNumberInput, bonusNumber);
+        lottoService.lottoResultPrint(moneyInput);
     }
 }

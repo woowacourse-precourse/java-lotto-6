@@ -7,9 +7,9 @@ import lotto.view.OutputView;
 public class LottoController {
 
     public void run() {
-        OutputView.printBuyLottoPromptMessage();
-        int buyAmount = InputView.readLottoBuyAmount();
-        LottoBuyer lottoBuyer = new LottoBuyer(buyAmount);
+        OutputView.printReadCashMessage();
+        int cash = InputView.readCash();
+        LottoBuyer lottoBuyer = new LottoBuyer(cash);
     }
 
 }

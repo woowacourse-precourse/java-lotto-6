@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 
 public class ExceptionHandler {
 
-    public static <T, R> R handle(Function<T, R> function, T t) {
+    public static <T, R> R handle(final Function<T, R> function, final T t) {
         try {
             return function.apply(t);
         } catch (IllegalArgumentException e) {
@@ -15,7 +15,7 @@ public class ExceptionHandler {
         }
     }
 
-    public static <T, U, R> R handle(BiFunction<T, U, R> function, T t, U u) {
+    public static <T, U, R> R handle(final BiFunction<T, U, R> function, final T t, final U u) {
         try {
             return function.apply(t, u);
         } catch (IllegalArgumentException e) {
@@ -24,7 +24,7 @@ public class ExceptionHandler {
         }
     }
 
-    public static <T> T handle(Supplier<T> supplier) {
+    public static <T> T handle(final Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
@@ -33,7 +33,7 @@ public class ExceptionHandler {
         }
     }
 
-    private static void printExceptionMessage(IllegalArgumentException e) {
+    private static void printExceptionMessage(final IllegalArgumentException e) {
         System.out.println();
         System.out.println(e.getMessage());
         System.out.println();

@@ -16,7 +16,7 @@ public class LottoStatistics {
     private int bonusNumber;
     private LottoService lottoService;
 
-    private final Map<LottoRank, Long> winCategory;
+    private final Map<LottoRank, Long> winningResult;
     private final double totalRate;
 
     public LottoStatistics(List<Lotto> userLottos, List<Integer> winningNumbers,
@@ -26,12 +26,12 @@ public class LottoStatistics {
         this.winningNumbers = Collections.unmodifiableList(winningNumbers);
         this.bonusNumber = bonusNumber;
 
-        winCategory = calculateWinCategory();
+        winningResult = calculateWinCategory();
         totalRate = calculateRateOfReturn();
     }
 
-    public Map<LottoRank, Long> getWinCategory() {
-        return winCategory;
+    public Map<LottoRank, Long> getWinningResult() {
+        return winningResult;
     }
 
     public double getTotalRate() {
@@ -45,7 +45,7 @@ public class LottoStatistics {
     }
 
     private long calculateTotalRevenue() {
-        return winCategory.entrySet().stream()
+        return winningResult.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }

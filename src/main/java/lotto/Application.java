@@ -22,7 +22,7 @@ public class Application {
         final int bonusNumber = lottoController.getUserInputForBonusNumber(winningNumbers);
 
         LottoStatistics statistics = new LottoStatistics(lottos, winningNumbers, bonusNumber);
-        OutputView.presentResults(statistics.getWinCategory(), statistics.getTotalRate());
+        OutputView.presentResults(statistics.getWinningResult(), statistics.getTotalRate());
 
     }
 }

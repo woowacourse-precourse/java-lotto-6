@@ -11,10 +11,10 @@ import lotto.domain.Lotto;
 
 public class InputValidator {
 
-  private static void inputBlankCheck(String input) {
-    if (input.isBlank()) {
-      throw new IllegalArgumentException(ExceptionMessage.BLANK);
-    }
+  public static int validatePurchaseAmount(String input) {
+    int amount = inputNumberCheck(input);
+    inputPriceCheck(amount);
+    return amount;
   }
 
   private static int inputNumberCheck(String input) {
@@ -23,6 +23,12 @@ public class InputValidator {
       return Integer.parseInt(input);
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException(ExceptionMessage.NON_NUMBER);
+    }
+  }
+
+  private static void inputBlankCheck(String input) {
+    if (input.isBlank()) {
+      throw new IllegalArgumentException(ExceptionMessage.BLANK);
     }
   }
 
@@ -48,12 +54,6 @@ public class InputValidator {
     if (!input.matches(RegexpUtil.ONLY_NUMBER_AND_COMMA_CHECK)) {
       throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER);
     }
-  }
-
-  public static int validatePurchaseAmount(String input) {
-    int amount = inputNumberCheck(input);
-    inputPriceCheck(amount);
-    return amount;
   }
 
   public static List<Integer> validateWinningNumbers(String input) {

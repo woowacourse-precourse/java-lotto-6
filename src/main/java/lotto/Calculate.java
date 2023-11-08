@@ -1,8 +1,41 @@
 package lotto;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Arrays;
+import java.util.function.BiPredicate;
+
+enum WinningDetails {
+    FIRST(3, 5_000,
+            (matchCount, isBonusNumberMatch) -> matchCount == 3),
+    SECOND(4, 50_000,
+            (matchCount, isBonusNumberMatch) -> matchCount == 4),
+    THIRD(5, 1_500_000,
+            (matchCount, isBonusNumberMatch) -> matchCount == 5 && !isBonusNumberMatch),
+    FOURTH(5, 30_000_000,
+            (matchCount, isBonusNumberMatch) -> matchCount == 5 && isBonusNumberMatch),
+    FIFTH(6, 2_000_000_000,
+            (matchCount, isBonusNumberMatch) -> matchCount == 6),
+    MISS(0, 0,
+            (matchCount, isBonusNumberMatch) -> matchCount < 3);
+
+    private int matchCount;
+    private long prize;
+    private BiPredicate<Integer, Boolean> matchingPrize;
+
+    WinningDetails (int matchCount, long prize, BiPredicate<Integer, Boolean> matchingPrize) {
+        this.matchCount = matchCount;
+        this.prize = prize;
+        this.matchingPrize = matchingPrize;
+    }
+
+    public WinningDetails getRank(final int matchCount, Boolean containBonusNumber) {
+        return Arrays.stream(WinningDetails.values())
+                .filter(rank -> rank.matchingPrize.test(matchCount, containBonusNumber))
+                .findAny()
+                .orElse(MISS);
+
+    }
+}
 
 public class Calculate {
     private List<Lotto> lottos;

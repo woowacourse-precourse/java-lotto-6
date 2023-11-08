@@ -24,10 +24,11 @@ public class Lotto {
             throw new IllegalArgumentException("[Error] 당첨 번호와 중복되는 숫자를 입력하셨습니다.");
         }
     }
-    public void winningNum(List<Integer> numbers){
+
+    public void winningNum(List<Integer> numbers) {
         List<Integer> notDuplicateNumber = new ArrayList<>();
-        for (int i=0; i<numbers.size();i++){
-            if (notDuplicateNumber.contains(numbers.get((i)))){
+        for (int i = 0; i < numbers.size(); i++) {
+            if (notDuplicateNumber.contains(numbers.get((i)))) {
                 throw new IllegalArgumentException("[Error] 당첨 번호에 중복된 숫자가 있습니다.");
             }
             notDuplicateNumber.add(numbers.get(i));

@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class Winning {
-    public static int winningBonusNum(List<Integer> numbers, int bonus) {
+    public List<Integer> winningNum(List<Integer> numbers, int bonus) {
         while (true) {
             try {
                 numbers.clear();
@@ -17,12 +17,14 @@ public class Winning {
                     numbers.add(Integer.parseInt(winningNumbers[i]));
                 }
                 Lotto lotto = new Lotto(numbers);
-                break;
+                return numbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
+    public int bonusNum(List<Integer> numbers, int bonus) {
         while (true) {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");

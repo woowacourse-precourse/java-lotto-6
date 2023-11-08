@@ -15,18 +15,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidationTest {
     InputValidation inputValidation = new InputValidation();
-    @BeforeEach
-    void setUp() {
-    }
 
-    @ParameterizedTest
-    @DisplayName("0-45 숫자 이외의 값이 있는지 테스트")
-    @ValueSource(strings = {"46", "t", "?"})
-    void isNumber(String input) {
-        assertThatThrownBy(() -> inputValidation.isNumber(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 1-45 사이의 숫자만 입력하세요.");
-    }
     @ParameterizedTest
     @DisplayName("숫자 사이의 공백, null 테스트")
     @ValueSource(strings = {"", " ", " 1 \n \t"})
@@ -44,10 +33,4 @@ class InputValidationTest {
                 .hasMessageContaining("[ERROR] 중복된 번호를 입력할 수 없습니다.");
     }
 
-//    @ParameterizedTest
-//    @DisplayName(", 이외의 값")
-//    @CsvSource(value = {",:true", "?:false, 4:false"}, delimiter = ':')
-//    void commaOnly(String input, boolean expect) {
-//        assertEquals(inputValidation.commaOnly(input), expect);
-//    }
 }

@@ -12,7 +12,7 @@ public class EntireMessage {
     //InputView
     public static final String START_GAME_MSG = "구입금액을 입력해 주세요. ";
     public static final String WINNING_NUMBERS_MSG = "당첨 번호를 입력해 주세요.";
-    public static final String BONUS_NUMBER_MSG = "보너스 번호를 입력해 주세요: ";
+    public static final String BONUS_NUMBER_MSG = "보너스 번호를 입력해 주세요.";
     public static final String INPUT_ERROR_MSG_BASIC = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String INPUT_ERROR_MSG_BONUS = "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String INPUT_ERROR_MSG_FORMAT = "올바른 숫자를 입력해 주세요.";

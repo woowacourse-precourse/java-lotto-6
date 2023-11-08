@@ -3,6 +3,7 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.util.Converter;
 
@@ -26,5 +27,11 @@ public class LottoService {
 
     private List<Integer> createLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public List<String> createBuyResults() {
+        return lottos.stream()
+                .map(Lotto::getFormalizedNumbers)
+                .collect(Collectors.toList());
     }
 }

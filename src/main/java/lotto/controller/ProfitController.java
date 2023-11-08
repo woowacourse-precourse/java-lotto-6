@@ -22,14 +22,14 @@ public class ProfitController {
         Map<String, Integer> compareResult = displayStatisticReport(winningNumbers, bonusNumber);
         long totalPrize = lottoBundle.totalPrize(compareResult);
         double profit = calculateProfit(totalPrize);
-        OutputView.getProfit(profit);
+        OutputView.displayProfit(profit);
     }
 
     private Map<String, Integer> displayStatisticReport(final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
-        OutputView.winningStatistics();
-        OutputView.separator();
+        OutputView.displayWinningStatistics();
+        OutputView.displaySeparator();
         Map<String, Integer> compareResult = lottoComparator(winningNumbers, bonusNumber);
-        compareResult.forEach(OutputView::getResult);
+        compareResult.forEach(OutputView::displayResult);
         return compareResult;
     }
 

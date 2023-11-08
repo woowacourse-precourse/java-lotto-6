@@ -13,31 +13,31 @@ public class OutputView {
     private static final String COUNT = "개";
     private static final String HYPHEN = " - ";
 
-    public static void getPurchase(final PurchaseAmount amount) {
+    public static void displayPurchaseAmount(final PurchaseAmount amount) {
         System.out.println(LINE + formatPurchase(amount));
-    }
-
-    public static void getLottoNumbers(LottoDTO lottoDTO) {
-        System.out.println(lottoDTO.getNumbers());
     }
 
     private static String formatPurchase(PurchaseAmount amount) {
         return String.format(PURCHASE, amount.exchangeAmount());
     }
 
-    public static void winningStatistics() {
+    public static void displayLottoNumbers(LottoDTO lottoDTO) {
+        System.out.println(lottoDTO.getNumbers());
+    }
+
+    public static void displayWinningStatistics() {
         System.out.println(LINE + WINNING_STATISTICS);
     }
 
-    public static void separator() {
+    public static void displaySeparator() {
         System.out.println(SEPARATOR);
     }
 
-    public static void getResult(final String key, final Integer value) {
+    public static void displayResult(final String key, final Integer value) {
         System.out.println(key + HYPHEN + value + COUNT);
     }
 
-    public static void getProfit(final double profit) {
+    public static void displayProfit(final double profit) {
         System.out.printf((PROFIT_RATE), profit);
     }
 }

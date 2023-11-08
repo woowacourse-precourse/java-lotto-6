@@ -58,16 +58,16 @@ public class LottoBundle {
         return result.map(lottoResult -> (long) lottoResult.getPrize() * entry.getValue()).orElse(LONG_ZERO);
     }
 
+    private void updateWinningResult(Optional<String> point, Map<String, Integer> winningResult) {
+        point.ifPresent(s ->
+                winningResult.put(s, winningResult.getOrDefault(s, DEFAULT_VALUE) + INCREMENT_VALUE));
+    }
+
     private Map<String, Integer> initResult() {
         Map<String, Integer> initResult = new LinkedHashMap<>();
         for (LottoResult result : LottoResult.values()) {
             initResult.put(result.getDescription(), DEFAULT_VALUE);
         }
         return initResult;
-    }
-
-    private void updateWinningResult(Optional<String> point, Map<String, Integer> winningResult) {
-        point.ifPresent(s ->
-                winningResult.put(s, winningResult.getOrDefault(s, DEFAULT_VALUE) + INCREMENT_VALUE));
     }
 }

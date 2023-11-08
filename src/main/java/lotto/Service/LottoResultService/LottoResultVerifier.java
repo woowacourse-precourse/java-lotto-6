@@ -13,7 +13,6 @@ public class LottoResultVerifier {
     private List<Integer> winningNumber;
     private final LottoWinningResult winningResultList;
     private final LottoSet lottoSet;
-
     private final PromptService Prompt;
 
 
@@ -53,9 +52,7 @@ public class LottoResultVerifier {
     }
 
     private boolean matchingBonusCount(Lotto lotto) {
-        long count = lotto.getNumbers().stream()
-                .filter(number -> Objects.equals(number, bonusNumber))
-                .count();
+        long count = lotto.getNumbers().stream().filter(number -> Objects.equals(number, bonusNumber)).count();
         return count > 0;
     }
 

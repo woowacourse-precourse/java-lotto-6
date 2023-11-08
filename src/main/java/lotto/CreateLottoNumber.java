@@ -2,19 +2,21 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreateLottoNumber {
 
     private int ticket_count;
-
     public PriceValidation priceValidation;
     private List<Integer> numbers;
     public List<Lotto> lotto;
-
-    public List<Integer> count;
+    public List<Double> count;
 
     public CreateLottoNumber(int total_lotto_price) {
+        numbers = new ArrayList<>();
+        lotto = new ArrayList<>();
+        count = new ArrayList<>();
         priceValidation = new PriceValidation(total_lotto_price);
         ticket_count = priceValidation.createCount();
         createRandomNumber(ticket_count);
@@ -28,9 +30,9 @@ public class CreateLottoNumber {
         }
     }
 
-    public void compare(List<Integer> winningNum, int bonus_num) {
+    public void compare(List<Integer> winning_num, int bonus_num) {
         for (Lotto lotto1 : lotto) {
-            count.add(lotto1.compare(winningNum, bonus_num));
+            count.add(lotto1.compare(winning_num, bonus_num));
         }
 
     }

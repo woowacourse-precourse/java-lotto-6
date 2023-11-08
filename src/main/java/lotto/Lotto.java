@@ -34,16 +34,20 @@ public class Lotto {
         }
     }
 
-    public int compare(List<Integer> winningNum, int bonus_num) {
-        int count = 0;
-
-        for(int i =0 ; i < 6; i++) {
-            if(Objects.equals(numbers.get(i), winningNum.get(i))) {
-                count++;
+    public double compare(List<Integer> winning_num, int bonus_num) {
+        double count = 0;
+        for(int i = 0; i < 6; i++) {
+            if(numbers.get(i) == bonus_num) {
+                count += 0.5;
             }
         }
-
+        for(int i =0; i < 6; i++) {
+            for(int j = 0; j < 6; j++) {
+                if(Objects.equals(numbers.get(i), winning_num.get(j))) {
+                    count++;
+                }
+            }
+        }
         return count;
     }
-
 }

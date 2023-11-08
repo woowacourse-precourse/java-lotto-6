@@ -1,19 +1,24 @@
 package lotto;
 
-public class Result {
-  int fifth_winning = 0;
-  int fourth_winning = 0;
-  int third_winning = 0;
-  int second_winning = 0;
-  int first_winning = 0;
-  double total_rate = 0;
+import java.util.List;
 
-  public void calculate(int count) {
-    if(count == 3) fifth_winning++;
-    else if(count == 4) fourth_winning++;
-    else if(count == 5) third_winning++;
-    else if(count == 5 || ) second_winning++;
-    else if(count == 6) first_winning++;
+public class Result {
+  private int fifth_winning = 0;
+  private int fourth_winning = 0;
+  private int third_winning = 0;
+  private int second_winning = 0;
+  private int first_winning = 0;
+  private double total_rate = 0;
+
+  public void calculate(List<Double> count) {
+
+    for (Double v : count) {
+      if(v == 3 || v == 3.5) fifth_winning++;
+      else if(v == 4 || v == 4.5) fourth_winning++;
+      else if(v == 5) third_winning++;
+      else if(v == 5.5) second_winning++;
+      else if(v == 6 || v == 6.5) first_winning++;
+    }
   }
   public void result() {
     System.out.println("3개 일치 (5000원) - " + fifth_winning + "개");

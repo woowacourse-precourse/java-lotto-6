@@ -19,6 +19,9 @@ public class LottoAmountofMoney {
     }
 
     private void validate(String lottoAmountofMoney) {
+        validateLottoMoneyIsNumber(lottoAmountofMoney);
+    }
+    private void validateLottoMoneyIsNumber(String lottoAmountofMoney){
         if (!Pattern.matches(REGEX_DIGIT.getValue(), lottoAmountofMoney)) {
             throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + INPUTCONTAINNOTNUMBER.getValue());
         }

@@ -7,14 +7,14 @@ public enum Prize {
 
     NONE(0, 0, (matchCount, isBonus) -> matchCount < 3),
 
-    FIFTH(5000, 3, (matchCount, isBonus) -> matchCount == 3),
+    FIFTH(5_000, 3, (matchCount, isBonus) -> matchCount == 3),
 
-    FOURTH(50000, 4, (matchCount, isBonus) -> matchCount == 4),
+    FOURTH(50_000, 4, (matchCount, isBonus) -> matchCount == 4),
 
-    THIRD(1500000, 5, (matchCount, isBonus) -> matchCount == 5 && !isBonus),
-    SECOND(30000000, 5, (matchCount, isBonus) -> matchCount == 5 && isBonus),
+    THIRD(1_500_000, 5, (matchCount, isBonus) -> matchCount == 5 && !isBonus),
+    SECOND(30_000_000, 5, (matchCount, isBonus) -> matchCount == 5 && isBonus),
 
-    FIRST(2000000000, 6, (matchCount, isBonus) -> matchCount == 6);
+    FIRST(2_000_000_000, 6, (matchCount, isBonus) -> matchCount == 6);
 
 
     private final int prize;

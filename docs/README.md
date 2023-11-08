@@ -107,3 +107,7 @@
         <td><b>@YejiGong</b></td>
     </tr>
 </table>
+
+### 7. 패키지 구조
+
+![img.png](img.png)

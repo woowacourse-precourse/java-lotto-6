@@ -1,7 +1,8 @@
-package lotto;
+package lotto.domain.lottoResult;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.domain.PurchaseAmount;
 
 public class LottoResultBoard {
 

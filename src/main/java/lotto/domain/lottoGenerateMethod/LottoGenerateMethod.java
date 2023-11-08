@@ -1,6 +1,6 @@
 package lotto.domain.lottoGenerateMethod;
 
-import lotto.Lotto;
+import lotto.domain.lottoTicket.Lotto;
 
 public interface LottoGenerateMethod {
 

@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.Lotto;
-import lotto.LottoRank;
-import lotto.LottoResultBoard;
-import lotto.LottoTickets;
-import lotto.PurchaseAmount;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.lottoResult.LottoRank;
+import lotto.domain.lottoResult.LottoResultBoard;
+import lotto.domain.lottoTicket.Lotto;
+import lotto.domain.lottoTicket.LottoTickets;
 
 public class OutputView {
 

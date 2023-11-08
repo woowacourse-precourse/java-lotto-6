@@ -1,8 +1,12 @@
-package lotto;
+package lotto.domain.lottoResult;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import lotto.domain.lottoTicket.BonusNumber;
+import lotto.domain.lottoTicket.Lotto;
+import lotto.domain.lottoTicket.LottoTickets;
+import lotto.domain.lottoTicket.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

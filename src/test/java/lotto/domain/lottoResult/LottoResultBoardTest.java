@@ -1,10 +1,11 @@
-package lotto;
+package lotto.domain.lottoResult;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.PurchaseAmount;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -46,7 +47,6 @@ class LottoResultBoardTest {
         long thirdMatchCount = lottoResultBoard.findMatchCount(LottoRank.THIRD);
         long fourthMatchCount = lottoResultBoard.findMatchCount(LottoRank.FOURTH);
         long fifthMatchCount = lottoResultBoard.findMatchCount(LottoRank.FIFTH);
-
 
         // then
         assertEquals(1, firstMatchCount);

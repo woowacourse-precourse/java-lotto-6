@@ -1,8 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import lotto.domain.lottoGenerateMethod.LottoAutoGenerateMethod;
+import lotto.domain.lottoGenerateMethod.LottoTicketsGenerator;
+import lotto.domain.lottoTicket.LottoTickets;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,9 +1,10 @@
-package lotto;
+package lotto.domain.lottoTicket;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.lottoResult.LottoRank;
 
 public class LottoTickets implements Iterable<Lotto> {
 

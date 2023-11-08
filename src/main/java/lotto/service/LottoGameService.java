@@ -1,6 +1,16 @@
-package lotto;
+package lotto.service;
 
+import lotto.domain.PurchaseAmount;
 import lotto.domain.lottoGenerateMethod.LottoAutoGenerateMethod;
+import lotto.domain.lottoGenerateMethod.LottoTicketsGenerator;
+import lotto.domain.lottoResult.LottoResultBoard;
+import lotto.domain.lottoResult.LottoResultGenerator;
+import lotto.domain.lottoTicket.BonusNumber;
+import lotto.domain.lottoTicket.Lotto;
+import lotto.domain.lottoTicket.LottoTickets;
+import lotto.domain.lottoTicket.WinningLotto;
+import lotto.utils.LottoParser;
+import lotto.utils.NumberParser;
 
 public class LottoGameService {
 

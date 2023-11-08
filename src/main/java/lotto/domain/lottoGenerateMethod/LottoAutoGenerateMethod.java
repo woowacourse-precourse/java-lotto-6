@@ -2,7 +2,7 @@ package lotto.domain.lottoGenerateMethod;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.lottoTicket.Lotto;
 
 public class LottoAutoGenerateMethod implements LottoGenerateMethod {
 

@@ -1,7 +1,9 @@
-package lotto;
+package lotto.utils;
 
 import java.util.function.IntFunction;
 import java.util.stream.Stream;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.lottoTicket.BonusNumber;
 import org.junit.platform.commons.util.StringUtils;
 
 public class NumberParser {

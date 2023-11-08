@@ -1,5 +1,12 @@
-package lotto;
+package lotto.controller;
 
+import lotto.domain.PurchaseAmount;
+import lotto.domain.lottoResult.LottoResultBoard;
+import lotto.domain.lottoTicket.BonusNumber;
+import lotto.domain.lottoTicket.Lotto;
+import lotto.domain.lottoTicket.LottoTickets;
+import lotto.domain.lottoTicket.WinningLotto;
+import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

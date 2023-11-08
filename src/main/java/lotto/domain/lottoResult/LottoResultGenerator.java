@@ -1,9 +1,11 @@
-package lotto;
+package lotto.domain.lottoResult;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.lottoTicket.LottoTickets;
+import lotto.domain.lottoTicket.WinningLotto;
 
 public class LottoResultGenerator {
 

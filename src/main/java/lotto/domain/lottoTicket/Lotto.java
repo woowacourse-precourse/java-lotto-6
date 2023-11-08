@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain.lottoTicket;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.utils.NumberUtils;
 
 public class Lotto implements Comparable<Lotto>, Iterable<Integer> {
     public static final String DUPLICATE_EXCEPTION = "로또는 중복된 숫자를 가질 수 없습니다";

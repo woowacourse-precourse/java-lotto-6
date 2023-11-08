@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain.lottoTicket;
+
+import lotto.utils.NumberUtils;
 
 public record BonusNumber(int bonusNumber) {
 

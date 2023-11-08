@@ -1,9 +1,10 @@
-package lotto;
+package lotto.utils;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lotto.domain.lottoTicket.Lotto;
 import org.junit.platform.commons.util.StringUtils;
 
 public class LottoParser {

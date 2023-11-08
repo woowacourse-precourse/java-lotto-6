@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain.lottoTicket;
+
+import lotto.domain.lottoResult.LottoRank;
 
 public class WinningLotto {
 

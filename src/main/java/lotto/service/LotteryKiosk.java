@@ -7,8 +7,8 @@ public class LotteryKiosk {
     private static final int UNIT_MONEY = 1000;
     private final LottoGenerator lottoGenerator;
 
-    public LotteryKiosk(LottoGenerator lottoGenerator) {
-        this.lottoGenerator = lottoGenerator;
+    public LotteryKiosk() {
+        this.lottoGenerator = new LottoGenerator();
     }
 
     public Lottos publish(int money) {

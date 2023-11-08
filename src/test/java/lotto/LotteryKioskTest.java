@@ -7,14 +7,13 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.service.LotteryKiosk;
-import lotto.service.LottoGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LotteryKioskTest {
-    private final LotteryKiosk lotteryKiosk = new LotteryKiosk(new LottoGenerator());
+    private final LotteryKiosk lotteryKiosk = new LotteryKiosk();
 
     @ParameterizedTest
     @ValueSource(ints = {500, 2300})

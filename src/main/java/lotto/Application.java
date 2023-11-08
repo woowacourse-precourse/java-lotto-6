@@ -88,6 +88,10 @@ public class Application {
         return totalPrize;
     }
 
+    public static void printProfitRate(long totalPrize, long budget) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", (double) totalPrize / budget);
+    }
+
     public static void main(String[] args) {
         int budget = inputBudget();
         List<Lotto> lottos = buyLottos(budget);
@@ -97,5 +101,6 @@ public class Application {
                 .map(lotto -> lotto.getLottoResult(winningLotto, bonusNumber))
                 .toList();
         long totalPrize = getTotalPrize(lottoResults);
+        printProfitRate(totalPrize, budget);
     }
 }

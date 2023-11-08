@@ -27,6 +27,7 @@ public class LottoGame {
         LottoPurchaseAmount lottoPurchaseAmount = createAmount();
         Lottoes lottoes = createLottoes(lottoPurchaseAmount.getLottoCount());
         WinningNumbers winningNumbers = createNumbers();
+        registerBonusNumber(winningNumbers);
         LottoResult lottoResult = createLottoResult(lottoes, winningNumbers);
         printResult(lottoResult, lottoResult.getYieldRate(lottoPurchaseAmount.getAmount()));
     }
@@ -62,8 +63,7 @@ public class LottoGame {
     private WinningNumbers createNumbers() {
         try {
             List<WinningNumber> winningNumbers = createWinningNumbers();
-            WinningNumber bonusNumber = createBonusNumber();
-            return new WinningNumbers(winningNumbers, bonusNumber);
+            return new WinningNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createNumbers();
@@ -93,10 +93,20 @@ public class LottoGame {
                 .toList();
     }
 
-    private WinningNumber createBonusNumber() {
+    private void registerBonusNumber(WinningNumbers winningNumbers) {
         try {
-            int bonusNumber = createBonusNumberFromUser();
-            return new WinningNumber(bonusNumber);
+            winningNumbers.registerBonusNumber(createBonusNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            registerBonusNumber(winningNumbers);
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private int createBonusNumber() {
+        try {
+            return createBonusNumberFromUser();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createBonusNumber();

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static common.enumtype.ErrorCode.BONUS_NUMBER_ALREADY_REGISTER;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_CONTAIN_BONUS_NUMBER;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_DUPLICATED;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_INVALID_SIZE;
@@ -7,8 +8,10 @@ import static java.util.stream.Collectors.toList;
 
 import common.enumtype.ResultType;
 import common.exception.InvalidArgumentException;
+import common.exception.InvalidStatementException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class WinningNumbers {
@@ -16,12 +19,19 @@ public class WinningNumbers {
     private static final int VALID_SIZE = 6;
 
     private final List<WinningNumber> winningNumbers;
-    private final WinningNumber bonusNumber;
+    private WinningNumber bonusNumber;
 
-    public WinningNumbers(List<WinningNumber> winningNumbers, WinningNumber bonusNumber) {
+    public WinningNumbers(List<WinningNumber> winningNumbers) {
         validateNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
+    }
 
+    public void registerBonusNumber(int number) {
+        if (!isNullBonusNumber()) {
+            throw new InvalidStatementException(BONUS_NUMBER_ALREADY_REGISTER);
+        }
+
+        WinningNumber bonusNumber = new WinningNumber(number);
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
@@ -74,6 +84,10 @@ public class WinningNumbers {
     private boolean isUniqueNumbers(List<WinningNumber> numbers) {
         Set<WinningNumber> uniqueNumbers = new HashSet<>(numbers);
         return uniqueNumbers.size() == numbers.size();
+    }
+
+    private boolean isNullBonusNumber() {
+        return Objects.isNull(this.bonusNumber);
     }
 
     private void validateBonusNumber(WinningNumber bonusNumber) {

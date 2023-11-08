@@ -10,6 +10,7 @@ public class PurchaseAmount {
     private final int lottoQuantity;
 
     public PurchaseAmount(int purchaseAmount) {
+        System.out.println("이상이상");
         rangeValidate(purchaseAmount);
         unitValidate(purchaseAmount);
 

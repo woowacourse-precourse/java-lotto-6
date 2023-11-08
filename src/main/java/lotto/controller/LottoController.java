@@ -40,6 +40,7 @@ public class LottoController {
     private void runInputPurchaseAmount() {
         try {
             outputView.printPurchaseAmountMessage();
+
             purchaseAmount = new PurchaseAmount(Integer.parseInt(inputView.input()));
         } catch (NumberFormatException e) {
             outputView.printException(VALUE_IS_NOT_CONVERT_INTEGER.getMessage());

@@ -4,20 +4,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;;
+import java.util.List;
+import java.util.Map;;
 
 import lotto.config.WinningResultConfig;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 class WinningResultTest {
     private static List<List<Integer>> userLottoNumbers;
     private static List<Integer> equalCounts;
     private static List<String> bonus;
     private static List<Result> results = new ArrayList<>();
-    private static WinningResult winningResult = new WinningResult();
+    private WinningResult winningResult;
 
     @DisplayName("model_Winning_result_초기화")
     @BeforeAll
@@ -40,12 +38,23 @@ class WinningResultTest {
         }
     }
 
+    @DisplayName("model_WinningResult_object_매번_초기화")
+    @Test
+    @BeforeEach
+    void model_WinningResult_object_inialize_everytime() {
+        winningResult = new WinningResult();
+    }
+
     @DisplayName("model_WinningResult_object_생성")
     @Test
     @Order(1)
     void model_WinningResult_object_create() {
+        List<WinningResultConfig> keyResult = new ArrayList<>();
+        for (Map.Entry<WinningResultConfig, List<Result>> results : winningResult.getWinningResults().entrySet()) {
+            keyResult.add(results.getKey());
+        }
         assertAll(
-                () -> assertThat(winningResult.getWinningResults().keySet())
+                () -> assertThat(keyResult)
                         .containsExactly(WinningResultConfig.THREE, WinningResultConfig.FOUR, WinningResultConfig.FIVE, WinningResultConfig.FIVE_AND_BONUS, WinningResultConfig.SIX),
                 () -> assertThat(winningResult.getWinningResults().values().stream()
                         .filter(List::isEmpty).count()).isEqualTo(5)

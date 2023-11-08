@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.dto.LottoDto;
 import lotto.service.LottoService;
-import lotto.view.InputValidator;
+import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

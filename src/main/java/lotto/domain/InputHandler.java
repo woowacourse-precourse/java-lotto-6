@@ -5,41 +5,41 @@ import lotto.Validator;
 import lotto.constants.ErrorMessage;
 import lotto.constants.StaticMessage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
 public class InputHandler {
     // TODO : 사용자의 입력에 대한 처리
     private static final String delimiter = ",";
 
-    public static String askNumber(StaticMessage message) {
+    public static int askNumber(StaticMessage message) {
         do {
             try {
                 System.out.println(message);
-                return Console.readLine();
+                return convertStringToInteger(Console.readLine());
             } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException();
+                System.out.println(ErrorMessage.NUMBER_FORMAT);
             }
         } while (true);
     }
 
-    public static User askPayment() {
-        String input = "";
+    public static String[] askWinningNumbers() {
         do {
+            System.out.println(StaticMessage.INPUT_WINNING_NUMBERS);
             try {
-                System.out.println("구입금액을 입력해 주세요.");
-                input = Console.readLine();
-                Validator.validatePayment(input);
-                return new User(input);
+                return convertStringToArray(Console.readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.NUMBER_FORMAT.getMessage());
             }
         } while (true);
     }
 
-    public static String[] askWinningNumbers() {
-        System.out.println(StaticMessage.INPUT_WINNING_NUMBERS);
-        return convertStringToArray(Console.readLine());
+//    public static User askPayment() {
+//        String input = "";
 //        do {
-//            System.out.println("당첨 번호를 입력해 주세요.");
 //            try {
+//                System.out.println("구입금액을 입력해 주세요.");
 //                input = Console.readLine();
 //                Validator.validatePayment(input);
 //                return new User(input);
@@ -47,10 +47,18 @@ public class InputHandler {
 //                System.out.println(ErrorMessage.NUMBER_FORMAT.getMessage());
 //            }
 //        } while (true);
-//        System.out.println("당첨 번호를 입력해 주세요.");
-//        return Console.readLine();
+//    }
 
-    }
+//    public static String[] askWinningNumbers() {
+//        do {
+//            System.out.println(StaticMessage.INPUT_WINNING_NUMBERS);
+//            try {
+//                return convertStringToArray(Console.readLine());
+//            } catch (IllegalArgumentException e) {
+//                System.out.println(ErrorMessage.NUMBER_FORMAT.getMessage());
+//            }
+//        } while (true);
+//    }
 
 //    public static void inputController(String input) {
 //        //
@@ -73,10 +81,17 @@ public class InputHandler {
     }
 
     public static int convertStringToInteger (String input) {
+        if (!Validator.containOnlyDigitTest(input)) {
+            throw new IllegalArgumentException();
+        }
         return Integer.parseInt(input);
     }
 
     public static String[] convertStringToArray (String input) {
+        List<Integer> numbers = new ArrayList<>();
+//        for (String input: inputNumbers) {
+//
+//        }
         return input.split(delimiter);
     }
 }

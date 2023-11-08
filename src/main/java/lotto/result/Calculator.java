@@ -23,4 +23,8 @@ public class Calculator {
         double profitRate = sum * PERCENT_BASE / purchasedPrice;
         return Math.round(profitRate * RATE) / RATE;
     }
+
+    public void getStatistics(Map<Grade, Integer> resultMap) {
+        OutputMessage.winningStatistics(resultMap);
+    }
 }

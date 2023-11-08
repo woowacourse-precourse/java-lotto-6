@@ -7,7 +7,6 @@ import lotto.input.InputHandler;
 import lotto.Lotto;
 import lotto.matching.Matcher;
 import lotto.result.Result;
-import lotto.result.StatisticsProcessor;
 
 public class LottoGameController {
 
@@ -15,7 +14,6 @@ public class LottoGameController {
     private final Matcher matcher = new Matcher();
     private final InputHandler inputHandler = new InputHandler();
     private final Calculator calculator = new Calculator();
-    private final StatisticsProcessor statisticsProcessor = new StatisticsProcessor();
 
     public void run() {
         int purchasedPrice = inputHandler.getPurchasedPrice();
@@ -25,7 +23,7 @@ public class LottoGameController {
 
         Result result = matcher.matchWinning(winningLotto, lottoList, bonus);
 
-        statisticsProcessor.getStatistics(result.getMap());
+        calculator.getStatistics(result.getMap());
         calculator.getProfitRate(result.getMap(), purchasedPrice);
     }
 }

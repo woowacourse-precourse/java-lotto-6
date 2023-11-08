@@ -5,6 +5,10 @@ import java.util.List;
 import lotto.Constants.IntConstants;
 
 public class LottoGenerator {
+    private LottoGenerator() {
+
+    }
+
     public static List<Integer> sixNumber() {
         return Randoms.pickUniqueNumbersInRange(IntConstants.MIN_RANGE.getValue(),
                 IntConstants.MAX_RANGE.getValue(),

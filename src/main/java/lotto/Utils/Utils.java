@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class Utils {
     private Utils() {
+        
     }
 
     public static List<Integer> getSortedList(List<Integer> input) {

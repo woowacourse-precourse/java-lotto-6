@@ -156,8 +156,8 @@ public class LottoService {
 
     private LottoRank getLottoRank(int matchCount, boolean isMatchBonus) {
         for (LottoRank lottoRank : LottoRank.values()) {
-            if (matchCount == 5 && lottoRank.getMatchCount() == matchCount && isMatchBonus) {
-                return LottoRank.SECOND;
+            if (matchCount == 5 && lottoRank.getMatchCount() == matchCount && !isMatchBonus) {
+                return LottoRank.THIRD;
             } else if (lottoRank.getMatchCount() == matchCount) {
                 return lottoRank;
             }

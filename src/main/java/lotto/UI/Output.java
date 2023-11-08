@@ -44,4 +44,10 @@ public class Output {
             fifth++;
         }
     }
+
+    public  void printRateOfReturn(int price){
+       double rateOfReturn = ((2000000000*first + 30000000*second + 1500000*third + 50000*fourth + 5000*fifth)/price)*100;
+       rateOfReturn = Math.round(rateOfReturn *100) / 100.0;
+        System.out.println("총 수익률은 "+rateOfReturn+"%입니다.");
+    }
 }

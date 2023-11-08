@@ -22,8 +22,8 @@ public class InputNum {
     private List<Integer> checkLottoNumbers(String inputLottoNumber) {
         String[] inputLottoNumbers = inputLottoNumber.split(",");
         checkLottoNumberComma(inputLottoNumber);
-        List<Integer> lottoNumbers = checkLottoNumbersToInt(inputLottoNumbers);
         checkLottoNumberSize(inputLottoNumbers);
+        List<Integer> lottoNumbers = checkLottoNumbersToInt(inputLottoNumbers);
         checkLottoNumberDup(inputLottoNumbers);
         checkLottoNumberRange(lottoNumbers);
         return lottoNumbers;

@@ -1,6 +1,7 @@
-package lotto;
+package lotto.model.winninglotto;
 
 import java.util.Set;
+import lotto.model.LottoRanking;
 
 public class HitCounter {
 

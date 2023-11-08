@@ -1,8 +1,11 @@
-package lotto;
+package lotto.model.winninglotto;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.model.Lotto;
+import lotto.model.LottoNumber;
+import lotto.model.LottoRanking;
 
 public class WinningLotto {
 

@@ -22,9 +22,9 @@ public class OutputView {
         System.out.println(ProgressMessage.INPUT_LOTTO_PURCHASE_PRICE_MESSAGE);
     }
 
-    public void printLottoResultMessage(PlayerLottosFormatter lottoResultFormatter) {
+    public void printPlayerLottoResultMessage(PlayerLottosFormatter playerLottosFormatter) {
         printNextLine();
-        System.out.println(lottoResultFormatter.toResultLottoMessage());
+        System.out.println(playerLottosFormatter.toResultLottoMessage());
     }
 
     public void printGameResultMessage(GameResultFormatter lottoStatisticsResultFormatter) {

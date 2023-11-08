@@ -28,7 +28,7 @@ public class LottoController {
     private void purchaseLottos() {
         PurchasePrice purchasePrice = ioManager.inputPurchasePrice();
         lottoService.saveLottos(purchasePrice);
-        outputView.printLottoResultMessage(lottoService.getPlayerLottoNumbers());
+        outputView.printPlayerLottoResultMessage(lottoService.getPlayerLottoNumbers());
     }
 
     private void inputWinningLotto() {

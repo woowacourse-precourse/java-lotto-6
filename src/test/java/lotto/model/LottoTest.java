@@ -61,4 +61,14 @@ class LottoTest {
         assertThat(lotto.matchNumbers(winningLotto)).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("로또에 숫자가 존재하면 true를 반환하는지 확인한다")
+    void containNumber() {
+        List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        assertThat(lotto.contains(1)).isTrue();
+        assertThat(lotto.contains(7)).isFalse();
+    }
+
 }

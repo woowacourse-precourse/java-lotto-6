@@ -3,18 +3,28 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private static final String ERROR_MESSAGE = "[ERROR]";
+
+    protected final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateSize(numbers);
+        validateRange(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            System.out.println(ERROR_MESSAGE + " 로또 번호는 총 6개여야 합니다.");
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateRange(List<Integer> numbers) {
+        boolean rangeCheck = numbers.stream().anyMatch(number -> number > 45 || number < 1);
+        if (rangeCheck) {
+            System.out.println(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
 }

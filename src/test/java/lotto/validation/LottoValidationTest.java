@@ -2,7 +2,6 @@ package lotto.validation;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -10,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoValidationTest {
 
+    LottoValidation lottoValidation = new LottoValidation();
     @Test
     void validateNull() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = "";
 
         assertThatThrownBy(() -> lottoValidation.validateNull(input))
@@ -22,7 +21,6 @@ class LottoValidationTest {
 
     @Test
     void validateGap() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = " 2000";
 
         assertThatThrownBy(() -> lottoValidation.validateGap(input))
@@ -32,7 +30,6 @@ class LottoValidationTest {
 
     @Test
     void validateOnlyPositiveInteger() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = "-5000";
 
         assertThatThrownBy(() -> lottoValidation.validateOnlyPositiveInteger(input))
@@ -42,7 +39,6 @@ class LottoValidationTest {
 
     @Test
     void validateThousandUnit() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = "4321";
 
         assertThatThrownBy(() -> lottoValidation.validateThousandUnit(input))
@@ -52,7 +48,6 @@ class LottoValidationTest {
 
     @Test
     void validateCommaDivision() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = "1.2.3.4.5.6";
 
         assertThatThrownBy(() -> lottoValidation.validateCommaDivision(input))
@@ -62,7 +57,6 @@ class LottoValidationTest {
 
     @Test
     void validateOnlyPositiveIntegerList() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = "dd,1,2,3,4,5";
 
         assertThatThrownBy(() -> lottoValidation.validateOnlyPositiveIntegerList(input))
@@ -72,7 +66,6 @@ class LottoValidationTest {
 
     @Test
     void validateBetween1And45() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = "1,2,3,4,5,46";
 
         assertThatThrownBy(() -> lottoValidation.validateBetween1And45(input))
@@ -82,7 +75,6 @@ class LottoValidationTest {
 
     @Test
     void validateDuplicateNumber() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = "1,2,3,4,33,33";
 
         assertThatThrownBy(() -> lottoValidation.validateDuplicateNumber(input))
@@ -92,7 +84,6 @@ class LottoValidationTest {
 
     @Test
     void validateBetween1And45Bonus() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = "50";
 
         assertThatThrownBy(() -> lottoValidation.validateBetween1And45Bonus(input))
@@ -102,7 +93,6 @@ class LottoValidationTest {
 
     @Test
     void validateOverlapWinningNumber() {
-        LottoValidation lottoValidation = new LottoValidation();
         String input = "5";
         List<Integer> winningNumber = List.of(1, 2, 3, 4, 5, 6);
 

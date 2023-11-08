@@ -8,9 +8,9 @@ import java.util.List;
 
 public class LottoTicket {
 
-    private List<Lotto> lottoList; // 로또 리스트
-    private int purchaseQuantity; // 구매한 로또 티켓 수량
-    private int purchaseAmount; // 구매금액
+    private final List<Lotto> lottoList; // 로또 리스트
+    private final int purchaseQuantity; // 구매한 로또 티켓 수량
+    private final int purchaseAmount; // 구매금액
 
     public LottoTicket(int purchaseAmount) {
         // 사용자로부터 입력된 금액으로 로또 티켓 수량을 계산하고 필드에 저장

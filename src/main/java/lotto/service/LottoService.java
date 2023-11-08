@@ -153,7 +153,7 @@ public class LottoService {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 금액입니다.");
             }
             lottoCount = amount/1000;
-            validate = validateAmountDto.isValidate();
+            validate = false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

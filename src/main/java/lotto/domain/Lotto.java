@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.validator.Errors;
+import lotto.view.Output;
 
 public class Lotto {
 
@@ -20,6 +22,7 @@ public class Lotto {
 
     private void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            Output.printErrorMessage(Errors.NEED_MORE_INPUT.getMessage());
             throw new IllegalArgumentException();
         }
     }
@@ -28,6 +31,7 @@ public class Lotto {
     private void validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
+            Output.printErrorMessage(Errors.DUPLICATE_NUMBER.getMessage());
             throw new IllegalArgumentException();
         }
     }

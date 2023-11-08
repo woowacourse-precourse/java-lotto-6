@@ -8,6 +8,7 @@ import lotto.constant.ExceptionMessage;
 import lotto.util.NumberConverter;
 
 public class WinningNumbers {
+    private static final String BLANK = " ";
     private static final String COMMA_DELIMITER = ",";
     private final NumberConverter numberConverter;
 
@@ -18,6 +19,7 @@ public class WinningNumbers {
     public List<Integer> process(String numbers) {
         validateCommas(numbers);
         List<String> trimmed = trimList(splitByComma(numbers));
+        ensureNotBlank(trimmed);
         return convertNumber(trimmed);
     }
 
@@ -25,6 +27,12 @@ public class WinningNumbers {
         if (numbers.startsWith(COMMA_DELIMITER) || numbers.endsWith(COMMA_DELIMITER) || numbers.contains(
                 COMMA_DELIMITER + COMMA_DELIMITER)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_COMMA_USAGE.getMessage());
+        }
+    }
+
+    public void ensureNotBlank(List<String> strings) {
+        if (strings.stream().anyMatch(str -> str.contains(BLANK))) {
+            throw new IllegalArgumentException(ExceptionMessage.PLEASE_NOT_INPUT_BETWEEN_NUMBER_BLANK.getMessage());
         }
     }
 
@@ -42,7 +50,6 @@ public class WinningNumbers {
 
     private List<Integer> convertNumber(List<String> trimmed) {
         return trimmed.stream()
-                .map(String::trim)
                 .map(numberConverter::convert)
                 .collect(Collectors.toList());
     }

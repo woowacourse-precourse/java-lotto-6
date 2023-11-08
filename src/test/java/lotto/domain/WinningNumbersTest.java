@@ -99,7 +99,7 @@ class WinningNumbersTest {
                 .hasMessageContaining(ExceptionMessage.INPUT_NUMBER.getMessage());
     }
 
-    @DisplayName("int 범위를 벗어난 숫자가 포함되어 있을 경우 NumberFormatException을 발생시켜야 한다.")
+    @DisplayName("int 범위를 벗어난 숫자가 포함되어 있을 경우 IllegalArgumentException을 발생시켜야 한다.")
     @Test
     void testProcessWithOutOfRangeNumbers() {
         // given
@@ -109,6 +109,18 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> winningNumbers.process(numbersWithOutOfRange))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INVALID_AMOUNT_MESSAGE.getMessage());
+    }
+
+    @DisplayName("숫자 내부에 공백이 포함되어 있을 경우 IllegalArgumentException을 발생시켜야 한다.")
+    @Test
+    void testensureNotBlank() {
+        // given
+        String numbersWithOutOfRange = "1, 2, 3, 4, 5, 1  2";
+
+        // when & then
+        assertThatThrownBy(() -> winningNumbers.process(numbersWithOutOfRange))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ExceptionMessage.PLEASE_NOT_INPUT_BETWEEN_NUMBER_BLANK.getMessage());
     }
 }
 

@@ -1,5 +1,8 @@
 package lotto.validation;
 
+import lotto.enums.LottoConstants;
+import lotto.enums.LottoErrorCodes;
+
 public class AmountValidator {
 
     public static int validateAmount(String amountStr) {
@@ -13,19 +16,19 @@ public class AmountValidator {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 정수형 숫자만 입력할 수 있습니다.");
+            throw new IllegalArgumentException(LottoErrorCodes.INVALID_INTEGER_INPUT.getMessage());
         }
     }
 
     private static void validateMinimumAmount(int amount) {
-        if (amount < 1000) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 최소 1000원 입니다.");
+        if (amount < LottoConstants.LOTTO_TICKET_PRICE.getValue()) {
+            throw new IllegalArgumentException(LottoErrorCodes.MINIMUM_AMOUNT_ERROR.getMessage());
         }
     }
 
     private static void validateThousandUnit(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1000원 단위로 입력해야 합니다.");
+        if (amount % LottoConstants.LOTTO_TICKET_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException(LottoErrorCodes.AMOUNT_UNIT_ERROR.getMessage());
         }
     }
 }

@@ -46,7 +46,7 @@ public class WinLotto {
   }
 
   private void validateBonusNumRange(String bonusNumber) {
-    if (bonusNumber.matches(".*[a-zA-Z].*"))
+    if (bonusNumber.matches(REGEX_ALPHABET_PATTERN))
       throw new IllegalArgumentException(BONUS_NUMBER_WITH_LETTER_MESSAGE);
 
     int checkValue = Integer.parseInt(bonusNumber);
@@ -60,7 +60,7 @@ public class WinLotto {
     int checkValue = Integer.parseInt(bonusNumber);
 
     if (winLotto.contains(checkValue))
-      throw new IllegalArgumentException(NON_OVERLAPPING_NUMBER_MESSAGE);
+      throw new IllegalArgumentException(NON_OVERLAPPING_BONUS_NUMBER_MESSAGE);
 
     return checkValue;
   }

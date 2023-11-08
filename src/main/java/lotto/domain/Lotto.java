@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import lotto.Config;
 import lotto.InputException;
 
 public class Lotto {
@@ -94,7 +95,7 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> number < 1 || number > 45)
+                .filter(number -> number < Config.MIN.getValue() || number > Config.MAX.getValue())
                 .findAny()
                 .ifPresent(value -> {
                     throw new InputException(RANGE_ERROR_MESSAGE);

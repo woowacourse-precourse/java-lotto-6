@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.Config;
 import lotto.InputException;
 
 public class BonusNumber {
@@ -17,7 +18,7 @@ public class BonusNumber {
     }
 
     private void validateRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < Config.MIN.getValue() || number > Config.MAX.getValue()) {
             throw new InputException(RANGE_ERROR_MESSAGE);
         }
     }

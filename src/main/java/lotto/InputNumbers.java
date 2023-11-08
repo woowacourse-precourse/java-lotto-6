@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Constants.EMPTY;
 import static lotto.Constants.NUMBERS_SIZE_ERROR;
 import static lotto.Constants.NUMBER_COUNT;
 import static lotto.Constants.NUMBER_DUPLICATE_ERROR;
@@ -27,6 +28,9 @@ public class InputNumbers extends Input {
     }
 
     protected List<Integer> translateToValueType(String noEmptyReadLine) {
+        if(noEmptyReadLine.startsWith(REST)) {
+            noEmptyReadLine = noEmptyReadLine.substring(1);
+        }
         String[] split = noEmptyReadLine.split(REST);
         return Arrays.stream(split)
                 .map(Integer::parseInt)

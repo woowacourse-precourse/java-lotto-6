@@ -3,7 +3,6 @@ package lotto;
 import static lotto.Constants.*;
 
 public class BuyingPrice extends InputNumber {
-
     private Integer price;
 
     public BuyingPrice() {

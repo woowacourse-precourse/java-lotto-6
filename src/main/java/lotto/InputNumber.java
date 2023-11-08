@@ -8,7 +8,7 @@ public abstract class InputNumber extends Input {
         try {
             return Integer.parseInt(noEmptyReadLine);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NUMBER_TYPE_ERROR);
+            throw new IllegalArgumentException(TYPE_ERROR);
         }
     }
 }

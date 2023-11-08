@@ -59,7 +59,7 @@ public class AskAmountTest {
     }
 
     @Test
-    @DisplayName("로또 구입 금액이 Integer.MaxValue보다 클 때")
+    @DisplayName("로또 구입 금액이 Integer.MaxValue보다 클 때 InputMoneyOverflowException 타입 오류 발생")
     void overflow(){
         //given
         String amount = "2147483648";

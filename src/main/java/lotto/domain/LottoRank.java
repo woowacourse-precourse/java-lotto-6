@@ -2,13 +2,6 @@ package lotto.domain;
 
 public enum LottoRank {
 
-    /*
-        3개 일치 (5,000원) - 1개
-        4개 일치 (50,000원) - 0개
-        5개 일치 (1,500,000원) - 0개
-        5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-        6개 일치 (2,000,000,000원) - 0개
-    */
     NONE(0, 0, false, null),
     FIFTH(5000, 3, false, "3개 일치 (5,000원) - "),
     FOURTH(50000, 4, false, "4개 일치 (50,000원) - "),
@@ -36,7 +29,6 @@ public enum LottoRank {
     }
 
     private static LottoRank determineRank(final int count) {
-        // count 값에 따라 LottoRank의 Count가 같은 등수를 return
         for (LottoRank rank : values()) {
             if (rank.getCount() == count && !rank.hasBonus) {
                 return rank;

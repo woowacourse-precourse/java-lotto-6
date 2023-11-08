@@ -10,7 +10,6 @@ import lotto.exception.LottoException;
 
 public class MoneyManagement {
     private static final int ZERO = 0;
-    private static final int PERCENT = 100;
     private static final int LOTTO_AMOUNT = 1000;
     private static final double PERCENT_MULTIPLIER = 100.0;
     private static final String NUMERIC_PATTERN = "\\d+";
@@ -37,7 +36,7 @@ public class MoneyManagement {
     }
 
     private static double preciseValue(double purchaseAmount, double totalAmount) {
-        double value = totalAmount / purchaseAmount * PERCENT;
+        double value = totalAmount / purchaseAmount * PERCENT_MULTIPLIER;
         return Math.round(value * PERCENT_MULTIPLIER) / PERCENT_MULTIPLIER;
     }
 

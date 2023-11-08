@@ -1,8 +1,10 @@
 package lotto.view;
 
+import static lotto.exception.ErrorType.LottoNumNotDigitException;
+import static lotto.exception.ErrorType.OverValueException;
+
 import java.util.Arrays;
 import java.util.List;
-import lotto.exception.ErrorType;
 import lotto.exception.LottoException;
 
 public class InputValidator {
@@ -25,7 +27,7 @@ public class InputValidator {
     public void validateDigit(final List<String> list) {
         boolean isDigit = list.stream().allMatch(s -> s.matches(NUMERIC_PATTERN));
         if (!isDigit) {
-            throw new LottoException(ErrorType.OverValueException);
+            throw new LottoException(OverValueException);
         }
     }
 
@@ -33,7 +35,7 @@ public class InputValidator {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new LottoException(ErrorType.LottoNumNotDigitException);
+            throw new LottoException(LottoNumNotDigitException);
         }
     }
 }

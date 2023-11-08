@@ -22,8 +22,8 @@ public class MoneyTest {
 	@DisplayName("돈의 단위가 UNIT이라면 정상적으로 작동한다.")
 	@ValueSource(ints = { 1000, 12000, 4000 })
 	@ParameterizedTest
-	void checkNomalOperation1() {
-		new Money(1000);
+	void checkNomalOperation1(int number) {
+		new Money(number);
 	}
 
 	@DisplayName("돈이 0이하라면 예외가 발생한다.")

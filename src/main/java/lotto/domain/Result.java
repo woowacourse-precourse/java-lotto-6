@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Objects;
 import lotto.enums.ResultStatus;
 
 public class Result {
@@ -39,5 +40,22 @@ public class Result {
 
     public ResultStatus getResultStatus() {
         return this.resultStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Result result = (Result) o;
+        return resultStatus == result.resultStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(resultStatus);
     }
 }

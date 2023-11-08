@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import java.util.List;
 
 public class Referee {
-    static final int[] MATCH_OUTCOME = {5000, 50000, 1500000, 30000000, 200000000};
+    static final int[] MATCH_OUTCOME = {5000, 50000, 1500000, 200000000, 30000000};
 
     public static int[] compareToLottos(List<Lotto> lottos, Lotto answer, int bonus) {
         int[] result = new int[5]; // 크기 5
@@ -19,28 +19,26 @@ public class Referee {
     private static void updateResult(int[] result, int[] count) {
         int same = count[0] + count[1];
         int bonus = count[1];
-        if (same == 3) {
-            result[0]++;
-        } else if (same == 4) {
-            result[1]++;
-        } else if (same == 5 && bonus == 0) {
-            result[2]++;
-        } else if (same == 5 && bonus == 1) {
-            result[3]++;
-        } else if (same == 6) {
-            result[4]++;
+        int idx = same-3;
+        if(idx < 0) {
+            return;
         }
+        if(same == 5 && bonus == 1) {
+            result[idx+2]++;
+            return;
+        }
+        result[idx]++;
     }
 
     private static int[] compareToLotto(Lotto lotto, Lotto answer, int bonus) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         int[] count = {0, 0};
         for (Integer number : lottoNumbers) {
-            if (compareTo(number, answer, bonus) == 1) {
-                count[0]++; // true
-            } else if (compareTo(number, answer, bonus) == 2) {
-                count[1]++; // bonus
+            int idx = compareTo(number, answer, bonus)-1;
+            if(idx<0) {
+                continue;
             }
+            count[idx]++;
         }
         return count;
     }

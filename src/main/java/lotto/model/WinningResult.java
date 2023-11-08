@@ -10,7 +10,7 @@ public class WinningResult {
     private final Map<Integer, String> rankTable;
     private Map<String, Long> winningResult;
 
-    public WinningResult(List<Integer> drawResult) {
+    public WinningResult() {
         this.rankTable = new HashMap<>();
         this.rankTable.put(Rule.FIRST_RANK.value(), "1st");
         this.rankTable.put(Rule.SECOND_RANK.value(), "2nd");
@@ -20,14 +20,23 @@ public class WinningResult {
     }
 
     public Map<String, Long> getWinningResult() {
-        return new HashMap<>(winningResult);
+        return winningResult;
     }
-
-    public void calculate(List<Integer> drawResult) {
-        winningResult = drawResult.stream()
+환
+    public void calculate(List<Integer> matchResult) {
+        winningResult = matchResult.stream()
                 .filter(number -> number >= Rule.MINIMUM_NUMBER_TO_WIN.value())
                 .map(rankTable::get)
                 .collect(Collectors.groupingBy(Function.identity(),  Collectors.counting()));
+        makeGeneralForm(winningResult);
+    }
+
+    private void makeGeneralForm(Map<String, Long> winningResult) {
+        List<String> ranks = List.of("1st", "2nd", "3rd", "4th", "5th");
+
+        ranks.forEach(rank -> {
+            winningResult.computeIfAbsent(rank, k -> Long.valueOf(0));
+        });
     }
 
     public static int determineRankByBonus(int rank, boolean isBonusHit) {

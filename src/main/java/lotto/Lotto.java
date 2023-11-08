@@ -10,7 +10,7 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
 
-        Collections.sort(this.numbers);
+//        Collections.sort(this.numbers);
     }
 
     public void printLotto() {
@@ -40,7 +40,7 @@ public class Lotto {
         for (int i : this.numbers) {
             used[i] = true;
         }
-
+        
         int count = 0;
         for (int i : other.numbers) {
             if (used[i]) {

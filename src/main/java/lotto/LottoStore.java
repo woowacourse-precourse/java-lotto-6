@@ -80,7 +80,10 @@ public class LottoStore {
 
     public void caculatePrize() {
         for (Lotto lotto : this.myLottos) {
-            int count = this.winningNumber.countDuplicated(lotto);
+            int count = lotto.countDuplicated(this.winningNumber);
+            if (count <= 2) {
+                continue;
+            }
             if (count == 5 && lotto.isIncluded(this.bonusNumber)) {
                 this.countRanking[SECOND_PLACE]++;
                 continue;

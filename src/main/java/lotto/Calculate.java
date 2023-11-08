@@ -4,7 +4,8 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.function.BiPredicate;
+
+import lotto.WinningDetails;
 
 public class Calculate {
     private List<Lotto> lottos;
@@ -51,7 +52,7 @@ public class Calculate {
         return lotto.contains(bonus);
     }
 
-    public int[] getRank() {
-        return rank;
+    public Map<WinningDetails, Integer> getRank() {
+        return rankResult;
     }
 }

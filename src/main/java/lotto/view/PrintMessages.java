@@ -30,7 +30,7 @@ public enum PrintMessages {
     }
 
     public String getFormattedEarningRate(double earningRate) {
-        DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");
         return String.format(message, decimalFormat.format(earningRate));
     }
 

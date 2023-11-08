@@ -15,7 +15,6 @@ public class Output {
 
         for (int i = 0; i < count; i++) {
             List<Integer> randomList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//            Collections.sort(randomList);
             Lotto lotto = new Lotto(randomList);
             lotto.printNumber(randomList);
             list.add(lotto);
@@ -25,6 +24,7 @@ public class Output {
         return list;
     }
 
+    // 로또 번호 수 및 보너스 번호 체크하기
     public static List<Integer> checkList(List<Lotto> lottoList, List<Integer> winNumbers, int addNum) {
         // 횟수 count 위한 List 생성 및 초기화
         List<Integer> prizeCount = new ArrayList<>();
@@ -34,34 +34,26 @@ public class Output {
 
         for (int i = 0; i < lottoList.size(); i++){
             Lotto lotto = lottoList.get(i);
-
             int winNum = 0;
             int bonusNum = 0;
-
             for(int j = 0; j < lotto.getNumbers().size(); j++){
                 if(winNumbers.contains(lotto.getNumbers().get(j))){
                     winNum++;
                 }
             }
-
             if(lotto.getNumbers().contains(addNum)){
                 bonusNum++;
             }
-
             if(winNum == 5 && bonusNum == 1){
                 prizeCount.set(7, prizeCount.get(7) + 1);
                 continue;
             }
-
             prizeCount.set(winNum, prizeCount.get(winNum) + 1);
         }
-
-        System.out.println(prizeCount);
-
         return prizeCount;
     }
 
-    // 당첨 내역 출력 :
+    // 당첨 내역 출력
     public static double prizeRate(List<Integer> prizeCount, int purchaseMoney) {
         System.out.println("3개 일치 (5,000원) - " + prizeCount.get(3) + "개");
         System.out.println("4개 일치 (50,000원) - " + prizeCount.get(4) + "개");

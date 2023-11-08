@@ -18,13 +18,6 @@ public class Application {
         int addNum = addNum();
         List<Integer> prizeCount = Output.checkList(lottoNumbers, winNumbers, addNum);
         Output.prizeRate(prizeCount, purchaseMoney);
-
-
-        System.out.println(purchaseMoney);
-        System.out.println(lottoNumbers);
-        System.out.println(winNumbers);
-        System.out.println(addNum);
-
     }
 
     // 로또 구입 금액 입력
@@ -43,8 +36,8 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
-        count = input / 1000;
 
+        count = input / 1000;
         System.out.println();
         return input;
     }
@@ -56,7 +49,6 @@ public class Application {
 
         List<Integer> numbers = new ArrayList<>();
         List<String> strNumbers = Arrays.asList(input.split(","));
-
         for(int i = 0; i < strNumbers.size(); i++){
             numbers.add(Integer.parseInt(strNumbers.get(i)));
         }

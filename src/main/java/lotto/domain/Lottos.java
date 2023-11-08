@@ -121,4 +121,12 @@ public class Lottos {
     private List<Integer> generateRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
+
+    public int getSize() {
+        return lottos.size();
+    }
+
+    public Lotto getLotto(int index) {
+        return lottos.get(index);
+    }
 }

@@ -42,7 +42,7 @@ public class OutputView {
         System.out.print(FIFTH_PLACE.getMessage(count));
     }
 
-    public void outputRateOfReturn(int rateOfReturn) {
+    public void outputRateOfReturn(double rateOfReturn) {
         System.out.print(RATE_OF_RETURN.getMessage(rateOfReturn));
     }
 }

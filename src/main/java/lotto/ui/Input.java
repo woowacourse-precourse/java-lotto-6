@@ -15,7 +15,8 @@ public class Input {
         while (true) {
             System.out.println(INPUT_BUY_PRICE.getMessage());
             try {
-                return new Price(Console.readLine());
+                String input = Console.readLine();
+                return new Price(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

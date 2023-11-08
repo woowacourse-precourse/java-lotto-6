@@ -16,5 +16,12 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+        for(int i=0;i<6;i++){
+            string.append(numbers.get(i));
+        }
+        return string.toString();
+    }
 }

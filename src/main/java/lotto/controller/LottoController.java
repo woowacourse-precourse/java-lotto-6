@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.dto.WinningResult;
+import lotto.util.RandomLottoFactory;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

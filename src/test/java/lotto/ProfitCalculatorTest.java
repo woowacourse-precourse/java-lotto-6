@@ -13,7 +13,7 @@ class ProfitCalculatorTest {
         int purchaseAmount = 8000;
         int totalPrize = 5000;
 
-        assertThat(Application.calculateProfitRate(purchaseAmount, totalPrize)).isEqualTo(62.5);
+        assertThat(ProfitCalculator.calculateProfitRate(purchaseAmount, totalPrize)).isEqualTo(62.5);
     }
 
     @Test

@@ -1,5 +1,8 @@
 package lotto;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public enum LottoRank {
     FIRST(6, 2_000_000_000, false),
     SECOND(5, 30_000_000, true),
@@ -9,13 +12,13 @@ public enum LottoRank {
     NO_WIN(0, 0, false);
 
     private final int matchingCount;
-    private final int amount;
+    private final int prizeMoney;
 
     private final boolean matchBonusNumber;
 
-    LottoRank(int matchingCount, int amount, boolean matchBonusNumber) {
+    LottoRank(int matchingCount, int prizeMoney, boolean matchBonusNumber) {
         this.matchingCount = matchingCount;
-        this.amount = amount;
+        this.prizeMoney = prizeMoney;
         this.matchBonusNumber = matchBonusNumber;
     }
 
@@ -23,8 +26,13 @@ public enum LottoRank {
         return matchingCount;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public String prizeMoneyToString() {
+        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
+        return numberFormat.format(prizeMoney);
     }
 
     public boolean getMatchBonusNumber() {

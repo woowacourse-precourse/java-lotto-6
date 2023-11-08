@@ -7,10 +7,14 @@ import java.util.stream.Collectors;
 public class InputValidator {
 
     public static void validateIsNumeric(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
+        if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+        }
+
+        for (char c: input.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
+            }
         }
     }
 

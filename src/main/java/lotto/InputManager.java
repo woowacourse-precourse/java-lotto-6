@@ -32,7 +32,7 @@ public class InputManager {
         int purchaseAmount = Integer.parseInt(input);
         InputValidator.validateDivision1000(purchaseAmount);
 
-        return purchaseAmount / 1000;
+        return purchaseAmount;
 
     }
 

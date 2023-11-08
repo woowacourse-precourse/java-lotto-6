@@ -23,7 +23,7 @@ class InputManagerTest {
         String input = "10000";
         setInput(input);
 
-        assertThat(InputManager.purchaseAmountInput()).isEqualTo(10);
+        assertThat(InputManager.purchaseAmountInput()).isEqualTo(10000);
 
         Console.close();
     }

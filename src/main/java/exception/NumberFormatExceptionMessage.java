@@ -11,10 +11,6 @@ public enum NumberFormatExceptionMessage {
 		this.message = ERROR_TAG + message;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
 	public void throwException() {
 		throw new NumberFormatException(message);
 	}

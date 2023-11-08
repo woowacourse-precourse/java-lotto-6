@@ -3,14 +3,20 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     static int lottoMoney = 0;
     static List<Integer> winningLottoNumber;
     static int bonusNumber = 0;
+    static Map<String, Integer> winningCount = new HashMap<>() {{
+        put("6개 일치 (2,000,000,000원)", 0);
+        put("5개 일치, 보너스 볼 일치 (30,000,000원)", 0);
+        put("5개 일치 (1,500,000원)", 0);
+        put("4개 일치 (50,000원)", 0);
+        put("3개 일치 (5,000원)", 0);
+    }};
+
     public static boolean lottoMoneyInput() {
         try {
             String userInput = Console.readLine();
@@ -42,6 +48,26 @@ public class Application {
         }
     }
 
+    public static int lottoNumberCheck(List<Integer> userLottoNumber) {
+        int winningNumberCount = 0;
+        for (int number : winningLottoNumber) {
+            if (userLottoNumber.contains(number)) {
+                winningNumberCount += 1;
+            }
+        }
+        return winningNumberCount;
+    }
+
+    public static void lottoWinningCheck(int winningNumberCount, boolean bonusContain) {
+        //enum 이용해서 당첨 내역 출력
+        Ranking[] ranks = Ranking.values();
+        for (Ranking rank : ranks) {
+            if (winningNumberCount == rank.winningNumberCount && bonusContain == rank.bounsContain) {
+                winningCount.put(rank.winningText, winningCount.get(rank.winningText)+1);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         // 로또 구입 금액 입력받고 예외처리
         boolean flag = true;
@@ -56,9 +82,11 @@ public class Application {
         System.out.println(lottoAmount + "개를 구매했습니다.");
 
         // 발행한 로또 번호 오름차순으로 출력하기
+        List<List<Integer>> userLottoNumbers = new ArrayList<>();
         for (int i = 0; i < lottoAmount; i++) {
             List<Integer> userLottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(userLottoNumber);
+            userLottoNumbers.add(userLottoNumber);
             System.out.println(userLottoNumber);
         }
         System.out.println();
@@ -89,5 +117,22 @@ public class Application {
             System.out.println("보너스 번호를 입력해 주세요.");
             flag = bonusNumberInput();
         }
+        System.out.println();
+
+        // 당첨 내역 출력하기
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        boolean bonusContain = false;
+        for (List<Integer> userLottoNumber : userLottoNumbers) {
+            int winningNumberCount = lottoNumberCheck(userLottoNumber);
+            if (winningNumberCount == 5 && userLottoNumber.contains(bonusNumber)) {
+                bonusContain = true;
+            }
+            lottoWinningCheck(winningNumberCount, bonusContain);
+        }
+        for (Map.Entry<String, Integer> entrySet : winningCount.entrySet()) {
+            System.out.println(entrySet.getKey() + " - " + entrySet.getValue() + "개");
+        }
+
     }
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class LottoStatistic {
     private final Map<LottoPrize, Integer> lottoStatistic;
+    private double yield;
 
     public LottoStatistic() {
         this.lottoStatistic = new HashMap<>();
@@ -19,5 +20,13 @@ public class LottoStatistic {
             prize,
             lottoStatistic.getOrDefault(prize, 0) + 1
         );
+    }
+
+    public void setYield(double yield) {
+        this.yield = yield;
+    }
+
+    public double getYield() {
+        return this.yield;
     }
 }

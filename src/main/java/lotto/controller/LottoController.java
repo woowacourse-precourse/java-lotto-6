@@ -1,13 +1,31 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.view.InputBonusNumber;
-import lotto.view.InputPurchaseAmountView;
-import lotto.view.InputWinningNumberView;
+import lotto.view.*;
 
 import java.util.List;
 
+import static lotto.view.OutputLottoCountView.printLottoCount;
+import static lotto.view.OutputLottosView.printLotto;
+import static lotto.view.OutputLottoResult.printResult;
+
 public class LottoController {
+
+    public void play(){
+        Price price = getLottoPrice();
+        printLottoCount(price);
+
+        Lottos lottos = getLottos(price);
+        printLotto(lottos);
+
+        WinningNumberLotto winningNumberLotto = getWinningNumberLotto();
+        RankResult rankResult = new RankResult();
+        countLottoResult(rankResult, winningNumberLotto, lottos);
+
+        Rate rate = getRate(price, rankResult);
+        printResult(rankResult, rate);
+
+    }
 
     private Price getLottoPrice(){
         InputPurchaseAmountView inputPurchaseAmountView = new InputPurchaseAmountView();

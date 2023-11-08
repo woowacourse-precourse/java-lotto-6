@@ -8,10 +8,8 @@ import java.util.List;
 
 public class LottoView {
 
-    public int getPurchaseAmount() {
+    public void displayPurchaseAmountInputMessage() {
         System.out.println("구입금액을 입력해 주세요.");
-        String purchaseAmount = Console.readLine();
-        return Integer.parseInt(purchaseAmount);
     }
 
     public void displayPurchasedLottos(List<Lotto> purchasedLottos) {
@@ -21,16 +19,12 @@ public class LottoView {
         }
     }
 
-    public List<Integer> getWinnerNums() {
+    public void displayWinnerNumsInputMessage() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String winnerNums = Console.readLine();
-        return Arrays.stream(winnerNums.split(",")).map(Integer::parseInt).toList();
     }
 
-    public int getBonusNum() {
+    public void displayBonusNumInputMessage() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNum = Console.readLine();
-        return Integer.parseInt(bonusNum);
     }
 
     public void printResult(List<Integer> results, double earningRate) {

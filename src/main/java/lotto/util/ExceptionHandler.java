@@ -3,6 +3,10 @@ package lotto.util;
 import java.util.function.Supplier;
 
 public class ExceptionHandler {
+
+    private ExceptionHandler() {
+    }
+
     public static <T> T handle(Supplier<T> supplier) {
         try {
             return supplier.get();

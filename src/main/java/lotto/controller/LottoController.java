@@ -33,6 +33,8 @@ public class LottoController {
         Map<Prize, Integer> prizeCount = getLotteryPrizeCount(lottos, lottoFromUser);
         double earningRate = 0;
 
+        OutputView.showLottoResultHead();
+
         for (int i = Prize.values().length - 1; i >= 0; i--) {
             if (!Prize.values()[i].equals(Prize.NOTHING))
                 OutputView.showLottoResult(Prize.values()[i].getMessage(), prizeCount.get(Prize.values()[i]));
@@ -74,7 +76,7 @@ public class LottoController {
     }
 
     private String setEarningRateFormat(double earningRate) {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###.#");
+        DecimalFormat decimalFormat = new DecimalFormat("###,###.0");
         return decimalFormat.format(earningRate);
     }
 }

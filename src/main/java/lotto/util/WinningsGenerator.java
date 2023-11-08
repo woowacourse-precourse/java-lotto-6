@@ -4,6 +4,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class WinningsGenerator {
+    private WinningsGenerator() {
+        throw new IllegalArgumentException("[ERROR]");
+    }
+
     public static Map<Integer, String> createWinnings() {
         Map<Integer, String> winnings = new LinkedHashMap<>();
         winnings.put(2_000_000_000, "2,000,000,000");

@@ -6,6 +6,9 @@ import lotto.util.LottoConverter;
 import lotto.util.Validator;
 
 public class InputView {
+    private InputView(){
+        throw new IllegalArgumentException("[ERROR]");
+    }
 
     public static String inputMoney() {
         String money = Console.readLine();

@@ -8,6 +8,10 @@ public class Validator {
     private static final String MONEY_MUST_NOT_NEGATIVE = "[ERROR] 금액은 음수일 수 없습니다.";
     private static final String INVALID_INPUT_PATTERN = "[ERROR] 입력 형식과 맞지 않습니다.";
 
+    private Validator() {
+        throw new IllegalArgumentException("[ERROR]");
+    }
+
     public static void validateMoney(String money) {
         validateInputType(money);
         validateMoneyRange(money);

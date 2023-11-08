@@ -12,6 +12,10 @@ public class LottoGenerator {
     private static final int MAX_RANGE = 45;
     private static final int LOTTO_LENGTH = 6;
 
+    private LottoGenerator() {
+        throw new IllegalArgumentException("[ERROR]");
+    }
+
     public static Lottos generateLottos(LottoCount lottoCount) {
         return generateLotto(lottoCount);
     }

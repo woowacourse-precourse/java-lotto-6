@@ -27,6 +27,10 @@ public class OutputView {
     private static final int ONE_HUNDRED_PERCENT = 100;
     private static final Map<Integer, String> winnings = WinningsGenerator.createWinnings();
 
+    private OutputView() {
+        throw new IllegalArgumentException("[ERROR]");
+    }
+
     public static void printInputMoneyMessage() {
         System.out.println(INPUT_MONEY);
     }

@@ -20,8 +20,8 @@ public enum Winning {
         return winningReward;
     }
 
-    public int getWinningRewardDescription() {
-        return winningReward;
+    public String getWinningRewardDescription() {
+        return winningRewardDescription;
     }
 
     public boolean isThree() {

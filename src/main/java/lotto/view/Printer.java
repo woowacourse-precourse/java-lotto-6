@@ -1,11 +1,14 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoCount;
+import lotto.domain.*;
 
 import static lotto.message.InfoMessage.*;
 
 public class Printer {
+    public static void print(int intValue) {
+        System.out.print(intValue);
+    }
+
     public static void printLineBreak() {
         System.out.println();
     }
@@ -32,5 +35,36 @@ public class Printer {
 
     public static void printBonusNumberChoiceMessage() {
         System.out.println(BONUS_NUMBER_CHOICE);
+    }
+
+    public static void printResultHead() {
+        System.out.println(RESULT_HEAD);
+    }
+
+    public static void printDividingLine() {
+        System.out.println(DIVIDING_LINE);
+    }
+
+    public static void printLowWinningResult(int matchedNumber, Winning winning, WinningCount winningCount) {
+        System.out.printf("%d%s (%s) - %d개\n", matchedNumber, WINNING_RESULT_HEAD,
+                winning.getWinningRewardDescription(), winningCount.getCount(matchedNumber));
+    }
+
+    public static void printHighWinningResult(int matchedNumber, Winning winning, WinningCount winningCount) {
+        if (matchedNumber == 7) {
+            matchedNumber -= 2;
+        }
+
+        System.out.print(matchedNumber + WINNING_RESULT_HEAD);
+
+        if (matchedNumber == 5) {
+            System.out.print(BONUS_RESULT);
+        }
+
+        System.out.printf(" (%s) - %d개\n", winning.getWinningRewardDescription(), winningCount.getCount(matchedNumber));
+    }
+
+    public static void printReturnRate(ReturnRate returnRate) {
+        System.out.println(RETURN_RATE_INFORMATION_HEAD + returnRate.getReturnRate() + RETURN_RATE_INFORMATION_FOOT);
     }
 }

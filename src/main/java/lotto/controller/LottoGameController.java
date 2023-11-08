@@ -32,6 +32,6 @@ public class LottoGameController {
 
         ReturnRate returnRate = lottoGameService.getReturnRate(purchaseAmount, winnings);
 
-        PrintHandler.printEndingPartOfLottoGame(winnings);
+        PrintHandler.printEndingPartOfLottoGame(winnings, returnRate);
     }
 }

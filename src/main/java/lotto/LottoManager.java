@@ -52,14 +52,13 @@ public class LottoManager {
         receivePurchasePrice();
 
         List<Lotto> lottos = purchaseLottos();
-        // 당첨 번호 입력
+
         receiveWiningNumber();
-        // 보너스 번호 입력
         receiveBonusNumber();
-        // 계산
+
         calculateResult(lottos);
         calculateReturnRate();
-        // 출력
+
         lottoPrinter.noticeResult(result, returnRate);
     }
 

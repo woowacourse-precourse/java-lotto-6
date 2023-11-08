@@ -1,0 +1,33 @@
+package lotto.model;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class Lotto {
+    private final List<Integer> numbers;
+
+    public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        validateDuplication(numbers);
+        this.numbers = numbers.stream().sorted().collect(Collectors.toList());
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        Set<Integer> duplicationCheck = new HashSet<>(numbers);
+
+        if (duplicationCheck.size() != 6)
+            throw new IllegalArgumentException();
+    }
+
+    public List<Integer> getLottoNumbers () {
+        return numbers;
+    }
+}

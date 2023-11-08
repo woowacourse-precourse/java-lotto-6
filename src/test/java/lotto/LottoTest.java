@@ -1,10 +1,15 @@
 package lotto;
 
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +28,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("구입한 로또 수량 테스트")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 5, 10, 100})
+    void lottoAmountTest(int lottoAmount) {
+        //given
+        //when
+        Lottos lottos = new Lottos(lottoAmount);
+
+        //then
+        assertThat(lottos.getLottoList().size()).isEqualTo(lottoAmount);
+    }
 }

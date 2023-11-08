@@ -48,6 +48,15 @@ public class LottoResultsTest {
 
     }
 
+    @DisplayName("입력값이 매우 큰 경우 예외가 발생한다. 10 자리수 이상")
+    @Test
+    void createoverflowInteger() {
+        String inputOverflowInteger = "10000000000";
+        assertThatThrownBy(()->new LottoResults(inputOverflowInteger))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
     @DisplayName("로또 결과가 제대로 계산되는지 확인한다.")
     @Test
     void updateEachLottoResult() {

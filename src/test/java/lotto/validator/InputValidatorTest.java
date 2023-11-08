@@ -48,6 +48,7 @@ public class InputValidatorTest {
         Integer userInputCorrect = 12;
         Integer userInputWrong = 46;
         Integer userInputWrong2 = -3;
+        String userInputWrong3 = "10000000000";
         Integer minRange = 1;
         Integer maxRange = 45;
 
@@ -60,6 +61,10 @@ public class InputValidatorTest {
 
         // 범위 밖의 숫자 입력했을 때 예외 발생
         assertThatThrownBy(()->InputValidator.checkUserInputOutOfRange(userInputWrong2, minRange, maxRange))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        // 10자리 초과한 숫자 입력했을 때 예외 발생
+        assertThatThrownBy(()->InputValidator.checkUserInputIsOverflow(userInputWrong3))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }

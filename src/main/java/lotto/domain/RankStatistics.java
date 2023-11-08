@@ -15,18 +15,6 @@ public class RankStatistics {
         this.statistics = statistics;
     }
 
-    public void initStatistics(Lottos lottos, WinningNumbers winningNumbers) {
-        List<Rank> ranks = List.of(Rank.values());
-        ranks.forEach(rank -> statistics.put(rank, 0));
-        lottos.getStream()
-                .map(lotto -> Rank.getRank(winningNumbers.getMatchNumber(lotto), winningNumbers.hasBonusNumber(lotto)))
-                .forEach(this::addCount);
-    }
-
-    public void addCount(Rank rank) {
-        statistics.put(rank, statistics.get(rank) + 1);
-    }
-
     public long getTotalProfit() {
         List<Rank> ranks = List.of(Rank.values());
         return ranks.stream()

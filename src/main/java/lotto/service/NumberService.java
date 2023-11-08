@@ -11,6 +11,7 @@ import lotto.domain.Rank;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class NumberService {
     private PurchaseAmount purchaseAmount;
@@ -55,8 +56,13 @@ public class NumberService {
     }
 
     public void initRankStatistics() {
-        this.rankStatistics = new RankStatistics(new EnumMap<>(Rank.class));
-        rankStatistics.initStatistics(lottos, winningNumbers);
+        Map<Rank, Integer> statistics = new EnumMap<>(Rank.class);
+        List<Rank> ranks = List.of(Rank.values());
+        ranks.forEach(rank -> statistics.put(rank, 0));
+        lottos.getStream()
+                .map(lotto -> Rank.getRank(winningNumbers.getMatchNumber(lotto), winningNumbers.hasBonusNumber(lotto)))
+                .forEach(rank -> statistics.put(rank, statistics.get(rank) + 1));
+        this.rankStatistics = new RankStatistics(statistics);
     }
 
     private List<Lotto> createLottos() {

@@ -5,6 +5,8 @@ import static lotto.ErrorMessage.NOT_NUMBER_FORMAT;
 import static lotto.ErrorMessage.ZERO_NUMBER;
 import static lotto.configuration.LottoConfiguration.LOTTO_PRICE;
 
+import lotto.configuration.CustomIllegalArgumentException;
+
 public class Money {
     private int money;
 
@@ -37,7 +39,7 @@ public class Money {
 
     private void checkNotNumber(String money) {
         if (!money.matches("\\d+")) {
-            throw new IllegalArgumentException(NOT_NUMBER_FORMAT.getMessage());
+            throw new CustomIllegalArgumentException(NOT_NUMBER_FORMAT.getMessage());
         }
     }
 }

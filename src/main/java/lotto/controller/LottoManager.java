@@ -25,6 +25,7 @@ public class LottoManager {
 
         customer.matchLotto(winLotto);
         OutPutView.printMatchResult(customer.getMatchResult());
+        OutPutView.printReturnRate(customer.calculateReturnRate());
     }
 
 

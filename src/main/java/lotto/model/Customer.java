@@ -1,16 +1,19 @@
 package lotto.model;
 
+import static lotto.configuration.LottoConfiguration.LOTTO_PRICE;
+
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class Customer {
     private List<Lotto> lottos;
-    private final EnumMap<Ranking, Integer> rankingCount;
+    private final EnumMap<Ranking, Integer> rankingCounts;
 
     public Customer() {
-        rankingCount = new EnumMap<>(Ranking.class);
+        rankingCounts = new EnumMap<>(Ranking.class);
         for (Ranking ranking : Ranking.values()) {
-            rankingCount.put(ranking, 0);
+            rankingCounts.put(ranking, 0);
         }
     }
 
@@ -36,7 +39,7 @@ public class Customer {
     }
 
     private void updateRankingCount(Ranking ranking) {
-        rankingCount.put(ranking, rankingCount.get(ranking) + 1);
+        rankingCounts.put(ranking, rankingCounts.get(ranking) + 1);
     }
 
     public String getMatchResult() {
@@ -50,11 +53,22 @@ public class Customer {
                 stringBuilder.append(", 보너스 볼 일치");
             }
             stringBuilder.append(" (").append(ranking.getWinnings())
-                    .append(") - ").append(rankingCount.get(ranking)).append("개\n");
+                    .append("원) - ").append(rankingCounts.get(ranking)).append("개\n");
 
         }
         return stringBuilder.toString();
     }
 
+    public double calculateReturnRate() {
+        double seedMoney = (double) (lottos.size() * LOTTO_PRICE.get());
+        double returnMoney = 0L;
+        for (EnumMap.Entry<Ranking, Integer> entry : rankingCounts.entrySet()) {
+            Ranking ranking = entry.getKey();
+            Integer count = entry.getValue();
+            returnMoney += ranking.getWinningsByInt() * count;
+        }
+        double returnRate = (1L-((seedMoney - returnMoney) / seedMoney)) * 100;
+        return returnRate;
+    }
 
 }

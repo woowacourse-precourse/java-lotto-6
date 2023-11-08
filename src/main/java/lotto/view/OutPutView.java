@@ -10,6 +10,9 @@ public class OutPutView {
     public static void println(String out) {
         System.out.println(out);
     }
+    public static void print(String out){
+        System.out.print(out);
+    }
 
     public static void printBuyTicket() {
         println(INSERT_MONEY.getMessage());
@@ -32,7 +35,10 @@ public class OutPutView {
     }
 
     public static void printMatchResult(String matchResult) {
-        println("\n당첨 통계\n" + "---\n" + matchResult);
+        print("\n당첨 통계\n" + "---\n" + matchResult);
+    }
+    public static void printReturnRate(double returnRate){
+        System.out.printf("총 수익률은 %.1f%%입니다.",returnRate);
     }
 
 }

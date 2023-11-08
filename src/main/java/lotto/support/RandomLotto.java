@@ -22,7 +22,7 @@ public class RandomLotto {
     private List<Integer> getRandomLotto() {
 
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
+        Collections.sort(new ArrayList<>(numbers));
         return numbers;
 
     }

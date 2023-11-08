@@ -1,5 +1,6 @@
 package lotto.model;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -15,6 +16,11 @@ public class RankingTest {
     @MethodSource(value = "provideRankingTestData")
     void of_메서드는_번호_일치_갯수와_보너스_일치_여부를_확인해_Ranking_을_반환한다(int matchCount, boolean isBonus, Ranking result) {
         assertThat(Ranking.of(matchCount, isBonus)).isEqualTo(result);
+    }
+
+    @Test
+    void isSecond_메서드는_자신이_SECOND_인지를_판별한다() {
+        assertThat(Ranking.SECOND.isSecond()).isTrue();
     }
 
     //매칭 갯수, 보너스 일치여부, 등수 를 제공한다.

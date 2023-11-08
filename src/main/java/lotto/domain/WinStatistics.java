@@ -10,7 +10,7 @@ public class WinStatistics {
     private static final String TOTAL_REVENUE = "총 수익률은 ";
     private static final String END = "%입니다.";
     private static final int RATE = 100;
-
+    private static final int UNIT = 1000;
 
 
     public enum PrizeLevel {
@@ -39,7 +39,7 @@ public class WinStatistics {
     public static String getStatisticsString(List<Integer> scores, long revenue) {
         PrizeLevel[] prizeLevels = PrizeLevel.values();
         System.out.println(revenue);
-        double payed = scores.size() * 1000;
+        double payed = scores.size() * UNIT;
         return toString(scores, prizeLevels, calculatePercentage(revenue, payed));
     }
 

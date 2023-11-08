@@ -1,6 +1,6 @@
-package controller;
+package lotto.controller;
 
-import domain.Buyer;
+import lotto.domain.Buyer;
 
 public class Controller {
     Buyer buyer = new Buyer();

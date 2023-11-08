@@ -8,11 +8,9 @@ import lotto.constant.LottoMatch;
 import lotto.model.Lotto;
 
 public class LottoAnalyzer {
-    private static final String INIT_MESSAGE = "당첨 통계\n---";
     private static final String STATISTIC_FORMATTER = "총 수익률은 %.1f%%입니다.";
+    private static final String INIT_MESSAGE = "당첨 통계\n---";
     public static final double PERCENTAGE = 100.0;
-    public static final int MINIMUM_MATCH_COUNT = 3;
-    public static final int MAXIMUM_MATCH_COUNT = 6;
     public static final int ENABLE_BONUS = 5;
 
     private final Lotto target;
@@ -28,7 +26,7 @@ public class LottoAnalyzer {
     }
 
     public void analyze(List<Lotto> lottos) {
-        this.matchCounts = new HashMap<>();
+        matchCounts = new HashMap<>();
 
         Arrays.stream(LottoMatch.values())
                 .forEach(lottoMatch -> matchCounts.put(lottoMatch, 0));

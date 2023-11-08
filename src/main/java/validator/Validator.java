@@ -1,7 +1,5 @@
 package validator;
 
-import domain.Lotto;
-
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,12 +12,11 @@ public class Validator {
     private final String ERROR_MESSAGE = "[ERROR] ";
 
 
-
     public void checkIsNumber(String input) throws IllegalArgumentException {
-            Matcher matcher = NUMBER_PATTERN.matcher(input);
-            if (!matcher.matches()) {
-                throw new IllegalArgumentException(ERROR_MESSAGE + "숫자 형식이 아닙니다.");
-            }
+        Matcher matcher = NUMBER_PATTERN.matcher(input);
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "숫자 형식이 아닙니다.");
+        }
     }
 
     public void checkMinMoney(int input) throws IllegalArgumentException {

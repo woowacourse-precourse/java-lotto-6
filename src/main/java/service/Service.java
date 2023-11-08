@@ -29,7 +29,7 @@ public class Service {
     public List<Lotto> generateLotto(int lottoAmount) {
         List<Lotto> lottos = new ArrayList<Lotto>();
         for (int i = 0; i < lottoAmount; i++) {
-            Lotto lotto = new Lotto(Utility.sortAscending(generateRandomNumbers()));
+            Lotto lotto = new Lotto(generateRandomNumbers());
             lottos.add(lotto);
         }
         return lottos;
@@ -63,7 +63,7 @@ public class Service {
     public WinningNumber getBonusNumberByUserInput(String input, Lotto winNumbers) {
         validator.checkIsNumber(input);
         int number = Integer.parseInt(input);
-        return new WinningNumber(winNumbers,number);
+        return new WinningNumber(winNumbers, number);
     }
 
     public LinkedHashMap getLottoResult(List<Lotto> lottos, WinningNumber winningNumber) {

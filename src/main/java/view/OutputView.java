@@ -4,6 +4,7 @@ import domain.Lotto;
 import domain.Rank;
 
 import java.util.Map;
+
 public class OutputView {
     public static void printPurchaseAmount(int lottoAmount) {
         System.out.println("\n" + lottoAmount + "개를 구매했습니다.");

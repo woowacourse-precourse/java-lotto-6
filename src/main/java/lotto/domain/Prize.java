@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constants.GameMessage;
+
 public class Prize {
     private int firstPrize = 0;
     private int secondPrize = 0;
@@ -36,5 +38,13 @@ public class Prize {
         } else if (matchCnt == 6) {
             firstPrize++;
         }
+    }
+
+    public String getStatisticMessage() {
+        return String.format(GameMessage.FIFTH_PRIZE_MESSAGE.getMessage(), fifthPrize) + "\n"
+                + String.format(GameMessage.FORTH_PRIZE_MESSAGE.getMessage(), forthPrize) + "\n"
+                + String.format(GameMessage.THIRD_PRIZE_MESSAGE.getMessage(), thirdPrize) + "\n"
+                + String.format(GameMessage.SECOND_PRIZE_MESSAGE.getMessage(), secondPrize) + "\n"
+                + String.format(GameMessage.FIRST_PRIZE_MESSAGE.getMessage(), firstPrize) + "\n";
     }
 }

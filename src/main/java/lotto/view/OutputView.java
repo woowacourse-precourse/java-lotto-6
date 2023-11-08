@@ -27,4 +27,10 @@ public class OutputView {
     public static void println(String message) {
         System.out.println(message);
     }
+
+    public static void printStatisticsMessage(String statistics) {
+        System.out.println(GameMessage.STATISTICS_MESSAGE.getMessage());
+        System.out.println("---");
+        System.out.println(statistics);
+    }
 }

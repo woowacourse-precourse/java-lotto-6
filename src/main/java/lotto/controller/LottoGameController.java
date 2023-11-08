@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constants.GameRule;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -25,6 +26,7 @@ public class LottoGameController {
 
         Prize prize = new Prize();
         prize.countPrize(lottos, winningNumber, bonusNumber);
+        printResult(lottoCnt* GameRule.PAY_UNIT, prize);
     }
 
     private void printLottos(Lottos lottos, int lottoCnt) {
@@ -33,5 +35,10 @@ public class LottoGameController {
             Lotto lotto = lottos.getLotto(i);
             OutputView.printNumbers(lotto.getNumbers());
         }
+    }
+
+    private void printResult(int pay, Prize prize) {
+        String result = prize.getStatisticMessage();
+        OutputView.printStatisticsMessage(result);
     }
 }

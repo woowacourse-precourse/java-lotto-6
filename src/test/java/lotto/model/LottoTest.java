@@ -1,12 +1,12 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -32,15 +32,17 @@ class LottoTest {
         @DisplayName("범위의 아래 경곗값인 0을 포함하여 테스트")
         @Test
         void createLottoByOutOfRangeWithBelowValue() {
-            assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+                    .withMessageContaining("[ERROR]");
         }
 
         @DisplayName("범위의 위 경곗값인 46을 포함하여 테스트")
         @Test
         void createLottoByOutOfRangeWithAboveValue() {
-            assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThatIllegalArgumentException()
+                    .isThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                    .withMessageContaining("[ERROR]");
         }
     }
 }

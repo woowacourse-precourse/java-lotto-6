@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.constant.LottoConstant.LOTTO_END_NUMBER;
+import static lotto.constant.LottoConstant.LOTTO_SIZE;
+import static lotto.constant.LottoConstant.LOTTO_START_NUMBER;
 import static lotto.exception.Message.LOTTO_OUT_OF_SIZE_EXCEPTION;
 import static lotto.exception.Message.NUMBER_DUPLICATION_EXCEPTION;
 import static lotto.exception.Message.NUMBER_OUT_OF_RANGE_EXCEPTION;
@@ -31,7 +34,7 @@ public class Lotto {
     }
 
     private boolean outOfSize(List<Integer> numbers) {
-        return numbers.size() != 6;
+        return numbers.size() != LOTTO_SIZE;
     }
 
     private void validateDuplication(List<Integer> numbers) {
@@ -42,7 +45,7 @@ public class Lotto {
     }
 
     private boolean isDuplicated(Set<Integer> uniqueNumbers) {
-        return uniqueNumbers.size() != 6;
+        return uniqueNumbers.size() != LOTTO_SIZE;
     }
 
     private void validateNumber(List<Integer> numbers) {
@@ -58,7 +61,7 @@ public class Lotto {
     }
 
     private boolean outOfRange(Integer number) {
-        return number < 1 || number > 45;
+        return number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER;
     }
 
     public boolean isOverlapping(int bonusNumber) {

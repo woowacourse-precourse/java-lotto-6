@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketsService {
+public class LottoService {
     final int START_DIGIT = 1;
     final int END_DIGIT = 45;
     final int LOTTO_NUM = 6;

@@ -5,19 +5,19 @@ import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.enumeration.NoticeType;
-import lotto.service.TicketsService;
+import lotto.service.LottoService;
 import lotto.util.Validator;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class WinningLottoController {
+public class LottoController {
     WinningLotto winningLotto;
     List<Lotto> tickets;
     Result result;
     BigDecimal profitRate;
     int amount;
-    private final TicketsService ticketsService = new TicketsService();
+    private final LottoService ticketsService = new LottoService();
 
     public Lotto getLottoInput() {
         System.out.println(NoticeType.WINNING_LOTTO_INPUT.getMessage());

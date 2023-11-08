@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
@@ -14,27 +17,52 @@ public class Input {
 
 	}
 
-	public static String numsInput() {
+	public static List<Integer> numbers() {
 
 		System.out.println();
 		System.out.println("당첨 번호를 입력해 주세요.");
+		
+		String inputNumber = Console.readLine();
+		
+		String[] usernums = inputNumber.split(",");
 
-		return Console.readLine();
+		List<Integer> numbers = new ArrayList<>();
+		
+		for (String usernum : usernums) {
+			CheckValid.string(usernum);
+			numbers.add(Integer.parseInt(usernum));
+		}
+		
+		CheckValid.numbers(numbers);
+		
+		return numbers;
 	}
 
-	public static String bonusInput() {
+	public static int bonus(List<Integer> userNums) {
 
 		System.out.println();
 		System.out.println("보너스 번호를 입력해 주세요.");
 
-		return Console.readLine();
+		String inputBonus = Console.readLine();
+		
+		CheckValid.string(inputBonus);
+		
+		int bonus = Integer.parseInt(inputBonus);
+		
+		CheckValid.bonus(userNums, bonus);
+		
+		return bonus;
 	}
 
 	public static String moneyInput() {
 
 		System.out.println("구입금액을 입력해 주세요.");
 
-		return Console.readLine();
+		String inputMoney = Console.readLine();
+		
+		CheckValid.money(inputMoney);
+		
+		return inputMoney;
 	}
 
 }

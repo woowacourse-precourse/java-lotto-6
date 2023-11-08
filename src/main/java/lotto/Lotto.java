@@ -30,4 +30,8 @@ public class Lotto {
         }
         return new String(sb + "]");
     }
+
+    public int get(int index) {
+        return numbers.get(index);
+    }
 }

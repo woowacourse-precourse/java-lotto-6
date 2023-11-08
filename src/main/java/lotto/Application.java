@@ -11,8 +11,10 @@ public class Application {
         OutputView outputView = new OutputView();
         LottoService lottoService = new LottoService();
         LottoController lottoController = new LottoController(lottoService, inputView, outputView);
-        lottoController.printLotto();
+        List<Lotto> lottos = lottoController.getLotto();
+        lottoController.printLotto(lottos);
         List<Integer> winNumbers = lottoController.getWinNumber();
-        System.out.println(lottoController.getBonusNumber(winNumbers));
+        int bonusNumber = lottoController.getBonusNumber(winNumbers);
+        lottoController.compareLottoNumbers(lottos, winNumbers, bonusNumber);
     }
 }

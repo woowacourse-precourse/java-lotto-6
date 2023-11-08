@@ -23,8 +23,8 @@ public class LottoController {
         return lottoService.createLotto(price);
     }
 
-    public void printLotto() {
-        outputView.printLotto(getLotto());
+    public void printLotto(List<Lotto> lottos) {
+        outputView.printLotto(lottos);
     }
 
     public List<Integer> getWinNumber() {
@@ -35,5 +35,9 @@ public class LottoController {
     public int getBonusNumber(List<Integer> winNumber) {
         outputView.displayBonusNumberQuestion();
         return inputView.inputBonusNumber(winNumber);
+    }
+
+    public void compareLottoNumbers(List<Lotto> lottos, List<Integer> winNumber, int bonusNumber) {
+        lottoService.compare(lottos, winNumber, bonusNumber);
     }
 }

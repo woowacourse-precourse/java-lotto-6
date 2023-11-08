@@ -1,8 +1,10 @@
 package lotto.util;
 
+import lotto.Lotto;
 import lotto.LottoManager;
 import lotto.message.ErrorMessage;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Validator {
@@ -33,9 +35,23 @@ public class Validator {
         }
     }
 
-    public static void validateBonusNumberDuplicate(List<Integer> winningNumbers, int bonusNumber) throws IllegalArgumentException {
-        if (winningNumbers.contains(bonusNumber)) {
+    public static void validateBonusNumberDuplicate(Lotto winningNumbers, int bonusNumber) throws IllegalArgumentException {
+        if (winningNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE);
+        }
+    }
+
+    public static void validateLottoNumberDuplicate(List<Integer> numbers) throws IllegalArgumentException {
+        if (new HashSet<>(numbers).size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateRangeOfNumbers(Lotto winningNumbers) throws IllegalArgumentException {
+        for (int number : winningNumbers.getNumbers()) {
+            if (!(1 <= number && number <= 45)) {
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE);
+            }
         }
     }
 
@@ -45,6 +61,13 @@ public class Validator {
                 throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE);
             }
         }
+    }
+
+    public static void validateRangeOfNumbers(Lotto winningNumbers, int bonusNumber) throws IllegalArgumentException {
+        if (!(1 <= bonusNumber && bonusNumber <= 45)) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE);
+        }
+        validateRangeOfNumbers(winningNumbers);
     }
 
     public static void validateRangeOfNumbers(List<Integer> winningNumbers, int bonusNumber) throws IllegalArgumentException {

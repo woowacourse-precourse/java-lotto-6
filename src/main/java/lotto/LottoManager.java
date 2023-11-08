@@ -38,7 +38,7 @@ public class LottoManager {
     }
 
     public void checkMyWinning(List<Lotto> myTickets) {
-        List<Integer> winningNumbers = this.getWinningNumbers();
+        Lotto winningNumbers = this.getWinningNumbers();
         int bonusNumber = this.getBonusNumber();
         validateBonusNumberDuplicate(winningNumbers, bonusNumber);
         validateRangeOfNumbers(winningNumbers, bonusNumber);
@@ -52,7 +52,7 @@ public class LottoManager {
         output.printWinningRoR(calculateRoR(result, myTickets.size() * THOUSAND));
     }
 
-    private List<Integer> getWinningNumbers() {
+    private Lotto getWinningNumbers() {
         output.printLottoWinningNumbersPrompt();
         return tryOnceMoreIfException(Input::readWinningNumbers);
     }
@@ -62,9 +62,9 @@ public class LottoManager {
         return tryOnceMoreIfException(Input::readBonusNumber);
     }
 
-    public WinningCondition checkWinningResult(Lotto myLotto, List<Integer> winningNumbers, int bonusNumber) {
+    public WinningCondition checkWinningResult(Lotto myLotto, Lotto winningNumbers, int bonusNumber) {
         Set<Integer> mySet = new HashSet<>(myLotto.getNumbers());
-        Set<Integer> lottoSet = new HashSet<>(winningNumbers);
+        Set<Integer> lottoSet = new HashSet<>(winningNumbers.getNumbers());
 
         mySet.retainAll(lottoSet);
         int matchedCount = mySet.size();

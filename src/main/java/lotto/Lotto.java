@@ -3,7 +3,7 @@ package lotto;
 import java.util.HashSet;
 import java.util.List;
 
-import static lotto.util.Validator.validateRangeOfNumbers;
+import static lotto.util.Validator.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,6 +22,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
 
+        validateLottoNumberDuplicate(numbers);
         validateRangeOfNumbers(numbers);
     }
 

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 import lotto.util.Converter;
 
 import java.util.List;
@@ -17,11 +18,11 @@ public class Input {
         return amount;
     }
 
-    public static List<Integer> readWinningNumbers() {
+    public static Lotto readWinningNumbers() {
         String numberStr = Console.readLine();
         List<Integer> winningNumbers = Converter.stringToIntegerList(numberStr, ",");
         validateNumberOfLottoNumbers(winningNumbers);
-        return winningNumbers;
+        return new Lotto(winningNumbers);
     }
 
     public static int readBonusNumber() {

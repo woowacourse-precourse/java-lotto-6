@@ -23,13 +23,11 @@ public class Money {
         return money;
     }
 
-    public void calculateTotalPrize(Map<LottoWinningConstant, Integer> result) {
-        int totalPrize = 0;
-        for (LottoWinningConstant lottoWinningConstant : LottoWinningConstant.values()) {
-            totalPrize += lottoWinningConstant.getWinningMoney() * result.get(lottoWinningConstant);
-        }
-        money = totalPrize;
+    public void addMoney(int amount) {
+        validateMoneyInRange(amount);
+        this.money += amount;
     }
+
 
     private static void validateMoneyInRange(int money) {
         if (money < 0) {

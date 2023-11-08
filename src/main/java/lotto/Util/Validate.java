@@ -23,6 +23,7 @@ public class Validate {
 
     public static void validateBonusNum(List<Integer> numbers, int bonusNumber){
         validateRange(bonusNumber);
+        validateBonusNumTypeInt(bonusNumber);
         validateBonusNumber(numbers, bonusNumber);
     }
 
@@ -92,10 +93,20 @@ public class Validate {
         }
     }
 
+    private static int validateBonusNumTypeInt(int bonusNumber){
+        try {
+            return bonusNumber;
+        } catch (NumberFormatException e) {
+            System.out.println(INPUT_TYPE_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
     private static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             System.out.println(NOT_NUMBER_DUPLICATE);
             throw new IllegalArgumentException();
         }
     }
+
 }

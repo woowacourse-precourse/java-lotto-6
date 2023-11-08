@@ -10,16 +10,13 @@ import java.util.List;
 public class Application {
     enum Prize {
         THREE(5000), FOUR(50000), FIVE(1500000), FIVEBONUS(30000000), SIX(2000000000);
-        final private int prizeMoney;
+        private final int prizeMoney;
         Prize(int prizeMoney) {
             this.prizeMoney = prizeMoney;
         }
-
         public int getPrizeMoney() {
-            return prizeMoney;
+            return this.prizeMoney;
         }
-
-
     }
 
     public static void main(String[] args) {
@@ -50,10 +47,9 @@ public class Application {
         for(int i=0; i<money/unit; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startLottoNumber, endLottoNumber, pickLottoCount);
             purchasedLottos.add(new Lotto(numbers));
-        }
-        for(int i=0; i<purchasedLottos.size(); i++) {
-            Collections.sort(purchasedLottos.get(i).getNumbers());
-            System.out.println(purchasedLottos.get(i).getNumbers());
+
+            Collections.sort(purchasedLottos.get(purchasedLottos.size()-1).getNumbers());
+            System.out.println(purchasedLottos.get(purchasedLottos.size()-1).getNumbers());
         }
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -61,6 +57,7 @@ public class Application {
         for(int i=0; i<inputs.length; i++) {
             int input = Integer.parseInt(inputs[i]);
             validateRange(input, startLottoNumber, endLottoNumber);
+            validateDuplicate(input, inputLottoNumber);
             inputLottoNumber.add(input);
         }
         winLotto = new Lotto(inputLottoNumber);
@@ -68,15 +65,14 @@ public class Application {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         bonusLotto = Integer.parseInt(Console.readLine());
         validateRange(bonusLotto, startLottoNumber, endLottoNumber);
-        if(winLotto.getNumbers().contains(bonusLotto)) {
-            System.out.println("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
-            throw new IllegalArgumentException();
-        }
+        validateDuplicate(bonusLotto, inputLottoNumber);
 
         for(int i=0; i<purchasedLottos.size(); i++) {
             int count = countMatchNumber(purchasedLottos.get(i), winLotto, bonusLotto);
-            int index = getCountsIndex(count);
+            int index = classifyCountByIndex(count);
+
             if(index == -1) continue;
+
             sumMoney += prizeMoney(index);
             counts[index]++;
         }
@@ -89,6 +85,13 @@ public class Application {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + counts[3] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + counts[4] + "개");
         System.out.printf("총 수익률은 %.1f%%입니다.", returnRate);
+    }
+
+    public static void validateDuplicate(int number, List<Integer> inputLottoNumber) {
+        if(inputLottoNumber.contains(number)) {
+            System.out.println("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException();
+        }
     }
 
     public static void validateRange(int number, int startLottoNumber, int endLottoNumber) {
@@ -113,7 +116,7 @@ public class Application {
         return count;
     }
 
-    public static int getCountsIndex(int count) {
+    public static int classifyCountByIndex(int count) {
         if(count == 15) return 3;
         if(count%10 == 3) return 0;
         if(count%10 == 4) return 1;

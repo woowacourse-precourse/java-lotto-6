@@ -78,7 +78,7 @@ public class Machine {
         return matchResult;
     }
 
-    private static int getMatchCount(WinningNumber winningNumber, Lotto lotto) {
+    public int getMatchCount(WinningNumber winningNumber, Lotto lotto) {
         int matchCount = lotto.getNumbers()
                 .stream()
                 .filter(o -> winningNumber.firstWinningNumber().stream()

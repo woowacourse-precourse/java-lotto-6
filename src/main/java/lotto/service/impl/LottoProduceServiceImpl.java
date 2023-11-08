@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.adapter.IoAdapter;
 import lotto.domain.Lotto;
-import lotto.domain.Wallet;
+import lotto.vo.Wallet;
 import lotto.service.LottoProduceService;
 import lotto.service.SortService;
 import lotto.utils.CalculationConstants;

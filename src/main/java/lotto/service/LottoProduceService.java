@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.domain.Wallet;
+import lotto.vo.Wallet;
 import lotto.vo.Money;
 
 public interface LottoProduceService {

@@ -10,7 +10,7 @@ import static lotto.utils.CalculationConstants.MINUS_TWO;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Wallet;
+import lotto.vo.Wallet;
 import lotto.domain.WinningLotto;
 import lotto.service.JudgeService;
 import lotto.vo.Result;

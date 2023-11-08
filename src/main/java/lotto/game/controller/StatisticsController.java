@@ -2,7 +2,7 @@ package lotto.game.controller;
 
 import java.util.List;
 import lotto.domain.Statistics;
-import lotto.domain.Wallet;
+import lotto.vo.Wallet;
 import lotto.domain.WinningLotto;
 import lotto.service.JudgeService;
 import lotto.vo.Result;

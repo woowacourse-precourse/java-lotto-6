@@ -1,7 +1,7 @@
 package lotto.game.impl;
 
 import lotto.domain.Statistics;
-import lotto.domain.Wallet;
+import lotto.vo.Wallet;
 import lotto.domain.WinningLotto;
 import lotto.game.Game;
 import lotto.game.controller.MoneyController;

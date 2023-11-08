@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.domain.Wallet;
+import lotto.vo.Wallet;
 import lotto.vo.Result;
 import lotto.domain.WinningLotto;
 

@@ -1,6 +1,6 @@
 package lotto.game.controller;
 
-import lotto.domain.Wallet;
+import lotto.vo.Wallet;
 import lotto.service.LottoProduceService;
 import lotto.vo.Money;
 

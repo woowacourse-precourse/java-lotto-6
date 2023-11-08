@@ -35,7 +35,7 @@ public class WalletTest {
     void createWalletByNonNumericValueMoney(String money) {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 구입 금액에 숫자가 아닌 값이 들어왔습니다.");
+                .hasMessageContaining("[ERROR] 구입 금액에 숫자가 아닌 값이 들어왔습니다.");
     }
 
     @DisplayName("구입 금액이 null이거나 비어있는 경우 예외가 발생한다.")
@@ -44,7 +44,7 @@ public class WalletTest {
     void createWalletByNullOrEmptyMoney(String money) {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
+                .hasMessageContaining("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
                         + maximumPurchaseAmount + "원.");
     }
 
@@ -55,7 +55,7 @@ public class WalletTest {
 
         assertThatThrownBy(() -> new Wallet(String.valueOf(inputMoney)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
+                .hasMessageContaining("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
                         + maximumPurchaseAmount + "원.");
     }
 
@@ -65,7 +65,7 @@ public class WalletTest {
     void createWalletByNotDivisibleBy1000(String money) {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
+                .hasMessageContaining("[ERROR] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
                         + maximumPurchaseAmount + "원.");
     }
 

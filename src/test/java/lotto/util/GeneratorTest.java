@@ -30,7 +30,7 @@ public class GeneratorTest extends NsTest{
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    assertThat(generateNumbers()).isEqualTo(List.of(1, 3, 5, 14, 22, 45));
+                    assertThat(generateNumbers()).hasSameClassAs(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
                 },
                 List.of(1, 3, 5, 14, 22, 45)
         );

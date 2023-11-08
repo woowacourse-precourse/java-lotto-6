@@ -28,7 +28,7 @@ class WinningNumberValidatorTest {
         //when //then
         assertThatThrownBy(() -> WinningNumberValidator.validateWinningNumbers(winningNumbers))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 당첨 번호는 쉼표를 구분으로 입력해야 합니다.");
+            .hasMessage("[ERROR] 당첨 번호는 (,) 쉼표를 구분으로 입력해야 합니다.");
     }
 
     @Test

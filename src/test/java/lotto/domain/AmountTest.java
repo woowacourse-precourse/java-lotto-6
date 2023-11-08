@@ -16,7 +16,7 @@ class AmountTest {
         //when //then
         assertThatThrownBy(() -> new Amount(value))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 구입 금액은 최소 1,000원 부터 입니다.");
+            .hasMessage("[ERROR] 구입 금액은 최소 1,000원부터입니다.");
     }
 
     @Test

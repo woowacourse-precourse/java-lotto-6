@@ -59,7 +59,7 @@ class NumberValidatorTest {
         //when //then
         assertThatThrownBy(() -> NumberValidator.validateInRangeNumber(number))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 번호는 1이상 45이하의 수만 입력할 수 있습니다.");
+            .hasMessage("[ERROR] 번호는 1 이상 45이하의 수만 입력할 수 있습니다.");
     }
 
     @Test
@@ -70,7 +70,7 @@ class NumberValidatorTest {
         //when //then
         assertThatThrownBy(() -> NumberValidator.validateInRangeNumber(number))
             .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("[ERROR] 번호는 1이상 45이하의 수만 입력할 수 있습니다.");
+            .hasMessage("[ERROR] 번호는 1 이상 45이하의 수만 입력할 수 있습니다.");
     }
 
     @Test

@@ -1,19 +1,18 @@
 package lotto.validator;
 
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static lotto.model.Constants.*;
 
 public class InputValidator {
     public static void checkUserInputIsInteger(String userInput) throws IllegalArgumentException {
         if(!userInput.matches("^[0-9]*$")) {
             throw new IllegalArgumentException("[ERROR] "+"숫자만 입력해주세요.");
-        }
-    }
-
-    public static void checkUserInputLength(List<String> userInput, Integer Length) throws IllegalArgumentException {
-        if (userInput.size() != Length) {
-            throw new IllegalArgumentException("[ERROR] "+Length +"개의 당첨 번호를 입력하세요.");
         }
     }
 
@@ -29,12 +28,18 @@ public class InputValidator {
         }
     }
 
-    public static void checkListContainNumber(List<Integer> targetList, Integer targetNumber) throws IllegalArgumentException {
+    public static void checkUserInputDuplicated(List<Integer> targetList) throws IllegalArgumentException {
         Set<Integer> targetSet = new HashSet<>(targetList);
         if (targetList.size() != targetSet.size()) {
             throw new IllegalArgumentException("[ERROR] 중복되는 번호가 있습니다.");
         }
     }
 
+    public static void checkUserInputIsIntegerNOutOfRange(List<String> targetList) throws IllegalArgumentException {
+        for (String s : targetList) {
+            InputValidator.checkUserInputIsInteger(s);
+            InputValidator.checkUserInputOutOfRange(Integer.parseInt(s), MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
+        }
+    }
 
 }

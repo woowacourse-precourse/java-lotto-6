@@ -38,7 +38,7 @@ public class Game {
                 publishedLotto = new Lotto[numOfLotto];
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.");
+                System.out.println("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다.\n");
             }
         }
     }
@@ -74,8 +74,20 @@ public class Game {
     String[] inputNum(){ // 당첨 번호 입력
         String[] input;
 
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        input = readLine().split(",");
+        while (true) {
+            try {
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+                input = readLine().split(",");
+
+                inputNumErrorCheck(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            } catch (IllegalStateException e){
+                System.out.println("[ERROR] 로또 번호의 개수는 6개여야 합니다.");
+
+            }
+        }
 
         return input;
     }
@@ -90,8 +102,17 @@ public class Game {
     String inputBonusNum(){ //보너스 번호 입력
         String input;
 
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        input = readLine();
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                input = readLine();
+
+                inputBonusErrorCheck(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
 
         return input;
     }
@@ -140,5 +161,35 @@ public class Game {
             System.out.println(r.getAnsNum() + " " + r.getKorWinMoney() + " - " + winStat[r.ordinal()] + "개");
         }
         System.out.println("총 수익률은 " + prizeWinMoney / credit + "%입니다.");
+    }
+
+    void countCheck(String num[]){
+        if(num.length != 6){
+            throw new IllegalStateException();
+        }
+    }
+
+    void rangeCheck(int i){
+        if(i < 0 || i > 45) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    void inputNumErrorCheck(String num[]){
+
+        countCheck(num);
+
+        for(String s : num) {
+            int i = Integer.parseInt(s);
+            rangeCheck(i);
+        }
+    }
+
+    void inputBonusErrorCheck(String num){
+        int i = Integer.parseInt(num);
+
+        if(i < 0 || i > 45) {
+            throw new IllegalArgumentException();
+        }
     }
 }

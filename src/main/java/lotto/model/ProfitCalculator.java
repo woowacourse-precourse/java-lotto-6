@@ -21,15 +21,15 @@ public class ProfitCalculator {
     }
 
     private double calculateTotalPrize(Statistics statistics) {
-        double totalPrize = 0.0;
-
         Map<Prize, Integer> result = statistics.getResult();
 
-        for (Map.Entry<Prize, Integer> entry : result.entrySet()) {
-            Prize prize = entry.getKey();
-            int matchCount = entry.getValue();
-            totalPrize += prize.getPrize() * matchCount;
-        }
-        return totalPrize;
+        return result.entrySet()
+                .stream()
+                .mapToDouble(entry -> calculatePrizeForMatch(entry.getKey(), entry.getValue()))
+                .sum();
+    }
+
+    private double calculatePrizeForMatch(Prize prize, int matchCount) {
+        return prize.getPrize() * matchCount;
     }
 }

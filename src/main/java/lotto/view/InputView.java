@@ -12,12 +12,14 @@ public class InputView {
     }
 
     public static List<Integer> readWinningNumbers() {
+        OutputView.printWinningNumbersPrompt();
         return Arrays.stream(Console.readLine().split(","))
             .map(Integer::parseInt)
             .toList();
     }
 
     public static int readBonusNumber() {
+        OutputView.printBonusNumberPrompt();
         return Integer.parseInt(Console.readLine());
     }
 }

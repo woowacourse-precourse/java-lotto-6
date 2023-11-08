@@ -149,6 +149,22 @@ public class InteractServiceTest extends NsTest {
         });
     }
 
+    @DisplayName("보너스 번호가 당첨 번호와 중복일 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "1", "2", "3"
+    })
+    void bonusNumDubForWinningNum(String input) {
+        assertSimpleTest(() -> {
+            runException(
+                    PURCHASE_FEE,
+                    LOTTO_NUM,
+                    input
+            );
+            assertThat(output()).contains(ErrorStatus.BONUS_NUM_DUB_ERROR.getMessage());
+        });
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.Map;
+import lotto.util.Constant;
 
 public class ProfitCalculator {
 

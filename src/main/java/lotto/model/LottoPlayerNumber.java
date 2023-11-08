@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.model.Constant.*;
+import static lotto.util.Constant.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;

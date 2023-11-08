@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.util;
 
 public final class Constant {
 

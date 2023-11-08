@@ -17,7 +17,7 @@ class LottoWinningTest {
     @DisplayName("당첨 순위 별 숫자가 잘 세어지는지 확인한다.")
     @ParameterizedTest
     @MethodSource("provideLottoTickets")
-    void testAssignedRanksCount(List<Lotto> tickets, List<Integer> expected) {
+    void testAssignRanks(List<Lotto> tickets, List<Integer> expected) {
         LottoWinning testLottoWinning = new LottoWinning(List.of(5, 10, 15, 20, 25, 30));
         testLottoWinning.setBonusNumber(35);
         Map<LottoRank, Integer> winningCounts= testLottoWinning.assignRanks(tickets);
@@ -49,7 +49,7 @@ class LottoWinningTest {
     @DisplayName("로또가 당첨 기준에 따라 올바른 등수에 당첨되는지 확인한다.")
     @ParameterizedTest
     @MethodSource("provideLottoTicket")
-    void testAssignedRank(Lotto ticket, LottoRank expected) {
+    void testAssignRank(Lotto ticket, LottoRank expected) {
         LottoWinning testLottoWinning = new LottoWinning(List.of(5, 10, 15, 20, 25, 30));
         testLottoWinning.setBonusNumber(35);
         LottoRank actual = testLottoWinning.assignRank(ticket);
@@ -69,13 +69,12 @@ class LottoWinningTest {
     @DisplayName("잘못된 로또 당첨 기준에 대해 예외 처리한다.")
     @ParameterizedTest
     @MethodSource("provideInvalidLottoWinningParams")
-    void checkExceptionOnWrongInput(List<Integer> winningNumbers, Integer bonusNumber) {
+    void testConstructorAndsetBonusNumber(List<Integer> winningNumbers, Integer bonusNumber) {
         assertThatThrownBy(() -> {
             new LottoWinning(winningNumbers).setBonusNumber(bonusNumber);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]");
     }
-
 
     static Stream<Arguments> provideInvalidLottoWinningParams() {
         return Stream.of(
@@ -87,5 +86,4 @@ class LottoWinningTest {
                 Arguments.of(List.of(1,2,3,4,5,6,7), 0)
         );
     }
-
 }

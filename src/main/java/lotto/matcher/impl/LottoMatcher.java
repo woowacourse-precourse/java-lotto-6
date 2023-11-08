@@ -1,8 +1,10 @@
 package lotto.matcher.impl;
 
+import lotto.config.LottoConfig;
+import lotto.config.LottoPrize;
+import lotto.config.PrizePolicyConfig;
 import lotto.lotto.AnswerLotto;
 import lotto.lotto.Lotto;
-import lotto.matcher.MatchResult;
 import lotto.matcher.Matcher;
 
 public class LottoMatcher implements Matcher {
@@ -24,9 +26,22 @@ public class LottoMatcher implements Matcher {
         return false;
     }
 
+    private LottoPrize checkSecond(LottoPrize prize, boolean bonus) {
+        if (prize.getReward() == LottoConfig.SECOND_PRIZE.getNum() && !bonus)
+            return PrizePolicyConfig.PRIZES.getPrizes().get(3);
+        return prize;
+    }
 
+    private LottoPrize matchPrize(int count, boolean bonus) {
+        for (LottoPrize prize : PrizePolicyConfig.PRIZES.getPrizes()) {
+            if (prize.getMatchNumber() == count) {
+                return checkSecond(prize, bonus);
+            }
+        }
+        return new LottoPrize(-1, 0, false, 0);
+    }
     @Override
-    public MatchResult match(Lotto lotto, AnswerLotto answerLotto) {
+    public LottoPrize match(Lotto lotto, AnswerLotto answerLotto) {
         int count = 0;
         boolean bonus = false;
 
@@ -36,6 +51,6 @@ public class LottoMatcher implements Matcher {
             }
         }
         bonus = matchBonus(lotto, answerLotto.getBonus());
-        return new MatchResult(count, bonus);
+        return matchPrize(count, bonus);
     }
 }

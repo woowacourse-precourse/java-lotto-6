@@ -1,14 +1,12 @@
 package lotto.domain;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Player {
     public static final Map<RankingStatus,Integer> rankings = new HashMap<RankingStatus, Integer>();
     public int money;
 
-    public Player(int moeny){
+    public Player(int money){
         Arrays.stream(RankingStatus.values())
                 .forEach(rank -> rankings.put(rank, 0));
 
@@ -28,8 +26,16 @@ public class Player {
         return rankings;
     }
 
-    public double calculateRewardTest(){
-        return 62.5;
+    public double calculateReward(){
+        double rewardMoney = 0;
+
+        Iterator<RankingStatus> rankIterator = rankings.keySet().iterator();
+        while (rankIterator.hasNext()) {
+            RankingStatus r = rankIterator.next();
+            Integer v = rankings.get(r);
+            rewardMoney += r.reward * (double)v;
+        }
+        return Math.round(rewardMoney/money*1000)/(double)10;
     }
 
 

@@ -22,7 +22,7 @@ public interface LottoService {
      * 로또 번호(들을)를 조회한다
      * @return 로또 번호 목록
      */
-    public List<Lotto> getLottos();
+    public List<Lotto> getLottoTickets();
 
     /**
      * 로또 당첨 결과를 확인한다

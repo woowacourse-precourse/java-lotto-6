@@ -66,7 +66,7 @@ public class OutputView {
 
 
 	private static void printProfitRate(double profitRate){
-		DecimalFormat df = new DecimalFormat("0.##");
+		DecimalFormat df = new DecimalFormat("0.0");
 		String formattedProfitRate = df.format(profitRate);
 		System.out.printf(PROFIT_RATE_MESSAGE, formattedProfitRate);
 	}

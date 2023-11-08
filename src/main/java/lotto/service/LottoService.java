@@ -74,7 +74,7 @@ public class LottoService {
     }
 
     private double calculateRateOfReturnToFirstDecimalPlace(final long winningAmount, final long userMoney) {
-        double rateOfReturn = (double) winningAmount / userMoney;
+        double rateOfReturn = (winningAmount * NumberConstant.HUNDRED.getNumber() / (double) userMoney);
         return Math.round(rateOfReturn * NumberConstant.TEN.getNumber())
                 / (double) NumberConstant.TEN.getNumber();
     }

@@ -44,10 +44,10 @@ class LottoTest {
     @DisplayName("로또 번호와 당첨 번호와의 일치 개수를 반환한다.")
     @ParameterizedTest
     @MethodSource("provideLottoNumbersForMatchingCount")
-    void countMatchingNumbers(List<Integer> lottoNumbers, int expectedMatchCount) {
+    void testCountMatchingNumbers(List<Integer> lottoNumbers, int expectedMatchCount) {
         Lotto lotto = Lotto.issue(lottoNumbers);
         int actualMatchCount = lotto.countMatchingNumbers(mainNumbers);
-        
+
         assertEquals(expectedMatchCount, actualMatchCount);
     }
 
@@ -63,7 +63,7 @@ class LottoTest {
     @DisplayName("로또 번호 중 보너스 번호와 일치하는 번호가 있는지 확인한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
-    void hasBonusNumber(String number) {
+    void testHasBonusNumber(String number) {
         Lotto lotto = Lotto.issue(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = BonusNumber.from(number);
 

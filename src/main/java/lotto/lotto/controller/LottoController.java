@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.calculation.controller.CalculationController;
 import lotto.lotto.model.Lotto;
 import lotto.lotto.view.LottoView;
 import lotto.user.controller.UserController;
@@ -33,7 +34,8 @@ public class LottoController {
         List<Lotto> lottos = new ArrayList<>();
         try{
             for(int i=0;i<count;i++){
-                Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, MAX_INPUT_NUMBER));
+                List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, MAX_INPUT_NUMBER));
+                Lotto lotto = new Lotto(numbers);
                 lottos.add(lotto);
             }
             LottoValidate.checkLottos(lottos);

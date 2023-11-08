@@ -70,7 +70,6 @@ public class Lotto {
     }
 
     private static void validateToLotto(List<String> numbers) {
-
         try {
             for (String number : numbers) {
                 checkFormat(number);
@@ -91,7 +90,6 @@ public class Lotto {
         if (!input.matches("[0-9]+")) {
             throw new IllegalArgumentException(Error.LOTTO_FORMAT.getMessage());
         }
-
     }
 
     public static Lotto toLotto(String number) {

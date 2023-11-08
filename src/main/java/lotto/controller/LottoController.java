@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.LottoCollector;
@@ -38,8 +39,8 @@ public class LottoController {
     private List<Integer> separateWinningNumber(String winningNumber) {
         String[] separatedWinningNumbers = winningNumber.split(",");
 
-        return Arrays.stream(separatedWinningNumbers)
+        return new ArrayList<>(Arrays.stream(separatedWinningNumbers)
                 .map(this::validateType)
-                .toList();
+                .toList());
     }
 }

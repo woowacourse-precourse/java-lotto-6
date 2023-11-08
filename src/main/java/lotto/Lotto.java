@@ -32,7 +32,6 @@ public class Lotto {
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        System.out.println(numbers.stream().allMatch(number -> 1 >= number || number >= 45));
         if (!numbers.stream().allMatch(number -> 1 <= number && number <= 45)) {
             throw new IllegalArgumentException(ExceptionMessage.ERROR_NUMBER_RANGE);
         }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -31,4 +31,8 @@ public class Lotto {
     public int compareWithAnotherLotto(Lotto another) {
         return another.compareWithNumberList(this.numbers);
     }
+
+//    public void printLottoInfo() {
+//        OutputView.printLotto(numbers);
+//    }
 }

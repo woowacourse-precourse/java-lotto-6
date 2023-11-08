@@ -9,12 +9,13 @@ import org.junit.jupiter.api.Test;
 
 class UserValidateTest {
 
-    @DisplayName("사용자가 입력한 구매금액이 1000단위인지 확인")
+    @DisplayName("사용자가 입력한 구매금액이 1000단위가 아닌 경우 예외 발생")
     @Test
     void 구매금액_1000단위_확인(){
         assertThatThrownBy(() -> UserValidate.isTousand(12345))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
     @DisplayName("입력된 당첨 로또 번호가 6개를 초과하는 경우 예외 발생")
     @Test
     void 로또_당첨번호_개수_확인(){

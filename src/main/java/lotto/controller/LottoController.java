@@ -17,6 +17,7 @@ public class LottoController {
     LottoService lottoService = new LottoService();
 
     public void run() {
+        OutputView.printInputPrice();
         PurchasePrice purchasePrice = getPurchasePrice();
         int lottoCount = getLottoCount(purchasePrice);
         Lottos lottos = new Lottos(lottoService.generateLotto(lottoCount));
@@ -31,7 +32,7 @@ public class LottoController {
             List<ResultResponseDto> dtos = lottoService.convertToDto(results);
             OutputView.printLottoResult(dtos);
             extractEarningRate(purchasePrice, dtos);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             returnGameResult(results, purchasePrice);
         }
@@ -42,7 +43,7 @@ public class LottoController {
         try {
             LottoResponseDtos responseDtos = lottos.toResponseDtos();
             OutputView.printLottosValue(responseDtos);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             printLottoValues(lottos);
         }
@@ -53,7 +54,7 @@ public class LottoController {
             Lotto userLotto = getUserLottoNumber();
             int userBonusNumber = getUserBonusNumber();
             return new UserLotto(userLotto, userBonusNumber);
-        } catch (Exception e){
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getUserLotto();
         }
@@ -64,7 +65,7 @@ public class LottoController {
             int lottoCount = purchasePrice.getLottoCount();
             OutputView.printPurchaseLotto(lottoCount);
             return lottoCount;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getLottoCount(purchasePrice);
         }
@@ -75,28 +76,28 @@ public class LottoController {
         try {
             double earningRate = purchasePrice.calculatePriceRate(resultResponseDtos);
             OutputView.printEarningRate(earningRate);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             extractEarningRate(purchasePrice, resultResponseDtos);
         }
     }
 
     private static int getUserBonusNumber() {
+        OutputView.printGetBonusNumber();
         try {
-            OutputView.printGetBonusNumber();
             return InputView.getUserBonusNumber();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getUserBonusNumber();
         }
     }
 
     private static Lotto getUserLottoNumber() {
+        OutputView.printGetInputNumber();
         try {
-            OutputView.printGetInputNumber();
             List<Integer> userLottoNumbers = InputView.getUserLottoNumber();
             return new Lotto(userLottoNumbers);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getUserLottoNumber();
         }
@@ -104,10 +105,9 @@ public class LottoController {
 
     private PurchasePrice getPurchasePrice() {
         try {
-            OutputView.printInputPrice();
             int price = InputView.getPurchaseLottoPrice();
             return new PurchasePrice(price);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return getPurchasePrice();
         }

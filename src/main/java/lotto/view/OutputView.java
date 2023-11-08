@@ -33,8 +33,8 @@ public class OutputView {
 
     public void printWinningResultMessage() {
         printNewLine();
-        System.out.println(ProcessMessage.WINNING_STATISTICS);
-        System.out.println(ProcessMessage.LINE);
+        System.out.println(ResultMessage.WINNING_STATISTICS);
+        System.out.println(ResultMessage.DIVIDED_LINE);
     }
 
     public void printWinningResult(Map<WinningGrade, Integer> winningResult) {
@@ -44,7 +44,7 @@ public class OutputView {
     }
 
     public void printTotalYield(double totalYield) {
-        System.out.printf(ProcessMessage.TOTAL_YIELD.toString(), totalYield);
+        System.out.printf(ResultMessage.TOTAL_YIELD.toString(), totalYield);
     }
 
     public void printExceptionMessage(Exception exception) {

@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum PrizeConfig {
+public enum RankConfig {
     FIRST(6, false, "2,000,000,000원"),
     SECOND(5, true, "30,000,000원"),
     THIRD(5, false, "1,500,000원"),
@@ -11,7 +11,7 @@ public enum PrizeConfig {
     private final boolean shouldBonusBallMatch;
     private final String reward;
 
-    PrizeConfig(int matchingNumbers, boolean shouldBonusBallMatch, String reward) {
+    RankConfig(int matchingNumbers, boolean shouldBonusBallMatch, String reward) {
         this.matchingNumbers = matchingNumbers;
         this.shouldBonusBallMatch = shouldBonusBallMatch;
         this.reward = reward;

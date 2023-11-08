@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import msg.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,18 +17,18 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoConfig.COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 다릅니다.");
+            throw new IllegalArgumentException(ErrorMessage.COUNT_DIFFERENCE.value());
         }
         List<Integer> uniqueNumbers = new ArrayList<>();
         numbers.forEach(number -> {
             if (uniqueNumbers.contains(number)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자를 가질 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE.value());
             }
             uniqueNumbers.add(number);
         });
         numbers.forEach(number -> {
             if (number < LottoConfig.START_NUM || number > LottoConfig.END_NUM) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호로 적합하지 않은 숫자입니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.value());
             }
         });
     }

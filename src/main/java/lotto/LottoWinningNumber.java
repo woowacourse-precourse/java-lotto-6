@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import msg.ErrorMessage;
 
 public class LottoWinningNumber {
     private List<Integer> commonNumbers;
@@ -39,18 +40,18 @@ public class LottoWinningNumber {
 
         private void verifyCommonNumber(List<Integer> numbers) {
             if (numbers.size() != LottoConfig.COUNT) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 다릅니다.");
+                throw new IllegalArgumentException(ErrorMessage.COUNT_DIFFERENCE.value());
             }
             numbers.forEach(number -> {
                 if (number < LottoConfig.START_NUM || number > LottoConfig.END_NUM) {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호로 적합하지 않은 숫자입니다.");
+                    throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.value());
                 }
             });
 
             List<Integer> uniqueNumbers = new ArrayList<>();
             numbers.forEach(number -> {
                 if (uniqueNumbers.contains(number)) {
-                    throw new IllegalArgumentException("[ERROR] 중복된 숫자를 가질 수 없습니다.");
+                    throw new IllegalArgumentException(ErrorMessage.DUPLICATE.value());
                 }
                 uniqueNumbers.add(number);
             });
@@ -64,23 +65,23 @@ public class LottoWinningNumber {
 
         private void verifyBonusNumber(int bonus) {
             if (commonNumbers == null || commonNumbers.isEmpty()) {
-                throw new IllegalStateException("[ERROR] 일반 숫자가 없습니다.");
+                throw new IllegalStateException(ErrorMessage.THERES_NO_COMMON.value());
             }
             if (bonus < LottoConfig.START_NUM || bonus > LottoConfig.END_NUM) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호로 적합하지 않은 숫자입니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER.value());
             }
 
             if (commonNumbers.contains(bonus)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자를 가질 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE.value());
             }
         }
 
         public LottoWinningNumber build() {
             if (commonNumbers == null || commonNumbers.isEmpty()) {
-                throw new IllegalStateException("[ERROR] 일반 숫자가 없습니다.");
+                throw new IllegalStateException(ErrorMessage.THERES_NO_COMMON.value());
             }
             if (bonusNumber == null) {
-                throw new IllegalStateException("[ERROR] 보너스 숫자가 없습니다.");
+                throw new IllegalStateException(ErrorMessage.THERES_NO_BONUS.value());
             }
             return new LottoWinningNumber(commonNumbers, bonusNumber);
         }

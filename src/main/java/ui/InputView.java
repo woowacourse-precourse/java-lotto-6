@@ -2,10 +2,11 @@ package ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 import lotto.LottoMoney;
 import lotto.LottoWinningNumber.Builder;
+import msg.ErrorMessage;
 
 class InputView {
     private InputView() {
@@ -15,22 +16,11 @@ class InputView {
      * @return 1000 단위로 끊어진 로또 구매 금액.
      */
     public static LottoMoney getMoney() {
-        while (true) {
-            try {
-                String input = Console.readLine();
-                int money = Integer.parseInt(input);
-                return new LottoMoney(money);
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해 주세요.");
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-//        return repeat(() -> {
-//            String input = Console.readLine();
-//            int money = Integer.parseInt(input);
-//            return new LottoMoney(money);
-//        });
+        return repeat(() -> {
+            String input = Console.readLine();
+            int money = Integer.parseInt(input);
+            return new LottoMoney(money);
+        });
     }
 
     public static Builder getCommonNumbers(Builder builder) {
@@ -54,16 +44,14 @@ class InputView {
         });
     }
 
-    private static <R> R repeat(Callable<R> supplier) {
+    private static <R> R repeat(Supplier<R> supplier) {
         while (true) {
             try {
-                return supplier.call();
+                return supplier.get();
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+                System.out.println(ErrorMessage.NOT_A_NUMBER);
             } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println(e.getMessage());
-            } catch (Exception e) {
-                System.out.println("[ERROR] Unexpected Exception");
             }
         }
     }

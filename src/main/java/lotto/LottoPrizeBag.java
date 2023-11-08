@@ -2,6 +2,7 @@ package lotto;
 
 import java.text.MessageFormat;
 import java.util.List;
+import msg.ErrorMessage;
 
 public class LottoPrizeBag {
     private final List<LottoPrize> lottoPrizes;
@@ -12,7 +13,7 @@ public class LottoPrizeBag {
 
     public String sayAbout(LottoPrize prizeLevel) {
         if (prizeLevel.equals(LottoPrize.NONE)) {
-            throw new IllegalArgumentException("[ERROR] NONE");
+            throw new IllegalArgumentException(ErrorMessage.NONE_PRIZE.value());
         }
         long count = lottoPrizes.stream().filter(prizeLevel::equals).count();
 

@@ -1,6 +1,6 @@
 package lotto;
 
-import java.text.MessageFormat;
+import msg.ErrorMessage;
 
 public class LottoMoney {
     private final int money;
@@ -12,8 +12,7 @@ public class LottoMoney {
 
     private void verify(int money) {
         if (money % LottoConfig.PRICE != 0) {
-            String format = MessageFormat.format("[ERROR] {0}원 단위로 입력해주세요.", LottoConfig.PRICE);
-            throw new IllegalArgumentException(format);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_UNIT.value());
         }
     }
 

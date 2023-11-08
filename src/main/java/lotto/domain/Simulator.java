@@ -74,8 +74,11 @@ public class Simulator {
         final int HUNDRED_PERCENT = 100;
         final int MULTIPLY_NUMBER_FOR_FIRST_PRIME = 10;
         final float DIVISION_NUMBER_FOR_FIRST_PRIME = 10f;
-        rateOfReturn = Math.round((float) totalReturn/totalPayment * HUNDRED_PERCENT * MULTIPLY_NUMBER_FOR_FIRST_PRIME)
-                        / DIVISION_NUMBER_FOR_FIRST_PRIME;
+        rateOfReturn = Math.round(
+                (float) totalReturn/totalPayment
+                        * HUNDRED_PERCENT
+                        * MULTIPLY_NUMBER_FOR_FIRST_PRIME
+                ) / DIVISION_NUMBER_FOR_FIRST_PRIME;
     }
 
     private void showResult() {

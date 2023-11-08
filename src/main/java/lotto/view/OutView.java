@@ -1,5 +1,6 @@
 package lotto.view;
 
+//유저에게 보일 내용 값
 public class OutView {
     public static final String TICKET_COUNT = "개를 구매했습니다.";
 

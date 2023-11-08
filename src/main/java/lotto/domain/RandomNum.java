@@ -9,12 +9,18 @@ import java.util.ArrayList;
 public class RandomNum {
     public RandomNum() {
     }
-    private static List<Integer> lottoNum;
+
+    private static final int CNT_LOTTO_NUMBER = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+
+    private static List<Integer> lottoNumberList;
 
     public static List<Integer> setRandomNumbers() {
-        lottoNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        List<Integer> lottoNumList = new ArrayList<>(lottoNum);
-        Collections.sort(lottoNumList); //정렬
-        return lottoNumList;
+        lottoNumberList = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, CNT_LOTTO_NUMBER);
+        List<Integer> lottoTicketNumberList = new ArrayList<>(lottoNumberList);
+        Collections.sort(lottoTicketNumberList);
+        return lottoTicketNumberList;
     }
+
 }

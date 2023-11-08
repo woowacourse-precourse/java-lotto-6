@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+//내부에서 입력받을 값
 public class InputView {
     private static final String INPUT_LOTTO_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String INPUT_LOTTO_WINNING = "당첨 번호를 입력해 주세요.";

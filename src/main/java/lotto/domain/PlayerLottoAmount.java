@@ -12,6 +12,7 @@ public class PlayerLottoAmount {
         this.amount = amountNum;
     }
 
+    //구매가능한 로또 수
     public int calculateLottoCount() {
         return amount / LOTTO_MIN_AMOUNT;
     }

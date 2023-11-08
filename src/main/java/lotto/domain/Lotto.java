@@ -5,7 +5,7 @@ import static lotto.constants.LottoConstants.LOTTO_LENGTH_CONSTRAINT;
 import java.util.Collections;
 import java.util.List;
 import lotto.constants.ErrorConstants;
-import lotto.util.RandomNumbersGenerator;
+import lotto.util.RandomUniqueNumbersGenerator;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -37,8 +37,8 @@ public class Lotto {
     }
 
     public static Lotto createRandomLotto() {
-        List<Integer> randomNumbers = RandomNumbersGenerator.create();
-        return new Lotto(randomNumbers);
+        List<Integer> randomUniqueNumbers = RandomUniqueNumbersGenerator.create();
+        return new Lotto(randomUniqueNumbers);
     }
 
     public boolean contains(LottoNumber lottoNumber) {

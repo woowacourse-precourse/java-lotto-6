@@ -44,11 +44,16 @@ public class Validator {
     }
 
     public List<String> validNumbers(List<String> lottoNumbers) {
+        validWinningNumber(lottoNumbers);
         if (checkSize(lottoNumbers)) {
             return lottoNumbers;
         }
         ErrorMessage.getDescription(ErrorMessage.SIZE);
         throw new IllegalArgumentException();
+    }
+
+    private void validWinningNumber(List<String> lottoNumbers) {
+        lottoNumbers.stream().forEach(number -> validWinning(number));
     }
 
     private boolean checkSize(List<String> lottoNumbers) {

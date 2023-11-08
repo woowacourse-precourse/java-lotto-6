@@ -1,23 +1,23 @@
 package Model;
 
-import Controller.ModelHandler;
 import View.ViewString;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Domain {
-    private final ModelHandler MODEL = ModelHandler.getInstance();
     private final Service SERVICE = Service.getInstance();
-    private final List<Integer> LOTTO_WINNING_NUMBER = MODEL.setWinningNumber();
     public static final int LOTTO_PRICE = 1000;
 
-    private List<Lotto> myLotto;
-    private List<Integer> duplicatedNumberCount;
-    private List<Integer> winningRanking;
-    private List<Boolean> duplicatedBonusNumber;
+    private List<Lotto> myLotto = new ArrayList<>();
+    private List<Integer> lottoWinningNumber;
+    private List<Integer> duplicatedNumberCount = new ArrayList<>();
+    private List<Integer> winningRanking = new ArrayList<>();
+    private List<Boolean> duplicatedBonusNumber = new ArrayList<>();
     private int bonusNumber;
     private int lottoNum;
     private int winnings;
@@ -25,15 +25,6 @@ public class Domain {
     private double revenueRate;
 
     private Domain() {
-        myLotto = new ArrayList<>();
-        duplicatedNumberCount = new ArrayList<>();
-        duplicatedBonusNumber = new ArrayList<>();
-        winningRanking = new ArrayList<>();
-        bonusNumber = 0;
-        lottoNum = 0;
-        winnings = 0;
-        price = 0;
-        revenueRate = 0;
     }
 
     private class Singleton {
@@ -57,22 +48,14 @@ public class Domain {
     }
 
     public void setWinningRanking() {
-        for (int i = 0; i < duplicatedNumberCount.size(); i++) {
+        for (int i = 0; i < myLotto.size(); i++) {
             int rank = SERVICE.calWinningsRank(duplicatedNumberCount.get(i), duplicatedBonusNumber.get(i));
             winningRanking.add(rank);
         }
     }
 
-    public void sumWinnings() {
-        for (var Ranking : winningRanking) {
-            if (Ranking != 0) {
-                winnings += SERVICE.getMyWinning(Ranking);
-            }
-        }
-    }
-
-    public void setRevenueRate() {
-        revenueRate = winnings / price;
+    public void setLottoWinningNumber(String winnerNumber) {
+        this.lottoWinningNumber = SERVICE.makeLotto(winnerNumber);
     }
 
     public void setMyLotto() {
@@ -84,51 +67,65 @@ public class Domain {
     //로또 당첨 횟수 = 총 myLotto 사이즈 만큼 나옴
     public void compareNumbers() {
         for (var e : myLotto) {
-            duplicatedBonusNumber.add(bonusNumberDuplicateCount(e.getNumbers()));
-            duplicatedNumberCount.add(numberDuplicateCount(e.getNumbers()));
+            duplicatedBonusNumber.add(isBonusNumberDuplicated(e.getNumbers()));
+            duplicatedNumberCount.add(countNumberDuplicates(e.getNumbers()));
         }
     }
 
-    private int numberDuplicateCount(List<Integer> list) {
-        Set<Integer> set = new HashSet<>(LOTTO_WINNING_NUMBER);
-
-        return (int) list.stream()
-                .filter(set::contains)
-                .count();
+    public void calculateWinnings() {
+        winnings = winningRanking.stream()
+                .filter(ranking -> ranking != 0)
+                .mapToInt(SERVICE::getMyWinning)
+                .sum();
     }
 
-    private boolean bonusNumberDuplicateCount(List<Integer> list) {
-        for (int number : list) {
-            if (number == bonusNumber) {
-                return true;
-            }
-        }
-        return false;
+    public void calculateRevenueRate() {
+        revenueRate = Math.round((double) winnings / price * 1000) / 10.0;
+    }
+
+    private int countNumberDuplicates(List<Integer> list) {
+        Set<Integer> winningNumberSet = new HashSet<>(lottoWinningNumber);
+        return (int) list.stream().filter(winningNumberSet::contains).count();
+    }
+
+    private boolean isBonusNumberDuplicated(List<Integer> list) {
+        return list.contains(bonusNumber);
     }
 
     public void printMyLotto() {
-        System.out.println(myLotto.size() + "개를 구매했습니다.");
+        System.out.println(lottoNum + "개를 구매했습니다.");
+        myLotto.forEach(lotto ->
+                System.out.println("[" + formatLottoNumbers(lotto.getNumbers()) + "]")
+        );
+    }
 
-        for (var lotto : myLotto) {
-            String printLottoLine = lotto.getNumbers().stream()
-                    .map(String::valueOf)
-                    .collect(Collectors.joining(", "));
+    private String formatLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", "));
+    }
 
-            System.out.println("[" + printLottoLine + "]");
-        }
+    public Map<Integer, Long> calculateStatistics() {
+        Map<Integer, Long> statistics = new HashMap<>();
+        statistics.put(1, 0L); // 6개 일치
+        statistics.put(2, 0L); // 5개 일치, 보너스 볼 일치
+        statistics.put(3, 0L); // 5개 일치
+        statistics.put(4, 0L); // 4개 일치
+        statistics.put(5, 0L); // 3개 일치
+
+        winningRanking.forEach(rank -> statistics.merge(rank, 1L, Long::sum));
+
+        return statistics;
     }
 
     public void printStatistics() {
-        if(duplicatedNumberCount.size() != ViewString.values().length) {
-            throw new IllegalArgumentException();
-        }
+        Map<Integer, Long> stats = calculateStatistics();
 
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
-        for(int i = 0; i < duplicatedNumberCount.size(); i++) {
-            System.out.println(ViewString.values()[i] +
-                    Integer.toString(duplicatedNumberCount.get(i)) + "개");
+        System.out.println("당첨 통계\n-----------");
+        for (int rank = 0; rank < 5; rank++) {
+            String rankDescription = ViewString.values()[rank].getSentence();
+            System.out.println(rankDescription + stats.get(5 - rank) + "개");
         }
+        System.out.println("총 수익률은 " + revenueRate + "%입니다.");
     }
 }

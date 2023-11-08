@@ -1,18 +1,21 @@
 package View;
 
 import Controller.ModelHandler;
-import Model.Lotto;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
-    private ModelHandler moder = ModelHandler.getInstance();
+    private final ModelHandler MODEL = ModelHandler.getInstance();
 
     public void printMyLotto() {
-        moder.printMyLotto();
+        MODEL.setLottoNum();
+        MODEL.setMyLotto();
+        MODEL.printMyLotto();
     }
 
     public void printStatistics() {
-        moder.printStatistics();
+        MODEL.setDuplicate();
+        MODEL.setWinningRanking();
+        MODEL.setWinnings();
+        MODEL.setRevenueRate();
+        MODEL.printStatistics();
     }
 }

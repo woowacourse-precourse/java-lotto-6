@@ -1,15 +1,9 @@
 package Controller;
 
 import Model.Domain;
-import Model.Lotto;
-import Model.Service;
-import View.InputView;
-import java.util.List;
 
 public class ModelHandler {
     private final Domain DOMAIN = Domain.getInstance();
-    private final Service SERVICE = Service.getInstance();
-    private final InputView INPUT_VIEW = InputView.getInstance();
     private final ExceptionHandler EXCEPTION = new ExceptionHandler();
 
     private ModelHandler() {}
@@ -22,8 +16,8 @@ public class ModelHandler {
         return Singleton.INSTANCE;
     }
 
-    public List<Integer> setWinningNumber() {
-        return SERVICE.makeLotto(INPUT_VIEW.inputWinningNumber());
+    public void setWinningNumber(String winningNumber) {
+        DOMAIN.setLottoWinningNumber(winningNumber);
     }
 
     public void setBonusNumber(int bonusNumber) {
@@ -40,7 +34,7 @@ public class ModelHandler {
     }
 
     public void setWinnings() {
-        DOMAIN.sumWinnings();
+        DOMAIN.calculateWinnings();
     }
 
     public void setWinningRanking() {
@@ -48,7 +42,7 @@ public class ModelHandler {
     }
 
     public void setRevenueRate() {
-        DOMAIN.setRevenueRate();
+        DOMAIN.calculateRevenueRate();
     }
 
     public void setMyLotto() {

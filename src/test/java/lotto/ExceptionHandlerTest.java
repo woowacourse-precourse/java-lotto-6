@@ -22,7 +22,6 @@ public class ExceptionHandlerTest {
     @Test
     public void inputBonusNumber() {
         int number = 100;
-
         assertThatThrownBy(() -> exceptionHandler.checkNumberBoundary(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }

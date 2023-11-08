@@ -1,8 +1,7 @@
 package Controller;
 
 public enum ExceptionSentence {
-    NULL_ERROR(""),
-    TYPE_ERROR(""),
+    TYPE_ERROR("[ERROR] 문자열을 숫자로 변환할 수 없습니다."),
     BOUNDARY_ERROR("[ERROR] 잘못된 범위 입니다."),
     PRICE_BOUNDARY_ERROR("[ERROR] 구입 금액이 1,000 단위가 아닙니다.");
 

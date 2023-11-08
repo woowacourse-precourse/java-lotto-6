@@ -1,10 +1,11 @@
 package View;
 
+import Controller.ExceptionSentence;
 import Controller.ModelHandler;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-    private ModelHandler model = ModelHandler.getInstance();
+    private final ModelHandler MODEL = ModelHandler.getInstance();
 
     private InputView() {
     }
@@ -18,18 +19,24 @@ public class InputView {
     }
 
     public void inputPrice() {
-        System.out.println(ViewString.INPUT_PRICE_NOTIFICATION);
-        int price = Integer.parseInt(Console.readLine());
-        model.setPrice(price);
+        try {
+            System.out.println(ViewString.INPUT_PRICE_NOTIFICATION.getSentence());
+            int price = Integer.parseInt(Console.readLine());
+            MODEL.setPrice(price);
+        } catch (NumberFormatException e) {
+            System.out.println(ExceptionSentence.TYPE_ERROR.getMessage());
+        }
     }
 
-    public String inputWinningNumber() {
-        System.out.println(ViewString.INPUT_WINNING_NUMBER_NOTIFICATION);
-        return Console.readLine();
+    public void inputWinningNumber() {
+        System.out.println(ViewString.INPUT_WINNING_NUMBER_NOTIFICATION.getSentence());
+        String winningNumber = Console.readLine();
+        MODEL.setWinningNumber(winningNumber);
     }
 
-    public int inputBonusNumber() {
-        System.out.println(ViewString.INPUT_BONUS_NUMBER_NOTIFICATION);
-        return Integer.parseInt(Console.readLine());
+    public void inputBonusNumber() {
+        System.out.println(ViewString.INPUT_BONUS_NUMBER_NOTIFICATION.getSentence());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        MODEL.setBonusNumber(bonusNumber);
     }
 }

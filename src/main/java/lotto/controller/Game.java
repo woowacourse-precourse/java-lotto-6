@@ -88,9 +88,10 @@ public class Game {
     }
 
     private List<Integer> pickNumbers() {
-        List<Integer> numbers;
+        List<Integer> random = Randoms.pickUniqueNumbersInRange(Constants.START, Constants.END, Constants.NUMBER_COUNT);
+        List<Integer> numbers = new ArrayList<>(random);
 
-        numbers = Randoms.pickUniqueNumbersInRange(Constants.START, Constants.END, Constants.NUMBER_COUNT);
+        Collections.sort(numbers);
         return numbers;
     }
 

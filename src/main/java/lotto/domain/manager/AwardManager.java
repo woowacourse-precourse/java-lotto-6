@@ -1,4 +1,4 @@
-package lotto.manager;
+package lotto.domain.manager;
 
 import java.util.List;
 import lotto.domain.BonusNumber;
@@ -11,7 +11,7 @@ public class AwardManager {
     private List<ResultLotto> result;
     private float yield;
 
-    public void makeResult(UserLotto userLotto, WinningLotto winningLotto, BonusNumber bonusNumber) {
+    public void makeResult(final UserLotto userLotto, final WinningLotto winningLotto, final BonusNumber bonusNumber) {
         ResultManager resultManager = new ResultManager();
         YieldManager yieldManager = new YieldManager();
 

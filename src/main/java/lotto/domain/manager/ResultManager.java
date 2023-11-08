@@ -1,4 +1,4 @@
-package lotto.manager;
+package lotto.domain.manager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,8 @@ import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
 
 public class ResultManager {
-    public List<ResultLotto> match(WinningLotto winningLotto, UserLotto userLotto, BonusNumber bonusNumber) {
+    public List<ResultLotto> match(final WinningLotto winningLotto, final UserLotto userLotto,
+                                   final BonusNumber bonusNumber) {
         List<ResultLotto> resultLotto = new ArrayList<>();
         for (int i = 0; i < userLotto.size(); i++) {
             Lotto eachLotto = userLotto.get(i);
@@ -21,7 +22,8 @@ public class ResultManager {
         return resultLotto;
     }
 
-    private void bonusMatch(UserLotto userLotto, BonusNumber bonusNumber, List<ResultLotto> resultLotto) {
+    private void bonusMatch(final UserLotto userLotto, final BonusNumber bonusNumber,
+                            final List<ResultLotto> resultLotto) {
         Stream.iterate(0, i -> i + 1)
                 .limit(resultLotto.size())
                 .filter(i -> resultLotto.get(i).equals(ResultLotto.FIVE))

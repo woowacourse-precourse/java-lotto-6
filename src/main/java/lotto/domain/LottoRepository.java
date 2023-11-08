@@ -10,11 +10,11 @@ public class LottoRepository {
         return lottoRepository.size();
     }
 
-    public void add(Lotto lotto) {
+    public void add(final Lotto lotto) {
         lottoRepository.add(lotto);
     }
 
-    public Lotto get(int index) {
+    public Lotto get(final int index) {
         return lottoRepository.get(index);
     }
 

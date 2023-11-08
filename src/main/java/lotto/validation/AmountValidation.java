@@ -24,7 +24,7 @@ public class AmountValidation implements Validation {
         }
     }
 
-    private void checkOutOfRange(String input) {
+    private void checkOutOfRange(final String input) {
         try {
             Long.parseLong(input);
         } catch (Exception e) {
@@ -32,13 +32,13 @@ public class AmountValidation implements Validation {
         }
     }
 
-    private void checkPositive(String input) {
+    private void checkPositive(final String input) {
         if (Long.parseLong(input) < 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE);
         }
     }
 
-    private boolean checkIsNotNumeric(String input) {
-        return !input.matches("^\\d+$");
+    private boolean checkIsNotNumeric(final String input) {
+        return !input.matches("^-?\\d+$");
     }
 }

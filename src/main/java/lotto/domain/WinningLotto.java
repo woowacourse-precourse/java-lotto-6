@@ -9,11 +9,11 @@ public class WinningLotto {
         inputWinningNumbers();
     }
 
-    public int grade(Lotto lotto) {
+    public int grade(final Lotto lotto) {
         return winningLotto.compareWithAnotherLotto(lotto);
     }
 
-    public boolean contains(int number) {
+    public boolean contains(final int number) {
         return winningLotto.contains(number);
     }
 

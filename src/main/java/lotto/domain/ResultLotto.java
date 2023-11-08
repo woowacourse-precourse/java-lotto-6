@@ -12,11 +12,11 @@ public enum ResultLotto {
 
     private int result;
 
-    ResultLotto(int result) {
+    ResultLotto(final int result) {
         this.result = result;
     }
 
-    public static ResultLotto getOrdinal(int ordinal) {
+    public static ResultLotto getOrdinal(final int ordinal) {
         return ResultLotto.values()[ordinal];
     }
 

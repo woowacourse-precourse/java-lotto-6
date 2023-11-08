@@ -17,7 +17,7 @@ public class UserLotto {
         return userLottoRepository.size();
     }
 
-    public Lotto get(int index) {
+    public Lotto get(final int index) {
         return userLottoRepository.get(index);
     }
 
@@ -39,7 +39,6 @@ public class UserLotto {
     private long inputAmount() {
         return InputController.inputAmountUntilSuccess();
     }
-
 
     private void printAllLottoInfo() {
         System.out.println();

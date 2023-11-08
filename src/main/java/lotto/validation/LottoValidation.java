@@ -6,14 +6,14 @@ import lotto.system.ErrorMessage;
 
 public class LottoValidation implements Validation {
     @Override
-    public void check(String input) {
+    public void check(final String input) {
         checkEachNumbersOutOfRange(input);
         checkLottoSize(input);
         checkEachNumeric(input);
         checkDuplicate(input);
     }
 
-    private void checkEachNumbersOutOfRange(String input) {
+    private void checkEachNumbersOutOfRange(final String input) {
         Arrays.stream(input.split(","))
                 .mapToLong(Long::parseLong)
                 .forEach(number -> {
@@ -24,13 +24,13 @@ public class LottoValidation implements Validation {
                 });
     }
 
-    private void checkLottoSize(String input) {
+    private void checkLottoSize(final String input) {
         if (input.split(",").length != Constants.LOTTO_SIZE.getConstants()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_IS_OVER_SIZE);
         }
     }
 
-    private void checkEachNumeric(String input) {
+    private void checkEachNumeric(final String input) {
         try {
             Arrays.stream(input.split(","))
                     .mapToLong(Long::parseLong);
@@ -39,7 +39,7 @@ public class LottoValidation implements Validation {
         }
     }
 
-    private void checkDuplicate(String input) {
+    private void checkDuplicate(final String input) {
         int distinctCount = (int) Arrays.stream(input.split(","))
                 .distinct()
                 .count();

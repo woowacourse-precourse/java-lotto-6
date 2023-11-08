@@ -6,7 +6,7 @@ import lotto.system.ErrorMessage;
 import lotto.view.OutputView;
 
 public class RuntimeValidation {
-    public void runtimeCompareBounsWithWinning(BonusNumber bonusNumber, WinningLotto winningLotto) {
+    public void runtimeCompareBounsWithWinning(BonusNumber bonusNumber, final WinningLotto winningLotto) {
         while (true) {
             try {
                 if (winningLotto.contains(bonusNumber.getBonusNumber())) {

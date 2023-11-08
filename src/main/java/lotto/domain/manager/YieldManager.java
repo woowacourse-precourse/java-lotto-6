@@ -1,4 +1,4 @@
-package lotto.manager;
+package lotto.domain.manager;
 
 import java.util.List;
 import lotto.domain.ResultLotto;
@@ -6,7 +6,7 @@ import lotto.system.Constants;
 import lotto.util.Utils;
 
 public class YieldManager {
-    public static float makeYield(List<ResultLotto> prize) {
+    public static float makeYield(final List<ResultLotto> prize) {
         float beforeMoney = prize.size() * Constants.MONEY_UNIT.getConstants(); // 8000
         float totalMoney = 0;
         for (ResultLotto result : prize) {

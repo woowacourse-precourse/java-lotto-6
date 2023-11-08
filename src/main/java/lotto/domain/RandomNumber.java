@@ -4,8 +4,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import lotto.system.Constants;
 
-public class RandomNumber {
-    private RandomNumber() {}
+public final class RandomNumber {
+    private RandomNumber() {
+    }
 
     public static List<Integer> makeUniqueRandomList() {
         return Randoms.pickUniqueNumbersInRange(

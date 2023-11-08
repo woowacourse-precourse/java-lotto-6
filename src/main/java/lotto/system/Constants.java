@@ -9,7 +9,7 @@ public enum Constants {
 
     public int constants;
 
-    Constants(int constants) {
+    Constants(final int constants) {
         this.constants = constants;
     }
 

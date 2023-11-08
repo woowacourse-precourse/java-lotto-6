@@ -4,12 +4,10 @@ import java.util.List;
 import lotto.view.InputView;
 
 public class InputController {
-    private static final InputView inputView = new InputView();
-
     public static int inputAmountUntilSuccess() {
         while (true) {
             try {
-                return inputView.inputPurchaseAmount();
+                return InputView.inputPurchaseAmount();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -19,7 +17,7 @@ public class InputController {
     public static List<Integer> inputWinningNumbersUntilSuccess() {
         while (true) {
             try {
-                return inputView.inputLotto();
+                return InputView.inputLotto();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -29,7 +27,7 @@ public class InputController {
     public static int inputBonusNumberUntilSuccess() {
         while (true) {
             try {
-                return inputView.inputBonusNumbers();
+                return InputView.inputBonusNumbers();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

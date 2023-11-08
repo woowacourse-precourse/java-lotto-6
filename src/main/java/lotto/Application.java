@@ -121,9 +121,10 @@ public class Application {
 
 
         //수익률 계산 & 출력
-//        Process endProcess = new Process();
-//        float rateOfReturn = endProcess.calculateRateOfReturn(purchaseAmount, winRecordBoard);
-//        System.out.printf("총 수익률은 %.2f%%입니다.", rateOfReturn);
+        Process endProcess = new Process();
+
+        float rateOfReturn = endProcess.calculateRateOfReturn(purchaseAmount);
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
 
 
     }

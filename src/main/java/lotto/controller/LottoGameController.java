@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGameController {
+    private static final String ERROR_CODE_CATEGORY_FOR_PAYMENT = "구입 금액";
+    private static final String ERROR_CODE_CATEGORY_FOR_WINNING_NUMBER = "당첨 번호";
+    private static final String COMMA = ",";
+
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoGameService lottoGameService;
-
-//    private final Validator validator;
 
     public LottoGameController(InputView inputView, OutputView outputView, LottoGameService lottoGameService) {
         this.inputView = inputView;
@@ -33,8 +35,7 @@ public class LottoGameController {
         while (true) {
             try {
                 String enteredPaymentAmount = inputView.enterPaymentAmount();
-                Validator.validateNumeric(enteredPaymentAmount);
-                int paymentAmount = Integer.parseInt(enteredPaymentAmount);
+                int paymentAmount = Validator.validateNumeric(enteredPaymentAmount, ERROR_CODE_CATEGORY_FOR_PAYMENT);
                 outputView.generateBlank();
                 int purchasedLottoCount = lottoGameService.setUpPurchasedLotto(paymentAmount);
                 ArrayList<Lotto> purchasedAllLotto = lottoGameService.checkPurchasedLotto();
@@ -47,9 +48,11 @@ public class LottoGameController {
     }
 
     private void generateWinningNumber() {
-        String winningNumbers = inputView.enterWinningNumbers();
-        List<String> defaultWinningNumbers = Validator.validateDuplicateNumber(winningNumbers);
-        int bonusWinningNumber = inputView.enterBonusWinningNumber();
+        String enteredWinningNumbers = inputView.enterWinningNumbers();
+        List<String> defaultWinningNumbers = List.of(enteredWinningNumbers.split(COMMA));
+        String enteredBonusWinningNumber = inputView.enterBonusWinningNumber();
+        int bonusWinningNumber = Validator.validateNumeric(enteredBonusWinningNumber, ERROR_CODE_CATEGORY_FOR_WINNING_NUMBER);
+        outputView.generateBlank();
         lottoGameService.completeMakingWinningNumber(defaultWinningNumbers, bonusWinningNumber);
     }
 

@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.exception.InvalidPaymentAmountException;
+import lotto.validation.Validator;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ public class LottoDecision {
 
     public LottoDecision(List<Integer> winningNumbers) {
         validateWinningNumberLength(winningNumbers);
+        Validator.validateDuplicateNumber(winningNumbers, "당첨");
         this.winningNumbers = winningNumbers;
     }
 

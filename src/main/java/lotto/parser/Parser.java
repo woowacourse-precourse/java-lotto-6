@@ -15,7 +15,6 @@ public class Parser {
     }
 
 
-    // parseSeparator
     public static List<String> parseSeparator(String input) {
         return Arrays.stream(input
                         .split(SEPARATOR.getUnit()))

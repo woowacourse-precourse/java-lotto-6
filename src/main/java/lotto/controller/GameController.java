@@ -78,6 +78,9 @@ public class GameController {
             Integer bonusNumber = getBonusNumber();
             RequestWinnerLotto requestWinnerLotto = RequestWinnerLotto.of(winnerNumbers, bonusNumber);
             return WinnerLotto.create(requestWinnerLotto.winnerNumbers(), requestWinnerLotto.bonusNumber());
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return getWinnerLotto();
         } catch (IllegalStateException e) {
             throw e;
         }

@@ -11,4 +11,8 @@ public class LottoPrize {
                         .noneMatch(Predicate.isEqual(lottoNum)))
                 .count();
     }
+    public double computeEarningRate(int purchaseAmount, int winningAmount){
+        return (double) (purchaseAmount/winningAmount)*100;
+    }
+
 }

@@ -39,6 +39,12 @@ public enum Reward {
             return NONE;
         }
 
+
+        boolean requiredBonusNumber = false;
+        if (matchedCount == SECOND_PLACE.matchedCount) {
+            requiredBonusNumber = bonusNumberMatched;
+        }
+
         return REWARD_GROUPING_BY_RANK
                 .get(matchedCount)
                 .get(requiredBonusNumber)

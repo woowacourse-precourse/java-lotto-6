@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.domain.enums.WinningGrade;
+import lotto.enums.WinningGrade;
 
 public class MatchingResults {
 

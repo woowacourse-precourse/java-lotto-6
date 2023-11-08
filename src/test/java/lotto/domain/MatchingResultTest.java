@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.enums.MatchingCount.THREE;
+import static lotto.enums.MatchingCount.THREE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 

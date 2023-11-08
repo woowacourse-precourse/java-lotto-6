@@ -1,6 +1,6 @@
-package lotto.domain.enums;
+package lotto.enums;
 
-import static lotto.domain.constants.SeparatorConstant.DECIMAL_FORMAT;
+import static lotto.constants.SeparatorConstant.DECIMAL_FORMAT;
 
 import java.text.DecimalFormat;
 

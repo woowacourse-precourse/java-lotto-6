@@ -1,8 +1,8 @@
 package lotto.utils;
 
 import static java.lang.Integer.parseInt;
-import static lotto.domain.constants.SeparatorConstant.WINNING_NUMBERS_SEPARATOR;
-import static lotto.domain.enums.ExceptionMessage.INVALID_NUMBER_ERROR;
+import static lotto.constants.SeparatorConstant.WINNING_NUMBERS_SEPARATOR;
+import static lotto.enums.ExceptionMessage.INVALID_NUMBER_ERROR;
 import static lotto.validator.InputValidator.validateContainWhiteSpace;
 import static lotto.validator.InputValidator.validateStringWithSeparator;
 

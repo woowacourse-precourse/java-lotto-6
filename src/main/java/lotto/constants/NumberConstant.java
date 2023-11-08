@@ -1,4 +1,4 @@
-package lotto.domain.constants;
+package lotto.constants;
 
 public class NumberConstant {
     

@@ -1,7 +1,6 @@
-package lotto.domain.enums;
+package lotto.enums;
 
-import static lotto.domain.constants.NumberConstant.START_LOTTO_COUNT;
-import static lotto.domain.enums.ExceptionMessage.SYSTEM_ERROR;
+import static lotto.constants.NumberConstant.START_LOTTO_COUNT;
 
 import java.util.Arrays;
 import lotto.exception.LottoGameException;
@@ -30,7 +29,7 @@ public enum MatchingCount {
         return Arrays.stream(MatchingCount.values())
                 .filter(rank -> rank.isSameCount(count))
                 .findFirst()
-                .orElseThrow(() -> LottoGameException.from(SYSTEM_ERROR));
+                .orElseThrow(() -> LottoGameException.from(ExceptionMessage.SYSTEM_ERROR));
     }
     
     private boolean isSameCount(long count) {

@@ -1,22 +1,21 @@
-package lotto.domain.enums;
+package lotto.enums;
 
 import static java.lang.String.format;
-import static lotto.domain.enums.ExceptionMessage.SYSTEM_ERROR;
-import static lotto.domain.enums.MatchingCount.FIVE;
-import static lotto.domain.enums.MatchingCount.FOUR;
-import static lotto.domain.enums.MatchingCount.ONE;
-import static lotto.domain.enums.MatchingCount.SIX;
-import static lotto.domain.enums.MatchingCount.THREE;
-import static lotto.domain.enums.MatchingCount.TWO;
-import static lotto.domain.enums.MatchingCount.ZERO;
-import static lotto.domain.enums.WinningPrize.CORRECT_FIVE_NUMBERS_PRICE;
-import static lotto.domain.enums.WinningPrize.CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE;
-import static lotto.domain.enums.WinningPrize.CORRECT_FOUR_NUMBERS_PRICE;
-import static lotto.domain.enums.WinningPrize.CORRECT_ONE_NUMBER_PRICE;
-import static lotto.domain.enums.WinningPrize.CORRECT_SIX_NUMBERS_PRICE;
-import static lotto.domain.enums.WinningPrize.CORRECT_THREE_NUMBERS_PRICE;
-import static lotto.domain.enums.WinningPrize.CORRECT_TWO_NUMBERS_PRICE;
-import static lotto.domain.enums.WinningPrize.CORRECT_ZERO_NUMBER_PRICE;
+import static lotto.enums.MatchingCount.FIVE;
+import static lotto.enums.MatchingCount.FOUR;
+import static lotto.enums.MatchingCount.ONE;
+import static lotto.enums.MatchingCount.SIX;
+import static lotto.enums.MatchingCount.THREE;
+import static lotto.enums.MatchingCount.TWO;
+import static lotto.enums.MatchingCount.ZERO;
+import static lotto.enums.WinningPrize.CORRECT_FIVE_NUMBERS_PRICE;
+import static lotto.enums.WinningPrize.CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE;
+import static lotto.enums.WinningPrize.CORRECT_FOUR_NUMBERS_PRICE;
+import static lotto.enums.WinningPrize.CORRECT_ONE_NUMBER_PRICE;
+import static lotto.enums.WinningPrize.CORRECT_SIX_NUMBERS_PRICE;
+import static lotto.enums.WinningPrize.CORRECT_THREE_NUMBERS_PRICE;
+import static lotto.enums.WinningPrize.CORRECT_TWO_NUMBERS_PRICE;
+import static lotto.enums.WinningPrize.CORRECT_ZERO_NUMBER_PRICE;
 
 import java.util.Arrays;
 import java.util.function.UnaryOperator;
@@ -53,7 +52,7 @@ public enum WinningGrade {
                 .filter(grade -> lottoMatchingResult.isSameMatchingCount(grade.matchingCount))
                 .filter(grade -> lottoMatchingResult.isBonusMatching(grade.matchingBonus))
                 .findFirst()
-                .orElseThrow(() -> LottoGameException.from(SYSTEM_ERROR));
+                .orElseThrow(() -> LottoGameException.from(ExceptionMessage.SYSTEM_ERROR));
     }
     
     public boolean incorrectFiveNumbersWithBonusNumber() {

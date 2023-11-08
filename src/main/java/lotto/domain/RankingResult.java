@@ -1,12 +1,12 @@
 package lotto.domain;
 
-import static lotto.domain.enums.ConsoleMessage.LOTTO_NUMBER_MATCH;
-import static lotto.domain.enums.ConsoleMessage.LOTTO_NUMBER_MATCH_WITH_BONUS_NUMBER;
+import static lotto.enums.ConsoleMessage.LOTTO_NUMBER_MATCH;
+import static lotto.enums.ConsoleMessage.LOTTO_NUMBER_MATCH_WITH_BONUS_NUMBER;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.enums.WinningGrade;
+import lotto.enums.WinningGrade;
 
 public class RankingResult {
     

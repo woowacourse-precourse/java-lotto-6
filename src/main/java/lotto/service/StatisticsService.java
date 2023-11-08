@@ -8,7 +8,7 @@ import lotto.domain.LottoRanks;
 import lotto.domain.MatchingResults;
 import lotto.domain.RankingResult;
 import lotto.domain.WinningLotto;
-import lotto.domain.enums.WinningGrade;
+import lotto.enums.WinningGrade;
 
 public class StatisticsService {
 

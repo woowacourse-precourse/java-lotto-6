@@ -1,9 +1,9 @@
-package lotto.domain.enums;
+package lotto.enums;
 
 import static java.lang.String.format;
-import static lotto.domain.constants.NumberConstant.MAXIMUM_LOTTO_NUMBER;
-import static lotto.domain.constants.NumberConstant.MINIMUM_LOTTO_NUMBER;
-import static lotto.domain.constants.NumberConstant.VALIDATE_LOTTO_SIZE;
+import static lotto.constants.NumberConstant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.constants.NumberConstant.MINIMUM_LOTTO_NUMBER;
+import static lotto.constants.NumberConstant.VALIDATE_LOTTO_SIZE;
 
 public enum ExceptionMessage {
     

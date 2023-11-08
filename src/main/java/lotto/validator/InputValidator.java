@@ -1,8 +1,8 @@
 package lotto.validator;
 
-import static lotto.domain.constants.SeparatorConstant.WINNING_NUMBERS_SEPARATOR;
-import static lotto.domain.enums.ExceptionMessage.EMPTY_INPUT_ERROR;
-import static lotto.domain.enums.ExceptionMessage.HAS_BOTH_ENDS_SEPARATOR;
+import static lotto.constants.SeparatorConstant.WINNING_NUMBERS_SEPARATOR;
+import static lotto.enums.ExceptionMessage.EMPTY_INPUT_ERROR;
+import static lotto.enums.ExceptionMessage.HAS_BOTH_ENDS_SEPARATOR;
 
 import lotto.exception.LottoGameException;
 

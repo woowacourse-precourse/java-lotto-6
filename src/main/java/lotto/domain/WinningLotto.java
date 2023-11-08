@@ -1,10 +1,10 @@
 package lotto.domain;
 
-import static lotto.domain.constants.NumberConstant.INCREASE_NUMBER;
-import static lotto.domain.constants.NumberConstant.MAXIMUM_LOTTO_NUMBER;
-import static lotto.domain.constants.NumberConstant.MINIMUM_LOTTO_NUMBER;
-import static lotto.domain.enums.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
-import static lotto.domain.enums.ExceptionMessage.WINNING_NUMBERS_AND_BONUS_NUMBER;
+import static lotto.constants.NumberConstant.INCREASE_NUMBER;
+import static lotto.constants.NumberConstant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.constants.NumberConstant.MINIMUM_LOTTO_NUMBER;
+import static lotto.enums.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
+import static lotto.enums.ExceptionMessage.WINNING_NUMBERS_AND_BONUS_NUMBER;
 
 import lotto.exception.LottoGameException;
 

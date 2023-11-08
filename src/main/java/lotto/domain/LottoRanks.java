@@ -1,14 +1,14 @@
 package lotto.domain;
 
 import static java.util.stream.Collectors.toMap;
-import static lotto.domain.constants.NumberConstant.LONG_TYPE_ONE;
-import static lotto.domain.constants.NumberConstant.LONG_TYPE_ZERO;
+import static lotto.constants.NumberConstant.LONG_TYPE_ONE;
+import static lotto.constants.NumberConstant.LONG_TYPE_ZERO;
 
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.enums.WinningGrade;
+import lotto.enums.WinningGrade;
 
 public class LottoRanks {
 

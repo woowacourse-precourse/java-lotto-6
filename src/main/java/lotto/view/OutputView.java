@@ -36,9 +36,9 @@ public class OutputView {
     }
 
     public static void printLottoCount(LottoCount lottoCount) {
-        System.out.println(NEW_LINE);
+        System.out.printf(NEW_LINE);
         System.out.printf(PURCHASED_LOTTO_COUNT, lottoCount.getLottoCount());
-        System.out.println(NEW_LINE);
+        System.out.printf(NEW_LINE);
     }
 
     public static void printPurchasedLotto(Lottos lottos) {
@@ -47,7 +47,7 @@ public class OutputView {
             Collections.sort(numbers);
             System.out.println(numbers);
         }
-        System.out.println(NEW_LINE);
+        System.out.printf(NEW_LINE);
     }
 
     public static void printInputWinningLottoNumbersMessage() {
@@ -60,7 +60,7 @@ public class OutputView {
     }
 
     public static void printStatistic(Result result) {
-        System.out.println(NEW_LINE);
+        System.out.printf(NEW_LINE);
         System.out.println(STATISTIC_HEADER);
         System.out.println(STATISTIC_BORDER);
 

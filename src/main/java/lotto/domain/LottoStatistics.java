@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import lotto.util.constant.LottoConstant;
+
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -8,18 +11,13 @@ public class LottoStatistics {
     private final LottoMachine lottoMachine;
     private final LottoWinningNumber lottoWinningNumber;
     private final Map<LottoRank, Integer> winningStatistics = new EnumMap<>(LottoRank.class);
-    private BigDecimal yield = BigDecimal.ZERO;
+    private final BigDecimal yield;
 
     public LottoStatistics(LottoMachine lottoMachine, LottoWinningNumber lottoWinningNumber) {
         this.lottoMachine = lottoMachine;
         this.lottoWinningNumber = lottoWinningNumber;
         calculateWinningStatistics();
-    }
-
-    private void calculateYield() {
-        for (LottoRank rank : LottoRank.getLottoRank()) {
-
-        }
+        this.yield = calculateYield();
     }
 
     private void calculateWinningStatistics() {
@@ -46,7 +44,41 @@ public class LottoStatistics {
         return lotto.getNumbers().contains(lottoWinningNumber.getBonusNumber());
     }
 
+    private BigDecimal calculateYield() {
+        BigDecimal totalPrize = calculateTotalPrize();
+        BigDecimal purchaseAmount = calculatePurchaseAmount();
+        if (purchaseAmount.equals(BigDecimal.ZERO)) {
+            return BigDecimal.ZERO;
+        }
+
+        return totalPrize.multiply(BigDecimal.valueOf(100))
+                .divide(purchaseAmount, 1, RoundingMode.HALF_EVEN);
+    }
+
+    private BigDecimal calculatePurchaseAmount() {
+        int lottoCount = lottoMachine.getLottos().size() * LottoConstant.LOTTO_PRICE;
+        return new BigDecimal(String.valueOf(lottoCount));
+    }
+
+    private BigDecimal calculateTotalPrize() {
+        BigDecimal totalPrize = BigDecimal.ZERO;
+        for (LottoRank rank : LottoRank.getLottoRank()) {
+            totalPrize = totalPrize.add(calculatePrize(rank));
+        }
+
+        return totalPrize;
+    }
+
+    private BigDecimal calculatePrize(LottoRank rank) {
+        int winningCount = winningStatistics.get(rank);
+        return new BigDecimal(String.valueOf(winningCount * rank.getAmount()));
+    }
+
     public Map<LottoRank, Integer> getWinningStatistics() {
         return winningStatistics;
+    }
+
+    public BigDecimal getYield() {
+        return yield;
     }
 }

@@ -6,8 +6,8 @@ public enum LottoInterfaceMessage {
     ENTER_WINNING_NUMBER("\n당첨 번호를 입력해 주세요."),
     ENTER_BONUS_NUMBER("\n보너스 번호를 입력해 주세요"),
     WINNING_STATS_STRING("\n당첨 통계\n---"),
-    WINNING_STATS("%d개 일치 (%s원) - %d개"),
-    TOTAL_RETURN("총 수익률은 '%,.1%%'입니다.");
+    WINNING_STATS("%s (%s원) - %d개\n"),
+    TOTAL_RETURN("총 수익률은 %s%%입니다.");
 
     private final String message;
 

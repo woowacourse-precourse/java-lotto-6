@@ -30,7 +30,7 @@ public class LottoSystemController {
         printWinningResult(result, calculateRateOfReturn(result));
     }
 
-    public static LottoSystem generateLottoSystem() {
+    private static LottoSystem generateLottoSystem() {
         String money = "";
 
         try {

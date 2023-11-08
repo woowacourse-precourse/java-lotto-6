@@ -30,7 +30,7 @@ public class OutputView {
         System.out.println(outputResultMessage);
         Arrays.stream(Rank.values()).sorted(Comparator.reverseOrder())
                 .forEach(n -> System.out.printf(outputResultBase,
-                        n.getReply(), n.getMoenyWithComma(), rank.getOrDefault(n, 0)));
+                        n.getReply(), n.getMoneyWithComma(), rank.getOrDefault(n, 0)));
         System.out.printf(outputRateOfReturn, rateOfReturn);
     }
 }

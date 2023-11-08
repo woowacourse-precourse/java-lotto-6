@@ -10,7 +10,7 @@ public class Validation {
         validateNumericString(input);
         validateEmptySpace(input);
         int inputNum = Integer.parseInt(input);
-        validateDisiblePrice(inputNum);
+        validateDivisiblePrice(inputNum);
     }
 
     private static void validateNumericString(String input) {
@@ -25,7 +25,7 @@ public class Validation {
         }
     }
 
-    private static void validateDisiblePrice(int input) {
+    private static void validateDivisiblePrice(int input) {
         if (input % 1000 != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또 구입 금액은 1000으로 나누어 떨어져야 합니다.");
         }
@@ -62,12 +62,10 @@ public class Validation {
     }
 
 
-    // 보너스 넘버에 대한 validation 필요
-    public static int validateBonusNumber(String bonusNumberInput, List<Integer> winningNumbers) {
+    public static void validateBonusNumber(String bonusNumberInput, List<Integer> winningNumbers) {
         int bonusNumber = validateAndParseBonusNumber(bonusNumberInput);
         validateNumberRange(bonusNumber);
         validateNumberNotDuplicated(bonusNumber, winningNumbers);
-        return bonusNumber;
     }
 
     private static void validateNumberRange(int bonusNumber) {

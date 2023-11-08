@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoProvider;
+import lotto.model.LottoRank;
 import lotto.model.WinningLotto;
 
 import java.util.List;
@@ -20,5 +21,9 @@ public class LottoMarket {
 
     public WinningLotto winNumberLottoGenerate(List<Integer> numbers, int bonusNumber){
         return lottoProvider.winLottoGenerate(numbers, bonusNumber);
+    }
+
+    public int winningsReceive(List<LottoRank> winnings) {
+        return lottoProvider.winningsPayments(winnings);
     }
 }

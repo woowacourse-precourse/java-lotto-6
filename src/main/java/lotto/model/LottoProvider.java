@@ -13,4 +13,10 @@ public class LottoProvider {
         return WinningLotto.of(numbers, bonusNumber);
     }
 
+    public int winningsPayments(List<LottoRank> winnings) {
+        return winnings.stream()
+                .filter(LottoRank::isWin)
+                .mapToInt(LottoRank::myWinnings)
+                .sum();
+    }
 }

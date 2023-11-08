@@ -16,25 +16,27 @@ public class JackpotTest {
     @Test
     @DisplayName("입력 받은 당첨 로또 번호 중 1~45 사이의 수 외의 수가 입력된다면 예외처리한다.")
     void isInRangeTest() {
-        assertThatThrownBy(() -> JackpotNumberException.isJackpotRange(new JackpotNumber(new Lotto(List.of(0, 23, 2, 4, 5, 46)),1)))
+        assertThatThrownBy(() -> JackpotNumberException.isJackpotRange(new JackpotNumber(new Lotto(List.of(0, 23, 2, 4, 5, 46)))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
     @DisplayName("입력 받은 당첨 로또 번호 중 중복된 수가 입력된다면 예외처리한다.")
     void isDuplicatedTest() {
-        assertThatThrownBy(() -> JackpotNumberException.isJackpotDuplicated(new JackpotNumber(new Lotto(List.of(23, 23, 2, 4, 5, 6)),1)))
+        assertThatThrownBy(() -> JackpotNumberException.isJackpotDuplicated(new JackpotNumber(new Lotto(List.of(23, 23, 2, 4, 5, 6)))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
     @DisplayName("입력 받은 당첨 로또 번호가 6개가 아니라면 예외처리한다.")
     void isSixValuesTest() {
-        assertThatThrownBy(() -> JackpotNumberException.isJackpotSixValue(new JackpotNumber(new Lotto(List.of(23, 2, 4, 5, 6)),1)))
+        assertThatThrownBy(() -> JackpotNumberException.isJackpotSixValue(new JackpotNumber(new Lotto(List.of(23, 2, 4, 5, 6)))))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
     @DisplayName("입력 받은 당첨 로또 번호와 보너스 번호가 겹치면 예외처리한다.")
     void isBonusDuplicatedTest() {
-        assertThatThrownBy(() -> JackpotNumberException.isBounusNumberRepeated(new JackpotNumber(new Lotto(List.of(23, 2, 4, 5, 6,12)),2)))
+        JackpotNumber jackpotNumber = new JackpotNumber(new Lotto(List.of(23, 2, 4, 5, 6,12)));
+        jackpotNumber.changeBonus(2);
+        assertThatThrownBy(() -> JackpotNumberException.isBounusNumberRepeated(jackpotNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

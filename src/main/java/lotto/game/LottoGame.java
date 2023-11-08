@@ -1,9 +1,12 @@
 package lotto.game;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lotto.constant.LottoGameNumber;
 import lotto.model.Lotto;
 import lotto.util.LottoGameConsole;
+import lotto.util.LottoGenerator;
 
 public class LottoGame {
     private int cost = Integer.MIN_VALUE;
@@ -29,17 +32,28 @@ public class LottoGame {
         }
     }
 
-    public void initLottos() {
+    public void purchaseLottos() {
+        int count = cost / LottoGameNumber.COST_UNIT;
 
+        lottos = new ArrayList<>(count);
+
+        for (int i = 0; i < count; i++) {
+            lottos.add(LottoGenerator.generate());
+        }
+
+        lottos = lottos.stream()
+                .toList();
+
+        LottoGameConsole.printPurchaseLottos(lottos);
     }
 
     private void readCost() {
         try {
             cost = LottoGameConsole.readCost();
         } catch (NumberFormatException e) {
-            LottoGameConsole.print(LottoGameMessage.NON_NUMBER);
+            LottoGameConsole.printError(LottoGameMessage.NON_NUMBER);
         } catch (IllegalArgumentException e) {
-            LottoGameConsole.print(LottoGameMessage.INVALID_COST_UNIT);
+            LottoGameConsole.printError(LottoGameMessage.INVALID_COST_UNIT);
         }
     }
 
@@ -47,9 +61,9 @@ public class LottoGame {
         try {
             target = LottoGameConsole.readTargetLotto();
         } catch (NumberFormatException e) {
-            LottoGameConsole.print(LottoGameMessage.NON_NUMBER);
+            LottoGameConsole.printError(LottoGameMessage.NON_NUMBER);
         } catch (IllegalArgumentException e) {
-            LottoGameConsole.print(LottoGameMessage.INVALID_LOTTO_NUMBERS);
+            LottoGameConsole.printError(LottoGameMessage.INVALID_LOTTO_NUMBERS);
         }
     }
 
@@ -57,9 +71,9 @@ public class LottoGame {
         try {
             bonusNumber = LottoGameConsole.readBonusNumber();
         } catch (NumberFormatException e) {
-            LottoGameConsole.print(LottoGameMessage.NON_NUMBER);
+            LottoGameConsole.printError(LottoGameMessage.NON_NUMBER);
         } catch (IllegalArgumentException e) {
-            LottoGameConsole.print(LottoGameMessage.NUMBER_OUT_OF_RANGE);
+            LottoGameConsole.printError(LottoGameMessage.NUMBER_OUT_OF_RANGE);
         }
     }
 }

@@ -9,7 +9,9 @@ public enum LottoGameMessage {
     NUMBER_OUT_OF_RANGE("[ERROR] 로또 번호는 %d부터 %d 사이의 숫자여야 합니다.".formatted(
             LottoGameNumber.MINIMUM, LottoGameNumber.MAXIMUM)),
     INVALID_LOTTO_NUMBERS("[ERROR] 로또는 중복되지 않은 %d부터 %d 사이의 숫자 %d자리여야 합니다.".formatted(
-            LottoGameNumber.MINIMUM, LottoGameNumber.MAXIMUM, LottoGameNumber.COUNT));
+            LottoGameNumber.MINIMUM, LottoGameNumber.MAXIMUM, LottoGameNumber.COUNT)),
+    PURCHASE_LOTTOS_FORMATTER("%d개를 구매했습니다.");
+
 
     private final String message;
 

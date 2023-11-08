@@ -14,7 +14,7 @@ public final class LottoGameConsole {
         // Don't let anyone instantiate this class.
     }
 
-    public static void print(LottoGameMessage message) {
+    public static void printError(LottoGameMessage message) {
         System.out.println(message.getMessage());
     }
 
@@ -41,6 +41,14 @@ public final class LottoGameConsole {
         validateBonusNumber(bonusNumber);
 
         return bonusNumber;
+    }
+
+    public static void printPurchaseLottos(List<Lotto> lottos) {
+        String formatterMessage = LottoGameMessage.PURCHASE_LOTTOS_FORMATTER.getMessage();
+
+        System.out.println(formatterMessage.formatted(lottos.size()));
+
+        lottos.forEach(System.out::println);
     }
 
     private static void validateCost(int cost) {

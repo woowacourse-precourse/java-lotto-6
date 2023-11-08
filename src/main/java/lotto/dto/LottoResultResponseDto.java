@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lotto.domain.Rank;
 
-import java.util.Map;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

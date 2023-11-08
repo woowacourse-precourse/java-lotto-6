@@ -6,8 +6,7 @@ public enum GameNumber {
     MAX_LOTTO_AMOUNT(100),
     MIN_NUMBER(1),
     MAX_NUMBER(45),
-    NORMAL_NUMBER_COUNT(6),
-    BONUS_NUMBER_COUNT(1);
+    NORMAL_NUMBER_COUNT(6);
 
     private final long number;
 

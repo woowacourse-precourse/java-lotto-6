@@ -23,7 +23,6 @@ public enum Prize {
     public int getMatches() {
         return matches;
     }
-
     public int getPrizeAmount() {
         return prizeAmount;
     }
@@ -31,27 +30,23 @@ public enum Prize {
         return description;
     }
 
-    public static Prize findMatchingPrize(int matches, boolean hasBonus) {
-        if (isLessThreeMatches(matches)) {
-            return NONE;
+    public static Prize findMatchingPrize(int match, boolean hasBonus) {
+        if (match < 3) {
+            return Prize.NONE;
         }
-        if (isFiveMatches(matches)) {
+        if (match == 5) {
             return BonusOrNot(hasBonus);
         }
+        return findPrizeForRegularMatch(match);
+    }
+
+    public static Prize findPrizeForRegularMatch(int match) {
         for (Prize prize : Prize.values()) {
-            if (isMatchCountEqual(prize, matches)) {
+            if (isMatchCountEqual(prize, match)) {
                 return prize;
             }
         }
         return NONE;
-    }
-
-    public static boolean isLessThreeMatches(int matches) {
-        return matches < 3;
-    }
-
-    public static boolean isFiveMatches(int matches) {
-        return matches == 5;
     }
 
     public static boolean isMatchCountEqual(Prize prize, int matches) {

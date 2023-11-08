@@ -88,19 +88,14 @@ public class WinningNumber {
         return winningNumbers;
     }
 
-    public static void compareToLotto(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public static List<MatchNumber> compareToLotto(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        List<MatchNumber> matchNumbers = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            matchWinningNumber.add(winningNumbers.stream().filter(w -> lotto.getNumbers().contains(w))
-                    .count());
-            matchBonusNumber.add(lotto.getNumbers().stream().filter(l -> l.equals(bonusNumber)).count());
+            long matchWinningNumber = winningNumbers.stream().filter(w -> lotto.getNumbers().contains(w))
+                    .count();
+            long matchBonusNumber = lotto.getNumbers().stream().filter(l -> l.equals(bonusNumber)).count();
+            matchNumbers.add(new MatchNumber(matchWinningNumber, matchBonusNumber));
         }
-    }
-
-    public static List<Long> getMatchWinningNumber() {
-        return matchWinningNumber;
-    }
-
-    public static List<Long> getMatchBonusNumber() {
-        return matchBonusNumber;
+        return matchNumbers;
     }
 }

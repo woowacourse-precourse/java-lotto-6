@@ -38,6 +38,31 @@ public class LottoGameController {
         outputView.printLottoResultStatistics(lottoResultBoard, purchaseAmount);
     }
 
+    private PurchaseAmount inputPurchaseAmount() {
+        try {
+            String inputValue = inputView.inputPurchaseAmount();
+            return lottoGameService.generatePurchaseAmount(inputValue);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return inputPurchaseAmount();
+        }
+    }
+
+    private LottoTickets generateAutoLottoTickets(PurchaseAmount purchaseAmount) {
+        int lottoTicketQuantity = purchaseAmount.getPurchaseQuantity();
+        return lottoGameService.generateLottoTickets(lottoTicketQuantity);
+    }
+
+    private Lotto inputWinningNumbers() {
+        try {
+            String inputValue = inputView.inputWinningLotto();
+            return lottoGameService.generateWinningNumbers(inputValue);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
+            return inputWinningNumbers();
+        }
+    }
+
     private WinningLotto generateWinningLotto(Lotto winningNumbers) {
         try {
             BonusNumber bonusNumber = inputBonusNumber();
@@ -51,30 +76,5 @@ public class LottoGameController {
     private BonusNumber inputBonusNumber() {
         String inputValue = inputView.inputBonusNumber();
         return lottoGameService.generateBonusNumber(inputValue);
-    }
-
-    private Lotto inputWinningNumbers() {
-        try {
-            String inputValue = inputView.inputWinningLotto();
-            return lottoGameService.generateWinningNumbers(inputValue);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return inputWinningNumbers();
-        }
-    }
-
-    private LottoTickets generateAutoLottoTickets(PurchaseAmount purchaseAmount) {
-        int lottoTicketQuantity = purchaseAmount.getPurchaseQuantity();
-        return lottoGameService.generateLottoTickets(lottoTicketQuantity);
-    }
-
-    private PurchaseAmount inputPurchaseAmount() {
-        try {
-            String inputValue = inputView.inputPurchaseAmount();
-            return lottoGameService.generatePurchaseAmount(inputValue);
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return inputPurchaseAmount();
-        }
     }
 }

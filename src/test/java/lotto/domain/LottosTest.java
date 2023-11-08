@@ -38,8 +38,9 @@ class LottosTest {
             Lottos lottos = new Lottos();
 
             lottos.save(lotto);
+            List<Integer> lottoNumbers = lottos.getLottos().get(0).getNumbers();
 
-            assertThat(lottos.getLottos().get(0)).isEqualTo(lotto);
+            assertThat(lottoNumbers).containsExactly(1, 2, 3, 4, 5, 6);
         }
     }
 }

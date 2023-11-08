@@ -1,4 +1,4 @@
-package lotto.View;
+package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.LottoRanking;
@@ -38,11 +38,9 @@ public class OutputView {
     public static void printEnterBonusNumber() {
         System.out.println(ENTER_BONUS_MESSAGE);
     }
-
     public static void printWinningResult(WinningResult winningResult) {
-        System.out.println(HYPHEN);
         System.out.println(WINNING_STATS);
-
+        System.out.println(HYPHEN);
         NumberFormat numberFormat = NumberFormat.getInstance();
         Map<LottoRanking, Integer> results = winningResult.getWinningResult();
         for (LottoRanking ranking : LottoRanking.values()) {

@@ -1,6 +1,6 @@
 package lotto;
 
-public enum LottoConstants {
+public enum LottoProperty {
     LOTTO_PRICE(1000),
     LOTTO_SIZE(6),
     MIN_LOTTO_NUMBER(1),
@@ -8,7 +8,7 @@ public enum LottoConstants {
 
     private final int value;
 
-    LottoConstants(int value) {
+    LottoProperty(int value) {
         this.value = value;
     }
 

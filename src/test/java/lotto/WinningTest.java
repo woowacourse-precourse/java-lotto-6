@@ -55,4 +55,11 @@ class WinningTest {
         assertThatThrownBy(() -> winning.save("1,2,3,3,5,6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호가 6개가 아닐 경우 예외가 발생한다.")
+    @Test
+    void saveWinningByNotSixNumber() {
+        assertThatThrownBy(() -> winning.save("1,2,3,4,5,6,7"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

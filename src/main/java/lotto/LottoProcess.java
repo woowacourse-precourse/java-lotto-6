@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoProcess {
-    public LottoResult setUpLottoResult(List<Lotto> lottos, WinningLotto winningLotto) {
+    public LottoResult makeLottoResult(List<Lotto> lottos, WinningLotto winningLotto) {
         List<Integer> counted = new ArrayList<>();
         List<Boolean> checked = new ArrayList<>();
 

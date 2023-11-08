@@ -12,7 +12,7 @@ public class Application {
         List<Lotto> lottos = lottoProcess.buyLotto(lottoQuantity);
         Lotto winningNumbers = runWinningNumbersStep();
         WinningLotto winningLotto = runWinningLottoStep(winningNumbers);
-        LottoResult lottoResult = lottoProcess.setUpLottoResult(lottos, winningLotto);
+        LottoResult lottoResult = lottoProcess.makeLottoResult(lottos, winningLotto);
         double earningRate = lottoResult.calculateEarningRate(purchaseMoney.getAmount());
 
         OutputView.printLottoQuantity(lottoQuantity);
@@ -23,46 +23,46 @@ public class Application {
 
     private static PurchaseMoney runPurchaseMoneyStep() {
         try {
-            return setUpPurchaseMoney();
+            return makePurchaseMoney();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
         return runPurchaseMoneyStep();
     }
 
-    private static PurchaseMoney setUpPurchaseMoney() {
+    private static PurchaseMoney makePurchaseMoney() {
         String purchaseMoney = InputView.inputPurchaseMoney();
         return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
     }
 
     private static Lotto runWinningNumbersStep() {
         try {
-            return setUpWinningNumbers();
+            return makeWinningNumbers();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
         return runWinningNumbersStep();
     }
 
-    private static Lotto setUpWinningNumbers() {
+    private static Lotto makeWinningNumbers() {
         String winningNumbers = InputView.inputWinningNumbers();
         return new Lotto(Converter.convertWinningNumber(winningNumbers));
     }
 
     private static WinningLotto runWinningLottoStep(Lotto winningNumbers) {
         try {
-            return setUpWinningLotto(winningNumbers);
+            return makeWinningLotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
         return runWinningLottoStep(winningNumbers);
     }
 
-    private static WinningLotto setUpWinningLotto(Lotto winningNumbers) {
-        return new WinningLotto(winningNumbers, setUpBonusNumber());
+    private static WinningLotto makeWinningLotto(Lotto winningNumbers) {
+        return new WinningLotto(winningNumbers, makeBonusNumber());
     }
 
-    private static int setUpBonusNumber() {
+    private static int makeBonusNumber() {
         String bonusNumber = InputView.inputBonusNumber();
         return Converter.convertToNumeric(bonusNumber);
     }

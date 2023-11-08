@@ -6,12 +6,12 @@ import lotto.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PurchaseLotto {
-    public static List<Lotto> lottoList=new ArrayList<>();
+public class PurchaseLottoModel {
+    private static List<Lotto> lottoList=new ArrayList<>();
     private static Integer lottoNum;
-    public PurchaseLotto(Integer purchaseAmount){
+    public PurchaseLottoModel(Integer purchaseAmount){
         lottoNum=purchaseAmount/1000;
-        System.out.println(lottoNum+"개를 구매했습니다");
+        System.out.println(lottoNum+"개를 구매했습니다.");
         makeLottoList(lottoNum);
         printAllLotto();
     }
@@ -24,6 +24,9 @@ public class PurchaseLotto {
         for(Lotto aLotto : lottoList){
             aLotto.printLotto();
         }
+    }
+    public List<Lotto> getLottoList(){
+        return lottoList;
     }
 
 

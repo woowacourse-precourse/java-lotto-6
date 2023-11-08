@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
 
-public class IO { //여긴 무조건 정적호출로 해보자
+public class IO {
 
     public static String InputCash(){
         System.out.println("구입금액을 입력해주세요");

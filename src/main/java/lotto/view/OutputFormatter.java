@@ -28,6 +28,7 @@ public class OutputFormatter {
 
     public static String formatAnalyzerWinningResults(AnalyzerWinningStatistics analyzerWinningStatistics) {
         return analyzerWinningStatistics.winningResults().stream()
+                .skip(1)
                 .map(OutputFormatter::formatWinningResult)
                 .collect(Collectors.joining(""));
     }

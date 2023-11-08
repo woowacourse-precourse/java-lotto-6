@@ -21,13 +21,15 @@ public class OutputFormatterTest {
         Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 12, 11));
         buyerLottoHistory = new BuyerLottoHistory(2, List.of(lotto1, lotto2));
 
+        WinningResult noPrize = new WinningResult(WinningRule.NO_PRIZE, 0);
         WinningResult fifthPrize = new WinningResult(WinningRule.FIFTH_PRIZE, 1);
         WinningResult fourthPrize = new WinningResult(WinningRule.FOURTH_PRIZE, 0);
         WinningResult thirdPrize = new WinningResult(WinningRule.THIRD_PRIZE, 0);
         WinningResult secondPrize = new WinningResult(WinningRule.SECOND_PRIZE, 0);
         WinningResult firstPrize = new WinningResult(WinningRule.FIRST_PRIZE, 0);
 
-        List<WinningResult> winningResults = List.of(fifthPrize, fourthPrize, thirdPrize, secondPrize, firstPrize);
+        List<WinningResult> winningResults
+                = List.of(noPrize, fifthPrize, fourthPrize, thirdPrize, secondPrize, firstPrize);
 
         analyzerWinningStatistics = new AnalyzerWinningStatistics(winningResults, 62.5499);
     }

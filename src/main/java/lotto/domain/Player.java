@@ -22,4 +22,8 @@ public class Player {
     public void buyLotto(Lotto lotto) {
         lottos.add(lotto);
     }
+
+    public LottoResult calculateResult(List<Integer> winningNumbers, int bonusNumber) {
+        return new LottoResult(lottos, winningNumbers, bonusNumber);
+    }
 }

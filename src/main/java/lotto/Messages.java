@@ -6,7 +6,10 @@ public class Messages {
         NULL_STRING("[ERROR] 비어있는 문자열이 입력되었습니다."),
         NOT_DIVIED_1000("[ERROR] 1000으로 나누어 떨어지지 않습니다."),
         NOT_IN_1_TO_45("[ERROR] 숫자가 1 ~ 45 사이에 속하지 않습니다."),
-        ILLIGAL_COMMA("[ERROR] 쉼표가 비정상적으로 구분되어 있습니다.");
+        ILLIGAL_COMMA("[ERROR] 쉼표가 비정상적으로 구분되어 있습니다."),
+        SIZE_OVER_SIX("[ERROR] 숫자의 갯수가 6개가 아닙니다."),
+        DUPLICATED_NUMBER("[ERROR] 중복된 숫자가 존재합니다.");
+
 
         private String errorMessage;
         private ErrorMessage(String message){

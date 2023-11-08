@@ -18,7 +18,7 @@ public class WinningLotto{
 
     private ResponseStatus validate(List<Integer> numbers, int bonusNumber) {
         if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_AVAILABLE_LENGTH.getMessage());
         }
         return ResponseStatus.OK;
     }

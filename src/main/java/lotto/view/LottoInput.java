@@ -15,18 +15,27 @@ public class LottoInput {
     private static final String WINNING_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
+    private static final int RETRY = -1;
+
     public LottoInput(){
     }
 
     public int lottoPurchaseInput(){
         System.out.println(PURCHASE_MESSAGE);
-        return NumberHandler.parseLottoPurchase(Console.readLine());
+        int lottoPurchase = RETRY;
+        while(lottoPurchase == RETRY){
+            try{
+                lottoPurchase = NumberHandler.parseLottoPurchase(Console.readLine());
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return lottoPurchase;
     }
 
     public WinningLotto winningLottoInput(){
         List<Integer> lottoNumbers = getInputWiningLotto();
-        int bonusNumber = getInputBonusNumber();
-        bonusDuplicateCheck(lottoNumbers, bonusNumber);
+        int bonusNumber = getInputBonusNumberAndCheckDuplicate(lottoNumbers);
         return new WinningLotto(lottoNumbers, bonusNumber);
     }
 
@@ -37,46 +46,39 @@ public class LottoInput {
         return parsedInput;
     }
 
-    private boolean handleInputValid(ResponseStatus responseStatus){
-        if(ResponseStatus.BAD == responseStatus) {
-            return false;
-        }
-        if(ResponseStatus.ERROR == responseStatus){
-            throw new RuntimeException(ErrorMessage.INTERNAL_SERVER_ERROR.getMessage());
-        }
-        return true;
-    }
-
     private List<Integer> getInputWiningLotto(){
-        System.out.println(WINNING_LOTTO_MESSAGE);
-        List<Integer> lottoNumbers = parseByComma(Console.readLine()).stream()
-                .mapToInt(NumberHandler::parseLottoNumber)
-                .boxed().toList();
-        InputValidator.lottoLengthCheck(lottoNumbers);
-        InputValidator.lottoNumbersDuplicatedCheck(lottoNumbers);
+        List<Integer> lottoNumbers = null;
+        while(lottoNumbers == null){
+            try{
+                System.out.println(WINNING_LOTTO_MESSAGE);
+                lottoNumbers = parseByComma(Console.readLine()).stream()
+                        .mapToInt(NumberHandler::parseLottoNumber)
+                        .boxed().toList();
+                InputValidator.lottoLengthCheck(lottoNumbers);
+                InputValidator.lottoNumbersDuplicatedCheck(lottoNumbers);
+            }catch(IllegalArgumentException e){
+                lottoNumbers = null;
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println();
         return lottoNumbers;
     }
 
-    private int getInputBonusNumber(){
-        System.out.println(BONUS_NUMBER_MESSAGE);
-        int bonusNumber = NumberHandler.parseLottoNumber(Console.readLine());
+    private int getInputBonusNumberAndCheckDuplicate(List<Integer> lottoNumbers){
+        int bonusNumber = RETRY;
+        while(bonusNumber == RETRY){
+            try{
+                System.out.println(BONUS_NUMBER_MESSAGE);
+                bonusNumber = NumberHandler.parseLottoNumber(Console.readLine());
+                InputValidator.bonusDuplicateCheck(lottoNumbers, bonusNumber);
+            }catch(IllegalArgumentException e){
+                bonusNumber = RETRY;
+                System.out.println(e.getMessage());
+            }
+        }
         System.out.println();
         return bonusNumber;
     }
 
-    private ResponseStatus bonusDuplicateCheck(List<Integer> lottoNumbers, int bonusNumber){
-        try{
-            if(lottoNumbers.contains(bonusNumber)){
-                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_DUPLICATED.getMessage());
-            }
-            return ResponseStatus.OK;
-        }catch(IllegalArgumentException e){
-            e.printStackTrace();
-            return ResponseStatus.BAD;
-        }catch (Exception e){
-            e.printStackTrace();
-            return ResponseStatus.ERROR;
-        }
-    }
 }

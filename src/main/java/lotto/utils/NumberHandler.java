@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import lotto.global.ResponseStatus;
 import lotto.global.error.ErrorMessage;
 import lotto.view.InputValidator;
 
@@ -15,22 +16,16 @@ public class NumberHandler {
     }
 
     public static int parseLottoNumber(String lottoNumber){
-        try{
-            int parsedLottoNumber = Integer.parseInt(lottoNumber);
-            InputValidator.isLottoInRange(parsedLottoNumber);
-            return parsedLottoNumber;
-        }catch(NumberFormatException e){
-            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_NUMBER.getMessage());
-        }
+        InputValidator.isInputDigit(lottoNumber);
+        int parsedLottoNumber = Integer.parseInt(lottoNumber);
+        InputValidator.isLottoInRange(parsedLottoNumber);
+        return parsedLottoNumber;
     }
 
     public static int parseLottoPurchase(String lottoPurchase){
-        try{
-            int parsedLottoPurchase = Integer.parseInt(lottoPurchase);
-            InputValidator.purchasePriceCheck(parsedLottoPurchase);
-            return parsedLottoPurchase;
-        }catch(NumberFormatException e){
-            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_NUMBER.getMessage());
-        }
+        InputValidator.isInputDigit(lottoPurchase);
+        int parsedLottoPurchase = Integer.parseInt(lottoPurchase);
+        InputValidator.purchasePriceCheck(parsedLottoPurchase);
+        return parsedLottoPurchase;
     }
 }

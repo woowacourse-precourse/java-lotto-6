@@ -11,6 +11,8 @@ public interface Machine<T extends Ticket<?>, R> {
 
     void set(Integer source);
 
+    void reset();
+
     T buy();
 
     List<T> buy(Integer money);

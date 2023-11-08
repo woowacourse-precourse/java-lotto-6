@@ -4,8 +4,8 @@ import lotto.constants.LottoStatus;
 
 public final class Error {
     private static final String ERROR_MESSAGE = "[ERROR]";
-    public static final String NO_EMPTY = String.format("%s 값을 입력해주세요(입력 없음).", ERROR_MESSAGE);
-    public static final String NO_EMPTY_BETWEEN_NUMBERS = String.format(
+    public static final String INPUT_EMPTY = String.format("%s 값을 입력해주세요(입력 없음).", ERROR_MESSAGE);
+    public static final String INPUT_EMPTY_BETWEEN_NUMBERS = String.format(
             "%s 쉼표 사이에 숫자를 입력해주세요(입력 누락).", ERROR_MESSAGE);
     public static final String NOT_NUMBER = String.format(
             "%s 숫자를 입력해주세요(문자, 공백 금지).", ERROR_MESSAGE);

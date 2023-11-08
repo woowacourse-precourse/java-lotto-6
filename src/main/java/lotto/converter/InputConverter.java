@@ -20,7 +20,7 @@ public class InputConverter {
 
     private void exceptEmpty(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException(Error.NO_EMPTY);
+            throw new IllegalArgumentException(Error.INPUT_EMPTY);
         }
     }
 
@@ -45,7 +45,7 @@ public class InputConverter {
     private void exceptEmptyBetweenNumbers(List<String> splitInput) {
         for (String element : splitInput) {
             if (element.isEmpty()) {
-                throw new IllegalArgumentException(Error.NO_EMPTY_BETWEEN_NUMBERS);
+                throw new IllegalArgumentException(Error.INPUT_EMPTY_BETWEEN_NUMBERS);
             }
         }
     }

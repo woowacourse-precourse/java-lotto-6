@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.dto.BonusNumber;
 import lotto.dto.Payment;
-import lotto.domain.WinningNumber;
+import lotto.dto.WinningNumber;
 import lotto.utils.Calculator;
 import lotto.utils.LottoMachine;
 import lotto.utils.Parser;

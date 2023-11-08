@@ -69,7 +69,7 @@
 
 ### Controller
 
-- LottoController
+- Controller
     - Lotto의 기능을 순차적으로 실행
     - 예외 상황에 대해 에러 메시지를 출력 후 재입력 유도
 
@@ -79,9 +79,9 @@
     - 당첨 횟수에 따른 수익률을 계산 기능을 제공
 - StringUtil
     - Data의 형변환 관련 기능을 제공
-- MoneyValidator
+- MoneyValidate
     - 로또 구매 금액에 관한 예외처리 기능을 제공
-- NumberValidator
+- NumberValidate
     - 로또 당첨 번호에 관한 예외 처리 기능을 제공
     - 보너스 번호에 관한 예외 처리 기능을 제공
 
@@ -91,5 +91,5 @@
     - View를 통해 출력할 값을 저장
 - ErrorMessage
     - 예외 상황에 대해 출력할 에러 메시지 값을 저장
-- GeneralConstant
+- Constant
     - 공통적으로 사용되는 상수에 대한 값을 저장

@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.util;
 
 import static lotto.constant.Constant.DELIMITER;
 import static lotto.constant.Constant.DELIMITER_WITH_SPACE;

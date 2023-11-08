@@ -29,6 +29,7 @@ public class OutputView {
     public void outputRank(Map<Rank, Integer> rank, float rateOfReturn) {
         System.out.println(outputResultMessage);
         Arrays.stream(Rank.values()).sorted(Comparator.reverseOrder())
+                .filter(r -> r != Rank.NONE)
                 .forEach(n -> System.out.printf(outputResultBase,
                         n.getReply(), n.getMoneyWithComma(), rank.getOrDefault(n, 0)));
         System.out.printf(outputRateOfReturn, rateOfReturn);

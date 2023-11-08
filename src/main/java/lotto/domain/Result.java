@@ -29,6 +29,7 @@ public class Result {
             countMatches(lotto);
         }
     }
+
     private void countMatches(Lotto lotto) {
         List<Integer> purchased = lotto.getNumbers();
         int count = 0;

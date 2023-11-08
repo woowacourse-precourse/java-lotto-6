@@ -20,4 +20,18 @@ class LottoWinningRankTest {
         // Then
         assertThat(lottoWinningRank).isEqualTo(LottoWinningRank.SECOND);
     }
+
+    @DisplayName("일치하는 번호가 없으면 꽝을 반환한다.")
+    @Test
+    void ReturnNoLuck() throws Exception {
+        // Given
+        int matchingNumberCount = 0;
+        boolean isBonusNumberMatched = false;
+
+        // When
+        LottoWinningRank lottoWinningRank = LottoWinningRank.checkWinningResult(matchingNumberCount, isBonusNumberMatched);
+
+        // Then
+        assertThat(lottoWinningRank).isEqualTo(LottoWinningRank.NO_LUCK);
+    }
 }

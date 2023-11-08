@@ -1,6 +1,6 @@
 package lotto.domain;
 
 
-public interface LottoGenerator {
+public sealed interface LottoGenerator permits RandomLottoGenerator, ManualLottoGenerator {
     Lottos generate(int availablePurchase);
 }

@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RandomLottoGenerator implements LottoGenerator {
+public final class RandomLottoGenerator implements LottoGenerator {
 
     @Override
     public Lottos generate(int availablePurchase) {

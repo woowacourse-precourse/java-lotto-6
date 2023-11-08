@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-public class ManualLottoGenerator implements LottoGenerator {
+public final class ManualLottoGenerator implements LottoGenerator {
 
     @Override
     public Lottos generate(int availablePurchase) {

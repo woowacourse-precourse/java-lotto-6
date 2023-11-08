@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.LottoBuySystem;
 import lotto.model.LottoDrawSystem;
+import lotto.utils.Utils;
 import lotto.view.LottoView;
 
 import java.math.BigDecimal;
@@ -66,7 +67,7 @@ public class LottoController {
 
         for(int i=1; i<LOTTO_DRAW_NUMBER_COUNT; i++) {
             String message = this.lottoDrawSystem.getMessage(i);
-            System.out.println(message + " - " + gradesCount[i] + "개");
+            this.view.printResult(message, gradesCount[i]);
         }
 
         int totalPrice = this.lottoBuySystem.getLottosCount()*LOTTO_PRICE;
@@ -75,13 +76,11 @@ public class LottoController {
             totalProfilt += this.lottoDrawSystem.getMoney(grade);
         }
 
-        BigDecimal biTotalPrice = new BigDecimal(totalPrice);
-        BigDecimal biTotalProfit = new BigDecimal(totalProfilt);
+        String profitRate = Utils.getPercentage(totalProfilt, totalPrice);
 
-        BigDecimal profit = (biTotalProfit.divide(biTotalPrice, 4, RoundingMode.HALF_DOWN)).multiply(new BigDecimal(100));
-
-        System.out.println("총 수익률은 " + profit + "%");
+        this.view.printProfitRate(profitRate);
     }
+
 
 
     private String enterPrice() {

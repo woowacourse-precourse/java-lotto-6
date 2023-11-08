@@ -2,9 +2,9 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import static lotto.PlaceAndPrize.Place.firstPlace;
 
 public class Controller {
-    final int firstPlace = 6;
     Generator generator = new Generator();
     Input input = new Input();
     Converter converter = new Converter();
@@ -55,19 +55,19 @@ public class Controller {
     }
 
     private int place(int count, boolean bonusMatch) {
-        if (count == firstPlace) {
+        if (count == firstPlace.getMatchPlace()) {
             return 0;
         }
-        if (count == firstPlace-1) {
+        if (count == firstPlace.getMatchPlace()-1) {
             if (bonusMatch){
                 return 1;
             }
             return 2;
         }
-        if (count == firstPlace-2) {
+        if (count == firstPlace.getMatchPlace()-2) {
             return 3;
         }
-        if (count == firstPlace-3) {
+        if (count == firstPlace.getMatchPlace()-3) {
             return 4;
         }
         return 5;

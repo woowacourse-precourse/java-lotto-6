@@ -4,6 +4,7 @@ import static lotto.constant.GameNumber.MAX_LOTTO_AMOUNT;
 import static lotto.constant.GameNumber.MIN_LOTTO_AMOUNT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.domain.Price;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

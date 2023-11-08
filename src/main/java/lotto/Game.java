@@ -3,7 +3,7 @@ package lotto;
 import static lotto.constant.GameMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constant.GameMessage;
+import lotto.domain.Price;
 
 public class Game {
 

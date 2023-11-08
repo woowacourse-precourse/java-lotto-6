@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static lotto.constant.ErrorMessage.ONLY_NUMBERS_ALLOWED;
 import static lotto.constant.ErrorMessage.WRONG_BUY_PRICE;

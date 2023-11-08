@@ -4,10 +4,14 @@ import java.util.List;
 import lotto.Model.Lotto.Lotto;
 
 public class LottoSet {
-    private final List<Lotto> lottoSet;
+    private  List<Lotto> lottoSet;
 
     public LottoSet(List<Lotto> set ) {
         this.lottoSet = set;
+    }
+
+    public List<Lotto> getLottoSet(){
+        return this.lottoSet;
     }
 
     /**

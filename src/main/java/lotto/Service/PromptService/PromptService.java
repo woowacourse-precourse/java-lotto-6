@@ -10,11 +10,11 @@ public class PromptService {
     private final InputView Prompt = new InputView();
     private final  UserPromptConverter Converter = new UserPromptConverter();
 
-    public PurchaseAmount GetPurchaseAmount(){
+    public PurchaseAmount getPurchaseAmount(){
         return new PurchaseAmount(Converter.convertingStringToInteger(Prompt.getLottoPurchaseAmount()));
     }
 
-    public WinningNumber GetLottoWinningNumber() {
+    public WinningNumber getLottoWinningNumber() {
         return new WinningNumber(Converter.convertingStringToListInteger(Prompt.getLottoWinningNumber()));
     }
 

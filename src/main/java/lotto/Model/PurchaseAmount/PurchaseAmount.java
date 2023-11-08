@@ -28,7 +28,7 @@ public class PurchaseAmount {
         }
     }
 
-    public Integer GetPurchaseAmount(){
+    public Integer getPurchaseAmount(){
         return this.Amount;
     }
 

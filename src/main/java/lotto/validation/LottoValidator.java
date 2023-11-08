@@ -1,4 +1,4 @@
-package lotto.domain.validation;
+package lotto.validation;
 
 import static lotto.domain.util.Constant.LOTTO_COUNT;
 import static lotto.domain.util.Constant.LOTTO_PRICE;
@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 import lotto.exception.LottoException;
 
-public class Validator {
+public class LottoValidator {
     private static final String LOTTO_NUMBER_REGEX = "^(\\d+,)+\\d+$";
     public static final String NUMBER_DIVIDER = ",";
 
-    private Validator() {
+    private LottoValidator() {
     }
 
     public static void validateMoney(int parsedMoney) {
@@ -65,7 +65,7 @@ public class Validator {
 
     private static boolean hasOverRangedNumber(List<Integer> numbers) {
         return !numbers.stream()
-                .allMatch(Validator::isOverRangedNumber);
+                .allMatch(LottoValidator::isOverRangedNumber);
     }
 
     public static List<Integer> numbersStringToList(String numbers) {

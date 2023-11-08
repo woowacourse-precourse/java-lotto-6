@@ -1,9 +1,9 @@
 package lotto.domain.util;
 
-import static lotto.domain.validation.Validator.numbersStringToList;
-import static lotto.domain.validation.Validator.validateBonusNumber;
-import static lotto.domain.validation.Validator.validateLottoNumbers;
-import static lotto.domain.validation.Validator.validateMoney;
+import static lotto.validation.LottoValidator.numbersStringToList;
+import static lotto.validation.LottoValidator.validateBonusNumber;
+import static lotto.validation.LottoValidator.validateLottoNumbers;
+import static lotto.validation.LottoValidator.validateMoney;
 
 import java.util.ArrayList;
 import java.util.Collections;

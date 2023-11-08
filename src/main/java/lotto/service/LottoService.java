@@ -33,41 +33,26 @@ public class LottoService {
 
             LottoRank rank = getLottoRank(hitCount, isContainBonusNumber);
 
-            if (rank == null) {
-                continue;
-            }
-
             int rankCount = lottoResult.getOrDefault(rank, 0);
-            rankCount++;
-
-            lottoResult.put(rank, rankCount);
+            lottoResult.put(rank, ++rankCount);
         }
 
         return lottoResult;
     }
 
     private static LottoRank getLottoRank(long hitCount, boolean isBonusNumberContain) {
-        if (hitCount == FIRST_WINNER_HIT_COUNT) {
-            return LottoRank.FIRST;
-        }
+        List<LottoRank> lottoRanks = Arrays.asList(LottoRank.values());
 
-        if (hitCount == SECOND_WINNER_HIT_COUNT && isBonusNumberContain) {
-            return LottoRank.SECOND;
-        }
+        for (LottoRank rank : lottoRanks) {
+            if (hitCount == SECOND_WINNER_HIT_COUNT && isBonusNumberContain) {
+                return LottoRank.SECOND;
+            }
 
-        if (hitCount == THIRD_WINNER_HIT_COUNT) {
-            return LottoRank.THIRD;
+            if (rank.getMatchCount() == hitCount) {
+                return rank;
+            }
         }
-
-        if (hitCount == FORTH_WINNER_HIT_COUNT) {
-            return LottoRank.FOURTH;
-        }
-
-        if (hitCount == FIFTH_WINNER_HIT_COUNT) {
-            return LottoRank.FIFTH;
-        }
-
-        return null;
+        return LottoRank.MISS;
     }
 
     public double calculatePrizeRatio(EnumMap<LottoRank, Integer> lottoResult, int userPurchasePrice) {

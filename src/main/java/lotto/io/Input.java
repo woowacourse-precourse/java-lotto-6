@@ -14,8 +14,8 @@ public class Input {
         try {
             System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
             String input = Console.readLine();
-            System.out.println();
             InputValidator.validatePurchaseAmount(input);
+            System.out.println();
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -27,12 +27,12 @@ public class Input {
         try {
             System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
             String input = Console.readLine();
-            System.out.println();
             InputValidator.validateWinningNumbersFormat(input);
             List<Integer> winningNumbers = Stream.of(input.split(","))
                     .map(Integer::parseInt)
                     .toList();
             InputValidator.validateWinningNumbers(winningNumbers);
+            System.out.println();
             return winningNumbers;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -44,8 +44,8 @@ public class Input {
         try {
             System.out.println(INPUT_BONUS_MESSAGE);
             String input = Console.readLine();
-            System.out.println();
             InputValidator.validateBonusNumber(input, winningNumbers);
+            System.out.println();
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

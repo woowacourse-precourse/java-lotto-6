@@ -7,9 +7,14 @@ import java.util.List;
 
 public class User {
 
-    public String input(String printMessage) {
-        System.out.println(printMessage);
-        return Console.readLine();
+    public int purchaseLotto() {
+        try {
+            String purchaseMoney = input("구입금액을 입력해 주세요.");
+            return getMoneyNumber(purchaseMoney);
+        } catch (IllegalArgumentException e) {
+            printError(e.getMessage());
+            return purchaseLotto();
+        }
     }
 
     public int getMoneyNumber(String purchaseMoney) {
@@ -26,7 +31,41 @@ public class User {
         return moneyNumber;
     }
 
-    public List<Integer> convertStringToIntegerList(String input) {
+    public List<Integer> getWinningNumbersAndBonus() {
+        List<Integer> winningNumbers = inputAndGetWinningNumbers();
+        int bonusNumber = inputAndGetBonusNumber();
+        winningNumbers.add(bonusNumber);
+        return winningNumbers;
+    }
+
+    public List<Integer> inputAndGetWinningNumbers() {
+        String winningLotto = input("\n당첨 번호를 입력해 주세요.");
+        return getWinningNumbers(winningLotto);
+    }
+
+    public int inputAndGetBonusNumber() {
+        String bonusLotto = input("\n보너스 번호를 입력해 주세요.");
+        return getBonusNumber(bonusLotto);
+    }
+
+    private static String input(String printMessage) {
+        System.out.println(printMessage);
+        return Console.readLine();
+    }
+
+    private static void printError(String message) {
+        System.out.println("[ERROR] " + message);
+    }
+
+    private static List<Integer> getWinningNumbers(String winningNumber) {
+        return convertStringToIntegerList(winningNumber);
+    }
+
+    private static int getBonusNumber(String bonusNumber) {
+        return convertStringToInteger(bonusNumber);
+    }
+
+    private static List<Integer> convertStringToIntegerList(String input) {
         List<Integer> resultNumbers = new ArrayList<>();
         String[] inputNumbers = input.split(",");
 
@@ -37,7 +76,7 @@ public class User {
         return resultNumbers;
     }
 
-    public Integer convertStringToInteger(String number) {
+    private static Integer convertStringToInteger(String number) {
         return Integer.parseInt(number);
     }
 }

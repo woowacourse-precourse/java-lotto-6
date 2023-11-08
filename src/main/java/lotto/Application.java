@@ -11,41 +11,17 @@ public class Application {
         User user = new User();
         Global global = new Global();
 
-        int lottoPurchaseMoney = purchaseLotto(user);
+        int lottoPurchaseMoney = user.purchaseLotto();
         issueLottos(global, lottoPurchaseMoney);
-        List<Integer> winningLotto = getWinningLotto(user);
-        getLottoRanking(global, winningLotto);
+        List<Integer> winningNumbersAndBonus = user.getWinningNumbersAndBonus();
+        getLottoRanking(global, winningNumbersAndBonus);
         getRateOfReturn(global, lottoPurchaseMoney);
-    }
-
-    private static int purchaseLotto(User user) {
-        int moneyNumber = 0;
-        try {
-            String purchaseMoney = user.input("구입금액을 입력해 주세요.");
-            return user.getMoneyNumber(purchaseMoney);
-        } catch (IllegalArgumentException e) {
-            printError(e.getMessage());
-            return purchaseLotto(user);
-        }
-    }
-
-    private static void printError(String message) {
-        System.out.println("[ERROR] " + message);
     }
 
     private static void issueLottos(Global global, int lottoPurchaseMoney) {
         int lottoCount = global.getLottoCount(lottoPurchaseMoney);
         global.getIssuedLottos(lottoCount);
         global.printIssuedLottoCountAndNumbers();
-    }
-
-    private static List<Integer> getWinningLotto(User user) {
-        String winningNumber = user.input("\n당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumbers = user.convertStringToIntegerList(winningNumber);
-        String bonusNumber = user.input("\n보너스 번호를 입력해 주세요.");
-        int bonusLotto = user.convertStringToInteger(bonusNumber);
-        winningNumbers.add(bonusLotto);
-        return winningNumbers;
     }
 
     private static void getLottoRanking(Global global, List<Integer> winningLotto) {

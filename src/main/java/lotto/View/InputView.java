@@ -8,13 +8,14 @@ import java.util.List;
 import lotto.Model.Lotto;
 
 public class InputView {
+    public static final Integer PURCHASE_UNIT = 1000;
 
     public InputView(){}
 
     public static Integer getHowMuchLottoWillYouBuy() throws IllegalArgumentException{
         String input = Console.readLine();
         Integer value = verifyAmount(input);
-        return value;
+        return value / PURCHASE_UNIT;
     }
 
     public static Lotto getWinningLottoNumbers(){

@@ -21,7 +21,7 @@ public class OutputViewTest {
 
         assertSimpleTest(
                 () -> {
-                    assertThat(printLottoList(lottoList))
+                    assertThat(printLottoList(2,lottoList))
                             .contains(
                                     "[1, 2, 3, 4, 5, 6]",
                                     "[1, 2, 3, 4, 5, 6]");

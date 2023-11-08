@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.constants.Config;
 import lotto.constants.Message;
 import lotto.dto.BonusNumber;
@@ -55,7 +54,7 @@ public class WinningCondition {
 
     private List<Integer> getIntegerList(List<String> parsedString) {
         return parsedString.stream().map(Converter::convertToInteger)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public WinningCondition() {

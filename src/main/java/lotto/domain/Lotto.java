@@ -13,8 +13,7 @@ public class Lotto {
     public static List<Lotto> createLottos(long count) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> numbers;
-            numbers = NumberGenerator.generateSortedNumbers();
+            List<Integer> numbers = NumberGenerator.generateSortedNumbers();
             lottos.add(new Lotto(numbers));
         }
         return Collections.unmodifiableList(lottos);

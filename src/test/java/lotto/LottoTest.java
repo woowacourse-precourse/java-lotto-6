@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +25,32 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    void 숫자_범위_테스트() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    void 적은_숫자입력_테스트() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]로또 번호는 중복되지 않는 6개여야 합니다."); // Assuming you add this validation and message
+    }
+
+    @Test
+    void 많은_숫자입력_테스트() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]로또 번호는 중복되지 않는 6개여야 합니다."); // Assuming you add this validation and message
+    }
+
+    @Test
+    void 음수입력_테스트() {
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
 }

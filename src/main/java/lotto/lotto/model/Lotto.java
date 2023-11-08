@@ -47,4 +47,8 @@ public class Lotto {
     public int get(int index){
         return numbers.get(index);
     }
+
+    public List<Integer> getAll(){
+        return this.numbers;
+    }
 }

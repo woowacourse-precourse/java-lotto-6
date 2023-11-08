@@ -31,18 +31,18 @@ public class IO {
     }
 
     public static void printRanking(LottoRank[] ranks) {
-        Arrays.sort(ranks, Comparator.comparingLong(LottoRank::getPrizeMoney));
-        NumberFormat formatter = NumberFormat.getInstance();
+        Arrays.sort(ranks, Comparator.comparingLong(LottoRank::getPrizeMoney)); //상금을 기준으로 오름차순 정렬
+        NumberFormat formatter = NumberFormat.getInstance(); //해당 클래스는 숫자를 형식화하고 표시하는 데 사용됨
 
         for (LottoRank rank : ranks) {
-            String bonusBall = getBonusBallText(rank);
+            String bonusBall = getBonusText(rank);
             String prizeMoney = formatter.format(rank.getPrizeMoney());
 
             printRank(rank, bonusBall, prizeMoney);
         }
     }
 
-    private static String getBonusBallText(LottoRank rank) {
+    private static String getBonusText(LottoRank rank) {
         return Optional.of(rank)
                 .filter(LottoRank::isBonusBallMatch)
                 .map(r -> ", 보너스 볼 일치")

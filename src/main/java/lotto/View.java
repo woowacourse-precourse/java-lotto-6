@@ -20,7 +20,7 @@ public class View {
         public String getMessage() {
             return message;
         }
-        private InputMassage(String message){
+        InputMassage(String message){
             this.message = message;
         }
     }
@@ -46,15 +46,16 @@ public class View {
         System.out.println(InputMassage.LOTTO_PURCHASE_AMOUNT_INPUTMESSAGE.getMessage());
         boolean reTry=true;
         String lottoPurchaseAmount = null;
-        while(reTry)
-        try{
-            lottoPurchaseAmount = readLine();
-            checklottoPurchaseAmount(lottoPurchaseAmount);
-            reTry = false;
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+        while(reTry) {
+            try {
+                lottoPurchaseAmount = readLine();
+                checklottoPurchaseAmount(lottoPurchaseAmount);
+                reTry = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+            lottoPurchaseNum = Integer.parseInt(lottoPurchaseAmount) / 1000;
         }
-        lottoPurchaseNum = Integer.parseInt(lottoPurchaseAmount)/1000;
     }
 
     public void checkWinningNumber(String winningNumber){
@@ -159,7 +160,7 @@ public class View {
                 4개 일치 (50,000원) - %d개
                 5개 일치 (1,500,000원) - %d개
                 5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
-                6개 일치 (2,000,000,000원) - %d개     
+                6개 일치 (2,000,000,000원) - %d개
             """, userWinningRanks.get(5), userWinningRanks.get(4), userWinningRanks.get(3), userWinningRanks.get(2), userWinningRanks.get(1)));
     }
     

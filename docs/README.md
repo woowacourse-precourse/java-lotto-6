@@ -31,6 +31,7 @@
 - [x] WinningLotto단위테스트
 - [x] LottoProvider단위테스트
 - [x] 예외입력 테스트
+- [x] Lotto단위테스트
 
 ---
 

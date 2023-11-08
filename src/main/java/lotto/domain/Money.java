@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.config.SystemNumberConfig.THOUSAND;
+import static lotto.message.ErrorMessage.MONEY_AMOUNT;
+
 public class Money {
     private final int money;
 
@@ -14,12 +17,12 @@ public class Money {
 
     private void validateMultiple(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 한장이 1000원이므로 구매금액은 1000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(MONEY_AMOUNT.getErrorMessage());
         }
     }
 
     public int calculatePurchasedLotto() {
-        return money / 1000;
+        return money / THOUSAND.getConfig();
     }
 
     @Override

@@ -1,13 +1,17 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 class LottoTest {
+    private List<Integer> numbers = new ArrayList<>(Arrays.asList(0, -4, 52, 46));
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -23,5 +27,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("숫자 범위 체크")
+    @Test
+    void createLottoByInvalidRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, -4, 52, 46, -9, 78)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

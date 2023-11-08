@@ -50,7 +50,7 @@ public class Validator {
     public static boolean checkRangeLotto(List<Integer> _lotto) {
         _lotto = _lotto.stream().filter(_number -> {
             if(checkRangeNumber(_number, RANGE_START.getNumber(), RANGE_END.getNumber())) return true;
-            else { return false; }
+            return false;
         }).toList();
 
         return _lotto.size() != 6;

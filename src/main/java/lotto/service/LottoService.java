@@ -13,8 +13,9 @@ import lotto.Lotto.Rank;
 
 public class LottoService {
     private final int LOTTO_PRICE = 1000;
-    public int checkLottoNumber(String purchaseAmount) {
-        return convertToInt(purchaseAmount) / LOTTO_PRICE;
+    public int checkLottoNumber(String purchasePrice) {
+        isPurchasePriceCorrectUnit(purchasePrice);
+        return convertToInt(purchasePrice) / LOTTO_PRICE;
     }
 
     public Lotto generateLotto() {
@@ -24,12 +25,23 @@ public class LottoService {
         return lotto;
     }
 
-
     public Map<Rank, Integer> checkwin(String winningNumber, String bonusNumber, List<Lotto> lottos) {
         List<Integer> winningLottoNumbers = convertStringToList(winningNumber);
         int bonusLottoNumber = convertToInt(bonusNumber);
 
         return checkRankCounts(lottos, winningLottoNumbers,bonusLottoNumber);
+    }
+
+    private void isPurchasePriceCorrectType(String purchasePrice) {
+        if(!purchasePrice.matches("^[1-9][0-9]*$")) {
+            throw new IllegalArgumentException("[ERROR] 올바른 값을 입력해주세요.");
+        }
+    }
+
+    private void isPurchasePriceCorrectUnit(String purchasePrice) {
+        if (convertToInt(purchasePrice) % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 로또는 1,000원 단위입니다.");
+        }
     }
 
     private Map<Rank, Integer> checkRankCounts(List<Lotto> lottos, List<Integer> winningLottoNumbers, int bonusLottoNumber) {
@@ -48,16 +60,12 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    private int convertToInt(String purchaseAmount) {
-        validatePurchasePrice(purchaseAmount);
-        return Integer.parseInt(purchaseAmount);
+    private int convertToInt(String purchasePrice) {
+        isPurchasePriceCorrectType(purchasePrice);
+        return Integer.parseInt(purchasePrice);
     }
 
-    private void validatePurchasePrice(String purchasePrice) {
-        if(!purchasePrice.matches("^[1-9][0-9]*$")) {
-            throw new IllegalArgumentException("[ERROR] 올바른 값을 입력해주세요.");
-        }
-    }
+
 
     private List<Integer> generateRandomNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

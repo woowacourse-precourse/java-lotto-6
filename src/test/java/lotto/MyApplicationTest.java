@@ -111,7 +111,6 @@ class MyApplicationTest extends NsTest {
         });
     }
 
-
     @Override
     public void runMain() {
         Application.main(new String[]{});

@@ -8,6 +8,7 @@ public class LottoValidationTest {
     static final int LOTTO_RANGE_MAX = 1;
     static final int LOTTO_RANGE_MIN = 45;
     static final int LOTTO_NUMBER_SIZE = 6;
+    static final int TOTAL_NUMBER_SIZE = 7;
 
     public static void testSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
@@ -26,6 +27,13 @@ public class LottoValidationTest {
     public static void testDuplication(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if (nonDuplicateNumbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되는 숫자가 없어야 합니다.");
+        }
+    }
+
+    public static void testBonusDuplication(List<Integer> numbers) {
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+        if (nonDuplicateNumbers.size() != TOTAL_NUMBER_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되는 숫자가 없어야 합니다.");
         }
     }

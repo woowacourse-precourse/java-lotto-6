@@ -46,4 +46,8 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    public List<Integer> toList() {
+        return numbers;
+    }
 }

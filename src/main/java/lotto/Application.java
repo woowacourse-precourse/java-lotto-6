@@ -13,6 +13,8 @@ public class Application {
 
         Lotto targetLotto = InputReader.askTargetLotto();
 
-        System.out.println(targetLotto);
+        int bonusNumber = InputReader.askBonusNumber(targetLotto);
+
+        System.out.println(bonusNumber);
     }
 }

@@ -5,6 +5,9 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.InputValidationTest.isItInteger;
+import static lotto.LottoValidationTest.testRange;
+
 public class InputReader {
     public static int askPurchaseMoney() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -35,9 +38,20 @@ public class InputReader {
         }
     }
 
+    public static int askBonusNumber(Lotto targetLotto) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        while (true) {
+            String input = Console.readLine();
+            if (!validateBonusNumber(input, targetLotto)) {
+                continue;
+            }
+            return Integer.parseInt(input);
+        }
+    }
+
     public static boolean isPurchaseMoneyInteger(String purchaseMoney) {
         try {
-            InputValidationTest.isItInteger(purchaseMoney);
+            isItInteger(purchaseMoney);
         } catch (IllegalArgumentException ex) {
             System.out.println("[ERROR] 구입금액은 숫자로 입력해주세요.");
             return false;
@@ -85,7 +99,7 @@ public class InputReader {
     public static boolean isTargetLottoInteger(String[] inputArray) {
         for (String number : inputArray) {
             try {
-                InputValidationTest.isItInteger(number);
+                isItInteger(number);
             } catch (IllegalArgumentException ex) {
                 System.out.println("[ERROR] 로또 번호는 숫자로 입력해주세요.");
                 return false;
@@ -130,5 +144,58 @@ public class InputReader {
             numbers.add(Integer.parseInt(number));
         }
         return numbers;
+    }
+
+
+
+    public static boolean validateBonusNumber(String input, Lotto targetLotto) {
+        if (!isBonusNumberInteger(input)) {
+            return false;
+        }
+        int bonusNumber = Integer.parseInt(input);
+        if (!validateBonusNumberRange(bonusNumber)) {
+            return false;
+        }
+        if (!validateBonusNumberDuplication(bonusNumber, targetLotto)) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isBonusNumberInteger(String input) {
+        try {
+            isItInteger(input);
+        } catch (IllegalArgumentException ex) {
+            System.out.println("[ERROR] 보너스 번호는 숫자로 입력해주세요.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean validateBonusNumberRange(int bonusNumber) {
+        List<Integer> bonus = new ArrayList<>();
+        bonus.add(bonusNumber);
+        try {
+            testRange((bonus));
+        } catch (IllegalArgumentException ex) {
+            System.out.println("[ERROR] 보너스 번호는 숫자로 입력해주세요.");
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean  validateBonusNumberDuplication(int bonusNumber, Lotto targetLotto) {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(bonusNumber);
+        for (int number: targetLotto.toList()) {
+            numbers.add(number);
+        }
+        try {
+            LottoValidationTest.testBonusDuplication(numbers);
+        } catch (IllegalArgumentException ex) {
+            System.out.println("[ERROR] 보너스 번호는 당첨 번호와 중복되는 숫자가 없어야 합니다.");
+            return false;
+        }
+        return true;
     }
 }

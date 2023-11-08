@@ -31,7 +31,7 @@
 - [ ] Lottos
     - 구매 금액에 해당하는 개수만큼의 Lotto들을 가진다.
     - 당첨 번호와 Lotto들을 맞춰 본 후 Prize 리스트를 반환한다.
-- [ ] WinningLotto
+- [x] WinningLotto
     - 당첨 Lotto와 1 이상 45 이하의 보너스 번호를 가진다.
     - 다른 Lotto와 당첨 Lotto, 보너스 번호를 비교해 당첨 등수를 반환한다.
 - [ ] PrizeResult

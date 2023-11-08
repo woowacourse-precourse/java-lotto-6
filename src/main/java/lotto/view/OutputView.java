@@ -13,7 +13,7 @@ public class OutputView {
 
     public void lottos(int ticketCount, String lottos) {
         System.out.printf("\n%d개를 구매했습니다.\n", ticketCount);
-        System.out.println(lottos + "\n");
+        System.out.println(lottos);
     }
 
     public void winningNumbers() {

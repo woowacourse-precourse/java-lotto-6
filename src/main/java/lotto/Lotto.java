@@ -21,11 +21,26 @@ public class Lotto {
         System.out.println(this.numbers);
     }
 
-    public int getSameNumberCount(List<Integer> otherList) {
+    public int calcSameNumberCount(List<Integer> otherList) {
         Stream<Integer> allNumbers = Stream.concat(this.numbers.stream(), otherList.stream());
-        int sameCount = LottoPrinciples.MAX_ALL_NUMBER.getNumber();
+        int sameCount = LottoPrinciples.MAX_SUM_COUNT.getNumber();
         sameCount -= (int) allNumbers.distinct().count();
         return sameCount;
+    }
+
+    public int getRank(List<Integer> otherList, Integer bonusNumber) {
+        Integer sameCount = calcSameNumberCount(otherList);
+        if (sameCount == LottoPrinciples.SIXTH_MATCHES.getNumber()) {
+            return WinnerRank.FIFTH_PLACE.getRank();
+        } else if (sameCount == LottoPrinciples.FIFTH_MATCHES.getNumber()) {
+            if (containsBonusNumber(bonusNumber)) {
+                return WinnerRank.FIFTH_PLACE.getRank();
+            }
+            return WinnerRank.THIRD_PLACE.getRank();
+        } else if (sameCount == LottoPrinciples.FOURTH_MATCHES.getNumber()) {
+            return WinnerRank.FOURTH_PLACE.getRank();
+        }
+        return WinnerRank.FIFTH_PLACE.getRank();
     }
 
     public boolean containsBonusNumber(Integer bonusNumber) {

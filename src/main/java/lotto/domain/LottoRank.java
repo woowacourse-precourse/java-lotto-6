@@ -28,6 +28,10 @@ public enum LottoRank implements LottoFinalConsts{
                 .orElse(null);
     }
 
+    public String getSameCount(){
+        return sameCount;
+    }
+
     public int getLottoReturn(){
         return lottoReturn;
     }

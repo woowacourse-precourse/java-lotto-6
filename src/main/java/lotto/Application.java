@@ -4,10 +4,26 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
+
+import java.util.HashMap;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class Application {
+
+    public static HashMap<Integer, Integer> rewardMap = new HashMap<>() {
+        {
+            put(0, 6);
+            put(5000, 5);
+            put(50000, 4);
+            put(1500000, 3);
+            put(30000000, 2);
+            put(2000000000, 1);
+        }
+    };
+
+    public static List<Integer> rewardList = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
 
     public static List<Lotto> setLottoList(Integer purchaseCount) {
 
@@ -30,6 +46,18 @@ public class Application {
         for (int i = 0; lottoCount > i; i++) {
             lottoList.get(i).printLotto();
         }
+    }
+
+    public static Integer getLottoReward(List<Lotto> lottoList, List<Integer> luckyNumber, Integer bonusNumber) {
+        Integer sumReward = 0;
+        for (Lotto lotto : lottoList) {
+            Integer reward = lotto.matchingLotto(luckyNumber, bonusNumber);
+            if (reward > 0) {
+                rewardList.set(rewardMap.get(reward), rewardList.get(reward) + 1);
+            }
+        }
+
+        return sumReward;
     }
 
     public static void main(String[] args) {
@@ -65,7 +93,7 @@ public class Application {
         }
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        Integer bonusNumber;
+        Integer bonusNumber = 0;
         while (true) {
             try {
                 String bonusNumberString = Console.readLine();
@@ -77,5 +105,8 @@ public class Application {
             }
         }
 
+        Integer sumReward = getLottoReward(lottoList, luckyNumbers, bonusNumber);
+
+        System.out.println(sumReward);
     }
 }

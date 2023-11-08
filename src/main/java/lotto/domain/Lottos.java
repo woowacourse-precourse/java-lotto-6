@@ -15,7 +15,7 @@ public class Lottos {
 
         lottos.forEach(lotto -> {
                 int matchCount = lotto.getMatchCount(winningLotto.getLotto());
-                boolean containBonusNumber = lotto.isContainBonusNumber(winningLotto.getBonusNumber());
+                boolean containBonusNumber = lotto.isContainNumber(winningLotto.getBonusNumber());
                 result.increaseRankCount(matchCount, containBonusNumber);
             });
 

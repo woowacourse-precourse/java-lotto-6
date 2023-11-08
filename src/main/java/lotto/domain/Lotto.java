@@ -23,17 +23,13 @@ public class Lotto {
         }
     }
 
-    public boolean isAlreadyExistNumber(int number) {
-        return numbers.contains(number);
-    }
-
     public int getMatchCount(Lotto otherLotto) {
         return (int) numbers.stream()
             .filter(otherLotto.numbers::contains)
             .count();
     }
 
-    public boolean isContainBonusNumber(int bonusNumber) {
+    public boolean isContainNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 

@@ -80,7 +80,7 @@ public class View {
     }
 
     private void isDuplicateBonusNumber(Lotto winningNumbers, int bonusNumber) {
-        if (winningNumbers.isAlreadyExistNumber(bonusNumber)) {
+        if (winningNumbers.isContainNumber(bonusNumber)) {
             throw WinningNumberException.DUPLICATE_EXCEPTION.getException();
         }
     }

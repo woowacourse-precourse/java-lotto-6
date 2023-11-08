@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -79,9 +80,20 @@ public class LottoSystem {
 
     public int getBonusNumber(String bonusNumber){
         try{
-            return Integer.parseInt(bonusNumber);
+            int number = Integer.parseInt(bonusNumber);
+            bonusNumberInRange(number);
+            return number;
         }catch(NumberFormatException e){
             throw new IllegalArgumentException(Message.Error.INVALID_INPUT.getMessage());
+        }
+    }
+
+    public void bonusNumberInRange(int number){
+        if (number < LottoValue.Value.MIN.getValue()){
+            throw new IllegalArgumentException(Message.Error.INVALID_INPUT_MIN.getMessage());
+        }
+        if (number > LottoValue.Value.MAX.getValue()){
+            throw new IllegalArgumentException(Message.Error.INVALID_INPUT_MAX.getMessage());
         }
     }
 

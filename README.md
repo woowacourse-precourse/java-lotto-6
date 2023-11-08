@@ -188,9 +188,9 @@ BUILD SUCCESSFUL in 0s
 
 #### 사용 예시
 
-```java
+``java
 List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-```
+``
 
 ### Lotto 클래스
 

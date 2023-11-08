@@ -1,16 +1,18 @@
 package lotto.utils;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import lotto.domain.LottoRank;
 
 public class LottoCaclulator {
 
-    public static double calculateRateOfReturn(final List<Integer> winningCount, final int money) {
+    public static double calculateRateOfReturn(final HashMap<LottoRank, Integer> winningCount, final int money) {
         double sum = 0;
         int i = 0;
-        for (LottoRank match : LottoRank.getMembers()) {
-            int repeat = winningCount.get(i);
-            sum += (match.getMoney() * repeat);
+        for (Entry<LottoRank, Integer> entry : winningCount.entrySet()) {
+            LottoRank rank = entry.getKey();
+            int repeat = entry.getValue();
+            sum += (rank.getMoney() * repeat);
             i++;
         }
         return sum / money;

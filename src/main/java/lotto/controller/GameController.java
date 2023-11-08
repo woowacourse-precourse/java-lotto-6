@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.LottoManager;
@@ -43,7 +44,7 @@ public class GameController {
     private void showResult() {
         OutputView.printEmpty();
         List<LottoRank> resultLottoToMatch = lottoManager.judgeRankByLotto();
-        List<Integer> countPerMatchNumber = lottoManager.totalCountPerRank(resultLottoToMatch);
+        HashMap<LottoRank, Integer> countPerMatchNumber = lottoManager.totalCountPerRank(resultLottoToMatch);
         OutputView.printResultCount(countPerMatchNumber);
         double rateOfReturn = LottoCaclulator.calculateRateOfReturn(countPerMatchNumber, money.getMoney());
         OutputView.printRateOfResult(rateOfReturn);

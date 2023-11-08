@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.HashMap;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,15 +36,12 @@ class LottoManagerTest {
     void totalCountPerRank는_등수별_당첨개수를_센다() {
         // given
         LottoManager manager = LottoManager.from(new LottoGenerator());
-        List<LottoRank> matchs = List.of(LottoRank.NOTHING, LottoRank.FIFTH, LottoRank.FIRST);
+        List<LottoRank> matchs = List.of(LottoRank.NOTHING, LottoRank.FIFTH, LottoRank.FIRST, LottoRank.FIFTH);
         // when
-        List<Integer> result = manager.totalCountPerRank(matchs);
+        HashMap<LottoRank, Integer> result = manager.totalCountPerRank(matchs);
         // then
-        assertThat(result.get(LottoRank.FIFTH.getListIndex())).isEqualTo(1);
-        assertThat(result.get(LottoRank.FOURTH.getListIndex())).isEqualTo(0);
-        assertThat(result.get(LottoRank.THIRD.getListIndex())).isEqualTo(0);
-        assertThat(result.get(LottoRank.SECOND.getListIndex())).isEqualTo(0);
-        assertThat(result.get(LottoRank.FIRST.getListIndex())).isEqualTo(1);
+        assertThat(result.get(LottoRank.FIFTH)).isEqualTo(2);
+        assertThat(result.get(LottoRank.FIRST)).isEqualTo(1);
     }
 
 }

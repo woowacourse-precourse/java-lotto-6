@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.constants.ExceptionMessage.DUPPLICATE_BONUS_AND_WINNER;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoManager {
@@ -47,16 +48,19 @@ public class LottoManager {
         return LottoRank.findRankByMatchCountAndBonus(matchCount, bonusMatch);
     }
 
-    private int countLottoRank(final List<LottoRank> matcheNumbers, final LottoRank match) {
-        return (int) matcheNumbers.stream().filter(m -> m.getMatchNumber() == match.getMatchNumber()).count();
-    }
-
-    public List<Integer> totalCountPerRank(final List<LottoRank> matchs) {
-        List<Integer> count = new ArrayList<>();
-        for (LottoRank match : LottoRank.getMembers()) {
-            count.add(countLottoRank(matchs, match));
+    public HashMap<LottoRank, Integer> totalCountPerRank(final List<LottoRank> matchs) {
+        HashMap<LottoRank, Integer> rankCount = new HashMap<>();
+        for (LottoRank match : matchs) {
+            if (match == LottoRank.NOTHING) {
+                continue;
+            }
+            int count = 0;
+            if (rankCount.containsKey(match)) {
+                count = rankCount.get(match);
+            }
+            rankCount.put(match, count + 1);
         }
-        return count;
+        return rankCount;
     }
 
     public AutoLottos getAutoLottos() {

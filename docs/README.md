@@ -132,20 +132,54 @@
 
 ---
 ## ▶ 패키지 개요
+### controller
+* LottosGenerator
+* LottoSystem
+* ProfitCalculator
+* StatisticsGenerator
+### domain
+* BonusNumber
+* Budget
+* Lotto
+* Lottos
+* WinningCombination
+* WinningLottoNumbers
+### validator
+* **input**
+  * InputValidator
+* **system**
+  * SystemValidator
+  * **domain**
+    * BonusNumberValidator
+    * BudgetValidator
+    * LottoValidator
+    * WinningCombinationValidator
+    * WinningLottoNumbersValidator
 ### view
 * **InputView**
-  * InputBudget
-  * InputWinningNumbers
-  * InputBonusNumber
 * **OutputView**
 * **message**
   * **ViewMessage**
       * **ProcessMessage**
       * **ResultMessage**
   * **ExceptionMessage**
-      * **MoneyInputErrorMessage**
+      * **BudgetInputErrorMessage**
       * **WinningNumbersInputErrorMessage**
       * **LottoGenerateErrorMessage**
+### test
+* controller
+  * ProfitCalculator
+  * StatisticsGenerator
+* domain
+  * BonusNumber
+  * Budget
+  * Lotto
+  * WinningCombination
+  * WinningLottoNumbers
+* view
+  * BonusNumber
+  * Budget
+  * WinningLottoNumbers
 
 ---
 ## ▶ 시스템 기능 흐름
@@ -167,6 +201,9 @@
   * 수를 입력했는가
 * 당첨번호 입력 시 테스트
   * comma(,)와 수만 입력했는가
+  * comma와 수만 작성했어도 형식에 맞게 입력했는가\
+    * 컴마 사이가 값이 없는가 (ex) 1,2,3,,4)
+    * 시작과 끝이 컴마인가 (ex) ,1,2,3 / 1,2,3,)
 * 보너스 번호 입력 시 테스트
   * 수를 입력했는가
 
@@ -183,8 +220,6 @@
   * 당첨 번호가 중복이 되지 않는가
   * 당첨 번호가 범위를 벗어나는가
   * 당첨 번호의 개수가 6개인가
-  * 컴마 사이가 값이 없는가 (ex) 1,2,3,,4)
-  * 시작과 끝이 컴마인가 (ex) ,1,2,3 / 1,2,3,)
 * 위닝 콤비네이션(당첨 번호 + 보너스 번호)
   * 당첨 번호의 오류가 없는가
   * 보너스 번호가 범위를 벗어나는가

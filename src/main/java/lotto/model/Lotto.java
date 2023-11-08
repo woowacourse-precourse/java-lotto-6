@@ -21,10 +21,13 @@ public class Lotto {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
+
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
-
-    // TODO: 추가 기능 구현
-
 
     public List<Integer> getNumbers() {
         return numbers;

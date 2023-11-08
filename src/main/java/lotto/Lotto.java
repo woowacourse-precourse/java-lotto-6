@@ -27,10 +27,6 @@ public class Lotto {
 
     }
 
-    public void setBonusNumber(Integer number) {
-        numbers.add(number);
-    }
-
     public void setResultRank(Integer rank) {
         this.resultRank = rank;
     }

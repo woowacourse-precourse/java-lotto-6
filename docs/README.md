@@ -1,25 +1,20 @@
 ## 🚀 기능 요구 사항
 
 - [x] 로또 게임 기능을 시작한다.
-    - LottoGame.start()
+    - LottoGame.run()
     - LottoGame.isGaming : 게임 중임을 나타내는 boolean 변수
 - [x] 로또 구입 금액을 입력한다. 잘못 입력할시 다시 입력하도록 한다.
     - LottoGame.money: 구입한 총 금액
     - LottoGame.inputMoney() : 로또를 위해 돈 넣기
 - [x] 로또 구입 금액을 입력 받는다. 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
     - LottoGame.validateThousandWonUnits() : 입력값이 천원 단위인지 검증
-- [x] 사용자에게서 로또 번호를 입력받는다. 입력된 문자를 쉼표(,)로 나누어 리스트로 만든다.
-    - LottoGame.inputNumbers() : 사용자에게 숫자 6개를 입력받는다.
-    - LottoGame.inputBonusNumber() : 사용자에게 보너스 번호를 입력받는다.
-        - Lotto.setBounusNumber() : 보너스 번호를 로또 객체에 set
-    - LottoGame.splitByComma() : 입력 받은 숫자들을 쉼표로 구현
-- [x] 로또 번호의 숫자 범위는 1~45까지이다, 중복되지 않는 7개의 숫자(보너스 번호 포함)를 뽑는다.
-    - LottoGame.winningNumbers : 당첨 번호
-    - LottoGame.pickWinningNumbers() :  당첨번호 + 보너스 번호까지 뽑기
-        - pickUniqueNumbersInRange(1, 45, 7)
 - [x] 금액만큼 로또 티켓을 발행한다. 로또 1장의 가격은 1,000원이다.
     - LottoGame.lottoTickets<Lotto> : 구입된 로또 티켓 리스트(로또 객체)
     - LottoGame.generateLottoTickets() : 입력된 금액에 따라 로또 티켓 발행하기
+- [x] 사용자에게서 당첨 번호를 입력받는다. 입력된 문자를 쉼표(,)로 나누어 리스트로 만든다.
+    - LottoGame.inputWinningNumbers() : 사용자에게 숫자 6개를 입력받는다.
+    - LottoGame.inputBonusNumber() : 사용자에게 보너스 번호를 입력받는다.
+    - LottoGame.splitByComma() : 입력 받은 숫자들을 쉼표로 나누가
 - [x] 입력된 번호들의 숫자가 6개를 넘어선 안된다. 잘못 입력될시 다시 입력한다.
     - Lotto.validate() : 기존에 구현된 메소드 사용하기
     - LottoGame.inputNumbers() : 다시 입력하기 while, try-catch로 구현하기
@@ -82,10 +77,13 @@
 ## 📝 과제 진행중 개인 기록
 
 - 코드말고 기능 요구사항과 클래스, 메소드 정리 하는데 최대한 시간 많이 쓰기
-- 보너스 번호를 사용자가 정하는것이 아닌 게임에서 만드는 것으로 착각했음. 중간에 수정
+- 보너스 번호가 사용자가 정하는것이 아닌 게임에서 만들어짐. 중간에 수정
 - 커밋 메시지는 줄바꿈까지 해서 구체적인 내용을 전부 써야 하는건가?
 - 매개변수와 반환 값을 최대한 이용해야 하는 이유를 조금씩 알기 시작했다. 재사용성, 순수성, 테스트, 가독성 면에서도 낫다.
 - 기능 구현을 하다보면 기능 목록을 넘어 자연스럽게 다른 메소드를 수정할 일이 생김 > 기능 분리 고민 더 해보기
 - 에러 처리를 더 깔끔하게 하는법은 없을까?
     - try-catch를 start메소드에서 한번에 처리해보기
     - 다양한 에러 경우의 수에 따라 메시지를 처리 할 수 있는 클래스 만들기
+- 기능을 모두 완성했으나 게임 방식을 착각했다. 당첨 번호가 랜덤으로 뽑히고, 티켓 번호를 사용자가 입력하는것으로
+    - 로또 번호를 랜덤으로 뽑아 티켓을 만들고, 당첨 번호를 사용자가 입력하는 게임으로 수정
+    - 기능별로 최대한 나눠 놓았더니 바꾸는건 어렵지 않았다.

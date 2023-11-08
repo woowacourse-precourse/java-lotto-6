@@ -24,13 +24,15 @@ public class LottoGame {
 
         while (isGaming) {
             inputMoney = inputMoney();
+            System.out.println();
 
             lottoTickets = generateLottoTickets(inputMoney);
             printTickets();
+            System.out.println();
 
-            List<Integer> pickedWinningNumbers = pickWinningNumbers().subList(0, 6);
-            winningNumbers = pickedWinningNumbers.subList(0, 6);
-            winningBonusNumber = pickedWinningNumbers.get(pickedWinningNumbers.size() - 1);
+            winningNumbers = inputWinningNumbers().getNumbers();
+            winningBonusNumber = inputBonusNumber();
+            System.out.println();
 
             setLottoRanks(lottoTickets, winningNumbers, winningBonusNumber);
             printResult(lottoTickets);
@@ -68,12 +70,12 @@ public class LottoGame {
         }
     }
 
-    private Lotto inputNumbers() {
+    private Lotto inputWinningNumbers() {
         Lotto lotto = null;
         String inputNumbers = null;
         boolean validInput = false;
 
-        System.out.println("로또 번호를 입력하세요.");
+        System.out.println("당첨 번호를 입력해 주세요.");
 
         while (!validInput) {
             inputNumbers = Console.readLine();
@@ -87,16 +89,16 @@ public class LottoGame {
         return lotto;
     }
 
-    private Lotto inputBonusNumber(Lotto lotto) {
+    private Integer inputBonusNumber() {
         String inputNumber;
 
         System.out.println("보너스 번호를 입력해주세요.");
 
         inputNumber = Console.readLine();
 
-        lotto.setBonusNumber(Integer.valueOf(inputNumber));
+        winningBonusNumber = Integer.valueOf(inputNumber);
 
-        return lotto;
+        return winningBonusNumber;
     }
 
     private List<Integer> splitByComma(String inputNumbers) {
@@ -111,9 +113,8 @@ public class LottoGame {
         int ticketAmount = (int) money / 1000;
 
         for (int i = 0; i < ticketAmount; i++) {
-            Lotto newLotto = inputNumbers();
-            Lotto newLottoBonus = inputBonusNumber(newLotto);
-            lottos.add(newLottoBonus);
+            Lotto newLotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lottos.add(newLotto);
         }
 
         return lottos;
@@ -125,10 +126,6 @@ public class LottoGame {
         for (Lotto lotto : lottoTickets) {
             lotto.printNumbers();
         }
-    }
-
-    private List<Integer> pickWinningNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 7);
     }
 
     private void setLottoRanks(List<Lotto> lottoTickets, List<Integer> winningNumbers, Integer bonusNumber) {
@@ -207,9 +204,5 @@ public class LottoGame {
         double rateOfReturn = ((totalIncome - inputMoney) / (double) inputMoney) * 100;
 
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
-    }
-
-    private void getRateOfReturn() {
-
     }
 }

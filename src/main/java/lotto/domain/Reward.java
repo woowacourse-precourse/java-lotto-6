@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import lotto.exception.StateException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static lotto.exception.errorcode.StateErrorCode.FAIL_GET_VALUE_FROM_COLLECTION;
 
 public enum Reward {
     FIRST_PLACE(2000000000L, false, 6, 1),
@@ -39,16 +42,19 @@ public enum Reward {
             return NONE;
         }
 
-
         boolean requiredBonusNumber = false;
         if (matchedCount == SECOND_PLACE.matchedCount) {
             requiredBonusNumber = bonusNumberMatched;
         }
 
-        return REWARD_GROUPING_BY_RANK
-                .get(matchedCount)
-                .get(requiredBonusNumber)
-                .get(0);
+        try {
+            return REWARD_GROUPING_BY_RANK
+                    .get(matchedCount)
+                    .get(requiredBonusNumber)
+                    .get(0);
+        } catch (Exception e) {
+            throw new StateException(FAIL_GET_VALUE_FROM_COLLECTION);
+        }
     }
 
     public long getAmount() {

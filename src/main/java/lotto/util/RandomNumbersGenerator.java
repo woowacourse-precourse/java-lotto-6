@@ -7,7 +7,7 @@ import static lotto.constants.LottoConstants.LOTTO_NUMBER_RANGE_START;
 
 import java.util.List;
 
-public class RandomNumbersGenerator implements NumbersGenerator {
+public class RandomNumbersGenerator {
 
     public static List<Integer> create() {
         return pickUniqueNumbersInRange(LOTTO_NUMBER_RANGE_START.getValue(),

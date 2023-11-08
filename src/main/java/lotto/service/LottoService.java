@@ -10,16 +10,20 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoService {
+    enum LottoRank{
+        NONE1,
+        NONE2,
+        NONE3,
+        FIFTH,
+        FOUR,
+        THIRD,
+        SECOND,
+        FIRST
+    }
     static final int WIN_AND_BONUS = 2;
     static final int START_NUMBER_FOR_WINNING_LOTTO = 3;
-    static final int FIFTH = 3;
-    static final int FOUR = 4;
-    static final int THIRD = 5;
-    static final int SECOND = 6;
-    static final int FIRST = 7;
     static final int LOTTO_CNT = 6;
     static final int SIZE_OF_RESULT = 7;
-    static final int BONUS_LEVEL = 0;
     static final int LOTTO_PRICE = 1000;
 
     static int lottoAmount;
@@ -62,7 +66,7 @@ public class LottoService {
             sb.append(toStringLottoNumber(allLottoNums.get(i)) + "\n");
         }
 
-        System.out.print(sb.toString());
+        System.out.print(sb);
     }
 
     private Lotto getLottoNumbers(){
@@ -101,6 +105,18 @@ public class LottoService {
 
         int[] resultOfLotto = new int[SIZE_OF_RESULT + 1];
         int[] cntOfWinWithBonus = new int[WIN_AND_BONUS];
+
+        getresultOfLotto(resultOfLotto, cntOfWinWithBonus);
+
+        sb.append(getAmountOfRevenue(resultOfLotto, sb));
+        System.out.print(sb);
+
+        getRateOfBenefit(resultOfLotto);
+    }
+
+    private void getresultOfLotto(int[] resultOfLotto, int[] cntOfWinWithBonus){
+        LottoRank[] ranks = LottoRank.values();
+
         for(int i = 0; i < numberOfLottoPurchased; i++) {
             cntOfWinWithBonus = getLottoResult(i);
 
@@ -109,15 +125,10 @@ public class LottoService {
 
             if(isBonus == 0){
                 resultOfLotto[numberOfWin]++;
-            }else if(isBonus == 1 && numberOfWin == THIRD){
+            }else if(isBonus == 1 && ranks[numberOfWin] == LottoRank.THIRD){
                 resultOfLotto[numberOfWin + isBonus]++;
             }
         }
-
-        sb.append(getAmountOfRevenue(resultOfLotto));
-        System.out.print(sb.toString());
-
-        getRateOfBenefit(resultOfLotto);
     }
 
     private int[] getLottoResult(int idx){
@@ -134,37 +145,21 @@ public class LottoService {
         return cntOfWinWithBonus;
     }
 
-    private String getAmountOfRevenue(int[] resultOfLotto){
-        StringBuilder sb = new StringBuilder();
+    private String getAmountOfRevenue(int[] resultOfLotto, StringBuilder sb){
+        LottoRank[] ranks = LottoRank.values();
+        for(int i = START_NUMBER_FOR_WINNING_LOTTO; i <= SIZE_OF_RESULT; i++) {
+            LottoRank curRank = LottoRank.valueOf(ranks[i].toString());
 
-        for(int i = START_NUMBER_FOR_WINNING_LOTTO; i <= SIZE_OF_RESULT; i++){
-            if(i == SECOND || i == FIRST)
-                sb.append(i - 1 + "개 ");
-            else
-                sb.append(i + "개 ");
-
-            if(i == SECOND)
-                sb.append("일치, 보너스 볼 ");
-
-            sb.append("일치 ");
-
-            if(i == FIFTH) {
-                sb.append("(5,000원) ");
-            }
-            else if(i == FOUR) {
-                sb.append("(50,000원) ");
-            }
-            else if(i == THIRD) {
-                sb.append("(1,500,000원) ");
-            }
-            else if(i == SECOND) {
-                sb.append("(30,000,000원) ");
-            }
-            else if(i == FIRST) {
-                sb.append("(2,000,000,000원) ");
-            }
-
-            sb.append("- " + resultOfLotto[i] + "개\n");
+            if (curRank == LottoRank.FIFTH)
+                sb.append(i + "개 일치 (5,000원) " + "- " + resultOfLotto[i] + "개\n");
+            else if (curRank == LottoRank.FOUR)
+                sb.append(i + "개 일치 (50,000원) " + "- " + resultOfLotto[i] + "개\n");
+            else if (curRank == LottoRank.THIRD)
+                sb.append(i + "개 일치 (1,500,000원) " + "- " + resultOfLotto[i] + "개\n");
+            else if (curRank == LottoRank.SECOND)
+                sb.append(i - 1 + "개 일치, 보너스 볼 일치 (30,000,000원) " + "- " + resultOfLotto[i] + "개\n");
+            else if (curRank == LottoRank.FIRST)
+                sb.append(i - 1 + "개 일치 (2,000,000,000원) " + "- " + resultOfLotto[i] + "개\n");
         }
 
         return sb.toString();
@@ -173,19 +168,12 @@ public class LottoService {
     private void getRateOfBenefit(int[] resultOfLotto){
         BigInteger rate = new BigInteger("0");
 
+        LottoRank[] ranks = LottoRank.values();
         for(int i = START_NUMBER_FOR_WINNING_LOTTO; i <=SIZE_OF_RESULT; i++){
             if(resultOfLotto[i] == 0) continue;
 
-            if(i == FIFTH)
-                rate = rate.add(new BigInteger("5000"));
-            else if(i == FOUR)
-                rate = rate.add(new BigInteger("50000"));
-            else if(i == THIRD)
-                rate = rate.add(new BigInteger("1500000"));
-            else if(i == SECOND)
-                rate = rate.add(new BigInteger("30000000"));
-            else if(i == FIRST)
-                rate = rate.add(new BigInteger("2000000000"));
+            LottoRank curRank = LottoRank.valueOf(ranks[i].toString());
+            rate = checkResultValue(rate, curRank);
         }
 
         BigInteger base = BigInteger.valueOf(numberOfLottoPurchased * LOTTO_PRICE);
@@ -193,6 +181,21 @@ public class LottoService {
         profitRate = Math.round(profitRate * 10) / 10.0;
 
         System.out.printf("%s %.1f%%%s", "총 수익률은", profitRate, "입니다.\n");
+    }
+
+    private BigInteger checkResultValue(BigInteger rate, LottoRank curRank){
+        if(curRank == LottoRank.FIFTH)
+            rate = rate.add(new BigInteger("5000"));
+        else if(curRank == LottoRank.FOUR)
+            rate = rate.add(new BigInteger("50000"));
+        else if(curRank == LottoRank.THIRD)
+            rate = rate.add(new BigInteger("1500000"));
+        else if(curRank == LottoRank.SECOND)
+            rate = rate.add(new BigInteger("30000000"));
+        else if(curRank == LottoRank.FIRST)
+            rate = rate.add(new BigInteger("2000000000"));
+
+        return rate;
     }
 
     public void doLotto(){

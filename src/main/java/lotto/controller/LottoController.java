@@ -14,12 +14,24 @@ public class LottoController {
 
     public void run() {
         initPurchaseAmount();
-        lottoService.purchaseLotto();
-        OutputView.displayLottos(lottoService.getLottoDtos());
+        purchaseAndDisplayLottos();
         initWinningLotto();
         initWinningNumbers();
+        compareNumbersAndDisplayResult();
+        displayProfitRate();
+    }
+
+    private void purchaseAndDisplayLottos() {
+        lottoService.purchaseLotto();
+        OutputView.displayLottos(lottoService.getLottoDtos());
+    }
+
+    private void compareNumbersAndDisplayResult() {
         lottoService.compareNumbers();
         OutputView.displayResult(lottoService.getLottoResultDto());
+    }
+
+    private void displayProfitRate() {
         OutputView.displayProfitRate(lottoService.getProfitRate());
     }
 

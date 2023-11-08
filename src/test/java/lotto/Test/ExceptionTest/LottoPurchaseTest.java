@@ -1,4 +1,4 @@
-package lotto.Test;
+package lotto.Test.ExceptionTest;
 
 import lotto.controller.inputController.LottoPurchaseController;
 import lotto.model.lottoGenerator.LottoPurchase;

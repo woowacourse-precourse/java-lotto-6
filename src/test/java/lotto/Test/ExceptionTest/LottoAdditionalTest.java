@@ -1,4 +1,4 @@
-package lotto.Test;
+package lotto.Test.ExceptionTest;
 
 import lotto.model.lottoResultChecker.Lotto;
 import org.junit.jupiter.api.DisplayName;

@@ -116,11 +116,11 @@
 
 ### 예외처리 테스트
 - [o] LottoPurchaseTest
-- [O] LottoAdditionalTest
-- [ ] LottoBonusTest
+- [o] LottoAdditionalTest
+- [o] LottoBonusTest
 
 ### 기능 테스트
-- [ ] LottoNumberTest
+- [ ] LottoNumberGeneratorTest
 - [ ] LottoTicketCalculatorTest
 - [ ] LottoTicketCreatorTest
 - [ ] LottoMatchingDataTest

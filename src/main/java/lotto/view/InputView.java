@@ -17,7 +17,9 @@ public class InputView {
 
     public static String inputMoney() {
         System.out.println(INPUT_PRICE_MSG);
-        return readInput();
+        String money = readInput();
+        printSpace();
+        return money;
     }
 
     public static String inputWinningLottoNumbers() {

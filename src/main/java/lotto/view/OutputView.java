@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public static void printBuyQuantity(final LottoOrder lottoOrder, final int price) {
-        System.out.println(System.lineSeparator() + lottoOrder.getOrderQuantity(price) + BUY_MSG_SUFFIX);
+        System.out.println(lottoOrder.getOrderQuantity(price) + BUY_MSG_SUFFIX);
     }
 
     public static void printBuyLotto(final LottoBundle lottoBundle) {

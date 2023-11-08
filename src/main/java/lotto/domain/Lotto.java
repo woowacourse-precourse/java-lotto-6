@@ -1,17 +1,17 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 import java.util.Set;
 
-import static lotto.LottoCondition.MAX_LOTTO_NUMBER;
-import static lotto.LottoCondition.MIN_LOTTO_NUMBER;
+import static lotto.domain.LottoCondition.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoCondition.MIN_LOTTO_NUMBER;
 
 public class Lotto {
 
     private static final int LOTTO_LENGTH = 6;
-    private static final String ERROR_INVALID_LOTTO_LENGTH = "로또 번호는 6자리여야 합니다.";
+    private static final String ERROR_INVALID_LOTTO_LENGTH = "로또 번호는 %d자리여야 합니다.".formatted(LOTTO_LENGTH);
     private static final String ERROR_DUPLICATE_NUMBER_EXIST = "로또 번호는 중복되지 않아야 합니다.";
 
     private final List<Integer> numbers;

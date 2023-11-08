@@ -1,4 +1,8 @@
-package lotto;
+package lotto.domain;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoCondition;
+import lotto.domain.LottoRank;
 
 import java.util.Optional;
 

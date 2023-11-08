@@ -1,5 +1,10 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoMachine;
+import lotto.domain.LottoResult;
+import lotto.domain.WinningLotto;
+
 import java.util.List;
 import java.util.function.Supplier;
 

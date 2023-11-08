@@ -16,37 +16,27 @@ import lotto.domain.result.WinResult;
 import lotto.domain.seller.Seller;
 import lotto.domain.ticket.Ticket;
 import lotto.util.Logger;
-import lotto.util.reader.InputReader;
+import lotto.util.reader.ConsoleReader;
 
 /**
- * Customer 를 구현한 개념 객체를 나타내는 클래스입니다.
+ * 로또 게임에 참여하는 Customer 역할의 개념 객체를 나타내는 클래스입니다.
  */
 public class LottoCustomer implements Customer {
-        /**
-         * 금액을 입력받기 위한 유틸 클래스 입니다.
-         */
-        private final InputReader inputReader;
-        /**
-         * 구매한 로또 티켓 입니다.
-         */
+        private final ConsoleReader moneyConsoleReader;
         private Ticket ticket;
 
-        /**
-         * LottoCustomer 의 생성자 함수로 유틸 클래스를 주입받습니다.
-         * @param inputReader 입력 유틸 클래금액
-         */
-        public LottoCustomer(InputReader inputReader) {
-                this.inputReader = inputReader;
+        public LottoCustomer(ConsoleReader consoleReader) {
+                this.moneyConsoleReader = consoleReader;
         }
 
         /**
          * Seller 를 통해서 티켓을 구매할 수 있습니다.
-         * 금액은 유틸 클래스를 통해서 입력받고, Seller 에게 전달합니다.
+         * 금액은 moneyConsoleReader 클래스를 통해서 입력받고, Seller 에게 전달합니다.
          * @param seller 판매자
          */
         @Override
         public void buyTicket(Seller seller) {
-                Money payment = new Money(new BigDecimal(inputReader.readLine()));
+                Money payment = new Money(new BigDecimal(moneyConsoleReader.readLine()));
                 ticket = seller.sellTo(payment);
         }
 
@@ -62,7 +52,7 @@ public class LottoCustomer implements Customer {
         }
 
         /**
-         * 반환된 결과를 출력할 수 있습니다.
+         * 반환된 결과를 콘솔에 출렫합니다.
          *
          * @param result 로또 결과
          */

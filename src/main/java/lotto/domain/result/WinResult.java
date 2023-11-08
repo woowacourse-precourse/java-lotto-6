@@ -4,20 +4,18 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 /**
- * WinResult 의 핵심 로직을 정의한 인터페이스입니다.
+ * 로또의 결과를 포함하는 WinResult 역할의 책임을 정의한 인터페이스입니다.
  */
 public interface WinResult {
         /**
-         * 등수 결과 를 반환합니다.
-         *
-         * @return 등수 결과
+         * 로또 결과를 종합한 등수 정보를 반환합니다.
+         * @return 로또 등수 결과
          */
         Map<LottoRank, Integer> getRanks();
 
         /**
-         * 수익률을 반환합니다.
-         *
-         * @return 수익률
+         * 총 수익률을 반환합니다.
+         * @return 총 수익률
          */
         BigDecimal getRateOfReturn();
 }

@@ -4,7 +4,7 @@ import lotto.domain.checker.Checker;
 import lotto.domain.seller.Seller;
 
 /**
- * Customer 의 핵심 로직이 정의된 인터페이스입니다.
+ * 로또 게임에 참여하는 Customer 역할의 책임을 정의한 인터페이스입니다.
  */
 public interface Customer {
         /**

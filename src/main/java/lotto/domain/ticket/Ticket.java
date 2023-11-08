@@ -4,7 +4,7 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.result.WinResult;
 
 /**
- * Ticket 의 핵심 로직을 정의한 인터페이스입니다.
+ * 로또를 포함한 Ticket 역할의 책임을 정의한 인터페이스입니다.
  */
 public interface Ticket {
         /**

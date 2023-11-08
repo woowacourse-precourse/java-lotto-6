@@ -1,37 +1,29 @@
 package lotto.domain.generator;
 
+import static lotto.domain.customer.LottoNumberSpec.SIZE;
+import static lotto.domain.customer.LottoNumberSpec.END_INCLUSIVE;
+import static lotto.domain.customer.LottoNumberSpec.START_INCLUSIVE;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.ticket.LottoTicket;
 import lotto.domain.ticket.Ticket;
 import lotto.util.Logger;
-import lotto.util.RandomNumber;
+import lotto.util.RandomNumbers;
 
 /**
- * TicketGenerator 를 구현한 개념 객체를 나타내는 클래스입니다.
+ * 로또 티켓을 생성하는 TicketGenerator 역할의 개념 객체를 나타내는 클래스입니다.
  */
 public class AutoTicketGenerator implements TicketGenerator {
-        public static final int LOTTO_RANGE_START = 1;
-        public static final int LOTTO_RANGE_END = 45;
-        public static final int LOTTO_NUMBER_SIZE = 6;
+        private final RandomNumbers randomNumberGenerator;
 
-        /**
-         * 자동으로 무작위 숫자를 생성 후 반환하는 유틸 클래스입니다.
-         */
-        private final RandomNumber randomNumber;
-
-        /**
-         * AutoTicketGenerator 의 생성자 함수로 유틸 클래스를 주입 받습니다.
-         *
-         * @param randomNumber 무작위 숫자 생성 유틸 클래스
-         */
-        public AutoTicketGenerator(RandomNumber randomNumber) {
-                this.randomNumber = randomNumber;
+        public AutoTicketGenerator(RandomNumbers randomNumber) {
+                this.randomNumberGenerator = randomNumber;
         }
 
         /**
-         * 티켓 생성을 생성 후 반환합니다.
+         * 전달 받은 수량의 로또 번호를 포함한 티켓 생성을 생성 후 반환합니다.
          *
          * @param quantity 로또 구매 수량
          * @return 티켓
@@ -47,15 +39,10 @@ public class AutoTicketGenerator implements TicketGenerator {
                 return new LottoTicket(lottoEntry);
         }
 
-        /**
-         * 무작위 숫자로 구성된 로또 객체를 반환합니다.
-         *
-         * @return 로또
-         */
         private Lotto generateLotto() {
-                List<Integer> balls = randomNumber.pickUniqueNumberRange(LOTTO_RANGE_START,
-                        LOTTO_RANGE_END,
-                        LOTTO_NUMBER_SIZE);
+                List<Integer> balls = randomNumberGenerator.pickUniqueNumberRange(START_INCLUSIVE.toInt(),
+                        END_INCLUSIVE.toInt(),
+                        SIZE.toInt());
 
                 Logger.info(balls.toString());
                 return new Lotto(balls);

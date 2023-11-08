@@ -59,9 +59,8 @@ public enum LottoRank {
 
         /**
          * 맞춘 개수에 대한 RANK 를 반환합니다.
-         *
          * @param count 맞춘 개수
-         * @return RANK
+         * @return 맞춘 개수에 대한 LottoRank
          */
         public static LottoRank getRank(long count) {
                 if (RANK_KEY.get(count) == null) {

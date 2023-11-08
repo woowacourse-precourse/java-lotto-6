@@ -8,23 +8,23 @@ import lotto.domain.generator.AutoTicketGenerator;
 import lotto.domain.generator.TicketGenerator;
 import lotto.domain.seller.Seller;
 import lotto.domain.seller.TicketSeller;
-import lotto.util.RandomNumberUtil;
-import lotto.util.reader.InputReader;
-import lotto.util.reader.LottoResultInputReader;
-import lotto.util.reader.MagicNumberInputReader;
-import lotto.util.reader.MoneyInputReader;
+import lotto.util.RandomNumberGenerator;
+import lotto.util.reader.ConsoleReader;
+import lotto.util.reader.WinningNumberConsoleReader;
+import lotto.util.reader.MagicNumberConsoleReader;
+import lotto.util.reader.MoneyConsoleReader;
 
 public class Application {
         public static void main(String[] args) {
-                InputReader moneyInputReader = new MoneyInputReader();
-                TicketGenerator generator = new AutoTicketGenerator(RandomNumberUtil.getInstance());
+                ConsoleReader moneyInputReader = new MoneyConsoleReader();
+                TicketGenerator generator = new AutoTicketGenerator(RandomNumberGenerator.getInstance());
                 Seller seller = new TicketSeller(generator);
                 Customer customer = new LottoCustomer(moneyInputReader);
 
                 customer.buyTicket(seller);
 
-                InputReader resultInputReader = new LottoResultInputReader();
-                InputReader magicNumberInputReader = new MagicNumberInputReader();
+                ConsoleReader resultInputReader = new WinningNumberConsoleReader();
+                ConsoleReader magicNumberInputReader = new MagicNumberConsoleReader();
                 Checker checker = new LottoChecker(resultInputReader, magicNumberInputReader);
 
                 customer.checkLottoResult(checker);

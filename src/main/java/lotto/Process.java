@@ -62,13 +62,42 @@ public class Process {
     }
 
 
-    public List<Object> compareLottos(List<Integer> eachLottoNumber, List<Integer> winningNumbers, int bonusNumber) {
+    public void recordWins(List<List<Integer>> lottos, List<Integer> winningNumbers, int bonusNumber) {
+
+        for (var lottoNumber : lottos) {
+            List<Object> result = compareLottos(lottoNumber, winningNumbers, bonusNumber);
+
+            int mainMatchNumber = (int) result.get(0);
+            boolean matchedBonusNumber = (boolean) result.get(1);
+
+            if (mainMatchNumber == 3) {
+                WinningRankPrize.FIFTH.increaseWinCount();
+            }
+            if (mainMatchNumber == 4) {
+                WinningRankPrize.FOURTH.increaseWinCount();
+            }
+            if (mainMatchNumber == 5 && !matchedBonusNumber) {
+                WinningRankPrize.THIRD.increaseWinCount();
+            }
+
+            if (mainMatchNumber == 5 && matchedBonusNumber) {
+                WinningRankPrize.SECOND.increaseWinCount();
+            }
+
+            if (mainMatchNumber == 6) {
+                WinningRankPrize.FIRST.increaseWinCount();
+            }
+        }
+
+    }
+
+
+    private List<Object> compareLottos(List<Integer> lottoNumber, List<Integer> winningNumbers, int bonusNumber) {
         int mainNumberMatchCount = 0;
         boolean matchedBonusNumber = false;
         List<Object> result = new ArrayList<>();
 
-
-        for (var element : eachLottoNumber) {
+        for (var element : lottoNumber) {
             if (winningNumbers.contains(element)) {
                 mainNumberMatchCount++;
             }

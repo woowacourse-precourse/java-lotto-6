@@ -14,8 +14,8 @@ public class LottoGame {
     private static final int FIRST_PRIZE = 7;
     private static final int FIFTH_PRIZE = 3;
     private static final List<Integer> PRIZE_MONEY = List.of(0, 0,5000, 50000, 1500000, 30000000, 2000000000);
-     List<Lotto> lottos = new ArrayList<>();
 
+    List<Lotto> lottos = new ArrayList<>();
 
     public List<Integer> makeLottoNumbers() {
         List<Integer> LottoNumbers = new ArrayList<>();
@@ -52,15 +52,15 @@ public class LottoGame {
         return winningLottoResult;
     }
 
-    int calculateEarnings(Map<Integer, Integer> winningLottoResult) {
-        int earnings = 0;
+    public long calculateEarnings(Map<Integer, Integer> winningLottoResult) {
+        long earnings = 0;
         for (int prize = FIFTH_PRIZE; prize <= FIRST_PRIZE; prize++) {
-            earnings += winningLottoResult.get(prize) * PRIZE_MONEY.get(prize);
+            earnings += winningLottoResult.get(prize) * PRIZE_MONEY.get(prize - 1);
         }
         return earnings;
     }
 
-    double calculateEarningRate(int earnings, int cost) {
+    public double calculateEarningRate(long earnings, long cost) {
         return earnings / cost;
     }
 }

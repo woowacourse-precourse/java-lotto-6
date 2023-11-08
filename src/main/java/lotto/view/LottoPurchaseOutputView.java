@@ -6,6 +6,7 @@ import lotto.domain.Lottos;
 public class LottoPurchaseOutputView {
 
     private final static String LOTTO_COUNT = "개를 구매했습니다.";
+    private final static String INPUT_MONEY = "구입금액을 입력해 주세요.";
 
     public void printLotto(Lottos lottos, int lottoCount) {
         System.out.println(lottoCount + LOTTO_COUNT);
@@ -24,6 +25,10 @@ public class LottoPurchaseOutputView {
             }
         }
         System.out.print("]");
+    }
+
+    public void printInputMoneyMessage() {
+        System.out.println(INPUT_MONEY);
     }
 
 }

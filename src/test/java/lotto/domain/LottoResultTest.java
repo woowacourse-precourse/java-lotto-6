@@ -37,5 +37,21 @@ public class LottoResultTest {
                 .allMatch(result::containsKey);
     }
 
+    @ParameterizedTest
+    @MethodSource("provideLottoRanks")
+    void addLottoRankCount_메소드는_당첨등수_개수를_계산해_자료구조를_업데이트한다(List<LottoRank> ranks, LottoRank rank, int expect) {
+        LottoResult lottoResult = LottoResult.create();
+        lottoResult.addLottoRankCount(ranks);
+
+        Assertions.assertEquals(lottoResult.getResult().get(rank), expect);
+    }
+
+    private static Stream<Arguments> provideLottoRanks() {
+        return Stream.of(
+                Arguments.of(List.of(NOTHING, FIRST, FIFTH, FIFTH), FIFTH, 2),
+                Arguments.of(List.of(NOTHING, NOTHING, SECOND), SECOND, 1)
+        );
+    }
+
 
 }

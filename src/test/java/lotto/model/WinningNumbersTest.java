@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.constants.Message.DUPLICATED_BONUS_NUMBER;
 import static lotto.constants.Message.INVALID_LOTTO_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,5 +23,13 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 100))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_LOTTO_NUMBER_RANGE);
+    }
+
+    @DisplayName("당첨 보너스 번호가 당첨 로또 번호와 중복되면 예외가 발생한다.")
+    @Test
+    public void testConstructorDuplicatedBonusNumber() {
+        assertThatThrownBy(() -> new WinningNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATED_BONUS_NUMBER);
     }
 }

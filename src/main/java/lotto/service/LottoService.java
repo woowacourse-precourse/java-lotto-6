@@ -4,11 +4,8 @@ import static lotto.global.constant.LottoNumber.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.LottoTickets;
@@ -17,11 +14,20 @@ import lotto.model.WinningStatistic;
 
 public class LottoService {
 
-    private final static Map<Integer, String> winningMatch = new HashMap<>();
+    private static final int LOTTO_PRICE = 1000;
+    private static final int THREE_MATCH_REWARDS = 5000;
+    private static final int FOUR_MATCH_REWARDS = 50000;
+    private static final int FIVE_MATCH_REWARDS = 1500000;
+    private static final int FIVE_AND_BONUS_MATCH_REWARDS = 30000000;
+    private static final int SIX_MATCH_REWARDS = 2000000000;
 
-    public LottoTickets createLottoTickets(int purchaseAmount) {
+    public int calPurchaseQuantity(int purchaseAmount){
+        return purchaseAmount / LOTTO_PRICE;
+    }
+
+    public LottoTickets createLottoTickets(int purchaseQuantity) {
         List<Lotto> lottoTickets = new ArrayList<>();
-        for(int i=0;i<purchaseAmount;i++){
+        for(int i=0;i<purchaseQuantity;i++){
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
                     LOTTO_NUMBER_COUNT);
             lottoTickets.add(new Lotto(randomNumbers));
@@ -56,5 +62,21 @@ public class LottoService {
     private WinningStatistic makeWinningStatistic(List<Integer> lottoResultCount) {
         return new WinningStatistic(lottoResultCount.get(3), lottoResultCount.get(4), lottoResultCount.get(5)
                 , lottoResultCount.get(6), lottoResultCount.get(7));
+    }
+
+    public double calTotalReturn(int purchaseAmount, WinningStatistic winningStatistic) {
+        double totalEarning = 0;
+        totalEarning += winningStatistic.threeMatchCount() * THREE_MATCH_REWARDS;
+        totalEarning += winningStatistic.fourMatchCount() * FOUR_MATCH_REWARDS;
+        totalEarning += winningStatistic.fiveMatchCount() * FIVE_MATCH_REWARDS;
+        totalEarning += winningStatistic.fiveAndBonusMatchCount() * FIVE_AND_BONUS_MATCH_REWARDS;
+        totalEarning += winningStatistic.sixMatchCount() * SIX_MATCH_REWARDS;
+
+        double totalReturn = (totalEarning / purchaseAmount) * 100;
+        return makeRound(totalReturn);
+    }
+
+    private double makeRound(double num) {
+        return (Math.round(num * 10.0) / 10.0);
     }
 }

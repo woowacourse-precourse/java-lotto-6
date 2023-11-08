@@ -5,6 +5,7 @@ import static lotto.fixture.Fixture.createContinuousLottoNumbers;
 import static lotto.fixture.Fixture.createContinuousPrizeNumbers;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.lotto.LottoGroup;
@@ -35,17 +36,19 @@ class PrizeStatisticsTest {
         );
 
         final PrizeRankingCount expected = new PrizeRankingCount(
-                Map.of(
-                        PrizeRanking.FIRST,
-                        0,
-                        PrizeRanking.SECOND,
-                        1,
-                        PrizeRanking.THIRD,
-                        1,
-                        PrizeRanking.FOURTH,
-                        0,
-                        PrizeRanking.FIFTH,
-                        0
+                new EnumMap<>(
+                        Map.of(
+                                PrizeRanking.FIRST,
+                                0,
+                                PrizeRanking.SECOND,
+                                1,
+                                PrizeRanking.THIRD,
+                                1,
+                                PrizeRanking.FOURTH,
+                                0,
+                                PrizeRanking.FIFTH,
+                                0
+                        )
                 )
         );
 
@@ -76,17 +79,19 @@ class PrizeStatisticsTest {
         );
 
         final PrizeRankingCount expected = new PrizeRankingCount(
-                Map.of(
-                        PrizeRanking.FIRST,
-                        1,
-                        PrizeRanking.SECOND,
-                        1,
-                        PrizeRanking.THIRD,
-                        1,
-                        PrizeRanking.FOURTH,
-                        1,
-                        PrizeRanking.FIFTH,
-                        1
+                new EnumMap<>(
+                        Map.of(
+                                PrizeRanking.FIRST,
+                                1,
+                                PrizeRanking.SECOND,
+                                1,
+                                PrizeRanking.THIRD,
+                                1,
+                                PrizeRanking.FOURTH,
+                                1,
+                                PrizeRanking.FIFTH,
+                                1
+                        )
                 )
         );
 

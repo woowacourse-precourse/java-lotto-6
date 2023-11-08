@@ -3,6 +3,7 @@ package lotto.view.output;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import java.util.EnumMap;
 import java.util.Map;
 import lotto.domain.lotto.LottoPurchaseAmount;
 import lotto.domain.prize.ranking.PrizeRankingCount;
@@ -28,17 +29,19 @@ class LottoStatisticsOutputViewTest {
         lottoStatisticsOutputView = new LottoStatisticsOutputView(mockConsoleWriter);
 
         prizeRankingCount = new PrizeRankingCount(
-                Map.of(
-                        PrizeRanking.FIRST,
-                        0,
-                        PrizeRanking.SECOND,
-                        0,
-                        PrizeRanking.THIRD,
-                        0,
-                        PrizeRanking.FOURTH,
-                        1,
-                        PrizeRanking.FIFTH,
-                        2
+                new EnumMap<>(
+                        Map.of(
+                                PrizeRanking.FIRST,
+                                0,
+                                PrizeRanking.SECOND,
+                                0,
+                                PrizeRanking.THIRD,
+                                0,
+                                PrizeRanking.FOURTH,
+                                1,
+                                PrizeRanking.FIFTH,
+                                2
+                        )
                 )
         );
         final TotalPrizeAmount totalPrizeAmount = TotalPrizeAmount.from(prizeRankingCount);

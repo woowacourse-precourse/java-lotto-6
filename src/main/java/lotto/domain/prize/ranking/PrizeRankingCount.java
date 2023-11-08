@@ -1,18 +1,18 @@
 package lotto.domain.prize.ranking;
 
 import java.util.Collections;
-import java.util.Map;
+import java.util.EnumMap;
 import lotto.domain.prize.ranking.rule.PrizeRanking;
 
 public class PrizeRankingCount {
-    private final Map<PrizeRanking, Integer> prizeRankingCount;
+    private final EnumMap<PrizeRanking, Integer> prizeRankingCount;
 
-    public PrizeRankingCount(final Map<PrizeRanking, Integer> prizeRankingCount) {
+    public PrizeRankingCount(final EnumMap<PrizeRanking, Integer> prizeRankingCount) {
         this.prizeRankingCount = prizeRankingCount;
     }
 
-    public Map<PrizeRanking, Integer> getPrizeRankingCount() {
-        return Collections.unmodifiableMap(prizeRankingCount);
+    public EnumMap<PrizeRanking, Integer> getPrizeRankingCount() {
+        return new EnumMap<>(Collections.unmodifiableMap(prizeRankingCount));
     }
 
     @Override

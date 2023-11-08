@@ -3,6 +3,7 @@ package lotto.domain.prize.statistics;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import java.util.EnumMap;
 import java.util.Map;
 import lotto.domain.prize.ranking.PrizeRankingCount;
 import lotto.domain.prize.ranking.rule.PrizeRanking;
@@ -28,17 +29,19 @@ class TotalPrizeAmountTest {
     @DisplayName("당첨 등수와 갯수로 총 당첨 금액을 계산합니다.")
     void Should_Get_Amount_When_From_Prize_Ranking_Count() {
         //given
-        final Map<PrizeRanking, Integer> mapPrizeRankingAndCount = Map.of(
-                PrizeRanking.FIRST,
-                1,
-                PrizeRanking.SECOND,
-                1,
-                PrizeRanking.THIRD,
-                1,
-                PrizeRanking.FOURTH,
-                1,
-                PrizeRanking.FIFTH,
-                1
+        final EnumMap<PrizeRanking, Integer> mapPrizeRankingAndCount = new EnumMap<>(
+                Map.of(
+                        PrizeRanking.FIRST,
+                        1,
+                        PrizeRanking.SECOND,
+                        1,
+                        PrizeRanking.THIRD,
+                        1,
+                        PrizeRanking.FOURTH,
+                        1,
+                        PrizeRanking.FIFTH,
+                        1
+                )
         );
         final PrizeRankingCount prizeRankingCount = new PrizeRankingCount(mapPrizeRankingAndCount);
 

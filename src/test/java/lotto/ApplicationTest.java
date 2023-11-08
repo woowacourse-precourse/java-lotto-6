@@ -54,6 +54,63 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_테스트1() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트4() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,47");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+
+    @Test
+    void 예외_테스트5() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "2");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트6() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "7j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트7() {
+        assertSimpleTest(() -> {
+            runException("5000", "1,2,3,4,5,6", "47");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

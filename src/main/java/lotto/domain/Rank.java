@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 
 public enum Rank {
+
     UNRANKED(0, 0),
     FIFTH(3, 5_000),
     FOURTH(4, 50_000),

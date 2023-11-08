@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserLotto {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public UserLotto(List<Lotto> lottos) {
         this.lottos = lottos;

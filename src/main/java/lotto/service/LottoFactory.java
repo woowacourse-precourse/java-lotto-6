@@ -13,6 +13,9 @@ import lotto.model.UserLotto;
 import lotto.model.WinningLotto;
 
 public class LottoFactory {
+    private static final int LOTTO_NUMBER_MIN = 1;
+    private static final int LOTTO_NUMBER_MAX = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
 
     public UserLotto createLottos(int lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
@@ -23,12 +26,12 @@ public class LottoFactory {
     }
 
     public Lotto makeLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
         return new Lotto(numbers);
     }
 
-    private void sort(List<Integer> numbers) {
-        Collections.sort(numbers);
+    public WinningLotto makeWinningLottoWithBonusNumber(Lotto lotto, int bonusNumber) {
+        return new WinningLotto(lotto, bonusNumber);
     }
 
     public Lotto makeWinningLotto(String winningLotto) {
@@ -39,7 +42,6 @@ public class LottoFactory {
             throw new LottoNumberFormatException();
         }
         validate(numbers);
-        sort(numbers);
         return new Lotto(numbers);
     }
 
@@ -47,12 +49,14 @@ public class LottoFactory {
         String[] split = inputString.split(",");
         return Arrays.stream(split).toList();
     }
+
     private void validate(List<Integer> numbers) {
         validateLottoNumberRange(numbers);
         validateDuplicateNumber(numbers);
     }
+
     private void validateDuplicateNumber(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != 6) {
+        if (numbers.stream().distinct().count() != LOTTO_NUMBER_COUNT) {
             throw new LottoNumberDuplicateException();
         }
     }
@@ -83,12 +87,8 @@ public class LottoFactory {
     }
 
     private void validateLottoNumber(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
             throw new LottoNumberRangeException();
         }
-    }
-
-    public WinningLotto makeWinningLottoWithBonusNumber(Lotto lotto, int bonusNumber) {
-        return new WinningLotto(lotto, bonusNumber);
     }
 }

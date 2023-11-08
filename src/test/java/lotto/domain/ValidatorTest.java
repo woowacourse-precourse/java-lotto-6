@@ -8,18 +8,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
     private Validator validator;
 
     @BeforeEach
-    void 초기화() {
+    void beforeEach() {
         validator = new Validator();
     }
 
+    @DisplayName("구매 금액 검증이 가능하다.")
     @Test
-    void 구매_금액_검증이_가능하다() {
+    void validatePurchaseAmountTest() {
         assertAll(
                 () -> assertThatThrownBy(() -> validator.validatePurchaseAmount(-1))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -32,8 +34,9 @@ class ValidatorTest {
         );
     }
 
+    @DisplayName("당첨 숫자 검증이 가능하다.")
     @Test
-    void 당첨_숫자_검증이_가능하다() {
+    void validateWinningNumbersTest() {
         assertAll(
                 () -> assertThatThrownBy(() -> validator.validateWinningNumbers(List.of(1, 2, 3, 4, 5, 6, 7)))
                         .isInstanceOf(IllegalArgumentException.class)
@@ -49,8 +52,9 @@ class ValidatorTest {
         );
     }
 
+    @DisplayName("보너스 숫자 검증이 가능하다.")
     @Test
-    void 보너스_숫자_검증이_가능하다() {
+    void validateBonusNumberTest() {
         assertAll(
                 () -> assertThatThrownBy(() -> validator.validateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 46))
                         .isInstanceOf(IllegalArgumentException.class)

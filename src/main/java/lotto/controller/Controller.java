@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Comparator;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -13,6 +14,9 @@ public class Controller {
 	int countMoney;
 	List<Integer> autoNum;
 	List<Integer> numbers;
+	String bonusNumber;
+	int bonusNum;
+	boolean numCheck;
 
 	Lotto lotto;
 
@@ -36,7 +40,7 @@ public class Controller {
 	public void inputMoney() {
 		money = Console.readLine();
 
-		//공백 에러 체크
+		// 공백 에러 체크
 		if (money == "") {
 			throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
 		}
@@ -72,14 +76,53 @@ public class Controller {
 		lottoNum(countMoney);
 	}
 
+	// 로또 번호 발행하기
 	public void lottoNum(int countMoney) {
 		countMoney = this.countMoney;
 
 		for (int i = 0; i < countMoney; i++) {
 			autoNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+			// 오름차순 정렬
+			autoNum.sort(Comparator.naturalOrder());
 			System.out.println(autoNum);
 		}
-//		lotto.lottoNum(countMoney);
+
+		inputLucky();
+	}
+
+	// 로또 당첨 번호 입력하기
+	public void inputLucky() {
+		System.out.println("\n" + "당첨 번호를 입력하세요.");
+
+		bonusNum();
+	}
+
+	// 보너스 번호 입력하기
+	public void bonusNum() {
+		System.out.println("\n" + "보너스 번호를 입력하세요.");
+		bonusNumber = Console.readLine();
+
+		// 공백 에러 체크
+		if (bonusNumber == "") {
+			throw new IllegalArgumentException("[ERROR] 공백은 입력할 수 없습니다.");
+		}
+
+		for (int i = 0; i < bonusNumber.length(); i++) {
+			bonusCheck();
+		}
+
+		if (numCheck = true) {
+			bonusNum = Integer.parseInt(bonusNumber);
+		}
+	}
+
+	// 금액이 숫자인지 체크
+	public boolean bonusCheck() {
+		if (bonusNumber.matches(".*[0-9].*")) {
+			numCheck = true;
+		}
+
+		return numCheck;
 	}
 
 }

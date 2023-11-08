@@ -8,7 +8,7 @@ import view.InputView;
 public class Controller {
 
     public void run() {
-        
+
     }
 
     private int getPurchaseAmount() {

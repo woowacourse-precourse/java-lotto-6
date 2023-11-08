@@ -1,4 +1,4 @@
-package domain;
+package view;
 
 public class Messages {
     public static final String ERROR_HEADER = "[ERROR] ";

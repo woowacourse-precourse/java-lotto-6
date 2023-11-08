@@ -1,7 +1,7 @@
 package domain;
 
 import static domain.LottoInfoNumbers.*;
-import static domain.Messages.*;
+import static view.Messages.*;
 
 import java.util.HashSet;
 import java.util.List;

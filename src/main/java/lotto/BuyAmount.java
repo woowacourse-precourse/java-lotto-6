@@ -26,6 +26,9 @@ public class BuyAmount {
         }
     }
 
+    public Integer getBuyAmount() {
+        return this.buyAmount;
+    }
     public Integer getBuyCount() {
         return this.buyAmount / UNIT;
     }

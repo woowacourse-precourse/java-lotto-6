@@ -20,6 +20,7 @@ public class LottoController {
         inputLottoNumber();
         aggregateWinResult();
         showWinResult();
+        showProfit();
     }
 
     private void buyLotto() {
@@ -76,5 +77,8 @@ public class LottoController {
         Output.printFirstRanking(winResult.get(Rankings.FIRST));
     }
 
-
+    private void showProfit() {
+        Profit profit = new Profit(winResult, buyAmount);
+        Output.printTotalProfitRating(profit.getProfit());
+    }
 }

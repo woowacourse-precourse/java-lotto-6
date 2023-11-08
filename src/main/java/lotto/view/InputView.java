@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InputVIew {
+public class InputView {
     private static final String NUMBER_PATTERN = "\\d+";
     private static final String LOTTO_NUMBERS_PATTERN = "\\d+,\\d+,\\d+,\\d+,\\d+,\\d+";
 

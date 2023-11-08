@@ -11,7 +11,7 @@ import lotto.domain.Money;
 import lotto.domain.Rank;
 import lotto.domain.Statistics;
 import lotto.domain.WinningNumber;
-import lotto.view.InputVIew;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
@@ -27,7 +27,7 @@ public class LottoController {
 
     private Money initMoney() {
         try {
-            return new Money(InputVIew.getMoney());
+            return new Money(InputView.getMoney());
         } catch (NullPointerException | IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return initMoney();
@@ -56,7 +56,7 @@ public class LottoController {
 
     private Lotto initWinningLotto() {
         try {
-            return new Lotto(InputVIew.getWinningNumber());
+            return new Lotto(InputView.getWinningNumber());
         } catch (NullPointerException | IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return initWinningLotto();
@@ -65,7 +65,7 @@ public class LottoController {
 
     private int initBonusNumber() {
         try {
-            return new LottoNumber(InputVIew.getBonusNumber()).getNumber();
+            return new LottoNumber(InputView.getBonusNumber()).getNumber();
         } catch (NullPointerException | IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
             return initBonusNumber();

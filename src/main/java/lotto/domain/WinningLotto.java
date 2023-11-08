@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.constants.ErrorMessage.DUPLICATED_BONUS_NUMBER;
-import static lotto.domain.constants.ErrorMessage.INVALID_NUMBER_RANGE;
+import static lotto.controller.constants.ErrorMessage.DUPLICATED_BONUS_NUMBER;
+import static lotto.controller.constants.ErrorMessage.INVALID_NUMBER_RANGE;
 import static lotto.domain.constants.LottoNumber.MAX_NUMBER;
 import static lotto.domain.constants.LottoNumber.MIN_NUMBER;
 

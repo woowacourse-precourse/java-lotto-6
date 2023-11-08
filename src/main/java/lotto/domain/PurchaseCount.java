@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT;
+
+import static lotto.controller.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT;
 
 public class PurchaseCount {
     private final int value;

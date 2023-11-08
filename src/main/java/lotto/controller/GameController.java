@@ -1,9 +1,11 @@
 package lotto.controller;
 
+import static lotto.controller.constants.ErrorMessage.INVALID_INPUT;
+
 import java.util.List;
+import lotto.controller.utils.InputParser;
 import lotto.domain.LottoService;
 import lotto.domain.Lottos;
-import lotto.controller.utils.InputParser;
 import lotto.domain.WinningResult;
 import lotto.view.GameView;
 
@@ -11,7 +13,7 @@ public class GameController {
 
     private final LottoService model;
     private final GameView view;
-    private final InputParser inputParser = new InputParser();
+    InputParser inputParser = new InputParser();
 
     public GameController(LottoService model, GameView view){
         this.model = model;
@@ -35,18 +37,29 @@ public class GameController {
 
     private int getPurchaseAmount(String lottPurchaseAmount) {
         try {
-            return Integer.parseInt(lottPurchaseAmount);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 숫자가 아닙니다.");
+            return inputParser.parseToInteger(lottPurchaseAmount);
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(INVALID_INPUT.getMessage());
+            return getPurchaseAmount(view.inputLottoPurchaseAmount());
         }
     }
 
     private List<Integer> getLottoNumbers(String lottoNumbers) {
-        return inputParser.parseLottoNumbers(lottoNumbers);
+        try {
+            return inputParser.parseLottoNumbers(lottoNumbers);
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(INVALID_INPUT.getMessage());
+            return getLottoNumbers(view.inputLottoNumbers());
+        }
     }
 
     private int getLottoBonusNumber(String lottoBonusNumber) {
-        return inputParser.parseToInteger(lottoBonusNumber);
+        try {
+            return inputParser.parseToInteger(lottoBonusNumber);
+        } catch (IllegalArgumentException e) {
+            view.printErrorMessage(INVALID_INPUT.getMessage());
+            return getLottoBonusNumber(view.inputLottoBonusNumber());
+        }
     }
 
     private void printLottos(int lottoPurchaseCount, Lottos lottos) {

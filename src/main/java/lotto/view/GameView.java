@@ -28,7 +28,6 @@ public class GameView {
 
     public static String inputLottoPurchaseAmount() {
         printConstantMessage(ASK_LOTTO_PURCHASE_AMOUNT);
-        printlnEmpty();
         return Console.readLine();
     }
 
@@ -36,7 +35,6 @@ public class GameView {
         printlnEmpty();
         System.out.print(lottoPurchaseCount);
         printConstantMessage(DISPLAY_LOTTO_PURCHASE_COUNT);
-        printlnEmpty();
     }
 
     public static void printLottoNumbers(List<Integer> numbers) {
@@ -44,54 +42,42 @@ public class GameView {
     }
 
     public static String inputLottoNumbers() {
-        printlnEmpty();
         printConstantMessage(ASK_WINNING_LOTTO_NUMBERS);
-        printlnEmpty();
         return Console.readLine();
     }
 
     public static String inputLottoBonusNumber() {
-        printlnEmpty();
         printConstantMessage(ASK_WINNING_LOTTO_BONUS_NUMBER);
-        printlnEmpty();
         return Console.readLine();
     }
 
     public static void printTotalRankingCount() {
-        printlnEmpty();
         printConstantMessage(WINNING_STATISTICS_MESSAGE);
-        printlnEmpty();
-        System.out.println("---");
     }
 
     public static void printFifthRankingCount(int fifthPlaceCount) {
         printConstantMessage(FIFTH_RANKING_COUNT_MESSAGE);
         System.out.printf("%d개", fifthPlaceCount);
-        printlnEmpty();
     }
 
     public static void printFourthRankingCount(int fourthPlaceCount) {
         printConstantMessage(FOURTH_RANKING_COUNT_MESSAGE);
         System.out.printf("%d개", fourthPlaceCount);
-        printlnEmpty();
     }
 
     public static void printThirdRankingCount(int thirdPlaceCount) {
         printConstantMessage(THIRD_RANKING_COUNT_MESSAGE);
         System.out.printf("%d개", thirdPlaceCount);
-        printlnEmpty();
     }
 
     public static void printSecondRankingCount(int secondPlaceCount) {
         printConstantMessage(SECOND_RANKING_COUNT_MESSAGE);
         System.out.printf("%d개", secondPlaceCount);
-        printlnEmpty();
     }
 
     public static void printFirstRankingCount(int firstPlaceCount) {
         printConstantMessage(FIRST_RANKING_COUNT_MESSAGE);
         System.out.printf("%d개", firstPlaceCount);
-        printlnEmpty();
     }
 
     public static void printReturnRate(float returnRate) {
@@ -108,5 +94,8 @@ public class GameView {
         }
     }
 
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
 

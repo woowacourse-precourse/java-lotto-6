@@ -22,7 +22,9 @@ public class Lotto {
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 서로 달라야 합니다.");
         }
-
+        if(uniqueNumbers.size() != 6 ){
+            throw new IllegalArgumentException(("[ERROR] 로또 번호는 6개를 입력하셔야 합니다."));
+        }
     }
 
     // TODO: 추가 기능 구현

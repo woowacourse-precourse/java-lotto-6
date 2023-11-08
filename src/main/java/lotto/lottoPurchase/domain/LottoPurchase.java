@@ -2,8 +2,6 @@ package lotto.lottoPurchase.domain;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import camp.nextstep.edu.missionutils.Console;
-
 public class LottoPurchase {
 
     private final Integer price = 1000;
@@ -18,6 +16,7 @@ public class LottoPurchase {
     }
 
     public void insult() throws IllegalArgumentException {
+        System.out.println("구입금액을 입력해 주세요.");
         try {
             String insultedMoney = readLine();
             this.money = Integer.parseInt(insultedMoney);

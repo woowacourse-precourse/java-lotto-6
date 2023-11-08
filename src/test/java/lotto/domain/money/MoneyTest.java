@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import lotto.util.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,8 @@ class MoneyTest {
         // when
         // then
         assertThatThrownBy(decrementedMoney::checkForLottoPurchase)
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.LOTTO_ISSUE_DISCONTINUED.get());
     }
 
     @DisplayName("로또 한 장 이상을 구매하기에 구입 금액이 충분하다.")

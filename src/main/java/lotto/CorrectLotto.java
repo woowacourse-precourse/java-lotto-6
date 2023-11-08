@@ -32,7 +32,7 @@ public class CorrectLotto {
     // 입력값이 없는 부분이 있는지 확인
     private void checkEmptyPart(int expect, int size){
         if(expect != size){
-            throw new IllegalArgumentException("입력값이 없는 부분이 있습니다. 6개의 당첨 번호를 입력해 주세요.");
+            throw new IllegalArgumentException("입력값이 없는 부분이 있습니다. 6개의 당첨 번호를 콤마로 구분하여 입력해 주세요.");
         }
     }
 

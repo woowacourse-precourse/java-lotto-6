@@ -56,7 +56,7 @@ class LottoValidatorTest {
     @DisplayName("로또 번호가 중복되는 경우")
     void 로또_번호가_중복되는_경우() {
         assertThrows(IllegalArgumentException.class, () -> {
-            LottoValidator.validateDuplicateNumber(List.of("1", "2", "3", "4", "5", "6"), "6");
+            LottoValidator.validateDuplicateNumber(List.of(1, 2, 3, 4, 5, 6), 6);
         });
     }
 

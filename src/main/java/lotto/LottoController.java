@@ -42,6 +42,7 @@ public class LottoController {
     private void settingLottoAnswer() {
         List<Integer> winningNumbers = this.askWinningNumbers();
         int bonusNumber = this.askBonusNumber();
+        LottoValidator.validateDuplicateNumber(winningNumbers, bonusNumber);
 
         lottoService.settingLottoAnswer(winningNumbers, bonusNumber);
     }

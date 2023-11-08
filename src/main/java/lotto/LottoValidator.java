@@ -23,9 +23,14 @@ public class LottoValidator {
         validateLottoRange(Integer.parseInt(bonusNumber));
     }
 
-    public static void validateDuplicateNumber(final List<String> winningNumbers, final String bonusNumber) {
-        boolean condition = !winningNumbers.contains(bonusNumber);
+    public static void validateDuplicateNumber(final List<Integer> numbers, final int target) {
+        boolean condition = !numbers.contains(target);
         throwException(condition, DUPLICATED_BONUS_NUMBER);
+    }
+
+    public static void validateDuplicateNumber(final List<Integer> numbers) {
+        boolean condition = numbers.stream().distinct().count() == numbers.size();
+        throwException(condition, DUPLICATED_LOTTO_NUMBER);
     }
 
     protected static void validateInteger(final String purchaseAmount) {

@@ -1,8 +1,8 @@
 package lotto.model;
 
-import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
+import lotto.util.Utils;
 
 public enum LottoResult {
     FIFTH(3, 0, "3개 일치", 5000),
@@ -12,7 +12,6 @@ public enum LottoResult {
     FIRST(6, 0, "6개 일치", 2000000000),
     DEFAULT(0, 0, "초기값", 0);
 
-    private static final String DECIMAL_FORMAT = "###,###";
 
     private final int winningCnt;
     private final int bonusCnt;
@@ -29,9 +28,7 @@ public enum LottoResult {
 
     @Override
     public String toString() {
-        DecimalFormat decFormat = new DecimalFormat(DECIMAL_FORMAT);
-
-        return rule + " (" + decFormat.format(prize) + "원) - " + count + "개";
+        return rule + " (" + Utils.changeDecimalFormat(prize) + "원) - " + count + "개";
     }
 
     public long getPrize() {

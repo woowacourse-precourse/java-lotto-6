@@ -3,10 +3,9 @@ package lotto.view;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
+import lotto.util.Utils;
 
 public class OutputView {
-
-    private static final String STATISTIC_FORMAT = "%.1f";
 
     private OutputView() {
     }
@@ -24,6 +23,6 @@ public class OutputView {
     }
 
     public static void printLottoStatistics(double gainStatistic) {
-        System.out.println("총 수익률은 " + String.format(STATISTIC_FORMAT, gainStatistic) + "%입니다.");
+        System.out.println("총 수익률은 " + Utils.changeDoubleFormat(gainStatistic) + "%입니다.");
     }
 }

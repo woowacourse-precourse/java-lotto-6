@@ -31,4 +31,28 @@ public class Lotto {
     public String toString() {
         return numbers.toString();
     }
+
+    public LottoResult judgeResult(int matched, boolean isBonusMatched) {
+        if(matched == 6)
+            return LottoResult.SIX;
+        if(matched == 5 && isBonusMatched)
+            return LottoResult.FIVE_BONUS;
+        if(matched == 5)
+            return LottoResult.FIVE;
+        if(matched == 4)
+            return LottoResult.FOUR;
+        if(matched == 3)
+            return LottoResult.THREE;
+        throw new IllegalArgumentException();
+    }
+
+    public LottoResult getLottoResult(Lotto winning, int bonus) {
+        int matched = 0;
+        for(Integer number : winning.numbers) {
+            if(this.numbers.contains(number))
+                matched++;
+        }
+        boolean isBonusMatched = this.numbers.contains(bonus);
+        return judgeResult(matched, isBonusMatched);
+    }
 }

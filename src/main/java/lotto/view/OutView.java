@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.constants.LottoConstants.DIVIDER;
+import static lotto.constants.LottoConstants.MAXIMUM_VALUE;
 
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class OutView {
             getAllSumMultiple += lottoCount.getMultiple();
         }
         String showMsg = String.format(LottoMsg.LOTTO_LATE.getMsg(),
-                ((double) getAllSumMultiple / (double) lottoBuyerPrice) * 100);
+                ((double) getAllSumMultiple / (double) lottoBuyerPrice) * MAXIMUM_VALUE);
         System.out.println(showMsg);
     }
 

@@ -17,6 +17,7 @@ public class LottoConstants {
     public static final int LOTTO_RANDOMLY_SEVEN = 7;
     public static final String PATTERN = "\\((\\d+(,\\d{3})*+)원\\)";
     public static final String COMMA = ",";
+    public static final int MAXIMUM_VALUE = 100;
     public static final String REPLACE_BLANK = "";
     public static final String WINNING = "당첨";
     public static final String BONUS = "보너스";

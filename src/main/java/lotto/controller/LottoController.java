@@ -8,6 +8,7 @@ import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
 import lotto.domain.message.Messages;
+import lotto.domain.message.Messenger;
 import lotto.domain.prize.Prize;
 import lotto.domain.shop.LottoShop;
 import lotto.domain.win.WinStatesCounter;
@@ -27,9 +28,10 @@ public class LottoController {
     private final LottoShop lottoShop = new LottoShop();
 
     private Cash purchaseCash;
-    private int lotteriesCount;
     private WinningLottoNumbers winningLottoNumbers;
     private List<Lotto> lotteries;
+
+    private final Messenger messenger = new Messenger();
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -37,32 +39,27 @@ public class LottoController {
     }
 
     public void run() {
-        inputPurchaseCash();
-        generateLotteries();
+        purchaseLotteries();
         inputWinningLottoNumbers();
         printResult();
     }
 
-    private void inputPurchaseCash() {
+    private void purchaseLotteries() {
         outputView.print(Messages.INPUT_PURCHASE_CASH_AMOUNT.getMessage());
         try {
             purchaseCash = new Cash(inputView.inputNumber());
-            lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
+            int lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
+            outputView.print(Messages.PURCHASED_LOTTERIES_FORMAT.getMessage(lotteriesCount));
+            List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(lotteriesCount);
+            lotteries = lottoNumbersDTOs.stream()
+                    .map(LottoNumbersDTO::numbers)
+                    .map(Lotto::new)
+                    .toList();
+            outputView.print(messenger.getLotteriesNumbersMessage(lottoNumbersDTOs));
         } catch (IllegalArgumentException e) {
             outputView.print(e);
-            inputPurchaseCash();
+            purchaseLotteries();
         }
-    }
-
-    private void generateLotteries() {
-        outputView.print(Messages.PURCHASED_LOTTERIES_FORMAT.getMessage(lotteriesCount));
-        List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(lotteriesCount);
-        lotteries = lottoNumbersDTOs.stream()
-                .map(LottoNumbersDTO::numbers)
-                .map(Lotto::new)
-                .toList();
-        lottoNumbersDTOs.forEach(dto -> outputView.print(Messages.LOTTERIES_NUMBERS_FORMAT.getMessage(dto.numbers(),
-                        Messages.LOTTERIES_NUMBERS_DELIMITER.getMessage())));
     }
 
     private void inputWinningLottoNumbers() {

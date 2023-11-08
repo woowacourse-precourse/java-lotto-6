@@ -9,8 +9,8 @@ public final class Constants {
     public static final String ERROR_LOTTO_BUDGET_RANGE = "[ERROR] 구입금액은 0원 이상 MAX 이하여야 합니다";
     public static final String ERROR_LOTTO_BUDGET_PRICE = "[ERROR] 구입금액은 1000원 단위여야 합니다. ";
     public static final String ERROR_LOTTO_NUMBER_RANGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    public static final String ERROR_LOTTO_DUPLICATE_NUMBER = "[ERROR] 로또 번호가 중복됩니다.";
-    public static final String ERROR_LOTTO_INVALID_SIZE = "[ERROR] 로또 번호가 6개가 아닙니다.";
+    public static final String ERROR_LOTTO_DUPLICATE_NUMBER = "[ERROR] 로또 번호는 중복되지 않아야 합니다.";
+    public static final String ERROR_LOTTO_INVALID_SIZE = "[ERROR] 담청 번호의 개수는 6개여야 합니다.";
     public static final int LOTTO_NUMBER_START_RANGE = 1;
     public static final int LOTTO_NUMBER_END_RANGE = 45;
     public static final int LOTTO_NUMBER_SIZE = 6;

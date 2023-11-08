@@ -5,10 +5,12 @@ import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputLottoPurchaseAmount;
 import static lotto.view.InputView.inputWinningNumbers;
 import static lotto.view.OutputView.printLottoNumbers;
+import static lotto.view.OutputView.printLottoResult;
 
 import common.enumtype.ResultType;
 import common.exception.InvalidArgumentException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.domain.strategy.LottoNumberStrategy;
@@ -30,6 +32,7 @@ public class Game {
         printLottoes();
         this.winningNumbers = createNumbers();
         this.lottoResult = createLottoResult();
+        printResult();
     }
 
     private LottoNumberStrategy settingStrategy(LottoNumberStrategy strategy) {
@@ -122,6 +125,11 @@ public class Game {
         return lottoes.stream()
                 .map(lotto -> winningNumbers.matchingResult(lotto.getLottoNumbers()))
                 .collect(Collectors.toList());
+    }
+
+    private void printResult() {
+        Map<ResultType, Integer> result = lottoResult.getResult();
+        printLottoResult(result);
     }
 
     private int parseInt(String input) {

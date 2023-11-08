@@ -8,27 +8,35 @@ import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
-            int purchaseAmount = purchaseAmountInput();
-            int purchaseNumber = purchaseAmount / 1000;
-            System.out.println();
+        try {
+            playLottoGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
+    }
 
-            List<Lotto> boughtLottos = buyLotto(purchaseNumber);
-            printBoughtLottos(boughtLottos);
-            System.out.println();
+    private static void playLottoGame() {
+        int purchaseAmount = purchaseAmountInput();
+        int purchaseNumber = purchaseAmount / 1000;
+        System.out.println();
 
-            Lotto winningLotto = winningLottoInput();
-            System.out.println();
+        List<Lotto> boughtLottos = buyLotto(purchaseNumber);
+        printBoughtLottos(boughtLottos);
+        System.out.println();
 
-            int bonusNumber = bonusNumberInput(winningLotto);
-            System.out.println();
+        Lotto winningLotto = winningLottoInput();
+        System.out.println();
 
-            Map<LottoRank, Integer> winningResult = makeWinningResult(winningLotto, bonusNumber, boughtLottos);
-            printWinningResult(winningResult);
+        int bonusNumber = bonusNumberInput(winningLotto);
+        System.out.println();
 
-            int totalPrize = ProfitCalculator.calculateTotalPrize(winningResult);
-            double profitRate = ProfitCalculator.calculateProfitRate(purchaseAmount, totalPrize);
-            printProfitRate(profitRate);
+        Map<LottoRank, Integer> winningResult = makeWinningResult(winningLotto, bonusNumber, boughtLottos);
+        printWinningResult(winningResult);
+
+        int totalPrize = ProfitCalculator.calculateTotalPrize(winningResult);
+        double profitRate = ProfitCalculator.calculateProfitRate(purchaseAmount, totalPrize);
+        printProfitRate(profitRate);
     }
 
     public static void printProfitRate(double profitRate) {

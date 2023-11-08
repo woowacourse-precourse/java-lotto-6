@@ -1,13 +1,11 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.domain.ClientLottoData;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.RankTable;
 import lotto.model.domain.WinningLottoNumber;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
@@ -57,15 +55,5 @@ public class LottoMachine {
                 matchLottoCalculate.add(value);
             }
         }
-    }
-
-    public static double setIncome(ClientLottoData clientLottoData) {
-        int inputPrice = clientLottoData.getPrice();
-        double outputPrice = 0;
-        List<RankTable> matchLottoCalculate = clientLottoData.getMatchLottoCalculate();
-        for (RankTable rankTable : matchLottoCalculate) {
-            outputPrice += rankTable.getMoney();
-        }
-        return Math.round(outputPrice / inputPrice * 1000) / 10d;
     }
 }

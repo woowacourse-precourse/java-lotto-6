@@ -1,16 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.constant.LottoRanking;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -57,44 +58,17 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"1000", "5000", "13000"})
-    void validateBuyingPrice_성공_테스트(String input) {
-        Application.validateBuyingPrice(input);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"notInt", "-1000", "1234"})
-    void validateBuyingPrice_실패_테스트(String input) {
-        assertThatThrownBy(() -> Application.validateBuyingPrice(input))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"1", "10", "45"})
-    void validateBonusNumber_성공_테스트(String input) {
-        Application.validateBonusNumber(input);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "46", "-20", "test"})
-    void validateBonusNumber_실패_테스트(String input) {
-        assertThatThrownBy(() -> Application.validateBonusNumber(input))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
     @Test
-    void validateIntegers_성공_테스트() {
-        String input = "1,2,3";
-        Application.validateLottoIntegers(input);
-    }
+    void convertRankingListToMap_테스트() {
+        List<LottoRanking> input = new ArrayList<>();
+        input.add(LottoRanking.FIRST);
+        input.add(LottoRanking.THIRD);
+        input.add(LottoRanking.THIRD);
 
-    @Test
-    void validateIntegers_실패_테스트() {
-        String input = "test,123,456";
+        Map<LottoRanking, Integer> result = Application.convertRankingListToMap(input);
 
-        assertThatThrownBy(() -> Application.validateLottoIntegers(input))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertEquals(1, result.get(LottoRanking.FIRST));
+        assertEquals(2, result.get(LottoRanking.THIRD));
     }
 
     @Override

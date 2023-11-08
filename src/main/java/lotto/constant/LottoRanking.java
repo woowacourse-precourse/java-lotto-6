@@ -6,8 +6,7 @@ public enum LottoRanking {
     THIRD(5, false, 1500000, "5개 일치"),
     FOURTH(4, false, 50000, "4개 일치"),
     FIFTH(3, false, 5000, "3개 일치"),
-    OUT_OF_RANK(0, false, 0, "순위 밖")
-    ;
+    OUT_OF_RANK(0, false, 0, "순위 밖");
 
     private final int matchCount;
     private final boolean hasBonus;

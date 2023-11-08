@@ -1,19 +1,17 @@
 package lotto;
 
-import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoRanking;
-import lotto.domain.Lotto;
-import lotto.domain.LottoJudgement;
-import lotto.domain.LottoNumberGenerator;
-import lotto.domain.dto.LottoAnswer;
+import lotto.domain.*;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
-import static lotto.constant.LottoConstant.*;
+import static lotto.constant.LottoConstant.LOTTO_PRICE;
 
 public class Application {
     private static LottoInputView inputView;
@@ -25,112 +23,64 @@ public class Application {
         inputView = new LottoInputView();
         outputView = new LottoOutputView();
 
-        int userPaid = getUserPaid();
-        List<Lotto> userLottos = buyLottos(userPaid);
+        LottoTicket ticket = getInputUntilValid(Application::getBoughtTicket);
+        List<Lotto> userLottos = buyLottos(ticket);
 
         outputView.printBoughtResult(userLottos);
 
-        Lotto winningLotto = getWinningLotto();
-        int bonus = getBonusNumber();
+        Lotto winningLottoNumbers = getInputUntilValid(Application::getWinningLottoNumbers);
+        BonusNumber bonusNumber = getInputUntilValid(Application::getBonusNumber);
 
-        LottoAnswer answer = new LottoAnswer(winningLotto, bonus);
-        LottoJudgement judgement = new LottoJudgement(answer);
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
 
-        Map<LottoRanking, Integer> lottoResult = judgement.calculateLottoRanking(userLottos);
-        outputView.printLottoResult(lottoResult);
+        List<LottoRanking> rankings = winningLotto.checkLottoRanking(userLottos);
+        outputView.printLottoResult(convertRankingListToMap(rankings));
 
-        int totalPrize = LottoJudgement.calculateTotalPrize(lottoResult);
-        outputView.printProfit(userPaid, totalPrize);
+        int totalPrize = WinningLotto.calculateTotalPrize(rankings);
+        outputView.printProfit(ticket.amount() * LOTTO_PRICE, totalPrize);
     }
 
-    public static List<Lotto> buyLottos(int userPaid) {
+    public static <T> T getInputUntilValid(Supplier<T> inputMethod) {
+        try {
+            return inputMethod.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getInputUntilValid(inputMethod);
+        }
+    }
+
+    public static LottoTicket getBoughtTicket() {
+        outputView.printBuyingPriceInputRequest();
+        String input = inputView.getBuyingPrice();
+        return LottoTicket.buyTicket(input);
+    }
+
+    public static List<Lotto> buyLottos(LottoTicket ticket) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < userPaid / LOTTO_PRICE; i++) {
+        for (int i = 0; i < ticket.amount(); i++) {
             Lotto lotto = new Lotto(LottoNumberGenerator.generateLottoNumbers());
             lottos.add(lotto);
         }
         return lottos;
     }
 
-    public static int getUserPaid() {
-        int userPaid;
-        while (true) {
-            try {
-                outputView.printBuyingPriceInputRequest();
-                String input = inputView.getBuyingPrice();
-                validateBuyingPrice(input);
-                userPaid = Integer.parseInt(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return userPaid;
+    public static Lotto getWinningLottoNumbers() {
+        outputView.printAnswerInputRequest();
+        String input = inputView.getLottoWinningNumbers();
+        return Lotto.create(input);
     }
 
-    public static Lotto getWinningLotto() {
-        Lotto winningLotto;
-        while (true) {
-            try {
-                outputView.printAnswerInputRequest();
-                String input = inputView.getLottoWinningNumbers();
-                List<Integer> numbers = validateLottoIntegers(input);
-                winningLotto = new Lotto(numbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return winningLotto;
+    public static BonusNumber getBonusNumber() {
+        outputView.printBonusInputRequest();
+        String input = inputView.getBonusNumber();
+        return BonusNumber.create(input);
     }
 
-    public static int getBonusNumber() {
-        int bonus;
-        while (true) {
-            try {
-                outputView.printBonusInputRequest();
-                String input = inputView.getBonusNumber();
-                validateBonusNumber(input);
-                bonus = Integer.parseInt(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    public static Map<LottoRanking, Integer> convertRankingListToMap(List<LottoRanking> rankings) {
+        Map<LottoRanking, Integer> statistic = new HashMap<>();
+        for (LottoRanking ranking : rankings) {
+            statistic.put(ranking, statistic.getOrDefault(ranking, 0) + 1);
         }
-        return bonus;
-    }
-
-    public static List<Integer> validateLottoIntegers(String input) {
-        String[] numberStrings = input.split(",");
-        List<Integer> integers = new ArrayList<>();
-
-        for (String numberString : numberStrings) {
-            if (!LottoUtil.isInteger(numberString)) {
-                throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER);
-            }
-            integers.add(Integer.parseInt(numberString));
-        }
-        return integers;
-    }
-
-    public static void validateBuyingPrice(String input) {
-        if (!LottoUtil.isInteger(input)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_BUYING_PRICE);
-        }
-        if (Integer.parseInt(input) < 0) {
-            throw new IllegalArgumentException(ExceptionMessage.NEGATIVE_BUYING_PRICE);
-        }
-        if (Integer.parseInt(input) % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.BUYING_PRICE_NOT_DIVISIBLE);
-        }
-    }
-
-    public static void validateBonusNumber(String input) {
-        if (!LottoUtil.isInteger(input)) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUMBER);
-        }
-        if (!LottoUtil.isInRange(Integer.parseInt(input), LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX)) {
-            throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_BONUS_NUMBER);
-        }
+        return statistic;
     }
 }

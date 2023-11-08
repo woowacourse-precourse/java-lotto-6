@@ -36,7 +36,11 @@ public class LottoOutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (LottoRanking rank : ranks) {
-            System.out.printf("%s (%s) - %d개\n", rank.getDescription(), prizeFormat.format(rank.getPrize()), result.get(rank));
+            System.out.printf("%s (%s) - %d개\n",
+                    rank.getDescription(),
+                    prizeFormat.format(rank.getPrize()),
+                    result.getOrDefault(rank, 0)
+            );
         }
     }
 

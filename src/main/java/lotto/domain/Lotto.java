@@ -1,14 +1,11 @@
 package lotto.domain;
 
-import lotto.LottoUtil;
 import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoConstant;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static lotto.constant.LottoConstant.LOTTO_NUMBER_MAX;
-import static lotto.constant.LottoConstant.LOTTO_NUMBER_MIN;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,25 +15,54 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static Lotto create(String input) {
+        List<Integer> numbers = validateLottoNumberFormat(input);
+        return new Lotto(numbers);
+    }
+
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        validateCount(numbers);
+        validateRange(numbers);
+        validateDuplicated(numbers);
+    }
+
+    // TODO: 추가 기능 구현
+    private static List<Integer> validateLottoNumberFormat(String input) {
+        String[] stringNumbers = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        try {
+            for (String stringNumber : stringNumbers) {
+                numbers.add(Integer.parseInt(stringNumber));
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER);
+        }
+        return numbers;
+    }
+
+    private void validateCount(List<Integer> numbers) {
+        if (numbers.size() != LottoConstant.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT);
         }
-        if (!isLottoNumbers(numbers)) {
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        if (!numbers.stream().allMatch(this::isLottoNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER);
         }
-        if (LottoUtil.hasDuplicatedNumbers(numbers)) {
+    }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        List<Integer> distinct = numbers.stream()
+                .distinct()
+                .toList();
+        if (distinct.size() != numbers.size()) {
             throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_LOTTO_NUMBER);
         }
     }
 
-    // TODO: 추가 기능 구현
-    private boolean isLottoNumbers(List<Integer> numbers) {
-        return numbers.stream().allMatch(this::isLottoNumber);
-    }
-
     private boolean isLottoNumber(int number) {
-        return LottoUtil.isInRange(number, LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX);
+        return LottoConstant.LOTTO_NUMBER_MIN <= number && number <= LottoConstant.LOTTO_NUMBER_MAX;
     }
 
     public List<Integer> getNumbers() {

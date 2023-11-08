@@ -7,33 +7,19 @@ import java.util.List;
 import lotto.constants.ErrorMessages;
 
 public class UserInputHandler {
-    private static final LinkedList<Void> taskQueue = new LinkedList<>();
-
     public static Integer getLottoPurchaseAmount() {
+        boolean isNotEnd = true;
         Integer amount = 0;
         do {
             try {
-                currentTaskStart();
                 amount = convertToInteger(Console.readLine());
+                isNotEnd = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                addTask();
             }
-        } while (isNotEndTask());
+        } while (isNotEnd);
 
         return amount;
-    }
-
-    private static boolean isNotEndTask() {
-        return !taskQueue.isEmpty();
-    }
-
-    private static void currentTaskStart() {
-        taskQueue.poll();
-    }
-
-    private static void addTask() {
-        taskQueue.add(null);
     }
 
     private static Integer convertToInteger(String userInput) {
@@ -42,17 +28,17 @@ public class UserInputHandler {
     }
 
     public static List<Integer> getWinningNumbers() {
+        boolean isNotEnd = true;
         List<Integer> winningNumbers = new ArrayList<>();
         do {
             try {
-                currentTaskStart();
                 List<String> userInputs = List.of(Console.readLine().split(","));
                 winningNumbers.addAll(userInputs.stream().map(e -> convertToInteger(e)).toList());
+                isNotEnd = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-                addTask();
             }
-        } while (isNotEndTask());
+        } while (isNotEnd);
 
         return winningNumbers;
     }

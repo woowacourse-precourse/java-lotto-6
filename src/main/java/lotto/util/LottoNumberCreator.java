@@ -1,8 +1,8 @@
 package lotto.util;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.model.LottoPrice;
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.TotalLotto;
 
 import java.util.List;

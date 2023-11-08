@@ -13,9 +13,11 @@ public class TotalLotto {
     public void generateTotalLotto(Lotto lotto) {
         totalLotto.add(lotto);
     }
+
     public List<Lotto> getLottoList() {
         return new ArrayList<>(totalLotto); // 복제된 리스트 반환
     }
+
     public int getTotalLottoCount() {
         return totalLotto.size();
     }

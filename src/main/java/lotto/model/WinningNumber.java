@@ -14,7 +14,7 @@ public class WinningNumber {
     }
 
     private Lotto validate(String input) {
-        this.lotto=checkCorrectElement(checkCorrectNumberByDelimiter(input));
+        this.lotto = checkCorrectElement(checkCorrectNumberByDelimiter(input));
         return this.lotto;
     }
 

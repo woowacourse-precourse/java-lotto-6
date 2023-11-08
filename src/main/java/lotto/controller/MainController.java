@@ -9,14 +9,33 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class MainController {
+    private static LottoPrice lottoPrice;
     private final InputView inputView;
     private final OutputView outputView;
-
-    private static LottoPrice lottoPrice;
 
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+    }
+
+    private static TotalLotto getTotalLotto(OutputView outputView, InputView inputView) {
+        outputView.printMessageForInputPurchaseAmount();
+        lottoPrice = inputView.getLottoPrice();
+        outputView.printNumberForPurchasedLottos(lottoPrice);
+        LottoNumberCreator lottoNumberCreator = new LottoNumberCreator(lottoPrice);
+        outputView.printPurchasedLottos(lottoNumberCreator.getTotalLotto());
+        return lottoNumberCreator.getTotalLotto();
+    }
+
+    private static Lotto getWinningNumberLotto(OutputView outputView, InputView inputView) {
+        outputView.printMessageForWinningNumbers();
+        WinningNumber winningNumber = inputView.getWinningNumbers();
+        return winningNumber.getLotto();
+    }
+
+    private static BonusNumber getBonusNumber(OutputView outputView, InputView inputView) {
+        outputView.printMessageForBonusNumber();
+        return inputView.getBonusNumber();
     }
 
     public void startLottoProgram() {
@@ -29,48 +48,11 @@ public class MainController {
 
     }
 
-    private void checkProfit(LottoPrice lottoPrice) {
-        float earnedMoney = WinningRank.FIRST.getPrice() * WinningRank.FIRST.getCount()
-                + WinningRank.SECOND.getPrice() * WinningRank.SECOND.getCount()
-                + WinningRank.THIRD.getPrice() * WinningRank.THIRD.getCount()
-                + WinningRank.FOURTH.getPrice() * WinningRank.FOURTH.getCount()
-                + WinningRank.FIFTH.getPrice() * WinningRank.FIFTH.getCount();
-        float totalSpentMoney = lottoPrice.getPrice();
-        float profitPercentage = (float) Math.round((earnedMoney / totalSpentMoney) * 10) / 10;
-        outputView.printTotalProfitPercentage(profitPercentage);
-
-    }
-
-    private static TotalLotto getTotalLotto(OutputView outputView, InputView inputView) {
-        outputView.printMessageForInputPurchaseAmount();
-        lottoPrice = inputView.getLottoPrice();
-
-        outputView.printNumberForPurchasedLottos(lottoPrice);
-        LottoNumberCreator lottoNumberCreator = new LottoNumberCreator(lottoPrice);
-        outputView.printPurchasedLottos(lottoNumberCreator.getTotalLotto());
-
-        return lottoNumberCreator.getTotalLotto();
-    }
-
-    private static Lotto getWinningNumberLotto(OutputView outputView, InputView inputView) {
-        outputView.printMessageForWinningNumbers();
-        WinningNumber winningNumber = inputView.getWinningNumbers();
-        return winningNumber.getLotto();
-    }
-
-
-    private static BonusNumber getBonusNumber(OutputView outputView, InputView inputView) {
-        outputView.printMessageForBonusNumber();
-        return inputView.getBonusNumber();
-    }
-
-
-
     private void checkResult(TotalLotto totalLotto, Lotto winningNumberLotto, BonusNumber bonusNumber) {
         for (Lotto lotto : totalLotto.getLottoList()) {
             checkWhoIs1(lotto, winningNumberLotto);
             checkWhoIs2(lotto, winningNumberLotto, bonusNumber);
-            checkWhoIs3(lotto, winningNumberLotto,bonusNumber);
+            checkWhoIs3(lotto, winningNumberLotto, bonusNumber);
             checkWhoIs4(lotto, winningNumberLotto);
             checkWhoIs5(lotto, winningNumberLotto);
         }
@@ -79,7 +61,6 @@ public class MainController {
         outputView.printLotteryStatisticsFor_3(WinningRank.THIRD.getCount());
         outputView.printLotteryStatisticsFor_2(WinningRank.SECOND.getCount());
         outputView.printLotteryStatisticsFor_1(WinningRank.FIRST.getCount());
-
     }
 
     private void checkWhoIs1(Lotto lotto, Lotto winningNumberLotto) {
@@ -100,10 +81,10 @@ public class MainController {
         }
     }
 
-    private void checkWhoIs3(Lotto lotto, Lotto winningNumberLotto,BonusNumber bonusNumber) {
+    private void checkWhoIs3(Lotto lotto, Lotto winningNumberLotto, BonusNumber bonusNumber) {
         int matchingNumbers = countMatchingNumbers(lotto, winningNumberLotto);
         boolean bonusNumberMatch = lotto.getNumbers().contains(bonusNumber.getBonusNumber());
-        if (matchingNumbers == 5 &&!bonusNumberMatch ) {
+        if (matchingNumbers == 5 && !bonusNumberMatch) {
             // 3등 당첨
             WinningRank.THIRD.increaseRankCount();
         }
@@ -132,6 +113,18 @@ public class MainController {
         return (int) userNumbers.stream()
                 .filter(winningNumbers::contains)
                 .count();
+    }
+
+    private void checkProfit(LottoPrice lottoPrice) {
+        float earnedMoney = WinningRank.FIRST.getPrice() * WinningRank.FIRST.getCount()
+                + WinningRank.SECOND.getPrice() * WinningRank.SECOND.getCount()
+                + WinningRank.THIRD.getPrice() * WinningRank.THIRD.getCount()
+                + WinningRank.FOURTH.getPrice() * WinningRank.FOURTH.getCount()
+                + WinningRank.FIFTH.getPrice() * WinningRank.FIFTH.getCount();
+        float totalSpentMoney = lottoPrice.getPrice();
+        float profitPercentage = (float) Math.round((earnedMoney / totalSpentMoney) * 10) / 10;
+        outputView.printTotalProfitPercentage(profitPercentage);
+
     }
 }
 

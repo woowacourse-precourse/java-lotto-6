@@ -54,3 +54,9 @@
 
 * `LottoController`
     * [x] : LottoService 와 model 그리고 view 의 협력을 관리한다.
+
+* `ObjectFactory`
+    * [x] : 객체들의 의존성과 생성을 관리한다.
+
+* `Application`
+    * [x] : 로또 게임을 실행한다. 

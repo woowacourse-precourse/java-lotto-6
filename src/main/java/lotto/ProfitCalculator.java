@@ -18,27 +18,14 @@ public class ProfitCalculator {
 
     static int fifthPlace = 0;
 
-    static void calculate() {
-        int bonusNumber = WinningLotto.bonusNumber;
+    static void determineRank() {
         for (Lotto lotto: LottoMachine.totalLottoTickets) {
-            int numberOfOverlaps = compare(lotto);
-            if (numberOfOverlaps == 3) {
-                fifthPlace += 1;
-            } else if (numberOfOverlaps == 4) {
-                fourthPlace += 1;
-            } else if (numberOfOverlaps == 5) {
-                if (lotto.getNumbers().contains(bonusNumber)) { // depth 수정 필요
-                    secondPlace += 1;
-                } else {
-                    thirdPlace += 1;
-                }
-            } else if (numberOfOverlaps == 6) {
-                firstPlace += 1;
-            }
+            int numberOfOverlaps = compareIntersection(lotto);
+            calculateRank(lotto, numberOfOverlaps);
         }
     }
 
-    static int compare(Lotto lotto) {
+    static int compareIntersection(Lotto lotto) {
         List<Integer> winningNumber = WinningLotto.winningLotto.getNumbers();
 
         Set<Integer> winningSet = new HashSet<Integer>(winningNumber);
@@ -46,6 +33,23 @@ public class ProfitCalculator {
 
         winningSet.retainAll(lottoSet);
         return winningSet.size();
+    }
+
+    static void calculateRank(Lotto lotto, int numberOfOverlaps) {
+        int bonusNumber = WinningLotto.bonusNumber;
+        if (numberOfOverlaps == 3) {
+            fifthPlace += 1;
+        } else if (numberOfOverlaps == 4) {
+            fourthPlace += 1;
+        } else if (numberOfOverlaps == 5) {
+            if (lotto.getNumbers().contains(bonusNumber)) {
+                secondPlace += 1;
+            } else {
+                thirdPlace += 1;
+            }
+        } else if (numberOfOverlaps == 6) {
+            firstPlace += 1;
+        }
     }
 
     static void calculateProfit() {

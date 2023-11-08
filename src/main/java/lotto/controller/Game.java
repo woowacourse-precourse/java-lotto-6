@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.util.*;
 import lotto.view.InputView;
+import lotto.view.OutputLotto;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,10 @@ public class Game {
 
     public void setLottoList(int lottoCount){
         this.lottoList =  GenerateLotto.generateLottoList(lottoCount);
+    }
+
+    public void printLottoList(List<Lotto> lottoList){
+        OutputLotto.printLottoList(lottoList);
     }
 
 }

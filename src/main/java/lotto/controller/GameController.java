@@ -12,20 +12,20 @@ public class GameController {
         try {
             return Input.getInteger();
         } catch (IllegalArgumentException e) {
-            Output.printErrorMessage(e.getMessage());
+            Output.print(e.getMessage());
             return getNumber(inputMessage);
         }
     }
 
     public List<Integer> getLottoNumbers() {
-        Output.printLottoNumbersInputMessage();
+        Output.print(Output.LOTTO_NUMBERS_INPUT_MESSAGE);
         try {
             String readLine = Input.getLine();
             return Arrays.stream(readLine.split(","))
                     .map(Integer::parseInt)
                     .toList();
         } catch (IllegalArgumentException e) {
-            Output.printErrorMessage("[ERROR] 정수와 쉼표만 입력해야 합니다.");
+            Output.print("[ERROR] 정수와 쉼표만 입력해야 합니다.");
             return getLottoNumbers();
         }
     }

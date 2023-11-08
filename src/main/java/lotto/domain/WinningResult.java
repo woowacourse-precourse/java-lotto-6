@@ -5,16 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 public class WinningResult {
-    public Map<PrizeCategory, Integer> countNumberOfWinning(List<Lotto> lottoTickets, WinningNumber winningNumber) {
+    public Map<PrizeCategory, Integer> countNumberOfWinning(List<Lotto> lottoTickets, LottoNumbers lottoNumbers) {
         Map<PrizeCategory, Integer> map = new HashMap<>();
         for (PrizeCategory prizeCategory : PrizeCategory.values()) {
             map.put(prizeCategory, 0);
         }
 
         for (Lotto lotto : lottoTickets) {
-            int numberOfWinning = map.get(lotto.compareTo(winningNumber));
+            int numberOfWinning = map.get(lotto.compareTo(lottoNumbers));
             numberOfWinning++;
-            map.put(lotto.compareTo(winningNumber), numberOfWinning);
+            map.put(lotto.compareTo(lottoNumbers), numberOfWinning);
         }
         return map;
     }

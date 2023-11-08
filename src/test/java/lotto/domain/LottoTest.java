@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoTest {
     private static final Lotto LOTTO = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-    private WinningNumber winningNumber;
+    private LottoNumbers lottoNumbers;
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
@@ -33,9 +33,9 @@ class LottoTest {
             "2,3,4,5,6,7,11,THIRD", "2,3,4,5,6,7,1,SECOND", "1,2,3,4,5,6,11,FIRST"})
     void compareTo_메서드로_로또_번호와_당첨_번호를_비교하여_당첨_등수를_반환(int number1, int number2, int number3, int number4,
                                                      int number5, int number6, int bonusNumber, String expected) {
-        winningNumber = new WinningNumber(List.of(number1, number2, number3, number4, number5, number6), bonusNumber);
+        lottoNumbers = new LottoNumbers(List.of(number1, number2, number3, number4, number5, number6), bonusNumber);
 
-        PrizeCategory actual = LOTTO.compareTo(winningNumber);
+        PrizeCategory actual = LOTTO.compareTo(lottoNumbers);
 
         assertThat(actual).isEqualTo(PrizeCategory.valueOf(expected));
     }

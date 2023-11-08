@@ -35,10 +35,10 @@ public class Lotto {
         }
     }
 
-    public PrizeCategory compareTo(WinningNumber winningNumber) {
+    public PrizeCategory compareTo(LottoNumbers lottoNumbers) {
         int matchingNumbers = 0;
-        List<Integer> winningNumbers = winningNumber.getWinningNumbers();
-        int bonusNumber = winningNumber.getBonusNumber();
+        List<Integer> winningNumbers = lottoNumbers.getWinningNumbers();
+        int bonusNumber = lottoNumbers.getBonusNumber();
         for (int number : winningNumbers) {
             if (this.numbers.contains(number)) {
                 matchingNumbers++;

@@ -12,7 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 public class WinningResultTest {
-    private static final WinningNumber WINNING_NUMBER = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 11);
+    private static final LottoNumbers WINNING_NUMBER = new LottoNumbers(List.of(1, 2, 3, 4, 5, 6), 11);
     private WinningResult winningResult;
 
     @BeforeEach

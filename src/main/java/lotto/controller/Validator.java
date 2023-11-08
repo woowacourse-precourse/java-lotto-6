@@ -44,7 +44,6 @@ public class Validator {
         return purchasePrice;
     }
 
-
     public static List<Integer> validateWinningNumber(String input) {
         String[] parse = input.split(",");
         List<Integer> winningNumber = new ArrayList<>();
@@ -55,8 +54,12 @@ public class Validator {
         return isSixNumber(winningNumber);
     }
 
-    public static int validateBonusNumber(String input) {
+    public static int validateBonusNumber(String input, List<Integer> winningNumber) {
         int bonusNumber = isNumber(input);
+        isValidRange(bonusNumber);
+        if (winningNumber.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE);
+        }
         return isValidRange(bonusNumber);
     }
 }

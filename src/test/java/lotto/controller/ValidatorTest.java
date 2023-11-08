@@ -94,12 +94,24 @@ class ValidatorTest {
     }
 
     @Test
-    @DisplayName("보너스 번호 입력이 올바르지 않을 경우 예외를 발생시킨다.")
-    void validateBonusNumber_InvalidInput_ThrowsException() {
-        String input = "49";
-        assertThatThrownBy(() -> Validator.validateBonusNumber(input))
+    @DisplayName("보너스 번호가 범위를 벗어날 경우 예외를 발생시킨다.")
+    void validateBonusNumber_OutOfRange_ThrowsException() {
+        String inputOutOfRange = "49";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> Validator.validateBonusNumber(inputOutOfRange, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessage.INVALID_NUMBER_RANGE);
     }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 경우 예외를 발생시킨다.")
+    void validateBonusNumber_DuplicateWithWinningNumber_ThrowsException() {
+        String inputDuplicate = "6";
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        assertThatThrownBy(() -> Validator.validateBonusNumber(inputDuplicate, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.BONUS_NUMBER_DUPLICATE);
+    }
+
 
 }

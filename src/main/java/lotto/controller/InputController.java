@@ -20,6 +20,6 @@ public class InputController {
     public static int getBounusNumber() {
         InputMessage.promptBonusNumber();
         String input = Console.readLine();
-        return Validator.validateBonusNumber(input);
+        return Validator.validateBonusNumber(input,getWinningNumber());
     }
 }

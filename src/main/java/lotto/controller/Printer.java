@@ -22,4 +22,8 @@ public class Printer {
     public static void printProfitRate() {
         System.out.println(Statement.SHOW_PROFIT_RATE);
     }
+
+    public static void printResult() { System.out.println(Statement.GAME_RESULT);
+    }
+
 }

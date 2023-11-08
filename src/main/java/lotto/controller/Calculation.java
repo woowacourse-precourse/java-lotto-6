@@ -14,16 +14,16 @@ public class Calculation {
     public double calculateProfitRate(Lotto lotto, LottoTicket ticket, SetUserLotto userLotto){
         int purchaseAmount = TICKET_PRICE*ticket.getTickets();
         int winningPrize = 0;
-        int count = countMatching(lotto, ticket);
+        int[] counts = countMatchingNumbers(lotto, ticket);
 
         for(Prize prize : Prize.values()) {
-            if(count == prize.getMatchingNumbers()) {
-                winningPrize = prize.getPrizeAmount();
+            for(int count : counts) {
+                if(count == 5 && !isMatchBonusNumber(userLotto, ticket)){
+                    winningPrize += Prize.MATCH_5_WITH_BONUS.getPrizeAmount();
+                } else if (count == prize.getMatchingNumbers()) {
+                    winningPrize += prize.getPrizeAmount();
+                }
             }
-        }
-
-        if(count == 5 && !isMatchBonusNumber(userLotto, ticket)){
-            winningPrize = Prize.MATCH_5_WITH_BONUS.getPrizeAmount();
         }
 
         double profitRate = (double) winningPrize / purchaseAmount * 100.0;
@@ -32,40 +32,28 @@ public class Calculation {
         return profitRate;
     }
 
-    public int countMatching (Lotto lotto, LottoTicket ticket) {
-        int matchCount = 0;
-        int[] counts = countMatchingNumbers(lotto,ticket);
-
-        for(int count : counts) {
-            if(count != 0) {
-                matchCount++;
-            }
-        }
-
-        return matchCount;
-    }
-
     public int[] countMatchingNumbers(Lotto lotto, LottoTicket ticket) {
-        int count[] = new int[ticket.getTickets()];
+        int[] count = new int[ticket.getTickets()];
 
         for(int i = 0; i < ticket.getTickets(); i++) {
-            checkMatching(lotto.getNumbers(), ticket.getTicketNumbers().get(i), count);
+            count[i] = checkMatching(lotto.getNumbers(), ticket.getTicketNumbers().get(i));
         }
 
         return count;
     }
 
-    private void checkMatching(List<Integer> input, List<Integer> ticket, int[] count) {
+    private int checkMatching(List<Integer> input, List<Integer> ticket) {
+        int match = 0;
 
         for(int j = 0; j < maxNumber(input,ticket)+1; j++) {
-            int match = 0;
-
-            if(input.get(j).equals(ticket.get(j))) {
-                match++;
+            for(int i = 0; i < 6; i++) {
+                if (input.get(i).equals(ticket.get(j))) {
+                    match++;
+                }
             }
-
-            count[j]=match;
         }
+
+        return match;
     }
 
     public int maxNumber(List<Integer> input, List<Integer> ticket) {

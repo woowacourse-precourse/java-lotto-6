@@ -47,7 +47,7 @@ public class SetLottoTicket {
 
     }
 
-    private int purchaseTicket() {
+    public int purchaseTicket() {
         int money = Integer.parseInt(Console.readLine());
         return calculate(money);
     }

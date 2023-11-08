@@ -6,7 +6,7 @@ public class LottoValidation {
     private static final int STANDARD_UNIT = 1000;
     private static final int START_NUMBER = 1;
     private static final int END_NUMBER = 45;
-    public static final int LOTTO_COUNT = 6;
+    private static final int LOTTO_COUNT = 6;
 
     public static void validateIsNumber(String input) {
         if (!input.chars().allMatch(Character::isDigit)) {

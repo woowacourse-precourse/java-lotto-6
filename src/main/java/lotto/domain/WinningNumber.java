@@ -7,17 +7,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class WinningNumber {
     //상수(static final) 또는 클래스 변수
-    private final List<Integer> winningNumbers;
-    private final static int THE_NUMBER_OF_WINNING_NUMBER = 6;
+    private static List<Integer> winningNumbers;
+    private static final int THE_NUMBER_OF_WINNING_NUMBER = 6;
 
     //인스턴스 변수
 
     //생성자
-    public WinningNumber() {
-        winningNumbers = createWinningNumber();
-    }
 
-    private List<Integer> createWinningNumber() {
+    public List<Integer> createWinningNumber() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> winningNumberInput;
 
@@ -30,7 +27,7 @@ public class WinningNumber {
                 System.out.println(e.getMessage());
             }
         }
-        return winningNumberInput;
+        return winningNumbers = winningNumberInput;
     }
 
     public List<Integer> getWinningNumbers() {

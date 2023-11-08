@@ -10,15 +10,39 @@ import java.util.stream.Collectors;
 
 public class InputValidator {
 
-    public static int checkPurchaseAmountInput(int purchaseAmount){
 
-        int res = purchaseAmount % 1000;
-        if (res != 0){
-            throw new IllegalArgumentException();
+
+    public static int checkPurchaseAmountInput(){
+
+        int lottoCnt = 0;
+        while(true){
+            try{
+                String input = Console.readLine();
+                checkNullOrEmpty(input);
+
+                Integer purchaseAmount = convertInputToNumber(input);
+                checkIsPositiveNumber(purchaseAmount);
+                checkIsDivided(purchaseAmount);
+
+                lottoCnt = purchaseAmount / 1000;
+
+                return lottoCnt;
+            } catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
-        int lottoCnt = purchaseAmount/1000;
+    }
 
-        return lottoCnt;
+    public static void checkIsDivided(Integer input){
+        if(input % 1000 != 0){
+            throw new IllegalArgumentException("[ERROR] 1000원 단위로 나누어지지 않습니다. 다시 입력해주세요.");
+        }
+    }
+
+    public static void checkIsPositiveNumber(Integer input){
+        if (input <= 0){
+            throw new IllegalArgumentException("[ERROR] 양수값이 아닙니다. 다시 입력해주세요.");
+        }
     }
 
     public static Integer checkValidBonusNumberInput(List<Integer> winningNumbers){

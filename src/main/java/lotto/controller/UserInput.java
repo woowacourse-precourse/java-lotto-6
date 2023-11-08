@@ -39,7 +39,8 @@ public class UserInput {
             try {
                 userInput = Console.readLine();
                 winningNumbers = Arrays.stream(userInput.split(COMMA))
-                        .map(Integer::parseInt)
+                        .map(String::trim) // 공백 제거
+                        .map(Integer::parseInt) // 정수 변환
                         .collect(Collectors.toList());
                 LottoException.validateLottoAll(winningNumbers);
                 break;
@@ -51,8 +52,16 @@ public class UserInput {
     }
 
     public static void bonusNumber() throws IllegalArgumentException {
-        String userInput = Console.readLine();
-        Integer bonusNumber = Integer.parseInt(userInput);
-        User.setBonusNumber(bonusNumber);
+        while (true) {
+            try {
+                String userInput = Console.readLine();
+                LottoException.validateBonusAll(userInput);
+                Integer bonusNumber = Integer.parseInt(userInput);
+                User.setBonusNumber(bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

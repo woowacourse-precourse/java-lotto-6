@@ -31,7 +31,7 @@ public class LottoBuyer {
 
     public PurchaseResult purchase() {
         for (int i = 0; i < numbersToBuy; i++) {
-            lottos.add(Lotto.create());
+            lottos.add(Lotto.createRandom());
         }
         return new PurchaseResult(numbersToBuy, lottos);
     }

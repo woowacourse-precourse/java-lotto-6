@@ -17,12 +17,7 @@ public class LottoController {
         int bonusNumber;
 
         public void run(){
-                buyingLotto();
-        }
-        private void buyingLotto() {
-                payMoney = InputView.inputMoney();
-                LottoPrice lottoPrice = new LottoPrice(payMoney);
-                int count = lottoPrice.getLottoCount();
+               int count = buyingLotto();
                 OutputView.printLottoCount(count);
 
                 makeLottos(count);
@@ -34,6 +29,12 @@ public class LottoController {
 
                 calculateLotto = new CalculateLotto(winLotto,bonusNumber);
                 resultLottos(lottos,calculateLotto);
+        }
+        private int buyingLotto() {
+                payMoney = InputView.inputMoney();
+                LottoPrice lottoPrice = new LottoPrice(payMoney);
+                int count = lottoPrice.getLottoCount();
+                return count;
         }
         private static List<Lotto> makeLottos(int count){
                 lottos = new ArrayList<>();

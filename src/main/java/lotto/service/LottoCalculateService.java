@@ -70,4 +70,12 @@ public class LottoCalculateService {
         countOfWinning.put(winning, countOfWinning.getOrDefault(winning, 0) + 1);
     }
 
+    public boolean isNumberMatchedNormal(int countContainsOfLotto) {
+        if (countContainsOfLotto == Constants.THREE_NUMBER_MATCH || countContainsOfLotto == Constants.FOUR_NUMBER_MATCH
+                || countContainsOfLotto == Constants.FiVE_NUMBER_MATCH) {
+            return true;
+        }
+        return false;
+    }
+
 }

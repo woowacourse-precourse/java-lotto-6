@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 public enum LottoPrize {
     THREE_MATCH(3, 5_000) {

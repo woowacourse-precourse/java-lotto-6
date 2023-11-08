@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.validator;
 
 public class BonusNumber {
     private static final String ERROR_INVALID_INPUT_TYPE = "유효하지 않은 입력입니다. 공백을 제외한 숫자로 입력해주세요";

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.validator;
 
 import java.util.List;
 import java.util.HashSet;

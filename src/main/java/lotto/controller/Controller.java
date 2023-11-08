@@ -2,7 +2,8 @@ package lotto.controller;
 
 //*의 경우 해당 패키지 내 모든 클래스 참조
 
-import lotto.model.*;
+import lotto.domain.LottoPrize;
+import lotto.validator.*;
 import lotto.service.*;
 import lotto.view.*;
 

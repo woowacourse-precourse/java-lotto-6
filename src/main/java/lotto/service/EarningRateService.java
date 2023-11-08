@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.model.LottoPrize;
+import lotto.domain.LottoPrize;
 
 import java.util.EnumMap;
 

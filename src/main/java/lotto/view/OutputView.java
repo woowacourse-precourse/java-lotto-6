@@ -1,7 +1,7 @@
 package lotto.view;
 
-import lotto.model.Lotto;
-import lotto.model.LottoPrize;
+import lotto.validator.Lotto;
+import lotto.domain.LottoPrize;
 
 import java.util.EnumMap;
 import java.util.List;

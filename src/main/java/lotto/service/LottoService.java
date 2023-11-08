@@ -1,7 +1,7 @@
 package lotto.service;
 
-import lotto.model.Lotto;
-import lotto.model.LottoTicketCount;
+import lotto.validator.Lotto;
+import lotto.validator.LottoTicketCount;
 
 import java.util.ArrayList;
 import java.util.List;

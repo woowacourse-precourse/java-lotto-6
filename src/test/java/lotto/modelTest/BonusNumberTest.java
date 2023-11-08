@@ -1,7 +1,7 @@
 package lotto.modelTest;
 
-import lotto.model.BonusNumber;
-import lotto.model.WinningNumbers;
+import lotto.validator.BonusNumber;
+import lotto.validator.WinningNumbers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 

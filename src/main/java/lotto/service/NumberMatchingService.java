@@ -1,9 +1,9 @@
 package lotto.service;
 
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.LottoPrize;
-import lotto.model.WinningNumbers;
+import lotto.validator.BonusNumber;
+import lotto.validator.Lotto;
+import lotto.domain.LottoPrize;
+import lotto.validator.WinningNumbers;
 
 import java.util.EnumMap;
 import java.util.HashSet;

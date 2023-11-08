@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.validator;
 
 
 public class LottoTicketCount {

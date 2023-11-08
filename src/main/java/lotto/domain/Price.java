@@ -24,9 +24,14 @@ public class Price {
      * @param price int형으로 변환된 가격
      */
     private void validatePriceValue(int price) {
-        if (!(price % 1000 == 0)) { //1000원 단위가 아니라면
-            throw new IllegalArgumentException("1000원 단위로 입력하세요");
+        try {
+            if (!(price % 1000 == 0)) {//1000원 단위가 아니라면
+                throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력하세요");
+            }
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
         }
+
     }
 
     /**
@@ -35,9 +40,12 @@ public class Price {
      * @param input 입력받은 String
      */
     private void validateInput(String input) {
-        if (!input.matches("\\d+")) {
-            throw new IllegalArgumentException("올바른 숫자를 입력해주세요");
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException numExp) {
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해주세요");
         }
+
     }
 
     /**

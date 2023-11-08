@@ -20,14 +20,14 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 숫자는 6개여야합니다.");
         }
     }
 
     private void validateNumberInRange(List<Integer> numbers) {
         numbers.stream().forEach(num -> {
             if (1 > num || num > 45) {
-                throw new IllegalArgumentException("1~45 숫자를 입력해주세요");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         });
     }

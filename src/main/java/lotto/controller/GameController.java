@@ -36,21 +36,40 @@ public class GameController {
      * 게임을 시작하기전에 구매할 금액에 따라 로또를 생성하고 출력하는 메서드
      */
     private void purchaseLotto() {
-        price = new Price(inputPurchaseView.printPurchasePrice()); //구입 금액 입력받기
-        lottos.generateLotto(price.getAmount());// 입력받은 구입금액 만큼 lotto 생성
-        outputPurchaseView.printPurchaseLotto(price.getAmount(), lottos);//구입한 로또들을 출력
+        try {
+            price = new Price(inputPurchaseView.printPurchasePrice()); //구입 금액 입력받기
+            lottos.generateLotto(price.getAmount());// 입력받은 구입금액 만큼 lotto 생성
+            outputPurchaseView.printPurchaseLotto(price.getAmount(), lottos);//구입한 로또들을 출력
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+            purchaseLotto();
+        } catch (IllegalStateException illegalStateException) {
+            System.out.println("[ERROR] 실행중 에러발생");
+        }
     }
 
     private void setWinningLotto() {
-        winningLotto = new WinningLotto(inputWinningNumView.printWinningNum(),
-                inputWinningNumView.printBonusNum());  //당첨번호와 보너스 번호를 입력받는다.
-
+        try {
+            winningLotto = new WinningLotto(inputWinningNumView.printWinningNum(),
+                    inputWinningNumView.printBonusNum());  //당첨번호와 보너스 번호를 입력받는다.
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+        } catch (IllegalStateException illegalStateException) {
+            System.out.println("[ERROR] 실행중 에러발생");
+        }
     }
 
     public void result() {
-        CompareResult compareResult = new CompareResult(lottos, winningLotto, price);
-        outputCompareLottoView.printCompareLotto(compareResult); //비교한뒤 결과 출력
-        outputReturnRateView.printReturnRate(compareResult);//수익률 출력
+        try {
+            CompareResult compareResult = new CompareResult(lottos, winningLotto, price);
+            outputCompareLottoView.printCompareLotto(compareResult); //비교한뒤 결과 출력
+            outputReturnRateView.printReturnRate(compareResult);//수익률 출력
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
+        } catch (IllegalStateException illegalStateException) {
+            System.out.println("[ERROR] 실행중 에러발생");
+        }
+
     }
 
 }

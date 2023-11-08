@@ -13,7 +13,7 @@ public class Lotto {
         validateLength(numbers);
         validateDuplicated(numbers);
 
-        this.numbers = mapToLottoNumbers(numbers);
+        this.numbers = mapToAscendingLottoNumbers(numbers);
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -28,8 +28,9 @@ public class Lotto {
         }
     }
 
-    private static List<LottoNumber> mapToLottoNumbers(List<Integer> numbers) {
+    private static List<LottoNumber> mapToAscendingLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
+                .sorted()
                 .map(LottoNumber::new)
                 .toList();
     }

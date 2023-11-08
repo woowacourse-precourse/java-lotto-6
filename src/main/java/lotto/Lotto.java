@@ -16,5 +16,18 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public List<Integer> compareNumbers(List<Integer> nums) {
+        List<Integer> matchList = getNumbers().stream().filter(o -> {
+            return nums.contains(o);
+        }).toList();
+        return matchList;
+    }
+
+    public boolean compareBonusNumber(int bonusNum) {
+        return numbers.contains(bonusNum);
+    }
 }

@@ -3,7 +3,6 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -14,6 +13,8 @@ public class Lotto {
     private static int LOTTO_NUM_MIN = 1;
     private static int LOTTO_NUM_MAX = 45;
     private static int LOTTO_NUM_IN_A_TICKET = 6;
+
+    private static long LOTTO_PRICE = 1000;
 
     private final List<Integer> numbers;
 
@@ -42,5 +43,9 @@ public class Lotto {
     }
     public boolean numbersContain(Integer targetNumber) {
         return numbers.contains(targetNumber);
+    }
+
+    public static long getPrice() {
+        return LOTTO_PRICE;
     }
 }

@@ -27,13 +27,13 @@ public class WinningResult {
                 .forEach(this::updateWinningCount);
     }
 
-    private void updateWinningCount(LottoReward winningReward) {
-        winningResult.put(winningReward,
-                winningResult.get(winningReward) + LottoConstants.PRIZE_COUNT_INCREMENT.getNumber());
+    private void updateWinningCount(LottoReward lottoReward) {
+        winningResult.put(lottoReward,
+                winningResult.get(lottoReward) + LottoConstants.PRIZE_COUNT_INCREMENT.getNumber());
     }
 
-    public Integer getWinningCount(LottoReward winningReward) {
-        return winningResult.get(winningReward);
+    public Integer getWinningCount(LottoReward lottoReward) {
+        return winningResult.get(lottoReward);
     }
 
     public WinningResultDto toDto() {

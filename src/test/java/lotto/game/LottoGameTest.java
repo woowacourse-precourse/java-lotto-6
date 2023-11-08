@@ -36,10 +36,10 @@ class LottoGameTest extends ConsoleTest {
         return Stream.of(
                 Arguments.of(new String[]{"a", "1000", "1,2,3,4,5,6", "30"}, NON_NUMBER),
                 Arguments.of(new String[]{"555", "1000", "1,2,3,4,5,6", "30"}, INVALID_COST_UNIT),
-                Arguments.of(new String[]{"1000", "a,2,3,4,5,6", "1,2,3,4,5,6"}, "30", NON_NUMBER),
-                Arguments.of(new String[]{"1000", "1,1,3,4,5,6", "1,2,3,4,5,6"}, "30", INVALID_LOTTO_NUMBERS),
-                Arguments.of(new String[]{"1000", "1,2,3,4,5", "1,2,3,4,5,6"}, "30", INVALID_LOTTO_NUMBERS),
-                Arguments.of(new String[]{"1000", "1,2,3,4,5,6,7", "1,2,3,4,5,6"}, "30", INVALID_LOTTO_NUMBERS),
+                Arguments.of(new String[]{"1000", "a,2,3,4,5,6", "1,2,3,4,5,6", "30"}, NON_NUMBER),
+                Arguments.of(new String[]{"1000", "1,1,3,4,5,6", "1,2,3,4,5,6", "30"}, INVALID_LOTTO_NUMBERS),
+                Arguments.of(new String[]{"1000", "1,2,3,4,5", "1,2,3,4,5,6", "30"}, INVALID_LOTTO_NUMBERS),
+                Arguments.of(new String[]{"1000", "1,2,3,4,5,6,7", "1,2,3,4,5,6", "30"}, INVALID_LOTTO_NUMBERS),
                 Arguments.of(new String[]{"1000", "1,2,3,4,5,6", "a", "30"}, NON_NUMBER),
                 Arguments.of(new String[]{"1000", "1,2,3,4,5,6", "0", "30"}, NUMBER_OUT_OF_RANGE),
                 Arguments.of(new String[]{"1000", "1,2,3,4,5,6", "50", "30"}, NUMBER_OUT_OF_RANGE)

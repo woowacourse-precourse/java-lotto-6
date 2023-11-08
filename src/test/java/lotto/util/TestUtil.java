@@ -3,7 +3,9 @@ package lotto.util;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.List;
+import java.util.Map;
 import lotto.model.Lotto;
+import lotto.model.LottoRank;
 import lotto.model.LottoRule;
 
 /**
@@ -24,6 +26,19 @@ public class TestUtil {
 
     public static final Lotto createLotto() {
         return new Lotto(lottoNumberGenerator());
+    }
+
+    /**
+     * 테스트용 로또 당첨 기록을 반환한다.
+     *
+     * @return 62.5% 수익률을 가진 기록
+     */
+    public static final Map<LottoRank, Integer> getLottoCompareTestSet() {
+        Map<LottoRank, Integer> ranks = LottoRank.createRankMap();
+        ranks.put(LottoRank.RANK_5TH, 1);
+        ranks.put(LottoRank.RANK_NO, 7);
+
+        return ranks;
     }
 
 }

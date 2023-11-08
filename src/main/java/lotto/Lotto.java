@@ -3,10 +3,11 @@ package lotto;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+
     private static final int LOTTOSIZE = 6;
     private static final int MIN_LOTTONUMBER = 1;
     private static final int MAX_LOTTONUMBER = 45;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

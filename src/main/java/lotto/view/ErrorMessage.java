@@ -6,6 +6,7 @@ public enum ErrorMessage {
     DUPLICATE_ERROR("[ERROR] 중복된 숫자가 있습니다."),
     TYPE_ERROR("[ERROR] 옳지 않은 형식입니다."),
     LENGTH_ERROR("[ERROR] 6자리의 번호를 입력해주세요."),
+    DIVIDE_ERRO("[ERROR] 나누어 떨어지지 않습니다."),
     EMPTY_ERROR("[ERROR] 비어 있는 숫자가 있습니다.");
 
     private final String message;

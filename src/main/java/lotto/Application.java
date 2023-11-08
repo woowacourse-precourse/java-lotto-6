@@ -34,11 +34,11 @@ public class Application {
     }
 
     private static int getInputAmount() {
-        System.out.print("구입금액을 입력해 주세요: ");
+        System.out.println("구입금액을 입력해 주세요: ");
         String input = Console.readLine();
-        while (isNotNumeric(input)) {
-            System.out.println("[ERROR] 잘못된 입력입니다. 숫자를 입력해주세요.");
-            System.out.print("구입금액을 입력해 주세요: ");
+        while (isNotNumeric(input) || !isMultipleOf1000(input)) {
+            System.out.println("[ERROR] 잘못된 입력입니다. 1000원 단위로 입력해주세요.");
+            System.out.println("구입금액을 입력해 주세요: ");
             input = Console.readLine();
         }
         return Integer.parseInt(input);
@@ -57,6 +57,11 @@ public class Application {
         } catch (NumberFormatException e) {
             return true;
         }
+    }
+
+    private static boolean isMultipleOf1000(String str) {
+        int amount = Integer.parseInt(str);
+        return amount % 1000 == 0;
     }
 
     private static List<Lotto> generateLottos(int lottoCount) {
@@ -80,7 +85,7 @@ public class Application {
     }
 
     private static Lotto getWinningLotto() {
-        System.out.print("당첨 번호를 입력해 주세요: ");
+        System.out.println("당첨 번호를 입력해 주세요: ");
         try {
             String input = Console.readLine();
             List<Integer> winningNumbers = parseNumbers(input);
@@ -94,7 +99,7 @@ public class Application {
     private static int getBonusNumber() {
         while (true) {
             try {
-                System.out.print("보너스 번호를 입력해 주세요: ");
+                System.out.println("보너스 번호를 입력해 주세요: ");
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 Lotto.validateBonusNumber(bonusNumber);  // 유효성 검사를 수행
                 return bonusNumber;

@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.LottoService;
 import lotto.domain.LottoServiceImpl;
+import lotto.model.Lotto;
 import lotto.view.LottoUI;
 
 public class LottoController {
@@ -16,5 +18,11 @@ public class LottoController {
     public void run() {
         int amount = lottoUI.purchase();
         lottoService.saveUser(amount);
+
+        int count = lottoService.getCount();
+        lottoUI.printLottoPurchase(count);
+
+        List<Lotto> lottoTickets = lottoService.getLottoTickets();
+        lottoUI.printLottoTickets(lottoTickets);
     }
 }

@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.exception.ErrorMessage;
+import lotto.model.Lotto;
 
 public class LottoUI {
 
@@ -28,6 +30,16 @@ public class LottoUI {
         int count = amount / 1_000;
         if (count == 0) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    public void printLottoPurchase(int amount) {
+        System.out.printf("%d개를 구매했습니다.\n", amount);
+    }
+
+    public void printLottoTickets(List<Lotto> lottoTickets) {
+        for (Lotto lottoTicket : lottoTickets) {
+            System.out.println(lottoTicket);
         }
     }
 }

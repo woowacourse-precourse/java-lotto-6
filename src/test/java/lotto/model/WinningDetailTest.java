@@ -1,5 +1,13 @@
 package lotto.model;
 
+import static lotto.constant.BonusNumberTestConstant.BONUS_NUMBER;
+import static lotto.constant.LottoTestConstant.FIFTH_RANK_LOTTO_NUMBERS;
+import static lotto.constant.LottoTestConstant.FIRST_RANK_LOTTO_NUMBERS;
+import static lotto.constant.LottoTestConstant.FOURTH_RANK_LOTTO_NUMBERS;
+import static lotto.constant.LottoTestConstant.NO_RANK_LOTTO_NUMBERS;
+import static lotto.constant.LottoTestConstant.SECOND_RANK_LOTTO_NUMBERS;
+import static lotto.constant.LottoTestConstant.THIRD_RANK_LOTTO_NUMBERS;
+import static lotto.constant.WinningNumberTestConstant.WINNING_NUMBERS;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
@@ -10,19 +18,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class WinningDetailTest {
-    private static final List<Integer> WINNING_NUMBERS = List.of(1, 3, 12, 15, 26, 36);
-    private static final int BONUS_NUMBER = 23;
-    private static final WinningNumbers WINNING_NUMBER = new WinningNumbers(WINNING_NUMBERS, BONUS_NUMBER);
-    private static final List<Integer> FIRST_RANK_LOTTO_NUMBERS = List.of(1, 3, 12, 15, 26, 36);
-    private static final List<Integer> SECOND_RANK_LOTTO_NUMBERS = List.of(1, 3, 12, 15, 23, 36);
-    private static final List<Integer> THIRD_RANK_LOTTO_NUMBERS = List.of(1, 3, 12, 15, 25, 36);
-    private static final List<Integer> FOURTH_RANK_LOTTO_NUMBERS = List.of(1, 3, 12, 13, 25, 36);
-    private static final List<Integer> FIFTH_RANK_LOTTO_NUMBERS = List.of(1, 3, 13, 25, 36, 45);
-    private static final List<Integer> NO_RANK_LOTTO_NUMBERS = List.of(1, 2, 13, 25, 36, 45);
-    private static final List<Lotto> LOTTOS = new ArrayList<>();
-    private static final int TWO = 2;
     private static final int ONE = 1;
+    private static final int TWO = 2;
     private static final long TOTAL_PROFIT = 4_033_060_000L;
+    private static final WinningNumbers WINNING_NUMBER = new WinningNumbers(WINNING_NUMBERS,
+            Integer.parseInt(BONUS_NUMBER));
+    private static final List<Lotto> LOTTOS = new ArrayList<>();
 
     @BeforeAll
     static void init() {

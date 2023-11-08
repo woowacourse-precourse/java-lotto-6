@@ -1,5 +1,13 @@
 package lotto.model;
 
+import static lotto.constant.RankingTestConstant.DO_NOT_HAS_BONUS_NUMBER;
+import static lotto.constant.RankingTestConstant.FIFTH_RANKING_ACCORDED_COUNT;
+import static lotto.constant.RankingTestConstant.FIRST_RANKING_ACCORDED_COUNT;
+import static lotto.constant.RankingTestConstant.FOURTH_RANKING_ACCORDED_COUNT;
+import static lotto.constant.RankingTestConstant.HAS_BONUS_NUMBER;
+import static lotto.constant.RankingTestConstant.NO_RANKING_ACCORDED_COUNT;
+import static lotto.constant.RankingTestConstant.SECOND_RANKING_ACCORDED_COUNT;
+import static lotto.constant.RankingTestConstant.THIRD_RANKING_ACCORDED_COUNT;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
@@ -7,15 +15,6 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("일치하는 당첨 번호 개수 및 보너스 번호 일치 여부가 주어졌을 때 당첨 등수를 구한다")
 class RankingTest {
-    private static final int FIRST_RANKING_ACCORDED_COUNT = 6;
-    private static final int SECOND_RANKING_ACCORDED_COUNT = 5;
-    private static final int THIRD_RANKING_ACCORDED_COUNT = 5;
-    private static final int FOURTH_RANKING_ACCORDED_COUNT = 4;
-    private static final int FIFTH_RANKING_ACCORDED_COUNT = 3;
-    private static final int NO_RANKING_ACCORDED_COUNT = 2;
-    private static final boolean HAS_BONUS_NUMBER = true;
-    private static final boolean DO_NOT_HAS_BONUS_NUMBER = false;
-
     @Test
     @DisplayName("1등 정보가 주어졌을 때 1등 랭킹 반환 테스트")
     void firstRankingTest() {

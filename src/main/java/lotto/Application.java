@@ -46,6 +46,13 @@ public class Application {
         } while (bonusNumber == 0);
         System.out.println();
 
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.setRanking(lottos, winningNumbers, bonusNumber);
+        System.out.println(lottoResult);
+
     }
 
     private static int bonusNumberValidate(String input, Lotto lotto) {
@@ -53,7 +60,8 @@ public class Application {
         try {
             bonusNumber = isOnlyNumber(input);
             checkRange(bonusNumber);
-            lotto.contains(bonusNumber);
+            if (lotto.contains(bonusNumber))
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
         } catch (IllegalArgumentException e) {
             bonusNumber = 0;
             System.out.println(e.getMessage());

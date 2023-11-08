@@ -34,9 +34,12 @@ public class Lotto {
         }
     }
 
-    public void contains(int bonus) {
-        if(numbers.contains(bonus))
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public boolean contains(int num) {
+        return numbers.contains(num);
     }
 
     public String toString() {

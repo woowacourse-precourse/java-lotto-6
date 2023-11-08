@@ -55,4 +55,18 @@ class UserLottoRankTest {
                 List.of(1, 2, 3, 14, 15, 16)
         );
     }
+
+    @Test
+    void 총_당첨_금액을_계산한다() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    UserLotto userLotto = new UserLotto(amount, numberGenerator);
+                    UserLottoRank userLottoRank = new UserLottoRank(userLotto, winningNumbers);
+                    long expected = LottoRank.FIRST.getPrize() + LottoRank.FIFTH.getPrize();
+                    assertThat(userLottoRank.getRevenue()).isEqualTo(expected);
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 14, 15, 16)
+        );
+    }
 }

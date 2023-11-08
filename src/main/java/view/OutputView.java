@@ -44,9 +44,9 @@ public class OutputView {
     }
 
     public static void printWinningResult(Map<Integer, Integer> winningResult) {
-        System.out.println(FIFTH_PRIZE_INFORMATION + winningResult.get(3) +FIFTH_PRIZE + UNIT);
-        System.out.println(FOURTH_PRIZE_INFORMATION + winningResult.get(4) +FOURTH_PRIZE + UNIT);
-        System.out.println(THIRD_PRIZE_INFORMATION + + winningResult.get(5)+THIRD_PRIZE + UNIT);
+        System.out.println(FIFTH_PRIZE_INFORMATION + winningResult.get(FIFTH_PRIZE) + UNIT);
+        System.out.println(FOURTH_PRIZE_INFORMATION + winningResult.get(FOURTH_PRIZE) + UNIT);
+        System.out.println(THIRD_PRIZE_INFORMATION + + winningResult.get(THIRD_PRIZE) + UNIT);
         System.out.println(SECOND_PRIZE_INFORMATION + winningResult.get(SECOND_PRIZE) + UNIT);
         System.out.println(FIRST_PRIZE_INFORMATION + winningResult.get(FIRST_PRIZE) + UNIT);
     }

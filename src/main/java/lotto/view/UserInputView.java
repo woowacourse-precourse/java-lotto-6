@@ -3,7 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.exceptions.ErrorMessages;
+import lotto.exception.ErrorMessages;
 import lotto.model.LottoTicket;
 
 public class UserInputView {

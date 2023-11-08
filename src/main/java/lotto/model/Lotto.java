@@ -3,7 +3,7 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.exceptions.ErrorMessages;
+import lotto.exception.ErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;

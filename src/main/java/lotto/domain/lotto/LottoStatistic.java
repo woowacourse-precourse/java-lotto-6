@@ -8,6 +8,7 @@ import lotto.dto.LottoStatisticResponse;
 
 public class LottoStatistic {
 
+    private static final int PERCENT_MULTIPLIER = 100;
     private final Map<LottoPrize, Integer> winningCounts = new HashMap<>();
     private TotalAmount totalAmount = TotalAmount.initial();
     private double earningRate;
@@ -22,13 +23,13 @@ public class LottoStatistic {
     public void calculateWinningStatistics(Lottos lottos, WinningLotto winningLotto) {
         for (Lotto lotto : lottos.asList()) {
             LottoPrize prize = winningLotto.matches(lotto);
-            totalAmount.addLottoPrize(prize);
+            totalAmount = totalAmount.addLottoPrize(prize);
             winningCounts.put(prize, winningCounts.getOrDefault(prize, 0) + 1);
         }
     }
 
     public void calculateEarningRate(PurchaseAmount purchaseAmount) {
-        earningRate = (double) totalAmount.dividedBy(purchaseAmount) * 100;
+        earningRate = totalAmount.dividedBy(purchaseAmount) * PERCENT_MULTIPLIER;
     }
 
     public LottoStatisticResponse createStatisticResponse() {

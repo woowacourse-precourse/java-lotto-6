@@ -1,5 +1,7 @@
 package lotto.domain.lotto;
 
+import static lotto.util.ConstantUtils.*;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,6 +10,8 @@ import lotto.domain.amount.PurchaseAmount;
 
 public class LottoMachine {
 
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
     private final List<Lotto> lottos;
 
     private LottoMachine() {
@@ -26,7 +30,8 @@ public class LottoMachine {
     }
 
     private PurchaseAmount buyLotto(PurchaseAmount purchaseAmount) {
-        lottos.add(Lotto.from(Randoms.pickUniqueNumbersInRange(1, 45, 6))); // 이거 랜덤하게 로또 사야지
+        lottos.add(Lotto.from(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE,
+            LOTTO_SIZE_CRITERION)));
         return purchaseAmount.subtractLottoCost();
     }
 }

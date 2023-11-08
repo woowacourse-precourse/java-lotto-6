@@ -29,15 +29,10 @@ public class OutputView {
         System.out.println(WINNING_STATISTICS_HEADER);
         System.out.println(WINNING_STATISTICS_LINE);
 
-        List<Rank> ranks = Arrays.asList(Rank.values());
-        Collections.reverse(ranks); // 순서를 뒤집습니다.
-
-        for (Rank rank : ranks) {
+        for (Rank rank : Rank.values()) {
             if (rank != Rank.NONE) {
-                System.out.println(String.format(RESULT_FORMAT,
-                        rank.getMatchCount(),
-                        PRIZE_FORMAT.format(rank.getPrizeMoney()),
-                        lottoResult.getRankCount(rank)));
+                String rankMessage = makeRankMessage(rank, lottoResult.getRankCount(rank));
+                System.out.println(rankMessage);
             }
         }
     }

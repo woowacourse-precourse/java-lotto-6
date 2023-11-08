@@ -4,7 +4,7 @@ public class LottoConstants {
     public static final String MSG_PURCHASE_MONEY_PROMPT = "구입금액을 입력해 주세요.\n";
     public static final String MSG_PURCHASE_COUNT_PROMPT = "\n%d개를 구매했습니다.\n";
     public static final String MSG_LOTTO_PREFIX = "[";
-    public static final String MSG_LOTTO_SUFFIX = "]";
+    public static final String MSG_LOTTO_SUFFIX = "]\n";
     public static final String MSG_LOTTO_DELIMITER = ", ";
     public static final String MSG_WINNING_NUMBERS_PROMPT = "당첨 번호를 입력해 주세요.";
     public static final String MSG_BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";

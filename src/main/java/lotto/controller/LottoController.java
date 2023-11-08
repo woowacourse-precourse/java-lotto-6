@@ -30,6 +30,6 @@ public class LottoController {
 
     private void playLottoGame(LottoGame lottoGame) {
         List<Lotto> lottoList = lottoGame.generateLottos();
-
+        outputView.printLottos(lottoList);
     }
 }

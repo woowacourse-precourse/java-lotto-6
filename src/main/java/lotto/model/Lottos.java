@@ -19,14 +19,8 @@ public class Lottos {
     }
 
     private Lotto createLotto() {
-        List<Integer> numbers = new ArrayList<>();
-
-        while (numbers.size() != 6) {
-            numbers.add(GetRandomNumber.getRandomNumber());
-        }
-
         try {
-            return new Lotto(numbers);
+            return new Lotto(GetRandomNumber.getRandomNumber());
         } catch (IllegalArgumentException e) {
             return createLotto();
         }

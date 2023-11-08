@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.domain.lotto.LottoCriteria.FIFTH_PLACE;
 import static lotto.domain.lotto.LottoCriteria.FIRST_PLACE;
 import static lotto.domain.lotto.LottoCriteria.FOURTH_PLACE;
+import static lotto.domain.lotto.LottoCriteria.SECOND_PLACE;
 import static lotto.domain.lotto.LottoCriteria.THIRD_PLACE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -86,7 +87,7 @@ public class LottoResultTest {
 
         // then
         int expected = 1;
-        assertEquals(expected, result.get(THIRD_PLACE));
+        assertEquals(expected, result.get(SECOND_PLACE));
     }
 
     @DisplayName("번호가 6개 일치할 경우")

@@ -1,5 +1,10 @@
 package lotto.domain.lotto;
 
+import static lotto.domain.lotto.LottoCriteria.FIFTH_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FIRST_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FOURTH_PLACE;
+import static lotto.domain.lotto.LottoCriteria.SECOND_PLACE;
+import static lotto.domain.lotto.LottoCriteria.THIRD_PLACE;
 import static lotto.domain.lotto.LottoCriteria.getAllValues;
 import static lotto.domain.lotto.LottoRule.PERCENT;
 import static lotto.domain.lotto.LottoRule.PRICE;
@@ -13,6 +18,7 @@ public class LottoResult {
     private static final int INIT_VALUE = 0;
     private static final int INCREMENT = 1;
     private static final long START_VALUE = 0;
+    private static final int SHOULD_BONUS_CHECK = 5;
 
     private final WinningLotto winningLotto;
     private final List<Lotto> issuedLotto;
@@ -39,8 +45,26 @@ public class LottoResult {
     public void matchingNumber(final Lotto lotto) {
         Long count = getMatchingCount(lotto);
 
-        getAllValues().stream()
-                .forEach(rank -> incrementResult(count, rank, lotto));
+        if (count == FIRST_PLACE.getMatchNumber()) {
+            incrementResult(FIRST_PLACE);
+        }
+        if (count == SHOULD_BONUS_CHECK) {
+            bonusCheck(lotto);
+        }
+        if (count == FOURTH_PLACE.getMatchNumber()) {
+            incrementResult(FOURTH_PLACE);
+        }
+        if (count == FIFTH_PLACE.getMatchNumber()) {
+            incrementResult(FIFTH_PLACE);
+        }
+    }
+
+    public void bonusCheck(Lotto lotto) {
+        if (isBonusContain(lotto)) {
+            incrementResult(SECOND_PLACE);
+            return;
+        }
+        incrementResult(THIRD_PLACE);
     }
 
     private Long getMatchingCount(final Lotto lotto) {
@@ -49,25 +73,8 @@ public class LottoResult {
                 .count();
     }
 
-    private void incrementResult(final Long count, final LottoCriteria rank, final Lotto lotto) {
-        if (matchRank(count, rank, lotto)) {
-            rankingResult.merge(rank, INCREMENT, Integer::sum);
-        }
-    }
-
-    private boolean matchRank(final Long count, final LottoCriteria rank, final Lotto lotto) {
-        if (isOtherPlace(count, rank, lotto) || isSecondPlace(count, rank, lotto)) {
-            return true;
-        }
-        return false;
-    }
-
-    private boolean isOtherPlace(final Long count, final LottoCriteria rank, final Lotto lotto) {
-        return count == rank.getMatchNumber() && !rank.hasBonus() && !isBonusContain(lotto);
-    }
-
-    private boolean isSecondPlace(final Long count, final LottoCriteria rank, final Lotto lotto) {
-        return count == rank.getMatchNumber() && rank.hasBonus() && isBonusContain(lotto);
+    private void incrementResult(final LottoCriteria rank) {
+        rankingResult.merge(rank, INCREMENT, Integer::sum);
     }
 
     public final boolean isBonusContain(final Lotto lotto) {

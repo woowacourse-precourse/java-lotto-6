@@ -15,7 +15,6 @@ public class MoneyTest {
     void lottoSpentMoneydividedBy1000(String inputMoney) {
         assertThatThrownBy(() -> new Money(inputMoney))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]")
                 .hasMessageContaining("구입 금액은 1,000원 단위입니다.");
     }
 

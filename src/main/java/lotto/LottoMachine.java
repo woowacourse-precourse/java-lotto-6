@@ -21,4 +21,11 @@ public class LottoMachine {
         }
         return lottoTickets;
     }
+
+    public void printLottoTickets(List<Lotto> lottoTickets) {
+        System.out.println(lottoTickets.size() + "개를 구매했습니다.");
+        for (Lotto ticket : lottoTickets) {
+            System.out.println(ticket);
+        }
+    }
 }

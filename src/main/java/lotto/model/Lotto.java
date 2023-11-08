@@ -5,18 +5,19 @@ import lotto.exception.DuplicateLottoNumberException;
 import lotto.exception.InvalidLottoLengthException;
 import lotto.exception.OutOfLottoNumberRangeException;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateLength(numbers);
         validateNoDuplicates(numbers);
         validateRange(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
     }
 
     public List<Integer> getNumbers() {

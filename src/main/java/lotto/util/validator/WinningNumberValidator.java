@@ -12,4 +12,10 @@ public class WinningNumberValidator {
             throw new IllegalArgumentException(ErrorCode.NULL_OR_EMPTY_WINNING_NUMBERS.getMessage());
         }
     }
+
+    private static void validateNumberCount(String[] numberStrings) {
+        if (numberStrings.length != TOTAL_COUNT) {
+            throw new IllegalArgumentException(ErrorCode.INVALID_WINNING_NUMBER_COUNT.getMessage());
+        }
+    }
 }

@@ -23,4 +23,13 @@ class ConvertUtilTest {
         assertThat(number).isEqualTo(1000);
     }
 
+    @DisplayName("입력된 ','로 구분되어 있는 String을 List<Integer>로 변환이 불가능하면 예외 발생")
+    @Test
+    void 문자열_정수_배열_반환_확인(){
+        assertThatThrownBy(() -> ConvertUtil.stringToIntArr("1, 2, 3, 4, 5, 6"))
+            .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> ConvertUtil.stringToInt("1,2,a,3,4,5"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

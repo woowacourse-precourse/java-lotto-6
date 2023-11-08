@@ -1,8 +1,11 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.model.lotto.Bonus;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.WinningNumbers;
 import org.junit.jupiter.api.Test;
 
 class WinningNumbersTest {

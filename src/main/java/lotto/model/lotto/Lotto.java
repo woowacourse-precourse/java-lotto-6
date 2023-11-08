@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static lotto.util.message.ErrorMessages.LOTTO_DUPLICATION_EXCEPTION;
 import static lotto.util.message.ErrorMessages.LOTTO_LENGTH_EXCEPTION;

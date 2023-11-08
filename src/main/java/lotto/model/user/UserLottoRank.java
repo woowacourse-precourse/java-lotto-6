@@ -1,6 +1,10 @@
-package lotto.model;
+package lotto.model.user;
 
 import java.util.List;
+import lotto.model.lotto.Bonus;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoRank;
+import lotto.model.lotto.WinningNumbers;
 
 public class UserLottoRank {
     private final List<LottoRank> lottoRanks;

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.user;
 
 import static lotto.util.message.ErrorMessages.USER_MONEY_UNIT_EXCEPTION;
 

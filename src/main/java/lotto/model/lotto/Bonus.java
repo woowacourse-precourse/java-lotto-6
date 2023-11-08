@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.lotto;
 
 import static lotto.util.message.ErrorMessages.BONUS_RANGE_EXCEPTION;
 

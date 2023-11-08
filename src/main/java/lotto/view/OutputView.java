@@ -14,11 +14,11 @@ import static lotto.util.message.ViewMessages.OUTPUT_RESULT_GUIDE;
 import static lotto.util.message.ViewMessages.OUTPUT_USER_MONEY_REVENUE_RATE;
 
 import java.util.Arrays;
-import lotto.model.Lotto;
-import lotto.model.LottoRank;
-import lotto.model.UserLotto;
-import lotto.model.UserMoney;
-import lotto.model.UserLottoRank;
+import lotto.model.lotto.Lotto;
+import lotto.model.lotto.LottoRank;
+import lotto.model.user.UserLotto;
+import lotto.model.user.UserMoney;
+import lotto.model.user.UserLottoRank;
 
 public class OutputView {
     public void printUserMoneyInputGuide() {

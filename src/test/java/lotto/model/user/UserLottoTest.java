@@ -1,7 +1,8 @@
-package lotto.model;
+package lotto.model.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.model.user.UserLotto;
 import lotto.util.generator.NumberGenerator;
 import lotto.util.generator.RandomNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;

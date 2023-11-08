@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.Lotto;
+import lotto.model.lotto.Lotto;
 import lotto.util.converter.MultipleNumericConverter;
 import lotto.util.converter.NumericConverter;
 import lotto.util.validator.BlankValidator;

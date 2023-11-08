@@ -1,7 +1,8 @@
-package lotto.model;
+package lotto.model.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.lotto.Lotto;
 import lotto.util.generator.NumberGenerator;
 
 public class UserLotto {

@@ -1,11 +1,11 @@
 package lotto.controller;
 
-import lotto.model.Bonus;
-import lotto.model.Lotto;
-import lotto.model.UserLotto;
-import lotto.model.UserLottoRank;
-import lotto.model.UserMoney;
-import lotto.model.WinningNumbers;
+import lotto.model.lotto.Bonus;
+import lotto.model.lotto.Lotto;
+import lotto.model.user.UserLotto;
+import lotto.model.user.UserLottoRank;
+import lotto.model.user.UserMoney;
+import lotto.model.lotto.WinningNumbers;
 import lotto.util.generator.NumberGenerator;
 import lotto.view.UserIoManager;
 

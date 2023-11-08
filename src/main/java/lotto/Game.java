@@ -1,9 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
     int money, count;
@@ -21,6 +23,10 @@ public class Game {
         for(int i=0;i<this.count;i++){
             //로또 생성
         }
+    }
+
+    private List<Integer> random(){
+        return Randoms.pickUniqueNumbersInRange(1,45,6);
     }
 
     public void DoIt(){

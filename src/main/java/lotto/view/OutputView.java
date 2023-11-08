@@ -1,4 +1,4 @@
-package lotto.view.outputView;
+package lotto.view;
 
 import java.text.NumberFormat;
 import java.util.Arrays;

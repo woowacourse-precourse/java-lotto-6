@@ -17,13 +17,7 @@ public class WinningEnquiry {
             statics.add(0);
         }
     }
-
-    private void resetStatics() {
-        for(int i = 0 ; i < RANK_SIZE.getNumber() ; i++) {
-            statics.set(i, 0);
-        }
-    }
-
+거
     public List<Integer> getStatics() {
         return statics;
     }

@@ -12,20 +12,20 @@ public class LottoTickets {
         this.lottoTickets = lottoTickets;
     }
 
-    public long getTotalPrize(List<Integer> winningNumbers, int bonusNumber) {
+    public long getTotalPrize(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        List<Integer> numbers = winningNumbers.getWinningNumbers();
+        int bonus = bonusNumber.getBonusNumber();
         return lottoTickets.stream()
-                .mapToLong(lotto -> lotto.getPrize(winningNumbers, bonusNumber))
+                .mapToLong(lotto -> lotto.getPrize(numbers, bonus))
                 .sum();
     }
 
-    public Map<Integer, Long> getEachPrize(List<Integer> winningNumbers, int bonusNumber) {
+    public Map<Integer, Long> getEachPrize(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        List<Integer> numbers = winningNumbers.getWinningNumbers();
+        int bonus = bonusNumber.getBonusNumber();
         return lottoTickets.stream()
-                .map(lotto -> lotto.getPrize(winningNumbers, bonusNumber))
+                .map(lotto -> lotto.getPrize(numbers, bonus))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-    }
-
-    public double calculateReturnRate(int buyMoney, long totalPrize) {
-        return ((double) totalPrize / buyMoney) * 100;
     }
 
     public String toString() {

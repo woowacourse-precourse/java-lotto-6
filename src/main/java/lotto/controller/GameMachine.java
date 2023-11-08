@@ -26,6 +26,7 @@ public class GameMachine {
         int inputPrice = inputView.inputPrice();
         int count = getCount(inputPrice);
 
+        outputView.lottoPurchaseCountMessage(count);
         Lottos lottos = printLottoNumbers(count);
 
         Lotto winningNumbers = inputView.getWinningNumbers();
@@ -41,7 +42,6 @@ public class GameMachine {
     }
 
     private Lottos printLottoNumbers(int count) {
-        outputView.lottoPurchaseCountMessage(count);
         Lottos lottos = new Lottos(count, lottoNumberGenerator);
         outputView.lottoNumbersMessage(lottos);
 

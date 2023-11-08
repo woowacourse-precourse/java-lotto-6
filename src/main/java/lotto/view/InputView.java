@@ -87,5 +87,5 @@ public class InputView {
             throw new IllegalArgumentException(BONUS_DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
-    
+
 }

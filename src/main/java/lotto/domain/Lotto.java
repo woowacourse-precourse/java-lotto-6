@@ -17,10 +17,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         this.numbers = numbers;
 
-        validateNumbers(numbers);
-    }
-
-    private void validateNumbers(List<Integer> numbers) {
         validateNumberOfDigits(numbers);
         validateNumberRange(numbers);
         validateDuplicatedNumbers(numbers);
@@ -47,5 +43,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
-    
+
 }

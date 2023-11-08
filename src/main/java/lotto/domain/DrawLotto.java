@@ -3,8 +3,8 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.view.InputView;
 
-//TODO : 클래스 작성 컨벤션 확인하기
 class DrawLotto {
     public static WinnigNumber draw() {
         List<Integer> winningNumber = provideWinningNumber();
@@ -20,7 +20,7 @@ class DrawLotto {
     }
 
     private static int provideBonusNumber() {
-        int bonus = InputHandler.inputBonusNumber();
+        int bonus = InputView.inputBonusNumber();
         return bonus;
     }
 }

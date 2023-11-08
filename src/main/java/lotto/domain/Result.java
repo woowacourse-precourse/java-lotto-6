@@ -25,6 +25,14 @@ public class Result {
         }
     }
 
+    public long getPrize() {
+        long prize = 0;
+        for (Statistics statistics : result.keySet()) {
+            prize += (long) statistics.getReward() * result.get(statistics);
+        }
+        return prize;
+    }
+
     public int getRankCount(final Statistics statistics) {
         return result.getOrDefault(statistics, 0);
     }

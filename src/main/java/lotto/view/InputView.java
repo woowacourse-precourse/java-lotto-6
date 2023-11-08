@@ -1,38 +1,34 @@
 package lotto.view;
 
-import static lotto.view.constant.Constant.INPUT_AMOUNT_MESSAGE;
-import static lotto.view.constant.Constant.INPUT_BONUS_NUMBER_MESSAGE;
-import static lotto.view.constant.Constant.INPUT_LOTTO_NUMBER_MESSAGE;
-
 import camp.nextstep.edu.missionutils.Console;
-import lotto.view.constant.Constant;
 
 public class InputView {
+    public static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
+    public static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    public static final String INPUT_BONUS_MESSAGE = "보너스 번호를 입력해 주세요.";
+
     public static int inputAmount() {
         print(INPUT_AMOUNT_MESSAGE);
-
-        return Integer.parseInt(Console.readLine());
+        int num = Integer.parseInt(Console.readLine());
+        return num;
     }
 
     public static int inputBonusNumber() {
-        print(INPUT_BONUS_NUMBER_MESSAGE);
-        printNewLine();
+        print(INPUT_BONUS_MESSAGE);
         return Integer.parseInt(Console.readLine());
     }
 
     public static String inputWinningLottoNumber() {
-        print(INPUT_LOTTO_NUMBER_MESSAGE);
-        printNewLine();
+        print(INPUT_WINNING_NUMBER_MESSAGE);
         return Console.readLine();
     }
 
-    private static void print(Constant message) {
+    private static void print(String message) {
         System.out.print(message);
-        printNewLine();
-        Console.readLine();
+        NewLine();
     }
 
-    private static void printNewLine() {
+    private static void NewLine() {
         System.out.print("\n");
     }
 }

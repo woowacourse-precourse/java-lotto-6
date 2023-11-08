@@ -24,4 +24,8 @@ public class User {
         lottos.matchLottoNumbers(result);
     }
 
+    public void printLottoStatistics() {
+        lottos.printWinningStatistics();
+    }
+
 }

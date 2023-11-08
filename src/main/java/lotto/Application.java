@@ -6,12 +6,6 @@ public class Application {
 
         LottoController controller = new LottoController();
 
-        controller.inputAmountOfLotto();
-
-        controller.buyLotto();
-
-        controller.inputWinnerNumber();
-
-        controller.showTotalLottoResult();
+        controller.run();
     }
 }

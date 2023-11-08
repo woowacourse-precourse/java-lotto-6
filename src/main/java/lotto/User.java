@@ -1,23 +1,15 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
 import java.util.stream.Stream;
 
 class User {
 
-    public int inputPurchasingVolume() {
-        int money = 0;
+    public String input() {
         String input = Console.readLine();
-            try {
-                money = Integer.parseInt(input);
-                validateMoney(money);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자로 입력되어야 합니다. 특수 문자가 포함되어 있으면 지워주세요.");
-            }
-        return money / 1000;
+        return input;
     }
 
     public int getMoney(){
@@ -25,7 +17,10 @@ class User {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {
-                volume = inputPurchasingVolume();
+                String volumeStr = input();
+                int money = parseInputAsInt(volumeStr);
+                validateMoney(money);
+                volume = money/1000;
                 break;
             }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
@@ -35,12 +30,13 @@ class User {
         return volume;
     }
 
+
     public Lotto getWinningLotto(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
         Lotto winningLotto;
         while (true) {
             try {
-                List<Integer>winningNumber = parseInputAsList(inputWinningNumbers());
+                List<Integer>winningNumber = parseInputAsList(input());
                 winningLotto = new Lotto(winningNumber);
                 break;
             }catch (IllegalArgumentException e){
@@ -51,15 +47,6 @@ class User {
         return winningLotto;
     }
 
-    public String inputWinningNumbers() {
-        String input = Console.readLine();
-        return input;
-    }
-
-    public String inputBonusNumber() {
-        String input = Console.readLine();
-        return input;
-    }
 
     public int parseInputAsInt(String string){
         int number = 0;
@@ -92,7 +79,7 @@ class User {
         int bonusNum =0;
         while (true) {
             try {
-                bonusNum = parseInputAsInt(inputBonusNumber());
+                bonusNum = parseInputAsInt(input());
                 validateBonusNumber(winningLotto, bonusNum);
                 break;
             }catch (IllegalArgumentException e){

@@ -24,7 +24,7 @@ public class LottoWinningRecord {
         } else if (matchedNumbers == 5) {
             if (hasBonusNumber) {
                 prize = 30000000;
-            } else {
+            } if (!hasBonusNumber) {
                 prize = 1500000;
             }
         } else if (matchedNumbers == 6) {

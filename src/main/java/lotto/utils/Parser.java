@@ -1,7 +1,5 @@
 package lotto.utils;
 
-import lotto.domain.Payment;
-
 import static lotto.utils.UtilNumber.LOTTO_COST;
 
 public class Parser {
@@ -16,7 +14,7 @@ public class Parser {
         }
     }
 
-    public static int parseAmountToCoin(Payment payment) {
-        return payment.getPayment() / LOTTO_COST.getNumber();
+    public static int parsePaymentToCoin(int payment) {
+        return payment / LOTTO_COST.getNumber();
     }
 }

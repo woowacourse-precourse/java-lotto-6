@@ -1,6 +1,9 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.dto.BonusNumber;
+import lotto.dto.Payment;
+import lotto.domain.WinningNumber;
 import lotto.utils.Calculator;
 import lotto.utils.LottoMachine;
 import lotto.utils.Parser;
@@ -20,13 +23,7 @@ public class GameController {
         String inputPayment = InputView.inputPayment();
         Payment payment = Payment.create(inputPayment);
 
-        int coin = Parser.parseAmountToCoin(payment);
-        OutputView.printNumberOfLotto(coin);
-        for (int i = 0; i < coin; i++) {
-            Lotto lotto = LottoMachine.createLotto();
-            lottos.addLotto(lotto);
-            System.out.println(lotto);
-        }
+        createLottos(payment.getPayment());
 
         String inputWinningNumber = InputView.inputWinningNumber();
         WinningNumber winningNumber = WinningNumber.create(inputWinningNumber);
@@ -41,5 +38,15 @@ public class GameController {
 
         double incomeRate = calculator.calculateIncomeRate(result, payment);
         OutputView.printIncomeRate(incomeRate);
+    }
+
+    private void createLottos(int payment){
+        int coin = Parser.parsePaymentToCoin(payment);
+        OutputView.printNumberOfLotto(coin);
+        for (int i = 0; i < coin; i++) {
+            Lotto lotto = LottoMachine.createLotto();
+            lottos.addLotto(lotto);
+            System.out.println(lotto);
+        }
     }
 }

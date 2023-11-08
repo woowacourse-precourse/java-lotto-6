@@ -1,7 +1,7 @@
 package lotto.utils;
 
 import lotto.domain.Lotto;
-import lotto.domain.Payment;
+import lotto.dto.Payment;
 import lotto.domain.Result;
 
 import java.util.List;

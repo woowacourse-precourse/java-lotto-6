@@ -1,7 +1,7 @@
 package domain;
 
 import java.util.List;
-import validator.Validator;
+import validator.InputValidator;
 
 public class WinningNumbers {
     private final List<Integer> winningNumbers;
@@ -15,13 +15,13 @@ public class WinningNumbers {
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {
-        Validator.validateLottoNumbersUniqueness(winningNumbers);
-        Validator.validateWinningNumberCount(winningNumbers);
-        Validator.validateWinningNumbersInRange(winningNumbers);
+        InputValidator.validateLottoNumbersUniqueness(winningNumbers);
+        InputValidator.validateWinningNumberCount(winningNumbers);
+        InputValidator.validateWinningNumbersInRange(winningNumbers);
     }
 
     private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
-        Validator.validateBonusNumberInRange(bonusNumber);
-        Validator.validateBonusNumberUniqueness(winningNumbers, bonusNumber);
+        InputValidator.validateBonusNumberInRange(bonusNumber);
+        InputValidator.validateBonusNumberUniqueness(winningNumbers, bonusNumber);
     }
 }

@@ -1,7 +1,7 @@
 package domain;
 
 import java.util.List;
-import validator.Validator;
+import validator.InputValidator;
 
 public class LottoMachine {
     private final int spend;
@@ -22,6 +22,6 @@ public class LottoMachine {
     }
 
     public void validateSpend(int spend) {
-        Validator.validatePurchaseAmount(spend);
+        InputValidator.validatePurchaseAmount(spend);
     }
 }

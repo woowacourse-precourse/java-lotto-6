@@ -8,7 +8,7 @@ public enum ErrorMessage implements MessageProvider{
     INVALID_PURCHASE_AMOUNT_UNIT("[ERROR] 1,000원 단위로 입력해주세요."),
     INVALID_UNIQUE_FORMAT("[ERROR] 중복되지 않는 숫자를 입력해주세요."),
     INVALID_WINNING_NUMS_COUNT("[ERROR] 당첨 번호는 6개 입력이 필요합니다."),
-    INVALID_WINNING_NUMS_VALUE("[ERROR] 당첨 번호는 유효한 범위의 숫자여야 합니다.");
+    INVALID_WINNING_NUMS_VALUE("[ERROR] 당첨 번호는 1 ~ 45 사이의 유효한 범위의 숫자여야 합니다.");
 
     private final String message;
     ErrorMessage(String message) {

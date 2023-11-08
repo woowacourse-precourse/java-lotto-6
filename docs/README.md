@@ -63,3 +63,31 @@
 - [x] 로또의 당첨 결과를 확인하는 기능
 - [x] 총 당첨 금액을 계산하는 기능
 - [x] 당첨 금액 대비 수익률을 계산하는 기능
+
+---
+
+# 전체 패키지 구조
+
+    └── lotto
+        ├── Application
+        ├── constant
+        │   ├── ConsoleMessages
+        │   ├── ExceptionMessages
+        │   ├── GameOptions
+        │   └── Rewards
+        ├── controller
+        │   ├── LottoGame
+        │   └── LottoGenerator
+        ├── domain
+        │   ├── Lotto
+        │   ├── Lottos
+        │   └── WinningNumber
+        ├── util
+        │   ├── StringParser
+        │   ├── TypeValidator
+        │   ├── LottoValidator
+        │   ├── StringUtil
+        │   └── NumberUtil
+        └── ui
+            ├── ConsolePrinter
+            └── ConsoleScanner

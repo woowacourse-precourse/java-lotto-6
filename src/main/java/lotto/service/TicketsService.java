@@ -5,13 +5,11 @@ import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.enumeration.WinningType;
-import lotto.util.Validator;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TicketsService {
@@ -100,15 +98,12 @@ public class TicketsService {
             int matchedCount = winningType.getMatchedCount();
             String prize = formatWithComma(winningType.getPrize());
             int count = result.getResult().get(winningType);
+
             if(winningType == WinningType.SECOND) {
-                System.out.println(
-                        matchedCount + "개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개"
-                );
+                System.out.println(matchedCount + "개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개");
                 continue;
             }
-            System.out.println(
-                    matchedCount + "개 일치 (" + prize + "원) - " + count + "개"
-            );
+            System.out.println(matchedCount + "개 일치 (" + prize + "원) - " + count + "개");
         }
     }
 

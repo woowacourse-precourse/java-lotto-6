@@ -53,22 +53,33 @@ public class Validator {
     public static boolean validateLotto(String input) {
         List<Integer> nums;
         try {
-            validateLottoComma(input);
-            nums = validateLottoFormat(input);
-            validateLottoLength(nums);
+            nums = validateLottoFormats(input);
         } catch (IllegalArgumentException e) {
             System.out.println(ExceptionType.INVALID_LOTTO_FORMAT.getMessage());
             return false;
         }
 
         try {
-            validateDuplicateNums(nums);
-            validateNumsRange(nums);
+            validateLottoNums(nums);
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    private static List<Integer> validateLottoFormats(String input) {
+        List<Integer> nums;
+        validateLottoComma(input);
+        nums = validateLottoFormat(input);
+        validateLottoLength(nums);
+
+        return nums;
+    }
+
+    private static void validateLottoNums(List<Integer> nums) {
+        validateDuplicateNums(nums);
+        validateNumsRange(nums);
     }
 
     public static void validateLottoLength(List<Integer> nums) {

@@ -68,7 +68,6 @@ public class WinningLottoController {
                 break;
             }
         }
-
     }
 
     public void issueWinningLotto() {

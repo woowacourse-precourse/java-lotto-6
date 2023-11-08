@@ -24,7 +24,10 @@ public class Application {
         printLottoList(lottoList); //로또번호 출력
         WinningNumber winningNumber = setWinningNum(); //당첨  번호 생성
         int bonusNum = setBonusNum();// 보너스 번 호 생성
+
         RateOfReturn ROR = new RateOfReturn(compareWin(winningNumber, bonusNum),totalPayment);
+        ROR.setROR();
+        ROR.printResult();
     }
 
     private static int setBonusNum() {

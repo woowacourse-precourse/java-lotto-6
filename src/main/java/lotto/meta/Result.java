@@ -12,7 +12,6 @@ public enum Result {
     private int bonus;
     private long sumMoney;
     private String text;
-    // TODO ADD ENUM MAP?
 
     Result(int first, int bonus, long sumMoney, String text) {
         this.first = first;

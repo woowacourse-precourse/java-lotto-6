@@ -31,7 +31,11 @@ public class LottoManager {
     }
 
     public void buyLottoAmount(){
+        buyLottoAmount=buyMoney/1000;
+    }
 
+    public void showBuyAmount(){
+        System.out.println(buyLottoAmount+"개를 구매했습니다.");
     }
 
 }

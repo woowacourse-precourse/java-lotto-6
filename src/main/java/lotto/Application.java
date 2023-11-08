@@ -5,6 +5,8 @@ public class Application {
         // TODO: 프로그램 구현
         LottoManager lottoManager = new LottoManager();
         lottoManager.insertMoney();
+        lottoManager.buyLottoAmount();
+        lottoManager.showBuyAmount();
 
     }
 }

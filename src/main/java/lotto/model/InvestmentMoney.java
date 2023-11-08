@@ -4,10 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public final class InvestmentMoney {
-    private static final String NEGATIVE_MONEY_EXCEPTION = "사용자가 투입한 금액에서 음수는 입력할 수 없습니다.";
-    private static final String ZERO_MONEY_EXCEPTION_FORMAT = "사용자가 투입한 금액에서 %d원은 입력할 수 없습니다.";
-    private static final String MAX_MONEY_EXCEPTION_FORMAT = "사용자가 투입한 금액에서 %,d원 이하로 입력해주세요.";
-    private static final int ZERO = 0;
+    private static final String MAX_MONEY_EXCEPTION_FORMAT = "사용자가 투입할 수 있는 최대 금액은 %,d원 입니다.";
     private static final int MAX_INVESTMENT = 100_000;
     private static final int PERCENT_MULTIPLIER = 100;
 
@@ -19,26 +16,16 @@ public final class InvestmentMoney {
     }
 
     private void validate(int money) {
-        validatePositive(money);
-        validateZero(money);
-        validateBelowMaximumLimit(money);
+        validateMinimumLimit(money);
+        validateMaximumLimit(money);
         validateDivisible(money);
     }
 
-    private void validatePositive(int money) {
-        if (money < ZERO) {
-            throw new IllegalArgumentException(NEGATIVE_MONEY_EXCEPTION);
-        }
+    private void validateMinimumLimit(int money) {
+        LottoPrice.STANDARD_PRICE.validateMinimumPurchasePrice(money);
     }
 
-    private void validateZero(int money) {
-        if (money == ZERO) {
-            String exceptionMessage = String.format(ZERO_MONEY_EXCEPTION_FORMAT, ZERO);
-            throw new IllegalArgumentException(exceptionMessage);
-        }
-    }
-
-    private void validateBelowMaximumLimit(int money) {
+    private void validateMaximumLimit(int money) {
         if (money > MAX_INVESTMENT) {
             String exceptionMessage = String.format(MAX_MONEY_EXCEPTION_FORMAT, MAX_INVESTMENT);
             throw new IllegalArgumentException(exceptionMessage);

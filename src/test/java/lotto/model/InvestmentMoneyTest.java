@@ -14,24 +14,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InvestmentMoneyTest {
 
-    @Test
-    void 투자_금액은_음수_값을_가질수_없다() {
-        int investmentMoney = -1;
-
+    @ParameterizedTest
+    @ValueSource(ints = {-1000, 0, 999})
+    void 투자_금액은_최소_로또_금액보다_작으면_예외가_발생한다(int investmentMoney) {
         assertThatThrownBy(() -> InvestmentMoney.from(investmentMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    void 투자_금액은_0원을_가질수_없다() {
-        int investmentMoney = 0;
-
-        assertThatThrownBy(() -> InvestmentMoney.from(investmentMoney))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 투자_금액은_최대한도를_초과할수_없다() {
+    void 투자_금액은_최대한도를_초과하면_예외가_발생한다() {
         int investmentMoney = 100_001;
 
         assertThatThrownBy(() -> InvestmentMoney.from(investmentMoney))
@@ -39,23 +30,15 @@ class InvestmentMoneyTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1000, 100_000})
-    void 투자_금액은_로또가격의_배수만큼_최소_금액과_최대한도_사이의_값을_가질수_있다(int investmentMoney) {
-        assertDoesNotThrow(
-                () -> InvestmentMoney.from(investmentMoney)
-        );
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = {999, 1001})
-    void 투자_금액은_로또_가격의_배수가_아니면_안된다(int investmentMoney) {
+    @ValueSource(ints = {1001, 2001})
+    void 투자_금액_최소금액보다_크더라도_로또_가격의_배수가_아니면_예외가_발생한다(int investmentMoney) {
         assertThatThrownBy(() -> InvestmentMoney.from(investmentMoney))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1000, 2000, 100000})
-    void 투자_금액은_로또_가격의_배수여야_한다(int investmentMoney) {
+    @ValueSource(ints = {1000, 100_000})
+    void 투자_금액은_로또가격의_배수만큼_최소_금액과_최대한도_사이의_값을_가질수_있다(int investmentMoney) {
         assertDoesNotThrow(
                 () -> InvestmentMoney.from(investmentMoney)
         );

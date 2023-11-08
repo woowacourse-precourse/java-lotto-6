@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,6 +10,25 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoPriceTest {
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 999})
+    void 로또_구입_금액은_최소_로또_가격보다_작으면_예외가_발생한다(int money) {
+        LottoPrice lottoPrice = LottoPrice.STANDARD_PRICE;
+
+        assertThatThrownBy(() -> lottoPrice.validateMinimumPurchasePrice(money))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1000, 1001})
+    void 로또_구입_금액은_최소_로또_가격보다_크거나_같아야_한다(int money) {
+        LottoPrice lottoPrice = LottoPrice.STANDARD_PRICE;
+
+        assertDoesNotThrow(
+                () -> lottoPrice.validateMinimumPurchasePrice(money)
+        );
+    }
 
     @ParameterizedTest
     @CsvSource(value = {"1000,1", "2000,2"})

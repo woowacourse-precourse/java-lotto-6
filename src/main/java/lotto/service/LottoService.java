@@ -89,7 +89,8 @@ public class LottoService {
 
     private static void calculateAndSetEarningRate(List<Lotto> lottos, WinningDto winningDto) {
         double totalPrize = winningDto.calculateTotalPrize();
-        Double earningRate = totalPrize / (lottos.size() * 1000) * 100;
+        double earningRate = totalPrize / (lottos.size() * 1000) * 100;
+        earningRate = Math.round(earningRate * 10) / 10.0; //소수점 둘째 자리에서 반올림한다
         winningDto.setEarningRate(earningRate);
     }
 }

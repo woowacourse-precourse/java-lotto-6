@@ -14,7 +14,6 @@ public class LottoTicket {
         this.lottoGames = new ArrayList<>();
     }
 
-    // Lotto를 LottoTicket의 리스트에 하나씩 추가하는 기능
     public void addLottoGame(Lotto lotto) {
         lottoGames.add(lotto);
     }
@@ -23,28 +22,32 @@ public class LottoTicket {
         return new ArrayList<>(lottoGames);
     }
 
-    public static List<Lotto> generateRandomLotto(int lottoTicketCount) {
+    public static List<Lotto> randomLottoNumbers(int lottoTicketCount) {
         List<Lotto> lottoRandomNumbers = new ArrayList<>();
         for (int i = 0; i < lottoTicketCount; i++) {
-            lottoRandomNumbers.add(randomLottoNumberList());
+            lottoRandomNumbers.add(generateRandomLotto());
         }
         return lottoRandomNumbers;
     }
 
-    public static Lotto randomLottoNumberList() {
+    public static Lotto generateRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(randomNumbers);
     }
 
-    //
-    public Map<Prize, Integer> compilePrizeStatistics(Lotto winningLotto, int bonusNumber) {
-        Map<Prize, Integer> matchNumberCount = new EnumMap<>(Prize.class);
-        // Prize를 돌면서 prize값을 0으로 초기화시킨다
+    public Map<Prize, Integer> initializePrizeStatistics() {
+        Map<Prize, Integer> initialStatistics = new EnumMap<>(Prize.class);
         for (Prize prize : Prize.values()) {
             if (prize != Prize.NONE) {
-                matchNumberCount.put(prize, 0);
+                initialStatistics.put(prize, 0);
             }
         }
+        return initialStatistics;
+    }
+
+    public Map<Prize, Integer> compilePrizeStatistics(Lotto winningLotto, int bonusNumber) {
+        Map<Prize, Integer> matchNumberCount = initializePrizeStatistics();
+
         // 상금의 수를 맵에 넣어주기
         for (Lotto lottoGame : lottoGames) {
             LottoResult lottoResult = new LottoResult(lottoGame, winningLotto, bonusNumber);
@@ -53,4 +56,7 @@ public class LottoTicket {
 
         return matchNumberCount;
     }
+
+
+
 }

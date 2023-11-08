@@ -11,4 +11,9 @@ public class InputView {
         System.out.println(Messages.INPUT_LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage());
         return readLine();
     }
+    
+    public static String readWinningNumber(){
+        System.out.println(Messages.INPUT_LOTTO_WINNING_NUUMBER_MESSAGE.getMessage());
+        return readLine();
+    }
 }

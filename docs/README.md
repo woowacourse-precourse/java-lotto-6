@@ -45,4 +45,4 @@
 
 ## 🕸 로직 분석 with️ Sequence Diagram 
 
-<img width="356" alt="image" src="https://github.com/yebin-choi/TodayILearned/assets/69137469/c8e85ff2-9db8-4176-956a-874b14558fae">
+<img width="472" alt="image" src="https://github.com/yebin-choi/TodayILearned/assets/69137469/c39ea4d8-a16f-4da6-aa11-4154d0e8f0a0">

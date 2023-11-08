@@ -81,8 +81,9 @@ public class OutputView {
     }
 
     private void printRateOfReturn(final double rateOfReturn) {
+        DecimalFormat rateOfReturnFormatter = new DecimalFormat(OutputConstant.RATE_OF_RETURN_FORMAT_STYLE);
         String rateOfReturnResult = String.format(OutputMessage.PRINT_RATE_OF_RETURN_RESULT_FORMAT.getMessage(),
-                rateOfReturn);
+                rateOfReturnFormatter.format(rateOfReturn));
         printMessage(rateOfReturnResult);
     }
 

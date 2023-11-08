@@ -16,7 +16,7 @@ class UserLottoTest {
     }
 
     @Test
-    void 임의의_로또를_amount개_발행한다() {
+    void 특정_수량만큼_임의의_로또를_발행한다() {
         long amount = 5L;
         UserLotto userLotto = new UserLotto(amount, numberGenerator);
         assertThat(userLotto.getLottos().size()).isEqualTo(amount);

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public class Player {
+public class Game {
 
     public int countTickets(int money){
         validateDivisibleMoney(money);

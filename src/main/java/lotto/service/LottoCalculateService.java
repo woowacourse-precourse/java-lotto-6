@@ -78,4 +78,11 @@ public class LottoCalculateService {
         return false;
     }
 
+    public boolean isNumberMatchedFiveWithBonus(int countContainsOfLotto, List<Integer> numbers, Lotto lotto) {
+        if (countContainsOfLotto == Constants.FiVE_NUMBER_MATCH && numbers.contains(lotto.getBonusNumber())) {
+            return true;
+        }
+        return false;
+    }
+
 }

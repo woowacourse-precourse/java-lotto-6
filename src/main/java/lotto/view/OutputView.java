@@ -18,8 +18,7 @@ public class OutputView {
         OUTPUT_MATCH_RESULT("%d개 일치 (%s원) - %d개\n"),
         OUTPUT_SECOND_MATCH_RESULT("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n"),
         OUTPUT_PROFIT_RATIO("총 수익률은 %.1f%%입니다."),
-        ;
-
+        OUTPUT_DECIMAL_FORMAT("###,###");
 
         private final String message;
 
@@ -43,7 +42,7 @@ public class OutputView {
 
         System.out.println(OutputMessage.OUTPUT_STATISTICS.message);
         Map<Prize, Integer> result = statistics.getResult();
-        DecimalFormat formatter = new DecimalFormat("###,###");
+        DecimalFormat formatter = new DecimalFormat(OutputMessage.OUTPUT_DECIMAL_FORMAT.message);
 
         for (Map.Entry<Prize, Integer> entry : result.entrySet()) {
             if (entry.getKey() == Prize.NONE) continue;

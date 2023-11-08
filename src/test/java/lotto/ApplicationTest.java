@@ -10,6 +10,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -83,6 +84,33 @@ class ApplicationTest extends NsTest {
         Amount amount = new Amount("2000");
 
         assertThat(amount.getMoney()).isEqualTo(2000);
+    }
+
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    @Test
+    void createLottoByOverSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByDuplicatedNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 범위를 초과하는 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByInvalidRangeNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1~45 사이의 수 6개를 입력 받으면 정상 동작한다.")
+    @Test
+    void createLotto() {
+        assertDoesNotThrow(() -> new Lotto(List.of(1, 2, 3, 4, 5, 45)));
     }
 
     @Override

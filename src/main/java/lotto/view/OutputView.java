@@ -21,6 +21,7 @@ public class OutputView {
         for (Lotto lotto : lottoCollection) {
             System.out.println(lotto.toString());
         }
+        printEmptyLine();
     }
 
     public static void printResult(List<MatchingCase> matchingCaseGroup) {
@@ -47,6 +48,10 @@ public class OutputView {
 
     public static void printProfit(double profit) {
         System.out.printf("총 수익률은 %.1f%%입니다.", profit);
+    }
+
+    public static void printEmptyLine() {
+        System.out.println();
     }
 
     public static void printExceptionMessage(String message) {

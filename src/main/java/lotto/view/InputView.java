@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.view.OutputView.printEmptyLine;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.dto.WinningNumbersDto;
 import lotto.util.Converter;
@@ -31,6 +33,7 @@ public class InputView {
     private static String inputString(String message) {
         System.out.println(message);
         String rawValue = Console.readLine();
+        printEmptyLine();
         InputValidator.validateNull(rawValue);
         return rawValue;
     }

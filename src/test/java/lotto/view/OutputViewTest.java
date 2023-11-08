@@ -49,8 +49,8 @@ public class OutputViewTest {
 
     public static Stream<Arguments> lottoCollectionTestData() {
         return Stream.of(
-                Arguments.of(List.of(LOTTO_1_TO_6, LOTTO_7_TO_12), "[1, 2, 3, 4, 5, 6]\n[7, 8, 9, 10, 11, 12]\n"),
-                Arguments.of(List.of(LOTTO_3_TO_8), "[3, 4, 5, 6, 7, 8]\n")
+                Arguments.of(List.of(LOTTO_1_TO_6, LOTTO_7_TO_12), "[1, 2, 3, 4, 5, 6]\n[7, 8, 9, 10, 11, 12]\n\n"),
+                Arguments.of(List.of(LOTTO_3_TO_8), "[3, 4, 5, 6, 7, 8]\n\n")
         );
     }
 

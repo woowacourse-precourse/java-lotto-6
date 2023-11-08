@@ -9,6 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> generatedNumbers) {
         validate(generatedNumbers);
+        validateDuplicate(generatedNumbers);
         this.numbers = sortNumbersToAsc(generatedNumbers);
 
         Printer printer = new Printer();
@@ -27,6 +28,12 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    private void validateDuplicate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
 
     private List<Integer> sortNumbersToAsc(List<Integer> numbers) {
         List<Integer> result = new ArrayList<>(numbers);

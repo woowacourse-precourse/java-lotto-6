@@ -41,6 +41,6 @@ class MoneyTest {
         final BigDecimal divide = money.divide(another);
 
         // then
-        Assertions.assertThat(divide).isEqualTo(BigDecimal.valueOf(5L));
+        Assertions.assertThat(divide).isEqualTo(BigDecimal.valueOf(5.0));
     }
 }

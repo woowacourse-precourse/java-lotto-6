@@ -42,6 +42,8 @@
 - [x] 로또 일치에 따라 당첨 결과를 반환 - LottoResult
 - [x] 로또 결과별 상금 정보 저장 및 반환 - LottoResult
 - [x] 로또 결과 저장소의 초기화를 위한 Map 제공 - LottoResult
+- [x] None 을 제외한 로또 결과 개수 반환 기능 구현 - LottoResult
+- [x] 인덱스 값에 따른 LottoResult 반환 기능 구현 - LottoResult 
 - [x] 로또 당첨 결과를 통해 총 상금 업데이트 - LottoPrizeMoney
 - [x] 로또 결과를 저장하기 위한 저장소 - LottoResultsRepository
 - [x] 로또 결과를 받아 추가 - LottoResultRepository
@@ -65,6 +67,8 @@
 - [x] 에러를 저장하고 메시지를 반환 - ModelAndViewConverter
 - [x] ModelAndViewConverter 싱글톤 구현하기 - ModelAndViewConverter
 - [x] 랜덤 숫자로 로또 생성하기 - RandomLottoGenerator
+- [ ] LottoResult 를 하나씩 제공하는 기능 구현하기 - LottoResultProvider
+- [ ] 출력할 LottoResult 의 결과를 저장해 전달하기 - LottoResultData
 
 # View
 - [x] 로또 구입 금액 입력 - InputView

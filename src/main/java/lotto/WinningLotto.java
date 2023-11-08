@@ -14,7 +14,7 @@ public class WinningLotto {
     static int bonusNumber;
 
     static public void gettingWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(InputType.WINNINGNUMBER.getInputMessage());
         String input = Console.readLine();
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(s -> Integer.parseInt(s))
@@ -32,7 +32,7 @@ public class WinningLotto {
     }
 
     static public void gettingBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(InputType.BONUSNUMBER.getInputMessage());
         String input = Console.readLine();
         bonusNumber = Integer.parseInt(input);
         validateBonusNumber();

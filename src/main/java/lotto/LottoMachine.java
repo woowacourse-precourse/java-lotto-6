@@ -15,7 +15,7 @@ public class LottoMachine {
 
     static void receivingMoney() {
         while (true) {
-            System.out.println("구입 금액을 입력해 주세요.");
+            System.out.println(InputType.MONEY.getInputMessage());
             String input = Console.readLine();
             if (validateFormat(input) && validateMoney(input)) {
                 break;

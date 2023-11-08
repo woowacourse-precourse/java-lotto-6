@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.ResultBuilder;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String BUY_LOTTO_MESSAGE = "개를 구매했습니다.";
@@ -20,7 +21,8 @@ public class OutputView {
 
     public void readLottoNumbers(List<List<Integer>> lottos) {
         for (List<Integer> lotto : lottos) {
-            System.out.println(lotto);
+            List<Integer> sorted = lotto.stream().sorted().collect(Collectors.toList());
+            System.out.println(sorted);
         }
     }
 

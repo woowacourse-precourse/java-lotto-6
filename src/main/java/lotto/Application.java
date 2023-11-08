@@ -7,6 +7,8 @@ import static lotto.Lottery.*;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -24,18 +26,16 @@ public class Application {
         }
 
         //2. 당첨 금액 입력 받아 저장하기
-        List<Integer> lottoNumbers = new ArrayList<>();
+        List<Integer> lottoNumbers;
         while(true) {
             try{
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String inputLottoNumbers = Console.readLine();
-                lottoNumbers = convertStringToIntegerList(inputLottoNumbers);
-                Lotto myNumbers = new Lotto(lottoNumbers);
+                Lotto myNumbers = new Lotto(convertStringToIntegerList(inputLottoNumbers));
+                lottoNumbers = myNumbers.getNumbers();
                 break;
             } catch (IllegalArgumentException e) { }
         }
-
-        System.out.println(lottoNumbers);
 
 
         //3. 보너스 번호 입력 받기
@@ -52,19 +52,19 @@ public class Application {
         }
 
 
-        //4. 로또 발행
-        List<Lottery> lotteries = new ArrayList<>();
+        //4. 로또 발행(+당첨 여부)
+        List<Lottery> lotteries = new ArrayList<>(); //발행된 로또를 저장하는 리스트
         for (int i = 0; i < numberOfLotteries; i++) {
-            lotteries.add(new Lottery(lottoNumbers, bonusNumber));
+            lotteries.add(new Lottery(lottoNumbers, bonusNumber)); //로또 발행
         }
 
+        //5. 통계 내기
+        Map<Rank, Long> result = lotteries.stream()
+                .collect(Collectors.groupingBy(Lottery::getRank, Collectors.counting()));
 
-        //5. 당첨 여부 확인
+        System.out.println(result);
 
 
-        //6. 통계내기
-
-
-        //7. 출력
+        //6. 출력
     }
 }

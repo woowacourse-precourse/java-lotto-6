@@ -47,4 +47,6 @@ public class Service {
         System.out.println("[ERROR] 당첨 번호로 입력했던 숫자는 보너스 번호가 될 수 없습니다");
         throw new IllegalArgumentException();
     }
+
+    // 5. 집계 Map 만들기
 }

@@ -11,7 +11,7 @@ import static lotto.enums.RegularExpression.POSITIVE_INTEGER;
 import java.util.List;
 import lotto.model.Lotto;
 
-public class GameValidator {
+public class PrizeValidator {
 
     public static void validateNumbers(String numbers) {
         if (!isNumbers(numbers)) {

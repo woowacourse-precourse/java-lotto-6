@@ -5,15 +5,26 @@ import java.util.List;
 import lotto.utils.Converter;
 import lotto.utils.LottoNumbersGenerator;
 import lotto.validator.UserValidator;
+import lotto.view.InputView;
 
 public class User {
     private final List<Lotto> lottoTickets = new ArrayList<>();
-    private final int count;
+    private int count;
 
-    public User(String money) {
-        UserValidator.validateMoney(money);
-        this.count = Converter.moneyToCount(money);
+    public User() {
+        setCount();
         generateTickets();
+    }
+
+    private void setCount() {
+        String money = InputView.money();
+        try {
+            UserValidator.validateMoney(money);
+            count = Converter.moneyToCount(money);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            setCount();
+        }
     }
 
     private void generateTickets() {
@@ -27,7 +38,7 @@ public class User {
     }
 
     public List<Integer> getTicket(int index) {
-        Lotto lottoTicket = lottoTickets.get(index);
-        return lottoTicket.getNumbers();
+        Lotto lotto = lottoTickets.get(index);
+        return lotto.getNumbers();
     }
 }

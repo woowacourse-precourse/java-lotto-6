@@ -10,11 +10,9 @@ import static lotto.enums.PrizeRank.THIRD;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import lotto.model.Lotto;
+import lotto.model.Prize;
 import lotto.model.User;
 import lotto.utils.Converter;
-import lotto.validator.GameValidator;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
@@ -22,68 +20,32 @@ public class GameController {
     private static final int DECIMAL_PLACE = 1;
     private final int[] nthPrizeNumber = new int[LOWEST_PRIZE_RANK.number() + 1];
     private User user;
-    private Lotto lotto;
+    private Prize prize;
     private BigDecimal returnRate;
     private int count;
-    private int bonusNumber;
     private int totalPrizeMoney;
 
     public void run() {
-        setUser();
+        this.user = new User();
         setCount();
         OutputView.printCountAndTickets(user, count);
-        setLotto();
-        setBonusNumber();
+        this.prize = new Prize();
         setNthPrizeNumber();
         OutputView.printPrizeDetails(nthPrizeNumber);
         this.returnRate = calculateReturnRate(count, totalPrizeMoney);
         OutputView.printReturnRate(returnRate);
     }
 
-    private void setUser() {
-        try {
-            user = new User(InputView.money());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setUser();
-        }
-    }
-
     private void setCount() {
         count = user.getCount();
     }
 
-    private void setLotto() {
-        try {
-            lotto = new Lotto(setLottoNumbers());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setLotto();
-        }
-    }
-
-    private List<Integer> setLottoNumbers() {
-        String numbers = InputView.lottoNumbers();
-        GameValidator.validateNumbers(numbers);
-        return Converter.stringToIntegerList(numbers);
-    }
-
-    private void setBonusNumber() {
-        String number = InputView.bonusNumbers();
-        try {
-            GameValidator.validateBonusNumber(number, lotto);
-            bonusNumber = Integer.parseInt(number);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setBonusNumber();
-        }
-    }
-
     private void setNthPrizeNumber() {
-        for (int i = 0; i < count; i++) {
-            List<Integer> userTicket = user.getTicket(i);
-            List<Integer> lottoNumber = lotto.getNumbers();
-            addPrize(userTicket, matchNumberAmount(userTicket, lottoNumber), bonusNumber);
+        for (int index = 0; index < count; index++) {
+            List<Integer> userTicket = user.getTicket(index);
+            List<Integer> winningNumber = prize.getNumbers();
+            int bonusNumber = prize.getBonusNumber();
+            addPrize(userTicket, matchNumberAmount(userTicket, winningNumber), bonusNumber);
         }
     }
 

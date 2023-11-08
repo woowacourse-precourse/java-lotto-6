@@ -10,16 +10,21 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoController {
 
-    private static int lottoCnt;
     private static List<Lotto> lottos = new ArrayList<>();
     private static List<Integer> answerlottoNumbers;
+    private static List<Result> results;
+
+
+    private static int lottoCnt;
     private static int bonusNumber;
+    private static int price = 0;
 
     public static void run() {
         setBuyAmount();
         buyLotto();
         setAnswerLottoNumbers();
         setBonusNumber();
+        setResult();
     }
 
     private static void setBuyAmount() {
@@ -55,5 +60,20 @@ public class LottoController {
 
     public static List<Integer> getAnswerlottoNumbers() {
         return answerlottoNumbers;
+    }
+
+    public static void setResult() {
+        results = List.of(Result.FIFTH, Result.FOURTH, Result.THIRD, Result.SECOND, Result.FIRST);
+
+        for (Lotto lotto : lottos) {
+            int correctCnt = lotto.getCorrectCount(answerlottoNumbers, bonusNumber);
+            for (Result result : results) {
+                if (result.CorrectCnt() == correctCnt) {
+                    result.plusCnt();
+                    price += result.Price();
+                    break;
+                }
+            }
+        }
     }
 }

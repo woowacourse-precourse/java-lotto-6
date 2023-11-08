@@ -2,12 +2,14 @@ package lotto.Validator;
 
 import static lotto.config.ErrorMessage.INPUT_AMOUNT_CHARACTER_ERROR_MESSAGE;
 import static lotto.config.ErrorMessage.INPUT_BONUS_CHARACTER_ERROR_MESSAGE;
+import static lotto.config.ErrorMessage.LOTTO_NUMBER_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("BonusNumberValidator 클래스 테스트")
@@ -21,5 +23,13 @@ public class BonusNumberValidatorTest {
         assertThatThrownBy(() -> validator.valid(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INPUT_BONUS_CHARACTER_ERROR_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"123", "0", "46"})
+    void 보너스_번호가_범위를_벗어난_경우를_확인한다(String input) {
+        assertThatThrownBy(() -> validator.valid(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE.getMessage());
     }
 }

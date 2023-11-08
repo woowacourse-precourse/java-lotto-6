@@ -26,7 +26,7 @@ public class Store {
         return realMoney / ONE_LOTTO_PRICE;
     }
 
-    public List<Integer> makeLotto() {
+    private List<Integer> makeLotto() {
         return new ArrayList<>(Randoms.pickUniqueNumbersInRange(START_LOTTO_NUMBER, END_LOTTO_NUMBER, LOTTO_SIZE));
     }
 

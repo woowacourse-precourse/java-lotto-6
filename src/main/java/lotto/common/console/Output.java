@@ -1,6 +1,7 @@
 package lotto.common.console;
 
 import lotto.core.domain.Lotto;
+import lotto.core.domain.WinningCondition;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -13,7 +14,7 @@ public class Output {
     public static final String DIVIDING_LINE = "---";
     public static final String WRITE_EACH_LOTTO_DRAW_RESULT_FORMAT = "%s (%s원) - %d개";
     public static final String DEFAULT_DECIMAL_FORMAT = "#,##0";
-    public static final String WRITE_RETURN_RATIO_FORMAT = "총 수익률은 %f%입니다.";
+    public static final String WRITE_RETURN_RATIO_FORMAT = "총 수익률은 %.0f%입니다.";
 
     public static void writeMessage(String message) {
         System.out.println(message);
@@ -35,11 +36,11 @@ public class Output {
         System.out.println(DIVIDING_LINE);
     }
 
-    public static void writeEachLottoDrawResult(String winningCondition, int reward, int winningCount) {
+    public static void writeEachLottoDrawResult(WinningCondition winningCondition, int winningCount) {
         DecimalFormat rewardAmountFormat = new DecimalFormat(DEFAULT_DECIMAL_FORMAT);
-        String formattedReward = rewardAmountFormat.format(reward);
+        String formattedReward = rewardAmountFormat.format(winningCondition.getReward());
 
-        System.out.println(String.format(WRITE_EACH_LOTTO_DRAW_RESULT_FORMAT, winningCondition, formattedReward, winningCount));
+        System.out.println(String.format(WRITE_EACH_LOTTO_DRAW_RESULT_FORMAT, winningCondition.getDescription(), formattedReward, winningCount));
     }
 
     public static void writeReturnRate(float returnRate) {

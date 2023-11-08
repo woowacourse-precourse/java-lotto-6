@@ -1,10 +1,9 @@
 package lotto;
 
-public class BonusNumber extends LottoNumber {
+public class BonusNumber  {
     private final LottoNumber lottoNumber;
 
     BonusNumber(Lotto lotto, Integer lottoNumber) {
-        super(lottoNumber);
         this.lottoNumber = new LottoNumber(lottoNumber);
         validateDuplicateBonusNumber(lotto);
     }

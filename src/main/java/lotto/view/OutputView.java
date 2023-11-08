@@ -1,6 +1,5 @@
 package lotto.view;
 
-import java.text.DecimalFormat;
 import lotto.constant.OutputMessage;
 
 public class OutputView {
@@ -29,7 +28,6 @@ public class OutputView {
     }
 
     public static void printFinalProfit(String message, double profit) {
-        DecimalFormat df = new DecimalFormat("#.###");
-        System.out.printf(message, df.format(profit));
+        System.out.printf(message, profit);
     }
 }

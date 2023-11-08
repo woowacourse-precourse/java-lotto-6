@@ -75,7 +75,9 @@ public class CalculationLogic {
 
     private WinningValues ClassificationWinningData(int hitCount, int hitBonusCount) {
         if (hitBonusCount != 0) {
-            return WinningValues.OUTPUT_LOTTO_2ND_PLACE;
+            if (hitCount == 5) {
+                return WinningValues.OUTPUT_LOTTO_2ND_PLACE;
+            }
         }
         for (WinningValues winningValue : WinningValues.values()) {
             if (hitCount == winningValue.getWinningCount()) {
@@ -132,7 +134,9 @@ public class CalculationLogic {
     private Map<Integer, Integer> addCountToMap(Map<Integer, Integer> WinningCounts,
                                                 int hitCount, int hitBonusCount) {
         if (hitBonusCount != 0) {
-            WinningCounts.put(2, WinningCounts.getOrDefault(2, 0) + 1);
+            if (hitCount == 5) {
+                WinningCounts.put(2, WinningCounts.getOrDefault(2, 0) + 1);
+            }
         }
         for (WinningValues winningValue : WinningValues.values()) {
             if (hitCount == winningValue.getWinningCount()) {

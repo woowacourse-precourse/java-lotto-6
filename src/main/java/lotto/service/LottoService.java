@@ -102,7 +102,8 @@ public class LottoService {
     }
 
     private StringBuilder getEachLottoNumber(StringBuilder printLottoNumbers, int lottoCountIndex) {
-        List<Integer> lottoNumbers = lottoDatas.getlottoNumbers(lottoCountIndex);
+        List<Integer> lottoNumbers = new ArrayList<>();
+        lottoNumbers = lottoDatas.getlottoNumbers(lottoCountIndex);
         for (int lottoLength = 0; lottoLength < lottoNumbers.size(); lottoLength++) {
             printLottoNumbers.append(lottoNumbers.get(lottoLength));
             if (lottoLength != lottoNumbers.size() - 1) {

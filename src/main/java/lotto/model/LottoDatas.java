@@ -2,7 +2,6 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.constant.Number;
 
@@ -13,11 +12,8 @@ public class LottoDatas {
     private Lotto winnigNumber;
     private List<WinningData> winningData;
 
-    public LottoDatas() { //초기화 시키기 위해작성
+    public LottoDatas() {
         this.lottoNumbers = new ArrayList<>();
-        this.bonusNumber = null;
-        this.purchase = null;
-        this.winnigNumber = null;
         this.winningData = new ArrayList<>();
     }
 
@@ -79,12 +75,10 @@ public class LottoDatas {
     }
 
     private List<Integer> generateLottoNumber() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-        lottoNumbers = Randoms.pickUniqueNumbersInRange(
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(
                 Number.THE_SMALLEST_LOTTO_NUMBER.getMessage(),
                 Number.THE_BIGGEST_LOTTO_NUMBER.getMessage(),
                 Number.LOTTO_LENGTH_LIMIT.getMessage());
-        Collections.sort(lottoNumbers);
         return lottoNumbers;
     }
 }

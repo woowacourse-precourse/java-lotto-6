@@ -7,7 +7,7 @@ public enum OutputMessage {
     INPUT_LOTTO_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     OUTPUT_LOTTO_WINNING_STATISTICS("당첨 통계\n"
             + "---"),
-    FINAL_OUTPUT("총 수익률은 %.2f%%입니다.");
+    FINAL_OUTPUT("총 수익률은 %.1f%%입니다.");
 
 
     private final String message;

@@ -5,8 +5,7 @@ import view.InputView;
 
 public class Application {
     public static void main(String[] args) {
-
-        LottoController ll = new LottoController();
-        ll.startGame();
+        LottoController lottoController = new LottoController();
+        lottoController.startGame();
     }
 }

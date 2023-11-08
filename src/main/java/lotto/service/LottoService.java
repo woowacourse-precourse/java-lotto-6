@@ -125,8 +125,10 @@ public class LottoService implements LottoFinalConsts {
         if (Integer.parseInt(correct)<LOTTO_LOSE_LIMIT) {
             return null;
         }
-
-        return LottoRank.findByRank(correct);
+        if (LottoRank.findByRank(correct)!=null){
+            return LottoRank.findByRank(correct);
+        }
+        return null;
     }
 
     public int getLottoReturn(Iterator<LottoRank> keys, HashMap<LottoRank, Integer> lottoRanks){

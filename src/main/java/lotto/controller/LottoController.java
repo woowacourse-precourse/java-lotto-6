@@ -32,7 +32,7 @@ public class LottoController implements LottoFinalConsts {
     }
 
     public void notValidPurchase(String lottoPurchase){
-        if (!lottoException.isValidLottoPurchase(lottoPurchase)){
+        if (!lottoException.isInputOnlyNumber(lottoPurchase)){
             runLotto();
         }
     }

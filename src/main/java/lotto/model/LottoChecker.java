@@ -11,8 +11,11 @@ import static lotto.constant.Rank.NOMATCHING;
 import static lotto.constant.Rank.SECONDRANK;
 import static lotto.constant.Rank.THIRDRANK;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import lotto.constant.Rank;
+import org.mockito.internal.matchers.Null;
 
 public class LottoChecker {
     private final List<Lotto> randomLottos;
@@ -25,12 +28,18 @@ public class LottoChecker {
         this.answerLotto = answerLotto.getLotto();
         this.bounsNumber = bonusNumber.getBonusNumber();
         this.winningStatics = new HashMap<>();
-        winningStatics.put(FIRSTRANK.getValue(), 0);
-        winningStatics.put(SECONDRANK.getValue(), 0);
-        winningStatics.put(THIRDRANK.getValue(), 0);
-        winningStatics.put(FOURTHRANK.getValue(), 0);
-        winningStatics.put(FIFTHRANK.getValue(), 0);
-        winningStatics.put(NOMATCHING.getValue(), 0);
+        Arrays.stream(Rank.values()).forEach( rank -> {
+            winningStatics.put(rank.getValue(), 0);
+        });
+    }
+
+    public  LottoChecker(){
+        // 테스트용 빈 생성자
+        randomLottos = null;
+        answerLotto = null;
+        bounsNumber = null;
+        winningStatics = null;
+
     }
 
     public HashMap<String, Integer> checkLottoNumbers() {

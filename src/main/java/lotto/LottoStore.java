@@ -1,5 +1,7 @@
 package lotto;
 
+import util.OutputView;
+
 import java.util.*;
 
 public class LottoStore {
@@ -12,10 +14,11 @@ public class LottoStore {
     }
 
     public static LottoStore createLottoStore(int numberOfLotto) {
-        private List<Lotto> lottos = new ArrayList<Lotto>();
-        for (int i = numberOfLotto ; i > 0 ; i++) {
+        List<Lotto> lottos = new ArrayList<Lotto>();
+        for (int i = numberOfLotto ; i > 0 ; i--) {
             lottos.add(Lotto.createLotto());
         }
+        OutputView.printLotto(lottos);
         return new LottoStore(lottos);
     }
 
@@ -24,7 +27,8 @@ public class LottoStore {
         Lotto lotto = userLotto.getLotto();
         Integer bonusNumber = userLotto.getBonusNumber();
         for (Lotto storeLotto : this.lottos) {
-            List<Integer> sumOfLotto = storeLotto.getNumbers();
+            List<Integer> sumOfLotto = new ArrayList<>();
+            sumOfLotto.addAll(storeLotto.getNumbers());
             sumOfLotto.addAll(lotto.getNumbers());
             checkLotto = new HashSet<>(sumOfLotto);
             if (checkLotto.size() == 6) {
@@ -43,5 +47,9 @@ public class LottoStore {
                 this.winCount[5] += 1;
             }
         }
+    }
+
+    public int[] getWinCount() {
+        return winCount;
     }
 }

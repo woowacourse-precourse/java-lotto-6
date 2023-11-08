@@ -11,6 +11,9 @@ public class LottoGame {
     public void run() {
         Money money = inputUserMoney();
         Lotteries lotteries = buyLotteriesWithMoney(money);
+
+        WinNumbers winNumbers = inputWinNumbers();
+
     private Money inputUserMoney() {
                 String purchaseAmount = Input.purchaseAmount();
 
@@ -30,6 +33,16 @@ public class LottoGame {
                 Output.printAllLotteries(lotteries);
 
                 return lotteries;
+    private WinNumbers inputWinNumbers() {
+                List<Integer> winningNumbers = inputWinningNumbers();
+                InputValidator.validateDuplicateWinningNumbers(winningNumbers);
+
+                int bonusNumber = inputBonusNumber();
+                InputValidator.validateDuplicateBonusNumber(winningNumbers, bonusNumber);
+
+                return new WinNumbers(winningNumbers, bonusNumber);
+    }
+
     private static List<Integer> inputWinningNumbers() {
                 String inputWinningNumbers = Input.getWinningNumbers();
                 List<Integer> winningNumbers = Converter.splitFromString(inputWinningNumbers);

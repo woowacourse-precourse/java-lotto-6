@@ -6,27 +6,27 @@ import java.util.Map;
 import static lotto.domain.WinningCriteria.FIFTH_PRIZE;
 import static lotto.domain.WinningCriteria.FIRST_PRIZE;
 
-public class Winner {
+public class WinningDetails {
 
-    private Map<Integer, Integer> winners;
+    private Map<Integer, Integer> winningDetails;
 
-    public Winner() {
+    public WinningDetails() {
 
-        winners = new HashMap<>();
+        winningDetails = new HashMap<>();
 
         for (WinningCriteria winningCriteria : WinningCriteria.values()) {
-            winners.put(winningCriteria.getRank(), 0);
+            winningDetails.put(winningCriteria.getRank(), 0);
         }
     }
 
     public void increaseCount(int key) {
         validate(key);
-        winners.put(key, winners.get(key) + 1);
+        winningDetails.put(key, winningDetails.get(key) + 1);
     }
 
     public int getWinningCount(int key) {
         validate(key);
-        return winners.get(key);
+        return winningDetails.get(key);
     }
 
     private void validate(int key) {

@@ -15,10 +15,11 @@ public class LottoPurchaseController {
         lottoPurchaseOutputView = new LottoPurchaseOutputView();
     }
 
-    public void purchaseLottos() {
+    public Lottos purchaseLottos() {
         int money = moneyInputController.inputMoney();
         int lottoCount = money / 1000;
         Lottos lottos = lottoPurchaseMachine.purchaseLottos(lottoCount);
         lottoPurchaseOutputView.outputLotto(lottos, lottoCount);
+        return lottos;
     }
 }

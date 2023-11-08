@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.domain.Lottos;
+
 public class LottoGameController {
     private LottoPurchaseController lottoPurchaseController;
     private LottoWinningCalculationController lottoWinningCalculationController;
@@ -10,6 +12,7 @@ public class LottoGameController {
     }
 
     public void start() {
-        lottoPurchaseController.purchaseLottos();
+        Lottos lottos = lottoPurchaseController.purchaseLottos();
+        lottoWinningCalculationController.calculateWinningStatistics(lottos);
     }
 }

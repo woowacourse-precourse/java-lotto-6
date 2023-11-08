@@ -21,5 +21,15 @@ public class WinLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 값이 당첨 번호와 중복인지 확인한다.")
+    @Test
+    void checkDuplicateBonus(){
+        InputStream inWinLotto = new ByteArrayInputStream("1,2,3,4,5,6".getBytes());
+        System.setIn(inWinLotto);
+
+        WinLotto winLotto = new WinLotto();
+
+        assertThatThrownBy(() -> winLotto.validDuplicateBonus(1)).isInstanceOf(IllegalArgumentException.class);
+    }
 
 }

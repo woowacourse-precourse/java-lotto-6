@@ -6,6 +6,8 @@ import lotto.ui.InputView;
 
 import java.util.List;
 
+import static lotto.ui.OutputView.outputLottoResult;
+
 public class LottoController {
 
     private User user;
@@ -26,6 +28,11 @@ public class LottoController {
     public void runLottoGame(){
         winningNumbers = InputView.inputWinningNumbers();
         bonusNumber = InputView.inputBonusNumbers();
+
+        double rateOfReturn = user.calculateRateOfReturn(winningNumbers,bonusNumber);
+        int[] lottoResult = user.getLottoResults(winningNumbers,bonusNumber);
+        String resultMessage = lottoStore.getLottoResultsSummary(lottoResult, rateOfReturn);
+        outputLottoResult(resultMessage);
     }
 
 

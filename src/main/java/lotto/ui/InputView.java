@@ -22,7 +22,7 @@ public class InputView {
                 validateAmount(amountStr);
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         return Integer.parseInt(amountStr);
@@ -37,7 +37,7 @@ public class InputView {
                 validateWinningNumber(numberStr);
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         return Arrays.stream(numberStr.split(","))
@@ -53,7 +53,7 @@ public class InputView {
                 validateBonusNumber(numberStr);
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         return Integer.parseInt(numberStr);

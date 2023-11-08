@@ -1,18 +1,31 @@
 package lotto;
 
-import lotto.controller.LottoController;
-import lotto.service.LottoInputReader;
-import lotto.service.LottoOutputWriter;
-import lotto.validation.LottoValidator;
-import lotto.view.read.InputView;
-import lotto.view.write.OutputView;
+import lotto.component.LottoArgumentResolver;
+import lotto.component.LottoController;
+import lotto.component.LottoViewResolver;
+import lotto.context.ApplicationContext;
+import lotto.domain.result.Result;
+import lotto.dto.LottoArgumentDTO;
 
 public class Application {
-    public static void main(String[] args) {
-        LottoOutputWriter writer = LottoOutputWriter.of(new OutputView());
-        LottoInputReader reader = LottoInputReader.of(new InputView(), writer, new LottoValidator());
 
-        LottoController controller = LottoController.of(reader, writer);
-        controller.run();
+    private static ApplicationContext context;
+
+    static {
+        context = ApplicationContext.of();
+    }
+
+    public static void main(String[] args) {
+        LottoArgumentDTO lottoArgumentDTO = LottoArgumentResolver.of(
+                        context.getInputView(),
+                        context.getPrinter(),
+                        context.getValidator())
+                .resolve();
+
+        LottoController controller = context.getLottoController();
+        Result result = controller.run(lottoArgumentDTO.getLottos(), lottoArgumentDTO.getWinning());
+
+        LottoViewResolver viewResolver = context.getViewResolver();
+        viewResolver.showResult(result);
     }
 }

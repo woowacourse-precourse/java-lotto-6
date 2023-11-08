@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.grade.Grade;
 import lotto.domain.grade.GradeCount;
-import lotto.service.LottoOutputWriter;
+import lotto.service.LottoMessagePrinter;
 
 public class Statistics {
 
@@ -28,12 +28,12 @@ public class Statistics {
         }
     }
 
-    public void print(LottoOutputWriter writer) {
+    public void print(LottoMessagePrinter writer) {
         for (GradeCount gradeCount : gradeCounts) {
             if (gradeCount.getGrade() == Grade.NONE) {
                 continue;
             }
-            writer.showStatistics(gradeCount.getGrade(), gradeCount.getCount());
+            writer.printStatistics(gradeCount.getGrade(), gradeCount.getCount());
         }
     }
 

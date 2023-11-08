@@ -9,11 +9,11 @@ import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
 import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 import static lotto.utils.StringConstant.COMMA;
-import static lotto.utils.StringConstant.ZERO;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.utils.IntegerConstant;
 
 public class LottoValidator {
 
@@ -26,7 +26,7 @@ public class LottoValidator {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE.getMessage());
         }
 
-        if (purchaseAmount <= ZERO || purchaseAmount % PURCHASE_AMOUNT_UNIT != ZERO) {
+        if (purchaseAmount <= IntegerConstant.ZERO || purchaseAmount % PURCHASE_AMOUNT_UNIT != IntegerConstant.ZERO) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_MESSAGE.getMessage());
         }
     }

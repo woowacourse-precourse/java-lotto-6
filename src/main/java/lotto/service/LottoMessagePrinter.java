@@ -16,51 +16,51 @@ import lotto.domain.grade.Grade;
 import lotto.domain.lotto.Lotto;
 import lotto.view.write.OutputView;
 
-public final class LottoOutputWriter {
+public final class LottoMessagePrinter {
 
     private final OutputView outputView;
 
-    public static LottoOutputWriter of(OutputView outputView) {
-        return new LottoOutputWriter(outputView);
+    public static LottoMessagePrinter of(OutputView outputView) {
+        return new LottoMessagePrinter(outputView);
     }
 
-    private LottoOutputWriter(OutputView outputView) {
+    private LottoMessagePrinter(OutputView outputView) {
         this.outputView = outputView;
     }
 
-    public void showPurchaseAmountInputMessage() {
+    public void printPurchaseAmountInputMessage() {
         outputView.write(READ_PURCHASE_AMOUNT_MESSAGE.getMessage());
     }
 
-    public void showLottoWinNumbersInputMessage() {
+    public void printLottoWinNumbersInputMessage() {
         outputView.write(READ_LOTTO_WIN_NUMBERS.getMessage());
     }
 
-    public void showPurchaseLottoSize(int count) {
+    public void printPurchaseLottoSize(int count) {
         outputView.write(String.format(LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage(), count));
     }
 
-    public void showLottoBonusNumberInputMessage() {
+    public void printLottoBonusNumberInputMessage() {
         outputView.write(READ_LOTTO_BONUS_NUMBER.getMessage());
     }
 
-    public void showExceptionMessage(String message) {
+    public void printExceptionMessage(String message) {
         outputView.write(String.format(EXCEPTION_MESSAGE_FORMAT, ERROR_PREFIX, message));
     }
 
-    public void showStatistics(Grade grade, Integer count) {
+    public void printStatistics(Grade grade, Integer count) {
         outputView.write(String.format(LOTTO_STATISTICS_MESSAGE.getMessage(), grade.getDescription(), count));
     }
 
-    public void showProfit(double percentage) {
+    public void printProfit(double percentage) {
         outputView.write(String.format(LOTTO_PROFIT_MESSAGE.getMessage(), percentage));
     }
 
-    public void showResult() {
+    public void printResult() {
         outputView.write(LOTTO_RESULT_MESSAGE.getMessage());
     }
 
-    public void showAllLotto(List<Lotto> lottos) {
+    public void printAllLotto(List<Lotto> lottos) {
         String allLotto = lottos.stream()
                 .map(it -> it.getNumbers()
                         .stream()

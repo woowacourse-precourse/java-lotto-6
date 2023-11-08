@@ -7,13 +7,15 @@ public class WinningMoney {
 
     private BigDecimal money;
 
-    public static WinningMoney of(Statistics statistics) {
-        return new WinningMoney(statistics);
+    public static WinningMoney of() {
+        return new WinningMoney();
     }
 
-    private WinningMoney(Statistics statistics) {
+    private WinningMoney() {
         this.money = BigDecimal.ZERO;
+    }
 
+    public void apply(Statistics statistics) {
         for (GradeCount gradeCount : statistics.getGradeCounts()) {
             BigDecimal winningMoney = BigDecimal.valueOf(gradeCount.getGrade().getWinningMoney());
             BigDecimal count = BigDecimal.valueOf(gradeCount.getCount());

@@ -1,10 +1,6 @@
 package lotto.domain.grade;
 
-import static lotto.utils.StringConstant.FIVE;
-import static lotto.utils.StringConstant.FOUR;
-import static lotto.utils.StringConstant.ONE;
-import static lotto.utils.StringConstant.SIX;
-import static lotto.utils.StringConstant.THREE;
+import lotto.utils.IntegerConstant;
 
 public enum Grade {
 
@@ -32,19 +28,19 @@ public enum Grade {
     }
 
     public static Grade of(int numberMatchCount, int bonusMatchCount) {
-        if (numberMatchCount == SIX) {
+        if (numberMatchCount == IntegerConstant.SIX) {
             return FIRST;
         }
-        if (numberMatchCount == FIVE && bonusMatchCount == ONE) {
+        if (numberMatchCount == IntegerConstant.FIVE && bonusMatchCount == IntegerConstant.ONE) {
             return SECOND;
         }
-        if (numberMatchCount == FIVE) {
+        if (numberMatchCount == IntegerConstant.FIVE) {
             return THIRD;
         }
-        if (numberMatchCount == FOUR) {
+        if (numberMatchCount == IntegerConstant.FOUR) {
             return FOURTH;
         }
-        if (numberMatchCount == THREE) {
+        if (numberMatchCount == IntegerConstant.THREE) {
             return FIFTH;
         }
 

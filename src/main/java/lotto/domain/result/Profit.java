@@ -3,17 +3,17 @@ package lotto.domain.result;
 import static lotto.utils.LottoConstant.PROFIT_MULTIPLY;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 
-import lotto.service.LottoOutputWriter;
+import lotto.service.LottoMessagePrinter;
 
 public class Profit {
 
-    private final double percentage;
+    private double percentage;
 
-    public static Profit of(WinningMoney winningMoney, int size) {
-        return new Profit(winningMoney, size);
+    public static Profit of() {
+        return new Profit();
     }
 
-    private Profit(WinningMoney winningMoney, int purchaseCount) {
+    public void apply(WinningMoney winningMoney, int purchaseCount) {
         this.percentage =
                 (winningMoney.getMoney().doubleValue() / (purchaseCount * PURCHASE_AMOUNT_UNIT)) * PROFIT_MULTIPLY;
     }
@@ -22,7 +22,7 @@ public class Profit {
         return this.percentage;
     }
 
-    public void print(LottoOutputWriter writer) {
-        writer.showProfit(this.percentage);
+    public void print(LottoMessagePrinter writer) {
+        writer.printProfit(this.percentage);
     }
 }

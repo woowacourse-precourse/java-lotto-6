@@ -5,7 +5,6 @@ import java.util.List;
 import lotto.domain.grade.Grade;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.winning.Winning;
-import lotto.service.LottoOutputWriter;
 
 public class Result {
 
@@ -13,39 +12,38 @@ public class Result {
     private final WinningMoney winningMoney;
     private final Profit profit;
 
-    public static Result of(Winning winning, List<Lotto> lottos) {
-        return new Result(winning, lottos);
+    public static Result of() {
+        return new Result();
     }
 
-    private Result(Winning winning, List<Lotto> lottos) {
+    private Result() {
         this.statistics = Statistics.of();
-        aggregate(winning, lottos);
-        this.winningMoney = WinningMoney.of(statistics);
-        this.profit = Profit.of(winningMoney, lottos.size());
+        this.winningMoney = WinningMoney.of();
+        this.profit = Profit.of();
     }
 
-    private void aggregate(Winning winning, List<Lotto> lottos) {
+    public void aggregate(Winning winning, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             Grade grade = winning.match(lotto);
             statistics.apply(grade);
         }
     }
 
-    public void print(LottoOutputWriter writer) {
-        writer.showResult();
-        statistics.print(writer);
-        profit.print(writer);
+    public void calculate(int lottoSize) {
+        this.winningMoney.apply(this.statistics);
+        this.profit.apply(this.winningMoney, lottoSize);
+
     }
 
     public Statistics getStatistics() {
-        return statistics;
+        return this.statistics;
     }
 
     public BigDecimal getWinningMoney() {
         return winningMoney.getMoney();
     }
 
-    public double getProfit() {
-        return profit.getPercentage();
+    public Profit getProfit() {
+        return this.profit;
     }
 }

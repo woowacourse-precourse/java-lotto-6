@@ -12,7 +12,7 @@ import java.io.PrintStream;
 import java.util.List;
 import lotto.domain.grade.Grade;
 import lotto.domain.grade.GradeCount;
-import lotto.service.LottoOutputWriter;
+import lotto.service.LottoMessagePrinter;
 import lotto.view.write.OutputView;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -72,7 +72,7 @@ class StatisticsTest {
         statistics.apply(THIRD);
 
         //Act
-        statistics.print(LottoOutputWriter.of(new OutputView()));
+        statistics.print(LottoMessagePrinter.of(new OutputView()));
 
         //Assert
         assertThat(outputStreamCaptor.toString())

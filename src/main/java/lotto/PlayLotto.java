@@ -22,7 +22,7 @@ public class PlayLotto {
     int matchedNumberCnt;
     Map<Rank, Integer> result = new HashMap<>();
     boolean hasBonusNumber;
-    double profit;
+    Profit profit;
     double profitRate;
     String userMoney;
 
@@ -144,15 +144,8 @@ public class PlayLotto {
     }
 
     public void getProfitRate(){
-        profit = getProfit();
-        profitRate = profit / Integer.parseInt(money.amount) * 100;
-        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
+        profit = new Profit(result, money);
+        profit.printProfitRate();
     }
 
-    public double getProfit(){
-        for (Rank r : Rank.values()){
-            profit += r.prize * result.get(r);
-        }
-        return profit;
-    }
 }

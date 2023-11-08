@@ -65,20 +65,20 @@ public class Game {
         Integer lottoCount;
         String cost = view.inputCost();
 
-        validator.validateCost(cost, Constants.LOTTO_PRICE);
+        validator.validateCost(cost);
         lottoCount = countLotto(cost);
         view.printLottoCount(lottoCount);
         return lottoCount;
     }
 
     private Integer countLotto(String cost) {
-        return (Integer.parseInt(cost) / Constants.LOTTO_PRICE);
+        return Math.toIntExact(Long.parseLong(cost) / Constants.LOTTO_PRICE);
     }
 
     private List<Lotto> generateLottos(Integer lottoCount) {
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < lottoCount; i++) {
+        for (long i = 0; i < lottoCount; i++) {
             lottos.add(oneLotto());
         }
         showLottos(lottos);
@@ -183,7 +183,7 @@ public class Game {
     }
 
     private void showReturnRate(Integer lottoCount, Result result) {
-        Integer cost = lottoCount * Constants.LOTTO_PRICE;
+        Long cost = lottoCount * Constants.LOTTO_PRICE;
         Double returnRate = result.calculateReturnRate(cost);
 
         view.printReturnRate(returnRate);

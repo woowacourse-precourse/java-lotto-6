@@ -30,7 +30,7 @@ class LottoTest {
     @Test
     void buyLottoByNotNumber() {
         Validator validator = new Validator();
-        assertThatThrownBy(() -> validator.validateCost("8a000", 1000))
+        assertThatThrownBy(() -> validator.validateCost("8a000"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -38,7 +38,7 @@ class LottoTest {
     @Test
     void buyLottoByNotThousands() {
         Validator validator = new Validator();
-        assertThatThrownBy(() -> validator.validateCost("8900", 1000))
+        assertThatThrownBy(() -> validator.validateCost("8900"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -110,6 +110,6 @@ class LottoTest {
         result.addResult(3);
         result.addResult(numberCount - 1);
         result.addBonus();
-        assertThat(result.calculateReturnRate(8000)).isEqualTo(375062.5);
+        assertThat(result.calculateReturnRate(8000L)).isEqualTo(375062.5);
     }
 }

@@ -5,17 +5,17 @@ import lotto.constants.Errors;
 import lotto.constants.Message;
 
 public class Validator {
-    public void validateCost(String cost, Integer lottoPrice) {
+    public void validateCost(String cost) {
         if (notNumeric(cost)) {
             throw new IllegalArgumentException(Errors.COST_NUMERIC);
         }
-        if (notThousands(cost, lottoPrice)) {
+        if (notThousands(cost)) {
             throw new IllegalArgumentException(Errors.COST_THOUSANDS);
         }
     }
 
-    private boolean notThousands(String cost, Integer lottoPrice) {
-        return (Integer.parseInt(cost) % lottoPrice != 0);
+    private boolean notThousands(String cost) {
+        return (Long.parseLong(cost) % Constants.LOTTO_PRICE != 0);
     }
 
     public void validateAnswer(String number) {

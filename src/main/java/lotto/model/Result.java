@@ -50,7 +50,7 @@ public class Result {
     }
 
     private String resultLine(Prize prize) {
-        if (prize.getPayout() == 0) {
+        if (prize.getPayout() == 0L) {
             return Message.EMPTY;
         }
         return buildLine(prize);
@@ -75,7 +75,7 @@ public class Result {
     }
 
     private String payoutMessage(Prize prize) {
-        Integer payout = prize.getPayout();
+        Long payout = prize.getPayout();
         NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
 
         return (Message.LEFT_PARENTHESES
@@ -99,15 +99,15 @@ public class Result {
         return count;
     }
 
-    public Double calculateReturnRate(Integer cost) {
+    public Double calculateReturnRate(Long cost) {
         Prize[] prizes = Prize.values();
-        Integer profit = calculateProfit(prizes);
+        Long profit = calculateProfit(prizes);
 
         return ((profit.doubleValue() / cost) * 100);
     }
 
-    private Integer calculateProfit(Prize[] prizes) {
-        int profit = 0;
+    private Long calculateProfit(Prize[] prizes) {
+        long profit = 0L;
 
         for (Prize prize : prizes) {
             profit += countMoney(prize);
@@ -115,7 +115,7 @@ public class Result {
         return profit;
     }
 
-    private Integer countMoney(Prize prize) {
+    private Long countMoney(Prize prize) {
         Integer count = findCount(prize);
 
         return (prize.getPayout() * count);

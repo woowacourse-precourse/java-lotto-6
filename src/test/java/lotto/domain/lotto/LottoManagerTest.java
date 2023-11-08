@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import static lotto.config.GameConfig.LOTTO_NUMBER_UNIT;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.IntStream;
-import lotto.domain.lotto.LottoManager;
 import lotto.domain.lotto_policy.FixedLottoWinningPolicy;
 import lotto.domain.lotto_prize.FixedLottoPrizeStandard;
 import lotto.validator.InputValidator;

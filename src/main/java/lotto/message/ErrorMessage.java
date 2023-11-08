@@ -15,4 +15,20 @@ public class ErrorMessage {
     public static final String NUMBER_OUT_OF_RANGE_EXCEPTION
             = "로또 번호는 " + START_INCLUSIVE + "부터 " + END_INCLUSIVE + "사이의 숫자여야 합니다. 유효하지 않은 로또 번호 : ";
     public static final String INVALID_NUMBERS_ORDER_EXCEPTION = "로또 번호들이 오름차순으로 정렬되어 있지 않습니다. ";
+
+    public static String generateSequenceBySizeOfCountWithComma() {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 1; i <= COUNT; i++) {
+            sb.append(i);
+
+            if (i == COUNT) {
+                break;
+            }
+
+            sb.append(",");
+        }
+
+        return sb.toString();
+    }
 }

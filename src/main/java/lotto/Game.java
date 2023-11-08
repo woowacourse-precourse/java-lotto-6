@@ -31,8 +31,8 @@ public class Game {
         giveLotto();
         saveWinningNumber();
         saveBonusNumber();
-        informWinning();
-        informRateOfReturn();
+        printWinning();
+        printRateOfReturn();
     }
 
     private void saveBuyingPrice() {
@@ -66,7 +66,7 @@ public class Game {
         saveValue(BONUS_NUMBER, bonus);
     }
 
-    private void informWinning() {
+    private void printWinning() {
         System.out.println(WINNING_STATISTICS);
         printWinning(THREE_CORRECTNESS);
         printWinning(FOUR_CORRECTNESS);
@@ -102,7 +102,7 @@ public class Game {
         return equalNumber;
     }
 
-    private void informRateOfReturn() {
+    private void printRateOfReturn() {
         System.out.println(RATE_OF_RETURN + calculateRateOfReturn() + PERCENT);
     }
 

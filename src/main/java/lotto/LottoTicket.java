@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoTicket {
@@ -18,6 +19,14 @@ public class LottoTicket {
             lottoInventory.add(lotto.toString());
         }
         return lottoInventory;
+    }
+
+    public List<List<Integer>> showLottoNumbers() {
+        List<List<Integer>> numbers = new ArrayList<>();
+        for (Lotto lotto : lottoTicket) {
+            numbers.add(lotto.getNumbers());
+        }
+        return Collections.unmodifiableList(numbers);
     }
 
 

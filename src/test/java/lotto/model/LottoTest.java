@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -25,8 +25,9 @@ class LottoTest {
     @DisplayName("로또 번호는 1부터 45사이의 숫자여야 한다.")
     @Test
     void createLottoInValidRange() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 46)))
+        assertThatThrownBy(() -> new Lotto(List.of(-1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    // 아래에 추가 테스트 작성 가능
+
+
 }

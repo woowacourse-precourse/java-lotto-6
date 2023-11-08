@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.constant.LottoConstant;
-import lotto.constant.LottoCount;
 import lotto.model.Lotto;
 import lotto.model.RandomSixNumber;
 import lotto.model.User;

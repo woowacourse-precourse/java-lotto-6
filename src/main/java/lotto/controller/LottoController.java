@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.LottoDrawNumbersEnter;
 import lotto.model.LottoBuySystem;
 import lotto.model.LottoDrawSystem;
 import lotto.utils.Utils;
@@ -11,9 +12,9 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.utils.Constants.*;
 
 public class LottoController {
-    private LottoBuySystem lottoBuySystem;
-    private LottoDrawSystem lottoDrawSystem;
-    private LottoView view;
+    private final LottoBuySystem lottoBuySystem;
+    private final LottoDrawSystem lottoDrawSystem;
+    private final LottoView view;
 
     public LottoController(LottoBuySystem givenLottoBuySystem, LottoDrawSystem givenLottoDrawSystem, LottoView givenView) {
         this.lottoBuySystem = givenLottoBuySystem;
@@ -34,11 +35,11 @@ public class LottoController {
         lottoBuySystem.buyLottos(price);
 
         int lottosCount = lottoBuySystem.getLottosCount();
-        this.view.printBuyedLottosCount(lottosCount); // lottosCount + 개를 구매했습니다.
+        this.view.printBuyedLottosCount(lottosCount);
 
         int[][] lottosNumbers = lottoBuySystem.getLottosNumbers();
         for(int[] lottoNumbers: lottosNumbers) {
-            this.view.printLottoNumbers(lottoNumbers); // [1, 2, 3, 4, 5]
+            this.view.printLottoNumbers(lottoNumbers);
         }
         this.view.newLine();
     }
@@ -49,7 +50,7 @@ public class LottoController {
     }
 
     public void compareLottos() {
-        this.view.printDrawSummaryTitle(); // 당첨 통계\n--
+        this.view.printDrawSummaryTitle();
 
         int[] grades = Arrays.stream(this.lottoBuySystem.getLottosNumbers())
                 .map((lottoNumbers) -> this.lottoDrawSystem.draw(lottoNumbers))
@@ -97,27 +98,32 @@ public class LottoController {
     }
 
 
-
     private String enterLottoDrawNumbers() {
         boolean validInput = false;
         String numbers = "";
         String bonusNumber = "";
 
-        while (!validInput) {
-            numbers = enterLottoDrawWiningNumbers();
-            bonusNumber = enterLottoDrawBonusNumber();
-            String fullInput = String.join(SEPERATOR, numbers, bonusNumber);
+        LottoDrawNumbersEnter dto = new LottoDrawNumbersEnter(numbers, bonusNumber, validInput);
 
-            try {
-                lottoDrawSystem.validateNumbers(fullInput);
-                validInput = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        while (!dto.isValidInput()) {
+            innerEnter(dto);
         }
-
-        return String.join(SEPERATOR, numbers, bonusNumber);
+        return String.join(SEPERATOR, dto.getNumbers(), dto.getBonusNumber());
     }
+
+    private void innerEnter(LottoDrawNumbersEnter dto) {
+        dto.setNumbers(enterLottoDrawWiningNumbers());
+        dto.setBonusNumber(enterLottoDrawBonusNumber());
+        String fullInput = String.join(SEPERATOR, dto.getNumbers(), dto.getBonusNumber());
+
+        try {
+            lottoDrawSystem.validateNumbers(fullInput);
+            dto.setValidInput(true);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     private String enterLottoDrawWiningNumbers() {
         this.view.printEnterLottoWinningNumbers();

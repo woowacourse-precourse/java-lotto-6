@@ -12,8 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
     private static final String ERROR_MESSAGE = "[ERROR] ";
@@ -41,5 +40,22 @@ class LottoTest {
                 .hasMessageContaining(ERROR_MESSAGE);
     }
 
+    @Test
+    @DisplayName("보너스 번호에 1부터 45의 값이 들어가지 않으면 예외가 발생한다.")
+    void createBonusNumberByNotRange() {
+        List<Integer> winningNumbers = Arrays.asList(10, 20, 30, 40, 45);
+        int input = 50;
+        assertDoesNotThrow(() -> {
+            InputStream originalIn = System.in;
+            try {
+                byte[] inputBytes = { (byte) input };
+                ByteArrayInputStream in = new ByteArrayInputStream(inputBytes);
+                System.setIn(in);
+                InputView.getBonusNumber(winningNumbers);
+            } finally {
+                System.setIn(originalIn);
+            }
+        });
+    }
 
 }

@@ -19,7 +19,7 @@ public class LottoConsole {
                 }
 
                 number /= 1000;
-                System.out.println(number + "개를 구매했습니다.\n");
+                System.out.println("\n" + number + "개를 구매했습니다.");
 
                 List<Lotto> lottos = new ArrayList<>(number);
                 for (int i = 0; i < number; i++) {

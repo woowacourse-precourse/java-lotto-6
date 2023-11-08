@@ -7,24 +7,26 @@ import java.util.List;
 
 public class Game {
     private InputUser inputUser;
+    private OutputUser outputUser;
     private List<Lotto> numberTickets;
-
     private WinningLotto winningLotto;
     private Integer lottoMoney;
     private Integer totalLottoCount;
 
     public Game(){
         this.inputUser = new InputUser();
+        this.outputUser = new OutputUser();
         this.numberTickets = new ArrayList<>();
     }
     public void play(){
         this.lottoMoney = inputUser.inputLottoMoney();
         makeNumberTicket(lottoMoney);
+        outputUser.outputBuyLotto(this.totalLottoCount);
+        outputUser.outputBuyLottoNumbers(this.numberTickets);
+
         List<Integer> winningNumbers = inputUser.inputWinningNumber();
         Integer bonusNumber = inputUser.inputBonusNumber();
         this.winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-        System.out.println(winningLotto.getLotto().getNumbers());
-        System.out.println(winningLotto.getBonusNumber());
     }
     private void makeNumberTicket(Integer lottoMoney){
         this.totalLottoCount = lottoMoney/1000;
@@ -41,9 +43,5 @@ public class Game {
 
     private void sortAscNumber(List<Integer> numbers){
         Collections.sort(numbers);
-    }
-
-    private void makeWinningLotto(String inputWinningNumber){
-
     }
 }

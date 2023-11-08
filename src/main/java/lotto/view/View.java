@@ -1,8 +1,11 @@
 package lotto.view;
 
 import lotto.dto.IssuedLottoTicketsDto;
+import lotto.dto.ResultDto;
 
 public interface View {
+    void displayException(String message);
+
     String getPurchaseAmount();
 
     String getWinningNumbers();
@@ -11,6 +14,5 @@ public interface View {
 
     void displayIssuedLottoTickets(IssuedLottoTicketsDto issuedLottoTickets);
 
-
-    void displayException(String message);
+    void displayResult(ResultDto resultDto);
 }

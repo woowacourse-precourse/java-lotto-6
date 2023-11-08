@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.dto.IssuedLottoTicketsDto;
 import lotto.dto.LottoDto;
+import lotto.dto.ResultDto;
 import lotto.model.Game;
 import lotto.util.converter.BonusNumberConverter;
 import lotto.util.converter.PurchaseAmountConverter;
@@ -35,6 +36,7 @@ public class GameController {
             } catch (IllegalArgumentException e) {
                 view.displayException(e.getMessage());
             } catch (Exception e) {
+//                view.displayException("예상치 못한 오류: " + e.getMessage());
                 throw new RuntimeException(e);
             }
         }
@@ -73,7 +75,8 @@ public class GameController {
     }
 
     private void displayResult() {
-        //TODO
+        ResultDto resultDto = ResultDto.of(game.getResult());
+        view.displayResult(resultDto);
     }
 
 }

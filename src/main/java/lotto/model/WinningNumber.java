@@ -24,4 +24,10 @@ public class WinningNumber {
             throw new DuplicatedLottoNumbersException();
         }
     }
+
+    public Ranking getRankings(Lotto ticket) {
+        int numberOfMatch = ticket.getMatchingCount(winningNumber);
+        boolean isBonusMatch = ticket.contains(bonusNumber);
+        return Ranking.getRanking(numberOfMatch, isBonusMatch);
+    }
 }

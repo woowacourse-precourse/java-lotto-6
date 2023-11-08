@@ -33,4 +33,7 @@ public class Game {
         this.winningNumber.setBonusNumber(bonusNumber);
     }
 
+    public LottoResult getResult() {
+        return issuedLottoTickets.getResult(winningNumber);
+    }
 }

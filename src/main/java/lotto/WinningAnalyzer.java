@@ -11,12 +11,15 @@ public class WinningAnalyzer {
 
     public WinningAnalyzer(){
         winningResult = new HashMap<>();
+        for(Rank rank : Rank.values()){
+            winningResult.put(rank, 0);
+        }
     }
 
     public Map<Rank, Integer> compareAllLotto(List<Lotto> lottos, WinningLotto winningLotto){
         for(Lotto lotto : lottos){
             Rank rank = winningLotto.match(lotto);
-            winningResult.put(rank, winningResult.getOrDefault(rank, 0) + 1);
+            winningResult.put(rank, winningResult.get(rank) + 1);
         }
         return winningResult;
     }

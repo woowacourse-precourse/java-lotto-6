@@ -25,7 +25,7 @@ public class Game {
         outputView.printLottoTickets(lottos);
         WinningLotto winningLotto = inputView.getWinningLotto();
         Map<Rank, Integer> winningResult = winningAnalyzer.compareAllLotto(lottos, winningLotto);
-        System.out.println(winningResult);
+        outputView.printWinningResult(winningResult);
 
     }
 }

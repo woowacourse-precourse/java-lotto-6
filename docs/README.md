@@ -9,3 +9,7 @@
 - 위 2가지를 한 번에 관리하는 역할
 - 당첨번호와 보너스번호를 가지고 구매Lotto목록들을 입력받아 비교하여 결과값 얻음
   - 결과값은 Lotto간 같은 수 개수인 count와 보너스넘버 보유 여부 boolean값
+
+-count와 boolean을 인자로 받아 1등~5등을 반환하는 역할
+ -1~5등은 enum으로 구현
+-enum으로 구현한 등수를 key로하고 등수의 개수를 value로하는 EnumMap을 가지고 outputView로 데이터를 전달하는 역할

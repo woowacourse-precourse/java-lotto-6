@@ -19,17 +19,20 @@ public enum LottoResult {
     public static LottoResult findRank(int matchCount, boolean hasBonus) {
         if (matchCount == 3) {
             return FIFTH;
-        } else if (matchCount == 4) {
-            return FOURTH;
-        } else if (matchCount == 5 && !hasBonus) {
-            return THIRD;
-        } else if (matchCount == 5 && hasBonus) {
-            return SECOND;
-        } else if (matchCount == 6) {
-            return FIRST;
-        } else {
-            return NONE;
         }
+        if (matchCount == 4) {
+            return FOURTH;
+        }
+        if (matchCount == 5 && !hasBonus) {
+            return THIRD;
+        }
+        if (matchCount == 5 && hasBonus) {
+            return SECOND;
+        }
+        if (matchCount == 6) {
+            return FIRST;
+        }
+        return NONE;
     }
 
     public int getMatchCount() {

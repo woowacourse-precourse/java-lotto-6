@@ -2,27 +2,27 @@
 
 #### _- 로또 번호_(LottoBall)
 
-  - [O] 1~45까지의 범위
-- 번호 추첨
-  - [O]6개의 숫자를 뽑는다.랜덤하게. NumberCreator # randomNumbers()
-  - [O]숫자가 중복되지 않는다.
-  - [O]뽐은 번호들은 배열안에 넣어준다. NumberCreator # lottoBallList()
-    - [O]뽐은 번호들은 오름차순 정렬을 한다.
-  - []보너스 번호 1개를 뽑는다.
-  - [] (보너스 번호도 일반 번호와 겹치지 않는다.)
+  - [x] 1~45까지의 범위
+- **번호 추첨**
+  - [x] 6개의 숫자를 뽑는다.랜덤하게. NumberCreator # randomNumbers()
+  - [x] 숫자가 중복되지 않는다.
+  - [x] 뽐은 번호들은 배열안에 넣어준다. NumberCreator # lottoBallList()
+  - [x] 뽐은 번호들은 오름차순 정렬을 한다. sort()이용.
 
 #### _- 사용자_(PlayerBall)
 
-  - 로또 구입 금액을 입력하면 Input
-  구입 금액에 해당하는 만큼 로또를 발행해야 한다.
-  - 가격은 1,000원이다.
-  - 당첨 번호와 보너스 번호를 입력받는다. Input
-    - 번호는 쉼표(,)를 기준으로 구분한다.
+- [x] 구입 금액을 입력 받는다. Input # inputAmount()
+- [x] 당첨 번호를 입력 받는다. Input # inputPlayer()
+- [x] 보너스 번호를 입력 받는다. Input # inputBonus()
+    - [x] 번호는 쉼표(,)를 기준으로 구분한다. splite(",")
+- [] 구입 금액에 해당하는 만큼 로또를 발행한다. PlayerLottoAmount # 
+- [x] 가격은 1,000원이다. 입력 받은 숫자에서 나누기를 진행해준다. PlayerLottoAmount # divideAmount()
+- [] (보너스 번호도 일반 번호와 겹치지 않는다.)
   - **출력**
-    - 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 정렬하여 보여준다. Output
-    - 당첨 내역을 출력한다. Output
-    - 수익률은 소수점 둘째 자리에서 반올림한다. (ex. 100.0%, 51.5%, 1,000,000.0%) Output
-    - 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다. Output
+  - 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 정렬하여 보여준다. Output
+  - 당첨 내역을 출력한다. Output
+  - 수익률은 소수점 둘째 자리에서 반올림한다. (ex. 100.0%, 51.5%, 1,000,000.0%) Output
+  - 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다. Output
 
 #### _- 번호비교_(Compare,Judgment)
 
@@ -44,8 +44,9 @@
 
   - 당첨 내역 및 수익률을 출력하고 로또 게임을 종료
 
-#### _- 에러_(ErrorMessage)
-- 에러 메세지 ErrorMessage#
+#### _- 에러_ (ErrorMessage)
+- [x] 입력 받은 번호가 숫자가 아닐 경우 ErrorMessage # TYPE_ERROR
+- [x] 1~45사이의 숫자가 아닐 경우 ErrorMessage # NUMBER_OVER
 <hr>
 
 

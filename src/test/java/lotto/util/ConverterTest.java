@@ -3,6 +3,7 @@ package lotto.util;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,6 +28,28 @@ class ConverterTest {
     void convertPurchaseAmountExceptionTest(String input) {
         //then
         assertThatThrownBy(() -> Converter.convertPurchaseAmount(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("당첨 번호 문자열을 정수 리스트로 변환하는 기능 테스트")
+    void convertLottoNumbersTest() {
+        //given
+        String input = "1,2,3,4,5,6";
+        //when
+        List<Integer> result = Converter.convertWinningNumbers(input);
+        //then
+        assertThat(result.size()).isEqualTo(6);
+        assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @Test
+    @DisplayName("당첨 번호에 숫자가 아닌 문자가 포함된 경우 예외 처리 테스트")
+    void letterLottoNumbersInputTest() {
+        //given
+        String input = "1,2,3,4,5,a";
+        //then
+        assertThatThrownBy(() -> Converter.convertWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

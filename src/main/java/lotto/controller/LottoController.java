@@ -13,6 +13,6 @@ public class LottoController {
     private void buyLotto() {
         money = InputView.getMoney();
         LottoGenerator generator = new LottoGenerator(money);
-        OutputView.printLottos(generator.getLottoCount());
+        OutputView.printLottos(generator.getLottos());
     }
 }

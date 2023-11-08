@@ -1,7 +1,6 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,10 +12,18 @@ public class LottoGenerator {
     private List<Lotto> lottos;
     public LottoGenerator(long money) {
         this.lottoCount = (int) money / 1000;
+        generateLotto();
     }
 
-    public int getLottoCount() {
-        return lottoCount;
+    private void generateLotto() {
+        lottos = IntStream.range(0, lottoCount).mapToObj(i -> new Lotto(generateRandomNumber())).collect(Collectors.toList());
     }
 
+    private List<Integer> generateRandomNumber() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
+    }
 }

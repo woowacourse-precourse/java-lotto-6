@@ -1,12 +1,15 @@
 package lotto.view;
 
-import lotto.Lotto;
+import lotto.model.Lotto;
 
 import java.util.List;
 
 public class OutputView {
-    public static void printLottos(int lottoCount) {
-        printPurchasedLottoCount(lottoCount);
+    public static void printLottos(List<Lotto> lottos) {
+        printPurchasedLottoCount(lottos.size());
+        lottos.stream()
+                .map(Lotto::getNumbers)
+                .forEach(number -> System.out.println(number));
     }
 
     public static void printPurchasedLottoCount(int count) {

@@ -19,9 +19,11 @@ public class LottoGame {
 
     private int buyPrice;
     private int lottoCount;
-    private List<Lotto> lotto = new ArrayList<>();
+    private List<Lotto> lottos = new ArrayList<>();
     private List<Integer> winNumbers;
     private int bonusNumber;
+    private int totalWinPrice;
+    private int[] result;
 
     public LottoGame() {
         this.validateService = new ValidateService();
@@ -35,6 +37,12 @@ public class LottoGame {
         printLotto();
         winNumbersInput();
         bonusNumberInput();
+        calculateResult();
+    }
+
+    private void calculateResult() {
+        result = lottoService.calculateResult(lottos,winNumbers,bonusNumber);
+        totalWinPrice = lottoService.calculateTotalWinPrice(result);
     }
 
     private void buyLottoInput() {
@@ -53,7 +61,7 @@ public class LottoGame {
 
     private void publishLotto() {
         calculateLottoCount();
-        lottoService.createLotto(lottoCount, lotto);
+        lottoService.createLotto(lottoCount, lottos);
     }
 
     private void calculateLottoCount() {
@@ -61,7 +69,7 @@ public class LottoGame {
     }
 
     private void printLotto() {
-        gameView.lottoPrintView(lottoCount, lotto);
+        gameView.lottoPrintView(lottoCount, lottos);
     }
 
     private void winNumbersInput() {

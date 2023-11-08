@@ -51,7 +51,7 @@ public class User {
                 .collect(Collectors.toList());
     }
 
-    public WinningNumber inputValidatedWinningNumber(Lotto lotto) {
+    public WinningNumber inputValidatedBonusNumber(Lotto lotto) {
         while (true) {
             int bonusNumber = promptForBonusNumber();
             try {

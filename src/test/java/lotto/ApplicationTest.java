@@ -68,4 +68,11 @@ class ApplicationTest extends NsTest {
         assertThatThrownBy(() -> Application.isValidPrice(price)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("당첨번호가 6자리가 아니면 예외처리한다.")
+    void shouldSelectedNumberSizeEqualsSix(){
+        assertThatThrownBy(() -> Application.validateNumbers(List.of(1,2,3,4,5,6,7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

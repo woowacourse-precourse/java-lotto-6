@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.validation;
 
 import java.util.List;
 import lotto.utils.Constants;
@@ -30,7 +30,7 @@ public class BonusNumberValidation {
     }
 
     private void validateNatural(int number) {
-        if (number <= 0) {
+        if (number <= Constants.ZERO) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER_ERROR.getMessage());
         }
     }

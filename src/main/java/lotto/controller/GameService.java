@@ -11,11 +11,13 @@ public class GameService {
 
     private Setting setting;
     private Judgement judgement;
+    private Calculator calculator;
     private List<Lotto> lottos;
     private Jackpot jackpot;
 
     public GameService() {
         setting = new Setting();
+        calculator = new Calculator(judgement);
     }
 
     public void play() {
@@ -24,9 +26,9 @@ public class GameService {
         lottos = setting.pickLottos(repetitions);
         jackpot = setting.pickJackpot();
 
-        judgement = new Judgement(lottos, jackpot);
-        judgement.confirmJackpot();
-        judgement.printRate();
-        judgement.printRevenue(repetitions * 1000);
+        judgement = new Judgement(lottos, jackpot, calculator);
+        int revenue = judgement.confirmJackpot();
+        calculator.printRate();
+        calculator.printRevenue(repetitions * 1000, revenue);
     }
 }

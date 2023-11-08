@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class JackpotTest {
 
-    private Jackpot jackpot;
 
     @DisplayName("보너스 번호와 잭팟 번호 사이에 중복이 있으면 안 된다")
     @Test

@@ -9,14 +9,16 @@ public class Input {
     private static final String PRINT_COST = "구입금액을 입력해 주세요.";
     private static final String PRINT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String PRINT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
+    private static final String NUMBER_REGEX = "^[0-9]*$";
+    private static final String LOTTO_NUMBERS_REGEX = "^[0-9,]+$";
+
 
     public String getCost(){
         System.out.println(PRINT_COST);
         String input = "";
-
         try{
             input = Console.readLine();
-            if(!Pattern.matches("^[0-9]*$",input)){
+            if(!matchPattern(NUMBER_REGEX,input)){
                 throw new IllegalArgumentException("[ERROR] Cost should have only number.");
             }
             return input;
@@ -24,7 +26,6 @@ public class Input {
             System.out.println(e.getMessage());
             return getCost();
         }
-
     }
 
     public String getWinningNumber(){
@@ -39,7 +40,7 @@ public class Input {
         String input = "";
         try{
             input = Console.readLine();
-            if(!Pattern.matches("^[0-9]*$",input)){
+            if(!matchPattern(NUMBER_REGEX,input)){
                 throw new IllegalArgumentException("[ERROR] Bonus number should have only number.");
             }
             return input;
@@ -49,30 +50,9 @@ public class Input {
         }
     }
 
-    private void validateString(String input){
-        try{
-            if(!Pattern.matches("^[0-9]*$",input)){
-                throw new IllegalArgumentException("[ERROR] Cost should have only number.");
-            }
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            getCost();
-        }
-    }
-
-    private void validateInteger(int input){
-        try{
-            if(!(input%1000 == 0)){
-                throw new IllegalArgumentException("[ERROR] Cost should be divided by 1000.");
-            }
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
-    }
-
     private void validateWinningNumber(String input){
         try{
-            if(!Pattern.matches("^[0-9,]+$",input)){
+            if(!matchPattern(LOTTO_NUMBERS_REGEX,input)){
                 throw new IllegalArgumentException("[ERROR] There are another symbols other than number and comma.");
             }
         } catch (IllegalArgumentException e){
@@ -81,8 +61,8 @@ public class Input {
         }
     }
 
-    private int stringToInt(String input){
-        return Integer.parseInt(input);
+    private boolean matchPattern(String regex, String input){
+        return Pattern.matches(regex,input);
     }
 
 }

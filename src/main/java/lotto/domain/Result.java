@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Result {
     private Map<Reward,Integer> result;
@@ -40,11 +39,11 @@ public class Result {
         for(Map.Entry<Reward, Integer> entry : finalResult.entrySet()){
             Reward reward = entry.getKey();
             int count = entry.getValue();
-            if(count !=0){
+            if(count !=0 ){
                 totalPrize += (long) reward.getPrize() *count;
             }
-
         }
         return totalPrize;
     }
+
 }

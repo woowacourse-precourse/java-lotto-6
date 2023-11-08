@@ -11,6 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
+    private static final int LOTTO_PRICE = 1000;
+
     private final Input input = new Input();
     private final Output output = new Output();
     private final Judge judge = new Judge();
@@ -28,7 +33,7 @@ public class Game {
         bonusNumber = getBonusNumber();
 
         Player player = new Player(winningNumbers, bonusNumber, quantity);
-        Result result = judge.calculateResult(player,lottos);
+        Result result = judge.makeResult(player,lottos);
 
         output.showResult(result);
     }
@@ -37,10 +42,10 @@ public class Game {
         String string = input.getCost();
         int cost = stringToInt(string);
         try {
-            if(!(cost%1000 ==0)){
+            if(!(cost%LOTTO_PRICE == 0)){
                 throw new IllegalArgumentException("[ERROR] Cost should be divided by 1000.");
             }
-            return cost/1000;
+            return cost/LOTTO_PRICE;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getLottoQuantity();
@@ -84,11 +89,11 @@ public class Game {
     }
 
     private void validateWinningNumbers(List<Integer> numbers){
-        if(numbers.size() != 6){
+        if(numbers.size() != LOTTO_NUMBER_COUNT){
             throw new IllegalArgumentException("[ERROR] Lotto numbers should be 6.");
         }
         for(int number : numbers){
-            if(!(number>=1 && number<=45)){
+            if(!(number>=START_INCLUSIVE && number<=END_INCLUSIVE)){
                 throw new IllegalArgumentException("[ERROR] Winning number should be between 1 and 45.");
             }
         }
@@ -99,7 +104,7 @@ public class Game {
     }
 
     private void validateBonusNumber(int number){
-        if(!(number>=1 && number<=45)){
+        if(!(number>=START_INCLUSIVE && number<=END_INCLUSIVE)){
             throw new IllegalArgumentException("[ERROR] Bonus number should be between 1 and 45.");
         }
         if(winningNumbers.getNumbers().contains(number)){

@@ -7,12 +7,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
+    private static final int START_INCLUSIVE = 1;
+    private static final int END_INCLUSIVE = 45;
+    private static final int LOTTO_NUMBER_COUNT = 6;
 
     private final List<Lotto> lottos;
 
     public Lottos(int quantity){
         this.lottos = generateLottos(quantity);
     }
+
     public Lottos(List<Lotto> lottos){
         this.lottos = lottos;
 
@@ -28,7 +32,7 @@ public class Lottos {
 
     private List<Integer> generateRandomNumbers(){
         try {
-            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
+            List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE,END_INCLUSIVE,LOTTO_NUMBER_COUNT));
             Collections.sort(randomNumbers);
             validateNumbers(randomNumbers);
             return randomNumbers;
@@ -44,10 +48,10 @@ public class Lottos {
 
     private void validateNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] Lotto should have 6 numbers");
+            throw new IllegalArgumentException("[ERROR] Lotto should have 6 numbers.");
         }
         if(numbers.size() != numbers.stream().distinct().count()){
-            throw new IllegalArgumentException("[ERROR] Lotto Numbers shouldn't be duplicated. ");
+            throw new IllegalArgumentException("[ERROR] Lotto numbers shouldn't be duplicated.");
         }
     }
 

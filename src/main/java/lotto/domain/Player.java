@@ -20,4 +20,8 @@ public class Player {
         return bonusNumber;
     }
 
+    public int getQuantity(){
+        return quantity;
+    }
+
 }

@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.domain.number.ManualNumberStrategy;
 import lotto.domain.number.NumberStrategy;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ class LottoDrawTest {
         lottoDraw = new LottoDraw(lottoTickets);
     }
 
+    @DisplayName("로또 결과 계산 로직이 정확한지 테스트한다.")
     @Test
     void testExtractResult() {
         NumberStrategy numberStrategy = new ManualNumberStrategy("1,2,3,4,5,6");
@@ -39,6 +41,5 @@ class LottoDrawTest {
         assertEquals(1, resultCounts.get(LottoResult.MATCH_5));
         assertEquals(1, resultCounts.get(LottoResult.MATCH_5_WITH_BONUS));
         assertEquals(1, resultCounts.get(LottoResult.MATCH_6));
-
     }
 }

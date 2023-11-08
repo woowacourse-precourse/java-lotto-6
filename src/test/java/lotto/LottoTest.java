@@ -25,19 +25,22 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("유효한 로또 번호 입력 시 예외가 발생하지 않는다.")
     @Test
-    void testCreateLotto_ValidLotto() {
+    void createLottoByValidLotto() {
         assertDoesNotThrow(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)));
     }
 
+    @DisplayName("숫자 범위를 초과하여 로또 번호 입력 시 예외가 발생한다.")
     @Test
-    void testCreateLotto_InvalidLotto_InvalidNumberRange() {
+    void createLottoByInvalidNumberRange() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 60)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 개수를 초과할 시 예외가 발생한다.")
     @Test
-    void testCreateLotto_InvalidLotto_InvalidNumberCount() {
+    void createLottoByInvalidNumberCount() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.EnumMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EarningsRateTest {
+    @DisplayName("수익률 계산 로직이 정확한지 테스트한다.")
     @Test
     void testGetEarningsRate() {
         EarningsRate earningsRateCalculator = new EarningsRate();

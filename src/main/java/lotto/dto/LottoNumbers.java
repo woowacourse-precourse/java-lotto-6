@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
 public class LottoNumbers {
-    private List<Integer> lottoNumbers;
+    private final List<Integer> lottoNumbers;
 
     private LottoNumbers(final List<Integer> lottoNumbers) {
         this.lottoNumbers = lottoNumbers;

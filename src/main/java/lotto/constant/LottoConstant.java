@@ -8,7 +8,7 @@ public enum LottoConstant {
 
     private final int value;
 
-    LottoConstant(int value) {
+    LottoConstant(final int value) {
         this.value = value;
     }
 

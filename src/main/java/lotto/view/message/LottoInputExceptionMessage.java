@@ -34,7 +34,7 @@ public enum LottoInputExceptionMessage {
 
     private final String message;
 
-    LottoInputExceptionMessage(String message) {
+    LottoInputExceptionMessage(final String message) {
         this.message = message;
     }
 

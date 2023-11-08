@@ -6,7 +6,7 @@ import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 
 public class LottoNumber {
-    protected int number;
+    protected final int number;
 
     protected LottoNumber(final int number) {
         this.number = number;

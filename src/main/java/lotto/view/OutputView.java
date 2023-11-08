@@ -21,12 +21,12 @@ public class OutputView {
         printLine();
     }
 
-    public void printNumberOfLottos(long numberOfLottos) {
+    public void printNumberOfLottos(final long numberOfLottos) {
         printMessage(numberOfLottos + OutputMessage.PRINT_NUMBER_OF_LOTTOS.getMessage());
         printLine();
     }
 
-    public void printLottoContent(LottoNumbers lottoNumbers) {
+    public void printLottoContent(final LottoNumbers lottoNumbers) {
         List<Integer> lottoContent = lottoNumbers
                 .getLottoNumbers()
                 .stream()
@@ -40,11 +40,11 @@ public class OutputView {
         System.out.print(OutputConstant.NEW_LINE);
     }
 
-    public void printErrorMessage(String message) {
+    public void printErrorMessage(final String message) {
         printMessage(message);
     }
 
-    private <T> void printMessage(T message) {
+    private <T> void printMessage(final T message) {
         System.out.print(message);
     }
 }

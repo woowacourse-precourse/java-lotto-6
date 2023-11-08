@@ -4,19 +4,19 @@ import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 
 public class BonusNumberValidator {
-    public void validate(String bonusNumber) {
+    public void validate(final String bonusNumber) {
         isNotEmpty(bonusNumber);
         isNumeric(bonusNumber);
         isNotExceedInputRange(bonusNumber);
     }
 
-    private void isNotEmpty(String bonusNumber) {
+    private void isNotEmpty(final String bonusNumber) {
         if (bonusNumber.isEmpty()) {
             throw LottoInputException.of(LottoInputExceptionMessage.INPUT_IS_EMPTY);
         }
     }
 
-    private void isNumeric(String bonusNumber) {
+    private void isNumeric(final String bonusNumber) {
         try {
             Long.parseLong(bonusNumber);
         } catch (NumberFormatException e) {
@@ -24,13 +24,13 @@ public class BonusNumberValidator {
         }
     }
 
-    private void isNotExceedInputRange(String bonusNumber) {
+    private void isNotExceedInputRange(final String bonusNumber) {
         if (exceedInputRange(bonusNumber)) {
             throw LottoInputException.of(LottoInputExceptionMessage.BONUS_NUMBER_INPUT_EXCEED_INPUT_RANGE);
         }
     }
 
-    private boolean exceedInputRange(String bonusNumber) {
+    private boolean exceedInputRange(final String bonusNumber) {
         return Long.parseLong(bonusNumber) > Integer.MAX_VALUE || Long.parseLong(bonusNumber) < Integer.MIN_VALUE;
     }
 }

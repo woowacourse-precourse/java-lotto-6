@@ -9,7 +9,7 @@ public enum RankDifferenceConstant {
 
     private final int difference;
 
-    RankDifferenceConstant(int difference) {
+    RankDifferenceConstant(final int difference) {
         this.difference = difference;
     }
 

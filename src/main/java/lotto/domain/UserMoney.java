@@ -3,7 +3,7 @@ package lotto.domain;
 public class UserMoney {
     private final long userMoney;
 
-    private UserMoney(long userMoney) {
+    private UserMoney(final long userMoney) {
         this.userMoney = userMoney;
     }
 

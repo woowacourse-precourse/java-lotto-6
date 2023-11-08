@@ -44,27 +44,27 @@ public class InputParser {
         return userInput;
     }
 
-    private String removeBlankInEachSeperatedItems(String winningLottoNumbers) {
+    private String removeBlankInEachSeperatedItems(final String winningLottoNumbers) {
         return Arrays.stream(splitItemsWithDelimiter(winningLottoNumbers))
                 .map(this::removeBlank)
                 .collect(Collectors.joining(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER));
     }
 
-    private Long parseToLong(String userInput) {
+    private Long parseToLong(final String userInput) {
         return Long.parseLong(userInput);
     }
 
-    private Integer parseToInteger(String userInput) {
+    private Integer parseToInteger(final String userInput) {
         return Integer.parseInt(userInput);
     }
 
-    private List<Integer> parseToIntegers(String userInput) {
+    private List<Integer> parseToIntegers(final String userInput) {
         return Arrays.stream(splitItemsWithDelimiter(userInput))
                 .map(Integer::parseInt)
                 .toList();
     }
 
-    private String[] splitItemsWithDelimiter(String userInput) {
+    private String[] splitItemsWithDelimiter(final String userInput) {
         return userInput.split(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER);
     }
 }

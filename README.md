@@ -189,7 +189,7 @@ BUILD SUCCESSFUL in 0s
 #### 사용 예시
 
 ```java
-List<Integer> bonusNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 ```
 
 ### Lotto 클래스
@@ -201,15 +201,15 @@ List<Integer> bonusNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
 ```java
 public class Lotto {
-    private final List<Integer> bonusNumbers;
+    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> bonusNumbers) {
-        validate(bonusNumbers);
-        this.bonusNumbers = bonusNumbers;
+    public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
     }
 
-    private void validate(List<Integer> bonusNumbers) {
-        if (bonusNumbers.size() != 6) {
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }

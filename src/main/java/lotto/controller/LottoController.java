@@ -46,6 +46,24 @@ public class LottoController {
         }
     }
 
+    private List<Integer> receiveWinningNumbers() {
+        try {
+            return InputView.readWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return receiveWinningNumbers();
+        }
+    }
+
+    private int receiveBonusNumber() {
+        try {
+            return InputView.readBonusNumber();
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return receiveBonusNumber();
+        }
+    }
+
     private WinningLotto receiveWinningLotto() {
         try {
             List<Integer> winningNumbers = InputView.readWinningNumbers();

@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.util.ConstantUtils.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +23,8 @@ public class InputView {
         List<Integer> winningNumbers = Arrays.stream(input.split(DELIMITER))
             .map(Integer::parseInt)
             .toList();
+        ValidationUtils.validateNumbersSize(winningNumbers);
+        return winningNumbers;
     }
 
     public static int readBonusNumber() {

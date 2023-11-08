@@ -40,20 +40,14 @@ public class Lotto {
     }
 
     protected void validate(List<Integer> numbers) {
-        validateLottoNumbersSize(numbers);
+        ValidationUtils.validateNumbersSize(numbers);
         validateNoDuplicatedLottoNumbers(numbers);
-    }
-
-    private void validateLottoNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE_CRITERION) {
-            throw new IllegalArgumentException();
-        }
     }
 
     private void validateNoDuplicatedLottoNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != LOTTO_SIZE_CRITERION) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("로또에 중복 되는 숫자가 있습니다.");
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.domain.LottoTickets;
+import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

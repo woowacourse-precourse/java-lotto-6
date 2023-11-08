@@ -1,9 +1,11 @@
 package lotto.controller;
 
 
+import static lotto.domain.GameResult.createGameResult;
 import static lotto.domain.LottoWinningCombination.createLottoWinningCombination;
 
 import java.util.List;
+import lotto.domain.GameResult;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoWinningCombination;
@@ -17,7 +19,7 @@ public class GameController {
     }
 
     public static void game() {
-        int lottoPurchasePrice = InputHandler.setLottoPurchasePrice();
+        long lottoPurchasePrice = InputHandler.setLottoPurchasePrice();
         List<Lotto> lottos = LottoService.issueLottoTickets(lottoPurchasePrice);
         OutputHandler.outputLottosInfo(lottos);
 
@@ -28,10 +30,10 @@ public class GameController {
         OutputView.printMessageBlankLine();
 
         LottoWinningCombination lottoWinningCombination = createLottoWinningCombination(winnerNums, bonusNum);
-        List<LottoResult> lottoResults = LottoService.detemineLottoResults(lottos, lottoWinningCombination);
+        List<LottoResult> lottoResults = LottoService.determineLottoResults(lottos, lottoWinningCombination);
 
-
-
+        GameResult gameResult = createGameResult(lottoResults,lottoPurchasePrice);
+        OutputHandler.outputGameResult(gameResult);
 
     }
 

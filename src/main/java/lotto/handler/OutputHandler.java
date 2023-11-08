@@ -4,7 +4,12 @@ import static lotto.message.SystemMessage.*;
 import static lotto.util.OutputUtil.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+import lotto.domain.GameResult;
 import lotto.domain.Lotto;
+import lotto.globar.LottoResultInfo;
 import lotto.view.OutputView;
 
 public class OutputHandler {
@@ -16,5 +21,22 @@ public class OutputHandler {
 
     private static void printLottosAmount(List<Lotto> lottos) {
         OutputView.print(formatSystemMessageWithNumber(OUTPUT_PURCHASE_LOTTO_AMOUNT, lottos.size()));
+    }
+
+    public static void outputGameResult(GameResult gameResult) {
+        Map<LottoResultInfo, Integer> resultMap = gameResult.getResultMap();
+        Map<LottoResultInfo, Integer> sortedResultMap = new TreeMap<>(resultMap);
+
+        OutputView.printMessage(OUTPUT_WINNING_STATISTICS);
+
+        for (Entry<LottoResultInfo, Integer> entry : sortedResultMap.entrySet()) {
+            LottoResultInfo lottoResultInfo = entry.getKey();
+            int count = entry.getValue();
+
+            OutputView.print(String.format(OUTPUT_LOTTO_RESULT.getMessage(),
+                    lottoResultInfo.getMatchingInfo()
+                    , lottoResultInfo.getPrize()
+                    , count));
+        }
     }
 }

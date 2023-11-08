@@ -12,6 +12,6 @@ public class WinningNumberController extends Controller{
         OutputUI.printRequestWinningNumber();
         winningNumber = InputUI.inputWinningNumber();   // inherent validating
         OutputUI.printRequestBonusNumber();
-        //bonusNumber = InputUI.inputBonusNumber(winningNumber);   // inherent validating
+        bonusNumber = InputUI.inputBonusNumber(winningNumber);   // inherent validating
     }
 }

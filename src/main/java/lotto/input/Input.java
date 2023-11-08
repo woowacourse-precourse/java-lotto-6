@@ -1,7 +1,6 @@
 package lotto.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.NoSuchElementException;
 
 public class Input {
 
@@ -15,10 +14,6 @@ public class Input {
     }
 
     public static String getLine() {
-        try {
-            return Console.readLine();
-        } catch (NoSuchElementException e) {
-            throw new IllegalArgumentException("[ERROR] " + e.getMessage());
-        }
+        return Console.readLine();
     }
 }

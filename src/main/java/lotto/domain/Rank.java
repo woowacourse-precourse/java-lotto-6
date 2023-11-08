@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 
 public enum Rank {
     FIFTH(3, 5_000),
@@ -32,6 +35,15 @@ public enum Rank {
                 .orElse(NONE);
     }
 
+    public static Map<Rank, Integer> getRankCountMap() {
+        Map<Rank, Integer> result = new EnumMap<>(Rank.class);
+        List<Rank> ranks = Arrays.stream(values())
+                .filter(Rank::isNotNone)
+                .toList();
+        ranks.forEach(rank -> result.put(rank, result.getOrDefault(rank, 0)));
+        return result;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -43,6 +55,9 @@ public enum Rank {
     @Override
     public String toString() {
         String formattedPrice = String.format("%,d", price);
-        return String.format("%d개 일치 (" + formattedPrice + ")원", matchCount);
+        if (this == Rank.SECOND) {
+            return String.format("%d개 일치, 보너스 볼 일치 (" + formattedPrice + "원)", matchCount);
+        }
+        return String.format("%d개 일치 (" + formattedPrice + "원)", matchCount);
     }
 }

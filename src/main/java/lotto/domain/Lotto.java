@@ -41,8 +41,7 @@ public class Lotto {
     }
 
     private boolean isNumbersInRange(List<Integer> numbers) {
-        return numbers.stream()
-                .allMatch(number -> number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
+        return numbers.stream().allMatch(number -> number >= MIN_LOTTO_NUMBER && number <= MAX_LOTTO_NUMBER);
     }
 
     public List<Integer> getNumbers() {

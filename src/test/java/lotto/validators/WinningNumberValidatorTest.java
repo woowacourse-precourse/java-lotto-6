@@ -15,13 +15,11 @@ public class WinningNumberValidatorTest {
     @DisplayName("로또 당첨 번호 개수가 6개가 아닌 경우 예외가 발생한다.")
     void validWinningNumbersCount() {
         // given
-        String[] winningNumbers = new String[]{"1","2","3"};
+        String[] winningNumbers = new String[]{"1", "2", "3"};
 
         // when & then
-        assertThatThrownBy(
-                () -> WinningNumberValidator.validWinningNumberCount(winningNumbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_WINNING_NUMBER_COUNT_IS_INCORRECT);
+        assertThatThrownBy(() -> WinningNumberValidator.validWinningNumberCount(winningNumbers)).isInstanceOf(
+                IllegalArgumentException.class).hasMessage(INPUT_WINNING_NUMBER_COUNT_IS_INCORRECT);
     }
 
     @Test
@@ -31,10 +29,8 @@ public class WinningNumberValidatorTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 50);
 
         // when & then
-        assertThatThrownBy(
-                () -> WinningNumberValidator.validWinningNumberValueInRange(winningNumbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_WINNING_NUMBER_VALUE_OUT_OF_RANGE);
+        assertThatThrownBy(() -> WinningNumberValidator.validWinningNumberValueInRange(winningNumbers)).isInstanceOf(
+                IllegalArgumentException.class).hasMessage(INPUT_WINNING_NUMBER_VALUE_OUT_OF_RANGE);
     }
 
     @Test
@@ -44,9 +40,7 @@ public class WinningNumberValidatorTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 6, 6);
 
         // when & then
-        assertThatThrownBy(
-                () -> WinningNumberValidator.validWinningNumberDuplicated(winningNumbers))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_WINNING_NUMBER_DUPLICATED);
+        assertThatThrownBy(() -> WinningNumberValidator.validWinningNumberDuplicated(winningNumbers)).isInstanceOf(
+                IllegalArgumentException.class).hasMessage(INPUT_WINNING_NUMBER_DUPLICATED);
     }
 }

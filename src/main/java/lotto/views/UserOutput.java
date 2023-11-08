@@ -45,9 +45,7 @@ public class UserOutput {
     }
 
     private static String getLottoNumberInfo(List<Integer> numbers) {
-        List<String> lottoNumbers = numbers.stream()
-                .map(Object::toString)
-                .toList();
+        List<String> lottoNumbers = numbers.stream().map(Object::toString).toList();
 
         return String.join(", ", lottoNumbers);
     }

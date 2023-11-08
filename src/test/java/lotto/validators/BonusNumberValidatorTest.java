@@ -17,9 +17,8 @@ public class BonusNumberValidatorTest {
         Integer bonusNumber = 50;
 
         // when & then
-        assertThatThrownBy(() -> BonusNumberValidator.validBonusNumberInRange(bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_BONUS_NUMBER_OUT_OF_RANGE);
+        assertThatThrownBy(() -> BonusNumberValidator.validBonusNumberInRange(bonusNumber)).isInstanceOf(
+                IllegalArgumentException.class).hasMessage(INPUT_BONUS_NUMBER_OUT_OF_RANGE);
     }
 
     @Test
@@ -31,8 +30,7 @@ public class BonusNumberValidatorTest {
 
         // when & then
         assertThatThrownBy(
-                () -> BonusNumberValidator.validBonusNumberInWinningNumbers(winningNumbers, bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_BONUS_NUMBER_IN_WINNING_NUMBERS);
+                () -> BonusNumberValidator.validBonusNumberInWinningNumbers(winningNumbers, bonusNumber)).isInstanceOf(
+                IllegalArgumentException.class).hasMessage(INPUT_BONUS_NUMBER_IN_WINNING_NUMBERS);
     }
 }

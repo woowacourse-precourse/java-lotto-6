@@ -19,8 +19,7 @@ public class StringUtilsTest {
         String empty = "";
 
         // when & then
-        assertThatThrownBy(() -> StringUtils.validEmptyString(empty))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> StringUtils.validEmptyString(empty)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_EMPTY);
     }
 
@@ -31,9 +30,8 @@ public class StringUtilsTest {
         String inputWithWhiteSpace = "1,2, 3";
 
         // when & then
-        assertThatThrownBy(() -> StringUtils.validContainsWhiteSpace(inputWithWhiteSpace))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INPUT_CONTAINS_WHITE_SPACE);
+        assertThatThrownBy(() -> StringUtils.validContainsWhiteSpace(inputWithWhiteSpace)).isInstanceOf(
+                IllegalArgumentException.class).hasMessage(INPUT_CONTAINS_WHITE_SPACE);
     }
 
     @Test
@@ -56,8 +54,7 @@ public class StringUtilsTest {
         String input = "3.3";
 
         // when & then
-        assertThatThrownBy(() -> StringUtils.getIntegerValue(input))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> StringUtils.getIntegerValue(input)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_IS_NOT_INTEGER);
     }
 
@@ -81,8 +78,7 @@ public class StringUtilsTest {
         String[] inputs = new String[]{"1.2", "2", "3"};
 
         // when & then
-        assertThatThrownBy(() -> StringUtils.getIntegerValueList(inputs))
-                .isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> StringUtils.getIntegerValueList(inputs)).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_IS_NOT_INTEGER);
     }
 }

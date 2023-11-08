@@ -36,8 +36,7 @@ public class Application {
         askBonusNumber();
         Integer bonusNumber = readBonusNumber(winningNumbers);
 
-        Map<LottoRank, Integer> winningResult = lottoAgency.calculateLottoRank(lottos, winningNumbers,
-                bonusNumber);
+        Map<LottoRank, Integer> winningResult = lottoAgency.calculateLottoRank(lottos, winningNumbers, bonusNumber);
 
         Long totalWinningAmount = lottoAgency.calculateTotalWinningAmount(winningResult);
 

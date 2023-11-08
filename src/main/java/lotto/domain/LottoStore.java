@@ -22,6 +22,7 @@ public class LottoStore {
 
         return lottos;
     }
+
     private int getNumberOfLottoPurchases(Integer purchasePrice) {
         return purchasePrice / LOTTO_PRICE;
     }

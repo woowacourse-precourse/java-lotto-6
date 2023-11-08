@@ -48,13 +48,13 @@ $ cd java-lotto-vina
 
 <br>
 
-## :computer: 화면 구성 (추가예정)
+## :computer: 화면 구성
 
 
 
-| 게임시작                             | 게임진행                             | 게임종료                             |
-|----------------------------------|----------------------------------|----------------------------------|
-| <!--![game1](./img/game1.png)--> | <!--![game2](./img/game2.png)--> | <!--![game3](./img/game3.png)--> |
+| 로또구매                      | 당첨번호 및 보너스번호 입력           | 당첨통계                      |
+|---------------------------|---------------------------|---------------------------|
+| ![game1](./img/game1.png) | ![game2](./img/game2.png) | ![game3](./img/game3.png) |
 
 
 <br>
@@ -89,10 +89,10 @@ $ cd java-lotto-vina
 
 <br>
 
-## :mag: 아키텍쳐 (추가예정)
+## :mag: 아키텍쳐
 ### 디렉토리 구조
-<!--![architecture1](./img/architecture1.png)-->
+![architecture1](./img/architecture1.png)
 
 
 ### 작업 흐름
-<!--![architecture2](./img/architecture2.png)-->
+![architecture2](./img/architecture2.png)

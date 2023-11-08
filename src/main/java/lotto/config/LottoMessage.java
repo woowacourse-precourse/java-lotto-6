@@ -4,7 +4,7 @@ public enum LottoMessage {
     PURCHASE_AMOUNT_REQUEST_MESSAGE("구입금액을 입력해 주세요."),
     PURCHASED_AMOUNT_RESULT_MESSAGE("%d개를 구매했습니다.\n"),
     WINNING_NUMBER_REQUEST_MESSAGE("당첨 번호를 입력해 주세요."),
-    WINNING_BONUS_NUMBER_REQUEST_MESSAGE("보너스 번호를 입력해 주세요."),
+    BONUS_NUMBER_REQUEST_MESSAGE("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS("당첨 통계\n"
             + "---\n"
             + "3개 일치 (5,000원) - %d개\n"

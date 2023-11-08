@@ -4,6 +4,7 @@ import static lotto.config.PurchaseErrorMessage.PURCHASE_AMOUNT_MAX_ERROR_MESSAG
 import static lotto.config.PurchaseErrorMessage.PURCHASE_BLANK_ERROR_MESSAGE;
 import static lotto.config.PurchaseErrorMessage.PURCHASE_DIVISIBLE_ERROR_MESSAGE;
 import static lotto.config.PurchaseErrorMessage.PURCHASE_NUMERIC_ERROR_MESSAGE;
+import static lotto.config.PurchaseErrorMessage.PURCHASE_PARSE_INT_RANGE_ERROR_MESSAGE;
 import static lotto.config.PurchaseErrorMessage.PURCHASE_STARTS_ZERO_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -127,6 +128,16 @@ class PurchaseAmountValidatorTest {
             String input = "101000";
             // when, then
             assertExceptionTest(validator, input, PURCHASE_AMOUNT_MAX_ERROR_MESSAGE.getMessage());
+        }
+
+        @DisplayName("int 범위 내에 담을 수 없는 값을 입력할 시 예외를 발생시킨다.")
+        @Test
+        void fail_IntMaxRange() {
+            // given
+            PurchaseAmountValidator validator = new PurchaseAmountValidator();
+            String input = "1011241525178291242121000";
+            // when, then
+            assertExceptionTest(validator, input, PURCHASE_PARSE_INT_RANGE_ERROR_MESSAGE.getMessage());
         }
     }
 }

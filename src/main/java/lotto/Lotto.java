@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        DuplicationCheck.validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +17,8 @@ public class Lotto {
         }
     }
 
+    public void printLotto() {
+        System.out.println(numbers.toString());
+    }
     // TODO: 추가 기능 구현
 }

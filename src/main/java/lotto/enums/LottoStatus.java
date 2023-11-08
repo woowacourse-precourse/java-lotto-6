@@ -18,7 +18,7 @@ public enum LottoStatus {
     }
 
     public static LottoStatus getLottoStatus(int correctCount, boolean hasBonusNumber) {
-        if (correctCount == LottoStatus.SECOND.correctCount && hasBonusNumber) {
+        if (isSecond(correctCount, hasBonusNumber)) {
             return LottoStatus.SECOND;
         }
         for (LottoStatus lottoStatus : LottoStatus.values()) {
@@ -27,6 +27,10 @@ public enum LottoStatus {
             }
         }
         return LottoStatus.SIXTH;
+    }
+
+    private static boolean isSecond(int correctCount, boolean hasBonusNumber) {
+        return correctCount == LottoStatus.SECOND.correctCount && hasBonusNumber;
     }
 
     public Long getPrize() {

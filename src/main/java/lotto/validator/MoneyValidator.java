@@ -12,7 +12,7 @@ public class MoneyValidator {
         validateRange();
     }
 
-    public void validateRange() {
+    private void validateRange() {
         int money = Integer.parseInt(moneyString);
         if (isWrongRange(money) || isWrongMoneyUnit(money)) {
             throw new IllegalArgumentException("투입 금액은 1000원이상, 1000단위의 숫자를 입력하세요.");

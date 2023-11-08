@@ -29,6 +29,24 @@ public class InputView {
         }
     }
 
+    public static List<Integer> inputWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println("\n당첨 번호를 입력해주세요.");
+                String input = Console.readLine();
+                validateWinningNumbersInput(input);
+                return Arrays.stream(input.split(",")).map(Integer::valueOf).collect(Collectors.toList());
+            } catch (IllegalArgumentException e) {
+                System.out.println(INPUT_ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private static void validateWinningNumbersInput(String input) {
+        if (!isSixNumberAndComma(input) || !isInRangeAndNoDuplicate(input)) {
+            throw new IllegalArgumentException();
+        }
+    }
     private static boolean isDivisible(String input, int divisor) {
         int dividend = Integer.parseInt(input);
         return dividend % divisor == 0;
@@ -36,5 +54,18 @@ public class InputView {
 
     private static boolean isSixNumberAndComma(String input) {
         return input.matches("^(\\d+,){5}\\d+$");
+    }
+
+    private static boolean isInRangeAndNoDuplicate(String input) {
+        List<Integer> temp = new ArrayList<>();
+        String[] arr = input.split(",");
+        for (String s : arr) {
+            int i = Integer.parseInt(s);
+            if (temp.contains(i) || i < 1 || i > 45) {
+                return false;
+            }
+            temp.add(i);
+        }
+        return true;
     }
 }

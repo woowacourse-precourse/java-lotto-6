@@ -18,6 +18,7 @@ public class ValidationNumbers {
         validateNumber(numbers);
         validateLength(numbers);
         validateNumberRange(numbers);
+        validateDuplicateNumber(numbers);
     }
 
     private static void validateNumber(String numbers) {
@@ -44,6 +45,16 @@ public class ValidationNumbers {
                 .count();
         if (filteredNumberListCount != LottoPrinciples.LIMIT_NUMBER.getNumber()) {
             throw new IllegalArgumentException(ValidationNumbersMessages.INVALID_NUMBER.getMessage());
+        }
+    }
+
+    private static void validateDuplicateNumber(String numbers) {
+        List<String> numbersList = List.of(numbers.split(COMMA, REMOVE_LAST_SPACE_NUMBER));
+        Integer filteredNumberListCount = (int) numbersList.stream().map(Integer::parseInt)
+                .distinct()
+                .count();
+        if (filteredNumberListCount != LottoPrinciples.LIMIT_NUMBER.getNumber()) {
+            throw new IllegalArgumentException(ValidationNumbersMessages.DUPLICATE_NUMBER.getMessage());
         }
     }
 }

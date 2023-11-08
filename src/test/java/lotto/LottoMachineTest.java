@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 class LottoMachineTest {
 
-    @DisplayName("입력값을 정수로 변환할 수 없는 경우 테스트")
+    @DisplayName("입력 값을 정수로 변환할 수 없는 경우 테스트")
     @Test
     void insertMoney_notParsableNumber() {
         assertThatThrownBy(() -> new LottoMachine().insertMoney("abc"))

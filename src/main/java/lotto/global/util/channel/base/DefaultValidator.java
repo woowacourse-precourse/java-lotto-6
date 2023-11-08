@@ -11,4 +11,5 @@ public abstract class DefaultValidator {
             throw new GlobalException(GlobalError.BLANK_INPUT_ERROR);
         }
     }
+
 }

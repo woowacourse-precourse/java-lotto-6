@@ -15,6 +15,11 @@ import java.util.ArrayList;
 public abstract class LottoMachine {
     private static final int LOWER_LIMIT_NUMBER = 1;
     private static final int UPPER_LIMIT_NUMBER = 45;
+
+    private static final int MATCH_THREE = 3;
+    private static final int MATCH_FOUR = 4;
+    private static final int MATCH_FIVE = 5;
+
     private static final int NUMBER_QUANTITY = 6;
 
     /** 자동 발행 로또를 반환합니다. */
@@ -64,16 +69,14 @@ public abstract class LottoMachine {
     }
 
     private static MatchResultType decideMatchType(int matchCount) {
-        switch (matchCount) {
-            case 3 -> {
-                return MatchResultType.MATCH_THREE;
-            }
-            case 4 -> {
-                return MatchResultType.MATCH_FOUR;
-            }
-            case 5 -> {
-                return MatchResultType.MATCH_FIVE;
-            }
+        if (matchCount == MATCH_THREE) {
+            return MatchResultType.MATCH_THREE;
+        }
+        if (matchCount == MATCH_FOUR) {
+            return MatchResultType.MATCH_FOUR;
+        }
+        if (matchCount == MATCH_FIVE) {
+            return MatchResultType.MATCH_FIVE;
         }
         return MatchResultType.BOOM;
     }

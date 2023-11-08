@@ -19,6 +19,7 @@ public class LottoManager {
         winNumbers = new ArrayList<>();
         setWinNumbers();
         setBonusNumber();
+        LottoResultChecker resultChecker = new LottoResultChecker(user, winNumbers, bonusNumber);
     }
     private void getUserLotto() {
         MessageDisplay.enterBuyingPrice();

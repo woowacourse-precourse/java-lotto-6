@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -12,17 +13,26 @@ public class Person {
 	public void buyLotto(LottoMachine lottoMachine) {
 		System.out.println("구입금액을 입력해주세요");
 		pay = Integer.parseInt(Console.readLine());
+		if(!validate(pay)){
+			throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위의 숫자여야 합니다.");
+		}
 		for(int i=0; i<pay/1000; i++) {
 			List<Integer> numbers = lottoMachine.generateLottoTicket();
-			lottoTicket.add(numbers);
+			Lotto lotto = new Lotto(numbers);
+			lottoTicket.add(lotto.getNumbers());
 		}
+	}
+	
+	private boolean validate(int pay) {
+		return (pay > 0) && (pay % 1000 == 0);
 	}
 	
 	public void displayTicket() {
 	    System.out.println(lottoTicket.size() + "개를 구매했습니다.");
 	    for (List<Integer> ticket : lottoTicket) {
-	    	ticket.sort(null);
-	        System.out.println(ticket);
+	        List<Integer> sortedTicket = new ArrayList<>(ticket);
+	        Collections.sort(sortedTicket); 
+	        System.out.println(sortedTicket);
 	    }
 	}
 	
@@ -73,7 +83,7 @@ public class Person {
 		System.out.println("총 수익률은 " + calculateProfit(count) + "%입니다.");
 	}
 	
-	public double calculateProfit(int[] count) {
+	private double calculateProfit(int[] count) {
 		int totalWinnings = count[0] * 5000 + count[1] * 50000 + count[2] * 1500000 + count[3] * 30000000 + count[4] * 2000000000;
 		double profit = ((double)totalWinnings / pay) * 100;
 		return profit;

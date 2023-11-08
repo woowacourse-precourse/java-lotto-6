@@ -29,7 +29,7 @@ public enum Prize {
         this.money = money;
     }
 
-    public static Prize matchPrize(int resultOfMatchNumbers, boolean resultOfMatchBonusNumber) {
+    public static Prize matchPrize(final int resultOfMatchNumbers, final boolean resultOfMatchBonusNumber) {
         if (resultOfMatchBonusNumber && resultOfMatchNumbers == SECOND.countOfGuess) {
             return SECOND;
         }
@@ -46,7 +46,7 @@ public enum Prize {
                 .toList();
     }
 
-    public String makeCountOfPrizeLottos(int size) {
+    public String makeCountOfPrizeLottos(final int size) {
         return message + COUNT_OF_PRIZE_LOTTOS_DELIMITER + size + COUNT_OF_PRIZE_LOTTOS_UNIT;
     }
 

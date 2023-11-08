@@ -18,11 +18,11 @@ public enum LottoStoreMessage {
         return message;
     }
 
-    public static String makeMessageForIndivisible(int minPurchaseAmount) {
+    public static String makeMessageForIndivisible(final int minPurchaseAmount) {
         return minPurchaseAmount + EXCEPTION_INDIVISIBLE.get();
     }
 
-    public static String makeMessageForOutOfRange(int minPurchaseAmount, int maxPurchaseAmount) {
+    public static String makeMessageForOutOfRange(final int minPurchaseAmount, int maxPurchaseAmount) {
         return EXCEPTION_PRE_OUT_OF_RANGE.get()
                 + minPurchaseAmount
                 + EXCEPTION_MIDDLE_OUT_OF_RANGE.get()

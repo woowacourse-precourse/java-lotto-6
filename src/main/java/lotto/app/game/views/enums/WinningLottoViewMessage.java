@@ -38,7 +38,7 @@ public enum WinningLottoViewMessage {
         return message;
     }
 
-    public static String calculationProfit(double totalPrizeMoney, int purchaseAmount) {
+    public static String calculationProfit(final double totalPrizeMoney, final int purchaseAmount) {
         return PRE_CALCULATION_PROFIT.get()
                 + roundProfitFromTwoDecimalPlaces(totalPrizeMoney, purchaseAmount)
                 + POST_CALCULATION_PROFIT.get();

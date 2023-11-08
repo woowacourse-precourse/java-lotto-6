@@ -14,7 +14,7 @@ public enum LottoStoreViewMessage {
         this.message = message;
     }
 
-    public static String showNumberOfPurchaseLottos(int size) {
+    public static String showNumberOfPurchaseLottos(final int size) {
         return GlobalMessage.NEW_LINE.get()
                 + size
                 + ANNOUNCE_PURCHASE_LOTTOS_COUNT.get();

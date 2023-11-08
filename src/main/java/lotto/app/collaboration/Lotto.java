@@ -45,7 +45,7 @@ public class Lotto {
         }
     }
 
-    public static Lotto make(Randoms randoms) {
+    public static Lotto make(final Randoms randoms) {
         return new Lotto(randoms.getSixNumbers());
     }
 

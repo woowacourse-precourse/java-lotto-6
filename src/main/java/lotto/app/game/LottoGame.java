@@ -14,7 +14,9 @@ public class LottoGame implements InteractionRepeatable {
     private final LottoStore lottoStore;
     private final Randoms randoms;
 
-    public LottoGame(final LottoGameView lottoGameView, final LottoStore lottoStore, final Randoms randoms) {
+    public LottoGame(final LottoGameView lottoGameView,
+                     final LottoStore lottoStore,
+                     final Randoms randoms) {
         this.lottoGameView = lottoGameView;
         this.lottoStore = lottoStore;
         this.randoms = randoms;
@@ -26,10 +28,8 @@ public class LottoGame implements InteractionRepeatable {
     }
 
     private void payOfPurchaseAmount() {
-        runInteraction(() -> {
-            int purchaseAmount = lottoGameView.askPurchaseAmount();
-            lottoStore.purchase(purchaseAmount);
-        });
+        runInteraction(() ->
+                lottoStore.purchase(lottoGameView.askPurchaseAmount()));
     }
 
     private List<PlayerLotto> receiveIssuedLottos() {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static lotto.util.TypeConvertor.stringToInteger;
 import static lotto.util.TypeConvertor.stringToIntegerList;
+import static lotto.util.Validator.checkDuplcate;
 import static lotto.util.Validator.validateLottoNumbers;
 
 public class LottoController {
@@ -19,7 +20,8 @@ public class LottoController {
         Prompt.forShowLottoList(boughtLotto);
 
         List<Integer> lottoNumbers = getLottoNumbersFromUser();
-        getBonusNumbersFromUser();
+        Integer bonusNumber = getBonusNumbersFromUser(lottoNumbers);
+
 
     }
 
@@ -30,11 +32,10 @@ public class LottoController {
             String moneyString = Prompt.forInputMoney();
             try {
                 money = stringToInteger(moneyString);
-                return money;
+                isDoneToValidateInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_TAG + e.getMessage());
             }
-            isDoneToValidateInput = true;
         }
         return money;
     }
@@ -47,27 +48,26 @@ public class LottoController {
             String NumberString = Prompt.forInputLottoNumbers();
             try {
                 lottoNumberList = stringToIntegerList(NumberString);
-
+                isDoneToValidateInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_TAG + e.getMessage());
             }
-            isDoneToValidateInput = true;
+
         }
         return lottoNumberList;
     }
 
-    private Integer getBonusNumbersFromUser() {
+    private Integer getBonusNumbersFromUser(List<Integer> lottoNumbers) {
         boolean isDoneToValidateInput = false;
         Integer bonusNumber = null;
         while (!isDoneToValidateInput) {
-            String bonusNumberString = Prompt.forInputBonusNumber();
             try {
-                bonusNumber = stringToInteger(bonusNumberString);
-                return bonusNumber;
+            bonusNumber = Prompt.forInputBonusNumber();
+                checkDuplcate(lottoNumbers, bonusNumber);
+                isDoneToValidateInput = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR_TAG + e.getMessage());
             }
-            isDoneToValidateInput = true;
         }
         return bonusNumber;
     }

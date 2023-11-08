@@ -5,6 +5,7 @@ import lotto.entity.Lotto;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.util.Validator.validateBonusNumber;
 
 
 public class Prompt {
@@ -28,10 +29,10 @@ public class Prompt {
         boughtLotto.stream().forEach(a -> System.out.println(a.getNumbers()));
     }
 
-    public static String forInputBonusNumber() {
+    public static Integer forInputBonusNumber() {
         System.out.println("\n당첨 번호를 입력해주세요");
-        String bonusNumber = readLine();
-
+        String string = readLine();
+        Integer bonusNumber = validateBonusNumber(string);
         return bonusNumber;
     }
 }

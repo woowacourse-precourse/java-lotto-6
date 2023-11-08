@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.util.Validator.validateIntegerMoney;
-import static lotto.util.Validator.validateLottoNumbers;
+import static lotto.util.Validator.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {
@@ -62,5 +61,22 @@ public class ValidatorTest {
         assertThatThrownBy(() -> validateLottoNumbers(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 번호는 6개 이어야 합니다");
+    }
+
+
+    @Test
+    void shouldThrowIllegalException_whenBonusNumberisBlank() {
+        String bonusNumber = " ";
+        assertThatThrownBy(() -> validateBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("보너스 번호는 공백이 될 수 없습니다");
+    }
+    @Test
+    void shouldThrowIllegalException_whenLottoNumberHasBonusNumber() {
+        Integer bonusNumber = 10;
+        List<Integer> lottoNumber = List.of(1, 2, 3, 4, 5, 10);
+        assertThatThrownBy(() -> checkDuplcate(lottoNumber, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("보너스 번호와 입력한 로또 번호가 중복되면 안됩니다");
     }
 }

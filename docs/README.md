@@ -4,8 +4,8 @@
   - [v] 0보다 같거나 작으면 IllegalArgumentException 예외를 발생시킨다.
   - [v] 숫자가 아닌 값을 입력해도 IllegalArgumentException 예외를 발생시킨다.
 </br></br>
-- [] 발행한 로또 수량 및 번호를 출력한다.
-  - [] 발행한 로또 번호는 오름차순으로 정렬하여 보여준다.
+- [v] 발행한 로또 수량 및 번호를 출력한다.
+  - [v] 발행한 로또 번호는 오름차순으로 정렬하여 보여준다.
 
 - [v] 당첨 번호 6개를 입력받는다. 번호는 쉼표(,)를 기준으로 구분한다.
   - [v] 입력한 번호 중 중복값이 있으면 IllegalArgumentException 예외를 발생시킨다.
@@ -14,10 +14,11 @@
   - [v] 쉼표 앞뒤로 공백은 제거한다.
   - [v] 입력한 숫자가 6개보다 작거나 크면 IllegalArgumentException 예외를 발생시킨다.
     </br></br>
-- [] 보너스 번호 1개를 입력받는다.
-  - [] 입력한 당첨 번호 중에 동일한 값이 있으면 IllegalArgumentException 예외를 발생시킨다.
+- [v] 보너스 번호 1개를 입력받는다.
+  - [v] 입력한 당첨 번호 중에 동일한 값이 있으면 IllegalArgumentException 예외를 발생시킨다.
   - [v] 로또 번호의 숫자 범위(1~45)를 벗어나면 IllegalArgumentException 예외를 발생시킨다.
-  - [] 입력한 당첨 번호 중 숫자가 아닌 것이 있으면 IllegalArgumentException 예외를 발생시킨다.
+  - [v] 입력한 보너스 번호 중 숫자가 아닌 것이 있으면 IllegalArgumentException 예외를 발생시킨다.
+  - [v] 입력한 보너스 번호가 공백이면 IllegalArgumentException 예외를 발생시킨다.
 </br></br>
 - [] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여, 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
   - [] 당첨 내역 개수를 출력한다.

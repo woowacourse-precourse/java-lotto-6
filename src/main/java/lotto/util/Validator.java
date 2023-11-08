@@ -33,12 +33,34 @@ public class Validator {
 
     public static Boolean hasDuplicatedNumber(List<Integer> lottoNumberList) {
 
-
         Set<Integer> numberSet = lottoNumberList.stream().collect(Collectors.toSet());
         if(numberSet.size() != lottoNumberList.size())
             return true;
 
         return false;
+    }
+
+    public static Integer validateBonusNumber(String stringBonusNumber) {
+        if (stringBonusNumber.isBlank())
+            throw new IllegalArgumentException("보너스 번호는 공백이 될 수 없습니다");
+
+        if (stringBonusNumber.matches(".*\\D+.*"))
+            throw new IllegalArgumentException("보너스 번호에 정수가 아닌 값이 포함되어 있습니다");
+
+        Integer bonusNumber = Integer.parseInt(stringBonusNumber);
+        if(bonusNumber>45)
+            throw new IllegalArgumentException("보너스 번호는 45이하 이어야 합니다");
+        if(bonusNumber<1)
+            throw new IllegalArgumentException("보너스 번호는 1이상 이어야 합니다");
+
+        return bonusNumber;
+    }
+
+    public static void checkDuplcate(List<Integer> lottoNumbers, Integer bonusNumber) {
+        for (Integer number : lottoNumbers) {
+            if (number.intValue() == bonusNumber.intValue())
+                throw new IllegalArgumentException("보너스 번호와 입력한 로또 번호가 중복되면 안됩니다");
+        }
     }
 }
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.params.provider.Arguments;
 
 public class BonusNumberInputTestProvider {
 
-    public static Stream<Arguments> provideValuesForNormalInput() {
+    public static Stream<Arguments> provideValuesForNormalInputTest() {
         return Stream.of(
                 Arguments.of("2", 2),
                 Arguments.of("45", 45),
@@ -15,7 +15,7 @@ public class BonusNumberInputTestProvider {
         );
     }
 
-    public static Stream<Arguments> provideValuesForNotNumericException() {
+    public static Stream<Arguments> provideValuesForNotNumericExceptionTest() {
         return Stream.of(
                 Arguments.of("1$0"),
                 Arguments.of("@#30"),

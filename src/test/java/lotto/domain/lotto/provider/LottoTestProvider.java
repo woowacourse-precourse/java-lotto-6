@@ -45,4 +45,12 @@ public class LottoTestProvider {
                 Arguments.of(List.of(5, 2, 23, 45, 6, 4), 40)
         );
     }
+
+    public static Stream<Arguments> provideValuesForNumbersMatchedCountTest() {
+        return Stream.of(
+                Arguments.of(List.of(12, 13, 20, 23, 24, 4), List.of(12, 1, 20, 2, 24, 3), 3),
+                Arguments.of(List.of(1, 10, 15, 12, 2, 4), List.of(1, 10, 15, 12, 2, 4), 6),
+                Arguments.of(List.of(11, 2, 23, 45, 6, 10), List.of(4, 1, 22, 44, 5, 3), 0)
+        );
+    }
 }

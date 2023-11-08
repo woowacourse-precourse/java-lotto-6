@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.Arguments;
 
 public class WinningNumbersInputTestProvider {
 
-    public static Stream<Arguments> provideValuesForNormalInput() {
+    public static Stream<Arguments> provideValuesForNormalInputTest() {
         return Stream.of(
                 Arguments.of("1,2,3,4,5,6", List.of(1, 2, 3, 4, 5, 6)),
                 Arguments.of("45,2,3,20,5,1", List.of(45, 2, 3, 20, 5, 1)),
@@ -14,7 +14,7 @@ public class WinningNumbersInputTestProvider {
         );
     }
 
-    public static Stream<Arguments> provideValuesForNotNumericException() {
+    public static Stream<Arguments> provideValuesForNotNumericExceptionTest() {
         return Stream.of(
                 Arguments.of("1,2,-,4,5,6"),
                 Arguments.of("1,2,3,4,we,6"),

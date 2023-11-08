@@ -46,7 +46,7 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideValuesForNumbersContainsTargetNumberTrueTest")
-    @DisplayName("로또 번호는 타겟값을 가지고 있으면 참을 반환한다.")
+    @DisplayName("로또 번호는 목표값을 가지고 있으면 참을 반환한다.")
     void lottoNumbersContainsTrueTest(final List<Integer> numbers, final int targetNumber) {
         final Lotto lotto = new Lotto(numbers);
         assertThat(lotto.isContains(targetNumber)).isTrue();
@@ -54,9 +54,20 @@ class LottoTest {
 
     @ParameterizedTest
     @MethodSource(PROVIDER_PATH + "provideValuesForNumbersContainsTargetNumberFalseTest")
-    @DisplayName("로또 번호는 타겟값을 가지고 있지 않으면 거짓을 반환한다.")
+    @DisplayName("로또 번호는 목표값을 가지고 있지 않으면 거짓을 반환한다.")
     void lottoNumbersContainsFalseTest(final List<Integer> numbers, final int targetNumber) {
         final Lotto lotto = new Lotto(numbers);
         assertThat(lotto.isContains(targetNumber)).isFalse();
+    }
+
+    @ParameterizedTest
+    @MethodSource(PROVIDER_PATH + "provideValuesForNumbersMatchedCountTest")
+    @DisplayName("당첨 번호와 목표값의 일치 개수는 같아야 한다.")
+    void lottoNumbersMatchedCountTest(final List<Integer> numbers, final List<Integer> winningNumbers, final int matchCount) {
+        final Lotto lotto = new Lotto(numbers);
+        final Lotto winningLotto = new Lotto(winningNumbers);
+        final List<Integer> winningLottoNumbers = winningLotto.numbers();
+
+        assertThat(lotto.matchedCount(winningLottoNumbers)).isEqualTo(matchCount);
     }
 }

@@ -32,4 +32,9 @@ public class Output {
             System.out.println(outputMessage[i] + lottoSameSize[i] + "개");
         }
     }
+
+    //
+    public void printEarningRate(double earningsRate) {
+        System.out.println("총 수익률은 " + String.format("%.1f", earningsRate) + "%입니다.");
+    }
 }

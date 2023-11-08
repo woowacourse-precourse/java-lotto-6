@@ -6,8 +6,16 @@ import java.util.ArrayList;
 
 public class LottoResultCalculator {
     int [] lottoSameSize;
+    int [] lottoPrizeMoney;
     public LottoResultCalculator() {
         lottoSameSize = new int[LottoConstant.LOTTO_SIZE.getConstant() + 2];
+        lottoPrizeMoney = new int[LottoConstant.LOTTO_SIZE.getConstant() + 2];
+        lottoPrizeMoney[3] = LottoConstant.STATICS_FIFTH_PRIZE.getConstant();
+        lottoPrizeMoney[4] = LottoConstant.STATICS_SECOND_PRIZE.getConstant();
+        lottoPrizeMoney[5] = LottoConstant.STATICS_THIRD_PRIZE.getConstant();
+        lottoPrizeMoney[6] = LottoConstant.STATICS_FOURTH_PRIZE.getConstant();
+        lottoPrizeMoney[7] = LottoConstant.STATICS_FIFTH_PRIZE.getConstant();
+
     }
 
     public int [] getWinningLottoSameSize(ArrayList<Lotto> lottos, ArrayList<Integer> prizeNum, int bonusNum) {
@@ -18,9 +26,13 @@ public class LottoResultCalculator {
         return lottoSameSize;
     }
 
-    public double getEarningsRate() {
-        for(int i=0;i<lottoSameSize.length;i++) {
+    public double getEarningsRate(int size) {
+        long prizeSum = 0;
 
+        for(int i=3;i<lottoSameSize.length;i++) {
+            prizeSum += lottoPrizeMoney[i] * lottoSameSize[i];
         }
+
+        return prizeSum / (double)size * 100.0;
     }
 }

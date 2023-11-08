@@ -30,7 +30,8 @@ public class LottoController {
     }
 
     public void start() {
-        int lottoBuyAmount = input.requestLottoBuyAmount();
+        int buyPrice = input.requestLottoBuyAmount();
+        int lottoBuyAmount = buyPrice / LottoConstant.LOTTO_PRICE.getConstant();
 
         makeLotto(lottoBuyAmount);
 
@@ -41,6 +42,9 @@ public class LottoController {
 
         lottoSameSize = calculator.getWinningLottoSameSize(lottos, prizeNum, bonusNum);
         output.printLottoProfit(lottoSameSize);
+
+        double earningsRate = calculator.getEarningsRate(buyPrice);
+        output.printEarningRate(earningsRate);
     }
 
     public void makeLotto(int lottoBuyAmount) {

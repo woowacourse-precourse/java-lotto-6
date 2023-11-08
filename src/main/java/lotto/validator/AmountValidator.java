@@ -79,6 +79,6 @@ public class AmountValidator {
     }
 
     public int getResultAmount() {
-        return resultAmount / lottoPrice;
+        return resultAmount;
     }
 }

@@ -66,13 +66,17 @@ public class LottoController {
     }
 
     private void inputWiningLotto() {
-        try {
-            String lottoNumbers = inputView.inputLotto();
+        boolean isValidInput = false;
+        while (!isValidInput) {
+            try {
+                String lottoNumbers = inputView.inputLotto();
 
-            this.winingLotto = new SplitGenerator(lottoNumbers).getLotto();
+                this.winingLotto = new SplitGenerator(lottoNumbers).getLotto();
 
-        } catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
+                isValidInput = true;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
         }
     }
 

@@ -40,7 +40,7 @@ public class LottoBuySystem {
 
     public int[][] getLottosNumbers() {
         int lottosCount = this.getLottosCount();
-        int[][] lottoNumbers = new int[lottosCount][LOTTO_DRAW_NUMBER_COUNT + LOTTO_DRAW_BONUS_NUMBER_COUNT];
+        int[][] lottoNumbers = new int[lottosCount][LOTTO_DRAW_TOTAL_COUNT];
 
         for(int i=0; i<lottosCount; i++) {
             lottoNumbers[i] = this.lottos[i].getNumbers().stream().mapToInt(n -> n).toArray();

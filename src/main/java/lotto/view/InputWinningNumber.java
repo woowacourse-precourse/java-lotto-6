@@ -2,10 +2,11 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.domain.WinningDetails;
+import lotto.domain.WinningNumber;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class InputWinningNumber {
     private final static String WINNING_NUMBER = "\n당첨 번호를 입력해 주세요.";
@@ -14,11 +15,11 @@ public class InputWinningNumber {
 
     private Lotto lotto;
 
-    public InputWinningNumber() {
+    public WinningNumber enterWinningNumber() {
         System.out.println(WINNING_NUMBER);
         while(true) {
             try {
-                enterWinningNumber();
+                convertToInteger();
                 break;
             } catch (NumberFormatException e) {
                 System.out.println(NOT_NUMBER);
@@ -26,9 +27,11 @@ public class InputWinningNumber {
                 System.out.println(LOTTO_ERROR);
             }
         }
+        WinningNumber winningNumber = new WinningNumber(lotto);
+        return winningNumber;
     }
 
-    public void enterWinningNumber() {
+    public void convertToInteger() {
         String[] winningNumber = Console.readLine().split(",");
         List<Integer> numbers = new ArrayList<Integer>();
         for (String s : winningNumber) {

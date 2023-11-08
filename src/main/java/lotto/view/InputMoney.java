@@ -10,7 +10,7 @@ public class InputMoney {
     private final static String NOT_NUMBER = "[ERROR] 숫자를 입력해주세요.";
     private final static String NUMBER = "개를 구매했습니다.";
 
-    public void enterAmountOfMoney() {
+    public Money enterAmountOfMoney() {
         System.out.println(INPUT_MESSAGE);
         while(true) {
             try {
@@ -23,6 +23,7 @@ public class InputMoney {
             }
         }
         decideNumberOfLotto(money.getTicketQuantity());
+        return money;
     }
 
     private void decideNumberOfLotto(int numberOfLotto) {

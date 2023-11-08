@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Publishing {
+public class LottoPublishing {
     List<Integer> numbers;
     List<Lotto> lottos = new ArrayList<Lotto>();
     private void createRandomNumber() {

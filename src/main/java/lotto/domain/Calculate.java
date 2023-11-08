@@ -1,11 +1,12 @@
-package lotto;
+package lotto.domain;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Map;
 
-import lotto.WinningDetails;
+import lotto.domain.Lotto;
+import lotto.domain.WinningDetails;
 
 public class Calculate {
     private List<Lotto> lottos;

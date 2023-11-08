@@ -12,6 +12,10 @@ public class Money {
         return money / 1000;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     private void validateMoney(int money) {
         validateZero(money);
         validateDivide(money);

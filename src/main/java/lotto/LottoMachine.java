@@ -21,7 +21,7 @@ public class LottoMachine {
     private final int LOTTO_PRICE;
     private final DecimalFormat formatter;
 
-    LottoMachine(DecimalFormat decimalFormat) {
+    public LottoMachine(DecimalFormat decimalFormat) {
         this.MIN_NUMBER = LottoInfo.MIN_NUMBER.getNumber();
         this.MAX_NUMBER = LottoInfo.MAX_NUMBER.getNumber();
         this.NUMBERS_PER_LOTTO = LottoInfo.NUMBERS_PER_LOTTO.getNumber();

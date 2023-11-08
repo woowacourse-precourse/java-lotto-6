@@ -2,7 +2,7 @@ package lotto.service;
 
 import static lotto.utils.IntegerConstant.ZERO;
 import static lotto.utils.LottoConstant.LOTTO_END_NUMBER;
-import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.utils.LottoConstant.LOTTO_NUMBERS_SIZE;
 import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -31,7 +31,7 @@ public class LottoGenerator {
     private Lotto generateSingleLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER,
                         LOTTO_END_NUMBER,
-                        LOTTO_NUMBER_COUNT)
+                        LOTTO_NUMBERS_SIZE)
                 .stream()
                 .sorted()
                 .toList();

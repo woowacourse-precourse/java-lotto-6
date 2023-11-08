@@ -1,7 +1,7 @@
 package lotto.service;
 
 import static lotto.utils.LottoConstant.LOTTO_END_NUMBER;
-import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.utils.LottoConstant.LOTTO_NUMBERS_SIZE;
 import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,7 +24,7 @@ class LottoGeneratorTest {
         assertThat(lottos).hasSize(lottoSize);
 
         for (Lotto lotto : lottos) {
-            assertThat(lotto.getNumbers()).hasSize(LOTTO_NUMBER_COUNT)
+            assertThat(lotto.getNumbers()).hasSize(LOTTO_NUMBERS_SIZE)
                     .doesNotHaveDuplicates()
                     .isSorted()
                     .allMatch(number -> (LOTTO_START_NUMBER <= number) && (number <= LOTTO_END_NUMBER));

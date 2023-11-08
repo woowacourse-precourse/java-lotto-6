@@ -39,7 +39,7 @@ public class InputValidator {
     }
 
     public static void checkNegativeNumber(String number) {
-        if (Integer.parseInt(number) < 0) {
+        if (Integer.parseInt(number) <= 0) {
             throw LottoGameException.withMessage(ExceptionMessage.NEGATIVE_NUMBER_ERROR);
         }
     }

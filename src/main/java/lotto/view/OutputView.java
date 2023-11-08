@@ -7,7 +7,7 @@ import static lotto.view.utils.GameMessage.RESULT_MESSAGE;
 import static lotto.view.utils.GameMessage.SEPARATOR;
 
 import java.util.Arrays;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.dto.LottoResultDTO;
 import lotto.dto.PurchasedLottoDTO;

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.PurchasedLotto;
 import lotto.domain.User;
 import lotto.dto.PurchasedLottoDTO;

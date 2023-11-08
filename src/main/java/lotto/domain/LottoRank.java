@@ -40,7 +40,7 @@ public enum LottoRank {
         return NO_LUCK;
     }
 
-    public static LottoRank determineSecondOrThird(boolean bonusIsExists) {
+    private static LottoRank determineSecondOrThird(boolean bonusIsExists) {
         if (bonusIsExists) {
             return SECOND;
         }

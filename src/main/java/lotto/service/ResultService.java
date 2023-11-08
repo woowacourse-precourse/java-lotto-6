@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.WinningBonusNumber;
 import lotto.domain.WinningNumbers;

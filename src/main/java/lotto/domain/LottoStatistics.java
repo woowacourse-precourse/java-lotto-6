@@ -3,6 +3,7 @@ package lotto.domain;
 
 import static lotto.domain.constants.LottoConfig.LOTTO_UNIT_PRICE;
 import static lotto.domain.constants.LottoStatisticsConstants.getStatisticsPrefix;
+import static lotto.domain.constants.LottoStatisticsContent.SECOND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,16 +24,20 @@ public class LottoStatistics {
 
         for (Lotto lotto : lottoTicket.getLottoTicket()) {
             boolean bonusMatch = false;
-            long count = lotto.getNumbers().stream()
-                    .filter(winningNumber::contains)
-                    .count();
-            if (count == 5 && lotto.getNumbers().contains(bonusNumber)){
+            long count = getLottoMatchCount(winningNumber, lotto);
+            if (count == SECOND.getHitCount() && lotto.getNumbers().contains(bonusNumber)){
                 bonusMatch = true;
             }
             LottoStatisticsContent.matchHitCount(count, bonusMatch).increasePrizeCount();
             totalPrize += LottoStatisticsContent.matchHitCount(count,bonusMatch).getPrize();
         }
         lottoResult.addAll(Arrays.asList(LottoStatisticsContent.values()));
+    }
+
+    private long getLottoMatchCount(List<Integer> winningNumber, Lotto lotto) {
+        return lotto.getNumbers().stream()
+                .filter(winningNumber::contains)
+                .count();
     }
 
     public static LottoStatistics from(Lottos lottoTicket, Lotto winningLotto, Bonus bonus, Buyer buyer) {

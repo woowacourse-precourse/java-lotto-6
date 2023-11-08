@@ -10,7 +10,6 @@ public class LottoRepository {
     private int numberOfLotto;
 
     public void setNumberOfLotto(int numberOfLotto) {
-        //유효성 검사
         this.numberOfLotto = numberOfLotto;
     }
 

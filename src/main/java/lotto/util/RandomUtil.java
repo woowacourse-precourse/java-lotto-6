@@ -19,5 +19,4 @@ public class RandomUtil {
         Collections.sort(randomNumbers);
         return randomNumbers;
     }
-
 }

@@ -41,7 +41,6 @@ public class Game {
         for (EnumGame rank : ranks) {
             rankCount[rank.ordinal()]++;
         }
-
         return rankCount;
     }
 
@@ -51,7 +50,6 @@ public class Game {
         for (EnumGame rank : ranks) {
             totalPrize += rank.getMoney();
         }
-
         return Math.round(getEarningsRateForm(totalPrize) * 100.0) / 100.0;
     }
 
@@ -80,7 +78,6 @@ public class Game {
                 matchCount++;
             }
         }
-
         return matchCount;
     }
 
@@ -89,7 +86,6 @@ public class Game {
             if (rankInfo.getRank() == matchCount && !rankInfo.isBonus()) {
                 return rankInfo;
             }
-
             if (rankInfo.getRank() == matchCount && rankInfo.isBonus() && bonusMatch) {
                 return rankInfo;
             }

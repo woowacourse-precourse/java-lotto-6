@@ -30,12 +30,9 @@ public class LottoBuySystem {
     }
 
     public List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(
+        return Randoms.pickUniqueNumbersInRange(
                 LOTTO_UNDER_BOUND, LOTTO_UPPER_BOUND, LOTTO_DRAW_NUMBER_COUNT
         );
-//        Collections.sort(lottoNumbers);
-
-        return lottoNumbers;
     }
 
     public int[][] getLottosNumbers() {

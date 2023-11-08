@@ -28,8 +28,7 @@ public class LottoController {
         Shop shop = Shop.withOrderedMoney(investor.getInvestMoney());
         List<Lotto> lottos = shop.createLottos();
 
-        outputView.printBoughtLottoSize(lottos.size());
-        printLottoValues(lottos);
+        printLottoHistory(lottos);
 
         LottoCompany lottoCompany = initLottoCompany();
         List<PrizeResult> prizeResults = lottoCompany.evaluateLottos(lottos);
@@ -48,11 +47,12 @@ public class LottoController {
         });
     }
 
-    private void printLottoValues(final List<Lotto> lottos) {
+    private void printLottoHistory(final List<Lotto> lottos) {
+        outputView.printBoughtLottoSize(lottos.size());
+
         List<LottoResponse> lottoResponses = lottos.stream()
                 .map(lotto -> LottoResponse.from(lotto.getNumbers()))
                 .toList();
-
         outputView.printEachLottoNumbers(lottoResponses);
     }
 

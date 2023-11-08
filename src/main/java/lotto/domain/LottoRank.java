@@ -4,9 +4,9 @@ import java.util.List;
 public enum LottoRank {
     FIRST(6, 2000000000),
     SECOND(5, 30000000),
-    THIRD(4, 1500000),
-    FORTH(3, 50000),
-    FIFTH(2, 5000),
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000),
     NONE(0, 0);
 
     private int matchCount;

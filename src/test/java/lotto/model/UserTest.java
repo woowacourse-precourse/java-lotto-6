@@ -10,22 +10,16 @@ import java.util.List;
 class UserTest {
 
     static final int BUY_LOTTO_EACH = 2;
-    private static final int MONEY = 5000;
+    static final int MONEY = 5000;
     WinningLotto winningNumber;
     UserWallet userWallet;
 
-    private List<Lotto> myLottoNumbers = new ArrayList<>();
-    private List<LottoRank> winningsMoney = new ArrayList<>();
+    List<Lotto> myLottoNumbers = new ArrayList<>();
+    List<LottoRank> winningsMoney = new ArrayList<>();
+
     @BeforeEach
     void init(){
         userWallet = UserWallet.createWallet(MONEY);
-    }
-
-    @Test
-    @DisplayName("로또_구매_갯수_테스트")
-    void buyLotto() {
-        myLottoNumbers = LottoNumberCreator.myLottoNumbersFrom(BUY_LOTTO_EACH);
-        Assertions.assertEquals( myLottoNumbers.size(), BUY_LOTTO_EACH);
     }
 
     @Test
@@ -39,5 +33,12 @@ class UserTest {
             );
 
         Assertions.assertEquals(winningsMoney.get(0), LottoRank.THIRD);
+    }
+
+    @Test
+    @DisplayName("로또_구매_갯수_테스트")
+    void buyLotto() {
+        List<Lotto> myLottoNumbers = LottoNumberCreator.myLottoNumbersFrom(BUY_LOTTO_EACH);
+        Assertions.assertEquals( myLottoNumbers.size(), 2);
     }
 }

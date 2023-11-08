@@ -1,38 +1,52 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class LottoGame {
     public void play() {
-        //request price
         String userPrice = InputView.requestPrice();
 
-        //parseToInt
-        Integer ticketCount = ConvertingUtil.convertToTicket(userPrice);
+        Lottos randomLottos = buyLotto(userPrice);
+
+        String userNumbers = InputView.requestNumbers();
+        String userBonus = InputView.requestBonus();
+
+        Buyer buyer = guessLotto(userNumbers, userBonus);
+
+        announceResult(
+                progress(randomLottos, buyer)
+        );
+    }
+
+    private Lottos buyLotto(String userPrice) {
+        Integer ticketCount = convertToTicket(userPrice);
 
         OutputView.noticeTicketCount(ticketCount);
 
-        //create Lottos
         Lottos randomLottos = Lottos.create(ticketCount);
 
-        //request lotto numbers
-        String userNumbers = InputView.requestNumbers();
+        return randomLottos;
+    }
 
-        List<Integer> numbers = Arrays.stream(userNumbers.split(","))
-                .map(Integer::parseInt)
-                .toList();
-
-        Lotto userLotto = Lotto.create(numbers);
-
-        //request bonus number
-        String userBonus = InputView.requestBonus();
+    private Buyer guessLotto(String userNumbers, String userBonus) {
+        Lotto userLotto = Lotto.create(userNumbers);
 
         Integer bonus = ConvertingUtil.convertToInteger(userBonus);
 
-        //compare lotto and bonusNumber
         Buyer buyer = Buyer.create(userLotto, bonus);
 
+        return buyer;
+    }
+
+    private Result progress(Lottos randomLottos, Buyer buyer) {
         Result result = randomLottos.calcuateResult(buyer);
+
+        return result;
+    }
+
+    private void announceResult(Result result) {
+
+    }
+
+    private Integer convertToTicket(String userInput) {
+        return ConvertingUtil.convertToTicket(userInput);
     }
 }

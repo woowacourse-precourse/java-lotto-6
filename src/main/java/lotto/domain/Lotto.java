@@ -7,8 +7,8 @@ import java.util.Set;
 import lotto.view.ExceptionMessage;
 
 public class Lotto {
-    private final List<Integer> numbers; //로또 번호(안스턴스)
 
+    private  final List<Integer> numbers;
 
 
     public Lotto(List<Integer> numbers) {
@@ -19,14 +19,27 @@ public class Lotto {
         Collections.sort(numbers);
         this.numbers = numbers;
     }
-
     public List<Integer> getLottoNumbers() {
         return numbers;
     }
 
+
+    public int countMatch(Lotto  winningLotto) {
+        return (int) numbers.stream().filter(LottoWinner::containNumber).
+                count();
+    }
+
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
+    }
+
+
+
+
     //validate:유효성 검사 컨벤션->예외처리 진행
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            ExceptionMessage.sizeException();
             throw new IllegalArgumentException();
         }
     }
@@ -44,8 +57,21 @@ public class Lotto {
 
 
 
-    private void validateRange(List<Integer> numbers) {
-
+    public void validateRange(List<Integer> numbers) {
+        for (int winningNumber = 0;winningNumber < numbers.size(); winningNumber++) {
+            if (numbers.get(winningNumber) < 1 || numbers.get(winningNumber)>45){
+                ExceptionMessage.naturalException();
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
+
+
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            ExceptionMessage.overlapException();
+            throw new IllegalArgumentException();
+        }
+    }
 }

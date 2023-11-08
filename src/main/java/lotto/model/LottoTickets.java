@@ -22,4 +22,8 @@ public class LottoTickets {
         }
         return lottoResults;
     }
+
+    public List<LottoNumbers> getLottoTickets() {
+        return lottoTickets;
+    }
 }

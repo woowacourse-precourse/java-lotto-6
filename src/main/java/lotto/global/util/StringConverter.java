@@ -9,9 +9,13 @@ public class StringConverter {
     public static class StringToIntegerListConverter implements Converter<String, List<Integer>> {
         private static StringToIntegerListConverter stringToIntegerListConverter = new StringToIntegerListConverter();
 
+        private StringToIntegerListConverter() {
+        }
+
         public static StringToIntegerListConverter getInstance() {
             return stringToIntegerListConverter;
         }
+
         @Override
         public List<Integer> convert(String from) throws NumberFormatException {
             List<String> strings = Arrays.asList(from.split(","));
@@ -21,6 +25,9 @@ public class StringConverter {
 
     public static class IntegerListToStringConverter implements Converter<List<Integer>, String>{
         private static IntegerListToStringConverter integerListToStringConverter = new IntegerListToStringConverter();
+
+        private IntegerListToStringConverter() {
+        }
 
         public static IntegerListToStringConverter getInstance() {
             return integerListToStringConverter;

@@ -23,6 +23,6 @@ class PaymentTest {
         //when
         int testResult = payment.pay(money, lottoPrice);
         //then
-        Assertions.assertThat(testResult).isEqualTo(money/lottoPrice);
+        Assertions.assertThat(testResult).isEqualTo(money / lottoPrice);
     }
 }

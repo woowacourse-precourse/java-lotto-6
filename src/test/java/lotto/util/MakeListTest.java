@@ -19,7 +19,7 @@ class MakeListTest {
     void 문자열을정수형리스트로변환테스트() {
         //given
         String testStr = "1,2,3,4,5,6";
-        List<Integer> compare = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        List<Integer> compare = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         List<Integer> result;
         //when
         result = makeList.makeStringToIntegerList(testStr);

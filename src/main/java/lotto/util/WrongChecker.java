@@ -1,6 +1,6 @@
 package lotto.util;
 
-import static lotto.config.LottoConfig.INPUT_SEPARATER;
+import static lotto.config.LottoConfig.INPUT_SEPARATE;
 import static lotto.config.LottoConfig.LOTTO_COUNT;
 import static lotto.config.LottoConfig.LOTTO_PRICE;
 import static lotto.config.LottoConfig.MAX_CHAR;
@@ -97,7 +97,7 @@ public class WrongChecker {
 
     public void checkWiningNumberRange(String winingNumberInput) {
         ArrayList<String> split;
-        split = new ArrayList<>(Arrays.asList(winingNumberInput.split(INPUT_SEPARATER.getSeparater())));
+        split = new ArrayList<>(Arrays.asList(winingNumberInput.split(INPUT_SEPARATE.getSeparate())));
         for (String s : split) {
             int i = Integer.parseInt(s);
             if (!(i >= MIN_LOTTO_NUMBER.getNum() && i <= MAX_LOTTO_NUMBER.getNum())) {
@@ -108,7 +108,7 @@ public class WrongChecker {
 
     public void checkWiningNumberCharacter(String winingNumberInput) {
         ArrayList<String> split;
-        split = new ArrayList<>(Arrays.asList(winingNumberInput.split(INPUT_SEPARATER.getSeparater())));
+        split = new ArrayList<>(Arrays.asList(winingNumberInput.split(INPUT_SEPARATE.getSeparate())));
         for (String s : split) {
             for (int j = 0; j < s.length(); j++) {
                 checkCharacter(s.charAt(j));
@@ -124,7 +124,7 @@ public class WrongChecker {
 
     public void checkWiningNumberSize(String winingNumberInput) {
         ArrayList<String> split;
-        split = new ArrayList<>(Arrays.asList(winingNumberInput.split(INPUT_SEPARATER.getSeparater())));
+        split = new ArrayList<>(Arrays.asList(winingNumberInput.split(INPUT_SEPARATE.getSeparate())));
         if (!(split.size() == LOTTO_COUNT.getNum())) {
             throw new IllegalArgumentException();
         }
@@ -132,7 +132,7 @@ public class WrongChecker {
 
     public void checkDoubleWiningNumber(String winingNumberInput) {
         ArrayList<String> split;
-        split = new ArrayList<>(Arrays.asList(winingNumberInput.split(INPUT_SEPARATER.getSeparater())));
+        split = new ArrayList<>(Arrays.asList(winingNumberInput.split(INPUT_SEPARATE.getSeparate())));
         ArrayList<Integer> temp = new ArrayList<>();
         for (String s : split) {
             temp.add(Integer.parseInt(s));

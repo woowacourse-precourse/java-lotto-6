@@ -25,7 +25,7 @@ public class Output {
     }
 
     public void printLottos(List<Lotto> lottos) {
-        for(Lotto lotto:lottos) {
+        for (Lotto lotto : lottos) {
             System.out.println(lotto.getLotto());
         }
     }
@@ -47,27 +47,27 @@ public class Output {
     }
 
     public void printWiningCount(WiningRank rank, RankBoard board) {
-        if(rank == RANK1) {
+        if (rank == RANK1) {
             System.out.print(OutputMessage.RANK1_COUNT_MESSAGE.getMessage());
             System.out.print(board.getRankCount(rank));
             System.out.println(OutputMessage.RANK_COUNT_UNIT_MESSAGE.getMessage());
         }
-        if(rank == RANK2) {
+        if (rank == RANK2) {
             System.out.print(OutputMessage.RANK2_COUNT_MESSAGE.getMessage());
             System.out.print(board.getRankCount(rank));
             System.out.println(OutputMessage.RANK_COUNT_UNIT_MESSAGE.getMessage());
         }
-        if(rank == RANK3) {
+        if (rank == RANK3) {
             System.out.print(OutputMessage.RANK3_COUNT_MESSAGE.getMessage());
             System.out.print(board.getRankCount(rank));
             System.out.println(OutputMessage.RANK_COUNT_UNIT_MESSAGE.getMessage());
         }
-        if(rank == RANK4) {
+        if (rank == RANK4) {
             System.out.print(OutputMessage.RANK4_COUNT_MESSAGE.getMessage());
             System.out.print(board.getRankCount(rank));
             System.out.println(OutputMessage.RANK_COUNT_UNIT_MESSAGE.getMessage());
         }
-        if(rank == RANK5) {
+        if (rank == RANK5) {
             System.out.print(OutputMessage.RANK5_COUNT_MESSAGE.getMessage());
             System.out.print(board.getRankCount(rank));
             System.out.println(OutputMessage.RANK_COUNT_UNIT_MESSAGE.getMessage());

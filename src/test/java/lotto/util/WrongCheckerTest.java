@@ -17,14 +17,12 @@ class WrongCheckerTest {
 
     //checkWrongAmount() 테스트
     @Test
-    void 잘못된구입금액테스트() {
+    void 잘못된구입금액종합테스트() {
         //given
         String testStr1 = "123aa";
-        String testStr2 = "1234444";
         boolean result = false;
         //when
         result = wrongChecker.checkWrongAmount(testStr1);
-        result = wrongChecker.checkWrongAmount(testStr2);
         //then
         Assertions.assertFalse(result);
     }
@@ -83,6 +81,7 @@ class WrongCheckerTest {
             wrongChecker.checkWrongWiningNumberInput(testStr);
         });
     }
+
     //checkWiningNumberRange() 테스트
     @Test
     void 잘못된당첨번호숫자범위테스트() {
@@ -126,12 +125,13 @@ class WrongCheckerTest {
             wrongChecker.checkDoubleWiningNumber(testStr);
         });
     }
+
     //checkWrongBonusNumber() 테스트
     @Test
     void 보너스번호입력에러종합테스트() {
         //given
         String testStr = "13";
-        List<Integer> testList = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        List<Integer> testList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         //when, then
         Assertions.assertDoesNotThrow(() -> {
             wrongChecker.checkWrongBonusNumber(testList, testStr);
@@ -165,10 +165,21 @@ class WrongCheckerTest {
     void 보너스번호중복된숫자테스트() {
         //given
         String testStr = "2";
-        List<Integer> testList = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        List<Integer> testList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         //when, then
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             wrongChecker.checkDoubleBonusNumber(testList, testStr);
+        });
+    }
+
+    //checkCharacter() 테스트
+    @Test
+    void 문자확인테스트() {
+        //given
+        char testChar = 'e';
+        //when, then
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            wrongChecker.checkCharacter(testChar);
         });
     }
 }

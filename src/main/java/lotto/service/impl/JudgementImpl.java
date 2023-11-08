@@ -15,8 +15,8 @@ public class JudgementImpl implements Judgement {
     @Override
     public int judgeWiningNumber(List<Integer> lotto, List<Integer> winingNumber) {
         int count = 0;
-        for(int i = 0; i < lotto.size(); i++) {
-            if(lotto.contains(winingNumber.get(i))) {
+        for (int i = 0; i < lotto.size(); i++) {
+            if (lotto.contains(winingNumber.get(i))) {
                 count++;
             }
         }
@@ -30,19 +30,19 @@ public class JudgementImpl implements Judgement {
 
     @Override
     public WiningRank judgeRanking(int winingNumberCount, boolean bonusNumCount) {
-        if(winingNumberCount == 6) {
+        if (winingNumberCount == 6) {
             return RANK1;
         }
-        if(winingNumberCount == 5 && bonusNumCount) {
+        if (winingNumberCount == 5 && bonusNumCount) {
             return RANK2;
         }
-        if(winingNumberCount == 5) {
+        if (winingNumberCount == 5) {
             return RANK3;
         }
-        if(winingNumberCount == 4) {
+        if (winingNumberCount == 4) {
             return RANK4;
         }
-        if(winingNumberCount == 3) {
+        if (winingNumberCount == 3) {
             return RANK5;
         }
         return NOTHING;

@@ -10,8 +10,7 @@ public enum ErrorMessage {
     WININGNUMBER_DOUBLECHECK_ERROR_MESSAGE("[ERROR] 당첨 번호는 중복되어선 안됩니다."),
     BONUSNUMBER_CHARACTER_ERROR_MESSAGE("[ERROR] 보너스 번호는 숫자 한개만 입력 되어야 합니다."),
     BONUSNUMBER_RANGE_ERROR_MESSAGE("[ERROR] 보너스 번호는 1~45의 숫자를 입력해야 합니다."),
-    BONUSNUMBER_DOUBLECHECK_ERROR_MESSAGE("[ERROR] 보너스 번호가 입력된 당첨 번호와 중복되었습니다.")
-    ;
+    BONUSNUMBER_DOUBLECHECK_ERROR_MESSAGE("[ERROR] 보너스 번호가 입력된 당첨 번호와 중복되었습니다.");
 
     private String message;
 

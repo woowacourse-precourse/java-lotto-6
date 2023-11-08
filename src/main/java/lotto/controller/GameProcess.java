@@ -49,9 +49,10 @@ public class GameProcess {
         buyCount = payment.pay(amount, LOTTO_PRICE.getNum());
         output.printPurchaseCount(buyCount);
     }
+
     public void publishLotto() {
         Publish publish = new AppConfig().publish();
-        for(int i = 0; i < buyCount; i++) {
+        for (int i = 0; i < buyCount; i++) {
             List<Integer> list = new ArrayList<>();
             list = publish.makeNumbers();
             Lotto lotto = new Lotto(list);
@@ -59,6 +60,7 @@ public class GameProcess {
         }
         output.printLottos(lottos);
     }
+
     public void enterWiningNumber() {
         MakeList makeList = new MakeList();
         boolean inputChecker = true;
@@ -81,19 +83,20 @@ public class GameProcess {
         }
         bonusNumber = Integer.parseInt(rawBonusNumber);
     }
+
     public void checkWiningResult() {
         Judgement judgement = new AppConfig().judgement();
         RankBoard rankBoard = new RankBoard();
         Statistics statistics = new Statistics();
-        for(Lotto lotto:lottos) {
+        for (Lotto lotto : lottos) {
             int winingCount = judgement.judgeWiningNumber(lotto.getLotto(), winingNumbers);
             boolean bonusCount = judgement.judgeBonusNumber(lotto.getLotto(), bonusNumber);
             WiningRank rank = judgement.judgeRanking(winingCount, bonusCount);
             rankBoard.setRankCount(rank);
         }
         output.printWiningStatisticsStart();
-        List<WiningRank> outputSequence = new ArrayList<>(Arrays.asList(RANK5,RANK4,RANK3,RANK2,RANK1));
-        for(WiningRank rank:outputSequence) {
+        List<WiningRank> outputSequence = new ArrayList<>(Arrays.asList(RANK5, RANK4, RANK3, RANK2, RANK1));
+        for (WiningRank rank : outputSequence) {
             output.printWiningCount(rank, rankBoard);
         }
         double returnMoney = statistics.calculateRateOfReturn(buyCount, rankBoard);

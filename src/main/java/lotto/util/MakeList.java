@@ -8,7 +8,7 @@ public class MakeList {
     public List<Integer> makeStringToIntegerList(String str) {
         List<String> temp = new ArrayList<>(Arrays.asList(str.split(",")));
         List<Integer> result = new ArrayList<>();
-        for(String s:temp) {
+        for (String s : temp) {
             result.add(Integer.valueOf(s));
         }
         return result;

@@ -7,28 +7,32 @@ public enum LottoConfig {
     MIN_CHAR('0'),
     LOTTO_COUNT(6),
     LOTTO_PRICE(1000),
-    INPUT_SEPARATER(",");
+    INPUT_SEPARATE(",");
     private int num;
     private char value;
-    private String separater;
+    private String separate;
 
     LottoConfig(int num) {
         this.num = num;
     }
+
     LottoConfig(char value) {
         this.value = value;
     }
-    LottoConfig(String separater) {
-        this.separater = separater;
+
+    LottoConfig(String separate) {
+        this.separate = separate;
     }
 
     public int getNum() {
         return num;
     }
+
     public char getValue() {
         return value;
     }
-    public String getSeparater() {
-        return separater;
+
+    public String getSeparate() {
+        return separate;
     }
 }

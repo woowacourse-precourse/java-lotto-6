@@ -1,20 +1,20 @@
 package lotto.repository;
 
+import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
-import lotto.model.LottoWinningNumbers;
 
 public class LottoWinningRepository {
 
-    private LottoWinningNumbers lottoWinningNumbers;
+    private Lotto winningLotto;
     private LottoBonusNumber lottoBonusNumber;
 
-    public LottoWinningNumbers saveLottoWinningNumbers(LottoWinningNumbers lottoWinningNumbers) {
-        this.lottoWinningNumbers = lottoWinningNumbers;
-        return lottoWinningNumbers;
+    public Lotto saveLottoWinningNumbers(Lotto winningLotto) {
+        this.winningLotto = winningLotto;
+        return winningLotto;
     }
 
-    public LottoWinningNumbers getLottoWinningNumbers() {
-        return lottoWinningNumbers;
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 
     public LottoBonusNumber saveLottoBonusNumber(LottoBonusNumber lottoBonusNumber) {

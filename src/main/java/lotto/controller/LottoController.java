@@ -14,12 +14,11 @@ import lotto.dto.DatabaseDto;
 import lotto.dto.LottosCalculateResult;
 import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
-import lotto.model.LottoWinningNumbers;
 import lotto.model.Money;
 import lotto.repository.LottoWinningRepository;
 import lotto.repository.UserLottoRepository;
-import lotto.service.LottoService;
 import lotto.service.LottoCalculateService;
+import lotto.service.LottoService;
 import lotto.view.LottoInputView;
 
 public class LottoController {
@@ -48,13 +47,13 @@ public class LottoController {
      */
     public void saveLottoWinningAmount() {
         printWinningNumber();
-        LottoWinningNumbers winningNumbers = getLottoWinningNumbers();
+        Lotto winningLotto = getLottoWinningNumbers();
 
         printBonusNumber();
-        LottoBonusNumber bonusNumber = getLottoBonusNumber(winningNumbers);
+        LottoBonusNumber bonusNumber = getLottoBonusNumber(winningLotto);
 
         // 계산할 수 있도록 저장
-        lottoCalculateService.saveRecentWinningNumbers(winningNumbers, bonusNumber);
+        lottoCalculateService.saveRecentWinningNumbers(winningLotto, bonusNumber);
     }
 
     /**
@@ -62,11 +61,11 @@ public class LottoController {
      *
      * @return 로또 당첨 보너스 번호 객체
      */
-    private LottoBonusNumber getLottoBonusNumber(LottoWinningNumbers winningNumbers) {
+    private LottoBonusNumber getLottoBonusNumber(Lotto winningLotto) {
         while (true) {
             try {
                 String number = LottoInputView.getLottoBonusNumber();
-                LottoBonusNumber bonusNumber = new LottoBonusNumber(winningNumbers, number);
+                LottoBonusNumber bonusNumber = new LottoBonusNumber(winningLotto, number);
 
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
@@ -80,13 +79,13 @@ public class LottoController {
      *
      * @return 당첨 로또 객체
      */
-    private LottoWinningNumbers getLottoWinningNumbers() {
+    private Lotto getLottoWinningNumbers() {
         while (true) {
             try {
                 String input = getLottoWinningNumber();
-                LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(input);
+                Lotto winningLotto = new Lotto(input);
 
-                return lottoWinningNumbers;
+                return winningLotto;
             } catch (IllegalArgumentException e) {
                 printException(e);
             }

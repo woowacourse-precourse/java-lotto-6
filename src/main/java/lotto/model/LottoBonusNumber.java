@@ -12,16 +12,16 @@ public class LottoBonusNumber {
      */
     private final int bonusNumber;
 
-    public LottoBonusNumber(LottoWinningNumbers winningNumbers, String inNumber) {
+    public LottoBonusNumber(Lotto winningLotto, String inNumber) {
         int number = conversionInt(inNumber);
         validateRange(number); // 보너스 번호 검증
-        validatDuplication(winningNumbers, number);
+        validatDuplication(winningLotto, number);
 
         this.bonusNumber = number;
     }
 
-    private void validatDuplication(LottoWinningNumbers winningNumbers, int bonusNumber) {
-        List<Integer> numbers = winningNumbers.getLottoNumbers();
+    private void validatDuplication(Lotto winningLotto, int bonusNumber) {
+        List<Integer> numbers = winningLotto.getNumbers();
         if (numbers.contains(bonusNumber)) {
             throw new LottoNumberDuplicateException();
         }

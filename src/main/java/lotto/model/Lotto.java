@@ -1,7 +1,10 @@
 package lotto.model;
 
 import static lotto.model.LottoRule.validateRange;
+import static lotto.util.Division.COMMA;
+import static lotto.util.Utils.conversionInt;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +21,33 @@ public class Lotto {
         validateNumericRange(numbers);
 
         this.numbers = numbers;
+    }
+
+    public Lotto(String inNumbers) {
+        List<Integer> numbers = conversionCommaNumber(inNumbers);
+        validate(numbers);
+        validateDuplicate(numbers);
+        validateNumericRange(numbers);
+
+        this.numbers = numbers;
+    }
+
+    /**
+     * Comma를 기준으로 숫자를 나누어 반환
+     *
+     * @param input ','를 포함한 숫자
+     * @return List<Integer>
+     */
+    private List<Integer> conversionCommaNumber(String input) {
+        String[] splitText = input.split(COMMA);
+        List<Integer> numbers = new ArrayList<>();
+
+        for (String number :
+                splitText) {
+            numbers.add(conversionInt(number));
+        }
+
+        return numbers;
     }
 
     /**

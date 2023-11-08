@@ -12,7 +12,6 @@ import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
 import lotto.model.LottoRank;
 import lotto.model.LottoWallet;
-import lotto.model.LottoWinningNumbers;
 import lotto.repository.LottoWinningRepository;
 import lotto.repository.UserLottoRepository;
 
@@ -27,8 +26,8 @@ public class LottoCalculateService {
         this.lottoWinningRepository = lottoWinningRepository;
     }
 
-    public void saveRecentWinningNumbers(LottoWinningNumbers winningNumbers, LottoBonusNumber bonusNumber) {
-        lottoWinningRepository.saveLottoWinningNumbers(winningNumbers);
+    public void saveRecentWinningNumbers(Lotto winningLotto, LottoBonusNumber bonusNumber) {
+        lottoWinningRepository.saveLottoWinningNumbers(winningLotto);
         lottoWinningRepository.saveLottoBonusNumber(bonusNumber);
     }
 
@@ -69,7 +68,7 @@ public class LottoCalculateService {
     private Map<LottoRank, Integer> runAllCompare() {
         Map<LottoRank, Integer> ranks = LottoRank.createRankMap();
         LottoWallet lottoWallet = userLottoRepository.getLottoWallet();
-        LottoWinningNumbers winningNumbers = lottoWinningRepository.getLottoWinningNumbers();
+        Lotto winningNumbers = lottoWinningRepository.getWinningLotto();
         LottoBonusNumber bonusNumber = lottoWinningRepository.getLottoBonusNumber();
 
         for (Lotto lotto :
@@ -99,13 +98,13 @@ public class LottoCalculateService {
      * @param userLotto        검증할 사용자 로또
      * @return LottoRank
      */
-    private LottoRank lottoCompare(LottoWinningNumbers winningLotto, LottoBonusNumber lottoBonusNumber,
+    private LottoRank lottoCompare(Lotto winningLotto, LottoBonusNumber lottoBonusNumber,
                                    Lotto userLotto) {
         double sameValue = 0;
         List<Integer> userNumbers = userLotto.getNumbers();
 
         for (int number : // 로또 번호 하나씩 비교해본다.
-                winningLotto.getLottoNumbers()) {
+                winningLotto.getNumbers()) {
             if (userNumbers.contains(number)) {
                 sameValue++;
             }
@@ -126,7 +125,7 @@ public class LottoCalculateService {
         if (userLottoRepository.getLottoWallet() == null) {
             throw new NonVariableException("lottoWallet");
         }
-        if (lottoWinningRepository.getLottoWinningNumbers() == null) {
+        if (lottoWinningRepository.getWinningLotto() == null) {
             throw new NonVariableException("winningNumbers");
         }
         if (lottoWinningRepository.getLottoBonusNumber() == null) {

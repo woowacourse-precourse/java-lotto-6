@@ -4,6 +4,8 @@ import java.util.List;
 import lotto.exception.CustomException;
 import lotto.exception.ErrorCode;
 import lotto.exception.GlobalExceptionHandler;
+import lotto.exception.errorzip.NotSizeOfList;
+import lotto.validation.NumberValidation;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,16 +13,18 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        NumberValidation.isDistinct(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != TARGET_SIZE) {
-            GlobalExceptionHandler.handleCustomException(new CustomException(ErrorCode.NOT_SIX_SIZE_OF_LIST));
+            throw new NotSizeOfList();
         }
     }
 
     public List<Integer> getUserNumbers(){
         return numbers;
     }
+
 }

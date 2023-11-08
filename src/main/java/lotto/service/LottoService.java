@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.BonusLotto;
 import lotto.domain.Lotto;
@@ -19,6 +20,7 @@ public class LottoService {
     private static UserLotto userLotto;
     private static ConsistencyService consistencyService;
     private static int capital;
+    private static final String ERROR_STRING = "[ERROR] ";
 
     public LottoService() {
         outputView = new OutputView();
@@ -28,7 +30,7 @@ public class LottoService {
     public void purchase() {
         outputView.purchaseComment();
         capital = Parsing.stringToInt(InputView.inputLine());
-        number = NumberValidation.isDivisible(capital);
+        number = Parsing.makeDivision(capital);
     }
 
     public void lottoLists() {
@@ -47,10 +49,15 @@ public class LottoService {
 
     public void userNumber(){
         outputView.userNumberComment();
-        List<Integer> userLottoList = Parsing.makeList(InputView.inputLine());
+        List<Integer> list = userNumberList();
         outputView.bonusNumberComment();
         int bonusNumber = Parsing.stringToInt(InputView.inputLine());
-        userLotto = new UserLotto(new Lotto(userLottoList), new BonusLotto(bonusNumber));
+        userLotto = new UserLotto(new Lotto(list), new BonusLotto(bonusNumber));
+    }
+
+    private static List<Integer> userNumberList() {
+        List<Integer> userLottoList = Parsing.makeList(InputView.inputLine());
+        return userLottoList;
     }
 
     public void winner(){

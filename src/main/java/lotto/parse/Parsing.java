@@ -1,11 +1,18 @@
 package lotto.parse;
 import java.util.*;
 import java.util.stream.Collectors;
+import lotto.validation.NumberValidation;
 
 public class Parsing {
     private static final String STRING_COMMA = ",";
     public static int stringToInt(String inputValue){
         return Integer.parseInt(inputValue);
+    }
+
+    public static int makeDivision(int input){
+        NumberValidation.isDivisible(input);
+        System.out.println();
+        return input/1000;
     }
 
     public static List<Integer> makeList(String inputValue){

@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import java.io.Serializable;
+
 public class CustomException extends RuntimeException{
     private ErrorCode errorCode;
     public CustomException(ErrorCode errorCode){

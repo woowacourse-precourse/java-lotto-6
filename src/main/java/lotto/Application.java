@@ -37,7 +37,7 @@ public class Application {
                 System.err.println("[ERROR] 6개의 번호를 입력해주세요.");
                 continue;
             }
-            if (checkVaileNumbers(numberString, winningNumbers)) {
+            if (isVaileNumbers(numberString, winningNumbers)) {
                 break;
             }
 
@@ -46,6 +46,13 @@ public class Application {
             System.out.println(winningNumbers);
         }
 
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            String inputBonusNumber = Console.readLine();
+            if(isVaildBonusNumber(inputBonusNumber, winningNumbers)) {
+                break;
+            }
+        }
     }
 
     private static boolean isValidInput(String input) {
@@ -62,7 +69,7 @@ public class Application {
         }
     }
 
-    private static boolean checkVaileNumbers(String[] numberStrings, List<Integer> winningNumbers) {
+    private static boolean isVaileNumbers(String[] numberStrings, List<Integer> winningNumbers) {
         for (String numberString : numberStrings) {
             int number = 0;
             try {
@@ -87,4 +94,21 @@ public class Application {
         return true;
     }
 
+    private static boolean isVaildBonusNumber (String number, List<Integer> winningNumbers) {
+        try {
+            int changeNumber = Integer.parseInt(number);
+            if (changeNumber < 1 || changeNumber > 45) {
+                System.err.println("[ERROR] 1부터 45 사이의 번호를 입력하세요.");
+                return false;
+            }
+            if (winningNumbers.contains(changeNumber)) {
+                System.err.println("[ERROR] 당첨 번호에 이미 존재하는 숫자입니다.");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("[ERROR] 숫자로 변환할 수 없는 값이 입력되었습니다.");
+            return false;
+        }
+        return true;
+    }
 }

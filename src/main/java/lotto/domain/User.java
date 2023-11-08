@@ -1,35 +1,19 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.utils.Constants;
-
 public class User {
 	private Integer money;
-	private List<Lotto> lottos = new ArrayList<>();
+	private LottoPaper lottoPaper;
 
 	public User(Integer money) {
 		if (money % 1000 != 0) {
 			throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력 가능합니다!");
 		}
 		this.money = money;
-		setLottoList();
+		this.lottoPaper = new LottoPaper(money);
 	}
 
-	private void setLottoList() {
-		Integer lottoCount = money / 1000;
-		System.out.println(lottoCount + "개를 구매했습니다.");
-		for (int i = 0; i < lottoCount; i++) {
-			Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(Constants.LOTTO_MIN_NUMBER, Constants.LOTTO_MAX_NUMBER, Constants.WINNING_NUMBER_LENGTH));
-			System.out.println(lotto);
-			lottos.add(lotto);
-		}
-	}
-
-	public List<Lotto> getLottos() {
-		return lottos;
+	public LottoPaper getLottoPaper() {
+		return this.lottoPaper;
 	}
 
 	public Integer getMoney() {

@@ -46,4 +46,14 @@ public class Game {
         }
         return matchResult;
     }
+
+    public int countMatchResult(List<Integer> numbers, List<Integer> lottoNumber) {
+        int checkCount = 0;
+        for (int number : lottoNumber) {
+            if (numbers.contains(number)) {
+                checkCount += 1;
+            }
+        }
+        return checkCount;
+    }
 }

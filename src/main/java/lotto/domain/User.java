@@ -31,4 +31,7 @@ public class User {
     public int getWinningPrice(){
         return winningPrice;
     }
+    public void addWinningPrice(int money){
+        winningPrice += money;
+    }
 }

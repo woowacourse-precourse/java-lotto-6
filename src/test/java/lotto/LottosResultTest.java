@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import lotto.domain.model.GameResult;
 import lotto.domain.model.PrizeOption;
-import lotto.domain.service.Money;
+import lotto.domain.model.Money;
 import org.junit.jupiter.api.Test;
 
 public class LottosResultTest {

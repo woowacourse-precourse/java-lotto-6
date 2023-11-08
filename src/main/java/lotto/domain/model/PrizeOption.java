@@ -28,9 +28,9 @@ public enum PrizeOption {
         PrizeOption result = getResultByNumberOfBall(countBalls);
         return checkBonusNumber(result,userLotto,bonusNumber);
     }
-    public static PrizeOption checkBonusNumber(PrizeOption result, Lotto given ,Integer bonusNumber) {
-        if(result.equals(PrizeOption.FIVE_MATCHES) && given.haveSameBall(bonusNumber))return PrizeOption.FIVE_PLUS_BONUS;
-        return result;
+    public static PrizeOption checkBonusNumber(PrizeOption option, Lotto given ,Integer bonusNumber) {
+        if(option.equals(FIVE_MATCHES) && given.haveSameBall(bonusNumber))return FIVE_PLUS_BONUS;
+        return option;
     }
     public static PrizeOption getResultByNumberOfBall(Integer countBall) {
         if (countBall.equals(THREE_MATCHES.ballCount))return THREE_MATCHES;
@@ -38,5 +38,8 @@ public enum PrizeOption {
         if (countBall.equals(FIVE_MATCHES.ballCount)) return FIVE_MATCHES;
         if (countBall.equals(SIX_MATCHES.ballCount)) return SIX_MATCHES;
         return UNDER_THREE;
+    }
+    public Boolean isNotUnderThree() {
+        return !this.equals(UNDER_THREE);
     }
 }

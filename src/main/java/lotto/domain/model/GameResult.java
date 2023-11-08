@@ -3,7 +3,6 @@ package lotto.domain.model;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.service.Money;
 
 public class GameResult {
     private EnumMap<PrizeOption, Integer> resultCounts;

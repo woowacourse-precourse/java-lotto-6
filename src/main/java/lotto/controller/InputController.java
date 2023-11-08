@@ -3,19 +3,15 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.service.Money;
+import lotto.domain.model.Money;
 import lotto.view.OutputView;
 
 public class InputController {
-    private final Money money;
-    public InputController(Money money) {
-        this.money = money;
-    }
     public Integer getMoney() {
         String given = Console.readLine();
         try {
             int givenMoney = checkNumber(given);
-            money.checkMoney(givenMoney);
+            Money.checkMoney(givenMoney);
             return givenMoney;
         } catch (IllegalArgumentException e) {
             OutputView.showErrorMessage(e.getMessage());

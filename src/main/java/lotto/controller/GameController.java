@@ -4,8 +4,8 @@ import java.util.List;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.Lottos;
 import lotto.domain.model.GameResult;
-import lotto.domain.service.Money;
-import lotto.domain.service.User;
+import lotto.domain.model.Money;
+import lotto.domain.model.User;
 import lotto.view.OutputView;
 
 public class GameController {
@@ -17,15 +17,15 @@ public class GameController {
     private final InputController inputController;
     private final OutputView outputView;
 
-    public GameController(InputController inputController, OutputView outputView ,User user, Money money) {
-        this.user = user;
+    public GameController(InputController inputController, OutputView outputView) {
         this.inputController = inputController;
         this.outputView = outputView;
-        this.money = money;
+        this.money = new Money();
+        this.user = new User();
     }
 
     public void startGame() {
-        money = buyLottos();
+        this.money = buyLottos();
         user = user.newInstance(money);
         Lottos userLottos = generateUserLottos(ticketAmount);
         outputView.showUserLottoMessage(userLottos);

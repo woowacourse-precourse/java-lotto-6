@@ -26,7 +26,8 @@ public class Lottos {
 
     public List<PrizeOption> matchUp(Lotto answerLotto, int bonusNumber) {
         return lottos.stream()
-                .map(i -> getResult(i, answerLotto, bonusNumber))
+                .map(userLotto -> getResult(userLotto, answerLotto, bonusNumber))
+                .filter(PrizeOption::isNotUnderThree)
                 .toList();
     }
     private PrizeOption getResult(Lotto userLotto, Lotto answerLotto, Integer bonusNumber) {

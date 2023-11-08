@@ -1,4 +1,4 @@
-package lotto.domain.service;
+package lotto.domain.model;
 
 public class Money {
     private Integer money;
@@ -7,6 +7,7 @@ public class Money {
 
     }
     public Money(Integer moneyAmount) {
+        checkMoney(moneyAmount);
         this.money = moneyAmount;
     }
 
@@ -14,7 +15,7 @@ public class Money {
         return givenMoney / unit;
     }
 
-    public void checkMoney(int givenMoney) {
+    public static void checkMoney(int givenMoney) {
         if (givenMoney % unit != 0) {
             throw new IllegalArgumentException("[ERROR]" + givenMoney);
         }

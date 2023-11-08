@@ -1,8 +1,4 @@
-package lotto.domain.service;
-
-import lotto.domain.model.GameResult;
-import lotto.domain.model.Lotto;
-import lotto.domain.model.Lottos;
+package lotto.domain.model;
 
 public class User {
     private Lottos lottos;

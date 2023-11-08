@@ -60,6 +60,10 @@ check new branch
 - checkLotto()
   - input : int / return : void
   - 정답 값 개수만큼 correct 값 변경
+- checkFive()
+  - input : Lotto/ return : void
+  - bonus 값이 Lotto 값에 들어가있지 여부 확인
+  - 포함값이면 correct[3] 의 값을 추가하고 correct[2] 값을 하나 줄임
 - result()
   - input : null / return : double
   - checkLotto 실행 후 correct 값이 변경

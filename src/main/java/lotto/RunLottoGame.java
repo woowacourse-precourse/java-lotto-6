@@ -31,5 +31,6 @@ public class RunLottoGame {
     public void winningLotto() {
         InputManager inputWinningManager = new InputManager();
         List<Integer> winningLottoNumbers = inputWinningManager.inputWinningNumbers();
+        int bonusNumber = inputWinningManager.inputBonusNumber(winningLottoNumbers);
     }
 }

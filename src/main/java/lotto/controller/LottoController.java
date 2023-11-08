@@ -1,30 +1,53 @@
 package lotto.controller;
 
+
 import static lotto.util.Util.changeStringToInt;
 import static lotto.validator.LottoInputValidator.validateBonusNumber;
-import static lotto.validator.LottoInputValidator.validateBonusNumberNumeric;
-import static lotto.validator.LottoInputValidator.validateBonusNumberRange;
+import static lotto.view.PrintView.printErrorMessage;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.WinningNumber;
+import lotto.util.Util;
+import lotto.validator.LottoInputValidator;
+
 public class LottoController {
-    public String inputWinningNumbers() {
-        String winningNumbers = Console.readLine();
-        return winningNumbers;
+    public WinningNumber inputWinningNumbers() {
+        WinningNumber winningNumber = null;
+
+        while (winningNumber == null) {
+            try {
+                winningNumber = getValidWinningNumber();
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e);
+            }
+        }
+
+        return winningNumber;
+    }
+
+    private WinningNumber getValidWinningNumber() {
+        String input = Console.readLine();
+        LottoInputValidator.validateWinningNumber(input);
+        List<Integer> numbers = Util.changeStringToList(input);
+        return new WinningNumber(numbers);
     }
 
     public int inputBonusNumber() {
-        int bonusNumber = 0;
+        BonusNumber bonusNumber = new BonusNumber();
         boolean validInput = false;
 
-        while(!validInput){
+        while (!validInput) {
             try {
                 String input = Console.readLine();
                 validateBonusNumber(input);
-                bonusNumber = changeStringToInt(input);
+                bonusNumber.setBonusNumber(changeStringToInt(input));
                 validInput = true;
-            } catch(IllegalArgumentException e){
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                printErrorMessage(e);
             }
-        } return bonusNumber;
+        }
+        return bonusNumber.getBonusNumber();
     }
 }

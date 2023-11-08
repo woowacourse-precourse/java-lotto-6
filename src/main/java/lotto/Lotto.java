@@ -52,7 +52,7 @@ public class Lotto {
         if (numbers.contains(bonusNum)) {
             result = true;
             try {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨번호와 중복되면 안됩니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 보너스 번호는 당첨번호와 중복되면 안됩니다.");
             }

@@ -1,23 +1,28 @@
 package lotto;
 
 import view.Input;
+import view.Output;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-
-    //    private static List<Integer> lotto = new ArrayList<>();
     private static Lotto lotto;
+
+    private static LottoAmount lottoAmount;
 
     static List<Integer> winNums;
 
     public void start() {
         boolean result = true;
         int bonusNum;
-        int amount = Input.inputLottoAmount();
 
-        InputWinNum();
+        int amount = getInputAmount();
+
+        int count = lottoAmount.calculateLottoCount();
+        Output.printLottoCount(count);
+
+        winNums = getInputWinNum();
 
         List<Integer> passedWinNums = lotto.getNumbers();
 
@@ -28,7 +33,7 @@ public class LottoController {
 
     }
 
-    private static List<Integer> InputWinNum() {
+    private static List<Integer> getInputWinNum() {
         while (true) {
             try {
                 winNums = Input.inputWinNums();
@@ -37,10 +42,21 @@ public class LottoController {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
         }
-
     }
 
+    private static int getInputAmount() {
+        while (true) {
+            try {
+                int amount = Input.inputLottoAmount();
+                lottoAmount = new LottoAmount(amount);
+                return amount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+
+    }
 
 }

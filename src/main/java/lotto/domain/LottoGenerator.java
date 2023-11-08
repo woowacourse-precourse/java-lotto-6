@@ -3,7 +3,6 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {
@@ -12,12 +11,7 @@ public class LottoGenerator {
     private static final int LOTTO_SIZE = 6;
 
     private static List<Integer> generateLottoNumbers() {
-        return sortLottoNumbers(Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_SIZE));
-    }
-
-    private static List<Integer> sortLottoNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_SIZE);
     }
 
     private static Lotto generateLotto() {

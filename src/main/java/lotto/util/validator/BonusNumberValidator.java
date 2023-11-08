@@ -2,9 +2,21 @@ package lotto.util.validator;
 
 import lotto.util.exception.ErrorCode;
 
+import java.util.List;
+
 public class BonusNumberValidator {
     public static final int MIN_RANDOM_BOUND = 1;
     public static final int MAX_RANDOM_BOUND = 45;
+
+    public int validateBonusNumber(String inputBonusNumber, List<Integer> winningNumbers) {
+        validateNullorEmpty(inputBonusNumber);
+
+        int number = validateNumberType(inputBonusNumber);
+        validateNumberRange(number);
+
+        validateNumberDuplication(number, winningNumbers);
+        return number;
+    }
 
     private void validateNullorEmpty(String inputBonusNumber) {
         if (inputBonusNumber == null || inputBonusNumber.trim().isEmpty()) {
@@ -23,6 +35,12 @@ public class BonusNumberValidator {
     private void validateNumberRange(int number) {
         if (number < MIN_RANDOM_BOUND || number > MAX_RANDOM_BOUND) {
             throw new IllegalArgumentException(ErrorCode.INVALID_BONUS_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void validateNumberDuplication(int number, List<Integer> winningNumbers) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException(ErrorCode.DUPLICATE_BONUS_NUMBER.getMessage());
         }
     }
 }

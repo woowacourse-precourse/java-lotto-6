@@ -4,7 +4,7 @@ import lotto.constant.ConstantNumber;
 
 public class PriceValidator extends Validator {
     public static void isMultipleOfThousand(int number) {
-        if (number % ConstantNumber.THOUSAND != 0) {
+        if (number % ConstantNumber.LOTTO_PRICE_UNIT != 0) {
             throw new IllegalArgumentException();
         }
     }

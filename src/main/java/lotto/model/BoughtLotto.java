@@ -12,7 +12,7 @@ public class BoughtLotto {
     private final List<Lotto> lottos = new ArrayList<>();
 
     public BoughtLotto(int price) {
-        this.boughtNumber = price / ConstantNumber.THOUSAND;
+        this.boughtNumber = price / ConstantNumber.LOTTO_PRICE_UNIT;
         for (int i = 0; i < boughtNumber; i++) {
             lottos.add(createLotto());
         }

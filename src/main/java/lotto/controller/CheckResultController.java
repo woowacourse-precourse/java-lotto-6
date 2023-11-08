@@ -39,7 +39,7 @@ public class CheckResultController {
 
     public void checkEarningRate() {
         int earning = lottoResultService.calculateEarning(result.getMatchResult());
-        result.calculateEarningRate(earning, boughtLotto.getBoughtNumber() * ConstantNumber.THOUSAND);
+        result.calculateEarningRate(earning, boughtLotto.getBoughtNumber() * ConstantNumber.LOTTO_PRICE_UNIT);
     }
 
 }

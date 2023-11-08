@@ -24,4 +24,13 @@ public class WinningAnalyzer {
         return winningResult;
     }
 
+    public double calculateRate(Map<Rank,Integer> result,int inputMoney){
+        int total = 0;
+        for(Rank rank:result.keySet()){
+            total += rank.getRewardMoney() * result.get(rank);
+        }
+        return total / (double)inputMoney * 100;
+
+    }
+
 }

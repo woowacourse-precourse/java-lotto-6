@@ -16,9 +16,17 @@ public class OutputView {
     }
 
     public void printLottoTickets(List<Lotto> lottos){
-        for(Lotto lotto : lottos){
-            System.out.println(lotto.getNumbersByAsc());
+        for (Lotto lotto : lottos) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            List<Integer> sorted = lottoNumbers.stream()
+                    .sorted()
+                    .collect(Collectors.toList());
+            System.out.println(sorted);
         }
+    }
+
+    public void printRate(double rate){
+        System.out.printf("총 수익률은 %.1f%%입니다.",rate);
     }
 
     public void printWinningResult(Map<Rank, Integer> winningResult){

@@ -20,12 +20,11 @@ public class Game {
         int lottoTicketCount = lottoMaker.calculateLottoTicketCount(money);
         List<Lotto> lottos = lottoMaker.makeLottoTickets(lottoTicketCount);
 
-        System.out.println();
         outputView.printLottoTicketCount(lottos);
         outputView.printLottoTickets(lottos);
         WinningLotto winningLotto = inputView.getWinningLotto();
         Map<Rank, Integer> winningResult = winningAnalyzer.compareAllLotto(lottos, winningLotto);
         outputView.printWinningResult(winningResult);
-
+        outputView.printRate(winningAnalyzer.calculateRate(winningResult, money));
     }
 }

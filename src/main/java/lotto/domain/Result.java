@@ -12,14 +12,14 @@ public class Result {
 
     public Result() {
         // initialize winCount to all has 0
-        for (Prize prize: Arrays.asList(Prize.values())) {
+        for (Prize prize : Arrays.asList(Prize.values())) {
             winCounts.put(prize, 0);
         }
     }
-    
+
     public void record(Prize prize) {
         Integer winCount = winCounts.get(prize);
-        winCounts.put(prize, winCount+1);
+        winCounts.put(prize, winCount + 1);
         totalPrize += prize.getAmount();
     }
 

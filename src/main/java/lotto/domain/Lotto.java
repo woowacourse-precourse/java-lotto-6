@@ -17,7 +17,7 @@ public class Lotto {
         Integer winCount = this.numbers.stream()
                 .filter(number -> lottoNumber.contains(number)).toList().size();
         Boolean hasBonusNumber = lottoNumber.contains(bonusNumber);
-        
+
         return LottoCondition.getRank(winCount, hasBonusNumber);
     }
 

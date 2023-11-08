@@ -21,8 +21,8 @@ public class Input {
     }
 
     public static Lotto getWinNumbers() {
-        try {   
-            List<Integer> numbers = 
+        try {
+            List<Integer> numbers =
                     Util.parseIntToListOrThrowException(Console.readLine(), LottoCondition.REGEX);
             return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
@@ -30,7 +30,7 @@ public class Input {
             return getWinNumbers();
         }
     }
-    
+
     public static Integer getBonusNumber(Lotto lotto) {
         try {
             Integer bonusNumber = Util.parseIntOrThrowException(Console.readLine());

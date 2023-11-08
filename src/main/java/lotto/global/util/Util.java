@@ -24,7 +24,7 @@ public class Util {
     }
 
     public static Double round(Double number, Integer decimal) {
-        Double nSquaredTen = Math.pow(10, decimal-1);
+        Double nSquaredTen = Math.pow(10, decimal - 1);
         return (double) Math.round(number * nSquaredTen) / nSquaredTen;
     }
 

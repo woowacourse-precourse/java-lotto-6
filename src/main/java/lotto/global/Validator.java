@@ -47,6 +47,6 @@ public class Validator {
     }
 
     private static Boolean isInRange(Integer number) {
-        return number >= LottoCondition.MIN_NUMBER &&number <= LottoCondition.MAX_NUMBER;
+        return number >= LottoCondition.MIN_NUMBER && number <= LottoCondition.MAX_NUMBER;
     }
 }

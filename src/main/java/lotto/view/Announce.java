@@ -9,9 +9,11 @@ public class Announce {
     public static final String GET_WIN_NUMBER = "당첨 번호를 입력해 주세요.";
     public static final String Get_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     public static final String WIN_STATISTIC = "당첨 통계\n---";
+
     public static String purchaseCount(Integer amount) {
-        return amount/LottoCondition.MONEY_UNIT + "개를 구매했습니다.";
+        return amount / LottoCondition.MONEY_UNIT + "개를 구매했습니다.";
     }
+
     public static String yieldRate(Double percentage) {
         return "총 수익률은 " + percentage + "%입니다.";
     }

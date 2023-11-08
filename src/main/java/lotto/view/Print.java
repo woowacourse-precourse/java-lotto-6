@@ -32,8 +32,8 @@ public class Print {
     public static void statistic(Result result, Double yieldRate) {
         System.out.println(Announce.NEW_LINE + Announce.WIN_STATISTIC);
 
-        for (Prize prize: Arrays.asList(Prize.values())) {
-            if (prize == Prize.NONE) { 
+        for (Prize prize : Arrays.asList(Prize.values())) {
+            if (prize == Prize.NONE) {
                 continue;
             }
             System.out.println(Announce.result(prize, result.getWinCount(prize)));

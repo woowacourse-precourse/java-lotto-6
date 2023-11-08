@@ -18,20 +18,24 @@ public class LottoWithBounusNumber {
     public static LottoWithBounusNumber createLottoWithBonusNumber() {
         Lotto lotto;
         Integer bounusNumber;
-
-        try {
-            lotto = Lotto.inputLotto();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            lotto = Lotto.inputLotto();
+함        while (true){
+            try {
+                lotto = Lotto.inputLotto();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
-        try {
-            bounusNumber = inputBonusNumber();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            bounusNumber = inputBonusNumber();
+        while (true) {
+            try {
+                bounusNumber = inputBonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
+
         return new LottoWithBounusNumber(lotto, bounusNumber);
     }
 
@@ -40,5 +44,13 @@ public class LottoWithBounusNumber {
         InputView.printUserBonusNumber();
         bonusNumber = Integer.parseInt(readLine());
         return bonusNumber;
+    }
+
+    public Lotto getLotto() {
+        return this.lotto;
+    }
+
+    public Integer getBonusNumber() {
+        return this.bonusNumber;
     }
 }

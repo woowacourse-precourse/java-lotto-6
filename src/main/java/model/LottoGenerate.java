@@ -53,12 +53,12 @@ public class LottoGenerate {
     }
 
     public static List<Integer> generateLottoResult(List<Lotto> lottoTickets,
-                                                    List<Integer> lottoWinngNumbers,
+                                                    List<Integer> lottoWinningNumbers,
                                                     int lottoBonusNumber) {
         Integer[] tempArray = {0, 0, 0, 0, 0};
         List<Integer> lottoResult = new ArrayList<>(List.of(tempArray));
         for (Lotto lotto : lottoTickets) {
-            int matchingCount = lotto.getLottoMatchingCount(lottoWinngNumbers);
+            int matchingCount = lotto.getLottoMatchingCount(lottoWinningNumbers);
             boolean matchBonus = lotto.getLottoMatchBonus(lottoBonusNumber);
             classifyLottoResult(lottoResult, matchingCount, matchBonus);
         }

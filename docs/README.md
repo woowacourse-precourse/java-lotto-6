@@ -59,3 +59,17 @@
    - 입력값의 범위가 1~45의 범위에서 벗어날 때
  
 # 🔍 클래스 설명
+## Controller
+- InputParser: 입력값 전처리
+- GameController: 입력값 기본 검증, 모델과 뷰의 상호작용 담당 
+## Domain 
+- Lotto: 로또 클래스
+- Lottos: 로또 클래스의 일급 컬렉션
+- LottoRepository: Lottos의 조회 및 저장 로직 담당
+- LottoService: 게임의 비즈니스 로직 담당
+- PurChaseCount: 구입횟수 클래스
+- WinningLotto: 당첨 로또 클래스(로또 클래스 상속)
+- WinningResult: 당첨 결과 클래스
+## View 
+- GameView: 화면 입출력 담당
+## Application

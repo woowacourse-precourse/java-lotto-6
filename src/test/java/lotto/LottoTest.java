@@ -44,6 +44,19 @@ class LottoTest {
         assertThat(captured).isEqualTo("[1, 2, 3, 4, 5, 6]");
      }
 
+    @DisplayName("맞춘 로또 번호의 갯수를 반환한다.")
+    @Test
+    void countMatchingLottoNumbers() {
+        List<Integer> numbers = createLottoNumbers();
+        int bonusNumber = 8;
+
+        Lotto lotto = new Lotto(numbers);
+        LottoResult result = new LottoResult(numbers, bonusNumber);
+
+        int count = lotto.countMatchingLottoNumbers(result);
+
+        assertThat(count).isEqualTo(6);
+    }
 
     List<Integer> createLottoNumbers() {
         List<Integer> numbers = new ArrayList<>();

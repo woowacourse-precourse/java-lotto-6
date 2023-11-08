@@ -26,6 +26,7 @@ public class LottoInput {
     public WinningLotto winningLottoInput(){
         List<Integer> lottoNumbers = getInputWiningLotto();
         int bonusNumber = getInputBonusNumber();
+        bonusDuplicateCheck(lottoNumbers, bonusNumber);
         return new WinningLotto(lottoNumbers, bonusNumber);
     }
 
@@ -62,5 +63,20 @@ public class LottoInput {
         int bonusNumber = NumberHandler.parseLottoNumber(Console.readLine());
         System.out.println();
         return bonusNumber;
+    }
+
+    private ResponseStatus bonusDuplicateCheck(List<Integer> lottoNumbers, int bonusNumber){
+        try{
+            if(lottoNumbers.contains(bonusNumber)){
+                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_DUPLICATED.getMessage());
+            }
+            return ResponseStatus.OK;
+        }catch(IllegalArgumentException e){
+            e.printStackTrace();
+            return ResponseStatus.BAD;
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseStatus.ERROR;
+        }
     }
 }

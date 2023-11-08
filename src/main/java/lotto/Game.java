@@ -84,12 +84,13 @@ public class Game {
     }
     private Lotto makeNumber(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        sortAscNumber(numbers);
-        Lotto lotto = new Lotto(numbers);
+        Lotto lotto = new Lotto(sortAscNumber(numbers));
         return lotto;
     }
-    private void sortAscNumber(List<Integer> numbers){
-        Collections.sort(numbers);
+    private List<Integer> sortAscNumber(List<Integer> numbers){
+        List<Integer> copyNumbers = new ArrayList<>(numbers);
+        Collections.sort(copyNumbers);
+        return copyNumbers;
     }
     private void resultLottoGame(List<Lotto> numberTickets, WinningLotto winningLotto){
         for (Lotto lotto : numberTickets){
@@ -97,7 +98,7 @@ public class Game {
             Boolean isBonusNumberMatched = calculateLottoGameBonus(lotto, winningLotto);
             calculateLottoGameResult(matchedNumbersCount, isBonusNumberMatched);
         }
-        this.profitRate = this.totalPrice/this.lottoMoney;
+        this.profitRate = this.totalPrice/this.lottoMoney*100;
     }
     private int calculateLottoGame(Lotto lotto, WinningLotto winningLotto){
         List<Integer> resultLotto = new ArrayList<>(lotto.getNumbers());

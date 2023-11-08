@@ -12,6 +12,7 @@ public class OutputUser {
         for (Lotto lotto : numberTickets){
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
     public void outputLottoGameResult(Map<LottoRank, Integer> lottoGameResult, double profitRate){
         System.out.println("당첨 통계\n---");
@@ -21,6 +22,6 @@ public class OutputUser {
             }
             System.out.printf("%s - %d개\n", rank.getMaseege(),lottoGameResult.get(rank));
         }
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 }

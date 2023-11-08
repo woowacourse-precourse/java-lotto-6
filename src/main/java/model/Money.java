@@ -8,10 +8,12 @@ public class Money {
     private static final int MONEY_MAX_LENGTH = 10;
     private static final int LOTTO_PRICE = 1000;
 
+    private final int cost;
     private int money;
 
     public Money(String money){
         this.money = validateMoney(money);
+        this.cost = this.money;
     }
 
     int validateMoney(String moneyInput) {
@@ -61,5 +63,9 @@ public class Money {
 
     void purchaseLotto() {
         money -= LOTTO_PRICE;
+    }
+
+    public int getCost() {
+        return this.cost;
     }
 }

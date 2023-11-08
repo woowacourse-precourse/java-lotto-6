@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class LottoNumberServiceTest {
 
     @Test
-    @DisplayName("로또번호 가져오는 기능 테스트")
+    @DisplayName("로또번호를 생성 할 수 있다.")
     void createRandomLottosTest() {
 
         assertRandomUniqueNumbersInRangeTest(

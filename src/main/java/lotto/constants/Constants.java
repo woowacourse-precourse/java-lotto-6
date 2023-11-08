@@ -7,7 +7,6 @@ public class Constants {
     public final static int LOTTO_COST = 1000;
     public final static String SEPARATOR = ",";
     public final static String DOUBLE_SEPARATOR = ",,";
-
     public final static int INITIAL_COUNT = 0;
     public final static int ZERO_PROFIT = 0;
 

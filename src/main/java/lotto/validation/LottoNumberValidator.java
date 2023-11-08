@@ -3,6 +3,7 @@ package lotto.validation;
 import static lotto.constants.Constants.DOUBLE_SEPARATOR;
 import static lotto.constants.Constants.LOTTO_NUMBER_RANGE_END;
 import static lotto.constants.Constants.LOTTO_NUMBER_RANGE_START;
+import static lotto.constants.Constants.LOTTO_NUMBER_SIZE;
 import static lotto.constants.Constants.SEPARATOR;
 
 import java.util.HashSet;
@@ -13,7 +14,7 @@ import lotto.exception.NumberDuplicateException;
 import lotto.exception.NumberRangeException;
 import lotto.exception.NumbersSizeException;
 
-public class LottoNumberValidator extends CommonValidator {
+public class LottoNumberValidator extends Validator {
 
     public static void validateWinningNumberReadLine(String readLine) {
         checkBlank(readLine);
@@ -43,7 +44,7 @@ public class LottoNumberValidator extends CommonValidator {
     }
 
     private static void checkLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw NumbersSizeException.numbersSizeException;
         }
     }

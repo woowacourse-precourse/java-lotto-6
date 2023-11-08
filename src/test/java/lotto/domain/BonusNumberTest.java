@@ -52,4 +52,5 @@ public class BonusNumberTest {
                     .hasMessage(ErrorMessage.LOTTO_NUMBER_NOT_UNIQUE.getMessage());
         }
     }
+
 }

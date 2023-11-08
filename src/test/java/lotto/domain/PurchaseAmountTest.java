@@ -70,4 +70,5 @@ class PurchaseAmountTest {
                 () -> assertThat(purchaseAmount.getNumberOfLotto()).isEqualTo(1)
         );
     }
+
 }

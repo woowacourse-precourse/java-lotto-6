@@ -10,12 +10,14 @@ import java.util.stream.Collectors;
 public class InputView {
 
     public List<Integer> inputNumbers(String inputMessage) {
+        System.out.println();
         System.out.println(inputMessage);
         String string = Console.readLine();
         return parseNumbers(string);
     }
 
     public int inputNumber(String inputMessage) {
+        System.out.println();
         System.out.println(inputMessage);
         String string = Console.readLine();
         return parseNumber(string);

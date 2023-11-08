@@ -2,6 +2,14 @@ package lotto.util;
 
 public class ValidateNumber {
 
+    public static int isPositiveInteger(String inputValue) {
+
+        int inputNumber = isInteger(inputValue);
+        isPositive(inputNumber);
+
+        return inputNumber;
+    }
+
     private static int isInteger(String inputValue) {
 
         if (!inputValue.matches("-?\\d+")){

@@ -7,7 +7,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
 class BankTest {
+
+
     @DisplayName("당첨 번호와 로또 번호 일치하는 개수 테스트")
     @Test
     public void testCountCorrect() {
@@ -45,5 +48,17 @@ class BankTest {
         Boolean matchBonus = bank.isMatchBonus(lotto);
         //then
         Assertions.assertEquals(false, matchBonus);
+    }
+
+    @DisplayName("player의 money와 상금을 나눠 earningRate 계산")
+    @Test
+    public void testCalculateEarningRate() {
+        //given
+        Bank bank = new Bank();
+        Player player = new Player("10000");
+        //when
+        double earningRate = bank.calculateEarningRate(15000, player);
+        //then
+        assertEquals(150.0, earningRate, 0.01);
     }
 }

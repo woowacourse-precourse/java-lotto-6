@@ -3,8 +3,7 @@ package lotto.entity;
 import lotto.service.HasDuplicate;
 
 import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
+
 
 public class Lotto {
     private List<Integer> numbers;

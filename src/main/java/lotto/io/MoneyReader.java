@@ -13,7 +13,7 @@ public class MoneyReader {
                 MoneyAmountException.money_reader(number);
                 return number;
             } catch (IllegalStateException e) {
-                System.out.println("[ERROR] 다시 입력해라");
+                System.out.println("[ERROR]다시입력하세요");
                 return money_reader(); // 예외가 발생한 경우 다시 입력하도록 재귀 호출
             }
         }

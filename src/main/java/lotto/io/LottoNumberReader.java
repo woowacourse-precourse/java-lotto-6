@@ -25,7 +25,6 @@ public class LottoNumberReader {
             }
 
             Lotto lotto = new Lotto(lottonumbers);
-            System.out.println("로또 번호 : " + lottonumbers);
             return lottonumbers;
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 다시 입력하시오");

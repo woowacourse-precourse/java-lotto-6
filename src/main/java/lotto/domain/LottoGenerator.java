@@ -25,7 +25,7 @@ public class LottoGenerator {
     private void generate(int amount) {
         try {
             while (amount > ZERO) {
-                this.numbers = RandomNumberGenerator.getNumbers();
+                this.numbers = new ArrayList<>(RandomNumberGenerator.getNumbers());
                 sort();
                 myLotto.add(new Lotto(this.numbers));
                 amount--;

@@ -46,4 +46,8 @@ public class WinNumber {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
+    public boolean isContain(Integer number) {
+        return winNumber.isContain(number);
+    }
 }

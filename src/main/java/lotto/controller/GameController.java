@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lottos;
+import lotto.domain.Result;
 import lotto.util.Constants;
 import java.util.List;
 
@@ -15,6 +16,8 @@ public class GameController {
         printLottoNumbers(lottos);
         List<Integer> winningNumber = getLuckyNumber();
         int bonusNumber = getBonusNumber();
+        Result result = new Result(lottos, winningNumber, bonusNumber);
+        result.gameResult();
     }
 
     private int buyLotto(int purchaseAmount) {

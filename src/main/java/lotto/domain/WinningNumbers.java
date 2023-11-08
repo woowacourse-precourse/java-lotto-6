@@ -93,4 +93,11 @@ public class WinningNumbers {
         duplicateCheckSet.add(number);
     }
 
+    public List<Integer> getGeneralNumbers() {
+        return generalNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

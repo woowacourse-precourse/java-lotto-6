@@ -8,6 +8,7 @@ public class LottoTicketFactory {
     static RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
 
     public static LottoTicket generateTicket(int purchaseCount) {
+        validateOverZero(purchaseCount);
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseCount; i++) {
             lottos.add(createSingleAutoLotto());
@@ -19,5 +20,10 @@ public class LottoTicketFactory {
         return new Lotto(randomNumbersGenerator.generate());
     }
 
+    private static void validateOverZero(int purchaseCount){
+        if(purchaseCount <= 0){
+            throw new IllegalArgumentException("[ERROR] 1개 이상 구입해야 합니다");
+        }
+    }
 
 }

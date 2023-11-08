@@ -5,6 +5,8 @@ import lotto.domain.lotto.LottoTicket;
 import lotto.domain.lotto.LottoTicketFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -31,5 +33,14 @@ class LottoTicketFactoryTest {
                 .isInstanceOf(UnsupportedOperationException.class);
         assertThatThrownBy(() ->lottoTicket.getLottos().remove(0))
                 .isInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @DisplayName("구매 개수 1이상 검사")
+   @ParameterizedTest
+    @ValueSource(ints = {0,-1})
+    void validateOverZeroTest(int input){
+       assertThatThrownBy(()->LottoTicketFactory.generateTicket(input))
+               .isInstanceOf(IllegalArgumentException.class).
+               hasMessage("[ERROR] 1개 이상 구입해야 합니다");
     }
 }

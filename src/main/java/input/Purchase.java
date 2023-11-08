@@ -24,7 +24,7 @@ public class Purchase {
             this.money = scanner.nextLine();
             isValidInput = isValidate(money);
         } catch (IllegalArgumentException e) {
-            System.out.print(buildErrorMessage(902));
+            System.out.print(e);
         }
     }
     private boolean isValidate(final String money) {

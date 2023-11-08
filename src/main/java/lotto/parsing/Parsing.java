@@ -15,12 +15,13 @@ public class Parsing {
         return input/1000;
     }
 
-    public static List<Integer> makeList(String inputValue){
-        String [] splitString = splitByComma(inputValue);
+    public static List<Integer> makeList(String input){
+        String [] splitString = splitByComma(input);
         return stringArrayToIntegerList(splitString);
     }
 
     public static String[] splitByComma(String input){
+        NumberValidation.isCommaSplitter(input);
         return input.split(STRING_COMMA);
     }
 

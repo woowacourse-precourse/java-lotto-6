@@ -24,5 +24,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호에 6자리 숫자가 작성되지 않은 경우 예외가 발생한다.")
+    @Test
+    void createLottoByNotSixSizeOfNumber() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 5, 36)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+
+
 }

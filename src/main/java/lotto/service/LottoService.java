@@ -19,6 +19,7 @@ public class LottoService {
     private static RandomLotto rl;
     private static int number;
     private static UserLotto userLotto;
+    private static Lotto lotto;
     private static ConsistencyService consistencyService;
     private static int capital;
     private static String purchaseNum;
@@ -61,14 +62,16 @@ public class LottoService {
 
     public void userNumber(){
         outputView.userNumberComment();
-        List<Integer> list = userNumberList();
+        purchaseNum = InputView.inputLine();
+        lotto = new Lotto(userNumberList(purchaseNum));
         outputView.bonusNumberComment();
         int bonusNumber = Parsing.stringToInt(InputView.inputLine());
-        userLotto = new UserLotto(new Lotto(list), new BonusLotto(bonusNumber));
+        userLotto = new UserLotto(lotto, new BonusLotto(bonusNumber));
     }
 
-    private static List<Integer> userNumberList() {
-        List<Integer> userLottoList = Parsing.makeList(InputView.inputLine());
+    public List<Integer> userNumberList(String purchaseNum) {
+        List<Integer> userLottoList = Parsing.makeList(purchaseNum);
+        NumberValidation.isSixSizeOfList(userLottoList);
         return userLottoList;
     }
 
@@ -77,6 +80,10 @@ public class LottoService {
         List<Integer> totalConsistency = consistencyService.winnerGraph(rl.getLottoLists());
         consistencyService.setRateMoney();
         outputView.winnerGraphComment(totalConsistency, consistencyService.getRateOfReturn());
+    }
+
+    public void setPurchaseNum(String input){
+        this.purchaseNum = input;
     }
 
 }

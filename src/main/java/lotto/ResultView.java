@@ -19,32 +19,38 @@ public class ResultView {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        // 정렬된 LottoRank 배열을 가져오기
         LottoRank[] ranks = LottoRank.values();
         Arrays.sort(ranks, Comparator.comparingInt(LottoRank::getMatchCount));
 
-        // NumberFormat으로 숫자에 천 단위로 콤마 찍기
         NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
+        printStatistics(ranks, numberFormat, result);
+        printEarningsRate(result, purchaseAmount);
+    }
 
-        for (LottoRank rank : LottoRank.values()) {
+    private static void printStatistics(LottoRank[] ranks, NumberFormat numberFormat, LottoResult result) {
+        for (LottoRank rank : ranks) {
             if (rank == LottoRank.MISS) continue;
+            System.out.println(getMatchMessage(rank, numberFormat, result));
+        }
+    }
 
-            String matchMessage = rank.getMatchCount() + "개 일치";
+    private static String getMatchMessage(LottoRank rank, NumberFormat numberFormat, LottoResult result) {
+        String matchMessage = rank.getMatchCount() + "개 일치";
 
-            if (rank == LottoRank.SECOND) {
-                matchMessage += ", 보너스 볼 일치";
-            }
-
-            String winningsFormatted = numberFormat.format(rank.getWinnings()) + "원";
-            matchMessage += " (" + winningsFormatted + ") - " + result.getCount(rank) + "개";
-
-            System.out.println(matchMessage);
+        if (rank == LottoRank.SECOND) {
+            matchMessage += ", 보너스 볼 일치";
         }
 
+        String winningsFormatted = numberFormat.format(rank.getWinnings()) + "원";
+        matchMessage += " (" + winningsFormatted + ") - " + result.getCount(rank) + "개";
+
+        return matchMessage;
+    }
+
+    private static void printEarningsRate(LottoResult result, int purchaseAmount) {
         double earningsRate = result.calculateEarningsRate(purchaseAmount) * 100;
         DecimalFormat df = new DecimalFormat("0.##");
         System.out.println("총 수익률은 " + df.format(earningsRate) + "%입니다.");
     }
-
 }
 

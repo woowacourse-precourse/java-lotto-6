@@ -48,10 +48,7 @@ public class LottoProfitService {
         if (winningAmount >= LottoWinningRanking.THIRD.getWinningAmount()) {
             return winningAmount;
         }
-        if (winningAmount <= LottoWinningRanking.FOURTH.getWinningAmount()) {
-            return winningAmount * count;
-        }
 
-        return LottoWinningRanking.NONE.getWinningAmount();
+        return winningAmount * count;
     }
 }

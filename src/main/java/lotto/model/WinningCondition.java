@@ -40,7 +40,7 @@ public enum WinningCondition {
         return result;
     }
 
-    public static boolean meetCondition(WinningCondition winningCondition, int winningNumberCount, int bonusNumberCount) {
+    private static boolean meetCondition(WinningCondition winningCondition, int winningNumberCount, int bonusNumberCount) {
         if(winningCondition.containBonusNumber && bonusNumberCount != 1){
             return false;
         }

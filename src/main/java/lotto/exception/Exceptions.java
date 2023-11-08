@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.exception;
 
 public class Exceptions {
     public void isInvalidPurchaseMoneyAmount(int money, int divided){
@@ -8,7 +8,7 @@ public class Exceptions {
     }
 
     public void isInvalidNumberOfLotteries(String input){
-        String[] lotteries  = input.split(",");
+        String[] lotteries = input.split(",");
         if(lotteries.length != 6){
             throw new IllegalArgumentException("로또 번호는 6개를 입력해야 합니다.");
         }

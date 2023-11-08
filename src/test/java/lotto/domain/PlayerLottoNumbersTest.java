@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.domain.lotto.Numbers;
+import lotto.domain.lotto.PlayerLottoNumbers;
+import lotto.domain.lotto.PurchasePrice;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

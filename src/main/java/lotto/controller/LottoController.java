@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.PurchasePrice;
+import lotto.domain.lotto.BonusNumber;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.PurchasePrice;
 import lotto.io.IoManager;
 import lotto.io.OutputView;
 import lotto.service.LottoService;

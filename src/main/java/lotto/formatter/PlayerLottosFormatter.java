@@ -2,8 +2,8 @@ package lotto.formatter;
 
 import lotto.constants.ViewElement;
 import lotto.constants.message.ProgressMessage;
-import lotto.domain.Number;
-import lotto.domain.Numbers;
+import lotto.domain.lotto.Number;
+import lotto.domain.lotto.Numbers;
 
 import java.util.List;
 import java.util.stream.Collectors;

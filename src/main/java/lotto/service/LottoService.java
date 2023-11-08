@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.domain.*;
+import lotto.domain.lotto.*;
 import lotto.domain.result.LottoStatistics;
 import lotto.domain.result.TotalRate;
 import lotto.formatter.GameResultFormatter;

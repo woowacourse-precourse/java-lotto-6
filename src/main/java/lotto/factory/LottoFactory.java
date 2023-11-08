@@ -1,7 +1,7 @@
 package lotto.factory;
 
 import lotto.controller.LottoController;
-import lotto.domain.PlayerLottoNumbers;
+import lotto.domain.lotto.PlayerLottoNumbers;
 import lotto.domain.result.LottoStatistics;
 import lotto.domain.result.TotalRate;
 import lotto.io.*;

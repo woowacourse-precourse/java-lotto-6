@@ -1,9 +1,9 @@
 package lotto.io;
 
 import lotto.constants.ViewElement;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.PurchasePrice;
+import lotto.domain.lotto.BonusNumber;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.PurchasePrice;
 
 import java.util.Arrays;
 import java.util.List;

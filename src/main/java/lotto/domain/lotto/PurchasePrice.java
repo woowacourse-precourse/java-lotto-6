@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import lotto.constants.lotto.LottoRule;
 import lotto.exception.NotThousandUnitException;

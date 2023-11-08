@@ -40,11 +40,33 @@ public class LottoController {
     }
 
     private String inputWinningNumber() {
-        return inputView.inputWinningNumber();
+        String winningNumber = null;
+        boolean success = false;
+
+        while (!success) {
+            try {
+                winningNumber = inputView.inputWinningNumber();
+                success = true;
+            } catch (IllegalArgumentException e) {
+                outputView.outputErrorMessage(e.getMessage());
+            }
+        }
+        return winningNumber;
     }
 
     private String inputBonusNumber() {
-        return inputView.inputBonusNumber();
+        String bonusNumber = null;
+        boolean success = false;
+
+        while (!success) {
+            try {
+                bonusNumber = inputView.inputBonusNumber();
+                success = true;
+            } catch (IllegalArgumentException e) {
+                outputView.outputErrorMessage(e.getMessage());
+            }
+        }
+        return bonusNumber;
     }
 
     private void outputNewLine() {
@@ -71,6 +93,17 @@ public class LottoController {
     }
 
     private int inputLottoAmount() {
-        return Integer.parseInt(inputView.inputLottoAmount());
+        int lottoAmount = 0;
+        boolean success = false;
+
+        while (!success) {
+            try {
+                lottoAmount = Integer.parseInt(inputView.inputLottoAmount());
+                success = true;
+            } catch (IllegalArgumentException e) {
+                outputView.outputErrorMessage(e.getMessage());
+            }
+        }
+        return lottoAmount;
     }
 }

@@ -12,7 +12,7 @@ import static java.lang.Integer.parseInt;
 
 public class WinnerInput {
     private static List<Integer> winnerCode;
-
+    private static int bonus;
 
     public static List<Integer> getWinner() {
         try {
@@ -22,39 +22,38 @@ public class WinnerInput {
                 winnerCode.add(parseInt(s));
             }
         } catch (NumberFormatException e) {
+            winnerCode.clear();
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE.WRONG_FORMAT);
             getWinner();
-        }finally{
-            checkCounts();
-            checkRange();
         }
         return winnerCode;
 
     }
-
-    private static void checkCounts() {
-        try{
-            if(winnerCode.size()!=6) {
-                throw new IllegalArgumentException();
-            }
-        }
-        catch(IllegalArgumentException e){
-            e.printStackTrace();
-            System.out.println(ERROR_MESSAGE.WRONG_COUNTS);
-            getWinner();
-        }
-    }
-
-    private static void checkRange() {
+}
+/*
+    public static int getWinnerBonus() {
         try {
-            if (Collections.min(winnerCode) <=0 || Collections.max(winnerCode)>46){
-                throw new IllegalArgumentException();
-            }
-        } catch (IllegalArgumentException e) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            int bonus = parseInt(Console.readLine());
+            checkValid();
+        } catch (NumberFormatException e) {
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE.WRONG_FORMAT);
-            getWinner();
+            getWinnerBonus();
         }
+        return bonus;
+
+    }
+    private static int checkValid() {
+        try {
+            if(bonus<=0)
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            System.out.println(ERROR_MESSAGE.WRONG_FORMAT);;
+        }
+        return winnerCode;
+
     }
 }
+*/

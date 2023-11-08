@@ -1,12 +1,10 @@
-package lotto.service;
+package lotto.domain;
 
+import static lotto.utils.ConstantString.DELIMITER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.PrizeChecker;
-import lotto.utils.Prize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -25,12 +23,12 @@ class PrizeCheckerTest {
     }, delimiter = ':')
     void calculatePrize(String inputNumbers, String expectedPrize) {
         // given
-        List<Integer> numbers = Arrays.stream(inputNumbers.split(LottoConstant.DELIMITER.get()))
+        List<Integer> numbers = Arrays.stream(inputNumbers.split(DELIMITER))
                 .map(Integer::parseInt)
                 .toList();
         Lotto playerLotto = new Lotto(numbers);
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber(7, winningLotto);
+        int bonusNumber = 7;
         PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
         // when
         Prize prize = prizeChecker.getPrize(playerLotto);

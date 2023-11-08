@@ -1,17 +1,39 @@
 package lotto.domain;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.wrapper.BonusNumber;
-import lotto.service.PrizeChecker;
-import lotto.utils.Prize;
+import lotto.Application;
+import lotto.domain.wrapper.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottosTest {
+class LottosTest extends NsTest {
+
+    @DisplayName("구입 금액에 따라 구입한 개수만큼 로또가 랜덤 번호를 기반으로 생성된다.")
+    @Test
+    void getLottos() {
+        // given
+        PurchaseAmount purchaseAmount = new PurchaseAmount(2000);
+        // when, then
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    Lottos lottos = new Lottos(purchaseAmount);
+                    System.out.println(lottos.toString());
+                    assertThat(output()).contains(
+                            "[8, 21, 23, 41, 42, 43]",
+                            "[3, 5, 11, 16, 32, 38]"
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38)
+        );
+    }
+
     @DisplayName("로또의 개수를 알려준다.")
     @Test
     void getLottoCount() {
@@ -40,7 +62,7 @@ class LottosTest {
                 new Lotto(List.of(7, 8, 9, 10, 11, 12))
         ));
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        BonusNumber bonusNumber = new BonusNumber(7, winningLotto);
+        int bonusNumber = 7;
         PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
         Map<Prize, Integer> expectedResult = new HashMap<>();
         expectedResult.put(Prize.FIRST, 1);
@@ -54,15 +76,8 @@ class LottosTest {
         assertThat(lottosResult).isEqualTo(expectedResult);
     }
 
-    @DisplayName("여러 개의 로또가 가진 로또 번호들을 요구사항에 맞는 문자열로 반환한다.")
-    @Test
-    void lottosToStringForPrinting() {
-        // given
-        Lotto firstLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto secondLotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        Lottos lottos = new Lottos(List.of(firstLotto, secondLotto));
-        String expectedResult = "[1, 2, 3, 4, 5, 6]\n[1, 2, 3, 4, 5, 7]";
-        // when, then
-        assertThat(lottos.toString()).isEqualTo(expectedResult);
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
     }
 }

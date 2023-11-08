@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.wrapper.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,16 +26,14 @@ class LottoTest {
 
     @DisplayName("로또 번호에 특정 번호가 포함되어 있는지 검사한다.")
     @Test
-    void doesHaveLottoNumber() {
+    void hasLottoNumber() {
         // given
         int commonNumber = 1;
         int notCommonNumber = 7;
         Lotto lotto = new Lotto(List.of(commonNumber,2,3,4,5,6));
-        LottoNumber commonLottoNumber = new LottoNumber(commonNumber);
-        LottoNumber notCommonLottoNumber = new LottoNumber(notCommonNumber);
         // when, then
-        assertThat(lotto.doesHaveLottoNumber(commonLottoNumber)).isEqualTo(true);
-        assertThat(lotto.doesHaveLottoNumber(notCommonLottoNumber)).isEqualTo(false);
+        assertThat(lotto.hasNumber(commonNumber)).isEqualTo(true);
+        assertThat(lotto.hasNumber(notCommonNumber)).isEqualTo(false);
     }
 
     @DisplayName("로또가 다른 로또와 공통된 숫자가 몇개 있는지 검사한다.")

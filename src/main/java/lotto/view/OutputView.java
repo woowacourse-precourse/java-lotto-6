@@ -2,7 +2,9 @@ package lotto.view;
 
 import lotto.dto.PurchaseResult;
 import lotto.model.Lotto;
+import lotto.type.WinningType;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
@@ -34,6 +36,25 @@ public class OutputView {
     
     public static void printReadBonusNumberMessage() {
         System.out.println(READ_BONUS_NUMBER);
+    }
+
+    public static void printWinningStatistic(List<Integer> statistic) {
+        DecimalFormat formatter = new DecimalFormat("###,###,###,###");
+
+        System.out.print("당첨 통계\n" + "---\n");
+
+        int winningTypeIndex = 0;
+        for (WinningType winningType : WinningType.values()) {
+            System.out.printf("%s (%s원) - %d개\n",
+                    winningType.getTitle(),
+                    formatter.format(winningType.getMoney()),
+                    statistic.get(winningTypeIndex));
+            winningTypeIndex++;
+        }
+    }
+
+    public static void printYield(double yield) {
+        System.out.printf("총 수익률은 %2.1f%%입니다.", yield);
     }
 
 }

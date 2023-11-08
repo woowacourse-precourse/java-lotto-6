@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Lotto {
 
+    public static final int BONUS_NUMBER_INDEX = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -25,6 +26,20 @@ public class Lotto {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return new Lotto(numbers);
+    }
+
+    public int countHit(List<Integer> winningNumbers) {
+        int count = 0;
+        for (Integer winningNumber : winningNumbers) {
+            if (numbers.contains(winningNumber)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean isBonusHit(List<Integer> winningNumbers) {
+        return numbers.contains(winningNumbers.get(BONUS_NUMBER_INDEX));
     }
 
     @Override

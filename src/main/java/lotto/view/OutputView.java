@@ -15,4 +15,8 @@ public class OutputView {
     public static void showResultOfBoard(String situation, int count) {
         System.out.println(situation + " - " + count + "개");
     }
+
+    public void showIncomeRate(double rate) {
+        System.out.println("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
+    }
 }

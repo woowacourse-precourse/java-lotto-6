@@ -32,6 +32,8 @@ public class LottoController {
         lottoWinner.createWinnerLotto();
         lottoWinner.matchWinnerLotto(lottos);
         lottoWinner.showResultBoard();
+        int prize = lottoWinner.calculatePrize();
+        outputView.showIncomeRate(money.calculateIncomeRate(prize));
     }
 
     public void generateLotto(int quantityOfLotto) {

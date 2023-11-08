@@ -1,7 +1,7 @@
 package lotto.util;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.util.Verify.inputVerifyToStringArray;
+import static lotto.util.Verify.verifyWinningNumbersStringToList;
 import static lotto.util.Verify.verifyAmount;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -47,7 +47,7 @@ public class VerifyTest extends NsTest {
     void inputVerifyToStringArray_쉼표정확히6개_0부터45까지의숫자_정상(){
         assertSimpleTest(
                 ()-> {
-                    assertThat(inputVerifyToStringArray("1,2,3,4,5,6"))
+                    assertThat(verifyWinningNumbersStringToList("1,2,3,4,5,6"))
                             .isEqualTo(List.of(1,2,3,4,5,6));
                 }
         );
@@ -57,7 +57,7 @@ public class VerifyTest extends NsTest {
     void inputVerifyToStringArray_쉼표정확히6개_0부터45까지의숫자_쉼표사이공백처리_정상(){
         assertSimpleTest(
                 ()-> {
-                    assertThat(inputVerifyToStringArray("1,2,3,4,  5,6"))
+                    assertThat(verifyWinningNumbersStringToList("1,2,3,4,  5,6"))
                             .isEqualTo(List.of(1,2,3,4,5,6));
                 }
         );
@@ -65,13 +65,13 @@ public class VerifyTest extends NsTest {
 
     @Test
     void inputVerifyToStringArray_쉼표정확히6개_범위숫자아닌경우() {
-        assertThatThrownBy(() -> inputVerifyToStringArray("1,2,3,4,55,6"))
+        assertThatThrownBy(() -> verifyWinningNumbersStringToList("1,2,3,4,55,6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void inputVerifyToStringArray_숫자가아닌값이들어올경우() {
-        assertThatThrownBy(() -> inputVerifyToStringArray("1,2,r,4,sssss, 6"))
+        assertThatThrownBy(() -> verifyWinningNumbersStringToList("1,2,r,4,sssss, 6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

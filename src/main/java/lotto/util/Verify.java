@@ -13,7 +13,7 @@ public class Verify {
         return value;
     }
 
-    public static List<Integer> inputVerifyToStringArray(String input) throws IllegalArgumentException{
+    public static List<Integer> verifyWinningNumbersStringToList(String input) throws IllegalArgumentException{
         input = input.replace(" ","");
         String[] numbers = input.split(",");
         List<Integer> inputList = new ArrayList<>();

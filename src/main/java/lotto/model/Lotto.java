@@ -1,13 +1,6 @@
 package lotto.model;
 
-import lotto.service.IssueLotto;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static lotto.controller.InputController.validator;
-import static lotto.controller.InputController.winningNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;

@@ -2,13 +2,17 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
         int PRICE_LOTTO = 1000;
         Console console = new Console();
 
         int purchaseAmount = getPurchaseAmount(console);
+        int numberOfLottos = purchaseAmount / PRICE_LOTTO;
 
+        List<Lotto> lottos =
     }
 
     private static int getPurchaseAmount(Console console) {

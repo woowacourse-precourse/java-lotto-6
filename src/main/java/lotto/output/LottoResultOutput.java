@@ -37,7 +37,7 @@ public class LottoResultOutput {
         }
     }
 
-    public static String getMoneyMessage(int matchedNumbers, String prize, int count) {
+    private static String getMoneyMessage(int matchedNumbers, String prize, int count) {
         if (matchedNumbers == 6) {
             String message = "5개 일치, 보너스 볼 일치 (" + prize + ") - " + count + "개";
             return message;
@@ -50,7 +50,7 @@ public class LottoResultOutput {
         return message;
     }
 
-    protected static String getPrize(int matchedNumbers) {
+    private static String getPrize(int matchedNumbers) {
         return PRIZE_MONEY.get(matchedNumbers);
     }
 }

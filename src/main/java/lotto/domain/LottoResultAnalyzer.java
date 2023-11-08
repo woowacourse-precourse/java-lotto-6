@@ -11,24 +11,32 @@ public class LottoResultAnalyzer {
         List<Integer> winnings = new ArrayList<>(Collections.nCopies(5, 0));
 
         for (Lotto ticket : lotto) {
-            boolean hasBonusNumber = false;
-
             int matchedNumbers = countMatchingNumbers(ticket, winningNumbers);
-            if (matchedNumbers == 5) {
-                hasBonusNumber = ticket.getNumbers().contains(bonusNumber);
-            }
+            boolean hasBonusNumber = checkBonusNumber(matchedNumbers, bonusNumber, ticket);
 
             int rank = calculateRank(matchedNumbers, hasBonusNumber);
-            if (rank > 0) {
-                int indexToIncrease = 5 - rank;
-                int currentValue = winnings.get(indexToIncrease);
-                winnings.set(indexToIncrease, currentValue + 1);
-            }
+            updateWinnings(winnings, rank);
         }
         return winnings;
     }
 
-    public static int countMatchingNumbers(Lotto ticket, Set<Integer> winningNumbers) {
+
+    private static boolean checkBonusNumber(int matchedNumbers, int bonusNumber, Lotto ticket) {
+        boolean hasBonusNumber = false;
+        if (matchedNumbers == 5) {
+            hasBonusNumber = ticket.getNumbers().contains(bonusNumber);
+        }
+        return hasBonusNumber;
+    }
+
+    private static void updateWinnings(List<Integer> winnings, int rank) {
+        if (rank > 0) {
+            int indexToIncrease = 5 - rank;
+            int currentValue = winnings.get(indexToIncrease);
+            winnings.set(indexToIncrease, currentValue + 1);
+        }
+    }
+    private static int countMatchingNumbers(Lotto ticket, Set<Integer> winningNumbers) {
         int matchedNumbers = 0;
         for (Integer number : ticket.getNumbers()) {
             if (winningNumbers.contains(number)) {
@@ -38,7 +46,7 @@ public class LottoResultAnalyzer {
         return matchedNumbers;
     }
 
-    public static int calculateRank(int matchedNumbers, boolean hasBonusNumber) {
+    private static int calculateRank(int matchedNumbers, boolean hasBonusNumber) {
         if (matchedNumbers == 6) {
             return 1;
         } else if (matchedNumbers == 5 && hasBonusNumber) {

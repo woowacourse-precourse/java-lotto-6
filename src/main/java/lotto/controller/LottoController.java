@@ -73,6 +73,7 @@ public class LottoController {
             try {
                 String bonusNumber = getInputBonusNumber();
                 winningNumbersService.setBonusNumber(winningNumbers, bonusNumber);
+                return;
             } catch (Exception ex) {
                 OutputView.printErrorMessage(ex.getMessage());
             }

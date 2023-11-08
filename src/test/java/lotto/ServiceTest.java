@@ -53,7 +53,7 @@ public class ServiceTest {
 
     @DisplayName("로또 비교 결과와 수익률을 확인한다.")
     @Test
-    void calculateProfitRate_ShouldCalculateCorrectly() {
+    void calculateProfitRateCorrectly() {
         List<Lotto> lottos = new ArrayList<>();
         Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(Arrays.asList(11, 12, 13, 14, 15, 16));

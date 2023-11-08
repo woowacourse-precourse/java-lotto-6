@@ -12,6 +12,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     // 로또 번호가 6개인지 확인
     private void IsSize6(List<Integer> numbers){
         if (numbers.size() != 6) {

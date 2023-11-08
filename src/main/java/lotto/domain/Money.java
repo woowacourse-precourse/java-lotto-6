@@ -9,7 +9,7 @@ import lotto.view.InputView;
 public class Money {
 
     private static final String LOTTO_PRICE_PER_THOUSAND = "[ERROR] 로또 금액은 1000원 단위로 판매할 수 있습니다.";
-    private int money = 0;
+    private int money;
 
     public Money(Integer money) {
         validInputMoney(money);

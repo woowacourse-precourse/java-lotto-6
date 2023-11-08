@@ -38,10 +38,10 @@ public class TerminalUI {
         for (Lotto lotto : lottosDTO) {
             Writer.printUsingFormat(PrintConst.FORMAT_LOTTO_NUMBERS, lotto.getNumbers().toArray());
         }
+        Writer.printMessage("");
     }
 
     public List<Integer> getAnswerNumber() {
-        Writer.printMessage("");
         Writer.printMessage(PrintConst.GUIDE_LOTTO_NUMBERS);
         return Reader.getNumbersInPattern(
                 input -> input.replaceAll(" ", ""),
@@ -51,7 +51,6 @@ public class TerminalUI {
     }
 
     public Integer getBonusNumber() {
-        Writer.printMessage("");
         Writer.printMessage(PrintConst.GUIDE_BONUS_NUMBERS);
         return Reader.getOneNumber();
     }

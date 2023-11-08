@@ -49,8 +49,12 @@ public class LottoController {
     }
 
     private LottoAnswer createAnswer() {
+        final List<Integer> answerNumbers = handler.getResult(ui::getAnswerNumber);
         AnswerGenerator answerGenerator = handler.getResult(
-                () -> new AnswerGenerator(ui.getAnswerNumber(), ui.getBonusNumber()));
+                () -> {
+                    Integer bonusNumber = ui.getBonusNumber();
+                    return new AnswerGenerator(answerNumbers, bonusNumber);
+                });
         return answerGenerator.generate();
     }
 

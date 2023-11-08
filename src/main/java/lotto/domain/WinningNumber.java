@@ -51,7 +51,7 @@ public class WinningNumber {
     }
 
     private void isSizeWinningNumber(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
+        if (winningNumbers.size() != Constant.LOTTO_MAX_LENGTH) {
             throw new InvalidWinningNumbersSizeException();
         }
     }
@@ -66,7 +66,7 @@ public class WinningNumber {
 
     private void isWinningNumberInRange(List<Integer> winningNumbers) {
         boolean isInvalid = winningNumbers.stream()
-                .anyMatch(number -> number < 1 || number > 45);
+                .anyMatch(number -> number < Constant.LOTTO_MIN_NUMBER || number > Constant.LOTTO_MAX_NUMBER);
 
         if (isInvalid) {
             throw new InvalidWinningNumberRangeException();

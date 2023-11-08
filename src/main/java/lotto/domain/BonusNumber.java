@@ -35,7 +35,7 @@ public class BonusNumber {
     }
 
     private void isBonusNumberInRange(String number) {
-        if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
+        if (Integer.parseInt(number) < Constant.LOTTO_MIN_NUMBER || Integer.parseInt(number) > Constant.LOTTO_MAX_NUMBER) {
             throw new InvalidBonusNumberRangeException();
         }
     }

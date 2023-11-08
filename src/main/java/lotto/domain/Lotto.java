@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     private void isLengthLottoNumber(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constant.LOTTO_MAX_LENGTH) {
             throw new IllegalArgumentException();
         }
     }

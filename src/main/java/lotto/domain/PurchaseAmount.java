@@ -6,6 +6,7 @@ import lotto.exception.MissingPurchaseAmountException;
 
 public class PurchaseAmount {
     private static final int LOTTO_PRICE = 1000;
+    private static final int ZERO = 0;
     private final int amount;
 
     public PurchaseAmount(String amount) {
@@ -40,7 +41,7 @@ public class PurchaseAmount {
     }
 
     private void isValidPurchaseAmount(String amount) {
-        if (Integer.parseInt(amount) % LOTTO_PRICE != 0) {
+        if (Integer.parseInt(amount) % LOTTO_PRICE != ZERO) {
             throw new InvalidPurchaseAmountUnitException();
         }
     }

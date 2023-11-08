@@ -1,7 +1,13 @@
 package lotto;
 
+import lotto.controller.LottoController;
+import lotto.service.LotteryKiosk;
+
 public class Application {
+    private static final LotteryKiosk lotteryKiosk = new LotteryKiosk();
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoController lottoController = new LottoController(lotteryKiosk);
+        lottoController.run();
     }
 }

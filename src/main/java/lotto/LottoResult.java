@@ -1,20 +1,21 @@
 package lotto;
 
+import java.util.List;
+import java.util.Set;
+
 public class LottoResult {
-    // TODO: 필드 추가
+    //로또 결과를 계산하는 기능을 추가
+    public static Result calculateResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Result result = new Result();
 
-    public LottoResult(int purchasedLottoCount) {
-        // TODO: 생성자 구현
+        for (Lotto lotto : lottos) {
+            Set<Integer> intersection = lotto.findIntersection(winningNumbers);
+            int matchCount = intersection.size();
+            boolean hasBonus = lotto.contains(bonusNumber);
+
+            result.update(matchCount, hasBonus);
+        }
+
+        return result;
     }
-
-    public void addWinning(Lotto winningLotto) {
-        // TODO: 로또 당첨 결과 업데이트
-    }
-
-    public int calculateTotalPrize() {
-        // TODO: 총 수익 계산
-        return 0;
-    }
-
-    // TODO: 다른 메서드 구현
 }

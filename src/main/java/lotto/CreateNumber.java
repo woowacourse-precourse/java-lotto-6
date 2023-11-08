@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class CreateNumber {
-
     public ArrayList<List<Integer>> createLottoNumbers(int buyNumber) {
         ArrayList<List<Integer>> lottoNumbers = new ArrayList<>();
         for (int i = 0; i < buyNumber; i++) {

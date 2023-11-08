@@ -7,6 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        isDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +17,23 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void isDuplicate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() < numbers.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public int checkNumbers(List<Integer> winningNumber) {
+        return (int) numbers.stream()
+                .filter(winningNumber::contains)
+                .count();
+    }
+
+    public boolean checkBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -2,9 +2,6 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-import lotto.Model.LottoPrizeCalculator;
 
 public class LottoOutput {
 
@@ -32,20 +29,10 @@ public class LottoOutput {
         return "보너스 번호를 입력해 주세요.";
     }
 
-    public void printPrizeStatistics(Map<Integer, Integer> prizeCountMap) {
+    public void printPrizeStatistics(List<String > statisticsLines) {
 
         printPrizeStatisticsHeader();
-
-        Map<Integer, Integer> sortedPrizeCountMap = new TreeMap<>(prizeCountMap);
-
-        for (Map.Entry<Integer, Integer> entry : sortedPrizeCountMap.entrySet()) {
-            int prize = entry.getKey();
-            int count = entry.getValue();
-            String prizeDescription = LottoPrizeCalculator.getPrizeDescription(prize); // 상금 설명을 가져오는 메서드 호출
-            if (prizeDescription != null) {
-                System.out.printf("%s - %d개\n", prizeDescription, count);
-            }
-        }
+        statisticsLines.forEach(System.out::println);
     }
 
     public void printPrizeStatisticsHeader() {

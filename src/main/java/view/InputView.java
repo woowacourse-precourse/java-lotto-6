@@ -14,10 +14,10 @@ public class InputView {
      * Description : 로또 구입 금액 입력
      *
      * @Method : inputLottoBuy()
-     * @return : Integer
+     * @return : String
      */
-    public Integer inputLottoBuy() {
-        Integer money = Integer.parseInt(Utility.campReadline());
+    public String inputLottoBuy() {
+        String money = Utility.campReadline();
         return money;
     }
 
@@ -41,10 +41,10 @@ public class InputView {
      * Description : 보너스 번호 입력
      *
      * @Method : inputBonusNum()
-     * @return : Integer
+     * @return : String
      */
-    public Integer inputBonusNum() {
-        Integer BonusNum = Integer.parseInt(Utility.campReadline());
+    public String inputBonusNum() {
+        String BonusNum = Utility.campReadline();
         return BonusNum;
     }
 

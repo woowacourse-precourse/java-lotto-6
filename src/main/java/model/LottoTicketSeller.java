@@ -6,10 +6,11 @@
  */
 package model;
 
+import model.enums.LottoSystem;
+
 public class LottoTicketSeller {
     private int paidMoney;
-    private final int lottoPrice = 1000;
-
+    private final int lottoPrice = LottoSystem.LOTTO_PRIZE.getValue();
 
     public LottoTicketSeller(int paidMoney) {
         this.paidMoney = paidMoney;

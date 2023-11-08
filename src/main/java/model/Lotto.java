@@ -7,14 +7,19 @@
 package model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import model.enums.LottoSystem;
+import model.lottoException.LottoNumNotSixException;
+import model.lottoException.LottoNumSameException;
+import model.lottoException.LottoNumberRangeException;
 
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) throws LottoNumNotSixException, LottoNumberRangeException, LottoNumSameException {
         validate(numbers);
         validateNumberRange(numbers);
+        validateNumSame(numbers);
         this.numbers = numbers;
     }
 
@@ -23,9 +28,9 @@ public class Lotto {
      *
      * @Method : validate()
      */
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) throws LottoNumNotSixException {
         if (numbers.size() != LottoSystem.LOTTO_SET_LENGTH.getValue()) {
-            throw new IllegalArgumentException();
+            throw new LottoNumNotSixException();
         }
     }
 
@@ -34,11 +39,23 @@ public class Lotto {
      *
      * @Method : validateNumberRange()
      */
-    private void validateNumberRange(List<Integer> numbers) {
+    private void validateNumberRange(List<Integer> numbers) throws LottoNumberRangeException {
         for (int number : numbers) {
             if (number > LottoSystem.LOTTO_MAX_RANGE.getValue() || number < LottoSystem.LOTTO_MIN_RANGE.getValue()) {
-                throw new IllegalArgumentException();
+                throw new LottoNumberRangeException();
             }
+        }
+    }
+
+    /**
+     * Description : 숫자가 중복되지 않았는지 확인
+     *
+     * @Method : validateNumSame()
+     */
+    private void validateNumSame(List<Integer> numbers) throws LottoNumSameException {
+        List<Integer> newNumbers = numbers.stream().distinct().toList();
+        if (newNumbers.size() != 6) {
+            throw new LottoNumSameException();
         }
     }
 

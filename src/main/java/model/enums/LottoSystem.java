@@ -9,7 +9,8 @@ package model.enums;
 public enum LottoSystem {
     LOTTO_SET_LENGTH(6),
     LOTTO_MAX_RANGE(45),
-    LOTTO_MIN_RANGE(1);
+    LOTTO_MIN_RANGE(1),
+    LOTTO_PRIZE(1000);
 
     private final int value;
 

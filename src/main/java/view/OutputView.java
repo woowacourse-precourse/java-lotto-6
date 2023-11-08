@@ -8,6 +8,7 @@ package view;
 
 import java.util.List;
 import java.util.Map;
+import model.enums.LottoError;
 import model.enums.LottoWinResults;
 
 public class OutputView {
@@ -147,6 +148,49 @@ public class OutputView {
      */
     public void printNextLine() {
         System.out.print(OutputMessage.NEXT_LINE.getMessage());
+    }
+
+    /**
+     * Description : 로또 번호 1부터 45 사이의 숫자 아닐 때 에러 출력
+     *
+     * @Method : printLottoNumRangeError()
+     */
+    public void printLottoNumRangeError() {
+        System.out.print(LottoError.ERROR.getErrorMessage() + LottoError.LOTTO_NUM_RANGE.getErrorMessage());
+    }
+
+    /**
+     * Description : 로또 번호가 숫자가 아닐 때 에러 출력
+     *
+     * @Method : printLottoNumberRightError()
+     */
+    public void printLottoNumberRightError() {
+        System.out.print(LottoError.ERROR.getErrorMessage() + LottoError.LOTTO_NUMBER_RIGHT.getErrorMessage());
+    }
+
+    /**
+     * Description : 입력 금액이 1000으로 나눠지지 않을 때 에러 출력
+     *
+     * @Method : printLottoNumberRightError()
+     */
+    public void printPrizeSizeError() {
+        System.out.print(LottoError.ERROR.getErrorMessage() + LottoError.PRIZE_1000.getErrorMessage());
+    }
+    /**
+     * Description : 로또 번호가 6개가 아닐 때 에러 출력
+     *
+     * @Method : printLottoNumberRightError()
+     */
+    public void printLottoSizeNoneSixError() {
+        System.out.print(LottoError.ERROR.getErrorMessage() + LottoError.LOTTO_LIST_SIX.getErrorMessage());
+    }
+    /**
+     * Description : 로또 번호가 중복될 때 에러
+     *
+     * @Method : printLottoNumSameError()
+     */
+    public void printLottoNumSameError() {
+        System.out.print(LottoError.ERROR.getErrorMessage() + LottoError.LOTTO_NUM_SAME.getErrorMessage());
     }
 
 }

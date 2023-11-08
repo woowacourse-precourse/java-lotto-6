@@ -3,11 +3,25 @@ package lotto.domain;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 import lotto.ErrorType;
+import lotto.LottoMachine;
+import lotto.ProfitCalculator;
 import lotto.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 public class WinningLottoTest {
+
+    @BeforeEach
+    void setup() {
+        LottoMachine.setMoney(0);
+        LottoMachine.getTotalLottoTickets().clear();
+
+        ProfitCalculator.firstPlace = 0;
+        ProfitCalculator.secondPlace = 0;
+        ProfitCalculator.thirdPlace = 0;
+        ProfitCalculator.fourthPlace = 0;
+        ProfitCalculator.fifthPlace = 0;
+    }
 
     @Test
     void 당첨_로또_정상_범위_테스트() {

@@ -3,9 +3,24 @@ package lotto.domain;
 import java.util.List;
 import lotto.Lotto;
 import lotto.LottoMachine;
+import lotto.ProfitCalculator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 public class LottoMachineTest {
+
+    @BeforeEach
+    void setup() {
+        LottoMachine.setMoney(0);
+        LottoMachine.getTotalLottoTickets().clear();
+
+        ProfitCalculator.firstPlace = 0;
+        ProfitCalculator.secondPlace = 0;
+        ProfitCalculator.thirdPlace = 0;
+        ProfitCalculator.fourthPlace = 0;
+        ProfitCalculator.fifthPlace = 0;
+    }
+
     @Test
     void 받은_금액만큼_로또티켓_생성여부_검사() {
         LottoMachine.setMoney(5000);

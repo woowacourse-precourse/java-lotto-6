@@ -5,10 +5,23 @@ import lotto.Lotto;
 import lotto.LottoMachine;
 import lotto.ProfitCalculator;
 import lotto.WinningLotto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 public class ProfitCalculatorTest {
+
+    @BeforeEach
+    void setup() {
+        LottoMachine.setMoney(0);
+        LottoMachine.getTotalLottoTickets().clear();
+
+        ProfitCalculator.firstPlace = 0;
+        ProfitCalculator.secondPlace = 0;
+        ProfitCalculator.thirdPlace = 0;
+        ProfitCalculator.fourthPlace = 0;
+        ProfitCalculator.fifthPlace = 0;
+    }
 
     @Test
     void 등수_계산_5등인_경우() {
@@ -101,11 +114,6 @@ public class ProfitCalculatorTest {
 
     @Test
     void 수익_계산_테스트() {
-        ProfitCalculator.firstPlace = 0;
-        ProfitCalculator.secondPlace = 0;
-        ProfitCalculator.thirdPlace = 0;
-        ProfitCalculator.fourthPlace = 0;
-        ProfitCalculator.fifthPlace = 0;
 
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoMachine.setMoney(5000);

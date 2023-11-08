@@ -19,6 +19,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         checkSize(numbers);
         checkNumberRange(numbers);
+        checkDuplication(numbers);
     }
 
     private static void checkSize(List<Integer> numbers) {
@@ -30,6 +31,12 @@ public class Lotto {
     private void checkNumberRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < START_RANGE || number > END_RANGE)) {
             throw new IllegalArgumentException(INVALID_LOTTO_RANGE);
+        }
+    }
+
+    private void checkDuplication(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATION);
         }
     }
 

@@ -25,7 +25,6 @@ public class LottoController {
 		int bonusNumber = setBonusNumber();
 
 		LottoGame.playGame(lottos, lottoPrizeNumber, bonusNumber, amount);
-
 	}
 
 	private int setBonusNumber() {
@@ -51,7 +50,9 @@ public class LottoController {
 		while (true) {
 			try {
 				List<Integer> prizeNumber = InputView.inputLottoPrizeNumber();
-				validatePrizeNumber(prizeNumber);
+				validatePrizeNumberSize(prizeNumber);
+				validatePrizeNumberDistinct(prizeNumber);
+				validatePrizeNumberRange(prizeNumber);
 				return prizeNumber;
 			} catch (IllegalArgumentException e) {
 				System.out.println("[ERROR] 잘못된 입력입니다.");
@@ -59,24 +60,29 @@ public class LottoController {
 		}
 	}
 
-	private void validatePrizeNumber(List<Integer> prizeNumber) {
-		if (prizeNumber.size() != LOTTO_SIZE) {
-			System.out.println("[ERROR] 당첨 번호는 6개여야 합니다.");
-			throw new IllegalArgumentException();
-		}
-		if (prizeNumber.stream()
-				.distinct()
-				.count() != prizeNumber.size()) {
-			System.out.println("[ERROR] 중복된 당첨 번호는 존재할 수 없습니다.");
-			throw new IllegalArgumentException();
-		}
+	private void validatePrizeNumberRange(List<Integer> prizeNumber) {
 		for (Integer it : prizeNumber) {
 			if (it > MAX_NUM || it < MIN_NUM) {
 				System.out.println("[ERROR] 당첨 번호는 1에서 45 사이의 수여야 합니다.");
 				throw new IllegalArgumentException();
 			}
 		}
+	}
 
+	private void validatePrizeNumberDistinct(List<Integer> prizeNumber) {
+		if (prizeNumber.stream()
+				.distinct()
+				.count() != prizeNumber.size()) {
+			System.out.println("[ERROR] 중복된 당첨 번호는 존재할 수 없습니다.");
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private void validatePrizeNumberSize(List<Integer> prizeNumber) {
+		if (prizeNumber.size() != LOTTO_SIZE) {
+			System.out.println("[ERROR] 당첨 번호는 6개여야 합니다.");
+			throw new IllegalArgumentException();
+		}
 	}
 
 

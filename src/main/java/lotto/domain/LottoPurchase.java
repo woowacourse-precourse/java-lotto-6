@@ -7,6 +7,7 @@ public class LottoPurchase {
     private final int money;
 
     public LottoPurchase(String moneyInput) {
+        validate(moneyInput);
         this.money = validate(moneyInput);
     }
 

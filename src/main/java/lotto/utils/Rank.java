@@ -18,13 +18,13 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public Rank getRank(int mathCount, boolean isContainBonusNumber) {
+    public Rank getRank(int matchCount, boolean isContainBonusNumber) {
         if (matchCount == SECOND.matchCount && !isContainBonusNumber) {
             return Rank.THIRD;
         }
 
         return Arrays.stream(Rank.values())
-            .filter(rank -> rank.matchCount == mathCount)
+            .filter(rank -> rank.matchCount == matchCount)
             .findFirst()
             .orElse(Rank.NONE);
     }

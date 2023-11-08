@@ -1,13 +1,13 @@
 package lotto;
 
-import lotto.constants.ErrorMessage;
-import lotto.constants.StaticMessage;
-import lotto.domain.InputHandler;
 import lotto.domain.Lotto;
+import lotto.domain.OutputHandler;
 import lotto.domain.User;
 
 import static lotto.constants.StaticMessage.*;
 import static lotto.domain.InputHandler.*;
+import static lotto.domain.Lotto.*;
+import static lotto.domain.Lotto.checkWinOrNot;
 
 public class Application {
     public static void main(String[] args) {
@@ -17,9 +17,9 @@ public class Application {
 
     public static void start() {
         User user = new User(askNumber(INPUT_PAYMENT));
-
-
-//        askWinningNumbers();
-        inputController(askWinningNumbers());
+        OutputHandler.printUserLottos(user.lottos);
+        setWinningNumbers();
+        checkWinOrNot(user);
+        OutputHandler.printResultHistory(user);
     }
 }

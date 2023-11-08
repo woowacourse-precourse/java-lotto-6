@@ -20,21 +20,21 @@ public class ResultTest {
 
     @DisplayName("당첨결과가 0으로 초기화 되는지 테스트")
     @Test
-    void createResult() {
-        List<Integer> actualResult = new ArrayList<>(result.getWinningRankAndCounting().values());
-        List<Integer> expectedResult = List.of(0, 0, 0, 0, 0, 0);
+    void createDefalutResult() {
+        List<Integer> actual = new ArrayList<>(result.getCountByWinningRank().values());
+        List<Integer> expected = List.of(0, 0, 0, 0, 0, 0);
 
-        Assertions.assertThat(actualResult).isEqualTo(expectedResult);
+        Assertions.assertThat(actual).isEqualTo(expected);
     }
 
     @DisplayName("당첨 등수에 따른 당첨 금액 계산 테스트")
     @Test
-    void calculateTotalWinningPrize() {
-        Map<Rank, Integer> defaultResult = result.getWinningRankAndCounting();
+    void calculateTotalPrize() {
+        Map<Rank, Integer> defaultResult = result.getCountByWinningRank();
         defaultResult.put(Rank.FIFTH, 1);
         defaultResult.put(Rank.FOURTH, 2);
 
         int expectedResult = 105000;
-        Assertions.assertThat(result.calculateTotalWinningPrize()).isEqualTo(expectedResult);
+        Assertions.assertThat(result.calculateTotalPrize()).isEqualTo(expectedResult);
     }
 }

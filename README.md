@@ -39,3 +39,4 @@
 
 ## 💠 보너스 번호 예외처리
 1. 보너스 번호가 당첨 숫자와 중복될 경우 : `BONUS_DUPLICATE_WINNING_NUMBERS`
+2. 보너스 번호가 범위를 벗어난 경우 : `BONUS_NUMBER_RANGE`

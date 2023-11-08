@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -8,9 +11,12 @@ public class Application {
         int lottoNumber = purchaseAmount.input();
 
         LottoFactory factory = new LottoFactory(lottoNumber);
-        factory.createLottos();
+        List<Lotto> lottos = new ArrayList<>(factory.createLottos());
 
-        WinningNumbersSetter setter = new WinningNumbersSetter();
-        WinningNumbers winningNumbers = new WinningNumbers(setter.setWinning());
+        WinningNumbersFactory setter = new WinningNumbersFactory();
+        Lotto winningLotto = setter.setWinning();
+
+        Performance performance = new Performance(lottos, winningLotto);
+        performance.result();
     }
 }

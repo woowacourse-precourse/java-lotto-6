@@ -11,9 +11,13 @@ public enum ExceptionMessage {
     WINNING_NUMBERS_SIZE("[ERROR] 당첨 번호는 6개여야 합니다."),
     WINNING_NUMBERS_RANGE("[ERROR] 당첨 번호는 1~45사이의 정수여야 합니다."),
     WINNING_NUMBERS_DUPLICATE("[ERROR] 당첨 번호는 중복될 수 없습니다."),
-    BONUS_DUPLICATE_WINNING_NUMBERS("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    BONUS_DUPLICATE_WINNING_NUMBERS("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
+    BONUS_NUMBER_RANGE("[ERROR] 보너스 번호는 1~45사이의 정수여야 합니다."),
+    LOTTO_NUMBERS_SIZE("[ERROR] 로또 번호는 6개여야 합니다."),
+    LOTTO_NUMBERS_DUPLICATE("[ERROR] 로또 번호는 중복될 수 없습니다."),
+    LOTTO_NUMBERS_RANGE("[ERROR] 로또 번호는 1~45사이의 정수여야 합니다.");
 
-    private String message;
+    private final String message;
 
     ExceptionMessage(String message){
         this.message = message;
@@ -22,4 +26,5 @@ public enum ExceptionMessage {
     public String message(){
         return message;
     }
+
 }

@@ -2,32 +2,29 @@ package lotto.model;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.function.BiPredicate;
 
 public enum LottoPrize {
 
-    FIFTH_PRIZE(3, 5000),
-    FOURTH_PRIZE(4, 50000),
-    THIRD_PRIZE(5, 1500000),
-    SECOND_PRIZE(5, 30000000),
-    FIRST_PRIZE(6, 2000000000);
+    FIFTH_PRIZE(3, 5000, (matchedNumberCount, hasBonusNumber) -> matchedNumberCount == 3),
+    FOURTH_PRIZE(4, 50000, (matchedNumberCount, hasBonusNumber) -> matchedNumberCount == 4),
+    THIRD_PRIZE(5, 1500000, (matchedNumberCount, hasBonusNumber) -> !hasBonusNumber && matchedNumberCount == 5),
+    SECOND_PRIZE(5, 30000000, (matchedNumberCount, hasBonusNumber) -> hasBonusNumber && matchedNumberCount == 5),
+    FIRST_PRIZE(6, 2000000000, (matchedNumberCount, hasBonusNumber) -> matchedNumberCount == 6);
 
     private final Integer matchedNumberCount;
     private final Integer prizeMoney;
+    private final BiPredicate<Integer, Boolean> condition;
 
-    LottoPrize(Integer matchedNumberCount, Integer prizeMoney) {
+    LottoPrize(Integer matchedNumberCount, Integer prizeMoney, BiPredicate<Integer, Boolean> condition) {
         this.matchedNumberCount = matchedNumberCount;
         this.prizeMoney = prizeMoney;
+        this.condition = condition;
     }
 
     public static LottoPrize valueOf(Boolean hasBonusNumber, Integer countMatchNumber) {
-        if (hasBonusNumber && countMatchNumber == SECOND_PRIZE.getMatchedNumberCount()) {
-            return SECOND_PRIZE;
-        }
-        if (!hasBonusNumber && countMatchNumber == THIRD_PRIZE.getMatchedNumberCount()) {
-            return THIRD_PRIZE;
-        }
-        return Arrays.stream(values())
-                .filter(lottoPrize -> lottoPrize.getMatchedNumberCount().equals(countMatchNumber))
+        return Arrays.stream(LottoPrize.values())
+                .filter(lottoPrize -> lottoPrize.condition.test(countMatchNumber, hasBonusNumber))
                 .findAny()
                 .orElseThrow(() -> new NoSuchElementException("[ERROR] 보너스 넘버와 로또에 맞는 등수가 없습니다."));
     }

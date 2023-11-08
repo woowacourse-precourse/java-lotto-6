@@ -1,6 +1,9 @@
-package lotto.domain;
+package lotto;
 
 import java.util.Map;
+import lotto.domain.LottoResults;
+import lotto.domain.LottoTickets;
+import lotto.domain.WinningLotto;
 import lotto.enums.Rank;
 
 public class LottoGame {

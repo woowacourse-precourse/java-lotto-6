@@ -1,7 +1,8 @@
-package lotto.domain;
+package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class LottoMachine {
     public Lotto excute() {

@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoGame;
 import lotto.domain.LottoTickets;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;

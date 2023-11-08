@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.LottoMachine;
 
 public class LottoTickets {
     private final List<Lotto> lottoTickets = new ArrayList<>();

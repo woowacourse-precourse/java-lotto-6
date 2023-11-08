@@ -1,5 +1,7 @@
 package lotto.util.validator;
 
+import lotto.domain.Lotto;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +36,7 @@ public class InputValidator extends Validator {
                 .map(String::trim)
                 .mapToInt(this::parseValidatedInt)
                 .forEach(validatedNumbers::add);
-
+        new Lotto(validatedNumbers); // 로또 번호 검증 역할 로또 도메인에게 위임
         return validatedNumbers;
     }
 }

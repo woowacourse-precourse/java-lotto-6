@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
 import lotto.dto.LottoesDto;
 import lotto.dto.MoneyDto;
 import lotto.dto.ResultDto;
@@ -45,19 +44,14 @@ public class LottoController {
 
     private WinNumbersDto createWinNumbers() {
         List<Integer> winNumbers = getWinNumbers();
-        return validatingLoopTemplate.execute(() -> {
-            int bonusNumber = getBonusNumber();
-            return new WinNumbersDto(winNumbers, bonusNumber);
-        });
+        return validatingLoopTemplate.execute(()
+                -> new WinNumbersDto(winNumbers, getBonusNumber()));
     }
 
     private List<Integer> getWinNumbers() {
         return validatingLoopTemplate.execute(() -> {
-            List<Integer> winNumbers;
             outputView.beforeInputWinNumbers();
-            winNumbers = inputView.inputNumbers();
-            new Lotto(winNumbers);
-            return winNumbers;
+            return inputView.inputNumbers();
         });
     }
 

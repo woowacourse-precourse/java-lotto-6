@@ -1,6 +1,7 @@
 package lotto.enums;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public enum Rank {
     FIFTH(3, false, "3개 일치 (5,000원)", 5_000L),
@@ -34,7 +35,9 @@ public enum Rank {
         return this.message + " - " + this.prizeCount + "개";
     }
 
-    public Long calculatePrizeMoney() {
-        return this.prizeMoney * this.prizeCount;
+    public static Optional<Long> calculatePrizeMoney() {
+        return Arrays.stream(values())
+                .map(rank -> rank.prizeMoney * rank.prizeCount)
+                .reduce(Long::sum);
     }
 }

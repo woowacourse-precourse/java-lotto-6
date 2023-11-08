@@ -7,7 +7,7 @@ public class PriceAmount {
 
     public PriceAmount(int priceNumber) {
         if (!is1000Unit(priceNumber) || !isGreaterThanZero(priceNumber)) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000단위로 입력해주세요.");
+            throw new NumberFormatException("[ERROR] 금액은 1000단위로 입력해주세요.");
         }
         this.priceAmount = priceNumber;
     }

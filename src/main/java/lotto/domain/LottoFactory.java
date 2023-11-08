@@ -12,8 +12,7 @@ public class LottoFactory {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
-    public static Lottos createLottos(PriceAmount priceAmount) {
-        int purchaseNumber = priceAmount.getPurchaseNumber();
+    public static Lottos createLottos(int purchaseNumber) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseNumber; i++) {
             lottos.add(LottoFactory.createLotto());

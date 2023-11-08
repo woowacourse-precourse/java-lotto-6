@@ -3,10 +3,11 @@ package lotto.domain;
 import lotto.exception.purchaseamount.PurchaseAmountDivideException;
 import lotto.exception.purchaseamount.PurchaseAmountLimitException;
 
+import static lotto.utils.LottoConstants.DIVIDE_UP_VALUE;
+import static lotto.utils.LottoConstants.LOTTO_PRICE;
+
 public class PurchaseAmount {
 
-    private static final int LOTTO_PRICE = 1000;
-    private static final int DIVIDE_UP_VALUE = 0;
     private final int purchaseAmount;
 
     private PurchaseAmount(int purchaseAmount) {
@@ -24,13 +25,13 @@ public class PurchaseAmount {
     }
 
     private void validatePurchaseAmountDivideByThousand(int purchaseAmount) {
-        if(purchaseAmount % LOTTO_PRICE != DIVIDE_UP_VALUE) {
+        if(purchaseAmount % LOTTO_PRICE.getConstants() != DIVIDE_UP_VALUE.getConstants()) {
             throw new PurchaseAmountDivideException();
         }
     }
 
     private void validatePurchaseAmountUnderThousand(int purchaseAmount) {
-        if(purchaseAmount < LOTTO_PRICE) {
+        if(purchaseAmount < LOTTO_PRICE.getConstants()) {
             throw new PurchaseAmountLimitException();
         }
     }

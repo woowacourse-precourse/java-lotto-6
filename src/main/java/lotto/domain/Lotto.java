@@ -6,11 +6,9 @@ import lotto.exception.lotto.LottoNumberSizeException;
 
 import java.util.*;
 
-public class Lotto {
+import static lotto.utils.LottoConstants.*;
 
-    private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int LOTTO_MINIMUM_VALUE = 1;
-    private static final int LOTTO_MAXIMUM_VALUE = 45;
+public class Lotto {
 
     private final List<Integer> numbers;
 
@@ -22,7 +20,7 @@ public class Lotto {
     }
 
     private void validateNumberSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE.getConstants()) {
             throw new LottoNumberSizeException();
         }
     }
@@ -39,7 +37,7 @@ public class Lotto {
 
     private void validateNumberLength(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < LOTTO_MINIMUM_VALUE || number > LOTTO_MAXIMUM_VALUE) {
+            if (number < LOTTO_MINIMUM_VALUE.getConstants() || number > LOTTO_MAXIMUM_VALUE.getConstants()) {
                 throw new LottoNumberRangeException();
             }
         }

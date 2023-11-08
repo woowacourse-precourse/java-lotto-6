@@ -4,10 +4,11 @@ package lotto.domain;
 import lotto.exception.bonusnumber.BonusNumberRangeException;
 import lotto.exception.bonusnumber.SameBonusNumberException;
 
+import static lotto.utils.LottoConstants.LOTTO_MAXIMUM_VALUE;
+import static lotto.utils.LottoConstants.LOTTO_MINIMUM_VALUE;
+
 public class BonusNumber {
 
-    private static final int LOTTO_MINIMUM_VALUE = 1;
-    private static final int LOTTO_MAXIMUM_VALUE = 45;
     private final int bonusNumber;
 
     private BonusNumber(Lotto answerLotto, int bonusNumber) {
@@ -31,7 +32,7 @@ public class BonusNumber {
     }
 
     private void validateBonusNumberSize(int bonusNumber) {
-        if (bonusNumber < LOTTO_MINIMUM_VALUE || bonusNumber > LOTTO_MAXIMUM_VALUE) {
+        if (bonusNumber < LOTTO_MINIMUM_VALUE.getConstants() || bonusNumber > LOTTO_MAXIMUM_VALUE.getConstants()) {
             throw new BonusNumberRangeException();
         }
     }

@@ -39,10 +39,18 @@ public class LottoValidator {
         Set<Integer> winNumbersSet = new HashSet<>();
 
         for (String numberInput : numbers) {
-            int number = Integer.parseInt(numberInput.trim());
+            int number;
+
+            try {
+                number = Integer.parseInt(numberInput.trim());
+            } catch (NumberFormatException ex) {
+                throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+            }
+
             if (!(LOTTO_START_NUMBER <= number && number <= LOTTO_END_NUMBER)) {
                 throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
             }
+            
             winNumbersSet.add(number);
         }
 

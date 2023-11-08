@@ -5,11 +5,11 @@ import static lotto.utils.ConstantValues.MIN_LOTTO_NUMBER;
 import static lotto.utils.ErrorMessages.LOTTO_NUMBER_OUT_OF_RANGE;
 import static lotto.utils.ErrorMessages.WINNING_NUMBERS_CONTAINS_BONUS_NUMBER;
 
-public class PrizeChecker {
+public class WinnigMachine {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public PrizeChecker(Lotto winningLotto, int bonusNumber) {
+    public WinnigMachine(Lotto winningLotto, int bonusNumber) {
         validateBonusNumber(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;

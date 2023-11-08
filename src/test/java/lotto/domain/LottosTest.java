@@ -63,7 +63,7 @@ class LottosTest extends NsTest {
         ));
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
+        WinnigMachine winnigMachine = new WinnigMachine(winningLotto, bonusNumber);
         Map<Prize, Integer> expectedResult = new HashMap<>();
         expectedResult.put(Prize.FIRST, 1);
         expectedResult.put(Prize.SECOND, 1);
@@ -71,7 +71,7 @@ class LottosTest extends NsTest {
         expectedResult.put(Prize.FOURTH, 1);
         expectedResult.put(Prize.FIFTH, 2);
         // when
-        Map<Prize, Integer> lottosResult = lottos.getLottosResult(prizeChecker);
+        Map<Prize, Integer> lottosResult = lottos.getLottosResult(winnigMachine);
         // then
         assertThat(lottosResult).isEqualTo(expectedResult);
     }

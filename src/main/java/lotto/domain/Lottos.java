@@ -29,10 +29,10 @@ public class Lottos {
         return lottos.size();
     }
 
-    public Map<Prize, Integer> getLottosResult(PrizeChecker prizeChecker) {
+    public Map<Prize, Integer> getLottosResult(WinnigMachine winnigMachine) {
         Map<Prize, Integer> lottosResult = new HashMap<>();
         for (Lotto lotto : lottos) {
-            Prize prize = prizeChecker.getPrize(lotto);
+            Prize prize = winnigMachine.getPrize(lotto);
             if (prize.equals(Prize.NO_PRIZE)) {
                 continue;
             }

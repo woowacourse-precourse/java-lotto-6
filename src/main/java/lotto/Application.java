@@ -8,7 +8,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Prize;
-import lotto.domain.PrizeChecker;
+import lotto.domain.WinnigMachine;
 import lotto.domain.PrizeReception;
 import lotto.domain.wrapper.PurchaseAmount;
 import lotto.view.InputView;
@@ -23,8 +23,8 @@ public class Application {
         Lotto winningLotto = getValidWinningLotto();
         int bonusNumber = getValidBonusNumber(winningLotto);
         // 로또 게임을 진행한다.
-        PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
-        Map<Prize, Integer> lottosResult = lottos.getLottosResult(prizeChecker);
+        WinnigMachine winnigMachine = new WinnigMachine(winningLotto, bonusNumber);
+        Map<Prize, Integer> lottosResult = lottos.getLottosResult(winnigMachine);
         PrizeReception prizeReception = new PrizeReception(lottosResult);
         double profitRate = prizeReception.getProfitRate(purchaseAmount);
         // 로또 게임 결과를 출력한다.
@@ -69,7 +69,7 @@ public class Application {
             try {
                 OutputView.printMessage(GET_BONUS_NUMBER_MESSAGE);
                 bonusNumber = InputView.getNumber();
-                new PrizeChecker(winningLotto, bonusNumber);
+                new WinnigMachine(winningLotto, bonusNumber);
                 isCorrectInput = true;
             } catch (IllegalArgumentException illegalArgumentException) {
                 OutputView.printMessage(illegalArgumentException.getMessage());

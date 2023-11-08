@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class PrizeCheckerTest {
+class WinnigMachineTest {
 
     @DisplayName("당첨 번호와 로또 번호를 비교하여 등수를 반환한다.")
     @ParameterizedTest
@@ -29,9 +29,9 @@ class PrizeCheckerTest {
         Lotto playerLotto = new Lotto(numbers);
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
-        PrizeChecker prizeChecker = new PrizeChecker(winningLotto, bonusNumber);
+        WinnigMachine winnigMachine = new WinnigMachine(winningLotto, bonusNumber);
         // when
-        Prize prize = prizeChecker.getPrize(playerLotto);
+        Prize prize = winnigMachine.getPrize(playerLotto);
         // then
         assertThat(prize.name()).isEqualTo(expectedPrize);
     }

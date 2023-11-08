@@ -1,8 +1,18 @@
 package lotto;
 
+
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+    private static int LOTTO_NUM_MIN = 1;
+    private static int LOTTO_NUM_MAX = 45;
+    private static int LOTTO_NUM_IN_A_TICKET = 6;
+
+    private static long LOTTO_PRICE = 1000;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -12,9 +22,34 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또는 " + LOTTO_NUM_IN_A_TICKET + " 자리입니다.");
+        }
+        if (new HashSet<Integer>(numbers).size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또에 중복되는 숫자가 사용되었습니다.");
+        }
+        if (!numbers.stream().allMatch(n -> n <= LOTTO_NUM_MAX && n >= LOTTO_NUM_MIN)) {
+            throw new IllegalArgumentException("[ERROR] 로또에 유효하지 않은 숫자가 사용되었습니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    public static List<Integer> generateLottoNumbers() {
+        return pickUniqueNumbersInRange(LOTTO_NUM_MIN, LOTTO_NUM_MAX, LOTTO_NUM_IN_A_TICKET);
+    }
+
+    public int countMatchingNumbers(List<Integer> targetNumbers) {
+        return (int)numbers.stream()
+                .filter(new HashSet<>(targetNumbers)::contains)
+                .count();
+    }
+    public boolean numbersContain(Integer targetNumber) {
+        return numbers.contains(targetNumber);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public static long getPrice() {
+        return LOTTO_PRICE;
+    }
 }

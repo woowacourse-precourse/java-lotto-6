@@ -15,7 +15,6 @@ class BonusNumberTest {
     @DisplayName("보너스 번호와 당첨번호가 중복될 시 예외가 발생한다.")
     @Test
     void createBonusNumberByDuplicated() {
-        Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThatThrownBy(() -> new BonusNumber(1, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATED_BONUS);

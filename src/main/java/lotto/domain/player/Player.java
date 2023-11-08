@@ -20,7 +20,7 @@ public class Player {
     }
 
     public int getPurchasedLottoCount() {
-        return PurchaseAmount.calculatePurchasedLottoCount(purchaseAmount.getPurchaseAmount());
+        return purchaseAmount.calculatePurchasedLottoCount(purchaseAmount);
     }
 
     public Lotto getLotto() {

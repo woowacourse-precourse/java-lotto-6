@@ -23,8 +23,8 @@ public class PurchaseAmount {
         }
     }
 
-    public static int calculatePurchasedLottoCount(int purchaseAmount) {
-        return purchaseAmount / 1000;
+    public int calculatePurchasedLottoCount(PurchaseAmount purchaseAmount) {
+        return purchaseAmount.getPurchaseAmount() / 1000;
     }
 
     public Integer getPurchaseAmount() {

@@ -14,16 +14,16 @@ public class LottoService {
     public void calculrateResult(Lottos lottos, Lotto winningLotto, int bonus) {
         for (Lotto userLotto : lottos.getLottos()) {
             int matchedNumber = userLotto.getMatchedNumber(winningLotto);
-            if (matchedNumber < LottoRank.FIFTH.getMatchedNumber()) continue;
-            if (matchedNumber == LottoRank.FIRST.getMatchedNumber()) {
+            if (matchedNumber < LottoRank.FIFTH.count()) continue;
+            if (matchedNumber == LottoRank.FIRST.count()) {
                 totalPrize.increasePrize(LottoRank.FIRST);
                 continue;
             }
-            if (matchedNumber == LottoRank.FOURTH.getMatchedNumber()) {
+            if (matchedNumber == LottoRank.FOURTH.count()) {
                 totalPrize.increasePrize(LottoRank.FOURTH);
                 continue;
             }
-            if (matchedNumber == LottoRank.FIFTH.getMatchedNumber()) {
+            if (matchedNumber == LottoRank.FIFTH.count()) {
                 totalPrize.increasePrize(LottoRank.FIFTH);
                 continue;
             }
@@ -41,9 +41,8 @@ public class LottoService {
         int prize = 0;
         for (LottoRank rank : LottoRank.values()) {
             int count = totalPrize.getPrizeCount(rank);
-            sb.append(rank.getResult())
-                    .append(String.format("%d", count) + "개\n");
-            if (count > 0) prize += rank.getPrize()*count;
+            sb.append(rank.message() + String.format("%d", count) + "개\n");
+            if (count > 0) prize += rank.prize() * count;
         }
         double rate = prize / (double) money * 100;
         sb.append("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");

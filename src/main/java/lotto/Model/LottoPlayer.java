@@ -3,7 +3,6 @@ package lotto.Model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.Model.VO.LottoData;
 
 public class LottoPlayer {
 
@@ -12,8 +11,8 @@ public class LottoPlayer {
         public LottoPlayer(Integer insertData){
             CacheValidator.validateCache(insertData);
             this.ownedLottos = new ArrayList<>();
-            this.spentAmount=insertData;
-            this.earnedAmount=0;
+            this.spentAmount = insertData;
+            this.earnedAmount = 0;
         }
 
         public Integer orderLottos(){

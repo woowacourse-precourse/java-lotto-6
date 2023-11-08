@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Controller.ErrorMessage;
-import lotto.Model.VO.LottoData;
 
 public class GameModel {
+    private final String DIVIDE_POINT =",";
     private LottoPlayer lottoPlayer;
     private LottoHost lottoHost;
 
@@ -17,7 +17,7 @@ public class GameModel {
     }
 
     public void initAnswerByStrings(String insertData){
-        List<String> splitData= Arrays.asList(insertData.split(","));
+        List<String> splitData= Arrays.asList(insertData.split(DIVIDE_POINT));
 
         validateIntegerList(splitData);
 

@@ -4,21 +4,16 @@ import static lotto.View.OutputMessage.Enter_Bonus_Numbers;
 import static lotto.View.OutputMessage.Enter_Lotto_Numbers;
 import static lotto.View.OutputMessage.Enter_Purchase_Mount;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.swing.JFormattedTextField;
-import lotto.Controller.ErrorMessage;
 import lotto.Model.Prize;
 import lotto.Model.ScoreBoard;
-import lotto.Model.VO.LottoData;
+import lotto.Model.LottoData;
 
 public class Output {
     public static void printLottos(ArrayList<LottoData> lottos){
-        System.out.println();
-        System.out.printf("%d개를 구매했습니다.",lottos.size());
-        System.out.println();
+        System.out.printf("\n%d개를 구매했습니다.\n",lottos.size());
         lottos.stream()
                 .map(LottoData::getNumbers)
                 .forEach(Output::printLotto);
@@ -26,9 +21,7 @@ public class Output {
     }
 
     public static void printScores(ScoreBoard roundScore){
-            System.out.println();
-            System.out.println("당첨 통계");
-            System.out.println("---");
+            System.out.println("\n당첨 통계\n---");
 
             for (Prize prize : Prize.values()) {
                 int prizeCount = roundScore.getScoreByRank(prize);

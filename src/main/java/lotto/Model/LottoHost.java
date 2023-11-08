@@ -1,13 +1,7 @@
 package lotto.Model;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import javax.swing.ImageIcon;
 import lotto.Controller.ErrorMessage;
-import lotto.Model.VO.LottoData;
 
 public class LottoHost {
 
@@ -20,29 +14,19 @@ public class LottoHost {
 
 
     public void initBonusNumber(Integer number){
-        validateLottoNumber(number);
+        validateBonusNumber(number);
         bonusNumber = number;
     }
 
 
     public Lotto generateLotto(){
-        return new Lotto(generateRandomNumbers());
+        return new Lotto(LottoUtil.generateRandomNumbers());
     }
 
-
-    private List<Integer> generateRandomNumbers(){
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
-    }
-
-
-    private void validateLottoNumber(Integer number){
-        if(isNumberOutOfRange(number)){
+    private void validateBonusNumber(Integer number){
+        if(LottoUtil.isNumberOutOfRange(number)){
             throw new IllegalArgumentException(ErrorMessage.BONUS_OUT_RANGE.getMessage());
         }
-    }
-
-    private boolean isNumberOutOfRange(Integer number){
-        return number < 1  || 45 < number;
     }
 
 

@@ -1,4 +1,4 @@
-package lotto.Model.VO;
+package lotto.Model;
 
 import java.util.ArrayList;
 import java.util.List;

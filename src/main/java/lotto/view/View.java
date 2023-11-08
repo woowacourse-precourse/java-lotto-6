@@ -25,6 +25,11 @@ public class View {
         }
     }
 
+    public String inputBonusNum(){
+        System.out.println((INPUT_BONUS_NUM_MESSAGE));
+        return Console.readLine();
+    }
+
     public String inputCorrectNUM(){
         System.out.println(INPUT_CORRECT_NUM_MESSAGE);
         return Console.readLine();

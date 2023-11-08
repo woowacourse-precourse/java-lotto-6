@@ -10,30 +10,37 @@ import java.util.List;
 
 public class LottoController {
     View view = new View();
-
+    LottoList lottoList;
+    CorrectNum correctNum;
 
     public void start(){
         String s = view.inputBuyingMoney();
         try {
             BuyingMoney buyingMoney = new BuyingMoney(s);
             int buyingnum = buyingMoney.buyingMoney;
-            LottoList lottoList = new LottoList(buyingnum);
+            lottoList = new LottoList(buyingnum);
             view.BuyingLottoOutput(lottoList.lottoList);
-            middle(lottoList.lottoList);
+            middle();
         }catch (IllegalArgumentException e){
             view.inputExceptionMessage();
             start();
         }
     }
 
-    public void middle(List<Lotto> lottoList){
+    public void middle(){
         String s = view.inputCorrectNUM();
         try {
-            CorrectNum correctNum = new CorrectNum(s);
+            correctNum = new CorrectNum(s);
+            middle2();
         }catch (IllegalArgumentException e){
             view.outputExceptionMessage();
-            middle(lottoList);
+            middle();
         }
     }
+
+    public void middle2(){
+
+    }
+
 
 }

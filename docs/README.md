@@ -150,59 +150,62 @@
 | 4등  | 4개               | 50,000원        |
 | 5등  | 3개               | 5,000원         |
 
-## 개발 현황
-
-1. 프로그램의 출력 기능을 `View` 클래스에 구현하였다. 각 메서드들의 이름과 담당하는 기능은 아래와 같다.
-
-   - `priceInputGuideMsg`: 구입금액 입력 요구 메시지
-   - `printLottoInfo`: 발행한 로또 수량을 출력
-   - `printLottoNumbers`: 발행한 로또들의 번호를 출력
-   - `winningNumberInputGuideMsg`: 당첨 번호 입력 요구 메시지
-   - `bonusNumberInputGuideMsg`: 보너스 번호 입력 요구 메시지
-   - `hitResultTitle`: 당첨 내역 제목을 출력
-   - `printHitResult`: 당첨 내역을 출력
-   - `printRateOfReturn`: 수익률을 출력
-
-2. 프로그램의 입력 기능을 `InputHandler` 클래스에 구현하였다. 각 메서드들의 이름과 담당하는 기능은 아래와 같다.
-
-   - `inputPrice`: 구입 금액을 입력받는 메서드
-   - `inputAnswerNumbers`: 당첨 번호를 입력받는 메서드
-   - `inputBonusNumber`: 보너스 번호를 입력받는 메서드
-   - `isAnswerHasThatNumber`: 당첨 번호와 보너스 번호간의 중복을 확인하는 메서드
-
-   해당 메서드들은 입력값 검증 클래스인 `InputValidator`를 거친 후 예외 상황이 발생하지 않을 경우 값을 반환한다.
-
-3. 사용자에게 입력받은 당첨 번호와 보너스 번호를 관리하는 `Answer` 클래스를 생성하였다. 해당 클래스는 당첨 번호를 담고있는 `List<Integer>`형 변수와 보너스 번호를 담고 있는 `int`형 변수 총 2개의 인스턴스 변수를 가지고 있다.
-
-4. `GlobalConstant` Enum을 생성한 뒤 `InputValidator`에서 선언한 상수들 중 전역적으로 사용된다고 판단되는 상수들을 이동시켰다.
-
-5. 입력 금액을 지칭하는 단어는 price보다는 money가 더 적절하다고 판단되어 메서드들의 이름을 변경하였다.
-
-   - priceInputGuideMsg ➔ moneyInputGuideMsg
-   - inputPrice ➔ inputMoney
-   - validatePrice ➔ validateMoney
-
-6. 당첨 번호를 관리하는 일급 컬렉션 `HitNumbers` 클래스를 생성하였다.
-   이후 `Answer` 객체 내부에서 당첨 번호들을 관리하던 Integer형 List를 `HitNumbers`객체로 변경하였다.
-
-7. 상수들의 이름을 역할을 더 잘 나타내는 이름들로 변경하였다.
-
-   - NUMBER_AMOUNT ➔ LOTTO_NUMBER_SIZE
-   - NUMBER_MIN ➔ LOTTO_NUMBER_MIN
-   - NUMBER_MAX ➔ LOTTO_NUMBER_MAX
-
-8. 당첨 번호 검증 로직의 반환형을 String형 List에서 Integer형 List로 변경하였다.
-   이에 따라 String형 List를 Integer형 List를 반환하는 `convertStringListToIntegerList` 메서드를 `InputValidator` 클래스 내부에 생성하였다.
-
-9. 당첨 번호를 `HitNumbers` 클래스에서 관리하게 됨에 따라 `inputBonusNumber` 클래스의 매개변수를 String형 List에서 `HitNumbers` 객체로 변경하였다.
-
-10. `View` 클래스 내부에 공백 라인을 출력하는 메서드 `printEmptyLine`을 추가하였다.
 
 ## 테스트 케이스
 
 ### 목록
 
+#### - AnswerTest
+
+- 보너스 번호가 1부터 45 사이의 숫자가 아닌 경우에 대한 테스트 케이스
+- 보너스 번호가 당첨 번호와 중복될 경우에 대한 테스트 케이스
+- 매개변수로 주어진 번호가 당첨 번호 내부에 존재하는지 확인한 후 결과를 반환하는 메서드에 대한 테스트 케이스
+- 매개변수로 주어진 번호가 보너스 번호와 일치하는지 확인한 후 결과를 반환하는 메서드에 대한 테스트 케이스
+
+#### - LottoTest
+
+- 로또 번호의 개수가 6개가 넘어가는 경우에 대한 테스트 케이스
+- 로또 번호의 개수가 6개 보다 적은 경우에 대한 테스트 케이스
+- 로또 번호에 중복된 숫자가 존재하는 경우에 대한 테스트 케이스
+- 로또 번호에 1부터 45 사이의 숫자를 입력하지 않은 경우에 대한 테스트 케이스
+- getter가 불변 리스트를 반환하는지에 대한 테스트 케이스
+- 주어진 정답과 번호를 비교한 뒤 결과를 반환하는 메서드에 대한 테스트 케이스
+- 매개변수로 주어진 번호가 List 내부에 존재하는지 확인한 후 결과를 반환하는 메서드에 대한 테스트 케이스
+
+#### - ResultTest
+
+- 일치하는 숫자 개수를 반환하는 메서드에 대한 테스트 케이스
+- 보너스 번호 일치 여부를 반환하는 메서드에 대한 테스트 케이스
+
+#### - TicketsTest
+
+- getter가 불변 리스트를 반환하는지에 대한 테스트 케이스
+- 발행된 로또 티켓의 총 개수를 반환하는 메서드에 대한 테스트 케이스
+- 정답 객체를 매개변수로 받아 비교한 뒤 최종 결과를 반환하는 메서드에 대한 테스트 케이스
+
+#### - TotalResultTest
+
+- getter에 대한 테스트 케이스
+- 클래스 내부에 존재하는 수익률 반환 메서드에 대한 테스트 케이스
+
+#### - InputValidatorTest
+
+- 입력을 하지 않거나 공백을 입력한 경우에 대한 테스트 케이스
+- 구입 금액에 숫자가 아닌 문자가 포함되어 있는 경우에 대한 테스트 케이스
+- 구입 금액이 1000원 단위로 나누어 떨어지지 않는 경우에 대한 테스트 케이스
+- 당첨 번호에 숫자가 아닌 문자가 존재하는 경우에 대한 테스트 케이스
+- 당첨 번호를 정해진 형식으로 입력하지 않은 경우에 대한 테스트 케이스
+- 보너스 번호에 숫자가 아닌 문자를 입력한 경우에 대한 테스트 케이스
+
+#### - LottoMachineTest
+
+- Randoms API를 이용해 로또 번호를 생성하는 로직에 대한 테스트 케이스
+
 ### 결과
+
+![testCaseSuccess-intelliJ](./images/testCaseSuccess-intelliJ.png)
+
+![testCaseSuccess-Gradle](./images/testCaseSuccess-Gradle.png)
 
 ## 제약 조건 (체크리스트)
 

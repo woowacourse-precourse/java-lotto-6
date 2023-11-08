@@ -27,17 +27,15 @@ public class Money {
     }
 
     private long getTotalSum(Map<Integer, Integer> resultOfLottos) {
-        int firstPlaceCount = resultOfLottos.getOrDefault(1, 0);
-        int secondPlaceCount = resultOfLottos.getOrDefault(2, 0);
-        int thirdPlaceCount = resultOfLottos.getOrDefault(3, 0);
-        int fourthPlaceCount = resultOfLottos.getOrDefault(4, 0);
-        int fifthPlaceCount = resultOfLottos.getOrDefault(5, 0);
+        return Reward.FIRST_PLACE.calculate(getCountOfRank(resultOfLottos, 1))
+                + Reward.SECOND_PLACE.calculate(getCountOfRank(resultOfLottos, 2))
+                + Reward.THIRD_PLACE.calculate(getCountOfRank(resultOfLottos, 3))
+                + Reward.FOURTH_PLACE.calculate(getCountOfRank(resultOfLottos, 4))
+                + Reward.FIFTH_PLACE.calculate(getCountOfRank(resultOfLottos, 5));
+    }
 
-        return Reward.FIRST_PLACE.calculate(firstPlaceCount)
-                + Reward.SECOND_PLACE.calculate(secondPlaceCount)
-                + Reward.THIRD_PLACE.calculate(thirdPlaceCount)
-                + Reward.FOURTH_PLACE.calculate(fourthPlaceCount)
-                + Reward.FIFTH_PLACE.calculate(fifthPlaceCount);
+    private int getCountOfRank(Map<Integer, Integer> resultOfLottos, int rank) {
+        return resultOfLottos.getOrDefault(rank, 0);
     }
 
     private double roundResult(double result) {

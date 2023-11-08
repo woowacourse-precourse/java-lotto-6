@@ -6,6 +6,8 @@ import java.util.List;
 
 public class LottoService {
 
+    private static final int HAS_BONUS_NUMBER = 1;
+    private static final int HAS_NOT_BONUS_NUMBER = 0;
     private final List<Lotto> lottoContainer;
 
     public LottoService(List<Lotto> lottoContainer) {
@@ -35,9 +37,9 @@ public class LottoService {
     public int countMatchingBonusNumber(Lotto lotto, int bonusNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         if (lottoNumbers.contains(bonusNumber)){
-            return 1;
+            return HAS_BONUS_NUMBER;
         }
-        return 0;
+        return HAS_NOT_BONUS_NUMBER;
     }
 
     public Rank getLottoRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {

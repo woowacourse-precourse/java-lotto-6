@@ -1,42 +1,18 @@
 package lotto.controller;
 
 import lotto.constant.LottoResult;
-import lotto.model.WinningLotto;
-import lotto.model.Budget;
-import lotto.model.Lotto;
-import lotto.model.ProfitStats;
-import lotto.model.TotalResult;
+import lotto.model.*;
 
 import java.util.List;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.view.InputView.*;
-
 public class LottoAppController {
-    public Budget createBudget() {
-        while (true) {
-            try {
-                printPurchasePrompt();
-                return new Budget(readLine().trim());
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
+    private final LottoGenerator lottoGenerator = new LottoGenerator();
 
-    public WinningLotto createWinningLotto() {
-        while (true) {
-            try {
-                printWinningNumbersPrompt();
-                String numbersStr = readLine().trim();
-                printBonusNumberPrompt();
-                String bonusNumberStr = readLine().trim();
+    public List<Lotto> purchaseLottos(Budget budget) {
+        int lottoAmount = budget.getLottoAmount();
+        lottoGenerator.generate(lottoAmount);
 
-                return new WinningLotto(numbersStr, bonusNumberStr);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return lottoGenerator.getLottos();
     }
 
     public TotalResult processLottoResult(WinningLotto win, List<Lotto> lottos) {

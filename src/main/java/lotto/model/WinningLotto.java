@@ -1,7 +1,6 @@
 package lotto.model;
 
 import lotto.constant.LottoResult;
-import lotto.model.Lotto;
 
 import java.util.Collections;
 import java.util.List;

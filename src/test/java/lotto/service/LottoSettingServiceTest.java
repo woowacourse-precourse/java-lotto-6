@@ -97,8 +97,9 @@ class LottoSettingServiceTest {
         @Test
         void success_SelectBonusNumber() {
             // give
+            List<Integer> numbers = List.of(1,2,3,4,5,6);
             LottoSettingService lottoSettingService = new LottoSettingService();
-            BonusNumberValidator validator = new BonusNumberValidator();
+            BonusNumberValidator validator = new BonusNumberValidator(numbers);
             Supplier<String> inputSupplier = () -> "10";
             Runnable requestMessage = () -> {};
             Consumer<String> errorConsumer = e -> {};

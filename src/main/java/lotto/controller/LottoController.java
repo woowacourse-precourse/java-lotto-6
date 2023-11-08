@@ -10,6 +10,7 @@ import lotto.domain.PurchasedLotto;
 import lotto.domain.WinningLotto;
 import lotto.dto.LottoResultDto;
 import lotto.dto.WinningLottoDto;
+import lotto.validator.BonusNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -65,7 +66,8 @@ public class LottoController{
     }
 
     private void setBonusNumber() {
-        bonusNumber = services.lottoSettingService.selectBonusNumber(validators.bonusNumberValidator, InputView::getUserInput,
+        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator(winningNumbers);
+        bonusNumber = services.lottoSettingService.selectBonusNumber(bonusNumberValidator, InputView::getUserInput,
                 OutputView::printBonusNumberRequestMessage,  OutputView::printErrorMessage);
     }
 

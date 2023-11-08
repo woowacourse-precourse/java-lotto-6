@@ -19,11 +19,9 @@ public class LottoFactory {
         LottoResultService resultService = new LottoResultService();
         PurchaseAmountValidator amountValidator = new PurchaseAmountValidator();
         WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
-        BonusNumberValidator bonusNumberValidator = new BonusNumberValidator();
         LottoServices lottoServices = new LottoServices(settingService, resultService,
                 purchaseService, lottoService);
-        LottoValidators lottoValidators = new LottoValidators(amountValidator, winningLottoValidator,
-                bonusNumberValidator);
+        LottoValidators lottoValidators = new LottoValidators(amountValidator, winningLottoValidator);
 
         return new LottoController(lottoServices, lottoValidators);
     }

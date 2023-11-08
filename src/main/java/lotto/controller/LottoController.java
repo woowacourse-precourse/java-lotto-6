@@ -28,7 +28,7 @@ public class LottoController {
         output.printPurchaseAmount(numberOfLottos);
 
         manager.createPurchaseLottos(numberOfLottos, new RandomLottoGenerator());
-        output.printLottos(manager.getPurchaseLottos());
+        output.printPurchaseLottos(manager.getPurchaseLottos());
     }
 
 

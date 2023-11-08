@@ -16,7 +16,7 @@ public class OutputView {
         System.out.printf(PURCAHSE_AMOUNT_FORMAT, purchaseAmount);
     }
 
-    public void printLottos(List<String> lottos) {
+    public void printPurchaseLottos(List<String> lottos) {
         lottos.forEach(System.out::println);
         System.out.println();
     }

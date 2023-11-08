@@ -2,9 +2,9 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import lotto.exception.ParseException;
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.ParseIntException;
 
 public class ConsoleInputView implements InputView {
     @Override
@@ -30,7 +30,7 @@ public class ConsoleInputView implements InputView {
         try {
             return Integer.parseInt(text);
         } catch (NumberFormatException e) {
-            throw new ParseException();
+            throw new ParseIntException();
         }
     }
 }

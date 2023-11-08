@@ -23,16 +23,16 @@ public class PlayLotto {
     }
 
     public void run() {
-        LottoTickets lottoTickets = createLottoTickets();
+        LottoTickets lottoTickets = createLottoTicketsByInput();
         repeatOutputLottoInfo(lottoTickets);
-        WinningLotto winningLotto = createWinningLotto();
+        WinningLotto winningLotto = createWinningLottoByInput();
 
         LottoTotalPrize result = lottoService.compareWinningNumbers(lottoTickets, winningLotto);
         outputLottoResult(result);
         outputProfitability(lottoTickets, result);
     }
 
-    private LottoTickets createLottoTickets() {
+    private LottoTickets createLottoTicketsByInput() {
         try {
             int amount = inputPurchaseLotto();
 
@@ -40,11 +40,11 @@ public class PlayLotto {
         } catch (CustomIllegalArgumentException e) {
             lottoView.outputException(e);
 
-            return createLottoTickets();
+            return createLottoTicketsByInput();
         }
     }
 
-    private WinningLotto createWinningLotto() {
+    private WinningLotto createWinningLottoByInput() {
         try {
             List<Integer> winningNumbers = inputWinningLottoNumbers();
             int bonusNumber = inputWinningLottoBonusNumber();
@@ -53,7 +53,7 @@ public class PlayLotto {
         } catch (CustomIllegalArgumentException e) {
             lottoView.outputException(e);
 
-            return createWinningLotto();
+            return createWinningLottoByInput();
         }
     }
 

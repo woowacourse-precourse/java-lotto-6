@@ -2,8 +2,8 @@ package lotto.model.lotto;
 
 import lotto.common.exception.ErrorMessage;
 
-public record WinningLotto(Lotto lotto, BonusBall bonusBall) {
-    public WinningLotto {
+public record WinningTicket(Lotto lotto, BonusBall bonusBall) {
+    public WinningTicket {
         validateDuplicate(lotto, bonusBall);
     }
 

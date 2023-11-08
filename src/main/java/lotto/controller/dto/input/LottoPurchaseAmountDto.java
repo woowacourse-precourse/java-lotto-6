@@ -1,8 +1,8 @@
 package lotto.controller.dto.input;
 
 import lotto.common.constants.LottoRule;
+import lotto.util.InputValidator;
 import lotto.util.Parser;
-import lotto.util.Validator;
 
 public record LottoPurchaseAmountDto(String purchaseAmount) {
     private static final int PURCHASE_AMOUNT_MIN_LENGTH = 1;
@@ -10,9 +10,9 @@ public record LottoPurchaseAmountDto(String purchaseAmount) {
             LottoRule.LOTTO_PURCHASE_AMOUNT_MAX.value).length();
 
     public LottoPurchaseAmountDto {
-        Validator.validateLength(purchaseAmount, PURCHASE_AMOUNT_MIN_LENGTH, PURCHASE_AMOUNT_MAX_LENGTH);
-        Validator.validateHasText(purchaseAmount);
-        Validator.validateNumeric(purchaseAmount);
+        InputValidator.validateLength(purchaseAmount, PURCHASE_AMOUNT_MIN_LENGTH, PURCHASE_AMOUNT_MAX_LENGTH);
+        InputValidator.validateHasText(purchaseAmount);
+        InputValidator.validateNumeric(purchaseAmount);
     }
 
     public int toInt() {

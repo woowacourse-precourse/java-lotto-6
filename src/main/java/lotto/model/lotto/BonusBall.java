@@ -13,11 +13,4 @@ public record BonusBall(int number) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue(number));
         }
     }
-
-    @Override
-    public String toString() {
-        return "BonusBall{" +
-                "number=" + number +
-                '}';
-    }
 }

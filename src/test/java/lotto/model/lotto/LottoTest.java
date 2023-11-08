@@ -42,10 +42,10 @@ class LottoTest {
 
     @MethodSource("getCalculateLottoRankArgument")
     @ParameterizedTest
-    void 당첨로또와_비교하여_로또순위를_계산한다(Lotto lotto, WinningLotto winningLotto, LottoRank expected) {
+    void 당첨로또와_비교하여_로또순위를_계산한다(Lotto lotto, WinningTicket winningTicket, LottoRank expected) {
         //given
         //when
-        LottoRank lottoRank = lotto.calculateLottoRank(winningLotto);
+        LottoRank lottoRank = lotto.calculateLottoRank(winningTicket);
         //then
         assertThat(lottoRank).isEqualTo(expected);
     }
@@ -88,7 +88,7 @@ class LottoTest {
             //when then
             assertThatThrownBy(() -> new Lotto(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.DUPLICATED_NUMBER.getValue());
+                    .hasMessageContaining(ErrorMessage.DUPLICATED_LOTTO_NUMBER.getValue());
         }
 
         @Test

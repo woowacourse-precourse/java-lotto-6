@@ -2,14 +2,14 @@ package lotto.util;
 
 import java.util.regex.Pattern;
 
-public class Validator {
+public class InputValidator {
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
 
     public static final String BLANK_INPUT_ERROR_MESSAGE = "공백이 아닌 문자를 입력해주세요.";
     public static final String INVALID_LENGTH_INPUT_ERROR_MESSAGE = "유효하지 않은 입력 길이입니다.";
     public static final String INVALID_NUMERIC_INPUT_ERROR_MESSAGE = "숫자로만 입력해주세요.";
 
-    private Validator() {
+    private InputValidator() {
     }
 
     public static void validateHasText(String input) {

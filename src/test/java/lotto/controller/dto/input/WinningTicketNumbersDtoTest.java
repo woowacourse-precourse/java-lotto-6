@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.util.Validator;
+import lotto.util.InputValidator;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class WinningLottoNumbersDtoTest {
+class WinningTicketNumbersDtoTest {
     @Nested
     class 당첨로또번호_입력값객체_생성시 {
 
@@ -34,7 +34,7 @@ class WinningLottoNumbersDtoTest {
             //when then
             assertThatThrownBy(() -> new WinningLottoNumbersDto(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(Validator.INVALID_LENGTH_INPUT_ERROR_MESSAGE);
+                    .hasMessageContaining(InputValidator.INVALID_LENGTH_INPUT_ERROR_MESSAGE);
         }
 
         @ValueSource(strings = {" ", "\n", "\r", "\r\n", "\t"})
@@ -44,7 +44,7 @@ class WinningLottoNumbersDtoTest {
             //when then
             assertThatThrownBy(() -> new WinningLottoNumbersDto(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(Validator.BLANK_INPUT_ERROR_MESSAGE);
+                    .hasMessageContaining(InputValidator.BLANK_INPUT_ERROR_MESSAGE);
         }
     }
 
@@ -77,7 +77,7 @@ class WinningLottoNumbersDtoTest {
             //when then
             assertThatThrownBy(winningLottoNumbersDto::toIntegerList)
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(Validator.INVALID_NUMERIC_INPUT_ERROR_MESSAGE);
+                    .hasMessageContaining(InputValidator.INVALID_NUMERIC_INPUT_ERROR_MESSAGE);
         }
     }
 }

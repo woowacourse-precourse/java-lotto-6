@@ -15,10 +15,11 @@ import lotto.mock.MockReader;
 import lotto.mock.MockWriter;
 import lotto.model.lotto.Lotto;
 import lotto.view.constants.Message;
+import lotto.view.constants.MessageFormatter;
 import org.junit.jupiter.api.Test;
 
 class LottoViewTest {
-    private static final String LINE_SEPARATOR = System.lineSeparator();
+    private static final String LINE_SEPARATOR = MessageFormatter.LINE_SEPARATOR.value;
 
     private final MockReader reader = new MockReader();
     private final MockWriter writer = new MockWriter();
@@ -48,10 +49,10 @@ class LottoViewTest {
         lottoView.showPurchasedLottos(purchasedLottosDto);
         //then
         String expected = """
+                                
                 2개를 구매했습니다.
                 [1, 2, 3, 4, 5, 6]
-                [6, 10, 16, 34, 35, 43]
-                                
+                [6, 10, 16, 34, 35, 43]    
                 """;
         assertThat(writer.getOutput()).isEqualTo(expected);
     }
@@ -65,7 +66,7 @@ class LottoViewTest {
         WinningLottoNumbersDto winningLottoNumbersDto = lottoView.inputWinningLottoNumbers();
         //then
         assertThat(writer.getOutput()).isEqualTo(
-                Message.INPUT_WINNING_LOTTO_NUMBERS.getValue() + LINE_SEPARATOR);
+                LINE_SEPARATOR + Message.INPUT_WINNING_LOTTO_NUMBERS.getValue() + LINE_SEPARATOR);
         assertThat(winningLottoNumbersDto.winningLottoNumbers()).isEqualTo(winningLottoNumbers);
     }
 
@@ -78,7 +79,7 @@ class LottoViewTest {
         BonusBallDto bonusBallDto = lottoView.inputBonusBallNumber();
         //then
         assertThat(writer.getOutput()).isEqualTo(
-                Message.INPUT_BONUS_BALL_NUMBER.getValue() + LINE_SEPARATOR);
+                LINE_SEPARATOR + Message.INPUT_BONUS_BALL_NUMBER.getValue() + LINE_SEPARATOR);
         assertThat(bonusBallDto.bonusBall()).isEqualTo(bonusBallNumber);
     }
 
@@ -92,6 +93,7 @@ class LottoViewTest {
         lottoView.showWinningLottoResult(winningLottoResultDto);
         //then
         String expected = """
+                                
                 당첨 통계
                 ---
                 3개 일치 (5,000원) - 1개

@@ -35,26 +35,26 @@ public class LottoView {
 
         String purchasedLottoNumbersMessage = getPurchasedLottoNumbersMessage(lottos);
 
-        String purchasedLottos = String.join(MessageFormatter.LINE_SEPARATOR.getValue(),
+        String purchasedLottos = String.join(MessageFormatter.LINE_SEPARATOR.value,
                 Message.PURCHASED_LOTTOS_COUNT.getValue(lottos.size()),
                 purchasedLottoNumbersMessage);
-        writer.writeLine(purchasedLottos + MessageFormatter.LINE_SEPARATOR.getValue());
+        writer.writeLine(MessageFormatter.LINE_SEPARATOR.value + purchasedLottos);
     }
 
     private String getPurchasedLottoNumbersMessage(List<Lotto> lottos) {
         return lottos.stream()
                 .map(lotto -> lotto.getNumbers().toArray())
                 .map(Message.PURCHASED_LOTTO_NUMBERS::getValue)
-                .collect(Collectors.joining(MessageFormatter.LINE_SEPARATOR.getValue()));
+                .collect(Collectors.joining(MessageFormatter.LINE_SEPARATOR.value));
     }
 
     public WinningLottoNumbersDto inputWinningLottoNumbers() {
-        writer.writeLine(Message.INPUT_WINNING_LOTTO_NUMBERS.getValue());
+        writer.writeLine(MessageFormatter.LINE_SEPARATOR.value + Message.INPUT_WINNING_LOTTO_NUMBERS.getValue());
         return new WinningLottoNumbersDto(reader.readLine());
     }
 
     public BonusBallDto inputBonusBallNumber() {
-        writer.writeLine(Message.INPUT_BONUS_BALL_NUMBER.getValue());
+        writer.writeLine(MessageFormatter.LINE_SEPARATOR.value + Message.INPUT_BONUS_BALL_NUMBER.getValue());
         return new BonusBallDto(reader.readLine());
     }
 
@@ -62,12 +62,12 @@ public class LottoView {
         String winningLottoCountByRankMessage = getWinningLottoCountByRankMessage(
                 winningLottoResultDto.winningResult());
 
-        String winningLottoResultMessage = String.join(MessageFormatter.LINE_SEPARATOR.getValue(),
+        String winningLottoResultMessage = String.join(MessageFormatter.LINE_SEPARATOR.value,
                 Message.WINNING_STATISTICS_HEADER.getValue(),
                 Message.WINNING_STATISTICS_DIVIDER.getValue(),
                 winningLottoCountByRankMessage,
                 Message.PROFIT_RATE.getValue(winningLottoResultDto.profitRate()));
-        writer.writeLine(winningLottoResultMessage);
+        writer.writeLine(MessageFormatter.LINE_SEPARATOR.value + winningLottoResultMessage);
     }
 
     private String getWinningLottoCountByRankMessage(List<LottoRank> winningResult) {
@@ -80,11 +80,11 @@ public class LottoView {
                     return Message.WINNING_LOTTOS_COUNT_PER_PRIZE.getValue(
                             lottoRankMessage.getMessage(), lottoCountByRank);
                 })
-                .collect(Collectors.joining(MessageFormatter.LINE_SEPARATOR.getValue()));
+                .collect(Collectors.joining(MessageFormatter.LINE_SEPARATOR.value));
     }
 
     public void showError(String message) {
-        writer.writeLine(MessageFormatter.ERROR_MESSAGE_PREFIX.getValue() + message);
+        writer.writeLine(MessageFormatter.ERROR_MESSAGE_PREFIX.value + message);
     }
 
     public void release() {

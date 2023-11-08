@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.model.lotto.BonusBall;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.WinningLotto;
+import lotto.model.lotto.WinningTicket;
 import lotto.model.purchase.LottoPurchase;
 import lotto.model.purchase.LottoPurchaseAmount;
 
@@ -42,7 +42,7 @@ public class LottoFixture {
         return new BonusBall(number);
     }
 
-    public static WinningLotto createWinningLotto(Lotto lotto, BonusBall bonusBall) {
-        return new WinningLotto(lotto, bonusBall);
+    public static WinningTicket createWinningLotto(Lotto lotto, BonusBall bonusBall) {
+        return new WinningTicket(lotto, bonusBall);
     }
 }

@@ -7,7 +7,7 @@ import lotto.controller.dto.output.PurchasedLottosDto;
 import lotto.controller.dto.output.WinningLottoResultDto;
 import lotto.model.lotto.BonusBall;
 import lotto.model.lotto.Lotto;
-import lotto.model.lotto.WinningLotto;
+import lotto.model.lotto.WinningTicket;
 import lotto.model.purchase.LottoPurchase;
 import lotto.service.LottoPurchaseService;
 import lotto.service.LottoWinningStatisticsService;
@@ -30,8 +30,8 @@ public class LottoController {
     public void run() {
         try {
             LottoPurchase lottoPurchase = purchaseLotto();
-            WinningLotto winningLotto = getWinningLotto();
-            calculateResult(lottoPurchase, winningLotto);
+            WinningTicket winningTicket = getWinningTicket();
+            calculateResult(lottoPurchase, winningTicket);
         } catch (Exception e) {
             lottoView.showError(e.getMessage());
         } finally {
@@ -53,26 +53,49 @@ public class LottoController {
         return lottoPurchase;
     }
 
-    private WinningLotto getWinningLotto() {
-        WinningLotto winningLotto = null;
+    private WinningTicket getWinningTicket() {
+        WinningTicket winningTicket = null;
+        while (winningTicket == null) {
+            try {
+                Lotto winningLotto = getWinningLotto();
+                BonusBall bonusBall = getBonusBall();
+                winningTicket = new WinningTicket(winningLotto, bonusBall);
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                lottoView.showError(e.getMessage());
+            }
+        }
+        return winningTicket;
+    }
+
+    private Lotto getWinningLotto() {
+        Lotto winningLotto = null;
         while (winningLotto == null) {
             try {
                 WinningLottoNumbersDto winningLottoNumbersDto = lottoView.inputWinningLottoNumbers();
-                BonusBallDto bonusBallDto = lottoView.inputBonusBallNumber();
-
-                Lotto lotto = new Lotto(winningLottoNumbersDto.toIntegerList());
-                BonusBall bonusBall = new BonusBall(bonusBallDto.toInt());
-                winningLotto = new WinningLotto(lotto, bonusBall);
-            } catch (IllegalArgumentException | IllegalStateException e) {
+                winningLotto = new Lotto(winningLottoNumbersDto.toIntegerList());
+            } catch (IllegalArgumentException e) {
                 lottoView.showError(e.getMessage());
             }
         }
         return winningLotto;
     }
 
-    private void calculateResult(LottoPurchase lottoPurchase, WinningLotto winningLotto) {
+    private BonusBall getBonusBall() {
+        BonusBall bonusBall = null;
+        while (bonusBall == null) {
+            try {
+                BonusBallDto bonusBallDto = lottoView.inputBonusBallNumber();
+                bonusBall = new BonusBall(bonusBallDto.toInt());
+            } catch (IllegalArgumentException e) {
+                lottoView.showError(e.getMessage());
+            }
+        }
+        return bonusBall;
+    }
+
+    private void calculateResult(LottoPurchase lottoPurchase, WinningTicket winningTicket) {
         WinningLottoResultDto winningLottoResultDto =
-                lottoWinningStatisticsService.getWinningStatistics(lottoPurchase, winningLotto);
+                lottoWinningStatisticsService.getWinningStatistics(lottoPurchase, winningTicket);
         lottoView.showWinningLottoResult(winningLottoResultDto);
     }
 }

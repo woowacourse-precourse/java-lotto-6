@@ -2,7 +2,7 @@ package lotto.controller.dto.input;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.util.Validator;
+import lotto.util.InputValidator;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -44,7 +44,7 @@ class LottoPurchaseAmountDtoTest {
             //when then
             Assertions.assertThatThrownBy(() -> new LottoPurchaseAmountDto(amount))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(Validator.INVALID_LENGTH_INPUT_ERROR_MESSAGE);
+                    .hasMessageContaining(InputValidator.INVALID_LENGTH_INPUT_ERROR_MESSAGE);
         }
 
         @ValueSource(strings = {" ", "\n", "\r", "\r\n", "\t"})
@@ -54,7 +54,7 @@ class LottoPurchaseAmountDtoTest {
             //when then
             Assertions.assertThatThrownBy(() -> new LottoPurchaseAmountDto(amount))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(Validator.BLANK_INPUT_ERROR_MESSAGE);
+                    .hasMessageContaining(InputValidator.BLANK_INPUT_ERROR_MESSAGE);
         }
 
         @ValueSource(strings = {"1003as", "sd334", "asdf"})
@@ -64,7 +64,7 @@ class LottoPurchaseAmountDtoTest {
             //when then
             Assertions.assertThatThrownBy(() -> new LottoPurchaseAmountDto(amount))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(Validator.INVALID_NUMERIC_INPUT_ERROR_MESSAGE);
+                    .hasMessageContaining(InputValidator.INVALID_NUMERIC_INPUT_ERROR_MESSAGE);
         }
     }
 }

@@ -9,7 +9,7 @@ import lotto.common.exception.ErrorMessage;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class WinningLottoTest {
+class WinningTicketTest {
     @Nested
     class 당첨로또_생성 {
         @Test
@@ -18,10 +18,10 @@ class WinningLottoTest {
             Lotto lotto = createLotto(1, 2, 3, 4, 5, 6);
             BonusBall bonusBall = createBonusBall(10);
             //when
-            WinningLotto winningLotto = new WinningLotto(lotto, bonusBall);
+            WinningTicket winningTicket = new WinningTicket(lotto, bonusBall);
             //then
-            assertThat(winningLotto.lotto()).isEqualTo(lotto);
-            assertThat(winningLotto.bonusBall()).isEqualTo(bonusBall);
+            assertThat(winningTicket.lotto()).isEqualTo(lotto);
+            assertThat(winningTicket.bonusBall()).isEqualTo(bonusBall);
         }
 
         @Test
@@ -30,7 +30,7 @@ class WinningLottoTest {
             Lotto lotto = createLotto(1, 2, 3, 4, 5, 6);
             BonusBall bonusBall = createBonusBall(5);
             //when then
-            assertThatThrownBy(() -> new WinningLotto(lotto, bonusBall))
+            assertThatThrownBy(() -> new WinningTicket(lotto, bonusBall))
                     .isInstanceOf(IllegalStateException.class)
                     .hasMessageContaining(ErrorMessage.DUPLICATED_WINNING_LOTTO_NUMBER_AND_BONUS_BALL.getValue());
         }

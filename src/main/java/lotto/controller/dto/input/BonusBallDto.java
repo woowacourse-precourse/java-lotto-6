@@ -1,8 +1,8 @@
 package lotto.controller.dto.input;
 
 import lotto.common.constants.LottoRule;
+import lotto.util.InputValidator;
 import lotto.util.Parser;
-import lotto.util.Validator;
 
 public record BonusBallDto(String bonusBall) {
     private static final int BONUS_BALL_MIN_LENGTH = 1;
@@ -10,9 +10,9 @@ public record BonusBallDto(String bonusBall) {
             LottoRule.LOTTO_NUMBER_MAX.value).length();
 
     public BonusBallDto {
-        Validator.validateLength(bonusBall, BONUS_BALL_MIN_LENGTH, BONUS_BALL_MAX_LENGTH);
-        Validator.validateHasText(bonusBall);
-        Validator.validateNumeric(bonusBall);
+        InputValidator.validateLength(bonusBall, BONUS_BALL_MIN_LENGTH, BONUS_BALL_MAX_LENGTH);
+        InputValidator.validateHasText(bonusBall);
+        InputValidator.validateNumeric(bonusBall);
     }
 
     public int toInt() {

@@ -1,7 +1,7 @@
 package lotto.common.exception;
 
 public enum ErrorMessage {
-    DUPLICATED_NUMBER("로또 번호는 서로 중복되지 않아야 합니다."),
+    DUPLICATED_LOTTO_NUMBER("로또 번호는 서로 중복되지 않아야 합니다."),
     INVALID_LOTTO_NUMBERS_SIZE("로또 번호는 6개여야 합니다."),
     INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1부터 45 사이여야 합니다."),
     INVALID_PURCHASE_AMOUNT_UNIT("로또는 1000원 단위로만 구매할 수 있습니다."),

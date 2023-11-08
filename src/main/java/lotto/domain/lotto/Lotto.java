@@ -64,8 +64,8 @@ public class Lotto {
 
     public int countWinningNumbers(List<Integer> winningNumbers) {
         int count = 0;
-        for(int number : numbers){
-            if(winningNumbers.contains(number)){
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
                 count++;
             }
         }

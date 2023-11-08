@@ -42,14 +42,14 @@ public class OutputView {
     }
 
     public void printROI(String roi) {
-        System.out.println(ROI_OUTPUT_PREFIX.message()+roi+ROI_OUTPUT_SUFFIX.message());
+        System.out.println(ROI_OUTPUT_PREFIX.message() + roi + ROI_OUTPUT_SUFFIX.message());
     }
 
     public void printErrorMessage(IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
 
-    public void printLineBreak(){
+    public void printLineBreak() {
         System.out.println();
     }
 

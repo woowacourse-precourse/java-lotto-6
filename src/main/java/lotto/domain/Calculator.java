@@ -7,7 +7,7 @@ public class Calculator {
     public String calculateROI(long prize, Amount amount){
         double spentCost = amount.getAmount();
         double roi = (double)prize/spentCost*PERCENT;
-        return String.format("%.1f",roi);
+        return String.format("%.1f", roi);
     }
 
 }

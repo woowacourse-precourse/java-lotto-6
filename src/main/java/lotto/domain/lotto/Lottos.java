@@ -22,13 +22,13 @@ public class Lottos {
         return lottos.size();
     }
 
-    public HashMap<Integer,Integer> determineWinningsCount(Lotto winningLotto, Bonus bonus) {
+    public HashMap<Integer, Integer> determineWinningsCount(Lotto winningLotto, Bonus bonus) {
         List<Integer> winningNumbers = winningLotto.getNumbers();
         int bonusNumber = bonus.getBonusNumber();
-        HashMap<Integer,Integer>winnings = new HashMap<>();
+        HashMap<Integer, Integer> winnings = new HashMap<>();
         for (Lotto lotto : lottos) {
-            int winningNumbersCount = getWinningNumbersCount(lotto,winningNumbers,bonusNumber);
-            if(winningNumbersCount>=MINIMUM) {
+            int winningNumbersCount = getWinningNumbersCount(lotto, winningNumbers, bonusNumber);
+            if (winningNumbersCount >= MINIMUM) {
                 int lottoCount = winnings.getOrDefault(winningNumbersCount, 0);
                 winnings.put(winningNumbersCount, lottoCount + 1);
             }
@@ -36,19 +36,19 @@ public class Lottos {
         return winnings;
     }
 
-    private int getWinningNumbersCount(Lotto lotto, List<Integer> winningNumbers, int bonusNumber){
+    private int getWinningNumbersCount(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int winningNumbersCount = lotto.countWinningNumbers(winningNumbers);
-        if(isWinningNumberCountFive(winningNumbersCount) && hasBonusNumber(lotto,bonusNumber)){
+        if (isWinningNumberCountFive(winningNumbersCount) && hasBonusNumber(lotto, bonusNumber)) {
             winningNumbersCount = BONUS;
         }
         return winningNumbersCount;
     }
 
-    private boolean isWinningNumberCountFive(int winningNumberCount){
+    private boolean isWinningNumberCountFive(int winningNumberCount) {
         return winningNumberCount == 5;
     }
 
-    private boolean hasBonusNumber(Lotto lotto, int bonusNumber){
+    private boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.hasSameNumber(bonusNumber);
     }
 

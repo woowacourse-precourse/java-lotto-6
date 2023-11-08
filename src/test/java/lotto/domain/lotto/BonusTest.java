@@ -3,11 +3,10 @@ package lotto.domain.lotto;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BonusTest{
+class BonusTest {
 
     @DisplayName("로또 번호에 범위에서 벗어난 숫자가 있으면 예외가 발생한다.")
     @Test

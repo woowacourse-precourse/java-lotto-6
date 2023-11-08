@@ -25,7 +25,7 @@ public class Bonus {
     }
 
     private boolean isInRange(int number) {
-    return number >= STARTINCLUSIVE && number <= ENDINCLUSIVE;
+        return number >= STARTINCLUSIVE && number <= ENDINCLUSIVE;
     }
 
     public int getBonusNumber() {

@@ -14,7 +14,7 @@ public class WinningResultTest {
 
     @DisplayName("총 상금을 계산한다")
     @Test
-    void 상금_계산(){
+    void 상금_계산() {
         //given
         WinningResult winningResult = createLottosAndGetWinningResults();
 
@@ -27,7 +27,7 @@ public class WinningResultTest {
 
     @DisplayName("각 등수별 당첨 개수를 반환한다.")
     @Test
-    void 일등_계산(){
+    void 일등_계산() {
         //given
         WinningResult winningResult = createLottosAndGetWinningResults();
 
@@ -56,7 +56,8 @@ public class WinningResultTest {
                 new Lotto(List.of(10, 20, 30, 40, 5, 6))));
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Bonus bonus = new Bonus(7);
-        HashMap<Integer, Integer> winningsCount = lottos.determineWinningsCount(winningLotto, bonus);
+        HashMap<Integer, Integer> winningsCount = lottos.determineWinningsCount(winningLotto,
+                bonus);
         return new WinningResult(winningsCount);
     }
 

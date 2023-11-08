@@ -22,8 +22,8 @@ public class GameManager {
         Lottos lottos = publishLottosByAmountAndPrintLottos(amount);
         Lotto winningLotto = inputWinningNumbersUntilNoError();
         Bonus bonus = inputBonusNumbersUntilNoError();
-        WinningResult winningResult = getWinningResultAndPrint(lottos,winningLotto,bonus);
-        getROIAndPrint(winningResult,amount);
+        WinningResult winningResult = getWinningResultAndPrint(lottos, winningLotto, bonus);
+        getROIAndPrint(winningResult, amount);
     }
 
     private Amount inputPurchaseAmountUntilNoError() {
@@ -36,7 +36,7 @@ public class GameManager {
         }
     }
 
-    private Lottos publishLottosByAmountAndPrintLottos(Amount amount){
+    private Lottos publishLottosByAmountAndPrintLottos(Amount amount) {
         outputView.printLineBreak();
         printLottoCountByAmount(amount);
         Lottos lottos = lottoPublisher.publishLottosByAmount(amount);
@@ -48,29 +48,29 @@ public class GameManager {
         outputView.printPublishedLottoCount(lottoPublisher.getLottoCountByAmount(amount));
     }
 
-    private Lotto inputWinningNumbersUntilNoError(){
+    private Lotto inputWinningNumbersUntilNoError() {
         outputView.printLineBreak();
-        while(true){
-            try{
+        while (true) {
+            try {
                 return inputView.inputWinningNumbers();
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
     }
 
-    private Bonus inputBonusNumbersUntilNoError(){
+    private Bonus inputBonusNumbersUntilNoError() {
         outputView.printLineBreak();
-        while(true){
-            try{
+        while (true) {
+            try {
                 return inputView.inputBonusNumber();
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
     }
 
-    private WinningResult getWinningResultAndPrint(Lottos lottos,Lotto winningLotto, Bonus bonus) {
+    private WinningResult getWinningResultAndPrint(Lottos lottos, Lotto winningLotto, Bonus bonus) {
         outputView.printLineBreak();
         WinningResult winningResult = new WinningResult(
                 lottos.determineWinningsCount(winningLotto, bonus));

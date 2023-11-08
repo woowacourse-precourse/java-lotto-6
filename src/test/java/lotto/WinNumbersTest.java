@@ -52,4 +52,12 @@ public class WinNumbersTest {
         }
 
     }
+
+    @DisplayName("1~45이외의 값을 입력하면 예외가 발생한다.")
+    @Test
+    void 당첨번호_범위_테스트() {
+        String[] userInput = {"1", "44", "45", "47", "42", "3"};
+        assertThatThrownBy(() -> new WinNumbers(userInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

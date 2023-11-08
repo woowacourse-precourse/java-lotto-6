@@ -35,9 +35,10 @@ public class LottoController {
 
     private void calcProfit(int lottoMoney) {
         int sum = 0;
-        for(LottoVariables lottoVariables: LottoVariables.values()) sum += calcProfit(lottoVariables);
+        for(LottoVariables lottoVariables: LottoVariables.values())
+            sum += calcProfit(lottoVariables);
 
-        profit = sum / lottoMoney;
+        profit = sum * 100 / lottoMoney;
     }
 
     private int calcProfit(LottoVariables lottoVariables) {
@@ -70,7 +71,6 @@ public class LottoController {
 
     private void generateLottos() {
         List<Integer> tmp = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(tmp);
         lottos.add(new Lotto(tmp));
     }
 }

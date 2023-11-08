@@ -20,36 +20,41 @@ public class LottoViewer {
 
     private List<Integer> tryLotteryNumbers() {
         try{
-            System.out.println("당첨 번호를 입력해 주세요.");
-            return Arrays.stream(Console.readLine().split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException(LOTTO_NUM_ERROR.getErrorMessage());
+            return getLotteryNumber();
+        } catch (IllegalArgumentException e){
+            System.out.println(LOTTO_NUM_ERROR);
         }
+        return null;
     }
 
-    int getBonus(){
+    private static List<Integer> getLotteryNumber() throws IllegalArgumentException {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Arrays.stream(Console.readLine().split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
+    int getBonus() throws IllegalArgumentException{
         System.out.println("보너스 번호를 입력해 주세요.");
         String tmp = Console.readLine();
         return Integer.parseInt(tmp);
     }
 
-    int getMoney(){
-        while(true){
-            return tryGetMoney();
+    int getMoney() {
+        while (true) {
+            try {
+                return tryGetMoney();
+            } catch (IllegalArgumentException e) {
+                System.out.println(MONEY_VAL_ERROR.getErrorMessage());
+            }
         }
     }
 
-    private int tryGetMoney() {
-        try{
-            System.out.println("구매 금액을 입력해 주세요.");
-            String tmp = Console.readLine();
-            return Integer.parseInt(tmp);
-        }catch (NumberFormatException e){
-            throw new IllegalArgumentException(MONEY_VAL_ERROR.getErrorMessage());
-        }
+    private static int tryGetMoney() throws IllegalArgumentException{
+        System.out.println("구매 금액을 입력해 주세요.");
+        String tmp = Console.readLine();
+        return Integer.parseInt(tmp);
     }
 
     void printLottos(List<Lotto> lottos){

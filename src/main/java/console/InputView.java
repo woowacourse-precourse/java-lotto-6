@@ -67,17 +67,21 @@ public class InputView {
         String[] split = userInput.split(DELIMITER);
         List<Integer> lottoNumberList = Arrays.stream(split)
                 .map(String::trim)
-                .map(Integer::parseInt)
+                .map(InputView::getIntegerInput)
                 .toList();
         return new Lotto(lottoNumberList);
     }
 
     private static int getIntegerInput(String userInput) {
-        int bonusNumber = Integer.parseInt(userInput);
-        if (bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {
-            throw new IllegalArgumentException(INVALID_BOUND);
+        try {
+            int bonusNumber = Integer.parseInt(userInput);
+            if (bonusNumber > MAX_NUMBER || bonusNumber < MIN_NUMBER) {
+                throw new IllegalArgumentException(INVALID_BOUND);
+            }
+            return bonusNumber;
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(NOT_NUMBER);
         }
-        return bonusNumber;
     }
 
     private static int parseStringToMoney() {

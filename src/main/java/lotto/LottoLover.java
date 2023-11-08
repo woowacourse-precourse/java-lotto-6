@@ -22,11 +22,17 @@ public class LottoLover {
      * everytime earn Money somehow, I Buy Lotto WITHOUT A PENNY LEFT
      */
     public void earnMoneySomehow(int mustSpentAllWithoutAPennyLeft) {
-        // ToDo: 돈이 한 푼이라도 남으면 예외를 발생시킨다.
+        if (mustSpentAllWithoutAPennyLeft % LOTTO_PRICE != 0
+                || mustSpentAllWithoutAPennyLeft < LOTTO_PRICE) {
+            throw new IllegalArgumentException(
+                    "번 돈은 " + LOTTO_PRICE + "로 나누어 떨어지는 " + LOTTO_PRICE + "이상의 정수여야합니다.");
+        }
+
         int ea = mustSpentAllWithoutAPennyLeft / LOTTO_PRICE;
         for (int i = 0; i < ea; i++) {
             bought.add(new Lotto());
         }
+        moneySpent += mustSpentAllWithoutAPennyLeft;
     }
 
     /**

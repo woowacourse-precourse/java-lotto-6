@@ -8,8 +8,17 @@ import lotto.view.LottoView;
 public class LottoController {
 
     public void giveMoneyTo(LottoLover buyer) {
-        int moneyAmount = LottoView.requestMoneyToUser();
-        buyer.earnMoneySomehow(moneyAmount);
+        boolean isFailed = true;
+        while (isFailed) {
+            try {
+                int moneyAmount = LottoView.requestMoneyToUser();
+                buyer.earnMoneySomehow(moneyAmount);
+                isFailed = false;
+            } catch (IllegalArgumentException e) {
+                // 메시지 출력 후 다시 입력하도록 한다.
+                System.out.println("[Error] " + e);
+            }
+        }
     }
 
     public void brag(LottoLover lottoLover) {

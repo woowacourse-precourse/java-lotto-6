@@ -27,8 +27,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        boolean isSizeInvalid = numbers.size() != 6;
+        boolean isThereAnyDuplicatedNumber
+                = numbers.size() != numbers.stream().distinct().count();
+        boolean isThereAnyOutrangedNumber = false;
+        for (Integer number : numbers) {
+            if (number < 1 || 45 < number) {
+                isThereAnyOutrangedNumber = true;
+            }
+        }
+
+        if (isSizeInvalid || isThereAnyDuplicatedNumber || isThereAnyOutrangedNumber) {
+            throw new IllegalArgumentException(
+                    "유효하지 않는 로또 번호입니다. 로또 번호는 1이상 45 이하의 중복되지 않는 6개의 정수여야 합니다.");
         }
     }
 

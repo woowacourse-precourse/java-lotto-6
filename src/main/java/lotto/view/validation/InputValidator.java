@@ -1,7 +1,6 @@
 package lotto.view.validation;
 
 import lotto.message.ErrorMessage;
-import lotto.util.constans.RegularExpression;
 
 public class InputValidator {
 

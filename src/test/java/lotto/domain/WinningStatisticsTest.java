@@ -1,7 +1,6 @@
 package lotto.domain;
 
-import lotto.io.Output;
-import org.junit.Before;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

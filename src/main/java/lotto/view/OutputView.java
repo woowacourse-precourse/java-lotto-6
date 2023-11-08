@@ -15,7 +15,7 @@ import static lotto.constant.ResultConstant.THIRD_PLACE_MESSAGE;
 import static lotto.constant.ViewConstant.DASH;
 
 import java.util.List;
-import lotto.constant.NumberConstant;
+import lotto.constant.RuleConstant;
 import lotto.constant.ResultConstant;
 import lotto.model.Lotto;
 
@@ -49,7 +49,7 @@ public class OutputView {
 
     private void printPrizeMessage() {
         System.out.println(PRIZE_STATS_MESSAGE.getMessage());
-        System.out.println(DASH.getValue().repeat(NumberConstant.DASH_COUNT.getValue()));
+        System.out.println(DASH.getValue().repeat(RuleConstant.DASH_COUNT.getValue()));
     }
 
     private void printFifthPlaceResult(int count) {

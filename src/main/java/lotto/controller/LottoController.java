@@ -21,7 +21,7 @@ public class LottoController {
 
     public void start() {
         createLottoMachine();
-        userOperation();
+        createUserNumbers();
     }
 
     private void createLottoMachine() {
@@ -30,7 +30,7 @@ public class LottoController {
         output.printLottoMessage(lottoMachine.getLottos());
     }
 
-    private void userOperation() {
+    private void createUserNumbers() {
         List<Integer> userNumbers = input.inputNumbers();
         int bonusNumber = input.inputBonus(userNumbers);
         makeResult(userNumbers, bonusNumber);

@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constant.ExceptionConstant;
-import lotto.constant.NumberConstant;
+import lotto.constant.RuleConstant;
 import lotto.constant.ViewConstant;
 
 public class InputException {
@@ -47,13 +47,13 @@ public class InputException {
     }
 
     private static void validMoneyPositive(int money) {
-        if (money <= NumberConstant.DEFAULT_VALUE.getValue()) {
+        if (money <= RuleConstant.DEFAULT_VALUE.getValue()) {
             throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.POSITIVE_EXCEPTION.getMessage());
         }
     }
 
     private static void validMoneyDivide(int money) {
-        if (money % NumberConstant.LOTTO_PRICE.getValue() != NumberConstant.DEFAULT_VALUE.getValue()) {
+        if (money % RuleConstant.LOTTO_PRICE.getValue() != RuleConstant.DEFAULT_VALUE.getValue()) {
             throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.DIVIDE_EXCEPTION.getMessage());
         }
     }
@@ -83,14 +83,14 @@ public class InputException {
     }
 
     private static void validLottoLength(List<Integer> numbers) {
-        if (numbers.size() != NumberConstant.LOTTO_RANGE.getValue()) {
+        if (numbers.size() != RuleConstant.LOTTO_RANGE.getValue()) {
             throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_LENGTH_EXCEPTION.getMessage());
         }
     }
 
     private static void validLottoNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < NumberConstant.MIN_NUMBER.getValue() || number > NumberConstant.MAX_NUMBER.getValue()) {
+            if (number < RuleConstant.MIN_NUMBER.getValue() || number > RuleConstant.MAX_NUMBER.getValue()) {
                 throw new IllegalArgumentException(
                         ERROR_MESSAGE + ExceptionConstant.NUMBER_RANGE_EXCEPTION.getMessage());
             }
@@ -114,7 +114,7 @@ public class InputException {
     }
 
     private static void validBonusRange(int number) {
-        if (number < NumberConstant.MIN_NUMBER.getValue() || number > NumberConstant.MAX_NUMBER.getValue()) {
+        if (number < RuleConstant.MIN_NUMBER.getValue() || number > RuleConstant.MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_RANGE_EXCEPTION);
         }
     }

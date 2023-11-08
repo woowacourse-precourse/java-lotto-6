@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.constant.LottoConstant;
-import lotto.constant.NumberConstant;
+import lotto.constant.RuleConstant;
 
 public class Bank {
     public List<Integer> getRanks(List<Lotto> lottos, List<Integer> userNumbers, int bonusNumber) {
-        int[] ranks = new int[NumberConstant.RANK_RANGE.getValue()];
+        int[] ranks = new int[RuleConstant.RANK_RANGE.getValue()];
         for (Lotto lotto : lottos) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             int index = getRankIndex(lottoNumbers, userNumbers, bonusNumber);
@@ -29,8 +29,8 @@ public class Bank {
     }
 
     public int getProfit(List<Integer> ranks) {
-        int profit = NumberConstant.DEFAULT_VALUE.getValue();
-        for (int i = NumberConstant.DEFAULT_VALUE.getValue(); i < NumberConstant.RANK_RANGE.getValue(); i++) {
+        int profit = RuleConstant.DEFAULT_VALUE.getValue();
+        for (int i = RuleConstant.DEFAULT_VALUE.getValue(); i < RuleConstant.RANK_RANGE.getValue(); i++) {
             profit += ranks.get(i) * getPrizeByIndex(i);
         }
         return profit;
@@ -38,8 +38,8 @@ public class Bank {
 
     public double getFormatProfitRate(int count, int profit) {
         double profitRate = getProfitRate(count, profit);
-        return Math.round(profitRate * NumberConstant.RATE_FORMAT_NUMBER.getValue())
-                / (double) NumberConstant.RATE_FORMAT_NUMBER.getValue();
+        return Math.round(profitRate * RuleConstant.RATE_FORMAT_NUMBER.getValue())
+                / (double) RuleConstant.RATE_FORMAT_NUMBER.getValue();
     }
 
     private int getPrizeByIndex(int index) {
@@ -48,7 +48,7 @@ public class Bank {
                 return constant.getPrize();
             }
         }
-        return NumberConstant.DEFAULT_VALUE.getValue();
+        return RuleConstant.DEFAULT_VALUE.getValue();
     }
 
     private int getRankIndex(List<Integer> lottoNumbers, List<Integer> userNumbers, int bonusNumber) {
@@ -58,8 +58,8 @@ public class Bank {
     }
 
     private double getProfitRate(int count, int profit) {
-        return (double) profit * NumberConstant.PERCENTAGE_NUMBER.getValue() / (count
-                * NumberConstant.LOTTO_PRICE.getValue());
+        return (double) profit * RuleConstant.PERCENTAGE_NUMBER.getValue() / (count
+                * RuleConstant.LOTTO_PRICE.getValue());
     }
 
     private int getRank(int count, boolean bonus) {
@@ -84,7 +84,7 @@ public class Bank {
     private int getRightCount(List<Integer> lottoNumbers, List<Integer> userNumbers) {
         Set<Integer> sNumbers = new HashSet<>(lottoNumbers);
         sNumbers.addAll(userNumbers);
-        return NumberConstant.DOUBLE_LOTTO_RANGE.getValue() - sNumbers.size();
+        return RuleConstant.DOUBLE_LOTTO_RANGE.getValue() - sNumbers.size();
     }
 
     private boolean checkBonus(List<Integer> lottoNumbers, int bonus) {

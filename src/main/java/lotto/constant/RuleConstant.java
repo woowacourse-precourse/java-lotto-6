@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum NumberConstant {
+public enum RuleConstant {
     DEFAULT_VALUE(0),
     LOTTO_RANGE(6),
     DOUBLE_LOTTO_RANGE(12),
@@ -14,7 +14,7 @@ public enum NumberConstant {
 
     private final int value;
 
-    NumberConstant(int value) {
+    RuleConstant(int value) {
         this.value = value;
     }
 

@@ -24,15 +24,18 @@ public class OutputView {
     }
 
     public static void printWinNumberMessage() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     public static void printBonusNumberMessage() {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
     public static void printPrizeResult(int[] rankBoard) {
 
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 

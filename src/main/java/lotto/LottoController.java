@@ -25,18 +25,19 @@ public class LottoController {
         lotteryNumber = lottoViewer.getLotteryNumbers();
         bonusNumber = lottoViewer.getBonus();
 
-        // TODO : 결과를 계산하는 로직 추가하기.
         initLotteryResult();
         countLottery();
-        calcProfit();
+        calcProfit(lottoMoney);
 
         lottoViewer.printLottoResult(lotteryResult);
         lottoViewer.printProfitResult(profit);
     }
 
-    private void calcProfit() {
-        profit = 0;
-        for(LottoVariables lottoVariables: LottoVariables.values()) profit += calcProfit(lottoVariables);
+    private void calcProfit(int lottoMoney) {
+        int sum = 0;
+        for(LottoVariables lottoVariables: LottoVariables.values()) sum += calcProfit(lottoVariables);
+
+        profit = sum / lottoMoney;
     }
 
     private int calcProfit(LottoVariables lottoVariables) {

@@ -8,14 +8,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class LottoViewer {
+import static lotto.variables.ErrorMessages.LOTTO_NUM_ERROR;
+import static lotto.variables.ErrorMessages.MONEY_VAL_ERROR;
 
+public class LottoViewer {
     List<Integer> getLotteryNumbers(){
-        System.out.println("당첨 번호를 입력해 주세요.");
-        return Arrays.stream(Console.readLine().split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        while(true){
+            return tryLotteryNumbers();
+        }
+    }
+
+    private List<Integer> tryLotteryNumbers() {
+        try{
+            System.out.println("당첨 번호를 입력해 주세요.");
+            return Arrays.stream(Console.readLine().split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException(LOTTO_NUM_ERROR.getErrorMessage());
+        }
     }
 
     int getBonus(){
@@ -25,9 +37,19 @@ public class LottoViewer {
     }
 
     int getMoney(){
-        System.out.println("구매 금액을 입력해 주세요.");
-        String tmp = Console.readLine();
-        return Integer.parseInt(tmp);
+        while(true){
+            return tryGetMoney();
+        }
+    }
+
+    private int tryGetMoney() {
+        try{
+            System.out.println("구매 금액을 입력해 주세요.");
+            String tmp = Console.readLine();
+            return Integer.parseInt(tmp);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException(MONEY_VAL_ERROR.getErrorMessage());
+        }
     }
 
     void printLottos(List<Lotto> lottos){
@@ -42,6 +64,9 @@ public class LottoViewer {
     void printLottoResult(Map<Integer, Integer> lotteryResult){
         System.out.println("당첨 통계");
         System.out.println("---");
+
+        for(LottoVariables lottoVariables: LottoVariables.values())
+            printLottoResult(lottoVariables, lotteryResult.get(lottoVariables.getPrice()));
     }
 
     void printLottoResult(LottoVariables lottoVariables, int N){

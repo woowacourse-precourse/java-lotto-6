@@ -32,16 +32,24 @@ public class WinningStatistic {
 
     public void printStatistic() {
         NumberFormat formatter = NumberFormat.getInstance();
-        System.out.println("\n당첨 통계");
+        System.out.println("당첨 통계");
         System.out.println("---");
+
         for (Rank rank : statistic.keySet().stream().sorted(Rank.PRIZE_ASCENDING_ORDER).toList()) {
             if (rank != Rank.MISS) {
-                String bonusMessage = rank.isMatchBonus() ? ", 보너스 볼 일치" : "";
-                String formattedPrize = formatter.format(rank.getPrize());
-                int count = statistic.get(rank);
-                System.out.println(rank.getCountOfMatch() + "개 일치" + bonusMessage + " (" + formattedPrize + "원) - " + count + "개");
+                printRankStatistic(rank, formatter);
             }
         }
+    }
 
+    private void printRankStatistic(Rank rank, NumberFormat formatter) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(rank.getCountOfMatch()).append("개 일치");
+        if (rank.isMatchBonus()) {
+            sb.append(", 보너스 볼 일치");
+        }
+        sb.append(" (").append(formatter.format(rank.getPrize())).append("원) - ").append(statistic.get(rank)).append("개");
+
+        System.out.println(sb.toString());
     }
 }

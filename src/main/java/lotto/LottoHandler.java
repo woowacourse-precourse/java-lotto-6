@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.math.BigDecimal;
@@ -89,7 +88,9 @@ public class LottoHandler {
 
     private void validBonusNumber(int bonusNumber) {
         if (bonusNumber < LOTTO_START_NUMBER || bonusNumber > LOTTO_LAST_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] " + LOTTO_START_NUMBER + " 이상 " + LOTTO_LAST_NUMBER + " 이하의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(
+                    "[ERROR] " + LOTTO_START_NUMBER + " 이상 " + LOTTO_LAST_NUMBER + " 이하의 숫자를 입력해 주세요."
+            );
         }
     }
 

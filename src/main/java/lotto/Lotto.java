@@ -36,7 +36,9 @@ public class Lotto {
                 .filter(number -> number < 1 || number > 45)
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalArgumentException("[ERROR] " + LOTTO_START_NUMBER + " 이상 " + LOTTO_LAST_NUMBER + " 이하의 숫자를 입력해 주세요.");
+                    throw new IllegalArgumentException(
+                            "[ERROR] " + LOTTO_START_NUMBER + " 이상 " + LOTTO_LAST_NUMBER + " 이하의 숫자를 입력해 주세요."
+                    );
                 });
     }
 

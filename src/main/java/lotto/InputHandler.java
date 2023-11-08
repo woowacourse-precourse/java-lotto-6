@@ -39,8 +39,8 @@ public class InputHandler {
     }
 
     public int bonusNumber() {
-        boolean validBonusNumber = false;
         int bonusNumber = 0;
+        boolean validBonusNumber = false;
         OutputHandler.printLineBreakMessage("보너스 번호를 입력해 주세요.");
 
         while (!validBonusNumber) {

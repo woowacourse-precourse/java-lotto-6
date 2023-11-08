@@ -34,7 +34,7 @@ class LottoHandlerTest {
         assertThat(lottoTicket).isEqualTo(1);
     }
 
-    @DisplayName("구매 금액을 입력 받아 구입 금액에 해당하는 로또를 발행한다.")
+    @DisplayName("구매 금액을 입력 받아 구입 금액에 해당하는 로또를 발행한다. 공백 제거하는 경우")
     @Test
     void calculateLottoTicketCountRemoveSpaces() {
         // given
@@ -99,13 +99,13 @@ class LottoHandlerTest {
             assertThat(lottoNumber.get(i) < lottoNumber.get(i + 1)).isTrue();
         }
     }
-    
+
     @DisplayName("당첨 번호를 입력 받아 Lotto 객체로 반환한다.")
     @Test
     void receiveWinningLotto() {
         // given
         String receivedWinningLotto = "1,2,3,4,5,6";
-        
+
         // when
         Lotto winningLotto = lottoHandler.receiveWinningLotto(receivedWinningLotto);
 
@@ -261,31 +261,9 @@ class LottoHandlerTest {
                 .hasMessage("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요.");
     }
 
-    @DisplayName("winningResultTest")
-    @Test
-    void winningResultTest(){
-        //given
-        List<Lotto> lottos = new ArrayList<>();
-        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 45));
-        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 41));
-        Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 5, 43));
-        lottos.add(lotto1);
-        lottos.add(lotto2);
-        lottos.add(lotto3);
-        lottos.add(lotto4);
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 45;
-
-        //when
-        lottoHandler.winningResult(lottos, winningLotto, bonusNumber);
-
-        //then
-    }
-
     @DisplayName("로또와 당첨 로또를 비교하여 당첨 결과를 리턴한다.")
     @Test
-    void calculateResult(){
+    void calculateResult() {
         //given
         List<Lotto> lottos = new ArrayList<>();
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -310,7 +288,7 @@ class LottoHandlerTest {
 
     @DisplayName("당첨 번호와 발행된 로또 번호를 비교해서 당첨 결를 반환한다.")
     @Test
-    void calculateWinning(){
+    void calculateWinning() {
         //given
         int winningNumberCount = 5;
         boolean bonusMatch = true;
@@ -331,7 +309,7 @@ class LottoHandlerTest {
 
     @DisplayName("로또 번호와 당첨 번호를 비교해서 당첨 번호와 일치하는 숫자의 개수를 반환한다.")
     @Test
-    void winningNumberCount(){
+    void winningNumberCount() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto winningLotto = new Lotto(List.of(1, 3, 5, 7, 8, 9));
@@ -345,7 +323,7 @@ class LottoHandlerTest {
 
     @DisplayName("당첨 결과에 따른 수익을 계산한다.")
     @Test
-    void calculateRevenue(){
+    void calculateRevenue() {
         //given
         Map<WinningKind, Integer> winningResult = new HashMap<>();
         winningResult.put(WinningKind.FIFTH, 2);
@@ -363,7 +341,7 @@ class LottoHandlerTest {
 
     @DisplayName("로또 개수와 수익으로 수익률을 계산한다. 반올림하는 경우")
     @Test
-    void calculateRateOfReturnRounds(){
+    void calculateRateOfReturnRounds() {
         //given
         int numberOfLotto = 3;
         int revenue = 1505000;
@@ -377,7 +355,7 @@ class LottoHandlerTest {
 
     @DisplayName("로또 개수와 수익으로 수익률을 계산한다. 나누어떨어지는 경우")
     @Test
-    void calculateRateOfReturnDivided(){
+    void calculateRateOfReturnDivided() {
         //given
         int numberOfLotto = 5;
         int revenue = 5000;
@@ -391,7 +369,7 @@ class LottoHandlerTest {
 
     @DisplayName("금액을 입력 받아 쉼표로 단위를 구분해서 반환한다.")
     @Test
-    void formatPrice(){
+    void formatPrice() {
         //given
         int price = 1000000;
 
@@ -404,7 +382,7 @@ class LottoHandlerTest {
 
     @DisplayName("입력 받은 값에 공백이 있으면 공백을 제거한다.")
     @Test
-    void removeSpaces(){
+    void removeSpaces() {
         //given
         String inputValue = " 1, 2 , 3 4,5";
 

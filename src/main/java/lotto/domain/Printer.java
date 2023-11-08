@@ -19,8 +19,14 @@ public class Printer {
         System.out.println(Arrays.toString(Lotto.toArray()));
     }
 
-    public void showResult() {
-        // 당첨 내역을 출력
+    public void showResult(int matchingThreeNumbers, int matchingFourNumbers, int matchingFiveNumbers, int matchingFiveAndBonusNumbers, int matchingSixNumbers) {
+        System.out.println("\n당첨 통계");
+        System.out.println("--");
+        System.out.println("3개 일치 (5,000원) - "+matchingThreeNumbers+"개");
+        System.out.println("4개 일치 (50,000원) - "+matchingFourNumbers+"개");
+        System.out.println("5개 일치 (1,500,000원) - "+matchingFiveNumbers+"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+matchingFiveAndBonusNumbers+"개");
+        System.out.println("6개 일치 (2,000,000,000원) - "+matchingSixNumbers+"개");
     }
 
     public void showProfit() {

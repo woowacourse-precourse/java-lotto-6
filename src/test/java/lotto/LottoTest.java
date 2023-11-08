@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -101,6 +102,25 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(tooSmallNumberContain))
                 .isExactlyInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto(tooSmallNumberContain))
+                .hasMessageContaining(ERROR_CODE);
+    }
+
+    @Test
+    @DisplayName("전달된 로또 번호가 비어있으면 [ERROR] 메시지와 IllegalArgumentException 발생")
+    void emptyLottoNumbers() {
+        List<Integer> emptyNumbers = new ArrayList<>();
+        assertThatThrownBy(() -> new Lotto(emptyNumbers))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(emptyNumbers))
+                .hasMessageContaining(ERROR_CODE);
+    }
+
+    @Test
+    @DisplayName("전달된 로또 번호가 null이면 [ERROR] 메시지와 IllegalArgumentException 발생")
+    void nullLottoNumbers() {
+        assertThatThrownBy(() -> new Lotto(null))
+                .isExactlyInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(null))
                 .hasMessageContaining(ERROR_CODE);
     }
 }

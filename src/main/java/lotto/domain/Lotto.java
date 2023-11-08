@@ -21,10 +21,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateNotNull(numbers);
         validateEmptyLottoNumbers(numbers);
         validateNumbersSize(numbers);
         validateDuplicatedNumbers(numbers);
         validateNumbersInRange(numbers);
+    }
+
+    private void validateNotNull(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new IllegalArgumentException(ErrorMessage.NULL_LOTTO_NUMBERS.getMessage());
+        }
     }
 
     private void validateEmptyLottoNumbers(List<Integer> numbers) {

@@ -1,10 +1,11 @@
 package lotto;
 
 import static lotto.util.Constant.Exception_MESSAGE.*;
+import static lotto.util.Constant.InputClass.TICKET_AMOUNT;
 
 public class Exception {
     public static void isValidNotThousandAndNegativeException(int count) {
-        if (count % 1000 != 0 || count < 0) throw new IllegalArgumentException(NOT_THOUSAND_AND_NEGATIVE_EXCEPTION);
+        if (count % TICKET_AMOUNT != 0 || count < 0) throw new IllegalArgumentException(NOT_THOUSAND_AND_NEGATIVE_EXCEPTION);
     }
 
     public static void isValidDuplicateNumberException(boolean isDuplicated) {

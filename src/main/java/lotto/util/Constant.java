@@ -9,6 +9,7 @@ public class Constant {
         public static final String ASK_MESSAGE_WINNING_BONUS_NUMBER_LIST = "보너스 번호를 입력해 주세요.";
         public static final String ASK_MESSAGE_LOTTO_CASH = "구입금액을 입력해 주세요.";
         public static final String PRINT_BUYING_LOTTO_LIST = "개를 구매했습니다.";
+        public static final Integer TICKET_AMOUNT = 1000;
     }
 
     public static class OutputClass{

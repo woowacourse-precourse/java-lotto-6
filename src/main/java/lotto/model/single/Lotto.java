@@ -17,31 +17,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        checkIsSixNumber(numbers);
+        isValidSixNumberException(numbers.size());
         checkDuplicateNumber(numbers);
     }
 
-
-    private void checkIsSixNumber(List<Integer> numbers) {
-        try{
-            isValidSixNumberException(numbers.size());
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     public void checkDuplicateNumber(List<Integer> numbers) {
-        try {
-            Set<Integer> numSet = new HashSet<>(numbers);
-            isValidDuplicateNumberException(numbers.size() == numSet.size());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public boolean againInputList(){
         Set<Integer> numSet = new HashSet<>(numbers);
-        return numbers.size() != numSet.size() || numbers.size() != LOTTO_NUMBERS_LENGTH;
+        isValidDuplicateNumberException(numbers.size() == numSet.size());
     }
 
     public List<Integer> getNumbers() {

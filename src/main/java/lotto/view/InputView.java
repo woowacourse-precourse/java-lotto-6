@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.InputController;
 import lotto.model.db.Model;
 
-import java.util.List;
-
 import static lotto.util.Constant.InputClass.*;
 
 public class InputView {
@@ -28,13 +26,9 @@ public class InputView {
     private void inputWinningNumberList() {
         System.out.println();
         System.out.println(ASK_MESSAGE_WINNING_NUMBER_LIST);
-        List<Integer> list;
-        do{
-            String inputLottoNumber = Console.readLine();
-            list = inputController.createWinningLottoList(inputLottoNumber);
-            inputController.checkRangeLottoNumber(list);
-            inputController.storeLotto(list);
-        }while (inputController.getLotto().againInputList());
+        String inputLottoNumber = Console.readLine();
+        inputController.checkStoreLotto(inputLottoNumber);
+
     }
 
     private Integer inputBonusNumber() {

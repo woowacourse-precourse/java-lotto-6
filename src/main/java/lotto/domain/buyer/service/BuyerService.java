@@ -77,8 +77,6 @@ public class BuyerService {
         }
 
         buyer.setLottos(lottos);
-
-        //TODO 로또 구매 로직
     }
 
     public void tryCheck(Buyer buyer) {

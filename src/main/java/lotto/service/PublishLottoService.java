@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.model.PublishedLotto;
 import lotto.view.LottoOutputView;
-import lotto.view.View;
 
 public class PublishLottoService implements Service {
 

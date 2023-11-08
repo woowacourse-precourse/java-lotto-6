@@ -9,7 +9,6 @@ import lotto.model.LottoBonusPair;
 import lotto.model.PublishedLotto;
 import lotto.util.constants.Reward;
 import lotto.view.LottoOutputView;
-import lotto.view.View;
 
 public class ConfirmWinningService implements Service {
     private Long reward;

@@ -3,7 +3,6 @@ package lotto.service;
 import static lotto.util.constants.Numbers.PERCENTAGE;
 
 import lotto.view.LottoOutputView;
-import lotto.view.View;
 
 public class CalculateProfitService implements Service {
     CalculateProfitService() {

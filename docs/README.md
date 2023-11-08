@@ -8,6 +8,7 @@
 - [] 출력 클래스 ResultManager
   - [x] 구입한 로또 출력 viewLottos()
   - [] 당첨 통계 출력 calculatePrizes()
+  - [x] 당첨 로또 번호와 일치하는 갯수 계산 calculateMatchCount()
   - [] 수익률 출력 displayResults()
 - [] 예외처리 
   - [x] 구입 금액 1,000원 단위로 나누어 떨어지지 않는 경우

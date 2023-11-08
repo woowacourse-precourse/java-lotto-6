@@ -9,4 +9,15 @@ public class ResultManager {
             System.out.println(lotto.getLottoNumbers());
         }
     }
+
+    private int calculateMatchCount(Lotto lotto, List<Integer> winningNumbers) {
+        int matchCount = 0;
+
+        for (int number : lotto.getLottoNumbers()) {
+            if (winningNumbers.contains(number)) {
+                matchCount ++;
+            }
+        }
+        return matchCount;
+    }
 }

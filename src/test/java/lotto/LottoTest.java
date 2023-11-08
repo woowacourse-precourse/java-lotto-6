@@ -1,13 +1,12 @@
 package lotto;
 
-import java.util.function.Predicate;
+import java.util.ArrayList;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -46,5 +45,14 @@ class LottoTest {
         final int actualLottoAmount = lottoService.checkLottoAmount(purchasePrice);
 
         assertEquals(expectedLottoAmount, actualLottoAmount,"구입 금액에 맞게 로또 수량이 정해져야 한다.");
+    }
+
+    @DisplayName("당첨 로또 번호가 1~45사이의 수가 아니면 예외가 발생한다.")
+    @Test
+    void createLottoByCorrectNumber() {
+        List<Integer> winningNumbers = new ArrayList<>(List.of(1,2,3,4,5,48));
+
+        assertThatThrownBy(() -> lottoService.validateWinningNumbers(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

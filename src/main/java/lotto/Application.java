@@ -51,34 +51,9 @@ public class Application {
         System.out.println("\n당첨 통계\n---");
         //당첨유무 계산
         calculate(lottos, numbers, bonusNum);
-        PrizeEnum[] prizeEnums = PrizeEnum.values();
         int benefit = 0;
-        //Enum에 있는 상수값 따라 당첨개수 계산
-        for (PrizeEnum prize : prizeEnums) {
-            switch (prize) {
 
-                case FIFTH:
-                    System.out.println(prize.getMatch() + "개 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
-                    benefit = benefit + (5000 * countWin.get(prize.getMatch()));
-                    break;
-                case FOURTH:
-                    System.out.println(prize.getMatch() + "개 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
-                    benefit = benefit + (50000 * countWin.get(prize.getMatch()));
-                    break;
-                case THIRD:
-                    System.out.println(prize.getMatch() + "개 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
-                    benefit = benefit + (1500000 * countWin.get(prize.getMatch()));
-                    break;
-                case SECOND:
-                    System.out.println((Integer.parseInt(prize.getMatch()) - 1) + "개 일치, 보너스 볼 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
-                    benefit = benefit + (30000000 * countWin.get(prize.getMatch()));
-                    break;
-                case FIRST:
-                    System.out.println((Integer.parseInt(prize.getMatch()) - 1) + "개 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
-                    benefit = benefit + (2000000000 * countWin.get(prize.getMatch()));
-            }
-
-        }
+        benefit=printResult(benefit);
 
         double percent = (double) ((double) benefit * 100 / (double) UserInput.money);
 
@@ -136,5 +111,35 @@ public class Application {
                 countWin.put(String.valueOf(6), countWin.get("6") + 1);
             }
         }
+    }
+    public static int printResult(int benefit){
+        //Enum에 있는 상수값 따라 당첨개수 계산
+        PrizeEnum[] prizeEnums = PrizeEnum.values();
+        for (PrizeEnum prize : prizeEnums) {
+            switch (prize) {
+
+                case FIFTH:
+                    System.out.println(prize.getMatch() + "개 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
+                    benefit = benefit + (5000 * countWin.get(prize.getMatch()));
+                    break;
+                case FOURTH:
+                    System.out.println(prize.getMatch() + "개 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
+                    benefit = benefit + (50000 * countWin.get(prize.getMatch()));
+                    break;
+                case THIRD:
+                    System.out.println(prize.getMatch() + "개 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
+                    benefit = benefit + (1500000 * countWin.get(prize.getMatch()));
+                    break;
+                case SECOND:
+                    System.out.println((Integer.parseInt(prize.getMatch()) - 1) + "개 일치, 보너스 볼 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
+                    benefit = benefit + (30000000 * countWin.get(prize.getMatch()));
+                    break;
+                case FIRST:
+                    System.out.println((Integer.parseInt(prize.getMatch()) - 1) + "개 일치 " + prize.getPrize() + " - " + countWin.get(prize.getMatch()) + "개");
+                    benefit = benefit + (2000000000 * countWin.get(prize.getMatch()));
+            }
+
+        }
+        return benefit;
     }
 }

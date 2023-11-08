@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constants.ExceptionMessage;
 import lotto.constants.LottoConstants;
 
 public class Bonus {
@@ -19,7 +20,7 @@ public class Bonus {
     private static void validate(final int bonus) {
         if (!isBoundary(bonus)) {
             throw new IllegalArgumentException(
-                    String.format("[ERROR] 보너스 번호는 %d 부터 %d 이내입니다.", LottoConstants.MIN_NUMBER.getConstants(),
+                    String.format(ExceptionMessage.BONUS_OUT_RANGE, LottoConstants.MIN_NUMBER.getConstants(),
                             LottoConstants.MAX_NUMBER.getConstants())
             );
         }

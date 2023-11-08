@@ -1,6 +1,12 @@
 package lotto.utils;
 
 import static java.util.regex.Pattern.compile;
+import static lotto.constants.ExceptionMessage.EMPTY_INPUT_EXCEPTION;
+import static lotto.constants.ExceptionMessage.INTEGER_OUT_BOUNDARY;
+import static lotto.constants.ExceptionMessage.LOTTO_DUPPLICATE_NUMBER;
+import static lotto.constants.ExceptionMessage.NULL_INPUT_EXCEPTION;
+import static lotto.constants.ExceptionMessage.NUMBER_NOT_INTGER;
+import static lotto.constants.ExceptionMessage.NUMBER_OUT_BOUNDARY;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,13 +25,13 @@ public class InputValidator {
 
     public static String validate(final String input) {
         if (IsNull(input)) {
-            throw new NullPointerException("[ERROR] 사용자의 입력이 null 입니다.");
+            throw new NullPointerException(NULL_INPUT_EXCEPTION);
         }
         if (IsEmptyString(input)) {
-            throw new IllegalArgumentException("[ERROR] 사용자의 입력이 비어있습니다.");
+            throw new IllegalArgumentException(EMPTY_INPUT_EXCEPTION);
         }
         if (isBlankString(input)) {
-            throw new IllegalArgumentException("[ERROR] 사용자의 입력이 공백입니다.");
+            throw new IllegalArgumentException(EMPTY_INPUT_EXCEPTION);
         }
         return input;
     }
@@ -51,22 +57,13 @@ public class InputValidator {
         List<String> input = Arrays.asList(winnings.split(InputConstants.WINNING_DELIMITER.getConstants()));
         List<String> duplicated = input.stream().map(InputValidator::validateLottoNumber).distinct().toList();
         if (input.size() != duplicated.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
-        }
-        if (duplicated.size() != LottoConstants.LENGTH.getConstants()) {
-            throw new IllegalArgumentException(
-                    String.format("[ERROR] %d개로 로또를 생성하려 했습니다. 로또의 번호는 6개 입니다", duplicated.size()));
+            throw new IllegalArgumentException(LOTTO_DUPPLICATE_NUMBER);
         }
         return winnings;
     }
 
     public static String validateLottoNumber(final String input) {
         String number = validateInt(input);
-        if (!IsRange(number)) {
-            throw new IllegalArgumentException(
-                    String.format("[ERROR] 로또 번호는 %d 부터 %d 이내입니다.", LottoConstants.MIN_NUMBER.getConstants(),
-                            LottoConstants.MAX_NUMBER.getConstants()));
-        }
         return number;
     }
 
@@ -78,11 +75,11 @@ public class InputValidator {
 
     public static String validateInt(final String input) {
         if (!IsInPattern(input, NUMBER)) {
-            throw new NumberFormatException(String.format("[ERROR] 양의 정수만 입력해주세요, 번호는 '%s'로 구분",
+            throw new NumberFormatException(String.format(NUMBER_NOT_INTGER,
                     InputConstants.WINNING_DELIMITER.getConstants()));
         }
         if (!IsBoundary(input)) {
-            throw new IllegalArgumentException("[ERROR] 최소 1원 이상, 1억원 미만으로 입력해주세요");
+            throw new IllegalArgumentException(NUMBER_OUT_BOUNDARY);
         }
         return input;
     }
@@ -96,7 +93,7 @@ public class InputValidator {
         try {
             int isInt = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] int의 범위를 벗어났습니다.");
+            throw new IllegalArgumentException(INTEGER_OUT_BOUNDARY);
         }
         return MIN_MONEY < Integer.parseInt(input) && Integer.parseInt(input) < MAX_MONEY;
     }

@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constants.ExceptionMessage.LOTTO_DUPPLICATE_NUMBER;
+import static lotto.constants.ExceptionMessage.LOTTO_LENGTH_OUT_RANGE;
+import static lotto.constants.ExceptionMessage.LOTTO_OUT_RANGE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,14 +25,14 @@ public class Lotto {
     private static void validate(final List<Integer> numbers) {
         if (isSameLength(numbers)) {
             throw new IllegalArgumentException(
-                    String.format("[ERROR] %d개로 로또를 생성하려 했습니다. 로또의 번호는 6개 입니다", numbers.size()));
+                    String.format(LOTTO_LENGTH_OUT_RANGE, numbers.size()));
         }
         if (!isDupplicated(numbers)) {
-            throw new IllegalArgumentException(String.format("[ERROR] 로또의 번호는 중복될 수 없습니다."));
+            throw new IllegalArgumentException(LOTTO_DUPPLICATE_NUMBER);
         }
         if (!isBoundary(numbers)) {
             throw new IllegalArgumentException(
-                    String.format("[ERROR] 로또 번호는 %d 부터 %d 이내입니다.", LottoConstants.MIN_NUMBER.getConstants(),
+                    String.format(LOTTO_OUT_RANGE, LottoConstants.MIN_NUMBER.getConstants(),
                             LottoConstants.MAX_NUMBER.getConstants()));
         }
     }

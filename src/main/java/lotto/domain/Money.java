@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.constants.ExceptionMessage.MONEY_NOT_DIVIDED;
+import static lotto.constants.ExceptionMessage.MONEY_OUT_RANGE;
+
 import lotto.constants.LottoConstants;
 
 public class Money {
@@ -18,11 +21,11 @@ public class Money {
     private static void validate(final int money) {
         if (isDividedByPrice(money)) {
             throw new IllegalArgumentException(
-                    String.format("[ERROR] 로또 구입 금액은 %d원 단위입니다.", LottoConstants.PRICE.getConstants()));
+                    String.format(MONEY_NOT_DIVIDED, LottoConstants.PRICE.getConstants()));
         }
         if (isInMinMoney(money)) {
             throw new IllegalArgumentException(
-                    String.format("[ERROR] 로또 최소 구입 금액은 %d원 입니다.", LottoConstants.PRICE.getConstants()));
+                    String.format(MONEY_OUT_RANGE, LottoConstants.PRICE.getConstants()));
         }
     }
 

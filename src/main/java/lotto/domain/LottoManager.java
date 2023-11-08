@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.constants.ExceptionMessage.DUPPLICATE_BONUS_AND_WINNER;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class LottoManager {
 
     public void createWinning(final WinningLotto winnings, final Bonus bonusNumber) {
         if (Bonus.isSameNumber(winnings.getLotto(), bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 같을 수 없습니다.");
+            throw new IllegalArgumentException(DUPPLICATE_BONUS_AND_WINNER);
         }
         winningLotto = winnings;
         bonus = bonusNumber;

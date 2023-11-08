@@ -1,7 +1,7 @@
 package lotto.constants;
 
 public enum ErrorConstants {
-    PREFIX("[ERROR]");
+    PREFIX("[ERROR] ");
 
     private String constants;
 
@@ -9,7 +9,11 @@ public enum ErrorConstants {
         this.constants = constants;
     }
 
-    public String getConstants(String Message) {
+    public String getConstants() {
         return constants;
+    }
+
+    public static String getErorrMessage(String errorMessage) {
+        return PREFIX.getConstants() + errorMessage;
     }
 }

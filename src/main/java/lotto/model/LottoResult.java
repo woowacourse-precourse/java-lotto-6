@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Map;
+
 public class LottoResult {
     private final MatchResult matchResult;
     private final Reward reward;
@@ -18,5 +20,13 @@ public class LottoResult {
         RateOfReturn rateOfReturn = RateOfReturn.calculate(reward.getAmount(), purchaseAmount.getPurchaseAmount());
 
         return new LottoResult(matchResult, reward, rateOfReturn);
+    }
+
+    public Map<LottoRank, Integer> getMatchResult() {
+        return matchResult.getMatchResult();
+    }
+
+    public double getRateOfReturn() {
+        return rateOfReturn.getRate();
     }
 }

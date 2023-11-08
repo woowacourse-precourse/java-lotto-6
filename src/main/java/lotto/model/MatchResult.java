@@ -1,19 +1,21 @@
 package lotto.model;
 
-import static lotto.common.Constant.SINGLE_INCREMENT;
-
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class MatchResult {
-    private final HashMap<LottoRank, Integer> matchResult;
+    public static final int INITIAL_MATCH_COUNT = 0;
+    public static final int SINGLE_INCREMENT = 1;
+    private final Map<LottoRank, Integer> matchResult;
 
-    private MatchResult(HashMap<LottoRank, Integer> matchResult) {
+    private MatchResult(Map<LottoRank, Integer> matchResult) {
         this.matchResult = matchResult;
     }
 
     public static MatchResult calculateMatchResults(Lottos lottos, WinningNumbers winningNumbers) {
-        HashMap<LottoRank, Integer> matchResult = new HashMap<>();
+        Map<LottoRank, Integer> matchResult = new LinkedHashMap<>();
+        initializeMatchResult(matchResult);
 
         for (Lotto lotto : lottos.getLottos()) {
             LottoRank rank = determineRank(winningNumbers, lotto);
@@ -27,6 +29,12 @@ public class MatchResult {
         return new MatchResult(matchResult);
     }
 
+    private static void initializeMatchResult(Map<LottoRank, Integer> matchResult) {
+        for (LottoRank rank : LottoRank.values()) {
+            matchResult.put(rank, INITIAL_MATCH_COUNT);
+        }
+    }
+
     private static LottoRank determineRank(WinningNumbers winningNumbers, Lotto lotto) {
         int matchCount = lotto.countMatchingNumbers(winningNumbers.getMainNumbers());
         boolean hasBonus = lotto.hasBonusNumber(winningNumbers.getBonusNumber());
@@ -34,7 +42,7 @@ public class MatchResult {
         return LottoRank.valueOf(matchCount, hasBonus);
     }
 
-    public HashMap<LottoRank, Integer> getMatchResult() {
+    public Map<LottoRank, Integer> getMatchResult() {
         return matchResult;
     }
 }

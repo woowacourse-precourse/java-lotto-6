@@ -92,4 +92,17 @@ class LottoTest {
         //When & Then
         assertThat(result).isEqualTo(expectedResult);
     }
+
+    @Test
+    @DisplayName("발행한 로또의 출력 형식을 확인한다.")
+    void getGeneratedLottoStringTest() {
+        //Given
+        Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
+                .map(LottoNumber::of)
+                .toList());
+        String expectedResult = "[1, 2, 3, 4, 5, 6]";
+
+        //When & Then
+        assertThat(lotto.getGeneratedLottoString()).isEqualTo(expectedResult);
+    }
 }

@@ -16,16 +16,20 @@ public class InputView {
     }
 
     public List<Integer> inputForPrizeNumber() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println("당첨 번호를 입력해 주세요.");
         String prize = Console.readLine();
 
         return new Prize().createPrizeNumber(prize);
     }
 
     public int inputForBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         String bonus = Console.readLine();
 
         return new Bonus().createBonusNumber(bonus);
+    }
+
+    public void closeToConsole() {
+        Console.close();
     }
 }

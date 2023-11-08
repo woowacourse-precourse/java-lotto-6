@@ -5,29 +5,29 @@ import java.util.function.BiPredicate;
 
 public enum Prize {
     EMPTY(0
-           , 0
-           , (matchLottoNumber, containBounsNumber) -> matchLottoNumber < 3),
+            , 0
+            , (matchLottoNumber, containBonusNumber) -> matchLottoNumber < 3),
     FIFTH(5_000
-        , 0
-        , (matchLottoNumber, containBounsNumber) -> matchLottoNumber == 3),
+            , 3
+            , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 3),
     FOURTH(50_000
             , 4
-            , (matchLottoNumber, containBounsNumber) -> matchLottoNumber == 4),
+            , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 4),
     THIRD(1_500_000
             , 5
-            , (matchLottoNumber, containBounsNumber) -> matchLottoNumber == 5 && !containBounsNumber),
+            , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 5 && !containBonusNumber),
     SECOND(30_000_000
             , 5
-            , (matchLottoNumber, containBounsNumber) -> matchLottoNumber == 5 && containBounsNumber),
+            , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 5 && containBonusNumber),
     FIRST(2_000_000_000
-            , 0
-            , (matchLottoNumber, containBounsNumber) -> matchLottoNumber == 6);
+            , 6
+            , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 6);
 
     private final int money;
     private final int matchLottoNumber;
     private final BiPredicate<Integer, Boolean> isMatch;
 
-    Prize(final int money, final int matchLottoNumber, final BiPredicate isMatch) {
+    Prize(final int money, final int matchLottoNumber, final BiPredicate<Integer, Boolean> isMatch) {
         this.money = money;
         this.matchLottoNumber = matchLottoNumber;
         this.isMatch = isMatch;

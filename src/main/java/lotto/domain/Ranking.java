@@ -17,4 +17,12 @@ public enum Ranking {
         this.matchBonus = matchBonus;
         this.prize = prize;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
 }

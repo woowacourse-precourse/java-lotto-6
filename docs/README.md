@@ -26,6 +26,9 @@
 
 ## Test Todo
 
+- [x] UserWallet단위테스트
+- [x] User단위테스트
+
 
 
 ---

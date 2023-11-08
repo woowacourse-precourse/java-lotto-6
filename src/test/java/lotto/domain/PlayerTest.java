@@ -16,9 +16,9 @@ public class PlayerTest {
     @Test
     void countTickets(){
         //given
-        Player player = new Player();
+        Player player = new Player(16000);
         //when
-        assertThat(16).isEqualTo(player.countTickets(16000));
+        assertThat(16).isEqualTo(player.countTickets());
         //then
     }
 
@@ -26,10 +26,10 @@ public class PlayerTest {
     @Test
     void countTicketsException(){
         //given
-        Player player = new Player();
+        Player player = new Player(13500);
         //when
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class,
-                () -> player.countTickets(13500));
+                () -> player.countTickets());
 
         assertThat(e.getMessage()).isEqualTo("[ERROR]1,000원 단위로만 입력가능합니다.");
     }
@@ -37,7 +37,7 @@ public class PlayerTest {
     @Test
     void countRankingTest(){
         //given
-        Player player = new Player();
+        Player player = new Player(3000);
         Map<RankingStatus,Integer> expect = new HashMap<RankingStatus, Integer>();
         Arrays.stream(RankingStatus.values())
                 .forEach(rank -> expect.put(rank, 0));
@@ -51,5 +51,20 @@ public class PlayerTest {
         //then
         assertThat(expect).isEqualTo(player.rankings);
     }
+    @DisplayName("수익률을 계산하는 메서드의 테스트")
+    @Test
+    void calculateRewardTest(){
+        //given
+        Player player = new Player(3000);
+        player.countRanking(RankingStatus.FIRST_RANK);
+        player.countRanking(RankingStatus.FIRST_RANK);
+        player.countRanking(RankingStatus.THIRD_RANK);
+        //when
+
+        //then
+
+    }
+
+
 
 }

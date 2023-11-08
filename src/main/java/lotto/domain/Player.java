@@ -6,12 +6,16 @@ import java.util.Map;
 
 public class Player {
     public static final Map<RankingStatus,Integer> rankings = new HashMap<RankingStatus, Integer>();
-    public Player(){
+    public int money;
+
+    public Player(int moeny){
         Arrays.stream(RankingStatus.values())
                 .forEach(rank -> rankings.put(rank, 0));
-        }
-    public int countTickets(int money){
+
         validateDivisibleMoney(money);
+        this.money = money;
+        }
+    public int countTickets(){
         return money / 1000;
     }
     private static void validateDivisibleMoney(int money) {
@@ -23,5 +27,11 @@ public class Player {
         rankings.put(rank,rankings.get(rank)+1);
         return rankings;
     }
+
+    public double calculateRewardTest(){
+        return 62.5;
+    }
+
+
 
 }

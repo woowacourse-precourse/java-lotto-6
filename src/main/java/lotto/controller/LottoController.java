@@ -113,6 +113,9 @@ public class LottoController {
         }
         return prizeNumbers;
     }
+    public String printBonusNumber() {
+        return "보너스 번호를 입력해 주세요.";
+    }
     public boolean isInRangeNumber(int confirmInteger) {
         return confirmInteger >= 1 && confirmInteger <= 45;
     }
@@ -124,6 +127,7 @@ public class LottoController {
 
         System.out.println(printPrizeNumbers());
         inputPrizeNumbers();
+        System.out.println(printBonusNumber());
     }
 
 

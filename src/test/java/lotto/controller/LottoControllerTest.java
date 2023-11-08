@@ -35,7 +35,7 @@ class LottoControllerTest {
     @Test
     void notNumberException() {
         assertThatThrownBy(()-> {
-            lottoController.setinputLottoNumber("a, 2, 14, 10, 23, 32");})
+            lottoController.setInputLottoNumber("a, 2, 14, 10, 23, 32");})
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessageType.NOT_NUMBER.message());
     }
@@ -44,7 +44,7 @@ class LottoControllerTest {
     @Test
     void outOfNumberException() {
         assertThatThrownBy(()-> {
-            lottoController.setinputLottoNumber("1, 2, 14, 10, 23, 47");})
+            lottoController.setInputLottoNumber("1, 2, 14, 10, 23, 47");})
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessageType.OUT_OF_LOTTO_NUMERICAL_RANGE.message());
     }

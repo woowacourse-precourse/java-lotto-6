@@ -31,7 +31,7 @@ public class LottoService {
         while(true) {
             try {
                 String lottoNumbers = InputService.inputNumbers();
-                lottoController.setinputLottoNumber(lottoNumbers);
+                lottoController.setInputLottoNumber(lottoNumbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

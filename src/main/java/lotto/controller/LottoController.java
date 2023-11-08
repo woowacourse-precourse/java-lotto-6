@@ -47,7 +47,7 @@ public class LottoController {
         }
     }
 
-    public void setinputLottoNumber(String numbers) throws IllegalArgumentException {
+    public void setInputLottoNumber(String numbers) throws IllegalArgumentException {
         String[] splitedNumbers = numbers.split(",");
         List<Integer> intNumbers = new ArrayList<>();
         for (String str : splitedNumbers) {

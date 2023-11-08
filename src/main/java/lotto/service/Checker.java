@@ -1,19 +1,17 @@
 package lotto.service;
 
-import static lotto.view.IO.showResults;
-import static lotto.view.constants.Front.SHOW_THE_WINNING_STATISTICS;
+import static lotto.view.View.showResults;
+import static lotto.view.View.showTotalProfit;
+import static lotto.view.constants.ViewConstants.SHOW_THE_WINNING_STATISTICS;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
-import lotto.view.constants.Front;
 
 public class Checker {
     private static final int LOTTO_NUMBERS_SIZE = 6;
@@ -55,5 +53,26 @@ public class Checker {
                 break;
             }
         }
+    }
+
+    public void calculateToTalProfit(PurchaseAmount purchaseAmount){
+        long totalWinningAmount = calculateTotalWinningAmount(matchs);
+        int initialInvestment = purchaseAmount.getPurchaseAmount();
+        double profitRate = (double) totalWinningAmount / initialInvestment;
+        double totalProfitPercentage = (profitRate * 100);
+
+        // 소수점 둘째 자리에서 반올림
+        double roundedTotalProfit = Math.round(totalProfitPercentage * 100.0) / 100.0;
+        showTotalProfit(roundedTotalProfit);
+    }
+
+    private long calculateTotalWinningAmount(Integer[] matchs){
+        long totalWinningAmount = 0;
+        totalWinningAmount+=matchs[3]*5000;
+        totalWinningAmount+=matchs[4]*50000;
+        totalWinningAmount+=matchs[5]*1500000;
+        totalWinningAmount+=matchs[6]*2000000000;
+        totalWinningAmount+=matchs[7]*30000000;
+        return totalWinningAmount;
     }
 }

@@ -1,6 +1,7 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.ErrorMessage;
 import lotto.constant.LottoRanking;
 import lotto.domain.Lotto;
 
@@ -10,9 +11,14 @@ import java.util.List;
 public class View {
 
     public Integer getPurchasePrice() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String userInput = Console.readLine();
-        return Integer.parseInt(userInput);
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            String userInput = Console.readLine();
+            return Integer.parseInt(userInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessage.INCORRECT_INPUT.toMessage());
+            return getPurchasePrice();
+        }
     }
 
     public void printIssuanceLotto(List<Lotto> userLottos) {

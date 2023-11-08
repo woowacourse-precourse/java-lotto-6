@@ -49,9 +49,8 @@ public class LottoPlayer {
         if (totalSpendings == 0) {
             throw new ArithmeticException("[ERROR] 지출이 0이어서 수익률을 계산할 수 없습니다.");
         }
-        double earningRate = ((double) totalWinnings / totalSpendings) * 100; // 여기서 100을 곱함
-        earningRate = Math.round(earningRate * 100) / 100.0; // 소수점 둘째 자리까지 반올림
-        return earningRate;
+        double earningRate = ((double) totalWinnings / totalSpendings) * 100;
+        return Math.round(earningRate * 100) / 100.0;
     }
 
 

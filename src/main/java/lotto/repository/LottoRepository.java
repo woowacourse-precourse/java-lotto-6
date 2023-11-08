@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class LottoRepository {
     private final List<Lotto> lottos = new ArrayList<>();
-    private final int numberOfLotto;
+    private int numberOfLotto;
 
-    public LottoRepository(int numberOfLotto) {
+    public void setNumberOfLotto(int numberOfLotto) {
         //유효성 검사
         this.numberOfLotto = numberOfLotto;
     }

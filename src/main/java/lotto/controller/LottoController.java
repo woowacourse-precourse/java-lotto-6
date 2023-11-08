@@ -17,7 +17,7 @@ public class LottoController {
     public void run() {
         InputView inputView = new InputView();
         Money money = new Money(inputView.askPrice());
-        LottoStore lottoStore = new LottoStore(money);
+        LottoStore lottoStore = new LottoStore();
         OutputView outputView = new OutputView();
         RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
         int lottoQuantity = lottoStore.getLottoQuantity(money);

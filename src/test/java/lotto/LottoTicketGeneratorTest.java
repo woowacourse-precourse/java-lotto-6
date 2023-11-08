@@ -17,14 +17,14 @@ public class LottoTicketGeneratorTest {
     @DisplayName("지불금액이 1000원 단위가 아닐 때")
     @Test
     void validatePaymentUnit() {
-        assertThatThrownBy(() -> lottoTicketGenerator.generate(new Payment("999")))
+        assertThatThrownBy(() -> lottoTicketGenerator.generate(new Amount("999")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 한번 구입시 최대 금액 초과")
     @Test
     void validatePaymentLimit() {
-        assertThatThrownBy(() -> lottoTicketGenerator.generate(new Payment("100001")))
+        assertThatThrownBy(() -> lottoTicketGenerator.generate(new Amount("100001")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

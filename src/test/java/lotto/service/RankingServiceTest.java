@@ -1,6 +1,7 @@
 package lotto.service;
 
-import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
@@ -11,9 +12,7 @@ import lotto.repository.RankingRepository;
 
 import org.junit.jupiter.api.*;
 import org.mockito.*;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import java.util.Arrays;
 
 class RankingServiceTest {
 

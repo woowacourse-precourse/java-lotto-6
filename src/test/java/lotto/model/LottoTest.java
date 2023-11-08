@@ -1,5 +1,6 @@
 package lotto.model;
-import static lotto.configurations.SettingValues.SIZE_OF_LOTTO;
+
+import static lotto.configurations.SettingValues.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

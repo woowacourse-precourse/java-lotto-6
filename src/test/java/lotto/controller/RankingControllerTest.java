@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static org.mockito.Mockito.*;
+
 import lotto.service.RankingService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,8 +12,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.mockito.Mockito.*;
 
 class RankingControllerTest {
 
@@ -33,8 +33,8 @@ class RankingControllerTest {
     }
 
     @Test
-    @DisplayName("showResult 메서드가 정상적으로 동작하는지 테스트")
-    void testShowResult() {
+    @DisplayName("결과 출력 성공")
+    void testRankLottos() {
         List<Integer> winningNumbersInput = Arrays.asList(1, 2, 3, 4, 5, 6);
         Integer bonusNumberInput = 7;
 

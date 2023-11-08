@@ -23,7 +23,6 @@ public class InputHandler {
                 InputValidator.validateIsNumber(input);
                 int lottoPurchasePrice = InputUtil.parseInt(input);
 
-                // 이건 input이 아니라.. 다른 검증 클래스 생성해서 분리 하는게 좋을지도
                 InputValidator.validateIsMultiplesOfSingleLottoPrice(lottoPurchasePrice);
                 return lottoPurchasePrice;
             } catch (IllegalArgumentException e) {

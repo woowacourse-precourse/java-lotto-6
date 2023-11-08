@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.globar.GlobalConstants.LOTTO_NUM_SIZE;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUM_SIZE) {
             throw new IllegalArgumentException();
         }
     }

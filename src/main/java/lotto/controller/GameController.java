@@ -42,8 +42,7 @@ public class GameController {
         int bonusNum = InputHandler.setBonusNum(winnerNums);
         OutputView.printMessageBlankLine();
 
-        LottoWinningCombination lottoWinningCombination = createLottoWinningCombination(winnerNums, bonusNum);
-        return lottoWinningCombination;
+        return createLottoWinningCombination(winnerNums, bonusNum);
     }
 
     private static void finalLottoGame(List<Lotto> lottos, LottoWinningCombination lottoWinningCombination,

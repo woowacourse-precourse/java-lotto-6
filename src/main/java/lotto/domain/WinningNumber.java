@@ -29,21 +29,21 @@ public class WinningNumber {
     private static void validateWinningNumberInput(String input) {
         Validator.validateInputNotEmpty(input);
         Validator.validateInputWithSeparator(input);
-        validateParseIntList(input);
-    }
-
-    private static void validateParseIntList(String numbers) {
-        try {
-            List<Integer> numberList = Arrays.stream(numbers.split(SEPARATOR))
-                    .map(Integer::parseInt).toList();
-        } catch (NumberFormatException e) {
-            ErrorMessage.printNotNumericNumberErrorMessage();
-            throw new IllegalArgumentException();
-        }
     }
 
     private List<Integer> stringToIntList(String numbers) {
         return Arrays.stream(numbers.split(SEPARATOR))
-                .map(Integer::parseInt).toList();
+                .map(String::trim)
+                .map(this::parseInt)
+                .toList();
+    }
+
+    private int parseInt(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            ErrorMessage.printNotNumericNumberErrorMessage();
+            throw new IllegalArgumentException();
+        }
     }
 }

@@ -35,4 +35,24 @@ public class LottoCalculateServiceTest {
         assertThat(count).isEqualTo(3);
     }
 
+    @DisplayName("로또 번호 매칭 개수 3, 4, 6개 테스트")
+    @Test
+    public void isNumberMatchedNormalTest() {
+        // given
+        int countContainsOfLotto1 = 3;
+        int countContainsOfLotto2 = 4;
+        int countContainsOfLotto3 = 6;
+        int countContainsOfLotto4 = 0;
+        // when
+        boolean result1 = lottoCalculateService.isNumberMatchedNormal(countContainsOfLotto1);
+        boolean result2 = lottoCalculateService.isNumberMatchedNormal(countContainsOfLotto2);
+        boolean result3 = lottoCalculateService.isNumberMatchedNormal(countContainsOfLotto3);
+        boolean result4 = lottoCalculateService.isNumberMatchedNormal(countContainsOfLotto4);
+        // then
+        assertThat(result1).isEqualTo(true);
+        assertThat(result2).isEqualTo(true);
+        assertThat(result3).isEqualTo(true);
+        assertThat(result4).isEqualTo(false);
+
+    }
 }

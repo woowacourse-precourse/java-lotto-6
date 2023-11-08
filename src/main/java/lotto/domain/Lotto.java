@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.controller.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,7 +12,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (!Validator.isSizeSix(numbers) || !Validator.isDisticnt(numbers)) {
             throw new IllegalArgumentException();
         }
     }

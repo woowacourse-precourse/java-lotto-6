@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -48,7 +50,6 @@ public class LottoGame {
     public int getBonusNumber() {
         return bonusNumber;
     }
-
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
@@ -56,4 +57,15 @@ public class LottoGame {
     public void setStatisticMap(LottoStatistic lottoStatistic) {
         this.lottoResult.put(lottoStatistic, lottoResult.get(lottoStatistic)+1);
     }
+
+    public void lottoResultToString() {
+        List<LottoStatistic> reversedList = Arrays.asList(LottoStatistic.values());
+        Collections.reverse(reversedList);
+        for (LottoStatistic key :
+                reversedList) {
+            System.out.println(key.getMessage() + " - " + lottoResult.get(key) + "개");
+        }
+    }
+
+
 }

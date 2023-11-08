@@ -21,7 +21,7 @@ public class LottoController {
         try {
             int purchaseAmount = inputView.promptPurchaseAmount();
             List<Lotto> lottos = generateLottos(purchaseAmount / 1000);
-            outputView.displayLottos(lottos.size(),lottos);
+            outputView.displayLottos(lottos.size(), lottos);
 
             WinningLotto winningLotto = getWinningLotto();
 

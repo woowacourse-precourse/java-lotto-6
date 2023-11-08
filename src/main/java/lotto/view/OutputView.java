@@ -11,7 +11,7 @@ import java.util.Map;
 public class OutputView {
 
     public void displayLottos(int lottoSize, List<Lotto> lottos) {
-        System.out.println("\n"+lottoSize+"개를 구매했습니다.");
+        System.out.println("\n" + lottoSize + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }

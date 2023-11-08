@@ -27,7 +27,7 @@ public class InputView {
     }
 
     public Lotto promptWinningNumbers() {
-        while(true){
+        while (true) {
             try {
                 System.out.println("\n당첨 번호를 입력해 주세요.");
                 String[] input = Console.readLine().split(",");

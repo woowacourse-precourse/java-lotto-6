@@ -43,5 +43,5 @@ public class BonusNumValidator {
             if (!valid) {
                 throw new IllegalArgumentException(Constants.BONUS_NUMBER_RANGE_WRONG_ERROR);
             }
-        }
+    }
 }

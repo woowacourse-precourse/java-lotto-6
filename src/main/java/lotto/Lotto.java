@@ -29,4 +29,8 @@ public class Lotto {
         return res_com.size();
     }
 
+    public boolean containNum(int contain_num){
+        return this.numbers.contains(contain_num);
+    }
+
 }

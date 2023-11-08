@@ -12,7 +12,7 @@ public class LottoPlayer {
     private List<Lotto> purchasedLottos = new ArrayList<>();
     private Map<Integer, Long> winningsCountMap;
     private long totalWinnings;
-    private int totalSpendings;
+    private long totalSpendings;
 
 
     public LottoPlayer(){
@@ -24,7 +24,7 @@ public class LottoPlayer {
 
     public void purchaseLottos(int numberOfLottos) {
         this.purchasedLottos.addAll(LottoGame.generatePurchasedLotto(numberOfLottos));
-        this.totalSpendings += numberOfLottos * LottoConstants.LOTTO_PRICE.getPrice();
+        this.totalSpendings += (long) numberOfLottos * LottoConstants.LOTTO_PRICE.getPrice();
     }
 
 
@@ -40,7 +40,7 @@ public class LottoPlayer {
         return this.totalWinnings;
     }
 
-    public int getTotalSpendings() {
+    public long getTotalSpendings() {
         return this.totalSpendings;
     }
 

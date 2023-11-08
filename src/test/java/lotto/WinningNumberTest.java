@@ -1,8 +1,10 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.List;
 import java.util.stream.Stream;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +18,7 @@ class WinningNumberTest {
     @MethodSource("winningNumber")
     void checkWinningNumber(List<Integer> winningNumbers, String message) {
 
-        Assertions.assertThatThrownBy(() -> WinningNumber.checkWinningNumber(winningNumbers))
+        assertThatThrownBy(() -> WinningNumber.checkWinningNumber(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(message);
     }
@@ -35,8 +37,8 @@ class WinningNumberTest {
     void checkBonusNumber(int bonusNumber, String message) {
 
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        
-        Assertions.assertThatThrownBy(() -> WinningNumber.checkBonusNumber(winningNumbers, bonusNumber))
+
+        assertThatThrownBy(() -> WinningNumber.checkBonusNumber(winningNumbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(message);
     }
@@ -48,8 +50,17 @@ class WinningNumberTest {
         );
     }
 
+    @DisplayName("문자열을 list에 담는다.")
     @Test
     void toWinningNumberList() {
+        //given
+        String numbers = "1,2,3,4,5,6";
+
+        //when
+        List<Integer> winningNumbers = WinningNumber.toWinningNumberList(numbers);
+
+        //then
+        assertThat(winningNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
     @Test

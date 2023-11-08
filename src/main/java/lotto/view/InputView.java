@@ -66,7 +66,7 @@ public class InputView {
                 flag = FLAG_BONUS_AFTER.getMessage();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
-            }ㅁㅁㅁ
+            }
         }
         return result;
     }

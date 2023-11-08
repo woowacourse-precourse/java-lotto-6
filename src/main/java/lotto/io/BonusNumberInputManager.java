@@ -13,7 +13,7 @@ public class BonusNumberInputManager extends InputManager<Integer> {
 
     @Override
     public Integer input() {
-        Integer result = null;
+        Integer result;
         try {
              result = setResult();
          } catch (IllegalArgumentException e) {

@@ -18,19 +18,18 @@ public class WinningNumberInputManager extends InputManager<List<Integer>> {
     public List<Integer> input() {
         List<Integer> result = null;
         try {
-            result = setResult(result);
+            result = setResult();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            result = setResult(result);
+            result = setResult();
         }
         return result;
     }
 
-    private List<Integer> setResult(List<Integer> result) {
+    private List<Integer> setResult() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputLine = consoleAdapter.readLine();
-        result = validation(inputLine);
-        return result;
+        return validation(inputLine);
     }
 
     @Override

@@ -18,19 +18,18 @@ public class PaymentInputManager extends InputManager<Integer> {
     public Integer input() throws IllegalArgumentException {
         Integer result = null;
         try {
-            result = setResult(result);
+            result = setResult();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return setResult(result);
+            return setResult();
         }
         return result;
     }
 
-    private Integer setResult(Integer result) {
+    private Integer setResult() {
         System.out.println("구입금액을 입력해 주세요.");
         String inputLine = consoleAdapter.readLine();
-        result = validation(inputLine) / 1000;
-        return result;
+        return validation(inputLine) / 1000;
     }
 
     @Override

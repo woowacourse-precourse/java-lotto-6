@@ -12,9 +12,9 @@ public class Validator {
         throw new IllegalArgumentException("[ERROR]");
     }
 
-    public static void validateMoney(String money) {
-        validateInputType(money);
-        validateMoneyRange(money);
+    public static void validateInput(String input) {
+        validateInputType(input);
+        validateInputRange(input);
     }
 
     public static void validateInputType(String input) {
@@ -25,14 +25,14 @@ public class Validator {
         }
     }
 
-    public static void validateMoneyRange(String money) {
-        if (Integer.parseInt(money) < 0) {
+    public static void validateInputRange(String input) {
+        if (Integer.parseInt(input) < 0) {
             throw new IllegalArgumentException(MONEY_MUST_NOT_NEGATIVE);
         }
     }
 
-    public static void validateInputPattern(String winningLotto) {
-        if (!INPUT_PATTERN.matcher(winningLotto).matches()) {
+    public static void validateInputPattern(String input) {
+        if (!INPUT_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException(INVALID_INPUT_PATTERN);
         }
     }

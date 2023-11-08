@@ -47,15 +47,19 @@ public enum Result {
     private static void findprize(int matchCount, boolean bonusNumber) {
         if (FIRST.matchCount == matchCount) {
             FIRST.status++;
+            return;
         }
         if (SECOND.matchCount == matchCount && bonusNumber) {
             SECOND.status++;
+            return;
         }
         if (THIRD.matchCount == matchCount && !bonusNumber) {
             THIRD.status++;
+            return;
         }
         if (FOURTH.matchCount == matchCount) {
             FOURTH.status++;
+            return;
         }
         if (FIFTH.matchCount == matchCount) {
             FIFTH.status++;

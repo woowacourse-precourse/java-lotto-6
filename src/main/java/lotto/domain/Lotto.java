@@ -1,10 +1,5 @@
 package lotto.domain;
 
-import lotto.exception.CustomException;
-import lotto.exception.constant.ErrorCode;
-import lotto.utils.Constant;
-
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {

@@ -10,9 +10,7 @@ public class Convertor {
                 .map(String::strip)
                 .map(Integer::parseInt)
                 .toList();
-        return winningNumbers.stream()
-                .distinct()
-                .collect(Collectors.toList());
+        return winningNumbers;
     }
 
 

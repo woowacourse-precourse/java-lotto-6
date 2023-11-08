@@ -34,6 +34,13 @@ public class LottoController {
             winning.setWinning(Convertor.winningToList(inputView.requireWinning()));
         }
 
+        try {
+            winning.setBonusNum(inputView.requireBonus());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e.getMessage());
+            winning.setBonusNum(inputView.requireBonus());
+        }
+
         Map<String, Integer> result = lottos.calculateResult(winning);
         outputView.announceResult(result);
         outputView.accounceProfit(lottos.calculateProfit(result));

@@ -5,6 +5,7 @@ import lotto.exception.constant.ErrorCode;
 import lotto.utils.Constant;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Winning {
     private Lotto winningLotto;
@@ -23,16 +24,22 @@ public class Winning {
         this.bonusNum = 0;
     }
 
-    public void setBonusNum(int bonusNum) {
+    public void setBonusNum(String bonusNum) {
         try {
             validateBonus(bonusNum);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
-        this.bonusNum = bonusNum;
+        this.bonusNum = Integer.parseInt(bonusNum);
     }
 
-    private void validateBonus(int bonusNum) {
+    private void validateBonus(String bonus) {
+        int bonusNum = 0;
+        try {
+            bonusNum = Integer.parseInt(bonus);
+        } catch (IllegalArgumentException e) {
+            throw new CustomException(ErrorCode.INVALID_NUMBER_REGEX);
+        }
         try {
             if (bonusNum < Constant.START_INCLUSIVE || bonusNum > Constant.END_ENCLUSIVE) {
                 throw new CustomException(ErrorCode.INVALID_LOTTO_NUMBER);
@@ -46,11 +53,17 @@ public class Winning {
     }
 
     public void validateNumber(List<Integer> numbers) {
-        boolean issOverRange = numbers.stream()
+        List<Integer> uniqueNumbers = numbers.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        boolean issOverRange = uniqueNumbers.stream()
                 .anyMatch(lottoNum -> lottoNum < Constant.START_INCLUSIVE || lottoNum > Constant.END_ENCLUSIVE);
         try {
             if (issOverRange) {
                 throw new CustomException(ErrorCode.INVALID_LOTTO_NUMBER);
+            }
+            if (uniqueNumbers.size() != 6) {
+                throw new CustomException(ErrorCode.DUPLICATED_LOTTO_NUMBER);
             }
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());

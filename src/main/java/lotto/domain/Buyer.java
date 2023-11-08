@@ -3,24 +3,29 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.View.InputView;
+import lotto.View.OutputView;
+import lotto.service.GameService;
 import lotto.validation.Validator;
 
 public class Buyer {
-    int amount;
+    int buyCount;
     List<Lotto> buyList = new ArrayList<>();
-    InputView inputView = new InputView();
     Validator validator = new Validator();
+    DrawMachine drawMachine = new DrawMachine();
+    GameService gameService = new GameService();
 
     public void buyLotto() {
         while (true) {
-            String input = inputView.getAmount();
+            String input = InputView.getAmount();
             if (validator.isAmountRight(input)) {
-                amount = Integer.parseInt(input);
+                buyCount = Integer.parseInt(input) / 1000;
                 break;
             }
         }
 
+        buyList = gameService.makeLottos(buyCount);
 
+        OutputView.printLottos(buyList);
     }
 
 }

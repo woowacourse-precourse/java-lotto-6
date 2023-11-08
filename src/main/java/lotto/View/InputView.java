@@ -7,7 +7,7 @@ import lotto.constant.GameMessage;
 import lotto.validation.Validator;
 
 public class InputView {
-    public String getAmount() {
+    public static String getAmount() {
         System.out.println(GameMessage.INPUT_AMOUNT.getMessage());
 
         String input = Console.readLine();
@@ -15,7 +15,7 @@ public class InputView {
         return input;
     }
 
-    public String getWinningNumber() {
+    public static String getWinningNumber() {
         System.out.println(GameMessage.INPUT_WINNING_NUMBER.getMessage());
 
         String input = Console.readLine();
@@ -23,7 +23,7 @@ public class InputView {
         return input;
     }
 
-    public int getBonusNumber() {
+    public static int getBonusNumber() {
         int input = -1;
 
         return input;

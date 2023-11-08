@@ -8,7 +8,7 @@ public class Validator {
         try {
             int amount = Integer.parseInt(input);
 
-            if (!isDividedBy1000(amount)) {
+            if (amount == 0 || !isDividedBy1000(amount)) {
                 throw new IllegalArgumentException();
             }
 

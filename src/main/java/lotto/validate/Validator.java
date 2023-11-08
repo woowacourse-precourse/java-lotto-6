@@ -53,31 +53,31 @@ public class Validator {
         }
     }
 
-    public static boolean isBonusNumberInWinningNumbers(String bonusNumber, List<Integer> winningNumbers) {
+    private static boolean isBonusNumberInWinningNumbers(String bonusNumber, List<Integer> winningNumbers) {
         return winningNumbers.contains(Integer.parseInt(bonusNumber));
     }
 
-    public static boolean hasBlank(String input) {
+    private static boolean hasBlank(String input) {
         return input.contains(" ");
     }
 
-    public static boolean isCommaSeparated(String input) {
+    private static boolean isCommaSeparated(String input) {
         return input.split(",").length == 6;
     }
 
-    public static boolean isAllNumberic(String input){
+    private static boolean isAllNumberic(String input){
         String[] split = input.split(",");
         return Arrays.stream(split).allMatch(s -> isNumeric(s));
     }
 
-    public static boolean isInRange(String input){
+    private static boolean isInRange(String input){
         String[] split = input.split(",");
         return Arrays.stream(split)
                 .map(Integer::parseInt)
                 .allMatch(number -> number >= 1 && number <= 45);
     }
 
-    public static boolean areNumbersUnique(String input) {
+    private static boolean areNumbersUnique(String input) {
         String[] split = input.split(",");
 
         Set<Integer> numberSet = Arrays.stream(split)
@@ -87,15 +87,15 @@ public class Validator {
         return numberSet.size() == split.length;
     }
 
-    public static boolean isNumeric(String str) {
+    private static boolean isNumeric(String str) {
         return str.chars().allMatch(Character::isDigit);
     }
 
-    public static boolean isMultipleOf1000(int money) {
+    private static boolean isMultipleOf1000(int money) {
         return money % 1000 == 0;
     }
 
-    public static boolean isThousandOrMore(int number) {
+    private static boolean isThousandOrMore(int number) {
         return number >= 1000;
     }
 }

@@ -1,5 +1,8 @@
 package lotto.model;
 
+import static lotto.constant.ErrorMessage.ERROR_MESSAGE;
+import static lotto.constant.Numbers.LOTTONUMBEREND;
+import static lotto.constant.Numbers.LOTTONUMBERSTART;
 import static lotto.constant.Numbers.NUMBERSPERLOTTO;
 
 import java.util.List;
@@ -15,6 +18,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateDuplicatedNumbers(numbers);
         validateListSize(numbers);
+        validateRangeOverValue(numbers);
     }
 
     // TODO: 추가 기능 구현
@@ -31,6 +35,13 @@ public class Lotto {
     private void validateListSize(List<Integer> numbers) {
         if (numbers.size() != NUMBERSPERLOTTO.getIntValue()) {
             throw new IllegalArgumentException();
+        }
+    }
+    private void validateRangeOverValue(List<Integer> numbers){
+        for(Integer lottoValue : numbers){
+            if(lottoValue > LOTTONUMBEREND.getIntValue() || lottoValue < LOTTONUMBERSTART.getIntValue()){
+                throw new IllegalArgumentException(ERROR_MESSAGE + "범위를 넘어가는 값이 들어왔습니다");
+            }
         }
     }
 }

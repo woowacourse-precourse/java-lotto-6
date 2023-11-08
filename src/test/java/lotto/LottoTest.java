@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.model.Lotto;
+import lotto.model.WinLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +26,17 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외 발생")
+    @Test
+    void createWinningLottery() {
+        assertThatThrownBy(() -> WinLotto.setWinLotto("1,2,3,4,6,6", "7"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 숫자가 당첨 번호에 포함되어 있는 숫자면 예외 발생")
+    @Test
+    void checkWinningLotteryAndBonusNum() {
+        assertThatThrownBy(() -> WinLotto.setWinLotto("1,2,3,4,5,6", "2"))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
 }

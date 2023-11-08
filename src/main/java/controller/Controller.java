@@ -14,6 +14,9 @@ import java.util.List;
 
 public class Controller {
     private final Service service;
+    public Controller(Service service) {
+        this.service = service;
+    }
 
     public void run() {
         int money = getMoneyByUserInput();
@@ -24,9 +27,6 @@ public class Controller {
         getRateOfReturn(lottoResult, money);
     }
 
-    public Controller(Service service) {
-        this.service = service;
-    }
 
     public int getMoneyByUserInput() {
         while (true) {

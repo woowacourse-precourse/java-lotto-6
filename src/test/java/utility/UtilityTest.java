@@ -1,7 +1,5 @@
 package utility;
 
-import domain.Lotto;
-import domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

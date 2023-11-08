@@ -13,7 +13,7 @@ public class LottoResultView {
     private static final String PREFIX = "[";
     private static final String POSTFIX = "]";
 
-    public static void printLottos(Lottos lottos) {
+    public static void print(Lottos lottos) {
         printLottosCount(lottos.getSize());
         printLottosInfo(lottos.getLottos());
     }

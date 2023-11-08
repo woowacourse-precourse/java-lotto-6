@@ -8,8 +8,8 @@ import lotto.dto.DrawnNumbersDto;
 import lotto.view.BonusRequestVIew;
 import lotto.view.CostRequestView;
 import lotto.view.LottoResultView;
-import lotto.view.View;
 import lotto.view.WinningRequestView;
+import lotto.view.WinningResultView;
 
 public class LottoController {
     public void run() {
@@ -21,7 +21,7 @@ public class LottoController {
 
     private Lottos issue(int count) {
         Lottos lottos = Lottos.from(count);
-        LottoResultView.printLottos(lottos);
+        LottoResultView.print(lottos);
         return lottos;
     }
 
@@ -32,6 +32,6 @@ public class LottoController {
 
     private void conclude(Lottos lottos, DrawnNumbers drawnNumbers, Cost cost) {
         WinningResult winningResult = WinningResult.of(lottos, drawnNumbers);
-        View.printWinningResult(winningResult, cost);
+        WinningResultView.print(winningResult, cost);
     }
 }

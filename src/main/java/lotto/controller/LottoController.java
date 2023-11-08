@@ -12,6 +12,6 @@ public class LottoController {
     public void run() {
         lottoService.createPlayer();
         lottoService.createWinningLotto();
-        lottoService.totalPercent();
+        lottoService.createRevenue();
     }
 }

@@ -63,7 +63,6 @@ public class LottoService {
                 lottos.add(winningNum);
             }
             validation.totalWinngLottoCheck(lottos);
-
             int bonusNum = createBonusNum(lottos);
             createStatistic(new WinningLotto(lottos, bonusNum));
         } catch (IllegalArgumentException e) {
@@ -92,7 +91,7 @@ public class LottoService {
         outputView.printResult(winningLotto.getMatch());
     }
 
-    public void totalPercent() {
+    public void createRevenue() {
         outputView.printTotal(player.getPercent());
     }
 }

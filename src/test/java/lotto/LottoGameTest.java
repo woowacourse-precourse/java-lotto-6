@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import lotto.model.LottoGame;
@@ -15,9 +16,9 @@ public class LottoGameTest {
         LottoGame lottogame = new LottoGame(input);
 
         lottogame.createLotto(input);
+        int exp = lottogame.getLottoGames().size();
+        int act = lottogame.getLottoNumber();
 
-        if (lottogame.getLottoGames().size() != lottogame.getLottoNumber()) {
-            fail();
-        }
+        assertEquals(exp, act);
     }
 }

@@ -29,3 +29,7 @@
 - [ ] else 예약어를 쓰지 않는다. switch/case도 허용하지 않는다.
 - [ ] Java Enum을 적용한다.
 - [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.(`test/java/lotto/LottoTest`를 참고)
+
+## 🕸 로직 분석 with️ Sequence Diagram 
+
+<img width="356" alt="image" src="https://github.com/yebin-choi/TodayILearned/assets/69137469/c8e85ff2-9db8-4176-956a-874b14558fae">

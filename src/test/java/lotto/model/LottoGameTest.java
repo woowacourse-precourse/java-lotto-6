@@ -15,10 +15,10 @@ public class LottoGameTest {
     private final WinningNumber winningNumber
             = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 7);
 
-    @DisplayName("로또 번호와 당첨 번호를 비교하여 당첨 내역을 구한다.")
+    @DisplayName("사용자로부터 로또 번호와 당첨 번호를 입력받아 당첨 내역을 구한다.")
     @ParameterizedTest
     @MethodSource("generateLottoTickets")
-    void givenLottoTickets_Then_CompareResultsReturn(
+    void givenWinningNumberWithLottoTickets_Then_CompareResultsReturn(
             final List<Lotto> lottoTickets
     ) {
         // when
@@ -32,10 +32,10 @@ public class LottoGameTest {
         assertThat(rankCounts).containsExactly(2L, 0L, 0L, 0L, 1L);
     }
 
-    @DisplayName("주어진 로또에 대한 총 당첨 금액을 구한다.")
+    @DisplayName("로또 티켓과 당첨 번호가 주어졌을 때, 이에 대한 총 당첨 금액을 구한다.")
     @ParameterizedTest
     @MethodSource("generateLottoTickets")
-    void givenLottoTickets_Then_TotalAmountReturns(
+    void givenWinningNumberWithLottoTickets_Then_TotalAmountReturns(
             final List<Lotto> lottoTickets
     ) {
         final LottoGame lottoGame = new LottoGame(winningNumber, lottoTickets);

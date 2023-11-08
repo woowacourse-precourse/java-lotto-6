@@ -37,20 +37,32 @@ public class LottoSystemController {
     }
 
     private static Lotto enterLottoNumber() {
-        printEmptyLine();
+        String lottoNumbers = "";
 
-        String lottoNumbers = inputLottoNumber();
-        inputLottoNumberValidate(lottoNumbers);
+        try {
+            printEmptyLine();
 
-        return parseToLotto(lottoNumbers);
+            lottoNumbers = inputLottoNumber();
+            inputLottoNumberValidate(lottoNumbers);
+            return parseToLotto(lottoNumbers);
+        } catch (LottoException e) {
+            System.out.println(e.getMessage());
+            return enterLottoNumber();
+        }
     }
 
     private static int enterLottoBonusNumber() {
-        printEmptyLine();
+        String lottoBonusNumber = "";
 
-        String lottoBonusNumber = inputLottoBonusNumber();
-        inputLottoBonusNumberValidate(lottoBonusNumber);
+        try {
+            printEmptyLine();
 
+            lottoBonusNumber = inputLottoBonusNumber();
+            inputLottoBonusNumberValidate(lottoBonusNumber);
+        } catch (LottoException e) {
+            System.out.println(e.getMessage());
+            return enterLottoBonusNumber();
+        }
         return Integer.parseInt(lottoBonusNumber);
     }
 
@@ -63,14 +75,12 @@ public class LottoSystemController {
 
         try {
             printEmptyLine();
-
             money = inputMoney();
             inputMoneyValidate(money);
         } catch (LottoException e) {
             System.out.println(e.getMessage());
             return buyLotto();
         }
-
         return new LottoSystem(Long.parseLong(money));
     }
 

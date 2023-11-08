@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.utils.system.LottoException;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -37,9 +39,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        isRightLottoCnt(numbers);
-        isNotDuplicate(numbers);
-        isRightLottoRange(numbers);
+        try {
+            isRightLottoCnt(numbers);
+            isNotDuplicate(numbers);
+            isRightLottoRange(numbers);
+        } catch (IllegalArgumentException e) {
+            throw new LottoException(e.getMessage());
+        }
     }
 
     private void isRightLottoCnt(List<Integer> numbers) {

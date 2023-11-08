@@ -14,7 +14,7 @@ public class ErrorPhrase {
 
     public static final String ERROR_PHRASE_LOTTO_NUMBER_IS_DUPLICATED = "로또 번호는 중복된 값을 가질 수 없습니다.";
 
-    public static final String ERROR_PHRASE_LOTTO_NUMBER_IS_OUT_OF_RANGE = "로또 번호는"+LOTTO_NUMBER_MIN_RANGE+" ~ "+LOTTO_NUMBER_MAX_RANGE+" 사이 숫자만 가능합니다.";
+    public static final String ERROR_PHRASE_LOTTO_NUMBER_IS_OUT_OF_RANGE = "로또 번호는 "+LOTTO_NUMBER_MIN_RANGE+" ~ "+LOTTO_NUMBER_MAX_RANGE+" 사이 숫자만 가능합니다.";
 
     public static final String ERROR_PHRASE_LOTTO_NUMBER_IS_NOT_DIGIT = "로또 번호는 숫자만 가능합니다.";
 

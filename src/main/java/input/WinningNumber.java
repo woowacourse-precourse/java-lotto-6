@@ -29,6 +29,7 @@ public class WinningNumber {
                     Arrays.stream(input.split(","))
                             .map(Integer::parseInt)
                             .toList());
+            System.out.println();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

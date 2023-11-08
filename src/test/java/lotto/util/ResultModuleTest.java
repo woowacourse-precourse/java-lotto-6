@@ -64,6 +64,22 @@ public class ResultModuleTest extends NsTest {
         );
     }
 
+    @DisplayName("[3등] 로또 번호가 5개 당첨되었을 때")
+    @Test
+    void getThirdPlace() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
+
+        //when
+        ResultModule.checkResult(result, lotto, LOTTO_NUM, BONUS_NUM);
+        ResultModule.formattingResult(result);
+
+        //then
+        assertSimpleTest(() ->
+                assertEquals(1, result.get(THIRD_PLACE))
+        );
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

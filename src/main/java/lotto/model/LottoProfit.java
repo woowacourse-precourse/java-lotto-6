@@ -4,6 +4,7 @@ import java.util.Map;
 import lotto.utils.constant.Rank;
 
 public class LottoProfit {
+    private final static int PERCENT = 100;
     private final Map<Rank, Integer> lottoResult;
     private final Money money;
     private Double result;
@@ -19,16 +20,16 @@ public class LottoProfit {
     }
 
     private void calculate() {
-        result = ((double) calculateSum() / money.getMoney()) * 100;
+        result = ((double) calculateSum() / money.getMoney()) * PERCENT;
     }
 
     private int calculateSum() {
         int sum = 0;
-        sum += lottoResult.get(Rank.FIRST) * 2000000000;
-        sum += lottoResult.get(Rank.SECOND) * 30000000;
-        sum += lottoResult.get(Rank.THIRD) * 1500000;
-        sum += lottoResult.get(Rank.FOURTH) * 50000;
-        sum += lottoResult.get(Rank.FIFTH) * 5000;
+        sum += lottoResult.get(Rank.FIRST) * Rank.FIRST.getIntWinningMoney();
+        sum += lottoResult.get(Rank.SECOND) * Rank.SECOND.getIntWinningMoney();
+        sum += lottoResult.get(Rank.THIRD) * Rank.THIRD.getIntWinningMoney();
+        sum += lottoResult.get(Rank.FOURTH) * Rank.FOURTH.getIntWinningMoney();
+        sum += lottoResult.get(Rank.FIFTH) * Rank.FIFTH.getIntWinningMoney();
         return sum;
     }
 }

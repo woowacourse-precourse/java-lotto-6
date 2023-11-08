@@ -1,24 +1,27 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validator.InputValidator;
 
 public class InputView {
-    private final String INPUT_MONEY = "구입금액을 입력해 주세요.";
-    private final String INPUT_WINNING_NUMBERS = "\n당첨 번호를 입력해 주세요.";
-    private final String INPUT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
+    private static final String INPUT_MONEY = "구입금액을 입력해 주세요.";
+    private static final String INPUT_WINNING_NUMBERS = "\n당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER = "\n보너스 번호를 입력해 주세요.";
 
 
-    public String inputBudget() {
+    public static String inputBudget() {
         System.out.println(INPUT_MONEY);
         return Console.readLine();
     }
 
-    public String inputWinningNumbers() {
+    public static String inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBERS);
-        return Console.readLine();
+        String input = Console.readLine();
+        InputValidator.validateInputNumbers(input);
+        return input;
     }
 
-    public String inputBonusNumber(){
+    public static String inputBonusNumber(){
         System.out.println(INPUT_BONUS_NUMBER);
         return Console.readLine();
     }

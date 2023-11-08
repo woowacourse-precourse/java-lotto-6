@@ -17,7 +17,13 @@ public class LottoController {
     private List<Lotto> lottos;
     private WinningResult winningResult;
 
-
+    public void start() {
+        try {
+            run();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     public void run() {
         int lottoCount = inputPlayerCount();
         OutputView.printLottoCount(lottoCount);

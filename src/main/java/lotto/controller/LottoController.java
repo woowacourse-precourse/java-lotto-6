@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoController {
 
@@ -53,11 +54,19 @@ public class LottoController {
         int lottoCount = purchaseAmount.getLottoCount();
         OutputView.outputLottoCount(lottoCount);
         for (int i=0; i<lottoCount; i++) {
-            Lotto lotto = new Lotto();
-            OutputView.outputIssuedLotto(lotto);
+            Lotto lotto = issueLotto();
             lottoList.add(lotto);
         }
         return lottoList;
+    }
+
+    private Lotto issueLotto() {
+        List<Integer> randomNums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumsList = new ArrayList<>(randomNums);
+        Collections.sort(lottoNumsList);
+        Lotto lotto = new Lotto(lottoNumsList);
+        OutputView.outputIssuedLotto(lotto);
+        return lotto;
     }
 
     private void compareWithWinningNum(List<Lotto> lottoList, WinningLotto winningLotto) {
@@ -89,6 +98,6 @@ public class LottoController {
             int winningCnt = prizeMap.get(prize);
             totalRevenue += (winningCnt * prize.getWinningAmount());
         }
-        OutputView.outputRateOfReturn(String.format("%.2f", (double)(totalRevenue*100)/purchaseAmount.getMoney()));
+        OutputView.outputRateOfReturn(String.format("%.1f", (double)(totalRevenue*100)/purchaseAmount.getMoney()));
     }
 }

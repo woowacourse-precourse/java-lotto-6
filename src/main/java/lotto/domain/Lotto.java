@@ -15,11 +15,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public Lotto() {
-        List<Integer> randomNums = issueLotto();
-        validate(randomNums);
-        numbers = randomNums;
-    }
 
     private void validate(List<Integer> numbers) {
         validateCountNums(numbers);
@@ -51,17 +46,6 @@ public class Lotto {
         return numbers;
     }
 
-    private List<Integer> issueLotto() {
-        List<Integer> randomNums = new ArrayList<>();
-        while (randomNums.size() < 6) {
-            int num = Randoms.pickNumberInRange(1, 45);
-            if (!randomNums.contains(num)) {
-                randomNums.add(num);
-            }
-        }
-        sortLotto(randomNums);
-        return randomNums;
-    }
 
     private void sortLotto(List<Integer> lottoNums) {
         Collections.sort(lottoNums);

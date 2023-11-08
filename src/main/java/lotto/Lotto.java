@@ -18,7 +18,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private int lottery(List<Integer> winNums) {
+    public int lottery(List<Integer> winNums) {
         final int NUM_OF_LOTTO_NUMBERS = 6;
 
         List<Integer> compNumbers = new ArrayList<Integer>();
@@ -28,7 +28,7 @@ public class Lotto {
         return NUM_OF_LOTTO_NUMBERS - compNumbers.size();
     }
 
-    private int lottery(int bonusNum) {
+    public int lottery(int bonusNum) {
         final int NUM_OF_LOTTO_NUMBERS = 6;
 
         List<Integer> compNumbers = new ArrayList<Integer>();

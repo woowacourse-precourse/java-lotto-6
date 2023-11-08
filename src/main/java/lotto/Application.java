@@ -73,7 +73,7 @@ public class Application {
         Lotto[] lottos = new Lotto[lottoCount];
 
         List<Integer> numbers;
-        for (int i=0; i<lottoCount; i++){
+        for (int i = 0; i < lottoCount; i++){
             numbers = getNumbers();
             numbers.sort(Comparator.naturalOrder());
             lottos[i] = new Lotto(numbers);
@@ -125,8 +125,17 @@ public class Application {
         return winner;
     }
 
-    public static void lottery(Lotto[] lottos, Winner winner) {
-         System.out.printf("\n당첨 통계\n---\n");
+    public static void lottery(int lottoCount, Lotto[] lottos, Winner winner) {
+        int winCount;
+        int bonusCount;
+        List<Integer> wins = new ArrayList<Integer>(NUM_OF_LOTTO_NUMBERS + 1);
+
+        for (int i = 0; i < lottoCount; i++) {
+            winCount = lottos[i].lottery(winner.winNums);
+            bonusCount = lottos[i].lottery(winner.bonusNum);
+        }
+
+        System.out.printf("\n당첨 통계\n---\n");
     }
 
     public static void main(String[] args) {
@@ -139,6 +148,6 @@ public class Application {
         lottos = getLottos(lottoCount);
         winner = getWinner();
 
-        lottery(lottos, winner);
+        lottery(lottoCount, lottos, winner);
     }
 }

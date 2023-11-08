@@ -14,6 +14,7 @@
 ### Model
 
 1. Lotto : 로또 단순 저장
+    - [ ] 중복 숫자 예외처리
 2. LottoTicket : 로또 발행 저장
     - [ ] 객체 생성 시 로또 개수 입력 받아서 lotto 객체 생성
     - [ ] getLottoTicket

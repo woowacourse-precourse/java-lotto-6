@@ -10,9 +10,6 @@ public class TypeChanger {
     private static final String LENGTH_ZERO = "";
     private static TypeChanger typeChanger;
 
-    private TypeChanger(){
-    }
-
     public static TypeChanger getTypeChanger() {
         if (typeChanger == null) {
             typeChanger = new TypeChanger();

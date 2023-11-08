@@ -76,6 +76,27 @@ public class UserInput {
         return splittedWinningNumbersInput;
     }
 
+
+    private void validateWinningNumbers(List<String> splittedWinningNumbersInput) {
+        if (splittedWinningNumbersInput.size() != 6) {
+            throw new IllegalArgumentException("당첨 번호 6개를 입력해 주세요");
+        }
+
+    }
+
+
+    private void validateDuplicates(List<String> splittedWinningNumbersInput) {
+        Set<String> set = new HashSet<>();
+
+        for (var number : splittedWinningNumbersInput) {
+            if (!set.add(number)) {
+                throw new IllegalArgumentException("서로 다른 당첨 번호들을 입력해 주세요.");
+            }
+        }
+
+    }
+
+
     private List<Integer> saveIntWinningNumbers(List<String> splittedWinningNumbersInput, List<Integer> winningNumbers){
 
         for (var number : splittedWinningNumbersInput) {
@@ -92,26 +113,10 @@ public class UserInput {
     }
 
 
-    private void validateWinningNumbers(List<String> splittedWinningNumbersInput) {
-        if (splittedWinningNumbersInput.size() != 6) {
-            throw new IllegalArgumentException("당첨 번호 6개를 입력해 주세요");
-        }
-
-        return;
-    }
 
 
-    private void validateDuplicates(List<String> splittedWinningNumbersInput) {
-        Set<String> set = new HashSet<>();
 
-        for (var number : splittedWinningNumbersInput) {
-            if (!set.add(number)) {
-                throw new IllegalArgumentException("서로 다른 당첨 번호들을 입력해 주세요.");
-            }
-        }
 
-        return;
-    }
 
 
     //보너스 번호 입력

@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
+
+    public static final int LOTTO_NUM_COUNT = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -13,13 +16,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException();
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
-        if (new HashSet<>(numbers).size() != 6) {
+        if (new HashSet<>(numbers).size() != LOTTO_NUM_COUNT) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되면 안됩니다.");
         }
     }
@@ -33,15 +36,15 @@ public class Lotto {
     }
 
     private Rank calculateRank(int correctCount, int bonusNum) {
-        if(correctCount == 6) {
+        if(correctCount == Rank.FIRST.getCorrectCount()) {
             return Rank.FIRST;
         }
 
-        if (correctCount == 5 && numbers.contains(bonusNum)) {
+        if (correctCount == Rank.SECOND.getCorrectCount() && numbers.contains(bonusNum)) {
             return Rank.SECOND;
         }
 
-        return Rank.of((correctCount >= 3) ? 8 - (int) correctCount : -1);
+        return Rank.of((correctCount >= Rank.FIFTH.getCorrectCount()) ? 8 - (int) correctCount : Rank.OTHER.getValue());
     }
 
     @Override

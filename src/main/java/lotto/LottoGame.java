@@ -6,6 +6,12 @@ import java.util.*;
 
 public class LottoGame {
 
+    public static final int MIN_RANGE = 1;
+    public static final int MAX_RANGE = 45;
+    public static final int LOTTO_NUM_COUNT = 6;
+    public static final int UNIT = 1000;
+    public static final int HUNDRED = 100;
+
     public List<Lotto> buyLottos(int lottoCounts) {
         System.out.println("\n" + lottoCounts + "개를 구매했습니다.");
 
@@ -19,14 +25,14 @@ public class LottoGame {
     }
 
     public List<Integer> generateLottoNums() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6)
+        return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_NUM_COUNT)
                 .stream()
                 .sorted()
                 .toList();
     }
 
     public int getLottoCounts(int price) {
-        return price / 1000;
+        return price / UNIT;
     }
 
     public void printResult(List<Rank> ranks) {
@@ -66,7 +72,7 @@ public class LottoGame {
                 .reduce((x, y) -> x + y)
                 .get();
 
-        double earningRate = (double) prizeSum / price * 100;
+        double earningRate = (double) prizeSum / price * HUNDRED;
 
         return String.format("%.1f", earningRate) + "%";
     }

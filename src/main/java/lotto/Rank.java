@@ -29,7 +29,7 @@ public enum Rank {
     public boolean isBonusCorrect() { return isBonusCorrect; }
 
     public static Rank of(int value) {
-        if (value == -1) {
+        if (value == Rank.OTHER.getValue()) {
             return Rank.OTHER;
         }
         return rankValues[value - 1];

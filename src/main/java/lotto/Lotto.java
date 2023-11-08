@@ -1,9 +1,11 @@
 package lotto;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -12,9 +14,37 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            System.out.println("[ERROR] 당첨번호는 6개를 입력하셔야 합니다.\n");
             throw new IllegalArgumentException();
         }
+        if (hasSameNumbers(numbers)) {
+            System.out.println("[ERROR] 당첨번호에는 중복되지 않는 6개를 입력하셔야 합니다.\n");
+            throw new IllegalArgumentException();
+        }
+        if (!areInRange(numbers)) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n");
+            throw new IllegalArgumentException();
+        }
+
     }
 
-    // TODO: 추가 기능 구현
+    private boolean hasSameNumbers(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
+    }
+
+    private boolean areInRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45)
+                return false;
+        }
+        return true;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public void setNumbers(List<Integer> numbers) {
+        this.numbers = numbers;
+    }
 }

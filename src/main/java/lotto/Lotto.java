@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import lib.constant.LottoConstants;
 
@@ -11,8 +12,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        this.numbers = numbers;
         this.validateNumbers(numbers);
+        this.numbers = this.sortNumbers(numbers);
+    }
+
     private void validateNumbers(List<Integer> numbers) {
         this.validateNumberSize(numbers);
         this.validateNumberDuplicated(numbers);
@@ -41,7 +44,25 @@ public class Lotto {
         }
     }
     
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream().sorted().collect(Collectors.toList());
+    }
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
+    public List<Integer> getMatchedLotto(List<Integer> answer, int bonusWinnerNumber) {
+        List<Integer> matchedLotto = new ArrayList<Integer>();
+
+        for (int i = 0; i < LottoConstants.LOTTO_SIZE; ++i){
+            if (answer.contains(this.numbers.get(i)) || this.numbers.get(i) == bonusWinnerNumber) {
+                matchedLotto.add(this.numbers.get(i));
+            }
         }
+
+        return matchedLotto;
     }
 
     @Override

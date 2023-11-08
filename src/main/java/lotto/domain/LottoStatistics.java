@@ -17,7 +17,7 @@ public class LottoStatistics {
     private final int purchaseCount;
     private int totalPrize = 0;
 
-    private LottoStatistics(Lottos lottoTicket, Lotto winningLotto, Bonus bonus, Buyer buyer) {
+    private LottoStatistics(final Lottos lottoTicket, final Lotto winningLotto, final Bonus bonus, final Buyer buyer) {
         List<Integer> winningNumber = winningLotto.getNumbers();
         Integer bonusNumber = bonus.getBonusNumber();
         purchaseCount = buyer.getPurchaseCount();
@@ -34,13 +34,13 @@ public class LottoStatistics {
         lottoResult.addAll(Arrays.asList(LottoStatisticsContent.values()));
     }
 
-    private long getLottoMatchCount(List<Integer> winningNumber, Lotto lotto) {
+    private long getLottoMatchCount(final List<Integer> winningNumber, final Lotto lotto) {
         return lotto.getNumbers().stream()
                 .filter(winningNumber::contains)
                 .count();
     }
 
-    public static LottoStatistics from(Lottos lottoTicket, Lotto winningLotto, Bonus bonus, Buyer buyer) {
+    public static LottoStatistics from(final Lottos lottoTicket, final Lotto winningLotto, final Bonus bonus, final Buyer buyer) {
         return new LottoStatistics((lottoTicket), winningLotto, bonus, buyer);
     }
 

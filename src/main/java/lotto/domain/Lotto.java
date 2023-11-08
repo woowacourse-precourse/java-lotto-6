@@ -18,7 +18,7 @@ public class Lotto {
         this.numbers = sortNumbers(numbers);
     }
 
-    private List<Integer> sortNumbers(List<Integer> numbers) {
+    private List<Integer> sortNumbers(final List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();

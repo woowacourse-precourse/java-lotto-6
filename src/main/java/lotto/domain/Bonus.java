@@ -26,7 +26,7 @@ public class Bonus {
         validateDuplication(lotto, bonusNumber);
     }
 
-    private void validateNumeric(String bonusNumber) {
+    private void validateNumeric(final String bonusNumber) {
         try {
             Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e) {

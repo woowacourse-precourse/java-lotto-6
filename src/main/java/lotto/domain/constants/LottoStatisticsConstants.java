@@ -7,7 +7,7 @@ public enum LottoStatisticsConstants {
 
     private String value;
 
-    LottoStatisticsConstants(String s) {
+    LottoStatisticsConstants(final String s) {
     }
 
     public static String getStatisticsPrefix() {

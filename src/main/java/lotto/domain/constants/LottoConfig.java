@@ -7,7 +7,7 @@ public enum LottoConfig {
     LOTTO_UNIT_PRICE(1000);
     private final int value;
 
-    LottoConfig(int value) {
+    LottoConfig(final int value) {
         this.value = value;
     }
 

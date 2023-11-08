@@ -13,7 +13,7 @@ public class StatisitcsController {
         Buyer buyer = buyingLottoController.buyLotto();
         WinningManager manager = drawWinningNumberController.drawWinningNumber();
 
-        buyer.checkMyFate(manager);
+        buyer.checkEachLottoLine(manager);
         manager.calculateWinningRate(buyer.getWinningLotto(),buyer.getLottoAmount());
 
         OutputView.outputWinningStatisitcs(buyer.getWinningLotto(),manager.getWinningRate());

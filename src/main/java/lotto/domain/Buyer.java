@@ -36,17 +36,17 @@ public class Buyer {
         }
     }
 
-    public void checkMyFate(WinningManager manager){
+    public void checkEachLottoLine(WinningManager manager){
         for(Lotto lotto : lottos){
-            checkEachLottoLine(lotto,manager);
+            checkLine(lotto,manager);
         }
     }
 
-    public void checkEachLottoLine(Lotto lotto, WinningManager manager){
+    private void checkLine(Lotto lotto, WinningManager manager){
         int matchCount = compareWinningNumber(lotto,manager.getWinningNumber());
-        boolean bonus = compareBonusNumber(lotto,manager.getBonusNumber());
+        boolean correctBonus = compareBonusNumber(lotto,manager.getBonusNumber());
 
-        if(bonus && matchCount==5){
+        if(correctBonus && matchCount==5){
             winningLotto.put(BONUS_CORRECT_INDEX,winningLotto.getOrDefault(BONUS_CORRECT_INDEX,0)+1);
             return;
         }

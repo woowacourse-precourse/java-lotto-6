@@ -25,26 +25,7 @@ public class LottoGame {
         LottoTicket lottoTicket = new LottoTicket(new LottoTicketMaker().make(money.calculatePurchasedLotto()));
         printLottoTicket(lottoTicket.makeLottoToString());
 
-        Lotto winingLotto = runWiningNumberSavingProcess();
-
-        /////////
-
-//        OutputView.print(LINE_BREAK.getMessage());
-//        OutputView.print(BONUS_NUMBER_REQUEST.getMessage());
-//        OutputView.print(LINE_BREAK.getMessage());
-//        String input = InputView.read();
-//        InputValidator.validateNumber(input);
-//        validateRangeOne(Integer.parseInt(input));
-//        validateBonusDuplication(Integer.parseInt(input), winingLotto.getNumbers());
-//        int bonus = Integer.parseInt(input);
-
-        OutputView.print(LINE_BREAK.getMessage());
-        OutputView.print(WINNING_STATISTICS_RESULT.getMessage());
-        OutputView.print(LINE_BREAK.getMessage());
-        for (int i = 0; i < 3; i++) {
-            OutputView.print(DIVIDING_LINE.getMessage());
-        }
-        OutputView.print(LINE_BREAK.getMessage());
+        WiningLotto win = saveWiningData(runWiningNumberSavingProcess(), receiveBonusNumber());
 
 
     }
@@ -108,19 +89,6 @@ public class LottoGame {
         return winingNumbers;
     }
 
-    private BonusNumber runBonusNumberSavingProcess() {
-        try {
-            return new BonusNumber(receiveBonusNumber());
-        } catch (IllegalArgumentException exception) {
-            OutputView.print(exception.getMessage());
-            return runBonusNumberSavingProcess();
-        }
-
-        validateRangeOne(Integer.parseInt(input));
-        validateBonusDuplication(Integer.parseInt(input), winingLotto.getNumbers());
-        int bonus = Integer.parseInt(input);
-    }
-
     private int receiveBonusNumber() {
         OutputView.print(LINE_BREAK.getMessage());
         OutputView.print(BONUS_NUMBER_REQUEST.getMessage());
@@ -131,10 +99,24 @@ public class LottoGame {
         return Integer.parseInt(input);
     }
 
+    private WiningLotto saveWiningData(Lotto winNumber, int bonus) {
+        try {
+            return new WiningLotto(winNumber, bonus);
+        } catch (IllegalArgumentException exception) {
+            OutputView.print(exception.getMessage());
+            return new WiningLotto(winNumber, receiveBonusNumber());
+        }
+    }
 
-}
+    private void printLottoWinResult() {
+        OutputView.print(LINE_BREAK.getMessage());
+        OutputView.print(WINNING_STATISTICS_RESULT.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
+        for (int i = 0; i < 3; i++) {
+            OutputView.print(DIVIDING_LINE.getMessage());
+        }
+        OutputView.print(LINE_BREAK.getMessage());
+    }
 
-
-class Message {
 
 }

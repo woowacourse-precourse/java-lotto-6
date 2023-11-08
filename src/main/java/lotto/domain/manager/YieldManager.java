@@ -10,9 +10,8 @@ public class YieldManager {
         float beforeMoney = prize.size() * Constants.MONEY_UNIT.getConstants(); // 8000
         float totalMoney = 0;
         for (ResultLotto result : prize) {
-            totalMoney += result.getResult(); // 5000 + 8000
+            totalMoney += result.getResult(); // 5000
         }
-
         return Utils.calculateYield(totalMoney, beforeMoney);
     }
 }

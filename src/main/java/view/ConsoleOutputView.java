@@ -11,6 +11,7 @@ public class ConsoleOutputView implements OutputView {
     private static final String PRINT_LOTTO_TICKETS_SIZE = "개를 구매했습니다.";
     private static final String PRINT_LOTTO_NUMBERS = "[%s]%n";
     private static final String REQUEST_LOTTO_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String REQUEST_BONUS_LOTTO_NUMBER = "보너스 번호를 입력해 주세요.";
 
     @Override
     public void requestPurchaseAmount() {
@@ -36,5 +37,10 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void requestLottoWinningNumbers() {
         System.out.println(REQUEST_LOTTO_WINNING_NUMBERS);
+    }
+
+    @Override
+    public void requestBonusLottoNumber() {
+        System.out.println(REQUEST_BONUS_LOTTO_NUMBER);
     }
 }

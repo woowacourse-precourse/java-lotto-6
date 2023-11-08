@@ -1,10 +1,12 @@
 package lotto;
 
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 import lotto.domain.Validators;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -81,12 +83,4 @@ class LottoTest {
         assertThatThrownBy(() -> Validators.validateStringIsIntegerConvertable("$^%3"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    // TODO: 로또 번호와 당첨 번호를 올바르게 비교하는 지 확인한다.
-    @Test
-    void checkCompareLottoAndWinningNumbers() {
-
-    }
-    // TODO: 로또 규칙에 부합한 번호들이 각 규칙 당 몇 개 있는지 제대로 셈을 하는지 확인한다.
-    // TODO: 총 수익률이 소수 첫째자리까지 출력되는지 확인한다.
-
 }

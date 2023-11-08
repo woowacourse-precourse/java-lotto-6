@@ -59,7 +59,7 @@ public class Prize {
         return containingCount;
     }
 
-    public HashMap<String, Integer> compareAllLottoTickets(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+    public static HashMap<String, Integer> compareAllLottoTickets(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
         HashMap<String, Integer> prizeCountsRecords = Prize.createPrizeCountsRecords();
         int matchCount;
         boolean needToCheckBonus;

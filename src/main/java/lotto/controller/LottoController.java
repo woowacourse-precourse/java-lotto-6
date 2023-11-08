@@ -26,8 +26,15 @@ public class LottoController {
         return lottoPlayer;
     }
 
-    private void createLottoList() {
+    private void createLottoList(LottoPlayer lottoPlayer) {
+        int lottoCount = lottoPlayer.getLottoCount();
+        outputView.printLottoPurchaseCountMessage(lottoCount);
+        for (int i=0; i<lottoCount; i++) {
+            createLotto();
+        }
     }
+
+    private void createLotto() {}
 
     private void getPlayerNumbers() {
     }

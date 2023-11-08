@@ -34,4 +34,8 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public Integer getResultRank() {
+        return resultRank;
+    }
 }

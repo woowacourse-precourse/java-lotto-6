@@ -24,12 +24,17 @@ public class LottoGame {
 
         while (isGaming) {
             money = inputMoney();
+
             lottoTickets = generateLottoTickets(money);
             printTickets();
+
             List<Integer> pickedWinningNumbers = pickWinningNumbers().subList(0, 6);
             winningNumbers = pickedWinningNumbers.subList(0, 6);
             winningBonusNumber = pickedWinningNumbers.get(pickedWinningNumbers.size() - 1);
+
             setLottoRanks(lottoTickets, winningNumbers, winningBonusNumber);
+            printResult(lottoTickets);
+
             isGaming = false;
         }
     }
@@ -45,6 +50,8 @@ public class LottoGame {
                 money = Integer.valueOf(Console.readLine());
                 validateThousandWonUnits(money);
                 validInput = true;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해주세요.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -159,20 +166,34 @@ public class LottoGame {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private void getMoneyForRank() {
+    public int[] countRanks(List<Lotto> lottoTickets) {
+        int[] rankCounts = new int[6]; // 인덱스 1부터 1등 ~ 5등
 
+        for (Lotto lotto : lottoTickets) {
+            if (lotto.getResultRank() > 0) {
+                rankCounts[lotto.getResultRank()]++;
+            }
+        }
+        return rankCounts;
     }
 
-    private void printResult() {
+    private void printResult(List<Lotto> lottoTickets) {
+        int[] rankCounts = countRanks(lottoTickets);
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + rankCounts[5] + "개");
+        System.out.println("4개 일치 (50,000원) - " + rankCounts[4] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + rankCounts[3] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + rankCounts[2] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + rankCounts[1] + "개");
+    }
+
+    private void getMoneyForRank() {
 
     }
 
     private void getRateOfReturn() {
 
     }
-
-    private void end() {
-
-    }
-
 }

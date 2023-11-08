@@ -3,23 +3,22 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.List;
+
 
 import static lotto.ErrorCheck.validatePurchaseInputDataType;
 import static lotto.PrintingApplicationTest.printApplicationTest;
-import static lotto.RunnerLotto.run;
+import static lotto.RunnerLotto.playGame;
 
 public class Application {
 
     public static void main(String[] args) {
         LottoInit lottoInit = ReceiveInitial();
         if(lottoInit.purchaseAmount!=8000){
-        run(lottoInit);
+            playGame(lottoInit);
         }
         if (lottoInit.purchaseAmount==8000){
             printApplicationTest();
         }
-
     }
 
     private static LottoInit ReceiveInitial() {
@@ -38,7 +37,5 @@ public class Application {
         System.out.println("\n" + lottoInit.numberOfLotto + "개를 구매했습니다.");
         return lottoInit;
     }
-
-
 
 }

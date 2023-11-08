@@ -16,7 +16,7 @@ public class RunnerLotto {
     public static final int LOTTO_START_NUMBER = 1;
     public static final int LOTTO_END_NUMBER = 45;
 
-    public static void run(LottoInit lottoInit) {
+    public static void playGame(LottoInit lottoInit) {
         List<Lotto> allOfLottoPapers = makeAllLottoPaper(lottoInit.numberOfLotto);
         WinningNumberSet winningNumberSets = makeWinningNumber();
         PrinterResultSet resultSets = calculateResult(winningNumberSets, allOfLottoPapers);
@@ -37,9 +37,7 @@ public class RunnerLotto {
     private static List<Integer> makeRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_SIZE);
     }
-
-
-
+    
     public static WinningNumberSet makeWinningNumber() {
         String[] winningNumbers;
         int bonusNumber;

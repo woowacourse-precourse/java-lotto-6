@@ -10,7 +10,7 @@ import lotto.dto.PurchaseLottoDto;
 import lotto.dto.WinningStatisticsDto;
 
 public class OutputView {
-    private static final String PURCHASED_MESSAGE_FORM = "%d개를 구매했습니다.%n";
+    private static final String PURCHASED_MESSAGE_FORM = "%n%d개를 구매했습니다.%n";
     private static final String PURCHASE_LOTTO_FORM_DELIMITER = " \n";
 
     private static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";

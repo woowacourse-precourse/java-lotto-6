@@ -47,4 +47,12 @@ public class UserView {
         return results.stream().filter(r -> r == result).count();
     }
 
+    private static String formatResultString(LottoResult result, long count) {
+        String matchText = result.getMatchCount() + "개 일치";
+        if (result == LottoResult.FIVE_WITH_BONUS) {
+            matchText += ", 보너스 볼 일치";
+        }
+        String price = String.format("%,d원", result.getPrice());
+        return String.format("%s (%s) - %d개", matchText, price, count);
+    }
 }

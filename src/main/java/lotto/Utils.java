@@ -18,6 +18,18 @@ public class Utils {
         return true;
     }
 
+    public static boolean isNumeric(String str, List<Character> toExclude){
+        for (int i = 0; i < str.length(); i++){
+            if (toExclude.contains(str.charAt(i))){
+                continue;
+            }
+            if (str.charAt(i) < '0' || '9' < str.charAt(i)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static List<Integer> makeRandomNumbers(int start, int end, int cnt){
         List<Integer> makedNumbers;
         do {

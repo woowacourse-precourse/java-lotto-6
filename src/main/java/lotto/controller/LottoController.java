@@ -19,6 +19,7 @@ public class LottoController {
         buyLottos(money.trial());
         winningLotto = new Lotto(InputView.inputWinningNumbers());
         bonusNumber = InputView.inputBonusNumber();
+        OutputView.printAlertResultMessage();
         checkWinning();
     }
 
@@ -38,6 +39,7 @@ public class LottoController {
             Winning winning = Result.win(match, isBonus);
             resultCounter[winning.ordinal()]++;
         }
+        OutputView.printWinningResult(resultCounter);
     }
 
     public int calculateWinning(Lotto lotto1, Lotto lotto2) {

@@ -1,14 +1,10 @@
 package lotto;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class TestInputException {
+public class InputExceptionTest {
 
     Ui testUi = new Ui();
 
@@ -104,35 +100,5 @@ public class TestInputException {
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
-
-    @Test
-    public void checkDuplicatedInput(){
-
-        List<Integer> trueValue = new ArrayList<>();
-        trueValue.add(1);
-        trueValue.add(2);
-        trueValue.add(3);
-        trueValue.add(4);
-        trueValue.add(5);
-        trueValue.add(6);
-
-        List<Integer> falseValue = new ArrayList<>();
-        falseValue.add(1);
-        falseValue.add(1);
-        falseValue.add(2);
-        falseValue.add(3);
-        falseValue.add(4);
-        falseValue.add(5);
-
-        assertThatCode(()->testUi.checkDuplicatedInput(trueValue))
-                .doesNotThrowAnyException();
-
-        assertThatThrownBy(()->testUi.checkDuplicatedInput(falseValue))
-                .isInstanceOf(IllegalArgumentException.class);
-
-
-
-    }
-
 }
 

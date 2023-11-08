@@ -10,6 +10,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        checkDuplicatedValue(numbers);
         validate(numbers);
         this.numbers = numbers;
     }
@@ -21,13 +22,20 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void checkDuplicatedValue(List<Integer> numbers){
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public List<Integer> getNumbers(){
+
+        return this.numbers;
+    }
 
     public static List<Integer> makeLotto(){
 
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
-
-        return numbers;
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
 
 

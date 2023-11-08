@@ -22,13 +22,11 @@ public class LuckeyLotto {
     private static final int LOTTO_NUMBER_RANGE_START = 1;
     private static final int LOTTO_NUMBER_RANGE_END = 45;
     private int luckeyBonusNumber;
-    private List<Integer> luckeyNumbers;
 
     public LuckeyLotto(List<Integer> luckeyNumbers, String inputBonusNumber) {
         validate(luckeyNumbers, inputBonusNumber);
         int luckeyBonusNumber = Integer.valueOf(inputBonusNumber);
         luckeyNumbers.add(luckeyBonusNumber);
-        this.luckeyNumbers = luckeyNumbers;
         this.luckeyBonusNumber = luckeyBonusNumber;
     }
 
@@ -51,7 +49,4 @@ public class LuckeyLotto {
         return luckeyBonusNumber;
     }
 
-    public List<Integer> getluckeyNumbers() {
-        return luckeyNumbers;
-    }
 }

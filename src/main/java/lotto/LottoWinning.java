@@ -32,11 +32,7 @@ public class LottoWinning {
         if (new HashSet<Integer>(winningNumbers).size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호에 중복되는 숫자가 사용되었습니다.");
         }
-        int numberOfValidElements =
-                (int)winningNumbers.stream()
-                        .filter(n -> n <= LOTTO_WINNING_NUM_MAX && n >= LOTTO_WINNING_NUM_MIN)
-                        .count();
-        if (numberOfValidElements != 6) {
+        if (!winningNumbers.stream().allMatch(n -> n <= LOTTO_WINNING_NUM_MAX && n >= LOTTO_WINNING_NUM_MIN)) {
             throw new IllegalArgumentException("[ERROR] 로또 당첨 번호에 유효하지 않은 숫자가 사용되었습니다.");
         }
     }

@@ -15,7 +15,7 @@ public class Referee {
         for (Lotto lotto : lottos) {
             int matchedCount = lotto.countMatchedNumber(winningNumberValues);
             boolean isBonus = lotto.contains(winningNumber.getBonusNumber());
-            winningResult.addPrize(Prize.valueOf(matchedCount, isBonus));
+            winningResult.addPrize(Rank.valueOf(matchedCount, isBonus));
         }
         return winningResult;
     }

@@ -5,13 +5,13 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class WinningResult {
-    private final Map<Prize, Integer> values = new EnumMap<>(Prize.class);
+    private final Map<Rank, Integer> values = new EnumMap<>(Rank.class);
 
-    public void addPrize(Prize prize) {
-        values.put(prize, values.getOrDefault(prize, 0) + 1);
+    public void addPrize(Rank rank) {
+        values.put(rank, values.getOrDefault(rank, 0) + 1);
     }
 
-    public Map<Prize, Integer> getValues() {
+    public Map<Rank, Integer> getValues() {
         return Collections.unmodifiableMap(values);
     }
 }

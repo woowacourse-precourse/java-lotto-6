@@ -17,6 +17,6 @@ class RefereeTest {
 
         WinningResult actual = referee.judgeAll(lottos);
 
-        assertThat(actual.getValues()).containsKey(Prize.FIRST).containsValue(1);
+        assertThat(actual.getValues()).containsKey(Rank.FIRST).containsValue(1);
     }
 }

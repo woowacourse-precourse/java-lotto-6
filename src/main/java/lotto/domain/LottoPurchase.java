@@ -40,6 +40,10 @@ public class LottoPurchase {
         }
     }
 
+    public int getPurchaseCount (int price){
+        return price/1000;
+    }
+
     private int getUserPurchaseAmount() {
         String purchaseAmount = inputUtil.getUserInput();
         return validationUtil.validatePurchase(purchaseAmount);

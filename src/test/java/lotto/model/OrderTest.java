@@ -5,10 +5,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.Or;
 
 public class OrderTest {
-    private final String expectCost = "4000";
-    private final int expectBuyCount = 4;
+    private final String expectCost = "11000";
+    private final int expectBuyCount = 11;
     private final String ERROR_MESSAGE = "[ERROR]";
 
     @DisplayName("입력한 구매 금액이 1000원 단위여야 한다.")
@@ -48,5 +49,21 @@ public class OrderTest {
         int result = order.getBuyCount();
 
         assertThat(result).isEqualTo(expectBuyCount);
+    }
+
+    @DisplayName("수익률 계산이 올바른지 확인.")
+    @Test
+    void verifyCorrectCalcProfitRate() {
+        Order order = new Order(expectCost);
+        WinStatistics winStatistics = new WinStatistics();
+
+        winStatistics.pushRank(Rank.SECOND);
+        winStatistics.pushRank(Rank.FOURTH);
+
+        String result = order.getResult(winStatistics);
+
+        System.out.println(result);
+
+        assertThat(result).contains("273081.8%");
     }
 }

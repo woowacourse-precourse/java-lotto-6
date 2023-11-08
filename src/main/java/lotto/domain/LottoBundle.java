@@ -7,6 +7,8 @@ import static lotto.domain.Rank.NOTHING;
 import static lotto.domain.Rank.SECOND;
 import static lotto.domain.Rank.THIRD;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +20,27 @@ public class LottoBundle {
     private final List<Lotto> lotteries;
 
     public LottoBundle(List<List<Integer>> lotteries) {
-        this.lotteries = createLottos(lotteries);
+        this.lotteries = createLotteries(lotteries);
     }
 
-    private List<Lotto> createLottos(List<List<Integer>> lotteries) {
-        return lotteries.stream().map(Lotto::new).toList();
+    private List<Lotto> createLotteries(List<List<Integer>> lotteries) {
+        List<Lotto> sortedLotteries = new ArrayList<>();
+        for (List<Integer> lottery : lotteries) {
+            addSortedLottoNumbers(lottery, sortedLotteries);
+        }
+        return sortedLotteries;
+    }
+
+    private void addSortedLottoNumbers(List<Integer> lottery, List<Lotto> list) {
+        List<Integer> sortedLottoNumbers = createSortedLottoNumbers(lottery);
+        Lotto lotto = new Lotto(sortedLottoNumbers);
+        list.add(lotto);
+    }
+
+    private List<Integer> createSortedLottoNumbers(List<Integer> lottery) {
+        List<Integer> sortedLottoNumbers = new ArrayList<>(lottery);
+        Collections.sort(sortedLottoNumbers);
+        return sortedLottoNumbers;
     }
 
     public Map<Rank, Integer> checkRankings(Lotto winnerLotto, Bonus bonus) {

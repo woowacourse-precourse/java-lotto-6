@@ -7,11 +7,13 @@ import lotto.domain.LottoResult;
 import lotto.domain.RandomLottoFactory;
 import lotto.domain.WinningLotto;
 import lotto.view.input.InputView;
+import lotto.view.output.OutputView;
 
 public class MainController {
     public static void start() {
         LottoPurchaseAmount lottoPurchaseAmount = readLottoPurchaseAmount();
         Customer customer = Customer.of(lottoPurchaseAmount, new RandomLottoFactory());
+        OutputView.printPurchasedLottos(customer);
 
         WinningLotto winningLotto = readWinningLotto();
         LottoResult lottoResult = winningLotto.result(customer);

@@ -1,7 +1,11 @@
 package lotto;
 
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LottoResult {
 
@@ -39,13 +43,9 @@ public class LottoResult {
 
         for (LottoRank lottoRank : lottoRanks) {
             sb.append(lottoRank.getMatchCount())
-                    .append("개 일치")
-                    .append(lottoRank.isBonusMatch() ? ", 보너스 볼 일치" : "")
-                    .append(" (")
-                    .append(decimalFormat.format(lottoRank.getPrize()))
-                    .append("원) - ")
-                    .append(result.getOrDefault(lottoRank, 0))
-                    .append("개\n");
+                    .append("개 일치").append(lottoRank.isBonusMatch() ? ", 보너스 볼 일치 (" : " (")
+                    .append(decimalFormat.format(lottoRank.getPrize())).append("원) - ")
+                    .append(result.getOrDefault(lottoRank, 0)).append("개\n");
         }
     }
 }

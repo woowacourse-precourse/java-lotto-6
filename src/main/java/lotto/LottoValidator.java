@@ -23,7 +23,8 @@ public class LottoValidator {
 
     public static void rangeValidate(Integer number) {
         if ((number < LOTTO_MIN_NUMBER) || (number > LOTTO_MAX_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 " + LOTTO_MIN_NUMBER + " ~ " + LOTTO_MAX_NUMBER + " 사이의 숫자로 이루어져야 합니다.");
+            throw new IllegalArgumentException(
+                    "[ERROR] 로또 번호는 " + LOTTO_MIN_NUMBER + " ~ " + LOTTO_MAX_NUMBER + " 사이의 숫자로 이루어져야 합니다.");
         }
     }
 }

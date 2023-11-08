@@ -1,5 +1,10 @@
 package domain;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public enum LottoPrize {
 	FIRST_PRIZE(6, 2_000_000_000),
 	SECOND_PRIZE(5, 30_000_000),
@@ -14,6 +19,10 @@ public enum LottoPrize {
 	LottoPrize(int matchCount, int prizeMoney) {
 		this.matchCount = matchCount;
 		this.prizeMoney = prizeMoney;
+	}
+
+	public int getMatchCount() {
+		return matchCount;
 	}
 
 	public int getPrizeMoney() {
@@ -55,4 +64,13 @@ public enum LottoPrize {
 		return matchCount == FIFTH_PRIZE.matchCount;
 	}
 
+	public static List<LottoPrize> getLottoPrizesInReverseOrderWithoutBlank() {
+		List<LottoPrize> validPrizes = Arrays.stream(values())
+				.filter(prize -> prize != BLANK)
+				.collect(Collectors.toList());
+
+		Collections.reverse(validPrizes);
+
+		return validPrizes;
+	}
 }

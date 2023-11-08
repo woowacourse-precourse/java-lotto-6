@@ -37,6 +37,9 @@ public class Lotto {
         Set<Integer> numSet = new HashSet<>(numbers);
         return numbers.size() != numSet.size();
     }
+    public void printLotto(){
+        System.out.println(numbers);
+    }
 
     // TODO: 추가 기능 구현
 }

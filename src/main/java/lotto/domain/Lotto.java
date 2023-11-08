@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 
@@ -26,5 +26,9 @@ public class Lotto {
             }
         }
         System.out.println("]");
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 }

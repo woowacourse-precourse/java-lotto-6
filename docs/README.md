@@ -47,6 +47,13 @@
 - [ ] 구매 금액을 요청 / RequestPurchaseAmount()
 - [ ] 당첨 번호를 요청 / RequestWinningNumber()
 - [ ] 보너스 번호를 요청 /  RequestBonusNumber()
+- 
+### 출력 기능을 구현한다 # OutputView
+- [ ] 구매 금액을 요청 / RequestPurchaseAmount()
+- [ ] 당첨 번호를 요청 / RequestWinningNumber()
+- [ ] 보너스 번호를 요청 /  RequestBonusNumber()
+
+
 ---
 ## 🚀 기능 요구 사항
 

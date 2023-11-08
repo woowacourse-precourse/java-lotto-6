@@ -6,7 +6,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -18,7 +17,7 @@ public class LottoController {
     private LottoService lottoContainer = new LottoService(new ArrayList<>());
     public void run() {
         getLottoMoney();
-        printLottoList();
+        generatedLotto();
         winningLotto();
         bonusLotto();
         statisticLotto();
@@ -35,10 +34,8 @@ public class LottoController {
                 System.out.println(e.getMessage());
             }
         }
-
     }
-
-    private void printLottoList() {
+    private void generatedLotto() {
         int count = amount.getCount();
         OutputView.printPurchaseCount(count);
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
@@ -75,9 +72,9 @@ public class LottoController {
     }
 
     private void statisticLotto() {
-        LinkedHashMap<Rank, Integer> rankHashMap = new LinkedHashMap<>();
         OutputView.printStatistics();
-        LottoResult result = new LottoResult(new LinkedHashMap<>());
+        LinkedHashMap<Rank, Integer> rankHashMap = new LinkedHashMap<>();
+        LottoStatistics result = new LottoStatistics(new LinkedHashMap<>());
         List<Lotto> savedLotto = lottoContainer.getLottos();
         for (Lotto lotto : savedLotto) {
             rankHashMap = result.getRankResult(lotto, winningLotto.getWinningNumbers(), bonusLotto.getBonusNumber());

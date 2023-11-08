@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.List;
 
 public class WinningLotto {
+    private static final String BONUS_NUMBER_DUPLICATED_ERROR_MESSAGE = "당첨 번호와 보너스 번호는 중복될 수 없습니다.";
+
     private final Lotto lotto;
     private final LottoNumber bonusNumber;
 
@@ -15,7 +17,7 @@ public class WinningLotto {
 
     private void validateBonusNumberDuplicated() {
         if (bonusNumberMatches(lotto)) {
-            throw new IllegalArgumentException("당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED_ERROR_MESSAGE);
         }
     }
 

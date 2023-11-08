@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Print {
@@ -15,7 +16,7 @@ public class Print {
     public static void tickets(Customer customer) {
         System.out.printf(TICKETS_PRINT, customer.amount);
         for (int i = 0; i < customer.amount; i++) {
-            System.out.println(customer.tickets.get(i));
+            System.out.println(customer.tickets.get(i).stream().sorted().toList());
         }
     }
 

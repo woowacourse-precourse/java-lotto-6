@@ -28,7 +28,6 @@ public class Statistics {
         printResult();
     }
 
-
     private int getMatchingCount(Integer number, int matchingCount) {
         if (number == bonus) {
             matchingBonus++;
@@ -45,7 +44,7 @@ public class Statistics {
         return matchingCount;
     }
 
-    private void countMatch(int matchingCount, int matchingBonus) {
+    public void countMatch(int matchingCount, int matchingBonus) {
         if (matchingCount == 3) {
             Result.THREE.setMatch(Result.THREE.getMatch() + 1);
         }

@@ -2,6 +2,8 @@ package lotto.domain.lotto;
 
 import static lotto.util.ConstantUtils.LOTTO_SIZE_CRITERION;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,7 +19,14 @@ public class Lotto {
     }
 
     public static Lotto from(List<Integer> numbers) {
-        return new Lotto(numbers);
+        ValidationUtils.validateNotNull(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return new Lotto(sortedNumbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     public int getMatchCount(List<Integer> winningNumbers) {
@@ -31,7 +40,6 @@ public class Lotto {
     }
 
     protected void validate(List<Integer> numbers) {
-        ValidationUtils.validateNotNull(numbers);
         validateLottoNumbersSize(numbers);
         validateNoDuplicatedLottoNumbers(numbers);
     }
@@ -47,5 +55,22 @@ public class Lotto {
         if (set.size() != LOTTO_SIZE_CRITERION) {
             throw new IllegalArgumentException();
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return numbers.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Lotto other = (Lotto) obj;
+        return numbers.equals(other.numbers);
     }
 }

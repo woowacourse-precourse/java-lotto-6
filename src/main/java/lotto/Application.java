@@ -1,7 +1,6 @@
 package lotto;
 
 public class Application {
-    LotterySystem lottery = new LotterySystem();
     public static void main(String[] args) {
         LotterySystem lottery = new LotterySystem();
         try {
@@ -12,7 +11,7 @@ public class Application {
             lottery.perform();
             lottery.result();
         } catch (Exception e) {
-            System.out.println("[ERROR]");
+            System.out.println(e.getMessage());
         }
     }
 

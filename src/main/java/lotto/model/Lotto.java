@@ -12,7 +12,7 @@ public class Lotto {
     }
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6 || duplicate(numbers) != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Errors.LOTTO.getMessage());
         }
     }
     private int duplicate(List<Integer> numbers) {

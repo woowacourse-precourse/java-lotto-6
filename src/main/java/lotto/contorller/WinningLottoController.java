@@ -24,9 +24,11 @@ public class WinningLottoController {
 
         while (true) {
             String lottoInput = Console.readLine();
-            if (Validator.validateLotto(lottoInput)) {
+            try {
                 System.out.println();
                 return ticketsService.stringToLotto(lottoInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -59,18 +61,19 @@ public class WinningLottoController {
 
     public void init() {
         amount = getAmountInput();
-        issueWinningLotto();
+        issueTickets();
         Lotto lotto = getLottoInput();
         while (true) {
             int bonus = getBonusNumInput();
-            if (Validator.validateWinningLotto(lotto, bonus)) {
+            try {
                 winningLotto = ticketsService.getWinningLotto(lotto, bonus);
-                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
 
-    public void issueWinningLotto() {
+    public void issueTickets() {
         tickets = ticketsService.issue(amount);
         printTickets();
     }

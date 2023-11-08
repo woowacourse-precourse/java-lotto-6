@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.enumeration.ExceptionType;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,7 +14,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionType.INVALID_LOTTO_FORMAT.getMessage());
+        }
+        if(numbers.stream().distinct().count() < 6) {
+            throw new IllegalArgumentException(ExceptionType.DUPLICATE_LOTTO_NUMS.getMessage());
+        }
+        for (int num : numbers) {
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException(ExceptionType.EXCEED_LOTTO_RANGE.getMessage());
+            }
         }
     }
 

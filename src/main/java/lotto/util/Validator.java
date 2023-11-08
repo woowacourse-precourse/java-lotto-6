@@ -1,11 +1,8 @@
 package lotto.util;
 
-import lotto.domain.Lotto;
-import lotto.domain.WinningLotto;
 import lotto.enumeration.ExceptionType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -54,16 +51,9 @@ public class Validator {
         List<Integer> nums;
         try {
             nums = validateLottoFormats(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println(ExceptionType.INVALID_LOTTO_FORMAT.getMessage());
-            return false;
-        }
-
-        try {
-            validateLottoNums(nums);
             return true;
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println(ExceptionType.INVALID_LOTTO_FORMAT.getMessage());
             return false;
         }
     }
@@ -72,20 +62,8 @@ public class Validator {
         List<Integer> nums;
         validateLottoComma(input);
         nums = validateLottoFormat(input);
-        validateLottoLength(nums);
 
         return nums;
-    }
-
-    private static void validateLottoNums(List<Integer> nums) {
-        validateDuplicateNums(nums);
-        validateNumsRange(nums);
-    }
-
-    public static void validateLottoLength(List<Integer> nums) {
-        if (nums.size() != 6) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public static void validateLottoComma(String input) {
@@ -103,23 +81,8 @@ public class Validator {
         return nums;
     }
 
-    public static void validateDuplicateNums(List<Integer> nums) {
-        if (nums.stream().distinct().count() < 6) {
-            throw new IllegalArgumentException(ExceptionType.DUPLICATE_LOTTO_NUMS.getMessage());
-        }
-    }
-
-    public static void validateNumsRange(List<Integer> nums) {
-        for (int num : nums) {
-            if (num < 1 || num > 45) {
-                throw new IllegalArgumentException(ExceptionType.EXCEED_LOTTO_RANGE.getMessage());
-            }
-        }
-    }
-
     public static boolean validateBonus(String input) {
-        if (validateBonusType(input) &&
-                validateBonusRange(Integer.parseInt(input))) {
+        if (validateBonusType(input)) {
             return true;
         }
         return false;
@@ -131,31 +94,6 @@ public class Validator {
             return true;
         } catch (NumberFormatException e) {
             System.out.println(ExceptionType.INVALID_INPUT_TYPE.getMessage());
-            return false;
-        }
-    }
-
-    public static boolean validateBonusRange(int input) {
-        try {
-            if(input < 1 || input > 45) {
-                throw new IllegalArgumentException(ExceptionType.EXCEED_BONUS_RANGE.getMessage());
-            }
-            return true;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
-
-    public static boolean validateWinningLotto(Lotto lotto, int bonus) {
-        try {
-            if(lotto.getNumbers()
-                    .contains(bonus)) {
-                throw new IllegalArgumentException(ExceptionType.DUPLICATE_BONUS_LOTTO.getMessage());
-            }
-            return true;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             return false;
         }
     }

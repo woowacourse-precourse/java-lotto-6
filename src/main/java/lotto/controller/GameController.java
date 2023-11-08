@@ -64,7 +64,7 @@ public class GameController {
         try {
             OutputView.println(WINNING_NUMBER_INPUT_MESSAGE.getMessage());
             winningLotto = gameService.createWinningLotto(InputView.readWinningNumbers());
-            OutputView.println("");
+            OutputView.println(BLANK.getMessage());
         } catch (IllegalArgumentException e) {
             OutputView.println(e.getMessage());
             return inputWinningNumbers();

@@ -104,7 +104,7 @@ class ApplicationTest extends NsTest {
         List<Integer> results = lottoService.getResults(lottos, winnerNums, bonusNum);
 
         // when
-        double earningRate = lottoService.calculateEarningRate(results, 6000);
+        double earningRate = lottoService.calculateEarningRate(results, LOTTO_PRICE*lottos.size());
 
         // then
         assertThat(earningRate).isEqualTo(33859250);

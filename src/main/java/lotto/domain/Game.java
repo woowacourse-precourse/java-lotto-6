@@ -6,6 +6,7 @@ import static lotto.view.InputView.inputLottoPurchaseAmount;
 import static lotto.view.InputView.inputWinningNumbers;
 import static lotto.view.OutputView.printLottoNumbers;
 
+import common.enumtype.ResultType;
 import common.exception.InvalidArgumentException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class Game {
     private final LottoPurchaseAmount amount;
     private final List<Lotto> lottoes;
     private final WinningNumbers winningNumbers;
+    private final LottoResult lottoResult;
 
     public Game(LottoNumberStrategy strategy) {
         strategy = settingStrategy(strategy);
@@ -27,6 +29,7 @@ public class Game {
         this.lottoes = createLottoes(strategy, amount.getLottoQuantity());
         printLottoes();
         this.winningNumbers = createNumbers();
+        this.lottoResult = createLottoResult();
     }
 
     private LottoNumberStrategy settingStrategy(LottoNumberStrategy strategy) {
@@ -108,6 +111,17 @@ public class Game {
     private int createBonusNumberFromUser() {
         String input = inputBonusNumber();
         return parseInt(input);
+    }
+
+    private LottoResult createLottoResult() {
+        List<ResultType> resultTypes = calculateLottoResult();
+        return new LottoResult(resultTypes);
+    }
+
+    private List<ResultType> calculateLottoResult() {
+        return lottoes.stream()
+                .map(lotto -> winningNumbers.matchingResult(lotto.getLottoNumbers()))
+                .collect(Collectors.toList());
     }
 
     private int parseInt(String input) {

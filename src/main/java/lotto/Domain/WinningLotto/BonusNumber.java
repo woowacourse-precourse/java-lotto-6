@@ -9,8 +9,9 @@ public class BonusNumber {
 
     private final int number;
 
-    private BonusNumber(String number) {
-        this.number = generateBonusNumber(number);
+    private BonusNumber(String inputBonusNumber) {
+        validate(inputBonusNumber);
+        this.number = convertStringToInteger(inputBonusNumber);
     }
 
     public static BonusNumber from(String number) {
@@ -21,11 +22,10 @@ public class BonusNumber {
         return number;
     }
 
-    private int generateBonusNumber(String inputBonusNumber) {
+    private void validate(String inputBonusNumber) {
         hasBlank(inputBonusNumber);
         isInteger(inputBonusNumber);
         Integer bonusNumber = convertStringToInteger(inputBonusNumber);
         isValidLottoNumber(bonusNumber);
-        return bonusNumber;
     }
 }

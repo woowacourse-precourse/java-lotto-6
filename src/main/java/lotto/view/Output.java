@@ -22,12 +22,7 @@ public class Output {
             String count = resultList.get(prize).toString();
             System.out.println(message+" - "+count+"개");
         }
-//        String formatted="0.00";
-//        if(profit.getProfitRate()!=0){
-//            formatted = decimalFormat.format(profit.getProfitRate());
-//        }
         String profitRate = String.format("%.1f",profit.getProfitRate());
-
         System.out.println("총 수익률은 "+profitRate+"%입니다.\n");
     }
     public void lottoResult(List<Lotto> lottos){

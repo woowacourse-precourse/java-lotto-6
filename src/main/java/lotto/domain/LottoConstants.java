@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public enum LottoInfo {
+public enum LottoConstants {
     SIZE(6),
     RANGE_BEGIN(1),
     RANGE_END(45),
@@ -8,7 +8,7 @@ public enum LottoInfo {
 
     private final int number;
 
-    private LottoInfo(int number) {
+    private LottoConstants(int number) {
         this.number = number;
     }
 

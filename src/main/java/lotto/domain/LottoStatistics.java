@@ -1,16 +1,17 @@
 package lotto.domain;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class LottoStatistics {
     private final HashMap<LottoRank, Integer> rankCounter;
     private final long winningMoney;
     private final double winningRate;
 
-    public LottoStatistics(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus, Amount amount) {
+    public LottoStatistics(List<Lotto> purchasedLottos, Lotto winningLotto, int lottoBonus, int amount) {
         rankCounter = new HashMap<>();
         initRankCounter();
-        countRanks(lottosPurchased, winningLotto, lottoBonus);
+        countRanks(purchasedLottos, winningLotto, lottoBonus);
         winningMoney = calculateWinningMoney();
         winningRate = calculateWinningRate(amount);
     }
@@ -19,12 +20,12 @@ public class LottoStatistics {
         return rankCounter;
     }
 
-    public double getWinningRate() {
-        return winningRate;
+    public long getWinningMoney() {
+        return winningMoney;
     }
 
-    public int getCountOf(LottoRank lottoRank) {
-        return rankCounter.get(lottoRank);
+    public double getWinningRate() {
+        return winningRate;
     }
 
     private void initRankCounter() {
@@ -33,11 +34,9 @@ public class LottoStatistics {
         }
     }
 
-    private void countRanks(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus) {
-        int numberOfLottosPurchased = lottosPurchased.getNumberOfLottos();
-
-        for (int i = 0; i < numberOfLottosPurchased; i++) {
-            Lotto lotto = lottosPurchased.getLotto(i);
+    private void countRanks(List<Lotto> purchasedLottos, Lotto winningLotto, int lottoBonus) {
+        for (int i = 0; i < purchasedLottos.size(); i++) {
+            Lotto lotto = purchasedLottos.get(i);
             int winningInLotto = lotto.countMatchingWith(winningLotto);
             boolean bonusInLotto = lotto.contains(lottoBonus);
             LottoRank rank = LottoRank.getRank(winningInLotto, bonusInLotto);
@@ -55,7 +54,7 @@ public class LottoStatistics {
         return winningMoney;
     }
 
-    private double calculateWinningRate(Amount amount) {
-        return 100.0 * winningMoney / amount.getAmount();
+    private double calculateWinningRate(int amount) {
+        return 100.0 * winningMoney / amount;
     }
 }

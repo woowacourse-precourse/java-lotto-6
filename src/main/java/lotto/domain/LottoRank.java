@@ -18,6 +18,14 @@ public enum LottoRank {
         this.prefixOfMessage = prefixOfMessage;
     }
 
+    public long getMoney() {
+        return money;
+    }
+
+    public String getMessageWith(int counts) {
+        return prefixOfMessage + counts + SUFFIX_OF_MESSAGE;
+    }
+
     public static LottoRank getRank(int winningInLotto, boolean bonusInLotto) {
         if (winningInLotto == 6) {
             return LottoRank.FIRST_PRIZE;
@@ -31,13 +39,5 @@ public enum LottoRank {
             return LottoRank.FIFTH_PRIZE;
         }
         return LottoRank.NO_PRIZE;
-    }
-
-    public long getMoney() {
-        return money;
-    }
-
-    public String getMessageWith(int counts) {
-        return prefixOfMessage + counts + SUFFIX_OF_MESSAGE;
     }
 }

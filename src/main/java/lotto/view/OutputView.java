@@ -7,16 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OutputView {
-    private static final String NUMBER_OF_LOTTOS_MESSAGE = "개를 구매했습니다.";
+    private static final String COUNTS_OF_PURCHASING_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계\n---";
     private static final String WINNING_RATE_MESSAGE_PREFIX = "총 수익률은 ";
     private static final String WINNING_RATE_MESSAGE_SUFFIX = "%입니다.";
 
-    public void printNumberOfLottosPurchased(int number) {
-        System.out.println(number + NUMBER_OF_LOTTOS_MESSAGE);
+    public void printCountsOfPurchasing(int counts) {
+        System.out.println(counts + COUNTS_OF_PURCHASING_MESSAGE);
     }
 
-    public void printLottosPurchased(List<Lotto> lottos) {
+    public void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }

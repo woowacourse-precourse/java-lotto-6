@@ -16,21 +16,21 @@ public class Lotto {
         return numbers.toString();
     }
 
-    private void validate(final List<Integer> numbers) {
+    private void validate(List<Integer> numbers) {
         if (!isSixNumbers(numbers)) {
-            throw new IllegalArgumentException(LottoExceptionType.WRONG_SIZE.getMessage());
+            throw new IllegalArgumentException(ExceptionType.LOTTO_WRONG_SIZE.getMessage());
         } else if (!isInRange(numbers)) {
-            throw new IllegalArgumentException(LottoExceptionType.OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(ExceptionType.LOTTO_OUT_OF_RANGE.getMessage());
         } else if (hasDuplicateNumbers(numbers)) {
-            throw new IllegalArgumentException(LottoExceptionType.DUPLICATE_NUMBERS.getMessage());
+            throw new IllegalArgumentException(ExceptionType.LOTTO_DUPLICATE_NUMBERS.getMessage());
         }
     }
 
-    private boolean isSixNumbers(final List<Integer> numbers) {
-        return numbers.size() == LottoInfo.SIZE.getNumber();
+    private boolean isSixNumbers(List<Integer> numbers) {
+        return numbers.size() == LottoConstants.SIZE.getNumber();
     }
 
-    private boolean isInRange(final List<Integer> numbers) {
+    private boolean isInRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (!isInRangeForEach(number)) {
                 return false;
@@ -39,30 +39,16 @@ public class Lotto {
         return true;
     }
 
-    private boolean isInRangeForEach(final int number) {
-        return (number >= LottoInfo.RANGE_BEGIN.getNumber()) && (number <= LottoInfo.RANGE_END.getNumber());
+    private boolean isInRangeForEach(int number) {
+        return (number >= LottoConstants.RANGE_BEGIN.getNumber()) && (number <= LottoConstants.RANGE_END.getNumber());
     }
 
-    private boolean hasDuplicateNumbers(final List<Integer> numbers) {
+    private boolean hasDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> numbersUnique = new HashSet<>(numbers);
         return numbersUnique.size() != numbers.size();
     }
 
-    public static List<Integer> convertToIntegers(final String numbers) {
-        List<String> numbersSplit = Arrays.asList(numbers.split(","));
-        List<Integer> numbersConverted = new ArrayList<>();
-
-        for (String number : numbersSplit) {
-            try {
-                numbersConverted.add(Integer.parseInt(number.strip()));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(LottoExceptionType.WRONG_SIZE.getMessage());
-            }
-        }
-        return numbersConverted;
-    }
-
-    public int countMatchingWith(final Lotto otherLotto) {
+    public int countMatchingWith(Lotto otherLotto) {
         int numberOfMatching = 0;
 
         for (int number : numbers) {
@@ -73,11 +59,25 @@ public class Lotto {
         return numberOfMatching;
     }
 
-    public boolean contains(final LottoBonus lottoBonus) {
-        return numbers.contains(lottoBonus.getNumber());
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
-    public boolean contains(final int number) {
-        return numbers.contains(number);
+    public static List<Integer> convertToIntegers(String numbers) {
+        List<String> numbersSplit = Arrays.asList(numbers.split(","));
+        List<Integer> numbersConverted = new ArrayList<>();
+
+        for (String number : numbersSplit) {
+            numbersConverted.add(convertToIntegersForEach(number));
+        }
+        return numbersConverted;
+    }
+
+    private static int convertToIntegersForEach(String number) {
+        try {
+            return Integer.parseInt(number.strip());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionType.LOTTO_WRONG_SIZE.getMessage());
+        }
     }
 }

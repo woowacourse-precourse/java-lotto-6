@@ -4,7 +4,7 @@ public class Buyer {
     static final int LOTTO_PRICE=1000;
     private int purchaseAmount;
 
-    private int LottoQuantity;
+    private int lottoQuantity;
 
     public Buyer(int purchaseAmount){
         this.purchaseAmount=purchaseAmount;
@@ -12,7 +12,7 @@ public class Buyer {
     }
 
     private void calculateQuantity(int purchaseAmount){
-        this.LottoQuantity=purchaseAmount/LOTTO_PRICE;
+        this.lottoQuantity =purchaseAmount/LOTTO_PRICE;
     }
 
     public int getPurchaseAmount() {
@@ -20,6 +20,6 @@ public class Buyer {
     }
 
     public int getLottoQuantity() {
-        return LottoQuantity;
+        return lottoQuantity;
     }
 }

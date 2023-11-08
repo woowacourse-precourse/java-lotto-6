@@ -42,7 +42,7 @@ public class ValidateBonusNumber {
         }
         return false;
     }
-    private static void validateDuplicateBonusNumber(Lotto winningNumber,int bonusNumber){
+    public static void validateDuplicateBonusNumber(Lotto winningNumber,int bonusNumber){
         if(winningNumber.getLotto().contains(bonusNumber)){
             throw new IllegalArgumentException("[ERROR] 보너스번호는 당첨번호와 중복될 수 없습니다");
         }

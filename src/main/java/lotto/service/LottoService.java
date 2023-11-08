@@ -20,7 +20,6 @@ public class LottoService {
     }
 
 
-
     public Lottos exchangeLottoTicket(int purchaseAmount){
         Buyer buyerInfo = getBuyerInfo(purchaseAmount);
         OutputView.printQuantityOfLotto(buyerInfo.getLottoQuantity());

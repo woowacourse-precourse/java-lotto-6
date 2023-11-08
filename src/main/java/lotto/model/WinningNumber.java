@@ -7,6 +7,8 @@ public class WinningNumber {
 
     private int bonusNumber;
 
+
+
     public WinningNumber(Lotto winningNumber,int bonusNumber){
         this.winningNumber=winningNumber;
         this.bonusNumber=bonusNumber;

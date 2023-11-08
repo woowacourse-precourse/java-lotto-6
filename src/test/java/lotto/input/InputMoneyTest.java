@@ -1,5 +1,7 @@
 package lotto.input;
 
+import camp.nextstep.edu.missionutils.Console;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +13,10 @@ import static lotto.input.validator.InputMoneyValidator.getInstance;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputMoneyTest {
+    @AfterEach
+    public void afterEach(){
+        Console.close();
+    }
     @DisplayName("사용자가 빈 문자열을 입력하면 예외가 발생한다.")
     @Test
     public void createInputBlank() {

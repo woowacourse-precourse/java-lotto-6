@@ -1,6 +1,7 @@
 package lotto.input;
 
-import lotto.input.InputLotto;
+import camp.nextstep.edu.missionutils.Console;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static lotto.input.validator.InputLottoValidator.getInstance;
 
 public class InputLottoTest {
-
+    @AfterEach
+    public void afterEach(){
+        Console.close();
+    }
     @DisplayName("사용자가 알파벳을 입력하면 예외가 발생한다. ")
     @Test
     void createInputAlphabet() {
@@ -39,7 +43,7 @@ public class InputLottoTest {
     @Test
     void createInputSuccess() {
         String input = "1,2,3,4,5,6";
-        String result = "";
+        String result;
         InputStream in = new ByteArrayInputStream(input.getBytes());
         InputLotto inputLotto = new InputLotto();
 

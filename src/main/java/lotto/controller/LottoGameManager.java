@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Consumer;
+import lotto.domain.Prize;
 import lotto.domain.Winning;
 import lotto.domain.lotto.Lotto;
 import lotto.service.LottoStore;
@@ -27,6 +29,7 @@ public class LottoGameManager {
         printLottos();
         enterWinningNumber();
         enterBonusNumber();
+        printTotalPrize();
     }
 
     private void enterPurchaseAmount() {
@@ -70,6 +73,12 @@ public class LottoGameManager {
                 System.err.println(e.getMessage());
             }
         }
-
     }
+
+    private void printTotalPrize(){
+        Map<Prize, Integer> totalPrize = winning.calcTotalPrize(consumer.getLottos());
+        outputView.printTotalPrize(totalPrize);
+    }
+
+
 }

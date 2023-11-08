@@ -35,6 +35,15 @@ public class LottoController {
     private void progressLotto() {
         List<Integer> winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber();
+        while (true) {
+            try {
+                LottoValidation.validateIsDuplicatedWiningAndBonusNumber(winningNumber, bonusNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e);
+                bonusNumber = getBonusNumber();
+            }
+        }
         lottos = new Lottos(winningNumber, bonusNumber, player);
     }
 

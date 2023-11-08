@@ -10,8 +10,8 @@ public class Lottos {
     private final List<Integer> winningNumber;
     private final int bonusNumber;
     private final Player player;
-    private LottoResult lottoResult = LottoResult.NONE;
     private final Map<LottoResult, Integer> lottoResultWithCount = new HashMap<>();
+    private LottoResult lottoResult = LottoResult.NONE;
     private int total = 0;
 
     public Lottos(List<Integer> winningNumber, int bonusNumber, Player player) {

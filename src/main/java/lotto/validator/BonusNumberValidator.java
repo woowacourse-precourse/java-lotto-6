@@ -31,7 +31,7 @@ public class BonusNumberValidator {
         boolean isDuplicate = winningLotto.getNumbers().contains(number);
 
         if (isDuplicate) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_BONUS_NUMBER_RANGE_MESSAGE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_MESSAGE.getMessage());
         }
     }
 }

@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.exception.checkUserInputDivideByThousand;
+import lotto.exception.CheckUserInputDivideByThousand;
 import lotto.exception.CheckUserInputUnderThousand;
 
 public class Ticket {
@@ -24,7 +24,7 @@ public class Ticket {
 
     private void checkDivideByThousand(int userInput){
         if (userInput % 1000 != 0) {
-            throw new checkUserInputDivideByThousand();
+            throw new CheckUserInputDivideByThousand();
         }
     }
 

@@ -14,4 +14,9 @@ public class InputView {
         String input = Console.readLine();
         return Validation.isValidWinnerNumbers(input);
     }
+
+    public static int getBonusNumber() {
+        String input = Console.readLine();
+        return Validation.isValidBonusNumber(input);
+    }
 }

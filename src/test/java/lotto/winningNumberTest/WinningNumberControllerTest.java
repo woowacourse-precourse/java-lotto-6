@@ -28,4 +28,21 @@ public class WinningNumberControllerTest {
         Assertions.assertThat(WinningNumber.getWinningNums().get(4)).isEqualTo(5);
 
     }
+
+    @DisplayName("보너스 금액 입력 테스트")
+    @Test
+    void putBonusNum() {
+        // given
+        String winningNums = "1,2,3,4,5,6";
+        String bonusNum = "7";
+
+        // when
+        WinningNumberController.putWinningNums(winningNums);
+        WinningNumberController.putBonusNum(bonusNum);
+
+        //then
+        Assertions.assertThat(WinningNumber.getBonusNum()).isEqualTo(7);
+
+
+    }
 }

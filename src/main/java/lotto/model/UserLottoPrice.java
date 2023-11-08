@@ -30,7 +30,7 @@ public class UserLottoPrice {
     }
 
     private void validateUserPriceLotto(int buyPrice) {
-        if (buyPrice % LOTTO_ONE_PRICE != 0) {
+        if (buyPrice % LOTTO_ONE_PRICE != 0 || buyPrice <= 0) {
             throw new IllegalArgumentException(BUY_PRICE_ERROR);
         }
     }

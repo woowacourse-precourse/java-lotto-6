@@ -24,5 +24,11 @@ public class Validator {
         throw new IllegalArgumentException("[ERROR]");
     }
 
+    static void isAlreadyExist(HashSet<Integer> list, int input) {
+        if (!list.contains(input)) {
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR]");
+    }
 
 }

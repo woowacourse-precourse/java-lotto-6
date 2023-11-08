@@ -12,6 +12,7 @@ public class Lotto {
     private static final String CHECK_NUMBER_RANGE_REQUEST_MESSAGE = "로또 번호는 1~45 사이의 숫자여야 합니다.";
     private static final String CHECK_EACH_NUMBER_NOT_OVERLAP_REQUEST_MESSAGE = "로또 번호는 서로 중복되지 않아야 합니다.";
     private static final int LOTTO_SIZE = 6;
+    private static final int TWO = 2;
 
     private final List<Integer> numbers;
 
@@ -49,7 +50,7 @@ public class Lotto {
         removedOverlappingNumbers.addAll(numbers);
         removedOverlappingNumbers.addAll(other.getNumbers());
 
-        return LOTTO_SIZE * 2 - removedOverlappingNumbers.size();
+        return (LOTTO_SIZE * TWO) - removedOverlappingNumbers.size();
     }
 
     public boolean isContainBonusNumber(int bonusNumber) {

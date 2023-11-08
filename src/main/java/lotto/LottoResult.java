@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
+    private static final int PERCENT = 100;
     private final List<Integer> counted;
     private final List<Boolean> checked;
 
@@ -22,7 +23,7 @@ public class LottoResult {
                 + result.get(Rank.FIVE_MATCH_AND_BONUS) * Rank.FIVE_MATCH_AND_BONUS.getPrize()
                 + result.get(Rank.SIX_MATCH) * Rank.SIX_MATCH.getPrize();
 
-        return profit / purchaseMoney * 100;
+        return profit / purchaseMoney * PERCENT;
     }
 
     public Map<Rank, Integer> getFinalResult() {

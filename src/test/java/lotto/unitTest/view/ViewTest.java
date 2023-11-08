@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -12,8 +13,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.IO.Input;
-import lotto.rule.LottoWinningRule;
 import lotto.model.RankingManager;
+import lotto.rule.LottoWinningRule;
 import lotto.view.View;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,23 +24,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ViewTest {
-    private Input input;
     private View view;
     private ByteArrayOutputStream outputStreamCaptor;
     private PrintStream standardOut;
 
-    protected void inputValue(String value) {
-        System.setIn(new ByteArrayInputStream(value.getBytes()));
-    }
-
-    protected String getOutput() {
-        return outputStreamCaptor.toString();
-    }
 
     @BeforeEach
     public void setUp() {
-        input = new Input();
-        view = new View(input);
+        view = new View(new Input());
 
         standardOut = System.out;
         outputStreamCaptor = new ByteArrayOutputStream();
@@ -48,10 +40,17 @@ class ViewTest {
 
     @AfterEach
     public void restoreSettings() {
-        input.close();
+        Console.close();
         System.setOut(standardOut);
     }
 
+    private void inputValue(String value) {
+        System.setIn(new ByteArrayInputStream(value.getBytes()));
+    }
+
+    private String getOutput() {
+        return outputStreamCaptor.toString();
+    }
     @Nested
     class 로또_구입_금액_입력_시 {
 

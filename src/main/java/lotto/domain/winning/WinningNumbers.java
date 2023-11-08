@@ -53,7 +53,7 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateWinningNumbersContainsBonusNumber(BonusNumber bonusNumber) throws DuplicatedWinningNumbersAndBonusNumberException {
+    private void validateWinningNumbersContainsBonusNumber(BonusNumber bonusNumber) {
         if (bonusNumberAlreadyIncluded(bonusNumber)) {
             String message = ExceptionMessage.IS_DUPLICATED_WITH_WINNING.toString();
             throw new DuplicatedWinningNumbersAndBonusNumberException(message);

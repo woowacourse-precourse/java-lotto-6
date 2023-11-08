@@ -2,7 +2,6 @@ package lotto.domain.winning;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.Map;
 
 public enum WinningGrade {
     DEFAULT(0, 0),

@@ -21,7 +21,7 @@ public class OutputView {
 
     public static void showWinningResult(HashMap<WinningRule, Integer> results, WinningRule rank) {
         if (rank.equals(WinningRule.SECOND_PRIZE)) {
-            System.out.println(rank.getMatchingNumbers() + "개 일치, 보너스 볼 일치" + "(" + rank.getConvertPrize()+ "원) - " + results.get(rank) + "개");
+            System.out.println(rank.getMatchingNumbers() + "개 일치, 보너스 볼 일치 " + "(" + rank.getConvertPrize()+ "원) - " + results.get(rank) + "개");
             return;
         }
         System.out.println(rank.getMatchingNumbers() + "개 일치 " + "(" + rank.getConvertPrize()+ "원) - " + results.get(rank) + "개");

@@ -1,14 +1,14 @@
-package domain;
+package dto;
 
 import java.util.List;
 
-public class User {
+public class UserDTO {
 
     private final List<Integer> numbers;
     private final Integer bonusNumber;
 
 
-    public User(List<Integer> numbers, Integer bonusNumber) {
+    public UserDTO(List<Integer> numbers, Integer bonusNumber) {
         this.numbers = numbers;
         this.bonusNumber = bonusNumber;
     }

@@ -1,6 +1,6 @@
 package controller;
 
-import domain.User;
+import dto.UserDTO;
 import java.util.LinkedList;
 import java.util.List;
 import lotto.Lotto;
@@ -15,7 +15,7 @@ public class LottoController {
     private static final Integer UNIT_NUMBER = 1000;
 
     private List<Lotto> lottoList;
-    private User user;
+    private UserDTO userDTO;
 
     public LottoController() {
 
@@ -41,7 +41,7 @@ public class LottoController {
 
     public void calcTwoNumberList() {
         lottoList.forEach(lotto -> {
-            Integer rank = lotto.getRank(user.getNumbers(), user.getBonusNumber());
+            Integer rank = lotto.getRank(userDTO.getNumbers(), userDTO.getBonusNumber());
             RankRepository.increaseNumberOfWins(rank);
         });
     }
@@ -49,12 +49,12 @@ public class LottoController {
     public void createUser() {
         List<Integer> numbers = InputView.inputWinningNumbers();
         Integer bonusNumber = InputView.inputBonusNumber(numbers);
-        user = new User(numbers, bonusNumber);
+        userDTO = new UserDTO(numbers, bonusNumber);
     }
 
     public void makeLottoList() {
         Integer purchasePrice = InputView.inputPurchasePrice();
-        Integer totalPurchaseQuantity = purchasePrice / 1000;
+        Integer totalPurchaseQuantity = purchasePrice / UNIT_NUMBER;
         OutputView.outputTotalPurchaseQuantity(totalPurchaseQuantity);
         for (int i=START_INDEX;i<totalPurchaseQuantity;i++) {
             lottoList.add(new Lotto(LottoNumber.makeLottoNumbers()));

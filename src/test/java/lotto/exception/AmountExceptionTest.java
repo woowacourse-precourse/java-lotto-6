@@ -1,21 +1,17 @@
 package lotto.exception;
 
-import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class AmountExceptionTest {
     AmountException amountException = new AmountException();
 
     @Test
-    @DisplayName("빈칸을 입력하면 예외가 발생한다.")
+    @DisplayName("빈칸을 입력 하면 예외가 발생 한다.")
     void checkBlank() {
         assertThatThrownBy(() -> amountException.checkBlank(""))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -23,7 +19,7 @@ class AmountExceptionTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"-2", "abc123", "jfk"})
-    @DisplayName("음수나 정수가 아닌 값은 예외가 발생한다.")
+    @DisplayName("음수나 정수가 아닌 값은 예외가 발생 한다.")
     void checkPositiveInteger(String input) {
         assertThatThrownBy(() -> amountException.checkPositiveInteger(input))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -37,8 +33,12 @@ class AmountExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void checkLessThanMaxAmount() {
+    @ParameterizedTest
+    @ValueSource(strings = {"999", "100001"})
+    @DisplayName("로또 구매 가능 금액을 넘어 가면 예외가 발생 한다.")
+    void checkLessThanMaxAmount(String price) {
+        assertThatThrownBy(() -> amountException.checkLessThanMaxAmount(price))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

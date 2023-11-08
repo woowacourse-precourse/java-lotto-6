@@ -14,7 +14,6 @@ public class LottoDrawMachine {
     private int bonusNumber;
 
     LottoDrawMachine() {
-//        this.winningNumbers = new ArrayList<>();
     }
 
     public void drawNumberManual() {
@@ -34,9 +33,9 @@ public class LottoDrawMachine {
         Announcement.INPUT_WINNING_NUMBERS.speak();
         while (true) {
             try {
-                String[] inputNumbers = Console.readLine().split(",");
-                validateNumericOfInputStrings(inputNumbers);
-                List<Integer> winningNumbers = Arrays.stream(inputNumbers)
+                String[] inputStrings = Console.readLine().split(",");
+                validateNumeric(inputStrings);
+                List<Integer> winningNumbers = Arrays.stream(inputStrings)
                     .map(Integer::parseInt)
                     .toList();
                 validateOverSize(winningNumbers, Constraint.LOTTO_MAX_SIZE.getValue());
@@ -55,11 +54,27 @@ public class LottoDrawMachine {
 
     private int getBonusNumberFromInput() {
         Announcement.INPUT_BONUS_NUMBER.speak();
-        return 1;
+        while (true) {
+            try {
+                String inputNumber = Console.readLine();
+                validateNumeric(inputNumber);
+                int bonusNumber = Integer.parseInt(inputNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                ErrorMessage.printExceptionMessage(e);
+            }
+        }
     }
 
+    private void validateNumeric(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_NUMERIC.getMessage());
+        }
+    }
 
-    private void validateNumericOfInputStrings(String[] inputStrings) {
+    private void validateNumeric(String[] inputStrings) {
         try {
             for (String input : inputStrings) {
                 Integer.parseInt(input);

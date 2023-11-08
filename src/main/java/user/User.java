@@ -28,4 +28,7 @@ public class User {
         lottos.printWinningStatistics();
     }
 
+    public void printProfitRate() {
+        lottos.printProfitRate();
+    }
 }

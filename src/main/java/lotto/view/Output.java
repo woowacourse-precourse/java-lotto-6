@@ -7,7 +7,7 @@ import lotto.model.WinStatistics;
 
 public class Output {
     public void buyLottoNumbers(LottoTicket lottoTicket, Order order) {
-        // 구매한 티켓 수 출력
+        System.out.print(order.getBuyCountToString());
         System.out.println(OutputMessage.PURCHASED_COUNT_MESSAGE);
 
         // 구매한 티켓 번호 출력

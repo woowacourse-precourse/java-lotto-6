@@ -58,7 +58,7 @@ public class LottoController {
     }
 
     private void printLottoTicket() {
-
+        outputView.buyLottoNumbers(this.lottoTicket, this.order);
     }
 
     private void inputWiningLotto() {

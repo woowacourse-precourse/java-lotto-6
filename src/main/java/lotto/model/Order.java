@@ -36,7 +36,10 @@ public class Order {
         validateMultipleOfThousand(cost);
     }
     public String getBuyCountToString() {
+        StringBuilder stringBuilder = new StringBuilder();
 
+        return stringBuilder.append(this.buyCount)
+                .toString();
     }
 
     public String getResult(WinStatistics winStatistics) {

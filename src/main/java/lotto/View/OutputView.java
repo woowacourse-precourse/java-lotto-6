@@ -1,7 +1,9 @@
 package lotto.View;
 
 import lotto.Domain.Lotto;
+import lotto.Domain.PrizeMoney;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
@@ -36,18 +38,18 @@ public class OutputView {
     }
 
     public static void printMatchingCount(List<Integer> matchingCount) {
+
+        DecimalFormat df = new DecimalFormat("###,###");
+
         System.out.println("\n당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + matchingCount.get(0) + "개");
-        System.out.println("4개 일치 (50,000원) - " + matchingCount.get(1) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + matchingCount.get(2) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchingCount.get(3) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + matchingCount.get(4) + "개");
+        System.out.println("3개 일치 (" + df.format(PrizeMoney.FIFTH.getValue()) + "원) - " + matchingCount.get(0) + "개");
+        System.out.println("4개 일치 (" + df.format(PrizeMoney.FOURTH.getValue()) + "원) - " + matchingCount.get(1) + "개");
+        System.out.println("5개 일치 (" + df.format(PrizeMoney.THIRD.getValue()) + "원) - " + matchingCount.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + df.format(PrizeMoney.SECOND.getValue()) + "원) - " + matchingCount.get(3) + "개");
+        System.out.println("6개 일치 (" + df.format(PrizeMoney.FIRST.getValue()) + "원) - " + matchingCount.get(4) + "개");
     }
 
     public static void printEarningRate(double earningRate) {
-
-
-
         System.out.println(String.format("총 수익률은 %.1f%%입니다.", earningRate*100));
 
     }

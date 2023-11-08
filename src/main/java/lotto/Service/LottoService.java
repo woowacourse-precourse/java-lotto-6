@@ -2,6 +2,7 @@ package lotto.Service;
 
 import lotto.Domain.Lotto;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Domain.PrizeMoney;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -90,11 +91,11 @@ public class LottoService {
     public double findEarningRate(Integer purchaseSum, List<Integer> matchingCount) {
         double sum = 0.0;
 
-        sum += matchingCount.get(0) * 5000;
-        sum += matchingCount.get(1) * 50000;
-        sum += matchingCount.get(2) * 1500000;
-        sum += matchingCount.get(3) * 30000000;
-        sum += matchingCount.get(4) * 2000000000;
+        sum += matchingCount.get(0) * PrizeMoney.FIFTH.getValue();
+        sum += matchingCount.get(1) * PrizeMoney.FOURTH.getValue();
+        sum += matchingCount.get(2) * PrizeMoney.THIRD.getValue();
+        sum += matchingCount.get(3) * PrizeMoney.SECOND.getValue();
+        sum += matchingCount.get(4) * PrizeMoney.FIRST.getValue();
 
         double result = sum/purchaseSum;
 

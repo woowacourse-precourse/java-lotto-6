@@ -78,11 +78,8 @@ public class WinningNumbersManager {
 
     private PrizeType getWinningStatus(Lotto lotto) {
         int matchNumber = lotto.countMatchNumber(winningNumbers);
+        boolean isMatchWithBonusNumber = lotto.isMatch(bonusNumber);
 
-        if (matchNumber == 5 && lotto.isMatch(bonusNumber)) {
-            return PrizeType.valueOfMatchCount(matchNumber, true);
-        }
-
-        return PrizeType.valueOfMatchCount(matchNumber);
+        return PrizeType.valueOfMatchCount(matchNumber, isMatchWithBonusNumber);
     }
 }

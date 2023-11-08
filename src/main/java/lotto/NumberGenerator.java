@@ -9,7 +9,6 @@ public class NumberGenerator {
     private static final int NUMBER_COUNT = 6;
 
     public static List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(NUMBER_MIN_VALUE, NUMBER_MAX_VALUE,
-                NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(NUMBER_MIN_VALUE, NUMBER_MAX_VALUE, NUMBER_COUNT);
     }
 }

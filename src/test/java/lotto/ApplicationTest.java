@@ -82,6 +82,24 @@ class ApplicationTest extends NsTest {
         assertThat(output().contains("구입금액을 입력해 주세요."));
     }
 
+    @Test
+    @DisplayName("구매 금액 정수 입력 테스트")
+    void userInputPaymentIntegerTest() {
+        assertSimpleTest(() -> {
+            runException("1000j");
+            assertThat(output()).contains(Progress.ERROR_INTEGER.getMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("구매 금액 1000원 단위 입력 테스트")
+    void userInputPaymentThousandTest() {
+        assertSimpleTest(() -> {
+            runException("3500");
+            assertThat(output()).contains(Progress.ERROR_THOUSAND.getMessage());
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

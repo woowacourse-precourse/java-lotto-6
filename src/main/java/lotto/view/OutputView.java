@@ -15,6 +15,7 @@ public class OutputView {
     private static final String WINNING_STATISTICS_HEADER = "\n당첨 통계\n";
     private static final String DIVIDER = "---\n";
     private static final String WINNING_STATISTICS_FORMAT = "%d개 일치 (%s원) - %d개\n";
+    private static final String TOTAL_EARNING_RATE_FORMAT = "총 수익률은 %.2f%%입니다.\n";
 
 
     public static void printLottoPurchaseAmountPrompt() {
@@ -61,6 +62,7 @@ public class OutputView {
                     formatPrizeMoney(prize.prizeAmount()), count);
             }
         }
+        System.out.printf(TOTAL_EARNING_RATE_FORMAT, response.getEarningRate());
     }
 
     private static String formatPrizeMoney(long prizeMoney) {

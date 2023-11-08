@@ -17,18 +17,18 @@ public enum Awards{
         this.mark = mark;
         this.matching = matching;
     }
-
-    public void addCount() {
-        this.count++;
-    }
     public int getAward(){
         return this.award;
     }
     public int getCount() {
         return this.count;
     }
-    public int getMatching(){//int result) {
-        return this.matching;
+    public void getMatching(int result) {
+        if (result == this.matching)
+            this.addCount();
+    }
+    public void addCount() {
+        this.count++;
     }
     public String getMark() {
         return this.mark;

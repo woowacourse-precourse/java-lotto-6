@@ -1,5 +1,5 @@
 package lotto;
-
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +22,7 @@ public class Application {
         List<Lotto> lottos = new ArrayList<Lotto>();
         for (int index = 0; index < myTicketCount; index++){
             Random random = new Random();
-            List<Integer> lottoNumbers = random.generateLottoNumbers();
+            List<Integer> lottoNumbers = pickUniqueNumbersInRange(1,45, 6);
             Lotto lotto = null;
             try {
                 lotto = new Lotto(lottoNumbers);

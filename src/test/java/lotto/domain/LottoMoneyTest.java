@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,5 +26,15 @@ class LottoMoneyTest {
         LottoMoney lottoMoney = new LottoMoney("5000");
 
         assertThat(lottoMoney.getLottoCount()).isEqualTo(5);
+    }
+
+    @DisplayName("정해진 갯수 만큼 로또를 구입한다.")
+    @Test
+    void buyLottosSatisfyLottoCount() {
+        LottoMoney lottoMoney = new LottoMoney("5000");
+
+        List<Lotto> result = lottoMoney.buyLottos();
+
+        assertThat(result.size()).isEqualTo(5);
     }
 }

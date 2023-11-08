@@ -38,25 +38,25 @@ public class InputValidator {
         isValidRange(bonusNumber);
     }
 
-    private static void isNotEmpty(String input) {
+    private static void isNotEmpty(String input) throws IllegalArgumentException {
         if (input == null || input.isEmpty() || input.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 있어야 합니다.");
         }
     }
 
-    private static void isNumber(String input) {
+    private static void isNumber(String input) throws IllegalArgumentException {
         if (!input.matches("[0-9]*")) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해야 합니다.");
         }
     }
 
-    private static void isMultipleOfThousand(String input) {
+    private static void isMultipleOfThousand(String input) throws IllegalArgumentException {
         if (Integer.parseInt(input) % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원으로 나누어 떨어져야 합니다.");
         }
     }
 
-    private static void isValidRange(String input) {
+    private static void isValidRange(String input) throws IllegalArgumentException {
         if (!(1 <= Integer.parseInt(input) && Integer.parseInt(input) <= 45)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }

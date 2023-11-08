@@ -9,6 +9,8 @@ import java.util.*;
 public class LottoGame {
     private static final List<Lotto> lottos = new ArrayList<>();
     private static int[] ranks = {0, 0, 0, 0, 0};
+    private static int lottoCount;
+    private static int profit = 0;
 
     public void play() {
         startGame();
@@ -17,7 +19,7 @@ public class LottoGame {
     }
 
     private void startGame() {
-        int lottoCount = Input.getPurchaseAmount() / 1000;
+        lottoCount = Input.getPurchaseAmount() / 1000;
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(new Lotto(makeRandomNumbers()));
         }
@@ -42,6 +44,7 @@ public class LottoGame {
             int rank = getRank(lotto.getNumbers(), winningNumbers, bonusNumber);
             if (rank > 0) {
                 ranks[rank - 1] += 1;
+                profit += 1;
             }
         }
     }
@@ -68,5 +71,6 @@ public class LottoGame {
 
     private void endGame() {
         Output.printLottoResult(ranks);
+//        Output.printProfit(profit, lottoCount);
     }
 }

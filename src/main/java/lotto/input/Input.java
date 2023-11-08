@@ -25,7 +25,13 @@ public class Input {
     public static int getPurchaseAmount() {
         printEnterPurchaseAmount();
         String purchaseAmount = Console.readLine();
-        InputValidator.isValidPurchaseAmount(purchaseAmount);
+
+        try {
+            InputValidator.isValidPurchaseAmount(purchaseAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getPurchaseAmount();
+        }
         return Integer.parseInt(purchaseAmount);
     }
 
@@ -37,13 +43,25 @@ public class Input {
         for (int i = 0; i < winningNumbers.length; i++) {
             winningNumbers[i] = winningNumbers[i].trim();
         }
-        InputValidator.isValidWinningNumbers(winningNumbers);
+
+        try {
+            InputValidator.isValidWinningNumbers(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getWinningNumbers();
+        }
 
         List<Integer> numbers = new ArrayList<>();
         for (String number : winningNumbers) {
             numbers.add(Integer.parseInt(number));
         }
-        InputValidator.isValidWinningNumber(numbers);
+
+        try {
+            InputValidator.isValidWinningNumber(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getWinningNumbers();
+        }
         return numbers;
     }
 
@@ -51,7 +69,13 @@ public class Input {
         System.out.println();
         printEnterBonusNumber();
         String bonusNumber = Console.readLine();
-        InputValidator.isValidBonusNumber(bonusNumber);
+
+        try {
+            InputValidator.isValidBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            getBonusNumber();
+        }
         return Integer.parseInt(bonusNumber);
     }
 }

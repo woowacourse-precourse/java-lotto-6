@@ -2,6 +2,9 @@ package lotto.output;
 
 import lotto.domain.Lotto;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Output {
     private static void print(OutputMessage message) {
         System.out.print(message.getMessage());

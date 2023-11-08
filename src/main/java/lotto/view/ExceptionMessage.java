@@ -6,7 +6,8 @@ public enum ExceptionMessage {
     inputWinningNumbersSizeError("[ERROR] 입력 당첨 금액이 6개가 넘습니다."),
     NumberFormatError("[ERROR] 입력 숫자에 숫자가 아닌 문자까 있습니다."),
 
-    NumberRangeError("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    NumberRangeError("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    duplicationError("[ERROR] 중복숫자가 존재합니다.");
 
 
     private String errorMessage;

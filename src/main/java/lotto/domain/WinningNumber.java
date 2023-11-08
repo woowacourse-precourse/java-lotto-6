@@ -22,10 +22,12 @@ public class WinningNumber {
         }
         WinningNumber.winningNums = winningNumbers;
         validateSize(winningNumbers);
+        duplicationValidate(winningNumbers);
     }
 
     public static void putBonusNum(String bonusNum) throws IllegalArgumentException{
         validateRangeNum(Integer.parseInt(bonusNum));
+        duplicationBonusValidate(Integer.parseInt(bonusNum));
         WinningNumber.bonusNum = Integer.parseInt(bonusNum);
     }
 
@@ -48,6 +50,18 @@ public class WinningNumber {
             throw new IllegalArgumentException(ExceptionMessage.NumberRangeError.getErrorMessage());
         }
 
+    }
+
+    private static void duplicationValidate(List<Integer> numbers){
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException(ExceptionMessage.duplicationError.getErrorMessage());
+        }
+    }
+
+    private static void duplicationBonusValidate(int number){
+        if(winningNums.contains(number)){
+            throw new IllegalArgumentException(ExceptionMessage.duplicationError.getErrorMessage());
+        }
     }
 
 

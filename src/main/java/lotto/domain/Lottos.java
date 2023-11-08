@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottoList = new ArrayList<>();
 
     public Lottos(int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
             Lotto newLotto = new Lotto(NumberGenerator.generateNumbers());
-            lottos.add(newLotto);
+            lottoList.add(newLotto);
         }
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
+    public List<Lotto> getLottoList() {
+        return lottoList;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        lottos.forEach(lotto -> {
+        lottoList.forEach(lotto -> {
             stringBuilder.append(lotto);
             stringBuilder.append("\n");
         });

@@ -8,30 +8,36 @@ import java.util.Map;
 public class Referee {
     public static Map<Prize, Integer> judgePrize(Lottos lottos, WinningLotto winningLotto) {
         Map<Prize, Integer> result = initializeMap();
+        List<Lotto> lottoList = lottos.getLottoList();
 
-        for (int i = 0; i < lottos.getLottos().size(); i++) {
-            Lotto lotto = lottos.getLottos().get(i);
-            List<Integer> numbers = lotto.getNumbers();
-
-            int count = countMatch(numbers, winningLotto.getWinningNumbers());
-            boolean isBonusMatch = isBonusMatch(numbers, winningLotto.getBonusNumber());
-
-            Prize curPrize = Prize.findPrize(count, isBonusMatch);
-
-            if (curPrize != null) {
-                int curCount = result.get(curPrize);
-                result.put(curPrize, curCount + 1);
-            }
+        for (Lotto lotto : lottoList) {
+            judgeEachLotto(winningLotto, lotto, result);
         }
         return result;
     }
 
+    private static void judgeEachLotto(WinningLotto winningLotto, Lotto lotto, Map<Prize, Integer> result) {
+        List<Integer> numbers = lotto.getNumbers();
+
+        int count = countMatch(numbers, winningLotto.getNumbers());
+        boolean isBonusMatch = isBonusMatch(numbers, winningLotto.getBonusNumber());
+
+        Prize prize = Prize.findPrize(count, isBonusMatch);
+
+        if (prize != null) {
+            int curCount = result.get(prize);
+            result.put(prize, curCount + 1);
+        }
+    }
+
     private static Map<Prize, Integer> initializeMap() {
         Map<Prize, Integer> result = new HashMap<>();
+
         List<Prize> prizes = Arrays.asList(Prize.values());
         prizes.forEach(prize -> {
             result.put(prize, 0);
         });
+
         return result;
     }
 

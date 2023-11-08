@@ -20,7 +20,6 @@ public class InputManager {
             System.out.println(INPUT_PURCHASE_PRICE_MESSAGE);
             String input = Console.readLine();
             Validator.validatePurchasePrice(input);
-
             result = Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -35,7 +34,6 @@ public class InputManager {
             System.out.println();
             System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
             String input = Console.readLine();
-
             Validator.validateNumbers(input);
             numbers = Parser.stringToIntList(input);
         } catch (IllegalArgumentException e) {
@@ -52,7 +50,6 @@ public class InputManager {
             System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
             String input = Console.readLine();
             Validator.validateBonusNumber(lottoNumbers, input);
-
             result = Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

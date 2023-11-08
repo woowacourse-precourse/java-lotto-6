@@ -34,10 +34,4 @@ public class Parser {
     private static String stringListToString(List<String> strings) {
         return String.join(", ", strings);
     }
-
-    public static List<String> intListToStringList(List<Integer> numbers) {
-        return numbers.stream()
-                .map(Object::toString)
-                .collect(Collectors.toList());
-    }
 }

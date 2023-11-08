@@ -10,25 +10,17 @@ import lotto.exception.ExceptionMessage;
 public class InputView {
 
     public int enterPurchaseAmount(){
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-
-        isEmptyValidate(input);
+        String input = commonReadLine(InputMessage.PURCHASE_AMOUNT);
         return convertToInt(input);
     }
 
     public int enterBonusNumber(){
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = Console.readLine();
-
-        isEmptyValidate(input);
+        String input = commonReadLine(InputMessage.BONUS_NUMBER);
         return convertToInt(input);
     }
     public List<Integer> enterWinningNumber(){
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
+        String input = commonReadLine(InputMessage.BONUS_NUMBER);
 
-        isEmptyValidate(input);
         isCommaValidate(input);
         return convertToIntegerList(input);
     }
@@ -70,6 +62,14 @@ public class InputView {
         Pattern regex = Pattern.compile(pattern);
         Matcher matcher = regex.matcher(input);
         return matcher.matches();
+    }
+
+    private String commonReadLine(InputMessage inputMessage){
+        System.out.println(inputMessage.getMessage());
+        String input = Console.readLine();
+
+        isEmptyValidate(input);
+        return input;
     }
 
 }

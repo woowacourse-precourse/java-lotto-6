@@ -33,7 +33,7 @@ public class LottoManager {
         }
     }
 
-    public List<Integer> makeRandomNumbers() {
+    private List<Integer> makeRandomNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return randomNumbers.stream()
                 .sorted()
@@ -80,7 +80,7 @@ public class LottoManager {
         return (double) getReturn() / purchaseAmount * 100;
     }
 
-    public int getReturn() {
+    private int getReturn() {
         int returnPrice = 0;
         for (LottoRank rank : LottoRank.values()) {
             returnPrice += rank.getPrize() * result.get(rank);

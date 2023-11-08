@@ -9,7 +9,7 @@ import java.util.List;
 import static lotto.util.consts.ErrorMessage.NOT_NUMBER_INPUTTED;
 import static lotto.util.consts.ErrorMessage.TOO_LARGE_NUMBER;
 
-public class InputValidator extends Validator {
+public class InputValidator {
     private static final int MEMORY_SIZE_LIMIT = 2100000000;
     private static final String NUMBER_SPLITTER = ",";
 
@@ -19,14 +19,14 @@ public class InputValidator extends Validator {
             resultNumber = Integer.parseInt(numberMessage);
             validateMemorySizeLimit(resultNumber);
         } catch (NumberFormatException e) {
-            throwIllegalArgumentException(NOT_NUMBER_INPUTTED.getMessage(), e);
+            throw new IllegalArgumentException(NOT_NUMBER_INPUTTED.getMessage(), e);
         }
         return resultNumber;
     }
 
     private void validateMemorySizeLimit(int number) {
         if (number >= MEMORY_SIZE_LIMIT) {
-            throwIllegalArgumentException(TOO_LARGE_NUMBER.getMessage());
+            throw new IllegalArgumentException(TOO_LARGE_NUMBER.getMessage());
         }
     }
 

@@ -23,8 +23,22 @@ public class OutputService {
         System.out.println("보너스 번호를 입력해주세요 :");
     }
 
-    public void printResult() {
+    public void printPerior() {
         System.out.println("당첨 통계");
         System.out.println("---");
+    }
+
+    public boolean printPrize(int sameAmount, int reward, int count) {
+        if (reward == 30_000_000) {
+            System.out.println("5개 일치, 보너스 볼 일치 ("+reward+"원) - " + count);
+            return true;
+        }
+        System.out.println(sameAmount + "개 일치("+reward+"원) - " + count);
+        return true;
+    }
+
+    public void getRate(int price, int money) {
+        double result = (double) price / (double) money * 100.0;
+        System.out.println("총 수익률은 " + String.format("%.2f", result) + "%입니다.");
     }
 }

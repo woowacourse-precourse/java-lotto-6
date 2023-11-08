@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class UtilsTest {
 
-
     @DisplayName("문자열을 구분자로 분리해 숫자 리스트를 반환한다.")
     @ParameterizedTest
     @MethodSource("convertStringToIntegerListSuccessProvider")
@@ -27,7 +26,4 @@ public class UtilsTest {
                 Arguments.of("48, 132, 0235", ", ", List.of(48, 132, 235))
         );
     }
-
-
-
 }

@@ -1,18 +1,15 @@
 package lotto.domain;
 
 import static lotto.message.ViewMessage.PROFIT_FORMAT;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import lotto.message.ViewMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ResultSheetTest {
-
     private ResultSheet resultSheet;
 
     @BeforeEach

@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class RankTest {
-
     @DisplayName("당첨 순위와 일치하는 순위를 반환한다.")
     @ParameterizedTest
     @MethodSource("findByMatchCountAndBonusProvider")

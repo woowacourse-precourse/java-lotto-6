@@ -3,7 +3,6 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.message.ExceptionMessage;
 
 public record Lotto(List<Integer> numbers) {

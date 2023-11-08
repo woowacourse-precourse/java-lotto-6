@@ -22,11 +22,6 @@ public class WinningLotto {
         this.win = new Lotto(win);
         this.bonus = 0;
     }
-    public WinningLotto(List<Integer> win, Integer bonus) {
-        validate(bonus);
-        this.win = new Lotto(win);
-        this.bonus = bonus;
-    }
 
     public void setBonusNumber(Integer bonus) {
         validate(bonus);

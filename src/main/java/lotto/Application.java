@@ -1,6 +1,5 @@
 package lotto;
 
-import lotto.constant.InputInstruction;
 import lotto.controller.LottoMachine;
 
 public class Application {

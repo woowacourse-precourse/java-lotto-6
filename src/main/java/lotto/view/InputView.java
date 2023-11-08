@@ -1,18 +1,18 @@
 package lotto.view;
 
-import lotto.constant.InputInstruction;
+import lotto.constant.InputText;
 
 public class InputView {
     public void showAmountInputForm() {
-        System.out.println(InputInstruction.REQUEST_TO_INPUT_PURCHASE_AMOUNT.getInstruction());
+        System.out.println(InputText.REQUEST_TO_INPUT_PURCHASE_AMOUNT.getValue());
     }
 
     public void showWinningNumbersInputForm() {
-        System.out.println(InputInstruction.REQUEST_TO_INPUT_WINNING_NUMBERS.getInstruction());
+        System.out.println(InputText.REQUEST_TO_INPUT_WINNING_NUMBERS.getValue());
     }
 
     public void showBonusNumberInputForm() {
-        System.out.println(InputInstruction.REQUEST_TO_INPUT_BONUS_NUMBER.getInstruction());
+        System.out.println(InputText.REQUEST_TO_INPUT_BONUS_NUMBER.getValue());
     }
 
     public void endInput() {
@@ -20,6 +20,6 @@ public class InputView {
     }
 
     public void showInputErrorMessage(String message) {
-        System.out.println(InputInstruction.ERROR_TAG.getInstruction() + " " + message);
+        System.out.println(InputText.ERROR_TAG.getValue() + " " + message);
     }
 }

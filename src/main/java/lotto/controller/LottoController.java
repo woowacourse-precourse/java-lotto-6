@@ -41,7 +41,8 @@ public class LottoController {
 
             String bonusNumber = inputReader.readInput(INPUT_BONUS_NUMBER);
             winningCondition.inputBonusNumbers(bonusNumber);
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             winningCondition = generateWinningCondition();
         }
         return winningCondition;
@@ -51,7 +52,8 @@ public class LottoController {
         try {
             String inputMoney = inputReader.readInput(INPUT_MONEY);
             lottoMachine.insertMoney(inputMoney);
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             insertMoneyTo(lottoMachine);
         }
     }

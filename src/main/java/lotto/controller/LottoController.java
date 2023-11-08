@@ -32,7 +32,7 @@ public class LottoController {
 
         WinningResult winningResult = lotteryMachine.judge(lottos, lottoWinnerNumbers, lottoBonusNumber);
 
-        outputView.writeResult(winningResult, new Yield(winningResult.getRewardMoney(), purchaseMoney));
+        outputView.writeResult(winningResult, new Yield(purchaseMoney, winningResult.getRewardMoney()));
     }
 
     private List<Lotto> generateRandomLottos(int lottoQuantity) {

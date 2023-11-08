@@ -7,6 +7,8 @@ import lotto.utils.NumberConstants;
 import lotto.validation.NumberException;
 
 public class Lotto {
+    private static final String LEST_WITH_BLANK_DELIMITER = ", ";
+    private static final String LOTTO_RESULT_FORMAT = "[%s]";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -47,7 +49,7 @@ public class Lotto {
     public String toString() {
         String lottoPrintFormat = numbers.stream()
             .map(Object::toString)
-            .collect(Collectors.joining(", "));
-        return String.format("[%s]", lottoPrintFormat);
+            .collect(Collectors.joining(LEST_WITH_BLANK_DELIMITER));
+        return String.format(LOTTO_RESULT_FORMAT, lottoPrintFormat);
     }
 }

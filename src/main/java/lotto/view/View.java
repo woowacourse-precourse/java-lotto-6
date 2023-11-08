@@ -10,9 +10,10 @@ import lotto.domain.Lottos;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.dto.ResultResponse;
+import lotto.utils.GameUtilConstants;
 import lotto.utils.Rank;
 import lotto.validation.NumberValidator;
-import lotto.validation.WinningNumberValidator;
+import lotto.validation.WinningNumberException;
 
 public class View {
     private final InputView inputView;
@@ -53,7 +54,7 @@ public class View {
     }
 
     private List<Integer> convertToIntegerList(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(",", -1))
+        return Arrays.stream(winningNumbers.split(GameUtilConstants.LEST_DELIMITER.getValue(), -1))
             .map(Integer::parseInt)
             .peek(NumberValidator::validateInRangeNumber)
             .toList();
@@ -80,7 +81,7 @@ public class View {
 
     private void isDuplicateBonusNumber(Lotto winningNumbers, int bonusNumber) {
         if (winningNumbers.isAlreadyExistNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호에 중복된 수가 존재할 수 없습니다.");
+            throw WinningNumberException.DUPLICATE_EXCEPTION.getException();
         }
     }
 

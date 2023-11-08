@@ -4,6 +4,7 @@ import lotto.validation.AmountException;
 
 public class Amount {
     private static final int ONE_LOTTO_PRICE = 1_000;
+    private static final int PERCENTAGE = 100;
 
     private int value;
 
@@ -34,6 +35,6 @@ public class Amount {
     }
 
     public double getBenefitRate(long totalPrize) {
-        return ((double) totalPrize / value) * 100;
+        return ((double) totalPrize / value) * PERCENTAGE;
     }
 }

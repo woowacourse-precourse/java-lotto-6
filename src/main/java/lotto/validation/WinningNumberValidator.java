@@ -1,10 +1,8 @@
 package lotto.validation;
 
-import java.util.Collections;
-import java.util.List;
+import lotto.utils.GameUtilConstants;
 
 public class WinningNumberValidator {
-    private static final String MULTIPLE_WINNING_NUMBER_DELIMITER = ",";
 
     private WinningNumberValidator() {
     }
@@ -14,8 +12,8 @@ public class WinningNumberValidator {
     }
 
     private static void isMultiple(String winningNumbers) {
-        if (!winningNumbers.contains(MULTIPLE_WINNING_NUMBER_DELIMITER)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표를 구분으로 입력해야 합니다.");
+        if (!winningNumbers.contains(GameUtilConstants.LEST_DELIMITER.getValue())) {
+            throw WinningNumberException.INVALID_MULTIPLE_EXCEPTION.getException();
         }
     }
 }

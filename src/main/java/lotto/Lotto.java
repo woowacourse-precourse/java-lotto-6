@@ -16,11 +16,11 @@ public class Lotto {
             throw new IllegalArgumentException(ERROR_MESSAGE + " 로또는 번호가 6개 있습니다.");
         }
     }
-    public int countSameNumber(List<Integer> winningNumber){
+    public int countSameNumber(List<Integer> winningNumbers){
         int sameNumber = 0;
 
-        for(int number: numbers){
-            if(winningNumber.contains(number)){
+        for(int winningNumber: winningNumbers){
+            if(numbers.contains(winningNumber)){
                 sameNumber++;
             }
         }

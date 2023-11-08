@@ -37,4 +37,12 @@ public enum Rank {
     public int getPrize() {
         return prizeMoney;
     }
+
+    public int getMatchCount() {
+        return prizeMoney;
+    }
+
+    public String getPrizeMoneyString() {
+        return prizeMoneyString;
+    }
 }

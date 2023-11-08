@@ -21,6 +21,17 @@ public class LottoPrizeCalculator {
         }
     }
 
+    public static void calculateProfitRate(LottoReceipt lottoReceipt, int purchaseAmount) {
+        Map<Rank, Integer> winningStatistics = lottoReceipt.getWinningStatistics();
+
+        // (당첨금 - 구매 금액) / 구매 금액
+        long profitAmount = 0;
+        for (Map.Entry<Rank, Integer> entry : winningStatistics.entrySet()) {
+            profitAmount += entry.getKey().getPrizeMoney() * entry.getValue();
+        }
+        double rate = (profitAmount - purchaseAmount) / purchaseAmount;
+        lottoReceipt.setProfitRate(rate);
+    }
     public static Rank checkRank(int matchCount, boolean matchBonusNumber) {
         return Rank.from(matchCount, matchBonusNumber);
     }

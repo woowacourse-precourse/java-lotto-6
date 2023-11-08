@@ -28,7 +28,6 @@ public class Output {
         System.out.println(MESSAGE_LOTTO_WINNING_STATICS);
         System.out.println(LINE);
         List<Rank> ranks = Arrays.asList(Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST);
-//        int value = 3;
         for (Rank r : ranks) {
             printResultComment(r.getMatchingCount(), r.getPrizeMoney(), result.get(r));
         }
@@ -47,8 +46,8 @@ public class Output {
         return true;
     }
 
-    public static void printProfitRate() {
-
+    public static void printProfitRate(Double rate) {
+        System.out.printf((MESSAGE_PROFIT_RATE) + "%n", rate);
     }
 
     public static void printErrorMessage() {

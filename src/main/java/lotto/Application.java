@@ -27,6 +27,9 @@ public class Application {
         // 당첨 통계
         LottoPrizeCalculator.checkLottoResult(lottoReceipt, winningLotto);
         Output.printLottoWinningResults(lottoReceipt);
+        // 수익률
+        LottoPrizeCalculator.calculateProfitRate(lottoReceipt, amount);
+        Output.printProfitRate(lottoReceipt.getProfitRate());
     }
 
     public static int validateAmount(String amount) {

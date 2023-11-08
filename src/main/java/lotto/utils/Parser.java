@@ -8,7 +8,7 @@ import java.util.List;
 public class Parser {
     private static final String DELIMITER = ",";
     private static final String MONEY_CURRENCY_PATTERN = "###,###";
-    private static final String PROFIT_CURRENCY_PATTERN = "###,###.0";
+    private static final String PROFIT_CURRENCY_PATTERN = "###,##0.0";
     private final LottoValidator lottoValidator;
 
     public Parser(LottoValidator lottoValidator) {

@@ -33,6 +33,29 @@
     - 수익률은 소수점 둘째자리에서 반올림한다.(100.0, 51,5)
     - 예외상황 시 [ERROR] 로 시작해야한다
 
+클래스 구분
+
+Model
+   - Bonus : 보너스 번호 입력받는 클래스
+   - CalculateNumberOfLotto : 구매한 로또의 갯수를 구하는 클래스
+   - Lotto : 기본으로 주어진 Lotto 클래스
+   - LottoDraw : 로또의 당첨을 확인하는 클래스
+   - MyLottoNumber : 나의 로또 번호를 만드는 클래스
+   - MyLottoNumbers : MyLottoNumber 에서 만든 로또 번호를 로또의 갯수만큼 저장하는 클래스
+
+View
+   
+   - InputView : 입력받는 부분의 View 를 관리하는 클래스
+   - OutputView : 출력하는 부분의 View 를 관리하는 클래스
+
+Controller
+   - Controller : Model 과 View 를 중재하는 클래스, 최초에 Application 에서 실행된다.
+
+util : MVC 패턴의 구현을 보완하기위해 만들었다.
+   - MagicNumbers : 클래스에서 사용되는 매직넘버들을 저장하여 관리하는 클래스
+   - Phrase : 입출력 문구를 저장하여 관리하는 클래스
+
+
 
 추가사항
 

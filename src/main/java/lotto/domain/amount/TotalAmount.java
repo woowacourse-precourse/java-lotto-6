@@ -17,6 +17,10 @@ public class TotalAmount extends Amount {
     }
 
     public TotalAmount addLottoPrize(LottoPrize lottoPrize) {
-        return new TotalAmount(this.amount + lottoPrize.getPrizeAmount());
+        return new TotalAmount(this.amount + lottoPrize.prizeAmount());
+    }
+
+    public double dividedBy(PurchaseAmount purchaseAmount) {
+        return (double) this.amount / purchaseAmount.amount;
     }
 }

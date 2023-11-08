@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.HashMap;
 
 public class TotalWinningResult {
-    private HashMap<LottoPrize, Integer> prizeResult;
+    private HashMap<LottoPrize, Integer> prizeResult;   //key: 등수, value: count
     private double totalPrizeMoney;
 
     public TotalWinningResult() {

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoInfo;
 
 import java.util.List;
 
@@ -20,5 +21,11 @@ public class Validation {
 
     public static void validateNaturalNumber(List<String> input) {
         input.forEach(Validation::validateNaturalNumber);
+    }
+
+    public static void validateMultipleOfLottoPrice(int x) {
+        if (x%LottoInfo.LOTTO_PRICE.getNumber() != 0) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_MULTIPLE_OF_LOTTO_PRICE.getMessage());
+        }
     }
 }

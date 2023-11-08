@@ -51,7 +51,6 @@ class WinningNumbersTest {
     @Test
     @DisplayName("추첨 번호의 개수는 6개여야 한다.")
     public void winningNumberCountTest() {
-        //given
         assertThatThrownBy(() -> NumberValidator.validateNumberCount(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -59,7 +58,6 @@ class WinningNumbersTest {
     @Test
     @DisplayName("추첨 번호는 중복되면 안된다.")
     public void winningNumberDuplicateTest() {
-        //given
         assertThatThrownBy(() -> NumberValidator.validateDuplicate(List.of(1, 2, 3, 3, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -75,7 +73,6 @@ class WinningNumbersTest {
     @Test
     @DisplayName("보너스 번호의 개수는 1개여야 한다.")
     public void bonusNumberCountTest() {
-        //given
         assertThatThrownBy(() -> NumberValidator.validateNumberCount(List.of(1, 2)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -83,7 +80,6 @@ class WinningNumbersTest {
     @Test
     @DisplayName("보너스 번호는 추첨 번호들과 중복되면 안된다.")
     public void bonusNumberDuplicateTest() {
-        //given
         assertThatThrownBy(() -> NumberValidator.validateInWinningNumbers(1,List.of(1, 2, 3, 3, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }

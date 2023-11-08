@@ -27,7 +27,7 @@ public class LottoController {
     }
 
     private void getWinningNumbers() {
-
+        Lotto inputLotto = inputView.getWinningNumbers();
     }
 
     private void getBonusNumber() {

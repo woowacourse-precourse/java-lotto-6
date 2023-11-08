@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constant.LottoNumber;
+import lotto.constant.Lotto;
 import lotto.validator.MainValidator;
 
 public class Buyer {
@@ -17,6 +17,6 @@ public class Buyer {
     }
 
     public int getNumberOfLotto() {
-        return purchaseAmount / LottoNumber.PRICE_PER_LOTTO.getLottoNumber();
+        return (purchaseAmount / Lotto.PRICE_PER_LOTTO.getLottoNumber());
     }
 }

@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum LottoNumber {
+public enum Lotto {
     FIRST_PRIZE_MONEY(2000000000),
     SECOND_PRIZE_MONEY(30000000),
     THIRD_PRIZE_MONEY(1500000),
@@ -17,10 +17,10 @@ public enum LottoNumber {
     NUMBER_OF_REQUIRED_BONUS_NUMBER(1),
     PRICE_PER_LOTTO(1000),
     INITIAL_RATE_OF_RETURN(100);
-    
+
     private final int lottoNumber;
 
-    LottoNumber(int lottoNumber) {
+    Lotto(int lottoNumber) {
         this.lottoNumber = lottoNumber;
     }
 

@@ -25,6 +25,9 @@ public class Application {
 
         ConsoleView.printInputWinningNumbersMessage();
         winningNumber = new WinningNumber(inputWinningNumbers());
+
+        ConsoleView.printInputBonusNumberMessage();
+        inputBonusNumber();
     }
 
     private static int inputPurchaseAmount() {
@@ -48,6 +51,19 @@ public class Application {
                         .map(String::trim)
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void inputBonusNumber() {
+        while(true) {
+            try {
+                String bonusNumber = readLine();
+                Validator.validBonusNumber(bonusNumber);
+                winningNumber.addNumber(Integer.parseInt(bonusNumber));
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

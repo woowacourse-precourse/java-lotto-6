@@ -9,4 +9,11 @@ public class WinningNumber {
     public WinningNumber(List<Integer> winningNumber) {
         this.winningNumber = winningNumber;
     }
+
+    public void addNumber(int number) {
+        if (winningNumber.contains(number)) {
+            throw new IllegalArgumentException();
+        }
+        this.winningNumber.add(number);
+    }
 }

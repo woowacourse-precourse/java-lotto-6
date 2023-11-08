@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Validator {
 
@@ -12,13 +11,7 @@ public class Validator {
     private static final String outOfRangeErrorMessage = "[ERROR] 1~45 범위의 숫자만 입력해주세요.";
     private static final String duplicateNumberErrorMessage = "[ERROR] 중복되지 않는 숫자를 입력해주세요.";
 
-    private static void validNumber(String number) {
-        try {
-            Integer.parseInt(number);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(nonNumericInputErrorMessage);
-        }
-    }
+
 
     public static void validPurchaseAmount(String input) {
         validNumber(input);
@@ -48,6 +41,19 @@ public class Validator {
                 throw new IllegalArgumentException(duplicateNumberErrorMessage);
             }
             hashSet.add(number);
+        }
+    }
+
+    public static void validBonusNumber(String input) {
+        validNumber(input);
+
+    }
+
+    private static void validNumber(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(nonNumericInputErrorMessage);
         }
     }
 

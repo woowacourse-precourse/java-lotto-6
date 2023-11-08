@@ -10,7 +10,7 @@ public class InputView {
     }
 
     public static int inputMoney() {
-        System.out.println("구입할 금액을 입력해 주세요.");
+        System.out.println("구입금액을 입력해 주세요.");
         while (true) {
             try {
                 return checkInputMoney(Console.readLine());

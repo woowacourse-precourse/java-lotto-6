@@ -9,14 +9,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static lotto.model.LottoInformation.BUY_PRICE;
 import static lotto.model.LottoInformation.COUNT_DIVISION;
 
 public class RandomIntGenerator {
-    private static List<List<Integer>> numbers = new ArrayList<>();
+    private static final List<List<Integer>> numbers = new ArrayList<>();
+
     public RandomIntGenerator(){
     }
     public  void makeLottoNumber(int count){
-
+        BUY_PRICE.setValue(count);
       IntStream.range(0, count/COUNT_DIVISION.getValue())
               .forEach(i -> numbers.add(makeRandomNumber()));
 //        System.out.println(numbers);
@@ -35,4 +37,5 @@ public class RandomIntGenerator {
     public List<List<Integer>> getLottoNumber() {
         return numbers;
     }
+
 }

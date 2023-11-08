@@ -21,7 +21,7 @@ public class Lotto {
 
     public void checkSame(Integer bonusNumber, List<List<Integer>> lottoNumber) {
         for (List<Integer> integers : lottoNumber) {
-            List<Integer> ResultList = integers.stream()
+            List<Integer> Result = integers.stream()
                     .filter(i -> this.numbers.stream().anyMatch(Predicate.isEqual(i)))
 //                    .collect(Collectors.toList());
                     .toList();
@@ -29,7 +29,7 @@ public class Lotto {
                             .filter(bonusNumber::equals).count();
 //            System.out.println(bonusResult);
 
-            CheckPrize(ResultList.size(),bonusResult).addWinCount();
+            CheckPrize(Result.size(),bonusResult).addWinCount();
 
         }
     }

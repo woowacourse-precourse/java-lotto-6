@@ -2,7 +2,6 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
-import lotto.handler.UserHandler;
 import lotto.model.Rank;
 import lotto.view.ResultView;
 

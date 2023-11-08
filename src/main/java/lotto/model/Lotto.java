@@ -12,7 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Validator.validateDuplicateNumber(numbers, "당첨 번호와 보너스");
+        Validator.validateDuplicateNumber(numbers, "당첨");
         this.numbers = numbers;
     }
 
@@ -23,7 +23,6 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-
     public List<Integer> getNumbers() {
         return this.numbers;
     }

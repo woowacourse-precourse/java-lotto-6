@@ -21,9 +21,14 @@ public class OutputView {
     private static final String PREFIX_PROFIT = "총 수익률은 ";
     private static final String SUFFIX_PROFIT = "%입니다.";
     private static final String DECIMAL_DIGITS = "%.2f";
+    private static final String LOTTOS_SIZE_SUFFIX_MESSAGE = "개를 구매했습니다.";
+    private static final String LOTTOS_BONUS_NUMBER_MATCH_MESSAGE = "개 일치, 보너스 볼 일치 (";
+    private static final String WON_SUFFIX_MESSAGE = "원) - ";
+    private static final String COUNT_SUFFIX_MESSAGE = "개";
+    private static final String COUNT_MATCH_SUFFIX_MESSAGE = "개 일치 (";
 
     public static void printLottos(final Lottos lottos) {
-        System.out.println(lottos.getTotalLottos().size() + LOTTOS_SIZE_SUFFIX_MESSAGE.getMessage());
+        System.out.println(lottos.getTotalLottos().size() + LOTTOS_SIZE_SUFFIX_MESSAGE);
         lottos.getTotalLottos()
                 .stream()
                 .forEach(lotto -> printLotto(lotto));
@@ -55,10 +60,10 @@ public class OutputView {
 
     private static void printRankResult(final Rank rank, final int count) {
         if (rank == Rank.SECOND) {
-            System.out.println(rank.getCorrectCount() + LOTTOS_BONUS_NUMBER_MATCH_MESSAGE.getMessage() + rank.getMoney() + WON_SUFFIX_MESSAGE.getMessage() + count + COUNT_SUFFIX_MESSAGE.getMessage());
+            System.out.println(rank.getCorrectCount() + LOTTOS_BONUS_NUMBER_MATCH_MESSAGE + rank.getMoney() + WON_SUFFIX_MESSAGE + count + COUNT_SUFFIX_MESSAGE);
             return;
         }
-        System.out.println(rank.getCorrectCount() + COUNT_MATCH_SUFFIX_MESSAGE.getMessage() + rank.getMoney() + WON_SUFFIX_MESSAGE.getMessage() + count + COUNT_SUFFIX_MESSAGE.getMessage());
+        System.out.println(rank.getCorrectCount() + COUNT_MATCH_SUFFIX_MESSAGE + rank.getMoney() + WON_SUFFIX_MESSAGE + count + COUNT_SUFFIX_MESSAGE);
     }
 
     public static void printProfit(final double profit) {

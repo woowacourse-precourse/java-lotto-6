@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.Service.LottoInitService;
 import lotto.Service.LottoService;
 import lotto.Validator.BonusNumberValidator;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
@@ -17,6 +18,7 @@ public class LottoController {
         Integer amount = getUserAmount();
         Lottos lottos = printLottos(amount);
         WinningNumber winningNumber =  getWinningNumber();
+        printStatistics(lottos, winningNumber);
     }
 
     private Integer getUserAmount() {
@@ -71,6 +73,13 @@ public class LottoController {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
+    }
+
+    private void printStatistics(Lottos lottos, WinningNumber winningNumber) {
+        LottoResult result = lottoService.getResult(lottos, winningNumber);
+
+        System.out.println();
+        lottoService.printStatistics(result);
     }
 
     private String userInput() {

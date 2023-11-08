@@ -1,16 +1,19 @@
 package lotto.util;
 
 import lotto.enums.ErrorMsg;
+import lotto.enums.LottoNumber;
 
 import java.util.List;
 
 public class Verifier {
+    private static final int DIVIDED_ZERO = 0;
+
     public static void validatePurchaseAmount(Integer purchaseAmount) {
-        if (purchaseAmount < 1000) {
+        if (purchaseAmount < LottoNumber.PRICE.getNumber()) {
             throw new IllegalArgumentException(ErrorMsg.INVALID_PURCHASE_AMOUNT_RANGE.getErrMsg());
         }
 
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % LottoNumber.PRICE.getNumber() != DIVIDED_ZERO) {
             throw new IllegalArgumentException(ErrorMsg.INVALID_PURCHASE_AMOUNT_UNIT.getErrMsg());
         }
     }
@@ -22,11 +25,11 @@ public class Verifier {
     }
 
     public static void validateWinningNumber(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
+        if (winningNumbers.size() != LottoNumber.COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMsg.INVALID_LOTTO_NUMBER_COUNT.getErrMsg());
         }
 
-        if (winningNumbers.stream().distinct().count() != 6) {
+        if (winningNumbers.stream().distinct().count() != LottoNumber.COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMsg.INVALID_LOTTO_NUMBER_DUPLICATE.getErrMsg());
         }
     }

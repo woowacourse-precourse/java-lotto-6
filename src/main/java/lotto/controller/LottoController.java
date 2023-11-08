@@ -25,7 +25,7 @@ public class LottoController {
                         int count = buyingLotto();
                         OutputView.printLottoCount(count);
 
-                        makeLottos(count);
+                        lottos = makeLottos(count);
 
                         lottoNumbers = InputView.inputLottoNumbers();
                         Lotto winLotto = new Lotto(lottoNumbers);
@@ -34,6 +34,7 @@ public class LottoController {
 
                         calculateLotto = new CalculateLotto(winLotto, bonusNumber);
                         resultLottos(lottos, calculateLotto, payMoney);
+
                 }catch (IllegalArgumentException e){
                         System.out.println("[ERROR] " + e.getMessage());
                 }

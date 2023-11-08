@@ -4,7 +4,7 @@ import lotto.Constants;
 
 public class LottoPrice {
         private final int payMoney;
-        private int lottoCount;
+
         public LottoPrice(int payMoney) {
                 validatePrice(payMoney);
                 this.payMoney = payMoney;
@@ -15,6 +15,7 @@ public class LottoPrice {
                 }
         }
         public int getLottoCount() {
+                int lottoCount;
                 lottoCount = payMoney / Constants.LOTTO_PRICE;
                 return lottoCount;
         }

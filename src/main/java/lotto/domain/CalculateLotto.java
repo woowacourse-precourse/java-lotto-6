@@ -9,9 +9,13 @@ public class CalculateLotto {
                 this.lotto = lotto;
                 this.bonusNumber = bonusNumber;
         }
-        public WinLotto match(Lotto winningNumber){
-                int countOfMatch = winningNumber.countMatch(lotto);
-                boolean matchBonus = lotto.isContainNumber(bonusNumber);
+        public WinLotto match(Lotto randomNumbers){
+                int countOfMatch = randomNumbers.countMatch(lotto);
+                boolean matchBonus = randomNumbers.isContainNumber(bonusNumber);
+                System.out.println(matchBonus);
                 return WinLotto.findWin(countOfMatch,matchBonus);
+        }
+        public Lotto getLotto() {
+                return lotto;
         }
 }

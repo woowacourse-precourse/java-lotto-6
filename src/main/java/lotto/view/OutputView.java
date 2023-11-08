@@ -28,4 +28,23 @@ public class OutputView {
         System.out.print(NEW_LINE);
     }
 
+    public static void showLottoResult(LottoResult lottoResult) {
+        System.out.println(LOTTO_WINNING_MESSAGE);
+        System.out.println(DIVIDING_LINE);
+        System.out.println(lottoResultTotal(lottoResult));
+    }
+
+    private static String lottoResultTotal(LottoResult lottoResult) {
+        StringBuilder sb = new StringBuilder();
+
+        sb
+                .append(String.format(WINNING_COUNT_MESSAGE, LottoRanking.THREE.getWinningCount(), THREE_PRIZE_MONEY, lottoResult.getResult(LottoRanking.THREE)))
+                .append(String.format(WINNING_COUNT_MESSAGE, LottoRanking.FOUR.getWinningCount(), FOUR_PRIZE_MONEY, lottoResult.getResult(LottoRanking.FOUR)))
+                .append(String.format(WINNING_COUNT_MESSAGE, LottoRanking.FIVE.getWinningCount(), FIVE_PRIZE_MONEY, lottoResult.getResult(LottoRanking.FIVE)))
+                .append(String.format(WINNING_COUNT_WITH_BONUS_MESSAGE, LottoRanking.FIVE_AND_BONUS.getWinningCount(), FIVE_AND_BONUS_PRIZE_MONEY, lottoResult.getResult(LottoRanking.FIVE_AND_BONUS)))
+                .append(String.format(WINNING_COUNT_MESSAGE, LottoRanking.SIX.getWinningCount(), SIX_PRIZE_MONEY, lottoResult.getResult(LottoRanking.SIX)))
+                .append(String.format(TOTAL_PRIZE_MONEY_MESSAGE, lottoResult.getProfitRate()));
+
+        return sb.toString();
+    }
 }

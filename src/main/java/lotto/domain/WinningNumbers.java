@@ -1,8 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.global.exception.ErrorMessage;
-import lotto.global.exception.LottoException;
 
 /**
  * 당첨 번호들을 저장하는 클래스
@@ -11,7 +9,6 @@ public class WinningNumbers {
     private Lotto winningNumbers;
 
     private WinningNumbers(final Lotto winningNumbers) {
-        Validator.validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
 
@@ -45,34 +42,5 @@ public class WinningNumbers {
      */
     public boolean contains(final Number number) {
         return winningNumbers.contains(number);
-    }
-
-    private static class Validator {
-        /**
-         * 당첨 번호의 유효성을 검증하는 메서드
-         *
-         * @param winningNumbers 당첨 번호
-         */
-        private static void validateWinningNumbers(final Lotto winningNumbers) {
-            validateDuplication(winningNumbers);
-        }
-
-        private static void validateDuplication(final Lotto winningNumbers) {
-            if (isDuplicated(winningNumbers)) {
-                throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
-            }
-        }
-
-        private static boolean isDuplicated(final Lotto winningNumbers) {
-            int uniqueSize = getUniqueSize(winningNumbers);
-            return uniqueSize != winningNumbers.getSize();
-        }
-
-        private static int getUniqueSize(final Lotto winningNumbers) {
-            return (int) winningNumbers.getNumbers()
-                    .stream()
-                    .distinct()
-                    .count();
-        }
     }
 }

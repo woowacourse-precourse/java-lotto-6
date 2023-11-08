@@ -60,9 +60,32 @@ public class Lotto {
 
     private static class Validator {
         private static void validate(final List<Number> numbers) {
+            validateLottoSize(numbers);
+            validateDuplication(numbers);
+        }
+
+        private static void validateLottoSize(final List<Number> numbers) {
             if (numbers.size() != LOTTO_SIZE.getValue()) {
                 throw LottoException.from(ErrorMessage.INVALID_LOTTO_SIZE_ERROR);
             }
+        }
+
+        private static void validateDuplication(final List<Number> winningNumbers) {
+            if (isDuplicated(winningNumbers)) {
+                throw LottoException.from(ErrorMessage.DUPLICATED_NUMBER_ERROR);
+            }
+        }
+
+        private static boolean isDuplicated(final List<Number> winningNumbers) {
+            int uniqueSize = getUniqueSize(winningNumbers);
+            return uniqueSize != winningNumbers.size();
+        }
+
+        private static int getUniqueSize(final List<Number> winningNumbers) {
+            return (int) winningNumbers
+                    .stream()
+                    .distinct()
+                    .count();
         }
     }
 }

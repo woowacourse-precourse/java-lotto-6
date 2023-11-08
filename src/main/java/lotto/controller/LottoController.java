@@ -8,6 +8,8 @@ import lotto.domain.ReturnsRate;
 import lotto.domain.TicketCount;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningResult;
+import lotto.dto.LottosDto;
+import lotto.dto.TicketCountDto;
 import lotto.exception.ErrorMessage;
 import lotto.generator.LottoNumbersGenerator;
 import lotto.generator.LottosGenerator;
@@ -32,7 +34,7 @@ public class LottoController {
         PurchaseAmount purchaseAmount = getPurchaseAmountFromInput();
         TicketCount ticketCount = getTicketCount(purchaseAmount);
         Lottos lottos = createLottos(ticketCount);
-        displayLottosInfo(ticketCount, lottos);
+        displayLottosInfo(ticketCount.toDto(), lottos.toDto());
         startLotto(lottos, purchaseAmount);
     }
 
@@ -51,9 +53,9 @@ public class LottoController {
         return winningResult;
     }
 
-    private void displayLottosInfo(TicketCount ticketCount, Lottos lottos) {
-        outputView.displayTicketCount(ticketCount);
-        outputView.displayLottos(lottos);
+    private void displayLottosInfo(TicketCountDto ticketCountDto, LottosDto lottosDto) {
+        outputView.displayTicketCount(ticketCountDto);
+        outputView.displayLottos(lottosDto);
     }
 
     private PurchaseAmount getPurchaseAmountFromInput() {

@@ -13,4 +13,13 @@ public class ErrorView {
     public static String getLengthErrorMessage() {
         return "[ERROR] 로또 번호는 6개여야 합니다.";
     }
+
+    public static String getInvalidAmountErrorMessage() {
+        return "[ERROR] 구매 금액은 1000원 단위여야 합니다.";
+    }
+
+    public static String getInvalidInputFormatErrorMessage() {
+        return "[ERROR] 로또 번호는 쉼표(,)로 구분된 숫자여야 합니다.";
+    }
+
 }

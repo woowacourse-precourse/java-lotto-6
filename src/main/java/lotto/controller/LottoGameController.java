@@ -16,14 +16,6 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     public void run() {
-        try {
-            process();
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e);
-        }
-    }
-
-    private void process() {
         final Money money = readPurchaseAmount();
         final List<Lotto> lottoTickets = publishLotto(money);
         OutputView.printLottoTickets(lottoTickets);

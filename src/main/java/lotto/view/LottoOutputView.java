@@ -8,7 +8,7 @@ public class LottoOutputView {
 
     public static void showPurchasedLotto(Member member) {
         System.out.println(member.calculateQuantity() + "개를 구매했습니다.");
-        member.getLottos()
+        member.lottos()
                 .forEach(System.out::println);
     }
 
@@ -21,7 +21,7 @@ public class LottoOutputView {
             System.out.printf("%s%d개%n", rank.getMessage(), count);
         }
 
-        double earningRate = calculateRate(LottoRank.calculate(results), member.getInputMoney());
+        double earningRate = calculateRate(LottoRank.calculate(results), member.inputMoney());
         System.out.printf("총 수익률은 %.1f%%입니다.%n", earningRate);
     }
 

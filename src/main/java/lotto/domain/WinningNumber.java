@@ -13,7 +13,7 @@ public class WinningNumber {
     }
 
     private void validate() {
-        LottoValidator lottoValidator = new LottoValidator(lotto.getNumbers());
+        LottoValidator lottoValidator = new LottoValidator(lotto.numbers());
         lottoValidator.validateBonusNumber(bonusNumber);
     }
 

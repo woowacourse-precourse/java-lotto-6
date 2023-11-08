@@ -4,35 +4,22 @@ import java.util.List;
 import lotto.validator.LottoValidator;
 import lotto.validator.MoneyValidator;
 
-public class Member {
+public record Member(long inputMoney, List<Lotto> lottos) {
 
-    private final long inputMoney;
-    private final List<Lotto> lottos;
-
-    public Member(long inputMoney, List<Lotto> lottos) {
-        this.inputMoney = inputMoney;
-        this.lottos = lottos;
-        validate();
+    public Member {
+        validateInputMoney(inputMoney);
+        validateLottos(lottos);
     }
 
-    private void validate() {
-        validateMoney();
-        lottos.stream()
-                .map(Lotto::getNumbers)
-                .forEach(lotto -> new LottoValidator(lotto).validateAll());
-    }
-
-    private void validateMoney() {
-        MoneyValidator moneyValidator = new MoneyValidator(String.valueOf(inputMoney));
+    private static void validateInputMoney(long money) {
+        MoneyValidator moneyValidator = new MoneyValidator(String.valueOf(money));
         moneyValidator.validateAll();
     }
 
-    public long getInputMoney() {
-        return inputMoney;
-    }
-
-    public List<Lotto> getLottos() {
-        return lottos;
+    private static void validateLottos(List<Lotto> lottos) {
+        lottos.stream()
+                .map(Lotto::numbers)
+                .forEach(numbers -> new LottoValidator(numbers).validateAll());
     }
 
     public long calculateQuantity() {

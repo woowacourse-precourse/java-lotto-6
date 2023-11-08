@@ -25,7 +25,7 @@ public enum LottoRank {
     }
 
     public static LottoRank calculate(Lotto lotto, WinningNumber winningNumber) {
-        int matchCount = findMatchCount(lotto, winningNumber.getLotto().getNumbers());
+        int matchCount = findMatchCount(lotto, winningNumber.getLotto().numbers());
 
         boolean bonus = false;
         if (matchCount == 5) {

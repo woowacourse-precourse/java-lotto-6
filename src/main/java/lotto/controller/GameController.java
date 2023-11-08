@@ -39,7 +39,7 @@ public class GameController {
     }
 
     private List<LottoRank> determineLottoRanks(Member member, WinningNumber winningNumber) {
-        return member.getLottos().stream()
+        return member.lottos().stream()
                 .map(lotto -> LottoRank.calculate(lotto, winningNumber))
                 .toList();
     }

@@ -5,17 +5,6 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-//    public Lotto(List<Integer> numbers) {
-//        validate(numbers);
-//        this.numbers = numbers;
-//    }
-//
-//    private void validate(List<Integer> numbers) {
-//        if (numbers.size() != 6) {
-//            throw new IllegalArgumentException();
-//        }
-//    }
-
     public Lotto(List<Integer> numbers) {
         validateAll(numbers);
         this.numbers = numbers;
@@ -43,5 +32,9 @@ public class Lotto {
         if(!(numbers.size() == numbers.stream().distinct().count())) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

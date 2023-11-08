@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.exception.Exceptions;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,10 +14,12 @@ public class Customer {
     private static final int zero = 0;
 
     private int purchaseMoney;
+    private Exceptions exceptions = new Exceptions();
     private ArrayList<Lotto> purchaseLotteries = new ArrayList<>();
     private HashMap<Ranking, Integer> lottoResult = new HashMap<>();
 
     public Customer(int purchaseMoney) {
+        exceptions.isInvalidPurchaseMoneyNull(purchaseMoney);
         this.purchaseMoney = purchaseMoney;
         initLottoResult();
     }

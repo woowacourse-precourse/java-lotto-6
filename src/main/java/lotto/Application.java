@@ -19,17 +19,12 @@ public class Application {
 
         // 로또 구매
         Purchase purchase = purchaseLottosProcess(lottoController, inputView, outputView);
-
         // 로또 발급
         List<Lotto> lottos = generateLottoTicketsProcess(lottoController, outputView, purchase);
-
         // 당첨 및 보너스 번호 생성
         Jackpot jackpot = createJackPotProcess(lottoController, inputView);
-
-        // 발행된 로또들의 당첨 여부 계산
+        // 발행된 로또들의 당첨 여부 계산 및 수익률 계산
         Result result = calculateWinningRanksProcess(lottoController, outputView, purchase, lottos, jackpot);
-
-        // 발행된 로또들의 수익률 계산
         readProfitRateProcess(lottoController, outputView, result);
     }
 

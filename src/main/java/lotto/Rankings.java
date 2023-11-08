@@ -7,7 +7,7 @@ public enum Rankings {
     SECOND(5, true, 30000000),
     THIRD(5, false, 1500000),
     FOURTH(4, false, 50000),
-    FIFTH(3, true, 5000),
+    FIFTH(3, false, 5000),
     NOTHING(0, false, 0);
 
     private final Integer winNumberCount;
@@ -22,8 +22,8 @@ public enum Rankings {
     }
 
     public static Rankings getRanking(Integer winNumberCount, boolean needBonusBall) {
-        if(winNumberCount == SECOND.winNumberCount && needBonusBall == true) {
-            return SECOND;
+        if(winNumberCount == SECOND.winNumberCount && !needBonusBall) {
+            return THIRD;
         }
 
         return Arrays.stream(values())

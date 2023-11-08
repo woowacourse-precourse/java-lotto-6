@@ -8,6 +8,7 @@ import java.util.List;
 public class OutputView {
 
     private static final String READ_CASH_PROMPT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String READ_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
 
     public static void printReadCashMessage() {
         System.out.println(READ_CASH_PROMPT_MESSAGE);
@@ -24,6 +25,10 @@ public class OutputView {
 
     private static void printLottos(List<Lotto> lottos) {
         lottos.forEach(System.out::println);
+    }
+
+    public static void printReadWinningNumberMessage() {
+        System.out.println(READ_WINNING_NUMBER);
     }
 
 }

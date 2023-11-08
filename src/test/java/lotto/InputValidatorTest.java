@@ -118,4 +118,29 @@ public class InputValidatorTest {
         assertThat(result1).isInstanceOf(IllegalArgumentException.class);
         assertThat(result2).doesNotThrowAnyException();
     }
+
+    @DisplayName("당첨 번호가 1 이상, 45 이하의 범위인지 검사")
+    @Test
+    void 당첨_번호_범위_테스트() {
+        // given
+        List<Integer> case1 = List.of(0, 2, 3, 4, 5, 6);
+        List<Integer> case2 = List.of(1, 2, 3, 4, 5, 46);
+        List<Integer> case3 = List.of(1, 2, 3, 4, 5, 45);
+
+        // when
+        Throwable result1 = catchThrowable(() -> {
+            InputValidator.validateWinningNumbersInRange(case1);
+        });
+        Throwable result2 = catchThrowable(() -> {
+            InputValidator.validateWinningNumbersInRange(case2);
+        });
+        Throwable result3 = catchThrowable(() -> {
+            InputValidator.validateWinningNumbersInRange(case3);
+        });
+
+        // then
+        assertThat(result1).isInstanceOf(IndexOutOfBoundsException.class);
+        assertThat(result2).isInstanceOf(IndexOutOfBoundsException.class);
+        assertThat(result3).doesNotThrowAnyException();
+    }
 }

@@ -8,8 +8,8 @@ public class InputValidator {
     private static final int LOTTO_PRICE = 1_000;
     private static final int REMAINDER_ZERO = 0;
     private static final int WINNING_NUMBERS_COUNT = 6;
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
+    private static final int MIN_VALUE = 1;
+    private static final int MAX_VALUE = 45;
     private static final String ONLY_NUMBER_REGEX = "^[0-9]*$";
 
     public static void validatePurchaseAmount(int spend) {
@@ -60,13 +60,13 @@ public class InputValidator {
     public static void validateWinningNumbersInRange(List<Integer> winningNumbers) {
         for (int winningNumber : winningNumbers) {
             if (isLottoNumberOutOfBounds(winningNumber)) {
-                throw new IllegalArgumentException("당첨 번호는 1 이상, 45 이하로 입력해 주세요.");
+                throw new IndexOutOfBoundsException("당첨 번호는 1 이상, 45 이하로 입력해 주세요.");
             }
         }
     }
 
     public static boolean isLottoNumberOutOfBounds(int lottoNumber) {
-        return lottoNumber < START_INCLUSIVE || lottoNumber > END_INCLUSIVE;
+        return lottoNumber < MIN_VALUE || lottoNumber > MAX_VALUE;
     }
 
     public static void validateWinningNumbersIsNumeric(String[] winningNumbers) {

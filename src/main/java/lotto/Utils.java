@@ -8,7 +8,6 @@ public class Utils {
     public static String input(){
         return Console.readLine();
     }
-
     public static boolean isNumeric(String str){
         for (int i = 0; i < str.length(); i++){
             if (str.charAt(i) < '0' || '9' < str.charAt(i)){
@@ -17,7 +16,6 @@ public class Utils {
         }
         return !(str.isEmpty());
     }
-
     public static boolean isNumeric(String str, List<String> toExclude){
         for (int i = 0; i < str.length(); i++){
             if (toExclude.contains(str.substring(i, i + 1))){
@@ -29,7 +27,6 @@ public class Utils {
         }
         return !(str.isEmpty());
     }
-
     public static List<Integer> makeRandomNumbers(int start, int end, int cnt){
         List<Integer> makedNumbers;
         do {

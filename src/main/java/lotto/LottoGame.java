@@ -30,7 +30,6 @@ public class LottoGame {
         List<Integer> purchaseAmount;
         List<Integer> winningNumber;
         List<Integer> bonusNumber;
-
         purchaseAmount = lottoInput.input(InputType.PURCHASE_AMOUNT);
         buyLotto(purchaseAmount.get(FIRST));
         winningNumber = lottoInput.input(InputType.WINNING_NUMBERS);
@@ -56,7 +55,6 @@ public class LottoGame {
 
     public void calcWinningStatistics(Integer purchaseAmount){
         Integer winningAmount = ZERO;
-
         for (int i = 3; i <= 7; i++){
             winningAmount += lottoAmountByRank.get(i) * winningCount[i];
         }

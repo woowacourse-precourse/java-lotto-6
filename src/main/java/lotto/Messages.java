@@ -10,7 +10,6 @@ public class Messages {
         SIZE_OVER("[ERROR] 숫자의 갯수가 %d개가 아닙니다."),
         DUPLICATED_NUMBER("[ERROR] 중복된 숫자가 존재합니다.");
 
-
         private String errorMessage;
         private ErrorMessage(String message){
             this.errorMessage = message;

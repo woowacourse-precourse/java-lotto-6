@@ -34,7 +34,6 @@ public class Print {
             lotto.printLotto();
         }
     }
-
     public static void printWinningStatistics(Float rateOfReturn, int[] winningCount){
         Print.printMessage("");
         Print.printMessage(MainMessage.WINNING_STATISTICS.getMessage());
@@ -45,7 +44,6 @@ public class Print {
         printfMessage(WinningStatistics.WIN_6_MATCH.getMessage(), winningCount[Lotto.RANK_1]);
         printfMessage(WinningStatistics.TOTAL_AMOUNT.getMessage(), rateOfReturn);
     }
-
     public static void printfMessage(String printMessage, Object... args){
         System.out.printf(printMessage + "%n", args);
     }

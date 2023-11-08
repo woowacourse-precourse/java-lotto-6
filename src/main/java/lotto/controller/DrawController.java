@@ -16,21 +16,19 @@ import lotto.view.OutputView;
 public class DrawController {
 
     private final PurchaseLotto purchaseLotto;
-    private final IssueLotto issueLotto;
 
     public DrawController() {
         this.purchaseLotto = new PurchaseLotto();
-        this.issueLotto = new IssueLotto();
     }
 
     public void draw() {
         inputPurchaseAmount();
-        issueLotto.issue(purchaseLotto.getNumberOfPurchases());
+        List<Lotto> purchaseHistory = IssueLotto.createIssueLotto().issue(purchaseLotto.getNumberOfPurchases());
         List<Integer> winningNumbers = inputWinningNumber().getNumbers();
         int bonusNumber = inputBonusNumber(winningNumbers);
 
         List<LottoRankings> matchResult = MatchLotto.createMatchLotto()
-                .matchLotto(winningNumbers, bonusNumber, issueLotto.getLottoPurchaseHistory());
+                .matchLotto(winningNumbers, bonusNumber, purchaseHistory);
         HashMap<LottoRankings, Integer> lottoResult = LottoResult.createLottoResult()
                 .checkResult(matchResult);
         OutputView.printResultMessage(lottoResult);

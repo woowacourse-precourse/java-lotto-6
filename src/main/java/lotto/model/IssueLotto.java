@@ -6,20 +6,20 @@ import lotto.view.OutputView;
 
 public class IssueLotto {
 
-    private final List<Lotto> lottoPurchaseHistory = new ArrayList<>();
+    public static IssueLotto createIssueLotto() {
+        return new IssueLotto();
+    }
 
-    public void issue(int numberOfPurchases) {
+    public List<Lotto> issue(int numberOfPurchases) {
         OutputView.printNumberOfPurchaseMessage(numberOfPurchases);
+        List<Lotto> purchaseHistory = new ArrayList<>();
         int count = 0;
         while (count < numberOfPurchases) {
             Lotto lotto = new Lotto();
             OutputView.printIssueLottoMessage(lotto.getNumbers());
-            this.lottoPurchaseHistory.add(lotto);
+            purchaseHistory.add(lotto);
             count++;
         }
-    }
-
-    public List<Lotto> getLottoPurchaseHistory() {
-        return lottoPurchaseHistory;
+        return purchaseHistory;
     }
 }

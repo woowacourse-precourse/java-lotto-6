@@ -133,6 +133,6 @@ public class Application {
             if(rank == Rank.RANK_0) continue;
             System.out.println(rank.getPrintMessage() + " - " + lottoResult.get(rank) + "개");
         }
-        System.out.println("총 수익률은 " + String.format("%.1f", profits) + "% 입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", profits) + "%입니다.");
     }
 }

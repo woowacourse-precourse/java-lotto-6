@@ -35,4 +35,20 @@ public class InputValidator {
         }
         return parsed;
     }
+    public static void validateUserInputWinningNumbers(String rawWinningNumbers) throws IllegalArgumentException {
+        List<Integer> winningNumbers = parseRawWinningNumber(rawWinningNumbers);
+        if (winningNumbers.size() != LOTTO_TICKET_LENGTH) {
+            throw new IllegalArgumentException(String.format(INVALID_INPUT_LENGTH_FORMAT, LOTTO_TICKET_LENGTH));
+        }
+        if (checkContainsDuplicatedNumber(winningNumbers)) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBER_MESSAGE);
+        }
+
+        for (int winningNumber : winningNumbers) {
+            if (checkNumberNotInRange(winningNumber)) {
+                throw new IllegalArgumentException(String.format(NUMBER_NOT_IN_RANGE_FORMAT,
+                        MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER));
+            }
+        }
+    }
 }

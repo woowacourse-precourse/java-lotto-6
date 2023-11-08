@@ -13,6 +13,9 @@ public class LottoValidator {
     private static final int LOTTO_MIN = 1;
     private static final int LOTTO_MAX = 45;
 
+    public static int getLottoSize(){
+        return LOTTO_SIZE;
+    }
     private static boolean rangeBetweenMinToMax(List<Integer> numbers) {
 
         for (Integer number :

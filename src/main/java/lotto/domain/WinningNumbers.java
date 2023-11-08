@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.constant.CommonMessage.*;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -10,10 +12,6 @@ public class WinningNumbers {
 
     private static final String WINNING_GENERAL_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String WINNING_BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private static final String INPUT_ERROR_MESSAGE = "[ERROR] 잘못된 번호를 입력했습니다.";
-    private static final String DUPLICATE_ERROR_MESSAGE = "중복된 번호가 있습니다.";
-    private static final String SIZE_ERROR_MESSAGE = "잘못된 개수의 번호입니다.";
-    private static final String RANGE_ERROR_MESSAGE = "잘못된 범위의 번호입니다.";
     private final List<Integer> generalNumbers;
     private final int bonusNumber;
 
@@ -48,7 +46,7 @@ public class WinningNumbers {
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE.getValue());
         }
     }
 
@@ -59,7 +57,7 @@ public class WinningNumbers {
             OutputView.printMessage();
             return Integer.parseInt(input);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE.getValue());
         }
     }
 
@@ -72,13 +70,13 @@ public class WinningNumbers {
 
     private void validateSize(List<Integer> generalNumbers) {
         if (generalNumbers.size() != Lotto.LOTTO_NUMBER) {
-            throw new IllegalArgumentException(SIZE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(SIZE_ERROR_MESSAGE.getValue());
         }
     }
 
     private void validateRange(int number) {
         if (number < Lotto.LOTTO_RANGE_BEGIN || number > Lotto.LOTTO_RANGE_END) {
-            throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(RANGE_ERROR_MESSAGE.getValue());
         }
     }
 
@@ -90,7 +88,7 @@ public class WinningNumbers {
 
     private void checkDuplicate(HashSet<Integer> duplicateCheckSet, Integer number) {
         if (duplicateCheckSet.contains(number)) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE.getValue());
         }
         duplicateCheckSet.add(number);
     }

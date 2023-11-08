@@ -1,7 +1,5 @@
 package lotto.model.lotto;
 
-import lotto.model.lotto.Lotto;
-import lotto.model.lotto.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class WinningNumberTest {
     final String WINNING_NUMBER = "1,2,3,4,5,6";
     @Test
-    @DisplayName("입력된 당첨 번호 정상 입력 확인")
+    @DisplayName("입력된 당첨 번호를 정상 입력하면 예외가 발생하지 않는다.")
     void inputWinningNumber(){
         WinningNumber winningNumber = new WinningNumber(WINNING_NUMBER);
         Lotto expectedLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

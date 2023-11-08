@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -51,14 +50,16 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("로또 생성 성공")
-    void givenNumbers_whenCreateLotto_thenNoException() {
+    @DisplayName("로또 생성 성공: 로또 번호는 정렬된 상태로 저장된다")
+    void givenNumbers_whenCreateLotto_thenReturnSortedNumbers() {
         // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> numbers = List.of(6, 5, 4, 3, 2, 1);
 
-        // when & then
-        assertThatNoException()
-                .isThrownBy(() -> new Lotto(numbers));
+        // when
+        Lotto result = new Lotto(numbers);
+
+        // then
+        assertThat(result.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @Test

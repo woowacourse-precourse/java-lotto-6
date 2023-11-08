@@ -44,7 +44,7 @@ class CustomerTest {
     }
 
     @Test
-    @DisplayName("입력한 금액이 숫자로만 이루어져 있고 1000원 이상 및 1000원 단위일 경우 소비자는 구입가격 / 1000 만큼 로또를 구입한다.")
+    @DisplayName("구입가격 10000원이면 로또 10개를 구입할 수 있다.")
     void buyLotto() {
         //given
         String buyPrice = "10000";

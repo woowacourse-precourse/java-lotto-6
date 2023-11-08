@@ -1,9 +1,9 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
+import lotto.WinningResultDTO;
 
 public class WinningResult {
 
@@ -19,8 +19,8 @@ public class WinningResult {
         result.put(rank, result.get(rank) + ADDING_COUNT);
     }
 
-    public Map<Rank, Integer> getResult() {
-        return Collections.unmodifiableMap(result);
+    public WinningResultDTO getResult() {
+        return WinningResultDTO.from(result);
     }
 
     public int getTotalPrize() {

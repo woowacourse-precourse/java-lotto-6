@@ -1,7 +1,6 @@
 package lotto.cotroller;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.view.InputView;
 import lotto.domain.Lotto;
@@ -10,7 +9,6 @@ import lotto.LottoMaker;
 import lotto.domain.Lottos;
 import lotto.view.OutputView;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.Rank;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningResult;
 
@@ -34,8 +32,7 @@ public class MainController {
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
         WinningResult winningResult = lottos.getWinningResult(winningNumber, bonusNumber);
 
-        Map<Rank, Integer> result = winningResult.getResult();
-        outputView.printResult(result);
+        outputView.printResult(winningResult.getResult());
 
         int totalPrize = winningResult.getTotalPrize();
         double totalReturn = purchaseAmount.getTotalReturn(totalPrize);

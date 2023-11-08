@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import lotto.LottoDTO;
+import lotto.WinningResultDTO;
 import lotto.domain.Rank;
 
 public class OutputView {
@@ -20,7 +21,8 @@ public class OutputView {
                 .forEach(System.out::println);
     }
 
-    public void printResult(Map<Rank, Integer> result) {
+    public void printResult(WinningResultDTO dto) {
+        Map<Rank, Integer> result = dto.getResult();
         System.out.println("당첨 통계");
         System.out.println("---");
 

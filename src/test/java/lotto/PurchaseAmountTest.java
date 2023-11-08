@@ -1,7 +1,8 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
 import lotto.Model.LottoPurchaseAmount;
 
 public class PurchaseAmountTest {
@@ -32,5 +33,12 @@ public class PurchaseAmountTest {
         int negativeNumberInput = 500;
         assertThatThrownBy(() -> LottoPurchaseAmount.validateFitPurchaseAmountCondition(negativeNumberInput))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void calculatePurchaseLottoCount_ValidAmount_ShouldReturnCorrectCount() {
+        LottoPurchaseAmount lottoPurchaseAmount = new LottoPurchaseAmount("5000");
+        int lottoCount = lottoPurchaseAmount.calculatePurchaseLottoCount();
+        assertThat(lottoCount).isEqualTo(5);
     }
 }

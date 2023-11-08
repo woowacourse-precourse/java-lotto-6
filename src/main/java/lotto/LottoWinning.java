@@ -46,16 +46,17 @@ public class LottoWinning {
         this.bonusNumber = bonusNumber;
     }
 
-    // TODO: refactor names of variables
     public Map<LottoRank, Integer> assignRanks(List<Lotto> tickets) {
         Map<LottoRank, Integer> winningCounts = new EnumMap<>(LottoRank.class);
-        List<LottoRank> winnings = new ArrayList<>();
-        // TODO: refactor
+        for (LottoRank rank: LottoRank.values()) {
+            winningCounts.put(rank, 0);
+        }
         tickets.forEach(t -> {
             LottoRank wonRank = assignRank(t);
-            winningCounts.put(wonRank, winningCounts.getOrDefault(wonRank, 0) + 1);
+            if (wonRank != null) {
+                winningCounts.put(wonRank, winningCounts.getOrDefault(wonRank, 0) + 1);
+            }
         });
-        // TODO: refactor ignore NoWinning
         return winningCounts;
     }
 
@@ -63,9 +64,6 @@ public class LottoWinning {
         int match = ticket.countMatchingNumbers(winningNumbers);
         boolean bonusMatch = checkIfTicketContainsBonusNumber(ticket);
         LottoRank wonRank = LottoRank.getWinningRank(match, bonusMatch);
-        if (wonRank == LottoRank.NO_WINNING) {
-            return null;
-        }
         return wonRank;
     }
 

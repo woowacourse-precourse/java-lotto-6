@@ -1,5 +1,10 @@
 package domain;
 
+import dto.LottoTickets;
+import dto.WinningMatchResult;
+import java.util.List;
+import java.util.Optional;
+
 public class LottoWinningNumbers {
     private final WinningNumbers winningNumbers;
     private final BonusNumber bonusNumber;
@@ -16,5 +21,21 @@ public class LottoWinningNumbers {
 
     private static void validateDuplicateBonusNumber(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
         bonusNumber.exceptionIfDuplicate(winningNumbers);
+    }
+
+    public List<LottoWinningTier> calculateWinningStatistics(LottoTickets lottoTickets) {
+        return lottoTickets.getLottoTickets()
+                .stream()
+                .map(this::calculateWinningMatchResult)
+                .map(LottoWinningTier::calculateTier)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+
+    private WinningMatchResult calculateWinningMatchResult(Lotto lotto) {
+        int matchCount = winningNumbers.calculateMatchCount(lotto);
+        boolean matchBonus = bonusNumber.isMatch(lotto);
+        return new WinningMatchResult(matchCount, matchBonus);
     }
 }

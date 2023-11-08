@@ -6,9 +6,13 @@ public class WinningLottoNumbers {
     private final Lotto winningNumbers;
     private final LottoNumber bonusNumber;
 
-    public WinningLottoNumbers(Lotto winningNumbers, LottoNumber bonusNumber) {
+    private WinningLottoNumbers(Lotto winningNumbers, LottoNumber bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public static WinningLottoNumbers of(Lotto winningNumbers, LottoNumber bonusNumber) {
+        return new WinningLottoNumbers(winningNumbers, bonusNumber);
     }
 
     public boolean containBonusNumber(Lotto userLotto) {

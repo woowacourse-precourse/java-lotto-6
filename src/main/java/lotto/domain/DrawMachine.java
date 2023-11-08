@@ -11,8 +11,12 @@ import static lotto.domain.LottoStore.LOTTO_PRICE;
 public class DrawMachine {
     private final WinningLottoNumbers winningLottoNumbers;
 
-    public DrawMachine(WinningLottoNumbers winningLottoNumbers) {
+    private DrawMachine(WinningLottoNumbers winningLottoNumbers) {
         this.winningLottoNumbers = winningLottoNumbers;
+    }
+
+    public static DrawMachine from(WinningLottoNumbers winningLottoNumbers) {
+        return new DrawMachine(winningLottoNumbers);
     }
 
     private DrawResult draw(Lotto userLotto) {

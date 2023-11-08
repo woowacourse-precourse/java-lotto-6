@@ -8,7 +8,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -20,16 +19,27 @@ public class Application {
         UserLottoGenerator userLottoGenerator = new UserLottoGenerator();
         LottoCalculator lottoCalculator = new LottoCalculator();
 
+        start(outputView, inputView, lottoValidation, userLottoGenerator, lottoCalculator);
+    }
+
+    private static void start(OutputView outputView, InputView inputView, LottoValidation lottoValidation, UserLottoGenerator userLottoGenerator, LottoCalculator lottoCalculator) {
         int purchaseAmount = ioPurchaseAmount(outputView, inputView, lottoValidation);
         List<UserLotto> userLottos = outputPurchasedUserLotto(purchaseAmount, outputView, userLottoGenerator);
         List<Integer> winningNumber = ioWinningNumber(outputView, inputView, lottoValidation);
         int bonusNumber = ioBonusNumber(outputView, inputView, lottoValidation, winningNumber);
+        List<Integer> resultData = outputWinningStatistics(outputView, lottoCalculator, userLottos, winningNumber, bonusNumber);
+        outputRateOfReturn(outputView, lottoCalculator, purchaseAmount, resultData);
+    }
 
-        List<Integer> resultData = lottoCalculator.calculateLottoWin(userLottos, winningNumber, bonusNumber);
-        outputView.printWinningStatisticsMessage(resultData);
-        
+    private static void outputRateOfReturn(OutputView outputView, LottoCalculator lottoCalculator, int purchaseAmount, List<Integer> resultData) {
         double rateOfReturn = lottoCalculator.calculateRateOfReturn(purchaseAmount, resultData);
         outputView.printRateOfReturnMessage(rateOfReturn);
+    }
+
+    private static List<Integer> outputWinningStatistics(OutputView outputView, LottoCalculator lottoCalculator, List<UserLotto> userLottos, List<Integer> winningNumber, int bonusNumber) {
+        List<Integer> resultData = lottoCalculator.calculateLottoWin(userLottos, winningNumber, bonusNumber);
+        outputView.printWinningStatisticsMessage(resultData);
+        return resultData;
     }
 
     private static int ioBonusNumber(OutputView outputView, InputView inputView, LottoValidation lottoValidation, List<Integer> winningNumber) {

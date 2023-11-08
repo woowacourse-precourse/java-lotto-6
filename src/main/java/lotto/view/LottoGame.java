@@ -11,6 +11,7 @@ public class LottoGame {
 
 
     public Price bougthPrice() {
+        System.out.println("구입금액을 입력해 주세요.");
         int lottoPrice = lottoController.LottoSetPrice();
         Price price = new Price(lottoPrice);
 

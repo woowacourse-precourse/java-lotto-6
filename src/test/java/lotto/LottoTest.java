@@ -18,10 +18,39 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호에 1부터 45사이의 숫자가 아닌 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByString1() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 47, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호에 1부터 45사이의 숫자가 아닌 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByString2() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 45, 5, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호에 1부터 45사이의 숫자가 아닌 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByString3() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, -6, 3, 4, 5, 7)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호의 개수가 6개 미만 이면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize1() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("로또 번호의 개수가 6개가 되지 않으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize2() {
+        assertThatThrownBy(() -> new Lotto(List.of(1)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

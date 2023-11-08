@@ -11,19 +11,12 @@ public class OutputView {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
-    public static void printPurchasedLottos(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
-            printLotto(lotto);
-        }
-    }
-
-    private static void printLotto(Lotto lotto) {
+    public static void printLotto(List<Integer> lottoNumbers) {
         StringJoiner joiner = new StringJoiner(", ", "[", "]");
 
-        for (Integer num : lotto.getNumbers()) {
+        for (Integer num : lottoNumbers) {
             joiner.add(num.toString());
         }
-
         String result = joiner.toString();
         System.out.println(result);
     }

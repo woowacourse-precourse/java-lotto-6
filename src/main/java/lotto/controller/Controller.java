@@ -114,7 +114,6 @@ public class Controller {
 
     private void showLottoQuantity() {
         OutputView.showLottoQuantity(buyer.getLottoQuantity());
-
     }
 
     private void showPurchaseLotteries(List<Lotto> purchaseLotteries) {

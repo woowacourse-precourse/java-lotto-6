@@ -1,28 +1,28 @@
 package lotto.enums;
 
 public enum Rank {
-    FIRST(6, 2_000_000_000, false),
-    SECOND(5, 30_000_000, true),
-    THIRD(5, 1_500_000, false),
-    FOURTH(4, 50_000, false),
-    FIFTH(3, 5_000, false),
-    MISSING(0, 0, false);
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000),
+    THIRD(5, 1_500_000),
+    FOURTH(4, 50_000),
+    FIFTH(3, 5_000),
+    MISSING(0, 0);
     private final int countOfMatch;
     private final int winningMoney;
 
-    private final boolean hasBonusNumber;
-
-    private Rank(int countOfMatch, int winningMoney, boolean hasBonusNumber) {
+    private Rank(int countOfMatch, int winningMoney) {
         this.countOfMatch = countOfMatch;
         this.winningMoney = winningMoney;
-        this.hasBonusNumber = hasBonusNumber;
     }
 
     public static Rank calculateRank(int countOfMatch, boolean hasBonusNumber) {
         Rank foundRank = MISSING;
         for (Rank rank : Rank.values()) {
-            if (rank.countOfMatch == countOfMatch && rank.hasBonusNumber == hasBonusNumber) {
+            if (rank.countOfMatch == countOfMatch) {
                 foundRank = rank;
+            }
+            if (hasBonusNumber && rank == THIRD) {
+                foundRank = SECOND;
             }
         }
         return foundRank;

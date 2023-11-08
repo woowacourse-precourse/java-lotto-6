@@ -36,4 +36,13 @@ public class ValidateConstant {
     public static String ERROR_INPUT_ZERO_NUMBER() {
         return "[ERROR] 0은 입력할수 없습니다.";
     }
+
+    public static String ERROR_INPUT_ONLY_NUMBER() {
+        return "[ERROR] 숫자를 입력해주세요.";
+    }
+
+    // ================== 유저 ==================
+    public static String ERROR_INPUT_1000_WON_UNIT() {
+        return "[ERROR] 돈은 1000원 단위 입니다.";
+    }
 }

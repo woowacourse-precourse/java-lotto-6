@@ -24,6 +24,7 @@ public class ValidateException {
     private static final Integer START_BONUS_NUMBER = 1;
     private static final Integer END_BONUS_NUMBER = 45;
     private static final String SEQUENCE_COMMA = ",,";
+    private static final char CHAR_DASH = '-';
 
     public static void includeString(String strLine) {
         Pattern pattern = Pattern.compile(KOREAN_ENGLISH_REGEX);
@@ -57,7 +58,6 @@ public class ValidateException {
         }
     }
 
-
     public static Boolean blankCheck(String strLine) {
         if (!strLine.equals(NOTING_STRING)) {
             return true;
@@ -88,8 +88,8 @@ public class ValidateException {
 
     public static boolean containsNonNumericCharacter(String input) {
         for (char c : input.toCharArray()) {
-            if (!Character.isDigit(c) && c != '-' && !Character.isWhitespace(c)) {
-                throw new NumberFormatException("[ERROR] 숫자를 입력해주세요.");
+            if (!Character.isDigit(c) && c != CHAR_DASH && !Character.isWhitespace(c)) {
+                throw new NumberFormatException(ValidateConstant.ERROR_INPUT_ONLY_NUMBER());
             }
         }
         return false;
@@ -100,7 +100,7 @@ public class ValidateException {
         if (amount % 1000 == 0) {
             return true;
         }
-        throw new IllegalArgumentException("[ERROR] 돈은 1000원 단위 입니다.");
+        throw new IllegalArgumentException(ValidateConstant.ERROR_INPUT_1000_WON_UNIT());
     }
 
     public static boolean isInRangeBonusNumber(int number) {

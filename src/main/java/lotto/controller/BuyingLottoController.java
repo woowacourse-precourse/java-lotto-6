@@ -7,18 +7,16 @@ import lotto.view.OutputView;
 
 public class BuyingLottoController {
 
-    private static final int STOP_FLAG = 0;
-
+    private Buyer buyer;
+    private final int STOP_FLAG = -1;
     private BuyingLottoService buyingLottoService = new BuyingLottoService();
 
     public Buyer buyLotto(){
-        Buyer buyer;
         int money;
-
         do {
             String inputMoney = InputView.inputMoneyToBuyMessage();
             money = buyingLottoService.validateInputMoney(inputMoney);
-        }while(STOP_FLAG>=money);
+        }while(money==STOP_FLAG);
 
         buyer = new Buyer(money);
         buyer.buyLotto();

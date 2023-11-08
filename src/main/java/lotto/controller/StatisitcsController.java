@@ -6,10 +6,10 @@ import lotto.view.OutputView;
 
 public class StatisitcsController {
 
-    private BuyingLottoController buyingLottoController = new BuyingLottoController();
-    private DrawWinningNumberController drawWinningNumberController = new DrawWinningNumberController();
+    private final BuyingLottoController buyingLottoController = new BuyingLottoController();
+    private final DrawWinningNumberController drawWinningNumberController = new DrawWinningNumberController();
 
-    public void drawLotto(){
+    public void playLotto(){
         Buyer buyer = buyingLottoController.buyLotto();
         WinningManager manager = drawWinningNumberController.drawWinningNumber();
 

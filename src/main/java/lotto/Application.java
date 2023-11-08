@@ -7,13 +7,8 @@ import lotto.controller.StatisitcsController;
 
 public class Application {
     public static void main(String[] args) {
-//        BuyingLottoController buyingController = new BuyingLottoController();
-//        DrawWinningNumberController winningController = new DrawWinningNumberController();
-//
-//        buyingController.buyLotto();
-//        winningController.drawWinningNumber();
         StatisitcsController statisitcsController = new StatisitcsController();
-        statisitcsController.drawLotto();
+        statisitcsController.playLotto();
 
         Console.close();
     }

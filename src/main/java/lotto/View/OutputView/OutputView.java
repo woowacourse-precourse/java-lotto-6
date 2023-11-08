@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.Model.Lotto.Lotto;
 import lotto.Model.LottoSet.LottoSet;
 import lotto.Model.LottoWinningResult.LottoWinningResult;
+import lotto.Model.ProfitRate.ProfitRate;
 
 import static lotto.Common.LottoValue.*;
 
@@ -18,6 +19,7 @@ public class OutputView {
 
     public void lottoSetPrint(LottoSet lottoSet) {
         List<Lotto> lottoList = lottoSet.getLottoSet();
+        System.out.println();
         System.out.printf((LOTTO_BUY_COUNT) + "%n", lottoList.size());
         for (Lotto lotto : lottoList) {
             System.out.print("[");
@@ -41,6 +43,7 @@ public class OutputView {
     }
 
     public void winningLottoPrint(LottoWinningResult lottoWinningResult) {
+        System.out.println();
         System.out.println(WINNING_PROFIT);
         System.out.println("---");
         Map<Integer, List<Lotto>> winningLottoList = lottoWinningResult.getMatchingResults();
@@ -80,6 +83,10 @@ public class OutputView {
 
     }
 
-
+    public void totalProfitRatePrint(ProfitRate profitRate) {
+        System.out.print("총 수익률 은");
+        System.out.print(profitRate.getProfitRatePercent() + "%");
+        System.out.print("입니다.");
+    }
 
 }

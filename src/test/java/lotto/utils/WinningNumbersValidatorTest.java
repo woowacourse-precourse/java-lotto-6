@@ -18,7 +18,7 @@ class WinningNumbersValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"1,2abc,3,4,5,6", "1,2,,3,4,5", "1,2,3", "1,2,3,4,5,6,7"})
     void testValidateSeparator(String numbers) {
-        assertThatThrownBy(() -> WinningNumbersValidator.validateSeparator(numbers))
+        assertThatThrownBy(() -> LottoNumbersValidator.validateSeparator(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_SEPARATOR_OR_NUMBER_COUNT.getMessage());
     }
@@ -27,7 +27,7 @@ class WinningNumbersValidatorTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 46, -20})
     void testValidateRange(int numbers) {
-        assertThatThrownBy(() -> WinningNumbersValidator.validateRange(numbers))
+        assertThatThrownBy(() -> LottoNumbersValidator.validateRange(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NUMBER_OUT_OF_RANGE.getMessage());
     }
@@ -35,7 +35,7 @@ class WinningNumbersValidatorTest {
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> WinningNumbersValidator.validateDuplicateWinningNumbers(List.of(1, 1, 2, 3, 4, 5)))
+        assertThatThrownBy(() -> LottoNumbersValidator.validateDuplicateNumbers(List.of(1, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DUPLICATE_WINNING_NUMBERS.getMessage());
     }
@@ -43,7 +43,7 @@ class WinningNumbersValidatorTest {
     @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
     @Test
     void validateDuplicateNumbers() {
-        assertThatThrownBy(() -> WinningNumbersValidator.validateDuplicateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 1))
+        assertThatThrownBy(() -> LottoNumbersValidator.validateDuplicateBonusNumber(List.of(1, 2, 3, 4, 5, 6), 1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(DUPLICATE_BONUS_NUMBER.getMessage());
     }

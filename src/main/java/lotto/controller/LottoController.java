@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lotto.model.domain.Lotto;
@@ -24,9 +24,15 @@ public class LottoController {
     }
 
     public void start() {
+        gamePrinter.printInputPurchaseAmount();
         int price = buyLotto();
         printPurchasedLotto(lottoTicket.getLottoTicket());
-        saveWinningNumbers();
+
+        gamePrinter.printInputLottoNumbers();
+        Lotto lotto = saveWinningNumbers();
+        gamePrinter.printInputBonusNumber();
+        createWinningNumbers(lotto);
+
         calculateWinnings(price);
         printWinningStats();
     }
@@ -57,15 +63,32 @@ public class LottoController {
         marginCalculator = new MarginCalculator(price, winningConfirm);
     }
 
-    private void saveWinningNumbers() {
-        gamePrinter.printInputLottoNumbers();
-        String[] parts = Console.readLine().split(",");
-        List<Integer> winningNum = Arrays.stream(parts)
-                .map(Integer::parseInt)
-                .toList();
-        gamePrinter.printInputBonusNumber();
-        int bonusNum = Integer.parseInt(Console.readLine());
-        winningNumbers = new WinningNumbers(new Lotto(winningNum), bonusNum);
+    private Lotto saveWinningNumbers() {
+        try {
+            String[] parts = Console.readLine().split(",");
+            List<Integer> numbers = new ArrayList<>();
+            for (String part : parts) {
+                InputValidate.isNumber(part);
+                numbers.add(Integer.parseInt(part));
+            }
+            return new Lotto(numbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return saveWinningNumbers();
+        }
+    }
+
+
+    private void createWinningNumbers(Lotto lotto) {
+        try {
+            String input = Console.readLine();
+            InputValidate.isNumber(input);
+            int bonus = Integer.parseInt(input);
+            winningNumbers = new WinningNumbers(lotto, bonus);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createWinningNumbers(lotto);
+        }
     }
 
     private void printPurchasedLotto(List<Lotto> lottoTicket) {
@@ -74,17 +97,15 @@ public class LottoController {
     }
 
     private int buyLotto() {
-        gamePrinter.printInputPurchaseAmount();
-        String input;
         try {
-            input = Console.readLine();
+            String input = Console.readLine();
             InputValidate.isNumber(input);
+            int price = Integer.parseInt(input);
+            lottoTicket = new LottoTicket(price);
+            return price;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return buyLotto();
         }
-        int price = Integer.parseInt(input);
-        lottoTicket = new LottoTicket(price);
-        return price;
     }
 }

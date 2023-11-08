@@ -14,9 +14,13 @@ public class Result {
     }
 
     public void add(int matchedCount, boolean hasBonusNumber) {
-        if (matchedCount == 6 || (matchedCount == 5 && hasBonusNumber)) {
+        if (matchedCount == 6) {
+            matchCounts[matchedCount]++;
+        }
+        if (matchedCount == 5 && hasBonusNumber) {
             matchCounts[MATCH_5_WITH_BONUS_PRIZE_INDEX]++;
-        } else {
+        }
+        if (matchedCount < 6 && !(matchedCount == 5 && hasBonusNumber)) {
             matchCounts[matchedCount]++;
         }
     }

@@ -1,23 +1,34 @@
 package lotto.Model;
 
 import lotto.View.ExceptionMessage;
-import lotto.View.InputView;
 
 public class UserLottoAmount {
     private static final int LOTTO_PRICE = 1000;
     private int amount;
 
-    public UserLottoAmount(String amount) {
-        int amountNum;
-        while (true) {
-            try {
-                amountNum = ValidateNumber(amount);
-                ValidateAmount(amountNum);
-                this.amount = amountNum;
-                break;
-            } catch (IllegalArgumentException e) {
-                amount = InputView.InputBuyCost();
+    public UserLottoAmount(String amountString) {
+        int amountNum = validateAndParse(amountString);
+        ValidateAmount(amountNum);
+        this.amount = amountNum;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    private int validateAndParse(String amountString) {
+        try {
+            int parsedAmount = Integer.parseInt(amountString);
+            if (parsedAmount <= 0) {
+                throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER_ERROR);
+
             }
+            if (parsedAmount % LOTTO_PRICE != 0) {
+                throw new IllegalArgumentException(ExceptionMessage.NOT_DIVISIBLE_NUMBER_ERROR);
+            }
+            return parsedAmount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_ERROR);
         }
     }
 
@@ -28,15 +39,6 @@ public class UserLottoAmount {
     private void ValidateAmount(int amount) {
         validateNatural(amount);
         validateDivisible(amount);
-    }
-
-    private static int ValidateNumber(String amount) throws IllegalArgumentException {
-        try {
-            return Integer.parseInt(amount);
-        } catch (NumberFormatException e) {
-            ExceptionMessage.numberException();
-            throw new IllegalArgumentException();
-        }
     }
 
     private void validateNatural(int amount) {

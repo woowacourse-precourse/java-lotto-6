@@ -28,8 +28,15 @@ public class LottoController {
     }
 
     public int inputUserAmount() {
-        userLottoAmount = new UserLottoAmount(InputView.InputBuyCost());
-        return userLottoAmount.CalcLottoCount();
+        while (true) {
+            try {
+                String amount = InputView.InputBuyCost();
+                UserLottoAmount userLottoAmount = new UserLottoAmount(amount);
+                return userLottoAmount.getAmount() / LOTTO_PRICE;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // Print the error message and prompt again
+            }
+        }
     }
 
     public WinningResult inputBonusNum() {

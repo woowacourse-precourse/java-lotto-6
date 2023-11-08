@@ -20,8 +20,9 @@ public class LottoResult {
         return rateOfReturn;
     }
 
-    public void calculateRateOfReturn(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber, int money) {
+    public void calculateRateOfReturn(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
         int profit = totalProfit(lottos, winningNumbers, bonusNumber);
+        int money = lottos.size() * 1000;
         rateOfReturn = ((double) profit / money) * 100;     // 수익률(%) = (순투자수익/투자 비용) * 100%
     }
 
@@ -37,7 +38,7 @@ public class LottoResult {
 
     private int eachProfit(int matchedNumbers, boolean matchedBonus) {
         for (Rank rank : Rank.values()) {
-            if (rank.getMatchedNumbers() == matchedNumbers && (rank.isBonusMatch() == matchedBonus)) {
+            if (isWin(rank, matchedNumbers, matchedBonus) != -1) {
                 return rank.getProfit();
             }
         }
@@ -54,10 +55,21 @@ public class LottoResult {
 
     private void eachRankCounting(int matchedNumbers, boolean matchedBonus) {
         for (Rank rank : Rank.values()) {
-            if (rank.getMatchedNumbers() == matchedNumbers && (rank.isBonusMatch() == matchedBonus)) {
-                rankCount[rank.ordinal()]++;
+            if (isWin(rank, matchedNumbers, matchedBonus) != -1) {
+                rankCount[isWin(rank, matchedNumbers, matchedBonus)]++;
             }
         }
+    }
+
+    private int isWin(Rank rank, int matchedNumbers, boolean matchedBonus) {
+        if (rank.getMatchedNumbers() == matchedNumbers) {
+            if (rank.getMatchedNumbers() == 5 && rank.isBonusMatch() == matchedBonus) {
+                return rank.ordinal();
+            } else if (rank.getMatchedNumbers() != 5) {
+                return rank.ordinal();
+            }
+        }
+        return -1;
     }
 
     private int getMatchedNumber(Lotto lotto, Lotto winningNumbers) {

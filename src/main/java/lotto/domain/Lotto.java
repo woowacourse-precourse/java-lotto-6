@@ -48,13 +48,13 @@ public class Lotto {
         return numbers.toString();
     }
 
-    public int getMatchCount(Lotto userLottoNumbers) {
+    public int getMatchCount(Lotto winningLottoNumber) {
         return (int) numbers.stream()
-            .filter(userLottoNumbers.numbers::contains)
+            .filter(winningLottoNumber.numbers::contains)
             .count();
     }
 
-    public boolean checkDuplicate(int bonusNumber) {
+    public boolean checkDuplicateNumber(int bonusNumber) {
         return numbers.contains(bonusNumber);
     }
 }

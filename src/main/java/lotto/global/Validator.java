@@ -16,7 +16,7 @@ import lotto.domain.Lotto;
 public class Validator {
 
     public static void validateBonusNumber(Lotto winningLottoNumber, int bonusNumberInt) {
-        if (winningLottoNumber.checkDuplicate(bonusNumberInt)) {
+        if (winningLottoNumber.checkDuplicateNumber(bonusNumberInt)) {
             throw new CustomException(LOTTO_NUMBER_DUPLICATE_ERROR.getValue());
         }
         if (bonusNumberInt < LOTTO_NUMBER_MIN || bonusNumberInt > LOTTO_NUMBER_MAX) {

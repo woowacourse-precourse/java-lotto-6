@@ -25,21 +25,21 @@ public enum Result {
 
     public static ResultsDto getAllLottoResult(
         List<Lotto> lottos,
-        Lotto userLottoNumbers,
+        Lotto winningLottoNumber,
         int BonusNumber
     ) {
-        setLottoResults(lottos, userLottoNumbers, BonusNumber);
+        setLottoResults(lottos, winningLottoNumber, BonusNumber);
         return new ResultsDto(Result.values());
     }
 
     private static void setLottoResults(
         List<Lotto> lottos,
-        Lotto userLottoNumbers,
+        Lotto winningLottoNumber,
         int BonusNumber
     ) {
         for (Lotto lotto : lottos) {
-            int matchCount = lotto.getMatchCount(userLottoNumbers);
-            boolean isBonusNumber = lotto.checkDuplicate(BonusNumber);
+            int matchCount = lotto.getMatchCount(winningLottoNumber);
+            boolean isBonusNumber = lotto.checkDuplicateNumber(BonusNumber);
             findprize(matchCount, isBonusNumber);
         }
     }

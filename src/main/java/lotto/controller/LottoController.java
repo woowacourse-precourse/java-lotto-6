@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Player;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -28,6 +29,15 @@ public class LottoController {
 
         lottoService.purchaseLottos(player, numberOfLottos);
         printPurchasedLottoNumbers(numberOfLottos, player);
+
+        List<Integer> winningNumbers = readWinningNumbers();
+        int bonusNumber = readBonusNumber();
+
+
+        LottoResult lottoResult = lottoService.calculateResult(player, winningNumbers, bonusNumber);
+        outputView.printWinningStatistics();
+        outputView.printRankResults(lottoResult.getWinnings());
+        outputView.printYield(lottoResult.getProfitRate());
     }
 
     private int readPurchaseAmount() {
@@ -45,6 +55,28 @@ public class LottoController {
         outputView.printPurchaseComplete(numberOfLottos);
         for (Lotto lotto : player.getLottos()) {
             outputView.printLottoNumbers(lotto.getNumbers());
+        }
+    }
+
+    private List<Integer> readWinningNumbers() {
+        while (true) {
+            try {
+                String winningNumbersInput = inputView.readLottoNumbers();
+                return LottoUtil.parseNumbersFromString(winningNumbersInput);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private int readBonusNumber() {
+        while (true) {
+            try {
+                String bonusNumberInput = inputView.readBonusNumber();
+                return LottoUtil.parseStringToInt(bonusNumberInput);
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
         }
     }
 }

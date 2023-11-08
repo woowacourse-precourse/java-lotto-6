@@ -1,11 +1,11 @@
 package lotto.domain;
 
+import lotto.Constants;
 import lotto.Validator;
 
 public class Payment {
     private int amount = 0;
     private int availableLottoTicketQuantity = 0;
-    private final int LOTTO_PRICE = 1000;
 
     public void storePaymentAmount(int amount) {
         validate(amount);
@@ -18,7 +18,7 @@ public class Payment {
     }
 
     private void calculateTicketQuantity() {
-        availableLottoTicketQuantity = amount / LOTTO_PRICE;
+        availableLottoTicketQuantity = amount / Constants.LOTTO_TICKET_PRICE.getValue();
     }
 
     public int getAvailableLottoTicketQuantity() {

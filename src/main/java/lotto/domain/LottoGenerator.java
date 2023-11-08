@@ -1,16 +1,16 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Constants;
 
 import java.util.List;
 
 public class LottoGenerator {
-    private final int MIN = 1;
-    private final int MAX = 45;
-    private final int SIZE = 6;
-
     public Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, SIZE);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                Constants.LOTTO_MIN_BOUND.getValue(),
+                Constants.LOTTO_MAX_BOUND.getValue(),
+                Constants.LOTTO_SIZE.getValue());
         return new Lotto(numbers);
     }
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.Constants;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -62,7 +64,7 @@ public class Result {
     }
 
     private void calculateProfitMargin() {
-        double payment = purchasedLottos.size() * 1000;
+        double payment = purchasedLottos.size() * Constants.LOTTO_TICKET_PRICE.getValue();
         profitability =  profit * 100 / payment;
     }
 

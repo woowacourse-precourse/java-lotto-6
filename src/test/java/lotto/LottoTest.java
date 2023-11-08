@@ -32,7 +32,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
     @DisplayName("수익성을 계산하는 코드가 맞는지 검토한다.")
     @Test
     void calculateProfitability() {

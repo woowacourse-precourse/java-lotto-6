@@ -12,14 +12,15 @@ public class Validator {
         throw new IllegalArgumentException();
     }
 
-    public static void validatePaymentAmount(int input) {
-        if (input <= 0 || input % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.UNAFFORDABLE_PRICE.getMessage());
+    public static int validatePaymentAmount(int input) {
+        if (input > 0 && input % Constants.LOTTO_TICKET_PRICE.getValue() == 0) {
+            return input;
         }
+        throw new IllegalArgumentException(ErrorMessage.UNAFFORDABLE_PRICE.getMessage());
     }
 
     public static void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constants.LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_SIZE_OF_LOTTO.getMessage());
         }
     }
@@ -32,7 +33,7 @@ public class Validator {
 
     public static void validateValueBound(List<Integer> numbers) {
         numbers.stream().sorted();
-        if(numbers.get(0) <= 0 || numbers.get(5) > 45) {
+        if(numbers.get(0) < Constants.LOTTO_MIN_BOUND.getValue() || numbers.get(5) > Constants.LOTTO_MAX_BOUND.getValue()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_VALUE_OUT_OF_BOUNDS.getMessage());
         }
     }

@@ -2,6 +2,61 @@ package lotto;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoGame lottoGame = new LottoGame();
+        lottoGame.startGame();
+    }
+}
+
+class LottoGame {
+    private static final int PRICE_PER_LOTTO = 1000;
+    private final List<Lotto> lottos = new ArrayList<>();
+    private final List<Integer> winningNumbers = new ArrayList<>();
+    private int bonusNumber;
+    private final List<Integer> prizeMoney = List.of(0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
+
+    public void startGame() {
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            int purchaseAmount = InputValidator.validateAmount(Console.readLine());
+            buyLottos(purchaseAmount);
+            System.out.println("당첨 번호를 입력해 주세요.");
+            enterWinningNumbers(Console.readLine());
+            System.out.println("보너스 번호를 입력해 주세요.");
+            enterBonusNumber(Console.readLine());
+            showResults();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void buyLottos(int amount) {
+        int numberOfLottos = amount / PRICE_PER_LOTTO;
+        for (int i = 0; i < numberOfLottos; i++) {
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        }
+        OutputView.printLottos(lottos);
+    }
+
+    private void enterWinningNumbers(String input) {
+        winningNumbers.addAll(InputValidator.validateNumbers(input));
+    }
+
+    private void enterBonusNumber(String input) {
+        bonusNumber = InputValidator.validateBonusNumber(input, winningNumbers);
+    }
+
+    private void showResults() {
+        int[] matchCounts = new int[prizeMoney.size()];
+        for (Lotto lotto : lottos) {
+            int matchCount = (int) lotto.getNumbers().stream()
+                    .filter(winningNumbers::contains)
+                    .count();
+            if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+                matchCounts[7]++;
+            } else {
+                matchCounts[matchCount]++;
+            }
+        }
+        OutputView.printResults(matchCounts, prizeMoney, lottos.size() * PRICE_PER_LOTTO);
     }
 }

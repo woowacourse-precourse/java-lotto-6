@@ -55,7 +55,8 @@ public class OutputView {
 
     private boolean printBonusResult(SingleLottoResult singleLottoResult) {
         if (isSecond(singleLottoResult)) {
-            System.out.printf(BONUS_LOTTO_RESULT_MENT, singleLottoResult.countOfMatch(), singleLottoResult.lotteryWinnings(),
+            System.out.printf(BONUS_LOTTO_RESULT_MENT, singleLottoResult.countOfMatch(),
+                    singleLottoResult.lotteryWinnings(),
                     singleLottoResult.numberOfRanks());
             return true;
         }
@@ -67,7 +68,8 @@ public class OutputView {
     }
 
     private void printNormalResult(SingleLottoResult singleLottoResult) {
-        System.out.printf(NORMAL_LOTTO_RESULT_MENT, singleLottoResult.countOfMatch(), singleLottoResult.lotteryWinnings(),
+        System.out.printf(NORMAL_LOTTO_RESULT_MENT, singleLottoResult.countOfMatch(),
+                singleLottoResult.lotteryWinnings(),
                 singleLottoResult.numberOfRanks());
     }
 

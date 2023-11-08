@@ -8,7 +8,8 @@ public class LottoInfoDto {
     private List<Integer> winnerLotto;
     private int bonusNumber;
 
-    private LottoInfoDto() {}
+    private LottoInfoDto() {
+    }
 
     public static LottoInfoDto valueOf(List<List<Integer>> lotteries, List<Integer> winnerLotto, int bonusNumber) {
         LottoInfoDto lottoInfoDto = new LottoInfoDto();

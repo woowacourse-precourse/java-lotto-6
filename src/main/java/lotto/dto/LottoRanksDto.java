@@ -7,7 +7,8 @@ public class LottoRanksDto {
     private WinningLottoTable winningLottoTable;
     private long lottoCnt;
 
-    private LottoRanksDto() {}
+    private LottoRanksDto() {
+    }
 
     public static LottoRanksDto valueOf(WinningLottoTable winningLottoTable, long lottoCnt) {
         LottoRanksDto lottoRanksDto = new LottoRanksDto();

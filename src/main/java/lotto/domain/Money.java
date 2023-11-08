@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import lotto.error.InvalidPurchaseException;
 import lotto.view.ErrorMessage;
@@ -28,5 +28,15 @@ public class Money {
         if (amount % UNIT != 0) {
             throw new InvalidPurchaseException(ErrorMessage.INVALID_PURCHASE_AMOUNT);
         }
+    }
+    public Boolean isBiggerThan(Money money) {
+        return this.amount >= money.amount;
+    }
+
+    public Integer divide(Money dividendMoney) {
+        if(amount < dividendMoney.amount) {
+            throw new IllegalArgumentException();
+        }
+        return dividendMoney.amount / this.amount;
     }
 }

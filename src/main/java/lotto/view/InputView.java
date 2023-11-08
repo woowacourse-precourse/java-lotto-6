@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.Money;
+import lotto.domain.Money;
 
 public class InputView {
 

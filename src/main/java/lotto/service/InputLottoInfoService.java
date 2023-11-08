@@ -7,7 +7,6 @@ import lotto.util.LottoUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-
 public class InputLottoInfoService {
 	private OutputView outputView = new OutputView();
 	private InputView inputView = new InputView();
@@ -38,9 +37,4 @@ public class InputLottoInfoService {
         return bonusNumber;
     }
     
-    public Lotto setLotto(List<Integer> lottoNumbers, int bonusNumber) {
-        Lotto lotto = new Lotto(lottoNumbers);
-        lotto.setBonusNumber(bonusNumber);
-        return lotto;
-    }
 }

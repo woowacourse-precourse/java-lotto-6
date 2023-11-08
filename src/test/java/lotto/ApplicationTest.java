@@ -1,12 +1,15 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
+import static lotto.ErrorMessage.*;
+import static lotto.LottoConstants.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ApplicationTest extends NsTest {
@@ -51,6 +54,29 @@ class ApplicationTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("금액이 " + LOTTO_PRICE + "원 단위가 아니면 예외가 발생한다.")
+    @Test
+    void 예외_테스트2() {
+        assertSimpleTest(() -> {
+            runException("1001");
+            assertThat(output()).contains(LOTTO_PRICE_ERROR_MESSAGE);
+        });
+
+        assertSimpleTest(() -> {
+            runException("999");
+            assertThat(output()).contains(LOTTO_PRICE_ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(LOTTO_AND_BONUS_DUPLICATED_MESSAGE);
         });
     }
 

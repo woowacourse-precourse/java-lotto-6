@@ -7,17 +7,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoFactory {
-    private final List<Integer> lottoPlayerNumber;
 
-    public LottoFactory() {
-        this.lottoPlayerNumber = generateLottoNumber();
+    public static Lotto generateLotto() {
+        return new Lotto(generateLottoNumber());
     }
 
-    public List<Integer> getLottoPlayerNumber() {
-        return lottoPlayerNumber;
-    }
-
-    private List<Integer> generateLottoNumber() {
+    private static List<Integer> generateLottoNumber() {
         List<Integer> lottoPlayerNumber = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_COUNT);
         return sortLottoNumber(lottoPlayerNumber);
     }

@@ -5,8 +5,6 @@ import java.util.*;
 import static lotto.utils.Constants.*;
 
 public class Lotto {
-    private static final String DUPLICATE_NUMBER_ERROR = ERROR_PREFIX + "로또 숫자는 중복을 포함할 수 없습니다.";
-    private static final String INVALID_NUMBER_COUNT_ERROR = ERROR_PREFIX + "로또 숫자 6개를 입력해 주십시오.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

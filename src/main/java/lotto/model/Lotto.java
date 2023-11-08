@@ -72,7 +72,7 @@ public class Lotto {
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {
-        return numbers.stream().sorted().toList(); // TODO: check convention!
+        return numbers.stream().sorted().toList();
     }
 
     private List<String> integerListToStringList(List<Integer> beforeType) {

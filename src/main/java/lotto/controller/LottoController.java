@@ -80,6 +80,8 @@ public class LottoController {
         LottoService lottoService = new LottoService();
         int[] counts = lottoService.calculateWinningsCounts(lottoTicket, winningNumbers);
         OutputView.printWinningStatistics(counts);
+        double profitRatio = lottoService.calculateProfitRatio(lottoTicket);
+        OutputView.printProfitRatio(profitRatio);
     }
 
 

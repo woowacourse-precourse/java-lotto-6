@@ -44,14 +44,14 @@ public class Lotto {
 
         for (int i = 0; i < User.lottoBoughtNum(); i++) {
             int lottoCount = 0;
-            int lottoBonusCount = 0;
+            boolean lottoBonusCount = false;
 
             for (int j = 0; j < 6; j++) {
                 if (allLottoList.get(i).contains(Lotto.numbers.get(j))) {
                     lottoCount++;
                 }
                 if (allLottoList.get(i).contains(userBonusNum)) {
-                    lottoBonusCount = 1;
+                    lottoBonusCount = true;
                 }
             }
 
@@ -63,11 +63,11 @@ public class Lotto {
                 rank4th++;
                 prize += 50000;
             }
-            else if (lottoCount == 5) {
+            else if (lottoCount == 5 && !lottoBonusCount) {
                 rank3rd++;
                 prize += 1500000;
             }
-            else if (lottoCount == 5 && lottoBonusCount == 1) {
+            else if (lottoCount == 5 && lottoBonusCount) {
                 rank2nd++;
                 prize += 30000000;
             }

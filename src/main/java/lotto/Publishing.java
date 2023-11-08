@@ -7,16 +7,19 @@ import java.util.List;
 
 public class Publishing {
     List<Integer> numbers;
-    Lotto[] lotto;
+    Lotto lotto;
+    List<Lotto> lottos;
     private void createRandomNumber() {
         numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
     }
 
-    public void publishLotto(int numberOfLotto) {
+    public List<Lotto> publishLotto(int numberOfLotto) {
         for (int i = 0; i < numberOfLotto; i++) {
             createRandomNumber();
-            lotto[i] = new Lotto(numbers);
+            lotto = new Lotto(numbers);
+            lottos.add(lotto);
         }
+        return lottos;
     }
 }

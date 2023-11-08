@@ -33,6 +33,7 @@ public class User {
                 System.out.println(DIVIDE_ERROR);
             }
         }
+        decideNumberOfLotto();
     }
 
     public void enterWinningNumber() {
@@ -87,5 +88,9 @@ public class User {
     private void decideNumberOfLotto() {
         numberOfLotto = money / 1000;
         System.out.println(numberOfLotto + NUMBER);
+    }
+
+    public int getNumberOfLotto() {
+        return numberOfLotto;
     }
 }

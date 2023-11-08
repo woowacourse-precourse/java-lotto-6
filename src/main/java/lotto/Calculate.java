@@ -1,2 +1,4 @@
-package lotto;public class Calculate {
+package lotto;
+
+public class Calculate {
 }

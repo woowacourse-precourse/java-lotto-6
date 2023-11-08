@@ -4,27 +4,13 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class BuyLotto {
     int lottoCounts;
     int cost;
-
-    BuyLotto(){
-        boolean validInput = false;
-        while (!validInput) {
-            try {
-                cost = Integer.parseInt(lottoCost());
-                numberOfLotto(cost);
-                validInput = true;
-            }catch (NumberFormatException e){
-                System.out.println("[Error] 숫자만 입력해주세요");
-            }catch (IllegalArgumentException e) {
-                System.out.println("[Error] 1000원 단위로 입력해주세요");
-            }
-        }
-        numberOfLotto(cost);
-    }
     int getCost(){
         return this.cost;
     }
@@ -32,9 +18,10 @@ public class BuyLotto {
         return this.lottoCounts;
     }
 
-    String lottoCost(){
+    int lottoCost(){
         String inputCost = Console.readLine();
-        return inputCost;
+        cost = Integer.parseInt(inputCost);
+        return this.cost;
     }
 
     void numberOfLotto(int cost){
@@ -67,6 +54,7 @@ public class BuyLotto {
             int num = Randoms.pickNumberInRange(1, 45);
             if(checkOverlap(num, numbers)) numbers.add(num);
         }
+        Collections.sort(numbers);
         return numbers;
     }
 
@@ -74,4 +62,6 @@ public class BuyLotto {
         if(array.contains(num)) return false;
         return true;
     }
+
+
 }

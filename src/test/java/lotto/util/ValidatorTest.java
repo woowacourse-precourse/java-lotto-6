@@ -24,13 +24,33 @@ class ValidatorTest {
     }
 
     @Test
-    void 로또_당첨번호_검증_예외_테스트(){
+    void 로또_당첨번호_검증_예외_테스트_1(){
         String lottoNumbers = "1,2,3,49,32,25";
 
         assertThatThrownBy(()->{
             Validator.validateWinningNumber(lottoNumbers);
         }).hasMessageContaining("[ERROR]")
                 .hasMessageContaining("1~45까지만");
+    }
+
+    @Test
+    void 로또_당첨번호_검증_예외_테스트_2(){
+        String lottoNumbers = "1,2,3,49,32,25,41";
+
+        assertThatThrownBy(()->{
+            Validator.validateWinningNumber(lottoNumbers);
+        }).hasMessageContaining("[ERROR]")
+                .hasMessageContaining("6자리로");
+    }
+
+    @Test
+    void 로또_당첨번호_검증_예외_테스트_3(){
+        String lottoNumbers = "1,2,3,49,32,32";
+
+        assertThatThrownBy(()->{
+            Validator.validateWinningNumber(lottoNumbers);
+        }).hasMessageContaining("[ERROR]")
+                .hasMessageContaining("중복이 허용되지");
     }
 
     @Test

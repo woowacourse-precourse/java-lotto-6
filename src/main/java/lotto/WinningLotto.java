@@ -11,11 +11,10 @@ public class WinningLotto {
         this.bonus = bonus;
     }
 
-    public static WinningLotto of(List<Integer> winningNumbers, int bonus) {
-        Lotto winningLotto = new Lotto(winningNumbers);
-        validateBonus(winningLotto, bonus);
+    public static WinningLotto of(Lotto winningNumbers, int bonus) {
+        validateBonus(winningNumbers, bonus);
 
-        return new WinningLotto(winningLotto, bonus);
+        return new WinningLotto(winningNumbers, bonus);
     }
 
     private static void validateBonus(Lotto lotto, int bonus) {

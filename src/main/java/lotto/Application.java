@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.utils.RandomNumber;
+import lotto.controller.LottoController;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println(RandomNumber.generator());
+        LottoController.run();
     }
 }

@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.model.BonusNumber;
 import lotto.model.Winning;
 
 import java.util.HashSet;
@@ -24,9 +25,10 @@ public class NumberException {
         return new Winning(numbers);
     }
 
-    public static void validateBonusNumber(int number){
+    public static BonusNumber validateBonusNumber(int number){
         checkNumberRange(number);
         checkDuplicate(number);
+        return new BonusNumber(number);
     }
 
     private static void validSize(List<Integer> numbers){

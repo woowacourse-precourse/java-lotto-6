@@ -1,12 +1,13 @@
 package lotto.model;
 
-import lotto.util.CheckParameter;
+import lotto.util.MakeStringToInteger;
 
 import java.util.List;
 
+import static lotto.util.Config.lottoMaxNumber;
+import static lotto.util.Config.lottoMinNumber;
+
 public class WinningNumber {
-    private final Integer maxNumber = 45;
-    private final Integer minNumber = 1;
     private Integer bonusNumber;
     private final Lotto winningNumber;
 
@@ -18,9 +19,13 @@ public class WinningNumber {
 
     private void validateWinningNumber(List<Integer> winningNumber){
         for(int number : winningNumber){
-            if(number < minNumber || number > maxNumber){
-                throw new IllegalArgumentException();
-            }
+            validationNumber(number);
+        }
+    }
+
+    private void validationNumber(Integer number){
+        if(number < lottoMinNumber || number > lottoMaxNumber){
+            throw new IllegalArgumentException();
         }
     }
 
@@ -30,13 +35,11 @@ public class WinningNumber {
     }
 
     private void validateBonusNumber(String bonusNumber){
-        if(!CheckParameter.checkIsNumber(bonusNumber)){
-            throw new IllegalArgumentException();
+        Integer number = MakeStringToInteger.stringToInteger(bonusNumber);
+        if(winningNumber.getLottoNumber().contains(number)) {
+           throw new IllegalArgumentException();
         }
-
-       if(winningNumber.getLottoNumber().contains(Integer.parseInt(bonusNumber))){
-            throw new IllegalArgumentException();
-        }
+        validationNumber(number);
     }
 
     public Lotto getWinningNumber() {

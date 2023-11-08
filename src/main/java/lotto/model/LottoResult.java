@@ -8,18 +8,14 @@ import java.util.List;
 
 public class LottoResult {
     private final List<Integer> lottoResult;
-    private final LottoBundle lottoBundle;
-    private final WinningNumber winningNumber;
 
-    public LottoResult(LottoBundle lottoBundle, WinningNumber winningNumber){
-        this.lottoBundle = lottoBundle;
-        this.winningNumber = winningNumber;
-        // 7 => 5개 일치, 보너스 볼 일치
+    public LottoResult(){
+        /* [0,1,2,3,4,5,6,7] => 각 인덱스는 당첨 번호와 일치하는 개수 7은 보너스 번호 , 숫자는 로또 개수
+            예시) 보너스 번호 당첨 회수가 7, 6개 일치가 6개 */
         this.lottoResult = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 0, 0, 0));
-        calculateLottoWinning();
     }
 
-    private void calculateLottoWinning(){
+    public void calculateLottoWinning(LottoBundle lottoBundle, WinningNumber winningNumber){
         List<Integer> bundleResult = lottoBundle.calculateWinningNumbers(
                 winningNumber.getWinningNumber(), winningNumber.getBonusNumber());
 

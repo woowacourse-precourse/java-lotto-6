@@ -13,20 +13,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void checkDuplicateNumber(List<Integer> numbers){
-        Set<Integer> numberSet = new HashSet<>(numbers);
-
-        if(numberSet.size() != numbers.size()){
-            throw new IllegalArgumentException();
-        };
-    }
-
     public List<Integer> getLottoNumber(){
       return numbers;
     };
@@ -42,8 +28,22 @@ public class Lotto {
         return equalsNumber;
     }
 
-        public boolean compareBonusNumber(Integer bonusNumber){
-            return numbers.contains(bonusNumber);
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkDuplicateNumber(List<Integer> numbers){
+        Set<Integer> numberSet = new HashSet<>(numbers);
+
+        if(numberSet.size() != numbers.size()){
+            throw new IllegalArgumentException();
+        };
+    }
+
+    private boolean compareBonusNumber(Integer bonusNumber){
+        return numbers.contains(bonusNumber);
     }
 
 }

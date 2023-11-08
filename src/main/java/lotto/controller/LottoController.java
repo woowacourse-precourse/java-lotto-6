@@ -26,7 +26,7 @@ public class LottoController {
             try{
                 String money = InputView.inputString(ViewMessage.InputUserMoney.getMessage());
                 Purchase purchase = new Purchase(money);
-                lottoTicketNumber = purchase.getlottoTicketNumber();
+                lottoTicketNumber = purchase.getLottoTicketNumber();
                 OutputView.outputView("\n" + lottoTicketNumber + ViewMessage.OutputLottoTicketNumber.getMessage());
 
                 return purchase;
@@ -69,7 +69,8 @@ public class LottoController {
     }
 
     private void handleLottoResult(LottoBundle lottoBundle, WinningNumber winningLotto, Integer money){
-        LottoResult lottoResult = new LottoResult(lottoBundle, winningLotto);
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.calculateLottoWinning(lottoBundle, winningLotto);
         List<Integer> resultData = lottoResult.getLottoResult();
         OutputView.outputView(ViewMessage.OutputLottoResultThreeMatch.getMessage(resultData.get(Config.threeMatch)));
         OutputView.outputView(ViewMessage.OutputLottoResultFourMatch.getMessage(resultData.get(Config.fourMatch)));

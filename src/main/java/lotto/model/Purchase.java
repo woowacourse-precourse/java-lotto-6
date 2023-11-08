@@ -1,6 +1,7 @@
 package lotto.model;
 
-import lotto.util.CheckParameter;
+import lotto.util.MakeStringToInteger;
+
 
 public class Purchase {
     private final Integer money;
@@ -11,17 +12,13 @@ public class Purchase {
     }
 
     private void validate(String inputPrice) {
-        if(!CheckParameter.checkIsNumber(inputPrice)){
-            throw new IllegalArgumentException();
-        }
-
-        int validatePrice = Integer.parseInt(inputPrice);
+        int validatePrice = MakeStringToInteger.stringToInteger(inputPrice);
         if((validatePrice % 1000 != 0) || (validatePrice <= 0)){
             throw new IllegalArgumentException();
         }
     }
 
-    public Integer getlottoTicketNumber(){
+    public Integer getLottoTicketNumber(){
         return money/1000;
     }
 

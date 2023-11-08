@@ -1,13 +1,13 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.common.Convert;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import lotto.common.Convert;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
@@ -15,6 +15,7 @@ public class LottoService {
     private static final int SECOND_AND_THIRD_MATCH_COUNT = 5;
     private static final Map<Rank, Integer> lottoResult = new HashMap<>();
     private static final LottoService instance = new LottoService();
+
     public static LottoService getInstance() {
         return instance;
     }
@@ -28,7 +29,8 @@ public class LottoService {
     public List<Lotto> getLottoNumbers(int buyAmount) {
         List<Lotto> userLottos = new ArrayList<>();
         for (int i = 0; i < buyAmount; ++i) {
-            List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER, Lotto.LOTTO_COUNT);
+            List<Integer> generatedNumbers = Randoms.pickUniqueNumbersInRange(Lotto.MIN_LOTTO_NUMBER,
+                    Lotto.MAX_LOTTO_NUMBER, Lotto.LOTTO_COUNT);
             List<Integer> numbers = new ArrayList<>(generatedNumbers);
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);

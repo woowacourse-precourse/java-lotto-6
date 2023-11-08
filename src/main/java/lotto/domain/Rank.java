@@ -10,6 +10,7 @@ public enum Rank {
     public final int matchCount;
     public final boolean isMatchBonusNumber;
     public final int reward;
+
     Rank(int matchCount, boolean isMatchBonusNumber, int reward) {
         this.matchCount = matchCount;
         this.isMatchBonusNumber = isMatchBonusNumber;

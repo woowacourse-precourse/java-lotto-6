@@ -17,10 +17,12 @@ public class OutputView {
     private static final String SECOND_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n";
     private static final String FIRST_MESSAGE = "6개 일치 (2,000,000,000원) - %d개\n";
     private static final String REVENUE_RATE_MESSAGE = "총 수익률은 %s%%입니다.";
+
     public static void printBuyPrice() {
         System.out.println(BUY_PRICE_MESSAGE);
     }
-    public static void printBuyAmount(int buyAmount){
+
+    public static void printBuyAmount(int buyAmount) {
         System.out.println();
         System.out.println(buyAmount + BUY_AMOUNT_MESSAGE);
     }

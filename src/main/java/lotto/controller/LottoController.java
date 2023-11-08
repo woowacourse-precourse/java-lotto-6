@@ -10,10 +10,13 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private static final LottoController instance = new LottoController();
+
     public static LottoController getInstance() {
         return instance;
     }
-    private LottoController() {}
+
+    private LottoController() {
+    }
 
     private final LottoService lottoService = LottoService.getInstance();
 

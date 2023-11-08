@@ -4,14 +4,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public record Result(Map<Rank, Integer> result) {
-    public String calculateTotalRate() {
-        return String.format("%d / %d * 100", getTotalPrize(), getTotalPrice());
+    public float calculateTotalRate() {
+        return (float) getTotalPrize() / getTotalPrice() * 100;
     }
 
     private Integer getTotalPrize() {
         return result.entrySet().stream()
-                .map(entry -> entry.getKey().getPrize() * entry.getValue())
-                .reduce(0, Integer::sum);
+                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
     }
 
     private Integer getTotalPrice() {

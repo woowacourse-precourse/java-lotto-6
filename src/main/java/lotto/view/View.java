@@ -7,6 +7,7 @@ import lotto.model.ResultCheck;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import static lotto.model.ResultCheck.*;
 
@@ -28,7 +29,7 @@ public class View {
         FIVEWITHBONUSMATCHES("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
         SIXMATCHES("6개 일치 (2,000,000,000원) - "),
         TOTALREVENUEFRONT("총 수익률은 "),
-        TOTALREVENUEBACK("%입니다"),
+        TOTALREVENUEBACK("%입니다."),
         NUMBEROF("개"),
         ;
         private final String label;
@@ -69,8 +70,29 @@ public class View {
     }
 
     public static void inputTotalCost () {
-         totalCost = Integer.parseInt(getInput());
+         checkValidate();
     }
+
+    public static void checkValidate() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            try {
+                totalCost = Integer.parseInt(getInput());
+                if (totalCost < 0) {
+                    throw new IllegalArgumentException("[ERROR] 음수는 입력할 수 없습니다.");
+                }
+                System.out.println("입력한 값: " + totalCost);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 유효한 정수를 입력하세요.");
+                scanner.nextLine();
+            } catch (Exception e) {
+                System.out.println("[ERROR] 유효한 정수를 입력하세요.");
+                scanner.nextLine();
+            }
+        }
+    }
+
 
     public static void inputWinningNumber() {
         System.out.println("\n" + PrintOutput.WINNINGNUMBER.label);

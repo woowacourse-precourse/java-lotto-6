@@ -80,10 +80,11 @@ public class ResultCheck {
     }
 
     public static void benefitCheck() {
-        totalBenefit = (threeMatch * 5000 + fourMatch * 50000 + fiveMatch + 1500000 + fiveWithBonusMatch * 30000000 + sixMatch * 2000000000);
-        double totalRevenue = (double) totalBenefit / View.getTotalCost();
+        totalBenefit = (threeMatch * 5000 + fourMatch * 50000 + fiveMatch * 1500000 + fiveWithBonusMatch * 30000000 + sixMatch * 2000000000);
+        double totalRevenue = (double) totalBenefit * 100 / View.getTotalCost();
         DecimalFormat df = new DecimalFormat("#.##");
         resultRevenue = df.format(totalRevenue);
+        System.out.println(totalBenefit);
     }
 
     public static String getResultRevenue() {

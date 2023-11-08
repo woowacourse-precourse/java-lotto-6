@@ -9,7 +9,7 @@ public class Referee {
         this.winningNumber = winningNumber;
     }
 
-    public WinningResult judgeAll(List<Lotto> lottos) {
+    public WinningResult judgeRanks(List<Lotto> lottos) {
         WinningResult winningResult = new WinningResult();
         Lotto winningNumberValues = winningNumber.getValues();
         for (Lotto lotto : lottos) {

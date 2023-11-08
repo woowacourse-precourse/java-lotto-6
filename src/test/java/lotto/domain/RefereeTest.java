@@ -15,7 +15,7 @@ class RefereeTest {
         Referee referee = new Referee(winningNumber);
         List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
-        WinningResult actual = referee.judgeAll(lottos);
+        WinningResult actual = referee.judgeRanks(lottos);
 
         assertThat(actual.getValues()).containsKey(Rank.FIRST).containsValue(1);
     }

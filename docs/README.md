@@ -51,3 +51,7 @@ check new branch
 ## (Class) Lotto
 - numbers(List<Integer>, 로또 번호)
 - 초기 Lotto 는 6개가 아닌 경우면 IllegalArgumentException 발생
+- printInfo()
+  - input : null / return : void
+  - Lotto의 numbers 출력
+  

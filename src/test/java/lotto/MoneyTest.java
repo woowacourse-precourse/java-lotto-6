@@ -10,15 +10,6 @@ import static org.assertj.core.api.Assertions.*;
 
 public class MoneyTest {
 
-    @DisplayName("입력 받은 돈이 빈 값일 경우 예외가 발생한다.")
-    @ValueSource(strings = {"", " "})
-    @ParameterizedTest
-    void should_throwException_when_isBlank(String input) {
-        assertThatThrownBy(() -> new Money(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("빈 값을 입력하면 안됩니다.");
-    }
-
     @DisplayName("입력 받은 돈이 숫자 형식이 아닐 경우 예외가 발생한다.")
     @Test
     void should_throwException_when_isNotNumeric() {

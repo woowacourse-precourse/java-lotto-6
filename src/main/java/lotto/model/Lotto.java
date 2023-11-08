@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.utils.Condition;
+import lotto.utils.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,22 +23,22 @@ public class Lotto {
     }
 
     private void validateOutOfSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != Condition.SIZE.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         List<Integer> distinctNumbers = numbers.stream().distinct().toList();
         if (numbers.size() != distinctNumbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_DUPLICATION_ERROR_MESSAGE.getMessage());
         }
     }
 
     private void validateOutOfRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException();
+            if (number < Condition.MIN_RANGE.getNumber() || number > Condition.MAX_RANGE.getNumber()) {
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_RANGE_ERROR_MESSAGE.getMessage());
             }
         }
     }

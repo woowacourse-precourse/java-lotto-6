@@ -65,6 +65,19 @@ class UserLottoInputTest {
         assertThat(match.matchedCount()).isEqualTo(5);
     }
 
+    @Test
+    @DisplayName("구입 금액이 0일 경우 예외를 발생한다.")
+    public void zeroMoneyException() {
+        // given
+        setupInputStream("0\n");
+        // when
+        UserLottoInput input = new UserLottoInput();
+
+        // then
+        assertThatThrownBy(input::getMoneyAmount)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @AfterEach
     public void tearDown() {
         Console.close();

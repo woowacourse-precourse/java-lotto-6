@@ -38,5 +38,16 @@ class LottoTest {
         assertThat(randomNumbers.size()).isEqualTo(6);
     }
 
+    @DisplayName("입력한 숫자 만큼 로또 생성")
+    @Test
+    void createLotto() {
+        //given
+        int numberOfLotto = 5;
 
+        //when
+        List<Lotto> lottos = Lotto.createLotto(numberOfLotto);
+
+        //then
+        assertThat(lottos.size()).isEqualTo(numberOfLotto);
+    }
 }

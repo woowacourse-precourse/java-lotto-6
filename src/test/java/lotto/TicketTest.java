@@ -19,5 +19,4 @@ class TicketTest {
         )
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

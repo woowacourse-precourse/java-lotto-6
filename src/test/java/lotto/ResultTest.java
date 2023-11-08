@@ -63,5 +63,4 @@ class ResultTest {
     void createOthersRankingByTicketAndLotto() {
         assertThat(othersRank.getRank()).isEqualTo(Rank.OTHERS);
     }
-
 }

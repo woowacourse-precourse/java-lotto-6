@@ -47,4 +47,11 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.getLottoNumber(0)).isEqualTo(1);
     }
+
+    @DisplayName("로또의 문자열이 제대로 출력되는지 확인하는 로직")
+    @Test
+    public void toStringTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }

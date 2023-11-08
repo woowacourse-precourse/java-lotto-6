@@ -5,16 +5,15 @@ import static lotto.errorMessage.ExceptionErrorMessage.PURCHASE_LOTTO_PRICE;
 
 public class PlayerPurchase {
     private static final int Lotto_Price = 1000;
-    private final int inputPrice; // 내가 입력한 금액
+    private final int inputPrice;
 
-    public PlayerPurchase(String amount) { // 내가 입력했을 때 8000은 문자열
+    public PlayerPurchase(String amount) {
         int lotto_Price = convertToInt(amount);
         validateLottoPrice(lotto_Price);
         this.inputPrice = lotto_Price;
     }
 
 
-    // 구입 금액에서 1000을 나눔.
     public int calculateLottoCount() {
         return inputPrice / Lotto_Price;
     }

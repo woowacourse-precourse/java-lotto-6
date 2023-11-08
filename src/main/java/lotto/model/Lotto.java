@@ -28,31 +28,26 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        Set<Integer> set = new HashSet<>();
-        for (Integer number : numbers) {
-            set.add(number);
-        }
+        Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != 6) {
             throw new IllegalArgumentException(LOTTO_DUPLICATE);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i) < MIN_LOTTO_NUMBER || numbers.get(i) > MAX_LOTTO_NUMBER) {
+        for (Integer number : numbers) {
+            if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(LOTTO_RANGE);
             }
         }
     }
 
-    // 숫자가 몇 개 포함되어 있는지 개수 반환
     public int countMatch(Lotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto::containLottoNumber)
                 .count();
     }
 
-    // 입력한 당첨 번호와 랜덤으로 가져온 숫자들 포함 여부
     public boolean containLottoNumber(int number) {
         return numbers.contains(number);
     }

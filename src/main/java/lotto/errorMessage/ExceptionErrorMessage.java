@@ -8,4 +8,5 @@ public class ExceptionErrorMessage {
     public static final String INPUT_ONLY_NUMBER = "[ERROR] 로또 구입 금액은 숫자만 입력해야 합니다";
     public static final String INPUT_ONLY_NUMBER_LOTTO = "[ERROR] 로또 번호는 숫자만 입력해야 합니다";
     public static final String INPUT_ONLY_NUMBER_BONUS = "[ERROR] 보너스 번호는 숫자만 입력해야 합니다";
+    public static final String NOT_INCLUDE_RANKING = "[ERROR] 알 수 없는 랭킹입니다";
 }

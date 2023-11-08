@@ -28,27 +28,25 @@ public class LottoController {
     }
 
     public void start() {
-        Output.input_Purchase_Amount(); // 구입 금액을 입력해주세요
-        int lottoCount = inputPlayerAmount(); // 구입 금액 입력 후 계산 -> 8개 구매
+        Output.inputPurchaseAmount();
+        int lottoCount = inputPlayerAmount();
 
-        Output.print_Lotto_Count(lottoCount); // 8개를 구매했습니다.
-        List<Lotto> lottoAllList = createLottoAllList(lottoCount);// 로또 6개 번호
+        Output.printLottoCount(lottoCount);
+        List<Lotto> lottoAllList = createLottoAllList(lottoCount);
 
         Winner winner = winner();
         winning_Statistics(lottoAllList, winner, lottoCount);
     }
-
 
     public int inputPlayerAmount() {
         PlayerPurchase playerPurchase = new PlayerPurchase(inputAmount());
         return playerPurchase.calculateLottoCount();
     }
 
-    // 랜덤으로 뽑아낸 8개 로또 찍어냄.
     private List<Lotto> createLottoAllList(int lottoCount) {
         lottoAllNumbers = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            lottoAllNumbers.add(createLottoList()); // 랜덤 숫자 6개를 8번 넣음.
+            lottoAllNumbers.add(createLottoList());
         }
         return lottoAllNumbers;
     }
@@ -60,19 +58,18 @@ public class LottoController {
     }
 
     public Winner winner() {
-        Output.input_Winning_Number(); // 당첨 번호 입력하세요.
-        List<Integer> numbers = new ArrayList<>(Input.input_Winning_Number());
-        Output.input_Bonus_Number(); // 보너스 번호 입력
-        int bonus = validateOnlyNumber(Input.input_BonusNumber());
+        Output.inputWinningNumber();
+        List<Integer> numbers = new ArrayList<>(Input.inputWinningNumber());
+        Output.inputBonusNumber();
+        int bonus = validateOnlyNumber(Input.inputBonusNumber());
 
         return new Winner(new Lotto(numbers), bonus);
     }
 
-
     private void winning_Statistics(List<Lotto> lottoAllList, Winner winner, int amount) {
         Map<Ranking, Integer> statistics = rankMap();
         for (Lotto lotto : lottoAllList) {
-            Ranking ranking = winner.winnerMatch(lotto); // 로또 8개의 랭킹을 조회
+            Ranking ranking = winner.winnerMatch(lotto);
             statistics.put(ranking, statistics.get(ranking) + 1);
         }
 

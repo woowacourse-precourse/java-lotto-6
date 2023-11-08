@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.errorMessage.ExceptionErrorMessage.NOT_INCLUDE_RANKING;
+
 import lotto.view.Output;
 
 public enum Ranking {
@@ -31,13 +33,10 @@ public enum Ranking {
         if (SECOND.matchCount(matchCount) && matchBonus) {
             return SECOND;
         }
-
         for (Ranking rank : values()) {
-            if (rank.matchCount(matchCount) && rank != SECOND) {
-                return rank;
-            }
+            return rank;
         }
-        throw new IllegalArgumentException("[ERROR]");
+        throw new IllegalArgumentException(NOT_INCLUDE_RANKING);
     }
 
     private boolean matchCount(int count) { //count는 실제로 일치하는 개수

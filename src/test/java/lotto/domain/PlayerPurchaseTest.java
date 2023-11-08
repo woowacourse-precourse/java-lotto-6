@@ -7,10 +7,12 @@ import lotto.model.PlayerPurchase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class PlayerPurchaseTest {
     @ParameterizedTest
+    @NullAndEmptySource
     @ValueSource(strings = {"abc", "0", "156", "1234"})
     @DisplayName("잘못된 구입 금액을 입력하면 예외가 발생한다.")
     void inputLottoPrice(String inputPrice) {

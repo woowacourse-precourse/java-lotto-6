@@ -26,9 +26,8 @@ public class LottoController {
         List<Integer> matchingCount = lottoService.findMatcingCount();
         OutputView.printMatchingCount(matchingCount);
 
-
-//        double earningRate = lottoService.findEarningRate();
-
+        double earningRate = lottoService.findEarningRate(purchaseSum);
+        OutputView.printEarningRate(earningRate);
 
     }
 

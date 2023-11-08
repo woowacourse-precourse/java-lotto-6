@@ -79,9 +79,11 @@ public class LottoService {
                 if(duplicatedNumberCount == 5 && lotto.contains(this.bonusNumber)){
                     duplicatedNumberCount++;
                 }
-                if(duplicatedNumberCount == 6){
+                else if(duplicatedNumberCount == 6){
                     duplicatedNumberCount++;
                 }
+
+                System.out.println(duplicatedNumberCount);
                 this.matchingCount.set(duplicatedNumberCount-3, this.matchingCount.get(duplicatedNumberCount-3) + 1);
             }
         }
@@ -89,8 +91,18 @@ public class LottoService {
         return this.matchingCount;
     }
 
-//    public double findEarningRate() {
-//
-//
-//    }
+    public double findEarningRate(Integer purchaseSum) {
+
+        double sum = 0.0;
+        sum += this.matchingCount.get(0) * 5000;
+        sum += this.matchingCount.get(1) * 50000;
+        sum += this.matchingCount.get(2) * 1500000;
+        sum += this.matchingCount.get(3) * 30000000;
+        sum += this.matchingCount.get(4) * 2000000000;
+
+
+        double result = sum/purchaseSum;
+
+        return result;
+    }
 }

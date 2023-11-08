@@ -33,4 +33,12 @@ public enum WinningDetails {
                 .findAny()
                 .orElse(MISS);
     }
+
+    public int getCount() {
+        return countOfSameNumber;
+    }
+
+    public long getPrize() {
+        return prize;
+    }
 }

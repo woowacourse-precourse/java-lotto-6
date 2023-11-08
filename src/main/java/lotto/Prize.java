@@ -25,20 +25,20 @@ public enum Prize {
     }
 
     public static Prize valueOf(int matchCount, boolean hasBonus) {
-        if (matchCount == FIRST.matchCount) {
-            return FIRST;
-        }
-        if (matchCount == SECOND.matchCount && hasBonus) {
-            return SECOND;
-        }
-        if (matchCount == SECOND.matchCount) {
-            return THIRD;
+        if (matchCount == FIFTH.matchCount) {
+            return FIFTH;
         }
         if (matchCount == FOURTH.matchCount) {
             return FOURTH;
         }
-        if (matchCount == FIFTH.matchCount) {
-            return FIFTH;
+        if (matchCount == SECOND.matchCount && !hasBonus) {
+            return THIRD;
+        }
+        if (matchCount == SECOND.matchCount) {
+            return SECOND;
+        }
+        if (matchCount == FIRST.matchCount) {
+            return FIRST;
         }
         return NONE;
     }

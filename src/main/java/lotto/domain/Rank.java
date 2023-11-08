@@ -25,4 +25,8 @@ public enum Rank {
     public int getMatchCount() {
         return matchCount;
     }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
 }

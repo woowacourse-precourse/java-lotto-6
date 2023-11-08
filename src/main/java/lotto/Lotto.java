@@ -35,11 +35,7 @@ public class Lotto {
             throw new LottoDistinctException();
         }
     }
-
-    public boolean isValid(List<Integer> numbers) {
-        return hasProperLength(numbers) && hasProperRange(numbers) && hasDistinctNumbers(numbers);
-    }
-
+    
     private boolean hasProperLength(List<Integer> numbers) {
         return numbers.size() == LOTTO_NUMBERS_SIZE;
     }

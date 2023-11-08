@@ -2,7 +2,7 @@ package lotto.domain;
 
 import lotto.exception.RangeLottoException;
 
-public class BonusBall {
+public class  BonusBall {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
 

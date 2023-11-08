@@ -9,6 +9,7 @@ public class Game {
 
     public static void start() {
         Price price = inputBuyPrice();
+        printBoughtAmount(price);
     }
 
     private static Price inputBuyPrice() {
@@ -20,5 +21,9 @@ public class Game {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private static void printBoughtAmount(Price price) {
+        System.out.println(price.getAmount() + YOU_BOUGHT_N_LOTTOS.getMessage());
     }
 }

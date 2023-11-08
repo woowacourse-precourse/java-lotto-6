@@ -40,6 +40,11 @@ public class Lotto {
                 .sorted()
                 .collect(Collectors.toList());
     }
+    public int getMatchLottoNumber(Winner winningLotto) {
+        return (int) numbers.stream()
+                .filter(winningLotto::isContain)
+                .count();
+    }
 
     public String toString() {
         return numbers.toString();

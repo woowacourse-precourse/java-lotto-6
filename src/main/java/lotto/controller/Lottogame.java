@@ -5,6 +5,7 @@ import static lotto.view.OutputLottolist.printLottoList;
 
 import java.util.List;
 import lotto.domain.InputNumber;
+import lotto.domain.LottoResult;
 import lotto.domain.Winner;
 import lotto.parser.ParserLotto;
 import lotto.domain.GenerateLotto;
@@ -24,6 +25,8 @@ public class Lottogame {
         printLottoList(lottos);
 
         Winner winner = getWinningLotto();
+        LottoResult lottoResult = new LottoResult();
+        calcLottoResult(lottoResult, winner, lottos);
     }
 
     private Money getLottoMoney() {
@@ -48,5 +51,8 @@ public class Lottogame {
         Integer bonusNumber = inPutBonusNumber.InputBonus();
 
         return new Winner(winningNumbers, bonusNumber);
+    }
+    private void calcLottoResult(LottoResult prizeResult, Winner winningLotto, Lottos lottos) {
+        prizeResult.calcPrizeResult(winningLotto, lottos);
     }
 }

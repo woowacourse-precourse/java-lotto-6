@@ -7,7 +7,8 @@ public enum ExceptionMessage {
     OUTSIDE_RANGE("[ERROR]입력 범위를 벗어났습니다."),
     NON_COMMA("[ERROR]쉼표로 구분해주세요."),
     EXCEEDS_LENGTH("[ERROR]입력을 초과했습니다."),
-    DUPLICATE_INPUT("[ERROR]입력이 중복되었습니다.");
+    DUPLICATE_INPUT("[ERROR]입력이 중복되었습니다."),
+    UNDER_LENGTH("[ERROR]숫자 6개 입력하세요.");
 
     private String message;
 

@@ -1,6 +1,8 @@
 package lotto;
 
 import java.util.List;
+import lotto.utils.LottoUtils;
+import lotto.constants.Constants;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,11 +12,19 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+    public List<Integer> getNumbers() {
+        return this.numbers;
     }
 
-    // TODO: 추가 기능 구현
+    public Integer getSize() {
+        return this.numbers.size();
+    }
+
+    private void validate(List<Integer> numbers) {
+        LottoUtils lottoUtils = new LottoUtils();
+        lottoUtils.isNumbersDuplicate(numbers);
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException(Constants.NUMBER_RANGE_ERROR);
+        }
+    }
 }

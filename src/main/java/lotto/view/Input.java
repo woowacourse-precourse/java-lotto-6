@@ -34,8 +34,7 @@ public class Input {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR} 숫자를 입력해 주세요.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR} 숫자를 입력해 주세요.");
         }
     }
 }

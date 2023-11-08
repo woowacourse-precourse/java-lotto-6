@@ -33,6 +33,7 @@ public interface LottoFinalConsts {
     String LOTTO_RETURN_RATE_PRINT = "총 수익률은 %s입니다.";
     String LOTTO_RETURN_RATE_FORMAT = "%.1f";
     String PERCENTAGE = "%";
+    String PRINT_LOTTO_PURCHASE = "%d%s";
     String ERROR_MESSAGE_FORMAT = "%s%s \n";
     String LOTTO_WINNING_SPLIT = ",";
 

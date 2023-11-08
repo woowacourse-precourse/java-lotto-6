@@ -19,7 +19,7 @@ public class Money {
             throw Errors.INVALID_MONEY.getLottoException();
         }
         if (value % LottoConfig.PRICE != 0) {
-            throw Errors.INVALID_INDIVISIABLE.getLottoException();
+            throw Errors.INVALID_INDIVISIBLE.getLottoException();
         }
     }
 

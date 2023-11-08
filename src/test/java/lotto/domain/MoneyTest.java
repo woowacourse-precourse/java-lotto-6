@@ -20,21 +20,21 @@ public class MoneyTest {
     @Test
     void should_Throw_Exception_When_ValueIsGreaterThanLimit() {
         assertThatThrownBy(() -> new Money(1000001))
-                .isInstanceOf(LottoException.class);
+                .isInstanceOf(LottoException.class).hasMessageContaining("[ERROR] 최대 구매 한도를 초과했습니다.");
     }
 
     @DisplayName("로또 한장의 가격보다 돈이 부족할 때 예외가 발생한다.")
     @Test
     void should_Throw_Exception_When_LowerThanPrice() {
         assertThatThrownBy(() -> new Money(999))
-                .isInstanceOf(LottoException.class);
+                .isInstanceOf(LottoException.class).hasMessageContaining("[ERROR] 돈이 모자랍니다.");
     }
 
     @DisplayName("1000으로 나눌 수 없는경우 예외가 발생한다.")
     @Test
     void should_Throw_Exception_When_IndivisibleBy1000() {
-        assertThatThrownBy(() -> new Money(999))
-                .isInstanceOf(LottoException.class);
+        assertThatThrownBy(() -> new Money(1569))
+                .isInstanceOf(LottoException.class).hasMessageContaining("[ERROR] 올바른 단위의 수가 아닙니다.");
     }
 
 }

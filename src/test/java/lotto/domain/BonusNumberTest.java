@@ -26,7 +26,8 @@ public class BonusNumberTest {
     void should_ThrowExceptionWhenDuplicatedWithWinningNumber(int value) {
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThatThrownBy(() -> new BonusNumber(value, winningNumbers))
-                .isInstanceOf(LottoException.class);
+                .isInstanceOf(LottoException.class)
+                .hasMessageContaining("[ERROR] 보너스번호는 당첨번호와 중복될 수 없습니다");
     }
 
     @DisplayName("보너스번호가 범위 이외의 수일 경우 예외가 발생한다.")
@@ -35,7 +36,7 @@ public class BonusNumberTest {
     void should_ThrowExceptionWhenBonusNumberIsOutOfRange(int value) {
         Lotto winningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThatThrownBy(() -> new BonusNumber(value, winningNumbers))
-                .isInstanceOf(LottoException.class);
+                .isInstanceOf(LottoException.class).hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
 }

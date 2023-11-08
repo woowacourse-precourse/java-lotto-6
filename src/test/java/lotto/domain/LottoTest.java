@@ -28,7 +28,7 @@ class LottoTest {
     @Test
     void should_ThrowException_When_HasNumberOutOfRange() {
         assertThatThrownBy(() -> new Lotto(List.of(50, 51, 52, 53, 54, 55)))
-                .isInstanceOf(LottoException.class);
+                .isInstanceOf(LottoException.class).hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
     @DisplayName("불변객체를 조작하려는 경우 예외가 발생한다.")

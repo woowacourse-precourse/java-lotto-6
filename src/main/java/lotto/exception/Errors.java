@@ -4,7 +4,7 @@ public enum Errors {
     INVALID_NOT_NUMBER("[ERROR] 숫자를 입력하지 않았거나 유효한 숫자가 아닙니다."),
     INVALID_MONEY("[ERROR] 돈이 모자랍니다."),
     INVALID_LIMIT("[ERROR] 최대 구매 한도를 초과했습니다."),
-    INVALID_INDIVISIABLE("[ERROR] 올바른 단위의 수가 아닙니다."),
+    INVALID_INDIVISIBLE("[ERROR] 올바른 단위의 수가 아닙니다."),
     INVALID_QUANTITY("[ERROR] 유효하지 않은 구매 수입니다."),
     INVALID_SIZE("[ERROR] 올바른 로또번호의 갯수가 아닙니다."),
     INVALID_DUPLICATED("[ERROR] 당첨번호는 중복될수 없습니다."),

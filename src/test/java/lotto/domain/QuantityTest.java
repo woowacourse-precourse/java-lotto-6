@@ -23,7 +23,7 @@ public class QuantityTest {
     @ValueSource(ints = {100, 200, 300, 400, 500, 600, 700, 800, 900, 999, 1255, 23567})
     void should_CreateQuantity_When_WrongBudget(int budget) {
         assertThatThrownBy(() -> Quantity.of(new Money(budget), 1000))
-                .isInstanceOf(LottoException.class);
+                .isInstanceOf(LottoException.class).hasMessageContaining("[ERROR]");
     }
 
     @DisplayName("구매한도(100000원) / 1000을 넘는 갯수(100개)는 예외가 발생한다.")
@@ -31,7 +31,7 @@ public class QuantityTest {
     @ValueSource(ints = {1000000, 2000000, 3000000, 4000000, 5000000})
     void should_CreateQuantity_When_WrongAmount(int budget) {
         assertThatThrownBy(() -> Quantity.of(new Money(budget), 1000))
-                .isInstanceOf(LottoException.class);
+                .isInstanceOf(LottoException.class).hasMessageContaining("[ERROR] 최대 구매 한도를 초과했습니다.");
     }
 
 }

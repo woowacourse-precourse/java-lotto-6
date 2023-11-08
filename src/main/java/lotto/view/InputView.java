@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,13 +6,13 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import static lotto.OutputView.printRequestMoney;
-import static lotto.OutputView.printWinningNumber;
-import static lotto.OutputView.printBlankLine;
-import static lotto.OutputView.printBonusNumber;
+import static lotto.view.OutputView.printRequestMoney;
+import static lotto.view.OutputView.printWinningNumber;
+import static lotto.view.OutputView.printBlankLine;
+import static lotto.view.OutputView.printBonusNumber;
 
-import static lotto.ErrorMessage.INVALID_FORMAT_ERROR;
-import static lotto.ErrorMessage.EMPTY_INPUT_ERROR;
+import static lotto.view.ErrorMessage.INVALID_FORMAT_ERROR;
+import static lotto.view.ErrorMessage.EMPTY_INPUT_ERROR;
 
 public class InputView {
     private static List<Integer> winningLotto = new ArrayList<>();

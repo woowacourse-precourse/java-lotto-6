@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.Test;
+import lotto.vo.response.LottoResponse;
 
 class LottoResponseTest {
     @Test

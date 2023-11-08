@@ -2,9 +2,7 @@ package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.domain.IssuedLottos;
-import lotto.domain.LottoTicketMachine;
-import lotto.utility.vo.request.PurchaseAmountRequest;
+import lotto.vo.request.PurchaseAmountRequest;
 import org.junit.jupiter.api.Test;
 
 class LottoTicketMachineTest {

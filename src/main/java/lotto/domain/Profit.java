@@ -5,7 +5,7 @@ import static lotto.constants.Condition.MONEY_UNIT;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
-import lotto.utility.vo.response.ProfitResponse;
+import lotto.vo.response.ProfitResponse;
 
 public class Profit {
     private static final int SCALE = 2;

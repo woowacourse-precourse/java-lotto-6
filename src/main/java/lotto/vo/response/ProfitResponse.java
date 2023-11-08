@@ -1,4 +1,4 @@
-package lotto.utility.vo.response;
+package lotto.vo.response;
 
 public class ProfitResponse {
     private static final String OUTPUT_FORM = "총 수익률은 %,d%s%%입니다.";

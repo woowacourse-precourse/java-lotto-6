@@ -5,10 +5,7 @@ import static lotto.constants.Condition.MINIMUM_VALUE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.domain.IssuedLottos;
-import lotto.domain.Lotto;
-import lotto.domain.PurchaseNumber;
-import lotto.utility.vo.request.PurchaseAmountRequest;
+import lotto.vo.request.PurchaseAmountRequest;
 
 public class LottoTicketMachine {
     static public IssuedLottos generateLottos(PurchaseAmountRequest purchaseAmount) {

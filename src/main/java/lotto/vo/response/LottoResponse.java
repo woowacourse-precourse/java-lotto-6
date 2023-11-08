@@ -1,4 +1,4 @@
-package lotto.utility.vo.response;
+package lotto.vo.response;
 
 import java.util.List;
 import java.util.stream.Collectors;

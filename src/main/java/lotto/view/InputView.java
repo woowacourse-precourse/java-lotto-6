@@ -2,9 +2,9 @@ package lotto.view;
 
 import lotto.utility.io.Reader;
 import lotto.utility.io.Writer;
-import lotto.utility.vo.request.BonusNumberRequest;
-import lotto.utility.vo.request.PurchaseAmountRequest;
-import lotto.utility.vo.request.WinningNumberRequest;
+import lotto.vo.request.BonusNumberRequest;
+import lotto.vo.request.PurchaseAmountRequest;
+import lotto.vo.request.WinningNumberRequest;
 
 public class InputView {
     private static final String PURCHASE_AMOUNT_REQUEST = "구입금액을 입력해 주세요.";

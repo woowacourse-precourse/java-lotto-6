@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.utility.vo.response.LottoResponse;
+import lotto.vo.response.LottoResponse;
 
 public class IssuedLottos {
     private final List<Lotto> lottos;

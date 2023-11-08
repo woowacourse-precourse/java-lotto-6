@@ -3,7 +3,7 @@ package lotto.utility.vo.response;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.stream.Stream;
-import lotto.utility.vo.response.ProfitResponse;
+import lotto.vo.response.ProfitResponse;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

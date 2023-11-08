@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.utility.vo.response.WinningResponse;
+import lotto.vo.response.WinningResponse;
 
 public class WinningRanks {
     private final List<Rank> ranks;

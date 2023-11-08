@@ -2,7 +2,7 @@ package lotto.model;
 
 import lotto.util.Constant;
 import lotto.util.ErrorMessage;
-import lotto.util.ValidationManager;
+import lotto.util.validate.ValidationManager;
 
 public class BonusNumber {
 

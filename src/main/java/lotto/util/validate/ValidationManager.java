@@ -1,6 +1,7 @@
-package lotto.util;
+package lotto.util.validate;
 
 import java.util.regex.Pattern;
+import lotto.util.ErrorMessage;
 
 public class ValidationManager {
 

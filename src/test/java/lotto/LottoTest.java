@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Arrays;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +25,12 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("유효한 Lotto 객체를 생성하는지 확인한다.")
+    @Test
+    public void testValidLottoCreation() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+        Assertions.assertNotNull(lotto);
+    }
     // 아래에 추가 테스트 작성 가능
 }

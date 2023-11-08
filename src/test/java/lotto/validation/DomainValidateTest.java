@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,7 +14,8 @@ class DomainValidateTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void testNumberRange() {
+    @DisplayName("입력된 수가 주어진 범위를 넘는 경우 예외 발생")
+    void testValidateNumberInRange() {
         // given
         int wrongNum = 49;
         int num = 7;
@@ -25,7 +27,8 @@ class DomainValidateTest {
     }
 
     @Test
-    void testLottoNumberCnt() {
+    @DisplayName("입력된 당첨 번호들의 개수가 주어진 조건에 만족하지 않는 경우 예외 발생")
+    void testValidateNumberOfWinningNumbers() {
         // given
         List<Integer> lotto = new ArrayList<>();
         List<Integer> bonus = new ArrayList<>();
@@ -47,7 +50,8 @@ class DomainValidateTest {
     }
 
     @Test
-    void testBonusNumberCnt() {
+    @DisplayName("입력된 보너스 숫자의 개수가 주어진 조건에 만족하지 않는 경우 예외 발생")
+    void testValidateNumberOfBonus() {
         // given
         List<Integer> bonus = new ArrayList<>();
         for (int i = LOTTO_NUMBER_MIN.getNum(); i < LOTTO_NUMBER_MIN.getNum() + LOTTO_BONUS_NUMBER_CNT.getNum(); i++) {
@@ -63,6 +67,7 @@ class DomainValidateTest {
     }
 
     @Test
+    @DisplayName("입력된 금액이 음수일 경우 예외 발생")
     void testValidateNegativeMoney() {
         // given
         int wrongMoney = -1400;
@@ -75,6 +80,7 @@ class DomainValidateTest {
     }
 
     @Test
+    @DisplayName("입력된 번호들이 중복될 경우 예외 발생")
     void testValidateDuplicated() {
         // given
         List<Integer> numbers = new ArrayList<>();

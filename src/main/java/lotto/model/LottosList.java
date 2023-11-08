@@ -3,12 +3,14 @@ package lotto.model;
 import static lotto.constant.Magic.END_INRANGE;
 import static lotto.constant.Magic.LOTTO_PRICE;
 import static lotto.constant.Magic.NUMBERS_INLOTTO;
+import static lotto.constant.Magic.NUMBER_POSITIVE;
 import static lotto.constant.Magic.STRAT_INRANGE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
 
 public class LottosList {
     private List<Lotto> lottosList;
@@ -25,9 +27,27 @@ public class LottosList {
 
     public LottosList(String price) throws IllegalArgumentException {
         lottosList = new ArrayList<>();
+        validatePricePositive(price);
+        validatePrice1000(price);
         int lottoNum = calculateNumberLottos(price);
         createLottos(lottoNum);
 
+    }
+
+    private void validatePricePositive(String input) throws IllegalArgumentException {
+        Matcher matcher = NUMBER_POSITIVE.matcher(input);
+
+        if (!matcher.matches()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validatePrice1000(String input) throws IllegalArgumentException {
+        int result = Integer.parseInt(input);
+        
+        if (result % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public List<Lotto> getLottosList() {

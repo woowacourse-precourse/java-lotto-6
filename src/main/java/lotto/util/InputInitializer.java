@@ -10,19 +10,51 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static lotto.message.InputMessage.*;
+
 public class InputInitializer {
 
     public int inputtingPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String moneyInput = Console.readLine();
-        new PurchaseAmountValidator().validate(moneyInput);
+        PurchaseAmountValidator validator = new PurchaseAmountValidator();
+        System.out.println(INPUT_PURCHASE_MONEY.getMessage());
+        String moneyInput;
+        boolean hasException;
+
+        do {
+            hasException = false;
+            moneyInput = Console.readLine();
+
+            try {
+                validator.validate(moneyInput);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                hasException = true;
+            }
+
+        } while (hasException);
+
         return Integer.parseInt(moneyInput) / 1000;
     }
 
     public Lotto inputtingLottoNumber() {
-        System.out.println("당첨 번호 입력해 주세요.");
-        String lottoNumbersInput = Console.readLine();
-        new LottoNumberValidator().validate(lottoNumbersInput);
+        LottoNumberValidator validator = new LottoNumberValidator();
+        String lottoNumbersInput;
+        boolean hasException;
+
+        do {
+            hasException = false;
+            System.out.println(INPUT_WINNING_LOTTO_NUMBER.getMessage());
+            lottoNumbersInput = Console.readLine();
+
+            try {
+                validator.validate(lottoNumbersInput);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                hasException = true;
+            }
+
+        } while (hasException);
+
         List<Integer> lottoNumbers = lottoNumberToList(lottoNumbersInput);
         return new Lotto(lottoNumbers);
     }
@@ -39,9 +71,24 @@ public class InputInitializer {
     }
 
     public int inputBonusNumber(Lotto lotto) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumberInput = Console.readLine();
-        new BonusNumberValidator().validate(bonusNumberInput, lotto);
+        BonusNumberValidator validator = new BonusNumberValidator();
+        String bonusNumberInput;
+        boolean hasException;
+
+        do {
+            hasException = false;
+            System.out.println(INPUT_BONUS_NUMBER.getMessage());
+            bonusNumberInput = Console.readLine();
+
+            try {
+                validator.validate(bonusNumberInput, lotto);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                hasException = true;
+            }
+
+        } while (hasException);
         return Integer.parseInt(bonusNumberInput);
     }
+
 }

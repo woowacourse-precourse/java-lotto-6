@@ -29,7 +29,7 @@ public class InputLottoValidation {
     }
 
     private static void validateNatural(int amount) throws IllegalArgumentException {
-        if (amount <= 0) {
+        if (amount <= Constants.ZERO) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER_ERROR.getMessage());
         }
     }

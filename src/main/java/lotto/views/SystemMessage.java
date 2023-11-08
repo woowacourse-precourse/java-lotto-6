@@ -36,4 +36,8 @@ public class SystemMessage {
         System.out.println(Constants.BONUS_MATCHED + bonusWin + '개');
         System.out.println(Constants.WHOLE_MATCHED + wholeWin + '개');
     }
+
+    public void printRateOfReturn(Integer percentage) {
+        System.out.println("총 수익률은 " + percentage + "%입니다");
+    }
 }

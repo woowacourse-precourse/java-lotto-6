@@ -1,6 +1,17 @@
 package lotto.constants;
 
 public class Constants {
+
+    public static final Integer THREE = 5000;
+
+    public static final Integer FOUR = 50000;
+
+    public static final Integer FIVE = 1500000;
+
+    public static final Integer BONUS = 30000000;
+
+    public static final Integer WHOLE = 2000000000;
+
     public static final String PURCHASE_PRICE = "구입금액을 입력해 주세요.";
 
     public static final String PURCHASED_RESULT = "개를 구매했습니다.";
@@ -21,16 +32,16 @@ public class Constants {
 
     public static final String WHOLE_MATCHED = "6개 일치 (2,000,000,000원) - ";
 
-    public static final String NUMBER_RANGE_ERROR = "로또 번호는 6개입니다.";
+    public static final String NUMBER_RANGE_ERROR = "[ERROR]로또 번호는 6개입니다.";
 
-    public static final String DUPLICATE_ERROR = "중복된 값은 입력할 수 없습니다.";
+    public static final String DUPLICATE_ERROR = "[ERROR]중복된 값은 입력할 수 없습니다.";
 
-    public static final String LOTTO_RANGE_ERROR = "당첨 번호는 1 ~ 45 사이의 숫자만 입력 가능합니다";
+    public static final String LOTTO_RANGE_ERROR = "[ERROR]당첨 번호는 1 ~ 45 사이의 숫자만 입력 가능합니다";
 
-    public static final String LOTTO_INPUT_ERROR = "당첨 번호는 숫자만 입력할 수 있습니다";
+    public static final String LOTTO_INPUT_ERROR = "[ERROR]당첨 번호는 숫자만 입력할 수 있습니다";
 
-    public static final String PURCHASE_ERROR = "구입금액은 숫자만 입력할 수 있습니다";
+    public static final String PURCHASE_ERROR = "[ERROR]구입금액은 숫자만 입력할 수 있습니다";
 
-    public static final String SPLIT_ERROR = "1000원으로 나누어 떨어지는 금액만 입력 가능합니다.";
+    public static final String SPLIT_ERROR = "[ERROR]1000원으로 나누어 떨어지는 금액만 입력 가능합니다.";
 }
 

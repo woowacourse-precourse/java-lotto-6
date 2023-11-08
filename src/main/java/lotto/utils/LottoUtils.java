@@ -3,7 +3,6 @@ package lotto.utils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 import lotto.Lotto;
 import java.util.List;
 import lotto.views.SystemMessage;
@@ -13,7 +12,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class LottoUtils {
     SystemMessage systemMessage = new SystemMessage();
 
-    public Integer setPurchaseAmout() {
+    public Integer setPurchaseAmount() {
         Integer number = this.isValidAmount(systemMessage.getPurchasePrice());
         return number / 1000;
     }
@@ -75,6 +74,17 @@ public class LottoUtils {
             }
         }
         systemMessage.printLottoResult(threeWin, fourWin, fiveWin, bonusWin, wholeWin);
+        setRateOfReturn(lottos.size(), setReturnAmount(threeWin, fourWin, fiveWin, bonusWin, wholeWin));
+    }
+
+    public Integer setReturnAmount(Integer threeWin, Integer fourWin, Integer fiveWin, Integer bonusWin, Integer wholeWin) {
+        return (threeWin * Constants.THREE) + (fourWin * Constants.FOUR) + (fiveWin * Constants.FIVE) + (bonusWin * Constants.BONUS) + (wholeWin * Constants.WHOLE);
+    }
+
+    public void setRateOfReturn(Integer size, Integer returnAmount) {
+        int originalPrice = size * 1000;
+        int rateOfReturn = (returnAmount / originalPrice) * 100;
+        systemMessage.printRateOfReturn(rateOfReturn);
     }
 
     private void compareLottoResult(Lotto lotto, List<Integer> winningNumbers) {
@@ -98,7 +108,7 @@ public class LottoUtils {
         }
     }
 
-    private void isNumbersDuplicate(List<Integer> numbers) {
+    public void isNumbersDuplicate(List<Integer> numbers) {
         Set<Integer> numSet = new HashSet<>(numbers);
         if(numSet.size()!= numbers.size()){
             throw new IllegalArgumentException(Constants.DUPLICATE_ERROR);

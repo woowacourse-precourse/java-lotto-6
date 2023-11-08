@@ -18,7 +18,7 @@ public class Amount {
     }
 
     public void validateAmountNegativeNumber(final double amount) {
-        if (amount < 0) {
+        if (amount <= 0) {
             throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.PURCHASE_AMOUNT_IS_NOT_ZERO.getValue());
         }
     }

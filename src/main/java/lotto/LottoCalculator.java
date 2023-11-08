@@ -14,7 +14,7 @@ public class LottoCalculator {
 
         for (List<Integer> lottoNumbers : lottoTicket.showLottoNumbers()) {
             int key = makeKey(lottoNumbers, winNumbers, bonus);
-            if (key > 3) {
+            if (key >= 3) {
                 int value = result.get(key) + 1;
                 result.replace(key, value);
             }

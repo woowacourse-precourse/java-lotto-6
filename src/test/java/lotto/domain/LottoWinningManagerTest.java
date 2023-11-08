@@ -35,4 +35,12 @@ class LottoWinningManagerTest {
         assertThat(manager.prizeFrequancyTable.get(Prize.SECOND)).isEqualTo(0);
         assertThat(manager.prizeFrequancyTable.get(Prize.FIRST)).isEqualTo(0);
     }
+
+    @Test
+    void calculateProfitRate() {
+        LottoWinningManager manager = new LottoWinningManager();
+        manager.totalReward = 1500000;
+        manager.totalCost = 7000;
+        assertThat(manager.calculateProfitRate()).isEqualTo(21428.6);
+    }
 }

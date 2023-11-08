@@ -6,12 +6,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 public class Application {
-    //당처금
-    private static final long PRIZE_FIRST = 2_000_000_000;
-    private static final long PRIZE_SECOND = 30_000_000;
-    private static final long PRIZE_THIRD = 1_500_000;
-    private static final long PRIZE_FOURTH = 50_000;
-    private static final long PRIZE_FIFTH = 5_000;
     public static void main(String[] args) {
         System.out.println("구매금액을 입력해 주세요.");
         int buyMoney = Integer.parseInt(Console.readLine());

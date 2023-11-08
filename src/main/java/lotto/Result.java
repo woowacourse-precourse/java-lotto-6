@@ -1,11 +1,11 @@
 package lotto;
 
 public enum Result {
-    THREE("3개 일치 (5,000원)",5000,0),
-    FOUR("4개 일치 (50,000원)",50000,0),
-    FIVE("5개 일치 (1,500,000원)",1500000,0),
-    BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)",30000000,0),
-    SIX("6개 일치 (2,000,000,000원)",2000000000,0);
+    THREE("3개 일치 (5,000원)", 5000, 0),
+    FOUR("4개 일치 (50,000원)", 50000, 0),
+    FIVE("5개 일치 (1,500,000원)", 1500000, 0),
+    BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)", 30000000, 0),
+    SIX("6개 일치 (2,000,000,000원)", 2000000000, 0);
 
 
     private String result;
@@ -13,7 +13,7 @@ public enum Result {
 
     private int money;
 
-    Result(String result,int money, int match ) {
+    Result(String result, int money, int match) {
         this.result = result;
         this.match = match;
         this.money = money;
@@ -27,11 +27,11 @@ public enum Result {
         return match;
     }
 
-    public void setMatch(int match){
-       this.match = match;
+    public void setMatch(int match) {
+        this.match = match;
     }
 
-    public int getMoney(){
+    public int getMoney() {
         return money;
     }
 }

@@ -12,11 +12,9 @@ public class Application {
         List<List<Integer>> lottoNumbers = purchase.process();
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumbers = List.of(Console.readLine().split(",")).stream()
-                .map(s -> Integer.parseInt(s))
-                .collect(Collectors.toList());
+        List<Integer> winningNumbers = List.of(Console.readLine().split(",")).stream().map(s -> Integer.parseInt(s)).collect(Collectors.toList());
 
-        Lotto lotto = new Lotto(winningNumbers);
+        new Lotto(winningNumbers);
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());

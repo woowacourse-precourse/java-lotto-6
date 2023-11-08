@@ -17,7 +17,7 @@ public class Statistics {
         this.bonus = bonus;
     }
 
-    public void compareNumber(){
+    public void compareNumber() {
         for (List<Integer> lottoNumber : lottoNumbers) {
             int matchingCount = 0;
             for (Integer number : lottoNumber) {
@@ -30,13 +30,13 @@ public class Statistics {
 
 
     private int getMatchingCount(Integer number, int matchingCount) {
-        if(number == bonus){
+        if (number == bonus) {
             matchingBonus++;
             return matchingCount;
         }
 
         for (Integer winningNumber : winningNumbers) {
-            if(number == winningNumber){
+            if (number == winningNumber) {
                 matchingCount++;
                 break;
             }
@@ -46,28 +46,28 @@ public class Statistics {
     }
 
     private void countMatch(int matchingCount, int matchingBonus) {
-        if(matchingCount == 3){
-            Result.THREE.setMatch(Result.THREE.getMatch()+1);
+        if (matchingCount == 3) {
+            Result.THREE.setMatch(Result.THREE.getMatch() + 1);
         }
 
-        if(matchingCount == 4){
-            Result.FOUR.setMatch(Result.FOUR.getMatch()+1);
+        if (matchingCount == 4) {
+            Result.FOUR.setMatch(Result.FOUR.getMatch() + 1);
         }
 
-        if(matchingCount == 5 && matchingBonus == 0){
-            Result.FIVE.setMatch(Result.FIVE.getMatch()+1);
+        if (matchingCount == 5 && matchingBonus == 0) {
+            Result.FIVE.setMatch(Result.FIVE.getMatch() + 1);
         }
 
-        if(matchingCount == 5 && matchingBonus == 1){
-            Result.BONUS.setMatch(Result.BONUS.getMatch()+1);
+        if (matchingCount == 5 && matchingBonus == 1) {
+            Result.BONUS.setMatch(Result.BONUS.getMatch() + 1);
         }
 
-        if(matchingCount == 6){
-            Result.SIX.setMatch(Result.SIX.getMatch()+1);
+        if (matchingCount == 6) {
+            Result.SIX.setMatch(Result.SIX.getMatch() + 1);
         }
     }
 
-    public void printResult(){
+    public void printResult() {
         System.out.println("당첨 통계");
         System.out.println("---");
         double revenue = 0;
@@ -76,8 +76,8 @@ public class Statistics {
             revenue += result.getMatch() * result.getMoney();
         }
 
-        double revenuePercent = revenue/(lottoNumbers.size()*1000)*100;
+        double revenuePercent = revenue / (lottoNumbers.size() * 1000) * 100;
 
-        System.out.println("총 수익률은 "+ Math.round(revenuePercent * 100) / 100.0 +"%입니다.");
+        System.out.println("총 수익률은 " + Math.round(revenuePercent * 100) / 100.0 + "%입니다.");
     }
 }

@@ -30,7 +30,7 @@ public class Application {
             Lotto winner = view.getWinnerLottery();
             int bonusNumber = view.getBonusNumber();
             HashMap<String, Integer> lotteryResult = controller.getLotteryResult(lotteries, winner, bonusNumber);
-            view.printLotteryResult(lotteryResult);
+            view.printLotteryResult(price, lotteryResult);
         } catch (Exception e) {
             handler.handleException(e);
         }

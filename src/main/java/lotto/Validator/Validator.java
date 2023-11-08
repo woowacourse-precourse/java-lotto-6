@@ -24,4 +24,8 @@ public class Validator {
     public static boolean isValidLength(List<Integer> numbers) {
         return numbers.size() == NUMBER_QUANTITY;
     }
+    public boolean isValidRangeBonusNumber(int BonusNumber){
+        if (BonusNumber < NUMBER_MIN || BonusNumber > NUMBER_MAX) return false;
+        return true;
+    }
 }

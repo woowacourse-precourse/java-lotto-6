@@ -33,9 +33,7 @@ public class InputView {
                 System.out.println(InputMessage.WINNING_LOTTO.getValue());
                 String inputWinningLotto = Console.readLine();
                 String blankRemoveWinningLotto = inputWinningLotto.replace(" ", "");
-                for (String lottoNumber : blankRemoveWinningLotto.split(",", -1)) {
-                    InputValidator.validateLottoNumber(lottoNumber);
-                }
+                Arrays.stream(blankRemoveWinningLotto.split(",", -1)).forEach(InputValidator::validateLottoNumber);
                 return new Lotto(
                         Arrays.stream(blankRemoveWinningLotto.split(","))
                                 .map(Integer::parseInt)

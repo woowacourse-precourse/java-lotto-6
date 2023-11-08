@@ -18,7 +18,13 @@ public class BonusNumber {
         }
     }
 
-    public boolean contains(Lotto lotto) {
+    public boolean isContains(Lotto lotto) {
         return lotto.contains(this.bonusNumber);
+    }
+
+    public void containsException(Lotto lotto) {
+        if (isContains(lotto)) {
+            throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.BONUS_DUPLICATE.getValue());
+        }
     }
 }

@@ -61,9 +61,7 @@ public class LottoController {
         while (true) {
             try {
                 bonusNumber = InputView.getBonusNumber();
-                if (bonusNumber.contains(winningLotto)) {
-                    throw new IllegalArgumentException(ErrorMessage.START.getValue() + ErrorMessage.BONUS_DUPLICATE.getValue());
-                }
+                bonusNumber.containsException(winningLotto);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

@@ -27,7 +27,7 @@ public class WinningLotto {
         if (matchCount(lotto) < 5) {
             return false;
         }
-        return bonusNumber.contains(lotto);
+        return bonusNumber.isContains(lotto);
     }
 
     public int matchCount(Lotto lotto) {

@@ -27,7 +27,7 @@ public class BonusNumberTest {
         Lotto lotto = new Lotto(lottoNumber);
         BonusNumber bonusNumber = new BonusNumber(bonus);
 
-        Assertions.assertThat(bonusNumber.contains(lotto)).isTrue();
+        Assertions.assertThat(bonusNumber.isContains(lotto)).isTrue();
     }
 
     static Stream<Arguments> lottoNumberAndBonusNumber() {

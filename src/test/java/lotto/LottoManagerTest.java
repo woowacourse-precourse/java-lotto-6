@@ -49,6 +49,25 @@ public class LottoManagerTest extends NsTest {
         assertThat(result.get(WinningCondition.SIX_MATCH)).isEqualTo(null);
     }
 
+    @DisplayName("나의 로또 티켓을 로또 당첨 번호와 대조한다.")
+    @Test
+    void queryMyLotto() {
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(4, 5, 6, 10, 11, 7));
+        Lotto lotto3 = new Lotto(List.of(13, 14, 15, 16, 17, 18));
+
+        Lotto lotto = new Lotto(List.of(4, 5, 6, 10, 11, 12));
+        int bonusNumber = 7;
+
+        LottoManager lottoManager = new LottoManager();
+        WinningCondition expected1 = lottoManager.checkWinningResult(lotto1, lotto, bonusNumber);
+        WinningCondition expected2 = lottoManager.checkWinningResult(lotto2, lotto, bonusNumber);
+        WinningCondition expected3 = lottoManager.checkWinningResult(lotto3, lotto, bonusNumber);
+        assertThat(WinningCondition.THREE_MATCH).isEqualTo(expected1);
+        assertThat(WinningCondition.FIVE_MATCH_WITH_BONUS).isEqualTo(expected2);
+        assertThat(WinningCondition.NOTHING).isEqualTo(expected3);
+    }
+
     @Override
     public void runMain() {
     }

@@ -26,6 +26,10 @@ public enum Rank {
         return this.prize;
     }
 
+    public String getMessage() {
+        return this.message;
+    }
+
     public static Rank result(int matchCnt, boolean bonus) {
 
         if(matchCnt == FIRST.match) {

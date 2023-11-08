@@ -53,4 +53,8 @@ public class GameController {
     int calculatePrize(Map<Rank, Integer> result) {
         return Rank.calculatePrize(result);
     }
+
+    double calculateProfitRate(int cost, int totalPrize) {
+        return (double)totalPrize / (double)cost * 100;
+    }
 }

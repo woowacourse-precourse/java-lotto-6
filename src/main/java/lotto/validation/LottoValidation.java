@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import lotto.view.ErrorView;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,16 +11,22 @@ public class LottoValidation {
     public static final int LOTTO_LAST_NUMBER = 45;
     public static final int LOTTO_NUMBER_COUNT = 6;
 
-    public static boolean validateRange(List<Integer> numbers) {
-        return numbers.stream().allMatch(number -> number >= LOTTO_START_NUMBER && number <= LOTTO_LAST_NUMBER);
+    public static void validateRange(List<Integer> numbers) {
+        if (numbers.stream().anyMatch(number -> number < LOTTO_START_NUMBER || number > LOTTO_LAST_NUMBER)) {
+            throw new IllegalArgumentException(ErrorView.getRangeErrorMessage());
+        }
     }
 
-    public static boolean validateDuplicates(List<Integer> numbers) {
+    public static void validateDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        return uniqueNumbers.size() == numbers.size();
+        if (uniqueNumbers.size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorView.getDuplicateErrorMessage());
+        }
     }
 
-    public static boolean validateLength(List<Integer> numbers) {
-        return numbers.size() == LOTTO_NUMBER_COUNT;
+    public static void validateLength(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(ErrorView.getLengthErrorMessage());
+        }
     }
 }

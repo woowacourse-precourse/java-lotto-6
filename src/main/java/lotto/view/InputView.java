@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    private static final String WINNING_NUMBERS_REGEX = "^(\\d(,\\d+)*|)$";
+    private static final String WINNING_NUMBERS_REGEX = "^\\w+(?:,\\w+)*$";
 
     private InputView() {
     }

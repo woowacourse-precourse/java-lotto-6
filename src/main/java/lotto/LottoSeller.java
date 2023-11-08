@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.data.Amount;
 import lotto.data.Lotto;
-import lotto.data.LottoResult;
+import lotto.domain.LottoResult;
 import lotto.data.WinningCombination;
 import lotto.domain.LottoPurchaseInput;
 import lotto.message.LottoPrize;

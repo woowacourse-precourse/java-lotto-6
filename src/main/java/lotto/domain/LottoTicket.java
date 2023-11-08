@@ -43,7 +43,7 @@ public class LottoTicket {
         return lottoTickets;
     }
 
-    public int getCount() {
+    public int getNumberOfLotto() {
         return numberOfLotto;
     }
 }

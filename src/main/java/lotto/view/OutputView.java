@@ -42,4 +42,8 @@ public class OutputView {
         System.out.printf(OutputMessage.FIRST_PRIZE, prizeResults.getOrDefault(Prize.FIRST, 0));
         System.out.printf(OutputMessage.EARN_RATE, earnRate);
     }
+
+    public void displayError(String errorMessage) {
+        System.out.println("[ERROR] "+ errorMessage);
+    }
 }

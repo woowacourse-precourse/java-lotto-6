@@ -22,5 +22,20 @@ public enum LottoResult {
         this.index = index;
     }
 
+    public static LottoResult determinePrize(Integer matchedWinningNumberCount, Boolean matchedBonusNumber) {
+        return Arrays.stream(LottoResult.values())
+                .filter(lottoResult -> checkLottoResult(lottoResult, matchedWinningNumberCount, matchedBonusNumber))
+                .findAny()
+                .orElse(NO_PRIZE);
+    }
 
+    private static Boolean checkLottoResult(LottoResult lottoResult, Integer matchedWinningNumberCount, Boolean matchedBonusNumber){
+        if(lottoResult.matchedWinningNumberCount.equals(matchedWinningNumberCount) &&
+                lottoResult.matchedBonusNumber.equals(matchedBonusNumber)){
+            return true;
+        }
+        return false;
+    }
+
+   
 }

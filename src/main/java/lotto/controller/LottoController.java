@@ -34,15 +34,19 @@ public class LottoController {
         return lottos;
     }
 
-    public SelectedLottoNumber setSelectedNumber() {
+    public List<Integer> selectedNumber() {
 
         String initialNumbers = Console.readLine();
         List<Integer> numbers = lottoListException.checkSelectedNumber(initialNumbers);
 
+        return numbers;
+    }
+
+    public int BonusNumber() {
+
         String initialBonus = Console.readLine();
         int bonus = lottoIntegerException.checkForBonus(initialBonus);
 
-        SelectedLottoNumber selectedLottoNumber = new SelectedLottoNumber(numbers, bonus);
-        return selectedLottoNumber;
+        return bonus;
     }
 }

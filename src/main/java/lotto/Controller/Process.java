@@ -18,8 +18,7 @@ public class Process {
     }
 
 
-    public void drawLotto(){
-        ValidateInput validateInput = new ValidateInput();
+    public void drawLotto(ValidateInput validateInput){
         int cost = askCost(validateInput, 0);
         int count = new Calculate().getLottoCount(cost);
         outputView.printNumberPurchase(count);

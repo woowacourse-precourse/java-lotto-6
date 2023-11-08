@@ -1,11 +1,7 @@
 package lotto.model;
 
-import lotto.exception.InvalidDuplicateNumberException;
 import lotto.validation.Validator;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;

@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
 
 public class LottoGameService {
     private static final int LOTTO_PRICE = 1000;
-    private static final int WINNING_NUMBER_LENGTH = 7;
     private static final int BONUS_NUMBER_POSITION = 6;
     private static final int WINNING_DATA_LENGTH = 6;
     Buyer buyer;
@@ -110,7 +109,7 @@ public class LottoGameService {
 
     public double calculateProfitRate(int[] winningData) {
         int totalProfit = 0;
-        for (int i = 0; i < winningData.length - 1; i++) {
+        for (int i = 0; i < WINNING_DATA_LENGTH - 1; i++) {
             totalProfit += WinningDataCategory.values()[i].getPrize() * winningData[i];
         }
 

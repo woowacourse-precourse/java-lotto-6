@@ -1,7 +1,6 @@
 package lotto;
 
 import controller.LottoController;
-import jdk.incubator.foreign.CLinker;
 
 public class Application {
     private static final LottoController lottoController = new LottoController();

@@ -48,6 +48,7 @@ public class InputView {
     }
 
     private static List<Integer> splitInput(String input) {
+        validateDelimiter(input);
         String[] inputParts = input.split(DELIMITER);
         List<Integer> result = new ArrayList<>();
 
@@ -55,5 +56,15 @@ public class InputView {
             result.add(parseToInt(part));
         }
         return result;
+    }
+
+    private static void validateDelimiter(String input) {
+        if (input.startsWith(DELIMITER) || input.endsWith(DELIMITER)) {
+            throw new IllegalArgumentException("델리미터로 시작하거나 끝나면 안 됩니다.");
+        }
+
+        if (input.contains(DELIMITER + DELIMITER) || input.contains(DELIMITER + " ")) {
+            throw new IllegalArgumentException("연속된 델리미터 또는 델리미터와 공백이 포함되어 있으면 안 됩니다.");
+        }
     }
 }

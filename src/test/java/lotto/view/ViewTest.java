@@ -109,7 +109,15 @@ class ViewTest extends NsTest {
             runException("1000", "1,2,3,4,5,6", "!");
             assertThat(output()).contains("[ERROR] 보너스 번호는 하나의 숫자여야 합니다.");
         });
+    }
 
+    @DisplayName("당첨 로또에 int 범위 이상의 숫자를 입력하면 예외가 발생한다.")
+    @Test
+    void inputOverIntRangeBonus() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "2200000000");
+            assertThat(output()).contains("[ERROR] 보너스 번호는 1에서 45 사이인 하나의 숫자여야 합니다.");
+        });
     }
 
     @Override

@@ -15,10 +15,11 @@ public class Input {
                 View.moneyForBuyLotto();
                 var input = Console.readLine();
                 View.println();
-
-                return Tool.unsafeString2Int(input);
+                int num = Tool.unsafeString2Int(input);
+                Validation.buyingMoneyMoreThenZero(num);
+                return num;
             } catch (IllegalArgumentException e) {
-                View.error("숫자만 입력 가능");
+                View.error(e.toString());
             }
         }
     }
@@ -37,7 +38,7 @@ public class Input {
                     int value = Tool.unsafeString2Int(s);
                     Tool.uniqueAdd(numbers, value);
                 }
-                Validation.validatePrizeNumbers(numbers);
+                Validation.prizeNumberCount(numbers);
                 View.println();
                 return new Lotto(numbers);
 
@@ -53,7 +54,7 @@ public class Input {
                 View.inputBonusNumber();
                 String str = Console.readLine();
                 int num = Tool.unsafeString2Int(str);
-                Validation.validateNumberRange(num);
+                Validation.lottoNumberRange(num);
                 Validation.isBonusNumberExceptPrizeNumber(prizeNumber, num);
                 View.println();
                 return num;

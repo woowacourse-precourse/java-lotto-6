@@ -1,9 +1,6 @@
 package lotto.ui;
 
-import java.util.Comparator;
-import java.util.List;
 import lotto.domain.LottoResult;
-import lotto.domain.LottoTicket;
 import lotto.domain.LottoTicketGenerator;
 
 public class LottoResultDisplay {

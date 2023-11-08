@@ -30,3 +30,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### .class ###
+*.class
+
+### README.md ###
+/*.md

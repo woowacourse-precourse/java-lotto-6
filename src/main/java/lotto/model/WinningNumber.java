@@ -1,6 +1,7 @@
 package lotto.model;
 
 
+import java.util.Collections;
 import java.util.List;
 
 public class WinningNumber {
@@ -8,5 +9,9 @@ public class WinningNumber {
 
     public WinningNumber(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;
+    }
+
+    private List<Integer> getWinningNumbers() {
+        return Collections.unmodifiableList(winningNumbers);
     }
 }

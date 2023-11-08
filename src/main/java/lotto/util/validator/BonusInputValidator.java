@@ -13,7 +13,7 @@ public class BonusInputValidator implements InputValidator{
 
     private static void validateNumber(String checkValue) {
         try {
-            int number = Integer.parseInt(checkValue);
+            Integer.parseInt(checkValue);
         }catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessageConstant.BONUS_NUMBER_IS_NOT_NUMERIC.getMessage());
         }

@@ -19,7 +19,8 @@ public class LottoController {
         PurchaseAmount purchaseAmount = getPurchaseAmount();
         Lottos lottos = new Lottos(createLotto(purchaseAmount.getLottoCount()));
         WinningNumber winningNumber = getWinningNumber();
-        BonusNumber bonusNumber = getBonusNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumber);
+
     }
 
     private List<Lotto> createLotto(int lottoCount) {
@@ -44,8 +45,8 @@ public class LottoController {
         return new WinningNumber(inputView.readWinningNumber());
     }
 
-    private BonusNumber getBonusNumber() {
+    private BonusNumber getBonusNumber(WinningNumber winningNumber) {
         outputView.printBonusNumberInputMessage();
-        return new BonusNumber(inputView.readBonusNumber());
+        return new BonusNumber(inputView.readBonusNumber(),winningNumber);
     }
 }

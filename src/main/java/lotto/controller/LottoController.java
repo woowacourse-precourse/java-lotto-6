@@ -25,7 +25,7 @@ public class LottoController {
         LottoAmountofMoney lottoAmountofMoney = controlLottoAmountOfMoney();
         RandomLottos randomLottos = getRandomLottos(lottoAmountofMoney);
         Lotto answerLotto = controlAnswerLotto();
-        BonusNumber bonusNumber = controlBonusNumber();
+        BonusNumber bonusNumber = controlBonusNumber(answerLotto);
 
         LottoChecker lottoChecker = new LottoChecker(randomLottos, answerLotto, bonusNumber);
         HashMap<String, Integer> winningStatics = getWinningStatics(lottoChecker);
@@ -55,10 +55,10 @@ public class LottoController {
             }
         }
     }
-    private BonusNumber controlBonusNumber(){
+    private BonusNumber controlBonusNumber(Lotto answerLotto){
         while (EXCEPTIONLOOPCHECKER){
             try{
-                BonusNumber bonusNumber = new BonusNumber(getBonusNumber());
+                BonusNumber bonusNumber = new BonusNumber(getBonusNumber(), answerLotto);
                 return bonusNumber;
             }catch(IllegalArgumentException e){
                 displayOutput.outputExceptionMessage(e);

@@ -28,6 +28,12 @@ public class Lotto {
         return sameNumber;
     }
 
+    public boolean checkBounsNumber(int bonusNumber){
+        if(numbers.contains(bonusNumber)){
+            return true;
+        }
+        return false;
+    }
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();

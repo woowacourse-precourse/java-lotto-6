@@ -6,6 +6,7 @@ import util.InputUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constants.LottoInputConstants.*;
 import static validate.InputValidation.*;
 import static validate.InputValidation.validateLottoNumberRange;
 
@@ -32,7 +33,7 @@ public class Application {
 
         while (!validInput) {
             try {
-                String input = InputUtil.getUserInput("구입금액을 입력해 주세요.\n");
+                String input = InputUtil.getUserInput(PURCHASE_AMOUNT_PROMPT);
                 purchaseAmount = validateAndGetPurchaseAmount(input);
                 validInput = true;
             } catch (IllegalArgumentException e) {
@@ -53,7 +54,7 @@ public class Application {
 
         while (!validInput) {
             try {
-                String input = InputUtil.getUserInput("보너스 번호를 입력해 주세요.\n");
+                String input = InputUtil.getUserInput(BONUS_NUMBER_PROMPT);
                 bonusNumber = validateAndGetBonusNumber(resultNumbers, input);
                 validInput = true;
             } catch (IllegalArgumentException e) {
@@ -78,7 +79,7 @@ public class Application {
 
         while (!validInput) {
             try {
-                String input = InputUtil.getUserInput("당첨 번호를 입력해 주세요.\n");
+                String input = InputUtil.getUserInput(WINNING_NUMBER_PROMPT);
                 list = validateAndGetResultNumbers(input);
                 validInput = true;
             } catch (IllegalArgumentException e) {

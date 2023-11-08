@@ -26,62 +26,27 @@ public class MainController {
     }
 
     public void startLotto() {
-        // 구입금액 입력
+        int price = readPriceAndValidatePriceAndGetPrice();
+        List<Lotto> lottos = generatedLottos(price);
+        Lotto lotto = readNumbersAndValidateNumbersAndGetLotto();
+        Bonus bonus = readBonusNumberAndValidateBonusNumberAndGetBonus();
+        Receipt receipt = checkLottoAndGetReceipt(price, lottos, lotto, bonus);
+        outputView.printResultLine(receipt);
+    }
+
+    private int readPriceAndValidatePriceAndGetPrice() {
         String inputPrice = readInputPrice();
-        // 구입금액 검증
         try {
             Validator.validatePrice(inputPrice);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             readInputPrice();
         }
-        int price = Converter.convertToNumber(inputPrice);
+        return Converter.convertToNumber(inputPrice);
+    }
 
-        // 로또 발매
+    private List<Lotto> generatedLottos(int price) {
         List<Lotto> lottos = new ArrayList<>();
-        generatedLottos(price, lottos);
-
-        // 당첨 번호 입력
-        String inputNumbers = readInputNumbers();
-        // 당첨 번호 검증
-        try {
-            Validator.validateNumbers(inputNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            readInputNumbers();
-        }
-        List<Integer> numbers = Converter.covertToNumbers(inputNumbers);
-        Lotto lotto = new Lotto(numbers);
-
-        // 보너스 번호 입력
-        String inputBonusNumber = readInputBonusNumber();
-        // 보너스 번호 검증
-        try {
-            Validator.validateBonusNumber(inputBonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            readInputBonusNumber();
-        }
-        Integer bonusNumber = Converter.convertToNumber(inputBonusNumber);
-        Bonus bonus = new Bonus(bonusNumber);
-
-        List<Result> results = new ArrayList<>();
-        // 로또 비즈니스
-        for (Lotto generatedLotto : lottos) {
-            Result result = lottoService.checkLotto(generatedLotto, lotto, bonus);
-            results.add(result);
-        }
-        Receipt receipt = lottoService.calculateLottoRate(price, results);
-        // 결과
-        outputView.printResultLine(receipt);
-    }
-
-    private String readInputPrice() {
-        outputView.printPriceLine();
-        return inputView.readInputData();
-    }
-
-    private void generatedLottos(int price, List<Lotto> lottos) {
         int count = price / 1000;
         for (int i = 0; i < count; i++) {
             List<Integer> generatedNumbers = RandomNumberGenerator.generateRandomNumber();
@@ -89,6 +54,45 @@ public class MainController {
             lottos.add(generatedLotto);
         }
         outputView.printLottoLine(lottos);
+        return lottos;
+    }
+
+    private Lotto readNumbersAndValidateNumbersAndGetLotto() {
+        String inputNumbers = readInputNumbers();
+        try {
+            Validator.validateNumbers(inputNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readInputNumbers();
+        }
+        List<Integer> numbers = Converter.covertToNumbers(inputNumbers);
+        return new Lotto(numbers);
+    }
+
+    private Bonus readBonusNumberAndValidateBonusNumberAndGetBonus() {
+        String inputBonusNumber = readInputBonusNumber();
+        try {
+            Validator.validateBonusNumber(inputBonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            readInputBonusNumber();
+        }
+        Integer bonusNumber = Converter.convertToNumber(inputBonusNumber);
+        return new Bonus(bonusNumber);
+    }
+
+    private Receipt checkLottoAndGetReceipt(int price, List<Lotto> lottos, Lotto lotto, Bonus bonus) {
+        List<Result> results = new ArrayList<>();
+        for (Lotto generatedLotto : lottos) {
+            Result result = lottoService.checkLotto(generatedLotto, lotto, bonus);
+            results.add(result);
+        }
+        return lottoService.calculateLottoRate(price, results);
+    }
+
+    private String readInputPrice() {
+        outputView.printPriceLine();
+        return inputView.readInputData();
     }
 
     private String readInputNumbers() {

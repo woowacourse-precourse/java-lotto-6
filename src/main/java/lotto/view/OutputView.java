@@ -9,11 +9,12 @@ public class OutputView {
     private static final String WINNING_STATICS_PREFIX = "\n당첨 통계\n---\n";
     private static final String RATE_OF_RETURN = "총 수익률은 %.1f%입니다.\n";
 
-    public void printPurchaseLottos(int lottoCount) {
-        System.out.printf(PURCHASE_LOTTOS, lottoCount);
+    public void printPurchaseLottos(final List<Lotto> lottos) {
+        System.out.printf(PURCHASE_LOTTOS, lottos.size());
+        printLottos(lottos);
     }
 
-    public void printLottos(List<Lotto> lottos) {
+    private void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }

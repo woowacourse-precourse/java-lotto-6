@@ -2,13 +2,11 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.validator.BonusNumberValidator;
-import lotto.controller.validator.WinningNumbersValidator;
 import lotto.domain.*;
 import lotto.io.Input;
 import lotto.io.Output;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoController {
 
@@ -26,7 +24,7 @@ public class LottoController {
         output.printPurchaseQuantity(lottoQuantity.getQuantity());
 
         List<Lotto> myLottos = buyLottos(lottoQuantity);
-        WinningNumbers winningNumbers = new WinningNumbers(generateWinningNumbers());
+        WinningNumbers winningNumbers = generateWinningNumbers();
         BonusNumber bonusNumber = new BonusNumber(generateBonusNumber(winningNumbers));
         Console.close();
 
@@ -52,21 +50,14 @@ public class LottoController {
         return myLottos;
     }
 
-    private List<Integer> generateWinningNumbers() {
+    private WinningNumbers generateWinningNumbers() {
         try {
             output.printInputWinningNumbersMessage();
-            return getWinningNumbers();
+            return new WinningNumbers(input.getWinningNumbers());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return generateWinningNumbers();
         }
-    }
-
-    private List<Integer> getWinningNumbers() {
-        List<String> userInput = input.getWinningNumbers();
-        WinningNumbersValidator winningNumbersValidator = new WinningNumbersValidator();
-        winningNumbersValidator.validateWinningNumbers(userInput);
-        return userInput.stream().map(Integer::parseInt).collect(Collectors.toList());
     }
 
     private int generateBonusNumber(WinningNumbers winningNumbers) {

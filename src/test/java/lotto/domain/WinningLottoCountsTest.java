@@ -1,16 +1,13 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinningLottoCountsTest {
 
@@ -25,7 +22,7 @@ class WinningLottoCountsTest {
                 , new Lotto(List.of(1, 2, 3, 4, 10, 11))    //4등
                 , new Lotto(List.of(1, 2, 3, 10, 11, 12))   //5등
                 , new Lotto(List.of(1, 2, 10, 11, 12, 13)));//none
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = new WinningNumbers(List.of("1", "2", "3", "4", "5", "6"));
         BonusNumber bonusNumber = new BonusNumber(7);
 
         winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);

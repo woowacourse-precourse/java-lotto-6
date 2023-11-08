@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.controller.validator.WinningNumbersValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,8 +7,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,12 +17,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class WinningNumbersTest {
 
     private WinningNumbers winningNumbers;
-    private WinningNumbersValidator winningNumbersValidator;
 
     @BeforeEach
     void setUp() {
-        winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
-        winningNumbersValidator = new WinningNumbersValidator();
+        winningNumbers = new WinningNumbers(List.of("1", "2", "3", "4", "5", "6"));
     }
 
     @Test
@@ -57,7 +52,7 @@ class WinningNumbersTest {
         //when
 
         //then
-        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
+        assertThatThrownBy(() -> new WinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -71,7 +66,7 @@ class WinningNumbersTest {
         //when
 
         //then
-        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
+        assertThatThrownBy(() -> new WinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -85,7 +80,7 @@ class WinningNumbersTest {
         //when
 
         //then
-        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
+        assertThatThrownBy(() -> new WinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -99,7 +94,7 @@ class WinningNumbersTest {
         //when
 
         //then
-        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
+        assertThatThrownBy(() -> new WinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -113,12 +108,7 @@ class WinningNumbersTest {
         //when
 
         //then
-        assertThatThrownBy(() -> winningNumbersValidator.validateWinningNumbers(userInputForTest))
+        assertThatThrownBy(() -> new WinningNumbers(userInputForTest))
                 .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @DisplayName("테스트코드용 유저입력 메소드")
-    InputStream makeUserInput(String userInput) {
-        return new ByteArrayInputStream(userInput.getBytes());
     }
 }

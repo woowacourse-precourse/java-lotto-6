@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class WinningCheckerTest {
 
     @Test
@@ -20,7 +18,7 @@ class WinningCheckerTest {
                 , new Lotto(List.of(1, 2, 3, 4, 5, 10))     //3등
                 , new Lotto(List.of(1, 2, 3, 4, 10, 11))    //4등
                 , new Lotto(List.of(1, 2, 3, 10, 11, 12))); //5등
-        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = new WinningNumbers(List.of("1", "2", "3", "4", "5", "6"));
         BonusNumber bonusNumber = new BonusNumber(7);
 
         WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);

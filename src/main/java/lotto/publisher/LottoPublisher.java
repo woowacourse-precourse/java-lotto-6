@@ -1,14 +1,14 @@
-package lotto.publisher.impl;
+package lotto.publisher;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.config.LottoConfig;
 import lotto.input.provider.NumberProvider;
 import lotto.input.validator.Validator;
 import lotto.lotto.Lotto;
-import lotto.publisher.Publisher;
 
-public class LottoPublisher implements Publisher {
+public class LottoPublisher {
     private final NumberProvider provider;
     private final Validator validator;
 
@@ -20,12 +20,11 @@ public class LottoPublisher implements Publisher {
         this.validator = validator;
     }
 
-    @Override
     public List<Lotto> publish(int number) throws IOException {
         List<Lotto> lottoes = new ArrayList<>();
 
         for (int i = 0 ; i < number ; i++ ) {
-            List<Integer> multiple = provider.getMultiple(number);
+            List<Integer> multiple = provider.getMultiple(LottoConfig.LOTTO_SLOT_NUMBER.getNum());
             validator.validate(multiple);
             lottoes.add(new Lotto(multiple));
         }

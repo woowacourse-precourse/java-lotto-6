@@ -26,4 +26,13 @@ public class Lotto {
     public void printNumbersInAscendingOrder() {
         OutputService.printLottoNumbers(this.getSortedNumbers());
     }
+
+    public int getHowManySameNumbers(Lotto compare) {
+        int count = 0;
+        for(int number = 0; number < numbers.size(); number++){
+            if(compare.getSortedNumbers().contains(numbers.get(number)))
+                count++;
+        }
+        return count;
+    }
 }

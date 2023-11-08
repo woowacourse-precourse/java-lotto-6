@@ -36,11 +36,11 @@ public class Lotto {
         return String.join(DELIMITER, numbers.stream().map(number -> number.toString()).toList());
     }
 
-    public int numberMatch(List<Integer> matchNumbers) {
+    public int countMatchNumber(List<Integer> winningNumbers) {
         int count = 0;
 
-        for (Integer matchNumber : matchNumbers) {
-            if (isMatch(matchNumber)) {
+        for (Integer number : winningNumbers) {
+            if (isMatch(number)) {
                 count++;
             }
         }

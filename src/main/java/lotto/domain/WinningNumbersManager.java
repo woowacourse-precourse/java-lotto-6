@@ -49,14 +49,13 @@ public class WinningNumbersManager {
     }
 
     private PrizeType getWinningStatus(Lotto lotto) {
-        int matchCount = lotto.numberMatch(winningNumbers);
-        boolean isBonusMatch = false;
+        int matchNumber = lotto.countMatchNumber(winningNumbers);
 
-        if (matchCount == 5 && lotto.isMatch(bonusNumber)) {
-            isBonusMatch = true;
+        if (matchNumber == 5 && lotto.isMatch(bonusNumber)) {
+            return PrizeType.valueOfMatchCount(matchNumber, true);
         }
 
-        return PrizeType.valueOfMatchCount(matchCount, isBonusMatch);
+        return PrizeType.valueOfMatchCount(matchNumber);
     }
 
     private void validateWinningNumbers(List<Integer> winningNumbers) {

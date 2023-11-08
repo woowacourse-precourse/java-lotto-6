@@ -30,6 +30,10 @@ public enum PrizeType {
         return this.matchCount;
     }
 
+    public static PrizeType valueOfMatchCount(int matchCount) {
+        return valueOfMatchCount(matchCount, false);
+    }
+
     public static PrizeType valueOfMatchCount(int matchCount, boolean isBonusMatch) {
         if (matchCount == 5 && isBonusMatch == true) {
             return MATCH5_WITH_BONUS;

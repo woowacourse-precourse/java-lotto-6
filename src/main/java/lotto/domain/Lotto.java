@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.constants.ErrorMessage;
 import lotto.constants.Value;
 
 import java.util.Collections;

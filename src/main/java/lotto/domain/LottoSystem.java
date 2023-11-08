@@ -10,10 +10,10 @@ import static lotto.domain.WinningResult.getWinningMoney;
 import static lotto.utils.LottoSystemUtils.*;
 
 public class LottoSystem {
-    private static int purchaseMoney;
+    private static long purchaseMoney;
     private static List<Lotto> purchaseLottos;
 
-    public LottoSystem(int money) {
+    public LottoSystem(long money) {
         this.purchaseMoney = money;
         this.purchaseLottos = createLottos();
     }
@@ -50,7 +50,7 @@ public class LottoSystem {
     private static List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
 
-        int purchaseLottoCnt = purchaseMoney / moneyUnit;
+        long purchaseLottoCnt = purchaseMoney / MONEY_UNIT;
         while (purchaseLottoCnt --> 0) {
             lottos.add(new Lotto(createRandomNumbers()));
         }
@@ -59,6 +59,6 @@ public class LottoSystem {
     }
 
     private static List<Integer> createRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(lottoNumberMinArrange, lottoNumberMaxArrange, lottoCount);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN_RANGE, LOTTO_NUMBER_MAX_RANGE, lottoCount);
     }
 }

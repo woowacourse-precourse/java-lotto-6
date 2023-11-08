@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoSystem;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import static lotto.controller.InputController.*;
 import static lotto.controller.InputValidatorController.*;
+import static lotto.domain.LottoSystem.calculateRateOfReturn;
 import static lotto.view.OutputView.*;
 
 public class LottoSystemController {
@@ -19,6 +21,15 @@ public class LottoSystemController {
         printBuyLotto(lottoSystem);
 
         WinningLotto winningLotto = enterLotto();
+        printWinningStatus(calculateWinningStatus(lottoSystem, winningLotto));
+    }
+
+    private static List<WinningResult> calculateWinningStatus(LottoSystem lottoSystem, WinningLotto winningLotto) {
+        return lottoSystem.compareWinningLotto(winningLotto);
+    }
+
+    private static void printWinningStatus(List<WinningResult> result) {
+        printLottoStatistics(calculateRateOfReturn(result));
     }
 
     private static WinningLotto enterLotto() {
@@ -54,7 +65,7 @@ public class LottoSystemController {
         String money = inputMoney();
         inputMoneyValidate(money);
 
-        return new LottoSystem(Integer.parseInt(money));
+        return new LottoSystem(Long.parseLong(money));
     }
 
     private static void printBuyLotto(LottoSystem lottoSystem) {

@@ -8,7 +8,7 @@ public class InputValidatorController {
     public static void inputMoneyValidate(String money) {
         isMoneyDigit(money);
         isRightRangeMoney(money);
-        isRightMoneyUnit(Integer.parseInt(money));
+        isRightMoneyUnit(Long.parseLong(money));
     }
 
     public static void inputLottoNumberValidate(String lottoNumbers) {
@@ -49,7 +49,7 @@ public class InputValidatorController {
         }
     }
 
-    private static void isRightMoneyUnit(int money) {
+    private static void isRightMoneyUnit(long money) {
         if (money % MONEY_UNIT != 0 || money == 0) {
             throw new IllegalArgumentException(ERROR_PHRASE_MONEY_IS_WRONG_UNIT);
         }

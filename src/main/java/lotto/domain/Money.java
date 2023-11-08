@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.enums.Constant.LOTTO_PRICE;
-import static lotto.domain.enums.ErrorMessage.MONEY_AMOUNT_ERROR_MESSAGE;
+import static lotto.global.enums.Constant.LOTTO_PRICE;
+import static lotto.global.enums.ErrorMessage.MONEY_AMOUNT_ERROR_MESSAGE;
 
 public class Money {
 

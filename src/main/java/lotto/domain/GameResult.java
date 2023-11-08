@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.domain.enums.Score;
+import lotto.domain.lotto.Score;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinningLotto;
 
 public class GameResult {
 

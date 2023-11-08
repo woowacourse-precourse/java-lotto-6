@@ -1,13 +1,15 @@
 package lotto.domain;
 
-import static lotto.domain.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
-import static lotto.domain.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import java.util.List;
-import lotto.domain.enums.Score;
+import lotto.domain.lotto.Score;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

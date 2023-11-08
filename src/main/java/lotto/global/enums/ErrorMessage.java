@@ -1,8 +1,8 @@
-package lotto.domain.enums;
+package lotto.global.enums;
 
-import static lotto.domain.enums.Constant.LOTTO_MAX_NUMBER;
-import static lotto.domain.enums.Constant.LOTTO_MIN_NUMBER;
-import static lotto.domain.enums.Constant.LOTTO_PRICE;
+import static lotto.global.enums.Constant.LOTTO_MAX_NUMBER;
+import static lotto.global.enums.Constant.LOTTO_MIN_NUMBER;
+import static lotto.global.enums.Constant.LOTTO_PRICE;
 
 public enum ErrorMessage {
 

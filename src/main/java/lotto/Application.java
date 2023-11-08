@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.domain.LottoGameController;
-import lotto.domain.LottoStore;
+import lotto.domain.lotto.LottoStore;
 
 public class Application {
     public static void main(String[] args) {

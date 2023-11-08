@@ -2,11 +2,11 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.domain.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
-import static lotto.domain.enums.ErrorMessage.EXCEED_LENGTH_ERROR_MESSAGE;
-import static lotto.domain.enums.ErrorMessage.MONEY_AMOUNT_ERROR_MESSAGE;
-import static lotto.domain.enums.ErrorMessage.NOT_NUMBER_INPUT_ERROR_MESSAGE;
-import static lotto.domain.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.EXCEED_LENGTH_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.MONEY_AMOUNT_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.NOT_NUMBER_INPUT_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.enums.ErrorMessage.MONEY_AMOUNT_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.MONEY_AMOUNT_ERROR_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

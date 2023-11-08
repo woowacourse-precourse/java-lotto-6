@@ -1,4 +1,4 @@
-package lotto.domain.enums;
+package lotto.global.enums;
 
 public enum Constant {
 

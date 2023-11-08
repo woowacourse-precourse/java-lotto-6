@@ -4,9 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.GameResult;
-import lotto.domain.Lotto;
+import lotto.domain.lotto.Lotto;
 import lotto.domain.Money;
-import lotto.domain.enums.Score;
+import lotto.domain.lotto.Score;
 
 public class OutputView {
 

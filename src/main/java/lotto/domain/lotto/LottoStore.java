@@ -1,7 +1,10 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Money;
+import lotto.global.generator.NumbersGenerator;
+import lotto.global.generator.RandomNumbersGenerator;
 
 public class LottoStore {
 

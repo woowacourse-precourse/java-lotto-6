@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import lotto.domain.NumbersGenerator;
+import lotto.global.generator.NumbersGenerator;
 
 public class TestNumberGenerator implements NumbersGenerator {
 

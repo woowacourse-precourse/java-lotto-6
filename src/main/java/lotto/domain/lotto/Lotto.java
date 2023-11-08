@@ -1,11 +1,11 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
-import static lotto.domain.enums.Constant.LOTTO_MAX_NUMBER;
-import static lotto.domain.enums.Constant.LOTTO_MIN_NUMBER;
-import static lotto.domain.enums.Constant.LOTTO_NUMBER_LENGTH;
-import static lotto.domain.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
-import static lotto.domain.enums.ErrorMessage.EXCEED_LENGTH_ERROR_MESSAGE;
-import static lotto.domain.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
+import static lotto.global.enums.Constant.LOTTO_MAX_NUMBER;
+import static lotto.global.enums.Constant.LOTTO_MIN_NUMBER;
+import static lotto.global.enums.Constant.LOTTO_NUMBER_LENGTH;
+import static lotto.global.enums.ErrorMessage.DUPLICATE_NUMBER_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.EXCEED_LENGTH_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.NUMBER_OUT_OF_RANGE_ERROR_MESSAGE;
 
 import java.util.ArrayList;
 import java.util.Collections;

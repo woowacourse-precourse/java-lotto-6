@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoStore;
+import lotto.domain.lotto.WinningLotto;
 import lotto.global.utils.ExceptionHandlingUtil;
 import lotto.global.view.InputView;
 import lotto.global.view.OutputView;

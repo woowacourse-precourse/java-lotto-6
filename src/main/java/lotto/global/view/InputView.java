@@ -1,6 +1,6 @@
 package lotto.global.view;
 
-import static lotto.domain.enums.ErrorMessage.NOT_NUMBER_INPUT_ERROR_MESSAGE;
+import static lotto.global.enums.ErrorMessage.NOT_NUMBER_INPUT_ERROR_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;

@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class GetLottoNumber {
-    public static List<Integer> getLottoNumber() {
+    public static List<Integer> userTicketNumbers() {
         List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         List<Integer> modifiableList = new ArrayList<>(lottoNumber);
         Collections.sort(modifiableList);
@@ -17,30 +17,54 @@ public class GetLottoNumber {
         return modifiableList;
     }
 
-    public static Lotto getWinLottoNumber() {
-        List<Integer> winNumber = InputView.inputWinNumber();
-        Lotto winningTicket = null;
+    public static Lotto winningTicketNumbers() {
+        while (true) {
+            try {
+                String input = InputView.inputWinNumber();
+                removeSpaces(input);
 
-        try {
-            winningTicket = new Lotto(winNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("당첨 번호를 6개 입력해주세요.");
-            getWinLottoNumber();
+                String [] numbers = input.split(",");
+                List<Integer> winningNumbers = new ArrayList<>();
+
+                for (String num : numbers) {
+                    Validator.isNumericInput(num);
+                    Validator.isNumberInRange(num);
+                    int number = Integer.parseInt(num);
+                    winningNumbers.add(number);
+                }
+
+//                Stream<String> nums = Arrays.stream(input.split(","));
+//
+//                List<Integer> winningNumbers = nums
+//                        .filter(number -> Validator.isNumericInput(number) && Validator.isNumberInRange(number))
+//                        .map(Integer::parseInt)
+//                        .collect(Collectors.toList());
+
+                Lotto winningLotto = new Lotto(winningNumbers);
+
+                return winningLotto;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-
-        return winningTicket;
     }
 
-    public static int getBonusNumber() {
-        int bonusNumber = InputView.inputBonusNumber();
-
+    public static int bonusNumber() {
+        int bonusNumber = 0;
         try {
-            Validator.bonusNumberNum(bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("1개만 입력하세요.");
-            getLottoNumber();
-        }
+            String input = InputView.inputBonusNumber();
+            removeSpaces(input);
 
+            Validator.isNumericInput(input);
+            Validator.isNumberInRange(input);
+            bonusNumber = Integer.parseInt(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         return bonusNumber;
+    }
+
+    public static void removeSpaces(String input) {
+        input.replaceAll(" ", "");
     }
 }

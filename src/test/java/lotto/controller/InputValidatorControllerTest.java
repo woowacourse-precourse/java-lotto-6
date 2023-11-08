@@ -8,35 +8,35 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class InputValidatorControllerTest {
 
-    @DisplayName("돈 숫자로 입력됐는지 확인")
+    @DisplayName("돈 숫자로 입력 안됐으면 예외 발생")
     @Test
     void inputMoneyValidateTest_isMoneyDigit() {
         assertThatThrownBy(() -> inputMoneyValidate("1000K"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("돈 범위 확인")
+    @DisplayName("돈 최소 범위보다 작을 경우 예외 발생")
     @Test
     void inputMoneyValidateTest_isRightRangeMoney() {
-        assertThatThrownBy(() -> inputMoneyValidate("0"))
+        assertThatThrownBy(() -> inputMoneyValidate("-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("돈 단위 확인")
+    @DisplayName("돈 최대 범위보다 클 경우 예외 발생")
     @Test
     void inputMoneyValidateTest_isRightMoneyUnit() {
         assertThatThrownBy(() -> inputMoneyValidate("3000000000"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호 숫자로 입력됐는지 확인")
+    @DisplayName("로또 번호 숫자로 입력 안됐으면 예외 발생")
     @Test
     void inputLottoNumberValidate_isAllDigit() {
         assertThatThrownBy(() -> inputLottoNumberValidate("1,2,3,4k,5,6"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("보너스 로또 번호 숫자로 입력됐는지 확인")
+    @DisplayName("보너스 로또 번호 숫자로 입력 안됐으면 예외 발생")
     @Test
     void inputLottoBonusNumberValidate_isLottoNumberDigit() {
         assertThatThrownBy(() -> inputLottoNumberValidate("11k"))

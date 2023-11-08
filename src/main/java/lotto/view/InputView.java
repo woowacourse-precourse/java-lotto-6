@@ -27,13 +27,21 @@ public class InputView {
     }
 
     public Lotto promptWinningNumbers() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String[] input = Console.readLine().split(",");
-        List<Integer> numbers = Arrays.stream(input)
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        return new Lotto(numbers);
+        while(true){
+            try {
+                System.out.println("\n당첨 번호를 입력해 주세요.");
+                String[] input = Console.readLine().split(",");
+                List<Integer> numbers = Arrays.stream(input)
+                        .map(String::trim)
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toList());
+                return new Lotto(numbers);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR]숫자를 콤마로 구분지어 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
 

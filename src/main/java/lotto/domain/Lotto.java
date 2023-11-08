@@ -1,5 +1,15 @@
-package lotto;
+package lotto.domain;
 
+import static lotto.controller.ErrorMessage.DUPLICATED_NUMBER_MESSAGE;
+import static lotto.controller.ErrorMessage.INVALID_INPUT_LENGTH_FORMAT;
+import static lotto.controller.ErrorMessage.NUMBER_NOT_IN_RANGE_FORMAT;
+import static lotto.domain.Constants.LOTTO_TICKET_LENGTH;
+import static lotto.domain.Constants.MAXIMUM_LOTTO_NUMBER;
+import static lotto.domain.Constants.MINIMUM_LOTTO_NUMBER;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -7,14 +17,50 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
+    }
+
+    private boolean checkNumberInRange(int number) {
+        return MINIMUM_LOTTO_NUMBER <= number && number <= MAXIMUM_LOTTO_NUMBER;
+    }
+
+    private boolean checkContainsDuplicatedNumber(List<Integer> inputSequence) {
+        HashSet<Integer> checkDuplicate = new HashSet<>(inputSequence);
+        return checkDuplicate.size() != LOTTO_TICKET_LENGTH;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(String.format(INVALID_INPUT_LENGTH_FORMAT, LOTTO_TICKET_LENGTH));
         }
+        if (checkContainsDuplicatedNumber(numbers)) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBER_MESSAGE);
+        }
+        for (int number : numbers) {
+            if (!checkNumberInRange(number)) {
+                throw new IllegalArgumentException(String.format(NUMBER_NOT_IN_RANGE_FORMAT,
+                    MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER));
+            }
+        }
+
     }
 
-    // TODO: 추가 기능 구현
+    public void printNumbers() {
+        System.out.println(this.numbers);
+    }
+
+    public boolean contains(int number) {
+        return this.numbers.contains(number);
+    }
+
+    public int countWinningNumber(Lotto winningTicket) {
+        int sameCount = 0;
+        for (int number : this.numbers) {
+            if (winningTicket.contains(number)) {
+                sameCount++;
+            }
+        }
+        return sameCount;
+    }
 }

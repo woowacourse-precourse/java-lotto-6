@@ -1,13 +1,10 @@
 package lotto;
 
-import static lotto.ExceptionHandler.checkBonusNumber;
 import static lotto.ExceptionHandler.checkMoneyUnitValidity;
-import static lotto.ExceptionHandler.checkWinningNumbersValidity;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class UserInputHandler {
 
@@ -37,7 +34,7 @@ public class UserInputHandler {
             try {
 
                 String winning = Console.readLine();
-                ArrayList<String> winningNum = new ArrayList(Arrays.asList(winning.split(",")));
+                ArrayList<String> winningNum = new ArrayList<>(Arrays.asList(winning.split(",")));
                 ArrayList<Integer> intNumList = removeEmptySpaceWithParseInt(winningNum);
                 return new Lotto(intNumList);
 
@@ -51,7 +48,7 @@ public class UserInputHandler {
     }
 
     public static ArrayList<Integer> removeEmptySpaceWithParseInt(ArrayList<String> winningNum) {
-        ArrayList<Integer> intNumList = new ArrayList();
+        ArrayList<Integer> intNumList = new ArrayList<>();
         for (int i = 0; i < winningNum.size(); i++) {
             String winningNumber = winningNum.get(i).replace(" ", "");
             int number = Integer.parseInt(winningNumber);
@@ -71,7 +68,7 @@ public class UserInputHandler {
             try {
                 String bonusNum = Console.readLine();
                 bonusNum = bonusNum.replace(" ", "");
-                Integer bonusNumber = Integer.parseInt(String.valueOf(bonusNum));
+                Integer bonusNumber = Integer.parseInt(bonusNum);
                 return new Bonus(bonusNumber, lotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

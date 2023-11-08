@@ -12,9 +12,9 @@ public class LottoNumberService {
             try {
                 return new LottoNumber(StringCalculator.withOutSpaceBarAndSplitAndPositives(readLine()));
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 보너스 번호를 입력해 주세요.\n");
+                System.out.println("[ERROR] 당첨 번호를 다시 입력해 주세요.");
             } catch (NullPointerException e) {
-                System.out.println("[ERROR] 보너스 번호를 입력해 주세요.\n");
+                System.out.println("[ERROR] 당첨 번호를 다시 입력해 주세요.");
             }
         }
     }

@@ -18,8 +18,7 @@ public class LottoWinningNumbers {
         validateNumbersCount(numbers);
         validateNumberRange(numbers);
         validateDuplicateNumbers(numbers);
-        this.numbers = new ArrayList<>();
-        addNumbers(numbers);
+        this.numbers = new ArrayList<>(numbers);
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
@@ -46,15 +45,7 @@ public class LottoWinningNumbers {
         }
     }
 
-    private void addNumbers(List<Integer> numbers) {
-        this.numbers.addAll(numbers);
-    }
-
     public boolean containsNumber(int number) {
         return numbers.contains(number);
-    }
-
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
     }
 }

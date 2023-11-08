@@ -16,7 +16,7 @@ public class Output {
         }
     }
 
-    public void printLottoResult(List<List<Integer>> matchedNumbers) {
+    public void printLottoResult(List<List<Integer>> matchedNumbers, int price) {
         for (List<Integer> matchedNumber : matchedNumbers) {
             getRank(matchedNumber);
         }
@@ -25,6 +25,9 @@ public class Output {
         System.out.println("5개 일치 (1,500,000원) - " + third + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + second + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + first + "개");
+
+        double addOfLucky = 2000000000*first + 30000000*second + 1500000*third + 50000*fourth + 5000*fifth;
+        printRateOfReturn(addOfLucky,price);
     }
 
     private void getRank(List<Integer> matchedNumber) {
@@ -45,8 +48,9 @@ public class Output {
         }
     }
 
-    public  void printRateOfReturn(int price){
-       double rateOfReturn = ((2000000000*first + 30000000*second + 1500000*third + 50000*fourth + 5000*fifth)/price)*100;
+    public static void printRateOfReturn(double addOfLucky, int price){
+
+       double rateOfReturn = (addOfLucky/(double)price)*100;
        rateOfReturn = Math.round(rateOfReturn *100) / 100.0;
         System.out.println("총 수익률은 "+rateOfReturn+"%입니다.");
     }

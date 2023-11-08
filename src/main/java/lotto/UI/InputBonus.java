@@ -6,14 +6,14 @@ import java.util.List;
 public class InputBonus {
     public int inputBonusNumber(List<Integer> lottoNumbers) {
         int bonusNumber = -1;
-        while (bonusNumber < 0) {
+//        while (bonusNumber < 0) {
             System.out.println("보너스 번호를 입력해 주세요.");
-            try {
+//            try {
                 bonusNumber = checkBonusNumber(Console.readLine(), lottoNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+//            } catch (IllegalArgumentException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
         return bonusNumber;
     }
 
@@ -24,7 +24,7 @@ public class InputBonus {
         return bonusNumber;
     }
 
-    private int checkBonusNumberToInt(String inputBonusNumber) {
+    public static int checkBonusNumberToInt(String inputBonusNumber) {
         try {
             return Integer.parseInt(inputBonusNumber);
         } catch (IllegalArgumentException e) {
@@ -32,13 +32,13 @@ public class InputBonus {
         }
     }
 
-    private void checkBonusNumberRange(int bonusNumber) {
+    public static void checkBonusNumberRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이의 수를 입력해주세요.");
         }
     }
 
-    private void checkBonusNumberDup(int bonusNumber, List<Integer> lottoNumbers) {
+    public static void checkBonusNumberDup(int bonusNumber, List<Integer> lottoNumbers) {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않은 숫자를 입력해주세요.");
         }

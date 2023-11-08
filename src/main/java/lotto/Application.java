@@ -24,19 +24,19 @@ public class Application {
         System.out.println();
 
         List<Integer> lottoNumbers = inputNum.inputLottoNumbers();
+        Lotto lotto = new Lotto(lottoNumbers);
         System.out.println();
 
         int bonusNumber = inputBonus.inputBonusNumber(lottoNumbers);
         System.out.println();
 
-        Lotto lotto = new Lotto(lottoNumbers);
         List<List<Integer>> matchedNumer = lotto.getMatchedNumber(randomLottoNumbers, bonusNumber);
         System.out.println();
 
         System.out.println("당첨 통계");
         System.out.println("---");
-        output.printLottoResult(matchedNumer);
-        output.printRateOfReturn(price);
+        output.printLottoResult(matchedNumer, price);
+
 
     }
 }

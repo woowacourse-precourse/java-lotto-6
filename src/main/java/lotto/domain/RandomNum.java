@@ -10,10 +10,20 @@ public class RandomNum {
         List<List<Integer>>randomLottoNumbers = new ArrayList<>();
         for(int i = 0; i < inputPrice/1000; i++){
             List<Integer> randomNumber = getRandomLottoNumbers();
-            Collections.sort(randomNumber);
+            sortNumber(randomNumber);
             randomLottoNumbers.add(randomNumber);
         }
         return randomLottoNumbers;
+    }
+
+    public List<Integer> sortNumber (List<Integer> randomNumber){
+        try{
+            Collections.sort(randomNumber);
+            return randomNumber;
+        }catch(UnsupportedOperationException e){
+            return randomNumber;
+        }
+
     }
 
     private List<Integer> getRandomLottoNumbers(){

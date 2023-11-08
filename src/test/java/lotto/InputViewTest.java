@@ -16,7 +16,7 @@ public class InputViewTest {
         String input = "5000"; // 유효한 입력값
         System.setIn(new ByteArrayInputStream(input.getBytes()));
 
-        int purchaseAmount = InputView.inputPurchaseAmount();
+        long purchaseAmount = InputView.inputPurchaseAmount();
 
         assertThat(purchaseAmount).isEqualTo(5000);
     }

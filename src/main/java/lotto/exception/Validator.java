@@ -34,7 +34,7 @@ public class Validator {
         }
     }
 
-    public static void isValidAmount(int amount) {
+    public static void isValidAmount(long amount) {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR_MESSAGE);
         }

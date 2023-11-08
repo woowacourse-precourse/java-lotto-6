@@ -6,9 +6,9 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
-public class NumberGenerator {
+public class LottoNumberGenerator {
 
-    public List<Integer> getNumber() {
+    public List<Integer> generate() {
         List<Integer> lottoNumbers;
 
         lottoNumbers = pickUniqueNumbersInRange(1, 45, 6);

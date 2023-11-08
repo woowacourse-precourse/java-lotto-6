@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGame {
-    private final List<Lotto> lottos;
+    final List<Lotto> lottos;
     private final int purchaseAmount;
 
     public LottoGame(int purchaseAmount) {

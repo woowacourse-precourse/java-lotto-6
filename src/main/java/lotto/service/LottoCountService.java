@@ -46,7 +46,6 @@ public class LottoCountService {
 
         return matchCount;
 
-
     }
 
     private int countBonus(Lotto singleLotto, Bonus bonus) {
@@ -71,9 +70,6 @@ public class LottoCountService {
         for(int matchSingleResult : matchResult.getMatchCounts()){
             lottoReturn += matchSingleResult * PRIZE_AMOUNTS[index++];
         }
-
-        System.out.println(lottoInvest);
-        System.out.println(lottoReturn);
 
         return Math.round(lottoReturn/lottoInvest * 1000)/10.0;
 

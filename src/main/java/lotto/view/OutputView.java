@@ -16,6 +16,8 @@ public class OutputView {
 
     private static final int THREE_NUMBERS_MATCHED = 3;
 
+    private static final String PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.";
+
 
     public void printPurchasedLotto(List<Lotto> userPurchasedLotto) {
 
@@ -39,9 +41,15 @@ public class OutputView {
         for (int index = 0; index < messages.size(); index++) {
 
             System.out.println(
-                    messages.get(index).formatted(matchResult.getSingleMatchCount(index + THREE_NUMBERS_MATCHED - 1)));
+                    messages.get(index).formatted(matchResult.getSingleMatchCount(index + THREE_NUMBERS_MATCHED)));
 
         }
+
+    }
+
+    public void printProfit(double profit){
+
+        System.out.println(PROFIT_MESSAGE.formatted(profit));
 
     }
 }

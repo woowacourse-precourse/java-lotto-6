@@ -16,6 +16,7 @@ import lotto.domain.dto.LottosDto;
 import lotto.domain.dto.ProfitRateDto;
 import lotto.domain.dto.PurchaseAmountDto;
 import lotto.domain.dto.WinningLottoDto;
+import lotto.exception.ErrorMessage;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,9 +33,15 @@ public class LottoController {
     }
 
     public void start() {
-        Lottos lottos = purchaseLotto();
-        DrawingResults drawingResults = drawLotto(lottos);
-        profitRate(lottos, drawingResults);
+        try {
+            Lottos lottos = purchaseLotto();
+            DrawingResults drawingResults = drawLotto(lottos);
+            profitRate(lottos, drawingResults);
+        } catch (IllegalStateException exception) {
+            System.out.println(ErrorMessage.GAME_RESTART_MESSAGE);
+            start();
+        }
+
     }
 
     private Lottos purchaseLotto() {

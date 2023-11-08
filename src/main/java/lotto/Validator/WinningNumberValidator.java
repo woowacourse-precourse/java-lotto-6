@@ -30,7 +30,7 @@ public class WinningNumberValidator extends Validator<List<String>> {
      * @param input 사용자가 입력한 정답 번호
      * @return 검증된 정답 번호
      */
-    public String vaildFormat(String input) {
+    public static String vaildFormat(String input) {
         String regex = "^(\\d+),(\\d+),(\\d+),(\\d+),(\\d+),(\\d+)$";
 
         boolean isMatch = Pattern.matches(regex, input);

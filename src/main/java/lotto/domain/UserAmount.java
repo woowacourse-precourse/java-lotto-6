@@ -44,13 +44,13 @@ public class UserAmount {
     }
 
     private static void validateDivideByStandard(int userAmount) {
-        if (!isDivideByStandard(userAmount)) {
+        if (isDivideByStandard(userAmount)) {
             throw new IllegalArgumentException(UserAmountErrorMessage.NOT_DIVIDE_STANDARD_INVALID.entireMessage());
         }
     }
 
     private static boolean isDivideByStandard(int userAmount) {
-        return userAmount % USER_AMOUNT_DIVIDE_STANDARD == ALL_DIVIDE_SIGNAL_VALUE;
+        return userAmount % USER_AMOUNT_DIVIDE_STANDARD != ALL_DIVIDE_SIGNAL_VALUE;
     }
 
     private static void validateZero(int userAmount) {

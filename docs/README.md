@@ -15,6 +15,7 @@
 
 - 숫자를 쉼표로 구분해, 당첨 번호 한 세트를 입력받되, 에러메세지가 뜨면 다시 입력받는다. LottoManager#insertLottoNumbers 
     - 당첨 번호 세트를 저장할 객체 Lotto를 생성한다. Lotto#Lotto
+    - 에러메세지가 뜨면 다시 입력 받도록 조치한다. LottoManager#insertLottoNumbersErrorHandling
     - 입력 세트의 숫자 개수가 정확히 6개가 아니면 에러메세지를 보낸다. Lotto#validate
     - 당첨 번호의 각 숫자가 1~45 범위 밖에 있는지 확인한다. Lotto#loopCheckNumberRange
         - 한 숫자가 1~45 범위 밖에 있으면 에러메세지를 보낸다. Lotto#checkNumberRange

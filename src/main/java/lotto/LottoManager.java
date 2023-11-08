@@ -11,7 +11,7 @@ public class LottoManager {
     int buyMoney=0;
     int buyLottoAmount=0;
     List<List<Integer>> lottoCandidateSets = new ArrayList<>();
-    Lotto winlotto;
+    Lotto winLotto;
     public void insertMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         insertMoneyErrorHandling();
@@ -87,6 +87,17 @@ public class LottoManager {
         for(String number : tempWinLottoSet){
             winLottoSet.add(Integer.parseInt(number));
         }
-        winlotto = new Lotto(winLottoSet);
+        insertLottoNumbersErrorHandling(winLottoSet);
+    }
+
+    private void insertLottoNumbersErrorHandling(List<Integer> winLottoSet)
+    {
+        try {
+            winLotto = new Lotto(winLottoSet);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+            System.out.println();
+            insertLottoNumbers();
+        }
     }
 }

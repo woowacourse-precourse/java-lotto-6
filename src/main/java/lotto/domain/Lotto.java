@@ -16,7 +16,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        ValidationUtil.isValidNumber(numbers);
+        ValidationUtil.isValidWinNumbers(numbers);
     }
 
     // TODO: 추가 기능 구현

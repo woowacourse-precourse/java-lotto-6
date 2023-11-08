@@ -7,7 +7,13 @@ import java.util.stream.Collectors;
 import static lotto.Lotto.MAX_LOTTONUMBER;
 import static lotto.Lotto.MIN_LOTTONUMBER;
 
-public class LottoWinning {
+public class LottoWinningSystem {
+    int matchesThreeNumber;
+    int matchesFourNumber;
+    int matchesFiveNumber;
+    int matchesFiveAndBonusNumber;
+    int matchesSixNumber;
+    private LottoRandomSystem lottoRandomSystem = new LottoRandomSystem();
     private Lotto lotto;
 
     void winningNumber(String numbers) {
@@ -19,7 +25,7 @@ public class LottoWinning {
 
     void bonusNumber(int number) {
         validateBonusNumber(number);
-        lotto.bonusNumber = number;
+        lotto.setBonusNumber(number);
     }
 
     private void validateBonusNumber(int number) {
@@ -27,4 +33,42 @@ public class LottoWinning {
             throw new IllegalArgumentException("[ERROR] 당첨번호의 숫자는 1~45사이입니다");
         }
     }
+
+    public List<Integer> winningCheck() {
+        List<List<Integer>> randomNumbers = lottoRandomSystem.getRandomLottoNumbers();
+        List<Integer> lottoNumbers = lotto.getLottoNumbers();
+        List<Integer> winningAmounts;
+        int bonusNumber = lotto.getBonusNumber();
+
+        winningAmounts = randomNumbers.stream().map(randomNumberList -> {
+            int count = (int) randomNumberList.stream().filter(lottoNumbers::contains).count();
+            if (count == 5 && randomNumberList.contains(bonusNumber)) {
+                return count + 2;
+            }
+            return count;
+        }).collect(Collectors.toList());
+
+        return winningAmounts;
+    }
+
+    public void winningStatics(List<Integer> winningAmounts) {
+        for (int winningamount : winningAmounts) {
+            if (winningamount == 3) {
+                matchesThreeNumber++;
+            }
+            if (winningamount == 4) {
+                matchesFourNumber++;
+            }
+            if (winningamount == 5) {
+                matchesFiveNumber++;
+            }
+            if (winningamount == 7) {
+                matchesFiveAndBonusNumber++;
+            }
+            if (winningamount == 6) {
+                matchesSixNumber++;
+            }
+        }
+    }
+
 }

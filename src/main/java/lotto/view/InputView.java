@@ -26,7 +26,7 @@ public class InputView {
     }
 
     private void validateNotBlank(String input) {
-        if (input.isEmpty())
+        if (input.isEmpty() || input.length() == 0)
             throw new IllegalArgumentException(ErrorCode.INPUT_IS_NULL.getMessage());
     }
 

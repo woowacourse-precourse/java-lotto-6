@@ -76,7 +76,7 @@ public class Output {
 
     public void printReturnRate(double returnRate) {
         System.out.print(OutputMessage.STATISTIC_RESULT_FRONT_MESSAGE.getMessage());
-        String returnRateString = String.format("%1f", returnRate);
+        String returnRateString = String.format("%.1f", returnRate);
         System.out.print(returnRateString);
         System.out.println(OutputMessage.STATISTIC_RESULT_LAST_MESSAGE.getMessage());
 

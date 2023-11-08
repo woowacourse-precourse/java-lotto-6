@@ -5,13 +5,13 @@ public enum LottoInfo {
     MIN_NUMBER(1),
     MAX_SIZE(6);
 
-    private final int numberInfo;
+    private final Integer numberInfo;
 
-    LottoInfo(int numberInfo) {
+    LottoInfo(Integer numberInfo) {
         this.numberInfo = numberInfo;
     }
 
-    public int getNumberInfo() {
+    public Integer getNumberInfo() {
         return numberInfo;
     }
 }

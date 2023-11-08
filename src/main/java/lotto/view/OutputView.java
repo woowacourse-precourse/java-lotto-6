@@ -30,7 +30,7 @@ public class OutputView {
         Arrays.stream(RankInfo.values())
                 .filter(rankInfo -> rankInfo != RankInfo.NONE)
                 .forEach(rankInfo -> {
-                    int count = lottoGameResult.gameResult().getOrDefault(rankInfo, 0);
+                    Integer count = lottoGameResult.gameResult().getOrDefault(rankInfo, 0);
                     String lottoRankingMessage = LottoRankingMessage.findLottoRankingMessage(rankInfo, count);
                     System.out.println(lottoRankingMessage);
                 });

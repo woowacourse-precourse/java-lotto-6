@@ -20,7 +20,7 @@ public enum LottoRankingMessage {
         this.lottoRanking = lottoRanking;
     }
 
-    public static String findLottoRankingMessage(final RankInfo lottoRanking, int numberOfWins) {
+    public static String findLottoRankingMessage(final RankInfo lottoRanking, Integer numberOfWins) {
         return Arrays.stream(LottoRankingMessage.values())
                 .filter(utils -> utils.lottoRanking == lottoRanking) //todo: 네이밍 수정 필요
                 .map(utils -> getFormat(lottoRanking, numberOfWins, utils))
@@ -29,7 +29,7 @@ public enum LottoRankingMessage {
     }
 
 
-    private static String getFormat(RankInfo lottoRanking, int numberOfWins, LottoRankingMessage utils) {
+    private static String getFormat(RankInfo lottoRanking, Integer numberOfWins, LottoRankingMessage utils) {
         String prizeFormat = NumberFormat.getInstance().format(lottoRanking.getPrizeMoney());
         return String.format(utils.message, prizeFormat, numberOfWins);
     }

@@ -10,27 +10,27 @@ public enum RankInfo {
     SECOND(5, 30_000_000L),
     FIRST(6, 2_000_000_000L);
 
-    private final int matchNumberCnt;
+    private final Integer matchNumberCnt;
     private final Long prizeMoney;
 
-    RankInfo(int matchNumberCnt, Long prizeMoney) {
+    RankInfo(Integer matchNumberCnt, Long prizeMoney) {
         this.matchNumberCnt = matchNumberCnt;
         this.prizeMoney = prizeMoney;
     }
 
-    public static RankInfo getRankByValue(int value, boolean isBonusNumContained) {
+    public static RankInfo getRankByValue(Integer value, boolean isBonusNumContained) {
         if (checkBonusNumber(value, isBonusNumContained)) {
             return SECOND;
         }
 
         return Stream.of(values())
-                .filter(rankInfo -> rankInfo.matchNumberCnt == value)
+                .filter(rankInfo -> rankInfo.matchNumberCnt.equals(value))
                 .findFirst()
                 .orElse(NONE);
     }
 
-    private static boolean checkBonusNumber(int value, boolean isBonusNumContained) {
-        return value == SECOND.matchNumberCnt && isBonusNumContained;
+    private static boolean checkBonusNumber(Integer value, boolean isBonusNumContained) {
+        return value.equals(SECOND.matchNumberCnt) && isBonusNumContained;
     }
 
     public Long getPrizeMoney() {

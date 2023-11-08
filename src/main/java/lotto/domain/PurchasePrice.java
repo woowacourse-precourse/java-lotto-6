@@ -27,7 +27,7 @@ public class PurchasePrice {
         return Math.toIntExact(this.money / Lotto.PRICE);
     }
 
-    public Double calcYieldBy(long totalWinningPrize) {
+    public Double calcYieldBy(Long totalWinningPrize) {
         return totalWinningPrize * PERCENT / this.money;
     }
 }

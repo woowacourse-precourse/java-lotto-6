@@ -161,7 +161,7 @@ public class Game {
             revenue += rank.getPrizeMoney() * result.get(rank);
         }
 
-        return (double) revenue / (double) price.getAmount() / 100;
+        return (double) revenue / (double) price.getPrice() * 100;
     }
 
     private static void printRevenueRate(double revenueRate) {

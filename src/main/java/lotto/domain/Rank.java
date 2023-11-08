@@ -20,8 +20,8 @@ public enum Rank {
         this.requireBonus = requireBonus;
     }
 
-    public static Rank determineByMatchingCount(Integer criterion, boolean requireBonus) {
-        if(criterion.equals(SECOND.criterion) && requireBonus == SECOND.requireBonus) {
+    public static Rank determineByMatchingCount(Integer criterion, boolean hasBonusNum) {
+        if(criterion.equals(SECOND.criterion) && hasBonusNum == SECOND.requireBonus) {
             return SECOND;
         }
         return Arrays.stream(Rank.values())

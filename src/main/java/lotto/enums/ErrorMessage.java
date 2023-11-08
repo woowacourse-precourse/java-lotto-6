@@ -18,6 +18,6 @@ public enum ErrorMessage {
     }
 
     public String getMessage() {
-        return PREFIX.message+message;
+        return PREFIX.message + message;
     }
 }

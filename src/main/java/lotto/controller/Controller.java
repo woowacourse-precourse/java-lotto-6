@@ -9,12 +9,12 @@ import lotto.view.OutputView;
 import java.util.List;
 
 public class Controller {
-    public static void initGame(){
+    public static void initGame() {
         User user = LottoGame.InitUser();
         String[] numbers = InputView.validateInputNumbers();
         String bonusNumber = InputView.validateInputBonusNumber();
-        WinningLotto winningLotto = new WinningLotto(numbers,bonusNumber);
-        List<Integer> ranks = LottoGame.createRankList(user,winningLotto);
+        WinningLotto winningLotto = new WinningLotto(numbers, bonusNumber);
+        List<Integer> ranks = LottoGame.createRankList(user, winningLotto);
         user.setRank(ranks);
         OutputView.displayResult(user);
     }

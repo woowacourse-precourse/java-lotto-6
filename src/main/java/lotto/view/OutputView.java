@@ -31,7 +31,7 @@ public class OutputView {
 
     public static void printLottoWinningStatistics() {
         System.out.println();
-        System.out.println(Comment.INPUT_THREE_DASH.getComment());
         System.out.println(Comment.INPUT_WINNING_STATISTICS.getComment());
+        System.out.println(Comment.INPUT_THREE_DASH.getComment());
     }
 }

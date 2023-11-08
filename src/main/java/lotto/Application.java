@@ -10,5 +10,9 @@ public class Application {
         List<Lotto> Lotteries = LottoGenerator.getSeveralLotteries(numPurchase);
 
         OutputPrinter.printLotteries(numPurchase, Lotteries);
+
+        Lotto targetLotto = InputReader.askTargetLotto();
+
+        System.out.println(targetLotto);
     }
 }

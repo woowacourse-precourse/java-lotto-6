@@ -25,8 +25,12 @@ public class ClientLottoData {
         }
     }
 
-    public int getPrice() {
-        return price;
+    public double setIncome() {
+        double outputPrice = 0;
+        for (RankTable rankTable : matchLottoCalculate) {
+            outputPrice += rankTable.getMoney();
+        }
+        return Math.round(outputPrice / price * 1000) / 10d;
     }
 
     public void setPrice(int price) {

@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.constant.ErrorMessage.ERROR_MESSAGE;
 import static lotto.constant.ErrorMessage.INPUTCONTAINNOTNUMBER;
 import static lotto.constant.ErrorMessage.INPUTVALUEPOSITIVE;
+import static lotto.constant.ErrorMessage.MONEYISZERO;
 import static lotto.constant.ErrorMessage.NOTDIVISIONBYLOTTOPRICE;
 import static lotto.constant.Format.REGEX_DIGIT;
 import static lotto.constant.Numbers.LOTTOPRICE;
@@ -25,6 +26,7 @@ public class LottoAmountofMoney {
         validateLottoMoneyIsNumber(lottoAmountofMoney);
         validateLottoMoneyIsPositive(lottoAmountofMoney);
         validateLottoMoneyDivideBy(lottoAmountofMoney);
+        validateLottoMoneyIsNotZero(lottoAmountofMoney);
     }
     private void validateLottoMoneyIsNumber(String lottoAmountofMoney){
         if (!Pattern.matches(REGEX_DIGIT.getValue(), lottoAmountofMoney)) {
@@ -40,6 +42,12 @@ public class LottoAmountofMoney {
         int money = Integer.parseInt(lottoAmountofMoney);
         if(money % LOTTOPRICE.getIntValue() != 0){
             throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + NOTDIVISIONBYLOTTOPRICE.getValue());
+        }
+    }
+    private void validateLottoMoneyIsNotZero(String lottoAmountofMoney){
+        int money = Integer.parseInt(lottoAmountofMoney);
+        if(money == 0){
+            throw new IllegalArgumentException(ERROR_MESSAGE.getValue() + MONEYISZERO.getValue());
         }
     }
 }

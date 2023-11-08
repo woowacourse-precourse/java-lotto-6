@@ -7,7 +7,8 @@ public enum ErrorMessage {
     LOTTODUPLICATEDNUMBER("로또 번호가 중복됩니다"),
     LOTTONUMBERSIZEEXCEED("로또 번호 개수가 6을 초과합니다"),
     LOTTONUMBERRANGEOVER("범위를 넘어가는 값이 들어왔습니다"),
-    NOTDIVISIONBYLOTTOPRICE("1000의 배수가 아닙니다")
+    NOTDIVISIONBYLOTTOPRICE("1000의 배수가 아닙니다"),
+    MONEYISZERO("입력받은 금액이 0원입니다.")
     ;
 
     private final String value;

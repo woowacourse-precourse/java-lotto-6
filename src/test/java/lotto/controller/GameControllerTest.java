@@ -1,7 +1,8 @@
 package lotto.controller;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -14,12 +15,12 @@ public class GameControllerTest {
     @Test
     void getResult() {
         //given
-        Lotto[] lottos = new Lotto[2];
+        List<Lotto> lottos = new ArrayList<>();
 
         List<Integer> fifth1 = Arrays.asList(1, 2, 3, 8, 9, 10);
         List<Integer> fifth2 = Arrays.asList(4, 5, 7, 21, 22, 23);
-        lottos[0] = new Lotto(fifth1);
-        lottos[1] = new Lotto(fifth2);
+        lottos.add(new Lotto(fifth1));
+        lottos.add(new Lotto(fifth2));
 
         //when
         GameController gc = new GameController();
@@ -34,12 +35,12 @@ public class GameControllerTest {
 
     @Test
     void calculatePrize() {
-        Lotto[] lottos = new Lotto[2];
+        List<Lotto> lottos = new ArrayList<>();
 
         List<Integer> first = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> fifth = Arrays.asList(4, 5, 7, 21, 22, 23);
-        lottos[0] = new Lotto(first);
-        lottos[1] = new Lotto(fifth);
+        lottos.add(new Lotto(first));
+        lottos.add(new Lotto(fifth));
 
         GameController gc = new GameController();
         int bonus = 7;

@@ -5,8 +5,10 @@ import lotto.utils.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.text.DecimalFormat;
 import java.util.AbstractMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
+
+    @DisplayName("둘째 자리에서 반올림 테스트")
+    @ParameterizedTest
+    @CsvSource(value = {"12.345:12.3", "123.456:123.5", "123.45:123.5", "10:10.0"}, delimiter = ':')
+    void decimalFormatTest(double value, double expected) {
+        // given
+        DecimalFormat df = new DecimalFormat("#.#");
+
+        // when
+        double result = Double.parseDouble(df.format(value));
+
+        // then
+        assertThat(result).isEqualTo(expected);
+    }
 
     @DisplayName("로또 게임 이용자의 당첨 내역 테스트")
     @ParameterizedTest
@@ -54,7 +70,7 @@ class PlayerTest {
                                         new AbstractMap.SimpleEntry<>(LotteryRank.FOURTH_PRIZE, 1),
                                         new AbstractMap.SimpleEntry<>(LotteryRank.FIFTH_PRIZE, 1)
                                 ),
-                                406311F
+                                406311.0
                         )
 
 

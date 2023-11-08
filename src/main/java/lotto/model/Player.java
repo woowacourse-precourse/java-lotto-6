@@ -4,6 +4,7 @@ import lotto.constant.LotteryRank;
 import lotto.constant.LottoConstant;
 import lotto.utils.LottoMachine;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Player {
@@ -40,14 +41,16 @@ public class Player {
         return result;
     }
 
-    private float calculateROI(List<LotteryRank> lotteryRanks) {
-        long netReturn = lotteryRanks
+    private double calculateROI(List<LotteryRank> lotteryRanks) {
+        double netReturn = lotteryRanks
                 .stream()
-                .mapToLong(LotteryRank::getReward)
+                .mapToDouble(LotteryRank::getReward)
                 .sum();
         int costOfInvestment = capital.amount();
 
-        return (float) netReturn / costOfInvestment;
+        DecimalFormat df = new DecimalFormat("#.#");
+
+        return Double.parseDouble(df.format(netReturn / costOfInvestment));
     }
 
     private List<LotteryRank> calculateLotteryRanks(LottoMachine lottoMachine) {

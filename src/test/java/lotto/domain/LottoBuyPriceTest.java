@@ -9,7 +9,7 @@ class LottoBuyPriceTest {
 
     @DisplayName("로또 구입 금액을 입력하면, LottoBuyPrice의 인스턴스가 생성된다.")
     @Test
-    void Given_LottoBuyPriceValue_When_CreateLottoBuyPrice_Then_CreatedInstance() throws Exception {
+    void createLottoBuyPrice() throws Exception {
         // Given
         int lottoBuyPrice = 2000;
                 
@@ -22,7 +22,7 @@ class LottoBuyPriceTest {
     
     @DisplayName("로또 구입 금액으로 음수 값을 입력하면, 예외가 발생한다.")  
     @Test        
-    void Given_NegativeLottoBuyPriceValue_When_CreateLottoBuyPrice_Then_ThrowException() throws Exception {
+    void createLottoBuyPriceWithNegativePriceValue() throws Exception {
         // Given
         int lottoBuyPrice = -2000;
 
@@ -34,7 +34,7 @@ class LottoBuyPriceTest {
 
     @DisplayName("로또 구입 금액으로 1,000으로 나누어떨어지지 않는 정수값을 입력하면, 예외가 발생한다.")
     @Test
-    void Given_UndividedLottoBuyPriceValue_When_CreateLottoBuyPrice_Then_ThrowException() throws Exception {
+    void createLottoBuyPriceWithNotDivide1000PriceValue() throws Exception {
         // Given
         int lottoBuyPrice = 3200;
 
@@ -46,7 +46,7 @@ class LottoBuyPriceTest {
 
     @DisplayName("구입 가능한 로또의 개수를 반환한다.")
     @Test
-    void Given_LottoBuyPrice_When_GetAvailableLottoBuyCount_Then_ReturnAvailableLottoBuyCount() throws Exception {
+    void returnAvailableLottoBuyCount() throws Exception {
         // Given
         LottoBuyPrice lottoBuyPrice = new LottoBuyPrice(5000);
 
@@ -59,7 +59,7 @@ class LottoBuyPriceTest {
     
     @DisplayName("구입할 로또의 개수를 입력하면 총 로또 구입 금액을 반환한다.")
     @Test        
-    void countTotalLottoBuyPrice() throws Exception {
+    void returnTotalLottoBuyPrice() throws Exception {
         // Given
         int lottoBuyCount = 5;
                 

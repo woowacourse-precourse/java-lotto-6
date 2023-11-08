@@ -11,7 +11,7 @@ class LottoWinningNumberTest {
 
     @DisplayName("유효한 당첨 번호를 입력하면 LottoWinningNumber 클래스의 인스턴스가 생성된다.")
     @Test
-    void Given_InvalidNumbers_When_CreateLottoWinningNumberInstance_Then_IsNotNull() {
+    void createLottoWinningNumber() {
         // Given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 40);
 
@@ -25,7 +25,7 @@ class LottoWinningNumberTest {
 
     @DisplayName("당첨 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
-    void Given_NumbersOfOverSixSize_When_CreateLottoWinningNumberInstance_Then_ThrowException() {
+    void createLottoWinningNumberWithOverSizeWinningNumbers() {
         // Given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 40, 20);
 
@@ -37,7 +37,7 @@ class LottoWinningNumberTest {
 
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void Given_DuplicateNumbers_When_CreateLottoWinningNumberInstance_Then_ThrowException() {
+    void createLottoWinningNumberWithEqualNumber() {
         // Given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 2);
 
@@ -49,7 +49,7 @@ class LottoWinningNumberTest {
 
     @DisplayName("당첨 번호에 범위를 벗어나는 숫자가 있으면 예외가 발생한다.")
     @Test
-    void Given_NotInRangeNumbers_When_CreateLottoWinningNumberInstance_Then_ThrowException() {
+    void createLottoWinningNumberWithNotInRangeNumbers() {
         // Given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 50);
 
@@ -61,7 +61,7 @@ class LottoWinningNumberTest {
 
     @DisplayName("입력된 로또 번호와 비교해서 당첨 번호와 일치하는 숫자 개수를 반환한다.")
     @Test
-    void countEqualNumberAndReturn() throws Exception {
+    void returnMatchedNumberCount() throws Exception {
         // Given
         LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(List.of(1, 2, 3, 20, 12, 24));
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

@@ -11,7 +11,7 @@ class LottoBonusNumberTest {
     
     @DisplayName("보너스 번호를 입력하면 LottoBonusNumber 클래스의 인스턴스를 생성한다.")
     @Test
-    void Given_BonusNumber_When_CreateLottoBonusNumber_Then_isEqualNumber() throws Exception {
+    void createLottoBonusNumber() throws Exception {
         // Given
         int bonusNumber = 20;
                 
@@ -25,7 +25,7 @@ class LottoBonusNumberTest {
 
     @DisplayName("유효 범위에 포함되지 않는 보너스 번호를 입력하면 예외가 발생한다.")
     @Test
-    void Given_NotInRangeNumber_When_CreateLottoBonusNumber_Then_ThrowException() throws Exception {
+    void createLottoBonusNumberWithNotInRangeInput() throws Exception {
         // Given
         int bonusNumber = 100;
 
@@ -37,7 +37,7 @@ class LottoBonusNumberTest {
 
     @DisplayName("입력된 로또 번호에 보너스 번호가 포함되어 있다면 true를 반환한다.")
     @Test
-    void bonusNumberContainsReturnTrue() throws Exception {
+    void returnIsBonusNumberContainInLottoNumbers() throws Exception {
         // Given
         LottoBonusNumber lottoBonusNumber = new LottoBonusNumber(4);
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

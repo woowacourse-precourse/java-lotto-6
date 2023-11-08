@@ -46,7 +46,7 @@ class LottoTest {
 
     @DisplayName("입력된 숫자 목록과 로또 번호를 비교해서 일치하는 숫자의 개수를 반환한다.")
     @Test
-    void equalLottoNumbersWithInputNumbers() throws Exception {
+    void returnMatchedNumberCount() throws Exception {
         // Given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> inputNumbers = List.of(1, 2, 3, 4, 12, 43);
@@ -60,7 +60,7 @@ class LottoTest {
 
     @DisplayName("입력된 숫자가 로또 번호에 포함되어 있다면 true를 반환한다.")
     @Test
-    void checkInputNumberContains() throws Exception {
+    void returnIsInputNumberContainInLottoNumbers() throws Exception {
         // Given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int inputNumber = 4;

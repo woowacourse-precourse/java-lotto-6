@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.LottoPrize;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class LottoResultView {
@@ -17,7 +18,12 @@ public class LottoResultView {
     public void printRateOfReturn(List<LottoPrize> lottoPrizes, int price) {
         long totalPrize = calcTotalPrize(lottoPrizes);
         double rateOfReturn = (double) totalPrize / price * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn);
+        System.out.printf("총 수익률은 %s%%입니다.%n", getFormatResult(rateOfReturn));
+    }
+
+    private String getFormatResult(double rateOfReturn) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###.0");
+        return decimalFormat.format(rateOfReturn);
     }
 
     private long calcTotalPrize(List<LottoPrize> lottoPrizes) {

@@ -9,11 +9,11 @@ import java.util.Set;
 
 public class LottoMachine {
 
-    static private int money;       // 구입 금액
-    static private int ticketNumber; // 구입 장 수
-    static List<Lotto> totalLottoTickets = new ArrayList<Lotto>(); // 구입한 로또 리스트
+    static private int money;
+    static private int ticketNumber;
+    static List<Lotto> totalLottoTickets = new ArrayList<Lotto>();
 
-    static void receivingMoney() {          // 구입 금액을 입력받는 메소드
+    static void receivingMoney() {
         while (true) {
             System.out.println("구입 금액을 입력해 주세요.");
             String input = Console.readLine();
@@ -26,15 +26,14 @@ public class LottoMachine {
     static boolean validateFormat(String input) {
         try {
             money = Integer.parseInt(input);
-            // 입력이 유효한 경우 true 반환
             return true;
         } catch (NumberFormatException e) {
-            System.out.println("[ERROR] 숫자 형식이 잘못되었습니다: " + e.getMessage());
+            System.out.println("[ERROR] 숫자를 입력해야 합니다.");
             return false;
         }
     }
 
-    static boolean validateMoney(String input) {           // 구입 금액의 유효성을 검증하는 메소드
+    static boolean validateMoney(String input) {
         try {
             if (money < 0) {
                 throw new IllegalArgumentException("[ERROR] 구입 금액은 양수여야 합니다.");
@@ -48,7 +47,7 @@ public class LottoMachine {
         return true;
     }
 
-    static void givingLottoTickets() {      // 구입 금액만큼 로또를 생성하는 메소드
+    static void givingLottoTickets() {
         ticketNumber = money / 1000;
         for (int i = 0; i < ticketNumber; i++) {
             List<Integer> numbers = pickRandomLottoNumbers();
@@ -64,7 +63,7 @@ public class LottoMachine {
     }
 
 
-    static void printingLottoTickets() {           // 로또 내역을 프린트하는 메소드
+    static void printingLottoTickets() {
         System.out.println(String.format("%d개를 구매했습니다.", ticketNumber));
         for (Lotto lotto: totalLottoTickets) {
             System.out.println(lotto.getNumbers());
@@ -74,10 +73,5 @@ public class LottoMachine {
     static public int getMoney() {
         return money;
     }
-
-    static public void setMoney(int money) {
-        money = money;
-    }
-
 
 }

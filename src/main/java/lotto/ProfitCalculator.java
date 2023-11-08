@@ -11,12 +11,12 @@ public class ProfitCalculator {
     static double profitRate;
 
     // 수익률 계산을 위한 필드 + 초기화
-    static int firstPlace = 0; // 6개
-    static int secondPlace = 0; // 5개
-    static int thirdPlace = 0; // 5개 + 보너스
-    static int fourthPlace = 0; // 4개
+    static int firstPlace = 0;
+    static int secondPlace = 0;
+    static int thirdPlace = 0;
+    static int fourthPlace = 0;
 
-    static int fifthPlace = 0; // 3개
+    static int fifthPlace = 0;
 
     static void calculate() {
         int bonusNumber = WinningLotto.bonusNumber;
@@ -39,17 +39,12 @@ public class ProfitCalculator {
     }
 
     static int compare(Lotto lotto) {
-
         List<Integer> winningNumber = WinningLotto.winningLotto.getNumbers();
 
-        // 집합으로 변경
         Set<Integer> winningSet = new HashSet<Integer>(winningNumber);
         Set<Integer> lottoSet = new HashSet<Integer>(lotto.getNumbers());
 
-        // 교집합 구하기
         winningSet.retainAll(lottoSet);
-
-        // 교집합 개수 반환
         return winningSet.size();
     }
 
@@ -59,7 +54,6 @@ public class ProfitCalculator {
     }
 
     static void printResult() {
-
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println(String.format("3개 일치 (5,000원) - %d개", fifthPlace));

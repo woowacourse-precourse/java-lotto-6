@@ -71,6 +71,15 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void 예외_테스트3() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "1");
+            assertThat(output()).contains(LOTTO_AND_BONUS_DUPLICATED_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

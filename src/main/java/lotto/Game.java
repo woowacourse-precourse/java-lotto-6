@@ -23,7 +23,7 @@ public class Game {
         money = money();
         tickets = buy(money);
         winningNumbers = winningNumbers();
-        bonus = inputBonus();
+        bonus = bonus();
         winners = draw();
     }
 
@@ -86,7 +86,6 @@ public class Game {
             List<Integer> numbers = Arrays.stream(Console.readLine().split(WINNING_NUMBERS_DELIMITER))
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
-
             return new Lotto(numbers);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_PARSING_ERROR_MESSAGE);
@@ -107,10 +106,17 @@ public class Game {
         System.out.println("보너스 번호를 입력해 주세요.");
         try {
             int bonus = Integer.parseInt(Console.readLine());
-            Lotto.validateRange(bonus);
+            validateBonus(bonus);
             return bonus;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_PARSING_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateBonus(int bonus) {
+        Lotto.validateRange(bonus);
+        if (winningNumbers.contains(bonus)) {
+            throw new IllegalArgumentException(LOTTO_AND_BONUS_DUPLICATED_MESSAGE);
         }
     }
 
@@ -119,8 +125,6 @@ public class Game {
         System.out.println("---");
 
         printWinners();
-
-
         printYield();
     }
 

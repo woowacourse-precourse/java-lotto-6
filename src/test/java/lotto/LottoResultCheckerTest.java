@@ -46,7 +46,7 @@ class LottoResultCheckerTest {
 
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
         lottoResultChecker.checkLotto(lottos, winningLotto);
-        assertThatCode(lottoResultChecker::printTotalPrize)
+        assertThatCode(() -> lottoResultChecker.getProfitRatio(8000))
                 .doesNotThrowAnyException();
     }
 
@@ -67,8 +67,7 @@ class LottoResultCheckerTest {
 
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
         lottoResultChecker.checkLotto(lottos, winningLotto);
-        lottoResultChecker.printTotalPrize();
-        assertThatCode(() -> lottoResultChecker.printProfit(8000))
+        assertThatCode(() -> lottoResultChecker.getProfitRatio(8000))
                 .doesNotThrowAnyException();
     }
 }

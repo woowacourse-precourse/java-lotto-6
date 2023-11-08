@@ -6,25 +6,25 @@ public class LottoGame {
 
 	public static void run() {
 
-		String usermoney = Input.money();
+		int userMoney = Input.money();
 
-		int lottoCount = Input.calculateLottoCount(usermoney);
+		int lottoCount = calculateLottoCount(userMoney);
 
 		printLottocount(lottoCount);
 
 		List<List<Integer>> lottos = Lotto.create(lottoCount);
 
-		printLottoNum(lottos);
+		printLottoNumber(lottos);
 
 		List<Integer> userNums = Input.numbers();
-		
+
 		int bonusUserNum = Input.bonus(userNums);
 
-		List<WinningRank> rankingList = CheckNum.lotto(lottos, userNums, bonusUserNum);
+		List<WinningRank> rankings = CheckNum.lotto(lottos, userNums, bonusUserNum);
 
-		WinningRank.printResult(rankingList);
+		WinningRank.printResult(rankings);
 
-		Profit.calculate(rankingList, usermoney);
+		Profit.calculate(rankings, userMoney);
 
 	}
 
@@ -35,11 +35,19 @@ public class LottoGame {
 
 	}
 
-	private static void printLottoNum(List<List<Integer>> lottos) {
+	private static void printLottoNumber(List<List<Integer>> lottos) {
 
 		for (int i = 0; i < lottos.size(); i++) {
 			System.out.println(lottos.get(i));
 		}
+	}
+
+	private static int calculateLottoCount(int userMoney) {
+
+		int lottoCount = (userMoney / 1000);
+
+		return lottoCount;
+
 	}
 
 }

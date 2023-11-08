@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
@@ -22,6 +24,10 @@ public class Lotto {
       if (number < MIN_NUMBER || number > MAX_NUMBER) {
         throw new IllegalArgumentException("로또 넘버는 1부터 45 사이의 수이어야 합니다.");
       }
+    }
+    Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+    if (uniqueNumbers.size() != numbers.size()) {
+      throw new IllegalArgumentException("로또 넘버에 중복된 숫자가 있습니다.");
     }
   }
 

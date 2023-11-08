@@ -9,6 +9,7 @@ public class Application {
     private final static int LOTTO_NUMBER_COUNT = 6;
     private final static int LOTTO_MIN_NUMBER = 1;
     private final static int LOTTO_MAX_NUMBER = 45;
+
     public static void main(String[] args) {
         List<Lotto> lottos = buyLottos();
         printLottos(lottos);
@@ -16,49 +17,31 @@ public class Application {
         Lotto winningLotto = getWinningLotto();
         int bonusNumber = getBonusNumber();
 
-        WinningResult result = new WinningResult();
-        for (Lotto lotto : lottos) {
-            int matchCount = lotto.matchNumbers(winningLotto);
-            boolean matchBonus = lotto.contains(bonusNumber);
-            result.addWinningTicket(matchCount, matchBonus);
-        }
-        result.printResult();
+        WinningResult result = calculateWinningResult(lottos, winningLotto, bonusNumber);
+        printResult(result, lottos.size());
         printEarningsRate(result, lottos.size());
     }
 
     private static List<Lotto> buyLottos() {
-        List<Lotto> lottos = new ArrayList<>();
         int lottoCount = getLottoCount();
-
-        for (int i = 0; i < lottoCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
-            lottos.add(new Lotto(numbers));
-        }
-        return lottos;
+        return generateLottos(lottoCount);
     }
 
     private static int getLottoCount() {
-        while (true) {
-            try {
-                int amount = getInputAmount();
-                validateAmount(amount);
-                return amount / 1000;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        int amount = getInputAmount();
+        validateAmount(amount);
+        return amount / 1000;
     }
 
     private static int getInputAmount() {
-        while (true) {
-            System.out.println("구입금액을 입력해 주세요.");
-            String input = Console.readLine();
-            if (isNotNumeric(input)) {
-                System.out.println("[ERROR] 잘못된 입력입니다. 숫자를 입력해주세요.");
-                continue;
-            }
-            return Integer.parseInt(input);
+        System.out.print("구입금액을 입력해 주세요: ");
+        String input = Console.readLine();
+        while (isNotNumeric(input)) {
+            System.out.println("[ERROR] 잘못된 입력입니다. 숫자를 입력해주세요.");
+            System.out.print("구입금액을 입력해 주세요: ");
+            input = Console.readLine();
         }
+        return Integer.parseInt(input);
     }
 
     private static void validateAmount(int amount) {
@@ -76,6 +59,19 @@ public class Application {
         }
     }
 
+    private static List<Lotto> generateLottos(int lottoCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
+            List<Integer> numbers = generateLottoNumbers();
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
+    }
+
+    private static List<Integer> generateLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
+    }
+
     private static void printLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
@@ -84,7 +80,7 @@ public class Application {
     }
 
     private static Lotto getWinningLotto() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.print("당첨 번호를 입력해 주세요: ");
         try {
             String input = Console.readLine();
             List<Integer> winningNumbers = parseNumbers(input);
@@ -98,7 +94,7 @@ public class Application {
     private static int getBonusNumber() {
         while (true) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.print("보너스 번호를 입력해 주세요: ");
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 Lotto.validateBonusNumber(bonusNumber);  // 유효성 검사를 수행
                 return bonusNumber;
@@ -115,6 +111,20 @@ public class Application {
             numbers.add(Integer.parseInt(number));
         }
         return numbers;
+    }
+
+    private static WinningResult calculateWinningResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        WinningResult result = new WinningResult();
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.matchNumbers(winningLotto);
+            boolean matchBonus = lotto.contains(bonusNumber);
+            result.addWinningTicket(matchCount, matchBonus);
+        }
+        return result;
+    }
+
+    private static void printResult(WinningResult result, int lottoCount) {
+        result.printResult();
     }
 
     public static void printEarningsRate(WinningResult result, int lottoCount) {

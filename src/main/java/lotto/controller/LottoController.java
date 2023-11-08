@@ -48,7 +48,7 @@ public class LottoController {
             String purchaseAmount = inputView.read();
             return MoneyManagement.from(purchaseAmount);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e);
             return initAmount();
         }
     }
@@ -85,7 +85,7 @@ public class LottoController {
             String inputWinningNumber = inputView.read();
             return createWinningNumberList(inputWinningNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printError(e);
             return askWinningNumbers();
         }
     }
@@ -102,9 +102,8 @@ public class LottoController {
             outputView.askBonusNum();
             String inputBonusNumber = inputView.read();
             return createWinningBonusNumber(inputBonusNumber);
-        }
-        catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
             return askWinningBonusNumber();
         }
     }
@@ -121,7 +120,7 @@ public class LottoController {
                 Number bonusNumber = askWinningBonusNumber();
                 return new WinningLotto(lotto, bonusNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.printError(e);
             }
         }
     }

@@ -6,6 +6,11 @@ import lotto.domain.Lottos;
 
 public class OutputView {
 
+    public void printError(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        print();
+    }
+
     public void askAmount() {
         print("구입금액을 입력해 주세요.");
     }

@@ -34,7 +34,7 @@ public class Discriminator {
             }
         }
 
-        info.addStatistic(GradeUtil.gradeMapper(cnt, lotto.contains(bonus)));
+        info.addStatistic(GradeUtil.gradeMapper(cnt, lotto.contains(bonus.getBonus())));
     }
 
     public StatisticDTO getStatistic() {

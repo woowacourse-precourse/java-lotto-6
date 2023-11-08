@@ -23,7 +23,7 @@ public class Output {
     }
 
     public static String errorCanNotDivideMessage = "[ERROR] 1000으로 나누어 떨어지는 수를 입력해주세요";
-    public static String errorOver6NumbersMessage = "[ERROR] 로또번호가 6개 초과입니다.";
+    public static String errorHitNumberCountIsNotValidMessage = "[ERROR] 로또번호의 개수가 6개가 아닙니다.";
     public static String errorSameNumberInInputMessage = "[ERROR] 중복된 숫자가 입력되었습니다.";
     public static String errorNeedIntInputMessage = "[ERROR] 입력값에 숫자가 아닌 문자가 포함되어 있습니다.";
 

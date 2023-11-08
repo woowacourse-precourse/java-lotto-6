@@ -89,15 +89,10 @@ public class LottoService {
 
         int bonusNumber = winningNumbers.get(winningNumbers.size() - 1);
 
-        long matchingCount = lottoNumbers.stream()
-                .filter(number -> number != bonusNumber)
-                .filter(winningNumbers.subList(0, winningNumbers.size() - 1)::contains)
-                .count();
+        long matchingCount = calculateMatchingCount(lottoNumbers, winningNumbers, bonusNumber);
 
-        LottoRank bonusWin = LottoRank.BONUS;
-
-        if (matchingCount == bonusWin.getMatchingNumbers() && lottoNumbers.contains(bonusNumber)) {
-            return bonusWin;
+        if (isBonusWin(matchingCount, lottoNumbers, bonusNumber)) {
+            return LottoRank.BONUS;
         }
 
         for (LottoRank rank : LottoRank.values()) {
@@ -106,6 +101,18 @@ public class LottoService {
             }
         }
         return null;
+    }
+
+    private long calculateMatchingCount(List<Integer> lottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        return lottoNumbers.stream()
+                .filter(number -> number != bonusNumber)
+                .filter(winningNumbers.subList(0, winningNumbers.size() - 1)::contains)
+                .count();
+    }
+
+    private boolean isBonusWin(long matchingCount, List<Integer> lottoNumbers, int bonusNumber) {
+        LottoRank bonusWin = LottoRank.BONUS;
+        return matchingCount == bonusWin.getMatchingNumbers() && lottoNumbers.contains(bonusNumber);
     }
 
     public BigDecimal rateOfReturn() {

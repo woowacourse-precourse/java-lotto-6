@@ -8,7 +8,7 @@ import static lotto.constant.GameNumber.MIN_LOTTO_AMOUNT;
 
 public class Price {
 
-    private long price;
+    private final long price;
 
     public Price(long price) {
         validate(price);

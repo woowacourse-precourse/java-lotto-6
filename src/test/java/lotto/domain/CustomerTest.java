@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.constants.SystemOption.*;
+import static lotto.constants.SystemOption.PAYMENT_UNIT_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -43,14 +43,13 @@ class CustomerTest {
 
 
 
-    @DisplayName("구매한 로또 개수만큼 Target 과 비교 후 Result 생성 성공")
+    @DisplayName("구매한 로또 개수만큼 Target 과 비교 후 WinningInfo 생성 성공")
     @Test
-    void successCalculateResult(){
+    void successCalculateWinning(){
         customer.buyLottos();
         Target target = Target.createTarget(List.of(1, 2, 3, 4, 5, 6), 7);
 
-        assertDoesNotThrow(() -> customer.calculateResult(target));
-        assertThat(customer.getResults()).hasSize(numOfLottos);
+        assertDoesNotThrow(() -> customer.calculateWinning(target));
 
     }
 

@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import lotto.constants.WinningInfo;
+
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static lotto.constants.SystemOption.TARGET_NUMBERS_SIZE_VALUE;
@@ -42,10 +45,10 @@ public class Lotto {
         return this.numbers.toString();
     }
 
-    public Result compareWithTargetAndCreateResult(Target target) {
+    public Optional<WinningInfo> compareWithTargetAndCreateWinningInfo(Target target) {
         int countOfMatch = calculateCountOfMatch(target);
-        boolean isBonusPrize = isBonusWinning(target, countOfMatch);
-        return Result.createResult(countOfMatch, isBonusPrize);
+        boolean isBonusWinning = isBonusWinning(target, countOfMatch);
+        return WinningInfo.of(countOfMatch, isBonusWinning);
     }
 
     private int calculateCountOfMatch(Target target) {

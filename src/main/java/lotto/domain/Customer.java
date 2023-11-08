@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constants.WinningInfo;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,13 +14,13 @@ public class Customer {
     private List<Lotto> lottos;
     private int payment;
     private int countOfLottos;
-    private List<Result> results;
+    private List<WinningInfo> winningInfos;
 
     public Customer(int payment) {
         this.lottos = new ArrayList<>();
         this.payment = payment;
         this.countOfLottos = payment / PAYMENT_UNIT_VALUE.getValue();
-        this.results = new ArrayList<>();
+        this.winningInfos = new ArrayList<>();
     }
 
     public static Customer createCustomer(int payment) {
@@ -30,8 +31,8 @@ public class Customer {
         return this.countOfLottos;
     }
 
-    public List<Result> getResults() {
-        return this.results;
+    public List<WinningInfo> getWinningInfos() {
+        return this.winningInfos;
     }
 
     public int getPayment() {
@@ -57,10 +58,11 @@ public class Customer {
                 .collect(Collectors.toList());
     }
 
-    public void calculateResult(Target target) {
+    // 고객이 구매한 로또와 당첨번호(Target)를 비교하여 일치한 숫자 개수와 보너스 당첨 여부 정보를 가진 WinningInfo 생성
+    public void calculateWinning(Target target) {
         for (Lotto lotto : lottos) {
-            Result result = lotto.compareWithTargetAndCreateResult(target);
-            results.add(result);
+            lotto.compareWithTargetAndCreateWinningInfo(target)
+                    .ifPresent(winningInfo -> this.winningInfos.add(winningInfo));
         }
     }
 

@@ -33,7 +33,7 @@ public class UiHandler {
         }
     }
 
-    public List<Integer> getAndTargetNumbers() {
+    public List<Integer> getAndValidateTargetNumbers() {
         System.out.println(GuideMessage.GET_TARGET_NUMBERS_REQUEST_MESSAGE);
 
         while (true) {

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constants.WinningInfo;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,27 +20,23 @@ public class WinningChecker {
     }
 
     public void checkWinning(Customer customer) {
-        List<Result> results = customer.getResults();
-        calculateTotalWinningAmount(results);
-        calculateRank(results);
+        List<WinningInfo> winningInfos = customer.getWinningInfos();
+        calculateTotalWinningAmount(winningInfos);
+        countNumberOfRankByResults(winningInfos);
     }
 
-    private void calculateTotalWinningAmount(List<Result> results) {
-        for (Result result : results) {
-            result.getWinningInfo()
-                    .ifPresent(winningInfo -> this.totalWinningAmount += winningInfo.getAmount());
+    private void calculateTotalWinningAmount(List<WinningInfo> winningInfos) {
+        for (WinningInfo winningInfo : winningInfos) {
+            this.totalWinningAmount += winningInfo.getAmount();
         }
     }
 
-    private void calculateRank(List<Result> results) {
-        for (Result result : results) {
-            result.getWinningInfo()
-                    .ifPresent(winningInfo -> addRankInfo(winningInfo.getRank()));
+    // Result에 저장된 등수를 바탕으로 등수 별 당첨 개수 저장
+    private void countNumberOfRankByResults(List<WinningInfo> winningInfos) {
+        for (WinningInfo winningInfo : winningInfos) {
+            int rank = winningInfo.getRank();
+            this.rankInfo.put(rank, this.rankInfo.getOrDefault(rank, 0) + 1);
         }
-    }
-
-    private void addRankInfo(int rank) {
-        this.rankInfo.put(rank, this.rankInfo.getOrDefault(rank, 0) + 1);
     }
 
     public Map<Integer, Integer> getRankInfo() {

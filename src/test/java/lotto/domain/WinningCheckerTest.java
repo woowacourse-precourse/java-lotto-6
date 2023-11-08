@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,16 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WinningCheckerTest {
 
-    @DisplayName("Result 객체의 당첨 정보를 바탕으로 등수별 당첨 정보 생성")
+    @DisplayName("WinningInfo 객체의 당첨 정보를 바탕으로 등수별 당첨 정보 생성")
     @Test
     void successCheckWinning(){
-        Customer customer = Customer.createCustomer(1000);
+        Customer customer = Customer.createCustomer(5000);
         customer.buyLottos();
         Target target = Target.createTarget(List.of(1, 2, 3, 4, 5, 6), 7);
-        customer.calculateResult(target);
+        customer.calculateWinning(target);
 
-        int countOfWinningInfo = (int)customer.getResults().stream()
-                .filter(result -> result.getWinningInfo().isPresent())
+        int countOfWinningInfo = (int)customer.getWinningInfos().stream()
                 .count();
 
         WinningChecker winningChecker = WinningChecker.createWinningChecker();

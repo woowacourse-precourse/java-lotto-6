@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static lotto.constants.WinningInfo.*;
@@ -52,7 +53,7 @@ class LottoTest {
         );
     }
 
-    @DisplayName("당첨 번호 정보를 전달하면 해당하는 당첨 정보를 가진 Result 객체 생성 성공")
+    @DisplayName("당첨 번호 정보를 전달하면 해당하는 당첨 정보를 가진 Winning Info 객체 생성 성공")
     @ParameterizedTest
     @MethodSource("successCalculateResultScenarios")
     void successCalculateResult(List<Integer> lottoNumbers, List<Integer> targetNumbers,
@@ -60,10 +61,9 @@ class LottoTest {
         Lotto lotto = Lotto.createLotto(lottoNumbers);
         Target target = Target.createTarget(targetNumbers, bonusNumber);
 
-        Result result = assertDoesNotThrow(() -> lotto.compareWithTargetAndCreateResult(target));
-        assertThat(result.getWinningInfo()).isNotEmpty();
-
-        WinningInfo createdWinningInfo = result.getWinningInfo().get();
-        assertThat(createdWinningInfo).isEqualTo(winningInfo);
+        Optional<WinningInfo> createdWinningInfo
+                = assertDoesNotThrow(() -> lotto.compareWithTargetAndCreateWinningInfo(target));
+        assertThat(createdWinningInfo).isNotEmpty();
+        assertThat(createdWinningInfo.get()).isEqualTo(winningInfo);
     }
 }

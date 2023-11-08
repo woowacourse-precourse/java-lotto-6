@@ -6,7 +6,11 @@ import lotto.model.LottoRanking;
 
 class LottoProfitRateCalculator {
 
-    static double calculateLottoProfitRate(EnumMap<LottoRanking, Integer> lottoWinningResult, int purchaseAmount) {
+    private LottoProfitRateCalculator() {
+    }
+
+    static double calculateLottoProfitRate(EnumMap<LottoRanking, Integer> lottoWinningResult,
+        int purchaseAmount) {
         int totalAmount = lottoWinningResult.entrySet()
             .stream()
             .mapToInt(LottoProfitRateCalculator::calculateRankingAmount)

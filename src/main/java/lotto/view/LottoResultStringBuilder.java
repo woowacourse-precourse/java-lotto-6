@@ -13,6 +13,9 @@ class LottoResultStringBuilder {
     private static final String BONUS_BALL_HIT_MESSAGE = ", 보너스 볼 일치";
     private static final DecimalFormat MONEY_FORMAT = new DecimalFormat("###,###");
 
+    private LottoResultStringBuilder() {
+    }
+
     static String build(EnumMap<LottoRanking, Integer> lottoResult) {
         return Arrays.stream(LottoRanking.values())
             .filter(entry -> entry != LottoRanking.UNRANKED)

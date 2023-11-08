@@ -8,6 +8,9 @@ import lotto.model.LottoTicket;
 
 class LottoTicketStringBuilder {
 
+    private LottoTicketStringBuilder() {
+    }
+
     static String build(LottoTicket lottoTicket) {
         return lottoTicket.getLottoTicket()
             .stream()

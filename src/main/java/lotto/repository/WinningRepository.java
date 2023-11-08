@@ -2,8 +2,6 @@ package lotto.repository;
 
 import lotto.domain.Winning;
 
-import java.util.List;
-
 public class WinningRepository {
 
     private static Winning winning;

@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -20,4 +21,12 @@ public class Lotto {
     public void printInfo(){
         System.out.println(numbers);
     }
+
+    public int compareOther(Lotto other){
+        List<Integer> res_com = this.numbers;
+        res_com.retainAll(other.numbers);
+        System.out.println(res_com.toString());
+        return res_com.size();
+    }
+
 }

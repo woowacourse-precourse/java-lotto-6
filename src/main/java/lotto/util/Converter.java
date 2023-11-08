@@ -10,6 +10,7 @@ public class Converter {
 
     public static List<Integer> stringToIntegerList(String str, String delimiter) {
         return Arrays.stream(str.split(delimiter))
+                .filter(numberstr -> !numberstr.isBlank())
                 .map(numberStr -> {
                     try {
                         return Integer.parseInt(numberStr.trim());

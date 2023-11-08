@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constant.Error;
-import lotto.controller.Setting;
 import lotto.exception.LottoException;
 
 import java.util.List;

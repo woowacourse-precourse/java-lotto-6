@@ -56,6 +56,8 @@ public class Calculator {
     }
 
     public void printRate() {
+        output.printMessage(LottoAnnouncer.PRIZE_STATISTICS.getMessage());
+        output.printMessage(LottoAnnouncer.SEPARATOR.getMessage());
         output.printMessage(LottoAnnouncer.ACCORDANCE_THREE.getIntFormat(accordance.get(3)));
         output.printMessage(LottoAnnouncer.ACCORDANCE_FOUR.getIntFormat(accordance.get(4)));
         output.printMessage(LottoAnnouncer.ACCORDANCE_FIVE.getIntFormat(accordance.get(5)));

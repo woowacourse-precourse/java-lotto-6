@@ -12,7 +12,6 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class Input {
 
     private static Input input = new Input();
-    private Output output = Output.getOutput();
 
     private Input() {
     }

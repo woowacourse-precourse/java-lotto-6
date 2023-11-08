@@ -1,23 +1,16 @@
 package lotto.controller;
 
-import lotto.constant.LottoAnnouncer;
 import lotto.constant.Prize;
 import lotto.domain.Jackpot;
 import lotto.domain.Lotto;
-import lotto.view.Output;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.*;
 
 public class Judgement {
-    private Output output = Output.getOutput();
     private Calculator calculator;
 
     private List<Lotto> lottos;
-    private List<Integer> winning;
     private Jackpot jackpot;
-    private List<Integer> lotto;
 
     public boolean isMatchedBonus = false;
     private int revenue = 0;
@@ -26,9 +19,6 @@ public class Judgement {
         this.lottos = lottos;
         this.jackpot = jackpot;
         this.calculator = calculator;
-
-        output.printMessage(LottoAnnouncer.PRIZE_STATISTICS.getMessage());
-        output.printMessage(LottoAnnouncer.SEPARATOR.getMessage());
     }
 
     public int confirmJackpot() {
@@ -39,10 +29,10 @@ public class Judgement {
     }
 
     private void countMatchingValue(Lotto oneLotto) {
-        lotto = oneLotto.returnFarsighted();
-        winning = jackpot.returnFarsighted();
+        List<Integer> lotto = oneLotto.returnFarsighted();
+        List<Integer> winning = jackpot.returnFarsighted();
 
-        processBonus();
+        processBonus(lotto);
 
         long overlapCount = lotto.stream()
                 .filter(winning::contains)
@@ -52,7 +42,7 @@ public class Judgement {
         calculator.updateAccordance(Long.valueOf(overlapCount).intValue());
     }
 
-    public void processBonus() {
+    public void processBonus(List<Integer> lotto) {
         if (lotto.contains(jackpot.returnBonusValue())) {
             isMatchedBonus = true;
             return;
@@ -66,4 +56,5 @@ public class Judgement {
         }
         return Prize.FIVE.findMatchingValue();
     }
+
 }

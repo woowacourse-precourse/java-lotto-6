@@ -2,9 +2,6 @@ package lotto.controller;
 
 import lotto.domain.Jackpot;
 import lotto.domain.Lotto;
-import lotto.view.Output;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameService {

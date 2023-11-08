@@ -22,4 +22,5 @@ public enum Error {
     public String getMessage() {
         return ERROR_ANNOUNCER + message;
     }
+
 }

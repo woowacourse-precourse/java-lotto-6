@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.constant.Error;
-import lotto.controller.Setting;
 import lotto.exception.LottoException;
 
 import java.util.List;
@@ -36,7 +35,6 @@ public class Lotto {
         if (isDuplication(numbers)) {
             throw new LottoException(Error.DUPLICATED_NUMBER);
         }
-
     }
 
     protected boolean isDuplication(List<Integer> numbers) {

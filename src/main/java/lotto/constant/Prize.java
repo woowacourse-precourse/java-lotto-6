@@ -14,10 +14,6 @@ public enum Prize {
         this.value = value;
     }
 
-    private String getValue() {
-        return value;
-    }
-
     public int findMatchingValue() {
         return getPrize();
     }

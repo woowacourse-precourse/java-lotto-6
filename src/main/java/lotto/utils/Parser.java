@@ -71,11 +71,11 @@ public class Parser {
     }
 
     public int parseBonusNum(String input, List<Integer> winningNum) {
-        validateBouns(input);
+        validateBonus(input);
         return Integer.valueOf(input);
     }
 
-    private void validateBouns(String input) {
+    private void validateBonus(String input) {
         checkEmpty(input);
         checkDigit(input);
         checkRange(input);

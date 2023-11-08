@@ -12,7 +12,7 @@ public class LottoRepository {
     private List<Lotto> userLottoList = new ArrayList<>();
     private Lotto winningLotto;
 
-    private int bounsNum;
+    private int bonusNum;
 
     private HashMap<Rank,Integer> resultMap = new HashMap<>();
 
@@ -24,8 +24,8 @@ public class LottoRepository {
         winningLotto = lotto;
     }
 
-    public void setBounsNum(int num) {
-        bounsNum = num;
+    public void setBonusNum(int num) {
+        bonusNum = num;
     }
 
     public List<Lotto> getUserLottoList() {
@@ -37,7 +37,7 @@ public class LottoRepository {
     }
 
     public int getBonusNum() {
-        return bounsNum;
+        return bonusNum;
     }
 
     public void initMap(){

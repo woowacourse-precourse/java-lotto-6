@@ -15,5 +15,7 @@ public class Application {
 
         List<Lotto> lottoList = lottoGame.createLottoList(numberOfGames);
         OutputView.printLottoList(lottoList);
+
+        int bonusNumber = InputView.getBonusNumber();
     }
 }

@@ -95,12 +95,13 @@ public class LottoController {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private void calculateReturnOnLotto(Map<LottoResultFormat, Integer> lottoResults, int amount) {
+    public double calculateReturnOnLotto(Map<LottoResultFormat, Integer> lottoResults, int amount) {
         double returnOfLotto = 0;
         for (LottoResultFormat key : lottoResults.keySet()) {
             returnOfLotto += lottoResults.getOrDefault(key, 0) * key.getWinningAmount();
         }
         OutputView.totalReturnOnLotto(returnOfLotto / amount * 100);
+        return returnOfLotto / amount * 100;
     }
 
 }

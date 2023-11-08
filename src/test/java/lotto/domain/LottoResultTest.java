@@ -51,14 +51,16 @@ public class LottoResultTest {
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto("2,14,19,21,24,45"));
         lottos.add(new Lotto("2,14,19,23,36,41"));
-        lottos.add(new Lotto("2,14,19,23,35,40"));
-        lottos.add(new Lotto("2,14,19,23,35,45"));
-        lottos.add(new Lotto("2,14,19,23,35,44"));
+        lottos.add(new Lotto("9,10,11,12,13,14"));
         lottos.add(new Lotto("3,4,5,6,7,8"));
+        lottos.add(new Lotto("11,12,13,14,15,16"));
 
         Lotto lotto = new Lotto("2,14,19,23,35,44");
         int bonus = 45;
 
+        LottoController lottoController = new LottoController();
+        double returnOnLotto = lottoController.calculateReturnOnLotto(lottoController.getLottoResults(lotto.getNumbers(), lottos, bonus), 5000);
+        Assertions.assertThat(returnOnLotto).isEqualTo(1100.0);
 
     }
 }

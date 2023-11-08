@@ -27,12 +27,14 @@ public class Domain {
 
     public Map<Rank,Integer> allRanking(List<Integer> winningNums,Integer bonus,List<Lotto> lottoes){
         Map<Rank,Integer> rankingTable = createRankingTable();
-
         for(Lotto lotto : lottoes){
             Rank rankingResult = ranking(winningNums,bonus,lotto);
-            rankingTable.replace(rankingResult,rankingTable.get(rankingResult)+1);
+            addRankingResult(rankingResult,rankingTable);
         }
         return rankingTable;
+    }
+    public void addRankingResult(Rank rankingResult,Map<Rank,Integer> rankingTable){
+        rankingTable.merge(rankingResult,1,Integer::sum);
     }
 
     private Map<Rank,Integer> createRankingTable(){

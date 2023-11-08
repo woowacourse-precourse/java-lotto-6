@@ -3,7 +3,6 @@ package lotto.Controller;
 import lotto.Model.Domain.Customer;
 import lotto.Model.Domain.Lotto;
 import lotto.View.OutputUI;
-
 import java.util.List;
 
 public class MainController extends Controller {

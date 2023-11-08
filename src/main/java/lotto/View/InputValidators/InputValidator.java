@@ -8,6 +8,5 @@ public class InputValidator extends Validator {
 
     public InputValidator(){
         userInput = Console.readLine();
-        Console.close();
     }
 }

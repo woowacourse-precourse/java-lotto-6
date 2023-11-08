@@ -14,7 +14,7 @@ public class PurchasePriceValidator extends InputValidator{
         int purchasePrice;
         try {
             purchasePrice = validateStringIsInt(userInputPurchasePrice);
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessages.PURCHASE_PRICE_FORM.getString());
         }
         if (purchasePrice < 1000) {

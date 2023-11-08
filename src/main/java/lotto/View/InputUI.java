@@ -2,7 +2,6 @@ package lotto.View;
 
 import lotto.View.InputValidators.PurchasePriceValidator;
 import lotto.View.InputValidators.WinningNumberValidator;
-
 import java.util.List;
 
 public class InputUI {

@@ -41,7 +41,7 @@ public class Lotto {
 
     rank rankLotto(int same, int bonus){ //로또 등수 매기기
         if(same == 3){
-            return rank.FIRST;
+            return rank.FIFTH;
         }
         if(same == 4){
             return rank.FOURTH;
@@ -53,9 +53,9 @@ public class Lotto {
             return rank.SECOND;
         }
         if(same == 6){
-            return rank.FIFTH;
+            return rank.FIRST;
         }
-        return rank.OUT;
+        return null;
     }
 
     void checkLotto(int[] prizeWin){ // 로또 비교

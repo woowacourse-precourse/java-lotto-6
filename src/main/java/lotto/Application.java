@@ -13,6 +13,8 @@ public class Application {
         lottoGame.initStat();
         lottoGame.stareStat();
 
+        lottoGame.calc();
 
+        lottoGame.printPrizeWinStat();
     }
 }

@@ -9,18 +9,19 @@ public class Game {
     static final int LIMIT_LOTTO_NUMBER = 45;
     static final int LOWEST_RANK = 5;
 
-    int numOfLotto;
     Lotto publishedLotto[];
+    rank[] ranking = rank.values();
+    int numOfLotto;
     int prizeWinNum[] = new int[LIMIT_LOTTO_NUMBER + 1];
-    int winStat[] = new int[LOWEST_RANK + 1];
-    int prizeWinMoney = 0;
+    int winStat[] = new int[LOWEST_RANK];
+    double prizeWinMoney = 0;
+    double credit;
 
-    int inputCredit() { //로또 구매 금액 입력
-        int credit;
+    double inputCredit() { //로또 구매 금액 입력
 
 
         System.out.println("구입금액을 입력해 주세요.");
-        credit = Integer.parseInt(readLine());
+        credit = Double.parseDouble(readLine());
 
 
         if (credit % LOTTO_PRICE != 0) {
@@ -33,7 +34,7 @@ public class Game {
     void buyLotto() { //로또 구매 시 예외 처리
         while (true) {
             try {
-                numOfLotto = inputCredit() / LOTTO_PRICE;
+                numOfLotto = (int)inputCredit() / LOTTO_PRICE;
                 publishedLotto = new Lotto[numOfLotto];
                 break;
             } catch (IllegalArgumentException e) {
@@ -73,7 +74,7 @@ public class Game {
     String[] inputNum(){ // 당첨 번호 입력
         String[] input;
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         input = readLine().split(",");
 
         return input;
@@ -89,7 +90,7 @@ public class Game {
     String inputBonusNum(){ //보너스 번호 입력
         String input;
 
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         input = readLine();
 
         return input;
@@ -106,8 +107,8 @@ public class Game {
         setBounusNum(inputBonusNum());
     }
 
-    void initStat(){ //통계 저장 초기화
-        for(int i = 0; i < winStat.length;i++) {
+    void initStat(){
+        for(int i = 0; i < winStat.length; i++) {
             winStat[i] = 0;
         }
     }
@@ -115,7 +116,9 @@ public class Game {
     void statistics(Lotto published){ //각각의 로또 순위 확인
         published.checkLotto(prizeWinNum);
 
-        winStat[published.ranking.ordinal()]++;
+        if(published.ranking != null) {
+            winStat[published.ranking.ordinal()]++;
+        }
     }
 
     void stareStat(){ //모든 로또 순위 통계 저장
@@ -124,28 +127,18 @@ public class Game {
         }
     }
 
-    int rankMoney(int i){ //순위별 금액
-        if(i == 1){
-            return 2000000000;
+    void calc(){ //당첨금 계산
+        for(rank r : ranking){
+            prizeWinMoney += r.getNumWinMoney() * winStat[r.ordinal()];
         }
-        if(i == 2){
-            return 30000000;
-        }
-        if(i == 3){
-            return 1500000;
-        }
-        if(i == 4){
-            return 50000;
-        }
-        if(i == 5){
-            return 5000;
-        }
-        return 0;
     }
 
-    void calc(){ //당첨금 계산
-        for(int i = 0; i<winStat.length; i++){
-            prizeWinMoney += rankMoney(i) * winStat[i];
+    void printPrizeWinStat(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for(rank r : ranking){
+            System.out.println(r.getAnsNum() + " " + r.getKorWinMoney() + " - " + winStat[r.ordinal()] + "개");
         }
+        System.out.println("총 수익률은 " + prizeWinMoney / credit + "%입니다.");
     }
 }

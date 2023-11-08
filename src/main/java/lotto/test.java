@@ -13,7 +13,7 @@ public class test {
     @Test
     void 당첨번호_분리_입력_테스트() {
 
-        String testInput = "1,3,5,7,9,11";
+        String testInput = "23,45,5,7,9,11";
         String testNum[] = testInput.split(",");
         String testBonus = "2";
         final int RESULT = 8; // 1이 6개, 2가 1개, 나머지가 0인 배열이므로 총 합이 8이 나와야 한다.
@@ -24,7 +24,7 @@ public class test {
         testGame.setBounusNum(testBonus);
 
         for (int i = 1; i <= testGame.LIMIT_LOTTO_NUMBER; i++) {
-            if (i == 1 || i == 3 || i == 5 || i == 7 || 1 == 9 || i == 11) // 당첨번호가 인덱스인 위치의 값이 1인지 확인
+            if (i == 23 || i == 45 || i == 5 || i == 7 || 1 == 9 || i == 11) // 당첨번호가 인덱스인 위치의 값이 1인지 확인
                 assertThat(testGame.prizeWinNum[i]).isOne();
             else if (i == 2) {
                 assertThat(testGame.prizeWinNum[i]).isEqualTo(2); // 보너스번호가 인덱스인 위치의 값이 2인지 확인
@@ -155,12 +155,14 @@ public class test {
 
     @Test
     void 당첨금_확인(){
-        for(int i = 0; i < testGame.winStat.length; i++) {
-            testGame.winStat[i] = 1;
-        }
+        testGame.winStat[1] = 0;
+        testGame.winStat[2] = 0;
+        testGame.winStat[3] = 0;
+        testGame.winStat[4] = 2;
+        testGame.winStat[5] = 1;
 
         testGame.calc();
 
-        assertThat(testGame.prizeWinMoney).isEqualTo(2031555000);
+        assertThat(testGame.prizeWinMoney).isEqualTo(105000);
     }
 }

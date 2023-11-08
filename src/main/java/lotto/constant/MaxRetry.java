@@ -12,4 +12,8 @@ public enum MaxRetry {
     public int getValue() {
         return value;
     }
+
+    public boolean isBelow(int retryCount) {
+        return retryCount < this.getValue();
+    }
 }

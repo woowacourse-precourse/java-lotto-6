@@ -2,7 +2,6 @@ package lotto.controller;
 
 import static lotto.constant.Message.WINNING_STATS;
 
-import lotto.constant.MaxRetry;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
 import lotto.dto.ReturnRateDto;
@@ -34,7 +33,7 @@ public class LottoController extends AbstractRetry {
     }
 
     private LottoPurchaseDto purchaseLotto() {
-        return run(MaxRetry.COUNT.getValue(), () -> {
+        return run(() -> {
             String inputPurchaseAmount = view.askPurchaseAmount();
             return service.buyLottery(inputPurchaseAmount);
         });
@@ -48,7 +47,7 @@ public class LottoController extends AbstractRetry {
     }
 
     private WinningResultDto drawLotto(final LottosDto lottosDto) {
-        return run(MaxRetry.COUNT.getValue(), () -> {
+        return run(() -> {
             String inputWinningNumber = view.askWinningNumber();
             String inputBonusNumber = view.askBonusNumber();
             return service.generateWinningResult(

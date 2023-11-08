@@ -13,7 +13,11 @@ public class LottoService {
     public Lotto createLotto(String numbers) {
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number: numbers.split(",")) {
-            winningNumbers.add(Integer.parseInt(number));
+            try {
+                winningNumbers.add(Integer.parseInt(number));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호에 정수가 아닌 입력이 있습니다.");
+            }
         }
         return new Lotto(winningNumbers);
     }

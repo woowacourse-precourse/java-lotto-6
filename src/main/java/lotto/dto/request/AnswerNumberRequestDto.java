@@ -20,4 +20,12 @@ public class AnswerNumberRequestDto {
         lotto.containNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
+
+    public Lotto getLotto() {
+        return new Lotto(lotto.getLottoNumbers());
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

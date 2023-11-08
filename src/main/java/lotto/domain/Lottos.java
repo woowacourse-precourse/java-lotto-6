@@ -3,7 +3,10 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+
+import lotto.dto.request.AnswerNumberRequestDto;
 import lotto.dto.response.LottosResponseDto;
+import lotto.util.Rank;
 
 public class Lottos {
 
@@ -29,5 +32,11 @@ public class Lottos {
 
     public LottosResponseDto toResponse() {
         return new LottosResponseDto(lottos);
+    }
+
+    public StatisticsMachine matchNumber(AnswerNumberRequestDto answerNumberRequestDto) {
+        List<Rank> ranks = new ArrayList<>();
+        lottos.forEach(lotto->ranks.add(lotto.result(answerNumberRequestDto.getLotto(),answerNumberRequestDto.getBonusNumber())));
+        return new StatisticsMachine(ranks);
     }
 }

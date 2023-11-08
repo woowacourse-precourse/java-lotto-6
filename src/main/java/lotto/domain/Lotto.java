@@ -1,8 +1,11 @@
 package lotto.domain;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import lotto.util.Rank;
 
 public class Lotto {
     public static final int MINIMUM_NUMBER = 1;
@@ -59,5 +62,18 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    public Rank result(Lotto resultLotto, int bonusNumber) {
+        boolean matchBonusNumber = visitNumber[bonusNumber];
+        int matchCount = Math.toIntExact(resultLotto.getLottoNumbers()
+            .stream().filter(number -> visitNumber[number])
+            .count());
+        return Rank.getRank(matchCount, matchBonusNumber);
+
     }
 }

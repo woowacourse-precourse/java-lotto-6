@@ -7,4 +7,8 @@ public class LottoRepository {
     public void saveAll(Lottos lottos) {
         this.lottos = lottos;
     }
+
+	public Lottos findLottos() {
+		return lottos;
+	}
 }

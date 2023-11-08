@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LuckyTest {
 
-    Lucky computer = new Lucky(Arrays.asList(1,2,3,4,5,6), 7);
+    Lucky computer = new Lucky(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
 
     @ParameterizedTest(name = "로또 번호:{0}, 결과: {1}")
     @MethodSource("lottoRank")
@@ -38,28 +38,28 @@ class LuckyTest {
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLuckyByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lucky(List.of(1, 2, 3, 4, 5, 5),7))
+        assertThatThrownBy(() -> new Lucky(List.of(1, 2, 3, 4, 5, 5), 7))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호와 보너스 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLuckyByDuplicatedNumberWithBonus() {
-        assertThatThrownBy(() -> new Lucky(List.of(1, 2, 3, 4, 5, 6),6))
+        assertThatThrownBy(() -> new Lucky(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("당첨 번호에 1미만 45초과의 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLuckyByRange() {
-        assertThatThrownBy(() -> new Lucky(List.of(1, 2, 3, 4, 5, 46),6))
+        assertThatThrownBy(() -> new Lucky(List.of(1, 2, 3, 4, 5, 46), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호에 1미만 45초과의 숫자가 있으면 예외가 발생한다.")
     @Test
     void createBonusByRange() {
-        assertThatThrownBy(() -> new Lucky(List.of(1, 2, 3, 4, 5, 6),47))
+        assertThatThrownBy(() -> new Lucky(List.of(1, 2, 3, 4, 5, 6), 47))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

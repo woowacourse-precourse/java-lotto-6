@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ResultRepositoryTest {
 
-    ResultRepository resultRepository=new ResultRepository();
+    ResultRepository resultRepository = new ResultRepository();
 
     @Test
     @DisplayName("당첨 횟수를 저장한다")
-    void 당첨_회수_저장(){
+    void 당첨_회수_저장() {
         //given
         resultRepository.init();
         resultRepository.save(Rank.FIRST);
@@ -21,8 +21,8 @@ class ResultRepositoryTest {
 
 
         //when
-        int first=resultRepository.findWinningByRank(Rank.FIRST);
-        int fifth=resultRepository.findWinningByRank(Rank.FIFTH);
+        int first = resultRepository.findWinningByRank(Rank.FIRST);
+        int fifth = resultRepository.findWinningByRank(Rank.FIFTH);
 
         //then
         assertThat(first).isEqualTo(1);

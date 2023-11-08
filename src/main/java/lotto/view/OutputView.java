@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     public void printCount(int count) {
-        //System.out.println();
         System.out.printf("%d개를 구매했습니다.\n", count);
     }
 
@@ -24,7 +23,6 @@ public class OutputView {
     public void printWinningStatistics(ResultRepository resultRepository) {
         System.out.println("당첨 통계");
         System.out.println("---");
-
         System.out.println(resultRepository);
     }
 

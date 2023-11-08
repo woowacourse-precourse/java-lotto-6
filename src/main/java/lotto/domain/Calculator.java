@@ -7,7 +7,7 @@ public class Calculator {
     ResultRepository resultRepository = new ResultRepository();
 
     public double getRateOfReturn() {
-        return getTotalReward() / (getNumberOfLotto() *10);
+        return getTotalReward() / (getNumberOfLotto() * 10);
     }
 
     private double getTotalReward() {

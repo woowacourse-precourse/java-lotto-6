@@ -1,5 +1,7 @@
 package lotto.controller;
 import lotto.entity.Lotto;
+import lotto.entity.LottoResult;
+import lotto.entity.User;
 import lotto.service.LottoService;
 import lotto.view.Prompt;
 import java.util.ArrayList;
@@ -21,6 +23,9 @@ public class LottoController {
 
         List<Integer> lottoNumbers = getLottoNumbersFromUser();
         Integer bonusNumber = getBonusNumbersFromUser(lottoNumbers);
+        User user = new User(money, lottoNumbers, bonusNumber);
+
+        LottoResult lottoResult = lottoService.matchResult(user, boughtLotto);
 
 
     }

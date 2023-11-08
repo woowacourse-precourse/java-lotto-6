@@ -56,4 +56,6 @@
 
 ### LottoMachine
 - 소비자가 구입한 로또 개수만큼 자동 로또 생성
-- 
+
+### ListDataTypeConverter
+- 리스트가 보관하고 있는 데이터 타입을 변환

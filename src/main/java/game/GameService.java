@@ -19,12 +19,9 @@ public class GameService {
         List<Lotto> lottos = createLottoByPrice(price);
         getLottoByPrice(lottos);
 
-//        WinningNumber winningNumber = getWinningNumber();
-        WinningNumber winningNumberAndBonus;
         List<Integer> winningNumber = getWinningNumber();
         int bonus = getBonusNumber(winningNumber);
-
-        winningNumberAndBonus = new WinningNumber(winningNumber, bonus);
+        WinningNumber winningNumberAndBonus = new WinningNumber(winningNumber, bonus);
 
         printWinningResult(lottos, winningNumberAndBonus, price);
 
@@ -32,19 +29,18 @@ public class GameService {
 
     public int getPrice() {
         int price = 0;
-        while (price == 0) {
+        while (true) {
             try {
                 String priceInput = Console.readLine();
                 InputValidator.validatePurchasePrice(priceInput);
                 price = Integer.parseInt(priceInput);
-                return price;
-            } catch (Exception e) {
+                break;
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
         return price;
     }
-
 
     public List<Lotto> createLottoByPrice(int price) {
         List<Lotto> lottos = new ArrayList<>();
@@ -53,6 +49,7 @@ public class GameService {
 
         for (int i = 0; i < createLottoNumber; i++) {
             List<Integer> newLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+//            Collections.sort(newLotto);
             lottos.add(new Lotto(newLotto));
         }
         return lottos;
@@ -66,31 +63,40 @@ public class GameService {
 
     public List<Integer> getWinningNumber() {
         System.out.println(ConstantMessage.WINNING_NUMBER_INPUT.getMessage());
-        List<Integer> winningNumbers = new ArrayList<>();
 
-        while (winningNumbers.size() != 6) {
+        String[] winningNumberInput;
+        while (true) {
             try {
-                String[] winningNumberInput = Console.readLine().split(",");
+                winningNumberInput = Console.readLine().split(",");
                 InputValidator.validateWinningNumber(winningNumberInput);
-                for (String number : winningNumberInput) {
-                    winningNumbers.add(Integer.parseInt(number));
-                }
-            } catch (Exception e) {
+                break;
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+
+        List<Integer> winningNumbers = getWinningNumberStringToInteger(winningNumberInput);
+        return winningNumbers;
+    }
+
+    public List<Integer> getWinningNumberStringToInteger(String[] winningNumberInput) {
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : winningNumberInput) {
+            winningNumbers.add(Integer.parseInt(number));
         }
         return winningNumbers;
     }
 
-
     public int getBonusNumber(List<Integer> winningNumbers) {
         System.out.println(ConstantMessage.BONUS_INPUT.getMessage());
+
         int bonus = 0;
-        while (bonus == 0) {
+        while (true) {
             try {
                 String bonusInput = Console.readLine();
                 InputValidator.validateBonus(bonusInput, winningNumbers);
                 bonus = Integer.parseInt(bonusInput);
+                break;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -159,5 +165,4 @@ public class GameService {
         double result = totalBenefit * 100.0 / price;
         return Math.round(result * 10) / 10.0;
     }
-
 }

@@ -17,24 +17,12 @@ public enum Rank {
     }
 
     public static Rank getRank(int hitCount, boolean isBonusNumberIncluded) {
-        if (isBonusNumberIncluded && hitCount == FIFTH.hitCount) {
-            return Rank.FIFTH;
-        }
-
-        if (hitCount == FORTH.hitCount) {
-            return Rank.FORTH;
-        }
-
-        if (hitCount == THIRD.hitCount) {
-            return Rank.THIRD;
-        }
-
-        if (hitCount == SECOND.hitCount) {
+        if (isBonusNumberIncluded && hitCount == SECOND.hitCount) {
             return Rank.SECOND;
         }
 
-        if (hitCount == FIRST.hitCount) {
-            return Rank.FIRST;
+        for (Rank rank : values()) {
+            if (hitCount == rank.getHitCount()) return rank;
         }
 
         return Rank.NO_RANK;

@@ -1,11 +1,12 @@
 package lotto.domain;
 
-import java.util.HashMap;
+import static lotto.utils.ConstantString.NEW_LINE;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import lotto.service.PrizeChecker;
-import lotto.utils.LottoConstant;
+import java.util.StringJoiner;
+import lotto.domain.wrapper.PurchaseAmount;
+import lotto.service.WinningLotto;
 import lotto.utils.LottoConstantValue;
 import lotto.utils.Prize;
 
@@ -16,28 +17,34 @@ public class Lottos {
         this.lottos = lottos;
     }
 
+    public Lottos(PurchaseAmount purchaseAmount) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int count = 0; count < purchaseAmount.getAvailableLottoCount(); count++) {
+            lottos.add(new Lotto());
+        }
+        this.lottos = lottos;
+    }
+
     public int getLottoCount() {
         return lottos.size();
     }
 
-    public Map<Prize, Integer> getLottosResult(PrizeChecker prizeChecker) {
-        Map<Prize, Integer> lottosResult = new HashMap<>();
+    public int getPrizeCount(Prize prize, WinningLotto winningLotto) {
+        int prizeCount = 0;
         for (Lotto lotto : lottos) {
-            Prize prize = prizeChecker.calculatePrize(lotto);
-            if (prize.equals(Prize.NO_PRIZE)) {
-                continue;
+            if (winningLotto.getPrize(lotto) == prize) {
+                prizeCount++;
             }
-            Integer prizeCount = lottosResult.getOrDefault(prize, LottoConstantValue.DEFAULT_COUNT.get());
-            prizeCount++;
-            lottosResult.put(prize, prizeCount);
         }
-        return lottosResult;
+        return prizeCount;
     }
 
     @Override
     public String toString() {
-        return lottos.stream()
-                .map(Lotto::toString)
-                .collect(Collectors.joining(LottoConstant.NEW_LINE.get()));
+        StringJoiner lottosPrinting = new StringJoiner(NEW_LINE);
+        for (Lotto lotto : lottos) {
+            lottosPrinting.add(lotto.toString());
+        }
+        return lottosPrinting.toString();
     }
 }

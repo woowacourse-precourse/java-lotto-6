@@ -27,13 +27,17 @@ public class LottoDto {
         }
     }
 
-    public record Result(Map<LottoRanking, Integer> result) {
+    public static class Result {
+        private final Map<LottoRanking, Integer> result;
+
+        private Result(Map<LottoRanking, Integer> result) {
+            this.result = result;
+        }
 
         public static Result from(LottoRankings lottoResult) {
             return new Result(lottoResult.getResult());
         }
 
-        @Override
         public Map<LottoRanking, Integer> result() {
             return Map.copyOf(result);
         }

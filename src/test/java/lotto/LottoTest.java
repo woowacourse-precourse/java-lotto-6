@@ -106,5 +106,19 @@ class LottoTest {
             String output = outContent.toString();
             assertThat(output).contains("14개를 구매했습니다.");
         }
+
+        @DisplayName("생성된 로또 번호를 정상적으로 출력한다.")
+        @Test
+        void outputLottoNumbersTest() {
+            LottoRepository lottoRepository = new LottoRepository();
+
+            lottoRepository.saveLottos(List.of(1, 2, 3, 4, 5, 6));
+            lottoRepository.saveLottos(List.of(2, 3, 4, 5, 6, 7));
+
+            OutputView.outputAllLottoNumbers(lottoRepository.findLottos());
+
+            String output = outContent.toString();
+            assertThat(output).contains("[1, 2, 3, 4, 5, 6]", "[2, 3, 4, 5, 6, 7]");
+        }
     }
 }

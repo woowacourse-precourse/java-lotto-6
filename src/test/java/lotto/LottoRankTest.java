@@ -21,7 +21,7 @@ class LottoRankTest {
             "1, true, 0",
             "0, true, 0",
     })
-    void matchLottoReward(int match, boolean bonus, long expected) {
+    void testGetWinningRank(int match, boolean bonus, long expected) {
         long actual = LottoRank.getWinningRank(match, bonus).getReward();
         assertEquals(expected, actual);
     }

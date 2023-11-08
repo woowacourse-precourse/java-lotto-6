@@ -40,4 +40,7 @@ public class LottoMatchResult {
     }
 
 
+    public LottoMatchResultDto toDto() {
+        return new LottoMatchResultDto(lottoRankCount, profitRate);
+    }
 }

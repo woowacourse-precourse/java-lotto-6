@@ -22,12 +22,6 @@ class LottoTicketsTest {
     @BeforeEach
     public void init(){
         tickets.add(new Lotto(List.of(8, 21, 23, 41, 42, 43)));
-        tickets.add(new Lotto(List.of(3, 5, 11, 16, 32, 38)));
-        tickets.add(new Lotto(List.of(7, 11, 16, 35, 36, 44)));
-        tickets.add(new Lotto(List.of(1, 8, 11, 31, 41, 42)));
-        tickets.add(new Lotto(List.of(13, 14, 16, 38, 42, 45)));
-        tickets.add(new Lotto(List.of(7, 11, 30, 40, 42, 43)));
-        tickets.add(new Lotto(List.of(2, 13, 22, 32, 38, 45)));
         tickets.add(new Lotto(List.of(1, 3, 5, 14, 22, 45)));
 
         expectedTickets = new LottoTickets(tickets);
@@ -42,23 +36,17 @@ class LottoTicketsTest {
                     assertThat(lottoTickets).isEqualTo(expectedTickets);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
-                List.of(3, 5, 11, 16, 32, 38),
-                List.of(7, 11, 16, 35, 36, 44),
-                List.of(1, 8, 11, 31, 41, 42),
-                List.of(13, 14, 16, 38, 42, 45),
-                List.of(7, 11, 30, 40, 42, 43),
-                List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
 
 
     @Test
-    @DisplayName("로또 당첨 개수 추출")
-    void calculateResult(){
+    @DisplayName("로또 5등 당첨 확인")
+    void calculate5PlaceResult(){
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    LottoTickets lottoTickets = new LottoTickets(8);
+                    LottoTickets lottoTickets = new LottoTickets(2);
                     WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
                     BonusNumber bonusNumber = new BonusNumber(winningNumber, "7");
 
@@ -67,14 +55,79 @@ class LottoTicketsTest {
                     assertThat(lottoTickets.calculateResult(winningNumber, bonusNumber)).isEqualTo(expectedResult);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
-                List.of(3, 5, 11, 16, 32, 38),
-                List.of(7, 11, 16, 35, 36, 44),
-                List.of(1, 8, 11, 31, 41, 42),
-                List.of(13, 14, 16, 38, 42, 45),
-                List.of(7, 11, 30, 40, 42, 43),
-                List.of(2, 13, 22, 32, 38, 45),
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
 
+    @Test
+    @DisplayName("로또 4등 당첨 확인")
+    void calculate4PlaceResult(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    LottoTickets lottoTickets = new LottoTickets(2);
+                    WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
+                    BonusNumber bonusNumber = new BonusNumber(winningNumber, "7");
+
+                    LottoResults expectedResult = new LottoResults( 0, 0, 0, 1, 0);
+
+                    assertThat(lottoTickets.calculateResult(winningNumber, bonusNumber)).isEqualTo(expectedResult);
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(1, 3, 5, 2, 22, 45)
+        );
+    }
+
+    @Test
+    @DisplayName("로또 3등 당첨 확인")
+    void calculate3PlaceResult(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    LottoTickets lottoTickets = new LottoTickets(2);
+                    WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
+                    BonusNumber bonusNumber = new BonusNumber(winningNumber, "7");
+
+                    LottoResults expectedResult = new LottoResults( 0, 0, 1, 0, 0);
+
+                    assertThat(lottoTickets.calculateResult(winningNumber, bonusNumber)).isEqualTo(expectedResult);
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(1, 2, 3, 4, 5, 45)
+        );
+    }
+
+    @Test
+    @DisplayName("로또 2등 당첨 확인")
+    void calculate2PlaceResult(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    LottoTickets lottoTickets = new LottoTickets(2);
+                    WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
+                    BonusNumber bonusNumber = new BonusNumber(winningNumber, "7");
+
+                    LottoResults expectedResult = new LottoResults( 0, 1, 0, 0, 0);
+
+                    assertThat(lottoTickets.calculateResult(winningNumber, bonusNumber)).isEqualTo(expectedResult);
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(1, 2, 3, 4, 5, 7)
+        );
+    }
+
+    @Test
+    @DisplayName("로또 1등 당첨 확인")
+    void calculate1PlaceResult(){
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    LottoTickets lottoTickets = new LottoTickets(2);
+                    WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
+                    BonusNumber bonusNumber = new BonusNumber(winningNumber, "7");
+
+                    LottoResults expectedResult = new LottoResults( 1, 0, 0, 0, 0);
+
+                    assertThat(lottoTickets.calculateResult(winningNumber, bonusNumber)).isEqualTo(expectedResult);
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+    }
 }

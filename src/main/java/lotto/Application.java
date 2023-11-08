@@ -29,8 +29,17 @@ public class Application {
         }
     }
 
+    public static int calculateAndPrintLottoQuantity(String purchaseAmount) {
+        int lottoQuantity = Integer.parseInt(purchaseAmount) / 1000;
+        System.out.println(lottoQuantity + "개를 구매했습니다.");
+        return lottoQuantity;
+    }
+
     public static void main(String[] args) {
         String purchaseAmount = inputPurchaseAmount();
+        System.out.println();
 
+        int lottoQuantity = calculateAndPrintLottoQuantity(purchaseAmount);
+        // generateAndPrintLottoNumbers();
     }
 }

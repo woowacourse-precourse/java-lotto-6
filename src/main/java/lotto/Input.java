@@ -12,9 +12,12 @@ public class Input {
 
     public static void setTotalPrice(){
         System.out.println("구입금액을 입력해 주세요.");
-        totalPrice = Integer.parseInt(Console.readLine());
-        System.out.println();
-
+        String strTotalPrice = Console.readLine();
+        if(!strTotalPrice.matches("^[0-9]*$")){
+            System.out.println("[ERROR] 로또 금액은 숫자로만 입력해주세요.");
+            throw new IllegalArgumentException();
+        }
+        totalPrice = Integer.parseInt(strTotalPrice);
         if (totalPrice % 1000 != 0) {
             System.out.println("[ERROR] 로또 금액을 잘못 입력하였습니다..");
             throw new IllegalArgumentException();
@@ -24,7 +27,6 @@ public class Input {
     public static void setWinningNumber(){
         System.out.println("당첨 번호를 입력해 주세요.");
         numberList(Console.readLine());
-        System.out.println();
     }
 
     public static void numberList(String winningNumberWithComma) {
@@ -38,6 +40,5 @@ public class Input {
     public static void setBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusNumber = Integer.parseInt(Console.readLine());
-        System.out.println();
     }
 }

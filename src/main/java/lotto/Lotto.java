@@ -1,9 +1,9 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +15,7 @@ public class Lotto {
     }
 
     public static void validate(List<Integer> numbers) {
+        Set<Integer> setNumbers = new HashSet<>(numbers);
         if (numbers.size() != 6) {
             System.out.println("[ERROR] 로또 번호 개수는 6개어야 합니다.");
             throw new IllegalArgumentException();
@@ -26,7 +27,12 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
+
+        if (setNumbers.size() != numbers.size()){
+            throw new IllegalArgumentException();
+        }
     }
+
 
     public List<Integer> getNumbers(Lotto lotto){
         return lotto.numbers;

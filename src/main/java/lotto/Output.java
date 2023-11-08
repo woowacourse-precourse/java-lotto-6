@@ -12,7 +12,6 @@ public class Output {
         for(Lotto lotto : lottoList) {
             System.out.println(lotto.getNumbers(lotto));
         }
-        System.out.println();
     }
 
     public static void printWinResult(int[] result) {

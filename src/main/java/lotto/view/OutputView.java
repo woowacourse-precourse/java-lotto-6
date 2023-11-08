@@ -3,6 +3,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Result;
 
 public class OutputView {
 
@@ -30,5 +31,9 @@ public class OutputView {
 
     public void printLottoCount(int lottoCount) {
         System.out.printf("%d개를 구매했습니다.\n", lottoCount);
+    }
+
+    public void printBenefitRate(double benefitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", benefitRate);
     }
 }

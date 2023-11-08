@@ -10,7 +10,7 @@ public class LottoManager {
     private final int lottoNumberCount = 6;
     private final int minLottoNumber = 1;
     private final int maxLottoNumber = 45;
-/*
+
 
 
     public void launch() {
@@ -18,7 +18,7 @@ public class LottoManager {
         // 에러 발생시 재시도 로직 추가
 
     }
- */
+
     public boolean verifyPurchaseAmount(int purchaseAmount) {
         return isValidPurchaseAmount(purchaseAmount);
     }

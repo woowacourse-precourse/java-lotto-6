@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Validation {
     public void isPaymentDivided(int payment){
@@ -18,6 +20,13 @@ public class Validation {
 
     public boolean isDuplicate(List<Integer> numSet, int toCheck){
         return !numSet.contains(toCheck);
+    }
+
+    public void isDuplicateExistDataSet(List<Integer> numSet){
+        Set<Integer> set = new HashSet<>(numSet);
+        if(set.size() != numSet.size()){
+            throw new IllegalArgumentException(Progress.ERROR_DUPLICATE.getMessage());
+        }
     }
 
     public void isWinningValidate(List<Integer> numSet, int toCheck){

@@ -28,22 +28,29 @@ public class GameController {
         inputAmount();
     }
     public void inputAmount() {
-        boolean validInput = false;
         int amount = 0;
 
-        while (!validInput) {
+        while (true) {
             try {
-                amount = Integer.parseInt(Console.readLine());
+                amount = stringToInteger(Console.readLine());
                 checkAmountValid(amount);
-                validInput = true; // 올바른 입력이 들어온 경우 반복 종료
+                game.setAmount(amount);
+                break;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 유효하지 않은 입력입니다. 다시 입력해주세요.");
+                System.out.println(e.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
-            game.setAmount(amount);
         }
+    }
+
+    public int stringToInteger(String input) {
+        for (int i = 0; i < input.length(); i++) {
+            if (!Character.isDigit(input.charAt(i))) {
+                throw new NumberFormatException("[ERROR] 유효하지 않은 입력입니다. 다시 입력해주세요.");
+            }
+        }
+        return Integer.parseInt(input);
     }
 
     private void checkAmountValid(int amount) {

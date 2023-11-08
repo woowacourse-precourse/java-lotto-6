@@ -42,4 +42,14 @@ package lotto.controller;public class LottoController {
         }
         return lottoList;
     }
+
+
+    private static Lotto makeLotto() {
+        LottoNumbers lottoNumbers = new LottoNumbers();
+        lotto = new ArrayList<>();
+
+        lotto = lottoNumbers.setRandomNumbers();
+        System.out.println(lotto);
+        return new Lotto(lotto);
+    }
 }

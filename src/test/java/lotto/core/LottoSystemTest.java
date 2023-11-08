@@ -13,12 +13,13 @@ import lotto.core.lotto.LottoTicketScratcher;
 import lotto.core.lotto.ScratchedLottoTicketList;
 import lotto.core.lotto.WinningNumbers;
 import lotto.core.numbergenerator.NumberGenerator;
-import org.assertj.core.api.Assertions;
+import lotto.core.numbergenerator.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoSystemTest {
-    private final static NumberGenerator numberGenerator = new NumberGenerator();
+    private final static RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private final static NumberGenerator numberGenerator = new NumberGenerator(randomNumberGenerator);
     private final static OutputManager outputManager = new OutputManager();
     private final static Calculator calculator = new Calculator();
     private final static LottoTicketScratcher LottoTicketScratcher = new LottoTicketScratcher();

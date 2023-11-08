@@ -6,14 +6,16 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.List;
 import lotto.core.calculator.Calculator;
 import lotto.core.iomanangers.OutputManager;
 import lotto.core.lotto.LottoTicketScratcher;
 import lotto.core.numbergenerator.NumberGenerator;
-import org.assertj.core.api.Assertions;
+import lotto.core.numbergenerator.RandomNumberGenerator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 class LottoStoreTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -35,11 +37,18 @@ class LottoStoreTest {
     @Test
     void start() {
         OutputManager outputManager = new OutputManager();
-        NumberGenerator numberGenerator = new NumberGenerator();
+        RandomNumberGenerator mockRandomNumberGenerator = Mockito.mock(RandomNumberGenerator.class);
+        NumberGenerator numberGenerator = new NumberGenerator(mockRandomNumberGenerator);
         Calculator calculator = new Calculator();
         LottoTicketScratcher lottoTicketScratcher = new LottoTicketScratcher();
         LottoStore storeForTest = LottoStore.createStoreForTest(lottoTicketScratcher, calculator, numberGenerator,
                 outputManager);
+
+        Mockito.when(mockRandomNumberGenerator.createRandomUniqueNumber())
+                .thenReturn(List.of(1, 2, 3, 4, 11, 23)).thenReturn(List.of(11, 22, 33, 44, 32, 36))
+                .thenReturn(List.of(11, 22, 33, 44, 32, 36)).thenReturn(List.of(11, 22, 33, 44, 32, 36))
+                .thenReturn(List.of(11, 22, 33, 44, 32, 36)).thenReturn(List.of(11, 22, 33, 44, 32, 36))
+                .thenReturn(List.of(11, 22, 33, 44, 32, 36)).thenReturn(List.of(11, 22, 33, 44, 32, 36));
 
         String input = "8000\n1,2,3,4,5,6\n7\n";
         System.setIn(new ByteArrayInputStream(input.getBytes()));

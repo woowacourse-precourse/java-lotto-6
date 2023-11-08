@@ -7,7 +7,6 @@ import static lotto.core.enums.LottoNumberEnum.START_VALUE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.core.exception.IllegalAmountException;
 import lotto.core.exception.IllegalOverValueException;
@@ -19,7 +18,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class NumberGeneratorTest {
-    private static final NumberGenerator numberGenerator = new NumberGenerator();
+    private final static RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+    private final static NumberGenerator numberGenerator = new NumberGenerator(randomNumberGenerator);
     private final static String NORMAL_LOTTO_NUMBER = "1,5,23,45,7,8";
     private final static String LOTTO_NUMBER_CONTAIN_TEXT = "s,5,23,45,7,8";
     private final static String LOTTO_NUMBER_CONTAIN_SPACE = " ,5,23,45,7,8";

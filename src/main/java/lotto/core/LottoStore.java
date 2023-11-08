@@ -12,6 +12,7 @@ import lotto.core.lotto.ScratchedLottoTicketList;
 import lotto.core.lotto.LottoTicketScratcher;
 import lotto.core.lotto.WinningNumbers;
 import lotto.core.numbergenerator.NumberGenerator;
+import lotto.core.numbergenerator.RandomNumberGenerator;
 
 public class LottoStore {
     private final LottoSystem lottoSystem;
@@ -23,7 +24,8 @@ public class LottoStore {
     public static LottoStore createStore (){
         OutputManager outputManager = new OutputManager();
         LottoTicketScratcher lottoTicketScratcher = new LottoTicketScratcher();
-        NumberGenerator numberGenerator = new NumberGenerator();
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        NumberGenerator numberGenerator = new NumberGenerator(randomNumberGenerator);
         Calculator calculator = new Calculator();
         LottoSystem lottoSystem = new LottoSystem(calculator,lottoTicketScratcher,numberGenerator, outputManager);
         return new LottoStore(lottoSystem);

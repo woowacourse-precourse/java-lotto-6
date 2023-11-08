@@ -18,8 +18,7 @@ public class LottoTotalPrize {
 
     private void init() {
         Arrays.asList(LottoWinningRank.values())
-                .forEach(winningRank ->
-                        prizeCounts.put(winningRank, INIT_VALUE));
+                .forEach(winningRank -> prizeCounts.put(winningRank, INIT_VALUE));
     }
 
     public void prizeCountPlus(LottoWinningRank winningRank) {

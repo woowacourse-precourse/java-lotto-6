@@ -19,11 +19,20 @@ public class InputWinningNumbersTest extends NsTest {
 
     @Test
     @DisplayName("유효한 당첨 번호 입력 테스트")
-    void getValidWinningNumbers_test(){
+    void getValidWinningNumbers_test() {
         command("1,2,3,4,5,6");
-        List<Integer> winningNumbersTest = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> winningNumbersTest = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         assertThat(input.getValidWinningNumbers()).isEqualTo(winningNumbersTest);
+    }
+
+    @Test
+    @DisplayName("6개가 아닌 당첨번호 입력 시 예외 테스트")
+    void validateNonNumericalPurchaseAmount_test() {
+        assertSimpleTest(() -> {
+            runException("1,2,3,4,5,6,7");
+            assertThat(output()).contains(WINNING_NUMBERS_LENGTH.errorMessage());
+        });
     }
 
     private void command(final String... args) {

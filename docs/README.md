@@ -58,8 +58,59 @@
 <br>
 
 ### ☑️ Model
+> ### Lotto
+> - 로또 객체 생성 및 관리
+> ### User
+> - 당첨 번호, 보너스 번호, 수익률 등 유저에 관한 정보 관리
 
 ### ☑️ View
+> ### UserView
+> - 유저 화면에 나타나는 모든 것을 관리
 
 ### ☑️ Controller
+> ### LottoManager
+> - 로또 게임의 실행을 담당
+> ### UserInput
+> - 사용자로부터 입력을 담당 (구매가격, 당첨번호, 보너스번호)
 
+### ☑️ Exception
+> ### LottoException
+> - 당첨 번호 예외 처리
+>   - 1 ~ 45 범위 내에 있는가
+>   - 6개의 번호를 입력했는가
+>   - 중복된 번호는 없는가
+>   
+> 
+> - 보너스 번호 예외 처리
+>   - 정수 타입으로만 이루어져 있는가
+>   - 1 ~ 45 범위 내에 있는가
+>   - 당첨 번호와 중복되지 않았는가
+> 
+>
+> ### UserException
+> - 구매가격 예외 처리
+>   - 정수 타입으로만 이루어져 있는가
+>   - 1000원 단위로 이루어져 있는가
+>   - 양의 정수인가
+
+### ☑️ Utility
+> ### Constants
+> - 메시지, 숫자 등을 상수로 관리
+>
+>
+> ### Rank
+> - 로또 당첨 등수 기준을 enum 타입으로 관리
+
+
+### ☑️ Test
+> ### controller package
+> 1. LottoManagerTest
+>    - LottoManager class에서 발생 가능한 예외 테스트
+>    
+> 
+> 2. UserInputTest
+>    - UserInput class에서 발생 가능한 예외 테스트
+>
+> ### model package
+> 1. LottoTest
+>    - Lotto class에서 발생 가능한 예외 테스트

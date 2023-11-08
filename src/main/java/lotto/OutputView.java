@@ -17,6 +17,13 @@ public class OutputView {
         }
     }
 
+    public void print(String totalPrizeMoney) {
+        final String PREFIX = "총 수익률은 ";
+        final String SUFFIX = "%입니다.";
+
+        System.out.println(PREFIX + totalPrizeMoney + SUFFIX);
+    }
+
     public void print(Map<Prize, Integer> prizeStatistics) {
         final String HEADER = "당첨 통계";
         final String SEPARATOR = "---------";

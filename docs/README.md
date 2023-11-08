@@ -4,7 +4,7 @@ money(model) 생성
 - [X] inputView 로 string 입력 받기
 - [X] '숫자 생성기'가 숫자로 변환 
 - [X] 검증 : stringToInt, **'숫자 생성기'는 숫자에 관련한 검증만 수행**
-- [X] controller 에게 숫자를 넘겨 money model 생성
+- [X] money model 생성
 - [X] money 모델에게 생성자로 숫자를 넘겨 money 생성 
 - [X] 검증 : money 모델은 비즈니스 로직만 검증 수행
   - [X] 로또 금액에 맞는 금액 ex) 1000으로 나누어 떨어짐
@@ -14,7 +14,7 @@ money(model) 생성
 lottos(model) 생성
    
 - [X] 숫자 생성기로 랜덤 숫자 리스트들을 담은 리스트 생성
-- [X] controller 에게 인자로 리스트들을 넘겨서 Lottos 모델 반환
+- [X] 인자로 리스트들을 넘겨서 Lottos 모델 생성
 - [X] lottos 모델에게 리스트를 넘겨 lottos 생성
 - [X] outputView 에게 Lottos model 을 전달하여 결과 출력
 ***
@@ -26,7 +26,7 @@ lotto(model) 생성
 - [X] 검증 : **'숫자 생성기'는 숫자에 관련한 검증만 수행**
   - [X] stringToInt
   - [X] parsing
-- [X] controller 에게 숫자 리스트 넘겨서 lotto model 하나 생성 및 반환
+- [X] 숫자 리스트 넘겨서 lotto model 하나 생성 및 반환
 - [X] 생성할 때 정렬 수행
 - [X] 검증 : lotto 모델은 로또 관련 비즈니스 로직만 검증
   - [X] 각 숫자가 1 ~ 45인지 범위 체크
@@ -39,7 +39,7 @@ bonus(model) 생성
 - [X] inputView 로 string 입력 받기
 - [X] '숫자 생성기'가 숫자로 변환
 - [X] 검증 : stringToInt, **'숫자 생성기'는 숫자에 관련한 검증만 수행**
-- [X] controller 에게 숫자와 Lotto 를 넘겨 bonus model 생성
+- [X] 숫자와 Lotto 를 넘겨 bonus model 생성
 - [X] bonus 모델에게 생성자로 숫자와 Lotto 를 넘겨 bonus model 생성
 - [X] 검증 : bonus 모델은 비즈니스 로직만 검증 수행
   - [X] 숫자가 1 ~ 45인지 범위 체크
@@ -49,7 +49,7 @@ bonus(model) 생성
 Result(model) 생성하기 ,
 Rank(enum) 객체 활용
 
-- [X] controller 에게 Lotto, bonus, lottos 를 넘겨 result model 생성
+- [X] Lotto, bonus, lottos 를 넘겨 result model 생성
 - [X] Result model 은 Map<Rank,Integer> 을 활용한 일급 컬렉션, key : 등수, value : 몇 개
 - [X] Lotto 끼리 비교를 통해 몇 개의 숫자가 겹치는 지 검증하여 Rank 반환
   - [X] 5개가 겹친다면 bonus 까지 확인
@@ -61,6 +61,6 @@ Rate(model) 생성하기
 money(model) 객체 활용
   
 - [X] 구입 금액을 나타내는 Money 와 총 수익상금을 나타내는 money 를 통해 수익율 도출
-- [X] controller 에게 Money 객체 두 개를 넘겨 Rate model 생성
+- [X] Money 객체 두 개를 넘겨 Rate model 생성
 - [X] BigDecimal을 활용해서 수익율 도출
 - [X] outputView 에게 Rate model 을 전달하여 결과 출력

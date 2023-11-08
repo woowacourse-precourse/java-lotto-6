@@ -1,6 +1,11 @@
 package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
+import lotto.service.LottoService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
@@ -28,5 +33,16 @@ public class ConsoleUI {
         }
         System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
         return purchaseAmount;
+    }
+
+    public static List<List<Integer>> showLotto(int tickets){
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = 0; i < tickets; i++) {
+            List<Integer> lottoNumbers = LottoService.generateRandomLottoNumbers();
+            Lotto lotto = new Lotto(lottoNumbers);
+            result.add(lotto.getNumbers());
+            System.out.println(lotto.getNumbers());
+        }
+        return result;
     }
 }

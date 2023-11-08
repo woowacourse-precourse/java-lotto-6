@@ -44,4 +44,10 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 당첨_번호의_값이_1보다_작은_경우(){
+        assertThatThrownBy(() -> new Lotto(List.of(0,2,3,4,5,6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

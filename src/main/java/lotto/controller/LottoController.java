@@ -27,9 +27,9 @@ public class LottoController {
         BonusNumber bonusNumber = generateBonusNumber();
         Console.close();
 
-        WinningLottoCounts winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);
-        Profit profit = new Profit(winningLottoCounts, money);
-        output.printResult(winningLottoCounts, profit.calculate());
+        WinningLottos winningLottos = countWinningLottos(myLottos, winningNumbers, bonusNumber);
+        Profit profit = new Profit(winningLottos, money);
+        output.printResult(winningLottos, profit.calculate());
     }
 
     private Money generateMoney() {
@@ -68,5 +68,10 @@ public class LottoController {
             System.out.println(e.getMessage());
             return generateBonusNumber();
         }
+    }
+
+    private WinningLottos countWinningLottos(List<Lotto> myLottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);
+        return new WinningLottos(winningChecker.countWinningLottos());
     }
 }

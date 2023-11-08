@@ -21,8 +21,9 @@ class ProfitTest {
         WinningNumbers winningNumbers = new WinningNumbers(List.of("1", "2", "3", "40", "41", "42"));
         BonusNumber bonusNumber = new BonusNumber("45");
 
-        WinningLottoCounts winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);
-        Profit profit = new Profit(winningLottoCounts, new Money("8000"));
+        WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);
+        WinningLottos winningLottos = new WinningLottos(winningChecker.countWinningLottos());
+        Profit profit = new Profit(winningLottos, new Money("8000"));
 
         //when
         double profitTest = profit.calculate();

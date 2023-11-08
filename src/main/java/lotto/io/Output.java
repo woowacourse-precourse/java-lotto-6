@@ -2,7 +2,7 @@ package lotto.io;
 
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
-import lotto.domain.WinningLottoCounts;
+import lotto.domain.WinningLottos;
 
 import java.util.List;
 
@@ -32,9 +32,9 @@ public class Output {
         System.out.println(INPUT_BONUS_NUMBER);
     }
 
-    public void printResult(WinningLottoCounts winningLottoCounts, double profit) {
+    public void printResult(WinningLottos winningLottos, double profit) {
         printWinningResultMessage();
-        printWinningCounts(winningLottoCounts);
+        printWinningCounts(winningLottos);
         printProfit(profit);
     }
 
@@ -44,12 +44,12 @@ public class Output {
         System.out.println(THREE_HYPHEN);
     }
 
-    private static void printWinningCounts(WinningLottoCounts winningLottoCounts) {
-        System.out.printf(WINNING_THREE_NUMBERS, winningLottoCounts.getCount(Rank.FIFTH.getRankIndex()));
-        System.out.printf(WINNING_FOUR_NUMBERS, winningLottoCounts.getCount(Rank.FOURTH.getRankIndex()));
-        System.out.printf(WINNING_FIVE_NUMBERS, winningLottoCounts.getCount(Rank.THIRD.getRankIndex()));
-        System.out.printf(WINNING_FIVE_ADD_BONUS_NUMBERS, winningLottoCounts.getCount(Rank.SECOND.getRankIndex()));
-        System.out.printf(WINNING_SIX_NUMBERS, winningLottoCounts.getCount(Rank.FIRST.getRankIndex()));
+    private static void printWinningCounts(WinningLottos winningLottos) {
+        System.out.printf(WINNING_THREE_NUMBERS, winningLottos.getCount(Rank.FIFTH.getRankIndex()));
+        System.out.printf(WINNING_FOUR_NUMBERS, winningLottos.getCount(Rank.FOURTH.getRankIndex()));
+        System.out.printf(WINNING_FIVE_NUMBERS, winningLottos.getCount(Rank.THIRD.getRankIndex()));
+        System.out.printf(WINNING_FIVE_ADD_BONUS_NUMBERS, winningLottos.getCount(Rank.SECOND.getRankIndex()));
+        System.out.printf(WINNING_SIX_NUMBERS, winningLottos.getCount(Rank.FIRST.getRankIndex()));
     }
 
     private static void printProfit(double profit) {

@@ -9,9 +9,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WinningLottoCountsTest {
+class WinningLottosTest {
 
-    WinningLottoCounts winningLottoCounts;
+    WinningLottos winningLottos;
 
     @BeforeEach
     void setUp() {
@@ -24,8 +24,8 @@ class WinningLottoCountsTest {
                 , new Lotto(List.of(1, 2, 10, 11, 12, 13)));//none
         WinningNumbers winningNumbers = new WinningNumbers(List.of("1", "2", "3", "4", "5", "6"));
         BonusNumber bonusNumber = new BonusNumber("7");
-
-        winningLottoCounts = new WinningLottoCounts(myLottos, winningNumbers, bonusNumber);
+        WinningChecker winningChecker = new WinningChecker(myLottos, winningNumbers, bonusNumber);
+        winningLottos = new WinningLottos(winningChecker.countWinningLottos());
     }
 
     @ParameterizedTest
@@ -37,7 +37,7 @@ class WinningLottoCountsTest {
         //when
 
         //then
-        assertThat(winningLottoCounts.getCount(rankIndex)).isEqualTo(count);
+        assertThat(winningLottos.getCount(rankIndex)).isEqualTo(count);
     }
 
     @ParameterizedTest
@@ -49,6 +49,6 @@ class WinningLottoCountsTest {
         //when
 
         //then
-        assertThat(winningLottoCounts.getPrize(rank)).isEqualTo(prize);
+        assertThat(winningLottos.getPrize(rank)).isEqualTo(prize);
     }
 }

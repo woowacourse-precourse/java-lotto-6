@@ -25,14 +25,14 @@ public class Lottos {
         Map<LottoResult, Integer> result = getInitialResultMap();
 
         lottos.forEach(lotto -> {
-                    Optional<LottoResult> lottoResult = checkLottoResult(lotto, winningNumber, bonusNumber);
+                    Optional<LottoResult> lottoResult = checkWinningResult(lotto, winningNumber, bonusNumber);
                     lottoResult.ifPresent(l -> result.merge(l, INCREMENT_COUNT, Integer::sum));
                 }
         );
         return new GameResult(result);
     }
 
-    private Optional<LottoResult> checkLottoResult(Lotto lotto, WinningNumber winningNumber, int bonusNumber) {
+    private Optional<LottoResult> checkWinningResult(Lotto lotto, WinningNumber winningNumber, int bonusNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         List<Integer> winningNumbers = winningNumber.getNumbers();
 

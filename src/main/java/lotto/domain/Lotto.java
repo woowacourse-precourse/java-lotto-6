@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -89,7 +88,6 @@ public class Lotto {
         for (int i = 0; i < result.size(); i++) {
             sum += profit.get(i) * result.get(i);
         }
-        System.out.println("sum = " + sum);
         return String.format("%.1f", sum / money * 100);
     }
 }

@@ -5,7 +5,6 @@ import static lotto.constant.ErrorMessage.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.constant.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;

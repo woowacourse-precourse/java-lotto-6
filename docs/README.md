@@ -2,11 +2,11 @@
 
 ## 1. 기능 요구사항 (핵심만)
 
-- 로또 1000원
-- 사용자가 값을잘못 입력할 경우 예외 처리 및 "[Error]" 메시지 출력 후 해당 부분부터 입력받기
+- [x] 로또 1000원
+- [x] 사용자가 값을잘못 입력할 경우 예외 처리 및 "[Error]" 메시지 출력 후 해당 부분부터 입력받기
     - try-catch 시, throws 작은 단위 설정
     - try-catch 위치는 금액 입력 단계
-- 모든 예외 문구는 출력을 통해 보여줘야함.
+- [x] 모든 예외 문구는 출력을 통해 보여줘야함.
 
 ## 2. 프로그래밍 요구사항
 
@@ -67,13 +67,13 @@
         - ⚠️ count() : 내부 method - 해당 class에 존재하는게 맞는지 , util로 분리해야할지 고민
     - income() : 수익률 출력
 
-2. model package
+2.✅ model package
 
 - [x] Lotto : 로또번호 list
 - [x] RankTable : enum clas로 맞춘 번호 개수, bonus 여부, 획득 상금 여부에 따른 변수 생성
-- [ ] ClientLottoData : 구매가격, 로또 티켓 개수, 로또 리스트, 순위표 리스트
-    - ⚠️ 해당 변수를 private으로 변경 및 getter(), setter() 사용 여부 고민 - setter() 안좋다는 얘기를 들었는데 확인하기 -> 생성자로만 값 설정? 빌더 패턴?
-- [ ] WinningLottoNumber : 당첨 번호, 보너스 번호
+- [x] ClientLottoData : 구매가격, 로또 티켓 개수, 로또 리스트, 순위표 리스트
+    - ⚠️ 해당 변수를 private으로 변경 및 getter(), setter() 사용 여부 고민 -> private으로 변수 변경 및 getter() setter() 설정
+- [x] WinningLottoNumber : 당첨 번호, 보너스 번호
     - ⚠️ 해당 변수를 private으로 변경 및 getter(), setter() 사용 여부 고민 - setter() 안좋다는 얘기를 들었는데 확인하기 -> 생성자로만 값 설정? 빌더 패턴?
 
 3. util package
@@ -95,6 +95,6 @@
 
 4. controller
 
-- LottoController
-    - ⚠️ controller에서 iv를 최소한으로 줄이는 것이 좋지 않을까?
-    - ⚠️ iv가 꼭 필요한 경우 생성자를 통해서 객체를 넣을 수 있지만, 해당 객체 내부에 값을 넣어야하는 경우는 어떻게 해결?
+- [ ] LottoController
+    - [x] ⚠️ controller에서 iv를 최소한으로 줄이는 것이 좋지 않을까? 줄이는게 좋다.
+    - [x] ⚠️ iv가 꼭 필요한 경우 생성자를 통해서 객체를 넣을 수 있지만, 해당 객체 내부에 값을 넣어야하는 경우는 어떻게 해결? run()

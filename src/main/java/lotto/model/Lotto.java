@@ -1,7 +1,10 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import static lotto.global.ErrorMessage.DUPLICATE_NUMBER;
 import static lotto.model.LottoInfo.NUMBER_COUNT;
 
 public class Lotto {
@@ -9,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -16,6 +20,11 @@ public class Lotto {
         if (numbers.size() != NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
+    }
+    private void validNumbers(List<Integer> numbers){
+        Set<Integer> set = new HashSet<>(numbers);
+        if(set.size()!=NUMBER_COUNT)
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.toString());
     }
 
     public int match(List<Integer> goal, Integer bonus){

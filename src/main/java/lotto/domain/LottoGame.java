@@ -5,8 +5,6 @@ import java.util.List;
 public class LottoGame extends IndexModel {
 
     private final ThousandUnitMoney purchaseAmount;
-    private final Lottos automaticLottos;
-    private final Lotto winningNumbers;
     private final LottoNumber bonusNumber;
     private final WinningResult winningResult;
 

@@ -32,17 +32,17 @@ public class LottoTicketService {
         return new LottoTicketCount(ticketCount);
     }
 
-    public Lotto createLotto() {
-        return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count)
-                .stream()
-                .sorted()
-                .collect(Collectors.collectingAndThen(Collectors.toList(), Lotto::new));
-    }
-
     public LottoBundle generateLottoBundle(int ticketCount) {
         List<Lotto> lottoBundle = IntStream.range(DEFAULT_COUNT, ticketCount)
                 .mapToObj(countIndex -> createLotto())
                 .toList();
         return new LottoBundle(lottoBundle);
+    }
+
+    public Lotto createLotto() {
+        return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count)
+                .stream()
+                .sorted()
+                .collect(Collectors.collectingAndThen(Collectors.toList(), Lotto::new));
     }
 }

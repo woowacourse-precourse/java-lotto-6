@@ -25,12 +25,11 @@ public class WinningNumber {
     }
 
     private List<Integer> validateNumber(String stringNumbers) {
-        try{
+        try {
             return Arrays.stream(stringNumbers.split(SPLITOR))
                     .map(Integer::parseInt)
                     .toList();
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
         }
     }
@@ -48,25 +47,31 @@ public class WinningNumber {
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().mapToInt(v -> v).min().orElse(0) < LOTTO_MIN_NUMBER||
+        if (numbers.stream().mapToInt(v -> v).min().orElse(0) < LOTTO_MIN_NUMBER ||
                 numbers.stream().mapToInt(v -> v).max().orElse(0) > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다");
         }
     }
-    public int checkLotto(List<Integer> numbers, BonusNumber bonus){
+
+    public int checkLotto(List<Integer> numbers, BonusNumber bonus) {
         int count = 0;
-        for(int number: numbers){
-            if(winningNumbers.contains(number)){
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
                 count++;
             }
-            if(count == 5){
-                count += 2 * Boolean.compare(bonus.checkBonus(numbers),false);
+            if (count == 5) {
+                count += 2 * Boolean.compare(bonus.checkBonus(numbers), false);
             }
+        }
+        if (count == 7) {
+            count--;
+        } else if (count == 6) {
+            count++;
         }
         return count;
     }
 
-    public List<Integer> getWinningNumbers(){
+    public List<Integer> getWinningNumbers() {
         return this.winningNumbers;
     }
 }

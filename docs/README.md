@@ -54,7 +54,7 @@ check new branch
 - userBonus()
   - input : null / return : void
   - 보너스 번호 받아 bonus에 Integer 타입으로 저장
-- checkLotto()
+- checkLottos()
   - input : null / return : void
   - 로또 개수 만큼 for문 진행하여 맞춘 개수에 따라 correct 값 증가
 - result()

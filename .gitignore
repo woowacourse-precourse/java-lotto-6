@@ -30,3 +30,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+*.jar
+*.war
+*.ear
+*.class

@@ -36,14 +36,9 @@ public class Bonus {
      * @return int type
      */
     private int convertStringToInteger(String bonusNumber) {
-        int bonus;
-        try {
-            bonus = Integer.parseInt(bonusNumber);
-        } catch(NumberFormatException exception) {
-            throw new IllegalArgumentException(ValidatorMessage.INVALID_BONUS_NUMERIC);
-        }
+        validateIsNumeric(bonusNumber);
 
-        return bonus;
+        return Integer.parseInt(bonusNumber);
     }
 
     public void validate(Integer number, Lotto winLotto) {
@@ -67,6 +62,12 @@ public class Bonus {
     private void validateContainsWinLotto(Integer number, Lotto lotto) {
         if (lotto.contains(number)) {
             throw new IllegalArgumentException(ValidatorMessage.INVALID_BONUS_DUPLICATE_WIN_LOTTO);
+        }
+    }
+
+    private void validateIsNumeric(String number) {
+        if (!number.matches("^\\d+$")) {
+            throw new IllegalArgumentException(ValidatorMessage.INVALID_INPUT_NUMERIC);
         }
     }
 }

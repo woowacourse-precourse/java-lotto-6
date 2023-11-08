@@ -20,17 +20,14 @@ public class InputNumberProvider implements NumberProvider {
     public Integer getSingle() throws IllegalArgumentException, IOException {
         String input = reader.readLine();
         try {
-            Integer number = Integer.parseInt(input);
-            if (number % 1000 != 0)
-                throw new IllegalArgumentException(ExceptionStatus.MONEY_SHOULD_BE_MULTIPLE_OF_THOUSAND.getMessage());
-            return number;
+            return Integer.parseInt(input);
         }catch (NumberFormatException exception) {
             throw new IllegalArgumentException(ExceptionStatus.INPUT_OUT_OF_RANGE.getMessage());
         }
     }
 
     @Override
-    public List<Integer> getMultiple() throws IllegalArgumentException, IOException {
+    public List<Integer> getMultiple(int number) throws IllegalArgumentException, IOException {
         String input = reader.readLine();
         StringTokenizer stringTokenizer = new StringTokenizer(input, ",");
         List<Integer> result = new ArrayList<>();
@@ -38,16 +35,13 @@ public class InputNumberProvider implements NumberProvider {
             String token = stringTokenizer.nextToken();
             try {
                 Integer value = Integer.parseInt(token);
-                if (0 > value || value > 45) {
-                    throw new IllegalArgumentException(
-                            ExceptionStatus.MONEY_SHOULD_BE_MULTIPLE_OF_THOUSAND.getMessage()
-                    );
-                }
                 result.add(value);
             }catch (NumberFormatException exception) {
                 throw new IllegalArgumentException(ExceptionStatus.INPUT_OUT_OF_RANGE.getMessage());
             }
         }
+        if (result.size() != number)
+            throw new IllegalArgumentException(ExceptionStatus.INPUT_NUM_IS_WRONG.getMessage());
         return result;
     }
 }

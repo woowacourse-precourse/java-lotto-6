@@ -3,6 +3,7 @@ package controller;
 import camp.nextstep.edu.missionutils.Console;
 import model.ErrorMessage;
 import model.Lotto;
+import model.LottoInit;
 import model.Purchase;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class UserInput {
     //사용자 인풋을 담당하는 클래스
     //객체 생성이 필요 없다.
 
+    private static final String SEPERATE = ",";
     public static int purchasePrice() {
         int price;
         while (true) {
@@ -27,7 +29,7 @@ public class UserInput {
 
     public static List<Integer> prizeNumber() {
         String inputNumber = Console.readLine();
-        List<String> strPrizeNumbers = Arrays.asList(inputNumber.split(","));
+        List<String> strPrizeNumbers = Arrays.asList(inputNumber.split(SEPERATE));
         List<Integer> prizeNumbers = new ArrayList<>();
         for (String prize : strPrizeNumbers) {
             int number = Integer.parseInt(prize);
@@ -47,7 +49,7 @@ public class UserInput {
     }
 
     static void validateNumber(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LottoInit.MINIMUM.getInitial() || number > LottoInit.MAXIMUM.getInitial()) {
             throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE_NUMBER.getMessage());
         }
     }

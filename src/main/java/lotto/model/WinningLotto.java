@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utils.Validator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ public class WinningLotto {
     private final Integer bonusNumber;
 
     public WinningLotto (String[] numbers, String bonusNumber) {
+        Validator.DuplicateBonusNumber(numbers,bonusNumber);
         this.numbers = stringArrayToIntegerList(numbers);
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }

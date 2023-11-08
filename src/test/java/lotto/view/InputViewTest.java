@@ -80,5 +80,14 @@ public class InputViewTest {
                 .hasMessageContaining(ErrorMessage.NOT_INTEGER.getMessage());
     }
 
+    @DisplayName("입력받은 보너스 로또 번호가 로또 번호와 중복된다면 예외가 발생한다.")
+    @Test
+    void testValidateBonusNumber(){
+        String[] input = {"1","2","3","4","5","6"};
+        String bonusNumber = "1";
+        assertThatThrownBy(()-> Validator.DuplicateBonusNumber(input,bonusNumber)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.NUMBER_DUBPLICATE_BONUS_NUMBER.getMessage());
+    }
+
 
 }

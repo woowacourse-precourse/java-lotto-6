@@ -121,4 +121,12 @@ public class Validator {
         }
         return false;
     }
+
+    public static void DuplicateBonusNumber(String[] numbers, String bonusNumber){
+        for (String number : numbers){
+            if(number!=null&&number.equals(bonusNumber)){
+                throw new IllegalArgumentException(ErrorMessage.NUMBER_DUBPLICATE_BONUS_NUMBER.getMessage());
+            }
+        }
+    }
 }

@@ -9,7 +9,7 @@ public enum LottoRank {
     FIFTH(3, false, 5_000),
     FOURTH(4, false, 50_000),
     THIRD(5, false, 1_500_00),
-    SECOND(5, false, 30_000_000),
+    SECOND(5, true, 30_000_000),
     FIRST(6, false, 2_000_000_000);
 
     private final int matchCount;
@@ -22,16 +22,8 @@ public enum LottoRank {
         this.winnings = winningAmount;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
     public int getWinnings() {
         return winnings;
-    }
-
-    public boolean isMatchBonus() {
-        return matchBonus;
     }
 
     public static LottoRank valueOf(int matchCount, boolean matchBonus) {

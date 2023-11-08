@@ -45,7 +45,6 @@ public class InputView {
     }
 
     private static String getWinningNumbersFromUser() {
-        System.out.println();
         System.out.println(INPUT_WINNING_LOTTO);
         return Console.readLine();
     }
@@ -75,7 +74,6 @@ public class InputView {
     }
 
     private static int getBonusNumberFromUser() {
-        System.out.println();
         System.out.println(INPUT_BONUS_NUMBER);
         String input = Console.readLine();
         return parsePayment(input);
@@ -93,12 +91,10 @@ public class InputView {
     }
 
     public static void printTicketCnt(Buyer buyer) {
-        System.out.println();
         System.out.printf(TICKETS_COUNT_OUTPUT, buyer.getTicketCnt());
     }
 
     public static void printTicketCntForTest(int payment) {
-        System.out.println();
         System.out.printf(TICKETS_COUNT_OUTPUT, payment / 1000);
     }
 

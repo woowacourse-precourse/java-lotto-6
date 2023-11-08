@@ -9,10 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.utils.Constants.WINNING_PRIZE_STATISTICS;
+
 public class OutputView {
 
     public void getStatistic(Buyer buyer, Winning winning) {
-        System.out.println("\n당첨 통계\n---");
+        System.out.println(WINNING_PRIZE_STATISTICS);
         List<Lotto> lottos = buyer.getLotto();
         Lotto winningLotto = winning.getLotto();
         int bonus = winning.getBonus();

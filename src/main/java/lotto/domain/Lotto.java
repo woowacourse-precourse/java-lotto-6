@@ -21,12 +21,14 @@ public class Lotto {
     }
 
     public int countMatches(List<Integer> winningNumbers) {
-        return (int) numbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
+        return (int) numbers.stream().filter(winningNumbers::contains).count();
     }
 
     public boolean contains(int bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

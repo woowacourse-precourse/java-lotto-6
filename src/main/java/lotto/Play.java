@@ -170,7 +170,7 @@ public class Play {
         return result;
     }
 
-    public void checkSuccess(List<Integer> answerNums, int bonusNum) {
+    public void checkSuccess(int bonusNum) {
         int[] result = new int[lottoNumber + 2];  // n개 일치하는 로또 개수 저장할 배열. 마지막 자리는 5개일치+보너스
         for (Lotto lotto : lottos) {
             int cnt = 0;
@@ -203,6 +203,6 @@ public class Play {
         List<Integer> answerNums = getAnswerNums();
         answers = makeListToArray(answerNums);
         int bonusNum = getBonusNum();
-        checkSuccess(answerNums, bonusNum);
+        checkSuccess(bonusNum);
     }
 }

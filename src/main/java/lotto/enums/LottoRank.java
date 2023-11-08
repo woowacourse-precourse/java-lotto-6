@@ -42,7 +42,7 @@ public enum LottoRank {
     public static LottoRank determineRank(int winningCount, boolean bonusMatch) {
         return Arrays.stream(LottoRank.values())
             .filter(rank -> rank.getWinningCount() == winningCount)
-            .filter(rank -> rank.isBonusMatch() == bonusMatch || !rank.isBonusMatch())
+            .filter(rank -> rank.isBonusMatch() == bonusMatch)
             .findAny()
             .orElse(null);
     }

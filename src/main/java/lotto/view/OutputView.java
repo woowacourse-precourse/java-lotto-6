@@ -12,6 +12,7 @@ public class OutputView {
     private static final String PRINT_WINNING_STATS_RESULT_MESSAGE = "%d개 일치 (%,d원) - %d개\n";
     private static final String PRINT_WINNING_STATS_BONUS_RESULT_MESSAGE = "5개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
     private static final String PRINT_TOTAL_EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String PRINT_NEW_LINE = "\n";
 
     public void printPurchaseAmount(int purchaseAmount) {
         System.out.printf(PRINT_PURCHASE_RESULT_MESSAGE, purchaseAmount);
@@ -20,7 +21,7 @@ public class OutputView {
     public void printLottoNumbers(Lotteries lotteries) {
         String lotteriesNumbers = lotteries.getLotteries().stream()
                 .map(lotto -> String.valueOf(lotto.getNumbers()))
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(PRINT_NEW_LINE));
         System.out.println(lotteriesNumbers);
     }
 

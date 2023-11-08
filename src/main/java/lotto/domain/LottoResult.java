@@ -34,36 +34,23 @@ public class LottoResult {
     public void countWinningCase(List<Lotto> lotteries, WinningLotto winningLotto) {
         for (Lotto lotto : lotteries) {
             winningCount = lotto.compareTo(winningLotto.getWinningLotto());
-            countResultMap(winningCount);
-            countBonusNumber(lotto, winningLotto.getBonusNumber().getNumber());
+            boolean isMatchBonusNumber = isMatchBonusNumber(lotto, winningLotto.getBonusNumber().getNumber());
+            countResultMap(winningCount, isMatchBonusNumber);
         }
     }
 
-    private void countResultMap(int winningCount) {
-        if (winningCount == PriceConstant.FIFTH_PLACE.getCount()) {
-            resultMap.put(PriceConstant.FIFTH_PLACE.getLabel(), resultMap.get(PriceConstant.FIFTH_PLACE.getLabel()) + 1);
-        }
-        if (winningCount == PriceConstant.FOURTH_PLACE.getCount()) {
-            resultMap.put(PriceConstant.FOURTH_PLACE.getLabel(), resultMap.get(PriceConstant.FOURTH_PLACE.getLabel()) + 1);
-        }
-        if (winningCount == PriceConstant.FIRST_PLACE.getCount()) {
-            resultMap.put(PriceConstant.FIRST_PLACE.getLabel(), resultMap.get(PriceConstant.FIRST_PLACE.getLabel()) + 1);
+    private void countResultMap(int winningCount, boolean isMatchBonusNumber) {
+        PriceConstant priceConstant = PriceConstant.countWinningPrice(winningCount, isMatchBonusNumber);
+        if (priceConstant != null) {
+            resultMap.put(priceConstant.getLabel(), resultMap.get(priceConstant.getLabel()) + 1);
         }
     }
 
-    private void countBonusNumber(Lotto lotto, int bonusNumber) {
-        if (winningCount != PriceConstant.THIRD_PLACE.getCount()) {
-            return;
-        }
-
+    private boolean isMatchBonusNumber(Lotto lotto, int bonusNumber) {
         if (lotto.isCompareByBonusNumber(bonusNumber)) {
-            resultMap.put(PriceConstant.SECOND_PLACE.getLabel(),
-                    resultMap.get(PriceConstant.SECOND_PLACE.getLabel()) + 1);
-            return;
+            return true;
         }
-
-        resultMap.put(PriceConstant.THIRD_PLACE.getLabel(),
-                resultMap.get(PriceConstant.THIRD_PLACE.getLabel()) + 1);
+        return false;
     }
 
     public Map<String, Integer> getResultMap() {

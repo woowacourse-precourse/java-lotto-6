@@ -1,5 +1,7 @@
 package lotto.constant;
 
+import java.util.Arrays;
+
 public enum PriceConstant {
     FIFTH_PLACE("fifth", 3, 5_000),
     FOURTH_PLACE("fourth", 4, 50_000),
@@ -23,6 +25,25 @@ public enum PriceConstant {
 
     public int getCount() {
         return count;
+    }
+
+    public static PriceConstant countWinningPrice(int winningCount, boolean isMathchBonusNumber) {
+
+        if (winningCount == SECOND_PLACE.getCount()) {
+            return countSecondOrThirdPrice(isMathchBonusNumber);
+        }
+
+        return Arrays.stream(PriceConstant.values())
+                .filter(priceConstant -> priceConstant.count == winningCount)
+                .findFirst()
+                .orElse(null);
+    }
+
+    private static PriceConstant countSecondOrThirdPrice(boolean isMatchBonusNumber) {
+        if (isMatchBonusNumber) {
+            return SECOND_PLACE;
+        }
+        return THIRD_PLACE;
     }
 
     public static int getPriceByLabel(String label) {

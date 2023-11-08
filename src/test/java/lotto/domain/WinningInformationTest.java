@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import constants.ErrorMessage;
+import lotto.constants.ErrorMessage;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;

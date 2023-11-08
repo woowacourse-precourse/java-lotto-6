@@ -1,7 +1,7 @@
-package lotto;
+package lotto.domain;
 
-import constants.ErrorMessage;
-import constants.NumberType;
+import lotto.constants.ErrorMessage;
+import lotto.constants.NumberType;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -67,7 +67,7 @@ class LottoTest {
         Lotto answerLotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 6)
                 .map(LottoNumber::of)
                 .toList());
-        LottoNumber bonusNumber = LottoNumber.of(7);
+//        LottoNumber bonusNumber = LottoNumber.of(7);
 
         //When
         int expectedResult = 6;

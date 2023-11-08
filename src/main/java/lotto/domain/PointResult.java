@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import constants.Grade;
+import lotto.constants.Grade;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;

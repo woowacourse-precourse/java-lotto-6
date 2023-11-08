@@ -1,12 +1,11 @@
-package view;
+package lotto.view;
 
-import constants.Grade;
-import constants.OutputMessage;
-import lotto.Lotto;
+import lotto.constants.Grade;
+import lotto.constants.OutputMessage;
 
 public class OutputView {
 
-    private static String HORIZONTAL_RULE = "---";
+    private static final String HORIZONTAL_RULE = "---";
 
     public static void printMoneyInputMessage() {
         System.out.println(OutputMessage.MONEY_INPUT_MESSAGE.getMessage());
@@ -32,9 +31,9 @@ public class OutputView {
         System.out.println(HORIZONTAL_RULE);
     }
 
-    public static void printLottoString(Lotto lotto) {
-        System.out.println(lotto.getGeneratedLottoString());
-    }
+//    public static void printLottoString(Lotto lotto) {
+//        System.out.println(lotto.getGeneratedLottoString());
+//    }
 
     public static void printResult(Grade grade, int count) {
         System.out.printf(grade.getMessage(), count);

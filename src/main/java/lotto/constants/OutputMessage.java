@@ -1,4 +1,4 @@
-package constants;
+package lotto.constants;
 
 public enum OutputMessage {
     MONEY_INPUT_MESSAGE("구입금액을 입력해 주세요."),

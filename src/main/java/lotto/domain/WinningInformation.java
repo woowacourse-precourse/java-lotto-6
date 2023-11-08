@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import constants.ErrorMessage;
+import lotto.constants.ErrorMessage;
 
 public class WinningInformation {
     private final Lotto answerLotto;

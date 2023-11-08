@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class PointCalculator {
     private final double BONUS_NUMBER_MATCH_POINT = 0.5;

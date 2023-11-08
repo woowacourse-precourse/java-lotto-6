@@ -1,8 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import constants.Grade;
+import lotto.constants.Grade;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

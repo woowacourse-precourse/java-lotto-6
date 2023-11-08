@@ -1,7 +1,7 @@
-package lotto;
+package lotto.domain;
 
-import constants.ErrorMessage;
-import constants.NumberType;
+import lotto.constants.ErrorMessage;
+import lotto.constants.NumberType;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;

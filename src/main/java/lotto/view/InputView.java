@@ -1,7 +1,7 @@
-package view;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import constants.ErrorMessage;
+import lotto.constants.ErrorMessage;
 
 public class InputView {
     private static final String INPUT_DELIMITER = ",";

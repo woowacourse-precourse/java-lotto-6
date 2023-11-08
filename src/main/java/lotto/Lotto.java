@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,5 +41,36 @@ public class Lotto {
         stringBuilder.append(numbers.get(numbers.size()-1)).append("]");
 
         return stringBuilder.toString();
+    }
+
+    public int checkWinningNumbers(List<Integer> winningNumbers){
+
+        int count = 0;
+        for(int number : winningNumbers){
+            if(this.numbers.contains(number)){
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public boolean checkBonusNumber(int bonusNumber){
+
+        return this.numbers.contains(bonusNumber);
+    }
+
+    public int checkResult(List<Integer> winningNumbers, int bonusNumber){
+
+        int count = checkWinningNumbers(winningNumbers);
+        boolean bonus = checkBonusNumber(bonusNumber);
+        if(bonus){
+            count++;
+        }
+
+        if(count == 5 && !bonus){
+            return 7;
+        }
+        return count;
     }
 }

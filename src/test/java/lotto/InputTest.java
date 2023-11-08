@@ -3,10 +3,8 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -60,6 +58,7 @@ public class InputTest {
     void normalBonusNumberInput() {
         Input input = new Input();
 
+        input.winningNumbersInput("1,2,3,4,5,6");
         assertThat(input.bonusNumberInput("11"))
                 .isEqualTo(new ArrayList<>(Arrays.asList(11)));
         assertThat(input.bonusNumberInput("45"))
@@ -70,6 +69,7 @@ public class InputTest {
     void nonNumericBonusNumberInput() {
         Input input = new Input();
 
+        input.winningNumbersInput("1,2,3,4,5,6");
         assertThatThrownBy(() -> input.bonusNumberInput("!1"))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> input.bonusNumberInput("1#"))
@@ -84,6 +84,7 @@ public class InputTest {
     void emptyBonusNumberInput() {
         Input input = new Input();
 
+        input.winningNumbersInput("1,2,3,4,5,6");
         assertThatThrownBy(() -> input.bonusNumberInput(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -92,6 +93,7 @@ public class InputTest {
     void notIn1To45BonusNumberInput() {
         Input input = new Input();
 
+        input.winningNumbersInput("1,2,3,4,5,6");
         assertThatThrownBy(() -> input.bonusNumberInput("46"))
                 .isInstanceOf(IllegalArgumentException.class);
 
@@ -150,6 +152,32 @@ public class InputTest {
         assertThatThrownBy(() -> input.winningNumbersInput("0,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> input.winningNumbersInput("41,42,43,44,45,46"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("당첨 번호 입력시 숫자가 6개 포함되지 않은 문자열의 입력")
+    @Test
+    void overSizeWinningNumberInput() {
+        Input input = new Input();
+
+        assertThatThrownBy(() -> input.winningNumbersInput("1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> input.winningNumbersInput("1,2,3,4,5,6,7,8"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("당첨 번호 입력시 중복된 숫자를 포함한 문자열의 입력")
+    @Test
+    void duplicatedNumberWinningNumberInput() {
+        Input input = new Input();
+
+        assertThatThrownBy(() -> input.winningNumbersInput("1,1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @DisplayName("보너스 번호와 당첨 번호가 중복된 숫자 문자열의 입력")
+    @Test
+    void duplicatedBonusNumberInput() {
+        Input input = new Input();
+
+        assertThatThrownBy(() -> input.bonusNumberInput("1,1,2,3,4,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

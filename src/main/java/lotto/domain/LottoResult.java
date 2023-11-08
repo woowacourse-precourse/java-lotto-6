@@ -14,7 +14,7 @@ public class LottoResult {
         lottoResult = new EnumMap<>(LottoRank.class);
         Arrays.stream(LottoRank
                         .values())
-                .forEach(lottoRank -> lottoResult.put(lottoRank, 0));
+                        .forEach(lottoRank -> lottoResult.put(lottoRank, 0));
     }
 
     public void calculateLottoResult(List<Lotto> lottos, List<Integer> winningNumber, int bonusNumber) {

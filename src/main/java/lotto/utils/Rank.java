@@ -18,7 +18,7 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public Rank getRank(int matchCount, boolean isContainBonusNumber) {
+    public static Rank getRank(int matchCount, boolean isContainBonusNumber) {
         if (matchCount == SECOND.matchCount && !isContainBonusNumber) {
             return Rank.THIRD;
         }

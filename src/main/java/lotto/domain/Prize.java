@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.domain;
 
 public enum Prize {
     FIFTH(3, "(5,000원)", 5000),

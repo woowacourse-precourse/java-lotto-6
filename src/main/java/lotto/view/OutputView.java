@@ -5,8 +5,8 @@ import static lotto.constant.message.OutputMessage.PURCHASE_COUNT_RESULT;
 
 import java.util.List;
 import java.util.Map;
-import lotto.constant.Prize;
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 
 public class OutputView {
     public void printOutputMessage(String message) {

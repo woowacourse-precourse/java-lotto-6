@@ -14,6 +14,7 @@ public class LottoDto {
     private int purchaseAmount;
     private List<Integer> winningNumbers;
     private int bonusNumber;
+    private String totalYield;
 
     public List<List<Integer>> getLottoTickets() {
         return lottoTickets;
@@ -56,5 +57,13 @@ public class LottoDto {
     public void setBonusNumber(int bonusNumber) {
         new BonusNumber(bonusNumber, winningNumbers);
         this.bonusNumber = bonusNumber;
+    }
+
+    public String getTotalYield() {
+        return totalYield;
+    }
+
+    public void setTotalYield(String totalYield) {
+        this.totalYield = totalYield;
     }
 }

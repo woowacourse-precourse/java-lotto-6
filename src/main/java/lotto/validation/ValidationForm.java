@@ -34,21 +34,21 @@ public class ValidationForm {
     static void verifyForWinningNumber(String winningNumber) {
         valueIsEmpty(winningNumber);
         valueContainsSpace(winningNumber);
-        valueIsNumeric(winningNumber);
+//        valueIsNumeric(winningNumber);
         valueIsCorrectRange(winningNumber);
     }
 
     static void verifyForBonusNumber(String bonusNumber) {
         valueIsEmpty(bonusNumber);
         valueContainsSpace(bonusNumber);
-        valueIsNumeric(bonusNumber);
+//        valueIsNumeric(bonusNumber);
         valueIsCorrectRange(bonusNumber);
     }
 
     static void verifyForPurchaseCost(String purchaseCost) {
         valueIsEmpty(purchaseCost);
         valueContainsSpace(purchaseCost);
-        valueIsNumeric(purchaseCost);
+//        valueIsNumeric(purchaseCost);
         costIsStandardUnder(purchaseCost);
         costFormatIsCorrect(purchaseCost);
     }

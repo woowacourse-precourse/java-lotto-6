@@ -41,6 +41,21 @@ class LottoStorageTest extends NsTest {
                 });
     }
 
+    @DisplayName("로또 당첨 내역 기반 총 수익률 출력 테스트")
+    @Test
+    void showLottoProfitRate() {
+        Assertions.assertAll(() -> {
+            run();
+            Assertions.assertTrue(output().contains("총 수익률은 62.5%입니다."));
+        });
+    }
+
+    @Test
+    void compareAllAutomaticLottoWithWinningNumbers() {
+
+    }
+
+
     @Override
     protected void runMain() {
         List<LottoRank> ranks = List.of(
@@ -55,14 +70,7 @@ class LottoStorageTest extends NsTest {
         );
 
         lottoStorage.showAllLottoRankResult(ranks);
+        lottoStorage.showLottoProfitRate(ranks);
     }
 
-//
-//    @Test
-//    void showLottoProfitRate() {
-//    }
-//
-//    @Test
-//    void compareAllAutomaticLottoWithWinningNumbers() {
-//    }
 }

@@ -13,10 +13,9 @@ public class LottoWinningStatistics {
 
     }
 
-    public static LottoStatisticsResult calculateStatistics(Amount purchaseAmount,
-                                                            List<Optional<LottoWinningTier>> optionalTiers) {
+    public static LottoStatisticsResult calculateStatistics(Amount purchaseAmount, List<LottoWinningTier> tiers) {
         Map<LottoWinningTier, Integer> winningTierCountStatistics = createWinningTierCountStatistics();
-        calculateWinningTierCount(winningTierCountStatistics, optionalTiers);
+        calculateWinningTierCount(winningTierCountStatistics, tiers);
 
         Amount totalWinningAmount = calculateTotalWinningAmount(winningTierCountStatistics);
         double percentOfTotalWinningAmount = totalWinningAmount.calculatePercentByUnitAmount(purchaseAmount);
@@ -33,11 +32,8 @@ public class LottoWinningStatistics {
     }
 
     private static void calculateWinningTierCount(Map<LottoWinningTier, Integer> winningTierCountStatistics,
-                                                  List<Optional<LottoWinningTier>> optionalTiers) {
-        optionalTiers.stream()
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .forEach(tier -> increaseWinningTierCount(winningTierCountStatistics, tier));
+                                                  List<LottoWinningTier> tiers) {
+        tiers.forEach(tier -> increaseWinningTierCount(winningTierCountStatistics, tier));
     }
 
     private static void increaseWinningTierCount(Map<LottoWinningTier, Integer> winningTierCountStatistics,

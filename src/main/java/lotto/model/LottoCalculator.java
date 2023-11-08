@@ -44,7 +44,8 @@ public class LottoCalculator {
         for (int i = 0; i < ranks.size(); i++) {
             returnCost += reward.get(i + 1) * ranks.get(i);
         }
-        return ((double) returnCost / inputCost) * 100;
+        double returnRate = ((double) returnCost / inputCost) * 100;
+        return Math.round(returnRate * 100) / 100.0;
 
     }
 }

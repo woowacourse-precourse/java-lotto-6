@@ -40,6 +40,32 @@ class LottoPrizeCalculatorTest {
                 () -> assertThat(result.keySet().contains(LottoPrize.FIFTH_PRIZE)),
                 () -> assertThat(result.keySet().contains(LottoPrize.NONE))
         );
-
     }
+
+    @Test
+    void getProfitRate() {
+
+        WinningLotto winningLotto = WinningLotto.of(Lotto.of(List.of(1, 2, 3, 4, 5, 6)), BonusBall.valueOf(7));
+
+        List<Lotto> boughtLottos = List.of(
+                Lotto.of(List.of(8, 21, 23, 41, 42, 43)),
+                Lotto.of(List.of(3, 5, 11, 16, 32, 38)),
+                Lotto.of(List.of(7, 11, 16, 35, 36, 44)),
+                Lotto.of(List.of(1, 8, 11, 31, 41, 42)),
+                Lotto.of(List.of(13, 14, 16, 38, 42, 45)),
+                Lotto.of(List.of(7, 11, 30, 40, 42, 43)),
+                Lotto.of(List.of(2, 13, 22, 32, 38, 45)),
+                Lotto.of(List.of(1, 3, 5, 14, 22, 45))
+        );
+
+        LottoTickets boughtLottoTickets = LottoTickets.of(boughtLottos);
+
+        Map<LottoPrize, Integer> result = LottoPrizeCalculator.getResult(winningLotto, boughtLottoTickets);
+
+        String profitRate = LottoPrizeCalculator.getProfitRate(result, boughtLottoTickets);
+        System.out.println("profitRate = " + profitRate);
+
+        assertThat(profitRate).contains("62.5");
+    }
+
 }

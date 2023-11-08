@@ -12,8 +12,8 @@ class LottoGeneratorTest {
     @Test
     void buyLottos() {
         assertAll(
-                () -> assertThat(LottoGenerator.buyLottos(LottoPurchaseAmount.valueOf(999)).size()).isEqualTo(0),
-                () -> assertThat(LottoGenerator.buyLottos(LottoPurchaseAmount.valueOf(10100)).size()).isEqualTo(10)
+                () -> assertThat(LottoGenerator.buyLottos(LottoPurchaseAmount.valueOf(1000)).size()).isEqualTo(1),
+                () -> assertThat(LottoGenerator.buyLottos(LottoPurchaseAmount.valueOf(150000)).size()).isEqualTo(150)
         );
 
     }

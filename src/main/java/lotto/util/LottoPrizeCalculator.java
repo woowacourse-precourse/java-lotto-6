@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +23,18 @@ public class LottoPrizeCalculator {
         List<LottoPrize> lottoPrizes = boughtLottos.getLottoPrizes(winningLotto);
 
         return getCountOfWinningRanks(lottoPrizes);
+    }
 
+    public static String getProfitRate(Map<LottoPrize, Integer> countOfWinningRanks, LottoTickets boughtLottos) {
+        BigDecimal result = BigDecimal.valueOf(0);
+
+        for (LottoPrize lottoPrize : countOfWinningRanks.keySet()) {
+            result = result.add(BigDecimal.valueOf(lottoPrize.amount() * countOfWinningRanks.get(lottoPrize)));
+        }
+
+        BigDecimal rate = result.divide(boughtLottos.totalPurchasedAmount(), 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
+
+        return String.format("%.1f", rate);
     }
 
     private static Map<LottoPrize, Integer> getCountOfWinningRanks(List<LottoPrize> winningRanks) {
@@ -32,6 +45,5 @@ public class LottoPrizeCalculator {
 
         return countOfWinningRanks;
     }
-
 
 }

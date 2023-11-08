@@ -19,7 +19,7 @@ public class InputUI {
         System.out.println("구입금액을 입력해 주세요.");
         try {
             return validate(Console.readLine());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
             return getAmount();
@@ -42,7 +42,7 @@ public class InputUI {
     private int validate(String number) {
         try {
             return Integer.parseInt(number);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구매 금액을 확인해주세요. 입력한 구매금액 : " + number);
         }
     }
@@ -52,8 +52,8 @@ public class InputUI {
             return Arrays.stream(numbers.split(DELIMITER))
                     .map(Integer::valueOf)
                     .collect(Collectors.toCollection(ArrayList::new));
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 입력하신 로또 번호를 확인해주세요. 입력한 로또 번호" + numbers);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 입력하신 로또 번호를 확인해주세요. 입력한 로또 번호" + numbers);
         }
     }
 

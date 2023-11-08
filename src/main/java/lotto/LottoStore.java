@@ -24,7 +24,7 @@ public class LottoStore {
     public LottoTickets buyLotto() {
         try {
             return getLottos(LottoPurchaseAmount.valueOf(inputUI.getAmount()));
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
             return buyLotto();

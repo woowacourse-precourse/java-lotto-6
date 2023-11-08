@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import lotto.domain.LottoPrize;
 import lotto.domain.LottoTickets;
+import lotto.util.LottoPrizeCalculator;
 
 /**
  * @author 민경수
@@ -39,28 +40,7 @@ public class ResultUI {
 
     private void appendProfitRate(Map<LottoPrize, Integer> countOfWinningRanks, StringBuilder sb,
                                   LottoTickets boughtLottos) {
-        sb.append("총 수익률은 ").append(getProfitRate(countOfWinningRanks, boughtLottos)).append("%입니다.");
-    }
-
-    private String getProfitRate(Map<LottoPrize, Integer> countOfWinningRanks, LottoTickets boughtLottos) {
-        BigDecimal result = BigDecimal.valueOf(0);
-
-        for (LottoPrize lottoPrize : countOfWinningRanks.keySet()) {
-            result = result.add(BigDecimal.valueOf(lottoPrize.amount() * countOfWinningRanks.get(lottoPrize)));
-        }
-
-        BigDecimal rate = result.divide(boughtLottos.totalPurchasedAmount(), 3, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
-
-        return String.format("%.1f", rate);
-    }
-
-    private BigDecimal getTotalProfit(Map<LottoPrize, Integer> countOfWinningRanks) {
-        BigDecimal result = BigDecimal.ZERO;
-        for (LottoPrize lottoPrize : countOfWinningRanks.keySet()) {
-            result = result.add(BigDecimal.valueOf(lottoPrize.amount() * countOfWinningRanks.get(lottoPrize)));
-        }
-
-        return result;
+        sb.append("총 수익률은 ").append(LottoPrizeCalculator.getProfitRate(countOfWinningRanks, boughtLottos)).append("%입니다.");
     }
 
     private void appendHeader(StringBuilder sb) {
@@ -78,8 +58,8 @@ public class ResultUI {
 
     private String getStatisticFrom(Map<LottoPrize, Integer> countOfWinningRanks, LottoPrize winningRank) {
         return String.format("%s개 일치%s (%,d원) - %d개",
-                winningRank.matchingCount(),
-                winningRank.bonusBallMatchRequired() ? ", 보너스 볼 일치" : "",
+                winningRank.getLottoPrizeCondition().matchNumbersCount(),
+                winningRank.getLottoPrizeCondition().matchBonusBall() ? ", 보너스 볼 일치" : "",
                 winningRank.amount(),
                 countOfWinningRanks.getOrDefault(winningRank, 0));
     }

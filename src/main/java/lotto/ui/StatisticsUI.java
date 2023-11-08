@@ -36,7 +36,7 @@ public class StatisticsUI {
     private Lotto getWinningNumber() {
         try {
             return Lotto.of(getWinningLotto());
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
             return getWinningNumber();
@@ -49,7 +49,7 @@ public class StatisticsUI {
             winningLotto.contain(bonusBall);
 
             return BonusBall.valueOf(bonusBall);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 
             return getBonusNumber(winningLotto);
@@ -57,7 +57,7 @@ public class StatisticsUI {
     }
 
     private List<Integer> getWinningLotto() {
-        return (inputUI.getWinningLotto());
+        return inputUI.getWinningLotto();
     }
 
 }

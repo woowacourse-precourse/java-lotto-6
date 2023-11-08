@@ -6,15 +6,15 @@ import java.util.*;
 
 public class Purchace {
     private static int times;
-    protected static List<Lotto> lottoes;
+    protected static List<List<Integer>> lottoes;
 
     public Purchace(int times) {
         this.times = times;
         this.lottoes = allPurchase();
     }
 
-    private static List<Lotto> allPurchase() {
-        List<Lotto> purchaseLottoes = new ArrayList<>();
+    private static List<List<Integer>> allPurchase() {
+        List<List<Integer>> purchaseLottoes = new ArrayList<>();
 
         for (int i = 0; i < times; i++) {
             purchaseLottoes.add(eachPurchase());
@@ -23,17 +23,16 @@ public class Purchace {
         return purchaseLottoes;
     }
 
-    private static Lotto eachPurchase() {
+    private static List<Integer> eachPurchase() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Lotto lotto = new Lotto(numbers);
 
-        return lotto;
+        return numbers;
     }
 
-    private static void printLottoNumbers(List<Lotto> purchaseLottoes) {
+    private static void printLottoNumbers(List<List<Integer>> purchaseLottoes) {
         System.out.println(times + "개를 구입했습니다.");
         for (int i = 0; i < times; i++) {
-            purchaseLottoes.get(i).printLotto();
+            System.out.println(purchaseLottoes.get(i));
         }
         System.out.println();
     }

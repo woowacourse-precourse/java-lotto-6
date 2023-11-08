@@ -1,9 +1,8 @@
 package lotto.exception;
 
 public enum ExceptionCode {
-    NO_ATTRIBUTE("MODEL-001", "값이 존재하지 않습니다."),
+    NUMBER_FORMAT("VIEW-001", "[ERROR] 숫자 형식으로 입력해주세요."),
 
-    INVALID_RANDOM_NUMBERS_SIZE("SERVICE-001", "랜덤 숫자 길이가 자동차 숫자와 다릅니다.")
     ;
 
     private final String code;

@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import lotto.exception.ExceptionCode;
+
 public class Converter {
 
     public static long toLong(String input) {
@@ -7,7 +9,9 @@ public class Converter {
             return Long.parseLong(input);
 
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 형식으로 입력해주세요.");
+            throw new IllegalArgumentException(
+                    ExceptionCode.NUMBER_FORMAT.getDescription()
+            );
         }
     }
 
@@ -16,7 +20,9 @@ public class Converter {
             return Integer.parseInt(input);
 
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 형식으로 입력해주세요.");
+            throw new IllegalArgumentException(
+                    ExceptionCode.NUMBER_FORMAT.getDescription()
+            );
         }
     }
 }

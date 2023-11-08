@@ -4,15 +4,13 @@ import java.util.List;
 
 public class LottoChecker {
     public static int countMatchingNumbers(Lotto lotto, LottoAnswer lottoAnswer) {
-        int count = 0;
         List<Integer> numbers = lotto.getNumbers();
         List<Integer> answerNumbers = lottoAnswer.getNumbers();
 
-        for (int num : numbers) {
-            if (answerNumbers.contains(num)) {
-                count += 1;
-            }
-        }
+        int count = (int) numbers.stream()
+                .filter(answerNumbers::contains)
+                .count();
+
         if (lottoAnswer.hasBonusNumber() && isBonusNumberMatch(lotto, lottoAnswer.getBonusNumber())) {
             count += 1;
         }

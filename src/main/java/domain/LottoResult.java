@@ -14,43 +14,32 @@ public class LottoResult {
     private int fiveLottoWinning;
     private int fiveBonusLottoWinning;
     private int sixLottoWinning;
+    private boolean isBonusLotto;
 
     private BigDecimal totalProfit;
     private Double profitRate;
 
-    public LottoResult getLottoResultStatistic(List<Lotto> lottoList, UserLotto lottoGame){
-        LottoResult lottoResult = new LottoResult();
 
-        for(Lotto lotto : lottoList){
-            Set<Integer> lottoSet = new HashSet<>(lotto.getNumbers());
-            int winningCount = getContainsLottoCount(lottoSet,lottoGame.getLottoNumbers());
-
-            boolean isBonusLotto = false;
-            if(lottoSet.contains(lottoGame.getBonusNumber())){
-                isBonusLotto = true;
-                winningCount++;
-            }
-            lottoResult.setLottoResultCount(winningCount,isBonusLotto);
-        }
-        BigDecimal totalProfit = lottoResult.createTotalProfit(lottoResult);
-        lottoResult.setProfitRate(totalProfit ,lottoGame.getAmount());
-        return lottoResult;
-    }
-
-
-    private int getContainsLottoCount(Set<Integer> lottoSet, List<Integer> lottoNumbers){
+    public int getEqualsLottoCount(List<Integer> lottoNumbers, UserLotto userLotto){
+        Set<Integer> lottoSet = new HashSet<>(lottoNumbers);
         int winningCount= 0;
 
-        for (Integer userNumber : lottoNumbers) {
+        for (Integer userNumber : userLotto.getLottoNumbers()) {
             if (lottoSet.contains(userNumber)) {
                 winningCount++;
             }
         }
+
+        if(lottoSet.contains(userLotto.getBonusNumber())){
+            this.isBonusLotto = true;
+            winningCount++;
+        }
+
         return winningCount;
     }
 
 
-    public void setLottoResultCount(int winningCount, boolean isBonusLotto){
+    public void setLottoWinning(int winningCount, boolean isBonusLotto){
         if(winningCount == 3){
             this.threeLottoWinning++;
             return;
@@ -77,14 +66,6 @@ public class LottoResult {
     }
 
 
-    public void setProfitRate(BigDecimal totalProfit, int amount){
-        BigDecimal ratio = totalProfit.divide(new BigDecimal(amount), 3, BigDecimal.ROUND_HALF_UP);
-        BigDecimal profitRate = ratio.multiply(new BigDecimal(100));
-
-        this.profitRate = profitRate.doubleValue();
-    }
-
-
     public BigDecimal createTotalProfit(LottoResult lottoResult){
         BigDecimal[] lottoPrices = getBigDecimalLottoPrices();
         BigDecimal[] priceCounts = getBigDecimalPriceCounts(lottoResult);
@@ -97,6 +78,15 @@ public class LottoResult {
 
         return totalProfit;
     }
+
+
+    public Double createProfitRate(BigDecimal totalProfit, int amount){
+        BigDecimal ratio = totalProfit.divide(new BigDecimal(amount), 3, BigDecimal.ROUND_HALF_UP);
+        BigDecimal profitRate = ratio.multiply(new BigDecimal(100));
+
+        return profitRate.doubleValue();
+    }
+
 
     private BigDecimal[] getBigDecimalLottoPrices(){
         return Arrays.stream(LottoWinningPrice.values())
@@ -112,6 +102,7 @@ public class LottoResult {
                 ,new BigDecimal(lottoResult.getFiveBonusLottoWinning())
                 ,new BigDecimal(lottoResult.getSixLottoWinning())};
     }
+
 
     public int getThreeLottoWinning() {
         return threeLottoWinning;
@@ -133,7 +124,16 @@ public class LottoResult {
         return sixLottoWinning;
     }
 
+    public boolean isBonusLotto() {
+        return isBonusLotto;
+    }
+
     public Double getProfitRate() {
         return profitRate;
+    }
+
+    public void setTotalProfitAndProfitRate(BigDecimal totalProfit, Double profitRate) {
+        this.totalProfit = totalProfit;
+        this.profitRate = profitRate;
     }
 }

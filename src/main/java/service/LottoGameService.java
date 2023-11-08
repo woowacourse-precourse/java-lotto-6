@@ -17,7 +17,7 @@ public class LottoGameService {
     private UserLotto userLotto;
     private List<Lotto> lottoList;
     private LottoGame lottoGame = new LottoGame();
-    private LottoResult lottoResult = new LottoResult();
+    private LottoResultService lottoResultService = new LottoResultService();
 
     public void runLottoGame(){
         purchaseLottoGame();
@@ -105,7 +105,7 @@ public class LottoGameService {
     }
 
     private Object[] getLottoResultStatistic(){
-        LottoResult resultStatistic = lottoResult.getLottoResultStatistic(lottoList, userLotto);
+        LottoResult resultStatistic = lottoResultService.getLottoResultStatistic(lottoList, userLotto);
 
         Object[] statistic = {resultStatistic.getThreeLottoWinning()
                 , resultStatistic.getFourLottoWinning()

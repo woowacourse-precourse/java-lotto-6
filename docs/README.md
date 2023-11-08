@@ -3,7 +3,7 @@
 ## 주요 기능 요구 사항
 - [ ] 로또 발행
     - 로또 번호의 숫자 범위: 1~45 
-    - 중복되지 않는 6개의 숫자 + 보너스 번호 1개
+    - 중복되지 않는 6개의 숫자
     - 로또 1장의 가격: 1,000원
 - [ ] 로또 당첨 비교 / 판정
     - 1등: 6개 번호 일치 / 2,000,000,000원
@@ -28,9 +28,9 @@
 - [x] 발행: Publish
     - [x] 번호 생성: makeNumbers
 - [ ] 당첨 판정: Judgment
-    - [ ] 당첨 번호 판정: judgeWinningNumber
-    - [ ] 보너스 번호 판정: judgeBonusNumber
-    - [ ] 순위 판정: judgeRanking
+    - [x] 당첨 번호 판정: judgeWinningNumber
+    - [x] 보너스 번호 판정: judgeBonusNumber
+    - [x] 순위 판정: judgeRanking
 - [ ] 당첨 통계: Statistics
     - [ ] 수치 계산: calculateNumeric
 - [ ] 잘못된 입력 확인: WrongChecker
@@ -79,5 +79,11 @@
   - [ ] 보너스 번호 입력 값이 1개가 아닌 경우
 ***
 ## 테스트 항목
-- [x] 발행: 번호생성테스트
-- [x] 결제: 로또구매테스트
+- [x] 발행 테스트: PublishTest
+    - [x] 번호생성테스트
+- [x] 결제 테스트: PaymentTest
+    - [x] 로또구매테스트
+- [x] 판정 테스트: JudgementTest
+    - [x] 당첨번호판정테스트
+    - [x] 보너스번호판정테스트
+    - [x] 랭크판정테스트

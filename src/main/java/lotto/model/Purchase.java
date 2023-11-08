@@ -1,9 +1,8 @@
 package lotto.model;
 
+import static lotto.util.Constants.*;
+
 public class Purchase {
-    public static final String NUMBER_PATTERN = "[+-]?\\d+";
-    public static final String ERROR_MESSAGE_AMOUNT_NOT_IN_THOUSANDS = "[ERROR] 구매 금액은 1000원 단위여야 합니다.";
-    public static final String ERROR_MESSAGE_AMOUNT_NUMERIC = "[ERROR] 구매 금액은 숫자로만 이루어져야 합니다.";
 
     private final int purchaseCount;
 

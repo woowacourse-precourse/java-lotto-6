@@ -4,11 +4,9 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.util.Constants.*;
+
 public class Result {
-    private static final double PROFIT_RATE_MULTIPLIER = 1000.0;
-    private static final double PROFIT_RATE_PERCENTAGE = 100.0;
-    private static final double PROFIT_RATE_BASE = 10.0;
-    private static final int DEFAULT_COUNT = 0;
 
     private final Map<PrizeRank, Integer> prizeCounts;
     private final Jackpot jackpot;

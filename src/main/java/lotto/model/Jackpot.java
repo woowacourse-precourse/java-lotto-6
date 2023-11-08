@@ -2,13 +2,9 @@ package lotto.model;
 
 import java.util.*;
 
+import static lotto.util.Constants.*;
+
 public class Jackpot {
-    public static final String NUMBER_PATTERN = "\\d+";
-    public static final String ERROR_MESSAGE_WINNING_NUMBERS_NUMERIC = "[ERROR] 당첨 번호는 숫자로만 이루어져야 합니다.";
-    public static final String ERROR_MESSAGE_NOT_SIX_NUMBERS = "[ERROR] 당첨 번호는 6개로 이루어져야 합니다.";
-    public static final String ERROR_MESSAGE_DUPLICATE_NUMBERS = "[ERROR] 당첨번호에 중복된 숫자가 들어갈 수 없습니다.";
-    public static final String ERROR_MESSAGE_NOT_CONTAINS_BONUS_NUMBER = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
-    public static final String ERROR_MESSAGE_NUMBER_IN_RANGE = "[ERROR] 당첨 번호/보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.";
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
@@ -56,7 +52,7 @@ public class Jackpot {
     }
 
     private static void validateWinningNumbersSize(String[] splitWinningNumbers) {
-        if (splitWinningNumbers.length != 6) {
+        if (splitWinningNumbers.length != WINNING_NUMBERS_SIZE) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_SIX_NUMBERS);
         }
     }
@@ -84,7 +80,7 @@ public class Jackpot {
     }
 
     private static void checkNumberInRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTERY_NUMBER_MIN || number > LOTTERY_NUMBER_MAX) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NUMBER_IN_RANGE);
         }
     }

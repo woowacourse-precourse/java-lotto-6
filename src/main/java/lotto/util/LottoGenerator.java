@@ -23,10 +23,12 @@ public class LottoGenerator {
         return new Lottos(lottos);
     }
 
-    public static List<Integer> generateWinningLottoNumbers(String input) {
-        return Arrays.stream(input.split(","))
+    public static Lotto generateWinningLottoNumbers(String input) {
+        List<Integer> winningLottoNumbers = Arrays.stream(input.split(","))
                 .map(LottoUtil::parseLottoNumber)
                 .collect(Collectors.toList());
+
+        return new Lotto(winningLottoNumbers);
     }
 
 }

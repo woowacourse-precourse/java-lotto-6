@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.model.enums.RankPrize;
+import lotto.model.enums.PrizeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class LottoRankResult {
 
     public LottoRankResult() {
         this.rankCount = new ArrayList<>();
-        for (int i = 0; i <= RankPrize.values().length; i++) {
+        for (int i = 0; i <= PrizeInfo.values().length; i++) {
             rankCount.add(0);
         }
     }

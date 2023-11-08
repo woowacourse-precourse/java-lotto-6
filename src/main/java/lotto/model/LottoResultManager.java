@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.model.enums.RankPrize;
+import lotto.model.enums.PrizeInfo;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,9 +20,9 @@ public class LottoResultManager {
         for (Lotto lotto : lottos) {
             int matchingNumbers = countMatchingNumbers(lotto);
             boolean bonusMatch = isBonusMatch(lotto);
-            RankPrize rankPrize = getPrizeByMatchData(matchingNumbers, bonusMatch);
-            rankResult.increaseRankCount(rankPrize.getRank());
-            prizeResult.addTotalPrize(rankPrize.getPrize());
+            PrizeInfo prizeInfo = getPrizeByMatchData(matchingNumbers, bonusMatch);
+            rankResult.increaseRankCount(prizeInfo.getRank());
+            prizeResult.addTotalPrize(prizeInfo.getPrize());
         }
     }
 
@@ -39,13 +39,13 @@ public class LottoResultManager {
         return lotto.contains(winningLotto.getBonus());
     }
 
-    private RankPrize getPrizeByMatchData(int matchingNumber, boolean bonusMatch) {
-        for (RankPrize rankPrize : RankPrize.values()) {
-            if (rankPrize.isMatch(matchingNumber, bonusMatch)) {
-                return rankPrize;
+    private PrizeInfo getPrizeByMatchData(int matchingNumber, boolean bonusMatch) {
+        for (PrizeInfo prizeInfo : PrizeInfo.values()) {
+            if (prizeInfo.isMatch(matchingNumber, bonusMatch)) {
+                return prizeInfo;
             }
         }
-        return RankPrize.NO_RANK;
+        return PrizeInfo.NO_PRIZE;
     }
 
     public LottoRankResult getRankResult() {

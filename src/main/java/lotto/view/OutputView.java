@@ -5,7 +5,7 @@ import lotto.model.LottoRankResult;
 import lotto.view.enums.ErrorMessage;
 import lotto.view.enums.PrintMessage;
 import lotto.view.enums.RankMessage;
-import lotto.model.enums.RankPrize;
+import lotto.model.enums.PrizeInfo;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ public class OutputView {
 
     private String makeRankString(LottoRankResult rankResult) {
         StringBuilder builder = new StringBuilder();
-        for (int rank = RankPrize.RANK5.getRank(); rank >= RankPrize.RANK1.getRank(); rank--) {
+        for (int rank = PrizeInfo.PRIZE_5.getRank(); rank >= PrizeInfo.PRIZE_1.getRank(); rank--) {
             builder.append(RankMessage.getMessageByRank(rank));
             builder.append(rankResult.getCount(rank));
             builder.append(PrintMessage.RANK_FOOTER.getMessage());

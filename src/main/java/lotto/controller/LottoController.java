@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import lotto.model.Budget;
 import lotto.model.Lotto;
 import lotto.model.LottoAnswer;
 import lotto.model.Policy;
+import lotto.model.Result;
 import lotto.model.User;
 import lotto.service.LottoAnswerService;
 import lotto.service.LottoService;
@@ -134,6 +136,8 @@ public class LottoController {
 
     private void printResult(User user, LottoAnswer lottoAnswer) {
         OutputView.printResultDescription();
-        resultService.addRankResult(user, lottoAnswer);
+        Result result = resultService.addRankResult(user, lottoAnswer);
+        OutputView.printRank(result);
+        OutputView.printProfitRate(resultService.getProfitRate(user, result));
     }
 }

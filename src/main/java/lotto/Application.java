@@ -31,7 +31,6 @@ public class Application {
         readUserNum();
         readBonusNum();
 
-        System.out.println("\n당첨 통계\n---");
         setResult(lottoNum);
         printResult();
         printProfit();
@@ -179,6 +178,8 @@ public class Application {
     }
 
     private static void printResult() {
+        System.out.println("\n당첨 통계\n---");
+
         for (int i = RANKING - 1; i >= 0; i--)  {
             Rank rank = ranks[i];
             System.out.print(rank.getWins() + "개 일치");
@@ -192,7 +193,7 @@ public class Application {
 
     private static void printProfit() {
         double profit = (double)earned / paid * 100.0;
-        System.out.println("총 수익률은 " + String.format("%.2f", profit) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
     }
 }
 

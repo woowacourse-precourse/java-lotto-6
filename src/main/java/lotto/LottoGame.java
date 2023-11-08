@@ -9,7 +9,6 @@ import lotto.Input.InputType;
 
 public class LottoGame {
     private static final int FIRST = 0;
-    private static final int LOTTO_PRICE = 1000;
     private static final int ZERO = 0;
     private static final int FIVE_RANK = 5000;
     private static final int FOUR_RANK = 50000;
@@ -41,8 +40,8 @@ public class LottoGame {
     }
 
     public void buyLotto(Integer purchaseAmount){
-        Print.printPurchase(purchaseAmount/ LOTTO_PRICE);
-        for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++){
+        Print.printPurchase(purchaseAmount/ Lotto.LOTTO_PRICE);
+        for (int i = 0; i < purchaseAmount / Lotto.LOTTO_PRICE; i++){
             List<Integer> makedNumbers = Utils.makeRandomNumbers(1, 45, 6);
             purchasedLotto.add(new Lotto(makedNumbers.stream().sorted().toList()));
         }

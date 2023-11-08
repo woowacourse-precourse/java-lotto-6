@@ -12,7 +12,7 @@ public class Printer {
 
     //메서드
     void showLotteryCount(int numberOfLottery) {
-        System.out.println(numberOfLottery+"개를 구매했습니다.");
+        System.out.println("\n"+numberOfLottery+"개를 구매했습니다.");
     }
 
     void showLotteryNumbers(List<Integer> Lotto) {

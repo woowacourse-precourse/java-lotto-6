@@ -77,7 +77,7 @@ public class LottoService {
         }
     }
 
-    public void makeWinningResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
+    public void calculateWinningResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
         initWinningResult();
 
         for (Lotto lotto : lottoList) {
@@ -106,7 +106,7 @@ public class LottoService {
 
     public String makeStatisticsResultOutputStatement(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
         // winningResult에 경기 결과 기록하기
-        makeWinningResult(lottoList, answer, bonusNumber);
+        calculateWinningResult(lottoList, answer, bonusNumber);
 
         StringBuilder result = new StringBuilder();
 

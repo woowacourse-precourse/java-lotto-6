@@ -3,7 +3,6 @@ package lotto.service;
 import static lotto.domain.Ranking.*;
 import static org.assertj.core.api.Assertions.*;
 
-import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 import lotto.utils.StringUtils;
@@ -220,7 +219,7 @@ class LottoServiceTest {
         int bonusNumber = 7;
 
         // when
-        lottoService.makeWinningResult(lottoList, answer, bonusNumber);
+        lottoService.calculateWinningResult(lottoList, answer, bonusNumber);
         Map<Ranking, Integer> winningResult = lottoService.getWinningResult();
 
         // then
@@ -246,7 +245,7 @@ class LottoServiceTest {
         lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
         lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
 
-        lottoService.makeWinningResult(lottoList, answer, bonusNumber);
+        lottoService.calculateWinningResult(lottoList, answer, bonusNumber);
 
         // when
         double result = lottoService.calculateProfitRate();

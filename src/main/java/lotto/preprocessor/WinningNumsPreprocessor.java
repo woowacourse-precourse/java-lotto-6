@@ -49,8 +49,8 @@ public class WinningNumsPreprocessor extends Preprocessor<List<Integer>> {
     }
 
     private boolean isValidWinningNumsSize(String userInput) {
-        if (convert(userInput).size() != 6) {
-            ExceptionHandler.handleException("6개의 당첨 번호를 입력해주세요.");
+        if (convert(userInput).size() != LottoConst.LOTTO_SIZE) {
+            ExceptionHandler.handleException(LottoConst.LOTTO_SIZE + "개의 당첨 번호를 입력해주세요.");
             return ExceptionHandler.EXCEPTION_OCCURED;
         }
         return ExceptionHandler.NO_EXCEPTION;
@@ -58,7 +58,9 @@ public class WinningNumsPreprocessor extends Preprocessor<List<Integer>> {
 
     private boolean isNotDuplicated(String userInput) {
         if (convert(userInput).stream().distinct().count() != convert(userInput).size()) {
-            ExceptionHandler.handleException("중복되지 않는 6개의 숫자를 입력해주세요.");
+            ExceptionHandler.handleException("중복되지 않는 "
+                    + LottoConst.LOTTO_SIZE
+                    + "개의 숫자를 입력해주세요.");
             return ExceptionHandler.EXCEPTION_OCCURED;
         }
         return ExceptionHandler.NO_EXCEPTION;

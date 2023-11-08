@@ -2,6 +2,7 @@ package lotto.core;
 
 import java.util.List;
 import lotto.util.ExceptionHandler;
+import lotto.util.LottoConst;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,15 +23,21 @@ public class Lotto {
                 .filter(num -> num < 1 || num > 45)
                 .findFirst()
                 .isPresent()) {
-            String errorMsg = "[ERROR] 로또의 당첨 번호는 1~45 사이의 숫자여야 합니다.";
+            String errorMsg = "로또의 당첨 번호는 "
+                    + LottoConst.FIRST_NUM
+                    + "~"
+                    + LottoConst.LAST_NUM
+                    + "사이의 숫자여야 합니다.";
             ExceptionHandler.handleException(errorMsg);
             throw new IllegalArgumentException(errorMsg);
         }
     }
 
     private static void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            String errorMsg = "[ERROR] 로또의 당첨 번호는 6개의 숫자여야 합니다.";
+        if (numbers.size() != LottoConst.LOTTO_SIZE) {
+            String errorMsg = "로또의 당첨 번호는 "
+                    + LottoConst.LOTTO_SIZE
+                    + "개의 숫자여야 합니다.";
             ExceptionHandler.handleException(errorMsg);
             throw new IllegalArgumentException(errorMsg);
         }
@@ -38,7 +45,7 @@ public class Lotto {
 
     private static void validateDuplicated(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            String errorMsg = "[ERROR] 로또의 당첨 번호는 중복되지 않아야 합니다.";
+            String errorMsg = "로또의 당첨 번호는 중복되지 않아야 합니다.";
             ExceptionHandler.handleException(errorMsg);
             throw new IllegalArgumentException(errorMsg);
         }

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 import lotto.model.LottoCount;
@@ -24,6 +25,7 @@ public class OutputView {
     public static void printPurchasedLotto(Lottos lottos) {
         for (Lotto lotto : lottos.get()) {
             List<Integer> numbers = new ArrayList<>(lotto.get());
+            Collections.sort(numbers);
             System.out.println(numbers);
         }
         System.out.println(NEW_LINE);

@@ -10,7 +10,6 @@ public class LottoNumberValidator {
         isCountSix(lottoNumberInput);
         isInRange(lottoNumberInput);
         isUnique(lottoNumberInput);
-
     }
 
     private static void isUnique(String lottoNumberInput) {

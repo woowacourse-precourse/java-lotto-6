@@ -24,6 +24,20 @@ class LottoServiceTest {
     }
 
     @Test
+    void 로또_번호_범위_테스트() {
+        // given
+        int purchaseAmount = 20000;
+
+        // when
+        List<Lotto> lottos = lottoService.buyLotto(purchaseAmount);
+
+        // then
+        assertThat(lottos.stream().allMatch(lotto ->
+                lotto.getNumbers().stream().allMatch(number -> number >= 1 && number <= 45)
+        )).isTrue();
+    }
+
+    @Test
     void 로또_구매() {
         // given
         int purchaseAmount = 2000;

@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class GameInput {
 
-    private static final Integer INPUT_FAIL = null;
 
     public static Integer insertMoney(){
         String money = Console.readLine();
@@ -14,15 +13,14 @@ public class GameInput {
         }
         catch (IllegalArgumentException illegalArgumentException){
             System.out.println(illegalArgumentException.getMessage());
-            return INPUT_FAIL;
+            return null;
         }
     }
 
     public static Lotto insertWinnigNumbers() throws IllegalArgumentException{
         String commaWinnigNumbers = Console.readLine();
         try {
-            Lotto winningNumbers = Converter.convertCommaStringToLotto(commaWinnigNumbers);
-            return winningNumbers;
+            return Converter.convertCommaStringToLotto(commaWinnigNumbers);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return null;

@@ -8,9 +8,9 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Prize;
-import lotto.domain.WinnigMachine;
 import lotto.domain.ProfitCalculator;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinnigMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

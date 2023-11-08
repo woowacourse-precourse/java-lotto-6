@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class BonusNumberTest extends NsTest {
+class BonusNumberTest {
 
     @DisplayName("보너스 번호가 1~ 45 범위가 아니라면 예외가 발생한다.")
     @Test
@@ -19,8 +19,10 @@ class BonusNumberTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Override
-    protected void runMain() {
-
+    @Test
+    void bonusNumberInRange() {
+        BonusNumber bonusNumber = new BonusNumber(10);
+        assertEquals(10, bonusNumber.getBonusNumber());
     }
+
 }

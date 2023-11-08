@@ -6,9 +6,13 @@ import lotto.util.buyingLottoException;
 public class InputView {
 
 	public int inputBuyingPrice() {
-		String buyingPrice = Console.readLine();
-		buyingLottoException.validateBuyingPrice(buyingPrice);
-		return toIntegerNumber(buyingPrice);
+		try {
+			String buyingPrice = Console.readLine();
+			buyingLottoException.validateBuyingPrice(buyingPrice);
+			return toIntegerNumber(buyingPrice);
+		}catch(NumberFormatException e) {
+			throw new IllegalArgumentException("[ERROR] 입력은 숫자만 가능합니다.");
+		}
 		
 	}
 

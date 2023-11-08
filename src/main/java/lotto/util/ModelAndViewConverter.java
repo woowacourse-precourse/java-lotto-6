@@ -55,9 +55,15 @@ public class ModelAndViewConverter {
                 .collect(Collectors.toList());
     }
 
-    public Map<LottoResult, Integer> getLottoResultsData() {
+    public boolean hasLottoResultsData() {
+        return LottoResultProvider.isLottoResultRemain();
+    }
+
+    public LottoResultData getLottoResultsData() {
         LottoResultsDto lottoResultsDto = getLottoResultsDto();
-        return lottoResultsDto.getLottoResultsData();
+        LottoResult lottoResult = LottoResultProvider.getLottoResult();
+
+        return new LottoResultData(lottoResult, lottoResultsDto);
     }
 
     private LottoResultsDto getLottoResultsDto() {

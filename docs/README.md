@@ -66,8 +66,8 @@
 - [x] Profit 을 통해 수익률 데이터를 double 형으로 반환  - ModelAndViewConverter
 - [x] 에러를 저장하고 메시지를 반환 - ModelAndViewConverter
 - [x] ModelAndViewConverter 싱글톤 구현하기 - ModelAndViewConverter
-- [ ] 제공할 LottoResult 가 남아있는지 확인하는 기능 - ModelAndViewConverter
-- [ ] 출력할 LottoResult 정보를 LottoResultData 에 담아 전달 - ModelAndViewConverter
+- [x] 제공할 LottoResult 가 남아있는지 확인하는 기능 - ModelAndViewConverter
+- [x] 출력할 LottoResult 정보를 LottoResultData 에 담아 전달 - ModelAndViewConverter
 - [x] 랜덤 숫자로 로또 생성하기 - RandomLottoGenerator
 - [x] LottoResult 를 하나씩 제공하는 기능 구현하기 - LottoResultProvider
 - [x] 출력할 LottoResult 의 결과를 저장해 전달하기 - LottoResultData

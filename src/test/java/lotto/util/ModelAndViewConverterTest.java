@@ -3,11 +3,8 @@ package lotto.util;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoBundle;
-import lotto.domain.lottoresult.LottoResult;
-import lotto.domain.lottoresult.LottoResultsRepository;
 import lotto.domain.player.Profit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -32,18 +29,6 @@ class ModelAndViewConverterTest {
 
         assertThat(modelAndViewConverter.getNumberOfLottoBundle()).isEqualTo(1);
         assertThat(modelAndViewConverter.getLottoMessages()).contains(lotto.toString());
-    }
-
-    @DisplayName("4등 당첨 1개의 LottoResultsDto 로 부터 변환된 결과 Map 에 key로 LottoResult.FOURTH 가 있고 value 는 1이다.")
-    @Test
-    void modelAndViesConverterTest_2() {
-        LottoResultsRepository lottoResultsRepository = new LottoResultsRepository();
-        lottoResultsRepository.saveLottoResult(LottoResult.FOURTH);
-
-        modelAndViewConverter.addComponent(lottoResultsRepository.makeLottoResultsDto());
-        Map<LottoResult, Integer> lottoResultsData = modelAndViewConverter.getLottoResultsData();
-        assertThat(lottoResultsData.containsKey(LottoResult.FOURTH)).isTrue();
-        assertThat(lottoResultsData.get(LottoResult.FOURTH)).isEqualTo(1);
     }
 
     @DisplayName("50.3 의 Profit 을 변환하면 50.3을 반환한다.")

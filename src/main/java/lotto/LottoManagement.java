@@ -2,32 +2,18 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoManagement {
-    static final int pricePerPiece=1000;
-    private int inputMoney;
+    private int verifiedMoney;
 
-    LottoManagement(){
-        String stringInput = Console.readLine();
-        notIntegerException(stringInput);
-        inputMoneyException();
+    LottoManagement(){}
+
+    void initMoney(){
+        String moneyInput = Console.readLine();
+        InputMoneyHandler inputMoneyHandler = new InputMoneyHandler(moneyInput);
+        verifiedMoney=inputMoneyHandler.exceptionHandledMoney();
     }
 
-    void notIntegerException(String stringInput){
-        try {
-            inputMoney = Integer.parseInt(stringInput);
-        }catch(NumberFormatException e){
-            throw new IllegalArgumentException();
-        }
+    public int getMoney(){
+        return verifiedMoney;
     }
 
-    boolean isDivisible() {
-        return inputMoney % pricePerPiece == 0;
-    }
-
-    boolean isValidInput(){
-        return inputMoney>0;
-    }
-
-    void inputMoneyException(){
-        if(!isDivisible() || !isValidInput()) throw new IllegalArgumentException();
-    }
 }

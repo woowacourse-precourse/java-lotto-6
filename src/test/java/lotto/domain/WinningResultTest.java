@@ -11,11 +11,11 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import static lotto.domain.WinningResult.PERCENT_FACTOR;
 import static lotto.domain.lotto.PurchaseAmount.LOTTO_PRICE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class WinningResultTest {
 
@@ -54,7 +54,7 @@ class WinningResultTest {
         double expected =
                 ((double) Arrays.stream(Ranking.values())
                         .mapToInt(Ranking::getPrize)
-                        .sum() / (6*LOTTO_PRICE))*100;
+                        .sum() / (6 * LOTTO_PRICE)) * PERCENT_FACTOR;
 //모든 Ranking의 상금에 대한 수익률
         assertThat(winningResult.getRateOfReturnPercent()).isEqualTo(expected);
     }

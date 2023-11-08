@@ -7,8 +7,11 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
+import static lotto.domain.lotto.PurchaseAmount.LOTTO_PRICE;
 
 public class WinningResult {
+    public static final double PERCENT_FACTOR = 100.0;
+    private static final long ZERO_FOR_INVALID_KEY = 0L;
 
     private Map<Ranking, Long> result;
     private double rateOfReturnPercent;
@@ -30,12 +33,12 @@ public class WinningResult {
     }
 
     public Long getWinningCount(Ranking ranking) {
-        return result.getOrDefault(ranking, 0L);
+        return result.getOrDefault(ranking, ZERO_FOR_INVALID_KEY);
     }
 
     private void saveRateOfReturnPercent(LottoTicket lottoTicket){
-        int purchaseAmount = lottoTicket.getLottos().size() * 1000;
-        rateOfReturnPercent = ((double) getPrizeMoney() / purchaseAmount) *100;
+        int purchaseAmount = lottoTicket.getLottos().size() * LOTTO_PRICE;
+        rateOfReturnPercent = ((double) getPrizeMoney() / purchaseAmount) *PERCENT_FACTOR;
     }
 
     private long getPrizeMoney() {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoTicketFactory {
+    private static final int ZERO = 0;
 
     static RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
 
@@ -20,8 +21,8 @@ public class LottoTicketFactory {
         return new Lotto(randomNumbersGenerator.generate());
     }
 
-    private static void validateOverZero(int purchaseCount){
-        if(purchaseCount <= 0){
+    private static void validateOverZero(int purchaseCount) {
+        if (purchaseCount <= ZERO) {
             throw new IllegalArgumentException("[ERROR] 1개 이상 구입해야 합니다");
         }
     }

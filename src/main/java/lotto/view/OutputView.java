@@ -9,8 +9,10 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
-
+    private static final String RESULT_START_MESSAGE =
+            System.lineSeparator() + "당첨 통계" + System.lineSeparator() + "---------";
     public static final String RESULT_RANK_MESSAGE = "%d개 일치%s(%s원) - %d개" + System.lineSeparator();
+    private static final String HAS_BONUS_MESSAGE = ", 보너스 볼 일치 ";
 
     public static void printErrorMessage(final String message) {
         System.out.println(message);
@@ -39,13 +41,12 @@ public class OutputView {
 
     private static String printIfSecond(Ranking ranking) {
         if (ranking == Ranking.SECOND) {
-            return ", 보너스 볼 일치 ";
+            return HAS_BONUS_MESSAGE;
         }
         return " ";
     }
 
     private static void printHeader() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(RESULT_START_MESSAGE);
     }
 }

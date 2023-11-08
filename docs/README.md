@@ -126,7 +126,8 @@
 
 ## 단위 테스트(Unit Test)
 
-1. 사용자 로또 번호를 생성한다 Lotto
+1. <span style="background-color:gray"> 사용자 로또 번호를 생성한다 Lotto </span>
+   
    - [x] 로또 번호를 구성하는 숫자의 범위는 1~45까지다
    - [x] 로또 번호는 중복되지 않는 6개의 숫자로 구성되어 있다 
      - [x] 중복되지 않는 숫자로 구성되어 한다
@@ -134,14 +135,16 @@
        - [x] 6개 보다 더 적으면 예외가 발생한다
        - [x] 6개 보다 더 많으면 예외가 발생한다 
 
-2. 사용자 당첨 번호를 생성한다 (당첨 번호 = 로또 번호, 보너스 번호) Lotto, Bonus
+2. <span style="background-color:gray"> 사용자 당첨 번호를 생성한다 (당첨 번호 = 로또 번호, 보너스 번호) Lotto, Bonus </span>
+   
    - 로또 번호와 보너스 번호 1개를 가진다 
      - [x] 보너스 번호의 범위는 1~45까지다
        - [x] **예외** 범위에서 벗어난 수인 경우
        - [x] **예외** 생성된 로또 번호와 중복된 숫자를 입력한 경우 
        - [x] **예외 처리** throw new IllegalArgumentException
 
-3. LottoGenerator에서 로또 번호를 생성한다
+3. <span style="background-color:gray"> LottoGenerator에서 로또 번호를 생성한다 </span>
+
   - 로또 번호를 생성한다 
     - [x] 랜덤 숫자를 생성한다
       - [x] 인자에 전달된 수를 그대로 생성한다
@@ -152,7 +155,8 @@
     - [x] ~~숫자가 6개가 될 때까지 반복한다~~ 
     - [x] 생성된 로또 번호를 오름차순으로 정렬한다 
 
-4. 생성된 로또 번호를 LottoRepository에서 관리한다
+4. <span style="background-color:gray"> 생성된 로또 번호를 LottoRepository에서 관리한다 </span>
+   
    - 로또 번호를 저장한다 (순서가 존재한다)
      - [ ] ~~생성된 로또 번호를 오름차순으로 정렬한다 (generateLotto()에서 대신 진행한다 )~~
      - [x] 정렬된 로또 번호를 저장한다
@@ -164,7 +168,8 @@
 ---
 >사용자 로또 구입 금액, 사용자 로또 번호 공통 예외 처리
 
-공통 예외는 DTO에서 검증한다
+<span style="background-color:gray"> 공통 예외는 DTO에서 검증한다 </span>
+
 - [x] **공통 예외** 아무것도 입력하지 않은 경우 : null 혹은 empty 한 경우
 - [x] **공통 예외** 숫자를 입력하지 않은 경우 : 숫자 외의 문자가 입력된 경우, 음수를 입력한 경우
 - [x] **공통 예외** 0으로 시작하는 수를 입력한 경우
@@ -175,7 +180,8 @@
 
 ---
 
-5. Console로부터 사용자의 로또 구입 금액을 입력 받는다 - (UserMoneyDTO - UserMoney) 
+5. <span style="background-color:gray"> Console로부터 사용자의 로또 구입 금액을 입력 받는다 - (UserMoneyDTO - UserMoney) </span>
+
   - [x] userMoneyDTO를 형성하고 userMoney로 반환한다
   - [x] 공통 예외에 대한 검증을 DTO에서 진행한다
   - [x] **예외** 로또 구입 금액을 잘못 입력한 경우 
@@ -183,7 +189,8 @@
     - [x] **예외 처리** "[ERROR]" 로 지삭하는 에러 메세지를 출력하고, `*IllegalArgumentException을*` throw 하고 재입력을 받는다
   
 
-6. Console로 부터 사용자의 로또 번호를 입력 받는다 (UserLottoDTO - Lotto)
+6. <span style="background-color:gray"> Console로 부터 사용자의 로또 번호를 입력 받는다 (UserLottoDTO - Lotto) </span>
+   
    - [x] UserLottoDTO를 형성하고 Lotto로 반환한다 
    - [x] 공통 예외에 대한 검증을 DTO에서 진행한다 
    - [x] **예외** 당첨 번호를 잘못 입력한 경우
@@ -193,12 +200,14 @@
      - [x] **예외 상황 4** 범위에서 벗어난 당첨 번호를 입력한 경우 ex) 0,1,3,5,6,99
      - [x] **예외 처리** "[ERROR]" 로 지삭하는 에러 메세지를 출력하고, `*IllegalArgumentException을*` throw 하고 재입력을 받는다
 
-7. Console로 부터 사용자의 보너스 번호를 입력 받는다 (UserBonusDTO - Bonus)
+7. <span style="background-color:gray"> Console로 부터 사용자의 보너스 번호를 입력 받는다 (UserBonusDTO - Bonus) </span>
+
   - [x] UserBonusDTO를 형성하고 Bonus로 변환한다 
   - [x] 공통 예외에 대한 검증을 DTO에서 진행한다 (userMoneyDTO와 동일)
   - [x] 사용자의 로또 번호와 중복된 번호인지 검증한다 
-      
-8. LottoGenerator에서 생성한 로또 번호들과 비교한다 LottoService
+
+8. <span style="background-color:gray"> LottoGenerator에서 생성한 로또 번호들과 비교한다 LottoService </span>
+
   - 사용자의 구입 금액에 따라 로또 번호 리스트를 생성한다 
   - 사용자의 로또 번호 그리고 보너스 번호는 입력을 받아 LottoWithBonus로 변환
   - ~~Repository에 저장되어 있는 로또 번호 리스트 정보를 가지고 온다~~
@@ -206,13 +215,15 @@
     - [ ] ~~View로부터 사용자의 로또 번호를 입력 받아야 한다~~ 
   - [x] 일치한 숫자의 개수를 확인한다 (위치 반영 고민하기)
 
-9. 당첨 통계를 생성한다
+9. <span style="background-color:gray"> 당첨 통계를 생성한다 </span>
+
   - 일치한 숫자의 개수에 따른 인스턴스를 Enum으로 표현한다 LottoResult 
     - [x] 0개 부터 6개 까지의 인스턴스를 구분한다 
     - [x] 맞힌 숫자 개수, 당첨 금액을 가지고 있다
     - [x] 맞힌 숫자 개수를 키로 대응되는 Enum을 조회할 수 있다
 
-10. 당첨 통계 그리고 각 통계별 개수를 담는, 출력을 위한 데이터를 형성한다 - LottoFinalResult 
+10. <span style="background-color:gray"> 당첨 통계 그리고 각 통계별 개수를 담는, 출력을 위한 데이터를 형성한다 - LottoFinalResult </span>
+
   - 구입한 금액에 따라 형성된 로또 리스트와 사용자의 LottoWithBonus를 비교한다
     - [x] 로또 리스트를 형성한다 
     - [x] 생성한 로또 리스트를 Repository에 저장해야 한다 

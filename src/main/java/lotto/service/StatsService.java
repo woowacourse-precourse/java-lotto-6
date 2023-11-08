@@ -91,6 +91,6 @@ public class StatsService {
         System.out.println("5개 일치 (1,500,000원) - " + player.getFiveMatch() + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + player.getFiveMatchWithBonus() + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + player.getSixMatch() + "개");
-        System.out.println("총 수익률은 " + profitRate + " 입니다.");
+        System.out.println("총 수익률은 " + profitRate + "입니다.");
     }
 }

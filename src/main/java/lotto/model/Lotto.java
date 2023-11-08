@@ -5,6 +5,7 @@ import lotto.constants.ExceptionMessage;
 import java.util.HashSet;
 import java.util.List;
 
+import static lotto.constants.ExceptionMessage.LOTTO_NUMBERS_INVALID_ERROR;
 import static lotto.constants.LottoSetting.*;
 
 public class Lotto {
@@ -17,7 +18,7 @@ public class Lotto {
 
     private void validateNumbers(List<Integer> numbers) {
         if (hasInvalidSize(numbers) || hasInvalidRange(numbers) || hasDuplicates(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_ERROR.message());
+            throw new IllegalArgumentException(LOTTO_NUMBERS_INVALID_ERROR.message());
         }
     }
 

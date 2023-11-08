@@ -12,7 +12,7 @@ public class Application {
             lottery.perform();
             lottery.result();
         } catch (Exception e) {
-            System.out.println("[ERROR]");
+            System.out.println(e.getMessage());
         }
     }
 

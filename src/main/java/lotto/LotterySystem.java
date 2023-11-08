@@ -11,7 +11,6 @@ public class LotterySystem {
     private static final int MAX_NUMBER = 45;
     private static final int NEED_NUMBER = 6;
     private final String TICKET_CNT = "개를 구매했습니다.";
-    private lotto.ErrorMessages ErrorMessages = new ErrorMessages();
     private static int ticketCnt = 0;
     private InputSystem InputSystem = new InputSystem();
     private Perform Perform = new Perform();

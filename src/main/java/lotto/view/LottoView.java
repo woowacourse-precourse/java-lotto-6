@@ -16,7 +16,7 @@ public class LottoView implements LottoFinalConsts {
     }
 
     public void printLottoPurchase(int lottoPurchase){
-        System.out.printf("%d%s", lottoPurchase, PRINT_LOTTO_PURCHASE_COUNT);
+        System.out.printf(PRINT_LOTTO_PURCHASE, lottoPurchase, PRINT_LOTTO_PURCHASE_COUNT);
     }
 
     public void printPublishedLotto(List<Lotto> lottos){

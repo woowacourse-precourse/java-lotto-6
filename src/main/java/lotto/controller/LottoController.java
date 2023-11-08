@@ -41,7 +41,6 @@ public class LottoController {
             System.out.println(ErrorMessage.GAME_RESTART_MESSAGE);
             start();
         }
-
     }
 
     private Lottos purchaseLotto() {

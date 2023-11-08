@@ -13,14 +13,6 @@ import lotto.domain.lottoTicket.LottoTickets;
 
 public class OutputView {
 
-    private static final String PURCHASED_MESSAGE = "%d개를 구매했습니다.";
-    private static final String ERROR_MESSAGE = "[ERROR]";
-    private static final String RESULT_HEAD_LINE_MESSAGE = "당첨 통계";
-    private static final String RESULT_SEPARATE_LINE_MESSAGE = "---";
-    private static final String LOTTO_RESULT_MESSAGE = "%d개 일치 (%,d원) - %d개";
-    private static final String LOTTO_BONUS_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
-    private static final String RESULT_TOTAL_PROFITABILITY_PERCENT_MESSAGE = "총 수익률은 %,.1f%%입니다.";
-
     public void printAutoLottoTickets(final LottoTickets lottoTickets) {
         printNewLine();
         printPurchasedLottoQuantity(lottoTickets);
@@ -29,7 +21,7 @@ public class OutputView {
     }
 
     private void printPurchasedLottoQuantity(final LottoTickets lottoTickets) {
-        print(String.format(PURCHASED_MESSAGE, lottoTickets.size()));
+        print(String.format(Message.PURCHASED_MESSAGE.getMessage(), lottoTickets.size()));
     }
 
     private void printLottoTicketInfo(LottoTickets lottoTickets) {
@@ -68,10 +60,11 @@ public class OutputView {
             return;
         }
         if (lottoRank.equals(LottoRank.SECOND)) {
-            print(String.format(LOTTO_BONUS_RESULT_MESSAGE, matchNumber, winningAmount, matchCount));
+            print(String.format(Message.LOTTO_BONUS_RESULT_MESSAGE.getMessage(), matchNumber, winningAmount,
+                    matchCount));
             return;
         }
-        print(String.format(LOTTO_RESULT_MESSAGE, matchNumber, winningAmount, matchCount));
+        print(String.format(Message.LOTTO_RESULT_MESSAGE.getMessage(), matchNumber, winningAmount, matchCount));
     }
 
     private LottoRank[] sortLottoRank() {
@@ -85,7 +78,10 @@ public class OutputView {
             final PurchaseAmount purchaseAmount
     ) {
         double roundedProfitabilityPercent = calculateRoundedProfitabilityPercent(lottoResultBoard, purchaseAmount);
-        print(String.format(RESULT_TOTAL_PROFITABILITY_PERCENT_MESSAGE, roundedProfitabilityPercent));
+        print(String.format(
+                Message.RESULT_TOTAL_PROFITABILITY_PERCENT_MESSAGE.getMessage(),
+                roundedProfitabilityPercent)
+        );
     }
 
     private static double calculateRoundedProfitabilityPercent(LottoResultBoard lottoResultBoard,
@@ -95,14 +91,14 @@ public class OutputView {
     }
 
     private static double roundProfitabilityPercent(double profitabilityPercent) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        DecimalFormat decimalFormat = new DecimalFormat(Message.DECIMAL_PATTERN.getMessage());
         return Double.parseDouble(decimalFormat.format(profitabilityPercent));
     }
 
     private void printLottoResultHeadLine() {
         printNewLine();
-        print(RESULT_HEAD_LINE_MESSAGE);
-        print(RESULT_SEPARATE_LINE_MESSAGE);
+        print(Message.RESULT_HEAD_LINE_MESSAGE.getMessage());
+        print(Message.RESULT_SEPARATE_LINE_MESSAGE.getMessage());
     }
 
     private Stream<Integer> ascendingSort(Lotto lotto) {
@@ -110,7 +106,7 @@ public class OutputView {
     }
 
     public void printErrorMessage(final Exception e) {
-        print(ERROR_MESSAGE + e.getMessage());
+        print(Message.ERROR_MESSAGE.getMessage() + e.getMessage());
     }
 
     private void print(final String message) {

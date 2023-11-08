@@ -1,11 +1,17 @@
 package lotto.view;
 
+import java.util.List;
+import lotto.model.data.Lotto;
+import lotto.model.data.WinningPortfolio;
+
 public interface OutputView {
   void printIntroduction(String introduction);
 
-  void printNotBonusPrize(Integer prize, Integer count);
+  void printException(String exceptionMessage);
 
-  void printBonusPrize(Integer prize, Integer count);
+  void printLottos(List<Lotto> purchasedLottos);
+
+  void printWinningStatistics(WinningPortfolio winningPortfolio);
 
   void printRateOfReturn(Double rateOfReturn);
 }

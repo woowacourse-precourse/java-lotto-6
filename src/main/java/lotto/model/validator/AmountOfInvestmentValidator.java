@@ -8,17 +8,15 @@ import static lotto.util.ExceptionMessage.INVALID_INPUT_TYPE;
 import static lotto.util.ExceptionMessage.NOT_DIVIDE_BY_LOTTO_PRICE;
 import static lotto.util.ExceptionMessage.NOT_POSITIVE_INPUT;
 
-public class AmountOfLottoValidatorImpl implements AmountOfLottoValidator {
+public class AmountOfInvestmentValidator {
 
-    @Override
-    public void checkType(String amountOfLotto) {
+    public static void checkType(String amountOfLotto) {
         if (!amountOfLotto.matches("\\d+")) {
             throw new IllegalArgumentException(INVALID_INPUT_TYPE.getMessage());
         }
     }
 
-    @Override
-    public void checkAmountWithinLottoPriceRange(long amountOfLotto) {
+    public static void checkAmountWithinLottoPriceRange(long amountOfLotto) {
         checkMinimum(amountOfLotto);
         checkMaximum(amountOfLotto);
     }
@@ -35,8 +33,7 @@ public class AmountOfLottoValidatorImpl implements AmountOfLottoValidator {
         }
     }
 
-    @Override
-    public void checkDivideByLottoPrice(long amountOfLotto) {
+    public static void checkDivideByLottoPrice(long amountOfLotto) {
         if (amountOfLotto % LOTTO_PRICE.getPrice() != 0) {
             throw new IllegalArgumentException(NOT_DIVIDE_BY_LOTTO_PRICE.getMessage());
         }

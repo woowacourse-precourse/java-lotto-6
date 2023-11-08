@@ -13,11 +13,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class AmountOfLottoValidatorTest {
-    private AmountOfLottoValidatorImpl amountOfLottoValidator;
+    private AmountOfInvestmentValidator amountOfLottoValidator;
 
     @BeforeEach
     void beforeEach() {
-        amountOfLottoValidator = new AmountOfLottoValidatorImpl();
+        amountOfLottoValidator = new AmountOfInvestmentValidator();
     }
 
     @ParameterizedTest

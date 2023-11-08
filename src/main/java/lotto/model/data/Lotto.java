@@ -1,4 +1,10 @@
-package lotto;
+package lotto.model.data;
+
+import static lotto.model.calculator.WinningCalculator.comparingBonusAndWinningNumber;
+import static lotto.model.calculator.WinningCalculator.comparingLottoAndWinningNumber;
+import static lotto.model.validator.LottoNumberValidator.checkCountOfNumbers;
+import static lotto.model.validator.LottoNumberValidator.checkDuplicateNumbers;
+import static lotto.model.validator.LottoNumberValidator.checkRangeOfNumbers;
 
 import java.util.List;
 
@@ -11,10 +17,20 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        checkCountOfNumbers(numbers);
+        checkRangeOfNumbers(numbers);
+        checkDuplicateNumbers(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int compareLottoAndWinningNumbers(List<Integer> winningNumbers) {
+        return comparingLottoAndWinningNumber(numbers, winningNumbers);
+    }
+
+    public int compareLottoAndBonusNumber(Integer bonusNumber) {
+        return comparingBonusAndWinningNumber(numbers, bonusNumber);
+    }
 }

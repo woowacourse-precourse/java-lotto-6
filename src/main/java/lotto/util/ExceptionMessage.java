@@ -8,6 +8,8 @@ import static lotto.util.LottoDetails.MAXIMUM_OF_LOTTO_NUMBER;
 import static lotto.util.LottoDetails.MINIMUM_OF_LOTTO_NUMBER;
 
 public enum ExceptionMessage {
+    ERROR_PREFIX("[ERROR] "),
+
     INVALID_INPUT_TYPE("숫자 형식으로 입력해주세요."),
     NOT_POSITIVE_INPUT(MINIMUM_PRICE.getPrice() + "원 이상의 로또 구입 금액을 입력해주세요."),
     BIGGER_THAN_MAX(MAXIMUM_PRICE.getPrice() + "원 이하의 로또 구입 금액을 입력해주세요."),
@@ -25,7 +27,6 @@ public enum ExceptionMessage {
     INVALID_AMOUNT_OF_INVESTMENT("투자 금액이 올바르지 않습니다."),
     INVALID_RATE_OF_RESULT("수익률이 올바르지 않습니다.");
 
-    private final String ERROR_PREFIX = "[ERROR] ";
     private final String message;
 
     ExceptionMessage(String message) {

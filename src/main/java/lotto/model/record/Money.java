@@ -1,4 +1,4 @@
 package lotto.model.record;
 
-public record Money(int money) {
+public record Money(Integer money) {
 }

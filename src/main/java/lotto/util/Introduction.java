@@ -8,13 +8,15 @@ public enum Introduction {
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
 
     WINNING_STATISTICS("당첨 통계"),
-    NOT_BONUS_PRIZE_LIST("%d개 일치 (%s) - %d개"),
-    BONUS_PRIZE_LIST("%d개 일치, 보너스 볼 일치 (%s) - %d개"),
+    NOT_BONUS_PRIZE_LIST("%d개 일치 (%s원) - %d개"),
+    BONUS_PRIZE_LIST("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
 
     RATE_OF_RETURN("총 수익률은 %s입니다."),
 
     SEPARATOR("---"),
-    DELIMITER(",");
+    DELIMITER(","),
+    LOTTO_PRINT_START("["),
+    LOTTO_PRINT_END("]");
 
     private final String introduction;
 

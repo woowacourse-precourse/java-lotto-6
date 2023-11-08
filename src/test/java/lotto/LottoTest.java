@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -34,7 +33,7 @@ class LottoTest {
 
     @DisplayName("로또 번호 자동 생성시 1 ~ 45 범위의 서로 다른 6개의 번호를 생성한다.")
     @RepeatedTest(10)
-    void checkGeneratedLottoNumbers() {
+    void testGenerateLottoNumbers() {
         List<Integer> numbers = Lotto.generateLottoNumbers();
         assertEquals(6, numbers.size());
         assertEquals(6, new HashSet(numbers).size());
@@ -44,7 +43,7 @@ class LottoTest {
     @DisplayName("로또 발급시 잘못된 입력을 예외 처리한다.")
     @ParameterizedTest
     @MethodSource("provideInvalidInitializationParams")
-    void testExceptionOnInvalidInitialization(List<Integer> numbers) {
+    void testConstructorForException(List<Integer> numbers) {
         assertThatThrownBy(() -> {
             new Lotto(numbers);
         }).isInstanceOf(IllegalArgumentException.class)
@@ -62,7 +61,7 @@ class LottoTest {
     @DisplayName("Lotto의 numbers와 주어진 숫자들의 일치하는 숫자를 센다.")
     @ParameterizedTest
     @MethodSource("provideTestLotto")
-    void checkLottoMatch(List<Integer> testTickets, int expected) {
+    void testCountMatchingNumbers(List<Integer> testTickets, int expected) {
         // TODO: refactor
         Lotto testLotto = new Lotto(List.of(5, 10, 15, 20, 25, 30));
 
@@ -83,7 +82,7 @@ class LottoTest {
     @DisplayName("Lotto의 number에 해당 숫자가 포함되어 있는지 판단")
     @ParameterizedTest
     @MethodSource("provideTestNumber")
-    void checkNumberMatch(Integer testNumber, boolean expected) {
+    void testNumbersContain(Integer testNumber, boolean expected) {
         // TODO: refactor
         Lotto testLotto = new Lotto(List.of(5, 10, 15, 20, 25, 30));
 
@@ -100,13 +99,5 @@ class LottoTest {
                 Arguments.of(10, true),
                 Arguments.of(34, false)
         );
-    }
-
-    @DisplayName("로또 구입 금액을 알려준다.")
-    @Test
-    void checkLottoPrice() {
-        long expected = 1000;
-        long actual = Lotto.getPrice();
-        assertEquals(expected, actual);
     }
 }

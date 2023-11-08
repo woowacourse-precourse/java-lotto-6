@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -9,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    private static List<Lotto> myLottos = new ArrayList<>();
-    private static Lotto winningLotto;
-    private static int bonusNumber;
-    private static int[] resultCounter = new int[6];
+    public static List<Lotto> myLottos = new ArrayList<>();
+    public static Lotto winningLotto;
+    public static int bonusNumber;
+    public static int[] resultCounter = new int[6];
 
     public void play() {
         Money money = new Money();
@@ -20,7 +19,7 @@ public class LottoController {
         winningLotto = new Lotto(InputView.inputWinningNumbers());
         bonusNumber = InputView.inputBonusNumber();
         OutputView.printAlertResultMessage();
-        checkWinning();
+        Winning.check();
         calculateReturnRate(Money.amount);
     }
 
@@ -31,28 +30,6 @@ public class LottoController {
             myLottos.add(new Lotto(numbers));
         } while (myLottos.size() < trial);
         OutputView.printBoughtLottos(myLottos);
-    }
-
-    public void checkWinning() {
-        for (Lotto myLotto : myLottos) {
-            int match = calculateWinning(myLotto, winningLotto);
-            boolean isBonus = myLotto.getNumbers().contains(bonusNumber);
-            Winning winning = Result.win(match, isBonus);
-            resultCounter[winning.ordinal()]++;
-        }
-        OutputView.printWinningResult(resultCounter);
-    }
-
-    public int calculateWinning(Lotto lotto1, Lotto lotto2) {
-        int count = 0;
-        List<Integer> list1 = lotto1.getNumbers();
-        List<Integer> list2 = lotto2.getNumbers();
-        for (Integer number : list1) {
-            if (list2.contains(number)) {
-                count++;
-            }
-        }
-        return count;
     }
 
     public void calculateReturnRate(int inputMoney) {

@@ -1,5 +1,11 @@
 package lotto.domain;
 
+import lotto.view.OutputView;
+
+import java.util.List;
+
+import static lotto.controller.LottoController.*;
+
 public enum Winning {
 
     FIRST("6개 일치", 2_000_000_000),
@@ -23,5 +29,27 @@ public enum Winning {
 
     public int getReward() {
         return reward;
+    }
+
+    public static void check() {
+        for (Lotto myLotto : myLottos) {
+            int match = calculate(myLotto, winningLotto);
+            boolean isBonus = myLotto.getNumbers().contains(bonusNumber);
+            Winning winning = Result.win(match, isBonus);
+            resultCounter[winning.ordinal()]++;
+        }
+        OutputView.printWinningResult(resultCounter);
+    }
+
+    private static int calculate(Lotto lotto1, Lotto lotto2) {
+        int count = 0;
+        List<Integer> list1 = lotto1.getNumbers();
+        List<Integer> list2 = lotto2.getNumbers();
+        for (Integer number : list1) {
+            if (list2.contains(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 }

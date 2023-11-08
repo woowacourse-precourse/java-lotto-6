@@ -30,22 +30,16 @@ public class LottoController {
 
     // 게임 진행을 총괄하는 메서드
     public void lottoGamePlay() {
-
-        // 사용자가 구매 금액을 입력하고, 그 가격에 맞게 로또를 발행한다.
         String buyLottoAmount = getBuyLottoAmount();
         List<List<Integer>> lottoTickets = lottoTicketGenerator.createRandomLottoTickets(buyLottoAmount);
         consoleOutputView.outputBuyLottoTickets(lottoTickets);
 
-        // 사용자가 당첨 번호와 보너스 번호를 입력하여 그 정보를 저장한다.
         Map<String, String> userLottoNumbersAndBonusNumber = getUserLottoNumberAndBonusNumber();
-
-        // 구매한 로또와 사용자의 로또를 비교하여 총 결과를 구한다.
         Map<LottoRank, Integer> lottoWinningResult = lottoService.getLottoWinningResult(
                 userLottoNumbersAndBonusNumber, lottoTickets
         );
         consoleOutputView.outputLottoWinningResult(lottoWinningResult);
 
-        // 수익률을 구한다.
         double lottoRateOfReturn = lottoService.getLottoRateOfReturn(buyLottoAmount, lottoWinningResult);
         consoleOutputView.outputLottoRateOfReturn(lottoRateOfReturn);
     }

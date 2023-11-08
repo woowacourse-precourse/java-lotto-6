@@ -59,7 +59,6 @@ public class LottoService {
 
     public void buyLottoAmountValidate(String inputBuyLottoAmount) {
         validateIsInteger(inputBuyLottoAmount);
-
         int buyLottoAmount = Integer.parseInt(inputBuyLottoAmount);
         if (buyLottoAmount % LOTTO_PRICE_PER_TICKET != 0 || buyLottoAmount == 0) {
             throw new IllegalArgumentException(INVALID_BUY_AMOUNT);
@@ -69,11 +68,7 @@ public class LottoService {
     public void userLottoNumbersValidate(String userLottoNumbers) {
         String[] splitUserLottoNumbers = userLottoNumbers.split(",");
         List<String> tempUserLottoNumbers = Arrays.asList(splitUserLottoNumbers);
-        // 로또가 6자리인지 확인한다.
-        if (tempUserLottoNumbers.size() != VALID_LOTTO_SIZE) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_MESSAGE + INVALID_LOTTO_SIZE_MESSAGE);
-        }
-
+        validateLottoNumbersSize(tempUserLottoNumbers);
         for (String tempUserLottoNumber : tempUserLottoNumbers) {
             validateIsInteger(tempUserLottoNumber);
             validateRangeNumber(tempUserLottoNumber);
@@ -82,6 +77,12 @@ public class LottoService {
         // 로또 번호에 중복된 숫자가 있는지 체크
         if(tempUserLottoNumbers.size() != tempUserLottoNumbers.stream().distinct().count()){
             throw new IllegalArgumentException(LOTTO_NUMBER_MESSAGE + DUPLICATE_MESSAGE);
+        }
+    }
+
+    private void validateLottoNumbersSize(List<String> userLottoNumbers) {
+        if (userLottoNumbers.size() != VALID_LOTTO_SIZE) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_MESSAGE + INVALID_LOTTO_SIZE_MESSAGE);
         }
     }
 

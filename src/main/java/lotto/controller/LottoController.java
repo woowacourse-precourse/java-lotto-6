@@ -68,25 +68,25 @@ public class LottoController {
     }
 
     private void showResult() {
-        List<LottoRank> ranks = lottoTickets.getWinningRanks(winningLottoNumbers);
-        Map<LottoRank, Integer> countRanks = getCountRanks(ranks);
+        List<LottoRank> resultRanks = lottoTickets.getWinningRanks(winningLottoNumbers);
+        Map<LottoRank, Integer> countRanks = getCountRanks(resultRanks);
 
         List<String> results = countRanks.entrySet().stream()
                 .map(entry -> String.format(entry.getKey().getMessage(), entry.getValue()))
                 .toList();
 
         outputView.printWinningResult(results);
-        showRateOfRevenue(ranks);
+        showRateOfRevenue(resultRanks);
     }
 
-    private void showRateOfRevenue(List<LottoRank> ranks) {
-        outputView.printRateOfRevenue(lottoBuyer.getRateOfReturn(ranks));
+    private void showRateOfRevenue(List<LottoRank> resultRanks) {
+        outputView.printRateOfRevenue(lottoBuyer.getRateOfReturn(resultRanks));
     }
 
-    private Map<LottoRank, Integer> getCountRanks(List<LottoRank> ranks) {
+    private Map<LottoRank, Integer> getCountRanks(List<LottoRank> resultRanks) {
         Map<LottoRank, Integer> countRanks = initCountRanks();
-        ranks.removeIf(lottoRank -> lottoRank == LottoRank.NONE);
-        for (LottoRank rank : ranks) {
+        resultRanks.removeIf(lottoRank -> lottoRank == LottoRank.NONE);
+        for (LottoRank rank : resultRanks) {
             countRanks.put(rank, countRanks.get(rank) + 1);
         }
         return countRanks;

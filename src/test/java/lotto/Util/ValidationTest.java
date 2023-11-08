@@ -3,7 +3,7 @@ package lotto.Util;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
+import java.util.Arrays;
 import org.junit.jupiter.api.DisplayName;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -44,14 +44,14 @@ public class ValidationTest {
 
     @DisplayName("보너스 번호 입력 시 예외 테스트")
     @ParameterizedTest
-    @CsvSource(value = {"'1:2:3:4:5:6':0:[ERROR] 당첨 번호는 1 이상 45 이하의 정수로 입력해주세요.",
-            "'1:2:3:4:5:6':46:[ERROR] 당첨 번호는 1 이상 45 이하의 정수로 입력해주세요.",
-            "'1:2:3:4:5:6':a:[ERROR] 숫자를 입력해주세요.",
-            "'1:2:3:4:5:6':6:[ERROR] 당첨 번호 중 보너스 번호와 중복되는 번호가 존재합니다."},
+    @CsvSource(value = {"0:[ERROR] 당첨 번호는 1 이상 45 이하의 정수로 입력해주세요.",
+            "46:[ERROR] 당첨 번호는 1 이상 45 이하의 정수로 입력해주세요.",
+            "a:[ERROR] 숫자를 입력해주세요.",
+            "6:[ERROR] 당첨 번호 중 보너스 번호와 중복되는 번호가 존재합니다."},
             delimiter = ':')
-    void checkBonusNumberException(List<Integer> lottoNumbers, String input, String exceptionMessage) {
+    void checkBonusNumberException(String input, String exceptionMessage) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            Validation.validateBonusNumber(lottoNumbers, input);
+            Validation.validateBonusNumber(Arrays.asList(1,2,3,4,5,6), input);
         });
         assertThat(exception.getMessage()).contains(exceptionMessage);
     }

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import dto.Lotto;
 import java.util.List;
 import java.util.Scanner;
 import org.junit.jupiter.api.Assertions;
@@ -39,10 +40,18 @@ class PublishLottoUtilTest extends IOTest {
     }
 
     @Test
-    void publishLotto() {
+    @DisplayName("구매한 로토 개수만큽 발행되는 지 확인한 후 각 로토의 숫자가 6개인지 확인")
+    void publishLottoTest() {
+        int lottoCnt = 3;
+        List<Lotto> lottos = publishLottoUtil.publishLotto(lottoCnt);
+        assertThat(lottos.size()).isEqualTo(3);
+        for (Lotto lotto : lottos) {
+            assertThat(lotto.getLottoNumbers().size()).isEqualTo(6);
+        }
     }
 
     @Test
     void showPublishedLotto() {
+
     }
 }

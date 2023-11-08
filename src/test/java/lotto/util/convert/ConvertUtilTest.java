@@ -41,4 +41,9 @@ class ConvertUtilTest {
         assertThat(numbers).isEqualTo(List.of(1,2,3,4,5,6));
     }
 
+    @DisplayName("입력된 금액을 통해 로또를 몇 장 뽑을 수 있는지 반환")
+    @Test
+    void 로또_뽑기_횟수(){
+        assertThat(ConvertUtil.moneyToCount(10000)).isEqualTo(10);
+    }
 }

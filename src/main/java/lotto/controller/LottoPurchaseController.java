@@ -29,6 +29,7 @@ public class LottoPurchaseController {
     }
 
     private void printPurchasedLotto(Lotto purchasedLotto) {
+        purchasedLotto.sort();
         List<Integer> lottoNumbers = purchasedLotto.getNumbers().stream().toList();
         outputView.printPurchasedLotto(lottoNumbers);
     }

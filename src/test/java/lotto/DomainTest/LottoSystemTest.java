@@ -16,10 +16,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoSystemTest {
     private LottoSystem lottoSystem;
+
     @BeforeEach
-    void init(){
+    void init() {
         lottoSystem = new LottoSystem();
     }
+
     @DisplayName("(예외처리) 6개의 숫자를 입력했는가?")
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4", "1,2,3", "1,2", "1"})
@@ -50,7 +52,7 @@ public class LottoSystemTest {
 
     @DisplayName("(예외처리) 당첨번호와 보너스번호가 겹치는가?")
     @ParameterizedTest
-    @ValueSource(strings = {"1", "2", "3","4","5","6"})
+    @ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
     void storeLottoBonusNumberTest_중복체크(String lottoBonusNumber) {
         lottoSystem.storeLottoWinningNumber("1,2,3,4,5,6");
         assertThatThrownBy(() -> lottoSystem.storeLottoBonusNumber(lottoBonusNumber))
@@ -61,15 +63,14 @@ public class LottoSystemTest {
     @DisplayName("당첨 결과 만들기 테스트")
     @Test
     void compareLottoNumbersTest() {
-        Map<String,Integer> expected = new HashMap<>();
+        Map<String, Integer> expected = new HashMap<>();
         expected.put("2", 1);
         expected.put("3", 1); // 일반번호 3개와 보너스번호가 1개 맞으면, 4개 당첨이 아니라 3개 당첨이다.
         expected.put("7", 1);
 
         lottoSystem.storeLottoWinningNumber("1,2,3,4,5,6");
         lottoSystem.storeLottoBonusNumber("7");
-        assertThat(lottoSystem.compareLottoNumbers(List.of("1,2,3,4,5,6","1,3,5,7,8,9","1,6,11,12,13,14"))).isEqualTo(expected);
+        assertThat(lottoSystem.compareLottoNumbers(List.of("1,2,3,4,5,6", "1,3,5,7,8,9", "1,6,11,12,13,14"))).isEqualTo(
+                expected);
     }
-
-
 }

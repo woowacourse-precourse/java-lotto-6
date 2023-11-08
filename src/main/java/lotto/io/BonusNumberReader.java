@@ -1,10 +1,8 @@
 package lotto.io;
 
-
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.LottoNumberRangeException;
 import lotto.exception.ValueException;
-
 
 public class BonusNumberReader {
     public static int bonusnumber() {

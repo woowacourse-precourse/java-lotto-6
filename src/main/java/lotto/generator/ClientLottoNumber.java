@@ -9,7 +9,6 @@ import java.util.List;
 public class ClientLottoNumber {
     public List<List<Integer>> LottoNumberList = new ArrayList<>();
     public int t;
-
     public List<List<Integer>> NumberGenerator() {
         System.out.println("구입 금액을 알려주세요");
         t = LottoQuantity.Quantity();

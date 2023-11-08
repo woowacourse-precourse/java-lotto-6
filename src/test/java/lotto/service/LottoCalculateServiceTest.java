@@ -15,7 +15,6 @@ import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
 import lotto.model.LottoRank;
 import lotto.model.LottoWallet;
-import lotto.model.LottoWinningNumbers;
 import lotto.repository.LottoWinningRepository;
 import lotto.repository.UserLottoRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,23 +35,23 @@ class LottoCalculateServiceTest extends NsTest {
     }
 
     void winningRepositorySetup() {
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers("1,2,3,4,5,6");
-        lottoWinningRepository.saveLottoWinningNumbers(winningNumbers);
-        lottoWinningRepository.saveLottoBonusNumber(new LottoBonusNumber(winningNumbers, "7"));
+        Lotto winningLotto = new Lotto("1,2,3,4,5,6");
+        lottoWinningRepository.saveLottoWinningNumbers(winningLotto);
+        lottoWinningRepository.saveLottoBonusNumber(new LottoBonusNumber(winningLotto, "7"));
     }
 
     @DisplayName("1등 로또 번호가 저장된다.")
     @Test
     void successSaveRecentWinningNumbers() throws NoSuchFieldException, IllegalAccessException {
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers("1,2,3,4,5,6");
-        LottoBonusNumber bonusNumber = new LottoBonusNumber(winningNumbers, "7");
+        Lotto winningLotto = new Lotto("1,2,3,4,5,6");
+        LottoBonusNumber bonusNumber = new LottoBonusNumber(winningLotto, "7");
 
         // when
-        lottoCalculateService.saveRecentWinningNumbers(winningNumbers, bonusNumber);
+        lottoCalculateService.saveRecentWinningNumbers(winningLotto, bonusNumber);
 
         // then
-        assertThat(lottoWinningRepository.getLottoWinningNumbers())
-                .isEqualTo(winningNumbers);
+        assertThat(lottoWinningRepository.getWinningLotto())
+                .isEqualTo(winningLotto);
         assertThat(lottoWinningRepository.getLottoBonusNumber())
                 .isEqualTo(bonusNumber);
     }
@@ -86,14 +85,14 @@ class LottoCalculateServiceTest extends NsTest {
     @Test
     void successLottoCompare() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         // given
-        LottoWinningNumbers winningNumbers = new LottoWinningNumbers("1,2,3,4,5,6");
-        LottoBonusNumber bonusNumber = new LottoBonusNumber(winningNumbers, "7");
-        Method method = getAccessibleMethod("lottoCompare", LottoWinningNumbers.class, LottoBonusNumber.class,
+        Lotto winningLotto = new Lotto("1,2,3,4,5,6");
+        LottoBonusNumber bonusNumber = new LottoBonusNumber(winningLotto, "7");
+        Method method = getAccessibleMethod("lottoCompare", Lotto.class, LottoBonusNumber.class,
                 Lotto.class);
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when
-        LottoRank value = (LottoRank) method.invoke(lottoCalculateService, winningNumbers, bonusNumber, lotto);
+        LottoRank value = (LottoRank) method.invoke(lottoCalculateService, winningLotto, bonusNumber, userLotto);
 
         // then
         assertThat(value).isEqualTo(LottoRank.RANK_1ST);

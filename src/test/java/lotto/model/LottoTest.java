@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -40,5 +41,15 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, highNum, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(TestUtil.ERROR_PREFACE);
+    }
+
+    @DisplayName(",로 구분된 6개의 숫자가 정상 저장된다.")
+    @Test
+    void successCreateLottoWinningNumbers() {
+        Lotto winningLotto =
+                new Lotto("1,2,3,4,5,6");
+
+        assertThat(winningLotto.getNumbers())
+                .isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 }

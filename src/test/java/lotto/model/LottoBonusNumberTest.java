@@ -9,18 +9,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoBonusNumberTest {
-    LottoWinningNumbers winningNumbers;
+    Lotto winningLotto;
 
     @BeforeEach
     void setup() {
-        winningNumbers = new LottoWinningNumbers("1,2,3,4,5,6");
+        winningLotto = new Lotto("1,2,3,4,5,6");
     }
 
     @DisplayName("보너스 번호가 잘 저장되고 반환된다.")
     @Test
     void successSaveLottoBonusNumber() {
         String number = "25";
-        LottoBonusNumber bonusNumber = new LottoBonusNumber(winningNumbers, number);
+        LottoBonusNumber bonusNumber = new LottoBonusNumber(winningLotto, number);
 
         int saveNumber = bonusNumber.getBonusNumber();
         assertThat(String.valueOf(saveNumber)).isEqualTo(number);
@@ -31,7 +31,7 @@ class LottoBonusNumberTest {
     void createLottoBonusNumberThrowCase1() {
         String number = "이십오";
 
-        assertThatThrownBy(() -> new LottoBonusNumber(winningNumbers, number))
+        assertThatThrownBy(() -> new LottoBonusNumber(winningLotto, number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFACE);
     }
@@ -41,7 +41,7 @@ class LottoBonusNumberTest {
     void createLottoBonusNumberThrowCase2() {
         String number = "-10";
 
-        assertThatThrownBy(() -> new LottoBonusNumber(winningNumbers, number))
+        assertThatThrownBy(() -> new LottoBonusNumber(winningLotto, number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFACE);
     }
@@ -51,7 +51,7 @@ class LottoBonusNumberTest {
     void createLottoBonusNumberThrowCase3() {
         String number = "0";
 
-        assertThatThrownBy(() -> new LottoBonusNumber(winningNumbers, number))
+        assertThatThrownBy(() -> new LottoBonusNumber(winningLotto, number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFACE);
     }
@@ -61,7 +61,7 @@ class LottoBonusNumberTest {
     void createLottoBonusNumberThrowCase4() {
         String number = "46";
 
-        assertThatThrownBy(() -> new LottoBonusNumber(winningNumbers, number))
+        assertThatThrownBy(() -> new LottoBonusNumber(winningLotto, number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_PREFACE);
     }

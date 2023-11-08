@@ -10,8 +10,8 @@ import java.lang.reflect.Method;
 import lotto.dto.DatabaseDto;
 import lotto.exception.LottoPriceUnitException;
 import lotto.exception.NonPositiveAmountException;
+import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
-import lotto.model.LottoWinningNumbers;
 import lotto.model.Money;
 import lotto.repository.LottoWinningRepository;
 import lotto.repository.UserLottoRepository;
@@ -119,7 +119,7 @@ class LottoControllerTest extends NsTest {
         run("1,2,3,4,5,6");
         Method method = getAccessibleMethod("getLottoWinningNumbers");
 
-        LottoWinningNumbers winningNumbers = (LottoWinningNumbers) method.invoke(lottoController);
+        Lotto winningNumbers = (Lotto) method.invoke(lottoController);
         assertThat(winningNumbers).isNotNull();
     }
 
@@ -150,10 +150,10 @@ class LottoControllerTest extends NsTest {
     void getLottoBonusNumber() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         int number = 25;
         run(String.valueOf(number));
-        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers("1,2,3,4,5,6");
-        Method method = getAccessibleMethod("getLottoBonusNumber", LottoWinningNumbers.class);
+        Lotto winningLotto = new Lotto("1,2,3,4,5,6");
+        Method method = getAccessibleMethod("getLottoBonusNumber", Lotto.class);
 
-        LottoBonusNumber outBonusNumber = (LottoBonusNumber) method.invoke(lottoController, lottoWinningNumbers);
+        LottoBonusNumber outBonusNumber = (LottoBonusNumber) method.invoke(lottoController, winningLotto);
 
         assertThat(outBonusNumber.getBonusNumber()).isEqualTo(number);
     }
@@ -163,10 +163,10 @@ class LottoControllerTest extends NsTest {
     void getLottoBonusNumberThrowCase1()
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         run("w", "25");
-        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers("1,2,3,4,5,6");
-        Method method = getAccessibleMethod("getLottoBonusNumber", LottoWinningNumbers.class);
+        Lotto winningLotto = new Lotto("1,2,3,4,5,6");
+        Method method = getAccessibleMethod("getLottoBonusNumber", Lotto.class);
 
-        LottoBonusNumber bonusNumber = (LottoBonusNumber) method.invoke(lottoController, lottoWinningNumbers);
+        LottoBonusNumber bonusNumber = (LottoBonusNumber) method.invoke(lottoController, winningLotto);
 
         assertThat(output()).contains(ERROR_PREFACE);
         assertThat(bonusNumber)
@@ -178,10 +178,10 @@ class LottoControllerTest extends NsTest {
     void getLottoBonusNumberThrowCase2()
             throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         run("1", "25");
-        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers("1,2,3,4,5,6");
-        Method method = getAccessibleMethod("getLottoBonusNumber", LottoWinningNumbers.class);
+        Lotto winningLotto = new Lotto("1,2,3,4,5,6");
+        Method method = getAccessibleMethod("getLottoBonusNumber", Lotto.class);
 
-        LottoBonusNumber bonusNumber = (LottoBonusNumber) method.invoke(lottoController, lottoWinningNumbers);
+        LottoBonusNumber bonusNumber = (LottoBonusNumber) method.invoke(lottoController, winningLotto);
 
         assertThat(output()).contains(ERROR_PREFACE);
         assertThat(bonusNumber)
@@ -197,7 +197,7 @@ class LottoControllerTest extends NsTest {
         lottoController.saveLottoWinningAmount();
 
         // then
-        assertThat(lottoWinningRepository.getLottoWinningNumbers())
+        assertThat(lottoWinningRepository.getWinningLotto())
                 .isNotNull();
         assertThat(lottoWinningRepository.getLottoBonusNumber())
                 .isNotNull();

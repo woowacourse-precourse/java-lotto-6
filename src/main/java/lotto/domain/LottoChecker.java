@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.List;
 
 public class LottoChecker {
+    private static final int SECOND_PLACE_MATCHING_NUMBER = 5;
+
     private List<Integer> winningNumbers;
     private int bonusNumber;
 
@@ -41,7 +43,7 @@ public class LottoChecker {
 
     private Ranking rankingResult(int matchingNumbers, boolean isContainBonus) {
         Ranking ranking = Ranking.getRanking(matchingNumbers);
-        if (isContainBonus && matchingNumbers == 5) {
+        if (isContainBonus && matchingNumbers == SECOND_PLACE_MATCHING_NUMBER) {
             ranking = Ranking.SECOND_PLACE;
         }
         return ranking;

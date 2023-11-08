@@ -6,6 +6,10 @@ import constant.ErrorMessage;
 import java.util.List;
 
 public class BonusNumberValidator {
+    public static void validDuplicate(List<Integer> nums, int number){
+        if(nums.contains(number))
+            new IllegalArgumentException(ErrorMessage.MESSAGE + " " + ErrorMessage.DUPLICATE_MESSAGE);
+    }
 
     public static int validNumberic(String data){
         try{

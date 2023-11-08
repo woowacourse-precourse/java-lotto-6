@@ -2,11 +2,13 @@ package controller;
 
 import constant.Rank;
 import domain.*;
+import validator.BonusNumberValidator;
 import validator.LottoValidator;
 import view.Input;
 import view.Output;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class LottoController {
     private LottoMoney lottoMoney;
@@ -14,7 +16,7 @@ public class LottoController {
     private Lottos lottos;
     private Lotto winningNumber;
     private BonusNumber bonusNumber;
-    private WinningRankController winningRankController;
+    private WinningMachine winningMachine;
 
     public LottoController() {
         input = new Input();
@@ -22,10 +24,8 @@ public class LottoController {
     }
 
     public void start() {
-        //lottoCostRequst = new LottoCostRequst(Input.getInputForLottoMoney());
         // 로또 살 금액 입력
         lottoMoney = getLottoMeney();
-
         lottos = issueLottos(lottoMoney.getAvaliablePurcahaseCount());
         printIssueLottos();
 
@@ -36,7 +36,10 @@ public class LottoController {
         bonusNumber = getBonusNumber();
 
         // 당첨 여부 가리기
-        determineWinningLottos();
+        startDetermineWinningLottos();
+
+        //수익률 계산 후 출력
+        calcurateProfitRate();
 
     }
 
@@ -54,7 +57,7 @@ public class LottoController {
         }
     }
 
-    private Lottos issueLottos(int issueCount) {
+    private Lottos issueLottos(long issueCount) {
         return new Lottos(issueCount);
     }
 
@@ -87,7 +90,10 @@ public class LottoController {
         BonusNumber bonusNumber;
         while (true) {
             try {
-                bonusNumber = new BonusNumber(input.getInputForBonusNumber());
+                int userInputBonusNumber = BonusNumberValidator.validNumberic(input.getInputForBonusNumber());
+                BonusNumberValidator.validDuplicate(winningNumber.getNumbers(), userInputBonusNumber);
+
+                bonusNumber = new BonusNumber(userInputBonusNumber);
                 return bonusNumber;
             } catch (NumberFormatException error) {
                 Output.errorMessage(error);
@@ -97,16 +103,34 @@ public class LottoController {
         }
     }
 
-    private void printResult(HashMap<Rank, Integer> result){
+    private void startDetermineWinningLottos(){
+        winningMachine = new WinningMachine(winningNumber, bonusNumber);
+        winningMachine.calcurateRankCountResult(lottos.getLottos());
+
+        // 당첨 여부 출력
+        printWinningLottos(winningMachine.getRankResult());
+    }
+
+    private void printWinningLottos(HashMap<Rank, Integer> result){
+        Output.print();
         Output.printWinningStatisticMessage();
         Output.printStatistics(result);
     }
 
-    private void determineWinningLottos(){
-        winningRankController = new WinningRankController(new WinningMachine(winningNumber, bonusNumber));
-        HashMap<Rank, Integer> reult = winningRankController.getRankCountResult(lottos.getLottos());
+    private void calcurateProfitRate(){
+        long totalProfit = getTotalProfit(winningMachine.getRankResult());
+        ProfitRate profitRate = new ProfitRate(lottoMoney.getMoney(), totalProfit);
+        Output.printProfitRate(profitRate);
+    }
 
-        // 당첨 여부 출력
-        printResult(reult);
+    private static long getTotalProfit(HashMap<Rank, Integer> rankResult) {
+        long totalIncome = 0;
+        Iterator<Rank> ranks = rankResult.keySet().iterator();
+        while(ranks.hasNext()){
+            Rank currentRank = ranks.next();
+            int count = rankResult.get(currentRank);
+            totalIncome+= currentRank.getPrize()*count;
+        }
+        return totalIncome;
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public class Lottos {
 
     final List<Lotto> lottos;
-    public Lottos(int issueCount){
+    public Lottos(long issueCount){
         List<Lotto> lottos = new ArrayList<>();
 
         for(int i=0; i<issueCount; i++){

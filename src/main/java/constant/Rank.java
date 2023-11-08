@@ -16,6 +16,10 @@ public enum Rank {
         this.prize = prize;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     public int getCorrectCount() {
         return correctCount;
     }

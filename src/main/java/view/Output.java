@@ -8,8 +8,7 @@ import constant.Rank;
 import constant.UserRequestMessage;
 import constant.UserResponeMessage;
 import domain.Lotto;
-
-
+import domain.ProfitRate;
 
 
 public class Output {
@@ -67,5 +66,9 @@ public class Output {
         System.out.printf((THIRD_MATCH.getValue()) + "%n", rankCounts.get(Rank.THIRD));
         System.out.printf((SECOND_MATCH.getValue()) + "%n", rankCounts.get(Rank.SECOND));
         System.out.printf((FIRST_MATCH.getValue()) + "%n", rankCounts.get(Rank.FIRST));
+    }
+
+    public static void printProfitRate(ProfitRate profitRate){
+        System.out.printf(TOTAL_RATE_OF_RETURN.getValue() + "%n", profitRate.getRate());
     }
 }

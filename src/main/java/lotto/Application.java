@@ -3,38 +3,37 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     static int numberOfLotto;
     static int money = 0;
+
     enum Statistic {
         correct3(3, 5000),
         correct4(4, 50000),
         correct5(5, 150000),
         correct5Andbonus(5, 30000000),
-        correct6(6,2000000000);
+        correct6(6, 2000000000);
 
         int correctNums;
         long prize;
 
-        Statistic(int correctNums, long prize){
+        Statistic(int correctNums, long prize) {
             this.correctNums = correctNums;
             this.prize = prize;
         }
 
-        public int getCorrectNums(){
+        public int getCorrectNums() {
             return correctNums;
         }
 
-        public long getPrize(){
+        public long getPrize() {
             return prize;
         }
 
     }
+
     public static void main(String[] args) {
         List<Lotto> lottos = new ArrayList<>();
         List<Integer> winningNumbers = new ArrayList<>();
@@ -43,7 +42,7 @@ public class Application {
         buyOutput();
         myLottoOutput(lottos);
         winningLottoOutput(winningNumbers, bonusNumber);
-        statisticsOutput(lottos,winningNumbers,winningBonusNumber);
+        statisticsOutput(lottos, winningNumbers, bonusNumber,winningBonusNumber);
     }
 
     public static void buyOutput() {
@@ -55,35 +54,48 @@ public class Application {
     }
 
     public static void myLottoOutput(List<Lotto> lottos) {
-        for (int i = 0; i < money; i++) {
+        for (int i = 0; i < numberOfLotto; i++) {
             makeLotto(lottos);
             printLotto(lottos.get(i).getNumbers());
             System.out.println();
         }
     }
 
-    public static void winningLottoOutput(List<Integer> winningNumbers, List<Integer> bonusNumber){
+    public static void winningLottoOutput(List<Integer> winningNumbers, List<Integer> bonusNumber) {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         winningNumbersInput(winningNumbers);
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusNumberInput(bonusNumber);
-        System.out.println("당첨 번호를 입력해 주세요.");
         System.out.println();
     }
 
-    public static void statisticsOutput(List<Lotto> lottos, List<Integer> winningNumbers, List<Integer> winningBonusNumber) {
+    public static void statisticsOutput(List<Lotto> lottos, List<Integer> winningNumbers, List<Integer> bonusNumber, List<Integer> winningBonusNumber) {
         List<Integer> lottohaveWinningNumList = new ArrayList<>();
         List<Integer> lottohaveWinningBonusNumList = new ArrayList<>();
-        Statistic prize;
+        int prize;
 
         System.out.println("당첨 통계");
         System.out.println("---");
-        for(int i=0;i<lottos.size();i++) {
-            lottohaveWinningNumList.add(findCorrectNums(lottos.get(i), winningNumbers));
-            lottohaveWinningBonusNumList.add(findCorrectBonusNum(lottos.get(i), winningBonusNumber));
+        for (Lotto lotto : lottos) {
+            lottohaveWinningNumList.add(findCorrectNums(lotto, winningNumbers));
+            lottohaveWinningBonusNumList.add(findCorrectBonusNum(lotto, bonusNumber, winningBonusNumber));
         }
-        whatIsPrize()
+        List<Integer> staticList = makeStaticList(lottohaveWinningNumList, lottohaveWinningBonusNumList);
+        prize = totalPrize(staticList);
+        totalPrint(staticList,prize);
 
+    }
+
+    public static void totalPrint(List<Integer> staticList,int prize) {
+        System.out.println("3개 일치 (5,000원) -" + staticList.get(0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + staticList.get(1) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + staticList.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + staticList.get(3) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + staticList.get(4) + "개");
+        double rate = (double)prize / money * 100;
+        rate = Math.round(rate * 100.0) / 100.0;
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 
     public static int moneyInput(int money) {
@@ -113,17 +125,17 @@ public class Application {
         if (numbers.length != 6)
             throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
         try {
-            int num = compareWinning(numbers);
-            winningNumbers.add(num);
+            int num = compareWinning(numbers,winningNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
         }
     }
 
-    public static int compareWinning(String[] numbers) {
+    public static int compareWinning(String[] numbers,List<Integer> winningNumbers) {
         int num = 0;
         for (String number : numbers) {
             num = Integer.parseInt(number.trim());
+            winningNumbers.add(num);
             if (!(1 <= num && num <= 45))
                 throw new IllegalArgumentException("[ERROR] 당첨 번호 6개를 입력하여야 합니다.");
         }
@@ -151,30 +163,68 @@ public class Application {
     }
 
 
-    public static int findCorrectNums(Lotto lotto, List<Integer> winningNumbers){
+    public static int findCorrectNums(Lotto lotto, List<Integer> winningNumbers) {
         int winningLottoNums = 0;
-        for(int element : winningNumbers){
-            winningLottoNums = winningLottoNums + onewinnningNum(lotto,element);
+        for (int element : winningNumbers) {
+            winningLottoNums = winningLottoNums + onewinnningNum(lotto, element);
         }
         return winningLottoNums;
     }
 
-    public static int onewinnningNum(Lotto lotto, int winningNum){
-        for(int element : lotto.getNumbers())
-            if(element == winningNum)
+    public static int onewinnningNum(Lotto lotto, int winningNum) {
+        for (int element : lotto.getNumbers())
+            if (element == winningNum)
                 return 1;
         return 0;
     }
-    public static int findCorrectBonusNum(Lotto lotto, List<Integer> winningBonusNumber){
-        int winningLottoNum = winningBonusNumber.get(0);
-        for(int element : lotto.getNumbers())
-            if(element == winningLottoNum)
+
+    public static int findCorrectBonusNum(Lotto lotto, List<Integer> bonusNumber, List<Integer> winningBonusNumber) {
+        int winningLottoNum = bonusNumber.get(0);
+        for (int element : lotto.getNumbers())
+            if (element == winningLottoNum)
                 return 1;
-        return winningLottoNum;
+        return 0;
+    }
+
+    public static List<Integer> makeStaticList(List<Integer> lottohaveWinningNumList,
+                                               List<Integer> lottohaveWinningBonusNumList) {
+        List<Integer> staticList = new ArrayList<>();
+        for (int i = 0; i < numberOfLotto; i++)
+            staticList.add(0);
+        for (int i = 0; i < numberOfLotto; i++) {
+            int number = lottohaveWinningNumList.get(i) + lottohaveWinningBonusNumList.get(i);
+            if (number == 3) staticList.set(0, staticList.get(0) + 1);
+            else if (number == 4) staticList.set(1, staticList.get(1) + 1);
+            else if (number == 5) {
+                if (lottohaveWinningBonusNumList.get(i) == 1)
+                    staticList.set(2, staticList.get(2) + 1);
+                else if (lottohaveWinningBonusNumList.get(i) == 0)
+                    staticList.set(3, staticList.get(3) + 1);
+            } else if (number == 6) staticList.set(4, staticList.get(4) + 1);
+        }
+        return staticList;
     }
 
 
 
+    public static int totalPrize (List<Integer> staticList){
+        int prize=0;
+        for(int i =0 ; i<staticList.size();i++) {
+            if(i==0)
+                prize = prize + staticList.get(i) * 5000;
+            else if(i==1)
+                prize = prize + staticList.get(i) * 50000;
+            else if(i==2)
+                prize = prize + staticList.get(i) * 1500000;
+            else if(i==3)
+                prize = prize + staticList.get(i) * 30000000;
+            else if(i==4)
+                prize = prize + staticList.get(i)* 2000000000;
+        }
+        return prize;
+    }
+
+/*
     public static Statistic whatIsPrize(int correctNums, boolean hasBonus){
         if (correctNums < 3 || correctNums > 6) {
             return null;
@@ -193,20 +243,40 @@ public class Application {
         return null;
     }
 
-    public static List<Integer> winningLottoCl (Statistic statistic){
-        List<Integer> winningLottoList = null;
-        for(int i=0;i<=numberOfLotto;i++)
-            winningLottoList.add(0);
-        if(statistic.getCorrectNums() == 3)
-            winningLottoList.set(3, winningLottoList.get(3)+1);
-        else if(statistic.getCorrectNums() == 4)
-            winningLottoList.set(4, winningLottoList.get(4)+1);
-        else if(statistic.getCorrectNums() == 4)
-            if(statistic.getPrize())
-            winningLottoList.set(5, winningLottoList.get(5)+1);
-        else if(statistic.getCorrectNums() == 4)
-            winningLottoList.set(4, winningLottoList.get(4)+1);
+    public static void setStatisticList(Lotto lotto, List<Integer> lottohaveWinningNumList,
+    List<Integer> lottohaveWinningBonusNumList){
+        List<Statistic> statisticsList = new ArrayList<>();
+
+        for(int i=0;i<lotto.getNumbers().size();i++){
+            Statistic statistic = (lottohaveWinningBonusNumList.get(i)+lottohaveWinningNumList.get(i), )
+        }
+    }
+
+    public static boolean bonusHit(){
+        for(int i=0;i<numberOfLotto;i++){
+
+        }
 
     }
 
+    public static List<Integer> winningLottoCl (Statistic statistic, boolean bonusHit){
+        List<Integer> winningLottoList = null;
+        for(int i=0;i<5;i++)
+            winningLottoList.add(0);
+        for(int i=0;i<numberOfLotto;i++) {
+            if (statistic.getCorrectNums() == 3)
+                winningLottoList.set(0, winningLottoList.get(0) + 1);
+            else if (statistic.getCorrectNums() == 4)
+                winningLottoList.set(1, winningLottoList.get(1) + 1);
+            else if (statistic.getCorrectNums() == 5)
+                if (bonusHit)
+                    winningLottoList.set(2, winningLottoList.get(2) + 1);
+                else if (!bonusHit)
+                    winningLottoList.set(3, winningLottoList.get(3) + 1);
+                else if (statistic.getCorrectNums() == 6)
+                    winningLottoList.set(4, winningLottoList.get(4) + 1); //주의
+        }
+        return winningLottoList;
+    }
+*/
 }

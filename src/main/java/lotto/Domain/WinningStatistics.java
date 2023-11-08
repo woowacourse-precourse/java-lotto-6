@@ -1,8 +1,5 @@
 package lotto.Domain;
 
-import lotto.Domain.Lotto;
-import lotto.Domain.WinningRank;
-
 import java.util.List;
 
 public class WinningStatistics {

@@ -5,6 +5,7 @@ import lotto.domain.LottoCost;
 import lotto.domain.LottoGenerator;
 import lotto.domain.Lottos;
 import lotto.domain.Lotto;
+import lotto.domain.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,5 +26,11 @@ public class LottoController {
         OutputView.printLottoCount(lottoCount);
         OutputView.printLottos(lottos);
         return new Lottos(lottos);
+    }
+
+    private WinningNumber getWinningNumber() {
+        List<Integer> winningNumbers = InputView.winningNumber();
+        int bonusNumber = InputView.bonusNumber();
+        return new WinningNumber(winningNumbers, bonusNumber);
     }
 }

@@ -19,6 +19,8 @@ public class LottoChecker {
             matchingCount += isMatchingNumber(number);
         }
         boolean isContainBonus = isBonusMatch(lottoNumbers);
+
+        return rankingResult(matchingCount, isContainBonus);
     }
 
     private int isMatchingNumber(int number) {
@@ -35,5 +37,13 @@ public class LottoChecker {
             }
         }
         return false;
+    }
+
+    private Ranking rankingResult(int matchingNumbers, boolean isContainBonus) {
+        Ranking ranking = Ranking.getRanking(matchingNumbers);
+        if (isContainBonus && matchingNumbers == 5) {
+            ranking = Ranking.SECOND_PLACE;
+        }
+        return ranking;
     }
 }

@@ -17,9 +17,9 @@ public class LottoShopTest {
         lottoShop = new LottoShop(lottoMachine);
     }
 
-    @DisplayName("구입한 금액에 맞는 개수의 로또가 구입됐는지 테스트한다. 예상한 개수와 다르면 테스트에 실패한다.")
+    @DisplayName("구입한 금액에 맞는 개수의 로또가 구매됐는지 테스트한다. 예상한 개수와 다르면 테스트에 실패한다.")
     @Test
-    void 구입한_로또_개수_테스트() {
+    void 구매한_로또_개수_테스트() {
         // given
         int budget = 6000;
 

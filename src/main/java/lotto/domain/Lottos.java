@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.view.InputView;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,6 +11,10 @@ public class Lottos {
 
     public Lottos(int input) {
         this.lottos = generateLottos(numberLottos(input));
+    }
+
+    public Lottos(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
     public List<Lotto> getLottos() {

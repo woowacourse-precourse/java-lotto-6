@@ -8,6 +8,26 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class LottoMachine {
+    private enum rank{
+        FIRST(0,2000000000),
+        SECOND(1,30000000),
+        THIRD(2,1500000),
+        FOURTH(3,50000),
+        FIFTH(4,5000);
+
+        private final int index;
+        private final int reward;
+        rank(int index, int reward){
+            this.index = index;
+            this.reward = reward;
+        }
+        public int getIndex(){
+            return this.index;
+        }
+        public int getReward(){
+            return this.index;
+        }
+    }
     private int count;
     public List<Integer> win = new ArrayList<>();
     public int bonus;
@@ -117,23 +137,37 @@ public class LottoMachine {
     }
 
     public void result(){
-        int[] winner = new int[win.size()+2];
-        int bonusWinner = 0;
+        int[] winner = new int[5];
         for(Lotto k : lotto){
-
-            winner[k.check(win, bonus)]++;
+            check(k.getNumbers(),winner);
         }
-        drawResult(winner, bonusWinner);
+        drawResult(winner);
     }
 
-    public void drawResult(int[] winner, int bonusWinner){
+    public void check(List<Integer> currentLotto, int[] winner){
+        int count = 0;
+        for(int i = 0; i < win.size(); i++){
+            if(currentLotto.contains(win.get(i))){
+                count++;
+            }
+        }
+        if(count == 5){
+            if(currentLotto.contains(bonus)){
+                winner[rank.SECOND.index]++;
+                return;
+            }
+        }
+        winner[count]++;
+    }
+
+    public void drawResult(int[] winner){
         System.out.println("\n당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + winner[3] + "개");
-        System.out.println("4개 일치 (50,000원) - " + winner[2] + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + winner[1] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winner[7] + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + winner[0] + "개");
-        double temp = (2000000000*winner[0] + 30000000*winner[7] +1500000*winner[1]+50000*winner[2] + 5000*winner[3])/(count*1000.0)*100;
+        System.out.println("3개 일치 (5,000원) - " + winner[rank.FIFTH.index] + "개");
+        System.out.println("4개 일치 (50,000원) - " + winner[rank.FOURTH.index] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winner[rank.THIRD.index] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winner[rank.SECOND.index] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winner[rank.FIRST.index] + "개");
+        double temp = (rank.FIRST.reward*winner[rank.FIRST.index] + rank.SECOND.reward*winner[rank.SECOND.index] + rank.THIRD.reward*winner[rank.THIRD.index] + rank.FOURTH.reward*winner[rank.FOURTH.index] + rank.FIFTH.reward*winner[rank.FIFTH.index]) / (count*1000.0) * 100;
         System.out.println("총 수익률은 " + String.format("%.1f",temp) + "%입니다.");
     }
 }

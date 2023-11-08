@@ -34,6 +34,9 @@ public class Lotto {
         Collections.sort(this.numbers);
     }
 
+    public List<Integer> getNumbers(){
+        return this.numbers;
+    }
     public int check(List<Integer> answer, int bonus){
         int count = 0;
         for(int i = 0; i < answer.size(); i++){

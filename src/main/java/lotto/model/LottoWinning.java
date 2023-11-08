@@ -11,7 +11,7 @@ import static java.lang.Integer.parseInt;
 import static lotto.constant.LottoConstant.*;
 
 public class LottoWinning {
-    private List<Integer> winningNumber;
+    private final List<Integer> winningNumber;
     private int bonusNumber;
 
     public LottoWinning(String _winningNumber) {

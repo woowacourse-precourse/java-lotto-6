@@ -9,6 +9,7 @@ public class LottoPurchaseOutputView {
     private final static String OUTPUT_MONEY = "구입금액을 입력해 주세요.";
 
     public void outputLotto(Lottos lottos, int lottoCount) {
+        System.out.println();
         System.out.println(lottoCount + LOTTO_COUNT);
         for (int i = 0; i < lottos.size(); i++) {
             Lotto lotto = lottos.get(i);

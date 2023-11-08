@@ -17,6 +17,7 @@ public class LottoWinningCalculationOutputView {
 
 
     public void outputWinningStatistics(WinningStatistics winningStatistics) {
+        System.out.println();
         System.out.println(WINNING_STATISTICS);
         System.out.println(FIFTH_PLACE_MESSAGE + winningStatistics.getFifthPlace() + COUNT);
         System.out.println(FOURTH_PLACE_MESSAGE + winningStatistics.getFourthPlace() + COUNT);
@@ -31,10 +32,12 @@ public class LottoWinningCalculationOutputView {
     }
 
     public void outputWinningNumber() {
+        System.out.println();
         System.out.println(OUTPUT_WINNING_NUMBER);
     }
 
     public void outputBonusNumber() {
+        System.out.println();
         System.out.println(OUTPUT_BONUS_NUMBER);
     }
 }

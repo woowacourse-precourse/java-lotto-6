@@ -15,7 +15,7 @@ public class OutputResultView {
         Arrays.stream(Winning.values())
                 .filter(winning -> !winning.equals(Winning.EMPTY))
                 .forEach(winning -> System.out.println(getprintResultWinning(winning, winningResult)));
-        System.out.printf((Rule.OUTPUTWINNING_MESSAGE) + NEWLINE, rate.getRate());
+        System.out.printf((Rule.OUTPUTRATE_MESSAGE) + NEWLINE, rate.getRate());
     }
 
     private static String getprintResultWinning(Winning winning, WinningResult winningResult) {
@@ -25,7 +25,7 @@ public class OutputResultView {
                     , String.format("%,d", winning.getMoney())
                     , winningResult.getWinningCount(winning));
         }
-        return String.format(Rule.OUTPUTBONUSMATCH_MESSAGE
+        return String.format(Rule.OUTPUTMATCH_MESSAGE
                 , winning.getMatchLottoNumber()
                 , String.format("%,d", winning.getMoney())
                 , winningResult.getWinningCount(winning));

@@ -26,7 +26,7 @@ public class WinningLotto {
         return bonusNumber;
     }
 
-    private static int getBonusIntegerNumber(String userBonusNumber) {
+    private int getBonusIntegerNumber(String userBonusNumber) {
         WinningLottoException.checkBonusNumberTypeException(userBonusNumber);
         return Integer.parseInt(userBonusNumber.trim());
     }

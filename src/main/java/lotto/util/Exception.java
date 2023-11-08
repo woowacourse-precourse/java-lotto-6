@@ -3,8 +3,6 @@ package lotto.util;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.service.UserRequestService;
-import lotto.view.InputView;
-import lotto.view.OutputView;
 
 public class Exception {
     public static int lottoCostException(String input) {

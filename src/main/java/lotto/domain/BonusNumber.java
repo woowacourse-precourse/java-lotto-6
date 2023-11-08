@@ -21,7 +21,7 @@ public class BonusNumber {
 
     private static void validateUnique(final WinningNumber bonusNumber, final WinningNumbers winningNumbers) {
         if (winningNumbers.isNumberExist(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_VALUES.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.getErrorMessage());
         }
     }
 }

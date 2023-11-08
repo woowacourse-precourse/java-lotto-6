@@ -33,7 +33,7 @@ public class Lottos {
         StringJoiner sj = new StringJoiner("\n");
 
         for (Lotto lotto : lottos) {
-            sj.add(lotto.getLottoNumbers());
+            sj.add(lotto.toString());
         }
 
         return sj.toString();

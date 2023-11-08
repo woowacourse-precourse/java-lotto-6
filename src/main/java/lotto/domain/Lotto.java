@@ -1,13 +1,12 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.excpetion.LottoException;
 import lotto.utils.ErrorMessage;
 import lotto.utils.LottoPlace;
 import lotto.utils.LottoCorrectResult;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private static final int MIN_VALUE = 1;
@@ -25,7 +24,7 @@ public class Lotto {
 
     private void sizeValidate(final List<Integer> numbers) {
         if (numbers.size() != SIZE) {
-            throw new IllegalArgumentException();
+            throw new LottoException(ErrorMessage.NON_APPROPRIATE_LOTTO_SIZE.getErrorMessage());
         }
     }
 
@@ -38,7 +37,8 @@ public class Lotto {
         return new Lotto(pickedNumbers);
     }
 
-    public String getLottoNumbers() {
+    @Override
+    public String toString() {
         return numbers.toString();
     }
 
@@ -94,15 +94,11 @@ public class Lotto {
         return lottoCorrectResult;
     }
 
-    private static void uniqueValidate(final List<Integer> pickedNumbers) {
-        boolean[] alreadyChecked = new boolean[MAX_VALUE + 1];
+    private void uniqueValidate(final List<Integer> pickedNumbers) {
+        Set<Integer> nonDuplicatedPickedNumbers = new HashSet<>(pickedNumbers);
 
-        for (int number : pickedNumbers) {
-            if (alreadyChecked[number]) {
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATED_VALUES.getErrorMessage());
-            }
-
-            alreadyChecked[number] = true;
+        if (nonDuplicatedPickedNumbers.size() != SIZE) {
+            throw new LottoException(ErrorMessage.DUPLICATED_LOTTO_NUMBERS.getErrorMessage());
         }
     }
 }

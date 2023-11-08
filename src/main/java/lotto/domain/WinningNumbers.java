@@ -40,7 +40,7 @@ public class WinningNumbers {
 
     private static void validateDuplication(final Set<WinningNumber> inputWinningNumbers) {
         if (inputWinningNumbers.size() != SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_VALUES.getErrorMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNING_NUMBERS.getErrorMessage());
         }
     }
 }

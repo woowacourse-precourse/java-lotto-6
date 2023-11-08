@@ -6,7 +6,12 @@ import lotto.utils.ErrorMessage;
 import lotto.utils.LottoPlace;
 import lotto.utils.LottoCorrectResult;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 
 public class Lotto {
     private static final int MIN_VALUE = 1;

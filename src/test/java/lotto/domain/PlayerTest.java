@@ -20,4 +20,15 @@ class PlayerTest {
 
         assertEquals(purChaseAmountInput, player.getPurChaseAmount());
     }
+
+    @Test
+    void 수익률_반환() {
+        int purChaseAmountInput = 100000;
+        player.insertPurchaseAmount(purChaseAmountInput);
+        double expectedRateOfReturn = 1000.0;
+
+        double rateOfReturn = player.calculateRateOfReturn(1000000);
+
+        assertEquals(expectedRateOfReturn, rateOfReturn);
+    }
 }

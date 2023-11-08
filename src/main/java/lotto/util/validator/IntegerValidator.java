@@ -9,7 +9,7 @@ import static lotto.common.ExceptionMessage.ERROR_NUMBER_NOT_IN_RANGE;
 import java.util.regex.Pattern;
 
 public class IntegerValidator {
-    private static final Pattern VALID_INTEGER_PATTERN = Pattern.compile("^[1-9][0-9]*$");
+    private static final Pattern VALID_INTEGER_PATTERN = Pattern.compile("^-?[1-9]\\d*|0$");
 
     public static void validateInteger(String input) {
         if (!isValidInteger(input)) {

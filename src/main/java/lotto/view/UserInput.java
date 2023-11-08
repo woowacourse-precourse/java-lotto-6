@@ -9,13 +9,26 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class UserInput {
+    public static String inputAmount() {
+        String amount = Console.readLine();
+        validateAmount(amount);
+        return amount;
+    }
+
     public static List<String> inputNumber() {
         String numbers = Console.readLine();
         List<String> number = Arrays.stream(numbers.split(","))
                 .map(String::trim)
                 .peek(UserInput::validateNumber)
                 .collect(Collectors.toList());
+        validateUniqueNumber(number);
         return number;
+    }
+
+    private static void validateAmount(String amount) {
+        if (amount == null || Integer.parseInt(amount) % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구매 금액은 1,000원 단위로 입력해 주세요.");
+        }
     }
 
     private static void validateNumber(String number) {

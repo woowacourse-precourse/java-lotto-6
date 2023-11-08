@@ -36,6 +36,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         Validation.lackInputCheck(numbers);
+        Validation.duplicationCheck(numbers);
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }

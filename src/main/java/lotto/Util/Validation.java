@@ -42,9 +42,8 @@ public class Validation {
         if (numbers.size() != 6) ErrorLackInput();
     }
 
-    public static void duplicationCheck(int[] preprocessedNumbers) {
-        long count = Arrays.stream(preprocessedNumbers).distinct().count();
-
+    public static void duplicationCheck(List<Integer> numbers) {
+        long count = numbers.stream().distinct().count();
         if (count < 6) ErrorDuplication();
     }
 

@@ -46,7 +46,7 @@ class ValidationTest {
     @Test
     void duplicationCheck() {
         // given
-        int[] winnerNumbers = new int[]{1, 2, 3, 4, 5, 5};
+        ArrayList<Integer> winnerNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 5));
         // when // then
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> Validation.duplicationCheck(winnerNumbers));

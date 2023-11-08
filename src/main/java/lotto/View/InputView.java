@@ -24,16 +24,11 @@ public class InputView {
     private int[] convertIntArr() {
         String input = inputPreprocessing();
         input = input.replace(BLACK, BLACKNESS);
-        int[] preNumber = Stream.of(input.split(COMMA))
+
+        return Stream.of(input.split(COMMA))
                 .mapToInt(Integer::parseInt)
                 .toArray();
-
-        Validation.duplicationCheck(preNumber);
-
-        return preNumber;
     }
-
-
 
     public List<Integer> getWinnerNumbers() {
         System.out.printf(WINNING_NUMBER);

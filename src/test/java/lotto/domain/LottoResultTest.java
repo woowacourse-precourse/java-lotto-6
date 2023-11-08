@@ -58,12 +58,20 @@ class LottoResultTest {
 
     @Test
     void compareAllLottoTicketTest() {
-        LottoTicket lottoTicket1 = new LottoTicket(List.of(3,4,5,6,7,8));
-        LottoTicket lottoTicket2 = new LottoTicket(List.of(4,5,6,7,8,9));
+        LottoTicket lottoTicket1 = new LottoTicket(List.of(3, 4, 5, 6, 7, 8));
+        LottoTicket lottoTicket2 = new LottoTicket(List.of(4, 5, 6, 7, 8, 9));
 
-        lottoResult.compareAllLottoTicket(List.of(1,2,3,4,5,6,7),List.of(lottoTicket1,lottoTicket2));
+        lottoResult.compareAllLottoTicket(List.of(1, 2, 3, 4, 5, 6, 7), List.of(lottoTicket1, lottoTicket2));
         assertThat(lottoResult.fourth).isEqualTo(1);
         assertThat(lottoResult.fifth).isEqualTo(1);
+    }
+
+    @Test
+    void getPrizeTest() {
+        lottoResult.second = 1;
+        lottoResult.fourth = 2;
+        double result = lottoResult.getPrize();
+        assertThat(result).isEqualTo(30100000);
     }
 
 }

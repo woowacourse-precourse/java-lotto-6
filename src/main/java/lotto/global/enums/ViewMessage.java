@@ -9,7 +9,7 @@ public enum ViewMessage {
     OUTPUT_WIN_STATS("당첨 통계\n---"),
     OUTPUT_LOTTO_SIZE("개를 구매했습니다."),
     OUTPUT_RATE_OF_RETURN_FRONT("총 수익률은 "),
-    OUTPUT_RATE_OF_RETURN_END("%입니다"),
+    OUTPUT_RATE_OF_RETURN_END("%입니다."),
     INPUT_MONEY_AMOUNT("구입금액을 입력해 주세요."),
     INPUT_LOTTO_NUMBER("당첨 번호를 입력해 주세요."),
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요.");

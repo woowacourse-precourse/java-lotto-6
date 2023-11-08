@@ -9,37 +9,39 @@ public class UserView {
     private final UserController userController;
     private final UserViewValidator userViewValidator;
 
-    public UserView(UserController userController, UserViewValidator userViewValidator){
+    public UserView(UserController userController, UserViewValidator userViewValidator) {
         this.userController = userController;
         this.userViewValidator = userViewValidator;
     }
 
-    public User inputUserAssets(){
+    public User inputUserAssets() {
         System.out.println(ViewMessage.INPUT_MONEY_AMOUNT);
         User user = userController.createUserWithAssets(inputAssetWithValidate());
         outputBuyLotto(user);
         return user;
     }
 
-    public void userStats(final User user){
+    public void userStats(final User user) {
         outputUserRateOfReturn(user);
     }
 
-    private void outputUserRateOfReturn(final User user){
+    private void outputUserRateOfReturn(final User user) {
         RateOfReturnResponse response = userController.getRateOfReturn(user);
-        System.out.println(ViewMessage.OUTPUT_RATE_OF_RETURN_FRONT.getMessage() + response);
+        System.out.print(ViewMessage.OUTPUT_RATE_OF_RETURN_FRONT.getMessage() + response);
     }
 
-    private void outputBuyLotto(final User user){
+    private void outputBuyLotto(final User user) {
         UserLottoResponse response = userController.buyLotto(user);
         response.outputLottoSize();
         System.out.println(response);
     }
 
-    private String inputAssetWithValidate(){
-        while (true){
+    private String inputAssetWithValidate() {
+        while (true) {
             String input = Console.readLine();
-            return input;
+            if (userViewValidator.userAssetsInputValidator(input)) {
+                return input;
+            }
         }
     }
 }

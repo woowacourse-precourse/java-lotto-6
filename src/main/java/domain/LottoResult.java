@@ -10,7 +10,7 @@ public class LottoResult {
 
     private int bonusNumber;
 
-    public LottoResult(String[] lottoResultNumber, String bonusNumber) { // 실제 사용하는  생성자
+    public LottoResult(String[] lottoResultNumber, int bonusNumber) { // 실제 사용하는  생성자
         setLottoResultNumber(lottoResultNumber);
         setBonusNumber(bonusNumber);
     }
@@ -19,7 +19,7 @@ public class LottoResult {
         setLottoResultNumber(userInputNumber);
     }
 
-    public LottoResult(String userInputNumber) { // 테스트코드용 생성자
+    public LottoResult(int userInputNumber) { // 테스트코드용 생성자
         setBonusNumber(userInputNumber);
     }
 
@@ -40,8 +40,8 @@ public class LottoResult {
         return bonusNumber;
     }
 
-    private void setBonusNumber(String inputBonusNumber) {
-        int number = Integer.parseInt(inputBonusNumber);
+    private void setBonusNumber(int inputBonusNumber) {
+        int number = inputBonusNumber;
         this.bonusNumber = number;
     }
 

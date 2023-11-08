@@ -32,18 +32,18 @@ public class InputView {
             String[] lottoResult = inputLottoResultNumber.split(",");
             System.out.println();
             return lottoResult;
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputLottoResultNumber();
         }
     }
 
-    public static String inputBonusResultNumber() {
+    public static int inputBonusResultNumber() {
         System.out.println(BONUS_NUMBER_MESSAGE);
         try {
-            String inputBonusNumber = readLine();
+            int inputBonusNumber = validateNumberExceptionHandler(readLine());
             System.out.println();
+
             return inputBonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

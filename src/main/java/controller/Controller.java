@@ -13,7 +13,7 @@ public class Controller {
         LottoCount lottoCount = new LottoCount(purchaseAmount);
         outputPurchaseAmount(lottoCount);
         String[] lottoResultNumber = InputView.inputLottoResultNumber();
-        String bonusNumber = InputView.inputBonusResultNumber();
+        int bonusNumber = InputView.inputBonusResultNumber();
         LottoResult lottoResult = new LottoResult(lottoResultNumber, bonusNumber);
         WinningStatistics winningStatistics = new WinningStatistics(
                 lottoResult.getLottoResultNumber(),

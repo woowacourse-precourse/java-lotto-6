@@ -35,7 +35,11 @@ public class Application {
     }
 
     private static Lotto generateWinningNumbers(String[] numbers) {
-        List<Integer> winningNumbers = Arrays.stream(numbers).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+        List<Integer> winningNumbers = Arrays.stream(numbers)
+                .filter(num -> !num.equals(""))
+                .mapToInt(Integer::parseInt)
+                .boxed()
+                .collect(Collectors.toList());
         Lotto winningLotto = new Lotto(winningNumbers);
 
         return winningLotto;

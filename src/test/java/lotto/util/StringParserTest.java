@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("문자열 나누기 테스트")
 class StringParserTest {
-
     @DisplayName("쉼표를 기반으로 문자열을 나눈다.")
     @Test
     void testTokenize() {

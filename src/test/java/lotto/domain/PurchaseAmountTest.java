@@ -11,8 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("로또 구매 금액 테스트")
 class PurchaseAmountTest {
-
-
     @DisplayName("구매 금액이 로또 금액보다 낮으면 예외가 발생한다")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 999})

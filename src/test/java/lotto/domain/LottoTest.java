@@ -1,11 +1,11 @@
 package lotto.domain;
 
+import static lotto.testutils.LottoCreator.createLotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,6 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_LOTTO_LENGTH.getErrorMessage());
     }
-
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
@@ -50,12 +49,5 @@ class LottoTest {
         Lotto lotto2 = createLotto(List.of(1, 2, 3, 4, 5, 7));
         int matchingCount = lotto1.countMatchingNumber(lotto2);
         assertThat(matchingCount).isEqualTo(5);
-    }
-
-    private Lotto createLotto(List<Integer> numbers) {
-        List<LottoNumber> lottoNumbers = numbers.stream()
-                .map(LottoNumber::from)
-                .collect(Collectors.toList());
-        return Lotto.from(lottoNumbers);
     }
 }

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("로또 결과 테스트")
 class LottoResultTest {
-
     @DisplayName("등수를 전달하여 해당 등수의 로또가 몇개인지 얻어낼 수 있다.")
     @Test
     void testCountsByRank() {

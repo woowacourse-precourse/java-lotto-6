@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("로또 등수 계산 테스트")
 class LottoRankTest {
-
     @DisplayName("1등 계산 테스트")
     @Test
     void testCalculateRank1() {

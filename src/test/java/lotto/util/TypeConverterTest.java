@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("타입 변환기 테스트")
 class TypeConverterTest {
-
     @DisplayName("정수가 입력된 경우 문자열을 정수로 바꿀 수 있다")
     @Test
     void testNumericInputConvert() {

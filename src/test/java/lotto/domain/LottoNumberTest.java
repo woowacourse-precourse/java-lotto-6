@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.view.ErrorMessage;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +15,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("로또를 이루는 번호 테스트")
 class LottoNumberTest {
-
     @DisplayName("1-45의 범위를 지키는 수는 검증을 통과한다")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 44, 45})
@@ -75,8 +73,7 @@ class LottoNumberTest {
         lottoNumbers.add(lottoNumber1);
         lottoNumbers.add(lottoNumber2);
         lottoNumbers.add(lottoNumber3);
-
         Collections.sort(lottoNumbers);
-        Assertions.assertThat(lottoNumbers).containsExactly(lottoNumber2, lottoNumber3, lottoNumber1);
+        assertThat(lottoNumbers).containsExactly(lottoNumber2, lottoNumber3, lottoNumber1);
     }
 }

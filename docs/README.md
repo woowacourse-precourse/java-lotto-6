@@ -106,20 +106,20 @@
 
 ---
 
-- [ ] JAVA 17버전
-- [ ] ./gradlew.bat clean test 통과
+- [x] JAVA 17버전
+- [x] ./gradlew.bat clean test 통과
 - [x] 입/출력 형식은 예와 동일한가
-- [ ] readLine() 사용
-- [ ] indent depth는 2까지만 허용했는가
-- [ ] 3항 연산자를 쓰지 않았는가
-- [ ] 메서드는 한 가지 일만 했는가
-- [ ] 기능 목록을 테스트 코드로 확인했는가
+- [x] readLine() 사용
+- [x] indent depth는 2까지만 허용했는가
+- [x] 3항 연산자를 쓰지 않았는가
+- [x] 메서드는 한 가지 일만 했는가
+- [x] 기능 목록을 테스트 코드로 확인했는가
   <br><br>
-- [ ] pickUniqueNumbersInRange() 사용
-- [ ] 메서드 라인은 15라인 이하인가
-- [ ] else, switch/case 예약어를 쓰지 않았는가
-- [ ] Enum을 적용하기
-- [ ] 단위 테스트 구현
-- [ ] Lotto 클래스를 활용해 구현했는가
+- [x] pickUniqueNumbersInRange() 사용
+- [x] 메서드 라인은 15라인 이하인가
+- [x] else, switch/case 예약어를 쓰지 않았는가
+- [x] Enum을 적용하기
+- [x] 단위 테스트 구현
+- [x] Lotto 클래스를 활용해 구현했는가
     - `numbers` 접근 제어자 private 고정
     - 필드 추가 금지

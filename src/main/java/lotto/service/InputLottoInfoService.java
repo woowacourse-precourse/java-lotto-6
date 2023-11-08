@@ -2,17 +2,18 @@ package lotto.service;
 
 import java.util.List;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
+
 
 public class InputLottoInfoService {
 
 	public Lotto inputLottoInfo() {
 		List<Integer> lottoNumbersList = inputLottoNumbers();
 		int bonusNumber = inputBonusNumber();
-		return setLotto(lottoNumbersList, bonusNumber);
+		return setLottoNumber(lottoNumbersList, bonusNumber);
 		
 	}
-	public Lotto setLotto(List<Integer> lottoNumbersList, int bonusNumber) {
+	public Lotto setLottoNumber(List<Integer> lottoNumbersList, int bonusNumber) {
 		Lotto lotto = new Lotto(lottoNumbersList);
 		lotto.setBonusNumber(bonusNumber);
 		return lotto;

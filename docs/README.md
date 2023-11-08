@@ -150,4 +150,5 @@
 
 ## 클래스 관계도 정리
 
-![img_1.png](img_1.png)
+![img.png](img.png)
+

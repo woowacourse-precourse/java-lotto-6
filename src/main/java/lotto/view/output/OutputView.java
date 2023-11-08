@@ -51,7 +51,7 @@ public class OutputView {
 
         StringBuilder stringBuilder = new StringBuilder();
         for (LottoRank lottoRank : printableLottoRanks()) {
-            buildLottoRankResultMessage(lottoRank, lottoResult.count(lottoRank), stringBuilder);
+            buildLottoResultMessage(lottoRank, lottoResult.count(lottoRank), stringBuilder);
         }
         System.out.print(stringBuilder);
     }
@@ -63,7 +63,7 @@ public class OutputView {
                 .toList();
     }
 
-    private static void buildLottoRankResultMessage(LottoRank rank, int count, StringBuilder stringBuilder) {
+    private static void buildLottoResultMessage(LottoRank rank, int count, StringBuilder stringBuilder) {
         stringBuilder.append(String.format(LOTTO_RANK_MATCH_COUNT_MESSAGE_FORMAT, rank.matchCount()));
         if (rank.hasBonusNumber()) {
             stringBuilder.append(BONUS_NUMBER_MATCHED_MESSAGE);

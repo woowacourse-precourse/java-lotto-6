@@ -51,14 +51,18 @@ public class LottoWinningCalculationMachine {
         }
     }
 
-    public void calculateWinningRate(WinningStatistics winningStatistics, int lottoCount) {
+    public long calculateTotalMoney(WinningStatistics winningStatistics) {
         long firstPlaceMoney = winningStatistics.getFirstPlace() * LottoPlaceMoney.FIRST_PLACE_MONEY.lottoPlaceMoney;
         long secondPlaceMoney = winningStatistics.getSecondPlace() * LottoPlaceMoney.SECOND_PLACE_MONEY.lottoPlaceMoney;
         long thirdPlaceMoney = winningStatistics.getThirdPlace() * LottoPlaceMoney.THIRD_PLACE_MONEY.lottoPlaceMoney;
         long fourthPlaceMoney = winningStatistics.getFourthPlace() * LottoPlaceMoney.FOURTH_PLACE_MONEY.lottoPlaceMoney;
         long fifthPlaceMoney = winningStatistics.getFifthPlace() * LottoPlaceMoney.FIFTH_PLACE_MONEY.lottoPlaceMoney;
 
-        long winningMoney = firstPlaceMoney + secondPlaceMoney + thirdPlaceMoney + fourthPlaceMoney + fifthPlaceMoney;
+        return firstPlaceMoney + secondPlaceMoney + thirdPlaceMoney + fourthPlaceMoney + fifthPlaceMoney;
+    }
+
+    public void calculateWinningRate(WinningStatistics winningStatistics, int lottoCount) {
+        long winningMoney = calculateTotalMoney(winningStatistics);
 
         int money = lottoCount * 1000;
         double winningRate = (double) winningMoney / money * 100;

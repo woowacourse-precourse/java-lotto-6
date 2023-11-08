@@ -43,13 +43,18 @@ public class LottoManager {
         validateBonusNumberDuplicate(winningNumbers, bonusNumber);
         validateRangeOfNumbers(winningNumbers, bonusNumber);
 
-        Map<WinningCondition, Integer> result = new HashMap<>();
-        for (Lotto ticket : myTickets) {
-            WinningCondition tmpResult = checkWinningResult(ticket, winningNumbers, bonusNumber);
-            result.put(tmpResult, result.getOrDefault(tmpResult, 0) + 1);
-        }
+        Map<WinningCondition, Integer> result = getResultTable(myTickets, winningNumbers, bonusNumber);
         output.printWinningStatistics(result);
         output.printWinningRoR(calculateRoR(result, myTickets.size() * THOUSAND));
+    }
+
+    public Map<WinningCondition, Integer> getResultTable(List<Lotto> tickets, Lotto winning, int bonusNumber) {
+        Map<WinningCondition, Integer> result = new HashMap<>();
+        for (Lotto ticket : tickets) {
+            WinningCondition tmpResult = checkWinningResult(ticket, winning, bonusNumber);
+            result.put(tmpResult, result.getOrDefault(tmpResult, 0) + 1);
+        }
+        return result;
     }
 
     private Lotto getWinningNumbers() {

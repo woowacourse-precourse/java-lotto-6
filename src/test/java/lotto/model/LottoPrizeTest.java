@@ -9,8 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import lotto.model.result.LottoMatchResult;
-
 class LottoPrizeTest {
 
     @DisplayName("주어진 로또 판별 결과에 대해 당첨 등수를 판별한다.")

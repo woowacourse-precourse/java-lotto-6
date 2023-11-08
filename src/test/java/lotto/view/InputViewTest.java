@@ -13,10 +13,11 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.LottoPurchaseMoney;
 
 class InputViewTest {
 
-    InputView inputView = new InputView();
+    InputView inputView = new InputView(new InputValidator());
 
     @AfterEach
     void cleanUp() {
@@ -25,21 +26,21 @@ class InputViewTest {
 
     @DisplayName("구매금액 입력 테스트")
     @Nested
-    class InputPurchaseAmountTest {
+    class InputLottoPurchaseMoneyTest {
 
         @DisplayName("정상적인 구매금액을 입력한다.")
         @Test
-        void inputPurchaseAmount() {
+        void inputPurchaseMoney() {
             // given
             int expect = 5000;
 
             setInput("5000");
 
             // when
-            int amount = inputView.askPurchaseAmount();
+            LottoPurchaseMoney amount = inputView.askPurchaseMoney();
 
             // then
-            assertThat(amount).isEqualTo(expect);
+            assertThat(amount.toInt()).isEqualTo(expect);
         }
 
         @DisplayName("빈 문자열을 구매금액으로 입력하면 예외를 발생한다.")
@@ -49,7 +50,7 @@ class InputViewTest {
             setInput("\n");
 
             // when & then
-            assertThatThrownBy(() -> inputView.askPurchaseAmount())
+            assertThatThrownBy(() -> inputView.askPurchaseMoney())
                     .isInstanceOf(IllegalArgumentException.class);
         }
 
@@ -60,14 +61,14 @@ class InputViewTest {
             setInput("우테코6기");
 
             // when & then
-            assertThatThrownBy(() -> inputView.askPurchaseAmount())
+            assertThatThrownBy(() -> inputView.askPurchaseMoney())
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }
 
     @DisplayName("당첨금액 입력 테스트")
     @Nested
-    class InputWinningNumbersTest {
+    class InputLottoWinningNumbersTest {
 
         @DisplayName("정상적인 당첨번호를 입력한다.")
         @Test
@@ -78,7 +79,7 @@ class InputViewTest {
             List<Integer> expected = List.of(3, 4, 5, 6, 7, 8);
 
             // when
-            List<Integer> actual = inputView.askWinningNumbers();
+            List<Integer> actual = inputView.askWinningNumbers().stream().toList();
 
             // then
             assertThat(actual).isEqualTo(expected);

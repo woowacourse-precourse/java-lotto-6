@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinningNumbersTest {
+class LottoWinningNumbersTest {
 
     @DisplayName("당첨번호가 1~45 범위를 벗어나면 예외를 발생한다.")
     @Test
@@ -17,7 +17,7 @@ class WinningNumbersTest {
         int bonus = 7;
 
         // when & then
-        assertThatThrownBy(() -> WinningNumbers.of(numbers, bonus))
+        assertThatThrownBy(() -> LottoWinningNumbers.of(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -29,7 +29,7 @@ class WinningNumbersTest {
         int bonus = 7;
 
         // when & then
-        assertThatThrownBy(() -> WinningNumbers.of(numbers, bonus))
+        assertThatThrownBy(() -> LottoWinningNumbers.of(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -41,7 +41,7 @@ class WinningNumbersTest {
         int bonus = 46;
 
         // when & then
-        assertThatThrownBy(() -> WinningNumbers.of(numbers, bonus))
+        assertThatThrownBy(() -> LottoWinningNumbers.of(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -53,7 +53,7 @@ class WinningNumbersTest {
         int bonus = 6;
 
         // when & then
-        assertThatThrownBy(() -> WinningNumbers.of(numbers, bonus))
+        assertThatThrownBy(() -> LottoWinningNumbers.of(numbers, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

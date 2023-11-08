@@ -5,9 +5,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import lotto.dto.ResultDto;
-import lotto.embedded.LottoResult;
+import lotto.model.ResultDto;
+import lotto.model.LottoResult;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.Test;
 

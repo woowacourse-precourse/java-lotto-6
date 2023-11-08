@@ -3,7 +3,7 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import lotto.message.InputExceptionMessage;
+import lotto.exception.InputExceptionMessage;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

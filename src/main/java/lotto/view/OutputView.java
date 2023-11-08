@@ -3,8 +3,8 @@ package lotto.view;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
-import lotto.dto.ResultDto;
-import lotto.embedded.LottoResult;
+import lotto.model.ResultDto;
+import lotto.model.LottoResult;
 import lotto.message.OutputMessage;
 import lotto.model.Lotto;
 

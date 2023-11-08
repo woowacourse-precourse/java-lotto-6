@@ -23,11 +23,10 @@ public class Lotteries {
     }
 
     public BigDecimal calculateTotalWinningPrice(final UserLotto userLotto) {
-        int sum = lotteries.stream()
-                .map(userLotto::calculateRank)
+        int totalWinningPrice = getRanks(userLotto).stream()
                 .mapToInt(Rank::getPrice)
                 .sum();
-        return BigDecimal.valueOf(sum);
+        return BigDecimal.valueOf(totalWinningPrice);
     }
 
     public Map<Rank, Integer> calculateTotalRankCount(final UserLotto userLotto) {

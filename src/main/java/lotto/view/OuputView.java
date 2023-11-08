@@ -16,6 +16,7 @@ public class OuputView {
     public void printErrorMessage(String errorMessage) {
         String formattedErrorMessage = formatErrorMessage(errorMessage);
         System.out.println(formattedErrorMessage);
+        printEmptyLine();
     }
 
     public void printPublishedLottos(List<LottoPaper> lottoPapers) {

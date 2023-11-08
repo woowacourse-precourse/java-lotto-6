@@ -24,13 +24,10 @@ public enum Prize {
         this.information = information;
     }
 
-    public static void startPrizeStatistics(int purchase) {
-        List<Long> matchWinningNumber = WinningNumber.getMatchWinningNumber();
-        List<Long> matchBonusNumber = WinningNumber.getMatchBonusNumber();
-
-        List<String> prizeHistory = countPrizeHistory(matchWinningNumber, matchBonusNumber);
+    public static void startPrizeStatistics(List<MatchNumber> matchNumbers, int purchase) {
+        List<String> prizeHistory = countPrizeHistory(matchNumbers);
         printWinningStatistics(prizeHistory);
-        String earningRate = earningRateCalculator(matchWinningNumber, matchBonusNumber, purchase);
+        String earningRate = earningRateCalculator(matchNumbers, purchase);
         System.out.println(String.format(EARNING_RATE, earningRate));
     }
 
@@ -53,11 +50,10 @@ public enum Prize {
         return Prize.THIRD;
     }
 
-    public static String earningRateCalculator(List<Long> matchWinningNumber, List<Long> matchBonusNumber,
-                                               int purchase) {
+    public static String earningRateCalculator(List<MatchNumber> matchNumbers, int purchase) {
         double totalAmount = 0;
-        for (int i = 0; i < matchWinningNumber.size(); i++) {
-            Prize prize = Prize.matchPrize(matchWinningNumber.get(i), matchBonusNumber.get(i));
+        for (MatchNumber matchNumber : matchNumbers) {
+            Prize prize = Prize.matchPrize(matchNumber.winningNumber, matchNumber.bonusNumber);
             if (prize != null) {
                 totalAmount += prize.amount;
             }
@@ -66,10 +62,10 @@ public enum Prize {
         return earningRate;
     }
 
-    public static List<String> countPrizeHistory(List<Long> matchWinningNumber, List<Long> matchBonusNumber) {
+    public static List<String> countPrizeHistory(List<MatchNumber> matchNumbers) {
         List<String> prizeHistory = new ArrayList<>();
-        for (int i = 0; i < matchWinningNumber.size(); i++) {
-            Prize prize = Prize.matchPrize(matchWinningNumber.get(i), matchBonusNumber.get(i));
+        for (MatchNumber matchNumber : matchNumbers) {
+            Prize prize = Prize.matchPrize(matchNumber.winningNumber, matchNumber.bonusNumber);
             if (prize != null) {
                 prizeHistory.add(prize.name());
             }

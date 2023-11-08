@@ -22,11 +22,17 @@ public class InputView {
 
     public static List<Integer> inputWinningLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String[] inputNumbers = Console.readLine().split(",");
-        List<Integer> numbers = new ArrayList<>();
-        for (String inputNumber : inputNumbers) {
-            numbers.add(Integer.parseInt(inputNumber));
+        try {
+            String[] inputNumbers = Console.readLine().split(",");
+            List<Integer> numbers = new ArrayList<>();
+            for (String inputNumber : inputNumbers) {
+                numbers.add(Integer.parseInt(inputNumber));
+            }
+            return numbers;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        } finally {
+            System.out.println();
         }
-        return numbers;
     }
 }

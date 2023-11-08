@@ -29,7 +29,9 @@ public class Application {
 
 
         //로또 개수만큼 로또 객체의 로또 번호 출력
-        System.out.printf("%d개를 구매했습니다.%n", purchaseCount); //
+        Print lottoCountPrint = new Print();
+        lottoCountPrint.printLottoCount(purchaseCount);
+
 
         Process startProcess = new Process();
         Print lottosPrint = new Print();

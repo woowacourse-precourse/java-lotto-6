@@ -19,8 +19,6 @@ public class Application {
         List<Lotto> lottos = generateRandomLottoTickets(buyAmount);
         printLottoTickets(lottos);
 
-        Lotto winningLotto = inputWinningNumbers();
-
         LottoResult result = playLottoGame(lottos);
         printGameResults(result);
     }
@@ -52,7 +50,24 @@ public class Application {
     }
 
     public static LottoResult playLottoGame(List<Lotto> lottos) {
+        LottoResult result = new LottoResult();
+        Lotto winningLotto = inputWinningNumbers();
+        String bonusLottoNumber = inputBonusNumber(winningLotto);
+
         return null;
+    }
+
+    private static String inputBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                String inputWinningLottoNumber = Console.readLine();
+                LottoGameValidator.validateBonusLottoNumber(inputWinningLottoNumber, winningLotto);
+                return inputWinningLottoNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static void printLottoTickets(List<Lotto> lottos) {
@@ -85,8 +100,8 @@ public class Application {
     }
 
     public static int inputBuyAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
         while (true) {
+            System.out.println("구입금액을 입력해 주세요.");
             try {
                 String inputBuyAmount = Console.readLine();
                 LottoGameValidator.validateInputAmount(inputBuyAmount);

@@ -87,4 +87,18 @@ public class LottoGameValidator {
             throw new IllegalArgumentException("[ERROR] 콤마를 올바르게 찍어야 합니다");
         }
     }
+
+    public static void validateBonusLottoNumber(String inputBonusLottoNumber, Lotto winningLotto) {
+        validateLottoNumberFormat(inputBonusLottoNumber);
+        validateLottoNumberRange(inputBonusLottoNumber);
+        validateDuplicateNumbers(inputBonusLottoNumber);
+        validateNotInWinningNumbers(inputBonusLottoNumber, winningLotto);
+    }
+
+    private static void validateNotInWinningNumbers(String inputBonusLottoNumber, Lotto winningLottoNumbers) {
+        int bonusNumber = Integer.parseInt(inputBonusLottoNumber);
+        if (winningLottoNumbers.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 중복되지 않아야 합니다.");
+        }
+    }
 }

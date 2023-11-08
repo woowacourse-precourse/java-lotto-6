@@ -47,7 +47,7 @@ class IssuingMachineTest {
         IssuingMachine issuingMachine = IssuingMachine.turnOn(10000);
 
         //then
-        issuingMachine.operate();
+
         int size = issuingMachine.issueLotto().size();
 
         //then

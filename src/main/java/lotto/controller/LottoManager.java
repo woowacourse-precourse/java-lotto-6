@@ -4,21 +4,26 @@ import lotto.domain.Calculator;
 import lotto.domain.Customer;
 import lotto.domain.Lucky;
 import lotto.domain.ResultRepository;
-import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoManager {
     private Customer customer;
-    private LottoService lottoService;
     private InputView inputView=new InputView();
     private OutputView outputView=new OutputView();
     private ResultRepository resultRepository=new ResultRepository();
 
     public void buyLotto(){
-        customer=new Customer(inputView.inputMoney());
-        customer.pay();
-        outputView.printCount(customer.getLottos().size());
+        while(true) {
+            try {
+                customer = new Customer(inputView.inputMoney());
+                customer.pay();
+                outputView.printCount(customer.getLottos().size());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
         showLottoList();
         playLotto();
     }

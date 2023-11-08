@@ -6,13 +6,9 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class WinningNumber {
-    //상수(static final) 또는 클래스 변수
     private static List<Integer> winningNumbers;
     private static final int THE_NUMBER_OF_WINNING_NUMBER = 6;
 
-    //인스턴스 변수
-
-    //생성자
 
     public List<Integer> createWinningNumber() {
         System.out.println("\n당첨 번호를 입력해 주세요.");

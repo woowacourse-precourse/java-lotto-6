@@ -5,8 +5,8 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class BonusNumber {
-    //상수(static final) 또는 클래스 변수
     private static int BONUS_NUMBER;
+
 
     public int createBonusNumber(List<Integer> winningNumbers) {
         System.out.println("\n보너스 번호를 입력해 주세요.");

@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Judge {
-    //상수(static final) 또는 클래스 변수
     Generator generator = new Generator();
     Printer printer = new Printer();
 
-    //인스턴스 변수
     int matchingThreeNumbers;
     int matchingFourNumbers;
     int matchingFiveNumbers;
     int matchingFiveAndBonusNumbers;
     int matchingSixNumbers;
 
-    //생성자
 
-    //메서드
     public void calculateResult(List<Lotto> lotto, List<Integer> winningNumbers, int bonusNumber) {
         for (int count = 0; count < lotto.size(); count++) {
             int matchingCount = compareWinningNumber(lotto.get(count),winningNumbers);

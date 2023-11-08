@@ -9,17 +9,12 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 public class Generator {
     Printer printer = new Printer();
 
-    //상수(static final) 또는 클래스 변수
     static final List<Lotto> lottos = new ArrayList<>();
     private final int LOTTERY_COST = 1000;
     private static int MONEY;
     private static int NUMBER_OF_LOTTERY;
 
-    //인스턴스 변수
 
-    //생성자
-
-    //메서드
     int getMoney() {
         return MONEY;
     }

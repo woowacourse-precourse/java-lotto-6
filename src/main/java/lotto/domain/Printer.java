@@ -4,13 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Printer {
-    //상수(static final) 또는 클래스 변수
 
-    //인스턴스 변수
 
-    //생성자
-
-    //메서드
     void showLotteryCount(int numberOfLottery) {
         System.out.println("\n"+numberOfLottery+"개를 구매했습니다.");
     }

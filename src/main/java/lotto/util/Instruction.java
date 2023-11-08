@@ -9,6 +9,7 @@ public enum Instruction {
     ERROR_PROPERTY_LOTTO_TICKET_SIZE("[ERROR] 로또는 6개의 숫자로 구성되어야 합니다."),
     ERROR_DUPLICATE_LOTTO_NUMBER_EXISTENCE("[ERROR] 로또 번호는 중복될 수 없습니다."),
     ERROR_WRONG_LOTTO_NUMBER_RANGE("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요."),
+    ERROR_DUPLICATE_BONUS_NUMBER_EXISTENCE("[ERROR] 보너스 번호가 로또 번호와 중복되었습니다."),
     LOTTOS_SIZE_SUFFIX_MESSAGE("개를 구매했습니다.");
 
     private final String message;

@@ -51,4 +51,8 @@ public class Lotto {
     public List<LottoNumber> getLottoTicket() {
         return Collections.unmodifiableList(lottoNumbers);
     }
+
+    public boolean hasElement(final LottoNumber number) {
+        return lottoNumbers.contains(number);
+    }
 }

@@ -1,6 +1,7 @@
-package lotto.service;
+package lotto;
 
 import lotto.domain.*;
+import lotto.service.LottoWinResultService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

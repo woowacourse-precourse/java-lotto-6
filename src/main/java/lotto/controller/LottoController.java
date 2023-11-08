@@ -30,19 +30,39 @@ public class LottoController {
 
     public void startGame() {
         LottoService lottoService = new LottoService();
-        int bonusNumber = 0;
-        int purchaseAmount = 0;
+
+        int purchaseAmount = getPurchaseAmount();
+
+        generatePurchaseAmountRandomSixNumber(purchaseAmount);
+
+        outputView.printRandomSixNumbers(randomSixNumbers);
+
+        inputCorrectLottoNumber();
+
+        int bonusNumber = getBonusNumber();
+
+        HashMap<Integer, Integer> winningResult = lottoService.calculateWinningResult(randomSixNumbers, lotto, bonusNumber);
+        outputView.printWinningStatistics(winningResult);
+
+        double profitMargin = lottoService.calculateTotalProfitMargin(winningResult, purchaseAmount);
+        outputView.printProfitMargin(profitMargin);
+    }
+
+    private int getBonusNumber() {
+        int bonusNumber;
         while (true) {
-            inputView.inputPurchaseAmountView();
             try {
-                purchaseAmount = user.inputPurchaseAmount();
+                inputView.inputBonusNumberView();
+                bonusNumber = user.inputBonusNumber(lotto.getNumbers());
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
-        generatePurchaseAmountRandomSixNumber(purchaseAmount);
-        outputView.printRandomSixNumbers(randomSixNumbers);
+        return bonusNumber;
+    }
+
+    private void inputCorrectLottoNumber() {
         while (true) {
             inputView.inputLottoNumbersView();
             try {
@@ -53,19 +73,20 @@ public class LottoController {
                 outputView.printErrorMessage(e);
             }
         }
+    }
+
+    private int getPurchaseAmount() {
+        int purchaseAmount;
         while (true) {
+            inputView.inputPurchaseAmountView();
             try {
-                inputView.inputBonusNumberView();
-                bonusNumber = user.inputBonusNumber(lotto.getNumbers());
+                purchaseAmount = user.inputPurchaseAmount();
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e);
             }
         }
-        HashMap<Integer, Integer> winningResult = lottoService.calculateWinningResult(randomSixNumbers, lotto, bonusNumber);
-        outputView.printWinningStatistics(winningResult);
-        double profitMargin = lottoService.calculateTotalProfitMargin(winningResult, purchaseAmount);
-        outputView.printProfitMargin(profitMargin);
+        return purchaseAmount;
     }
 
     private void generatePurchaseAmountRandomSixNumber(int purchaseAmount) {

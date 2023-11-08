@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoNumbersGenerator {
-    protected List<Integer> generateLottoNumbers() {
+    List<Integer> generateLottoNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 MIN_NUMBER.getValue(),
                 MAX_NUMBER.getValue(),

@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum OutputMessage {
+public enum GameMessage {
     INPUT_PRICE("구입금액을 입력해 주세요."),
     INPUT_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
@@ -9,7 +9,7 @@ public enum OutputMessage {
 
     private final String message;
 
-    private OutputMessage(String message) {
+    private GameMessage(String message) {
         this.message = message;
     }
 

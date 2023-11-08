@@ -8,7 +8,7 @@ public class DrawMachine {
     private InputView inputView = new InputView();
 
     public void makeWinningNumber() {
-        winningNumber = new Lotto(inputView.getWinningNumber());
+//        winningNumber = new Lotto(inputView.getWinningNumber());
     }
 
     public void makeBonusNumber() {

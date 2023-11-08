@@ -31,7 +31,7 @@ public class LottoController {
     private int receiveUserMoneyAndGetAmount() {
         try {
             String inputAmount = inputView.getInputPurchaseAmount();
-            return inputValidator.checkInputPurchaseAmount(inputAmount);
+            return inputValidator.checkInputPurchaseAmount(inputAmount) / 1000;
         } catch (Exception e) {
             outputView.printErrorMessage(e.getMessage());
             return receiveUserMoneyAndGetAmount();

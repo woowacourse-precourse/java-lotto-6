@@ -15,6 +15,6 @@ public class ProfitRateCalculatorTest {
     void calculatingProfitTest() {
         ProfitRateCalculator profitRateCalculator = new ProfitRateCalculator();
         assertThat(profitRateCalculator.calculateProfitRate(List.of(Rank.FIFTH, Rank.FIFTH), new Money(2000)))
-                .isEqualTo(10000 / 2000);
+                .isEqualTo(10000 / 2000 * 100);
     }
 }

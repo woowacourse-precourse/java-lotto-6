@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
+import lotto.constant.ErrorMessage;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,7 @@ public class WinningLottoTest {
     void winningLottoValidationTestSpecialNumberOutOfRange() {
         assertThatThrownBy(() -> new WinningLotto(new Lotto(numbers), 47))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("보너스 번호도 1부터 45사이여야 합니다");
+                .hasMessageContaining(ErrorMessage.INPUT_NUMBER_NUMBER_RANGE.getMessage());
     }
 
     @Test
@@ -23,6 +24,6 @@ public class WinningLottoTest {
     void winnngLottoBonusNumberIsNotUnique() {
         assertThatThrownBy(() -> new WinningLotto(new Lotto(numbers), 3))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("6자리 숫자와 달라야 합니다.");
+                .hasMessageContaining(ErrorMessage.INPUT_REDUNDANT.getMessage());
     }
 }

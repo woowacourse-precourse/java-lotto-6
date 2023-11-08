@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.constant.ErrorMessage;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ class LottoTest {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("중복이 되지 않는 숫자로 입력");
+                .hasMessageContaining(ErrorMessage.INPUT_REDUNDANT.getMessage());
     }
 
     @DisplayName("로또 번호가 1 ~ 45가 아니라면 예외를 뱉는다.")
@@ -31,6 +32,6 @@ class LottoTest {
     void issueLargeNumberLotto() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 99)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("각 숫자는 1~45 사이여야 합니다.");
+                .hasMessageContaining(ErrorMessage.INPUT_NUMBER_NUMBER_RANGE.getMessage());
     }
 }

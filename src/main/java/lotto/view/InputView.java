@@ -35,13 +35,13 @@ public class InputView {
         return parseToInt(input());
     }
 
-    private static String input() {
+    public static String input() {
         String input = Console.readLine();
         isBlank(input);
         return input;
     }
 
-    private static int parseToInt(String input) {
+    public static int parseToInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -49,13 +49,13 @@ public class InputView {
         }
     }
 
-    private static void isBlank(String input) {
+    public static void isBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ERROR_ISBLANK);
         }
     }
 
-    private static List<Integer> splitInput(String input) {
+    public static List<Integer> splitInput(String input) {
         validateDelimiter(input);
         String[] inputParts = input.split(DELIMITER);
         List<Integer> result = new ArrayList<>();

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Error;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.GameService;
@@ -9,13 +10,11 @@ import lotto.view.OutputView;
 import org.junit.jupiter.api.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -30,6 +29,13 @@ class GameControllerTest {
     void provideInput(String data) {
         ByteArrayInputStream testIn = new ByteArrayInputStream(data.getBytes());
         System.setIn(testIn);
+    }
+
+    void runException(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (final NoSuchElementException ignore) {
+        }
     }
 
     @BeforeEach
@@ -74,10 +80,10 @@ class GameControllerTest {
 
         //when
         provideInput(input);
+        runException(() -> gameController.startGame());
 
         //then
-        assertThatThrownBy(() -> gameController.startGame())
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(outContent.toString()).contains(Error.INVALID_NUMBER_INPUT);
     }
 
     @DisplayName("구입금액이 1000원 미만이면 예외를 발생시킨다.")
@@ -88,10 +94,10 @@ class GameControllerTest {
 
         //when
         provideInput(input);
+        runException(() -> gameController.startGame());
 
         //then
-        assertThatThrownBy(() -> gameController.startGame())
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(outContent.toString()).contains(Error.INVALID_LOTTO_MONEY);
     }
 
     @DisplayName("구입금액이 1000원 단위가 아니면 예외를 발생시킨다.")
@@ -102,10 +108,10 @@ class GameControllerTest {
 
         //when
         provideInput(input);
+        runException(() -> gameController.startGame());
 
         //then
-        assertThatThrownBy(() -> gameController.startGame())
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(outContent.toString()).contains(Error.INVALID_LOTTO_MONEY_UNIT);
     }
 
     @DisplayName("당첨 번호와 보너스 번호를 입력받아 당첨 통계를 계산한다.")
@@ -136,19 +142,20 @@ class GameControllerTest {
 
     @DisplayName("숫자가 아닌 당첨번호를 입력하면 예외를 발생시킨다.")
     @Test
-    public void playGame_당첨번호_숫자_변화_불가_예외_발생(){
+    public void playGame_당첨번호_숫자_변화_불가_예외_발생() {
         //given
         String lottoMoneyInput = "2000\n";
         String lottoNumbersInput = "a,b,c,d,e,f,g\n7";
 
         //when
         provideInput(lottoMoneyInput + lottoNumbersInput);
-
-        //then
-        assertThatThrownBy(() -> {
+        runException(() -> {
             gameController.startGame();
             gameController.playGame();
-        }).isInstanceOf(IllegalArgumentException.class);
+        });
+
+        //then
+        assertThat(outContent.toString()).contains(Error.INVALID_NUMBER_INPUT);
     }
 
     @DisplayName("6개의 당첨번호를 입력하지 않으면 예외를 발생시킨다.")
@@ -160,12 +167,13 @@ class GameControllerTest {
 
         //when
         provideInput(lottoMoneyInput + lottoNumbersInput);
-
-        //then
-        assertThatThrownBy(() -> {
+        runException(() -> {
             gameController.startGame();
             gameController.playGame();
-        }).isInstanceOf(IllegalArgumentException.class);
+        });
+
+        //then
+        assertThat(outContent.toString()).contains(Error.INVALID_LOTTO_NUMBER_SIZE);
     }
 
     @DisplayName("당첨번호가 1~45 사이의 숫자가 아니면 예외를 발생시킨다.")
@@ -177,12 +185,13 @@ class GameControllerTest {
 
         //when
         provideInput(lottoMoneyInput + lottoNumbersInput);
-
-        //then
-        assertThatThrownBy(() -> {
+        runException(() -> {
             gameController.startGame();
             gameController.playGame();
-        }).isInstanceOf(IllegalArgumentException.class);
+        });
+
+        //then
+        assertThat(outContent.toString()).contains(Error.INVALID_LOTTO_NUMBER_RANGE);
     }
 
     @DisplayName("숫자가 아닌 보너스번호를 입력하면 예외를 발생시킨다.")
@@ -194,12 +203,13 @@ class GameControllerTest {
 
         //when
         provideInput(lottoMoneyInput + lottoNumbersInput);
-
-        //then
-        assertThatThrownBy(() -> {
+        runException(() -> {
             gameController.startGame();
             gameController.playGame();
-        }).isInstanceOf(IllegalArgumentException.class);
+        });
+
+        //then
+        assertThat(outContent.toString()).contains(Error.INVALID_NUMBER_INPUT);
     }
 
     @DisplayName("보너스번호가 1~45 사이의 숫자가 아니면 예외를 발생시킨다.")
@@ -211,12 +221,13 @@ class GameControllerTest {
 
         //when
         provideInput(lottoMoneyInput + lottoNumbersInput);
-
-        //then
-        assertThatThrownBy(() -> {
+        runException(() -> {
             gameController.startGame();
             gameController.playGame();
-        }).isInstanceOf(IllegalArgumentException.class);
+        });
+
+        //then
+        assertThat(outContent.toString()).contains(Error.INVALID_LOTTO_NUMBER_RANGE);
     }
 
     @DisplayName("당첨 통계와 수익률을 계산하여 출력한다.")

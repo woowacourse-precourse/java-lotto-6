@@ -1,8 +1,10 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,6 +19,9 @@ public class Application {
         outputView.printLottoTickets(lottoTickets.getLottoTickets());
 
         List<Integer> winnerNumbers = inputView.readWinnerNumbers();
+        Lotto winnerLotto = new Lotto(winnerNumbers);
         Integer BonusNumber = inputView.readBonusNumber();
+
+        WinningLotto winningLotto = new WinningLotto(winnerLotto, BonusNumber);
     }
 }

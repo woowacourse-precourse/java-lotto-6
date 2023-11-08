@@ -5,7 +5,7 @@ public class Validator {
     }
 
     public void validateInput(String input) {
-        if (!isEmpty(input) && isNotNumeric(input)) {
+        if (!isEmpty(input) || !isNotNumeric(input)) {
             throw new IllegalArgumentException();
         }
     }
@@ -14,7 +14,7 @@ public class Validator {
         return !input.isEmpty();
     }
 
-    public boolean isNotNumeric(String input) {
+    private boolean isNotNumeric(String input) {
         String[] inputArray = input.split(",");
         try {
             for (String numStr : inputArray) {

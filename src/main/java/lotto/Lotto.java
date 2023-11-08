@@ -1,8 +1,10 @@
 package lotto;
+
 import java.util.List;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
 public class Lotto {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;

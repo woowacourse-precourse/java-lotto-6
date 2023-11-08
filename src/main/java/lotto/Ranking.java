@@ -13,12 +13,14 @@ public enum Ranking {
 
     private static final int WINNING_MIN_COUNT = 3;
     private static final String ERROR_MESSAGE = "[ERROR]";
-    Ranking(int countOfMatch,int winningPrize, String comment ){
+
+    Ranking(int countOfMatch, int winningPrize, String comment) {
         this.countOfMatch = countOfMatch;
         this.winningPrize = winningPrize;
         this.comment = comment;
     }
-    public static Ranking valueOf(int countOfMatch,boolean matchBonus){
+
+    public static Ranking valueOf(int countOfMatch, boolean matchBonus) {
         if (countOfMatch < WINNING_MIN_COUNT) {
             return MISS;
         }
@@ -34,6 +36,7 @@ public enum Ranking {
         }
         throw new IllegalArgumentException(ERROR_MESSAGE);
     }
+
     public int getCountOfMatch() {
         return countOfMatch;
     }

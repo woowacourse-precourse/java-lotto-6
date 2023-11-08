@@ -1,5 +1,7 @@
 package lotto;
+
 import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class InputView {
         System.out.println(Global.BUY_AMOUNT);
         return Console.readLine();
     }
+
     public static List<Integer> numberList(String winningNumber) {
         String[] result = winningNumber.split(",");
         winningNumberList = new ArrayList<>();
@@ -28,6 +31,7 @@ public class InputView {
             throw new IllegalArgumentException();
         }
     }
+
     public static List<Integer> inputLottoWinningNum() {
         System.out.println(Global.WINNING_NUMBER);
         return numberList(Console.readLine());

@@ -32,14 +32,13 @@ public class Lotto {
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        if (isInvalidRange(numbers)) {
+        if (numbers.stream().anyMatch(this::isInvalidRange)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE);
         }
     }
 
-    private boolean isInvalidRange(List<Integer> numbers) {
-        return numbers.stream()
-                .anyMatch(number -> number < LottoNumber.MIN_RANGE || number > LottoNumber.MAX_RANGE);
+    private boolean isInvalidRange(int number) {
+        return number < LottoNumber.MIN_RANGE || number > LottoNumber.MAX_RANGE;
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {

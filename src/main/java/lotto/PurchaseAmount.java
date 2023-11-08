@@ -20,18 +20,9 @@ public class PurchaseAmount {
         }
     }
 
-    public void inputAmount(){
-        while(true) {
-            printInputAmountMessage();
-            String input_amount = readLine();
-            try {
-                int converted_amount = CommonFunction.convertToInt(input_amount);
-                checkUnit1000(converted_amount);
-                amount = converted_amount;
-                break;
-            } catch (IllegalArgumentException e){
-                System.out.println("[ERROR] " + e.getMessage() + "\n");
-            }
-        }
+    public void inputAmount(String input_amount){
+        int converted_amount = CommonFunction.convertToInt(input_amount);
+        checkUnit1000(converted_amount);
+        amount = converted_amount;
     }
 }

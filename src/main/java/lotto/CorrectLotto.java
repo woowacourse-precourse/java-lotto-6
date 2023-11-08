@@ -52,18 +52,9 @@ public class CorrectLotto {
 
         return converted_numbers;
     }
-    public void inputCorrectLotto(){
-        while(true) {
-            printInputNumbersMessage();
-            String input_numbers = readLine();
-            try {
-                List<Integer> converted_numbers = convertStringToInteger(input_numbers);
-                correct_lotto = new Lotto(converted_numbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
+    public void inputCorrectLotto(String input_numbers){
+        List<Integer> converted_numbers = convertStringToInteger(input_numbers);
+        correct_lotto = new Lotto(converted_numbers);
     }
 
     public void printInputBonusMessage(){
@@ -77,20 +68,10 @@ public class CorrectLotto {
         }
     }
 
-    public void inputBonus(){
-        while(true){
-            printInputBonusMessage();
-            String input_number = readLine();
-            try {
-                int converted_number = CommonFunction.convertToInt(input_number.strip());
-                CommonFunction.checkNumberIn1to45(converted_number);
-                checkNumberDuplicate(converted_number);
-                bonus = converted_number;
-                break;
-            } catch(IllegalArgumentException e){
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
+    public void inputBonus(String input_number){
+        int converted_number = CommonFunction.convertToInt(input_number.strip());
+        CommonFunction.checkNumberIn1to45(converted_number);
+        checkNumberDuplicate(converted_number);
+        bonus = converted_number;
     }
-
 }

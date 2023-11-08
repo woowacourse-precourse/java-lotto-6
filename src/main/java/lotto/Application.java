@@ -46,7 +46,6 @@ public class Application {
 
     private static int getInputFir() {
         int cash = 0;
-
         while (true){
             System.out.println("구입금액을 입력해 주세요.");
             try{
@@ -54,12 +53,10 @@ public class Application {
                 cash = validInputOne(cashStr);
                 break;
             }
-
             catch(IllegalArgumentException e){
                 System.out.println("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
             }
         }
-
         return cash / 1000;
     }
 
@@ -67,11 +64,9 @@ public class Application {
         try{
             int tempCash = 0;
             tempCash = Integer.parseInt(cashStr);
-
             if (tempCash % 1000 != 0) {
                 throw new IllegalArgumentException();
             }
-
             return tempCash;
         }
         catch(Exception e){
@@ -94,7 +89,6 @@ public class Application {
 
     private static Lotto getInputSec() {
         Lotto tempNumbers;
-
         while (true){
             try{
                 String targetStr = Console.readLine();
@@ -108,7 +102,6 @@ public class Application {
                 System.out.println("[ERROR] 형식에 맞게 다시 입력해주세요.");
             }
         }
-
         return tempNumbers;
     }
 
@@ -127,7 +120,6 @@ public class Application {
 
     private static int getInputThi(Lotto winningNumbers) {
         int tempNumber;
-
         while (true){
             try{
                 String targetStr = Console.readLine();
@@ -138,23 +130,19 @@ public class Application {
                 System.out.print("\n");
             }
         }
-
         return tempNumber;
     }
 
     private static int validInputThi(String targetStr, Lotto winningNumbers) {
         try {
             int number = Integer.parseInt(targetStr);
-
             if (1 > number || number > 45) {
                 System.out.print("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 throw new IllegalArgumentException();
-            }
-            if (IsDuplicated(number, winningNumbers)){
+            } if (IsDuplicated(number, winningNumbers)){
                 System.out.print("[ERROR] 보너스 번호가 당첨 번호와 겹칩니다.");
                 throw new IllegalArgumentException();
             }
-
             return number;
         }
         catch (NumberFormatException e) {
@@ -170,30 +158,19 @@ public class Application {
     }
 
     private static int[] winningCalculate(List<Lotto> HaveList, Lotto winningNumbers, int bonusNumber){
-
         int[] tempWinningResults = new int[5];
-
-        for (Lotto lottoNumbers : HaveList){
+        for (Lotto lottoNumbers : HaveList) {
             int tempCnt = CalculateCnt(lottoNumbers, winningNumbers);
             boolean tempBonus = IsDuplicated(bonusNumber, lottoNumbers);
-
-            if (tempCnt == 6){
-                tempWinningResults[0]++;
+            if (tempCnt < 3){
+                continue;
             }
-            else if (tempCnt == 5 && tempBonus){
-                tempWinningResults[1]++;
+            else if (tempCnt == 6 || (tempCnt == 5 && tempBonus)) {
+                tempWinningResults[6 - tempCnt]++;
+                continue;
             }
-            else if (tempCnt == 5){
-                tempWinningResults[2]++;
-            }
-            else if (tempCnt == 4){
-                tempWinningResults[3]++;
-            }
-            else if (tempCnt == 3){
-                tempWinningResults[4]++;
-            }
+            tempWinningResults[7 - tempCnt]++;
         }
-
         return tempWinningResults;
     }
 
@@ -224,20 +201,38 @@ public class Application {
         System.out.println("6개 일치 (2,000,000,000원) - " + winningResults[0] + "개");
     }
 
-    private static long calculateWinnings(int[] winningResults){
+    public enum WinningPrize {
+        GRAND_PRIZE(2000000000),
+        FIRST_PRIZE(30000000),
+        SECOND_PRIZE(1500000),
+        THIRD_PRIZE(50000),
+        FOURTH_PRIZE(5000);
+
+        private final long prizeMoney;
+
+        WinningPrize(long prizeMoney) {
+            this.prizeMoney = prizeMoney;
+        }
+
+        public long getPrizeMoney() {
+            return prizeMoney;
+        }
+    }
+
+    public static long calculateWinnings(int[] winningResults) {
         long tempMoney = 0;
 
-        tempMoney += (long) 5000 * winningResults[4];
-        tempMoney += (long) 50000 * winningResults[3];
-        tempMoney += (long) 1500000 * winningResults[2];
-        tempMoney += (long) 30000000 * winningResults[1];
-        tempMoney += (long) 2000000000 * winningResults[0];
+        for (int i = 0; i < winningResults.length; i++) {
+            if (winningResults[i] > 0) {
+                tempMoney += WinningPrize.values()[i].getPrizeMoney() * winningResults[i];
+            }
+        }
 
         return tempMoney;
     }
 
     private static void calculateProfit(long income, long outcome){
-        double returnRate = Math.round((double)(outcome*100)/income);
+        double returnRate = (double)Math.round((double)(outcome*1000)/income) / 10;
 
         System.out.println("총 수익률은 " + returnRate + "%입니다.");
     }

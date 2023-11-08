@@ -17,21 +17,21 @@
 ### 구현
 
 # 프로그래밍 요구 사항
-- [ ] 프로그램 실행이 시작점이 `Application`의 `main()`이다.
-- [ ] build.gradle 파일을 변경할 수 없고, 외부 라이브러리를 사용하지 않는다.
+- [x] 프로그램 실행이 시작점이 `Application`의 `main()`이다.
+- [x] build.gradle 파일을 변경할 수 없고, 외부 라이브러리를 사용하지 않는다.
 - [ ] Java 코드 컨벤션 가이드를 준수하여 프로그래밍한다.
-- [ ] 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
-- [ ] 프로그램 구현 완료 시 `ApplicationTest`의 모든 테스트가 성공해야 한다.
-- [ ] 패키지 이름을 수정하거나 이동하지 않는다.
-- [ ] indent depth가 3이 넘지 않도록 구현
-- [ ] 3항 연산자를 사용하지 않는다.
+- [x] 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
+- [x] 프로그램 구현 완료 시 `ApplicationTest`의 모든 테스트가 성공해야 한다.
+- [x] 패키지 이름을 수정하거나 이동하지 않는다.
+- [x] indent depth가 3이 넘지 않도록 구현
+- [x] 3항 연산자를 사용하지 않는다.
 
 # 추가 요구 사항
 - [ ] 함수의 길이가 15라인을 넘어가지 않도록 구현
-- [ ] else 예약어를 쓰지 않는다 (switch/case 사용 x)
-- [ ] Java Enum을 적용
+- [x] else 예약어를 쓰지 않는다 (switch/case 사용 x)
+- [x] Java Enum을 적용
 - [ ] 핵심 로직 코드와 UI 담당 로직을 분리
 - [ ] 도메인 로직에 단위 테스트 구현
 
 # 라이브러리
-- [ ] `camp.nextstep.edu.missionutils`에서 제공하는 API를 사용하여 구현
+- [x] `camp.nextstep.edu.missionutils`에서 제공하는 API를 사용하여 구현

@@ -6,17 +6,9 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> winningLottoNumbers, int bonusNumber) {
-        this.winningLotto = new Lotto(winningLottoNumbers);
-
-        validateBonusNumber(winningLottoNumbers, bonusNumber);
+    public WinningLotto(Lotto winningLotto, int bonusNumber) {
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
-    }
-
-    private void validateBonusNumber(List<Integer> winningLottoNumbers, int bonusNumber) {
-        if (winningLottoNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
-        }
     }
 
     public List<Integer> getWinningLottoNumbers() {

@@ -1,5 +1,7 @@
 package lotto.util;
 
+import lotto.domain.Lotto;
+
 import static lotto.constant.LottoConsts.MAX_NUMBER;
 import static lotto.constant.LottoConsts.MIN_NUMBER;
 
@@ -21,6 +23,16 @@ public class LottoUtil {
         }
 
         return lottoNumber;
+    }
+
+    public static int parseLottoBonusNumber(String input, Lotto winningLotto) {
+        int bonusNumber = parseLottoNumber(input);
+
+        if (winningLotto.containNumber(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호는 중복될 수 없습니다.");
+        }
+
+        return bonusNumber;
     }
 
 }

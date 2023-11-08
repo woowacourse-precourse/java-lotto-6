@@ -7,8 +7,10 @@ import java.util.Set;
 import lotto.view.ExceptionMessage;
 
 public class Lotto {
+    private static final int MIN_NUMBER = 1;
+    private static final int MAX_NUMBER = 45;
+    private final List<Integer> numbers;
 
-    private  final List<Integer> numbers;
 
 
     public Lotto(List<Integer> numbers) {
@@ -24,8 +26,8 @@ public class Lotto {
     }
 
 
-    public int countMatch(Lotto  winningLotto) {
-        return (int) numbers.stream().filter(LottoWinner::containNumber).
+    public int countMatch(Lotto winningLotto) {
+        return (int) numbers.stream().filter(winningLotto::containNumber).
                 count();
     }
 
@@ -45,10 +47,7 @@ public class Lotto {
     }
     // TODO: 추가 기능 구현
     private void validateOverlap(List<Integer> numbers){
-        Set<Integer> overlapCheck = new HashSet<>();
-        for (int i = 0; i < numbers.size(); i++) {
-            overlapCheck.add(numbers.get(i));
-        }
+        Set<Integer> overlapCheck = new HashSet<>(numbers);
         if (overlapCheck.size() != 6){
             ExceptionMessage.overlapException();
             throw new IllegalArgumentException();
@@ -58,9 +57,9 @@ public class Lotto {
 
 
     public void validateRange(List<Integer> numbers) {
-        for (int winningNumber = 0;winningNumber < numbers.size(); winningNumber++) {
-            if (numbers.get(winningNumber) < 1 || numbers.get(winningNumber)>45){
-                ExceptionMessage.naturalException();
+        for (Integer number : numbers) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                ExceptionMessage.rangeException();
                 throw new IllegalArgumentException();
             }
         }
@@ -68,7 +67,7 @@ public class Lotto {
 
 
 
-    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+    public void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             ExceptionMessage.overlapException();
             throw new IllegalArgumentException();

@@ -21,14 +21,16 @@ public class LottoNumbers {
 
 
 
-    public static List<Integer>lottoNumbers;
+    public static List<Integer>lottoNumberList;
 
 
-    public static List<Integer>RandomLottoNumbers(){
-        lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER,MAX_LOTTO_NUMBER,CNT_LOTTO_NUMBER);
-        List<Integer> lottoNumbersList =  new ArrayList<>(lottoNumbers);//lottoNumbers를 lottoNumbersList로 복제하여 반환
+
+    public List<Integer> setRandomNumbers() {
+        lottoNumberList = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER,MAX_LOTTO_NUMBER,CNT_LOTTO_NUMBER);
+        List<Integer> lottoNumbersList =  new ArrayList<>(lottoNumberList);//lottoNumbers를 lottoNumbersList로 복제하여 반환
         Collections.sort(lottoNumbersList);
         return lottoNumbersList;
     }
+
 
 }

@@ -22,19 +22,21 @@ public enum LottoRanking {
 
 
 
-    private int countOfMatch;
-    private int winningAmount;
-    private String message;
+    private final int countOfMatch;
+    private final int winningAmount;
+    private final String message;
 
 
 
-    public static LottoRanking valueOf(int countOfMatch, boolean Bonus) {
+    public static LottoRanking valueOf(int countOfMatch, boolean matchBonus) {
         if (countOfMatch < WINNING_MIN_COUNT) return MISS;
-        if (SECOND.matchCount(countOfMatch) && Bonus) return SECOND;
+        if (SECOND.matchCount(countOfMatch) && matchBonus) return SECOND;
 
-        for (LottoRanking rank : values()
+        for (LottoRanking ranking : values()
              ) {
-            if (rank.matchCount(countOfMatch) && rank != SECOND) return rank;
+            if (ranking.matchCount(countOfMatch) && ranking != SECOND){
+                return ranking;
+            }
         }
 
 
@@ -43,9 +45,9 @@ public enum LottoRanking {
 
     }
 
-    public int getCountOfMatch() {
-        return countOfMatch;
-    }
+//    public int getCountOfMatch() {
+//        return countOfMatch;
+//    }
 
     public int getWinningAmount() {
         return winningAmount;

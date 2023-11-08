@@ -1,52 +1,52 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
-
+    private Output output = new Output();
+    private Input input = new Input();
     private List<Lotto> lottos = new ArrayList<>();
 
 
     public void startGame() {
-        Output output = new Output();
-        Input input = new Input();
+        List<Lotto> lottos = buyLotto();
+        List<Integer> numbers = requestWinningNumbers();
+        int bonusNumber = requestBonusNumber();
+        Map<Integer, Integer> winners = responseCaculateWinners(lottos, numbers, bonusNumber);
+    }
 
+    private List<Lotto> buyLotto() {
         output.requestMoneyOutput();
         int moneyInput =input.getMoneyInput();
         int count = moneyInput / Constants.LOTTO_PRICE;
-        List<Lotto> lottos = buyLotto(count);
-        output.responseBuyOutput(count, lottos);
-
-        output.requestWinnerNumbers();
-        List<Integer> numbers =input.getWinnerNumbers();
-
-        output.requestBonusNumber();
-        int bonusNumber = input.getBonusNumber();
-
-        Map<Integer, Integer> winners = new HashMap<>();
-        winners.put(3, 3);
-        winners.put(4, 4);
-        winners.put(5, 5);
-        winners.put(6, 6);
-        output.responseCalculateWinners(winners, 55.6);
-    }
-
-    public List<Lotto> buyLotto(int count) {
         RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = randomNumberGenerator.GenerateLottoNumbers();
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
+        output.responseBuyOutput(count, lottos);
         return lottos;
     }
 
-    public Map<Integer, Integer> caculateWinners( List<Integer> winningNumbers) {
+    private List<Integer> requestWinningNumbers() {
+        output.requestWinnerNumbers();
+        List<Integer> numbers =input.getWinnerNumbers();
+        return numbers;
+    }
+
+    private int requestBonusNumber() {
+        output.requestBonusNumber();
+        int bonusNumber = input.getBonusNumber();
+        return bonusNumber;
+    }
+
+    private Map<Integer, Integer> responseCaculateWinners(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         WinnersCalculator winnersCalculator = new WinnersCalculator(winningNumbers);
         Map<Integer, Integer> winners = winnersCalculator.calculateWinners(lottos);
+        output.responseCalculateWinners(winners, 55.6);
         return winners;
     }
 

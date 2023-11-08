@@ -21,4 +21,5 @@ public class LottoDatabase {
 	public void printLotto() {
 		lottoDatabase.forEach(Lotto::printLotto);
 	}
+
 }

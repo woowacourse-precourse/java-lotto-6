@@ -3,6 +3,8 @@ package lotto.generate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class RandomGenerator {
@@ -13,8 +15,10 @@ public class RandomGenerator {
 		for(int i=0; i < number; i++) {
 			List<Integer> numbers = new ArrayList<>();
 			numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-			Collections.sort(numbers);
-			myLotto.add(numbers);
+			//Collections.sort(numbers);
+			myLotto.add(numbers.stream()
+	                .sorted()
+	                .collect(Collectors.toList()));
 		}
     }
 	

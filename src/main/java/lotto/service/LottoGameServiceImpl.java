@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.computation.WinningComputer;
 import lotto.domain.*;
 import lotto.utility.FormatConverter;
 import lotto.utility.RandomNumberGenerator;
@@ -40,6 +41,23 @@ public class LottoGameServiceImpl implements LottoGameService {
     @Override
     public BonusNumber parseBonusNumber(String bonusNumberInput) {
         return new BonusNumber(TypeConverter.convertStringToInt(bonusNumberInput));
+    }
+
+    @Override
+    public Winnings countMatchingNumbers(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        Winnings winnings = new Winnings();
+
+        for (int i = 0; i < lottos.size(); i++) {
+            Winning winning = WinningComputer.computeMatchCount(lottos.get(i).getNumbers(), winningNumbers);
+
+            if (winning.isFive()) {
+                winning = WinningComputer.computeMatchCount(lottos.get(i).getNumbers(), bonusNumber);
+            }
+
+            winnings.add(winning);
+        }
+
+        return winnings;
     }
 
     private Lotto generateLotto() {

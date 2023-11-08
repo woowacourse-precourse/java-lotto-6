@@ -18,14 +18,17 @@ public class LottoGameController {
 
         PrintHandler.printStartingPartOfLottoGame(lottoCount, lottos);
 
-        playLottoGame(lottos);
+        playLottoGame(lottos, purchaseAmount);
     }
 
-    private static void playLottoGame(Lottos lottos) {
+    private static void playLottoGame(Lottos lottos, PurchaseAmount purchaseAmount) {
         String winningNumbersInput = InputHandler.getWinningNumberInputMessage();
         WinningNumbers winningNumbers = lottoGameService.parseWinningNumbers(winningNumbersInput);
 
         String bonusNumberInput = InputHandler.getBonusNumberInputMessage(winningNumbers);
         BonusNumber bonusNumber = lottoGameService.parseBonusNumber(bonusNumberInput);
+
+        Winnings winnings = lottoGameService.countMatchingNumbers(lottos, winningNumbers, bonusNumber);
+
     }
 }

@@ -12,4 +12,6 @@ public interface LottoGameService {
     WinningNumbers parseWinningNumbers(String winningNumbersInput);
 
     BonusNumber parseBonusNumber(String bonusNumberInput);
+
+    Winnings countMatchingNumbers(Lottos lottos, WinningNumbers winningNumbers, BonusNumber bonusNumber);
 }

@@ -5,6 +5,8 @@ import lotto.Constant;
 import lotto.Util;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class LottoBuyer {
@@ -37,7 +39,10 @@ public class LottoBuyer {
     }
 
     public List<Integer> generateLottoNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(Constant.LOTTO_MIN_NUMBER, Constant.LOTTO_MAX_NUMBER, Constant.LOTTO_PICK_NUMBER)
+                .stream()
+                .sorted()
+                .toList();
     }
 
     public static int validMoney(String number) {

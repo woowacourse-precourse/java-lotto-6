@@ -1,6 +1,9 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,10 +19,20 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int matchedNumberCount(Lotto lotto2) {
+        return numbers.stream()
+                .filter(now -> lotto2.getNumbers()
+                        .stream()
+                        .anyMatch(Predicate.isEqual(now)))
+                .toList().size();
+    }
+
     @Override
     public String toString() {
         return numbers.toString();
     }
-
-    // TODO: 추가 기능 구현
 }

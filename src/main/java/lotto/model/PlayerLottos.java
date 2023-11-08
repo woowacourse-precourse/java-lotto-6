@@ -12,6 +12,10 @@ public class PlayerLottos {
         this.playerLottos = generatePlayerLottos(numberOfLottoTickets);
     }
 
+    public PlayerLottos(List<Lotto> playerLottos) {
+        this.playerLottos = playerLottos;
+    }
+
     public List<Lotto> getPlayerLottos() {
         return playerLottos;
     }

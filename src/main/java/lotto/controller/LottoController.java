@@ -32,9 +32,8 @@ public class LottoController {
         lottoBuyer = new LottoBuyer(payment);
         OUTPUT_VIEW.printNumberOfPurchased(lottoBuyer.getNumberOfLottoTickets());
         OUTPUT_VIEW.printLottoTickets(lottoBuyer.getLottoTicketsInformation());
-        initWinningLotto();
-        initBonus();
-        winningLottoNumbers = new WinningLottoNumbers(winningLotto, bonus);
+        initWinningNumbers();
+        initWinningLottoNumbers();
     }
 
     private void initPayment() {
@@ -46,21 +45,22 @@ public class LottoController {
         }
     }
 
-    private void initWinningLotto() {
+    private void initWinningNumbers() {
         try {
             winningLotto = new Lotto(INPUT_VIEW.readWinningNumber());
         } catch (IllegalArgumentException e) {
             OUTPUT_VIEW.printErrorMessage(e.getMessage());
-            initWinningLotto();
+            initWinningNumbers();
         }
     }
 
-    private void initBonus() {
+    private void initWinningLottoNumbers() {
         try {
             bonus = new Bonus(INPUT_VIEW.readBonusInput());
+            winningLottoNumbers = new WinningLottoNumbers(winningLotto, bonus);
         } catch (IllegalArgumentException e) {
             OUTPUT_VIEW.printErrorMessage(e.getMessage());
-            initBonus();
+            initWinningLottoNumbers();
         }
     }
 

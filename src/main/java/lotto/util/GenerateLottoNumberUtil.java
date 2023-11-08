@@ -9,22 +9,21 @@ import java.util.List;
 public class GenerateLottoNumberUtil {
     private GenerateLottoNumber generateLottoNumber;
     private Lotto lotto;
-
-    private List<List<Integer>> lottonumbers;
+    private List<List<Integer>> lottoNumbers;
 
     public GenerateLottoNumberUtil() {
-        lottonumbers = new ArrayList<>();
+        lottoNumbers = new ArrayList<>();
     }
 
-    //랜덤 로또번호 생성 후, 로또 클래스에 저장
+    /**
+     * 로또번호 랜덤 생성 후, 로또 클래스에 저장 -> 다수의 로또 클래스가 생성될 수 있으므로, 리스트를 담는 리스트타입의 lottoNumbers에 lotto 리스트 저장
+     */
     public void generateLottoNumber(){
         generateLottoNumber = new GenerateLottoNumber();
         lotto = new Lotto(generateLottoNumber.selectNumber());
-
-        lottonumbers.add(lotto.getNumbers());
+        lottoNumbers.add(lotto.getNumbers());
     }
-    
-    // 로또 클래스에 저장된 숫자들 리턴
+
     public List<Integer> getGenerateLottoNumber() {
         return lotto.getNumbers();
     }
@@ -34,7 +33,7 @@ public class GenerateLottoNumberUtil {
     }
 
     public List<List<Integer>> getLottos(){
-        return lottonumbers;
+        return lottoNumbers;
     }
 
 

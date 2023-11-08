@@ -9,4 +9,13 @@ public class GameController {
         gameService = new GameService();
     }
 
+    public void Lotto(){
+        gameService.purchase();
+        gameService.generateLottoNumber();
+        gameService.winningNumber();
+        gameService.bonusNumber();
+        gameService.winning();
+        gameService.revenue();
+    }
+
 }

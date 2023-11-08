@@ -13,14 +13,14 @@ public class WinningNumberTest {
 
     @DisplayName("구입 금액 저장기능이 잘 작동하는가")
     @Test
-    void test1(){
+    void winningNumberFunctionCheck(){
         WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6");
         Assertions.assertEquals(winningNumber.getWinningNumber(), List.of(1, 2, 3, 4, 5, 6));
     }
 
     @DisplayName("당첨번호가 \",\"로 구분될 수 없을 때 예외 발생")
     @Test
-    void test2(){
+    void canWinningNumberSplit(){
         WinningNumber winningNumber = new WinningNumber();
         assertThatThrownBy(() -> winningNumber.validateSplitCheck("1.sf-2r"))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -28,7 +28,7 @@ public class WinningNumberTest {
 
     @DisplayName("당첨번호가 숫자가 아닐 때 예외 발생")
     @Test
-    void test3(){
+    void isWinningNumberNumeric(){
         WinningNumber winningNumber = new WinningNumber();
         String[] numbers = {"1", "s", "abc", "a", "asf"};
 
@@ -37,9 +37,9 @@ public class WinningNumberTest {
     }
 
 
-    @DisplayName("당청번호의 숫자가 1~45사이의 숫자가 아닐 때 예외 발생")
+    @DisplayName("당첨번호의 숫자가 1~45사이의 숫자가 아닐 때 예외 발생")
     @Test
-    void test4(){
+    void isWinningNumberInRange(){
         WinningNumber winningNumber = new WinningNumber();
         String[] numbers = {"1", "0", "-50", "24", "31"};
         assertThatThrownBy(() -> winningNumber.validateRange(numbers))
@@ -49,7 +49,7 @@ public class WinningNumberTest {
 
     @DisplayName("당첨번호의 개수가 6개가 아닐때 예외 발생")
     @Test
-    void test5(){
+    void isWinningNumberCountSix(){
         WinningNumber winningNumber = new WinningNumber();
         String[] numbers = {"1", "0", "-50", "24"};
         assertThatThrownBy(() -> winningNumber.validateCount(numbers))
@@ -59,7 +59,7 @@ public class WinningNumberTest {
 
     @DisplayName("당첨번호에 중복이 있는 경우 예외 발생")
     @Test
-    void test6(){
+    void areThereDuplicateNumberInLotto(){
         WinningNumber winningNumber = new WinningNumber();
         String[] numbers = {"1", "5", "-30", "24", "24"};
         assertThatThrownBy(() -> winningNumber.validateCount(numbers))

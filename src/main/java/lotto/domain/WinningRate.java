@@ -8,9 +8,9 @@ public enum WinningRate {
     FIFTH(3,5000, "3개 일치 (5,000원) - "),
     LOSE(0,0,"");
 
-    private int correctNumber;
-    private long rateOfReturn;
-    private String message;
+    private final int correctNumber;
+    private final long rateOfReturn;
+    private final String message;
 
     WinningRate(int correctNumber, long rateOfReturn, String message) {
         this.correctNumber = correctNumber;
@@ -18,9 +18,6 @@ public enum WinningRate {
         this.message = message;
     }
 
-    public int getCorrectNumber() {
-        return correctNumber;
-    }
 
     public long getRateOfReturn() {
         return rateOfReturn;

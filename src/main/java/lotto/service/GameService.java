@@ -11,36 +11,36 @@ import java.util.Map;
 import java.util.stream.LongStream;
 
 public class GameService {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    GenerateLottoNumberUtil generateLottoNumberUtil = new GenerateLottoNumberUtil();
-    WinningRate winningRate;
-    RateOfReturn rateOfReturn;
-    WiningResultUtil winingResultUtil;
-
-    PurchaseCost purchaseCost;
-    WinningNumber winningNumber;
-    BonusNumber bonusNumber;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final GenerateLottoNumberUtil generateLottoNumberUtil;
+    private RateOfReturn rateOfReturn;
+    private WiningResultUtil winingResultUtil;
+    private PurchaseCost purchaseCost;
+    private WinningNumber winningNumber;
+    private BonusNumber bonusNumber;
 
 
     public GameService(){
-        //이 부분 controller로 빼기
-       purchase();
-       generateLottoNumber();
-       winningNumber();
-       bonusNumber();
-       winning();
-       revenue();
+        inputView = new InputView();
+        outputView = new OutputView();
+        generateLottoNumberUtil = new GenerateLottoNumberUtil();
     }
 
+    /**
+     * 구입 금액 입력 받는 과정
+     */
     public void purchase(){
         purchaseCost = new PurchaseCost(inputView.inputPurchaseCost());
         outputView.purchaseCount(purchaseCost.getPurchaseCost());
         rateOfReturn = new RateOfReturn(purchaseCost.getPurchaseCost());
     }
 
+
+    /**
+     * 로또 번호 랜덤 생성 과정
+     */
     public void generateLottoNumber(){
-        //PurchaseCost만큼 랜덤 로또번호 생성 및 로또 클래스에 저장 및 OutView에 리턴해서 출력
         LongStream.range(0, purchaseCost.getPurchaseCost())
                 .forEach(i -> {
                     generateLottoNumberUtil.generateLottoNumber();
@@ -48,19 +48,32 @@ public class GameService {
                 });
     }
 
+
+    /**
+     * 당첨 번호 입력 과정
+     */
     public void winningNumber(){
-        winningNumber = new WinningNumber(inputView.inputSelectNumber());
+        winningNumber = new WinningNumber(inputView.inputWinningNumber());
     }
+
+    /**
+     * 보너스 번호 입력 과정
+     */
     public void bonusNumber(){
         bonusNumber = new BonusNumber(inputView.inputBonusNumber());
         CommonException.commonException(winningNumber.getWinningNumber(),bonusNumber.getNumber());
     }
 
+
+    /**
+     * 당첨번호 + 보너스 번호와 일치하는 로또 번호 리스트 파악하는 과정
+     */
     public void winning() {
         winingResultUtil = new WiningResultUtil();
         winingResultUtil.setWinning(generateLottoNumberUtil.getLottos(),winningNumber.getWinningNumber());
-        Map<String, Integer> matchCounts = winingResultUtil.calculateMatchCount(bonusNumber.getNumber(),rateOfReturn);
-
+        Map<String, Integer> matchCounts
+                = winingResultUtil.calculateMatchCount(bonusNumber.getNumber(),rateOfReturn);
+        outputView.winningStatics();
         for (Map.Entry<String, Integer> entry : matchCounts.entrySet()) {
             String message = entry.getKey();
             int count = entry.getValue();
@@ -70,6 +83,9 @@ public class GameService {
         }
     }
 
+    /**
+     * 수익률 계산하는 과정
+     */
     public void revenue(){
         rateOfReturn.setRateOfReturn();
         outputView.rateOfReturn(rateOfReturn.getRateOfReturn());

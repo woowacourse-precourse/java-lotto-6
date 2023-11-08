@@ -9,11 +9,11 @@ import java.util.Map;
 import java.util.Optional;
 
 public enum LottoWinningTier {
-    FIRST_TIER(6, false, new Amount(2_000_000_000)),
-    SECOND_TIER(5, true, new Amount(30_000_000)),
-    THIRD_TIER(5, false, new Amount(1_500_000)),
+    FIFTH_TIER(3, false, new Amount(5_000)),
     FOURTH_TIER(4, false, new Amount(50_000)),
-    FIFTH_TIER(3, false, new Amount(5_000));
+    THIRD_TIER(5, false, new Amount(1_500_000)),
+    SECOND_TIER(5, true, new Amount(30_000_000)),
+    FIRST_TIER(6, false, new Amount(2_000_000_000));
 
     private final int matchCount;
     private final boolean requireMatchBonus;

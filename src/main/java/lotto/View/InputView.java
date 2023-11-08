@@ -2,6 +2,10 @@ package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 public class InputView {
 
@@ -19,7 +23,7 @@ public class InputView {
             checkInputPurchaseSumValid(input);
             return Integer.parseInt(input);
 
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             InputView.inputPurchaseSum();
         }
 
@@ -32,4 +36,38 @@ public class InputView {
         Validation.checkNotDivided(input);
     }
 
+    public static List<Integer> inputWinningNumber(){
+        OutputView.printInputMessage(WINNING_NUMBER_INPUT_MESSAGE);
+        String input = Console.readLine();
+
+        try {
+
+            List<Integer> result = checkInputWinningNumberValid(input);
+
+            return result;
+        } catch (IllegalArgumentException e){
+            InputView.inputWinningNumber();
+        }
+        return null;
+    }
+
+    private static List<Integer> checkInputWinningNumberValid(String input) {
+        Validation.checkNotBlank(input);
+        List<String> inputStrings = new ArrayList<>();
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        Collections.addAll(inputStrings, input.split(","));
+        Validation.checkLength(inputStrings);
+
+        for(String str : inputStrings){
+            Validation.checkNotNumber(str);
+            Validation.checkNotInteger(str);
+            Integer number = Integer.parseInt(str);
+            Validation.checkNotInLottoRange(number);
+
+            winningNumbers.add(number);
+        }
+
+        return winningNumbers;
+    }
 }

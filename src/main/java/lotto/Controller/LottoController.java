@@ -8,7 +8,7 @@ public class LottoController {
     public void playLotto(){
 
         InputView.inputPurchaseSum();
-
+        InputView.inputWinningNumber();
     }
 
 }

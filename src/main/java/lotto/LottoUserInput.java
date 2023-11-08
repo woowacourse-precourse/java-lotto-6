@@ -8,10 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class LottoUserInput {
-    
-    private Lotto lotto = new Lotto();
     
     public int getUserPurchaseAmount() {
         try {
@@ -43,11 +42,37 @@ public class LottoUserInput {
                 int number = Integer.parseInt(numberValue.trim());
                 winningNumber.add(number);
             }
-            lotto.validate(winningNumber);
+            validateSixNumbers(winningNumber);
+            validateLottoNumbers(winningNumber);
+            checkDuplicateNumbers(winningNumber);
             return winningNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumber();
+        }
+    }
+    
+    private void validateLottoNumbers(List<Integer> numbers) {
+        for(int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+    }
+    
+    private void checkDuplicateNumbers(List<Integer> numbers) {
+        Set<Integer> numberSet  = new HashSet<>();
+
+        for (int number : numbers) {
+            if (!numberSet.add(number)) {
+                throw new IllegalArgumentException("[ERROR] 중복된 번호가 입력되었습니다.");
+            }
+        }
+    }
+    
+    private void validateSixNumbers(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또는 6개의 숫자만 가능합니다.");
         }
     }
     

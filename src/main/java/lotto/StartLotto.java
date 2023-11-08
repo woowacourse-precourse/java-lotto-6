@@ -7,8 +7,6 @@ import camp.nextstep.edu.missionutils.Console;
 
 
 public class StartLotto {
-    
-    private Lotto lotto = new Lotto();
     private LottoUserInput lottoInput = new LottoUserInput();
     private LottoPrint lottoPrint = new LottoPrint();
     private LottoManager lottoManager = new LottoManager();

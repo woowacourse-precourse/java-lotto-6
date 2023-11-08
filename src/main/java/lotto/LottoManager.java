@@ -17,9 +17,8 @@ public class LottoManager {
         return purchasedLottoNumbers;
     }
     
-    private List<Integer> drawLottoNumbers() {
+    public List<Integer> drawLottoNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(randomNumbers);
         System.out.println(randomNumbers);
         return randomNumbers;
     }

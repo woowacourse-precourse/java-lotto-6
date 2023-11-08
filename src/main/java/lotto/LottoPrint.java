@@ -1,7 +1,6 @@
 package lotto;
 
 import java.text.NumberFormat;
-import java.util.List;
 
 public class LottoPrint {
     
@@ -14,12 +13,10 @@ public class LottoPrint {
     public void printMatchStatistics(int[] matchCount) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        NumberFormat nf = NumberFormat.getInstance();
         for (MatchType matchType : MatchType.values()) {
             int prize = matchType.getPrize();
             int count = matchCount[matchType.ordinal()];
-            String formattedPrize = nf.format(prize);
-            System.out.println(matchType.getMatchingNumbers() + "개 일치 (" + formattedPrize + "원) - " + count + "개");
+            System.out.println(matchType.getOutputString()+" - " + count + "개");
         }
     }
     

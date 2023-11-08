@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static lotto.utils.ConstantValues.LOTTO_NUMBERS_LENGTH;
 import static lotto.utils.ConstantValues.MAX_LOTTO_NUMBER;
-import static lotto.utils.ConstantValues.MAX_NUMBER_OF_LOTTOS;
 import static lotto.utils.ConstantValues.MIN_LOTTO_NUMBER;
 import static lotto.utils.ErrorMessages.INVALID_LOTTO_NUMBERS_LENGTH;
 import static lotto.utils.ErrorMessages.LOTTO_NUMBER_DUPLICATION;

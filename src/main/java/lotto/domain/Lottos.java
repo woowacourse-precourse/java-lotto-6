@@ -28,6 +28,7 @@ public class Lottos {
     public int getLottoCount() {
         return lottos.size();
     }
+
     public Map<Prize, Integer> getLottosResult(PrizeChecker prizeChecker) {
         Map<Prize, Integer> lottosResult = new HashMap<>();
         for (Lotto lotto : lottos) {

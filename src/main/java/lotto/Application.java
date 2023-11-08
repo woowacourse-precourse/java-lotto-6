@@ -7,10 +7,10 @@ import static lotto.utils.PrintingMessages.GET_WINNING_NUMBERS_MESSAGE;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.PrizeReception;
-import lotto.domain.PrizeChecker;
-import lotto.domain.wrapper.PurchaseAmount;
 import lotto.domain.Prize;
+import lotto.domain.PrizeChecker;
+import lotto.domain.PrizeReception;
+import lotto.domain.wrapper.PurchaseAmount;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

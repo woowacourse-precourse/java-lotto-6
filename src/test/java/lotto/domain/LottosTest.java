@@ -23,7 +23,7 @@ class LottosTest extends NsTest {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     Lottos lottos = new Lottos(purchaseAmount);
-                    System.out.println(lottos.toString());
+                    System.out.println(lottos);
                     assertThat(output()).contains(
                             "[8, 21, 23, 41, 42, 43]",
                             "[3, 5, 11, 16, 32, 38]"

@@ -3,12 +3,12 @@ package lotto.view;
 import static lotto.utils.ConstantString.NEW_LINE;
 import static lotto.utils.ConstantString.SPACE;
 import static lotto.utils.ConstantValues.DEFAULT_COUNT;
-import static lotto.utils.PrintingMessages.DECIMAL_FORMAT;
-import static lotto.utils.PrintingMessages.PROFIT_MESSAGE;
 import static lotto.utils.PrintingMessages.BONUS_MESSAGE;
 import static lotto.utils.PrintingMessages.BUYING_MESSAGE;
+import static lotto.utils.PrintingMessages.DECIMAL_FORMAT;
 import static lotto.utils.PrintingMessages.PRIZE_MESSAGE;
 import static lotto.utils.PrintingMessages.PRIZE_MESSAGE_START_MESSAGE;
+import static lotto.utils.PrintingMessages.PROFIT_MESSAGE;
 
 import java.text.DecimalFormat;
 import java.util.Map;
@@ -20,6 +20,7 @@ public class OutputView {
         String message = String.format(BUYING_MESSAGE, lottoCount) + lottosPrinting;
         System.out.println(message);
     }
+
     public static void printMessage(String message) {
         System.out.println(message);
     }

@@ -30,7 +30,7 @@ class LottoTest {
         // given
         int commonNumber = 1;
         int notCommonNumber = 7;
-        Lotto lotto = new Lotto(List.of(commonNumber,2,3,4,5,6));
+        Lotto lotto = new Lotto(List.of(commonNumber, 2, 3, 4, 5, 6));
         // when, then
         assertThat(lotto.hasNumber(commonNumber)).isEqualTo(true);
         assertThat(lotto.hasNumber(notCommonNumber)).isEqualTo(false);

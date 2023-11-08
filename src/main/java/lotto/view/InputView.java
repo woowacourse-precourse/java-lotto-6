@@ -1,7 +1,7 @@
 package lotto.view;
 
-import static lotto.utils.ErrorMessages.NOT_INTEGER_INPUT;
 import static lotto.utils.ConstantString.DELIMITER;
+import static lotto.utils.ErrorMessages.NOT_INTEGER_INPUT;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;

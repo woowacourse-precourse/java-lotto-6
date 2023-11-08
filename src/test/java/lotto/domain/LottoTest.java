@@ -26,22 +26,22 @@ class LottoTest {
 
     @DisplayName("로또 번호가 1~45의 숫자가 아닌경우 예외가 발생한다.")
     @Test
-    void createLottoByNotArrangeNumber(){
+    void createLottoByNotArrangeNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46))).isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("사용자가 구매한 로또 번호와 당첨 번호를 비교하는 기능")
     @Test
-    void matchLottoCount(){
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+    void matchLottoCount() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         WinningLotto winningLotto = WinningLotto.create(new Lotto(List.of(1, 2, 3, 11, 12, 13)), BonusNumber.create(5));
-        assertEquals(3,lotto.getMatchLottoCount(winningLotto));
+        assertEquals(3, lotto.getMatchLottoCount(winningLotto));
     }
 
     @DisplayName("올바른 양식으로 문자를 출력하는지")
     @Test
-    void toStringTest(){
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
-        assertEquals("[1, 2, 3, 4, 5, 6]",lotto.toString());
+    void toStringTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertEquals("[1, 2, 3, 4, 5, 6]", lotto.toString());
     }
 }

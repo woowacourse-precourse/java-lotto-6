@@ -19,14 +19,18 @@ public enum Rank {
     }
 
     public static Rank getRank(int matchCount, boolean isContainBonusNumber) {
-        if (matchCount == SECOND.matchCount && !isContainBonusNumber) {
-            return Rank.THIRD;
+        if (isSecond(matchCount, isContainBonusNumber)) {
+            return Rank.SECOND;
         }
 
         return Arrays.stream(Rank.values())
             .filter(rank -> rank.matchCount == matchCount)
             .findFirst()
             .orElse(Rank.NONE);
+    }
+
+    private static boolean isSecond(int matchCount, boolean isContainBonusNumber) {
+        return matchCount == SECOND.matchCount && isContainBonusNumber;
     }
 
     public int getMatchCount() {

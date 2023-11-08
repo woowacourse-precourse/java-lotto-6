@@ -85,6 +85,7 @@ public class LottoController {
         validateInputCount(numbers);
         validateInputIsNumbers(numbers);
         validateInputNumberRange(numbers);
+        validateDuplication(numbers);
     }
 
     private void validateInputCount(String[] numbers) {
@@ -94,9 +95,9 @@ public class LottoController {
     }
 
     private void validateInputIsNumbers(String[] numbers) {
-        for (String numberStr : numbers) {
+        for (String inputNumber : numbers) {
             try {
-                int number = Integer.parseInt(numberStr);
+                int number = Integer.parseInt(inputNumber);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 포함되어 있습니다.");
             }
@@ -104,10 +105,20 @@ public class LottoController {
     }
 
     private void validateInputNumberRange(String[] numbers) {
-        for (String numberStr : numbers) {
-            int number = Integer.parseInt(numberStr);
+        for (String inputNumber : numbers) {
+            int number = Integer.parseInt(inputNumber);
             if (number < 1 || number > 45) {
                 throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자만 입력하세요.");
+            }
+        }
+    }
+
+    private void validateDuplication(String[] numbers) {
+        for (String number1 : numbers) {
+            for (String number2 : numbers) {
+                if (number1.equals(number2)) {
+                    throw new IllegalArgumentException("[ERROR] 중복 값을 입력했습니다.");
+                }
             }
         }
     }

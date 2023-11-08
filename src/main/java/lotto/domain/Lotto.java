@@ -1,4 +1,4 @@
-package lotto.domin;
+package lotto.domain;
 
 import lotto.view.ExceptionMessage;
 

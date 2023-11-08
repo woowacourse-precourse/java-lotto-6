@@ -1,8 +1,7 @@
 package lotto;
 
-import lotto.domin.Bonus;
+import lotto.domain.Bonus;
 import lotto.view.ExceptionMessage;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

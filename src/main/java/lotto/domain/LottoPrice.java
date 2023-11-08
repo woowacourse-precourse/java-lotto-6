@@ -1,4 +1,4 @@
-package lotto.domin;
+package lotto.domain;
 
 public enum LottoPrice {
     ZERO(0,0), ONE(1,0), TWO(2, 0), THREE(3,5000), FOUR(4,50_000), FIVE(5,1_500_000), SIX(6,

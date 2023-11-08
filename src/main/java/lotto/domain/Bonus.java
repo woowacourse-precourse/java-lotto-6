@@ -1,8 +1,8 @@
-package lotto.domin;
+package lotto.domain;
 
 import java.util.List;
 
-import static lotto.domin.Exception.*;
+import static lotto.domain.Exception.*;
 
 //숫자 체크 , 1~45 , 중복 체크
 public class Bonus {

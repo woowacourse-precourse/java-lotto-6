@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +12,6 @@ public class UserInputView {
     private static final int LOTTO_MAX_NUMBER = 45;
     private static final int PURCHASE_MIN = 1000;
     private static final int PURCHASE_MAX = 500000;
-    private static final int LOTTO_NUMBERS_SIZE = 6;
     private static final String SEPARATOR = ",";
     private static final String IS_INTEGER_NUMBER = "^[0-9]*$";
     private static final String BUY_MONEY_INFO = "구입금액을 입력해 주세요.";
@@ -21,7 +19,7 @@ public class UserInputView {
     private static final String LOTTO_BONUS_NUM_INPUT_INFO = "보너스 번호를 입력해 주세요.";
     private static final String STRING_TO_INTEGER_ERROR = "[ERROR] 숫자를 입력해주세요.";
     private static final String THOUSAND_ERROR = "[ERROR] 1000단위로 입력해주세요.";
-    private static final String PURCHASE_RANGE_OVER = "[ERROR] 구입 범위는 1개에서 50개까지 입니다.";
+    private static final String PURCHASE_RANGE_OVER = "[ERROR] 구입 범위는 1개에서 500개까지 입니다.";
     private static final String LOTTO_NUMBERS_SIZE_ERROR = "[ERROR] 로또번호를 정확히 입력해주세요.";
     private static final String LOTTO_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String LOTTO_BONUS_NUMBER_DUPLICATE = "[ERROR] 로또 번호와 중복되는 번호를 고를 수 없습니다.";
@@ -47,10 +45,12 @@ public class UserInputView {
         List<String> inputLine = List.of(Console.readLine().split(SEPARATOR));
 
         List<Integer> convertedNumber = winLottoNumberConvertInteger(inputLine);
-        winLottoNumberValidate(convertedNumber);
+        if(winLottoNumberValidate(convertedNumber)){
+            bonusNumbersValidate = convertedNumber.stream()
+                    .toList();
+        }
 
-        return bonusNumbersValidate = convertedNumber.stream()
-                .toList();
+        return bonusNumbersValidate;
     }
 
     public int bonusNumberInput() {
@@ -82,16 +82,13 @@ public class UserInputView {
 
     private List<Integer> winLottoNumberConvertInteger(List<String> inputLine) {
         List<Integer> pickInputNumbers = new ArrayList<>();
-
         try {
-
             inputLine.forEach(this::validStringToInteger);
             pickInputNumbers = inputLine.stream()
                     .map(Integer::parseInt)
                     .sorted()
                     .distinct()
                     .toList();
-
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             winLottoNumberInput();
@@ -99,15 +96,16 @@ public class UserInputView {
         return pickInputNumbers;
     }
 
-    private void winLottoNumberValidate(List<Integer> convertedNumbers) {
+    private boolean winLottoNumberValidate(List<Integer> convertedNumbers) {
         try {
             splitSizeEqualLottoSize(convertedNumbers);
             convertedNumbers.forEach(this::eachNumberValidate);
-
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winLottoNumberInput();
+            return false;
         }
+        return true;
     }
 
     private void splitSizeEqualLottoSize(List<Integer> inputNumbers) throws IllegalArgumentException {

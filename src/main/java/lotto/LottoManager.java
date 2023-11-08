@@ -4,52 +4,55 @@ import java.util.List;
 
 public class LottoManager {
 
+    LottoGame lottoGame;
     Input input;
     Output output;
     List<Lotto> lottoList;
     int howManyLottos;
     List<Integer> winningNumbers;
     int bonusNumber;
+    int payMoney;
 
     public LottoManager(){
         input=new Input();
         output=new Output();
+        lottoGame=new LottoGame();
     }
 
-    public void startLotto(){
-
-        // 얼마로 로또 살지
+    public void getHowMuchLotto(){
         output.instructInputMoney();
-        int payMoney=input.getInput();
+        payMoney=input.getInput();
         howManyLottos=payMoney/1000;
         output.showLottoPurchaseCount(howManyLottos);
+    }
 
-        // 개수에 맞게 로또 번호 생성
-        LottoGame lottoGame=new LottoGame();
+    public void createLotto(){
         lottoGame.setPayMoney(payMoney);
         lottoList=lottoGame.generateLottos(howManyLottos);
         output.showPurchaseLottoNumber(lottoList);
+    }
 
+    public void getWinning(){
         // 당첨 번호
         output.instructInputWinningNumbers();
         winningNumbers=input.getWinningNumber();
         output.instructInputBonusNumber();
-        bonusNumber=input.getBonusNumber();
+        bonusNumber=input.getBonusNumber(winningNumbers);
+    }
 
+    public void getResult(){
         lottoGame.checkWinningCombination(lottoList,winningNumbers,bonusNumber);
         int[] result= lottoGame.getPrizeCount();
-        output.showStatsIn(result);
+        output.showStats(result);
         output.showRateOfReturn(lottoGame.getStats());
-        // 당첨 로직
+    }
 
-        /*
-        3개 일치 (5,000원) - 1개
-        4개 일치 (50,000원) - 0개
-        5개 일치 (1,500,000원) - 0개
-        5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-        6개 일치 (2,000,000,000원) - 0개
+    public void startLotto(){
 
-         */
+        getHowMuchLotto();
+        createLotto();
+        getWinning();
+        getResult();
     }
 
 }

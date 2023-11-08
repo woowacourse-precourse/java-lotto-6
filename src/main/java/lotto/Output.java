@@ -16,10 +16,6 @@ public class Output {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void showStats(){
-        System.out.println("당첨 통계");
-    }
-
     public void showLottoPurchaseCount(int lottoCount){
         System.out.println(lottoCount+"개를 구매했습니다.");
     }
@@ -30,7 +26,9 @@ public class Output {
         }
     }
 
-    public void showStatsIn(int[] results){
+    public void showStats(int[] results){
+        System.out.println("당첨 통계");
+        System.out.println("---");
         System.out.println("3개 일치 (5,000원) - "+results[5]+"개");
         System.out.println("4개 일치 (50,000원) - "+results[4]+"개");
         System.out.println("5개 일치 (1,500,000원) - "+results[3]+"개");
@@ -39,10 +37,6 @@ public class Output {
     }
 
     public void showRateOfReturn(double rate){
-        String result = String.format("%.1f", rate);
-        System.out.println("총 수익률은 "+rate+"%입니다.");
-//        System.out.println("총 수익률은 "+result+"%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.",Math.round(rate * 10.0) / 10.0);
     }
-
-
 }

@@ -43,7 +43,6 @@ public class LottoGame {
     public void checkHowManyMatch(Lotto lotto, List<Integer> winningList, int bonusNumber){
 
         int duplicatedCount=getDuplicatedCount(lotto.getLottoNumbers(),winningList);
-        System.out.println("count = "+duplicatedCount);
         if (checkFirstPrize(duplicatedCount)) {
             return;
         } if (checkSecondPrize(duplicatedCount, lotto.getLottoNumbers(), bonusNumber)) {

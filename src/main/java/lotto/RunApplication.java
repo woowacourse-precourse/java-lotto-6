@@ -174,8 +174,8 @@ public class RunApplication {
         }
     }
 
-    private void isNotDuplicateNumberWithLotto(Lotto lotto, int bonus) throws IllegalArgumentException {
-        for (Integer number : lotto.getNumbers()) {
+    private void isNotDuplicateNumberWithLotto(List<Integer> lotto, int bonus) throws IllegalArgumentException {
+        for (Integer number : lotto) {
             if (number.equals(bonus)) {
                 System.out.println(ExceptionMessage.보너스번호_중복);
                 throw new IllegalArgumentException();

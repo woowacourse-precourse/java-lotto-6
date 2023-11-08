@@ -1,5 +1,8 @@
 package lotto.Controller;
 
+import static lotto.model.LottoResult.addCount;
+import static lotto.model.LottoResult.checkBonusNumber;
+import static lotto.model.LottoResult.matchResult;
 import static lotto.view.InputView.InputWinningNumbers;
 import static lotto.view.InputView.readLine;
 
@@ -9,7 +12,6 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoNumbers;
 import lotto.model.LottoPurchase;
-import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
@@ -48,7 +50,15 @@ public class LottoController {
         bonusNumber = bonus.getBonusNumber();
     }
 
-    private static
+    private static void printStatisticsResult() {
+        OutputView.printWinningStatistics();
+
+        for (List<Integer> lotto : lottoNumbers) {
+            int match = matchResult(lotto, winningNumbers);
+            addCount(checkBonusNumber(lotto, match, bonusNumber));
+        }
+        OutputView.printLottoStatistics();
+    }
 
 
 }

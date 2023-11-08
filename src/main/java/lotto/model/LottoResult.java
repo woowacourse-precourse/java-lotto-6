@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LottoResult {
 
-    private int matchResult(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    public static int matchResult(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         int match = 0;
         for (int lottoNumber : lottoNumbers) {
             if (winningNumbers.contains(lottoNumber)) {
@@ -20,14 +20,14 @@ public class LottoResult {
         return match;
     }
 
-    private int checkBonusNumber(List<Integer> lottoNumbers, int match, int bonusNumber) {
+    public static int checkBonusNumber(List<Integer> lottoNumbers, int match, int bonusNumber) {
         if (match == SECOND.getMatchCount() && lottoNumbers.contains(bonusNumber)) {
             return match * 7;
         }
         return match;
     }
 
-    private void addCount(int match) {
+    public static void addCount(int match) {
         if (match == FIRST.getMatchCount()) {
             LottoRanking.addCount(FIRST);
         }
@@ -44,5 +44,5 @@ public class LottoResult {
             LottoRanking.addCount(FIFTH);
         }
     }
-    
+
 }

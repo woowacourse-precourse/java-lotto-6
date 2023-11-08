@@ -12,6 +12,8 @@ public class LottoManager {
     int buyLottoAmount=0;
     int bonusNumber=0;
     List<List<Integer>> lottoCandidateSets = new ArrayList<>();
+    List<Integer> winLottoCount;
+    List<Integer> winLottoMoney;
     Lotto winLotto;
     public void insertMoney() {
         int money=0;
@@ -126,5 +128,33 @@ public class LottoManager {
     private void checkBonusNumberInLottoNumbers(int number){
         if(winLotto.getNumbers().stream().anyMatch(n->n==number))
             throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복하면 안됩니다.");
+    }
+
+    public void loopJudgeLottoCandidateSetsResult(){
+        winLottoCount=Arrays.asList(0, 0, 0, 0, 0);
+        winLottoMoney=Arrays.asList(0, 0, 0, 0, 0);
+
+        for(List<Integer> lottoCandidateSet : lottoCandidateSets){
+            judgeLottoCandiateSetResult(lottoCandidateSet);
+        }
+    }
+
+    private void judgeLottoCandiateSetResult(List<Integer> lottoCandidateSet){
+
+    }
+
+    private int countCorrectNumbers(List<Integer> lottoCandidateSet){
+        int count=0;
+        List<Integer> winNumbers=winLotto.getNumbers();
+
+        for(int number : lottoCandidateSet){
+            for(int winNumber : winNumbers){
+                if(number==winNumber){
+                    count++;
+                    break;
+                }
+            }
+        }
+        return count;
     }
 }

@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
-    private final static int LOTTO_UNIT_PRICE = 1000;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -20,10 +19,6 @@ public class Lotto {
         }
     }
 
-    int countPurchasedLotto(int totalPrice){
-        int count = totalPrice/LOTTO_UNIT_PRICE;
-        return count;
-    }
 
     List<Integer> generateSixRandomNumber(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

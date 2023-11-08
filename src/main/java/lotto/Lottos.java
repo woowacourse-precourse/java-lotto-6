@@ -35,4 +35,13 @@ public class Lottos {
         }
     }
 
+    public Result getResult(WinningLotto winningLotto) {
+        Result result = new Result();
+        for (Lotto lotto : lottos) {
+            Score score = lotto.getScore(winningLotto);
+            result.count(score);
+        }
+        return result;
+    }
+
 }

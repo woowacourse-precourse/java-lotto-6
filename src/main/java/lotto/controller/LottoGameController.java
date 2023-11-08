@@ -33,9 +33,8 @@ public class LottoGameController {
         // 발급된 로또 정보 출력
         showLottosNumber(lottos);
         // 당첨번호, 보너스 번호 입력받기
-        List<Integer> winningNumber = getWinningNumber();
-        int bonusNumber = getBonusNumber();
-        WinningLotto winningLotto = lottoGameService.getWinningLotto(winningNumber, bonusNumber);
+        Lotto winningNumber = getWinningNumber();
+        WinningLotto winningLotto = getBonusNumber(winningNumber);
         // 결과 계산
         Map<RouletteResult, Integer> result = lottoGameService.match(winningLotto, lottos);
         // 결과 출력하기
@@ -53,21 +52,23 @@ public class LottoGameController {
         }
     }
 
-    public List<Integer> getWinningNumber() {
+    public Lotto getWinningNumber() {
         try {
-           return  inputView.inputWinningNumber();
+            List<Integer> numbers = inputView.inputWinningNumber();
+            return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getWinningNumber();
         }
     }
 
-    public int getBonusNumber() {
+    public WinningLotto getBonusNumber(Lotto lotto) {
         try {
-            return inputView.inputBonusNumber();
+            int bonusNumber = inputView.inputBonusNumber();
+            return WinningLotto.of(lotto, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(lotto);
         }
     }
 

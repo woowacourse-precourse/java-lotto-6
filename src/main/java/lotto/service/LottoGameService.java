@@ -7,7 +7,6 @@ import lotto.domain.roulette.Roulette;
 import lotto.domain.roulette.RouletteResult;
 import lotto.domain.roulette.WinningLotto;
 
-import java.util.List;
 import java.util.Map;
 
 public class LottoGameService {
@@ -21,10 +20,6 @@ public class LottoGameService {
 
     public Lottos buyLottos(LottoPurchase lottoPurchase) {
         return lottoGenerator.buyLottos(lottoPurchase);
-    }
-
-    public WinningLotto getWinningLotto(List<Integer> numbers, int bonusNumber) {
-        return WinningLotto.of(numbers, bonusNumber);
     }
 
     public Map<RouletteResult, Integer> match(WinningLotto winningLotto, Lottos lottos) {

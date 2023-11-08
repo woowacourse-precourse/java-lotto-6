@@ -22,7 +22,7 @@ public class InputUtil {
                 .toList();
     }
 
-    private static int stringToInt(String input) {
+    public static int stringToInt(String input) {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {

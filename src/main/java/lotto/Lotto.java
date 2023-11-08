@@ -1,8 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.Comparator;
 import java.util.List;
 
 import static lotto.Constant.*;
@@ -14,7 +11,7 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers.stream()
                 .sorted()
-                .toList();
+                .toList(); // 불변 리스트
     }
 
     public List<Integer> getNumbers() {

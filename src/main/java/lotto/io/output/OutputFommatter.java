@@ -42,13 +42,15 @@ public class OutputFommatter {
         appendResultMessage(stringBuilder, LottoResultMessage.THREE_MATCH, LottoResultRule.THREE_MATCH, enumMap);
         appendResultMessage(stringBuilder, LottoResultMessage.FOUR_MATCH, LottoResultRule.FOUR_MATCH, enumMap);
         appendResultMessage(stringBuilder, LottoResultMessage.FIVE_MATCH, LottoResultRule.FIVE_MATCH, enumMap);
-        appendResultMessage(stringBuilder, LottoResultMessage.FIVE_MATCH_WITH_BONUS, LottoResultRule.FIVE_MATCH_WITH_BONUS, enumMap);
+        appendResultMessage(stringBuilder, LottoResultMessage.FIVE_MATCH_WITH_BONUS,
+                LottoResultRule.FIVE_MATCH_WITH_BONUS, enumMap);
         appendResultMessage(stringBuilder, LottoResultMessage.SIX_MATCH, LottoResultRule.SIX_MATCH, enumMap);
 
         return stringBuilder.toString();
     }
 
-    private void appendResultMessage(StringBuilder stringBuilder, LottoResultMessage message, LottoResultRule rule, Map<LottoResultRule, Integer> enumMap) {
+    private void appendResultMessage(StringBuilder stringBuilder, LottoResultMessage message, LottoResultRule rule,
+                                     Map<LottoResultRule, Integer> enumMap) {
         stringBuilder.append(String.format(message.toMessage(),
                         enumMap.getOrDefault(rule, LottoConstant.ZERO).toString()))
                 .append(ProcessMessage.NEW_LINE.toMessage());

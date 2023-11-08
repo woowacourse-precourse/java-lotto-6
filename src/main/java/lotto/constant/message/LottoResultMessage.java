@@ -17,8 +17,4 @@ public enum LottoResultMessage {
     public String toMessage() {
         return message;
     }
-
-//    public static String getEnum(String input) {
-//        return LottoResultMessage.valueOf(input).toMessage();
-//    }
 }

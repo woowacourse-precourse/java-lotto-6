@@ -28,10 +28,6 @@ public enum LottoResultRule {
                 .orElse(NONE);
     }
 
-//    public static String getEnum(String input) {
-//        return LottoResultRule.valueOf(input).toString();
-//    }
-
     public int toPrize() {
         return prize;
     }

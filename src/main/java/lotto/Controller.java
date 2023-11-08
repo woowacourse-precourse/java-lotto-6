@@ -19,7 +19,7 @@ public class Controller {
         Messages.winNumberMessage();
         List<Integer> winNumbers = input.inputWinNumbers();
         Messages.bonusNumberMessage();
-        int bonusNumber = input.inputBonusNumber();
+        int bonusNumber = input.inputBonusNumber(winNumbers);
 
         wins = judgeWins(winNumbers, bonusNumber, createdGames, wins);
 
@@ -56,7 +56,7 @@ public class Controller {
         return place(count, bonusMatch);
     }
 
-    private int place(int count, boolean bonusMatch) {
+    public int place(int count, boolean bonusMatch) {
         if (count == firstPlace.getMatchPlace()) {
             return 0;
         }
@@ -74,5 +74,4 @@ public class Controller {
         }
         return 5;
     }
-
 }

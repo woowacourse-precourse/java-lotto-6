@@ -23,13 +23,13 @@ public class Input {
         return price;
     }
 
-    private int readInputPrice() {
+    public int readInputPrice() {
         String rawPrice = Console.readLine();
         checkPrice(rawPrice);
         return Converter.parseToInt(rawPrice);
     }
 
-    private void checkPrice(String rawPrice) {
+    public void checkPrice(String rawPrice) {
         int convertedPrice = Converter.parseToInt(rawPrice);
 
         if (!(convertedPrice % 1000 == 0 && convertedPrice > 0)) {
@@ -40,6 +40,7 @@ public class Input {
     public List<Integer> inputWinNumbers() {
         List<Integer> winNumbers = new ArrayList<>();
         boolean validWinNumbers = false;
+
         do {
             try {
                 winNumbers = readInputWinNumbers();
@@ -57,7 +58,7 @@ public class Input {
         return convertedWinNumber(rawNumbers);
     }
 
-    private List<Integer> convertedWinNumber(String rawNumbers) {
+    public List<Integer> convertedWinNumber(String rawNumbers) {
         List<Integer> splitNumbers = new ArrayList<>();
         String nowNumbers = rawNumbers;
         while (nowNumbers.contains(",")) {
@@ -72,7 +73,7 @@ public class Input {
         return splitNumbers;
     }
 
-    private List<Integer> checkAndthenAdd(String tempNumber, List<Integer> splitNumbers) {
+    public List<Integer> checkAndthenAdd(String tempNumber, List<Integer> splitNumbers) {
         int convertedTempNumber = Converter.parseToInt(tempNumber);
         checkNumberRange(convertedTempNumber);
         checkSameNumber(convertedTempNumber, splitNumbers);
@@ -80,27 +81,50 @@ public class Input {
         return splitNumbers;
     }
 
-    private void checkNumberRange(int tempNumber) {
+    public void checkNumberRange(int tempNumber) {
         if (!(tempNumber>=1 && tempNumber<=45)) {
             throw new IllegalArgumentException("1부터 45까지의 정수를 입력해 주세요"); // 값이 하드코딩되어있음
         }
     }
 
-    private void checkWinNumberSize(List<Integer> winNumbers) {
+    public void checkWinNumberSize(List<Integer> winNumbers) {
         if (!(winNumbers.size() == 6)) {
             throw new IllegalArgumentException("6개의 정수를 입력해주세요"); // 하드코딩해놧음 수정필요
         }
     }
 
-    private void checkSameNumber(int tempNumber, List<Integer> winNumbers) {
+    public void checkSameNumber(int tempNumber, List<Integer> winNumbers) {
         if (winNumbers.contains(tempNumber)) {
             throw new IllegalArgumentException("중복되지않는 6개의 정수를 입력해주세요");
         }
     }
 
-    public int inputBonusNumber () {
+    public  int inputBonusNumber (List<Integer> winNumbers) {
+        int bonusNumber = 0;
+        boolean validBonusNumbers = false;
+
+        do {
+            try {
+                bonusNumber = readInputBonusNumber(winNumbers);
+                validBonusNumbers = true;
+            } catch (IllegalArgumentException wrongBonusNumber) {
+                System.out.println("[ERROR] " + wrongBonusNumber.getMessage());
+            }
+        } while (!validBonusNumbers);
+
+        return bonusNumber;
+    }
+
+    public int readInputBonusNumber (List<Integer> winNumbers) {
         int bonusNumber = Converter.parseToInt(Console.readLine());
         checkNumberRange(bonusNumber);
+        checkSameBonusNumber(bonusNumber, winNumbers);
         return bonusNumber;
+    }
+
+    public void checkSameBonusNumber(int bonusNumber, List<Integer> winNumbers) {
+        if (winNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 넘버는 당첨번호와 중복 될 수 없습니다.");
+        }
     }
 }

@@ -34,6 +34,7 @@ public class LottoMachine {
         int bonus = setBonusNumber(lotto);
         List<LottoResult> lottoResults = getCountingMatches(lotto, bonus, myLottos);
         TreeMap<LottoPrize, Integer> winningCount = countLottoPrize(lottoResults);
+        System.out.println(getLottoResult(winningCount));
     }
 
     public int setLottoCount() {
@@ -83,6 +84,16 @@ public class LottoMachine {
         return count;
     }
 
+    public String getLottoResult(TreeMap<LottoPrize, Integer> winningCount) {
+        StringBuilder ret = new StringBuilder();
+        ret.append("당첨 통계\n").append("---\n");
+        for (LottoPrize lottoPrize: LottoPrize.values()) {
+            int count = winningCount.getOrDefault(lottoPrize, 0);
+            buildLottoResult(ret, lottoPrize, count);
+        }
+        return ret.toString().trim();
+    }
+
     private Lotto setWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         while (true) {
@@ -111,5 +122,19 @@ public class LottoMachine {
     private List<Integer> getLotto() {
         List<Integer> ret = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_PER_LOTTO);
         return ret.stream().sorted().toList();
+    }
+
+    private void buildLottoResult(StringBuilder ret, LottoPrize lottoPrize, int count) {
+        int matchingNumbers = lottoPrize.getMatchingNumbers();
+        long prizeMoney = lottoPrize.getPrizeMoney();
+        if (prizeMoney != 0) {
+            ret.append(matchingNumbers).append("개 일치");
+            if (lottoPrize == LottoPrize.MATCH_5_BONUS) {
+                ret.append(", 보너스 볼 일치");
+            }
+            ret.append(" (").append(String.format("%,d", prizeMoney)).append("원)")
+                    .append(" - ").append(count).append("개")
+                    .append("\n");
+        }
     }
 }

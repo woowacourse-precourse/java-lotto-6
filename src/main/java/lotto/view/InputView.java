@@ -26,11 +26,14 @@ public class InputView {
     public static List<Integer> getWinLottoNumbers() {
         System.out.println(WIN_LOTTO_NUMBERS_INPUT_MESSAGE);
         String winNumbers = Console.readLine();
+        System.out.println();
         return ValidationUtil.isValidWinNumbers(winNumbers);
     }
 
     public static int getWinBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
-        return Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
+        return bonusNumber;
     }
 }

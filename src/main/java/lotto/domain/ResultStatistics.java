@@ -45,7 +45,7 @@ public class ResultStatistics {
         result.append(MessageFormat.format(ResultMessage.MATCH5.getValue(), map.get(ResultStatus.MATCH5))).append("\n");
         result.append(MessageFormat.format(ResultMessage.MATCH5_WITH_BONUS_BALL.getValue(),
                 map.get(ResultStatus.MATCH5_WITH_BONUS_BALL))).append("\n");
-        result.append(MessageFormat.format(ResultMessage.MATCH6.getValue(), map.get(ResultStatus.MATCH6))).append("\n");
+        result.append(MessageFormat.format(ResultMessage.MATCH6.getValue(), map.get(ResultStatus.MATCH6)));
         return result.toString();
     }
 

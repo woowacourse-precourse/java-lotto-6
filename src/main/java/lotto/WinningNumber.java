@@ -3,11 +3,12 @@ package lotto;
 import java.util.List;
 import java.util.Arrays;
 
+import static lotto.LottoProperty.LOTTO_MIN_NUMBER;
+import static lotto.LottoProperty.LOTTO_MAX_NUMBER;
+import static lotto.LottoProperty.LOTTO_NUMBER_SIZE;
+
 public class WinningNumber {
     public static final String SPLITOR = ",";
-    private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
     private final List<Integer> winningNumbers;
 
     public WinningNumber(String stringNumbers) {
@@ -35,7 +36,7 @@ public class WinningNumber {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE.getLottoProperty()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개의 숫자여야 합니다");
         }
     }
@@ -47,8 +48,8 @@ public class WinningNumber {
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().mapToInt(v -> v).min().orElse(0) < LOTTO_MIN_NUMBER ||
-                numbers.stream().mapToInt(v -> v).max().orElse(0) > LOTTO_MAX_NUMBER) {
+        if (numbers.stream().mapToInt(v -> v).min().orElse(0) < LOTTO_MIN_NUMBER.getLottoProperty() ||
+                numbers.stream().mapToInt(v -> v).max().orElse(0) > LOTTO_MAX_NUMBER.getLottoProperty()) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다");
         }
     }
@@ -63,12 +64,17 @@ public class WinningNumber {
                 count += 2 * Boolean.compare(bonus.checkBonus(numbers), false);
             }
         }
-        if (count == 7) {
-            count--;
-        } else if (count == 6) {
-            count++;
+        return switchRanking(count);
+    }
+
+    private int switchRanking(int ranking) {
+        if (ranking == 7) {
+            return 6;
         }
-        return count;
+        if (ranking == 6) {
+            return 7;
+        }
+        return ranking;
     }
 
     public List<Integer> getWinningNumbers() {

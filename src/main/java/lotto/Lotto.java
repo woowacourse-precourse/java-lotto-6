@@ -1,9 +1,9 @@
 package lotto;
 
 import java.util.List;
+import static lotto.LottoProperty.LOTTO_NUMBER_SIZE;
 
 public class Lotto {
-    private static final int LOTTO_NUMBER_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE.getLottoProperty()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개의 숫자이어야 합니다");
         }
     }

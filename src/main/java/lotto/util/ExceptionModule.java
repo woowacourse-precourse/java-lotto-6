@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.Enum.ErrorStatus;
 
 public class ExceptionModule {
 
@@ -9,19 +10,19 @@ public class ExceptionModule {
         try {
             return Integer.parseInt(consoleRead);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 양의 정수를 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorStatus.PARSE_INT_ERROR.getMessage());
         }
     }
 
     public static void checkNegative(Integer tryNum) throws IllegalArgumentException{
         if (tryNum < 0) {
-            throw new IllegalArgumentException("[ERROR] 양의 정수를 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorStatus.NEGATIVE_INPUT_ERROR.getMessage());
         }
     }
 
     public static void checkThousandException(Integer tryNum, Integer LOTTO_PRICE) throws IllegalArgumentException{
         if (tryNum % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorStatus.NOT_DIVISION_THOUSAND_ERROR.getMessage());
         }
     }
 
@@ -33,19 +34,19 @@ public class ExceptionModule {
 
     public static void checkWinningNumDubAndSize(List<Integer> winningNum) throws IllegalArgumentException{
         if (new HashSet<>(winningNum).size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않는 6자리 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorStatus.WINNING_NUM_DUB_AND_SIZE_ERROR.getMessage());
         }
     }
 
     public static void checkNumBoundary(Integer num) throws IllegalArgumentException{
         if (num < 1 || num > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorStatus.LOTTO_BOUNDARY_ERROR.getMessage());
         }
     }
 
     public static void checkBonusNumDub(Integer bonusNum, List<Integer> winningNum) throws IllegalArgumentException{
         if (winningNum.contains(bonusNum)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(ErrorStatus.BONUS_NUM_DUB_ERROR.getMessage());
         }
     }
 }

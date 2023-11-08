@@ -10,11 +10,11 @@ public class InputConsole {
     public static int inputPrice() {
         String inputPrice = Console.readLine();
         String inputPriceNoSpace = removeWhiteSpace(inputPrice);
-        validateInputPrice(inputPriceNoSpace);
+        validateDigit(inputPriceNoSpace);
         return Integer.parseInt(inputPrice);
     }
 
-    private static void validateInputPrice(String inputPrice) {
+    private static void validateDigit(String inputPrice) {
         for (int i = 0; i < inputPrice.length(); i++) {
             if (inputPrice.charAt(i) < '0' || inputPrice.charAt(i) > '9') {
                 throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
@@ -29,7 +29,7 @@ public class InputConsole {
 
         List<Integer> winningNumbers = new ArrayList<>();
         for (String inputNumber : splittedWinningNumber) {
-            validateInputPrice(inputNumber);
+            validateDigit(inputNumber);
             winningNumbers.add(Integer.parseInt(inputNumber));
         }
 
@@ -39,7 +39,7 @@ public class InputConsole {
     public static int inputBonusNumber() {
         String inputBonusNumber = Console.readLine();
         String inputBonusNumberNoSpace = removeWhiteSpace(inputBonusNumber);
-        validateInputPrice(inputBonusNumberNoSpace);
+        validateDigit(inputBonusNumberNoSpace);
         return Integer.parseInt(inputBonusNumber);
     }
 

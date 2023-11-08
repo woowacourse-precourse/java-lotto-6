@@ -24,13 +24,11 @@ public class Lotto implements LottoConstant {
         validateNumbersInRange(numbers);
         validateDuplicated(numbers);
     }
-
     private static void validateNumbersSizeIsPickCount(List<Integer>numbers){
         if (numbers.size() != PICK_COUNT) {
             throw new LottoException(LottoExceptionMessage.INVALID_PICK_COUNT);
         }
     }
-
     private static void validateNumbersInRange(List<Integer>numbers){
         for (Integer number : numbers){
             if (number<MIN_NUMBER || number>MAX_NUMBER){

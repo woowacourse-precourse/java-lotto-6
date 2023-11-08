@@ -11,9 +11,9 @@ public record Statistic(double yieldRatio) {
     private static Double calculateYield(int paymentAmount , int prizeAmount){
         BigDecimal payment = BigDecimal.valueOf(paymentAmount);
         BigDecimal prize = BigDecimal.valueOf(prizeAmount);
-        return prize.divide(payment, 4, RoundingMode.HALF_UP) // 소수점 두 자리에서 반올림
+        return prize.divide(payment, 4, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100))
                 .setScale(1, RoundingMode.HALF_UP)
-                .doubleValue(); // 결과를 double 타입으로 변환
+                .doubleValue();
     }
 }

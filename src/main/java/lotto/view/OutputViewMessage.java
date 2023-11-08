@@ -11,12 +11,11 @@ public enum OutputViewMessage {
     NONE(" "),
     RANK_COUNT("%d개 일치%s(%s원) - %d개"),
     STATISTIC("총 수익률은 %.1f%%입니다.");
-
     private final String message;
+
     OutputViewMessage(String message) {
         this.message = message;
     }
-
     protected String getMessage() {
         return message;
     }

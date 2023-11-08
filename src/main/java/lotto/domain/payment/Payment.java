@@ -13,7 +13,6 @@ public record Payment (int ticketPurchaseCount,int amount) implements PaymentCon
     private static int calculateLottoTicketQuantityWithAmount(int amount){
         return amount/PAYMENT_UNIT;
     }
-
     private static void validateAmount(int amount){
         validateAmountIsPositiveNumber(amount);
         validateAmountIsAligned(amount);

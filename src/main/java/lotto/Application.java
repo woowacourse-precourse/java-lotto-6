@@ -19,9 +19,11 @@ public class Application {
         StatisticController statisticController = new StatisticController();
 
         Payment payment = paymentController.createPayment();
+
         LottoPaper lottoPaper = lottoPaperController.createLottoPaperWithPayment(payment);
         LottoDraw lottoDraw = lottoController.createLottoDraw();
         LottoResult lottoResult = lottoResultController.createLottoResult(lottoPaper,lottoDraw);
+
         Prize prize = prizeController.createPrizeWithLottoResult(lottoResult);
         Statistic statistic = statisticController.createStatistic(payment,prize);
 

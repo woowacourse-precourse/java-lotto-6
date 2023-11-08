@@ -1,12 +1,13 @@
 package lotto.util;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.LottoConstant;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class NumberGenerator {
+public class NumberGenerator implements LottoConstant {
     public static List<Integer> generateOrderedNumbers() {
         List<Integer> randomNumbers = generateNumbers();
         List<Integer> sortedNumbers = new ArrayList<>(randomNumbers);
@@ -15,6 +16,6 @@ public class NumberGenerator {
     }
 
     private static List<Integer> generateNumbers(){
-        return Randoms.pickUniqueNumbersInRange(1,45,6);
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER,MAX_NUMBER,PICK_COUNT);
     }
 }

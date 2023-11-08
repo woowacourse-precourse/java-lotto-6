@@ -45,7 +45,7 @@ public class InputView {
 
     public int inputBonusNumber() {
         int bonusNumber;
-        System.out.println("보너스 번호를 입력해 주세요");
+        System.out.println("\n보너스 번호를 입력해 주세요");
         String userInputNum = Console.readLine();
 
         try {

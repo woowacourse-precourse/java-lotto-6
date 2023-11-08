@@ -1,5 +1,6 @@
 package controller;
 
+import domain.MatchLottoNum;
 import java.util.ArrayList;
 import java.util.List;
 import view.InputView;
@@ -9,6 +10,7 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final MatchLottoNum matchLottoNum = new MatchLottoNum();
     private int numberOfSheets;
     private List<List<Integer>> customerLottoTickets = new ArrayList<>();
     private List<Integer> winningNumber = new ArrayList<>();
@@ -24,6 +26,7 @@ public class LottoController {
         requestLottoAmount();
         buyLottoCount();
         requestWinningNumber();
+        matchLottoNumber();
     }
 
     private void requestLottoAmount() {
@@ -42,6 +45,6 @@ public class LottoController {
     }
 
     private void matchLottoNumber() {
-
+        matchLottoNum.calculateEarnings(customerLottoTickets, winningNumber, bonusNumber);
     }
 }

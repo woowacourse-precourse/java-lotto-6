@@ -3,7 +3,6 @@ package domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +15,6 @@ public class LottoService {
 
         for (int i = 0; i < numberOfSheets; i++) {
             List<Integer> ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(ticket);
             tickets.add(ticket);
         }
 

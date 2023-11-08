@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
 import lotto.constants.LottoRules;
@@ -93,6 +94,6 @@ public class LottoService {
     }
 
     public Map<Winning, Integer> getWinningCounts() {
-        return winningCounts;
+        return Collections.unmodifiableMap(winningCounts);
     }
 }

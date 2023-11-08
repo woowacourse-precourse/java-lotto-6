@@ -2,7 +2,9 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class InputView {
@@ -46,15 +48,24 @@ public class InputView {
 
     private List<Integer> checkWinningNumbersValidity(String[] inputWinningNumbers) {
         validateWinningNumbersLength(inputWinningNumbers);
-        return Arrays.stream(inputWinningNumbers)
+        validateDuplicateWinningNumbers(inputWinningNumbers);
+        List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers)
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+        return winningNumbers;
     }
 
     public void validateWinningNumbersLength(String[] inputWinningNumbers) {
         if (inputWinningNumbers.length != WINNING_NUMBER_SIZE) {
             throw new IllegalArgumentException("[ERROR] 숫자 6개를 입력하세요.");
+        }
+    }
+
+    private static void validateDuplicateWinningNumbers(String[] inputWinningNumbers) {
+        Set<String> uniqueNames = new HashSet<>(Arrays.asList(inputWinningNumbers));
+        if (uniqueNames.size() != inputWinningNumbers.length) {
+            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자 6개를 입력하세요.");
         }
     }
 

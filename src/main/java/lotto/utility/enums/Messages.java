@@ -10,7 +10,8 @@ public enum Messages {
     FOUR_WINNING_MESSAGE("4개 일치 (50,000원) - %d개"),
     FIVE_WINNING_MESSAGE("5개 일치 (1,500,000원) - %d개"),
     FIVE_WINNING_AND_BONUS_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
-    SIX_WINNING_MESSAGE("6개 일치 (2,000,000,000원) - %d개");
+    SIX_WINNING_MESSAGE("6개 일치 (2,000,000,000원) - %d개"),
+    LOTTO_PROFIT_RATE_MESSAGE("총 수익률은 %s%%입니다.");
 
 
     private String message;

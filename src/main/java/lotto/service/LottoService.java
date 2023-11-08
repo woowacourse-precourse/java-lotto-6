@@ -10,6 +10,7 @@ import lotto.domain.WinningTier;
 import lotto.dto.PurchaseLottoDto;
 import lotto.dto.LottoResultDto;
 import lotto.dto.RevenueDto;
+import lotto.dto.WinningTierResponseDto;
 
 import java.util.List;
 
@@ -30,8 +31,9 @@ public class LottoService {
         LottoResult lottoResult = new LottoResult(lottos, winningBundle, bonus.toInt());
         WinningTier winningTier = new WinningTier();
         winningTier.estimate(lottoResult.toLongList(), lottoResult.toBoolList());
+        WinningTierResponseDto winningTierResponseDto = winningTier.generateWinningResponseMap();
 
-        return new LottoResultDto(winningTier.toHashMap(),
+        return new LottoResultDto(winningTierResponseDto,
                 lottoResult.toLongList(),
                 lottoResult.toBoolList()
         );

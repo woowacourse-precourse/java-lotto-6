@@ -2,16 +2,19 @@ package lotto.view;
 
 import lotto.dto.RevenueDto;
 import lotto.dto.PurchaseLottoDto;
+import lotto.dto.WinningResponseDto;
+import lotto.dto.WinningTierResponseDto;
 
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
 
     private static final String OUTPUT_ISSUE_ABLE_COUNT_MESSAGE = "%d개를 구매했습니다.\n";
     private static final String COUNT_UNIT = "개";
-    private static final String OUTPUT_RATE_OF_REVENUE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String OUTPUT_RATE_OF_REVENUE_MESSAGE = "총 수익률은 %,.1f%%입니다.";
     private static final String OUTPUT_WINNING_STATICS_MESSAGE = "\n당첨 통계\n---";
     private static final int DEFAULT_VALUE = 0;
     private static final String WINNING_STATICS_FIFTH = "3개 일치 (5,000원) - ";
@@ -30,7 +33,7 @@ public class OutputView {
     }
 
     public static void printLottosByAmount(PurchaseLottoDto lottos) {
-        for(List<Integer> lotto: lottos.getLottos()) {
+        for (List<Integer> lotto : lottos.getLottos()) {
             System.out.println(lotto);
         }
         printEnter();
@@ -41,13 +44,26 @@ public class OutputView {
         System.out.printf(OUTPUT_ISSUE_ABLE_COUNT_MESSAGE, issueAbleCount);
     }
 
-    public static void printWinningStatics(HashMap<Integer, Integer> result) {
-        System.out.println(WINNING_STATICS_FIFTH + result.getOrDefault(FIFTH_RANK, DEFAULT_VALUE) + COUNT_UNIT);
-        System.out.println(WINNING_STATICS_FOUR + result.getOrDefault(FOUR_RANK, DEFAULT_VALUE) + COUNT_UNIT);
-        System.out.println(WINNING_STATICS_THIRD + result.getOrDefault(THIRD_RANK, DEFAULT_VALUE) + COUNT_UNIT);
-        System.out.println(WINNING_STATICS_SECOND + result.getOrDefault(SECOND_RANK, DEFAULT_VALUE) + COUNT_UNIT);
-        System.out.println(WINNING_STATICS_FIRST + result.getOrDefault(FIRST_RANK, DEFAULT_VALUE) + COUNT_UNIT);
+    public static void printWinningStatics(WinningTierResponseDto winningTierResponseDto) {
+        Map<Integer, WinningResponseDto> winningResponseMap = winningTierResponseDto.getWinningResponseMap();
+
+        winningResponseMap.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
+                .forEach(v -> toWinningMessage(v.getValue()));
     }
+
+    public static void toWinningMessage(WinningResponseDto winningResponseDto) {
+        System.out.print(winningResponseDto.getTier().get(0) + "개 일치");
+        if (winningResponseDto.getIsBonus()) {
+            System.out.print(", 보너스 볼 일치");
+        }
+        System.out.print(" (");
+        System.out.printf("%,d원", winningResponseDto.getRankPrice());
+        System.out.print(") - ");
+        System.out.print(winningResponseDto.getCorrectCount() + "개");
+        printEnter();
+    }
+
 
     public static void printWinningRevenue(RevenueDto revenueDto) {
         double userRateOfRevenue = revenueDto.getUserRateOfRevenue();

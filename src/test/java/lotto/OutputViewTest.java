@@ -40,7 +40,7 @@ public class OutputViewTest {
         WinningTier winningTier = new WinningTier();
         winningTier.estimate(userCorrectWinningsCount, userCorrectBonuses);
 
-        outputView.printWinningStatics(winningTier.toHashMap());
+        outputView.printWinningStatics(winningTier.generateWinningResponseMap());
         String winningTierResultMessage =
                 "3개 일치 (5,000원) - 0개\n" +
                 "4개 일치 (50,000원) - 0개\n" +

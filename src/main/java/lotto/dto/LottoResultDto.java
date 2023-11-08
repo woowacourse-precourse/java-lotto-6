@@ -1,23 +1,25 @@
 package lotto.dto;
 
+import lotto.domain.WinningStatistics;
+
 import java.util.HashMap;
 import java.util.List;
 
 public class LottoResultDto {
-    private final HashMap<Integer, Integer> winningStatistics;
+    private final WinningTierResponseDto winningTierResponseDto;
     private final List<Long> correctWinningsCount;
     private final List<Boolean> correctBonuses;
 
-    public LottoResultDto(HashMap<Integer, Integer> winningStatistics,
+    public LottoResultDto(WinningTierResponseDto winningTierResponseDto,
                           List<Long> correctWinningsCount,
                           List<Boolean> correctBonuses) {
-        this.winningStatistics = winningStatistics;
+        this.winningTierResponseDto = winningTierResponseDto;
         this.correctWinningsCount = correctWinningsCount;
         this.correctBonuses = correctBonuses;
     }
 
-    public HashMap<Integer, Integer> getWinningStatistics() {
-        return winningStatistics;
+    public WinningTierResponseDto getWinningTierResponseDto() {
+        return winningTierResponseDto;
     }
 
     public List<Long> getCorrectWinningsCount() {

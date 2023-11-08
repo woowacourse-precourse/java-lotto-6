@@ -44,7 +44,7 @@ public class LottoController {
     private void evaluateWinnings(PurchaseLottoDto lottoPurchaseResult) {
         lottoResultDto = lottoService.evaluateWinnings(lottoPurchaseResult, winningBundle, bonusNumber);
         OutputView.printWinningStaticsInput();
-        OutputView.printWinningStatics(lottoResultDto.getWinningStatistics());
+        OutputView.printWinningStatics(lottoResultDto.getWinningTierResponseDto());
     }
 
     private PurchaseLottoDto purchaseLottosByAmount(UserAmount userAmount) {

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.dto.WinningResponseDto;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,14 +15,15 @@ public enum WinningStatistics {
     RETIER(List.of(0L, 1L, 2L), false, 6, 0),
     NONE(List.of(), false, 0, 0);
 
+    private static final String NOT_EXIST_RANK_MESSAGE = "[ERROR] 존재하지 않는 등수입니다.";
 
-    private List<Long> winningTier;
+    private List<Long> tier;
     private boolean correctBonusFlag;
     private int rank;
     private int winningPrice;
 
-    WinningStatistics(List<Long> winningTier, boolean correctBonusFlag, int rank, int winningPrice) {
-        this.winningTier = winningTier;
+    WinningStatistics(List<Long> tier, boolean correctBonusFlag, int rank, int winningPrice) {
+        this.tier = tier;
         this.correctBonusFlag = correctBonusFlag;
         this.rank = rank;
         this.winningPrice = winningPrice;
@@ -36,8 +39,19 @@ public enum WinningStatistics {
         return winningStatistics;
     }
 
+    public static WinningStatistics getWinningStatisticsByRank(int rank) {
+        return Arrays.stream(WinningStatistics.values())
+                .filter(winningStatistics -> winningStatistics.isEqualsRank(rank))
+                .findFirst()
+                .orElse(NONE);
+    }
+
+    private boolean isEqualsRank(int rank) {
+        return this.rank == rank;
+    }
+
     private boolean isContainsWinningTier(long correctWinningCount) {
-        return this.winningTier.contains(correctWinningCount);
+        return this.tier.contains(correctWinningCount);
     }
 
     private boolean isSameCorrectBonusFlag(boolean correctBonusCount) {
@@ -48,11 +62,19 @@ public enum WinningStatistics {
         return this.rank;
     }
 
-    public double getWinningDoublePrice() {
-        return (double) this.winningPrice;
-    }
-
     public int getWinningPrice() {
         return this.winningPrice;
+    }
+
+    public List<Long> getTier() {
+        return tier;
+    }
+
+    public boolean getBonusFlag() {
+        return correctBonusFlag;
+    }
+
+    public boolean isValidRank() {
+        return this.rank != WinningStatistics.NONE.getRank();
     }
 }

@@ -1,7 +1,27 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.LottoFactory;
+import lotto.domain.LottoMarket;
+import lotto.domain.NumberGenerator;
+import lotto.domain.RandomNumberGenerator;
+import lotto.domain.LottoProfitRateCalculator;
+import lotto.facade.LottoGameFacade;
+import lotto.input.UserInputAdapter;
+import lotto.output.console.LottoGameViewConsoleOutputPort;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        LottoFactory lottoFactory = new LottoFactory(numberGenerator);
+
+        LottoGameFacade lottoGameFacade = new LottoGameFacade(
+                new UserInputAdapter(Console::readLine),
+                new LottoGameViewConsoleOutputPort(),
+                new LottoMarket(lottoFactory),
+                new LottoProfitRateCalculator()
+        );
+
+        lottoGameFacade.game();
     }
 }

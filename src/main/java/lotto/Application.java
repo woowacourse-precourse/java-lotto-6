@@ -11,26 +11,29 @@ public class Application {
 
     static final int PRICE = 1000;
     static int purchasePrice;
-    static boolean isRightRange = true;
+    static int ticketAmount;
     static ArrayList<List<Integer>> lottos = new ArrayList<>();
     static String [] inputNumbers;
     static int BonusNumber;
     static List<Integer> winningNumbers = new ArrayList<>();
 
-    public static void printLottoNumbers(int ticketAmount, ArrayList<List<Integer>> lottos){
-        System.out.println("\n" + ticketAmount + "개를 구매했습니다.");
-        for (int i = 0; i < ticketAmount; i++) {
-            System.out.println(lottos.get(i));
-        }
-    }
+    static boolean overlapExist = false;
+    static boolean isRightRange = true;
+
+    static int matchRecord = 0;
+    static int [] lottoRecord = new int[lottos.size()];
+
+    static enum winningType{ match3, match4, match5, match5NBonus, match6};
+
     public static int getMoney(){
         System.out.println("구입금액을 입력해 주세요.");
         purchasePrice = Integer.parseInt(Console.readLine());
         return purchasePrice;
     }
-    public static int getLotteryTickets(int money, int PRICE){
+
+    public static void getLotteryTickets(int money, int PRICE){
         int amount = money / PRICE;
-        return amount;
+        ticketAmount = amount;
     }
 
     public static void checkValidatePrice(int money,int PRICE){
@@ -39,6 +42,25 @@ public class Application {
                 throw new IllegalArgumentException();
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 구매금액이 나누어 떨어지지 않습니다.");
+        }
+    }
+
+    static void createLotto(){
+        for (int i = 0; i < ticketAmount; i++) {
+            //  1.로또 번호 랜덤 뽑기
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            // 2. 로또 번호 오름차순 정렬
+            Collections.sort(lottoNumbers);
+            // 3. 로또 집합에 추가
+            lottos.add(lottoNumbers);
+            // 4. 로또 생성
+            Lotto lotto = new Lotto(lottoNumbers);
+        }
+    }
+    public static void printLottoNumbers(){
+        System.out.println("\n" + ticketAmount + "개를 구매했습니다.");
+        for (int i = 0; i < ticketAmount; i++) {
+            System.out.println(lottos.get(i));
         }
     }
     public static void getInput(){
@@ -69,46 +91,63 @@ public class Application {
         return isRightRange;
     }
     private static boolean checkOverlappedNumber(){
-        boolean overlapExist = false;
         for (int i = 0; i < winningNumbers.size(); i++) {
             int overlapTime = Collections.frequency(winningNumbers,winningNumbers.get(i));
-            if (overlapTime != 0)
+            if (overlapTime > 1)
                 overlapExist = true;
         }
         return overlapExist;
+    }
+
+    static void occurException(){
+        if (overlapExist)
+            throw new IllegalArgumentException("[ERROR] 중복 숫자 존재");
+        if(isRightRange == false)
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 이내 범위가 아닌 숫자가 있음");
+    }
+
+    public static void compareNumbers(List<Integer> lotto){
+        for (int i = 0; i < winningNumbers.size(); i++) {
+            if(Collections.frequency(lotto,winningNumbers.get(i)) != 0) //  i번째 로또에 당첨번호의 요소가 있는가
+                matchRecord += 1;
+        }
     }
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
         // 구입 금액 입력 받기
-        int ticketAmount = getLotteryTickets(getMoney(),PRICE);
+        getLotteryTickets(getMoney(),PRICE);
         checkValidatePrice(purchasePrice,PRICE);
 
-        //로또 생성
-        for (int i = 0; i < ticketAmount; i++) {
-            //  1.로또 번호 랜덤 뽑기
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            // 2. 로또 번호 오름차순 정렬
-            Collections.sort(lottoNumbers);
-            // 3. 로또 집합에 추가
-            lottos.add(lottoNumbers);
-            // 4. 로또 생성
-            Lotto lotto = new Lotto(lottoNumbers);
-        }
+        //  로또 생성
+        createLotto();
         //  로또 출력
-        printLottoNumbers(ticketAmount,lottos);
+        printLottoNumbers();
 
         // 당첨 번호 입력 받기 : 쉼표 기준으로 구분
         getInput();
         // 보너스 번호 입력
         getBonusNumber();
 
-        //  당첨 번호가 1 ~ 45인지 확인
         input2WinnigNumber(inputNumbers);
+        validateNumber(inputNumbers);
         validateRange();
-        //  당첨 번호 중 중복 값이 있는지 확인
         checkOverlappedNumber();;
+
+        // 예외처리
+        occurException();
+
+        // 로또 통계
+        for (int i = 0; i < lottos.size(); i++) {
+            // 당첨 일치 개수 구하기
+            compareNumbers(lottos.get(i));
+            lottoRecord[i] = matchRecord;
+            matchRecord = 0;
+        }
+
+        //  당첨 유형 분류
+        //  당첨 번호가 5개일 때 보너스 번호가 있는가
 
         /*
         try{

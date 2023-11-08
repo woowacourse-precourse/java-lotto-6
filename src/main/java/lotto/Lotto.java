@@ -24,6 +24,13 @@ public class Lotto {
                 .anyMatch(member -> member == number);
     }
 
+    public int countMatchNumber(Lotto lotto) {
+        return (int) lottoNumbers.stream()
+                .map(LottoNumber::getNumber)
+                .filter(lotto::hasNumber)
+                .count();
+    }
+
     private void validateLotto(List<LottoNumber> lottoNumbers) {
         validateLength(lottoNumbers);
         validateDuplicateMember(lottoNumbers);

@@ -27,7 +27,7 @@ public enum Ranking {
         return Arrays.stream(Ranking.values())
                 .filter(ranking -> ranking.hasBonusNumber == hasBonusNumber && ranking.correctNumber == correctNumber)
                 .findAny()
-                .get();
+                .orElse(FAIL);
     }
 
 }

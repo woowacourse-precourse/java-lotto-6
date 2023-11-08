@@ -22,6 +22,7 @@ public class InputView {
     }
 
     public static Lotto getWinningLotto() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
 
         String lottoNumberInput = Console.readLine();

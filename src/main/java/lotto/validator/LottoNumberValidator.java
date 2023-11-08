@@ -14,7 +14,7 @@ public class LottoNumberValidator {
 
     private static void isUnique(String lottoNumberInput) {
         try {
-            Set.of(lottoNumberInput.split(","));
+            Set<String> checkDuplicateNumber = Set.of(lottoNumberInput.split(","));
         } catch (IllegalArgumentException e) {
             System.out.println(ErrorMessages.NOT_UNIQUE.getMessage());
             throw new IllegalArgumentException(ErrorMessages.NOT_UNIQUE.getMessage());

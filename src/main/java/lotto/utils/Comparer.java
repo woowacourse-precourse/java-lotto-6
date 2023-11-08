@@ -12,9 +12,9 @@ public class Comparer {
     }
 
     public static int compareLottos(Lotto lotto1, Lotto lotto2) {
-        List<Integer> sameNumbers = new ArrayList<>(lotto1.getNumbers());
-        sameNumbers.removeAll(lotto2.getNumbers());
-        return sameNumbers.size();
+        List<Integer> differentNumbers = new ArrayList<>(lotto1.getNumbers());
+        differentNumbers.removeAll(lotto2.getNumbers());
+        return lotto1.getNumbers().size() - differentNumbers.size();
     }
 
     public static boolean containsBonus(Lotto lotto, Winning winning) {

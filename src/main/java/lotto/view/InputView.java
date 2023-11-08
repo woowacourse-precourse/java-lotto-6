@@ -12,6 +12,13 @@ public class InputView {
         return Console.readLine();
     }
 
+//    public static
+//
+//    public static String inputUserNumber(){
+//        System.out.println(LOTTO_NUMBER_MESSAGE);
+//        return Console.readLine();
+//    }
+
 }
 
 

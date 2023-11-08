@@ -37,7 +37,7 @@ public class LottoGameController {
     }
 
     private Money readPurchaseAmount() {
-        return Money.of(InputView.readPurChaseAmount());
+        return InputView.readWithRetry(() -> Money.of(InputView.readPurChaseAmount()));
     }
 
     private List<Lotto> publishLotto(final Money money) {
@@ -54,9 +54,10 @@ public class LottoGameController {
     }
 
     private WinningNumber createWinningNumber() {
-        return new WinningNumber(
-                InputView.readWinningNumbers(),
-                InputView.readBonusNumber()
-        );
+        return InputView.readWithRetry(
+                () -> new WinningNumber(
+                        InputView.readWinningNumbers(),
+                        InputView.readBonusNumber()
+                ));
     }
 }

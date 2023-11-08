@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 import lotto.validator.NumericValidator;
 
@@ -19,8 +20,10 @@ public class InputView {
     }
 
     public static long readPurChaseAmount() {
-        System.out.println(INPUT_PURCHASE_AMOUNT);
-        return readLongNumber();
+        return readWithRetry(() -> {
+            System.out.println(INPUT_PURCHASE_AMOUNT);
+            return readLongNumber();
+        });
     }
 
     private static long readLongNumber() {
@@ -30,8 +33,10 @@ public class InputView {
     }
 
     public static List<Integer> readWinningNumbers() {
-        System.out.println(System.lineSeparator() + INPUT_WINNING_NUMBER);
-        return readNumbers();
+        return readWithRetry(() -> {
+            System.out.println(System.lineSeparator() + INPUT_WINNING_NUMBER);
+            return readNumbers();
+        });
     }
 
     private static List<Integer> readNumbers() {
@@ -45,14 +50,25 @@ public class InputView {
     }
 
     public static int readBonusNumber() {
-        System.out.println(System.lineSeparator() + INPUT_BONUS_NUMBER);
-        return readNumber();
+        return readWithRetry(() -> {
+            System.out.println(System.lineSeparator() + INPUT_BONUS_NUMBER);
+            return readNumber();
+        });
     }
 
     private static int readNumber() {
         final String strNumber = readLine();
         validateNumeric(strNumber);
         return Integer.parseInt(strNumber);
+    }
+
+    public static <T> T readWithRetry(final Supplier<T> supplier) {
+        try {
+            return supplier.get();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return readWithRetry(supplier);
+        }
     }
 
     private static String readLine() {

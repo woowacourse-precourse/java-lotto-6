@@ -45,13 +45,13 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
-    }
-
     @Override
     public String toString() {
         return numbers.toString() + "\n";
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 }
 

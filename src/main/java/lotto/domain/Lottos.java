@@ -19,10 +19,6 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getRandomLottos() {
-        return lottos;
-    }
-
     @Override
     public String toString() {
         return "\n" +
@@ -30,5 +26,9 @@ public class Lottos {
                 lottos.stream()
                         .map(Lotto::toString)
                         .collect(Collectors.joining());
+    }
+
+    public List<Lotto> getRandomLottos() {
+        return lottos;
     }
 }

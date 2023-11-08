@@ -53,15 +53,6 @@ public class Result {
         return lotto.contains(bonus);
     }
 
-    public int getReward() {
-        int reward = 0;
-        for (Rank rank : Rank.values()) {
-            Integer count = store.get(rank);
-            reward += rank.getReward() * count;
-        }
-        return reward;
-    }
-
     @Override
     public String toString() {
         return SHOW_RESULT +
@@ -71,4 +62,14 @@ public class Result {
                 SECOND_IS + store.get(SECOND) + Constants.Message.COUNT +
                 FIRST_IS + store.get(FIRST) + Constants.Message.COUNT;
     }
+
+    public int getReward() {
+        int reward = 0;
+        for (Rank rank : Rank.values()) {
+            Integer count = store.get(rank);
+            reward += rank.getReward() * count;
+        }
+        return reward;
+    }
+
 }

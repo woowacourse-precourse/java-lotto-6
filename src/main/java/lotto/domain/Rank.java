@@ -17,14 +17,6 @@ public enum Rank {
         this.reward = reward;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public int getReward() {
-        return reward;
-    }
-
     public static Rank valueOf(int matchCount) {
         for (Rank value : values()) {
             if (matchCount == value.getMatchCount()) {
@@ -32,6 +24,14 @@ public enum Rank {
             }
         }
         throw new IllegalArgumentException(Errors.MESSAGE + Errors.BUSINESS_LOGIC);
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getReward() {
+        return reward;
     }
 
 }

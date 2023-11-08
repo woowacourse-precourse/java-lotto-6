@@ -1,22 +1,28 @@
 package lotto;
 
+import lotto.Lotto;
+import lotto.LottoTicket;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoShop {
-    public LottoTicket buyLottoTicket() {
-        List<Lotto> lottos = new ArrayList<>();
-        ConsoleManager consoleManager = new ConsoleManager();
-        InputValidator inputValidator = new InputValidator();
+    public static final int LOTTO_PRICE = 1000;
+    public static final String ERROR_MESSAGE = "[ERROR] 1000원 이상을 입력하세요.";
 
-        int totalPurchasedLottoCount = consoleManager.getPurchaseAmount();
-        for (int i = 0; i < totalPurchasedLottoCount; i++) {
-            List<Integer> numbers = consoleManager.getManualInputNumbers();
-            inputValidator.validateLottoNumbers(numbers);
-            Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
+    public LottoTicket buyLottoTicket(int amount) {
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ERROR_MESSAGE);
         }
 
-        return new LottoTicket(lottos);
+        int numOfTickets = amount / LOTTO_PRICE;
+        List<Lotto> tickets = new ArrayList<>();
+
+        for (int i = 0; i < numOfTickets; i++) {
+            Lotto lotto = Lotto.createRandomLotto();
+            tickets.add(lotto);
+        }
+
+        return new LottoTicket(tickets);
     }
 }

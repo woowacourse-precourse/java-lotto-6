@@ -1,43 +1,29 @@
 package lotto;
 
-import lotto.InputValidator;
-import lotto.Lotto;
-import lotto.LottoShop;
-import lotto.LottoTicket;
-
 import java.util.List;
 
 public class LottoGame {
 
     public void startGame() {
-        // 게임 시작
+        ConsoleManager consoleManager = new ConsoleManager();
+        ResultPrinter resultPrinter = new ResultPrinter();
+
+        int amount = consoleManager.getPurchaseAmount();
         LottoShop lottoShop = new LottoShop();
-        Lotto winningLotto = Lotto.createRandomLotto();
-
-        LottoTicket purchasedTickets = lottoShop.buyLottoTicket();
+        LottoTicket purchasedTickets = lottoShop.buyLottoTicket(amount);
         List<Lotto> lottos = purchasedTickets.getLottos();
+        resultPrinter.printPurchasedLotto(lottos);
 
-        InputValidator validator = new InputValidator();
-        List<Integer> winningNumbers = validator.getValidWinningNumbers();
-        int bonusNumber = validator.getValidBonusNumber();
+        List<Integer> winningNumbers = consoleManager.getWinningNumbers();
+        int bonusNumber = consoleManager.getBonusNumber();
+
 
         ResultChecker resultChecker = new ResultChecker();
-        int matchCount;
-        int totalMatchCount = 0;
-        int manualTicketCount = 0;
+        WinningStats winningStats = resultChecker.checkResult(lottos, winningNumbers, bonusNumber);
 
-        for (Lotto lotto : lottos) {
-            matchCount = resultChecker.checkResult(lotto, winningLotto, winningNumbers, bonusNumber);
-            if (matchCount == Lotto.LOTTO_SIZE) {
-                manualTicketCount++;
-            }
-            totalMatchCount += matchCount;
-        }
+        double totalEarningRate = new ProfitCalculator().calculateProfit(winningStats);
 
-        ResultPrinter resultPrinter = new ResultPrinter();
-        resultPrinter.printResult(winningLotto, winningNumbers, bonusNumber, lottos.size(), manualTicketCount, totalMatchCount);
-
-        ProfitCalculator profitCalculator = new ProfitCalculator();
-        profitCalculator.calculateProfit(lottos.size(), totalMatchCount);
+        resultPrinter.printResult(winningStats);
+        resultPrinter.printTotalEarningRate(totalEarningRate);
     }
 }

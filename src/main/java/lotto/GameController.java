@@ -40,4 +40,10 @@ public class GameController {
         OutputView.printPrizeStats(prizeStats.getGradeDist());
         return prizeStats;
     }
+
+    private PrizeProfit receivePrizeProfit(PrizeStats prizeStats, long buyingPrice) {
+        PrizeProfit prizeProfit = new PrizeProfit(prizeStats, buyingPrice);
+        OutputView.printProfitRate(prizeProfit.getRate());
+        return prizeProfit;
+    }
 }

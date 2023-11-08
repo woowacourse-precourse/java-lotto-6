@@ -12,7 +12,6 @@ public class Money {
         while (!isValidInput) {
             try {
                 String input = inputter.inputPurchaseAmount();
-                System.out.println();
                 this.money = transformStringtoInt(input);
                 isValidInput = true;
             } catch (IllegalArgumentException e) {
@@ -32,14 +31,14 @@ public class Money {
                 validate(purchaseAmount);
                 return purchaseAmount;
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[Error] 금액은 숫자로 입력해야합니다.");
+                throw new IllegalArgumentException("[ERROR] 금액은 숫자로 입력해야합니다.");
             }
         }
     }
 
     private void validate(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[Error] 금액은 1000원 단위로 입력해야합니다.");
+            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위로 입력해야합니다.");
         }
     }
 }

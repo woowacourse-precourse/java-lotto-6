@@ -15,10 +15,10 @@ public class Statistic {
     private static final Integer FIVE_COUNT = 5;
     private static final Integer COUNT = 1;
 
-    private final Map<LottoRank, Integer> rank;
+    private final Map<LottoRank, Integer> result;
 
-    private Statistic(final Map<LottoRank, Integer> rank) {
-        this.rank = rank;
+    private Statistic(final Map<LottoRank, Integer> result) {
+        this.result = result;
     }
 
     public static Statistic createStatistic(final List<Integer> matchedNumberCount,
@@ -28,15 +28,15 @@ public class Statistic {
 
     private static Map<LottoRank, Integer> compileStatistic(final List<Integer> matchedNumberCount,
                                                             final List<Boolean> containBonusNumber) {
-        Map<LottoRank, Integer> playerRank = new EnumMap<>(LottoRank.class);
+        Map<LottoRank, Integer> playerResult = new EnumMap<>(LottoRank.class);
         Integer lottoCount = matchedNumberCount.size();
 
         for (int index = 0; index < lottoCount; index++) {
             LottoRank rank = determineRank(matchedNumberCount.get(index), containBonusNumber.get(index));
-            playerRank.put(rank, playerRank.getOrDefault(rank, DEFAULT_COUNT) + COUNT);
+            playerResult.put(rank, playerResult.getOrDefault(rank, DEFAULT_COUNT) + COUNT);
         }
 
-        return Collections.unmodifiableMap(playerRank);
+        return Collections.unmodifiableMap(playerResult);
     }
 
     private static LottoRank determineRank(final Integer matchedCount, final Boolean includeBonus) {
@@ -54,7 +54,7 @@ public class Statistic {
         return matchedCount == FIVE_COUNT && includeBonus;
     }
 
-    public Map<LottoRank, Integer> getRank() {
-        return Collections.unmodifiableMap(rank);
+    public Map<LottoRank, Integer> getResult() {
+        return Collections.unmodifiableMap(result);
     }
 }

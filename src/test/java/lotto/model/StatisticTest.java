@@ -23,13 +23,13 @@ class StatisticTest {
 
         // when
         Statistic statistic = Statistic.createStatistic(matchedCount, containBonusNumber);
-        Map<LottoRank, Integer> rank = statistic.getRank();
+        Map<LottoRank, Integer> result = statistic.getResult();
 
         // then
-        assertEquals(2, rank.get(FIFTH_RANK));
-        assertEquals(2, rank.get(FOURTH_RANK));
-        assertEquals(1, rank.get(THIRD_RANK));
-        assertEquals(1, rank.get(SECOND_RANK));
-        assertEquals(1, rank.get(FIRST_RANK));
+        assertEquals(2, result.get(FIFTH_RANK));
+        assertEquals(2, result.get(FOURTH_RANK));
+        assertEquals(1, result.get(THIRD_RANK));
+        assertEquals(1, result.get(SECOND_RANK));
+        assertEquals(1, result.get(FIRST_RANK));
     }
 }

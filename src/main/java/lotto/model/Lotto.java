@@ -19,7 +19,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(final List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -28,15 +28,15 @@ public class Lotto {
     }
 
     public static Lotto createLotto(final LottoNumberGenerator lottoNumberGenerator) {
-        return new Lotto(getLottoNumbers(lottoNumberGenerator));
+        return new Lotto(createNumbersWithGenerator(lottoNumberGenerator));
     }
 
-    private static List<Integer> getLottoNumbers(final LottoNumberGenerator lottoNumberGenerator) {
+    private static List<Integer> createNumbersWithGenerator(final LottoNumberGenerator lottoNumberGenerator) {
         List<Integer> randomNumbers = lottoNumberGenerator.pickNumbers();
         return Collections.unmodifiableList(randomNumbers);
     }
 
-    private void validate(final List<Integer> numbers) {
+    private void validateLottoNumbers(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new InvalidLottoSizeException();
         }

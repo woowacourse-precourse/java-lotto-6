@@ -37,6 +37,6 @@ class StatisticDtoTest {
     @DisplayName("순위 정보 불변 테스트")
     @Test
     void unmodifiable_test() {
-        assertThrows(UnsupportedOperationException.class, () -> statisticDto.getRank().put(FIFTH_RANK, 5));
+        assertThrows(UnsupportedOperationException.class, () -> statisticDto.getResult().put(FIFTH_RANK, 5));
     }
 }

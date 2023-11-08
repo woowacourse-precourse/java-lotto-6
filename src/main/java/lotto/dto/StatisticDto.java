@@ -15,38 +15,38 @@ public class StatisticDto {
 
     private static final Integer DEFAULT_COUNT = 0;
 
-    private final Map<LottoRank, Integer> rank;
+    private final Map<LottoRank, Integer> result;
 
-    private StatisticDto(final Map<LottoRank, Integer> rank) {
-        this.rank = rank;
+    private StatisticDto(final Map<LottoRank, Integer> result) {
+        this.result = result;
     }
 
     public static StatisticDto from(final Statistic statistic) {
-        Map<LottoRank, Integer> rank = statistic.getRank();
-        return new StatisticDto(Collections.unmodifiableMap(rank));
+        Map<LottoRank, Integer> result = statistic.getResult();
+        return new StatisticDto(Collections.unmodifiableMap(result));
     }
 
     public Integer getFifthRankCount() {
-        return getRank().getOrDefault(FIFTH_RANK, DEFAULT_COUNT);
+        return getResult().getOrDefault(FIFTH_RANK, DEFAULT_COUNT);
     }
 
     public Integer getFourthRankCount() {
-        return getRank().getOrDefault(FOURTH_RANK, DEFAULT_COUNT);
+        return getResult().getOrDefault(FOURTH_RANK, DEFAULT_COUNT);
     }
 
     public Integer getThirdRankCount() {
-        return getRank().getOrDefault(THIRD_RANK, DEFAULT_COUNT);
+        return getResult().getOrDefault(THIRD_RANK, DEFAULT_COUNT);
     }
 
     public Integer getSecondRankCount() {
-        return getRank().getOrDefault(SECOND_RANK, DEFAULT_COUNT);
+        return getResult().getOrDefault(SECOND_RANK, DEFAULT_COUNT);
     }
 
     public Integer getFirstRankCount() {
-        return getRank().getOrDefault(FIRST_RANK, DEFAULT_COUNT);
+        return getResult().getOrDefault(FIRST_RANK, DEFAULT_COUNT);
     }
 
-    public Map<LottoRank, Integer> getRank() {
-        return Collections.unmodifiableMap(rank);
+    public Map<LottoRank, Integer> getResult() {
+        return Collections.unmodifiableMap(result);
     }
 }

@@ -71,7 +71,7 @@ public class LottoController {
     }
 
     private ProfitRate initProfitRate(final Statistic statistic, final BuyAmount buyAmount) {
-        return ProfitRate.createProfitRate(statistic.getRank(), buyAmount);
+        return ProfitRate.createProfitRate(statistic.getResult(), buyAmount);
     }
 
     private void showTicketCount(final TicketCount ticketCount) {

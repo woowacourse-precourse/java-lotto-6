@@ -41,7 +41,7 @@ public enum ErrorMessage {
     NEGATIVE_OR_ZERO_INPUT_ERROR_MESSAGE(String.format("%s 0 또는 음수는 입력할 수 없습니다.",
             ERROR_SIGNATURE)),
 
-    BONUS_NUMBER_CONTAINS_WINNING_ERROR_MESSAGE(String.format("%s 입력하신 보너스 숫자는 당첨 번호에 속한 번호입니다.",
+    WINNING_NUMBERS_CONTAINS_BONUS_NUMBER_ERROR_MESSAGE(String.format("%s 입력하신 보너스 숫자는 당첨 번호에 속한 번호입니다.",
             ERROR_SIGNATURE));
 
     private final String message;

@@ -2,7 +2,7 @@ package lotto.utils.phrase;
 
 public class OutputViewPhrase {
 
-    public static final String outputPurchaseLottoCnt = "개를 구매했습니다.";
+    public static final String OUTPUT_PHRASE_PURCHASE_LOTTO_CNT = "개를 구매했습니다.";
 
     public static final String OUTPUT_PHRASE_WINNING_RESULT_STATISTICS_1 = "당첨 통계";
     public static final String OUTPUT_PHRASE_WINNING_RESULT_STATISTICS_2 = "---";

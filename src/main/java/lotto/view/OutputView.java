@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void printLottoCnt(int lottoCnt) {
-        System.out.println(lottoCnt+outputPurchaseLottoCnt);
+        System.out.println(lottoCnt+OUTPUT_PHRASE_PURCHASE_LOTTO_CNT);
     }
 
     public static void printLottoNumbers(Lotto lotto) {

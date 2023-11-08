@@ -1,11 +1,11 @@
 ### [Controller]
 - LottoController
-  - [ ] 로또 구입 금액 입력 - Budget
-  - [ ] 로또 구입 개수 만큼 로또 번호 생성 - quantity
-  - [ ] 당첨 번호 입력 - WinningLotto
-  - [ ] 보너스 번호 입력 - WinningLotto
-  - [ ] 당첨 통계 생성 (Statistic)
-  - [ ] 당첨 통계 출력
+  - [x] 로또 구입 금액 입력 - Budget
+  - [x] 로또 구입 개수 만큼 로또 번호 생성 - quantity
+  - [x] 당첨 번호 입력 - WinningLotto
+  - [x] 보너스 번호 입력 - WinningLotto
+  - [x] 당첨 통계 생성 (Statistic)
+  - [x] 당첨 통계 출력
 
 ### [Domain]
 - [x] Lotto 

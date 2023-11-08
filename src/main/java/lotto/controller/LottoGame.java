@@ -14,9 +14,7 @@ import java.util.List;
 public class LottoGame {
     public void gameStart(){
         User user = new User();
-        int amount = purchaseAmount();
-        setAmount(user, amount);
-        setLoopCount(user, amount);
+        loopCountSetUp(user);
         setLottoTickets(user);
         printLottoTickets(user);
         setUserInputNumbers(user);
@@ -192,24 +190,31 @@ public class LottoGame {
         }
     }
 
+    public void loopCountSetUp(User user){
+        int amount = 0;
+        boolean isTrue = false;
+        while(isTrue == false){
+            amount = purchaseAmount();
+            try {
+                isTrue = loopCheck(amount);
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        user.setMoney(amount);
+        user.calculationLoopCount();
+    }
+
     // 들어온 돈이 1000원 단위인지 확인
-    public boolean loopCountCheck(int amount){
+    public boolean loopCheck(int amount){
         if(amount % 1000 != 0){
-            return false;
+            throw new IllegalArgumentException("[ERROR] 다시 입력해주세요");
         }
         return true;
     }
 
-    // 로또 횟수 저장
-    public void setLoopCount(User user, int amount){
-        if(loopCountCheck(amount)){
-            user.calculationLoopCount();
-        }
-    }
-
     // 돈 입력 받기
     public int purchaseAmount(){
-        System.out.println(Input.PURCHASE_AMOUNT_MESSAGE);
         int amount = 0;
         while (amount == 0){
             try {
@@ -228,6 +233,7 @@ public class LottoGame {
 
     // 입력한 값을 숫자로 변경
     public int amountInput(){
+        System.out.println(Input.PURCHASE_AMOUNT_MESSAGE);
         String beforeAmount = Console.readLine();
         if(!isNumber(beforeAmount)){
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER);

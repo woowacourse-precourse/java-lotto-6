@@ -1,7 +1,6 @@
 package lotto;
 
 import lotto.controller.LottoGame;
-import lotto.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +15,7 @@ public class LottoGameTest {
     void loopCountCheckTest(){
         int amount = 2000;
         LottoGame lottoGame = new LottoGame();
-        boolean isTrue = lottoGame.loopCountCheck(amount);
+        boolean isTrue = lottoGame.loopCheck(amount);
         assertThat(isTrue).isTrue();
     }
 
@@ -25,8 +24,8 @@ public class LottoGameTest {
     void loopCountCheckFailTest(){
         int amount = 3400;
         LottoGame lottoGame = new LottoGame();
-        boolean isFalse = lottoGame.loopCountCheck(amount);
-        assertThat(isFalse).isFalse();
+        assertThatThrownBy(() -> lottoGame.loopCheck(amount))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

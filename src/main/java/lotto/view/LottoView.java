@@ -44,11 +44,6 @@ public class LottoView implements View {
     }
 
     @Override
-    public void close() {
-        Console.close();
-    }
-
-    @Override
     public void printPurchaseQuantity(final LottoPurchaseDto lottoPurchaseDto) {
         printMessage(PURCHASE_AMOUNT_MESSAGE, lottoPurchaseDto.quantity());
     }
@@ -88,5 +83,10 @@ public class LottoView implements View {
     @Override
     public void printReturnRateMessage(final ReturnRateDto returnRateDto) {
         printMessage(RETURN_RATE_MESSAGE, returnRateDto.returnRate());
+    }
+
+    @Override
+    public void close() {
+        Console.close();
     }
 }

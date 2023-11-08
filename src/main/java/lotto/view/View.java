@@ -15,8 +15,6 @@ public interface View {
 
     String askPurchaseAmount();
 
-    void close();
-
     void printPurchaseQuantity(LottoPurchaseDto lottoPurchaseDto);
 
     void printLottoNumbers(LottosDto lottosDto);
@@ -28,4 +26,6 @@ public interface View {
     void printWinningResult(WinningResultDto winningResultDto);
 
     void printReturnRateMessage(ReturnRateDto returnRateDto);
+
+    void close();
 }

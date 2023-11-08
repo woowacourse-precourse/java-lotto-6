@@ -47,24 +47,23 @@ public class LottoController {
             rankCounts[rank.ordinal()]++;
         }
 
+        printWinningStatistics(rankCounts);
+
+        int lottoCount = lottoList.size(); // 구입한 로또 개수
+        EarningCalculate(rankCounts, lottoCount);
+    }
+
+    private static void printWinningStatistics(int[] rankCounts) {
         System.out.println("당첨 통계\n---");
         for (int i = Rank.values().length - 2; i >= 0; i--) {
             Rank rank = Rank.values()[i];
             int count = rankCounts[i];
             System.out.println(rank.getDescription() + " - " + count + "개");
         }
-
-        int lottoCount = lottoList.size(); // 구입한 로또 개수
-        EarningCalculate(rankCounts, lottoCount);
     }
 
     public enum Rank {
-        FIRST(6, 2_000_000_000, "6개 일치"),
-        SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치"),
-        THIRD(5, 1_500_000, "5개 일치"),
-        FOURTH(4, 50_000, "4개 일치"),
-        FIFTH(3, 5_000, "3개 일치"),
-        NO_RANK(0, 0, "꽝");
+        FIRST(6, 2_000_000_000, "6개 일치"), SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치"), THIRD(5, 1_500_000, "5개 일치"), FOURTH(4, 50_000, "4개 일치"), FIFTH(3, 5_000, "3개 일치"), NO_RANK(0, 0, "꽝");
 
         private final int matchCount;
         private final int prize;
@@ -74,10 +73,6 @@ public class LottoController {
             this.matchCount = matchCount;
             this.prize = prize;
             this.description = description;
-        }
-
-        public int getMatchCount() {
-            return matchCount;
         }
 
         public int getPrize() {
@@ -90,9 +85,7 @@ public class LottoController {
     }
 
     private int countMatchingNumbers(List<Integer> userNumbers, List<Integer> winningNumbers) {
-        return (int) userNumbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
+        return (int) userNumbers.stream().filter(winningNumbers::contains).count();
     }
 
     private Rank findRank(int matchingCount, boolean hasBonusBall) {
@@ -123,10 +116,14 @@ public class LottoController {
             Lotto lotto = new Lotto(list);
             LottoList.add(lotto);
         }
+        printLottoList(LottoList);
+        return LottoList;
+    }
+
+    private static void printLottoList(List<Lotto> LottoList) {
         for (Lotto lotto : LottoList) {
             System.out.println(lotto.getNumbers());
         }
-        return LottoList;
     }
 
     private List<Integer> makeRandomNum() {
@@ -150,11 +147,7 @@ public class LottoController {
 
     private List<Integer> winningNumInput() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        return Arrays.stream(readLine().split(","))
-                .mapToInt(Integer::parseInt)
-                .boxed().collect(Collectors.toList());
+        return Arrays.stream(readLine().split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
     }
-
-
 
 }

@@ -103,7 +103,7 @@ public class ErrorTest extends NsTest {
         });
     }
     @Test
-    @DisplayName("당첨 금액 입력 숫자중 45보다 큰 숫자가 있을때")
+    @DisplayName("보너스 금액 입력시 숫자중 45보다 큰 숫자가 있을때")
     public void inputBonusNumberBigRangeError(){
         assertSimpleTest(() -> {
             runException("3000","1,2,3,4,5,6", "46");

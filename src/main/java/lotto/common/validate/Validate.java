@@ -12,7 +12,7 @@ public class Validate {
         inBlank(input);
     }
 
-    public static void buyDomainValidate(String price) {
+    public static void buyPriceValidate(String price) {
         notNumber(price);
         underThousand(price);
         notThousandUnit(price);
@@ -22,7 +22,7 @@ public class Validate {
         notNumbers(lottoNumbers);
     }
 
-    public static void lottoDomainValidate(List<Integer> lottoNumbers) {
+    public static void lottoNumbersValidate(List<Integer> lottoNumbers) {
         overInput(lottoNumbers);
         outOfNumberRange(lottoNumbers);
         overlapInput(lottoNumbers);
@@ -32,7 +32,7 @@ public class Validate {
         notNumber(bonusNumber);
     }
 
-    public static void bonusDomainValidate(int bonusNumber) {
+    public static void bonusNumberValidate(int bonusNumber) {
         outOfNumber(bonusNumber);
     }
 

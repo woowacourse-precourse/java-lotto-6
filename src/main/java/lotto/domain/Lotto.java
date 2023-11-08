@@ -12,7 +12,7 @@ public class Lotto {
     }
 
     private void validateNumbers(List<Integer> numbers) {
-        Validate.lottoDomainValidate(numbers);
+        Validate.lottoNumbersValidate(numbers);
     }
 
     public List<Integer> getNumbers() {

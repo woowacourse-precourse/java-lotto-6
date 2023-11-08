@@ -11,7 +11,7 @@ public class Bonus {
     }
 
     private void validateNumber(int number) {
-        Validate.bonusDomainValidate(number);
+        Validate.bonusNumberValidate(number);
     }
 
     public int getNumber() {

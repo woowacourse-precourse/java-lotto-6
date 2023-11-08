@@ -14,7 +14,7 @@ public class BuyInformation {
     }
 
     private void validatePrice(String inputPrice) {
-        Validate.buyDomainValidate(inputPrice);
+        Validate.buyPriceValidate(inputPrice);
     }
 
     public int getMoney() {

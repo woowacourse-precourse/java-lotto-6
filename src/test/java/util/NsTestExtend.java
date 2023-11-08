@@ -1,4 +1,4 @@
-package lotto;
+package util;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 

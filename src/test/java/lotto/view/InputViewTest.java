@@ -1,12 +1,12 @@
-package lotto;
+package lotto.view;
 
 import java.util.NoSuchElementException;
-import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import util.NsTestExtend;
 
 @DisplayName("사용자의 입력에 대해서 검증한다.")
 public class InputViewTest {

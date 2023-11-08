@@ -1,7 +1,6 @@
 package lotto.domain;
 
 public enum LottoRole {
-    LOTTO_ROLE(1000),
     LOTTO_MIN_NUMBER(1),
     LOTTO_MAX_NUMBER(45),
     LOTTO_SIZE(6),

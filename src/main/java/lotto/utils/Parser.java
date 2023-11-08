@@ -1,5 +1,8 @@
 package lotto.utils;
 
+import static lotto.constants.ErrorMessage.INTEGER_REQUIRED;
+import static lotto.constants.ErrorMessage.POSITIVE_REQUIRED;
+
 import java.util.List;
 
 public class Parser {
@@ -31,13 +34,13 @@ public class Parser {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력된 값은 정수여야 합니다.");
+            throw new IllegalArgumentException(INTEGER_REQUIRED.getMessage());
         }
     }
 
     private static void validatePositiveNumber(int num) throws IllegalArgumentException {
         if (num <= 0) {
-            throw new IllegalArgumentException("[ERROR] 입력된 값은 양수여야 합니다.");
+            throw new IllegalArgumentException(POSITIVE_REQUIRED.getMessage());
         }
     }
 }

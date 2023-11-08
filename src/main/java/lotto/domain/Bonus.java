@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessage.DUPLICATE_BONUS;
+import static lotto.constants.ErrorMessage.NUMBER_OUT_OF_RANGE;
+
 import java.util.List;
 
 public class Bonus {
     private static final int START_LOTTO_NUMBER = 1;
     private static final int END_LOTTO_NUMBER = 45;
-    private static final String NUMBER_OUT_OF_RANGE_MESSAGE = "[ERROR] 로또 번호는 %d부터 %d까지어야 합니다.";
-    private static final String DUPLICATE_BONUS_MESSAGE = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
 
     private final int number;
 
@@ -24,7 +25,7 @@ public class Bonus {
     private void validateNumberInRange(int number) {
         if (number < START_LOTTO_NUMBER || number > END_LOTTO_NUMBER) {
             throw new IllegalArgumentException(
-                    String.format(NUMBER_OUT_OF_RANGE_MESSAGE, START_LOTTO_NUMBER, END_LOTTO_NUMBER));
+                    String.format(NUMBER_OUT_OF_RANGE.getMessage(), START_LOTTO_NUMBER, END_LOTTO_NUMBER));
         }
     }
 
@@ -32,7 +33,7 @@ public class Bonus {
         List<Integer> winningNumbers = winningLotto.getNumbers();
 
         if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException(DUPLICATE_BONUS_MESSAGE);
+            throw new IllegalArgumentException(DUPLICATE_BONUS.getMessage());
         }
     }
 

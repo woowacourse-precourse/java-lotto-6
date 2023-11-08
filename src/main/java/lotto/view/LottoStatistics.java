@@ -20,12 +20,14 @@ public class LottoStatistics {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        allRanks.forEach(rank -> {
-            long count = rankCounts.getOrDefault(rank, 0L);
-            String description = rank.getDescription();
-            String message = String.format("%s - %d개", description, count);
-            System.out.println(message);
-        });
+        allRanks.stream()
+                .filter(rank -> rank != LottoRank.NONE)
+                .forEach(rank -> {
+                    long count = rankCounts.getOrDefault(rank, 0L);
+                    String description = rank.getDescription();
+                    String message = String.format("%s - %d개", description, count);
+                    System.out.println(message);
+                });
     }
 
     private Map<LottoRank, Long> countRankOccurrences() {

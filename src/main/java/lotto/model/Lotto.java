@@ -30,4 +30,8 @@ public class Lotto {
         return numbers;
     }
 
+    public static List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }

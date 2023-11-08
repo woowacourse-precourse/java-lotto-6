@@ -9,15 +9,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoBuyer {
-    public static Integer LOTTO_COUNT;
+    public static Integer lottoCount;
+    public static Integer money;
     private static List<Lotto> boughtLottos;
     public static final Integer LOTTO_PRICE = 1_000;
     private static final String LOTTO_BUY_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String LOTTO_PRICE_ERROR_MESSAGE = "%s 입력한 금액은 로또 한 장 가격(1,000원)의 배수여야 합니다.";
-    private static final String LOTTO_COUNT_MESSAGE = "%d개를 구매했습니다.";
+    private static final String LOTTO_COUNT_MESSAGE = "\n%d개를 구매했습니다.";
     public static Integer inputMoney() {
         System.out.println(LOTTO_BUY_MESSAGE);
-        Integer money = Integer.valueOf(Console.readLine());
+        money = Integer.valueOf(Console.readLine());
         validateLottoPrice(money);
         return money;
     }
@@ -28,13 +29,12 @@ public class LottoBuyer {
         }
     }
 
-    private static Integer calculateLottoCount(Integer money) {
-        LOTTO_COUNT = money / LOTTO_PRICE;
-        return LOTTO_COUNT;
+    private static void calculateLottoCount(Integer money) {
+        lottoCount = money / LOTTO_PRICE;
     }
 
     public static void printLottoCount() {
-        System.out.println(String.format(LOTTO_COUNT_MESSAGE, LOTTO_COUNT));
+        System.out.println(String.format(LOTTO_COUNT_MESSAGE, lottoCount));
     }
 
     private static List<Integer> generateLottoNumbers() {
@@ -45,8 +45,9 @@ public class LottoBuyer {
 
     public static List<Lotto> generateLottos() {
         List<Lotto> lottos = new ArrayList<>();
-        LOTTO_COUNT = calculateLottoCount(LOTTO_PRICE);
-        for (int i = 0; i < LOTTO_COUNT; i++) {
+        calculateLottoCount(money);
+
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
             lottos.add(new Lotto(lottoNumbers));
         }

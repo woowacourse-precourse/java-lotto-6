@@ -88,7 +88,7 @@ public class Application {
         Result result = new Result();
         for (Lotto lotto : lottos) {
             int matched = lotto.matchNumbers(winningNumbers);
-            boolean hasBonusNumber = winningNumbers.contains(bonusNumber);
+            boolean hasBonusNumber = lotto.containsBonusNumber(bonusNumber);
 
             result.add(matched, hasBonusNumber);
         }

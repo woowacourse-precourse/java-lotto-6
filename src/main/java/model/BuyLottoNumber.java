@@ -1,8 +1,8 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -12,9 +12,7 @@ public class BuyLottoNumber {
 	private List<Integer> numbers;
 	
 	public BuyLottoNumber() {
-		List<Integer> numbers = new ArrayList<Integer>(getRandomNumberList());
-		numbers.sort(Comparator.naturalOrder());
-		this.numbers = numbers;
+		this.numbers = getRandomNumberList();
 	}
 	
 	public List<Integer> getNumbers() {
@@ -23,15 +21,18 @@ public class BuyLottoNumber {
 	
 	private static List<Integer> getRandomNumberList(){
 		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER);
-		validateNotOverlap(numbers);
+		TreeSet<Integer> numberSet = new TreeSet<>(numbers);
+		validateNotOverlap(numberSet);
+		numbers = new ArrayList<Integer>(numberSet);
 		return numbers;
 	}
 	
-    private static void validateNotOverlap(List<Integer> numbers) {
-    	for(int i = 0; i < numbers.size() - 1; i++) {
-    		if(numbers.get(i) == numbers.get(i + 1)) {
-    			numbers = Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER);
+    private static void validateNotOverlap(TreeSet<Integer> numberSet) {
+    	while(true) {
+    		if(numberSet.size() == LOTTO_NUMBER) {
+    			break;
     		}
+    		numberSet = new TreeSet<>(Randoms.pickUniqueNumbersInRange(1, 45, LOTTO_NUMBER));
     	}
 	}
 }

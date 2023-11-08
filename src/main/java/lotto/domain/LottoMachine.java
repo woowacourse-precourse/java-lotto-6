@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.constans.GameMessage;
 import lotto.constans.WinningGrade;
 
 public class LottoMachine {
@@ -82,20 +83,22 @@ public class LottoMachine {
         WinningGrade[] winningGrades = winningGradeSortByRank();
         long totalIncome = calculationTotalIncome(resultMap);
         double yields = calculationYields(wantBuyAmount, totalIncome);
+
         StringBuilder sb = new StringBuilder();
 
         for (WinningGrade winningGrade : winningGrades) {
             sb.append(mapResultToString(winningGrade, resultMap.get(winningGrade))).append("\n");
         }
 
-        sb.append("총 수익률은 ").append(yields).append("%입니다.\n");
+        sb.append(GameMessage.YIELDS_PREFIX.getMessage()).append(yields).append(GameMessage.YIELDS_SUFFIX.getMessage());
+
         return sb.toString();
 
     }
 
     private String mapResultToString(WinningGrade winningGrade, int value) {
 
-        return winningGrade.getMessage() + value + "개";
+        return winningGrade.getMessage() + value + GameMessage.WINNING_GRADE_COUNT.getMessage();
     }
 
     private long calculationTotalIncome(Map<WinningGrade,Integer> resultMap) {

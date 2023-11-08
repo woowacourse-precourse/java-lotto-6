@@ -8,7 +8,10 @@ public enum GameMessage {
     LOTTO_NUMBER_SEPARATOR(","),
     REQUEST_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     REQUEST_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
-    WINNING_STATISTICS("당첨 통계\n---");
+    WINNING_STATISTICS("당첨 통계\n---"),
+    WINNING_GRADE_COUNT("개"),
+    YIELDS_PREFIX("총 수익률은 "),
+    YIELDS_SUFFIX("%입니다.\n");
 
     private final String message;
 

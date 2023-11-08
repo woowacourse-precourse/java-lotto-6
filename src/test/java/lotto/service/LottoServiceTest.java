@@ -19,10 +19,10 @@ class LottoServiceTest {
 
     @Test
     public void testPurchaseLottos() {
-        PurchasePrice money = PurchasePrice.of(10000L);
-        List<PurchaseResult> purchaseResults = lottoService.purchaseLottos(money);
+        PurchaseCost money = PurchaseCost.of(10000L);
+        PurchaseResult purchaseResults = lottoService.purchaseLottos(money);
 
-        assertThat(purchaseResults).hasSize(money.getPurchaseLottoAmount());
+        assertThat(purchaseResults.lottoNumbers()).hasSize(money.getPurchaseLottoAmount());
     }
 
     @Test
@@ -46,7 +46,7 @@ class LottoServiceTest {
 
     @Test
     public void testCalcYield() {
-        PurchasePrice money = PurchasePrice.of(10000L);
+        PurchaseCost money = PurchaseCost.of(10000L);
         HashMap<RankInfo, Integer> gameResult = new HashMap<>();
         gameResult.put(RankInfo.FIFTH, 3);
         LottoGameResult lottoGameResult = new LottoGameResult(gameResult);

@@ -19,7 +19,7 @@ class RandomNumbersGeneratorTest {
 
         // Then
         assertThat(randomNumbers).isNotNull();
-        assertThat(randomNumbers).hasSize(LottoInfo.MAX_SIZE.getNumberInfo());
+        assertThat(randomNumbers).hasSize(LottoInfo.LOTTO_NUMBER_SIZE.getNumberInfo());
     }
 
     @Test

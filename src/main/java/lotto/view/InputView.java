@@ -3,7 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.PurchasePrice;
+import lotto.domain.PurchaseCost;
 import lotto.util.TypeConvertor;
 
 import java.util.List;
@@ -19,11 +19,11 @@ public class InputView {
     private InputView() {
     }
 
-    public PurchasePrice getMoney() {
+    public PurchaseCost getMoney() {
         System.out.println(Message.INPUT_MONEY.message);
         String input = Console.readLine();
         Long convertInput = TypeConvertor.stringToLong(input);
-        return PurchasePrice.of(convertInput);
+        return PurchaseCost.of(convertInput);
     }
 
     public Lotto getWinningNumbers() {

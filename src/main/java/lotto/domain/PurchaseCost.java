@@ -2,22 +2,22 @@ package lotto.domain;
 
 import lotto.util.message.ExceptionMessage;
 
-public class PurchasePrice {
+public class PurchaseCost {
 
     private static final Double PERCENT = 100.0;
 
     private final Long money;
 
-    public static PurchasePrice of(Long amount) {
-        return new PurchasePrice(amount);
+    public static PurchaseCost of(Long amount) {
+        return new PurchaseCost(amount);
     }
 
-    private PurchasePrice(Long money) {
-        validatePrice(money);
+    private PurchaseCost(Long money) {
+        validateCost(money);
         this.money = money;
     }
 
-    private void validatePrice(Long amount) {
+    private void validateCost(Long amount) {
         if (amount % Lotto.PRICE != 0) {
             throw new IllegalArgumentException(ExceptionMessage.CHECK_UNIT_PRICE.getMessage());
         }

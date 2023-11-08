@@ -16,7 +16,8 @@ public class RandomNumbersGenerator {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 LottoInfo.MIN_NUMBER.getNumberInfo(),
                 LottoInfo.MAX_NUMBER.getNumberInfo(),
-                LottoInfo.MAX_SIZE.getNumberInfo());
+                // no - fucking - sex
+                LottoInfo.LOTTO_NUMBER_SIZE.getNumberInfo());
 
         List<Integer> sortedNumbers = new ArrayList<>(randomNumbers);
         Collections.sort(sortedNumbers);

@@ -20,10 +20,10 @@ public class OutputView {
     private OutputView() {
     }
 
-    public void printPurchaseResult(List<PurchaseResult> purchaseResults) {
-        System.out.printf(Constants.INPUT_MONEY.message, purchaseResults.size());
-        purchaseResults
-                .forEach(result -> System.out.println(result.lottoNumbers()));
+    public void printPurchaseResult(PurchaseResult purchaseResults) {
+        System.out.printf(Constants.INPUT_MONEY.message, purchaseResults.lottoNumbers().size());
+        purchaseResults.lottoNumbers()
+                .forEach(System.out::println);
     }
 
     public void printLottoGameResult(LottoGameResult lottoGameResult) {
@@ -47,7 +47,6 @@ public class OutputView {
         SEPARATOR("---"),
         WINNING_STATS_HEADER("당첨 통계"),
         TOTAL_YIELD("총 수익률은 %s%%입니다.");
-
 
         private final String message;
 

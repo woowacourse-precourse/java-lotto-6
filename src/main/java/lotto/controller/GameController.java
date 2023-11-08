@@ -24,11 +24,12 @@ public class GameController {
     }
 
     public void gameStart() {
-        PurchasePrice money = getMoneyFromUser();
-        List<PurchaseResult> purchaseResults = purchaseLottoTickets(money);
+        PurchaseCost money = getMoneyFromUser();
+        // no - sex
+        PurchaseResult purchaseResults = purchaseLottoTickets(money);
         outputView.printPurchaseResult(purchaseResults);
 
-        WinningNumbers winningNumbers = getWinningNumbersFromUser();
+        WinningNumbers winningNumbers = getWinningNumbers();
         LottoGameResult lottoGameResult = calculateGameResult(purchaseResults, winningNumbers);
         outputView.printLottoGameResult(lottoGameResult);
 
@@ -36,15 +37,15 @@ public class GameController {
         outputView.printYield(yieldResult);
     }
 
-    private PurchasePrice getMoneyFromUser() {
+    private PurchaseCost getMoneyFromUser() {
         return inputView.getMoney();
     }
 
-    private List<PurchaseResult> purchaseLottoTickets(PurchasePrice money) {
+    private PurchaseResult purchaseLottoTickets(PurchaseCost money) {
         return lottoService.purchaseLottos(money);
     }
 
-    private WinningNumbers getWinningNumbersFromUser() {
+    private WinningNumbers getWinningNumbers() {
         Lotto lotto = inputView.getWinningNumbers();
         return ExceptionHandler.handle(() -> getWinningNumbers(lotto));
     }
@@ -54,12 +55,12 @@ public class GameController {
         return new WinningNumbers(lotto, bonusNumber);
     }
 
-    private LottoGameResult calculateGameResult(List<PurchaseResult> purchaseResults, WinningNumbers winningNumbers) {
+    private LottoGameResult calculateGameResult(PurchaseResult purchaseResults, WinningNumbers winningNumbers) {
         LottoTickets lottoTickets = LottoTickets.create(purchaseResults);
         return lottoService.calcRank(lottoTickets.getTickets(), winningNumbers);
     }
 
-    private YieldResult calculateYield(PurchasePrice money, LottoGameResult lottoGameResult) {
+    private YieldResult calculateYield(PurchaseCost money, LottoGameResult lottoGameResult) {
         return lottoService.calcYield(money, lottoGameResult);
     }
 }

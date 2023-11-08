@@ -10,9 +10,8 @@ public class LottoTickets {
 
     private final List<Lotto> purchaseTickets;
 
-    public static LottoTickets create(List<PurchaseResult> tickets) {
-        List<Lotto> purchaseTickets = tickets.stream()
-                .map(PurchaseResult::lottoNumbers)
+    public static LottoTickets create(PurchaseResult tickets) {
+        List<Lotto> purchaseTickets = tickets.lottoNumbers().stream()
                 .map(Lotto::of)
                 .collect(Collectors.toList());
 

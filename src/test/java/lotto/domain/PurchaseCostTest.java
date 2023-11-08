@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.within;
 
-class PurchasePriceTest {
+class PurchaseCostTest {
 
     @Test
     @DisplayName("구매 금액으로 로또 개수를 계산한다.")
@@ -17,21 +17,21 @@ class PurchasePriceTest {
         Long purchaseAmount = 21000L;
 
         // When
-        PurchasePrice purchasePrice = PurchasePrice.of(purchaseAmount);
+        PurchaseCost purchaseCost = PurchaseCost.of(purchaseAmount);
 
         // Then
-        assertThat(purchasePrice.getPurchaseLottoAmount()).isEqualTo(21);
+        assertThat(purchaseCost.getPurchaseLottoAmount()).isEqualTo(21);
     }
 
     @Test
     @DisplayName("수령한 총 당첨 금액으로 수익률을 계산한다.")
     void calcYieldBy() {
         // Given
-        PurchasePrice purchasePrice = PurchasePrice.of(21000L);
+        PurchaseCost purchaseCost = PurchaseCost.of(21000L);
         Long totalWinningPrize = 3000L;
 
         // When
-        Double yield = purchasePrice.calcYieldBy(totalWinningPrize);
+        Double yield = purchaseCost.calcYieldBy(totalWinningPrize);
 
         // Then
         assertThat(yield).isEqualTo(14.285714, within(0.001));
@@ -44,7 +44,7 @@ class PurchasePriceTest {
         Long invalidAmount = 1101L;
 
         // When, Then
-        assertThatThrownBy(() -> PurchasePrice.of(invalidAmount))
+        assertThatThrownBy(() -> PurchaseCost.of(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ExceptionMessage.CHECK_UNIT_PRICE.getMessage());
     }

@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
-import lotto.domain.PurchasePrice;
+import lotto.domain.PurchaseCost;
 import lotto.domain.RankInfo;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoGameResult;
@@ -24,12 +24,13 @@ public class LottoService {
     private LottoService() {
     }
 
-    public List<PurchaseResult> purchaseLottos(PurchasePrice money) {
+    public PurchaseResult purchaseLottos(PurchaseCost money) {
         List<Lotto> generateLotto = generateLottoTickets(money.getPurchaseLottoAmount());
 
-        return generateLotto.stream()
-                .map(lotto -> new PurchaseResult(lotto.getNumbers()))
-                .collect(Collectors.toList());
+        List<List<Integer>> result = generateLotto.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+        return new PurchaseResult(result);
     }
 
     private List<Lotto> generateLottoTickets(int purchaseLottoAmount) {
@@ -54,7 +55,7 @@ public class LottoService {
         return gameResult;
     }
 
-    public YieldResult calcYield(PurchasePrice money, LottoGameResult lottoGameResult) {
+    public YieldResult calcYield(PurchaseCost money, LottoGameResult lottoGameResult) {
         HashMap<RankInfo, Integer> rankCounts = lottoGameResult.gameResult();
         long totalWinningPrizes = calculateTotalWinningPrizes(rankCounts);
         double yieldOfGame = money.calcYieldBy(totalWinningPrizes);

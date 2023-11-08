@@ -20,10 +20,10 @@ public enum LottoRankingMessage {
         this.lottoRanking = lottoRanking;
     }
 
-    public static String findLottoRankingMessage(final RankInfo lottoRanking, Integer numberOfWins) {
+    public static String findLottoRankingMessage(final RankInfo rankInfo, Integer numberOfWins) {
         return Arrays.stream(LottoRankingMessage.values())
-                .filter(utils -> utils.lottoRanking == lottoRanking) //todo: 네이밍 수정 필요
-                .map(utils -> getFormat(lottoRanking, numberOfWins, utils))
+                .filter(message -> message.lottoRanking == rankInfo)
+                .map(utils -> getFormat(rankInfo, numberOfWins, utils))
                 .findAny()
                 .orElseThrow(IllegalArgumentException::new);
     }

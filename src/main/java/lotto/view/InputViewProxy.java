@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.PurchasePrice;
+import lotto.domain.PurchaseCost;
 import lotto.util.ExceptionHandler;
 
 public class InputViewProxy {
@@ -13,7 +13,7 @@ public class InputViewProxy {
         this.inputView = inputView;
     }
 
-    public PurchasePrice getMoney() {
+    public PurchaseCost getMoney() {
         return ExceptionHandler.handle(inputView::getMoney);
     }
 

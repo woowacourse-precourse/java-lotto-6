@@ -43,7 +43,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != MAX_SIZE.getNumberInfo()) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE.getNumberInfo()) {
             throw new IllegalArgumentException(CHECK_SIZE_NUM.getMessage());
         }
     }

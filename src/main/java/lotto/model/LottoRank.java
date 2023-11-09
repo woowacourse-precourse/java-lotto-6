@@ -38,12 +38,10 @@ public enum LottoRank {
     }
 
     public static LottoRank of(final MatchCount matchCount, final boolean bonusMatches) {
-        final LottoRank rank = ranks.getOrDefault(matchCount, LottoRank.NONE);
-
-        if (bonusMatches && rank.matchCount == MatchCount.FIVE) {
+        if (bonusMatches && matchCount == MatchCount.FIVE) {
             return LottoRank.SECOND;
         }
-        return rank;
+        return ranks.getOrDefault(matchCount, LottoRank.NONE);
     }
 
     public long getPrize() {

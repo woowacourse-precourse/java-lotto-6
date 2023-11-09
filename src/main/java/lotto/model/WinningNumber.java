@@ -1,11 +1,10 @@
 package lotto.model;
 
+import static lotto.model.LottoErrorType.BONUS_DUPLICATED;
+
 import java.util.List;
 
 public class WinningNumber {
-
-    private static final String BONUS_DUPLICATED
-            = "[ERROR] 보너스 번호는 로또 번호에 포함되지 않는 숫자여야 합니다.";
 
     private final Lotto winningLotto;
 
@@ -19,7 +18,7 @@ public class WinningNumber {
 
     private void validate(final List<Integer> numbers, final int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_DUPLICATED);
+            throw new IllegalArgumentException(BONUS_DUPLICATED.getMessage());
         }
     }
 

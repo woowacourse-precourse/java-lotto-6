@@ -7,10 +7,12 @@ import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 
 import lotto.domain.Lotto;
+import lotto.domain.Ranking;
 import lotto.service.LottoService;
 import lotto.utils.CalculationUtils;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     public static final int ONE_LOTTO_PRICE = 1000;
@@ -31,7 +33,7 @@ public class LottoController {
 
         int bonusNumber = registerBonusNumberUntilPass(answer);
 
-        showStatisticsResult(lottoList, answer, bonusNumber);
+        calculateResultAndShowStatisticsResult(lottoList, answer, bonusNumber);
     }
 
     public int receiveMoney() {
@@ -78,9 +80,11 @@ public class LottoController {
         return receiveInputUntilPass(this::registerWinningLottoCombination);
     }
 
-    public void showStatisticsResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
-        String result = lottoService.makeStatisticsResultOutputStatement(lottoList, answer, bonusNumber);
-        printResult(result);
+    public void calculateResultAndShowStatisticsResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
+        Map<Ranking, Integer> winningResult = lottoService.calculateWinningResult(lottoList, answer, bonusNumber);
+        double profitRate = lottoService.calculateProfitRate(winningResult);
+
+        printStatisticsResult(winningResult, profitRate);
     }
 
     private void validateReceivedMoney(String userInput) {

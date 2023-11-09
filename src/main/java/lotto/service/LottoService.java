@@ -13,8 +13,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoService {
-    public static final String PURCHASE_X_COUNT = "개를 구매했습니다.";
-    public static final String WINNING_STATISTICS = "당첨 통계";
 
     public Lotto generateLotto() {
         List<Integer> list = generateLottoCombination();

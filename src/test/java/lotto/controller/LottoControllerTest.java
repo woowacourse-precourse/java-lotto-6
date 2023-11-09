@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.utils.StringUtils.countOccurrences;
 import static lotto.view.ErrorMessage.*;
 import static lotto.view.ErrorMessage.NOT_A_INTEGER_NUMBER;
 import static lotto.view.ErrorMessage.RECEIVED_MONEY_NOT_MULTIPLE_OF_1000;
@@ -8,7 +7,6 @@ import static org.assertj.core.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.service.LottoService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -79,25 +77,6 @@ class LottoControllerTest {
     }
 
     @Test
-    @DisplayName("기능27 테스트 : 당첨 통계가 잘 출력된다.")
-    void showStatisticResultCorrectly() {
-        // given
-        int totalPurchaseCount = 5;
-        List<Lotto> lottoList = generateTestLottoList(totalPurchaseCount);
-        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
-
-        // when
-        lottoController.showStatisticsResult(lottoList, answer, 7);
-        String result = outputStreamCaptor.toString();
-        int count = countOccurrences(result, "원");
-
-        // then
-        assertThat(result).containsSubsequence("당첨 통계", "---", "총 수익률은", "%입니다.");
-        assertThat(count).isEqualTo(totalPurchaseCount);
-    }
-
-    @Test
     @DisplayName("기능24 테스트 : 유저의 입력값을 보너스 숫자로 변환한다.")
     void registerBonusNumberShouldTransformUserInputToBonusNumber() {
         // given
@@ -164,7 +143,6 @@ class LottoControllerTest {
                 .hasMessage(THAT_NUMBER_IS_ALREADY_CONTAINS_ANSWER_COMBINATION.getErrorMessage());
     }
 
-
     @Test
     @DisplayName("기능21 테스트 : 사용자의 입력을 로또 객체로 변환한다.")
     void registerWinningNumberShouldReturnLottoInstance() {
@@ -215,12 +193,6 @@ class LottoControllerTest {
         assertThatThrownBy(() -> lottoController.registerWinningLottoCombination())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
-    }
-
-    public List<Lotto> generateTestLottoList(int count) {
-        LottoService lottoService = new LottoService();
-
-        return lottoService.generateLottoList(count);
     }
 
 }

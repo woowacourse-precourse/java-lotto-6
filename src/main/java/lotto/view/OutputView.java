@@ -1,8 +1,8 @@
 package lotto.view;
 
 import lotto.constant.RankConstant;
-import lotto.domain.model.Lotteries;
 import lotto.constant.message.OutputMessage;
+import lotto.domain.model.Lotteries;
 
 import java.util.Map;
 

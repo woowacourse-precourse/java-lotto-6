@@ -38,4 +38,8 @@ public class View {
         OutputView.printLineBreak();
         OutputView.printWinningStatusMessage(prizeResponses, profitRate);
     }
+
+    public static void closeRead() {
+        InputView.closeRead();
+    }
 }

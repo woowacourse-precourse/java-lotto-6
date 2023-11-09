@@ -55,4 +55,8 @@ public class InputView {
         }
         return parseInt(input);
     }
+
+    protected static void closeRead() {
+        Console.close();
+    }
 }

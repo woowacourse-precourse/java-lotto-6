@@ -59,5 +59,6 @@ public class LottoController {
         double profitRate = lottoSystem.calculateProfitRate(winningResult);
 
         View.printWinningStatusMessage(winningResult, profitRate);
+        View.closeRead();
     }
 }

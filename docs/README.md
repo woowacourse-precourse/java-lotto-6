@@ -132,11 +132,9 @@ utils
 
 📕 controller.LottoController :
 
-    ✏️ 기능41. 로또 구매 금액 입력 부터 통계결과 출력까지의 한 프로세스를 진행한다. ➡ play() 
+    ✏️ 기능41. 로또 구매 금액 입력 부터 통계결과 출력까지의 한 프로세스를 진행한다. ➡ play()
 
-    ✏️ 기능15. 로또 구입 금액을 입력 받는다. ➡ recieveMoney() 
-
-    ✏️ 기능15. 로또 구입 금액을 입력 받는다. ➡ recieveMoney() 
+    ✏️ 기능15. 로또 구입 금액을 반환한다. ➡ recieveMoney() 
 
         ✏️ 기능16. 구입 금액을 제대로 입력했는지 검증한다. ➡ validateReceivedMoney() 
 
@@ -148,9 +146,9 @@ utils
 
     ✏️ 기능8. 로또 구매 개수만큼 로또를 구매한다. ➡ generateLottoList() 
 
-    ✏️ 기능20. 로또 구매 결과를 출격한다. ➡ showPurchaseResult()  
+    ✏️ 기능20. 로또 구매 결과를 출력한다. ➡ showPurchaseResult()  
 
-    ✏️ 기능21. 로또 당첨 번호를 입력받는다. ➡ registerWinningLottoCombination() 
+    ✏️ 기능21. 로또 당첨 번호를 등록한다. ➡ registerWinningLottoCombination() 
 
         ✏️ 기능22. 당첨 번호를 변환할 때 공백을 제거한다. ➡ 기본 메서드 사용
 
@@ -158,7 +156,7 @@ utils
 
         ✏️ 기능38. 당첨 번호 중에 1~45 범위에 있지 않은 숫자가 있으면 예외를 발생시킨다. ➡ validateLottoNumber()
 
-    ✏️ 기능24. 보너스 번호를 입력받는다. ➡ registerBonusNumber()
+    ✏️ 기능24. 보너스 번호를 등록한다. ➡ registerBonusNumber()
 
         ✏️ 기능25. 입력된 값이 숫자가 아니면 예외가 발생한다. ➡ validateLottoNumber()
 
@@ -169,6 +167,16 @@ utils
     ✏️ 기능27. 당첨통계를 보여준다. ➡ showStatisticsResult()
 
     ✏️ 기능28. 사용자 입력값을 받다가 예외 발생한 경우 값을 다시 입력받는다. ➡ receiveInputUntilPass()
+
+<br>
+
+📕 view.InputView :
+
+    ✏️ 기능42. 사용자로 부터 구매 금액을 입력 받는다. ➡ readMoney()
+
+    ✏️ 기능43. 사용자로 부터 당첨 번호 조합을 입력받는다. ➡ readWinningLottoCombination()
+
+    ✏️ 기능44. 사용자로 부터 보너스 번호를 입력 받는다. ➡ readBonusNumber()
 
 <br>
 

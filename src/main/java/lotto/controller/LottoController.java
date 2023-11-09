@@ -3,8 +3,7 @@ package lotto.controller;
 import static lotto.utils.CalculationUtils.isDivisible;
 import static lotto.utils.StringUtils.parseInt;
 import static lotto.view.ErrorMessage.*;
-import static lotto.view.InputMessage.*;
-import static lotto.view.InputView.readInput;
+import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 
 import lotto.domain.Lotto;
@@ -37,7 +36,7 @@ public class LottoController {
     }
 
     public int receiveMoney() {
-        String userInput = readInput(ENTER_TOTAL_PURCHASE_MONEY.getInputMessage());
+        String userInput = readMoney();
         validateReceivedMoney(userInput);
         return parseInt(userInput);
     }
@@ -47,7 +46,7 @@ public class LottoController {
     }
 
     public int registerBonusNumber(Lotto answer) {
-        String userInput = readInput(ENTER_BONUS_NUMBER.getInputMessage());
+        String userInput = readBonusNumber();
         validateLottoNumber(userInput);
         validateBonusLottoNumber(userInput, answer);
         return parseInt(userInput);
@@ -70,7 +69,7 @@ public class LottoController {
     }
 
     public Lotto registerWinningLottoCombination() {
-        String userInput = readInput(ENTER_WINNING_LOTTO_NUMBER.getInputMessage());
+        String userInput = readWinningLottoCombination();
         validateWinningLottoCombination(userInput);
         List<Integer> lottoCombination = userInputToLottoCombination(userInput);
 

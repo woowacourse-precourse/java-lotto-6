@@ -2,9 +2,9 @@ package lotto.controller;
 
 import lotto.constants.LottoRankConstants;
 import lotto.dto.Lotto;
-import lotto.dto.LottoRanks;
 import lotto.dto.Lottos;
 import lotto.dto.WinningLotto;
+import lotto.repository.LottoRanks;
 import lotto.service.LottoDrawService;
 import lotto.service.PurchaseService;
 import lotto.service.ReturnService;

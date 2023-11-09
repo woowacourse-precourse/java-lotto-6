@@ -6,7 +6,7 @@ public class BonusNumber {
 
     private final int bonusNumber;
 
-    public BonusNumber(final int bonusNumber) {
+    protected BonusNumber(final int bonusNumber) {
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
     }

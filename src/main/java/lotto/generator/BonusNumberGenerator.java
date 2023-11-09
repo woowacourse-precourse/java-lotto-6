@@ -8,12 +8,11 @@ import lotto.view.InputView;
 public class BonusNumberGenerator {
 
     public BonusNumber run(WinningNumber winningNumber) {
-        int bonusNumber = drawBonusNumber();
+        int inputBonusNumber = drawBonusNumber();
 
         try {
-            winningNumber.validateBonusNumber(bonusNumber);
-
-            return new BonusNumber(bonusNumber);
+            BonusNumber bonusNumber = winningNumber.createBonusNumber(inputBonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
 

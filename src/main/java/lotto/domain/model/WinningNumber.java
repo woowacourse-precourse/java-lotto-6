@@ -1,7 +1,7 @@
 package lotto.domain.model;
 
-import lotto.domain.validator.Validator;
 import lotto.constant.message.ErrorMessage;
+import lotto.domain.validator.Validator;
 
 import java.util.HashSet;
 import java.util.List;
@@ -24,16 +24,21 @@ public class WinningNumber {
         }
     }
 
+    protected List<Integer> getRegularWinningNumbers() {
+        return regularWinningNumbers;
+    }
+
+    public BonusNumber createBonusNumber(final int bonusNumber) {
+        validateBonusNumber(bonusNumber);
+        return new BonusNumber(bonusNumber);
+    }
+
     public void validateBonusNumber(final int bonusNumber) {
         Set<Integer> duplicateChecker = new HashSet<>(regularWinningNumbers);
 
         if (!duplicateChecker.add(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_CONTAIN_BONUS_NUMBER_IN_WINNING_NUMBER);
         }
-    }
-
-    protected List<Integer> getRegularWinningNumbers() {
-        return regularWinningNumbers;
     }
 
 }

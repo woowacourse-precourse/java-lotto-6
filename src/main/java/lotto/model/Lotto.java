@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Collections;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,7 +11,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkDuplicateNumber(numbers);
-        this.numbers = numbers.sort();
+        Collections.sort(numbers);
+        this.numbers = numbers;
     }
 
     public List<Integer> getLottoNumber(){

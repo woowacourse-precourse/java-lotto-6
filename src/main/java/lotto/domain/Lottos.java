@@ -23,13 +23,7 @@ public class Lottos {
         return List.copyOf(lottos);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Lotto lotto : lottos) {
-            sb.append(lotto.toString());
-            sb.append("\n");
-        }
-        return sb.toString();
+    public long getSize() {
+        return lottos.size();
     }
 }

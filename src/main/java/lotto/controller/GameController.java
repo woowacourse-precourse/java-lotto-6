@@ -4,6 +4,7 @@ import lotto.domain.LottoPurchaseAmount;
 import lotto.domain.Lottos;
 import lotto.domain.PrizeCondition;
 import lotto.domain.WinningLotto;
+import lotto.dto.PurchasedLottosDto;
 import lotto.service.GameManager;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -46,7 +47,8 @@ public class GameController {
 
     private void printPurchasedLottos() {
         Lottos lottos = gameManager.providePurchasedLottos();
-        outputView.printLottos(lottos);
+        PurchasedLottosDto purchasedLottosDto = PurchasedLottosDto.from(lottos);
+        outputView.printLottos(purchasedLottosDto);
     }
 
     private void processResult() {

@@ -1,9 +1,10 @@
 package lotto.view;
 
-import lotto.domain.Lottos;
 import lotto.domain.PrizeCondition;
+import lotto.dto.PurchasedLottosDto;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String ASK_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
@@ -17,6 +18,10 @@ public class OutputView {
     private static final String SECOND_PRIZE_RESULT_MESSAGE_FORMAT = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
     private static final String FIRST_PRIZE_RESULT_MESSAGE_FORMAT = "6개 일치 (2,000,000,000원) - %d개";
     private static final String PROFIT_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final String PURCHASED_LOTTOS_DELIMITER = "\n";
+    private static final String PURCHASED_LOTTO_PREFIX = "[";
+    private static final String PURCHASED_LOTTO_SUFFIX = "]";
+    private static final String PURCHASED_LOTTO_NUMBERS_DELIMITER = ", ";
 
     public void printAskPurchaseAmount() {
         System.out.println(ASK_PURCHASE_AMOUNT);
@@ -31,14 +36,22 @@ public class OutputView {
         System.out.println(ASK_BONUS_NUMBER);
     }
 
-    public void printLottos(Lottos lottos) {
+    public void printLottos(PurchasedLottosDto purchasedLottosDto) {
         System.out.println();
-        printLottoQuantity(lottos.getLottos().size());
-        System.out.println(lottos);
+        printLottoQuantity(purchasedLottosDto.getSize());
+        printPurchasedLottos(purchasedLottosDto);
     }
 
     private static void printLottoQuantity(long size) {
         System.out.printf((LOTTO_QUANTITY_MESSAGE_FORMAT) + "%n", size);
+    }
+
+    private void printPurchasedLottos(PurchasedLottosDto purchasedLottosDto) {
+        purchasedLottosDto.getLottos().stream()
+                .map(lotto -> lotto.getNumbers().stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(PURCHASED_LOTTO_NUMBERS_DELIMITER, PURCHASED_LOTTO_PREFIX, PURCHASED_LOTTO_SUFFIX)))
+                .collect(Collectors.joining(PURCHASED_LOTTOS_DELIMITER));
     }
 
     public void printResult(Map<PrizeCondition, Long> prizeResult, double profit) {

@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import lotto.view.InputValidator;
 
 import java.util.List;
 
@@ -14,7 +16,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        InputValidator.lottoNumbersDuplicatedCheck(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
 }

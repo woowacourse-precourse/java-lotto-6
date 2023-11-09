@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.PlayerLotto;
-import lotto.domain.lottoManage.LottoGenerator;
+import lotto.util.LottoGenerator;
 import lotto.domain.lottoManage.LottoManager;
 import lotto.domain.lottoManage.PurchaseAmount;
 import lotto.dto.response.PrizeResponse;

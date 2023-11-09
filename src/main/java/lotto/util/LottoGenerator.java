@@ -1,6 +1,7 @@
-package lotto.domain.lottoManage;
+package lotto.util;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lottoManage.PurchaseAmount;
 import lotto.util.RandomUtil;
 
 import java.util.ArrayList;

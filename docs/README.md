@@ -99,7 +99,7 @@ utils
 
     ✏️ 기능7. 정답 조합에 포함되는 숫자의 개수를 반환한다. ➡ countMatchingNumber()
 
-    ✏️ 기능33. 로또가 가지고 있는 숫자 조합을 String으로 반환한다. ➡ getNumbers()
+    ✏️ 기능33. 로또가 가지고 있는 숫자 조합을 String으로 반환한다. ➡ toString()
 
 <br>
 

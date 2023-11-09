@@ -149,7 +149,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when
-        String result = lotto.getNumbers();
+        String result = lotto.toString();
 
         // then
         assertThat(result).isEqualTo("[1, 2, 3, 4, 5, 6]");

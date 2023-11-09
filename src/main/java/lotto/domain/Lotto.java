@@ -46,7 +46,8 @@ public class Lotto {
         return count;
     }
 
-    public String getNumbers() {
+    @Override
+    public String toString() {
         return this.numbers.toString();
     }
 

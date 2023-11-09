@@ -11,13 +11,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        validSize(numbers.size(), "유효한 길이가 아닙니다.");
         validNonDuplicateNumbers(numbers);
+        this.numbers = numbers;
     }
 
     public String showNumbers() {
@@ -51,12 +46,6 @@ public class Lotto {
                 .count();
 
         return !winingNumbers.contains(bonusNumber) && count == correctNumber;
-    }
-
-    private void validSize(int numbers, String x) {
-        if (numbers != LOTTO_NUMBER_LENGTH.value()) {
-            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + x);
-        }
     }
 
     private void validNonDuplicateNumbers(List<Integer> numbers) {

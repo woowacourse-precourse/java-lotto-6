@@ -2,6 +2,7 @@ package lotto.exception;
 
 public enum ErrorType {
 
+    INVALID_NUMBER_FORMAT("숫자 형식이 올바르지 않습니다."),
     INVALID_TICKET_SIZE("로또 번호의 개수는 6개여야 합니다."),
     NUMBERS_DUPLICATED("로또 번호는 중복될 수 없습니다."),
     NUMBER_OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),

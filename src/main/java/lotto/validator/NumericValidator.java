@@ -1,17 +1,16 @@
 package lotto.validator;
 
+import static lotto.exception.ErrorType.INVALID_NUMBER_FORMAT;
+
 import java.util.regex.Pattern;
 
 public class NumericValidator {
-
-    private static final String INVALID_NUMBER_FORMAT
-            = "[ERROR] 숫자 형식이 올바르지 않습니다.";
 
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
 
     public static void validate(final String stringNumber) {
         if (isNullOrEmpty(stringNumber) || !isNumeric(stringNumber)) {
-            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT);
+            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 

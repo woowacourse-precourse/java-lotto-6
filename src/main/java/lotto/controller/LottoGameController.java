@@ -33,7 +33,7 @@ public class LottoGameController {
     }
 
     private Money createPurchaseAmount() {
-        return Money.of(InputView.readPurChaseAmount());
+        return Money.of(InputView.readPurchaseAmount());
     }
 
     private List<Lotto> publishLotto(final Money money) {

@@ -19,7 +19,7 @@ public class InputView {
         throw new AssertionError();
     }
 
-    public static long readPurChaseAmount() {
+    public static long readPurchaseAmount() {
         return readWithRetry(() -> {
             System.out.println(INPUT_PURCHASE_AMOUNT);
             return readLongNumber();

@@ -5,21 +5,26 @@ import java.util.List;
 import lotto.domain.money.Money;
 import lotto.domain.statistics.LottoRank;
 import lotto.domain.statistics.WinningStatistics;
-import lotto.domain.ticket.LottoNumberGenerator;
 import lotto.domain.ticket.Lottos;
+import lotto.domain.ticket.NumberGenerator;
 import lotto.domain.winningnumbers.WinningNumbers;
-import lotto.view.input.InputConsoleView;
-import lotto.view.output.OutputConsoleView;
+import lotto.view.input.InputView;
+import lotto.view.output.OutputView;
 
 public class LottoGameController {
 
-    LottoController lottoController = new LottoController(new LottoNumberGenerator());
-    ViewController viewController = new ViewController(new InputConsoleView(), new OutputConsoleView());
+    private final LottoController lottoController;
+    private final ViewController viewController;
 
-    Money money;
-    Lottos lottos;
-    WinningNumbers winningNumbers;
-    WinningStatistics winningStatistics;
+    private Money money;
+    private Lottos lottos;
+    private WinningNumbers winningNumbers;
+    private WinningStatistics winningStatistics;
+
+    public LottoGameController(NumberGenerator numberGenerator, InputView inputView, OutputView outputView) {
+        this.lottoController = new LottoController(numberGenerator);
+        this.viewController = new ViewController(inputView, outputView);
+    }
 
     public void run() {
 

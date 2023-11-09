@@ -35,6 +35,10 @@ public enum LottoRanking {
             return SECOND;
         }
 
+        if (SECOND.getCountOfMatch() == countOfMatch && !matchBonus) {
+            return THIRD;
+        }
+
         for (LottoRanking rank : values()) {
             if (rank.getCountOfMatch() == countOfMatch) {
                 return rank;

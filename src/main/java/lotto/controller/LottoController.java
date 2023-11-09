@@ -1,9 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.lottoManage.LottoManager;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.lotto.PlayerLotto;
+import lotto.domain.lottoManage.LottoGenerator;
+import lotto.domain.lottoManage.LottoManager;
 import lotto.domain.lottoManage.PurchaseAmount;
 import lotto.dto.response.PrizeResponse;
 import lotto.view.View;
@@ -37,7 +38,7 @@ public class LottoController {
     }
 
     private List<Lotto> generateWinningLottos(int purchasedLottoCount) {
-        List<Lotto> winningLottos = LottoManager.generateWinningLottos(purchasedLottoCount);
+        List<Lotto> winningLottos = LottoGenerator.generateWinningLottos(purchasedLottoCount);
         View.printWinningLottosMessage(winningLottos, purchasedLottoCount);
         return winningLottos;
     }

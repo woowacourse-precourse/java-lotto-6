@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
+import lotto.domain.lottoManage.LottoGenerator;
 import lotto.domain.lottoManage.LottoManager;
 import lotto.domain.lottoManage.PurchaseAmount;
 import lotto.domain.lotto.PlayerLotto;
@@ -37,7 +38,7 @@ class LottoManagerTest {
         bonusNumber = LottoNumber.create(7);
         purchaseAmount = PurchaseAmount.create(8000);
         player = PlayerLotto.create(lotto, bonusNumber, purchaseAmount);
-        winningLottos = LottoManager.generateWinningLottos(purchaseAmount.getPurchaseAmount());
+        winningLottos = LottoGenerator.generateWinningLottos(purchaseAmount.getPurchaseAmount());
 
         lottoManager = LottoManager.create(winningLottos, player);
     }
@@ -46,7 +47,7 @@ class LottoManagerTest {
     @DisplayName("범위 내의 랜덤한 6자리 숫자를 생성한다.")
     void generateWinningLottos() {
         // given
-        Lotto winningLotto = LottoManager.generateWinningLottos(1).get(0);
+        Lotto winningLotto = LottoGenerator.generateWinningLottos(1).get(0);
 
         // when
         List<Integer> numbers = winningLotto.getLottoNumbers()

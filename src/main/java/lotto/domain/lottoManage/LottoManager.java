@@ -4,9 +4,12 @@ import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.PlayerLotto;
 import lotto.dto.response.PrizeResponse;
-import lotto.util.RandomUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LottoManager {
 
@@ -20,18 +23,6 @@ public class LottoManager {
 
     public static LottoManager create(List<Lotto> winningLottos, PlayerLotto playerLotto) {
         return new LottoManager(winningLottos, playerLotto);
-    }
-
-    public static List<Lotto> generateWinningLottos(int purchasedLottoCount) {
-        List<Lotto> winningLottos = new ArrayList<>();
-        for (int i = 0; i < purchasedLottoCount; i++) {
-            winningLottos.add(generateWinningLotto());
-        }
-        return winningLottos;
-    }
-
-    private static Lotto generateWinningLotto() {
-        return Lotto.create(RandomUtil.generateRandomLottoNumber());
     }
 
     private int getPurchasedLottoCount() {

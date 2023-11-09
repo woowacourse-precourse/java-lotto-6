@@ -1,4 +1,4 @@
-package lotto.domain.player;
+package lotto.domain.lottoManage;
 
 import static lotto.config.GameConfig.LOTTO_PRICE;
 import static lotto.exception.ErrorMessage.PURCHASE_UNIT_INVALID;

@@ -1,6 +1,7 @@
 package lotto.domain.player;
 
-import lotto.domain.PurchaseAmount;
+import lotto.domain.lotto.PlayerLotto;
+import lotto.domain.lottoManage.PurchaseAmount;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import org.assertj.core.api.Assertions;
@@ -10,13 +11,13 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-class PlayerTest {
+class PlayerLottoTest {
 
     List<Integer> numbers;
     Lotto lotto;
     LottoNumber bonusNumber;
     PurchaseAmount purchaseAmount;
-    Player player;
+    PlayerLotto player;
 
     @BeforeEach
     void setUp() {
@@ -32,7 +33,7 @@ class PlayerTest {
     @DisplayName("Player 객체를 생성한다.")
     void create() {
         // when
-        player = Player.create(lotto, bonusNumber, purchaseAmount);
+        player = PlayerLotto.create(lotto, bonusNumber, purchaseAmount);
 
         // then
         Assertions.assertThat(player.getLotto().getIntegerNumbers()).isEqualTo(numbers);

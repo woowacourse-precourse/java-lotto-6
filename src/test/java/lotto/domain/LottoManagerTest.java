@@ -3,7 +3,9 @@ package lotto.domain;
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
-import lotto.domain.player.Player;
+import lotto.domain.lottoManage.LottoManager;
+import lotto.domain.lottoManage.PurchaseAmount;
+import lotto.domain.lotto.PlayerLotto;
 import lotto.dto.response.PrizeResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,7 +25,7 @@ class LottoManagerTest {
     Lotto lotto;
     LottoNumber bonusNumber;
     PurchaseAmount purchaseAmount;
-    Player player;
+    PlayerLotto player;
     List<Lotto> winningLottos;
     LottoManager lottoManager;
 
@@ -34,7 +36,7 @@ class LottoManagerTest {
         lotto = Lotto.create(numbers);
         bonusNumber = LottoNumber.create(7);
         purchaseAmount = PurchaseAmount.create(8000);
-        player = Player.create(lotto, bonusNumber, purchaseAmount);
+        player = PlayerLotto.create(lotto, bonusNumber, purchaseAmount);
         winningLottos = LottoManager.generateWinningLottos(purchaseAmount.getPurchaseAmount());
 
         lottoManager = LottoManager.create(winningLottos, player);

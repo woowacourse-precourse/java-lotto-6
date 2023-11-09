@@ -1,10 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.LottoManager;
+import lotto.domain.lottoManage.LottoManager;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
-import lotto.domain.player.Player;
-import lotto.domain.PurchaseAmount;
+import lotto.domain.lotto.PlayerLotto;
+import lotto.domain.lottoManage.PurchaseAmount;
 import lotto.dto.response.PrizeResponse;
 import lotto.view.View;
 
@@ -23,9 +23,9 @@ public class LottoController {
         Lotto lotto = prepareLotto();
         LottoNumber bonusNumber = prepareBonusNumber();
 
-        Player player = preparePlayer(purchaseAmount, lotto, bonusNumber);
+        PlayerLotto playerLotto = preparePlayer(purchaseAmount, lotto, bonusNumber);
 
-        return LottoManager.create(winningLottos, player);
+        return LottoManager.create(winningLottos, playerLotto);
     }
 
     private PurchaseAmount preparePurchaseAmount() {
@@ -50,8 +50,8 @@ public class LottoController {
         return LottoNumber.create(View.readBonusNumber());
     }
 
-    private Player preparePlayer(PurchaseAmount purchaseAmount, Lotto lotto, LottoNumber bonusNumber) {
-        return Player.create(lotto, bonusNumber, purchaseAmount);
+    private PlayerLotto preparePlayer(PurchaseAmount purchaseAmount, Lotto lotto, LottoNumber bonusNumber) {
+        return PlayerLotto.create(lotto, bonusNumber, purchaseAmount);
     }
 
     private void printResult(LottoManager lottoManager) {

@@ -1,22 +1,22 @@
-package lotto.domain.player;
+package lotto.domain.lotto;
 
-import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoNumber;
-public class Player {
+import lotto.domain.lottoManage.PurchaseAmount;
+
+public class PlayerLotto {
 
     private Lotto lotto;
     private LottoNumber bonusNumber;
 
     private PurchaseAmount purchaseAmount;
 
-    private Player(Lotto lotto, LottoNumber bonusNumber, PurchaseAmount purchaseAmount) {
+    private PlayerLotto(Lotto lotto, LottoNumber bonusNumber, PurchaseAmount purchaseAmount) {
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
         this.purchaseAmount = purchaseAmount;
     }
 
-    public static Player create(Lotto lotto, LottoNumber bonusNumber, PurchaseAmount purchaseAmount) {
-        return new Player(lotto, bonusNumber, purchaseAmount);
+    public static PlayerLotto create(Lotto lotto, LottoNumber bonusNumber, PurchaseAmount purchaseAmount) {
+        return new PlayerLotto(lotto, bonusNumber, purchaseAmount);
     }
 
     public int getPurchasedLottoCount() {

@@ -1,8 +1,8 @@
-package lotto.domain;
+package lotto.domain.lottoManage;
 
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.player.Player;
+import lotto.domain.lotto.PlayerLotto;
 import lotto.dto.response.PrizeResponse;
 import lotto.util.RandomUtil;
 
@@ -11,15 +11,15 @@ import java.util.*;
 public class LottoManager {
 
     private List<Lotto> winningLottos;
-    private Player player;
+    private PlayerLotto playerLotto;
 
-    private LottoManager(List<Lotto> winningLottos, Player player) {
+    private LottoManager(List<Lotto> winningLottos, PlayerLotto playerLotto) {
         this.winningLottos = winningLottos;
-        this.player = player;
+        this.playerLotto = playerLotto;
     }
 
-    public static LottoManager create(List<Lotto> winningLottos, Player player) {
-        return new LottoManager(winningLottos, player);
+    public static LottoManager create(List<Lotto> winningLottos, PlayerLotto playerLotto) {
+        return new LottoManager(winningLottos, playerLotto);
     }
 
     public static List<Lotto> generateWinningLottos(int purchasedLottoCount) {
@@ -35,11 +35,11 @@ public class LottoManager {
     }
 
     private int getPurchasedLottoCount() {
-        return player.getPurchasedLottoCount();
+        return playerLotto.getPurchasedLottoCount();
     }
 
     public List<PrizeResponse> getWinningResult() {
-        List<Prize> winningPrizes = getWinningPrizes(player);
+        List<Prize> winningPrizes = getWinningPrizes(playerLotto);
         Map<Prize, Integer> winningCounts = getWinningCountForEachPrize(winningPrizes);
 
         return winningCounts.entrySet().stream()
@@ -57,12 +57,12 @@ public class LottoManager {
         return winningCounts;
     }
 
-    private List<Prize> getWinningPrizes(Player player) {
+    private List<Prize> getWinningPrizes(PlayerLotto playerLotto) {
         List<Prize> prizes = new ArrayList<>();
         for (int i = 0; i < getPurchasedLottoCount(); i++) {
             Lotto winningLotto = winningLottos.get(i);
-            int matchingNumberCount = winningLotto.getMatchingNumberCount(player.getLotto());
-            prizes.add(getWinningPrize(matchingNumberCount, winningLotto.hasBonusNumber(player.getBonusNumber())));
+            int matchingNumberCount = winningLotto.getMatchingNumberCount(playerLotto.getLotto());
+            prizes.add(getWinningPrize(matchingNumberCount, winningLotto.hasBonusNumber(playerLotto.getBonusNumber())));
         }
         return prizes;
     }
@@ -78,7 +78,7 @@ public class LottoManager {
     }
 
     public double calculateProfitRate(List<PrizeResponse> prizeResponses) {
-        int purchaseAmount = player.getPurchaseAmount();
+        int purchaseAmount = playerLotto.getPurchaseAmount();
         int totalProfit = 0;
         for (PrizeResponse prizeResponse : prizeResponses) {
             totalProfit += prizeResponse.getPrizeMoney();

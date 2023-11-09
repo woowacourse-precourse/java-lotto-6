@@ -1,6 +1,8 @@
 package lotto.service;
 
-import lotto.constants.LottoRankConstants;
+import static lotto.constants.LottoConstants.INCREASING_UNIT;
+
+import lotto.constants.RankConstants;
 import lotto.domain.LottoRankEvaluator;
 import lotto.domain.LottoRanks;
 import lotto.dto.Lotto;
@@ -13,15 +15,15 @@ public class LottoDrawService {
     public LottoRanks evaluateRanks(WinningLotto winningLotto, Lottos purchasedLottos) {
         LottoRankEvaluator lottoRankEvaluator = new LottoRankEvaluator(winningLotto);
         for (Lotto purchasedLotto : purchasedLottos.lottos()) {
-            LottoRankConstants rank = lottoRankEvaluator.compareWithWinningLotto(purchasedLotto);
+            RankConstants rank = lottoRankEvaluator.compareWithWinningLotto(purchasedLotto);
             lottoRanks.recordRank(rank);
         }
         return lottoRanks;
     }
 
     public int getWinningAmount() {
-        int totalAmount = 0;
-        for (LottoRankConstants rank : LottoRankConstants.values()) {
+        int totalAmount = INCREASING_UNIT;
+        for (RankConstants rank : RankConstants.values()) {
             totalAmount += lottoRanks.getRankCount(rank) * rank.getPrizeAmount();
         }
         return totalAmount;

@@ -1,6 +1,11 @@
 package lotto.validator;
 
-import lotto.constants.ValidationConstants;
+import static lotto.constants.LottoConstants.LOTTO_TOTAL_NUMBERS;
+import static lotto.constants.LottoConstants.MAX_NUMBER;
+import static lotto.constants.LottoConstants.MIN_NUMBER;
+import static lotto.constants.ValidationConstants.ERROR_DUPLICATE_LOTTO_NUMBER;
+import static lotto.constants.ValidationConstants.ERROR_INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.constants.ValidationConstants.ERROR_OUT_OF_RANGE_LOTTO_NUMBER;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,10 +13,6 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoNumbersValidator {
-    private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-
     private LottoNumbersValidator() {
     }
 
@@ -30,21 +31,21 @@ public class LottoNumbersValidator {
     }
 
     private static void validateCountOfLottoNumbers(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException(ValidationConstants.ERROR_INVALID_LOTTO_NUMBER_COUNT.getMessage());
+        if (numbers.size() != LOTTO_TOTAL_NUMBERS) {
+            throw new IllegalArgumentException(ERROR_INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
     private static void validateRangeOfEachNumber(int number) {
-        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException(ValidationConstants.ERROR_OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE_LOTTO_NUMBER.getMessage());
         }
     }
 
     public static void validateUniquenessOfNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(ValidationConstants.ERROR_DUPLICATE_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(ERROR_DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 }

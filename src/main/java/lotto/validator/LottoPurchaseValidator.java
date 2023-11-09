@@ -1,10 +1,9 @@
 package lotto.validator;
 
-import lotto.constants.ValidationConstants;
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.ValidationConstants.ERROR_INVALID_PURCHASE_AMOUNT;
 
 public class LottoPurchaseValidator {
-    private static final int PURCHASE_UNIT = 1000; // Assuming that the purchase must be in units of 1000
-
     private LottoPurchaseValidator() {
     }
 
@@ -13,8 +12,8 @@ public class LottoPurchaseValidator {
     }
 
     private static void validateAmountForThousand(int amount) {
-        if (amount % PURCHASE_UNIT != 0) {
-            throw new IllegalArgumentException(ValidationConstants.ERROR_INVALID_PURCHASE_AMOUNT.getMessage());
+        if (amount % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException(ERROR_INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 }

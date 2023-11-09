@@ -1,6 +1,9 @@
 package lotto.service;
 
+import static lotto.constants.LottoConstants.LOTTO_PRICE;
+
 import java.util.Comparator;
+import java.util.stream.IntStream;
 import lotto.domain.Purchases;
 import lotto.dto.Lotto;
 import lotto.dto.Lottos;
@@ -12,13 +15,11 @@ public class PurchaseService {
 
     public int getCountOfPurchasable(int amount) {
         LottoPurchaseValidator.validatePurchase(amount);
-        return amount / 1000;
+        return amount / LOTTO_PRICE;
     }
 
     public Lottos purchaseLottoForCount(int count) {
-        for (int i = 0; i < count; i++) {
-            purchases.recordPurchase(generateEachLotto());
-        }
+        IntStream.range(0, count).forEach(i -> purchases.recordPurchase(generateEachLotto()));
         return purchases.findLottos();
     }
 

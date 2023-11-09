@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.constants.LottoRankConstants;
+import lotto.constants.RankConstants;
 import lotto.domain.LottoRanks;
 import lotto.dto.Lotto;
 import lotto.dto.Lottos;
@@ -83,7 +83,7 @@ public class LottoGameController {
     private void displayWinningResult(LottoRanks lottoRanks) {
         OutputView.newLine();
         OutputView.printMessage(OutputView.STATISTICS_MESSAGE);
-        for (LottoRankConstants rank : LottoRankConstants.values()) {
+        for (RankConstants rank : RankConstants.values()) {
             OutputView.printWinningLottoResult(rank, lottoRanks.getRankCount(rank));
         }
     }

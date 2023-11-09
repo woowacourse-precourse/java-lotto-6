@@ -2,7 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.constants.LottoRankConstants;
+import lotto.constants.RankConstants;
 
 public class OutputView {
     public static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -26,8 +26,8 @@ public class OutputView {
         printMessage("[" + lottoResult + "]");
     }
 
-    public static void printWinningLottoResult(final LottoRankConstants rank, final int count) {
-        if (!rank.equals(LottoRankConstants.NONE)) {
+    public static void printWinningLottoResult(final RankConstants rank, final int count) {
+        if (!rank.equals(RankConstants.NONE)) {
             printMessage(rank.getMessage() + count + COUNT_UNIT);
         }
     }

@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum LottoRankConstants {
+public enum RankConstants {
     FIFTH(5_000, "3개 일치 (5,000원) - "),
     FOURTH(50_000, "4개 일치 (50,000원) - "),
     THIRD(1_500_000, "5개 일치 (1,500,000원) - "),
@@ -11,12 +11,12 @@ public enum LottoRankConstants {
     private final int prizeAmount;
     private final String message;
 
-    LottoRankConstants(int prizeAmount, String message) {
+    RankConstants(int prizeAmount, String message) {
         this.prizeAmount = prizeAmount;
         this.message = message;
     }
 
-    public static LottoRankConstants valueOf(int hitCount, boolean bonusMatch) {
+    public static RankConstants valueOf(int hitCount, boolean bonusMatch) {
         if (hitCount == 6) {
             return FIRST;
         }

@@ -1,10 +1,10 @@
 package lotto.validator;
 
-import lotto.constants.ValidationConstants;
+import static lotto.constants.LottoConstants.ZERO;
+import static lotto.constants.ValidationConstants.ERROR_NEGATIVE_NUMBER;
+import static lotto.constants.ValidationConstants.ERROR_NOT_A_NUMBER;
 
 public class InputNumberValidator {
-    private static final int MIN_POSITIVE_NUMBER = 0;
-
     private InputNumberValidator() {
     }
 
@@ -17,13 +17,13 @@ public class InputNumberValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ValidationConstants.ERROR_NOT_A_NUMBER.getMessage());
+            throw new IllegalArgumentException(ERROR_NOT_A_NUMBER.getMessage());
         }
     }
 
     private static void validatePositiveInteger(int number) {
-        if (number < MIN_POSITIVE_NUMBER) {
-            throw new IllegalArgumentException(ValidationConstants.ERROR_NEGATIVE_NUMBER.getMessage());
+        if (number < ZERO) {
+            throw new IllegalArgumentException(ERROR_NEGATIVE_NUMBER.getMessage());
         }
     }
 }

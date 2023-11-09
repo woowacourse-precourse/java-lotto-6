@@ -1,6 +1,9 @@
 package lotto.domain;
 
-import lotto.constants.LottoRankConstants;
+import static lotto.constants.LottoConstants.INCREASING_UNIT;
+import static lotto.constants.LottoConstants.INITIAL_VALUE;
+
+import lotto.constants.RankConstants;
 import lotto.dto.Lotto;
 import lotto.dto.WinningLotto;
 
@@ -11,11 +14,11 @@ public class LottoRankEvaluator {
         this.winningLotto = winningLotto;
     }
 
-    public LottoRankConstants compareWithWinningLotto(Lotto purchasedLotto) {
+    public RankConstants compareWithWinningLotto(Lotto purchasedLotto) {
         int hitCountOfLottoNumbers = getHitCountOfLottoNumbers(purchasedLotto);
         boolean hasBonusNumber = isHasBonusNumber(purchasedLotto);
 
-        return LottoRankConstants.valueOf(hitCountOfLottoNumbers, hasBonusNumber);
+        return RankConstants.valueOf(hitCountOfLottoNumbers, hasBonusNumber);
     }
 
     private boolean isHasBonusNumber(Lotto purchasedLotto) {
@@ -23,10 +26,10 @@ public class LottoRankEvaluator {
     }
 
     private int getHitCountOfLottoNumbers(Lotto purchasedLotto) {
-        int hitCount = 0;
+        int hitCount = INITIAL_VALUE;
         for (int number : winningLotto.winningLottoNumbers()) {
             if (purchasedLotto.numbers().contains(number)) {
-                hitCount += 1;
+                hitCount += INCREASING_UNIT;
             }
         }
         return hitCount;

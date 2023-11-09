@@ -27,13 +27,11 @@ public class InputView {
         return splittedNumber;
     }
 
-    public String readBonusNumber(){
+    public int readBonusNumber(){
         System.out.println("보너스 번호를 입력해주세요.");
-        return Console.readLine();
-    }
-    private String[] spliteString(String input){
-        String[] splittedNumber = input.split(",");
-        return splittedNumber;
+        String userInput = Console.readLine();
+        int bonusNumber = validateStringToInteger(userInput);
+        return bonusNumber;
     }
 
     private int validateStringToInteger(String number){

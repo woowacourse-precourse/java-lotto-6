@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.PrizeCondition;
 import lotto.dto.PurchasedLottosDto;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -52,36 +53,9 @@ public class OutputView {
     }
 
     private static void printPrizeResult(Map<PrizeCondition, Long> prizeResult) {
-        printFifthPrizeResult(prizeResult.getOrDefault(PrizeCondition.FIFTH, 0L));
-        printFourthPrizeResult(prizeResult.getOrDefault(PrizeCondition.FOURTH, 0L));
-        printThirdPrizeResult(prizeResult.getOrDefault(PrizeCondition.THIRD, 0L));
-        printSecondPrizeResult(prizeResult.getOrDefault(PrizeCondition.SECOND, 0L));
-        printFirstPrizeResult(prizeResult.getOrDefault(PrizeCondition.FIRST, 0L));
-    }
-
-    private static void printFifthPrizeResult(long count) {
-        String fifthPrizeResultMessage = String.format(FIFTH_PRIZE_RESULT_MESSAGE_FORMAT, count);
-        System.out.println(fifthPrizeResultMessage);
-    }
-
-    private static void printFourthPrizeResult(long count) {
-        String fourthPrizeResultMessage = String.format(FOURTH_PRIZE_RESULT_MESSAGE_FORMAT, count);
-        System.out.println(fourthPrizeResultMessage);
-    }
-
-    private static void printThirdPrizeResult(long count) {
-        String thirdPrizeResultMessage = String.format(THIRD_PRIZE_RESULT_MESSAGE_FORMAT, count);
-        System.out.println(thirdPrizeResultMessage);
-    }
-
-    private static void printSecondPrizeResult(long count) {
-        String secondPrizeResultMessage = String.format(SECOND_PRIZE_RESULT_MESSAGE_FORMAT, count);
-        System.out.println(secondPrizeResultMessage);
-    }
-
-    private static void printFirstPrizeResult(long count) {
-        String firstPrizeResultMessage = String.format(FIRST_PRIZE_RESULT_MESSAGE_FORMAT, count);
-        System.out.println(firstPrizeResultMessage);
+        Arrays.stream(PrizeCondition.values()).forEach(prizeCondition ->
+                System.out.printf((prizeCondition.getPrizeResultFormat()) + "%n",
+                        prizeResult.getOrDefault(prizeCondition, 0L)));
     }
 
     private static void printProfit(double profit) {

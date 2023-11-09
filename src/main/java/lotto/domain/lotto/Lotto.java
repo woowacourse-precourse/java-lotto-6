@@ -23,14 +23,14 @@ public class Lotto {
     public int getMatchingNumberCount(Lotto playerLotto) {
         return (int) lottoNumbers
                 .stream()
-                .filter(winningLottoNumber -> playerLotto.getIntegerNumbers().contains(winningLottoNumber.getLottoNumber()))
+                .filter(winningLottoNumber -> playerLotto.getIntegerNumbers().contains(winningLottoNumber.getPrimitiveLottoNumber()))
                 .count();
     }
 
     public boolean hasBonusNumber(Integer playerBonusNumber) {
         return lottoNumbers
                 .stream()
-                .anyMatch(lottoNumber -> Objects.equals(lottoNumber.getLottoNumber(), playerBonusNumber));
+                .anyMatch(lottoNumber -> Objects.equals(lottoNumber.getPrimitiveLottoNumber(), playerBonusNumber));
     }
 
     private static void validateLottoNumber(List<Integer> numbers) {
@@ -71,7 +71,7 @@ public class Lotto {
 
     public List<Integer> getIntegerNumbers() {
         return lottoNumbers.stream()
-                .map(LottoNumber::getLottoNumber)
+                .map(LottoNumber::getPrimitiveLottoNumber)
                 .toList();
     }
 

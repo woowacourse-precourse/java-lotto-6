@@ -51,7 +51,7 @@ class PurchaseAmountTest {
         PurchaseAmount purchaseAmount = PurchaseAmount.create(5000);
 
         //when
-        int purchasedLottoCount = purchaseAmount.calculatePurchasedLottoCount(purchaseAmount);
+        int purchasedLottoCount = purchaseAmount.calculatePurchasedLottoCount();
 
         //then
         Assertions.assertThat(purchasedLottoCount).isEqualTo(5);

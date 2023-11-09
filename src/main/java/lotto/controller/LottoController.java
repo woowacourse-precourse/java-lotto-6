@@ -20,26 +20,22 @@ public class LottoController {
 
     private LottoManager prepareGame() {
         PurchaseAmount purchaseAmount = preparePurchaseAmount();
-        List<Lotto> winningLottos = generateWinningLottos(getPurchasedLottoCount(purchaseAmount));
+        List<Lotto> winningLottos = generateWinningLottos(purchaseAmount);
         Lotto lotto = prepareLotto();
         LottoNumber bonusNumber = prepareBonusNumber();
 
-        PlayerLotto playerLotto = preparePlayer(purchaseAmount, lotto, bonusNumber);
+        PlayerLotto playerLotto = preparePlayer(lotto, bonusNumber);
 
-        return LottoManager.create(winningLottos, playerLotto);
+        return LottoManager.create(winningLottos, purchaseAmount, playerLotto);
     }
 
     private PurchaseAmount preparePurchaseAmount() {
         return PurchaseAmount.create(View.readPurchaseAmount());
     }
 
-    private int getPurchasedLottoCount(PurchaseAmount purchaseAmount) {
-        return purchaseAmount.calculatePurchasedLottoCount(purchaseAmount);
-    }
-
-    private List<Lotto> generateWinningLottos(int purchasedLottoCount) {
-        List<Lotto> winningLottos = LottoGenerator.generateWinningLottos(purchasedLottoCount);
-        View.printWinningLottosMessage(winningLottos, purchasedLottoCount);
+    private List<Lotto> generateWinningLottos(PurchaseAmount purchaseAmount) {
+        List<Lotto> winningLottos = LottoGenerator.generateWinningLottos(purchaseAmount);
+        View.printWinningLottosMessage(winningLottos, purchaseAmount.calculatePurchasedLottoCount());
         return winningLottos;
     }
 
@@ -51,8 +47,8 @@ public class LottoController {
         return LottoNumber.create(View.readBonusNumber());
     }
 
-    private PlayerLotto preparePlayer(PurchaseAmount purchaseAmount, Lotto lotto, LottoNumber bonusNumber) {
-        return PlayerLotto.create(lotto, bonusNumber, purchaseAmount);
+    private PlayerLotto preparePlayer(Lotto lotto, LottoNumber bonusNumber) {
+        return PlayerLotto.create(lotto, bonusNumber);
     }
 
     private void printResult(LottoManager lottoManager) {

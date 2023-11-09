@@ -33,11 +33,11 @@ public class PurchaseAmount {
         return purchaseAmount % LOTTO_PRICE.getNumber() != 0;
     }
 
-    public int calculatePurchasedLottoCount(PurchaseAmount purchaseAmount) {
-        return purchaseAmount.getPurchaseAmount() / 1000;
+    public int calculatePurchasedLottoCount() {
+        return purchaseAmount / LOTTO_PRICE.getNumber();
     }
 
-    public Integer getPurchaseAmount() {
+    public Integer getPrimitivePurchaseAmount() {
         return purchaseAmount;
     }
 }

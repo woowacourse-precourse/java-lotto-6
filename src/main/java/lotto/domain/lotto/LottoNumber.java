@@ -35,7 +35,7 @@ public class LottoNumber {
         return lottoNumber < MINIMUM_LOTTO_NUMBER.getNumber() || lottoNumber > MAXIMUM_LOTTO_NUMBER.getNumber();
     }
 
-    public Integer getLottoNumber() {
+    public Integer getPrimitiveLottoNumber() {
         return lottoNumber;
     }
 }

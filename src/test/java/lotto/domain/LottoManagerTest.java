@@ -3,10 +3,10 @@ package lotto.domain;
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
+import lotto.domain.lotto.PlayerLotto;
 import lotto.domain.lottoManage.LottoGenerator;
 import lotto.domain.lottoManage.LottoManager;
 import lotto.domain.lottoManage.PurchaseAmount;
-import lotto.domain.lotto.PlayerLotto;
 import lotto.dto.response.PrizeResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.config.GameConfig.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoManagerTest {
 
@@ -37,22 +37,22 @@ class LottoManagerTest {
         lotto = Lotto.create(numbers);
         bonusNumber = LottoNumber.create(7);
         purchaseAmount = PurchaseAmount.create(8000);
-        player = PlayerLotto.create(lotto, bonusNumber, purchaseAmount);
-        winningLottos = LottoGenerator.generateWinningLottos(purchaseAmount.getPurchaseAmount());
+        player = PlayerLotto.create(lotto, bonusNumber);
+        winningLottos = LottoGenerator.generateWinningLottos(purchaseAmount);
 
-        lottoManager = LottoManager.create(winningLottos, player);
+        lottoManager = LottoManager.create(winningLottos, purchaseAmount, player);
     }
 
     @Test
     @DisplayName("범위 내의 랜덤한 6자리 숫자를 생성한다.")
     void generateWinningLottos() {
         // given
-        Lotto winningLotto = LottoGenerator.generateWinningLottos(1).get(0);
+        Lotto winningLotto = LottoGenerator.generateWinningLottos(PurchaseAmount.create(1)).get(0);
 
         // when
         List<Integer> numbers = winningLotto.getLottoNumbers()
                 .stream()
-                .map(LottoNumber::getLottoNumber)
+                .map(LottoNumber::getPrimitiveLottoNumber)
                 .toList();
 
         // then

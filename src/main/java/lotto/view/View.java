@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lottoManage.PurchaseAmount;
 import lotto.dto.response.PrizeResponse;
 
 import java.util.List;

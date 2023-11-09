@@ -1,7 +1,9 @@
 package lotto.view;
 
+import lotto.config.GameConfig;
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lottoManage.PurchaseAmount;
 import lotto.dto.response.PrizeResponse;
 import lotto.util.OutputUtil;
 import lotto.view.constant.PrizeMessage;

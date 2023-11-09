@@ -14,19 +14,21 @@ import java.util.Map;
 public class LottoManager {
 
     private List<Lotto> winningLottos;
+    private PurchaseAmount purchaseAmount;
     private PlayerLotto playerLotto;
 
-    private LottoManager(List<Lotto> winningLottos, PlayerLotto playerLotto) {
+    private LottoManager(List<Lotto> winningLottos, PurchaseAmount purchaseAmount, PlayerLotto playerLotto) {
         this.winningLottos = winningLottos;
+        this.purchaseAmount = purchaseAmount;
         this.playerLotto = playerLotto;
     }
 
-    public static LottoManager create(List<Lotto> winningLottos, PlayerLotto playerLotto) {
-        return new LottoManager(winningLottos, playerLotto);
+    public static LottoManager create(List<Lotto> winningLottos, PurchaseAmount purchaseAmount, PlayerLotto playerLotto) {
+        return new LottoManager(winningLottos, purchaseAmount, playerLotto);
     }
 
     private int getPurchasedLottoCount() {
-        return playerLotto.getPurchasedLottoCount();
+        return purchaseAmount.calculatePurchasedLottoCount();
     }
 
     public List<PrizeResponse> getWinningResult() {
@@ -69,12 +71,15 @@ public class LottoManager {
     }
 
     public double calculateProfitRate(List<PrizeResponse> prizeResponses) {
-        int purchaseAmount = playerLotto.getPurchaseAmount();
         int totalProfit = 0;
         for (PrizeResponse prizeResponse : prizeResponses) {
             totalProfit += prizeResponse.getPrizeMoney();
         }
-        double value = ((double) totalProfit / purchaseAmount) * 100;
+        double value = getPercentage(totalProfit);
         return Math.round(value * 100.0) / 100.0;
+    }
+
+    private double getPercentage(double totalProfit) {
+        return (totalProfit / purchaseAmount.getPrimitivePurchaseAmount()) * 100;
     }
 }

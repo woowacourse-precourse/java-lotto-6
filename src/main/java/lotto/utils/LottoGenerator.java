@@ -17,7 +17,7 @@ public class LottoGenerator {
         List<Lotto> lottos = IntStream.iterate(0, i -> i < quantity, i -> i + 1)
                 .mapToObj(i -> generateLotto())
                 .collect(Collectors.toList());
-        return Lottos.create(lottos);
+        return Lottos.from(lottos);
     }
 
     private static Lotto generateLotto() {

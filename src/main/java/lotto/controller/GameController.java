@@ -37,7 +37,7 @@ public class GameController {
 
     private void initializeGameManager() {
         LottoPurchaseAmount lottoPurchaseAmount = readPurchaseAmountFromUser();
-        gameManager = GameManager.create(lottoPurchaseAmount);
+        gameManager = GameManager.from(lottoPurchaseAmount);
     }
 
     private LottoPurchaseAmount readPurchaseAmountFromUser() {

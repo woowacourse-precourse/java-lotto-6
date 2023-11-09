@@ -12,7 +12,7 @@ public class LottoPurchaseAmount {
         this.amount = amount;
     }
 
-    public static LottoPurchaseAmount create(String inputAmountFromUser) {
+    public static LottoPurchaseAmount from(String inputAmountFromUser) {
         long purchaseAmount = LottoValidator.validateNumeric(inputAmountFromUser);
         validatePurchaseAmount(purchaseAmount);
         return new LottoPurchaseAmount(purchaseAmount);

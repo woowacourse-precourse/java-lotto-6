@@ -20,7 +20,7 @@ public class LottoResultGenerator {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public static LottoResultGenerator create(WinningLotto winningLotto, LottoPurchaseAmount purchaseAmount) {
+    public static LottoResultGenerator of(WinningLotto winningLotto, LottoPurchaseAmount purchaseAmount) {
         return new LottoResultGenerator(winningLotto, purchaseAmount);
     }
 

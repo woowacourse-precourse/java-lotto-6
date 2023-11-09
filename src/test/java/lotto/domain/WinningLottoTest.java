@@ -14,7 +14,7 @@ class WinningLottoTest {
     @Test
     void create() {
         // given
-        winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
+        winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
         String bonusNumber = "7";
 
         //when
@@ -28,7 +28,7 @@ class WinningLottoTest {
     @Test
     void cannotCreate_duplicate() {
         // given
-        winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
+        winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
         String bonusNumber = "1";
 
         // when, then

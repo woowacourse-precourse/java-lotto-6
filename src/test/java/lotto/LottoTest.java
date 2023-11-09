@@ -51,7 +51,7 @@ class LottoTest {
     void compareNumbers() {
         // given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumbers winningNumbers = WinningNumbers.create("1,2,3,4,5,7");
+        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,7");
         String bonusNumber = "8";
         WinningLotto winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
 

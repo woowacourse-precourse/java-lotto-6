@@ -16,7 +16,7 @@ class WinningNumbersTest {
         String input = "1,2,3,4,5,6";
 
         // when
-        WinningNumbers winningNumbers = WinningNumbers.create(input);
+        WinningNumbers winningNumbers = WinningNumbers.from(input);
 
         // then
         assertThat(winningNumbers.getNumbers().size()).isEqualTo(6);
@@ -26,7 +26,7 @@ class WinningNumbersTest {
     @ValueSource(strings = {"", " ", ",1", "1,", ",,,", "1,2,3,4,5,6,", "1.2.3.4.5.6", "1,2,3 ,4",
             "1,1,2,3,4,5", "-1,4,5,6,7,8", "1,46,3,4,5,6"})
     void cannotCreateWinningLottos(String input) {
-        assertThatThrownBy(() -> WinningNumbers.create(input))
+        assertThatThrownBy(() -> WinningNumbers.from(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

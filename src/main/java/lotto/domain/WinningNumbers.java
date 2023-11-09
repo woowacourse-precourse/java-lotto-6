@@ -16,7 +16,7 @@ public class WinningNumbers extends Lotto {
         this.numbers = numbers;
     }
 
-    public static WinningNumbers create(String input) {
+    public static WinningNumbers from(String input) {
         List<Integer> validInput = validate(input);
         return new WinningNumbers(validInput);
     }

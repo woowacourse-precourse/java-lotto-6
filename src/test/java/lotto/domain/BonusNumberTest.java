@@ -16,7 +16,7 @@ class BonusNumberTest {
         String input = "1";
 
         // when
-        BonusNumber bonusNumber = BonusNumber.create(input);
+        BonusNumber bonusNumber = BonusNumber.from(input);
 
         // then
         assertThat(bonusNumber).isNotNull();
@@ -28,7 +28,7 @@ class BonusNumberTest {
     @ValueSource(strings = {"", "we", "47", "0", "-1"})
         //when, then
     void cannotCreateBonusNumber(String element) {
-        assertThatThrownBy(() -> BonusNumber.create(element))
+        assertThatThrownBy(() -> BonusNumber.from(element))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

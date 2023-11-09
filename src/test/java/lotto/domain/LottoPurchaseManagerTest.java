@@ -12,8 +12,8 @@ public class LottoPurchaseManagerTest {
     void create() {
         //given
         String purchaseAmountInput = "10000";
-        LottoPurchaseAmount lottoPurchaseAmount = LottoPurchaseAmount.create(purchaseAmountInput);
-        LottoPurchaseManager lottoPurchaseManager = LottoPurchaseManager.create(lottoPurchaseAmount);
+        LottoPurchaseAmount lottoPurchaseAmount = LottoPurchaseAmount.from(purchaseAmountInput);
+        LottoPurchaseManager lottoPurchaseManager = LottoPurchaseManager.from(lottoPurchaseAmount);
 
         //when, then
         assertThat(lottoPurchaseManager.getLottos().getLottos()).isNotNull();

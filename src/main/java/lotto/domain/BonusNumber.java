@@ -9,7 +9,7 @@ public class BonusNumber {
         this.number = validate(input);
     }
 
-    public static BonusNumber create(String input) {
+    public static BonusNumber from(String input) {
         return new BonusNumber(input);
     }
 

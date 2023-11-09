@@ -20,7 +20,7 @@ class LottosTest {
         lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 8));
-        lottos = Lottos.create(List.of(lotto1, lotto2, lotto3));
+        lottos = Lottos.from(List.of(lotto1, lotto2, lotto3));
     }
 
     @DisplayName("Lottos 생성 테스트")
@@ -34,7 +34,7 @@ class LottosTest {
     @Test
     void providePrizeConditions() {
         //given
-        WinningNumbers winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
+        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
         String bonusNumberInput = "8";
         WinningLotto winningLotto = WinningLotto.create(winningNumbers, bonusNumberInput);
 

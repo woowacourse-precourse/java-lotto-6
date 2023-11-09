@@ -15,7 +15,7 @@ public class LottoPurchaseManager {
         lottos = createLottos();
     }
 
-    public static LottoPurchaseManager create(LottoPurchaseAmount lottoPurchaseAmount) {
+    public static LottoPurchaseManager from(LottoPurchaseAmount lottoPurchaseAmount) {
         return new LottoPurchaseManager(lottoPurchaseAmount);
     }
 

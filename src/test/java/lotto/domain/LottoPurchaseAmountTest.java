@@ -9,7 +9,7 @@ class LottoPurchaseAmountTest {
     @ParameterizedTest(name = "[{index}] 구입금액이 ''{0}''이면 LottoPurchaseAmountTest 생성 시 예외가 발생한다.")
     @ValueSource(strings = {"10100", "0", "-1000", "abc", "", " "})
     void cannotCreate(String element) {
-        assertThatThrownBy(() -> LottoPurchaseAmount.create(element))
+        assertThatThrownBy(() -> LottoPurchaseAmount.from(element))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

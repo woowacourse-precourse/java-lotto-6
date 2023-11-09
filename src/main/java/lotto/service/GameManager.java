@@ -12,10 +12,10 @@ public class GameManager {
     private LottoResultGenerator lottoResultGenerator;
 
     private GameManager(LottoPurchaseAmount lottoPurchaseAmount) {
-        this.lottoPurchaseManager = LottoPurchaseManager.create(lottoPurchaseAmount);
+        this.lottoPurchaseManager = LottoPurchaseManager.from(lottoPurchaseAmount);
     }
 
-    public static GameManager create(LottoPurchaseAmount lottoPurchaseAmount) {
+    public static GameManager from(LottoPurchaseAmount lottoPurchaseAmount) {
         return new GameManager(lottoPurchaseAmount);
     }
 
@@ -36,6 +36,6 @@ public class GameManager {
     }
 
     private void initializeLottoResultGenerator(WinningLotto winningLotto) {
-        lottoResultGenerator = LottoResultGenerator.create(winningLotto, lottoPurchaseManager.getPurchaseAmount());
+        lottoResultGenerator = LottoResultGenerator.of(winningLotto, lottoPurchaseManager.getPurchaseAmount());
     }
 }

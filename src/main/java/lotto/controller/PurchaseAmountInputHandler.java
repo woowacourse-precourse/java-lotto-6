@@ -22,7 +22,7 @@ public class PurchaseAmountInputHandler {
         while (true) {
             try {
                 String purchaseAmountInput = inputView.readInputFromUser();
-                return LottoPurchaseAmount.create(purchaseAmountInput);
+                return LottoPurchaseAmount.from(purchaseAmountInput);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

@@ -21,19 +21,19 @@ class LottoResultGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        purchaseAmount = LottoPurchaseAmount.create("10000");
+        purchaseAmount = LottoPurchaseAmount.from("10000");
 
         List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> numbers2 = Arrays.asList(1, 2, 3, 4, 5, 7);
         List<Integer> numbers3 = Arrays.asList(1, 2, 3, 5, 7, 8);
 
-        winningNumbers = WinningNumbers.create("1,2,3,4,5,6");
+        winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
         String bonusNumber = "8";
         winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
 
-        lottoResultGenerator = LottoResultGenerator.create(winningLotto, purchaseAmount);
+        lottoResultGenerator = LottoResultGenerator.of(winningLotto, purchaseAmount);
         List<Lotto> severalLottos = new ArrayList<>(List.of(new Lotto(numbers1), new Lotto(numbers2), new Lotto(numbers3)));
-        lottos = Lottos.create(severalLottos);
+        lottos = Lottos.from(severalLottos);
     }
 
     @DisplayName("랭킹을 계산한다.")

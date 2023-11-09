@@ -71,6 +71,9 @@ public class LottoController {
             Output.printLottoBonusNumber();
             String bonusNumberInput = Input.user();
             this.bonusNumber = new BonusNumber(bonusNumberInput);
+            this.bonusNumber
+                    .checkDuplicationFromWinNumbers(this.bonusNumber
+                    .getBonusNumber(), winNumbers.getWinNumbers());
         } catch(IllegalStateException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputLottoBonusNumber();

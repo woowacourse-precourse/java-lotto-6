@@ -28,21 +28,21 @@ public class Customer {
 
     private void valid(List<Integer> winningNumbers, int bonusNumber) {
         validWinningNumbers(winningNumbers);
-        validBonusNumber(bonusNumber);
-
+        validInRange(bonusNumber);
+        winningNumbers.forEach(this::validInRange);
         validNotDuplicateNumber(winningNumbers, bonusNumber);
     }
 
     private void validNotDuplicateNumber(List<Integer> winningNumbers, int bonusNumber) {
-        List<Integer> totals=new ArrayList<>(winningNumbers);
+        List<Integer> totals = new ArrayList<>(winningNumbers);
         totals.add(bonusNumber);
 
-        int count =(int) totals.stream().distinct()
+        int count = (int) totals.stream().distinct()
                 .count();
 
         boolean isExistDuplicateNumber = count <= LOTTO_NUMBER_LENGTH.value();
-        if(isExistDuplicateNumber){
-            throw new IllegalArgumentException(ERROR_PREFIX.getMessage()+"보너스 넘버가 당첨번호와 중복됩니다.");
+        if (isExistDuplicateNumber) {
+            throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + "보너스 넘버가 당첨번호와 중복됩니다.");
         }
     }
 
@@ -53,8 +53,8 @@ public class Customer {
         }
     }
 
-    private void validBonusNumber(int bonusNumber) {
-        if (bonusNumber < LOTTO_NUMBER_MINIMUM_VALUE.value() && bonusNumber > LOTTO_NUMBER_MAXIMUM_VALUE.value()) {
+    private void validInRange(int number) {
+        if (number < LOTTO_NUMBER_MINIMUM_VALUE.value() || number > LOTTO_NUMBER_MAXIMUM_VALUE.value()) {
             throw new IllegalArgumentException(ERROR_PREFIX.getMessage() + "유효하지 않는 보너스 번호입니다.");
         }
     }

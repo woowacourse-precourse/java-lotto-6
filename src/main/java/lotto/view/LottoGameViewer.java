@@ -1,11 +1,11 @@
 package lotto.view;
 
 import static lotto.engine.LottoSystemConstant.LOTTO_MONEY_MAXIMUM_VALUE;
+import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_LENGTH;
 import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_MAXIMUM_VALUE;
 import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_MINIMUM_VALUE;
-import static lotto.engine.LottoSystemConstant.LOTTO_PRICE;
-import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_LENGTH;
 import static lotto.engine.LottoSystemConstant.LOTTO_NUMBER_SEPARATOR;
+import static lotto.engine.LottoSystemConstant.LOTTO_PRICE;
 import static lotto.engine.LottoSystemConstant.TextMessage.ERROR_PREFIX;
 import static lotto.engine.LottoSystemConstant.TextMessage.INPUT_BONUS_NUMBER;
 import static lotto.engine.LottoSystemConstant.TextMessage.INPUT_MONEY_FOR_BUYING_LOTTO;
@@ -67,7 +67,7 @@ public class LottoGameViewer {
 
         while (isRetry) {
             try {
-                validBonusNumber(bonusNumber,numbers);
+                validBonusNumber(bonusNumber, numbers);
                 isRetry = false;
             } catch (IllegalArgumentException exception) {
                 println(() -> ERROR_PREFIX.getMessage() + exception.getMessage());
@@ -109,7 +109,7 @@ public class LottoGameViewer {
         validator.verifyNumber(bonusNumber);
         Integer number = lottoGameViewerMapper.toInt(bonusNumber);
 
-        if(numbers.contains(number)){
+        if (numbers.contains(number)) {
             throw new IllegalArgumentException("당첨번호와 같은 숫자는 입력할 수 없습니다.");
         }
 
@@ -123,8 +123,9 @@ public class LottoGameViewer {
         validator.verifyNullAndBlank(winningNumbers);
         List<String> numbers = lottoGameViewerMapper.toList(LOTTO_NUMBER_SEPARATOR, winningNumbers);
 
-        if (numbers.size() != LOTTO_NUMBER_LENGTH.value()) {
-            throw new IllegalArgumentException("유효한 길이가 아닙니다.");
+        int count = (int) numbers.stream().distinct().count();
+        if (count != LOTTO_NUMBER_LENGTH.value()) {
+            throw new IllegalArgumentException("중복된 숫자가 존재하거나 유효한 길이가 아닙니다.");
         }
 
         numbers.forEach(validator::verifyNumber);

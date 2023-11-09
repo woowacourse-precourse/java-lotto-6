@@ -3,7 +3,7 @@ package lotto.model;
 
 import static lotto.model.LottoAttribute.MAX_LOTTO_NUMBER;
 import static lotto.model.LottoAttribute.MIN_LOTTO_NUMBER;
-import static lotto.model.ErrorType.*;
+import static lotto.exception.ErrorType.*;
 
 import java.util.Objects;
 

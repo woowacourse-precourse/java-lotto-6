@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.exception;
 
 public enum ErrorType {
 

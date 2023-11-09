@@ -3,8 +3,8 @@ package lotto.model;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.counting;
 import static lotto.model.LottoAttribute.LOTTO_TICKET_SIZE;
-import static lotto.model.LottoErrorType.INVALID_TICKET_SIZE;
-import static lotto.model.LottoErrorType.NUMBERS_DUPLICATED;
+import static lotto.model.ErrorType.INVALID_TICKET_SIZE;
+import static lotto.model.ErrorType.NUMBERS_DUPLICATED;
 
 import java.util.HashSet;
 import java.util.List;

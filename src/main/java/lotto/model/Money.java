@@ -1,7 +1,7 @@
 package lotto.model;
 
-import static lotto.model.LottoErrorType.MONEY_CANT_DIVIDED_BY_PRIZE;
-import static lotto.model.LottoErrorType.MONEY_LESS_THAN_PRIZE;
+import static lotto.model.ErrorType.MONEY_CANT_DIVIDED_BY_PRIZE;
+import static lotto.model.ErrorType.MONEY_LESS_THAN_PRIZE;
 
 import java.math.BigDecimal;
 

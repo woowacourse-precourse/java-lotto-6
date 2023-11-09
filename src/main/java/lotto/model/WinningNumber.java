@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.model.LottoErrorType.BONUS_DUPLICATED;
+import static lotto.model.ErrorType.BONUS_DUPLICATED;
 
 import java.util.List;
 

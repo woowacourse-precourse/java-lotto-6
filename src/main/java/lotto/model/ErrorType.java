@@ -1,6 +1,6 @@
 package lotto.model;
 
-public enum LottoErrorType {
+public enum ErrorType {
 
     INVALID_TICKET_SIZE("로또 번호의 개수는 6개여야 합니다."),
     NUMBERS_DUPLICATED("로또 번호는 중복될 수 없습니다."),
@@ -13,7 +13,7 @@ public enum LottoErrorType {
 
     private final String message;
 
-    LottoErrorType(final String message) {
+    ErrorType(final String message) {
         this.message = message;
     }
 

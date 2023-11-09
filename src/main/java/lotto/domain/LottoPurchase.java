@@ -35,7 +35,7 @@ public class LottoPurchase {
         List<List<Integer>> randomNumbers = new ArrayList<>();
 
         for(int i = 0; i < this.LottoPurchaseCnt; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers =  new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             numbers.sort(Comparator.naturalOrder());
             randomNumbers.add(numbers);
         }

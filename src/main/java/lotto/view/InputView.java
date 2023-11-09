@@ -30,10 +30,15 @@ public class InputView {
     }
 
     private int inputLottoPurchase() {
-        int lottoPurchase;
+        int lottoPurchase = 0;
         System.out.println("구입금액을 입력해 주세요.");
+        try {
+            lottoPurchase = Integer.parseInt(readLine());
 
-        lottoPurchase = Integer.parseInt(readLine());
+        }catch (NumberFormatException e) {
+            System.out.println("[ERROR] 구매 금액은 숫자로 입력해주세요.");
+            lottoPurchase = Integer.parseInt(readLine());
+        }
 
         return lottoPurchase;
 

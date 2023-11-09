@@ -17,6 +17,7 @@ public class LottoPlay {
     private CalculateProfit CalculateProfit;
 
 
+    private InputView InputView;
     private OutputView OutputView;
 
 
@@ -26,9 +27,10 @@ public class LottoPlay {
         LottoResult = new LottoResult(Lotto.getNumbers(), LottoPurchase.getRandomNumbers(), LottoPurchase.getLottoPurchaseCnt(),
             BonusNumber.getBonusNumber());
 
-        CalculateProfit = new CalculateProfit(LottoPurchase.getLottoPurchaseCnt(), LottoResult.getLottoResult(), LottoResult.getBonusCheck());
+        CalculateProfit = new CalculateProfit(InputView.getLottoPurchase(), LottoResult.getLottoResult(), LottoResult.getBonusCheck());
 
-        OutputView = new OutputView(LottoPurchase.getLottoPurchaseCnt(), LottoPurchase.getRandomNumbers(),LottoResult.getLottoResult(),CalculateProfit.getTotalProfit(), CalculateProfit.getRateOfReturn());
+        OutputView = new OutputView(LottoPurchase.getLottoPurchaseCnt()
+            , LottoPurchase.getRandomNumbers(),LottoResult.getLottoResult(),CalculateProfit.getTotalProfit(), CalculateProfit.getRateOfReturn());
         OutputView.showRandomNumbers();
         OutputView.showLottoResult();
         OutputView.showRateOfReturn();
@@ -36,10 +38,10 @@ public class LottoPlay {
     }
 
     private void userInput() {
-        InputView input = new InputView();
-        LottoPurchase = new LottoPurchase(input.getLottoPurchase());
-        Lotto = new Lotto(input.getLotto());
-        BonusNumber = new BonusNumber(input.getBonusNumber());
+        InputView = new InputView();
+        LottoPurchase = new LottoPurchase(InputView.getLottoPurchase());
+        Lotto = new Lotto(InputView.getLotto());
+        BonusNumber = new BonusNumber(InputView.getBonusNumber());
 
     }
 }

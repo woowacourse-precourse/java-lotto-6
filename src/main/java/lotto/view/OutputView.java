@@ -7,22 +7,24 @@ import lotto.domain.LottoPurchase;
 
 public class OutputView {
 
-    private final int lottoPurchase;
+
+    private final int lottoPurchaseCnt;
     private final List<List<Integer>> randomNumbers;
 
     private final List<Integer> lottoResult;
 
     private final double rateOfReturn;
 
-    public OutputView(int lottoPurchase, List<List<Integer>> randomNumbers, List<Integer> lottoResult, List<Integer> totalProfit, double rateOfReturn) {
-        this.lottoPurchase = lottoPurchase;
+    public OutputView(int lottoPurchaseCnt,List<List<Integer>> randomNumbers, List<Integer> lottoResult, List<Integer> totalProfit, double rateOfReturn) {
+        this.lottoPurchaseCnt = lottoPurchaseCnt;
         this.randomNumbers = randomNumbers;
         this.lottoResult = lottoResult;
         this.rateOfReturn = rateOfReturn;
     }
 
     public void showRandomNumbers() {
-        for(int i = 0; i < lottoPurchase; i++) {
+        System.out.println(lottoPurchaseCnt + "개를 구매했습니다.");
+        for(int i = 0; i < lottoPurchaseCnt; i++) {
             System.out.println(randomNumbers.get(i));
         }
     }
@@ -37,14 +39,15 @@ public class OutputView {
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + threeMatch + "개" );
         System.out.println("4개 일치 (50,000원) - " + fourMatch + "개" );
+        System.out.println("5개 일치 (1,500,000원) - " + fiveMatch + "개" );
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + fiveMatch + "개" );
         System.out.println("6개 일치 (2,000,000,000원) - " + sixMatch + "개" );
     }
 
     public void showRateOfReturn() {
 
-        String rof = String.format("%.2f", rateOfReturn);
-        System.out.println("총 수익률은 " + rof + "입니다.");
+        String rof = String.format("%.1f", rateOfReturn * 100);
+        System.out.println("총 수익률은 " + rof + "%입니다.");
     }
 
 }

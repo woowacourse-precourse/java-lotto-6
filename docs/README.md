@@ -60,6 +60,8 @@ view
     ㄴ ErrorMessage(eneum) : 예외 메시지들을 모아놓은 enum 클래스
     
     ㄴ InputMessage(eneum) : 사용자 입력 화면에 표시되는 메시지들을 모아놓은 enum 클래스
+    
+    ㄴ OutputMessage(eneum) : 사용자 출력 화면에 표시되는 메시지들을 모아놓은 enum 클래스
 ```
 
 <br>
@@ -110,15 +112,13 @@ utils
 
 📕 service.LottoService :
 
-    ✏️ 기능34. 로또 구매 결과에 대한 출력문을 작성한다. ➡ makePurchaseResultOutputStatement()
-
     ✏️ 기능8. 로또 구매 개수만큼 로또를 구매한다. ➡ generateLottoList()
 
-    ✏️ 기능9. 기능10 에서 생성된 숫자 조합으로 로또를 발행한다. ➡ generateLotto() 
-            
-        ✏️ 기능10. 로또를 발행하기 위한 6자리 숫자 조합을 생성한다. ➡ generateLottoCombination()
+        ✏️ 기능9. 기능10 에서 생성된 숫자 조합으로 로또를 발행한다. ➡ generateLotto() 
+                
+            ✏️ 기능10. 로또를 발행하기 위한 6자리 숫자 조합을 생성한다. ➡ generateLottoCombination()
 
-    ✏️ 기능11. 로또 당첨 결과를 Map 형태의 자료구조아 반환한다. ➡ calculateWinningResult() 
+    ✏️ 기능11. 로또 당첨 결과를 Map 형태의 자료구조에 담아 반환한다. ➡ calculateWinningResult() 
 
         ✏️ 기능36. 로또 결과 반환을 위해 Map을 초기화한다. ➡ ininWinningResult()
     
@@ -134,7 +134,7 @@ utils
 
     ✏️ 기능41. 로또 구매 금액 입력 부터 통계결과 출력까지의 한 프로세스를 진행한다. ➡ play()
 
-    ✏️ 기능15. 로또 구입 금액을 반환한다. ➡ recieveMoney() 
+    ✏️ 기능15. 사용자로 부터 입력받은 로또 구입 금액을 반환한다. ➡ recieveMoney() 
 
         ✏️ 기능16. 구입 금액을 제대로 입력했는지 검증한다. ➡ validateReceivedMoney() 
 
@@ -160,7 +160,7 @@ utils
 
         ✏️ 기능40. 입력된 숫자는 정답 로또 조합에 없는 값이어야 한다. ➡ validateBonusLottoNumber()
 
-    ✏️ 기능27. 당첨통계를 보여준다. ➡ showStatisticsResult()
+    ✏️ 기능27. 당첨통계를 계산하고 당첨 통계를 출력한다. ➡ calculateResultAndShowStatisticsResult()
 
     ✏️ 기능28. 사용자 입력값을 받다가 예외 발생한 경우 값을 다시 입력받는다. ➡ receiveInputUntilPass()
 
@@ -178,10 +178,15 @@ utils
 
 📕 view.OutputView :
 
-    ✏️ 기능20. 로또 구매 결과를 출력한다. ➡ printPurchaseResult()  
+    ✏️ 기능20. 로또 구매 결과를 출력한다. ➡ printPurchaseResult()
 
-    ✏️ 기능35. 로또 당첨 결과에 대한 출력문을 작성한다. ➡ makeStatisticsResultOuputStatement()
+        ✏️ 기능34. 로또 구매 결과에 대한 출력문을 작성한다. ➡ makePurchaseResultOutputStatement()
 
+    ✏️ 기능35. 로또 당첨 통계를 출력한다. ➡ printStatisticsResult()
+
+        ✏️ 기능45. 로또 당첨통계에 대한 출력문을 작성한다. ➡ makeStatisticsResultOutputStatement()
+
+            ✏️ 기능46. winningResult를 출력문으로 변환한다. ➡ winningResultToOutputStatement()
 
 <br>
 

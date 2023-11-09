@@ -14,22 +14,15 @@ import java.util.List;
 public class LottoController {
 
     public void run() {
-        LottoManager lottoManager = prepareGame();
-        printResult(lottoManager);
-    }
-
-    private LottoManager prepareGame() {
-        PurchaseAmount purchaseAmount = preparePurchaseAmount();
+        PurchaseAmount purchaseAmount = readPurchaseAmount();
         List<Lotto> winningLottos = generateWinningLottos(purchaseAmount);
-        Lotto lotto = prepareLotto();
-        LottoNumber bonusNumber = prepareBonusNumber();
+        PlayerLotto playerLotto = generatePlayerLotto();
+        LottoManager lottoManager = LottoManager.create(winningLottos, purchaseAmount, playerLotto);
 
-        PlayerLotto playerLotto = preparePlayer(lotto, bonusNumber);
-
-        return LottoManager.create(winningLottos, purchaseAmount, playerLotto);
+        printResult(lottoManager, playerLotto);
     }
 
-    private PurchaseAmount preparePurchaseAmount() {
+    private PurchaseAmount readPurchaseAmount() {
         return PurchaseAmount.create(View.readPurchaseAmount());
     }
 
@@ -39,20 +32,22 @@ public class LottoController {
         return winningLottos;
     }
 
-    private Lotto prepareLotto() {
-        return Lotto.create(View.readLottoNumbers());
-    }
-
-    private LottoNumber prepareBonusNumber() {
-        return LottoNumber.create(View.readBonusNumber());
-    }
-
-    private PlayerLotto preparePlayer(Lotto lotto, LottoNumber bonusNumber) {
+    private PlayerLotto generatePlayerLotto() {
+        Lotto lotto = readLotto();
+        LottoNumber bonusNumber = readBonusNumber();
         return PlayerLotto.create(lotto, bonusNumber);
     }
 
-    private void printResult(LottoManager lottoManager) {
-        List<PrizeResponse> winningResult = lottoManager.getWinningResult();
+    private Lotto readLotto() {
+        return Lotto.create(View.readLottoNumbers());
+    }
+
+    private LottoNumber readBonusNumber() {
+        return LottoNumber.create(View.readBonusNumber());
+    }
+
+    private void printResult(LottoManager lottoManager, PlayerLotto playerLotto) {
+        List<PrizeResponse> winningResult = lottoManager.getWinningResult(playerLotto);
         double profitRate = lottoManager.calculateProfitRate(winningResult);
 
         View.printWinningStatusMessage(winningResult, profitRate);

@@ -31,7 +31,7 @@ public class LottoManager {
         return purchaseAmount.calculatePurchasedLottoCount();
     }
 
-    public List<PrizeResponse> getWinningResult() {
+    public List<PrizeResponse> getWinningResult(PlayerLotto playerLotto) {
         List<Prize> winningPrizes = getWinningPrizes(playerLotto);
         Map<Prize, Integer> winningCounts = getWinningCountForEachPrize(winningPrizes);
 

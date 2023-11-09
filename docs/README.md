@@ -71,7 +71,7 @@
 ### `LottoManager` 및 `Player` 클래스의 역할 재정의
 
 - [x] `Player` 클래스 필드 중 purchaseAmount를 `LottoManager`으로 이동한다.
-- [ ] `LottoManger` 클래스 필드 중 player 필드를 제거한다.
+- [x] `LottoManger` 클래스 필드 중 player 필드를 제거한다.
 
 ### 사용자 입력값을 비즈니스 변수로 변환해서 전달할 수 있는 DTO 구현
 

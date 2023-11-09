@@ -47,7 +47,7 @@ class LottoManagerTest {
     @DisplayName("범위 내의 랜덤한 6자리 숫자를 생성한다.")
     void generateWinningLottos() {
         // given
-        Lotto winningLotto = LottoGenerator.generateWinningLottos(PurchaseAmount.create(1)).get(0);
+        Lotto winningLotto = LottoGenerator.generateWinningLottos(PurchaseAmount.create(1000)).get(0);
 
         // when
         List<Integer> numbers = winningLotto.getLottoNumbers()
@@ -67,12 +67,9 @@ class LottoManagerTest {
     void getWinningResult() {
         // given
         List<Prize> winningPrizes = new ArrayList<>();
-        winningPrizes.add(Prize.NONE);
-        winningPrizes.add(Prize.NONE);
         winningPrizes.add(Prize.FOUR_NUMBER_MATCH);
 
         Map<Prize, Integer> winningCounts = new HashMap<>();
-        winningCounts.put(Prize.NONE, 2);
         winningCounts.put(Prize.FOUR_NUMBER_MATCH, 1);
 
         // when

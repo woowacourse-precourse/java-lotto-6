@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.withPrecision;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.Function;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +23,7 @@ class WinningResultTest {
         {4등: 3개},
         {5등: 5개}
     */
-    private final List<WinningSummary> winningSummaries = List.of(
+    private static final List<WinningSummary> winningSummaries = List.of(
             WinningSummary.from(LottoRank.FIRST, 2),
             WinningSummary.from(LottoRank.SECOND, 1),
             WinningSummary.from(LottoRank.THIRD, 2),
@@ -30,22 +31,26 @@ class WinningResultTest {
             WinningSummary.from(LottoRank.FIFTH, 5)
     );
 
+    private static final WinningResult winningResult = new WinningResult();
+
+    @BeforeAll
+    static void setUp() {
+        winningSummaries.forEach(winningResult::addItem);
+    }
+
+
     @DisplayName("주어진 당첨 내역에 대한 정보를 반환한다.")
     @Test
     void givenWinningSummaries_Then_AllDetailsReturn() {
-        // given
-        final WinningResult winningResult = new WinningResult();
-
         // when
-        winningSummaries.forEach(winningResult::addItem);
-        final List<WinningSummary> calculatedSummaries = winningResult.getResults();
+        final List<WinningSummary> summaries = winningResult.getResults();
 
         // then
-        assertThat(calculatedSummaries.size()).isEqualTo(RANK_SIZE_EXCEPT_NONE);
+        assertThat(summaries.size()).isEqualTo(RANK_SIZE_EXCEPT_NONE);
 
         // 당첨 금액 비교
         final List<Long> winningPrizes = getProperties(
-                calculatedSummaries,
+                summaries,
                 WinningSummary::prize
         );
         assertThat(winningPrizes).containsExactly(
@@ -58,14 +63,14 @@ class WinningResultTest {
 
         // 당첨 기준 별 빈도수 비교
         final List<Long> rankFrequencies = getProperties(
-                calculatedSummaries,
+                summaries,
                 WinningSummary::frequency
         );
         assertThat(rankFrequencies).containsExactly(5L, 3L, 2L, 1L, 2L);
 
         // 당첨 기준 별 일치하는 번호의 개수 비교
         final List<Integer> numberOfMatchesByRank = getProperties(
-                calculatedSummaries,
+                summaries,
                 WinningSummary::numberOfMatches
         );
         assertThat(numberOfMatchesByRank).containsExactly(
@@ -89,11 +94,7 @@ class WinningResultTest {
     @DisplayName("주어진 당첨 내역에 대한 총 당첨 금액을 구한다.")
     @Test
     void givenWinningSummaries_Then_TotalWinningAmountReturns() {
-        // given
-        final WinningResult winningResult = new WinningResult();
-
         // when
-        winningSummaries.forEach(winningResult::addItem);
         final BigDecimal totalWinningAmount = winningResult.sumUpWinningAmount();
 
         // then
@@ -121,11 +122,9 @@ class WinningResultTest {
             final double expectedProfit
     ) {
         // given
-        final WinningResult winningResult = new WinningResult();
         final Money money = Money.of(purchaseAmount);
 
         // when
-        winningSummaries.forEach(winningResult::addItem);
         final BigDecimal profitRate = winningResult.calculateProfitRate(money);
 
         // then

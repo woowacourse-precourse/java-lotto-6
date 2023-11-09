@@ -17,17 +17,17 @@ public class WinningLotto {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
+    private void validateBonusNumber(BonusNumber bonusNumber) {
+        if (winningNumbers.getNumbers().contains(bonusNumber.getNumber())) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATED.getMessage());
+        }
+    }
+
     public WinningNumbers getWinningNumbers() {
         return winningNumbers;
     }
 
     public BonusNumber getBonusNumber() {
         return bonusNumber;
-    }
-
-    private void validateBonusNumber(BonusNumber bonusNumber) {
-        if (winningNumbers.getNumbers().contains(bonusNumber.getNumber())) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATED.getMessage());
-        }
     }
 }

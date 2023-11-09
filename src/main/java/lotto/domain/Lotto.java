@@ -15,27 +15,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public PrizeCondition getPrizeCondition(WinningLotto winningLotto) {
-        int countMatchingNumbers = countMatchingNumbers(winningLotto.getWinningNumbers());
-        boolean containsBonusNumber = containsBonusNumber(winningLotto.getBonusNumber());
-        return PrizeCondition.findPrizeCondition(countMatchingNumbers, containsBonusNumber);
-    }
-
-    public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_INVALID_SIZE.getMessage());
         }
         LottoValidator.validateNumbersInRange(numbers);
         LottoValidator.validateDuplicate(numbers);
+    }
+
+    public PrizeCondition getPrizeCondition(WinningLotto winningLotto) {
+        int countMatchingNumbers = countMatchingNumbers(winningLotto.getWinningNumbers());
+        boolean containsBonusNumber = containsBonusNumber(winningLotto.getBonusNumber());
+        return PrizeCondition.findPrizeCondition(countMatchingNumbers, containsBonusNumber);
     }
 
     private int countMatchingNumbers(WinningNumbers comparingNumbers) {
@@ -46,5 +37,14 @@ public class Lotto {
 
     private boolean containsBonusNumber(BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.getNumber());
+    }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

@@ -27,15 +27,15 @@ public class GameManager {
         initializeLottoResultGenerator(winningLotto);
     }
 
+    private void initializeLottoResultGenerator(WinningLotto winningLotto) {
+        lottoResultGenerator = LottoResultGenerator.of(winningLotto, lottoPurchaseManager.getPurchaseAmount());
+    }
+
     public Map<PrizeCondition, Long> providePrizeResult() {
         return lottoResultGenerator.generatePrizeResult(lottoPurchaseManager.getLottos());
     }
 
     public double provideProfit() {
         return lottoResultGenerator.generateProfit();
-    }
-
-    private void initializeLottoResultGenerator(WinningLotto winningLotto) {
-        lottoResultGenerator = LottoResultGenerator.of(winningLotto, lottoPurchaseManager.getPurchaseAmount());
     }
 }

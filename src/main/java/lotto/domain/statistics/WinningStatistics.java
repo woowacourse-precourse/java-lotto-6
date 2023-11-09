@@ -30,12 +30,6 @@ public class WinningStatistics {
         return winningsStatistics.get(rank);
     }
 
-    public int getAllCounts() {
-        return Arrays.stream(LottoRank.values())
-                .mapToInt(this::getCountOfRank)
-                .sum();
-    }
-
     public long getPrizeMoney() {
         return Arrays.stream(LottoRank.values())
                 .mapToLong(rank -> getCountOfRank(rank)* (long)rank.getPrize())

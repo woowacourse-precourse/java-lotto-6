@@ -1,4 +1,4 @@
-package lotto.repository;
+package lotto.domain;
 
 import java.util.EnumSet;
 import java.util.HashMap;

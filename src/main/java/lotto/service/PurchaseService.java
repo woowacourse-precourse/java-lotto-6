@@ -1,14 +1,14 @@
 package lotto.service;
 
 import java.util.Comparator;
+import lotto.domain.Purchases;
 import lotto.dto.Lotto;
 import lotto.dto.Lottos;
-import lotto.repository.PurchaseRepository;
 import lotto.utils.RandomNumberGenerator;
 import lotto.validator.LottoPurchaseValidator;
 
 public class PurchaseService {
-    private static PurchaseRepository purchaseRepository = PurchaseRepository.getInstance();
+    private Purchases purchases = new Purchases();
 
     public int getCountOfPurchasable(int amount) {
         LottoPurchaseValidator.validatePurchase(amount);
@@ -17,9 +17,9 @@ public class PurchaseService {
 
     public Lottos purchaseLottoForCount(int count) {
         for (int i = 0; i < count; i++) {
-            purchaseRepository.recordPurchase(generateEachLotto());
+            purchases.recordPurchase(generateEachLotto());
         }
-        return purchaseRepository.findLottos();
+        return purchases.findLottos();
     }
 
     private Lotto generateEachLotto() {
@@ -27,5 +27,9 @@ public class PurchaseService {
         return new Lotto(generator.generateNumbers().stream()
                 .sorted(Comparator.naturalOrder())
                 .toList());
+    }
+
+    public int size() {
+        return purchases.size();
     }
 }

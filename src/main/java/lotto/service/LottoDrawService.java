@@ -1,10 +1,10 @@
 package lotto.service;
 
 import lotto.constants.LottoRankConstants;
+import lotto.domain.LottoRanks;
 import lotto.dto.Lotto;
 import lotto.dto.Lottos;
 import lotto.dto.WinningLotto;
-import lotto.repository.LottoRanks;
 
 public class LottoDrawService {
     LottoRanks lottoRanks = new LottoRanks();

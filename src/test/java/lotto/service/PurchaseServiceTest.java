@@ -1,7 +1,6 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.repository.PurchaseRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchaseServiceTest {
     PurchaseService purchaseService = new PurchaseService();
-    PurchaseRepository purchaseRepository = PurchaseRepository.getInstance();
 
     @DisplayName("한개당 1000원으로 계산하여 로또를 구매할 수 있다.")
     @ParameterizedTest
@@ -42,7 +40,7 @@ class PurchaseServiceTest {
         }
 
         // when & then
-        Assertions.assertThat(purchaseRepository.size())
+        Assertions.assertThat(purchaseService.size())
                 .isEqualTo(purchases.stream().mapToInt(Integer::intValue).sum());
     }
 

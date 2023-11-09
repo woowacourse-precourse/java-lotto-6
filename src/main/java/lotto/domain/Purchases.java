@@ -1,17 +1,12 @@
-package lotto.repository;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.Lotto;
 import lotto.dto.Lottos;
 
-public class PurchaseRepository {
-    private static final PurchaseRepository instance = new PurchaseRepository();
+public class Purchases {
     private List<Lotto> lottos = new ArrayList<>();
-
-    public static PurchaseRepository getInstance() {
-        return instance;
-    }
 
     public void recordPurchase(Lotto lotto) {
         lottos.add(lotto);

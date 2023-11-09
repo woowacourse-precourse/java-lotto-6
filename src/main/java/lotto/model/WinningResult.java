@@ -29,6 +29,12 @@ public class WinningResult {
                 .toList();
     }
 
+    public BigDecimal calculateProfitRate(final Money money) {
+        return sumUpWinningAmount()
+                .multiply(PERCENTAGE_MULTIPLIER)
+                .divide(money.getAmount(), INITIAL_SCALE, DEFAULT_ROUNDING);
+    }
+
     public BigDecimal sumUpWinningAmount() {
         return BigDecimal.valueOf(calculateTotalAmount());
     }
@@ -37,11 +43,5 @@ public class WinningResult {
         return summaries.stream()
                 .mapToLong(summary -> summary.frequency() * summary.prize())
                 .sum();
-    }
-
-    public BigDecimal calculateProfitRate(final Money money) {
-        return sumUpWinningAmount()
-                .multiply(PERCENTAGE_MULTIPLIER)
-                .divide(money.getAmount(), INITIAL_SCALE, DEFAULT_ROUNDING);
     }
 }

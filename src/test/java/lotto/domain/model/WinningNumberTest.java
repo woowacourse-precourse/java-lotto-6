@@ -1,6 +1,7 @@
 package lotto.domain.model;
 
 import lotto.constant.message.ErrorMessage;
+import org.assertj.core.api.AssertProvider;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,8 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class WinningNumberTest {
 
@@ -57,5 +57,14 @@ class WinningNumberTest {
 
         assertThatCode(() -> winningNumber.validateBonusNumber(bonusNumber))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("입력된 보너스 번호가 당첨 번호에 존재하지 않으면 BonusNumber 를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {7, 8, 9, 10, 11, 12})
+    void createBonusNumberByNonDuplicateNumber(int inputBonusNumber) {
+        WinningNumber winningNumber = new WinningNumber(Arrays.asList(1,2,3,4,5,6));
+
+        assertThat(winningNumber.createBonusNumber(inputBonusNumber)).isInstanceOf(BonusNumber.class);
     }
 }

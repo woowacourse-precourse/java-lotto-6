@@ -16,14 +16,14 @@ public class LottoGame {
         this.lottoTickets = lottoTickets;
     }
 
-    public WinningDetails play() {
+    public WinningResult play() {
         final Map<LottoRank, Long> frequencies = calculateRankFrequencies();
-        final WinningDetails winningDetails = new WinningDetails();
+        final WinningResult winningResult = new WinningResult();
 
         for (final LottoRank rank : frequencies.keySet()) {
-            winningDetails.addItem(WinningSummary.from(rank, frequencies.get(rank)));
+            winningResult.addItem(WinningSummary.from(rank, frequencies.get(rank)));
         }
-        return winningDetails;
+        return winningResult;
     }
 
     private Map<LottoRank, Long> calculateRankFrequencies() {

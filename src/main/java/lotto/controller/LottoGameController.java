@@ -8,7 +8,7 @@ import lotto.model.LottoGenerator;
 import lotto.model.LottoPublisher;
 import lotto.model.Money;
 import lotto.model.RandomLottoGenerator;
-import lotto.model.WinningDetails;
+import lotto.model.WinningResult;
 import lotto.model.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -21,10 +21,10 @@ public class LottoGameController {
         OutputView.printLottoTickets(lottoTickets);
 
         final LottoGame lottoGame = new LottoGame(readWinningNumber(), lottoTickets);
-        final WinningDetails winningDetails = lottoGame.play();
-        OutputView.printWinningDetails(winningDetails);
+        final WinningResult winningResult = lottoGame.play();
+        OutputView.printWinningResult(winningResult);
 
-        final BigDecimal profitRate = winningDetails.calculateProfitRate(money);
+        final BigDecimal profitRate = winningResult.calculateProfitRate(money);
         OutputView.printProfitRate(profitRate);
     }
 

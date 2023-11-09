@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class WinningDetailsTest {
+class WinningResultTest {
 
     private static final int RANK_SIZE_EXCEPT_NONE = LottoRank.values().length - 1;
 
@@ -34,11 +34,11 @@ class WinningDetailsTest {
     @Test
     void givenWinningSummaries_Then_AllDetailsReturn() {
         // given
-        final WinningDetails winningDetails = new WinningDetails();
+        final WinningResult winningResult = new WinningResult();
 
         // when
-        winningSummaries.forEach(winningDetails::addItem);
-        final List<WinningSummary> calculatedSummaries = winningDetails.getResults();
+        winningSummaries.forEach(winningResult::addItem);
+        final List<WinningSummary> calculatedSummaries = winningResult.getResults();
 
         // then
         assertThat(calculatedSummaries.size()).isEqualTo(RANK_SIZE_EXCEPT_NONE);
@@ -90,11 +90,11 @@ class WinningDetailsTest {
     @Test
     void givenWinningSummaries_Then_TotalWinningAmountReturns() {
         // given
-        final WinningDetails winningDetails = new WinningDetails();
+        final WinningResult winningResult = new WinningResult();
 
         // when
-        winningSummaries.forEach(winningDetails::addItem);
-        final BigDecimal totalWinningAmount = winningDetails.sumUpWinningAmount();
+        winningSummaries.forEach(winningResult::addItem);
+        final BigDecimal totalWinningAmount = winningResult.sumUpWinningAmount();
 
         // then
         /*
@@ -121,12 +121,12 @@ class WinningDetailsTest {
             final double expectedProfit
     ) {
         // given
-        final WinningDetails winningDetails = new WinningDetails();
+        final WinningResult winningResult = new WinningResult();
         final Money money = Money.of(purchaseAmount);
 
         // when
-        winningSummaries.forEach(winningDetails::addItem);
-        final BigDecimal profitRate = winningDetails.calculateProfitRate(money);
+        winningSummaries.forEach(winningResult::addItem);
+        final BigDecimal profitRate = winningResult.calculateProfitRate(money);
 
         // then
         /*

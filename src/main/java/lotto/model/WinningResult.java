@@ -7,7 +7,7 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WinningDetails {
+public class WinningResult {
 
     private static final BigDecimal PERCENTAGE_MULTIPLIER = BigDecimal.valueOf(100);
     private static final int INITIAL_SCALE = 1;
@@ -15,7 +15,7 @@ public class WinningDetails {
 
     private final List<WinningSummary> summaries;
 
-    public WinningDetails() {
+    public WinningResult() {
         this.summaries = new ArrayList<>();
     }
 

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.WinningDetails;
+import lotto.model.WinningResult;
 import lotto.model.WinningSummary;
 
 public class OutputView {
@@ -34,11 +34,11 @@ public class OutputView {
         }
     }
 
-    public static void printWinningDetails(final WinningDetails winningDetails) {
+    public static void printWinningResult(final WinningResult winningResult) {
         System.out.println(WINNING_DETAILS_HEADER);
         System.out.println(WINNING_DETAILS_LINE);
 
-        for (final WinningSummary summary : winningDetails.getResults()) {
+        for (final WinningSummary summary : winningResult.getResults()) {
             printWinningSummary(summary);
         }
     }

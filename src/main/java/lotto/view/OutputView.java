@@ -34,11 +34,12 @@ public class OutputView {
     }
 
     private void printPurchasedLottos(PurchasedLottosDto purchasedLottosDto) {
-        purchasedLottosDto.getLottos().stream()
+        String result = purchasedLottosDto.getLottos().stream()
                 .map(lotto -> lotto.getNumbers().stream()
                         .map(String::valueOf)
                         .collect(Collectors.joining(PURCHASED_LOTTO_NUMBERS_DELIMITER, PURCHASED_LOTTO_PREFIX, PURCHASED_LOTTO_SUFFIX)))
                 .collect(Collectors.joining(PURCHASED_LOTTOS_DELIMITER));
+        System.out.println(result);
     }
 
     public void printResult(Map<PrizeCondition, Long> prizeResult, double profit) {
@@ -53,8 +54,10 @@ public class OutputView {
     }
 
     private static void printPrizeResult(Map<PrizeCondition, Long> prizeResult) {
-        Arrays.stream(PrizeCondition.values()).forEach(prizeCondition ->
-                System.out.printf((prizeCondition.getPrizeResultFormat()) + "%n",
+        Arrays.stream(PrizeCondition.values())
+                .filter(prizeCondition -> !prizeCondition.equals(PrizeCondition.NONE))
+                .forEach(prizeCondition ->
+                        System.out.printf((prizeCondition.getPrizeResultFormat()) + "%n",
                         prizeResult.getOrDefault(prizeCondition, 0L)));
     }
 

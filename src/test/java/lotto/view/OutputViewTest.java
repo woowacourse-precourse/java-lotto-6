@@ -3,7 +3,7 @@ package lotto.view;
 import static lotto.domain.Ranking.*;
 import static lotto.domain.Ranking.SIXTH;
 import static lotto.utils.StringUtils.countOccurrences;
-import static lotto.view.OutputView.WINNING_STATISTICS;
+import static lotto.view.OutputMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.domain.Lotto;
@@ -104,7 +104,7 @@ class OutputViewTest {
         assertThat(result)
                 .containsSubsequence("당첨 통계", "---")
                 .containsSubsequence("- 1개", "- 0개", "- 0개", "- 0개", "- 0개")
-                .containsSubsequence(WINNING_STATISTICS, "---", "총 수익률은", "62.5%입니다.");
+                .containsSubsequence(WINNING_STATISTICS.getOutputMessage(), "---", "총 수익률은", "62.5%입니다.");
     }
 
     @Test
@@ -122,7 +122,7 @@ class OutputViewTest {
         assertThat(result)
                 .containsSubsequence("당첨 통계", "---")
                 .containsSubsequence("- 0개", "- 0개", "- 0개", "- 0개", "- 0개")
-                .containsSubsequence(WINNING_STATISTICS, "---", "총 수익률은", "0.0%입니다.");
+                .containsSubsequence(WINNING_STATISTICS.getOutputMessage(), "---", "총 수익률은", "0.0%입니다.");
     }
 
 

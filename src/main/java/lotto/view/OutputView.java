@@ -1,7 +1,8 @@
 package lotto.view;
 
 import static lotto.domain.Ranking.*;
-import static lotto.service.LottoService.*;
+import static lotto.view.OutputMessage.PURCHASE_X_COUNT;
+import static lotto.view.OutputMessage.WINNING_STATISTICS;
 
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
@@ -9,9 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public static final String WINNING_STATISTICS = "당첨 통계";
-    public static final String PURCHASE_X_COUNT = "개를 구매했습니다.";
-
     public static void printResult(String result) {
         System.out.println("\n" + result);
     }
@@ -23,7 +21,7 @@ public class OutputView {
 
     private static String makePurchaseResultOutputStatement(List<Lotto> lottoList) {
         StringBuilder sb = new StringBuilder();
-        sb.append(lottoList.size()).append(PURCHASE_X_COUNT + "\n");
+        sb.append(lottoList.size()).append(PURCHASE_X_COUNT.getOutputMessage() + "\n");
 
         for (Lotto lotto : lottoList) {
             sb.append(lotto.toString()).append("\n");
@@ -40,7 +38,7 @@ public class OutputView {
     private static String makeStatisticsResultOutputStatement(Map<Ranking, Integer> winningResult, double profitRate) {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(WINNING_STATISTICS).append("\n");
+        sb.append(WINNING_STATISTICS.getOutputMessage()).append("\n");
         sb.append("---").append("\n");
 
         sb.append(winningResultToOutputStatement(winningResult));

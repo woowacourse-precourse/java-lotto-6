@@ -17,7 +17,7 @@ import java.util.Map;
 import static lotto.config.GameConfig.*;
 import static org.assertj.core.api.Assertions.*;
 
-class LottoSystemTest {
+class LottoManagerTest {
 
     List<Integer> numbers;
     Lotto lotto;
@@ -25,7 +25,7 @@ class LottoSystemTest {
     PurchaseAmount purchaseAmount;
     Player player;
     List<Lotto> winningLottos;
-    LottoSystem lottoSystem;
+    LottoManager lottoManager;
 
     @BeforeEach
     void setUp() {
@@ -35,16 +35,16 @@ class LottoSystemTest {
         bonusNumber = LottoNumber.create(7);
         purchaseAmount = PurchaseAmount.create(8000);
         player = Player.create(lotto, bonusNumber, purchaseAmount);
-        winningLottos = LottoSystem.generateWinningLottos(purchaseAmount.getPurchaseAmount());
+        winningLottos = LottoManager.generateWinningLottos(purchaseAmount.getPurchaseAmount());
 
-        lottoSystem = LottoSystem.create(winningLottos, player);
+        lottoManager = LottoManager.create(winningLottos, player);
     }
 
     @Test
     @DisplayName("범위 내의 랜덤한 6자리 숫자를 생성한다.")
     void generateWinningLottos() {
         // given
-        Lotto winningLotto = LottoSystem.generateWinningLottos(1).get(0);
+        Lotto winningLotto = LottoManager.generateWinningLottos(1).get(0);
 
         // when
         List<Integer> numbers = winningLotto.getLottoNumbers()
@@ -103,7 +103,7 @@ class LottoSystemTest {
                 .toList();
 
         // when
-        double profitRate = lottoSystem.calculateProfitRate(prizeResponses);
+        double profitRate = lottoManager.calculateProfitRate(prizeResponses);
 
         // then
         assertThat(profitRate).isEqualTo(625.0);

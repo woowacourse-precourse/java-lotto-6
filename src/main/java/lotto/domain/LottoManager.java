@@ -2,25 +2,24 @@ package lotto.domain;
 
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoNumber;
 import lotto.domain.player.Player;
 import lotto.dto.response.PrizeResponse;
 import lotto.util.RandomUtil;
 
 import java.util.*;
 
-public class LottoSystem {
+public class LottoManager {
 
     private List<Lotto> winningLottos;
     private Player player;
 
-    private LottoSystem(List<Lotto> winningLottos, Player player) {
+    private LottoManager(List<Lotto> winningLottos, Player player) {
         this.winningLottos = winningLottos;
         this.player = player;
     }
 
-    public static LottoSystem create(List<Lotto> winningLottos, Player player) {
-        return new LottoSystem(winningLottos, player);
+    public static LottoManager create(List<Lotto> winningLottos, Player player) {
+        return new LottoManager(winningLottos, player);
     }
 
     public static List<Lotto> generateWinningLottos(int purchasedLottoCount) {

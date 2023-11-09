@@ -1,10 +1,10 @@
 package lotto.controller;
 
-import lotto.domain.LottoSystem;
+import lotto.domain.LottoManager;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.player.Player;
-import lotto.domain.player.PurchaseAmount;
+import lotto.domain.PurchaseAmount;
 import lotto.dto.response.PrizeResponse;
 import lotto.view.View;
 
@@ -13,11 +13,11 @@ import java.util.List;
 public class LottoController {
 
     public void run() {
-        LottoSystem lottoSystem = prepareGame();
-        printResult(lottoSystem);
+        LottoManager lottoManager = prepareGame();
+        printResult(lottoManager);
     }
 
-    private LottoSystem prepareGame() {
+    private LottoManager prepareGame() {
         PurchaseAmount purchaseAmount = preparePurchaseAmount();
         List<Lotto> winningLottos = generateWinningLottos(getPurchasedLottoCount(purchaseAmount));
         Lotto lotto = prepareLotto();
@@ -25,7 +25,7 @@ public class LottoController {
 
         Player player = preparePlayer(purchaseAmount, lotto, bonusNumber);
 
-        return LottoSystem.create(winningLottos, player);
+        return LottoManager.create(winningLottos, player);
     }
 
     private PurchaseAmount preparePurchaseAmount() {
@@ -37,7 +37,7 @@ public class LottoController {
     }
 
     private List<Lotto> generateWinningLottos(int purchasedLottoCount) {
-        List<Lotto> winningLottos = LottoSystem.generateWinningLottos(purchasedLottoCount);
+        List<Lotto> winningLottos = LottoManager.generateWinningLottos(purchasedLottoCount);
         View.printWinningLottosMessage(winningLottos, purchasedLottoCount);
         return winningLottos;
     }
@@ -54,9 +54,9 @@ public class LottoController {
         return Player.create(lotto, bonusNumber, purchaseAmount);
     }
 
-    private void printResult(LottoSystem lottoSystem) {
-        List<PrizeResponse> winningResult = lottoSystem.getWinningResult();
-        double profitRate = lottoSystem.calculateProfitRate(winningResult);
+    private void printResult(LottoManager lottoManager) {
+        List<PrizeResponse> winningResult = lottoManager.getWinningResult();
+        double profitRate = lottoManager.calculateProfitRate(winningResult);
 
         View.printWinningStatusMessage(winningResult, profitRate);
         View.closeRead();

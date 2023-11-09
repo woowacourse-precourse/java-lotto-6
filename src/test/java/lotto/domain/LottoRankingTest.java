@@ -37,8 +37,11 @@ class LottoRankingTest {
         assertEquals(LottoRanking.SECOND, LottoRanking.valueOf(5, true));
         assertEquals(LottoRanking.THIRD, LottoRanking.valueOf(5, false));
         assertEquals(LottoRanking.FOURTH, LottoRanking.valueOf(4, false));
+        assertEquals(LottoRanking.FOURTH, LottoRanking.valueOf(4, true));
         assertEquals(LottoRanking.FIFTH, LottoRanking.valueOf(3, false));
+        assertEquals(LottoRanking.FIFTH, LottoRanking.valueOf(3, true));
         assertEquals(LottoRanking.MISS, LottoRanking.valueOf(2, false));
+        assertEquals(LottoRanking.MISS, LottoRanking.valueOf(2, true));
     }
 
     @DisplayName("잘못된 값을 넣어 exception이 잘 일어나는지 확인")

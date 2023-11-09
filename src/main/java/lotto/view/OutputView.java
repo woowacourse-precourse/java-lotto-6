@@ -1,9 +1,9 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import lotto.model.Lotto;
-import lotto.model.ProfitRate;
 import lotto.model.WinningDetails;
 import lotto.model.WinningSummary;
 
@@ -55,7 +55,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printProfitRate(final ProfitRate profitRate) {
+    public static void printProfitRate(final BigDecimal profitRate) {
         final String formattedRate = RATE_PRECISION_FORMAT.format(profitRate.doubleValue());
         System.out.printf(PROFIT_RATE_FORMAT + "%n", formattedRate);
     }

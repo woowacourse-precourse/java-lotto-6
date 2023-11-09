@@ -1,12 +1,12 @@
 package lotto.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoPublisher;
 import lotto.model.Money;
-import lotto.model.ProfitRate;
 import lotto.model.RandomLottoGenerator;
 import lotto.model.WinningDetails;
 import lotto.model.WinningNumber;
@@ -24,7 +24,7 @@ public class LottoGameController {
         final WinningDetails winningDetails = lottoGame.play();
         OutputView.printWinningDetails(winningDetails);
 
-        final ProfitRate profitRate = new ProfitRate(money, winningDetails.sumUpWinningAmount());
+        final BigDecimal profitRate = winningDetails.calculateProfitRate(money);
         OutputView.printProfitRate(profitRate);
     }
 

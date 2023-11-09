@@ -1,12 +1,15 @@
 package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.withPrecision;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.Function;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class WinningDetailsTest {
 
@@ -105,5 +108,33 @@ class WinningDetailsTest {
         */
         final BigDecimal expectedAmount = BigDecimal.valueOf(4_033_175_000L);
         assertThat(totalWinningAmount).isEqualByComparingTo(expectedAmount);
+    }
+
+    @DisplayName("구입 금액에 대한 수익률을 계산한다.")
+    @ParameterizedTest
+    @CsvSource(value = {
+            "8000:50414687.5", "5000:80663500",
+            "55000:7333045.5", "3105000:129892.9"
+    }, delimiter = ':')
+    void givenPurchaseAmount_Then_ProfitRateReturns(
+            final long purchaseAmount,
+            final double expectedProfit
+    ) {
+        // given
+        final WinningDetails winningDetails = new WinningDetails();
+        final Money money = Money.of(purchaseAmount);
+
+        // when
+        winningSummaries.forEach(winningDetails::addItem);
+        final BigDecimal profitRate = winningDetails.calculateProfitRate(money);
+
+        // then
+        /*
+            4,033,175,000 / 8,000 * 100 = 50,414,687.5%
+            4,033,175,000 / 5,000 * 100 = 80,663,500%
+            4,033,175,000 / 5,5000 * 100 = 7,333,045.5%
+            4,033,175,000 / 3,105,000 * 100 = 129,892.9%
+        */
+        assertThat(profitRate.doubleValue()).isEqualTo(expectedProfit, withPrecision(0d));
     }
 }

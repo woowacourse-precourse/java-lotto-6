@@ -20,7 +20,7 @@ public class WinningLottoInputHandler {
 
     public WinningLotto createWinningLotto() {
         WinningNumbers winningNumbers = readWinningNumbersFromUser();
-        inputView.printAskBonusNumber();
+        outputView.printAskBonusNumber();
         while (true) {
             try {
                 String bonusNumberInput = inputView.readInputFromUser();
@@ -32,7 +32,7 @@ public class WinningLottoInputHandler {
     }
 
     private WinningNumbers readWinningNumbersFromUser() {
-        inputView.printAskWinningNumbers();
+        outputView.printAskWinningNumbers();
         while (true) {
             try {
                 String winningNumbersInput = inputView.readInputFromUser();

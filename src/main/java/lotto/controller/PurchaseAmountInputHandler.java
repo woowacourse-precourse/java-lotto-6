@@ -18,7 +18,7 @@ public class PurchaseAmountInputHandler {
     }
 
     public LottoPurchaseAmount createPurchaseAmount() {
-        inputView.printAskPurchaseAmount();
+        outputView.printAskPurchaseAmount();
         while (true) {
             try {
                 String purchaseAmountInput = inputView.readInputFromUser();

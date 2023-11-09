@@ -18,17 +18,6 @@ public class LottoService {
 
     private Map<Ranking, Integer> winningResult;
 
-    public String makePurchaseResultOutputStatement(List<Lotto> lottoList) {
-        StringBuilder result = new StringBuilder();
-        result.append(lottoList.size()).append(PURCHASE_X_COUNT + "\n");
-
-        for (Lotto lotto : lottoList) {
-            result.append(lotto.toString()).append("\n");
-        }
-
-        return result.toString();
-    }
-
     public Lotto generateLotto() {
         List<Integer> list = generateLottoCombination();
         return new Lotto(list);

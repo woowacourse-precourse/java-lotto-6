@@ -146,8 +146,6 @@ utils
         
         ✏️ 기능19. 검증을 통과하면 로또 구입금액을 숫자로 반환한다 ➡ 기능37 사용
 
-    ✏️ 기능20. 로또 구매 결과를 출력한다. ➡ showPurchaseResult()  
-
     ✏️ 기능21. 로또 당첨 번호를 등록한다. ➡ registerWinningLottoCombination() 
 
         ✏️ 기능22. 당첨 번호를 변환할 때 공백을 제거한다. ➡ 기본 메서드 사용
@@ -177,6 +175,13 @@ utils
     ✏️ 기능43. 사용자로 부터 당첨 번호 조합을 입력받는다. ➡ readWinningLottoCombination()
 
     ✏️ 기능44. 사용자로 부터 보너스 번호를 입력 받는다. ➡ readBonusNumber()
+
+<br>
+
+📕 view.InputView :
+
+    ✏️ 기능20. 로또 구매 결과를 출력한다. ➡ printPurchaseResult()  
+
 
 <br>
 

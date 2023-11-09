@@ -79,61 +79,6 @@ class LottoControllerTest {
     }
 
     @Test
-    @DisplayName("기능20 테스트 : 0원을 입력했을 때 로또를 하나 구매하고 그 결과를 반환한다.")
-    void purchaseOneLottoWhenInputMoneyIs0() {
-        // given
-        int totalPurchaseAmount = 0;
-        int totalPurchaseCount = totalPurchaseAmount / LottoController.ONE_LOTTO_PRICE;
-        List<Lotto> lottoList = generateTestLottoList(totalPurchaseCount);
-
-        // when
-        lottoController.showPurchaseResult(lottoList, totalPurchaseAmount);
-        String result = outputStreamCaptor.toString();
-        int count = countOccurrences(result, "[");
-
-        // then
-        assertThat(result).contains("0개를 구매했습니다.");
-        assertThat(count).isEqualTo(0);
-    }
-
-
-    @Test
-    @DisplayName("기능20 테스트 : 1000원을 입력했을 때 로또를 하나 구매하고 그 결과를 반환한다.")
-    void purchaseOneLottoWhenInputMoneyIs1000() {
-        // given
-        int totalPurchaseAmount = 1000;
-        int totalPurchaseCount = totalPurchaseAmount / LottoController.ONE_LOTTO_PRICE;
-        List<Lotto> lottoList = generateTestLottoList(totalPurchaseCount);
-
-        // when
-        lottoController.showPurchaseResult(lottoList, totalPurchaseAmount);
-        String result = outputStreamCaptor.toString();
-        int count = countOccurrences(result, "[");
-
-        // then
-        assertThat(result).contains("1개를 구매했습니다.");
-        assertThat(count).isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("기능20 테스트 : 5000원을 입력했을 때 로또 5개를 구매하고 그 결과를 반환한다.")
-    void purchaseFiveLottoWhenInputMoneyIs5000() {
-        // given
-        int totalPurchaseAmount = 5000;
-        int totalPurchaseCount = totalPurchaseAmount / LottoController.ONE_LOTTO_PRICE;
-        List<Lotto> lottoList = generateTestLottoList(totalPurchaseCount);
-
-        // when
-        lottoController.showPurchaseResult(lottoList, totalPurchaseAmount);
-        String result = outputStreamCaptor.toString();
-        int count = countOccurrences(result, "[");
-
-        // then
-        assertThat(result).contains("5개를 구매했습니다.");
-        assertThat(count).isEqualTo(5);
-    }
-
-    @Test
     @DisplayName("기능27 테스트 : 당첨 통계가 잘 출력된다.")
     void showStatisticResultCorrectly() {
         // given

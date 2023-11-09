@@ -168,29 +168,6 @@ class LottoServiceTest {
     }
 
     @Test
-    @DisplayName("기능34 테스트 : 로또 구매 결과에는 입력한 숫자값 만큼의 로또의 숫자 조합이 적혀있다.")
-    void purchaseResultOutputStatementHaveLottosAsManyAsInputNumber() {
-        // given
-        int count = 5;
-
-        List<Lotto> lottoList = new ArrayList<>();
-
-        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        lottoList.add(new Lotto(List.of(2, 3, 4, 5, 6, 7)));
-        lottoList.add(new Lotto(List.of(2, 3, 4, 5, 6, 8)));
-        lottoList.add(new Lotto(List.of(3, 4, 5, 6, 7, 8)));
-        lottoList.add(new Lotto(List.of(4, 5, 6, 7, 8, 9)));
-
-        // when
-        String result = lottoService.makePurchaseResultOutputStatement(lottoList);
-        int executionCount = StringUtils.countOccurrences(result, "[");
-
-        // then
-        assertThat(result).startsWith("5개를 구매했습니다.");
-        assertThat(executionCount).isEqualTo(5);
-    }
-
-    @Test
     @DisplayName("기능36 테스트 : Ranking에 있는 값들로 winningResult를 초기화한다.")
     void winningResultUseRakingEnumAsKey() {
         // when

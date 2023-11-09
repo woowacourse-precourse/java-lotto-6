@@ -23,10 +23,9 @@ public class LottoController {
     public void play() {
         int totalPurchaseMoney = receiveMoneyUntilPass();
 
-        int purchaseCount = totalPurchaseMoney / ONE_LOTTO_PRICE;
-        List<Lotto> lottoList = lottoService.generateLottoList(purchaseCount);
+        List<Lotto> lottoList = lottoService.generateLottoList(totalPurchaseMoney / ONE_LOTTO_PRICE);
 
-        showPurchaseResult(lottoList, totalPurchaseMoney);
+        printPurchaseResult(lottoList);
 
         Lotto answer = registerWinningLottoCombinationUntilPass();
 
@@ -77,12 +76,6 @@ public class LottoController {
 
     public Lotto registerWinningLottoCombinationUntilPass() {
         return receiveInputUntilPass(this::registerWinningLottoCombination);
-    }
-
-    public void showPurchaseResult(List<Lotto> lottoList, int totalPurchaseAmount) {
-        int purchaseCount = totalPurchaseAmount / ONE_LOTTO_PRICE;
-        String purchaseResult = lottoService.makePurchaseResultOutputStatement(lottoList);
-        printResult(purchaseResult);
     }
 
     public void showStatisticsResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {

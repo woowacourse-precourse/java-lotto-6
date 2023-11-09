@@ -1,8 +1,8 @@
 package lotto.service;
 
 import java.util.Comparator;
-import java.util.List;
 import lotto.dto.Lotto;
+import lotto.dto.Lottos;
 import lotto.repository.PurchaseRepository;
 import lotto.utils.RandomNumberGenerator;
 import lotto.validator.LottoPurchaseValidator;
@@ -15,7 +15,7 @@ public class PurchaseService {
         return amount / 1000;
     }
 
-    public List<Lotto> purchaseLottoForCount(int count) {
+    public Lottos purchaseLottoForCount(int count) {
         for (int i = 0; i < count; i++) {
             purchaseRepository.recordPurchase(generateEachLotto());
         }

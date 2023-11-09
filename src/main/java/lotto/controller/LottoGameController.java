@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.constants.LottoRankConstants;
 import lotto.dto.Lotto;
 import lotto.dto.LottoRanks;
@@ -19,7 +18,7 @@ public class LottoGameController {
 
     public void start() {
         int payment = getPurchaseAmount();
-        List<Lotto> purchasedLottos = purchaseLotto(payment);
+        Lottos purchasedLottos = purchaseLotto(payment);
         displayPurchasedLottos(purchasedLottos);
 
         Lotto winningLotto = getWinningLotto();
@@ -27,7 +26,7 @@ public class LottoGameController {
 
         LottoRanks lottoRanks = getRanks(
                 new WinningLotto(winningLotto, bonusNumber),
-                new Lottos(purchasedLottos)
+                purchasedLottos
         );
         int winningAmount = getWinningAmount();
         displayWinningResult(lottoRanks);
@@ -52,7 +51,7 @@ public class LottoGameController {
         return InputView.inputBonusNumber(winningLotto);
     }
 
-    private List<Lotto> purchaseLotto(int payment) {
+    private Lottos purchaseLotto(int payment) {
         int countOfPurchasable = purchaseService.getCountOfPurchasable(payment);
         OutputView.newLine();
         OutputView.printPurchaseCountResult(countOfPurchasable);
@@ -71,8 +70,8 @@ public class LottoGameController {
         return returnService.evaluateLottoReturn(payment, winningAmount);
     }
 
-    private void displayPurchasedLottos(List<Lotto> purchasedLottos) {
-        for (Lotto lotto : purchasedLottos) {
+    private void displayPurchasedLottos(Lottos purchasedLottos) {
+        for (Lotto lotto : purchasedLottos.lottos()) {
             OutputView.printGeneratedLottoResult(lotto.numbers());
         }
     }

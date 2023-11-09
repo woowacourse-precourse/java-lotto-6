@@ -3,6 +3,7 @@ package lotto.repository;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.dto.Lotto;
+import lotto.dto.Lottos;
 
 public class PurchaseRepository {
     private static final PurchaseRepository instance = new PurchaseRepository();
@@ -20,8 +21,8 @@ public class PurchaseRepository {
         return lottos.size();
     }
 
-    public List<Lotto> findLottos() {
-        return new ArrayList<>(lottos);
+    public Lottos findLottos() {
+        return new Lottos(lottos);
     }
 
 }

@@ -1,6 +1,6 @@
 package domain;
 
-import constants.LottoWinningPrice;
+import constants.LottoWinningPrize;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -67,13 +67,13 @@ public class LottoResult {
 
 
     public BigDecimal createTotalProfit(LottoResult lottoResult){
-        BigDecimal[] lottoPrices = getBigDecimalLottoPrices();
-        BigDecimal[] priceCounts = getBigDecimalPriceCounts(lottoResult);
+        BigDecimal[] lottoPrizes = getBigDecimalLottoPrizes();
+        BigDecimal[] prizeCounts = getBigDecimalPrizeCounts(lottoResult);
         BigDecimal totalProfit = BigDecimal.ZERO;
 
-        for(int i=0; i<priceCounts.length; i++){
-            BigDecimal calculatedPrice = lottoPrices[i].multiply(priceCounts[i]);
-            totalProfit = totalProfit.add(calculatedPrice);
+        for(int i=0; i<prizeCounts.length; i++){
+            BigDecimal calculatedPrize = lottoPrizes[i].multiply(prizeCounts[i]);
+            totalProfit = totalProfit.add(calculatedPrize);
         }
 
         return totalProfit;
@@ -88,13 +88,13 @@ public class LottoResult {
     }
 
 
-    private BigDecimal[] getBigDecimalLottoPrices(){
-        return Arrays.stream(LottoWinningPrice.values())
-                .map(lottoPrice -> new BigDecimal(lottoPrice.getPrice()))
+    private BigDecimal[] getBigDecimalLottoPrizes(){
+        return Arrays.stream(LottoWinningPrize.values())
+                .map(lottoPrize -> new BigDecimal(lottoPrize.getPrize()))
                 .toArray(BigDecimal[]::new);
     }
 
-    private BigDecimal[] getBigDecimalPriceCounts(LottoResult lottoResult){
+    private BigDecimal[] getBigDecimalPrizeCounts(LottoResult lottoResult){
         return new BigDecimal[] {
                 new BigDecimal(lottoResult.getThreeLottoWinning())
                 ,new BigDecimal(lottoResult.getFourLottoWinning())

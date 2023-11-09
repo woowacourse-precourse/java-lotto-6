@@ -16,7 +16,7 @@ public class MoneyTest {
     @DisplayName("금액이 0 이하인 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(longs = {-1L, 0L, 999L})
-    void isAmountLessThenZero_Then_ExceptionOccurs(final long amount) {
+    void isAmountLessThanZero_Then_ExceptionOccurs(final long amount) {
         assertThatThrownBy(() -> Money.of(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);

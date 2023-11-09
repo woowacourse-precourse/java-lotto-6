@@ -19,12 +19,12 @@ public class Money {
     }
 
     private void validatePrize(final long amount) {
-        if (isLessThenPrize(amount)) {
+        if (isLessThanPrize(amount)) {
             throw new IllegalArgumentException(MONEY_LESS_THEN_PRIZE);
         }
     }
 
-    private boolean isLessThenPrize(final long amount) {
+    private boolean isLessThanPrize(final long amount) {
         return amount < LOTTO_PRIZE;
     }
 

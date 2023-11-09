@@ -2,6 +2,7 @@ package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static lotto.config.GameConfig.LOTTO_NUMBERS_LENGTH;
 import static lotto.exception.ErrorMessage.LOTTO_NUMBERS_DUPLICATED;
@@ -17,6 +18,19 @@ public class Lotto {
 
     public static Lotto create(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public int getMatchingNumberCount(Lotto playerLotto) {
+        return (int) lottoNumbers
+                .stream()
+                .filter(winningLottoNumber -> playerLotto.getIntegerNumbers().contains(winningLottoNumber.getLottoNumber()))
+                .count();
+    }
+
+    public boolean hasBonusNumber(Integer playerBonusNumber) {
+        return lottoNumbers
+                .stream()
+                .anyMatch(lottoNumber -> Objects.equals(lottoNumber.getLottoNumber(), playerBonusNumber));
     }
 
     private static void validateLottoNumber(List<Integer> numbers) {

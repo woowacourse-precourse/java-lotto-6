@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoNumber;
 import lotto.domain.player.Player;
 import lotto.dto.response.PrizeResponse;
 import lotto.util.RandomUtil;
@@ -39,7 +40,7 @@ public class LottoSystem {
     }
 
     public List<PrizeResponse> getWinningResult() {
-        List<Prize> winningPrizes = getWinningPrizes();
+        List<Prize> winningPrizes = getWinningPrizes(player);
         Map<Prize, Integer> winningCounts = getWinningCountForEachPrize(winningPrizes);
 
         return winningCounts.entrySet().stream()
@@ -57,12 +58,12 @@ public class LottoSystem {
         return winningCounts;
     }
 
-    private List<Prize> getWinningPrizes() {
+    private List<Prize> getWinningPrizes(Player player) {
         List<Prize> prizes = new ArrayList<>();
         for (int i = 0; i < getPurchasedLottoCount(); i++) {
             Lotto winningLotto = winningLottos.get(i);
-            int matchingNumberCount = getMatchingNumberCount(winningLotto);
-            prizes.add(getWinningPrize(matchingNumberCount, hasBonusNumber(winningLotto)));
+            int matchingNumberCount = winningLotto.getMatchingNumberCount(player.getLotto());
+            prizes.add(getWinningPrize(matchingNumberCount, winningLotto.hasBonusNumber(player.getBonusNumber())));
         }
         return prizes;
     }
@@ -75,19 +76,6 @@ public class LottoSystem {
                 .filter(prize -> prize.getMatchingNumberCount() == matchingNumberCount)
                 .findAny()
                 .orElse(Prize.NONE);
-    }
-
-    private int getMatchingNumberCount(Lotto winningLotto) {
-        return (int) winningLotto.getLottoNumbers()
-                .stream()
-                .filter(winningLottoNumber -> player.getLotto().getIntegerNumbers().contains(winningLottoNumber.getLottoNumber()))
-                .count();
-    }
-
-    private boolean hasBonusNumber(Lotto winningLotto) {
-        return winningLotto.getLottoNumbers()
-                .stream()
-                .anyMatch(lottoNumber -> Objects.equals(lottoNumber.getLottoNumber(), player.getBonusNumber()));
     }
 
     public double calculateProfitRate(List<PrizeResponse> prizeResponses) {

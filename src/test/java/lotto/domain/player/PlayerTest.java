@@ -1,18 +1,14 @@
 package lotto.domain.player;
 
+import lotto.domain.PurchaseAmount;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatCode;
-import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 

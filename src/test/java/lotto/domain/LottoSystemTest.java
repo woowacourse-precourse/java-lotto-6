@@ -1,13 +1,10 @@
 package lotto.domain;
 
-import lotto.config.GameConfig;
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoNumber;
 import lotto.domain.player.Player;
-import lotto.domain.player.PurchaseAmount;
 import lotto.dto.response.PrizeResponse;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +16,6 @@ import java.util.Map;
 
 import static lotto.config.GameConfig.*;
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoSystemTest {
 

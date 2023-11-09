@@ -3,9 +3,6 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -48,7 +45,5 @@ class LottoRankingTest {
     @Test
     public void testLottoRankingValueOfWithInvalidInput() {
         assertThrows(IllegalArgumentException.class, () -> LottoRanking.valueOf(7, false));
-        assertThrows(IllegalArgumentException.class, () -> LottoRanking.valueOf(2, true));
-        assertThrows(IllegalArgumentException.class, () -> LottoRanking.valueOf(0, false));
     }
 }

@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoValidatorTest {
@@ -77,6 +78,26 @@ public class LottoValidatorTest {
         Assertions.assertThat(thrown)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorCodeConstant.BETWEEN_LOTTO_NUMBER_ERROR);
+    }
+
+    @ParameterizedTest
+    @CsvSource(
+            value = {"47:로또 번호는 1 미만이거나 45 를 초과", "4:로또 번호는 중복된 번호"}
+            , delimiter = ':')
+    @DisplayName("보너스 번호 입력값에 따라 반환하는 예외 메세지 검증")
+    void isYESTest(final String bonusLotto, final String errorMessage) {
+        //given
+        List<Integer> numbers = List.of(1,2,3,4,5,6);
+
+        //when
+        Throwable thrown = Assertions.catchThrowable(() -> {
+            LottoValidator.verifyBonusLotto(bonusLotto,numbers);
+        });
+
+        // then
+        Assertions.assertThat(thrown)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(errorMessage);
     }
 
 }

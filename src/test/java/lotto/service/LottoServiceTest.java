@@ -182,7 +182,7 @@ class LottoServiceTest {
         lottoList.add(new Lotto(List.of(4, 5, 6, 7, 8, 9)));
 
         // when
-        String result = lottoService.makePurchaseResultOutputStatement(lottoList, count);
+        String result = lottoService.makePurchaseResultOutputStatement(lottoList);
         int executionCount = StringUtils.countOccurrences(result, "[");
 
         // then

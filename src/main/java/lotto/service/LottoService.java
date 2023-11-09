@@ -18,9 +18,9 @@ public class LottoService {
 
     private Map<Ranking, Integer> winningResult;
 
-    public String makePurchaseResultOutputStatement(List<Lotto> lottoList, int purchaseCount) {
+    public String makePurchaseResultOutputStatement(List<Lotto> lottoList) {
         StringBuilder result = new StringBuilder();
-        result.append(purchaseCount).append(PURCHASE_X_COUNT + "\n");
+        result.append(lottoList.size()).append(PURCHASE_X_COUNT + "\n");
 
         for (Lotto lotto : lottoList) {
             result.append(lotto.toString()).append("\n");
@@ -55,25 +55,15 @@ public class LottoService {
     public Ranking calculateRanking(Lotto target, Lotto answer, int bonusNumber) {
         int count = target.countMatchingNumber(answer);
 
-        if (count == 3) {
-            return FIFTH;
-        }
+        if (count == 3) { return FIFTH; }
 
-        if (count == 4) {
-            return FORTH;
-        }
+        if (count == 4) { return FORTH; }
 
-        if (count == 5 && !target.isNumberIn(bonusNumber)) {
-            return THIRD;
-        }
+        if (count == 5 && !target.isNumberIn(bonusNumber)) { return THIRD; }
 
-        if (count == 5 && target.isNumberIn(bonusNumber)) {
-            return SECOND;
-        }
+        if (count == 5 && target.isNumberIn(bonusNumber)) { return SECOND; }
 
-        if (count == 6) {
-            return FIRST;
-        }
+        if (count == 6) { return FIRST; }
 
         return SIXTH;
     }

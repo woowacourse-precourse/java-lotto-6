@@ -14,7 +14,7 @@ import java.util.List;
 
 public class LottoController {
     public static final int ONE_LOTTO_PRICE = 1000;
-    private LottoService lottoService;
+    private final LottoService lottoService;
 
     public LottoController() {
         this.lottoService = new LottoService();
@@ -52,7 +52,6 @@ public class LottoController {
         return parseInt(userInput);
     }
 
-
     public int registerBonusNumberUntilPass(Lotto lotto) {
         int result = 0;
 
@@ -82,7 +81,7 @@ public class LottoController {
 
     public void showPurchaseResult(List<Lotto> lottoList, int totalPurchaseAmount) {
         int purchaseCount = totalPurchaseAmount / ONE_LOTTO_PRICE;
-        String purchaseResult = lottoService.makePurchaseResultOutputStatement(lottoList, purchaseCount);
+        String purchaseResult = lottoService.makePurchaseResultOutputStatement(lottoList);
         printResult(purchaseResult);
     }
 

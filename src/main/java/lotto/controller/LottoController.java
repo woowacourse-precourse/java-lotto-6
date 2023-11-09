@@ -21,6 +21,21 @@ public class LottoController {
         this.lottoService = new LottoService();
     }
 
+    public void play() {
+        int totalPurchaseMoney = receiveMoneyUntilPass();
+
+        int purchaseCount = totalPurchaseMoney / ONE_LOTTO_PRICE;
+        List<Lotto> lottoList = generateLottoList(purchaseCount);
+
+        showPurchaseResult(lottoList, totalPurchaseMoney);
+
+        Lotto answer = registerWinningLottoCombinationUntilPass();
+
+        int bonusNumber = registerBonusNumberUntilPass(answer);
+
+        showStatisticsResult(lottoList, answer, bonusNumber);
+    }
+
     public int receiveMoney() {
         String userInput = readInput(ENTER_TOTAL_PURCHASE_MONEY.getInputMessage());
         validateReceivedMoney(userInput);

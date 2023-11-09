@@ -1,13 +1,19 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -53,6 +59,59 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+
+    @ParameterizedTest(name = "[{index}차]시도: invalidMoney: {0}")
+    @DisplayName("1000원 단위로 나뉘어지지 않거나, 작거나, 1억이 넘어가면 IllegalArgumentException 이 발생한다.")
+    @ValueSource(strings = {"999", "1001", "2001", "100_000_001"})
+    void failInputInvalidMoney(String invalidMoney) {
+        // given
+        // when
+        // then
+        assertSimpleTest(() -> {
+            runException(invalidMoney);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest(name = "[{index}차]시도: invalidWiningNumbers: {0}")
+    @DisplayName("유효한 길이가 아니거나, 중복된 숫자가 존재하거나, 공백이 포함되거나, 제한된 범위의 숫자가 아니면 IllegalArgumentException 이 발생한다.")
+    @MethodSource("getInvalidWinningNumbers")
+    void failInputInvalidWinningNumbers(List<String> invalidWiningNumbers) {
+        // given
+        String money = "8000";
+        String inputInvalidWiningNumbers = invalidWiningNumbers.stream().collect(Collectors.joining(","));
+        // when
+        // then
+        assertSimpleTest(() -> {
+            runException(money, inputInvalidWiningNumbers);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest(name = "[{index}차]시도: invalidBonusNumber: {0}")
+    @DisplayName("당첨번호에 포함된 번호이거나, 공백이거나, 숫자형이 아니거나, 제한된 범위의 숫자가 아니면면 IllegalArgumentException 이 발생한다.")
+    @ValueSource(strings = {" ","1", "0","46"})
+    void failInputInvalidBonusNumber(String bonusNumber) {
+        // given
+        String money = "8000";
+        String winingNumbers = List.of("1","2","3","4","5","6").stream().collect(Collectors.joining(","));
+        // when
+        // then
+        assertSimpleTest(() -> {
+            runException(money, winingNumbers,bonusNumber);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    static Stream<Arguments> getInvalidWinningNumbers() {
+        return Stream.of(
+                Arguments.arguments(List.of("1", "1", "3", "4", "5", "6")),
+                Arguments.arguments(List.of("1", "2", "3", "4", "5", " ")),
+                Arguments.arguments(List.of("0", "1", "3", "4", "5", "6")),
+                Arguments.arguments(List.of("1", "3", "4", "5", "6"))
+        );
+    }
+
 
     @Override
     public void runMain() {

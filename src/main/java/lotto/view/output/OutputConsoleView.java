@@ -40,8 +40,8 @@ public class OutputConsoleView implements OutputView {
     @Override
     public void writeLottos(List<LottoDto> lottoDtos) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(PRINT_AMOUNT.toString(),lottoDtos.size())).append("\n");
-        lottoDtos.forEach(lottoDto -> writeLotto(lottoDto.numbers(),sb));
+        sb.append(String.format(PRINT_AMOUNT.toString(), lottoDtos.size())).append("\n");
+        lottoDtos.forEach(lottoDto -> writeLotto(lottoDto.numbers(), sb));
         System.out.println(sb);
     }
 
@@ -50,12 +50,12 @@ public class OutputConsoleView implements OutputView {
                                        LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format(PRINT_STATISTICS.toString(),
-                writeFifthPlace(winningStatisticsDto,lottoRankDto),
-                writeFourthPlace(winningStatisticsDto,lottoRankDto),
-                writeThirdPlace(winningStatisticsDto,lottoRankDto),
-                writeSecondPlace(winningStatisticsDto,lottoRankDto),
-                writeFirstPlace(winningStatisticsDto,lottoRankDto),
-                writeRateOfReturn(winningStatisticsDto)
+                        writeFifthPlace(winningStatisticsDto, lottoRankDto),
+                        writeFourthPlace(winningStatisticsDto, lottoRankDto),
+                        writeThirdPlace(winningStatisticsDto, lottoRankDto),
+                        writeSecondPlace(winningStatisticsDto, lottoRankDto),
+                        writeFirstPlace(winningStatisticsDto, lottoRankDto),
+                        writeRateOfReturn(winningStatisticsDto)
                 )
         );
         System.out.println(sb);
@@ -64,7 +64,7 @@ public class OutputConsoleView implements OutputView {
     private void writeLotto(List<Integer> numbers, StringBuilder sb) {
         sb.append("[");
         for (int i = 0; i < numbers.size(); i++) {
-            if(i < numbers.size() - 1) {
+            if (i < numbers.size() - 1) {
                 sb.append(numbers.get(i)).append(", ");
                 continue;
             }
@@ -73,52 +73,53 @@ public class OutputConsoleView implements OutputView {
     }
 
     private String writeFifthPlace(WinningStatisticsDto winningStatisticsDto,
-                                 LottoRankDto lottoRankDto) {
+                                   LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(PRINT_FIFTH_RANK.toString(),lottoRankDto.standardOfFifthPlace(),
-                df.format(lottoRankDto.prizeOfFifthPlace()),winningStatisticsDto.countOfFifthPlace()))
+        sb.append(String.format(PRINT_FIFTH_RANK.toString(), lottoRankDto.standardOfFifthPlace(),
+                        df.format(lottoRankDto.prizeOfFifthPlace()), winningStatisticsDto.countOfFifthPlace()))
                 .append("\n");
         return sb.toString();
     }
+
     private String writeFourthPlace(WinningStatisticsDto winningStatisticsDto,
-                                 LottoRankDto lottoRankDto) {
+                                    LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(PRINT_FOURTH_RANK.toString(),lottoRankDto.standardOfFourthPlace(),
-                        df.format(lottoRankDto.prizeOfFourthPlace()),winningStatisticsDto.countOfFourthPlace()))
+        sb.append(String.format(PRINT_FOURTH_RANK.toString(), lottoRankDto.standardOfFourthPlace(),
+                        df.format(lottoRankDto.prizeOfFourthPlace()), winningStatisticsDto.countOfFourthPlace()))
                 .append("\n");
         return sb.toString();
     }
 
     private String writeThirdPlace(WinningStatisticsDto winningStatisticsDto,
-                                  LottoRankDto lottoRankDto) {
+                                   LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(PRINT_THIRD_RANK.toString(),lottoRankDto.standardOfThirdPlace(),
-                        df.format(lottoRankDto.prizeOfThirdPlace()),winningStatisticsDto.countOfThirdPlace()))
+        sb.append(String.format(PRINT_THIRD_RANK.toString(), lottoRankDto.standardOfThirdPlace(),
+                        df.format(lottoRankDto.prizeOfThirdPlace()), winningStatisticsDto.countOfThirdPlace()))
                 .append("\n");
         return sb.toString();
     }
 
     private String writeSecondPlace(WinningStatisticsDto winningStatisticsDto,
-                                  LottoRankDto lottoRankDto) {
+                                    LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(PRINT_SECOND_RANK.toString(),lottoRankDto.standardOfSecondPlace(),
-                        df.format(lottoRankDto.prizeOfSecondPlace()),winningStatisticsDto.countOfSecondPlace()))
+        sb.append(String.format(PRINT_SECOND_RANK.toString(), lottoRankDto.standardOfSecondPlace(),
+                        df.format(lottoRankDto.prizeOfSecondPlace()), winningStatisticsDto.countOfSecondPlace()))
                 .append("\n");
         return sb.toString();
     }
 
     private String writeFirstPlace(WinningStatisticsDto winningStatisticsDto,
-                                  LottoRankDto lottoRankDto) {
+                                   LottoRankDto lottoRankDto) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(PRINT_FIRST_RANK.toString(),lottoRankDto.standardOfFirstPlace(),
-                        df.format(lottoRankDto.prizeOfFirstPlace()),winningStatisticsDto.countOfFirstPlace()))
+        sb.append(String.format(PRINT_FIRST_RANK.toString(), lottoRankDto.standardOfFirstPlace(),
+                        df.format(lottoRankDto.prizeOfFirstPlace()), winningStatisticsDto.countOfFirstPlace()))
                 .append("\n");
         return sb.toString();
     }
 
     private String writeRateOfReturn(WinningStatisticsDto winningStatisticsDto) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(PRINT_RATE_OF_RETURN.toString(),winningStatisticsDto.rateOrReturn()));
+        sb.append(String.format(PRINT_RATE_OF_RETURN.toString(), winningStatisticsDto.rateOrReturn()));
         return sb.toString();
     }
 

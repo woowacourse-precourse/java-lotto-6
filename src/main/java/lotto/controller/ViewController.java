@@ -1,12 +1,11 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottoRankDto;
 import lotto.domain.dto.WinningStatisticsDto;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
-
-import java.util.List;
 
 public class ViewController {
 

@@ -12,7 +12,7 @@ public class BonusNumber {
     private final int number;
 
     public BonusNumber(List<Integer> winningNumbers, int number) {
-        validate(winningNumbers,number);
+        validate(winningNumbers, number);
         this.number = number;
     }
 
@@ -21,10 +21,10 @@ public class BonusNumber {
     }
 
     private void validate(List<Integer> winningNumbers, int bonusNumber) {
-        if(validateBonusNumberInNumbers(winningNumbers,bonusNumber)) {
+        if (validateBonusNumberInNumbers(winningNumbers, bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR.getMessage());
         }
-        if(validateBonusNumberRange(bonusNumber)) {
+        if (validateBonusNumberRange(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_INVALID_RANGE.getMessage());
         }
     }

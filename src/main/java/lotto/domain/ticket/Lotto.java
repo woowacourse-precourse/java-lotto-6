@@ -30,13 +30,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if(validateSize(numbers)) {
+        if (validateSize(numbers)) {
             throw new IllegalArgumentException(SIZE_ERROR.getMessage());
         }
-        if(validateDuplication(numbers)) {
+        if (validateDuplication(numbers)) {
             throw new IllegalArgumentException(DUPLICATION_ERROR.getMessage());
         }
-        if(validateRange(numbers)) {
+        if (validateRange(numbers)) {
             throw new IllegalArgumentException(INVALID_RANGE_ERROR.getMessage());
         }
     }
@@ -55,8 +55,9 @@ public class Lotto {
                 .toList()
                 .isEmpty();
     }
+
     private boolean validateSize(List<Integer> numbers) {
-        return  (numbers.size() != NUMBER_COUNT.getValue());
+        return (numbers.size() != NUMBER_COUNT.getValue());
     }
 
     private boolean validateDuplication(List<Integer> numbers) {

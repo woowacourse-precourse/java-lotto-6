@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.domain.money.Money;
 import lotto.domain.statistics.LottoRank;
 import lotto.domain.statistics.WinningStatistics;
@@ -9,18 +11,16 @@ import lotto.domain.winningnumbers.WinningNumbers;
 import lotto.view.input.InputConsoleView;
 import lotto.view.output.OutputConsoleView;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class LottoGameController {
 
     LottoController lottoController = new LottoController(new LottoNumberGenerator());
-    ViewController viewController = new ViewController(new InputConsoleView(),new OutputConsoleView());
+    ViewController viewController = new ViewController(new InputConsoleView(), new OutputConsoleView());
 
     Money money;
     Lottos lottos;
     WinningNumbers winningNumbers;
     WinningStatistics winningStatistics;
+
     public void run() {
 
         buyLottosFromUserInput();
@@ -41,12 +41,12 @@ public class LottoGameController {
 
     private void setWinningNumbersAndBonusNumber() {
         List<Integer> winningNumbers = Arrays.stream(
-                viewController.getWinningNumbers().split(","))
+                        viewController.getWinningNumbers().split(","))
                 .map(Integer::parseInt)
                 .toList();
 
         int bonusNumber = Integer.parseInt(viewController.getBonusNumber());
-        this.winningNumbers = new WinningNumbers(winningNumbers,bonusNumber);
+        this.winningNumbers = new WinningNumbers(winningNumbers, bonusNumber);
     }
 
     private void setWinningStatistics() {

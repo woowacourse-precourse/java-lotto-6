@@ -2,7 +2,9 @@ package lotto;
 
 import static lotto.domain.winningnumbers.WinningNumbersErrorMessage.BONUS_NUMBER_DUPLICATION_ERROR;
 import static lotto.domain.winningnumbers.WinningNumbersErrorMessage.BONUS_NUMBER_INVALID_RANGE;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -18,23 +20,23 @@ public class WinningNumbersTest {
     @Test
     void 보너스_번호_중복() {
         //given
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 1;
 
         //when,then
-        assertThatThrownBy(() -> new WinningNumbers(numbers,bonusNumber))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(BONUS_NUMBER_DUPLICATION_ERROR.getMessage());
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0,46})
+    @ValueSource(ints = {0, 46})
     void 보너스_번호_범위_초과(int bonusNumber) {
         //given
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
 
         //when,then
-        assertThatThrownBy(() -> new WinningNumbers(numbers,bonusNumber))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(BONUS_NUMBER_INVALID_RANGE.getMessage());
     }
@@ -49,7 +51,7 @@ public class WinningNumbersTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3,4,5,6})
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
     void 해당_번호가_당첨_번호에_속한다(int number) {
         //given
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
@@ -59,7 +61,7 @@ public class WinningNumbersTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {7,8,9,10,11,12})
+    @ValueSource(ints = {7, 8, 9, 10, 11, 12})
     void 해당_번호가_당첨_번호에_속하지_않는다(int number) {
         //given
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
@@ -90,10 +92,10 @@ public class WinningNumbersTest {
 
     private static Stream<Arguments> provideValidWinningNumbersAndBonusNumber() {
         return Stream.of(
-                Arguments.of(List.of(1,2,3,4,5,6),7),
-                Arguments.of(List.of(10,13,21,22,30,44),42),
-                Arguments.of(List.of(5,10,23,35,41,45),1),
-                Arguments.of(List.of(4,10,13,20,23,31),30)
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 7),
+                Arguments.of(List.of(10, 13, 21, 22, 30, 44), 42),
+                Arguments.of(List.of(5, 10, 23, 35, 41, 45), 1),
+                Arguments.of(List.of(4, 10, 13, 20, 23, 31), 30)
         );
     }
 }

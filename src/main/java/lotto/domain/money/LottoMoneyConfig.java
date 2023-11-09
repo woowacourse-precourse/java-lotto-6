@@ -5,6 +5,7 @@ public enum LottoMoneyConfig {
     LOTTO_COST(1000);
 
     private final int value;
+
     LottoMoneyConfig(int value) {
         this.value = value;
     }

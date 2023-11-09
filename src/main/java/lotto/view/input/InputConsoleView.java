@@ -4,8 +4,8 @@ import static lotto.view.input.InputErrorMessage.EMPTY_INPUT_ERROR;
 import static lotto.view.input.InputErrorMessage.INVALID_DELIMITER_ERROR;
 import static lotto.view.input.InputErrorMessage.INVALID_SIZE_ERROR;
 import static lotto.view.input.InputErrorMessage.NOT_NUMBER_ERROR;
-import static lotto.view.input.InputRegex.NUMBER_REGEX;
 import static lotto.view.input.InputRegex.DELIMITER_REGEX;
+import static lotto.view.input.InputRegex.NUMBER_REGEX;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.regex.Pattern;
@@ -16,10 +16,10 @@ public class InputConsoleView implements InputView {
     public String readOneNumber() {
         String input = Console.readLine();
         try {
-                validateOneNumber(input);
+            validateOneNumber(input);
         } catch (Exception e) {
-                System.out.println(e.getMessage());
-                readOneNumber();
+            System.out.println(e.getMessage());
+            readOneNumber();
         }
         return input;
     }
@@ -35,24 +35,25 @@ public class InputConsoleView implements InputView {
         }
         return input;
     }
+
     private void validateOneNumber(String input) {
-        if(isInputEmpty(input)) {
+        if (isInputEmpty(input)) {
             throw new IllegalArgumentException(EMPTY_INPUT_ERROR.getMessage());
         }
-        if(isNotNumber(input)) {
+        if (isNotNumber(input)) {
             throw new IllegalArgumentException(NOT_NUMBER_ERROR.getMessage());
         }
     }
 
     private void validateWinningNumbers(String input) {
-        if(isInputEmpty(input)) {
+        if (isInputEmpty(input)) {
             throw new IllegalArgumentException(EMPTY_INPUT_ERROR.getMessage());
         }
-        if(isNotSeparateWithComma(input)) {
+        if (isNotSeparateWithComma(input)) {
             throw new IllegalArgumentException(INVALID_DELIMITER_ERROR.getMessage());
         }
         validateEachElementOfWinningNumbers(input.split(DELIMITER_REGEX.getRegex()));
-        if(isWinningNumbersSizeCorrect(input.split(DELIMITER_REGEX.getRegex()))){
+        if (isWinningNumbersSizeCorrect(input.split(DELIMITER_REGEX.getRegex()))) {
             throw new IllegalArgumentException(INVALID_SIZE_ERROR.getMessage());
         }
     }
@@ -62,8 +63,8 @@ public class InputConsoleView implements InputView {
     }
 
     private void validateEachElementOfWinningNumbers(String[] elements) {
-        for(String element : elements) {
-            if(isNotNumber(element)) {
+        for (String element : elements) {
+            if (isNotNumber(element)) {
                 throw new IllegalArgumentException(NOT_NUMBER_ERROR.getMessage());
             }
         }
@@ -74,10 +75,10 @@ public class InputConsoleView implements InputView {
     }
 
     private boolean isNotNumber(String input) {
-        return !Pattern.matches(NUMBER_REGEX.getRegex(),input);
+        return !Pattern.matches(NUMBER_REGEX.getRegex(), input);
     }
 
-    private boolean isNotSeparateWithComma(String input){
+    private boolean isNotSeparateWithComma(String input) {
         return input.split(DELIMITER_REGEX.getRegex()).length == 1;
     }
 

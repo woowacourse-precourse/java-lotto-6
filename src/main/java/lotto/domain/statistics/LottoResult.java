@@ -31,10 +31,10 @@ public class LottoResult {
     }
 
     private LottoRank setRank() {
-        if(checkFail()) {
+        if (checkFail()) {
             return null;
         }
-        if(checkSecondOrThirdPlace()) {
+        if (checkSecondOrThirdPlace()) {
             return getSecondOrThirdPlace();
         }
         return getOtherRanks();
@@ -47,8 +47,11 @@ public class LottoResult {
     private boolean checkSecondOrThirdPlace() {
         return countOfSameNumber == SECOND_PLACE.getStandard();
     }
+
     private LottoRank getSecondOrThirdPlace() {
-        if(matchBonusNumber) return SECOND_PLACE;
+        if (matchBonusNumber) {
+            return SECOND_PLACE;
+        }
         return THIRD_PLACE;
     }
 

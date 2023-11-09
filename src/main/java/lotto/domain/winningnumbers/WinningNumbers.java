@@ -1,7 +1,7 @@
 package lotto.domain.winningnumbers;
 
-import lotto.domain.ticket.Lotto;
 import java.util.List;
+import lotto.domain.ticket.Lotto;
 
 public class WinningNumbers {
 
@@ -10,7 +10,7 @@ public class WinningNumbers {
 
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = new Lotto(winningNumbers);
-        this.bonusNumber = new BonusNumber(winningNumbers,bonusNumber);
+        this.bonusNumber = new BonusNumber(winningNumbers, bonusNumber);
     }
 
     public boolean isInWinningNumbers(int number) {

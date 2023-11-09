@@ -16,7 +16,7 @@ public class WinningStatistics {
     public WinningStatistics(Money money) {
         winningsStatistics = new EnumMap<>(LottoRank.class);
         Arrays.stream(LottoRank.values())
-                .forEach(rank -> winningsStatistics.put(rank,0));
+                .forEach(rank -> winningsStatistics.put(rank, 0));
         this.money = money;
     }
 
@@ -32,7 +32,7 @@ public class WinningStatistics {
 
     public long getPrizeMoney() {
         return Arrays.stream(LottoRank.values())
-                .mapToLong(rank -> getCountOfRank(rank)* (long)rank.getPrize())
+                .mapToLong(rank -> getCountOfRank(rank) * (long) rank.getPrize())
                 .sum();
     }
 
@@ -49,7 +49,7 @@ public class WinningStatistics {
 
     private void addCount(LottoRank rank) {
         int exist = winningsStatistics.get(rank);
-        winningsStatistics.put(rank,++exist);
+        winningsStatistics.put(rank, ++exist);
     }
 
 }

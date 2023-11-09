@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
-
 import lotto.domain.money.Money;
 import lotto.domain.statistics.LottoRank;
 import lotto.domain.statistics.LottoResult;
@@ -31,19 +30,19 @@ public class StatisticsTest {
     void 생성한_통계_결과가_정확하게_등수별_복권_개수를_갖는다(LottoRank rank, int count) {
         //given
         List<LottoResult> lottoResults = List.of(
-                new LottoResult(0,false),
-                new LottoResult(0,true),
-                new LottoResult(1,false),
-                new LottoResult(1,true),
-                new LottoResult(2,false),
-                new LottoResult(2,true),
-                new LottoResult(3,false),
-                new LottoResult(3,true),
-                new LottoResult(4,false),
-                new LottoResult(4,true),
-                new LottoResult(5,false),
-                new LottoResult(5,true),
-                new LottoResult(6,false)
+                new LottoResult(0, false),
+                new LottoResult(0, true),
+                new LottoResult(1, false),
+                new LottoResult(1, true),
+                new LottoResult(2, false),
+                new LottoResult(2, true),
+                new LottoResult(3, false),
+                new LottoResult(3, true),
+                new LottoResult(4, false),
+                new LottoResult(4, true),
+                new LottoResult(5, false),
+                new LottoResult(5, true),
+                new LottoResult(6, false)
         );
 
         //when
@@ -56,7 +55,7 @@ public class StatisticsTest {
 
     @ParameterizedTest
     @MethodSource("provideResultAndPrize")
-    void 생성한_통계_결과가_장확한_총_상금_금액을_갖는다(List<LottoResult> lottoResults,long prize){
+    void 생성한_통계_결과가_장확한_총_상금_금액을_갖는다(List<LottoResult> lottoResults, long prize) {
         //when
         winningStatistics.updateStatistics(lottoResults);
 
@@ -66,11 +65,11 @@ public class StatisticsTest {
 
     private static Stream<Arguments> provideRankAndCount() {
         return Stream.of(
-                Arguments.of(LottoRank.FIFTH_PLACE,2),
-                Arguments.of(LottoRank.FOURTH_PLACE,2),
-                Arguments.of(LottoRank.THIRD_PLACE,1),
-                Arguments.of(LottoRank.SECOND_PLACE,1),
-                Arguments.of(LottoRank.FIRST_PLACE,1)
+                Arguments.of(LottoRank.FIFTH_PLACE, 2),
+                Arguments.of(LottoRank.FOURTH_PLACE, 2),
+                Arguments.of(LottoRank.THIRD_PLACE, 1),
+                Arguments.of(LottoRank.SECOND_PLACE, 1),
+                Arguments.of(LottoRank.FIRST_PLACE, 1)
         );
     }
 
@@ -78,37 +77,36 @@ public class StatisticsTest {
         return Stream.of(
                 Arguments.of(
                         List.of(
-                                new LottoResult(0,false),
-                                new LottoResult(1,false),
-                                new LottoResult(2,false),
-                                new LottoResult(3,false),
-                                new LottoResult(3,true),
-                                new LottoResult(3,true)
+                                new LottoResult(0, false),
+                                new LottoResult(1, false),
+                                new LottoResult(2, false),
+                                new LottoResult(3, false),
+                                new LottoResult(3, true),
+                                new LottoResult(3, true)
                         ), 15000
                 ),
                 Arguments.of(
                         List.of(
-                                new LottoResult(0,false),
-                                new LottoResult(0,false),
-                                new LottoResult(1,false),
-                                new LottoResult(2,false),
-                                new LottoResult(2,true),
-                                new LottoResult(6,false)
+                                new LottoResult(0, false),
+                                new LottoResult(0, false),
+                                new LottoResult(1, false),
+                                new LottoResult(2, false),
+                                new LottoResult(2, true),
+                                new LottoResult(6, false)
                         ), 2000000000
                 ),
                 Arguments.of(
                         List.of(
-                                new LottoResult(0,false),
-                                new LottoResult(1,false),
-                                new LottoResult(1,false),
-                                new LottoResult(3,false),
-                                new LottoResult(5,false),
-                                new LottoResult(5,true)
+                                new LottoResult(0, false),
+                                new LottoResult(1, false),
+                                new LottoResult(1, false),
+                                new LottoResult(3, false),
+                                new LottoResult(5, false),
+                                new LottoResult(5, true)
                         ), 31505000
                 )
         );
     }
-
 
 
 }

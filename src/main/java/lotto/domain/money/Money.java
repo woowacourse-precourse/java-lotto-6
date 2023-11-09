@@ -22,14 +22,14 @@ public class Money {
     }
 
     public double getRateOfReturn(long prizeMoney) {
-        return (double)prizeMoney / userMoney * 100.0;
+        return (double) prizeMoney / userMoney * 100.0;
     }
 
     private void validateMoney(int money) {
-        if(validateMoneyNotMoreThanZero(money)) {
+        if (validateMoneyNotMoreThanZero(money)) {
             throw new IllegalArgumentException(MONEY_NOT_MORE_THAN_ZERO.toString());
         }
-        if(validateMoneyDevidedByCost(money)) {
+        if (validateMoneyDevidedByCost(money)) {
             throw new IllegalArgumentException(MONEY_CANNOT_BE_DIVIDED.toString());
         }
     }

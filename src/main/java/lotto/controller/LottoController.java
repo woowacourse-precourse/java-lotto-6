@@ -78,6 +78,6 @@ public class LottoController {
         OutputView.outputView(ViewMessage.OutputLottoResultBonusMatch.getMessage(resultData.get(Config.bonusMatch)));
         OutputView.outputView(ViewMessage.OutputLottoResultSixMatch.getMessage(resultData.get(Config.sixMatch)));
         Double returnRate = lottoResult.getReturnRate(money);
-        OutputView.outputView(ViewMessage.OutputLottoResultReturnRate.getMessage(returnRate));
+        OutputView.outputView(ViewMessage.OutputLottoResultReturnRate.getMessage(Math.round(returnRate) / 100.0));
     }
 }

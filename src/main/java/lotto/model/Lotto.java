@@ -10,12 +10,12 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkDuplicateNumber(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.sort();
     }
 
     public List<Integer> getLottoNumber(){
       return numbers;
-    };
+    }
 
     public Integer compareLotto(Lotto winningLotto, Integer bonusNumber) {
         int equalsNumber = Math.toIntExact(numbers.stream()
@@ -39,7 +39,7 @@ public class Lotto {
 
         if(numberSet.size() != numbers.size()){
             throw new IllegalArgumentException();
-        };
+        }
     }
 
     private boolean compareBonusNumber(Integer bonusNumber){

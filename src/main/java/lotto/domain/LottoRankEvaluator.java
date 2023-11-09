@@ -4,7 +4,6 @@ import static lotto.constants.LottoConstants.INCREASING_UNIT;
 import static lotto.constants.LottoConstants.INITIAL_VALUE;
 
 import lotto.constants.RankConstants;
-import lotto.dto.Lotto;
 import lotto.dto.WinningLotto;
 
 public class LottoRankEvaluator {
@@ -22,13 +21,13 @@ public class LottoRankEvaluator {
     }
 
     private boolean isHasBonusNumber(Lotto purchasedLotto) {
-        return purchasedLotto.numbers().contains(winningLotto.bonusNumber());
+        return purchasedLotto.getLottoNumbers().contains(winningLotto.bonusNumber());
     }
 
     private int getHitCountOfLottoNumbers(Lotto purchasedLotto) {
         int hitCount = INITIAL_VALUE;
         for (int number : winningLotto.winningLottoNumbers()) {
-            if (purchasedLotto.numbers().contains(number)) {
+            if (purchasedLotto.getLottoNumbers().contains(number)) {
                 hitCount += INCREASING_UNIT;
             }
         }

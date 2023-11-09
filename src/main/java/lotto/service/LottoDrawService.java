@@ -3,9 +3,9 @@ package lotto.service;
 import static lotto.constants.LottoConstants.INCREASING_UNIT;
 
 import lotto.constants.RankConstants;
+import lotto.domain.Lotto;
 import lotto.domain.LottoRankEvaluator;
 import lotto.domain.LottoRanks;
-import lotto.dto.Lotto;
 import lotto.dto.Lottos;
 import lotto.dto.WinningLotto;
 

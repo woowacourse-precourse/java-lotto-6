@@ -5,8 +5,8 @@ import static lotto.constants.LottoConstants.ZERO;
 
 import java.util.Comparator;
 import java.util.stream.IntStream;
+import lotto.domain.Lotto;
 import lotto.domain.Purchases;
-import lotto.dto.Lotto;
 import lotto.dto.Lottos;
 import lotto.utils.RandomNumberGenerator;
 import lotto.validator.LottoPurchaseValidator;

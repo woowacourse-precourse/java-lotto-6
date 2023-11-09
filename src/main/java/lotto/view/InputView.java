@@ -1,13 +1,15 @@
 package lotto.view;
 
+import static lotto.validator.InputNumberValidator.validate;
+import static lotto.validator.InputNumbersValidator.validate;
+import static lotto.validator.LottoNumbersValidator.validateBonus;
+import static lotto.validator.LottoNumbersValidator.validateLotto;
+import static lotto.validator.LottoPurchaseValidator.validatePurchase;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import lotto.validator.InputNumberValidator;
-import lotto.validator.InputNumbersValidator;
-import lotto.validator.LottoNumbersValidator;
-import lotto.validator.LottoPurchaseValidator;
 
 public class InputView {
 
@@ -34,8 +36,8 @@ public class InputView {
         return getInput(
                 Integer::parseInt,
                 input -> {
-                    InputNumberValidator.validate(String.valueOf(input));
-                    LottoPurchaseValidator.validatePurchase(input);
+                    validate(String.valueOf(input));
+                    validatePurchase(input);
                     return true;
                 }
         );
@@ -48,8 +50,8 @@ public class InputView {
                         .map(Integer::parseInt)
                         .toList(),
                 input -> {
-                    InputNumbersValidator.validate(input.stream().map(String::valueOf).toList());
-                    LottoNumbersValidator.validateLotto(input);
+                    validate(input.stream().map(String::valueOf).toList());
+                    validateLotto(input);
                     return true;
                 }
         );
@@ -59,8 +61,8 @@ public class InputView {
         return getInput(
                 Integer::parseInt,
                 input -> {
-                    InputNumberValidator.validate(String.valueOf(input));
-                    LottoNumbersValidator.validateBonus(winningNumbers, input);
+                    validate(String.valueOf(input));
+                    validateBonus(winningNumbers, input);
                     return true;
                 }
         );

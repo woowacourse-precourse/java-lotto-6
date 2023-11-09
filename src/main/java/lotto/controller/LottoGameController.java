@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import lotto.constants.RankConstants;
+import lotto.domain.Lotto;
 import lotto.domain.LottoRanks;
-import lotto.dto.Lotto;
 import lotto.dto.Lottos;
 import lotto.dto.WinningLotto;
 import lotto.service.LottoDrawService;
@@ -48,7 +48,7 @@ public class LottoGameController {
     private int getBonusNumber(Lotto winningLotto) {
         OutputView.newLine();
         OutputView.printMessage(OutputView.INPUT_BONUS_NUMBER_MESSAGE);
-        return InputView.inputBonusNumber(winningLotto.numbers());
+        return InputView.inputBonusNumber(winningLotto.getLottoNumbers());
     }
 
     private Lottos purchaseLotto(int payment) {
@@ -72,7 +72,7 @@ public class LottoGameController {
 
     private void displayPurchasedLottos(Lottos purchasedLottos) {
         for (Lotto lotto : purchasedLottos.lottos()) {
-            OutputView.printGeneratedLottoResult(lotto.numbers());
+            OutputView.printGeneratedLottoResult(lotto.getLottoNumbers());
         }
     }
 

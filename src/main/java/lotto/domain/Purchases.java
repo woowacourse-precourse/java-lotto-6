@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.dto.Lotto;
 import lotto.dto.Lottos;
 
 public class Purchases {

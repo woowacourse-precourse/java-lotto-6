@@ -16,8 +16,6 @@ public class LottoService {
     public static final String PURCHASE_X_COUNT = "개를 구매했습니다.";
     public static final String WINNING_STATISTICS = "당첨 통계";
 
-    private Map<Ranking, Integer> winningResult;
-
     public Lotto generateLotto() {
         List<Integer> list = generateLottoCombination();
         return new Lotto(list);
@@ -57,25 +55,29 @@ public class LottoService {
         return SIXTH;
     }
 
-    public void initWinningResult() {
-        winningResult = new HashMap<>();
+    public Map<Ranking, Integer> initWinningResult() {
+        Map<Ranking, Integer> winningResult = new HashMap<>();
 
         for (Ranking ranking : Ranking.values()) {
             winningResult.put(ranking, 0);
         }
+
+        return winningResult;
     }
 
-    public void calculateWinningResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
-        initWinningResult();
+    public Map<Ranking, Integer> calculateWinningResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
+        Map<Ranking, Integer> winningResult = initWinningResult();
 
         for (Lotto lotto : lottoList) {
             Ranking ranking = calculateRanking(lotto, answer, bonusNumber);
             int value = winningResult.getOrDefault(ranking, 0);
             winningResult.put(ranking, value + 1);
         }
+
+        return winningResult;
     }
 
-    public double calculateProfitRate() {
+    public double calculateProfitRate(Map<Ranking,Integer> winningResult) {
         int totalPrizeMoney = 0;
         int totalCount = 0;
 
@@ -92,39 +94,4 @@ public class LottoService {
         return roundToDecimalPlace(profitRate, 1);
     }
 
-    public String makeStatisticsResultOutputStatement(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
-        // winningResult에 경기 결과 기록하기
-        calculateWinningResult(lottoList, answer, bonusNumber);
-
-        StringBuilder result = new StringBuilder();
-
-        result.append(WINNING_STATISTICS).append("\n");
-        result.append("---").append("\n");
-
-        // 등수별 당첨 수 나타내는 부분
-        result.append(winningResultToOutputStatement());
-
-        // 수익률 계산하고 원하는 형태로 표시하는 부분
-        result.append(String.format("총 수익률은 %.1f%%입니다.", calculateProfitRate()));
-
-        return result.toString();
-    }
-
-    private String winningResultToOutputStatement() {
-        StringBuilder result = new StringBuilder();
-
-        Ranking[] rankingsArr = new Ranking[]{FIFTH, FORTH, THIRD, SECOND, FIRST};
-
-        for (Ranking ranking : rankingsArr) {
-            result.append(ranking.getLotteryResult()).append(" - ");
-            result.append(winningResult.get(ranking)).append("개").append("\n");
-        }
-
-        return result.toString();
-    }
-
-
-    public Map<Ranking, Integer> getWinningResult() {
-        return winningResult;
-    }
 }

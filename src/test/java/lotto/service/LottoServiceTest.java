@@ -5,11 +5,11 @@ import static org.assertj.core.api.Assertions.*;
 
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
-import lotto.utils.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -171,8 +171,7 @@ class LottoServiceTest {
     @DisplayName("기능36 테스트 : Ranking에 있는 값들로 winningResult를 초기화한다.")
     void winningResultUseRakingEnumAsKey() {
         // when
-        lottoService.initWinningResult();
-        Map<Ranking, Integer> winningResult = lottoService.getWinningResult();
+        Map<Ranking, Integer> winningResult = lottoService.initWinningResult();
 
         // then
         assertThat(winningResult.keySet())
@@ -184,8 +183,7 @@ class LottoServiceTest {
     @DisplayName("기능36 테스트 : winningResult의 모든 원소의 value는 0으로 초기화된다.")
     void initWinningResultInitElementValuesToZero() {
         // when
-        lottoService.initWinningResult();
-        Map<Ranking, Integer> winningResult = lottoService.getWinningResult();
+        Map<Ranking, Integer> winningResult = lottoService.initWinningResult();
 
         // then
         for (Ranking ranking : winningResult.keySet()) {
@@ -209,8 +207,7 @@ class LottoServiceTest {
         int bonusNumber = 7;
 
         // when
-        lottoService.calculateWinningResult(lottoList, answer, bonusNumber);
-        Map<Ranking, Integer> winningResult = lottoService.getWinningResult();
+        Map<Ranking, Integer> winningResult = lottoService.calculateWinningResult(lottoList, answer, bonusNumber);
 
         // then
         assertThat(winningResult.get(FIRST)).isEqualTo(1);
@@ -222,64 +219,19 @@ class LottoServiceTest {
     @DisplayName("기능13 테스트 : 수익율을 정확하게 계산한다.")
     void calculateAccurateProfitRate() {
         // given
-        List<Lotto> lottoList = new ArrayList<>();
-
-        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
-
-        lottoList.add(new Lotto(List.of(4, 5, 6, 7, 8, 9)));
-        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
-        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
-        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
-        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
-        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
-        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
-
-        lottoService.calculateWinningResult(lottoList, answer, bonusNumber);
+        HashMap<Ranking, Integer> winningResult = new HashMap<>();
+        winningResult.put(FIRST, 0);
+        winningResult.put(SECOND, 0);
+        winningResult.put(THIRD, 0);
+        winningResult.put(FORTH, 0);
+        winningResult.put(FIFTH, 1);
+        winningResult.put(SIXTH, 6);
 
         // when
-        double result = lottoService.calculateProfitRate();
+        double result = lottoService.calculateProfitRate(winningResult);
 
         // then
         assertThat(result).isEqualTo(71.4);
     }
 
-    @Test
-    @DisplayName("기능35 테스트 : winningResultMap에 담긴 결과를 원하는 형식으로 출력문을 만들어 반환한다.")
-    void makeStatisticsResultOutputStatementCorrectly() {
-        // given
-        List<Lotto> lottoList = new ArrayList<>();
-
-        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        lottoList.add(new Lotto(List.of(2, 3, 4, 5, 6, 7)));
-        lottoList.add(new Lotto(List.of(3, 4, 5, 6, 7, 8)));
-
-        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
-
-        // when
-        String result = lottoService.makeStatisticsResultOutputStatement(lottoList, answer, bonusNumber);
-        int count = StringUtils.countOccurrences(result, "일치");
-
-        // then
-        assertThat(result).containsSubsequence(LottoService.WINNING_STATISTICS, "---", "총 수익률은", "%입니다.");
-        assertThat(count).isEqualTo(5 + 1);
-    }
-
-    @Test
-    @DisplayName("기능35 테스트 : 로또를 하나도 구매하지 않았을 때도 결과를 제대로 반환한다.")
-    void makeStatisticsResultOutputStatementCorrectlyWhenPurchaceZeroAmountLotto() {
-        // given
-        List<Lotto> lottoList = new ArrayList<>();
-        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
-
-        // when
-        String result = lottoService.makeStatisticsResultOutputStatement(lottoList, answer, bonusNumber);
-        int count = StringUtils.countOccurrences(result, "일치");
-
-        // then
-        assertThat(result).containsSubsequence(LottoService.WINNING_STATISTICS, "---", "총 수익률은", "%입니다.");
-        assertThat(count).isEqualTo(5 + 1);
-    }
 }

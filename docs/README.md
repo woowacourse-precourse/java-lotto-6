@@ -118,17 +118,15 @@ utils
             
         ✏️ 기능10. 로또를 발행하기 위한 6자리 숫자 조합을 생성한다. ➡ generateLottoCombination()
 
-    ✏️ 기능35. 로또 당첨 결과에 대한 출력문을 작성한다. ➡ makeStatisticsResultOuputStatement()
+    ✏️ 기능11. 로또 당첨 결과를 Map 형태의 자료구조아 반환한다. ➡ calculateWinningResult() 
 
-        ✏️ 기능11. 로또 당첨 결과를 Map 형태의 자료구조에 담아둔다. ➡ calculateWinningResult() 
-
-            ✏️ 기능36. 로또 결과 반환을 위해 Map을 초기화한다. ➡ ininWinningResult()
+        ✏️ 기능36. 로또 결과 반환을 위해 Map을 초기화한다. ➡ ininWinningResult()
     
-            ✏️ 기능12. 로또 한 조합의 등수를 계산한다. ➡ calculateRanking()
+        ✏️ 기능12. 로또 한 조합의 등수를 계산한다. ➡ calculateRanking()
 
-        ✏️ 기능13. 수익률을 계산한다. ➡ calculteProfitRate()
+    ✏️ 기능13. 수익률을 계산한다. ➡ calculteProfitRate()
 
-            ✏️ 기능14. 수익률을 소수점 둘째 자리에서 반올림한다. ➡ 기능39 사용
+        ✏️ 기능14. 수익률을 소수점 둘째 자리에서 반올림한다. ➡ 기능39 사용
 
 <br>
 
@@ -178,9 +176,11 @@ utils
 
 <br>
 
-📕 view.InputView :
+📕 view.OutputView :
 
     ✏️ 기능20. 로또 구매 결과를 출력한다. ➡ printPurchaseResult()  
+
+    ✏️ 기능35. 로또 당첨 결과에 대한 출력문을 작성한다. ➡ makeStatisticsResultOuputStatement()
 
 
 <br>

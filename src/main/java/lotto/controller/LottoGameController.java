@@ -48,7 +48,7 @@ public class LottoGameController {
     private int getBonusNumber(Lotto winningLotto) {
         OutputView.newLine();
         OutputView.printMessage(OutputView.INPUT_BONUS_NUMBER_MESSAGE);
-        return InputView.inputBonusNumber(winningLotto);
+        return InputView.inputBonusNumber(winningLotto.numbers());
     }
 
     private Lottos purchaseLotto(int payment) {

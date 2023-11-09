@@ -1,6 +1,7 @@
 package lotto.service;
 
 import static lotto.constants.LottoConstants.LOTTO_PRICE;
+import static lotto.constants.LottoConstants.ZERO;
 
 import java.util.Comparator;
 import java.util.stream.IntStream;
@@ -19,7 +20,7 @@ public class PurchaseService {
     }
 
     public Lottos purchaseLottoForCount(int count) {
-        IntStream.range(0, count).forEach(i -> purchases.recordPurchase(generateEachLotto()));
+        IntStream.range(ZERO, count).forEach(i -> purchases.recordPurchase(generateEachLotto()));
         return purchases.findLottos();
     }
 

@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import lotto.dto.Lotto;
 import lotto.validator.InputNumberValidator;
 import lotto.validator.InputNumbersValidator;
 import lotto.validator.LottoNumbersValidator;
@@ -56,12 +55,12 @@ public class InputView {
         );
     }
 
-    public static int inputBonusNumber(Lotto winningLotto) {
+    public static int inputBonusNumber(List<Integer> winningNumbers) {
         return getInput(
                 Integer::parseInt,
                 input -> {
                     InputNumberValidator.validate(String.valueOf(input));
-                    LottoNumbersValidator.validateBonus(winningLotto.numbers(), input);
+                    LottoNumbersValidator.validateBonus(winningNumbers, input);
                     return true;
                 }
         );

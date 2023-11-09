@@ -1,13 +1,13 @@
-package lotto.service;
+package lotto.domain;
 
 import lotto.constants.LottoRankConstants;
 import lotto.dto.Lotto;
 import lotto.dto.WinningLotto;
 
-public class Comparator {
+public class LottoRankEvaluator {
     WinningLotto winningLotto;
 
-    public Comparator(WinningLotto winningLotto) {
+    public LottoRankEvaluator(WinningLotto winningLotto) {
         this.winningLotto = winningLotto;
     }
 

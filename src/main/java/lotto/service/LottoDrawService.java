@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.constants.LottoRankConstants;
+import lotto.domain.LottoRankEvaluator;
 import lotto.domain.LottoRanks;
 import lotto.dto.Lotto;
 import lotto.dto.Lottos;
@@ -10,9 +11,9 @@ public class LottoDrawService {
     LottoRanks lottoRanks = new LottoRanks();
 
     public LottoRanks evaluateRanks(WinningLotto winningLotto, Lottos purchasedLottos) {
-        Comparator comparator = new Comparator(winningLotto);
+        LottoRankEvaluator lottoRankEvaluator = new LottoRankEvaluator(winningLotto);
         for (Lotto purchasedLotto : purchasedLottos.lottos()) {
-            LottoRankConstants rank = comparator.compareWithWinningLotto(purchasedLotto);
+            LottoRankConstants rank = lottoRankEvaluator.compareWithWinningLotto(purchasedLotto);
             lottoRanks.recordRank(rank);
         }
         return lottoRanks;

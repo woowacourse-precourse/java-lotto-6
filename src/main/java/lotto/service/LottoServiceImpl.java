@@ -98,14 +98,14 @@ public class LottoServiceImpl implements LottoService {
     }
 
     private void updateMatchResult(
-            List<Integer> matchResult, List<Integer> purchasedLottery, int matchCount, int bonusNumber
+            List<Integer> matchResult, List<Integer> purchasedNumbers, int matchCount, int bonusNumber
     ) {
         if (matchCount == 6) {
             matchResult.set(0, matchResult.get(0) + 1);
             return;
         }
 
-        if (matchCount == 5 && purchasedLottery.contains(bonusNumber)) {
+        if (matchCount == 5 && purchasedNumbers.contains(bonusNumber)) {
             matchResult.set(1, matchResult.get(1) + 1);
             return;
         }

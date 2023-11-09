@@ -18,9 +18,9 @@ public class LottoControllerImpl implements LottoController {
 
     @Override
     public void play() {
-        List<Lotto> purchasedLotteries = new ArrayList<>();
-        int payment = getPayment();
-        int lotteryCount = payment / 1000;
+        final List<Lotto> purchasedLotteries = new ArrayList<>();
+        final int payment = getPayment();
+        final int lotteryCount = payment / 1000;
 
         addPurchasedLotteries(purchasedLotteries, lotteryCount);
         displayPurchasedLotteries(purchasedLotteries);

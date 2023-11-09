@@ -65,6 +65,19 @@ class LottoServiceTest {
     }
 
     @Test
+    @DisplayName("기능08 테스트 : generateLottoList 메서드가 지정된 개수만큼 Lotto 객체를 담은 리스트를 반환한다.")
+    void generateLottoListMakeLottoAsManyAsCount() {
+        // given
+        int count = 5;
+
+        // when
+        List<Lotto> lottoList = lottoService.generateLottoList(count);
+
+        // then
+        assertThat(lottoList).hasSize(count);
+    }
+
+    @Test
     @DisplayName("기능12 테스트 : 2개의 숫자가 일치할 때 Ranking을 정확하게 반환한다.")
     void calculateCorrectRankingWhenTargetHaveTwoMatchingNumber() {
         // given

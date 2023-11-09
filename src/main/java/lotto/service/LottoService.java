@@ -6,6 +6,7 @@ import static lotto.utils.CalculationUtils.*;
 
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,11 +29,19 @@ public class LottoService {
         return result.toString();
     }
 
-
-
     public Lotto generateLotto() {
         List<Integer> list = generateLottoCombination();
         return new Lotto(list);
+    }
+
+    public List<Lotto> generateLottoList(int count) {
+        List<Lotto> result = new ArrayList<>();
+
+        for (int i = 0; i < count; i++) {
+            result.add(generateLotto());
+        }
+
+        return result;
     }
 
     public List<Integer> generateLottoCombination() {

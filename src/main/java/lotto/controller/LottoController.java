@@ -24,7 +24,7 @@ public class LottoController {
         int totalPurchaseMoney = receiveMoneyUntilPass();
 
         int purchaseCount = totalPurchaseMoney / ONE_LOTTO_PRICE;
-        List<Lotto> lottoList = generateLottoList(purchaseCount);
+        List<Lotto> lottoList = lottoService.generateLottoList(purchaseCount);
 
         showPurchaseResult(lottoList, totalPurchaseMoney);
 
@@ -80,16 +80,6 @@ public class LottoController {
         return receiveInputUntilPass(this::registerWinningLottoCombination);
     }
 
-    public List<Lotto> generateLottoList(int count) {
-        List<Lotto> result = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            result.add(lottoService.generateLotto());
-        }
-
-        return result;
-    }
-
     public void showPurchaseResult(List<Lotto> lottoList, int totalPurchaseAmount) {
         int purchaseCount = totalPurchaseAmount / ONE_LOTTO_PRICE;
         String purchaseResult = lottoService.makePurchaseResultOutputStatement(lottoList, purchaseCount);
@@ -138,7 +128,7 @@ public class LottoController {
         String[] strArr = userInput.replace(" ", "").split(",");
 
         for (String str : strArr) {
-            result.add(parseInt(str)); // 숫자인지 체크, 1~45인지 체크
+            result.add(parseInt(str));
         }
 
         result.sort(null);

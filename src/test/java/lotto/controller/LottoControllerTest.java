@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
+import lotto.service.LottoService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -83,7 +84,7 @@ class LottoControllerTest {
         // given
         int totalPurchaseAmount = 0;
         int totalPurchaseCount = totalPurchaseAmount / LottoController.ONE_LOTTO_PRICE;
-        List<Lotto> lottoList = lottoController.generateLottoList(totalPurchaseCount);
+        List<Lotto> lottoList = generateTestLottoList(totalPurchaseCount);
 
         // when
         lottoController.showPurchaseResult(lottoList, totalPurchaseAmount);
@@ -102,7 +103,7 @@ class LottoControllerTest {
         // given
         int totalPurchaseAmount = 1000;
         int totalPurchaseCount = totalPurchaseAmount / LottoController.ONE_LOTTO_PRICE;
-        List<Lotto> lottoList = lottoController.generateLottoList(totalPurchaseCount);
+        List<Lotto> lottoList = generateTestLottoList(totalPurchaseCount);
 
         // when
         lottoController.showPurchaseResult(lottoList, totalPurchaseAmount);
@@ -120,7 +121,7 @@ class LottoControllerTest {
         // given
         int totalPurchaseAmount = 5000;
         int totalPurchaseCount = totalPurchaseAmount / LottoController.ONE_LOTTO_PRICE;
-        List<Lotto> lottoList = lottoController.generateLottoList(totalPurchaseCount);
+        List<Lotto> lottoList = generateTestLottoList(totalPurchaseCount);
 
         // when
         lottoController.showPurchaseResult(lottoList, totalPurchaseAmount);
@@ -133,24 +134,11 @@ class LottoControllerTest {
     }
 
     @Test
-    @DisplayName("기능08 테스트 : generateLottoList 메서드가 지정된 개수만큼 Lotto 객체를 담은 리스트를 반환한다.")
-    void generateLottoListMakeLottoAsManyAsCount() {
-        // given
-        int count = 5;
-
-        // when
-        List<Lotto> lottoList = lottoController.generateLottoList(5);
-
-        // then
-        assertThat(lottoList).hasSize(count);
-    }
-
-    @Test
     @DisplayName("기능27 테스트 : 당첨 통계가 잘 출력된다.")
     void showStatisticResultCorrectly() {
         // given
         int totalPurchaseCount = 5;
-        List<Lotto> lottoList = lottoController.generateLottoList(totalPurchaseCount);
+        List<Lotto> lottoList = generateTestLottoList(totalPurchaseCount);
         Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
@@ -282,6 +270,12 @@ class LottoControllerTest {
         assertThatThrownBy(() -> lottoController.registerWinningLottoCombination())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
+    }
+
+    public List<Lotto> generateTestLottoList(int count) {
+        LottoService lottoService = new LottoService();
+
+        return lottoService.generateLottoList(count);
     }
 
 }

@@ -112,6 +112,8 @@ utils
 
     ✏️ 기능34. 로또 구매 결과에 대한 출력문을 작성한다. ➡ makePurchaseResultOutputStatement()
 
+    ✏️ 기능8. 로또 구매 개수만큼 로또를 구매한다. ➡ generateLottoList()
+
     ✏️ 기능9. 기능10 에서 생성된 숫자 조합으로 로또를 발행한다. ➡ generateLotto() 
             
         ✏️ 기능10. 로또를 발행하기 위한 6자리 숫자 조합을 생성한다. ➡ generateLottoCombination()
@@ -143,8 +145,6 @@ utils
             ✏️ 기능18. 로또 구입 금액이 1000원 단위인지 체크한다. ➡ 기능32 사용
         
         ✏️ 기능19. 검증을 통과하면 로또 구입금액을 숫자로 반환한다 ➡ 기능37 사용
-
-    ✏️ 기능8. 로또 구매 개수만큼 로또를 구매한다. ➡ generateLottoList() 
 
     ✏️ 기능20. 로또 구매 결과를 출력한다. ➡ showPurchaseResult()  
 

@@ -2,7 +2,6 @@ package lotto.domain;
 
 public class Prize{
     private PrizeType prizeType;
-    private int compensation;
     private boolean bonusMatch;
     private int count;
     public Prize(){
@@ -16,16 +15,8 @@ public class Prize{
         this.prizeType = prizeType;
     }
 
-    public void setCompensation(int compensation) {
-        this.compensation = compensation;
-    }
-
     public PrizeType getPrizeType() {
         return prizeType;
-    }
-
-    public int getCompensation() {
-        return compensation;
     }
 
     public boolean isBonusMatch() {

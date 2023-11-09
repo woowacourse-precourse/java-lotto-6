@@ -1,11 +1,10 @@
 package lotto.service;
 
-import lotto.domain.CustomerLotto;
-import lotto.domain.Lotto;
+import lotto.domain.LuckyLotto;
 
 public interface UserInputService {
     int payForLotto();
     void userInputLottoNum();
     boolean isValidate(int num);
-    CustomerLotto createLotto();
+    LuckyLotto createLotto();
 }

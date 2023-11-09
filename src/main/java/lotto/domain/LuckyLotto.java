@@ -1,11 +1,9 @@
 package lotto.domain;
 
-import java.util.List;
-
-public class CustomerLotto {
+public class LuckyLotto {
     private Lotto lottos;
     private int bonusNum;
-    public CustomerLotto(Lotto lottos,int bonusNum){
+    public LuckyLotto(Lotto lottos, int bonusNum){
         this.lottos = lottos;
         this.bonusNum = bonusNum;
     }

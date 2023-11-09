@@ -1,6 +1,6 @@
 package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.CustomerLotto;
+import lotto.domain.LuckyLotto;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
@@ -45,10 +45,10 @@ public class UserInputServiceImpl implements UserInputService {
         return true;
     }
     @Override
-    public CustomerLotto createLotto() {
+    public LuckyLotto createLotto() {
         userInputLottoNum();
         Lotto lotto = new Lotto(winningNum);
-        return new CustomerLotto(lotto,bonusNum);
+        return new LuckyLotto(lotto,bonusNum);
     }
 }
 

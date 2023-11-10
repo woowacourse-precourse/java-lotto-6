@@ -11,7 +11,7 @@ public class LottoPurchaseManagerTest {
     @Test
     void create() {
         //given
-        String purchaseAmountInput = "10000";
+        int purchaseAmountInput = 10000;
         LottoPurchaseAmount lottoPurchaseAmount = LottoPurchaseAmount.from(purchaseAmountInput);
         LottoPurchaseManager lottoPurchaseManager = LottoPurchaseManager.from(lottoPurchaseAmount);
 

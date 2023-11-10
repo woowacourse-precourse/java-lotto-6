@@ -11,15 +11,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottosTest {
     private Lottos lottos;
-    private Lotto lotto1;
-    private Lotto lotto2;
-    private Lotto lotto3;
 
     @BeforeEach
     void beforeEach() {
-        lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 8));
         lottos = Lottos.from(List.of(lotto1, lotto2, lotto3));
     }
 
@@ -34,8 +31,8 @@ class LottosTest {
     @Test
     void providePrizeConditions() {
         //given
-        WinningNumbers winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
-        String bonusNumberInput = "8";
+        WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumberInput = 8;
         WinningLotto winningLotto = WinningLotto.create(winningNumbers, bonusNumberInput);
 
         // when

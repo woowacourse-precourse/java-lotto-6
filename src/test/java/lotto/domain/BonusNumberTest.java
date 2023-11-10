@@ -12,11 +12,8 @@ class BonusNumberTest {
     @DisplayName("보너스넘버는 1이상 45 이하의 숫자여야 한다.")
     @Test
     void createBonusNumber() {
-        // given
-        String input = "1";
-
-        // when
-        BonusNumber bonusNumber = BonusNumber.from(input);
+        //given, when
+        BonusNumber bonusNumber = BonusNumber.from(1);
 
         // then
         assertThat(bonusNumber).isNotNull();
@@ -25,9 +22,9 @@ class BonusNumberTest {
     }
 
     @ParameterizedTest(name = "[{index}] 보너스 넘버가 ''{0}'' 이면 예외 발생한다.")
-    @ValueSource(strings = {"", "we", "47", "0", "-1"})
+    @ValueSource(ints = {47, 0, -1})
         //when, then
-    void cannotCreateBonusNumber(String element) {
+    void cannotCreateBonusNumber(int element) {
         assertThatThrownBy(() -> BonusNumber.from(element))
                 .isInstanceOf(IllegalArgumentException.class);
     }

@@ -5,4 +5,5 @@ public class LottoConstants {
     public static final int MINIMUM_RANGE = 1;
     public static final int MAXIMUM_RANGE = 45;
     public static final long LOTTO_PRICE = 1000;
+    public static final String LOTTO_NUMBERS_DELIMITER = ",";
 }

@@ -10,6 +10,23 @@ import java.util.stream.Collectors;
 import static lotto.view.OutputViewMessage.*;
 
 public class OutputView {
+    private static void printLottoQuantity(long size) {
+        System.out.printf((LOTTO_QUANTITY_MESSAGE_FORMAT) + "%n", size);
+    }
+
+    private static void printPrizeResult(Map<PrizeCondition, Long> prizeResult) {
+        Arrays.stream(PrizeCondition.values())
+                .filter(prizeCondition -> !prizeCondition.equals(PrizeCondition.NONE))
+                .forEach(prizeCondition ->
+                        System.out.printf((prizeCondition.getPrizeResultFormat()) + "%n",
+                                prizeResult.getOrDefault(prizeCondition, 0L)));
+    }
+
+    private static void printProfit(double profit) {
+        String profitMessage = String.format(PROFIT_MESSAGE_FORMAT, profit);
+        System.out.println(profitMessage);
+    }
+
     public void printAskPurchaseAmount() {
         System.out.println(ASK_PURCHASE_AMOUNT);
     }
@@ -27,10 +44,6 @@ public class OutputView {
         System.out.println();
         printLottoQuantity(purchasedLottosDto.getSize());
         printPurchasedLottos(purchasedLottosDto);
-    }
-
-    private static void printLottoQuantity(long size) {
-        System.out.printf((LOTTO_QUANTITY_MESSAGE_FORMAT) + "%n", size);
     }
 
     private void printPurchasedLottos(PurchasedLottosDto purchasedLottosDto) {
@@ -51,19 +64,6 @@ public class OutputView {
     private void printStartResult() {
         System.out.println();
         System.out.println(START_RESULT);
-    }
-
-    private static void printPrizeResult(Map<PrizeCondition, Long> prizeResult) {
-        Arrays.stream(PrizeCondition.values())
-                .filter(prizeCondition -> !prizeCondition.equals(PrizeCondition.NONE))
-                .forEach(prizeCondition ->
-                        System.out.printf((prizeCondition.getPrizeResultFormat()) + "%n",
-                        prizeResult.getOrDefault(prizeCondition, 0L)));
-    }
-
-    private static void printProfit(double profit) {
-        String profitMessage = String.format(PROFIT_MESSAGE_FORMAT, profit);
-        System.out.println(profitMessage);
     }
 
     public void printErrorMessage(String message) {

@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -21,14 +20,14 @@ class LottoResultGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        purchaseAmount = LottoPurchaseAmount.from("10000");
+        purchaseAmount = LottoPurchaseAmount.from(10000);
 
-        List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4, 5, 6);
-        List<Integer> numbers2 = Arrays.asList(1, 2, 3, 4, 5, 7);
-        List<Integer> numbers3 = Arrays.asList(1, 2, 3, 5, 7, 8);
+        List<Integer> numbers1 = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> numbers2 = List.of(1, 2, 3, 4, 5, 7);
+        List<Integer> numbers3 = List.of(1, 2, 3, 5, 7, 8);
 
-        winningNumbers = WinningNumbers.from("1,2,3,4,5,6");
-        String bonusNumber = "8";
+        winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 8;
         winningLotto = WinningLotto.create(winningNumbers, bonusNumber);
 
         lottoResultGenerator = LottoResultGenerator.of(winningLotto, purchaseAmount);

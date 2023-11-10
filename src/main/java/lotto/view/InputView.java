@@ -24,31 +24,42 @@ public class InputView {
     }
 
     private static String readUserInput() {
-        try {
-            return Console.readLine();
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 잘못 된 값을 입력하였습니다.");
-        }
+        return Console.readLine();
     }
 
     public static long inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String input = inputLine();
-        return divideWithTicketPrice(input);
+        try {
+            return divideWithTicketPrice(input);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return inputPurchaseAmount();
     }
 
     public static List<Integer> inputWinningNumbers() {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = inputLine();
-        return parseWinningNumbersOrThrowError(input);
+        try {
+            return parseWinningNumbersOrThrowError(input);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return inputWinningNumbers();
     }
 
     public static int inputWinningBonusNumber() {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = inputLine();
-        return WinningBonusNumberOrThrowError(input);
+        try {
+            return WinningBonusNumberOrThrowError(input);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return inputWinningBonusNumber();
     }
 
     private static long divideWithTicketPrice(String input) {

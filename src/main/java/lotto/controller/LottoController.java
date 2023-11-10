@@ -3,8 +3,9 @@ package lotto.controller;
 import java.util.List;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoGenerator;
 import lotto.domain.LottoPurchase;
+import lotto.domain.LottoRanking;
+import lotto.domain.LottoWinning;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,22 +22,34 @@ public class LottoController {
     }
 
     public void start() {
-        purchaseLottoByUserAmount();
-        winningNumbersSet();
-        winningBonusNumberSet();
+        List<Lotto> purchaseLottos = purchaseLottoByUserAmount();
+        List<Integer> winningNumbers = SetwinningNumbers();
+        int winningBonusNumber = SetwinningBonusNumber();
+        SetwinningDetails(purchaseLottos, winningNumbers, winningBonusNumber);
+
     }
 
-    public void purchaseLottoByUserAmount() {
+    public List<Lotto> purchaseLottoByUserAmount() {
         long purchaseAmount = InputView.inputPurchaseAmount();
         int ticketAmount = Long.valueOf(purchaseAmount / 1000).intValue();
-        OutputView.outputPurchaseLottos(LottoPurchase.purchasedLottos(ticketAmount));
+        List<Lotto> purchaselottos = LottoPurchase.purchasedLottos(ticketAmount);
+        OutputView.outputPurchaseLottos(purchaselottos);
+
+        return purchaselottos;
     }
 
-    public void winningNumbersSet() {
-        InputView.inputWinningNumbers();
+    public List<Integer> SetwinningNumbers() {
+        return InputView.inputWinningNumbers();
     }
 
-    public void winningBonusNumberSet() {
-        InputView.inputWinningBonusNumber();
+    public int SetwinningBonusNumber() {
+        return InputView.inputWinningBonusNumber();
+    }
+
+    public void SetwinningDetails(List<Lotto> purchaseLottos, List<Integer> winningNumbers, int winningBonusNumber) {
+        // 구매한 로또랑 당청 금액 비교
+        List<LottoRanking> winnings = LottoWinning.winningCheck(purchaseLottos, winningNumbers, winningBonusNumber);
+        // 비교한 결과 print
+        OutputView.checkWinningList(winnings);
     }
 }

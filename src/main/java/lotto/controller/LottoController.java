@@ -23,9 +23,9 @@ public class LottoController {
 
     public void start() {
         List<Lotto> purchaseLottos = purchaseLottoByUserAmount();
-        List<Integer> winningNumbers = SetwinningNumbers();
-        int winningBonusNumber = SetwinningBonusNumber();
-        SetwinningDetails(purchaseLottos, winningNumbers, winningBonusNumber);
+        List<Integer> winningNumbers = setwinningNumbers();
+        int winningBonusNumber = setwinningBonusNumber(winningNumbers);
+        setwinningDetails(purchaseLottos, winningNumbers, winningBonusNumber);
 
     }
 
@@ -38,15 +38,15 @@ public class LottoController {
         return purchaselottos;
     }
 
-    public List<Integer> SetwinningNumbers() {
+    public List<Integer> setwinningNumbers() {
         return InputView.inputWinningNumbers();
     }
 
-    public int SetwinningBonusNumber() {
-        return InputView.inputWinningBonusNumber();
+    public int setwinningBonusNumber(List<Integer> winningNumbers) {
+        return InputView.inputWinningBonusNumber(winningNumbers);
     }
 
-    public void SetwinningDetails(List<Lotto> purchaseLottos, List<Integer> winningNumbers, int winningBonusNumber) {
+    public void setwinningDetails(List<Lotto> purchaseLottos, List<Integer> winningNumbers, int winningBonusNumber) {
         // 구매한 로또랑 당청 금액 비교
         List<LottoRanking> winnings = LottoWinning.winningCheck(purchaseLottos, winningNumbers, winningBonusNumber);
         // 비교한 결과 print

@@ -50,16 +50,16 @@ public class InputView {
         return inputWinningNumbers();
     }
 
-    public static int inputWinningBonusNumber() {
+    public static int inputWinningBonusNumber(List<Integer> winningNumbers) {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         String input = inputLine();
         try {
-            return WinningBonusNumberOrThrowError(input);
+            return winningBonusNumberOrThrowError(input, winningNumbers);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return inputWinningBonusNumber();
+        return inputWinningBonusNumber(winningNumbers);
     }
 
     private static long divideWithTicketPrice(String input) {
@@ -99,10 +99,13 @@ public class InputView {
         return winningNumbers;
     }
 
-    private static int WinningBonusNumberOrThrowError(String input) {
+    private static int winningBonusNumberOrThrowError(String input, List<Integer> winningNumbers) {
         int winningBonusNumber = parseWinningBonusNumberOrThrowError(input);
         if (winningBonusNumber < 1 || winningBonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1~45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(winningBonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 숫자가 당첨 번호와 중복입니다.");
         }
         return winningBonusNumber;
     }

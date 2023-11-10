@@ -1,12 +1,9 @@
 package lotto.domain;
 
-import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LottoWinningTest {
@@ -18,24 +15,18 @@ public class LottoWinningTest {
         // Creating purchased lottos
         List<Lotto> purchasedLottos = Arrays.asList(
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)));
+                new Lotto(Arrays.asList(3, 4, 5, 6, 7, 13)));
 
         // Winning numbers and bonus number
         List<Integer> winningNumbers = Arrays.asList(3, 4, 5, 6, 7, 8);
         int bonusNumber = 13;
 
-        // Redirect console output for checking LottoRanking
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        List<LottoRanking> expectedRankings = Arrays.asList(
+                LottoRanking.FOURTH,
+                LottoRanking.SECOND);
 
-        lottoWinning.winningCheck(purchasedLottos, winningNumbers, bonusNumber);
+        List<LottoRanking> actualRankings = lottoWinning.winningCheck(purchasedLottos, winningNumbers, bonusNumber);
 
-        // Reset console output
-        System.setOut(System.out);
-
-        String[] rankings = outputStream.toString().trim().split(System.lineSeparator());
-
-        assertEquals("FOURTH", rankings[0]); // Expected ranking for the first lotto
-        assertEquals("MISS", rankings[1]); // Expected ranking for the second lotto
+        assertEquals(expectedRankings, actualRankings);
     }
 }

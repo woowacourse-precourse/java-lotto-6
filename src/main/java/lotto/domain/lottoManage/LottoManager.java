@@ -55,12 +55,12 @@ public class LottoManager {
         for (int i = 0; i < getPurchasedLottoCount(); i++) {
             Lotto winningLotto = winningLottos.get(i);
             int matchingNumberCount = winningLotto.getMatchingNumberCount(playerLotto.getLotto());
-            prizes.add(getWinningPrize(matchingNumberCount, winningLotto.hasBonusNumber(playerLotto.getBonusNumber())));
+            prizes.add(getWinningPrizeForEachLotto(matchingNumberCount, winningLotto.hasBonusNumber(playerLotto.getBonusNumber())));
         }
         return prizes;
     }
 
-    private Prize getWinningPrize(int matchingNumberCount, boolean hasBonusNumber) {
+    private Prize getWinningPrizeForEachLotto(int matchingNumberCount, boolean hasBonusNumber) {
         if (matchingNumberCount == 5 && hasBonusNumber) {
             return Prize.FIVE_NUMBER_AND_BONUS_NUMBER_MATCH;
         }

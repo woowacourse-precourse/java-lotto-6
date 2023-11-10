@@ -12,7 +12,7 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto create(WinningNumbers winningNumbers, String number) {
+    public static WinningLotto create(WinningNumbers winningNumbers, int number) {
         BonusNumber bonusNumber = BonusNumber.from(number);
         return new WinningLotto(winningNumbers, bonusNumber);
     }

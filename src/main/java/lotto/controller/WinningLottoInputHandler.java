@@ -23,7 +23,7 @@ public class WinningLottoInputHandler {
         outputView.printAskBonusNumber();
         while (true) {
             try {
-                String bonusNumberInput = inputView.readInputFromUser();
+                int bonusNumberInput = inputView.readBonusNumber();
                 return WinningLotto.create(winningNumbers, bonusNumberInput);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -35,7 +35,7 @@ public class WinningLottoInputHandler {
         outputView.printAskWinningNumbers();
         while (true) {
             try {
-                String winningNumbersInput = inputView.readInputFromUser();
+                String winningNumbersInput = inputView.readWinningNumbers();
                 return WinningNumbers.from(winningNumbersInput);
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());

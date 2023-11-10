@@ -5,11 +5,17 @@ import lotto.validator.ValidationUtils;
 
 public class InputView {
     public long readPurchaseAmount() {
-        String userInput = Console.readLine();
-        return ValidationUtils.validateLong(userInput);
+        String purchaseAmountInput = Console.readLine();
+        return ValidationUtils.validateLong(purchaseAmountInput);
     }
 
-    public String readInputFromUser() {
-        return Console.readLine();
+    public int readWinningNumbers() {
+        String winningNumbersInput = Console.readLine();
+
+    }
+
+    public int readBonusNumber() {
+        String bonusNumberInput = Console.readLine();
+        return ValidationUtils.validateInteger(bonusNumberInput);
     }
 }

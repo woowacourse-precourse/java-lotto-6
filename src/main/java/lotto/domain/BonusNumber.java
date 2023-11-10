@@ -5,16 +5,15 @@ import lotto.validator.ValidationUtils;
 public class BonusNumber {
     private final int number;
 
-    private BonusNumber(String input) {
-        this.number = validate(input);
+    private BonusNumber(int number) {
+        this.number = validate(number);
     }
 
-    public static BonusNumber from(String input) {
-        return new BonusNumber(input);
+    public static BonusNumber from(int number) {
+        return new BonusNumber(number);
     }
 
-    private int validate(String input) {
-        int number = ValidationUtils.validateInteger(input);
+    private int validate(int number) {
         ValidationUtils.validateRange(number);
         return number;
     }

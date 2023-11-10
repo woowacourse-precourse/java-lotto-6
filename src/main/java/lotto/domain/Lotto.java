@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.ErrorMessage;
-import lotto.validator.LottoValidator;
+import lotto.validator.ValidationUtils;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ public class Lotto {
         if (numbers.size() != NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_INVALID_SIZE.getMessage());
         }
-        LottoValidator.validateNumbersInRange(numbers);
-        LottoValidator.validateDuplicate(numbers);
+        ValidationUtils.validateNumbersInRange(numbers);
+        ValidationUtils.validateDuplicate(numbers);
     }
 
     public PrizeCondition getPrizeCondition(WinningLotto winningLotto) {

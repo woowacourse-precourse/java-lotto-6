@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.ErrorMessage;
-import lotto.validator.LottoValidator;
+import lotto.validator.ValidationUtils;
 import org.junit.platform.commons.util.StringUtils;
 
 import java.util.Arrays;
@@ -48,7 +48,7 @@ public class WinningNumbers extends Lotto {
     private static Integer safeParseInt(String input) {
         try {
             int number = Integer.parseInt(input);
-            LottoValidator.validateRange(number);
+            ValidationUtils.validateRange(number);
             return number;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_NOT_NUMERIC.getMessage());

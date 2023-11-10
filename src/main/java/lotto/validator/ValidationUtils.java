@@ -9,14 +9,8 @@ import java.util.Set;
 import static lotto.constants.LottoConstants.MAXIMUM_RANGE;
 import static lotto.constants.LottoConstants.MINIMUM_RANGE;
 
-public class LottoValidator {
-    public static void validateRange(int number) {
-        if (number < MINIMUM_RANGE || number > MAXIMUM_RANGE) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_INVALID_RANGE.getMessage());
-        }
-    }
-
-    public static int validateNumeric(String input) {
+public class ValidationUtils {
+    public static int validateInteger(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -24,8 +18,22 @@ public class LottoValidator {
         }
     }
 
+    public static long validateLong(String input) {
+        try {
+            return Long.parseLong(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_NOT_NUMERIC.getMessage());
+        }
+    }
+
+    public static void validateRange(int number) {
+        if (number < MINIMUM_RANGE || number > MAXIMUM_RANGE) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_INVALID_RANGE.getMessage());
+        }
+    }
+
     public static void validateNumbersInRange(List<Integer> numbers) {
-        numbers.forEach(LottoValidator::validateRange);
+        numbers.forEach(ValidationUtils::validateRange);
     }
 
     public static void validateDuplicate(List<Integer> numbers) {

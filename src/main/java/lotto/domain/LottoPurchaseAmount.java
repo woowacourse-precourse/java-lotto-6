@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import lotto.exception.ErrorMessage;
-import lotto.validator.LottoValidator;
 
 import static lotto.constants.LottoConstants.LOTTO_PRICE;
 
@@ -12,8 +11,7 @@ public class LottoPurchaseAmount {
         this.amount = amount;
     }
 
-    public static LottoPurchaseAmount from(String inputAmountFromUser) {
-        long purchaseAmount = LottoValidator.validateNumeric(inputAmountFromUser);
+    public static LottoPurchaseAmount from(long purchaseAmount) {
         validatePurchaseAmount(purchaseAmount);
         return new LottoPurchaseAmount(purchaseAmount);
     }

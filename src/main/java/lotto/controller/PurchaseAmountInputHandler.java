@@ -21,8 +21,7 @@ public class PurchaseAmountInputHandler {
         outputView.printAskPurchaseAmount();
         while (true) {
             try {
-                String purchaseAmountInput = inputView.readInputFromUser();
-                return LottoPurchaseAmount.from(purchaseAmountInput);
+                return LottoPurchaseAmount.from(inputView.readPurchaseAmount());
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
             }

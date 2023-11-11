@@ -1,12 +1,14 @@
-package lotto;
+package domain;
 
 import java.util.List;
+import validators.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        LottoValidator.isDuplicatesLottoNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -16,5 +18,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -6,21 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Number {
-    private List<Integer> numberList;
-    private WinningResult grade;
-
-    public Number() {
-        numberList = createNumbers();
-    }
-
     public List<Integer> createNumbers(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
         Collections.sort(numbers);
         return numbers;
     }
-
-    public List<Integer> getNumberList() {
-        return numberList;
-    }
-    
 }

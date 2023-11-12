@@ -1,9 +1,7 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
+import lotto.model.*;
 import lotto.model.Number;
-import lotto.model.Ranking;
-import lotto.model.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -17,6 +15,7 @@ public class LottoController {
     private OutputView outputView;
     private static List<Lotto> boughtLotto;
     private static List<Integer> lotto;
+    private static int count;
 
     private static final int TICKET_PRICE = 1000;
     private static final int PERCENTAGE = 100;
@@ -27,22 +26,24 @@ public class LottoController {
     }
 
     public void startLotto(){
-        // 구매금액 입력
-        int price = inputView.readPrice();
-        int count = price/1000;
-        outputView.printTicketCount(count);
-        boughtLotto = makeLottoList(count);
-        // 당첨번호 입력
-        List<Integer> splittedNumber = inputView.readLotto();
-        Lotto lotto = new Lotto(splittedNumber); //검증
-        // 보너스번호 입력
-        int bonusNumber = inputView.readBonusNumber();
+        inputCountMakeLotto();
 
+        List<Integer> splittedNumber = inputView.readLotto();
+        Lotto lotto = new Lotto(splittedNumber);
+
+        int bonusNumber = inputView.readBonusNumber();
         WinningResult winningResult = new WinningResult(lotto,bonusNumber);
 
         lottoResult(boughtLotto,winningResult,count);
     }
 
+    private void inputCountMakeLotto(){
+        String price = inputView.readPrice();
+        LottoAmount amount = new LottoAmount(price);
+        count = amount.calculateLottoCount();
+        outputView.printTicketCount(count);
+        boughtLotto = makeLottoList(count);
+    }
 
     public void lottoResult(List<Lotto> lottoList, WinningResult winningResult, int amount){
         Map<Ranking, Integer> result = setResult();

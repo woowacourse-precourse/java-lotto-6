@@ -16,14 +16,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 
     private void validateRange(List<Integer> numbers){
         for (int winningNumber = 0; winningNumber<numbers.size();winningNumber++){
             if(!(numbers.get(winningNumber) >= 1 && numbers.get(winningNumber) <= 45)){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }
@@ -35,7 +35,7 @@ public class Lotto {
         }
 
         if (overlapCheck.size() != 6){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 

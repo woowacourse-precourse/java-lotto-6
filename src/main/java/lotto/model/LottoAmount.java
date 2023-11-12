@@ -25,21 +25,24 @@ public class LottoAmount {
         try{
             return Integer.parseInt(amount);
         } catch (NumberFormatException e){
-            throw new IllegalArgumentException();
+            System.out.println("[ERROR] 숫자로 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR] 숫자로 입력해주세요.");
         }
     }
 
     private void validateNatural(int amount){
         if (amount <= 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 양의 정수만 가능합니다.");
         }
     }
 
     private void validateDivisible(int amount){
         if (amount%LOTTO_MIN_AMOUNT != 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 1000단위로 입력해주세요.");
         }
     }
 
-
+    public int calculateLottoCount() {
+        return amount / LOTTO_MIN_AMOUNT;
+    }
 }

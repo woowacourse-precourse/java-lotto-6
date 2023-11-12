@@ -32,6 +32,7 @@ public class LottoController {
         Lotto lotto = new Lotto(splittedNumber);
 
         int bonusNumber = inputView.readBonusNumber();
+        lotto.validateBonusNumber(splittedNumber,bonusNumber);
         WinningResult winningResult = new WinningResult(lotto,bonusNumber);
 
         lottoResult(boughtLotto,winningResult,count);

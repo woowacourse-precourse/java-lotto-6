@@ -25,7 +25,6 @@ public class LottoAmount {
         try{
             return Integer.parseInt(amount);
         } catch (NumberFormatException e){
-            System.out.println("[ERROR] 숫자로 입력해주세요.");
             throw new IllegalArgumentException("[ERROR] 숫자로 입력해주세요.");
         }
     }

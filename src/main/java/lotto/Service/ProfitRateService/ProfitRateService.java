@@ -8,16 +8,12 @@ import lotto.Model.LottoWinningResult.LottoWinningResult;
 import lotto.Model.ProfitRate.ProfitRate;
 import static lotto.Common.LottoValue.*;
 
-import static lotto.Common.LottoValue.*;
-
 public class ProfitRateService {
-    private  LottoWinningResult lottoWinningResult;
 
     public ProfitRateService(){
     }
 
     public ProfitRate calculateProfit(LottoWinningResult lottoWinningResult){
-        this.lottoWinningResult = lottoWinningResult;
 
         Map<Integer, List<Lotto>> winningResult = lottoWinningResult.getMatchingResults();
 

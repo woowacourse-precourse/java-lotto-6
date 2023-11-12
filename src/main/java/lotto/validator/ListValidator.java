@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import java.util.List;
+import java.util.function.Consumer;
 import lotto.exception.ErrorMessage;
 import lotto.exception.InvalidInputException;
 
@@ -29,9 +30,9 @@ public class ListValidator<T> {
         return this;
     }
 
-    public ListValidator<T> shouldAllMatch(ValidatorFunction<T> validatorFunction) {
+    public ListValidator<T> shouldAllMatch(Consumer<T> validatorFunction) {
         for (T element : list) {
-            validatorFunction.validate(element);
+            validatorFunction.accept(element);
         }
         return this;
     }

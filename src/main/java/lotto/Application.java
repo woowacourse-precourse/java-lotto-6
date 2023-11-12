@@ -1,7 +1,20 @@
 package lotto;
 
+import lotto.controller.GameController;
+import lotto.service.Discriminator;
+import lotto.service.Inputter;
+import lotto.service.LottoNumberGenerator;
+import lotto.service.Printer;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        GameController gameController = new GameController(
+                Inputter.getInputter(),
+                Printer.getPrinter(),
+                new Discriminator(),
+                LottoNumberGenerator.getLottoNumberGenerator()
+        );
+
+        gameController.startGame();;
     }
 }

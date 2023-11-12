@@ -88,6 +88,7 @@ class LotteriesTest {
         // When
         double totalReturnAsPercent = lotteries.calculateTotalReturnAsPercent(inputMoney, statics);
 
+        // Then
         assertEquals(expectResult, totalReturnAsPercent);
     }
 
@@ -115,6 +116,7 @@ class LotteriesTest {
         // When
         double totalReturnAsPercent = lotteries.calculateTotalReturnAsPercent(inputMoney, statics);
 
+        // Then
         assertEquals(expectResult, totalReturnAsPercent);
     }
 
@@ -141,6 +143,7 @@ class LotteriesTest {
         // When
         double totalReturnAsPercent = lotteries.calculateTotalReturnAsPercent(inputMoney, statics);
 
+        // Then
         assertEquals(expectResult, totalReturnAsPercent);
     }
 
@@ -167,6 +170,7 @@ class LotteriesTest {
         // When
         double totalReturnAsPercent = lotteries.calculateTotalReturnAsPercent(inputMoney, statics);
 
+        // Then
         assertEquals(expectResult, totalReturnAsPercent);
     }
 
@@ -193,6 +197,7 @@ class LotteriesTest {
         // When
         double totalReturnAsPercent = lotteries.calculateTotalReturnAsPercent(inputMoney, statics);
 
+        // Then
         assertEquals(expectResult, totalReturnAsPercent);
     }
 
@@ -219,6 +224,7 @@ class LotteriesTest {
         // When
         double totalReturnAsPercent = lotteries.calculateTotalReturnAsPercent(inputMoney, statics);
 
+        // Then
         assertEquals(expectResult, totalReturnAsPercent);
     }
 }

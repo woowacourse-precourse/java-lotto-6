@@ -28,13 +28,19 @@ public class Lotto {
         }
     }
 
-    private void validateOverlap(List<Integer> numbers){
+    public static void validateOverlap(List<Integer> numbers){
         Set<Integer> overlapCheck = new HashSet<>();
         for (int i = 0;i< numbers.size();i++){
             overlapCheck.add(numbers.get(i));
         }
 
         if (overlapCheck.size() != 6){
+            throw new IllegalArgumentException("[ERROR]");
+        }
+    }
+
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber){
+        if(numbers.contains(bonusNumber)){
             throw new IllegalArgumentException("[ERROR]");
         }
     }

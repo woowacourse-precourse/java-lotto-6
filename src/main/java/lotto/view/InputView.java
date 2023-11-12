@@ -7,12 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
-    public int readPrice(){
+    public String readPrice(){
         System.out.println("구매금액을 입력해주세요.");
-        String userInput = Console.readLine();
-        int price = validateStringToInteger(userInput);
-        validatePriceUnit(price);
-        return price;
+        boolean reTry = true;
+        String lottoPurchaseAmount = null;
+        while(reTry){
+            try {
+                lottoPurchaseAmount = Console.readLine();
+                int price = validateStringToInteger(lottoPurchaseAmount);
+                validatePriceUnit(price);
+                reTry = false;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return lottoPurchaseAmount;
     }
 
     public List<Integer> readLotto(){

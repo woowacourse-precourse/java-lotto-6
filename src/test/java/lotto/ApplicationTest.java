@@ -53,6 +53,33 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
+    @Test
+    void 로또번호_46번이상_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000");
+            runException("1,2,3,4,5,46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 보너스번호_46번이상_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000");
+            runException("1,2,3,4,5,6");
+            runException("46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 보너스번호_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000");
+            runException("1,2,3,4,5,6");
+            runException("1");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
 
     @Override
     public void runMain() {

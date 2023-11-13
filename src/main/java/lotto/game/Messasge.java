@@ -25,9 +25,16 @@ public class Messasge {
                 result.get(Rank.SECOND))).append("\n");
         message.append(String.format("%d개 일치 (%,d원) - %d개", Rank.FIRST.getCount(), Rank.FIRST.getReward(),
                 result.get(Rank.FIRST))).append("\n");
-        message.append("총 수익률은 ").append(String.format("%.1f", profitRate)).append("%").append("입니다.");
+
+        message.append("총 수익률은 ").append(String.format("%,d", (long) profitRate)).append(".")
+                .append(getDecimalPlaces(profitRate)).append("%").append("입니다.");
 
         return message.toString();
+    }
+
+    private static String getDecimalPlaces(double profitRate) {
+        System.out.println(String.format("%.1f", profitRate).split("\\.").length);
+        return String.format("%.1f", profitRate).split("\\.")[1];
     }
 
     public static String getLottoListMessage(List<Lotto> lottoList) {

@@ -139,9 +139,8 @@ public class LotteryGame {
         long totalReward = 0L;
 
         for (Rank rank : result.keySet()) {
-            totalReward += rank.reward * result.get(rank);
+            totalReward += (long)rank.reward * result.get(rank);
         }
-
         return (double) totalReward / cost * 100;
     }
 }

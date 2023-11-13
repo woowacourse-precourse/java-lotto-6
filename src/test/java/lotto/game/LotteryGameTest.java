@@ -1,8 +1,10 @@
 package lotto.game;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
 import lotto.config.IntegrationTest;
 import lotto.exception.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
@@ -113,20 +115,38 @@ public class LotteryGameTest extends IntegrationTest {
                 assertThat(output()).contains(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE_MESSAGE.getMessage());
             });
         }
+
+        @Test
+        void 기능_테스트() {
+            assertRandomUniqueNumbersInRangeTest(
+                    () -> {
+                        run("8000", "1,2,3,4,5,6", "7");
+                        System.out.println(output());
+                    },
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(1, 2, 3, 4, 5, 6),
+                    List.of(1, 2, 3, 4, 5, 6)
+            );
+        }
     }
 
     @Test
     @DisplayName("수익률 계산 테스트")
     void getProfitRateTest(){
         // given
-        int cost = 9000;
-        long reward = 5000;
+        int cost = 1000;
+        long reward = 2000000000;
 
         // when
-        double rate = (double) reward/cost;
+        double rate = (double) reward/cost * 100;
         String result = String.format("%.1f", rate);
 
         // then
-        assertThat(result).isEqualTo("0.6");
+        assertThat(result).isEqualTo("200000000.0");
     }
 }

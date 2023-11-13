@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.Constants;
 import lotto.model.*;
 import lotto.model.Number;
 import lotto.view.InputView;
@@ -16,9 +17,6 @@ public class LottoController {
     private static List<Lotto> boughtLotto;
     private static List<Integer> lotto;
     private static int count;
-
-    private static final int TICKET_PRICE = 1000;
-    private static final int PERCENTAGE = 100;
 
     public LottoController(InputView inputView,OutputView outputView) {
         this.inputView = inputView;
@@ -68,8 +66,8 @@ public class LottoController {
     public void printEarningRate(Map<Ranking,Integer> result, int lottoAmount){
         double EarningRate = 0;
         for (Ranking rank : result.keySet()){
-            EarningRate = EarningRate + ((double) (rank.getWinningAmount()) / (lottoAmount * TICKET_PRICE) * (result.get(
-                    rank)) * (PERCENTAGE));
+            EarningRate = EarningRate + ((double) (rank.getWinningAmount()) / (lottoAmount * Constants.LOTTO_MIN_AMOUNT) * (result.get(
+                    rank)) * (Constants.PERCENTAGE));
         }
         outputView.printRevenueRate(EarningRate);
     }

@@ -1,14 +1,7 @@
 package lotto.model;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static org.assertj.core.api.Assertions.assertThat;
-
+import lotto.Constants;
 public class LottoAmount {
-    private static final int LOTTO_MIN_AMOUNT = 1000;
     private final int amount;
 
     public LottoAmount(String amount) {
@@ -36,12 +29,12 @@ public class LottoAmount {
     }
 
     private void validateDivisible(int amount){
-        if (amount%LOTTO_MIN_AMOUNT != 0){
+        if (amount% Constants.LOTTO_MIN_AMOUNT != 0){
             throw new IllegalArgumentException("[ERROR] 1000단위로 입력해주세요.");
         }
     }
 
     public int calculateLottoCount() {
-        return amount / LOTTO_MIN_AMOUNT;
+        return amount / Constants.LOTTO_MIN_AMOUNT;
     }
 }

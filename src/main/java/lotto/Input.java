@@ -38,19 +38,13 @@ public class Input {
     }
 
     public List<Integer> inputWinNumbers() {
-        List<Integer> winNumbers = new ArrayList<>();
-        boolean validWinNumbers = false;
-
         do {
             try {
-                winNumbers = readInputWinNumbers();
-                validWinNumbers = true;
+                return readInputWinNumbers();
             } catch (IllegalArgumentException wrongWinNumber) {
                 System.out.println("[ERROR] " + wrongWinNumber.getMessage());
             }
-        } while (!validWinNumbers);
-
-        return winNumbers;
+        } while (true);
     }
 
     public List<Integer> readInputWinNumbers() {
@@ -100,19 +94,14 @@ public class Input {
     }
 
     public  int inputBonusNumber (List<Integer> winNumbers) {
-        int bonusNumber = 0;
-        boolean validBonusNumbers = false;
-
         do {
             try {
-                bonusNumber = readInputBonusNumber(winNumbers);
-                validBonusNumbers = true;
+                return readInputBonusNumber(winNumbers);
             } catch (IllegalArgumentException wrongBonusNumber) {
                 System.out.println("[ERROR] " + wrongBonusNumber.getMessage());
             }
-        } while (!validBonusNumbers);
+        } while (true);
 
-        return bonusNumber;
     }
 
     public int readInputBonusNumber (List<Integer> winNumbers) {

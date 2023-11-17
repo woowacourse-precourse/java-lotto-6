@@ -50,7 +50,7 @@ public class LottoService {
 
         LottoPrice lottoPrice = LottoPrice.ONE_TICKET_PRICE;
         long totalCost = buyCount * lottoPrice.getPrice();
-        double profitRate = ((totalPrize - totalCost) / (double) totalCost) * 100.0;
+        double profitRate = (totalPrize / (double) totalCost) * 100.0;
 
 
         return profitRate;

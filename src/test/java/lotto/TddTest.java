@@ -25,16 +25,16 @@ public class TddTest {
         assertThat(lottoCount).isEqualTo(8);
     }
 
-//    @Test
-//    public void 로또_구매입력이_1000원_단위가_아닐때() {
-//        LottoController lottoController = new LottoController();
-//
-//        int money = 1500;
-//        assertThatThrownBy(() -> {
-//            lottoController.calculateLottoCount(money);
-//        }).isInstanceOf(IllegalArgumentException.class)
-//                .hasMessage("로또는 1000원 단위만 구매할 수 있습니다.");
-//    }
+    @Test
+    public void 로또_구매입력이_1000원_단위가_아닐때() {
+        LottoController lottoController = new LottoController();
+
+        int money = 1500;
+        assertThatThrownBy(() -> {
+            lottoController.calculateLottoCount(money);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또는 1000원 단위로만 구매할 수 있습니다.");
+    }
 
     @Test
     public void _1부터_45사이_로또번호_생성_테스트() {
@@ -118,7 +118,7 @@ public class TddTest {
         LottoService lottoService = new LottoService();
         double profitRate = lottoService.calculateProfitRate(buyCount, winningResults);
 
-        double expectedProfitRate = 1000.0;
+        double expectedProfitRate = 1100.0;
         assertThat(profitRate).isEqualTo(expectedProfitRate);
     }
 

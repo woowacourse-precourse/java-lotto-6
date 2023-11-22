@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,10 +41,12 @@ public class GameResult {
     }
 
     public Map<LottoResultInfo, Integer> getFinalResult() {
-            return finalResult;
+        // 불변한 성질을 가지게 반환.
+        return Collections.unmodifiableMap(finalResult);
     }
 
     public double getRateOfReturn() {
+        // 불변
         return rateOfReturn;
     }
 }

@@ -60,8 +60,9 @@ public class LottoVerifier implements Verifier {
 
         int inputCount = (int) Arrays.stream(input.split(","))
                 .count();
-        if (distinctCount != inputCount)
+        if (distinctCount != inputCount) {
             throw new IllegalArgumentException(ExceptionMessage.NUMBER_NOT_DISTINCT);
+        }
     }
 
 }

@@ -32,14 +32,16 @@ public class MoneyVerifier implements Verifier {
 
     private void checkRange(String input) {
         long money = Long.parseLong(input);
-        if (money <= 0)
+        if (money <= 0) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_POSITIVE);
+        }
     }
 
     private void checkDivisible(String input) {
         long money = Long.parseLong(input);
-        if (money % Constant.MONEY_UNIT != 0)
+        if (money % Constant.MONEY_UNIT != 0) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIVISIBLE);
+        }
     }
 
 

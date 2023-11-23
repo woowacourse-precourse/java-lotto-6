@@ -9,7 +9,7 @@ import lotto.domain.lotto.entity.Lottos;
 import lotto.domain.lotto.generator.RandomLottoGenerator;
 import lotto.exception.RetryExceptionHandler;
 import lotto.view.InputView;
-import lotto.view.io.OutputView;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView = new InputView();
@@ -28,6 +28,11 @@ public class LottoController {
 
         //결과 출력
         LottoResults results = lottos.getResults(answer);
+        printResult(results);
+    }
+
+    private void printResult(LottoResults results) {
+        outputView.printResults(results);
     }
 
     private int getPurchaseMoney() {

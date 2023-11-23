@@ -20,7 +20,7 @@ public class LottoResults {
         EnumMap<LottoResult, BigDecimal> prizes = new EnumMap<>(LottoResult.class);
         for (LottoResult result : LottoResult.values()) {
             int count = lottoResultsAndCount.get(result);
-            BigDecimal prize = result.getPrize(count);
+            BigDecimal prize = result.getTotalPrize(count);
             prizes.put(result, prize);
         }
 

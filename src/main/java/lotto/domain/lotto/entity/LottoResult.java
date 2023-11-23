@@ -14,15 +14,17 @@ public enum LottoResult {
     ;
 
     private enum MatchBonusNumber {
-        MATCH(LottoAnswer::matchesBonusNumber),
-        NOT_MATCH(((lottoAnswer, lotto) -> !lottoAnswer.matchesBonusNumber(lotto))),
-        IGNORE((lottoAnswer, lotto) -> true),
+        MATCH(LottoAnswer::matchesBonusNumber, ", 보너스 볼 일치"),
+        NOT_MATCH(((lottoAnswer, lotto) -> !lottoAnswer.matchesBonusNumber(lotto)), ""),
+        IGNORE((lottoAnswer, lotto) -> true, ""),
         ;
 
         private final BiPredicate<LottoAnswer, Lotto> matchBonusNumber;
+        private final String description;
 
-        MatchBonusNumber(BiPredicate<LottoAnswer, Lotto> matchBonusNumber) {
+        MatchBonusNumber(BiPredicate<LottoAnswer, Lotto> matchBonusNumber, String description) {
             this.matchBonusNumber = matchBonusNumber;
+            this.description = description;
         }
 
         public boolean checkBonusNumber(LottoAnswer lottoAnswer, Lotto lotto) {
@@ -57,7 +59,19 @@ public enum LottoResult {
         return this.matchBonusNumber.checkBonusNumber(lottoAnswer, lotto);
     }
 
-    public BigDecimal getPrize(int count) {
+    public BigDecimal getPrize() {
+        return prize;
+    }
+
+    public BigDecimal getTotalPrize(int count) {
         return this.prize.multiply(new BigDecimal(count));
+    }
+
+    public String getDiscription() {
+        return this.matchBonusNumber.description;
+    }
+
+    public int getSameCount() {
+        return sameCount;
     }
 }

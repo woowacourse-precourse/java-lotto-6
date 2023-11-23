@@ -1,0 +1,33 @@
+package lotto.view;
+
+import java.text.DecimalFormat;
+import lotto.domain.lotto.entity.LottoResults;
+import lotto.domain.lotto.entity.Lottos;
+import lotto.view.io.Printer;
+
+public class OutputView {
+    private static final DecimalFormat moneyFormat = new DecimalFormat("###,##0");
+    private final Printer printer = new Printer();
+
+    public void printPurchasedLotto(Lottos lottos) {
+        printer.printMessageUsingFormat("%d개를 구매했습니다.", lottos.getSize());
+
+        //todo toString 대신 다른 걸 사용하도록 리팩토링
+        lottos.getLottos().forEach(
+                lotto -> printer.printMessage(lotto.toString())
+        );
+    }
+
+    //todo DTO  추가
+    public void printResults(LottoResults results) {
+        printer.printMessage("당첨 통계");
+        printer.printMessage("---");
+        results.getCounts().forEach((result, value) ->
+                printer.printMessageUsingFormat(
+                        "%d개 일치%s (%s원) - %d개",
+                        result.getSameCount(),
+                        result.getDiscription(),
+                        moneyFormat.format(result.getPrize()),
+                        value));
+    }
+}

@@ -17,7 +17,7 @@ public class AmountValidator {
     }
 
     private void validateAmountIsPositive(final int amount) {
-        if (isPositive(amount)) {
+        if (!isPositive(amount)) {
             throw new CustomIllegalStateAmountException(AmountExceptionStatus.AMOUNT_IS_NOT_POSITIVE);
         }
     }

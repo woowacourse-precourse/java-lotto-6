@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.amount.Amount;
 import lotto.service.Service;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
@@ -19,11 +20,14 @@ public class Controller {
     }
 
     public void run() {
-        initAmount();
+        final Amount amount = initAmount();
     }
 
-    private void initAmount() {
-        inputView.readAmount();
+    private Amount initAmount() {
+        return ExceptionHandler.handle(() -> {
+            final int amount = inputView.readAmount();
+            return new Amount(amount);
+        });
     }
 
 }

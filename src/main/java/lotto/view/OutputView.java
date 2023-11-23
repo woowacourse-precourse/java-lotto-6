@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import lotto.domain.lotto.entity.LottoResults;
 import lotto.domain.lotto.entity.Lottos;
@@ -7,6 +8,7 @@ import lotto.view.io.Printer;
 
 public class OutputView {
     private static final DecimalFormat moneyFormat = new DecimalFormat("###,##0");
+    private static final DecimalFormat revenueFormat = new DecimalFormat("###,##0.0");
     private final Printer printer = new Printer();
 
     public void printPurchasedLotto(Lottos lottos) {
@@ -29,5 +31,9 @@ public class OutputView {
                         result.getDiscription(),
                         moneyFormat.format(result.getPrize()),
                         value));
+    }
+
+    public void printRevenue(BigDecimal revenue) {
+        printer.printMessageUsingFormat("총 수익률은 %s%%입니다.", revenueFormat.format(revenue));
     }
 }

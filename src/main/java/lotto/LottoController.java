@@ -1,5 +1,6 @@
 package lotto;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.domain.lotto.LottoService;
 import lotto.domain.lotto.entity.Lotto;
@@ -29,6 +30,15 @@ public class LottoController {
         //결과 출력
         LottoResults results = lottos.getResults(answer);
         printResult(results);
+        printRevenu(purchaseMoney, results);
+    }
+
+    private void printRevenu(int purchaseMoney, LottoResults results) {
+        BigDecimal initMoney = new BigDecimal(purchaseMoney);
+        BigDecimal totalPrize = results.getTotalPrize();
+        System.out.println(initMoney);
+        System.out.println(totalPrize);
+        outputView.printRevenue(totalPrize.divide(initMoney));
     }
 
     private void printResult(LottoResults results) {

@@ -21,6 +21,7 @@ public class Controller {
 
     public void run() {
         final Amount amount = initAmount();
+        announcePurchasedLottos(amount.getCount());
     }
 
     private Amount initAmount() {
@@ -28,6 +29,10 @@ public class Controller {
             final int amount = inputView.readAmount();
             return new Amount(amount);
         });
+    }
+
+    private void announcePurchasedLottos(final int count) {
+        outputView.printPurchasedLottosMessage(count);
     }
 
 }

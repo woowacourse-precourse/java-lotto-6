@@ -1,8 +1,8 @@
 package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.CustomNullPointAmountException;
-import lotto.exception.CustomNumberFormatAmountException;
+import lotto.exception.exceptions.CustomNullPointAmountException;
+import lotto.exception.exceptions.CustomNumberFormatAmountException;
 import lotto.exception.amount.AmountExceptionStatus;
 import lotto.view.output.OutputView;
 

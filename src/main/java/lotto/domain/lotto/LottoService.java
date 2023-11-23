@@ -2,13 +2,15 @@ package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.lotto.entity.Cash;
 import lotto.domain.lotto.entity.Lotto;
 import lotto.domain.lotto.entity.Lottos;
+import lotto.domain.lotto.entity.Money;
 import lotto.domain.lotto.generator.LottoGenerator;
-import lotto.exception.LottoException;
 
 public class LottoService {
 
+    public static final int LOTTO_PRICE = 1000;
     private final LottoGenerator lottoGenerator;
 
     public LottoService(LottoGenerator lottoGenerator) {
@@ -16,15 +18,12 @@ public class LottoService {
     }
 
     //todo money 래핑 하기
-    public Lottos purchaseLottos(int money) {
+    public Lottos purchaseLottos(Money money) {
         List<Lotto> lottos = new ArrayList<>();
-        if (money % 1_000 != 0) {
-            //todo 다른데로 분리하기
-            throw LottoException.MONEY_INVALID_VALUE.makeException();
-        }
-        while (money > 0) {
+        Cash cash = money.toCash();
+        while (cash.canPurchase(LOTTO_PRICE)) {
             lottos.add(generateLotto());
-            money -= 1_000;
+            cash.spend(LOTTO_PRICE);
         }
         return new Lottos(lottos);
     }

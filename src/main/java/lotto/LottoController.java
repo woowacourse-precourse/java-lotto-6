@@ -7,6 +7,7 @@ import lotto.domain.lotto.entity.Lotto;
 import lotto.domain.lotto.entity.LottoAnswer;
 import lotto.domain.lotto.entity.LottoResults;
 import lotto.domain.lotto.entity.Lottos;
+import lotto.domain.lotto.entity.Money;
 import lotto.domain.lotto.generator.RandomLottoGenerator;
 import lotto.exception.RetryExceptionHandler;
 import lotto.view.InputView;
@@ -20,7 +21,7 @@ public class LottoController {
 
     void run() {
         //로또 구입
-        int purchaseMoney = getPurchaseMoney();
+        Money purchaseMoney = getPurchaseMoney();
         Lottos lottos = purchaseLotto(purchaseMoney);
         printPurchasedLotto(lottos);
 
@@ -33,24 +34,26 @@ public class LottoController {
         printRevenu(purchaseMoney, results);
     }
 
-    private void printRevenu(int purchaseMoney, LottoResults results) {
-        BigDecimal initMoney = new BigDecimal(purchaseMoney);
+    private void printRevenu(Money purchaseMoney, LottoResults results) {
+        BigDecimal initMoney = purchaseMoney.toBigDecimal();
         BigDecimal totalPrize = results.getTotalPrize();
-        System.out.println(initMoney);
-        System.out.println(totalPrize);
-        outputView.printRevenue(totalPrize.divide(initMoney));
+        outputView.printRevenue(totalPrize.divide(initMoney).multiply(new BigDecimal(100)));
     }
 
     private void printResult(LottoResults results) {
         outputView.printResults(results);
     }
 
-    private int getPurchaseMoney() {
-        return handler.get(inputView::getPurchaseMoney);
+    private Money getPurchaseMoney() {
+        return handler.get(() -> {
+            int purchaseMoney = inputView.getPurchaseMoney();
+            return new Money(purchaseMoney);
+        });
+
     }
 
     //todo 시간이 된다면 빌더 패턴을 적용해 보자. 메서드 구분이 깔끔해 질 것 같다.
-    private Lottos purchaseLotto(int purchaseMoney) {
+    private Lottos purchaseLotto(Money purchaseMoney) {
         return lottoService.purchaseLottos(purchaseMoney);
     }
 

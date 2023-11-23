@@ -6,6 +6,7 @@ public enum LottoException {
     LOTTO_SIZE_EXCEPTION("로또 숫자의 개수가 6개가 아닙니다."),
 
     MONEY_INVALID_VALUE("잘못된 값의 금액입니다."),
+    CANT_SPEND_MONEY("돈을 사용할 수 없습니다"),
 
     INPUT_NUMBER_FORMAT("숫자를 입력해 주세요"),
     INPUT_INVALID_FORMAT("잘못된 형식의 입력입니다."),

@@ -2,6 +2,9 @@ package lotto.domain.lotto;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.domain.lotto.entity.Lotto;
+import lotto.domain.lotto.entity.LottoAnswer;
+import lotto.domain.lotto.entity.LottoResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

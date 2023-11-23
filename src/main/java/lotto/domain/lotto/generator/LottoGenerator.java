@@ -1,7 +1,7 @@
 package lotto.domain.lotto.generator;
 
 import java.util.List;
-import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.entity.Lotto;
 
 public abstract class LottoGenerator {
     protected static final int LOTTO_NUMBER_START = 1;

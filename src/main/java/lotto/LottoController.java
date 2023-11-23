@@ -9,11 +9,13 @@ import lotto.domain.lotto.entity.LottoResults;
 import lotto.domain.lotto.entity.Lottos;
 import lotto.domain.lotto.generator.RandomLottoGenerator;
 import lotto.domain.lotto.money.Money;
+import lotto.exception.LottoException;
 import lotto.exception.RetryExceptionHandler;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    public static final BigDecimal PERCENT_DECIMAL = new BigDecimal(100);
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final RetryExceptionHandler handler = new RetryExceptionHandler();
@@ -37,7 +39,7 @@ public class LottoController {
     private void printRevenu(Money purchaseMoney, LottoResults results) {
         BigDecimal initMoney = purchaseMoney.toBigDecimal();
         BigDecimal totalPrize = results.getTotalPrize();
-        outputView.printRevenue(totalPrize.divide(initMoney).multiply(new BigDecimal(100)));
+        outputView.printRevenue(totalPrize.divide(initMoney).multiply(PERCENT_DECIMAL));
     }
 
     private void printResult(LottoResults results) {
@@ -47,6 +49,10 @@ public class LottoController {
     private Money getPurchaseMoney() {
         return handler.get(() -> {
             int purchaseMoney = inputView.getPurchaseMoney();
+            if (purchaseMoney <= 0) {
+                //todo 위치 옮기기
+                throw LottoException.MONEY_INVALID_VALUE.makeException();
+            }
             return new Money(purchaseMoney);
         });
 
@@ -60,7 +66,6 @@ public class LottoController {
     private LottoAnswer getLottoAnswer() {
         Lotto lotto = getLottoUsingInput();
         return generateLottoAnswer(lotto);
-        //빌더를 쓰면 정말 깔끔할 것 같긴 하나...
     }
 
     private LottoAnswer generateLottoAnswer(Lotto lotto) {

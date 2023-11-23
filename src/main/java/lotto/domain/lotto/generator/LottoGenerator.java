@@ -14,14 +14,4 @@ public abstract class LottoGenerator {
         List<Integer> lottoNumbers = pickLottoNumbers();
         return new Lotto(lottoNumbers);
     }
-    //랜덤 로또 : 아무 값도 입력 안받고 그냥 Lotto 또는 List<>를 반환하면 됨
-    // () -> Lotto
-    //정답 로또 : List<Integer>를 입력받아 Lotto를 반환하면 됨
-    // (List<Integer>) -> Lotto
-    //정답 로또는 Generator를 사용하지 않는걸로?
-
-
-    public Lotto generate(List<Integer> numbers) {
-        return new Lotto(numbers);
-    }
 }

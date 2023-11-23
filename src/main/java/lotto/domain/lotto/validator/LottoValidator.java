@@ -15,6 +15,7 @@ public class LottoValidator {
 
     public static void validateLotto(final List<Integer> numbers) {
         LOTTO_VALIDATOR.validateLottoIsOutOfSize(numbers);
+        LOTTO_VALIDATOR.validateLottoIsOutOfRange(numbers);
         LOTTO_VALIDATOR.validateLottoIsDuplicated(numbers);
     }
 
@@ -26,6 +27,22 @@ public class LottoValidator {
 
     private boolean isOutOfSize(final List<Integer> numbers) {
         return numbers.size() != Constant.ALLOWED_SIZE_PER_LOTTO.getConstant();
+    }
+
+    private void validateLottoIsOutOfRange(final List<Integer> numbers) {
+        if (checkLottoIsOutOfRange(numbers)) {
+            throw new CustomIllegalArgumentException(LottoExceptionStatus.LOTTO_IS_OUT_OF_RANGE);
+        }
+    }
+
+    private boolean checkLottoIsOutOfRange(final List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(this::isOutOfRange);
+    }
+
+    private boolean isOutOfRange(final int number) {
+        return Constant.ALLOWED_MINIMUM_NUMBER.getConstant() > number
+                || Constant.ALLOWED_MAXIMUM_NUMBER.getConstant() < number;
     }
 
     private void validateLottoIsDuplicated(final List<Integer> numbers) {

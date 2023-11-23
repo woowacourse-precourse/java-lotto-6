@@ -5,6 +5,8 @@ import lotto.exception.LottoException;
 
 public class LottoNumber implements Comparable<LottoNumber> {
 
+    public static final int LOTTO_RANGE_MAX = 45;
+    public static final int LOTTO_RANGE_MIN = 1;
     private final int number;
 
     public LottoNumber(int number) {
@@ -13,7 +15,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     private void validateNumberRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LOTTO_RANGE_MIN || number > LOTTO_RANGE_MAX) {
             throw LottoException.LOTTO_NUMBER_OUT_RANGE.makeException();
         }
     }

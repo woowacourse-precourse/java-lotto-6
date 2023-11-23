@@ -14,6 +14,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateDuplication(numbers);
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        int distinctSize = (int) numbers.stream()
+                .distinct()
+                .count();
+        if (distinctSize != numbers.size()) {
+            //todo
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }

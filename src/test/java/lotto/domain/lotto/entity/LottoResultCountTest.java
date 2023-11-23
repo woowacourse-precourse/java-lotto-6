@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-class LottoResultsTest {
+class LottoResultCountTest {
 
     @Nested
     @DisplayName("학습 테스트 - EnumMap의 초기화 상태 확인")

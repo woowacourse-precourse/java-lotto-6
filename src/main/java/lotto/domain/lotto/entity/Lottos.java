@@ -20,13 +20,13 @@ public class Lottos {
         return Collections.unmodifiableList(this.lottos);
     }
 
-    public LottoResults getResults(LottoAnswer lottoAnswer) {
+    public LottoResultCount getResults(LottoAnswer lottoAnswer) {
         EnumMap<LottoResult, Integer> lottoResults = initResults();
         this.lottos.stream()
                 .map(lotto -> LottoResult.getResult(lottoAnswer, lotto))
                 .filter(result -> result != LottoResult.LOSE)
                 .forEach(result -> putInLottoResults(lottoResults, result));
-        return new LottoResults(lottoResults);
+        return new LottoResultCount(lottoResults);
     }
 
     private static EnumMap<LottoResult, Integer> initResults() {

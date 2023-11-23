@@ -5,21 +5,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class LottoResults {
-    private final Map<LottoResult, Integer> lottoResultsAndCount;
+public class LottoResultCount {
+    private final Map<LottoResult, Integer> lottoResultCount;
 
-    public LottoResults(Map<LottoResult, Integer> lottoResultsAndCount) {
-        this.lottoResultsAndCount = lottoResultsAndCount;
+    public LottoResultCount(Map<LottoResult, Integer> lottoResultCount) {
+        this.lottoResultCount = lottoResultCount;
     }
 
     public Map<LottoResult, Integer> getCounts() {
-        return Collections.unmodifiableMap(this.lottoResultsAndCount);
+        return Collections.unmodifiableMap(this.lottoResultCount);
     }
 
 
     public BigDecimal getTotalPrize() {
         BigDecimal result = BigDecimal.ZERO;
-        List<BigDecimal> list = this.lottoResultsAndCount.entrySet().stream()
+        List<BigDecimal> list = this.lottoResultCount.entrySet().stream()
                 .map(entry -> entry.getKey().getTotalPrize(entry.getValue()))
                 .toList();
         for (BigDecimal decimal : list) {

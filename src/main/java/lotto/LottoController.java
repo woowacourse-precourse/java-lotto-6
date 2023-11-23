@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.domain.lotto.LottoService;
 import lotto.domain.lotto.entity.Lotto;
 import lotto.domain.lotto.entity.LottoAnswer;
-import lotto.domain.lotto.entity.LottoResults;
+import lotto.domain.lotto.entity.LottoResultCount;
 import lotto.domain.lotto.entity.Lottos;
 import lotto.domain.lotto.generator.RandomLottoGenerator;
 import lotto.domain.lotto.money.Money;
@@ -31,18 +31,18 @@ public class LottoController {
         LottoAnswer answer = getLottoAnswer();
 
         //결과 출력
-        LottoResults results = lottos.getResults(answer);
+        LottoResultCount results = lottos.getResults(answer);
         printResult(results);
         printRevenu(purchaseMoney, results);
     }
 
-    private void printRevenu(Money purchaseMoney, LottoResults results) {
+    private void printRevenu(Money purchaseMoney, LottoResultCount results) {
         BigDecimal initMoney = purchaseMoney.toBigDecimal();
         BigDecimal totalPrize = results.getTotalPrize();
         outputView.printRevenue(totalPrize.divide(initMoney).multiply(PERCENT_DECIMAL));
     }
 
-    private void printResult(LottoResults results) {
+    private void printResult(LottoResultCount results) {
         outputView.printResults(results);
     }
 

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import lotto.domain.lotto.entity.LottoResults;
 import lotto.domain.lotto.entity.Lottos;
+import lotto.view.dto.LottoResultDTO;
 import lotto.view.io.Printer;
 
 public class OutputView {
@@ -24,13 +25,14 @@ public class OutputView {
     public void printResults(LottoResults results) {
         printer.printMessage("당첨 통계");
         printer.printMessage("---");
-        results.getCounts().forEach((result, value) ->
-                printer.printMessageUsingFormat(
-                        "%d개 일치%s (%s원) - %d개",
-                        result.getSameCount(),
-                        result.getDiscription(),
-                        moneyFormat.format(result.getPrize()),
-                        value));
+        results.getCounts().forEach((result, value) -> {
+            LottoResultDTO resultDTO = LottoResultDTO.from(result);
+            printer.printMessageUsingFormat(
+                    resultDTO.getDescriptionFormat() + " - %d개",
+                    resultDTO.getMatchingCount(),
+                    moneyFormat.format(resultDTO.getPrize()),
+                    value);
+        });
     }
 
     public void printRevenue(BigDecimal revenue) {

@@ -1,4 +1,4 @@
-package lotto.domain.lotto.entity;
+package lotto.domain.lotto.money;
 
 import lotto.exception.LottoException;
 
@@ -21,6 +21,9 @@ public class Cash {
     }
 
     public void spend(int price) {
+        if (this.cash < price) {
+            throw LottoException.CANT_SPEND_MONEY.makeException();
+        }
         this.cash -= price;
     }
 }

@@ -2,11 +2,11 @@ package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.lotto.entity.Cash;
 import lotto.domain.lotto.entity.Lotto;
 import lotto.domain.lotto.entity.Lottos;
-import lotto.domain.lotto.entity.Money;
 import lotto.domain.lotto.generator.LottoGenerator;
+import lotto.domain.lotto.money.Cash;
+import lotto.domain.lotto.money.Money;
 
 public class LottoService {
 

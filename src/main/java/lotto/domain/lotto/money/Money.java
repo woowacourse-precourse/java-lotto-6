@@ -1,4 +1,4 @@
-package lotto.domain.lotto.entity;
+package lotto.domain.lotto.money;
 
 import java.math.BigDecimal;
 import lotto.exception.LottoException;

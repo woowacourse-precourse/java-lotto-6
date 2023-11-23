@@ -50,4 +50,13 @@ public class Lotto {
                 .map(LottoNumber::getNumber)
                 .toList();
     }
+
+
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .toList()
+                .toString();
+    }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.exception.amount.AmountExceptionStatus;
 import lotto.exception.exceptions.CustomNullPointAmountException;
 import lotto.exception.exceptions.CustomNumberFormatAmountException;
+import lotto.exception.winning.WinningExceptionStatus;
 import lotto.utils.Delimiter;
 import lotto.view.output.OutputView;
 
@@ -19,7 +20,7 @@ public class InputView {
 
     public int readAmount() {
         outputView.printReadAmountMessage();
-        return parseNumber(readLine());
+        return parseAmount(readLine());
     }
 
     public List<Integer> readWinningLotto() {
@@ -33,17 +34,33 @@ public class InputView {
                 .toList();
     }
 
-    private int parseNumber(final String target) {
+    private int parseNumber(final String winning) {
         try {
-            return Integer.parseInt(isNull(target));
+            return Integer.parseInt(isNullWinning(winning));
+        } catch (NumberFormatException e) {
+            throw new CustomNumberFormatAmountException(WinningExceptionStatus.READ_IS_NOT_NUMERIC);
+        }
+    }
+
+    private String isNullWinning(final String winning) {
+        try {
+            return winning.trim();
+        } catch (NullPointerException e) {
+            throw new CustomNullPointAmountException(WinningExceptionStatus.READ_IS_NULL);
+        }
+    }
+
+    private int parseAmount(final String amount) {
+        try {
+            return Integer.parseInt(isNullAmount(amount));
         } catch (NumberFormatException e) {
             throw new CustomNumberFormatAmountException(AmountExceptionStatus.READ_IS_NOT_NUMERIC);
         }
     }
 
-    private String isNull(final String target) {
+    private String isNullAmount(final String amount) {
         try {
-            return target.trim();
+            return amount.trim();
         } catch (NullPointerException e) {
             throw new CustomNullPointAmountException(AmountExceptionStatus.READ_IS_NULL);
         }

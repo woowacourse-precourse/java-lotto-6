@@ -1,6 +1,7 @@
 package lotto.domain.lotto.entity;
 
 import java.util.List;
+import lotto.exception.LottoException;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -23,8 +24,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (distinctSize != numbers.size()) {
-            //todo
-            throw new IllegalArgumentException();
+            throw LottoException.LOTTO_SIZE_EXCEPTION.makeException();
         }
     }
 

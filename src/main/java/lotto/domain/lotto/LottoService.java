@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.domain.lotto.entity.Lotto;
 import lotto.domain.lotto.entity.Lottos;
 import lotto.domain.lotto.generator.LottoGenerator;
+import lotto.exception.LottoException;
 
 public class LottoService {
 
@@ -19,7 +20,7 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
         if (money % 1_000 != 0) {
             //todo 다른데로 분리하기
-            throw new IllegalArgumentException();
+            throw LottoException.MONEY_INVALID_VALUE.makeException();
         }
         while (money > 0) {
             lottos.add(generateLotto());

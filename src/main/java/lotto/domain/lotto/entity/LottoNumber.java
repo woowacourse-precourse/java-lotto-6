@@ -1,6 +1,7 @@
 package lotto.domain.lotto.entity;
 
 import java.util.Objects;
+import lotto.exception.LottoException;
 
 public class LottoNumber implements Comparable<LottoNumber> {
 
@@ -13,8 +14,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     private void validateNumberRange(int number) {
         if (number < 1 || number > 45) {
-            //todo
-            throw new IllegalArgumentException();
+            throw LottoException.LOTTO_NUMBER_OUT_RANGE.makeException();
         }
     }
 

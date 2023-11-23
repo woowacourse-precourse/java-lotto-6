@@ -27,7 +27,6 @@ public class OutputView {
                         printer.printListUsingFormat(FORMAT_LOTTO_NUMBER, list));
     }
 
-    //todo DTO  추가
     public void printResults(LottoResultCount results) {
         printer.printMessage(TITLE_RESULT);
         printer.printMessage(MESSAGE_SEPERATOR);

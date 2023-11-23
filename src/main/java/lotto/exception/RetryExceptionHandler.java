@@ -1,17 +1,19 @@
 package lotto.exception;
 
 import java.util.function.Supplier;
+import lotto.view.io.Printer;
 
 public class RetryExceptionHandler {
+    private final Printer printer = new Printer();
+
     public <T> T get(Supplier<T> supplier) {
         while (true) {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                //todo Printer 사용하기
-                System.out.println(e.getMessage());
+                printer.printMessage(e.getMessage());
             } finally {
-                System.out.println();
+                printer.printMessage("");
             }
         }
     }

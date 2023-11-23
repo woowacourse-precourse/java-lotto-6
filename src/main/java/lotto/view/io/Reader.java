@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Reader {
-    public int readInteger() {
+    public int getInteger() {
         String input = Console.readLine();
         return parseInt(input);
     }

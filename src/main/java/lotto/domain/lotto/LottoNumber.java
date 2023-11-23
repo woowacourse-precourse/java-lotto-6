@@ -2,10 +2,11 @@ package lotto.domain.lotto;
 
 public class LottoNumber implements Comparable<LottoNumber> {
 
-    int number;
+    private final int number;
 
     public LottoNumber(int number) {
         validateNumberRange(number);
+        this.number = number;
     }
 
     private void validateNumberRange(int number) {

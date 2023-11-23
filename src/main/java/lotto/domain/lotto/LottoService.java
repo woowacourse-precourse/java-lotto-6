@@ -17,7 +17,6 @@ public class LottoService {
         this.lottoGenerator = lottoGenerator;
     }
 
-    //todo money 래핑 하기
     public Lottos purchaseLottos(Money money) {
         List<Lotto> lottos = new ArrayList<>();
         Cash cash = money.toCash();

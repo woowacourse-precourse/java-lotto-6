@@ -3,7 +3,7 @@ package lotto.domain.lotto.money;
 import lotto.exception.LottoException;
 
 public class Cash {
-    int cash;
+    private int cash;
 
     public Cash(int cash) {
         validateCash(cash);

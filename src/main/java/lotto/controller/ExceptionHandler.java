@@ -1,10 +1,10 @@
 package lotto.controller;
 
 import java.util.function.Supplier;
-import lotto.exception.CustomIllegalArgumentException;
-import lotto.exception.CustomIllegalStateAmountException;
-import lotto.exception.CustomNullPointAmountException;
-import lotto.exception.CustomNumberFormatAmountException;
+import lotto.exception.exceptions.CustomIllegalArgumentException;
+import lotto.exception.exceptions.CustomIllegalStateAmountException;
+import lotto.exception.exceptions.CustomNullPointAmountException;
+import lotto.exception.exceptions.CustomNumberFormatAmountException;
 
 public class ExceptionHandler {
 

@@ -14,23 +14,18 @@ public class LottoController {
     private final LottoService lottoService = new LottoService(new RandomLottoGenerator());
 
     void run() {
-        purchaseLotto();
+        Lottos lottos = purchaseLotto();
+        printPurchasedLotto(lottos);
     }
 
     private Lottos purchaseLotto() {
-        //1. 금액 입력
-        //2. 로또 구매
-        //3. 로또 반환
         return handler.get(() -> {
             int purchaseMoney = inputView.getPurchaseMoney();
-            Lottos lottos = lottoService.purchaseLottos(purchaseMoney);
-            outputView.printPurchasedLotto(lottos);
-            return lottos;
-            //todo 출력을 다른 메서드로 나누거나, 아니면 여기서 한 번에 출력하고 넘어가거나
+            return lottoService.purchaseLottos(purchaseMoney);
         });
     }
 
-    private void getPurchaseMoney() {
-        inputView.getPurchaseMoney();
+    private void printPurchasedLotto(Lottos lottos) {
+        outputView.printPurchasedLotto(lottos);
     }
 }

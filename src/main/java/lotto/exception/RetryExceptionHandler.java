@@ -10,6 +10,8 @@ public class RetryExceptionHandler {
             } catch (IllegalArgumentException e) {
                 //todo Printer 사용하기
                 System.out.println(e.getMessage());
+            } finally {
+                System.out.println();
             }
         }
     }

@@ -1,5 +1,7 @@
 package lotto.view.output;
 
+import java.util.List;
+import lotto.dto.LottosDto;
 import lotto.view.output.message.OutputMessage;
 
 public class OutputView {
@@ -21,6 +23,17 @@ public class OutputView {
         final String message = String.format(
                 OutputMessage.PRINT_PURCHASED_LOTTOS_MESSAGE.getMessage(), count);
         printMessage(message);
+    }
+
+    public void printLottosStatus(final List<LottosDto> lottosStatus) {
+        lottosStatus.stream()
+                .map(LottosDto::toString)
+                .forEach(this::printMessage);
+        printEmptyLine();
+    }
+
+    public void printReadWinningLottoMessage() {
+        printMessage(OutputMessage.READ_WINNING_NUMBER_MESSAGE);
     }
 
     public void printEmptyLine() {

@@ -1,9 +1,12 @@
 package lotto.view.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import lotto.exception.amount.AmountExceptionStatus;
 import lotto.exception.exceptions.CustomNullPointAmountException;
 import lotto.exception.exceptions.CustomNumberFormatAmountException;
-import lotto.exception.amount.AmountExceptionStatus;
+import lotto.utils.Delimiter;
 import lotto.view.output.OutputView;
 
 public class InputView {
@@ -16,20 +19,31 @@ public class InputView {
 
     public int readAmount() {
         outputView.printReadAmountMessage();
-        return parseAmount(readLine());
+        return parseNumber(readLine());
     }
 
-    private int parseAmount(final String amount) {
+    public List<Integer> readWinningLotto() {
+        outputView.printReadWinningLottoMessage();
+        return parseWinning(readLine());
+    }
+
+    private List<Integer> parseWinning(final String winning) {
+        return Arrays.stream(Delimiter.splitWithComma(winning))
+                .map(this::parseNumber)
+                .toList();
+    }
+
+    private int parseNumber(final String target) {
         try {
-            return Integer.parseInt(isNull(amount));
+            return Integer.parseInt(isNull(target));
         } catch (NumberFormatException e) {
             throw new CustomNumberFormatAmountException(AmountExceptionStatus.READ_IS_NOT_NUMERIC);
         }
     }
 
-    private String isNull(final String amount) {
+    private String isNull(final String target) {
         try {
-            return amount.trim();
+            return target.trim();
         } catch (NullPointerException e) {
             throw new CustomNullPointAmountException(AmountExceptionStatus.READ_IS_NULL);
         }

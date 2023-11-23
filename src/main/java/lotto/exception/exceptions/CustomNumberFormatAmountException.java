@@ -1,4 +1,6 @@
-package lotto.exception;
+package lotto.exception.exceptions;
+
+import lotto.exception.ExceptionStatus;
 
 public class CustomNumberFormatAmountException extends NumberFormatException {
 

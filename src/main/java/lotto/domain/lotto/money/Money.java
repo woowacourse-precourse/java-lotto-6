@@ -11,6 +11,17 @@ public class Money {
         this.money = money;
     }
 
+    public static Money nonZeroMoney(int money) {
+        validateNonzero(money);
+        return new Money(money);
+    }
+
+    private static void validateNonzero(int money) {
+        if (money == 0) {
+            throw LottoException.MONEY_INVALID_VALUE.makeException();
+        }
+    }
+
     private void validateMoney(int money) {
         if (money < 0) {
             throw LottoException.MONEY_INVALID_VALUE.makeException();

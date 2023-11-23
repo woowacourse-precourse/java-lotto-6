@@ -9,7 +9,6 @@ import lotto.domain.lotto.entity.LottoResultCount;
 import lotto.domain.lotto.entity.Lottos;
 import lotto.domain.lotto.generator.RandomLottoGenerator;
 import lotto.domain.lotto.money.Money;
-import lotto.exception.LottoException;
 import lotto.exception.RetryExceptionHandler;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -49,16 +48,11 @@ public class LottoController {
     private Money getPurchaseMoney() {
         return handler.get(() -> {
             int purchaseMoney = inputView.getPurchaseMoney();
-            if (purchaseMoney <= 0) {
-                //todo 위치 옮기기
-                throw LottoException.MONEY_INVALID_VALUE.makeException();
-            }
-            return new Money(purchaseMoney);
+            return Money.nonZeroMoney(purchaseMoney);
         });
 
     }
 
-    //todo 시간이 된다면 빌더 패턴을 적용해 보자. 메서드 구분이 깔끔해 질 것 같다.
     private Lottos purchaseLotto(Money purchaseMoney) {
         return lottoService.purchaseLottos(purchaseMoney);
     }

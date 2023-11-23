@@ -23,7 +23,7 @@ class LottoResultTest {
         @DisplayName("[SUCCESS] 로또 정답과 로또를 비교한 결과를 확인한다.")
         void 결과_테스트(Lotto lotto, LottoResult expectedResult) {
             LottoAnswer lottoAnswer =
-                    new LottoAnswer(List.of(1, 2, 3, 4, 5, 6), 7);
+                    new LottoAnswer(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
             Assertions.assertThat(LottoResult.getResult(lottoAnswer, lotto))
                     .isEqualTo(expectedResult);
         }

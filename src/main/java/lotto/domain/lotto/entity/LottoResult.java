@@ -6,11 +6,11 @@ import java.util.function.BiPredicate;
 
 public enum LottoResult {
     LOSE(new BigDecimal(0), 0, MatchBonusNumber.IGNORE),
-    FIRST(new BigDecimal(2_000_000_000), 6, MatchBonusNumber.IGNORE),
-    SECOND(new BigDecimal(30_000_000), 5, MatchBonusNumber.MATCH),
-    THIRD(new BigDecimal(1_500_000), 5, MatchBonusNumber.NOT_MATCH),
-    FOURTH(new BigDecimal(50_000), 4, MatchBonusNumber.IGNORE),
     FIFTH(new BigDecimal(5_000), 3, MatchBonusNumber.IGNORE),
+    FOURTH(new BigDecimal(50_000), 4, MatchBonusNumber.IGNORE),
+    THIRD(new BigDecimal(1_500_000), 5, MatchBonusNumber.NOT_MATCH),
+    SECOND(new BigDecimal(30_000_000), 5, MatchBonusNumber.MATCH),
+    FIRST(new BigDecimal(2_000_000_000), 6, MatchBonusNumber.IGNORE),
     ;
 
     private enum MatchBonusNumber {
@@ -55,5 +55,9 @@ public enum LottoResult {
 
     private boolean checkBonusNumber(LottoAnswer lottoAnswer, Lotto lotto) {
         return this.matchBonusNumber.checkBonusNumber(lottoAnswer, lotto);
+    }
+
+    public BigDecimal getPrize(int count) {
+        return this.prize.multiply(new BigDecimal(count));
     }
 }

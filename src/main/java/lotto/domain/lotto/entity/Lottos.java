@@ -1,6 +1,8 @@
 package lotto.domain.lotto.entity;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
 
 public class Lottos {
@@ -16,5 +18,24 @@ public class Lottos {
 
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(this.lottos);
+    }
+
+    public LottoResults getResults(LottoAnswer lottoAnswer) {
+        EnumMap<LottoResult, Integer> lottoResults = initResults();
+        this.lottos.stream()
+                .map(lotto -> LottoResult.getResult(lottoAnswer, lotto))
+                .forEach(result -> putInLottoResults(lottoResults, result));
+        return new LottoResults(lottoResults);
+    }
+
+    private static void putInLottoResults(EnumMap<LottoResult, Integer> lottoResults, LottoResult result) {
+        lottoResults.put(result, lottoResults.get(result) + 1);
+    }
+
+    private static EnumMap<LottoResult, Integer> initResults() {
+        EnumMap<LottoResult, Integer> results = new EnumMap<>(LottoResult.class);
+        Arrays.stream(LottoResult.values())
+                .forEach(result -> results.put(result, 0));
+        return results;
     }
 }

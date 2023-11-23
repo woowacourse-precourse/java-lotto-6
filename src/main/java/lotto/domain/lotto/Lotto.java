@@ -35,6 +35,11 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public int getSameNumberCount(Lotto lotto) {
+        return (int) this.numbers.stream()
+                .filter(lotto.numbers::contains)
+                .count();
+    }
 
     public List<Integer> getNumbers() {
         return numbers.stream()

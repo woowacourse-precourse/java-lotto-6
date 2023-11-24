@@ -5,5 +5,6 @@ public class Application {
         LottoRunner lottoRunner = new LottoRunner();
         lottoRunner.run();
         System.out.println("hello");
+        System.out.println("gg");
     }
 }

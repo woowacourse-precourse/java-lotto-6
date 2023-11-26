@@ -20,13 +20,13 @@ public class InputView {
         return ReadAmountValidator.validateAmount(readLine());
     }
 
-    public List<Integer> readWinningLotto() {
+    public List<Integer> readWinningNumbers() {
         outputView.printReadWinningLottoMessage();
         return ReadWinningValidator.validateWinning(readLine());
     }
 
     public int readBonus() {
-        outputView.printReadWinningLottoMessage();
+        outputView.printReadBonusNumberMessage();
         return ReadBonusValidator.validateBonus(readLine());
     }
 

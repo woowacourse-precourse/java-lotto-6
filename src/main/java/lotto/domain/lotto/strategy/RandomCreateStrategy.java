@@ -2,7 +2,7 @@ package lotto.domain.lotto.strategy;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.domain.constant.Constant;
+import lotto.constant.Constant;
 import lotto.domain.lotto.Lotto;
 
 public class RandomCreateStrategy implements CreateStrategy {

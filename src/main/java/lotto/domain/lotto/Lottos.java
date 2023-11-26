@@ -2,7 +2,10 @@ package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import lotto.domain.ball.Ball;
 import lotto.domain.lotto.strategy.CreateStrategy;
+import lotto.domain.rank.Rank;
 import lotto.dto.LottosDto;
 
 public class Lottos {
@@ -28,5 +31,17 @@ public class Lottos {
 
     private LottosDto toDto(final Lotto lotto) {
         return new LottosDto(lotto.parseString());
+    }
+
+    public List<Rank> calculateRanks(final Lotto winningLotto, final Ball bonus) {
+        return lottos.stream()
+                .map(lotto -> lotto.calculateRank(winningLotto, bonus))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
+    }
+
+    public int getSize() {
+        return lottos.size();
     }
 }

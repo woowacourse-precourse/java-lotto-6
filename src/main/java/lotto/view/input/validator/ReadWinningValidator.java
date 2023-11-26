@@ -2,8 +2,8 @@ package lotto.view.input.validator;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.exception.exceptions.CustomNullPointAmountException;
-import lotto.exception.exceptions.CustomNumberFormatAmountException;
+import lotto.exception.custom.CustomNullPointAmountException;
+import lotto.exception.custom.CustomNumberFormatAmountException;
 import lotto.exception.winning.WinningExceptionStatus;
 import lotto.utils.Delimiter;
 

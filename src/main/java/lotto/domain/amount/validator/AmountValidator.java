@@ -1,7 +1,7 @@
 package lotto.domain.amount.validator;
 
-import lotto.domain.constant.Constant;
-import lotto.exception.exceptions.CustomIllegalStateAmountException;
+import lotto.constant.Constant;
+import lotto.exception.custom.CustomIllegalStateAmountException;
 import lotto.exception.amount.AmountExceptionStatus;
 
 public class AmountValidator {

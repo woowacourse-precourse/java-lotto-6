@@ -1,7 +1,7 @@
-package lotto.domain.lotto.validator;
+package lotto.domain.ball.validator;
 
-import lotto.domain.constant.Constant;
-import lotto.exception.exceptions.CustomIllegalArgumentException;
+import lotto.constant.Constant;
+import lotto.exception.custom.CustomIllegalArgumentException;
 import lotto.exception.lotto.LottoExceptionStatus;
 
 public class BallValidator {

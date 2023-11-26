@@ -1,7 +1,7 @@
 package lotto.view.input.validator;
 
-import lotto.exception.exceptions.CustomNullPointAmountException;
-import lotto.exception.exceptions.CustomNumberFormatAmountException;
+import lotto.exception.custom.CustomNullPointAmountException;
+import lotto.exception.custom.CustomNumberFormatAmountException;
 import lotto.exception.winning.BonusExceptionStatus;
 
 public class ReadBonusValidator {

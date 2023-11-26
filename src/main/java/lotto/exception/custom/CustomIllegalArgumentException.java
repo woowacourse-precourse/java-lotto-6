@@ -1,4 +1,4 @@
-package lotto.exception.exceptions;
+package lotto.exception.custom;
 
 import lotto.exception.ExceptionStatus;
 

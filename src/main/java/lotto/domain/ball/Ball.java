@@ -1,6 +1,6 @@
-package lotto.domain.lotto;
+package lotto.domain.ball;
 
-import lotto.domain.lotto.validator.BallValidator;
+import lotto.domain.ball.validator.BallValidator;
 
 public class Ball {
 

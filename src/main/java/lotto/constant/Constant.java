@@ -1,8 +1,9 @@
-package lotto.domain.constant;
+package lotto.constant;
 
 public enum Constant {
 
     ZERO(0),
+    OPERAND(10),
     PRICE_PER_LOTTO(1000),
     ALLOWED_MAXIMUM_AMOUNT(100_000),
     ALLOWED_MINIMUM_NUMBER(1),

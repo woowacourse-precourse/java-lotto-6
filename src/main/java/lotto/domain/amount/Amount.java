@@ -1,7 +1,7 @@
 package lotto.domain.amount;
 
 import lotto.domain.amount.validator.AmountValidator;
-import lotto.domain.constant.Constant;
+import lotto.constant.Constant;
 
 public class Amount {
 

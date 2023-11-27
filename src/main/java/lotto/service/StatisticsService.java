@@ -1,4 +1,4 @@
-package lotto.Service;
+package lotto.service;
 
 import java.text.NumberFormat;
 import java.util.HashMap;

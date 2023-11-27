@@ -1,4 +1,4 @@
-package lotto.Service;
+package lotto.service;
 
 import static camp.nextstep.edu.missionutils.Console.close;
 import static org.junit.jupiter.api.Assertions.assertEquals;

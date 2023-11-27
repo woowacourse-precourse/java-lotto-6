@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.Service.InputNumberService;
 import lotto.dto.WinnerAndBonusNumber;
+import lotto.service.InputNumberService;
 
 public class InputNumberController {
     private final InputNumberService inputNumberService;

@@ -14,8 +14,4 @@ public enum PrintOutMessage {
     PrintOutMessage(String message) {
         this.message = message;
     }
-
-    public void throwException() {
-        throw new IllegalArgumentException(message);
-    }
 }

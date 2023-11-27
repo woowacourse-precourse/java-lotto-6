@@ -1,4 +1,4 @@
-package lotto.Service;
+package lotto.service;
 
 import static camp.nextstep.edu.missionutils.Console.close;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,7 +40,7 @@ class InputNumberServiceTest {
     void inputWinnerAndBonusNumberTest() {
         String input = "1,2,3,4,5,6\n7";
         System.setIn(new ByteArrayInputStream(input.getBytes()));
-        
+
         //when
         WinnerAndBonusNumber winnerAndBonusNumber = inputNumberService.input();
 

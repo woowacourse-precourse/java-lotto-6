@@ -1,11 +1,6 @@
 package lotto;
 
 import java.util.List;
-import lotto.Service.BuyLottoService;
-import lotto.Service.CompareService;
-import lotto.Service.InputNumberService;
-import lotto.Service.InputPurchasePriceService;
-import lotto.Service.StatisticsService;
 import lotto.controller.BuyLottoController;
 import lotto.controller.CompareController;
 import lotto.controller.InputNumberController;
@@ -15,6 +10,11 @@ import lotto.dto.LottoResults;
 import lotto.dto.WinnerAndBonusNumber;
 import lotto.model.CompareResult;
 import lotto.model.PurchasePrice;
+import lotto.service.BuyLottoService;
+import lotto.service.CompareService;
+import lotto.service.InputNumberService;
+import lotto.service.InputPurchasePriceService;
+import lotto.service.StatisticsService;
 import lotto.validation.BonusNumberValidator;
 import lotto.validation.PurchasePriceValidator;
 import lotto.validation.WinnerNumberValidator;

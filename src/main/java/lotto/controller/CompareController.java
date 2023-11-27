@@ -1,10 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.Service.CompareService;
 import lotto.dto.LottoResults;
 import lotto.dto.WinnerAndBonusNumber;
 import lotto.model.CompareResult;
+import lotto.service.CompareService;
 
 public class CompareController {
     private final CompareService compareService;

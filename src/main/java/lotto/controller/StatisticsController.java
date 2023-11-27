@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.Service.StatisticsService;
 import lotto.model.CompareResult;
 import lotto.model.PurchasePrice;
+import lotto.service.StatisticsService;
 
 public class StatisticsController {
     private final StatisticsService statisticsService;

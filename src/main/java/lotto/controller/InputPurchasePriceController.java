@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.Service.InputPurchasePriceService;
 import lotto.model.PurchasePrice;
+import lotto.service.InputPurchasePriceService;
 
 public class InputPurchasePriceController {
     private final InputPurchasePriceService inputPurchasePriceService;

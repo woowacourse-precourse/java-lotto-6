@@ -10,6 +10,7 @@ public enum Rank {
     public final int matchCount;
     public final boolean isMatchBonus;
     public final int prize;
+
     public final String message;
 
     Rank(int matchCount, boolean isMatchBonus, int prize, String message) {
@@ -23,9 +24,6 @@ public enum Rank {
         return matchCount;
     }
 
-    public String getMessage() {
-        return message;
-    }
 
     public static Rank getRankByMatchCount(int matchCount) {
         for (Rank rank : values()) {

@@ -1,4 +1,4 @@
-package lotto.Service;
+package lotto.service;
 
 import lotto.model.PurchasePrice;
 import lotto.view.input.InputView;

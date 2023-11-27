@@ -50,4 +50,8 @@ public class LottoNumberMaker {
             throw new IllegalArgumentException(ISNOTINTEGER.getMessage());
         }
     }
+
+    public List<List<Integer>> getLottoNumber() {
+        return numbers;
+    }
 }

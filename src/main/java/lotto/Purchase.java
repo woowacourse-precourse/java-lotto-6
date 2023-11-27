@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.LottoException;
 
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class Purchase {
                 money = Integer.parseInt(inputMoney());
                 break;
             } catch (NumberFormatException exception) {
-                System.out.println("[ERROR] 구입 금액은 숫자만 입력 가능합니다.");
+                System.out.println(LottoException.getExceptionMessage(String.valueOf(LottoException.INVALID_INPUT_TYPE)));
             }
         }
         int lottoCount = checkLottoCount(money);
@@ -29,7 +30,7 @@ public class Purchase {
     public int checkLottoCount(int money) throws NumberFormatException {
         int lottoCount = money / 1000;
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액을 확인해주세요. 1장당 1000원");
+            System.out.println(LottoException.getExceptionMessage(String.valueOf(LottoException.INVALID_INPUT_SIZE)));
         }
         System.out.println(lottoCount + "개를 구매했습니다.");
         return lottoCount;

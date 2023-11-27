@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.model.LottoNumberMaker;
 import lotto.view.LottoInput;
 import lotto.view.LottoOutput;
@@ -14,6 +15,11 @@ public class LottoController {
 
     public static void setBuyLottoNumberPrint() {
         lottoOutput.buyLottoNumberPrint(lottoNumberMaker.getLottoNumber());
+    }
+
+    public static void setPrizeNumberInput() {
+        Lotto lotto = new Lotto(lottoInput.prizeNumberInput());
+
     }
 
     public String askPrice() {

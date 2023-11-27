@@ -7,5 +7,6 @@ public class Application {
         LottoController.setPrice();
         LottoController.setBuyLottoNumberPrint();
         LottoController.setPrizeNumberInput();
+        LottoController.winningStatistic();
     }
 }

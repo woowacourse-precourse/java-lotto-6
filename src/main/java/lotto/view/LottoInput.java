@@ -15,7 +15,12 @@ public class LottoInput {
 
     }
 
-
+    public List<String> prizeNumberInput() {
+        printNewLine();
+        System.out.println(ASK_PRIZE_NUMBER.getMessage());
+        List<String> input = Arrays.asList(Console.readLine().split(","));
+        return input;
+    }
     private void printNewLine() {
         System.out.println();
     }

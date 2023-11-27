@@ -19,7 +19,7 @@ public class LottoController {
 
     public static void setPrizeNumberInput() {
         Lotto lotto = new Lotto(lottoInput.prizeNumberInput());
-        lotto.checkSame(lottoView.bonusNumberInput(),randomIntGenerator.getLottoNumber());
+        lotto.checkSame(lottoOutput.bonusNumberInput(),lottoNumberMaker.getLottoNumber());
     }
 
     public String askPrice() {

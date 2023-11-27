@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.view.ConstantsMessage.*;
 
@@ -15,12 +16,18 @@ public class LottoInput {
 
     }
 
-    public List<String> prizeNumberInput() {
+    public List<Integer> prizeNumberInput() {
         printNewLine();
         System.out.println(ASK_PRIZE_NUMBER.getMessage());
-        List<String> input = Arrays.asList(Console.readLine().split(","));
-        return input;
+        return changeInt(Arrays.asList(Console.readLine().split(",")));
     }
+
+    private List<Integer> changeInt(List<String> prizeNumbers) {
+        return   prizeNumbers.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
     private void printNewLine() {
         System.out.println();
     }

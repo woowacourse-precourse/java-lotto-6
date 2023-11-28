@@ -1,4 +1,4 @@
-package lotto.model.constants;
+package lotto.constants;
 
 public enum ErrorMessage {
     DUPLICATION("[ERROR] 값이 중복되었습니다"),

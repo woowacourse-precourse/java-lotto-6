@@ -54,6 +54,14 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또번호_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1, 2, 3, 4, 5, 51");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

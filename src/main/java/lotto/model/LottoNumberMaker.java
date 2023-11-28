@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static lotto.constants.ErrorMessage.ISNOTINTEGER;
+import static lotto.constants.ErrorMessage.NOTTHOUSAND;
 
 public class LottoNumberMaker {
     private static int buyPrice;
@@ -21,8 +22,16 @@ public class LottoNumberMaker {
 
     public void makeLottoNumber(Integer count) {
         buyPrice = count;
+        checkThousand(count);
         IntStream.range(0, count / 1000)
                 .forEach(i -> numbers.add(makeRandomNumber()));
+    }
+
+    private void checkThousand(Integer count) {
+        if(count%1000!=0){
+           throw new IllegalArgumentException(NOTTHOUSAND.getMessage());
+        }
+        return;
     }
 
     private List<Integer> makeRandomNumber() {
@@ -39,6 +48,7 @@ public class LottoNumberMaker {
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ISNOTINTEGER.getMessage());
+                System.out.println(NOTTHOUSAND.getMessage());
             }
         }
     }

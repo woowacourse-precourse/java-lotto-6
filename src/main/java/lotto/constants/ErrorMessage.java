@@ -5,7 +5,8 @@ public enum ErrorMessage {
     ISNOTINTEGER("[ERROR] 숫자를 입력해주세요"),
     SIXNUMBER("[ERROR] 번호 6개를 입력해주세요"),
     OUTFRANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
-    ONENUMBER("[ERROR] 숫자 번호 1개를 입력해주세요");
+    ONENUMBER("[ERROR] 숫자 번호 1개를 입력해주세요"),
+    NOTTHOUSAND("[ERROR] 1000원 단위로 입력해 주세요");
 
 
     private final String message;

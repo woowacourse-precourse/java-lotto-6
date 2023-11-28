@@ -8,6 +8,10 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -15,12 +19,12 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(String.valueOf(LottoException.INVALID_INPUT_SIZE));
         }
 
         for (Integer number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
                 throw new IllegalArgumentException(String.valueOf(LottoException.INVALID_INPUT_NUMBER));
             }
         }

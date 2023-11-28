@@ -7,10 +7,8 @@ public enum Result {
     BONUS("5개 일치, 보너스 볼 일치 (30,000,000원)", 30_000_000, 0),
     SIX("6개 일치 (2,000,000,000원)", 2_000_000_000, 0);
 
-
     private String result;
     private int match;
-
     private int money;
 
     Result(String result, int money, int match) {

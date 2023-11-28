@@ -8,5 +8,6 @@ public class Application {
         LottoController.setBuyLottoNumberPrint();
         LottoController.setPrizeNumberInput();
         LottoController.winningStatistic();
+        LottoController.PerformanceCalculation();
     }
 }

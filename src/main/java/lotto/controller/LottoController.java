@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoNumberMaker;
+import lotto.model.LottoPercentageCalculation;
 import lotto.model.constants.LottoPrize;
 import lotto.view.LottoInput;
 import lotto.view.LottoOutput;
@@ -16,6 +17,7 @@ public class LottoController {
     private static final LottoNumberMaker lottoNumberMaker = new LottoNumberMaker();
     private static final LottoInput lottoInput = new LottoInput();
     private static final LottoOutput lottoOutput = new LottoOutput();
+    private static final LottoPercentageCalculation lottoPercentageCalculation = new LottoPercentageCalculation();
     public static void setPrice() {
         lottoNumberMaker.checkInt();
     }
@@ -36,6 +38,10 @@ public class LottoController {
             lottoPrizes.add(lottoPrize.getText()+lottoPrize.getWinCount()+lottoPrize.getUnit());
         }
         LottoOutput.seeWinningStatstic(lottoPrizes);
+    }
+
+    public static void PerformanceCalculation() {
+        lottoOutput.seePercentage(lottoPercentageCalculation.percentageCalculation(LottoPrize.values(),lottoNumberMaker.getBuyPrice()));
     }
 
     public String askPrice() {

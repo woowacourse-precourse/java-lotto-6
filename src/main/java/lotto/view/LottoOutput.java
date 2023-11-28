@@ -34,4 +34,8 @@ public class LottoOutput {
     private void printNewLine() {
         System.out.println();
     }
+
+    public void seePercentage(double percentage) {
+        System.out.println(PERCENT_FRONT_MESSAGE.getMessage()+percentage+PERCENT_BACK_MESSAGE.getMessage());
+    }
 }

@@ -1,9 +1,9 @@
 package lotto.model;
 
-import lotto.controller.LottoController;
 import lotto.model.constants.LottoPrize;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import static lotto.constants.ErrorMessage.DUPLICATION;
@@ -33,6 +33,7 @@ public class Lotto {
         }
     }
     public void checkSame(Integer bonusNumber, List<List<Integer>> lottoNumber) {
+        bonusDuplication(bonusNumber);
         for (List<Integer> integers : lottoNumber) {
             List<Integer> Result = integers.stream()
                     .filter(i -> this.numbers.stream().anyMatch(Predicate.isEqual(i)))
@@ -43,6 +44,17 @@ public class Lotto {
 
         }
     }
+
+    private void bonusDuplication(Integer bonusNumber) {
+        List<Integer> Result = this.numbers.stream()
+                .filter(i-> !Objects.equals(i, bonusNumber))
+                .toList();
+        if(Result.size()!=6){
+            throw new IllegalArgumentException(DUPLICATION.getMessage());
+        }
+
+    }
+
     public LottoPrize CheckPrize(int result, long bonusResult){
         if(result==6){
             return FIRST_PRIZE;

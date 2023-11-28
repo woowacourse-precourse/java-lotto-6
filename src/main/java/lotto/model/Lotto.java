@@ -5,8 +5,8 @@ import lotto.model.constants.LottoPrize;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static lotto.model.constants.ErrorMessage.DUPLICATION;
-import static lotto.model.constants.ErrorMessage.OUTOFRANGE;
+import static lotto.constants.ErrorMessage.DUPLICATION;
+import static lotto.constants.ErrorMessage.SIXNUMBER;
 import static lotto.model.constants.LottoPrize.*;
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,7 +28,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(OUTOFRANGE.getMessage());
+            throw new IllegalArgumentException(SIXNUMBER.getMessage());
         }
     }
     public void checkSame(Integer bonusNumber, List<List<Integer>> lottoNumber) {

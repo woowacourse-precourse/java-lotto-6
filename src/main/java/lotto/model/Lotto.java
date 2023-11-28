@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.controller.LottoController;
 import lotto.model.constants.LottoPrize;
 
 import java.util.List;
@@ -27,8 +28,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(SIXNUMBER.getMessage());
+        while(true) {
+            try {
+                if (numbers.size() != 6) {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(SIXNUMBER.getMessage());
+                LottoController.setPrizeNumberInput();
+            }
         }
     }
     public void checkSame(Integer bonusNumber, List<List<Integer>> lottoNumber) {

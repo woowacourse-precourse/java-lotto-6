@@ -16,13 +16,7 @@ public class LottoOutput {
         System.out.println(lottoNumber.size()+BUY_RESULT_MESSAGE.getMessage());
         lottoNumber.forEach(System.out::println);
     }
-    public Integer bonusNumberInput() {
-        printNewLine();
-        System.out.println(ASK_BONUS_NUMBER.getMessage());
-        String input = Console.readLine();
 
-        return Integer.parseInt(input);
-    }
     public static void seeWinningStatstic(List<String> lottoPrizes) {
         System.out.println(WIN_RESULT_MESSAGE.getMessage());
         System.out.println(lINE_SEPARATION_MESSAGE.getMessage());

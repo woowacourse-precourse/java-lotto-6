@@ -29,7 +29,13 @@ public class LottoInput {
             }
         }
     }
+    public Integer bonusNumberInput() {
+        printNewLine();
+        System.out.println(ASK_BONUS_NUMBER.getMessage());
+        String input = Console.readLine();
 
+        return Integer.parseInt(input);
+    }
     private List<Integer> changeInt(List<String> prizeNumbers) {
             try{
                 List<Integer> numbers = prizeNumbers.stream()

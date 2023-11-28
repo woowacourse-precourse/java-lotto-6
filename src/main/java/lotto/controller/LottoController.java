@@ -29,7 +29,7 @@ public class LottoController {
 
     public static void setPrizeNumberInput() {
         Lotto lotto = new Lotto(lottoInput.prizeNumberInput());
-        lotto.checkSame(lottoOutput.bonusNumberInput(),lottoNumberMaker.getLottoNumber());
+        lotto.checkSame(lottoInput.bonusNumberInput(),lottoNumberMaker.getLottoNumber());
     }
 
     public static void winningStatistic() {

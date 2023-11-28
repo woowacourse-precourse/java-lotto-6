@@ -1,10 +1,13 @@
 package lotto;
 
+import lotto.ui.OutputView;
+
 import java.security.interfaces.RSAKey;
 import java.util.List;
 
 public class Statistics {
 
+    OutputView outputView = new OutputView();
     private final List<List<Integer>> lottoNumbers;
     private final List<Integer> winningNumbers;
     private final Integer bonus;
@@ -25,7 +28,7 @@ public class Statistics {
             }
             countMatch(matchingCount, matchingBonus);
         }
-        printResult();
+        outputView.printResult(lottoNumbers);
     }
 
     private int getMatchingCount(Integer number, int matchingCount) {
@@ -66,17 +69,4 @@ public class Statistics {
         }
     }
 
-    public void printResult() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        double revenue = 0;
-        for (Result result : Result.values()) {
-            System.out.println(result.getResult() + " - " + result.getMatch() + "개");
-            revenue += result.getMatch() * result.getMoney();
-        }
-
-        double revenuePercent = revenue / (lottoNumbers.size() * 1000) * 100;
-
-        System.out.println("총 수익률은 " + Math.round(revenuePercent * 100) / 100.0 + "%입니다.");
-    }
 }

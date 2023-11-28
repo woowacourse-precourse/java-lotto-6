@@ -19,25 +19,17 @@ public class Lotto {
     }
 
     private void duplicate(List<Integer> numbers) {
-        List<Integer> duplication = numbers.stream()
-                .distinct()
-                .toList();
-        if(duplication.size()!=numbers.size()) {
-            throw new IllegalArgumentException(DUPLICATION.getMessage());
-        }
+                List<Integer> duplication = numbers.stream()
+                        .distinct()
+                        .toList();
+                if (duplication.size() != numbers.size()) {
+                    throw new IllegalArgumentException(DUPLICATION.getMessage());
+                }
     }
 
     private void validate(List<Integer> numbers) {
-        while(true) {
-            try {
                 if (numbers.size() != 6) {
-                    throw new IllegalArgumentException();
-                }
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(SIXNUMBER.getMessage());
-                LottoController.setPrizeNumberInput();
-            }
+                    throw new IllegalArgumentException(SIXNUMBER.getMessage());
         }
     }
     public void checkSame(Integer bonusNumber, List<List<Integer>> lottoNumber) {

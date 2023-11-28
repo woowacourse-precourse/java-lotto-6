@@ -6,8 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.constants.ErrorMessage.ISNOTINTEGER;
-import static lotto.constants.ErrorMessage.OUTFRANGE;
+import static lotto.constants.ErrorMessage.*;
 import static lotto.view.ConstantsMessage.*;
 
 public class LottoInput {
@@ -30,11 +29,16 @@ public class LottoInput {
         }
     }
     public Integer bonusNumberInput() {
+        try{
         printNewLine();
         System.out.println(ASK_BONUS_NUMBER.getMessage());
         String input = Console.readLine();
 
         return Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException(ONENUMBER.getMessage());
+        }
+
     }
     private List<Integer> changeInt(List<String> prizeNumbers) {
             try{

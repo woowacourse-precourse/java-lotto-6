@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.model.constants.ErrorMessage.ISNOTINTEGER;
+import static lotto.constants.ErrorMessage.ISNOTINTEGER;
 
 public class LottoNumberMaker {
     private static int buyPrice;

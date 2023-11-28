@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static lotto.model.constants.ErrorMessage.DUPLICATION;
+import static lotto.model.constants.ErrorMessage.OUTOFRANGE;
 import static lotto.model.constants.LottoPrize.*;
 public class Lotto {
     private final List<Integer> numbers;
@@ -27,7 +28,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(OUTOFRANGE.getMessage());
         }
     }
     public void checkSame(Integer bonusNumber, List<List<Integer>> lottoNumber) {

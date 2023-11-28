@@ -4,13 +4,25 @@ import lotto.model.constants.LottoPrize;
 
 import java.util.List;
 import java.util.function.Predicate;
+
+import static lotto.model.constants.ErrorMessage.DUPLICATION;
 import static lotto.model.constants.LottoPrize.*;
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        duplicate(numbers);
         this.numbers = numbers;
+    }
+
+    private void duplicate(List<Integer> numbers) {
+        List<Integer> duplication = numbers.stream()
+                .distinct()
+                .toList();
+        if(duplication.size()!=numbers.size()) {
+            throw new IllegalArgumentException(DUPLICATION.getMessage());
+        }
     }
 
     private void validate(List<Integer> numbers) {

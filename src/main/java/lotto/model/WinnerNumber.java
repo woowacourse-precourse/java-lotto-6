@@ -7,6 +7,7 @@ import static lotto.exception.ErrorInputException.ErrorMessage.WINNER_NUMBER_CAN
 import static lotto.exception.ErrorInputException.ErrorMessage.WINNER_NUMBER_IS_BETWEEN_ONE_AND_FORTY_FIVE;
 import static lotto.exception.ErrorInputException.ErrorMessage.WINNER_NUMBER_SIZE_IS_SIX;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.exception.ErrorInputException;
 
@@ -25,7 +26,7 @@ public class WinnerNumber {
     }
 
     public List<Integer> getWinnerNumbers() {
-        return winnerNumbers;
+        return Collections.unmodifiableList(winnerNumbers);
     }
 
     private void validate() {

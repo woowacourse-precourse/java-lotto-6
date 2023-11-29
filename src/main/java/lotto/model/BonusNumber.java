@@ -18,8 +18,8 @@ public class BonusNumber {
         isBetweenOneAndFortyFive();
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean isSameBonusNumber(BonusNumber other) {
+        return other.bonusNumber == this.bonusNumber;
     }
 
     public static BonusNumber createBonusNumber(List<Integer> winnerNumber, int bonusNumber) {

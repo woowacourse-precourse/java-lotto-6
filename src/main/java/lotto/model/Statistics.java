@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.constant.Constant.ZERO;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class Statistics {
     }
 
     public Map<Rank, Integer> getResult() {
-        return result;
+        return Collections.unmodifiableMap(result);
     }
 
     public void calculateMatching(LottoNumbers lottoNumbers, WinnerNumber winnerNumber, BonusNumber bonusNumber) {
@@ -45,7 +46,7 @@ public class Statistics {
 
     private boolean matchingBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
         return lotto.getNumbers().stream()
-                .anyMatch(number -> number.equals(bonusNumber.getBonusNumber()));
+                .anyMatch(number -> number.equals(bonusNumber.isSameBonusNumber(bonusNumber)));
     }
 
     private long countMatchingWinnerNumber(Lotto lotto, WinnerNumber winnerNumber) {

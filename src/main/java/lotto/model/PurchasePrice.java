@@ -10,8 +10,8 @@ public class PurchasePrice {
     private final int price;
 
     private PurchasePrice(int price) {
-        isDividedByThousand();
         this.price = price;
+        isDividedByThousand();
     }
 
     public static PurchasePrice createPurchasePrice(int price) {

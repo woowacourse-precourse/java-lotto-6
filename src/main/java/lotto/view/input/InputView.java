@@ -34,21 +34,21 @@ public class InputView {
     }
 
     private int purchasePriceValidate(String input) {
-        purchasePriceValidator.isNullOrEmpty(input);
+        purchasePriceValidator.isBlank(input);
         int purchasePrice = purchasePriceValidator.isInteger(input);
         return purchasePriceValidator.moreThanOne(purchasePrice);
     }
 
 
     private List<Integer> WinnerNumberValidate(String input) {
-        winnerNumberValidator.isNullOrEmpty(input);
+        winnerNumberValidator.isBlank(input);
         winnerNumberValidator.checkCommaError(input);
         List<Integer> winnerNumber = winnerNumberValidator.isInteger(input);
         return winnerNumberValidator.moreThanOne(winnerNumber);
     }
 
     private int BonusNumberValidate(String input) {
-        bonusNumberValidator.isNullOrEmpty(input);
+        bonusNumberValidator.isBlank(input);
         int bonusNumber = bonusNumberValidator.isInteger(input);
         return bonusNumberValidator.moreThanOne(bonusNumber);
     }

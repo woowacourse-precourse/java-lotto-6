@@ -1,6 +1,8 @@
 package lotto;
 
+import lotto.controller.BuyLottoController;
 import lotto.controller.LottoController;
+import lotto.dto.BuyLottoDto;
 import lotto.service.BuyLottoService;
 import lotto.service.CalculateStatisticService;
 import lotto.validation.BonusNumberValidator;
@@ -19,11 +21,12 @@ public class Application {
         BuyLottoService buyLottoService = createBuyLottoService(outputView);
         CalculateStatisticService calculateStatisticService = createCalculateStatisticService(outputView);
 
-        LottoController lottoController = createLottoController(inputView, outputView, buyLottoService,
-                calculateStatisticService);
+        BuyLottoController buyLottoController = createBuyLottoController(inputView, outputView, buyLottoService);
+
+        LottoController lottoController = createLottoController(inputView, outputView, calculateStatisticService);
 
         // 메서드 호출
-        executeControllers(lottoController);
+        executeControllers(buyLottoController, lottoController);
     }
 
     private static InputView createInputView() {
@@ -44,14 +47,20 @@ public class Application {
     }
 
 
-    private static LottoController createLottoController(InputView inputView,
-                                                         OutputView outputView,
-                                                         BuyLottoService buyLottoService,
-                                                         CalculateStatisticService calculateStatisticService) {
-        return new LottoController(inputView, outputView, buyLottoService, calculateStatisticService);
+    private static BuyLottoController createBuyLottoController(InputView inputView,
+                                                               OutputView outputView,
+                                                               BuyLottoService buyLottoService) {
+        return new BuyLottoController(inputView, outputView, buyLottoService);
     }
 
-    private static void executeControllers(LottoController lottoController) {
-        lottoController.run();
+    private static LottoController createLottoController(InputView inputView,
+                                                         OutputView outputView,
+                                                         CalculateStatisticService calculateStatisticService) {
+        return new LottoController(inputView, outputView, calculateStatisticService);
+    }
+
+    private static void executeControllers(BuyLottoController buyLottoController, LottoController lottoController) {
+        BuyLottoDto buyLottoDto = buyLottoController.buyLotto();
+        lottoController.getStatistics(buyLottoDto);
     }
 }

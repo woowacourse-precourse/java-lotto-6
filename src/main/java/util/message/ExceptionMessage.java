@@ -9,8 +9,9 @@ public enum ExceptionMessage implements EnumUtil<String, String> {
     , TYPE_MESSAGE("%s은(는) 숫자만 입력할 수 있습니다.")
     , UNIT_MESSAGE("%d원 단위로 입력해 주세요.")
     , RANGE_MESSAGE("%d 이상의 값을 입력해 주세요.")
-    , DUPLICATE_MESSAGE("중복된 값을 입력할 수 없습니다.")
-    , NO_RESOURCE_MESSAGE("%s(이)가 존재하지 않습니다.");
+    , DUPLICATE_MESSAGE("중복된 값이 있습니다.")
+    , NO_RESOURCE_MESSAGE("%s(이)가 존재하지 않습니다.")
+    , SIZE_OVER_MESSAGE("%s크기를 초과하였습니다.");
 
     private final String message;
 

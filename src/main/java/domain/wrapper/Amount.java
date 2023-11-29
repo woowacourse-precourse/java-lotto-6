@@ -1,4 +1,4 @@
-package domain;
+package domain.wrapper;
 
 import Constants.PurchaseAmountConstant;
 
@@ -13,6 +13,10 @@ public class Amount {
         int purchase = validateType(purchaseAmount);
         purchase = validateRange(purchase);
         amount = validateDivisibleBy1000(purchase);
+    }
+
+    public int getAmount(){
+        return amount;
     }
 
     public static Amount create(final String purchaseAmount){

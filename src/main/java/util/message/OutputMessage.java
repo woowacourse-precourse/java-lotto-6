@@ -3,7 +3,7 @@ package util.message;
 import util.EnumUtil;
 
 public enum OutputMessage implements EnumUtil<String, String>{
-    ;
+    LOTTO_PURCHASE_COUNT("%d개를 구매했습니다.");
 
     private final String message;
 
@@ -19,6 +19,6 @@ public enum OutputMessage implements EnumUtil<String, String>{
 
     @Override
     public String getValue() {
-        return name();
+        return message;
     }
 }

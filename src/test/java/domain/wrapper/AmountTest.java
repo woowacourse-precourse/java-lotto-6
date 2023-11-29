@@ -1,7 +1,6 @@
 package domain.wrapper;
 
 import Constants.PurchaseAmountConstant;
-import domain.Amount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

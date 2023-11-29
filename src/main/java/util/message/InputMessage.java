@@ -18,6 +18,6 @@ public enum InputMessage implements EnumUtil<String, String> {
 
     @Override
     public String getValue() {
-        return name();
+        return message;
     }
 }

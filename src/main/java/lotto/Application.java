@@ -1,9 +1,15 @@
 package lotto;
 
-import view.InputView;
+import controller.LottosController;
 
 public class Application {
+
+    private static final LottosController lottosController = new LottosController();
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        initLottos();
+    }
+
+    private static void initLottos(){
+        lottosController.start();
     }
 }

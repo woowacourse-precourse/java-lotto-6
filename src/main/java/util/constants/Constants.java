@@ -1,15 +1,14 @@
-package Constants;
+package util.constants;
 
 import util.EnumUtil;
 
-public enum PurchaseAmountConstant implements EnumUtil<String, Integer> {
-
+public enum Constants implements EnumUtil<String, Integer> {
     ONE_THOUSAND(1000),
     ZERO(0);
 
     private final int number;
 
-    PurchaseAmountConstant(final int number){
+    Constants(final int number){
         this.number = number;
     }
 

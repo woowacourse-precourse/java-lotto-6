@@ -3,7 +3,8 @@ package util.message;
 import util.EnumUtil;
 
 public enum InputMessage implements EnumUtil<String, String> {
-    GET_PURCHSE_AMOUNT("구입금액을 입력해 주세요.");
+    GET_PURCHSE_AMOUNT("구입금액을 입력해 주세요."),
+    GET_WINNING_NUMBERS("당첨 번호를 입력해 주세요.");
     private final String message;
 
     InputMessage(final String message){

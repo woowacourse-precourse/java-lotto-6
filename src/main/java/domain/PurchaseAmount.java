@@ -1,14 +1,16 @@
 package domain;
 
-import Constants.PurchaseAmountConstant;
-import domain.wrapper.Amount;
+import util.constants.Constants;
+
+import static util.message.ExceptionMessage.UNIT_MESSAGE;
 
 public class PurchaseAmount {
-    private final Amount amount;
+    private final int amount;
     private final int quantity;
 
-    private PurchaseAmount(final String purchaseAmount){
-        this.amount = Amount.create(purchaseAmount);
+    private PurchaseAmount(final int purchaseAmount){
+        validateDivisibleBy1000(purchaseAmount);
+        this.amount = purchaseAmount;
         this.quantity = calculatequantity();
     }
 
@@ -16,11 +18,18 @@ public class PurchaseAmount {
         return quantity;
     }
 
-    public static PurchaseAmount create(final String purchaseAmount){
+    public static PurchaseAmount create(final int purchaseAmount){
         return new PurchaseAmount(purchaseAmount);
     }
 
     private int calculatequantity(){
-        return amount.getAmount() / PurchaseAmountConstant.ONE_THOUSAND.getValue();
+        return amount / Constants.ONE_THOUSAND.getValue();
+    }
+
+    private static int validateDivisibleBy1000(final int amount){
+        if(amount % Constants.ONE_THOUSAND.getValue() != Constants.ZERO.getValue()){
+            throw new IllegalArgumentException(String.format(UNIT_MESSAGE.getValue(), Constants.ONE_THOUSAND.getValue()));
+        }
+        return amount;
     }
 }

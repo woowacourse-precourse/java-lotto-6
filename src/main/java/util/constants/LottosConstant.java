@@ -1,4 +1,4 @@
-package Constants;
+package util.constants;
 
 import util.EnumUtil;
 

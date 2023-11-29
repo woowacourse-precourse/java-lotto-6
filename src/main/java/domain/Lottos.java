@@ -1,6 +1,6 @@
 package domain;
 
-import Constants.LottosConstant;
+import util.constants.LottosConstant;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;

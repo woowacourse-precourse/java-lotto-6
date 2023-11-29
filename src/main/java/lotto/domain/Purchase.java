@@ -7,6 +7,9 @@ import lotto.ui.OutputView;
 
 import java.util.*;
 
+import static lotto.utils.ErrorMessage.*;
+import static lotto.utils.ErrorMessage.INVALID_INPUT_TYPE;
+
 public class Purchase {
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_SIZE = 6;
@@ -23,7 +26,7 @@ public class Purchase {
                 money = Integer.parseInt(inputView.inputPurchaseMoney());
                 break;
             } catch (NumberFormatException exception) {
-                System.out.println(ErrorMessage.getExceptionMessage(String.valueOf(ErrorMessage.INVALID_INPUT_TYPE)));
+                System.out.println(INVALID_INPUT_TYPE.getExceptionMessage());
             }
         }
         int lottoCount = checkLottoCount(money);
@@ -33,7 +36,7 @@ public class Purchase {
     public int checkLottoCount(int money) throws NumberFormatException {
         int lottoCount = money / LOTTO_PRICE;
         if (money % LOTTO_PRICE != 0) {
-            System.out.println(ErrorMessage.getExceptionMessage(String.valueOf(ErrorMessage.INVALID_INPUT_PRICE)));
+            System.out.println(INVALID_INPUT_PRICE.getExceptionMessage());
         }
         outputView.printLottoCount(lottoCount);
         return lottoCount;

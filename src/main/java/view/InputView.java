@@ -1,14 +1,13 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
+import validator.BonusValidator;
 import validator.PurchaseAmountValidator;
-import validator.Validator;
 import validator.WinningNumbersValidator;
 
 import java.util.List;
 
-import static util.message.InputMessage.GET_PURCHSE_AMOUNT;
-import static util.message.InputMessage.GET_WINNING_NUMBERS;
+import static util.message.InputMessage.*;
 
 public class InputView {
     public static int inputPurchaseAmount(){
@@ -21,5 +20,11 @@ public class InputView {
         System.out.println(GET_WINNING_NUMBERS.getValue());
         String input = Console.readLine();
         return WinningNumbersValidator.validate(input);
+    }
+
+    public static int inputBonusNumber(){
+        System.out.println(GET_BONUS_NUMBER.getValue());
+        String input = Console.readLine();
+        return BonusValidator.validate(input);
     }
 }

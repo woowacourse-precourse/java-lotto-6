@@ -1,5 +1,6 @@
 package controller;
 
+import domain.BonusNumber;
 import domain.PurchaseAmount;
 import domain.Lottos;
 import domain.WinningNumbers;
@@ -34,7 +35,8 @@ public class LottosController {
     }
 
     private void generateWinngingAndBonus(){
-        generateWinngingNumbers();
+        WinningNumbers winningNumbers = generateWinngingNumbers();
+        BonusNumber bonusNumber = generateBonusNumber();
     }
 
     private WinningNumbers generateWinngingNumbers(){
@@ -47,7 +49,21 @@ public class LottosController {
         }
     }
 
+    private BonusNumber generateBonusNumber(){
+        try{
+            int number = InputView.inputBonusNumber();
+            return createBonusNumber(number);
+        } catch (IllegalArgumentException e){
+            OutputView.printMessage(e.getMessage());
+            return generateBonusNumber();
+        }
+    }
+
     private WinningNumbers createWinngingNumbers(final List<Integer> winningNumbers){
         return lottosService.createWinningNumbers(winningNumbers);
+    }
+
+    private BonusNumber createBonusNumber(final int bonusNumber){
+        return lottosService.createBonusNumber(bonusNumber);
     }
 }

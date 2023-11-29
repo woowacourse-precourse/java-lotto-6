@@ -20,13 +20,13 @@ public class WinningNumbersValidator extends Validator{
         String[] inputs = input.split(COMMA);
         validateSize(inputs);
         List<Integer> numbers = validateNumeric(inputs);
-        validateRange(LottosConstants.MIN_VALUE.getValue(), LottosConstants.MAX_VALUE.getValue(), numbers);
+        validateRange(1,45, numbers);
         return numbers;
     }
 
     private static void validateSize(String[] inputs){
         if(inputs.length != LottosConstants.LOTTO_SIZE.getValue()){
-            throw new IllegalArgumentException(BLANK_MESSAGE.getValue());
+            throw new IllegalArgumentException(String.format(SIZE_OVER_MESSAGE.getValue(), "로또"));
         }
     }
 
@@ -34,7 +34,7 @@ public class WinningNumbersValidator extends Validator{
         List<Integer> numbers = new ArrayList<>();
         for(String number : inputs){
             if(!isNumeric(number.trim())){
-                throw new IllegalArgumentException(BLANK_MESSAGE.getValue());
+                throw new IllegalArgumentException(TYPE_MESSAGE.getValue());
             }
             numbers.add(changeStringToInt(number));
         }
@@ -51,7 +51,7 @@ public class WinningNumbersValidator extends Validator{
 
     protected static void validateRange(final int start, final int end, final List<Integer> numbers) {
         for(int number : numbers){
-            if (number >= start && number <= end) {
+            if (number < start || number > end) {
                 throw new IllegalArgumentException(String.format(RANGE_START_BETWEEND_END.getValue(), start, end));
             }
         }

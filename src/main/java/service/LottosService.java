@@ -1,9 +1,6 @@
 package service;
 
-import domain.Lotto;
-import domain.PurchaseAmount;
-import domain.Lottos;
-import domain.WinningNumbers;
+import domain.*;
 import dto.LottoDto;
 
 import java.util.List;
@@ -23,5 +20,9 @@ public class LottosService {
 
     public WinningNumbers createWinningNumbers(final List<Integer> winningNumbers){
         return WinningNumbers.create(winningNumbers);
+    }
+
+    public BonusNumber createBonusNumber(final int bonusNumber){
+        return BonusNumber.create(bonusNumber);
     }
 }

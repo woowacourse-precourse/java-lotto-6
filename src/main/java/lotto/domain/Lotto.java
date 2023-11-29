@@ -7,11 +7,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private final List<Integer> numbers;
     private static final int LOTTO_SIZE = 6;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
-
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

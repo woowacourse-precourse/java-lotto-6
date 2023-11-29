@@ -8,13 +8,12 @@ import lotto.ui.OutputView;
 import java.util.*;
 
 public class Purchase {
-
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_SIZE = 6;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
+    InputView inputView = new InputView();
+    OutputView outputView = new OutputView();
 
     public List<List<Integer>> process() {
         System.out.println("구입금액을 입력해주세요.");

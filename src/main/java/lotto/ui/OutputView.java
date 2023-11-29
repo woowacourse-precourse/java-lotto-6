@@ -1,6 +1,6 @@
 package lotto.ui;
 
-import lotto.Result;
+import lotto.domain.Result;
 
 import java.util.List;
 

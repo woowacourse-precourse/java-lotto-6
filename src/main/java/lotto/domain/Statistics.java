@@ -1,8 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import lotto.ui.OutputView;
 
-import java.security.interfaces.RSAKey;
 import java.util.List;
 
 public class Statistics {

@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import lotto.exception.LottoException;
+import lotto.utils.ErrorMessage;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,18 +20,18 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(String.valueOf(LottoException.INVALID_INPUT_SIZE));
+            throw new IllegalArgumentException(String.valueOf(ErrorMessage.INVALID_INPUT_SIZE));
         }
 
         for (Integer number : numbers) {
             if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
-                throw new IllegalArgumentException(String.valueOf(LottoException.INVALID_INPUT_NUMBER));
+                throw new IllegalArgumentException(String.valueOf(ErrorMessage.INVALID_INPUT_NUMBER));
             }
         }
 
         Set<Integer> duplicateNumber = new HashSet<>(numbers);
         if (duplicateNumber.size() != numbers.size()) {
-            throw new IllegalArgumentException(String.valueOf(LottoException.DUPLICATE_INPUT_NUMBER));
+            throw new IllegalArgumentException(String.valueOf(ErrorMessage.DUPLICATE_INPUT_NUMBER));
         }
 
         System.out.println(numbers);

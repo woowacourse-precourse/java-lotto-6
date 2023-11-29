@@ -1,7 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.exception.LottoException;
+import lotto.utils.ErrorMessage;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
@@ -24,7 +24,7 @@ public class Purchase {
                 money = Integer.parseInt(inputView.inputPurchaseMoney());
                 break;
             } catch (NumberFormatException exception) {
-                System.out.println(LottoException.getExceptionMessage(String.valueOf(LottoException.INVALID_INPUT_TYPE)));
+                System.out.println(ErrorMessage.getExceptionMessage(String.valueOf(ErrorMessage.INVALID_INPUT_TYPE)));
             }
         }
         int lottoCount = checkLottoCount(money);
@@ -34,7 +34,7 @@ public class Purchase {
     public int checkLottoCount(int money) throws NumberFormatException {
         int lottoCount = money / LOTTO_PRICE;
         if (money % LOTTO_PRICE != 0) {
-            System.out.println(LottoException.getExceptionMessage(String.valueOf(LottoException.INVALID_INPUT_PRICE)));
+            System.out.println(ErrorMessage.getExceptionMessage(String.valueOf(ErrorMessage.INVALID_INPUT_PRICE)));
         }
         outputView.printLottoCount(lottoCount);
         return lottoCount;

@@ -1,6 +1,6 @@
-package lotto.exception;
+package lotto.utils;
 
-public enum LottoException {
+public enum ErrorMessage {
     INVALID_INPUT_SIZE("[ERROR] 당첨 번호 6개를 입력해주세요."),
     INVALID_INPUT_NUMBER("[ERROR] 당첨 번호는 1~45 사이의 수를 입력해주세요."),
     DUPLICATE_INPUT_NUMBER("[ERROR] 중복되지 않는 숫자를 입력하세요."),
@@ -9,7 +9,7 @@ public enum LottoException {
 
     private final String message;
 
-    LottoException(String message){
+    ErrorMessage(String message){
         this.message = message;
     }
 

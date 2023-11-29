@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.domain.Purchase;
+import lotto.domain.Statistics;
 import lotto.ui.InputView;
 
 import java.util.List;

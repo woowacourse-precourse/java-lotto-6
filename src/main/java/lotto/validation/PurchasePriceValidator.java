@@ -1,7 +1,6 @@
 package lotto.validation;
 
 import static lotto.constant.Constant.MIN_LOTTO_NUMBER;
-import static lotto.constant.Constant.ZERO;
 import static lotto.exception.ErrorInputException.ErrorMessage.PURCHASE_PRICE_CANNOT_BE_NULL_OR_EMPTY;
 import static lotto.exception.ErrorInputException.ErrorMessage.PURCHASE_PRICE_IS_MORE_THAN_ONE;
 import static lotto.exception.ErrorInputException.ErrorMessage.PURCHASE_PRICE_IS_NOT_INTEGER;
@@ -9,8 +8,8 @@ import static lotto.exception.ErrorInputException.ErrorMessage.PURCHASE_PRICE_IS
 import lotto.exception.ErrorInputException;
 
 public class PurchasePriceValidator {
-    public void isNullOrEmpty(String input) {
-        if (input == null || input.length() == ZERO) {
+    public static void isBlank(String input) {
+        if (input == null || input.trim().isEmpty()) {
             throw new ErrorInputException(PURCHASE_PRICE_CANNOT_BE_NULL_OR_EMPTY);
         }
     }

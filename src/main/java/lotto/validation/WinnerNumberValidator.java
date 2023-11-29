@@ -1,7 +1,6 @@
 package lotto.validation;
 
 import static lotto.constant.Constant.MIN_LOTTO_NUMBER;
-import static lotto.constant.Constant.ZERO;
 import static lotto.exception.ErrorInputException.ErrorMessage.WINNER_NUMBER_CANNOT_BE_NULL_OR_EMPTY;
 import static lotto.exception.ErrorInputException.ErrorMessage.WINNER_NUMBER_ERROR_INPUT;
 import static lotto.exception.ErrorInputException.ErrorMessage.WINNER_NUMBER_IS_MORE_THAN_ONE;
@@ -12,8 +11,8 @@ import java.util.List;
 import lotto.exception.ErrorInputException;
 
 public class WinnerNumberValidator {
-    public void isNullOrEmpty(String input) {
-        if (input == null || input.length() == ZERO) {
+    public static void isBlank(String input) {
+        if (input == null || input.trim().isEmpty()) {
             throw new ErrorInputException(WINNER_NUMBER_CANNOT_BE_NULL_OR_EMPTY);
         }
     }

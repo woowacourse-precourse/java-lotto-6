@@ -5,11 +5,13 @@ import lotto.ui.OutputView;
 import java.util.List;
 
 public class Statistics {
-    private final int matchingBonus = 0;
+    int matchingBonus = 0;
     private final List<List<Integer>> lottoNumbers;
     private final List<Integer> winningNumbers;
     private final Integer bonus;
     OutputView outputView = new OutputView();
+
+
 
     public Statistics(List<List<Integer>> lottoNumbers, List<Integer> winningNumbers, Integer bonus) {
         this.lottoNumbers = lottoNumbers;

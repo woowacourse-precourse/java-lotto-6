@@ -8,18 +8,18 @@ public class PurchaseAmount {
     private final int amount;
     private final int quantity;
 
-    private PurchaseAmount(final int purchaseAmount){
+    private PurchaseAmount(final int purchaseAmount) {
         validateDivisibleBy1000(purchaseAmount);
         this.amount = purchaseAmount;
         this.quantity = calculatequantity();
     }
 
-    public int getQuantity(){
-        return quantity;
-    }
-
     public static PurchaseAmount create(final int purchaseAmount){
         return new PurchaseAmount(purchaseAmount);
+    }
+
+    public int getQuantity(){
+        return quantity;
     }
 
     private int calculatequantity(){

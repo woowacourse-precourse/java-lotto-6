@@ -1,6 +1,6 @@
 package domain;
 
-import util.constants.LottosConstant;
+import util.constants.LottosConstants;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -31,9 +31,9 @@ public class Lottos {
 
     private Lotto generateRandomNumbers(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                LottosConstant.MIN_VALUE.getValue(),
-                LottosConstant.MAX_VALUE.getValue(),
-                LottosConstant.LOTTO_SIZE.getValue());
+                LottosConstants.MIN_VALUE.getValue(),
+                LottosConstants.MAX_VALUE.getValue(),
+                LottosConstants.LOTTO_SIZE.getValue());
 
         return new Lotto(numbers);
     }

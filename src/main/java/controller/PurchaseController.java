@@ -13,8 +13,8 @@ public class PurchaseController {
     }
 
     public PurchaseAmount generatePurchaseAmount(){
-        int purchaseAmount = InputView.inputPurchaseAmount();
         try{
+            int purchaseAmount = InputView.inputPurchaseAmount();
             return createPurchaseAmount(purchaseAmount);
         } catch (IllegalArgumentException e){
             OutputView.printMessage(e.getMessage());

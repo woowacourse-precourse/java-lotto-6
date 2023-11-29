@@ -2,6 +2,7 @@ package controller;
 
 import domain.PurchaseAmount;
 import domain.Lottos;
+import domain.WinningNumbers;
 import dto.LottoDto;
 import service.LottosService;
 import service.PurchaseService;
@@ -9,8 +10,6 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.List;
-
-import static view.InputView.inputWinnging;
 
 public class LottosController {
     private final LottosService lottosService;
@@ -35,6 +34,20 @@ public class LottosController {
     }
 
     private void generateWinngingAndBonus(){
-        String winngNumbers = inputWinnging();
+        generateWinngingNumbers();
+    }
+
+    private WinningNumbers generateWinngingNumbers(){
+        try{
+            List<Integer> winningNumbers = InputView.inputWinngingNumbers();
+            return createWinngingNumbers(winningNumbers);
+        } catch (IllegalArgumentException e){
+            OutputView.printMessage(e.getMessage());
+            return generateWinngingNumbers();
+        }
+    }
+
+    private WinningNumbers createWinngingNumbers(final List<Integer> winningNumbers){
+        return lottosService.createWinningNumbers(winningNumbers);
     }
 }

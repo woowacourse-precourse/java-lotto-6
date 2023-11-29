@@ -3,6 +3,7 @@ package service;
 import domain.Lotto;
 import domain.PurchaseAmount;
 import domain.Lottos;
+import domain.WinningNumbers;
 import dto.LottoDto;
 
 import java.util.List;
@@ -18,5 +19,9 @@ public class LottosService {
         return lottos.stream()
                 .map(lotto -> LottoDto.create(lotto.getNumbers()))
                 .collect(Collectors.toList());
+    }
+
+    public WinningNumbers createWinningNumbers(final List<Integer> winningNumbers){
+        return WinningNumbers.create(winningNumbers);
     }
 }

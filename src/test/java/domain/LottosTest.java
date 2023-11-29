@@ -1,6 +1,6 @@
 package domain;
 
-import util.constants.LottosConstant;
+import util.constants.LottosConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,6 +40,6 @@ public class LottosTest {
         List<Integer> numbers = lotto.getNumbers();
 
         assertNotNull(numbers);
-        assertEquals(LottosConstant.LOTTO_SIZE.getValue(), numbers.size());
+        assertEquals(LottosConstants.LOTTO_SIZE.getValue(), numbers.size());
     }
 }

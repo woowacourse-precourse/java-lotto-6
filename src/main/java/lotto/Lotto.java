@@ -1,20 +1,44 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    public List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        numbers = new ArrayList<>(numbers);
+
+        System.out.println("\n당첨번호를 입력해주세요.(쉼표(,)로 구분)");
+
+        validateOfLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    public Lotto() { }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    private void validateOfLottoNumbers(List<Integer> numbers) {
+        Errors errors = new Errors();
+
+        while (true) {
+            try {
+                errors.checkErrorsOfInputLottoNumbers(numbers);
+            } catch (NumberFormatException e) {
+                System.out.println("[Error] 숫자만 입력 가능합니다.");
+                System.out.println("다시 입력해주세요.");
+                numbers.clear();
+                validateOfLottoNumbers(numbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                System.out.println("다시 입력해주세요.");
+                numbers.clear();
+                validateOfLottoNumbers(numbers);
+            }
         }
     }
 
-    // TODO: 추가 기능 구현
 }

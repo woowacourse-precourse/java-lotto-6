@@ -1,19 +1,15 @@
 package validator;
 
-import domain.BonusNumber;
 import domain.PurchaseAmount;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import util.constants.Constants;
+import view.validator.BonusValidator;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static util.message.ExceptionMessage.*;
-import static util.message.ExceptionMessage.RANGE_MESSAGE;
 
 public class BonusValidatorTest {
 

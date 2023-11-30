@@ -1,9 +1,9 @@
 package view;
 
 import camp.nextstep.edu.missionutils.Console;
-import validator.BonusValidator;
-import validator.PurchaseAmountValidator;
-import validator.WinningNumbersValidator;
+import view.validator.BonusValidator;
+import view.validator.PurchaseAmountValidator;
+import view.validator.WinningNumbersValidator;
 
 import java.util.List;
 

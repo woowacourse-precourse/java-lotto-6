@@ -1,6 +1,4 @@
-package validator;
-
-import util.constants.Constants;
+package view.validator;
 
 public class PurchaseAmountValidator extends Validator{
     public static int validate(String input) {

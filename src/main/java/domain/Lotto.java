@@ -3,10 +3,7 @@ package domain;
 import util.exception.DuplicateException;
 import util.exception.SizeOverException;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static util.message.ExceptionMessage.DUPLICATE_MESSAGE;
 import static util.message.ExceptionMessage.SIZE_OVER_MESSAGE;
@@ -16,8 +13,8 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        sort(numbers);
-        this.numbers = numbers;
+        List<Integer> numberList = sort(numbers);
+        this.numbers = numberList;
     }
 
     public List<Integer> getNumbers(){
@@ -42,7 +39,9 @@ public class Lotto {
         }
     }
 
-    private void sort(List<Integer> numbers){
-        Collections.sort(numbers);
+    private List<Integer> sort(List<Integer> numbers){
+        List<Integer> numberList = new ArrayList<>(numbers);
+        Collections.sort(numberList);
+        return numberList;
     }
 }

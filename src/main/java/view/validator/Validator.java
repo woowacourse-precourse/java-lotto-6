@@ -1,4 +1,4 @@
-package validator;
+package view.validator;
 
 import static util.message.ExceptionMessage.*;
 

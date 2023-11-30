@@ -1,4 +1,4 @@
-package validator;
+package view.validator;
 
 import util.constants.LottosConstants;
 

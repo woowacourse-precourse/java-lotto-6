@@ -20,6 +20,10 @@ public class WinningNumbers {
         return new WinningNumbers(inputWinningNumbers);
     }
 
+    public List<Integer> getNumbers(){
+        return numbers;
+    }
+
     private void validateDuplicate(final List<Integer> inputWinningNumbers){
         Set<Integer> numbers = new HashSet<>(inputWinningNumbers);
         if(numbers.size() != inputWinningNumbers.size()){

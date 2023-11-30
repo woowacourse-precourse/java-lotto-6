@@ -4,7 +4,8 @@ import util.EnumUtil;
 
 public enum Constants implements EnumUtil<String, Integer> {
     ONE_THOUSAND(1000),
-    ZERO(0);
+    ZERO(0),
+    WINNING_MIN_COUNT(3);
 
     private final int number;
 

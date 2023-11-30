@@ -17,12 +17,4 @@ public class LottosService {
                 .map(lotto -> LottoDto.create(lotto.getNumbers()))
                 .collect(Collectors.toList());
     }
-
-    public WinningNumbers createWinningNumbers(final List<Integer> winningNumbers){
-        return WinningNumbers.create(winningNumbers);
-    }
-
-    public BonusNumber createBonusNumber(final int bonusNumber){
-        return BonusNumber.create(bonusNumber);
-    }
 }

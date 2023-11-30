@@ -1,13 +1,12 @@
 package validator;
 
-import domain.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import util.constants.Constants;
+import view.validator.PurchaseAmountValidator;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static util.constants.Constants.ZERO;
 import static util.message.ExceptionMessage.*;
 
 public class PurchaseAmountValidatorTest {

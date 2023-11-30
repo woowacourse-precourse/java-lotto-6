@@ -22,6 +22,10 @@ public class PurchaseAmount {
         return quantity;
     }
 
+    public int getAmount(){
+        return amount;
+    }
+
     private int calculatequantity(){
         return amount / Constants.ONE_THOUSAND.getValue();
     }

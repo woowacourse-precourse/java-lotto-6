@@ -1,6 +1,4 @@
-package validator;
-
-import java.util.List;
+package view.validator;
 
 import static util.message.ExceptionMessage.RANGE_START_BETWEEND_END;
 

@@ -1,12 +1,13 @@
-package lotto;
-
+package lotto.model;
 import java.util.List;
+import lotto.view.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Validator.validateUnique(numbers);
         this.numbers = numbers;
     }
 
@@ -17,4 +18,5 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
 }

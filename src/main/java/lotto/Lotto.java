@@ -1,5 +1,8 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -8,13 +11,35 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        Collections.sort(numbers);
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        long count = numbers.stream().distinct().count();
+        if (count != 6) {
+            throw new IllegalArgumentException("[ERROR] 중복되지 않은 6개의 숫자만 가능합니다.");
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public static Lotto buy() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    }
+
+    public int matches(Lotto lotto) {
+        List<Integer> lotto1 = new ArrayList<>(this.numbers);
+        List<Integer> lotto2 = new ArrayList<>(lotto.numbers);
+        lotto1.retainAll(lotto2);
+        return lotto1.size();
+    }
+
+    public boolean matches(int bonus) {
+        List<Integer> lotto1 = new ArrayList<>(this.numbers);
+        lotto1.remove(bonus);
+        return lotto1.size() < 6;
+    }
 }

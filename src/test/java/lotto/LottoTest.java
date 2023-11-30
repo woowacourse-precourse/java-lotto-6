@@ -1,10 +1,14 @@
 package lotto;
 
+import lotto.domain.Lotto;
+import lotto.domain.Result;
+import lotto.domain.Statistics;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -23,5 +27,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호 당첨 시 enum의 각 매칭 값이 증가한다.")
+    @Test
+    void countMatchTest(){
+        Statistics statistics = new Statistics(null,null,null);
+        statistics.countMatch(5,1);
+
+        assertThat(Result.BONUS.getMatch()).isEqualTo(1);
+        assertThat(Result.FIVE.getMatch()).isEqualTo(0);
+    }
 }

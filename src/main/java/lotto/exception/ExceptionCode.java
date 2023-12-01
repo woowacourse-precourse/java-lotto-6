@@ -4,9 +4,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public enum ExceptionCode {
-    NO_EXIST_ENTITY("엔티티가 존재하지 않습니다.", IllegalStateException::new),
-    INVALID_PURCHASE_PRICE("잘못된 구입금액입니다. 다시 입력해주세요.", IllegalArgumentException::new),
-    INVALID_LOTTO_NUMBER("잘못된 로또 번호입니다. 다시 입력해주세요", IllegalArgumentException::new);
+    NO_EXIST_ENTITY("[ERROR] 엔티티가 존재하지 않습니다.", IllegalStateException::new),
+    INVALID_PURCHASE_PRICE("[ERROR] 잘못된 구입금액입니다. 다시 입력해주세요.", IllegalArgumentException::new),
+    INVALID_LOTTO_NUMBER("[ERROR] 잘못된 로또 번호입니다. 다시 입력해주세요", IllegalArgumentException::new),
+    INVALID_BONUS_NUMBER("[ERROR] 잘못된 보너스 번호입니다. 다시 입력해주세요", IllegalArgumentException::new);
 
 
     private final String message;

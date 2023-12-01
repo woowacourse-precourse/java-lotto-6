@@ -20,37 +20,42 @@ public class LottoGenerator {
 
 
     public LottoBundle generateLottoBundle(final int purchasePrice) {
-        ExceptionCode e = ExceptionCode.INVALID_PURCHASE_PRICE;
+        validate(purchasePrice, ExceptionCode.INVALID_PURCHASE_PRICE);
 
-        validate(purchasePrice, e);
         int countOfLotto = purchasePrice / priceOfLotto;
-
-        List<Lotto> lottos = createLottos(e, countOfLotto);
+        List<Lotto> lottos = createLottos(countOfLotto);
 
         return new LottoBundle(lottos);
-    }
-
-    private List<Lotto> createLottos(final ExceptionCode e, final int countOfLotto) {
-        List<Lotto> lottos = new ArrayList<>(countOfLotto);
-        for (int i = 0; i < countOfLotto; i++) {
-            lottos.add(createLotto(e));
-        }
-        return lottos;
-    }
-
-    public Lotto createLotto(final ExceptionCode e) {
-        return new Lotto(
-                Randoms.pickUniqueNumbersInRange(
-                        Lotto.START_NUMBER,
-                        Lotto.END_NUMBER,
-                        Lotto.SIZE
-                ),
-                e
-        );
     }
 
     private void validate(final int purchasePrice, final ExceptionCode e) {
         Validator.isPositiveNumber(purchasePrice, e);
         Validator.isNoRemainders(purchasePrice, priceOfLotto, e);
+    }
+
+    private List<Lotto> createLottos(final int countOfLotto) {
+        List<Lotto> lottos = new ArrayList<>(countOfLotto);
+        for (int i = 0; i < countOfLotto; i++) {
+            lottos.add(createLotto());
+        }
+        return lottos;
+    }
+
+    public Lotto createLotto() {
+        return new Lotto(
+                Randoms.pickUniqueNumbersInRange(
+                        Lotto.START_NUMBER,
+                        Lotto.END_NUMBER,
+                        Lotto.SIZE
+                )
+        );
+    }
+
+    public Lotto createLotto(final List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
+    public BonusNumber createBonusNumber(final int number, final Lotto winningLotto) {
+        return new BonusNumber(number, winningLotto);
     }
 }

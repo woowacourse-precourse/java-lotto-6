@@ -47,13 +47,6 @@ public class LottoService {
 
         float earningRate = lottoBundle.calculateEarningRate(totalPrize);
 
-        return new Result(
-                totalRankWithCount.get(Rank.FIRST),
-                totalRankWithCount.get(Rank.SECOND),
-                totalRankWithCount.get(Rank.THIRD),
-                totalRankWithCount.get(Rank.FORTH),
-                totalRankWithCount.get(Rank.FIFTH),
-                earningRate
-        );
+        return Result.of(totalRankWithCount, earningRate);
     }
 }

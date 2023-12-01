@@ -16,6 +16,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         isDuplicate(numbers);
+        sortLotto(numbers);
         this.numbers = numbers;
     }
 
@@ -39,5 +40,9 @@ public class Lotto {
         if (countDistinct < numbers.size()) {
             throw new ErrorInputException(LOTTO_NUMBER_CAN_NOT_BE_DUPLICATE);
         }
+    }
+
+    private void sortLotto(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 }

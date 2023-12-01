@@ -86,6 +86,19 @@ public class Validator {
     }
 
     /**
+     * 리스트 길이가 유효 사이즈와 다르다면 예외 발생
+     */
+    public static void isValidSize(
+            final List<?> target,
+            final int validSize,
+            final ExceptionCode e
+    ) {
+        if (target.size() != validSize) {
+            e.throwException();
+        }
+    }
+
+    /**
      * 리스트 길이가 최대값보다 크거나 최솟값보다 작다면 예외 발생
      */
     public static void isValidSize(

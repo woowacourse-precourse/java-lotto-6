@@ -2,7 +2,7 @@ package lotto.utils.vadliator;
 
 import java.util.List;
 import lotto.exception.ExceptionCode;
-import lotto.view.Regex;
+import lotto.view.constant.Regex;
 
 public class Validator {
 

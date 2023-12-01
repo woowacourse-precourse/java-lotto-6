@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.constant;
 
 import java.text.DecimalFormat;
 import java.util.regex.Pattern;

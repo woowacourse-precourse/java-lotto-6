@@ -2,6 +2,9 @@ package lotto.view;
 
 import lotto.domain.LottoBundle;
 import lotto.service.dto.Result;
+import lotto.view.constant.Format;
+import lotto.view.constant.Notice;
+import lotto.view.constant.Regex;
 
 public class OutputView {
     private static final OutputView instance = new OutputView();

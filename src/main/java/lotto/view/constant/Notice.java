@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.constant;
 
 public enum Notice {
 

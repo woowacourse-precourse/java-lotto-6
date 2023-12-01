@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.exception.ExceptionCode;
 import lotto.utils.converter.Converter;
+import lotto.view.constant.Notice;
+import lotto.view.constant.Regex;
 
 public class InputView {
     private static final InputView instance = new InputView();

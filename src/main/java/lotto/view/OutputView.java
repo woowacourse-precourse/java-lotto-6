@@ -14,6 +14,9 @@ public class OutputView {
 
     public void printLottoBundle(final LottoBundle lottoBundle) {
         Format.PURCHASE_LOTTO.print(lottoBundle.size());
-        lottoBundle
+        lottoBundle.getLottos()
+                .forEach(lotto ->
+                        System.out.println(lotto.getNumbers())
+                );
     }
 }

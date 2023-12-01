@@ -230,4 +230,10 @@ public class Validator {
             e.throwException();
         }
     }
+
+    public static void notContains(int number, List<Integer> numbers, ExceptionCode e) {
+        if (numbers.contains(number)) {
+            e.throwException();
+        }
+    }
 }

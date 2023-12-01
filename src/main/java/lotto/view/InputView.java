@@ -21,7 +21,7 @@ public class InputView {
 
         return Converter.toInt(
                 Console.readLine(),
-                ExceptionCode.NO_EXIST_ENTITY
+                ExceptionCode.INVALID_PURCHASE_PRICE
         );
     }
 

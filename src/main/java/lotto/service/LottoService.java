@@ -1,13 +1,11 @@
 package lotto.service;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoExecutor;
 import lotto.domain.LottoGenerator;
-import lotto.domain.Rank;
 import lotto.service.dto.Result;
 
 public class LottoService {

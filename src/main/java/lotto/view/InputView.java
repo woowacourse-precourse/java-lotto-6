@@ -1,10 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Arrays;
 import java.util.List;
 import lotto.exception.ExceptionCode;
 import lotto.utils.converter.Converter;
+import lotto.utils.parser.Parser;
 import lotto.view.constant.Notice;
 import lotto.view.constant.Regex;
 
@@ -30,10 +30,11 @@ public class InputView {
     public List<Integer> readLottoNumbers() {
         Notice.NOTICE_LOTTO_NUMBERS.print();
 
-        String[] splitInput = Console.readLine()
-                .split(Regex.COMMA.getRegex());
-
-        return Arrays.stream(splitInput)
+        return Parser.split(
+                        Console.readLine(),
+                        Regex.COMMA.getRegex()
+                )
+                .stream()
                 .map(number -> Converter.toInt(
                         number,
                         ExceptionCode.INVALID_LOTTO_NUMBER)

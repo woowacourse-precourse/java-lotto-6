@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.controller.dto.LottoBundleDto;
 import lotto.domain.LottoBundle;
 import lotto.service.dto.Result;
 import lotto.view.constant.Format;
@@ -16,12 +17,11 @@ public class OutputView {
         return instance;
     }
 
-    public void printLottoBundle(final LottoBundle lottoBundle) {
-        Format.PURCHASE_LOTTO.print(lottoBundle.size());
-        lottoBundle.getLottos()
-                .forEach(lotto ->
-                        System.out.println(lotto.getNumbers())
-                );
+    public void printLottoBundle(final LottoBundleDto lottoBundleDto) {
+        Format.PURCHASE_LOTTO.print(lottoBundleDto.size());
+
+        lottoBundleDto.lottoNumbersBundle()
+                .forEach(System.out::println);
     }
 
     public void printResult(Result result) {

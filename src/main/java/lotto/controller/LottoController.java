@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.controller.dto.LottoBundleDto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBundle;
@@ -27,7 +28,7 @@ public class LottoController {
 
     public void run() {
         LottoBundle lottoBundle = ExceptionHandler.handle(this::createLottoBundleFromUserInput);
-        outputView.printLottoBundle(lottoBundle);
+        outputView.printLottoBundle(LottoBundleDto.of(lottoBundle));
 
         Lotto winningLotto = ExceptionHandler.handle(this::createWinningLottoFromUserInput);
         BonusNumber bonusNumber = ExceptionHandler.handle(this::createBonusNumberFromUserInput, winningLotto);

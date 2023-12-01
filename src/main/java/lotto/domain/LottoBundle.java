@@ -22,7 +22,7 @@ public class LottoBundle {
 
     public Map<Rank, Integer> calculateTotalRank(Lotto winningLotto, BonusNumber bonusNumber) {
         Map<Rank, Integer> map = new EnumMap<>(Rank.class);
-        int defaultCountOfRank = 1;
+        int defaultCountOfRank = 0;
 
         for (Lotto lotto : lottos) {
             Rank rank = Rank.from(
@@ -32,7 +32,7 @@ public class LottoBundle {
 
             map.put(
                     rank,
-                    map.getOrDefault(rank, defaultCountOfRank)
+                    map.getOrDefault(rank, defaultCountOfRank) + 1
             );
         }
         return map;

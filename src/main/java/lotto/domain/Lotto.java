@@ -11,18 +11,25 @@ public class Lotto {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers, ExceptionCode e) {
-        validate(numbers, e);
-        this.numbers = numbers;
+    public Lotto(List<Integer> numbers) {
+
+        validate(numbers, ExceptionCode.INVALID_LOTTO_NUMBER);
+
+        this.numbers = numbers.stream()
+                .sorted()
+                .toList();
     }
 
     private void validate(List<Integer> numbers, ExceptionCode e) {
         numbers.forEach(number ->
-                Validator.isValidRange(number, START_NUMBER, END_NUMBER, e)
+                Validator.isValidRange(number, END_NUMBER, START_NUMBER, e)
         );
         Validator.isValidSize(numbers, SIZE,  e);
         Validator.isDuplication(numbers, e);
     }
 
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

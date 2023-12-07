@@ -43,10 +43,8 @@ public class InputConverter {
     }
 
     private void exceptEmptyBetweenNumbers(List<String> splitInput) {
-        for (String element : splitInput) {
-            if (element.isEmpty()) {
-                throw new IllegalArgumentException(Error.INPUT_EMPTY_BETWEEN_NUMBERS);
-            }
+        if (splitInput.contains("")) {
+            throw new IllegalArgumentException(Error.INPUT_EMPTY_BETWEEN_NUMBERS);
         }
     }
 

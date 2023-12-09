@@ -1,32 +1,90 @@
 package lotto.controller;
-
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.LuckyLotto;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
-import lotto.view.InputView;
+import lotto.domain.PrizeType;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class LottoController {
-    InputView inputView;
-    lotto.service.LottoController lottoController;
-    public LottoController(){
-        inputView = new InputView();
-        lottoController = new lotto.service.LottoController();
+    List<Prize> prizes=new ArrayList<>();
+    public List <Lotto> createRandomLotto(int money){
+        int num = money / 1000;
+        List <Lotto> lottos = Stream.generate(()-> {
+            List<Integer> sortedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
+                    .stream()
+                    .sorted()
+                    .toList();
+            return new Lotto(sortedNumbers);
+        })
+                .limit(num)
+                .toList();
+        printLotto(num,lottos);
+        return lottos;
     }
-    public LuckyLotto createLotto(List<Integer> inputLotto,int bonusNum) {
-        Lotto lotto = new Lotto(inputLotto);
-        return new LuckyLotto(lotto,bonusNum);
+    public void printLotto(int num,List<Lotto> lottos){
+        System.out.println(num+"개를 구매했습니다.");
+        for(Lotto lotto:lottos){
+            System.out.println(lotto.getLotto());
+        }
     }
-    public void play(){
-        int num = inputView.payForLotto(); //사용자가 돈을 지불한다.
-        List <Lotto> customerLotto = lottoController.createRandomLotto(num); //로또를 생성한다.
-        LuckyLotto winningLotto = createLotto(inputView.userInputLottoNum(), inputView.inputBonusNum()); //사용자가 로또 넘버를 작성한 것을 토대로 로또 객체를 만든다.
-        List<Prize> prizes = lottoController.getPrizes(winningLotto,customerLotto); //로또 넘버와 비교한 카운트를 샌 것들을 가져온다.
-        lottoController.printPrize(prizes);
-        double rate= lottoController.caculateMoney(lottoController.decideCompentation(prizes),num);//수익률 결정을 위해 가장 높은 수익금 체크
-        lottoController.printCaculate(rate);
-//      List <Lotto> customerLotto = lottoService.createRandomLotto(num); //로또를 생성한다.
+    public PrizeType decidePrizeType(Prize prize){
+        if(prize.getCount() == 6){
+           return PrizeType.FIRST;
+        }
+        if(prize.getCount()==5&&prize.isBonusMatch()){
+            return PrizeType.SECOND;
+        }
+        if(prize.getCount()==5&&!prize.isBonusMatch()){
+            return PrizeType.THIRD;
+        }
+        if(prize.getCount()==4){
+            return PrizeType.FOURTH;
+        }
+        if(prize.getCount()==3){
+            return PrizeType.FIFTH;
+        }
+        return PrizeType.NOTHING;
+    }
 
+    public List<Prize> getPrizes(LuckyLotto luckyLotto, List <Lotto> customerLottos){
+        List <Prize> prizes = new ArrayList<>();
+        for(int i=0; i<customerLottos.size();i++) {
+            Prize prize = compareLotto(customerLottos.get(i),luckyLotto);
+            prize.setPrizeType(decidePrizeType(prize));
+            prizes.add(prize);
+        }
+        return prizes;
+    }
+    private Prize compareLotto(Lotto lotto, LuckyLotto luckyLotto){ //사용자의 로또 넘버와 당첨 넘버를 비교한다.
+        int count = 0;
+        boolean bonusMatch = false;
+        List<Integer> winningNum = luckyLotto.getLottos().getLotto();
+        for(int i=0; i<winningNum.size();i++){
+            if(lotto.getLotto().contains(winningNum.get(i))){
+                count++;
+            }
+            if(count == 5 && lotto.getLotto().contains(luckyLotto.getBonusNum())){
+                bonusMatch = true;
+            }
+        }
+        System.out.println(count);
+        return new Prize(bonusMatch,count);
+    }
+    public double caculateMoney(int compentation,int money){
+        double caculate = (double) (compentation - money) / money ;
+        return Math.round((caculate*100.0)*100.0)/100.0;
+    }
+    public int decideCompentation(List<Prize> prizes){
+        int max = 0;
+        for (Prize prize:prizes){
+            int compentation = prize.getPrizeType().getCompentation();
+            if(max<compentation){
+                max = compentation;
+            }
+        }
+        return max;
     }
 }

@@ -1,15 +1,11 @@
-package lotto.service;
+package lotto.view;
+
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.LuckyLotto;
-import lotto.domain.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserInputServiceImpl implements UserInputService {
-    private List <Integer> winningNum = new ArrayList<>();
-    private int bonusNum;
-    @Override
+public class InputView {
     public int payForLotto() {
         System.out.println("구매하실 금액을 입력해 주세요.");
         int pay = Integer.parseInt(Console.readLine());
@@ -18,8 +14,8 @@ public class UserInputServiceImpl implements UserInputService {
         }
         return pay;
     }
-    @Override
-    public void userInputLottoNum() {
+    public List<Integer> userInputLottoNum() {
+        List<Integer> winningNum = new ArrayList<>();
         System.out.println("로또 당첨 번호를 여섯개 입력해주세요.(쉼표로 구분합니다)");
         String userInput= Console.readLine();
         String [] winningNums = userInput.split(",");
@@ -30,26 +26,22 @@ public class UserInputServiceImpl implements UserInputService {
             }
             winningNum.add(intNum);
         }
+        return winningNum;
+    }
+
+    public int inputBonusNum() {
         System.out.println("보너스 번호를 입력해주세요.");
         int plusNum = Integer.parseInt(Console.readLine());
         if(!isValidate(plusNum)){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
-        bonusNum = plusNum;
+        return plusNum;
     }
-    @Override
+
     public boolean isValidate(int num) {
         if(num<1 || num>45){
             return false;
         }
         return true;
     }
-    @Override
-    public LuckyLotto createLotto() {
-        userInputLottoNum();
-        Lotto lotto = new Lotto(winningNum);
-        return new LuckyLotto(lotto,bonusNum);
-    }
 }
-
-

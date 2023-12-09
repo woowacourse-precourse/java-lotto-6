@@ -8,7 +8,7 @@ import lotto.domain.PrizeType;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class LottoService {
+public class LottoController {
     List<Prize> prizes=new ArrayList<>();
     public List <Lotto> createRandomLotto(int money){
         int num = money / 1000;

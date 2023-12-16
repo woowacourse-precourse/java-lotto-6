@@ -10,16 +10,16 @@ import java.util.Map;
 public class Computer {
 
     private final Map<Rank, Integer> result;
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
     public Computer() {
         result = new HashMap<>();
+        lottos = new ArrayList<>();
         Arrays.stream(Rank.values()).forEach(rank -> result.put(rank, 0));
     }
 
     public void generateLottos(Money money) {
         int count = money.getLottoCount();
-        lottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             Lotto lotto = LottoMachine.generateLotto();
             lottos.add(lotto);
@@ -45,8 +45,7 @@ public class Computer {
         });
     }
 
-    @Override
-    public String toString() {
+    public String getResult() {
         StringBuilder sb = new StringBuilder();
         for (Rank rank : Rank.values()) {
             sb.append(String.format(rank.getMessage(), result.get(rank))).append("\n");

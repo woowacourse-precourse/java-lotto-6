@@ -25,7 +25,7 @@ public class LottoService {
 
     public String getResult(WinningLotto winningLotto) {
         computer.check(winningLotto);
-        return computer.toString();
+        return computer.getResult();
     }
 
     public BigDecimal getPercent(Money money) {

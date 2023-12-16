@@ -1,7 +1,8 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,54 +16,32 @@ public class Controller {
     }
 
     public void run() {
-        money();
-        lottos();
-        winningLotto();
-        result();
+        Money money = money();
+        WinningLotto winningLotto = winningLotto();
+        result(money, winningLotto);
     }
 
-    private void money() {
-        while (true) {
-            try {
-                int price = InputView.inputMoney();
-                OutputView.printLottoCount(lottoService.money(price));
-                break;
-            } catch (IllegalArgumentException e) {
-                OutputView.print(e.getMessage());
-            }
-        }
+    public Money money() {
+        Money money = InputView.inputMoney();
+        OutputView.printLottoCount(lottoService.insertMoney(money));
+        OutputView.print(lottoService.getLottos());
+        return money;
     }
 
-    private void lottos() {
-        OutputView.print(lottoService.lottos());
-    }
-
-    private void winningLotto() {
-        Lotto winningNumbers = winningNumbers();
+    public WinningLotto winningLotto() {
+        Lotto winningNumbers = InputView.inputWinningNumbers();
         while (true) {
             try {
                 int bonusNumber = InputView.inputBonusNumber();
-                lottoService.winningLotto(winningNumbers, bonusNumber);
-                break;
+                return new WinningLotto(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 OutputView.print(e.getMessage());
             }
         }
     }
 
-    private Lotto winningNumbers() {
-        while (true) {
-            try {
-                List<Integer> numbers = InputView.inputWinningNumbers();
-                return new Lotto(numbers);
-            } catch (IllegalArgumentException e) {
-                OutputView.print(e.getMessage());
-            }
-        }
-    }
-
-    private void result() {
-        OutputView.print(lottoService.result());
-        OutputView.printPercent(lottoService.percent());
+    public void result(Money money, WinningLotto winningLotto) {
+        OutputView.print(lottoService.getResult(winningLotto));
+        OutputView.printPercent(lottoService.getPercent(money));
     }
 }

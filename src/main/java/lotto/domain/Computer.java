@@ -1,18 +1,40 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Result {
+public class Computer {
 
     private final Map<Rank, Integer> result;
+    private List<Lotto> lottos;
 
-    public Result(WinningLotto winningLotto, List<Lotto> lottos) {
+    public Computer() {
         result = new HashMap<>();
         Arrays.stream(Rank.values()).forEach(rank -> result.put(rank, 0));
+    }
+
+    public void generateLottos(Money money) {
+        int count = money.getLottoCount();
+        lottos = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            Lotto lotto = LottoMachine.generateLotto();
+            lottos.add(lotto);
+        }
+    }
+
+    public String getLottos() {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : lottos) {
+            sb.append(lotto).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public void check(WinningLotto winningLotto) {
         lottos.forEach(lotto -> {
             Rank.getRank(winningLotto, lotto).ifPresent(
                     rank -> {

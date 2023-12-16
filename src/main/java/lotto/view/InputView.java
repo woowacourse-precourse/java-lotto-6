@@ -5,12 +5,21 @@ import static lotto.view.ErrorMessage.ERROR;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.Money;
 
 public class InputView {
 
-    public static int inputMoney() {
-        String input = Console.readLine();
-        return validateMoneyInput(input);
+    public static Money inputMoney() {
+        while (true) {
+            try {
+                String input = Console.readLine();
+                int price = validateMoneyInput(input);
+                return new Money(price);
+            } catch (IllegalArgumentException e) {
+                OutputView.print(e.getMessage());
+            }
+        }
     }
 
     private static int validateMoneyInput(String input) {
@@ -21,9 +30,16 @@ public class InputView {
         }
     }
 
-    public static List<Integer> inputWinningNumbers() {
-        String[] input = Console.readLine().split(",");
-        return validateWinningNumbers(input);
+    public static Lotto inputWinningNumbers() {
+        while (true) {
+            try {
+                String[] input = Console.readLine().split(",");
+                List<Integer> numbers = validateWinningNumbers(input);
+                return new Lotto(numbers);
+            } catch (IllegalArgumentException e) {
+                OutputView.print(e.getMessage());
+            }
+        }
     }
 
     private static List<Integer> validateWinningNumbers(String[] input) {
@@ -35,8 +51,14 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
-        String input = Console.readLine();
-        return validateBonusNumberInput(input);
+        while (true) {
+            try {
+                String input = Console.readLine();
+                return validateBonusNumberInput(input);
+            } catch (IllegalArgumentException e) {
+                OutputView.print(e.getMessage());
+            }
+        }
     }
 
     private static int validateBonusNumberInput(String input) {

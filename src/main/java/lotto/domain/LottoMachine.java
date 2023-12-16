@@ -9,10 +9,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class LottoMachine {
 
     public static Lotto generateLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(
-                LOTTO_MINIMUM,
-                LOTTO_MAXIMUM,
-                LOTTO_SIZE)
-        );
+        return new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MINIMUM, LOTTO_MAXIMUM, LOTTO_SIZE));
     }
 }

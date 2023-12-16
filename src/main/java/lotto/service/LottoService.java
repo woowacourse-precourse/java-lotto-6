@@ -1,48 +1,34 @@
 package lotto.service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
+import lotto.domain.Computer;
 import lotto.domain.Money;
-import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 
 public class LottoService {
 
-    private Money money;
-    private List<Lotto> lottos;
-    private WinningLotto winningLotto;
-    private Result result;
+    private final Computer computer;
 
-    public int money(int price) {
-        this.money = new Money(price);
+    public LottoService(Computer computer) {
+        this.computer = computer;
+    }
+
+    public int insertMoney(Money money) {
+        computer.generateLottos(money);
         return money.getLottoCount();
     }
 
-    public String lottos() {
-        int count = money.getLottoCount();
-        lottos = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < count; i++) {
-            Lotto lotto = LottoMachine.generateLotto();
-            lottos.add(lotto);
-            sb.append(lotto).append("\n");
-        }
-        return sb.toString();
+
+    public String getLottos() {
+        return computer.getLottos();
     }
 
-    public void winningLotto(Lotto winningNumbers, int bonusNumber) {
-        winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    public String getResult(WinningLotto winningLotto) {
+        computer.check(winningLotto);
+        return computer.toString();
     }
 
-    public String result() {
-        result = new Result(winningLotto, lottos);
-        return result.toString();
-    }
-
-    public BigDecimal percent() {
-        return result.calculatePercent(money);
+    public BigDecimal getPercent(Money money) {
+        return computer.calculatePercent(money);
     }
 }

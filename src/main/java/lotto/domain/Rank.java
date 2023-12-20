@@ -22,17 +22,21 @@ public enum Rank {
         this.message = message;
     }
 
-    public static Optional<Rank> getRank(WinningLotto winningLotto, Lotto lotto) {
+    public static Optional<Rank> sortRank(Lotto lotto, WinningLotto winningLotto) {
         int count = winningLotto.checkNumbers(lotto);
         if (count == SECOND.match) {
-            if (winningLotto.checkBonusNumber(lotto)) {
-                return Optional.of(SECOND);
-            }
-            return Optional.of(THIRD);
+            return checkBonusNumber(lotto, winningLotto);
         }
         return Arrays.stream(Rank.values())
                 .filter(rank -> count == rank.match)
                 .findFirst();
+    }
+
+    private static Optional<Rank> checkBonusNumber(Lotto lotto, WinningLotto winningLotto) {
+        if (winningLotto.checkBonusNumber(lotto)) {
+            return Optional.of(SECOND);
+        }
+        return Optional.of(THIRD);
     }
 
     public BigDecimal getPrize() {

@@ -18,7 +18,7 @@ public class Money {
         }
     }
 
-    public int getLottoCount() {
+    public int getNumbersOfLotto() {
         return price / LOTTO_PRICE;
     }
 

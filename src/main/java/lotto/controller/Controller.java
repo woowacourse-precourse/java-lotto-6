@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
@@ -17,18 +18,24 @@ public class Controller {
 
     public void run() {
         Money money = money();
+        OutputView.printNumbersOfLotto(money.getNumbersOfLotto());
+        Lottos lottos = lottos(money);
+        OutputView.print(lottos.toString());
         WinningLotto winningLotto = winningLotto();
-        result(money, winningLotto);
+        lottoService.calculate(lottos, winningLotto);
+        OutputView.print(lottoService.getResult());
+        OutputView.printPercent(lottoService.getPercent(money));
     }
 
-    public Money money() {
-        Money money = InputView.inputMoney();
-        OutputView.printLottoCount(lottoService.insertMoney(money));
-        OutputView.print(lottoService.getLottos());
-        return money;
+    private Money money() {
+        return InputView.inputMoney();
     }
 
-    public WinningLotto winningLotto() {
+    private Lottos lottos(Money money) {
+        return new Lottos(money);
+    }
+
+    private WinningLotto winningLotto() {
         Lotto winningNumbers = InputView.inputWinningNumbers();
         while (true) {
             try {
@@ -38,10 +45,5 @@ public class Controller {
                 OutputView.print(e.getMessage());
             }
         }
-    }
-
-    public void result(Money money, WinningLotto winningLotto) {
-        OutputView.print(lottoService.getResult(winningLotto));
-        OutputView.printPercent(lottoService.getPercent(money));
     }
 }

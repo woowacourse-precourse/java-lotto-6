@@ -16,7 +16,7 @@ public class RankTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                 7
         );
-        Assertions.assertThat(Rank.getRank(winningLotto, lotto).get())
+        Assertions.assertThat(Rank.sortRank(lotto, winningLotto).get())
                 .isEqualTo(SECOND);
     }
 
@@ -27,7 +27,7 @@ public class RankTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                 8
         );
-        Assertions.assertThat(Rank.getRank(winningLotto, lotto).get())
+        Assertions.assertThat(Rank.sortRank(lotto, winningLotto).get())
                 .isEqualTo(THIRD);
     }
 }

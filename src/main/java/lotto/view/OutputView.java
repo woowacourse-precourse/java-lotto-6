@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class OutputView {
 
-    public static void printLottoCount(int count) {
+    public static void printNumbersOfLotto(int count) {
         System.out.printf(LOTTO_COUNT_MESSAGE, count);
     }
 

@@ -1,15 +1,15 @@
 package lotto;
 
-import lotto.domain.Computer;
+import lotto.repository.ResultRepository;
 import lotto.service.LottoService;
 
 public class ApplicationConfig {
 
     public LottoService lottoService() {
-        return new LottoService(computer());
+        return new LottoService(resultRepository());
     }
 
-    public Computer computer() {
-        return new Computer();
+    public ResultRepository resultRepository() {
+        return new ResultRepository();
     }
 }

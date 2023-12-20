@@ -1,7 +1,7 @@
-package lotto.domain;
+package lotto.model;
 
-import static lotto.domain.Rank.SECOND;
-import static lotto.domain.Rank.THIRD;
+import static lotto.model.Rank.SECOND;
+import static lotto.model.Rank.THIRD;
 
 import java.util.List;
 import org.assertj.core.api.Assertions;

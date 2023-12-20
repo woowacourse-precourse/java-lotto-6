@@ -1,7 +1,6 @@
-package lotto.domain;
+package lotto.model;
 
-import static lotto.domain.LottoDetails.LOTTO_PRICE;
-import static lotto.view.ErrorMessage.ERROR;
+import static lotto.constants.LottoDetails.LOTTO_PRICE;
 
 public class Money {
 
@@ -14,7 +13,7 @@ public class Money {
 
     private void validatePrice(int price) {
         if (price % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(ERROR);
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 

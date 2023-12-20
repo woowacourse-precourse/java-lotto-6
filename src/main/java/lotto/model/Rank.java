@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -25,18 +25,22 @@ public enum Rank {
     public static Optional<Rank> sortRank(Lotto lotto, WinningLotto winningLotto) {
         int count = winningLotto.checkNumbers(lotto);
         if (count == SECOND.match) {
-            return checkBonusNumber(lotto, winningLotto);
+            return sortSecond(lotto, winningLotto);
         }
-        return Arrays.stream(Rank.values())
-                .filter(rank -> count == rank.match)
-                .findFirst();
+        return sortElse(count);
     }
 
-    private static Optional<Rank> checkBonusNumber(Lotto lotto, WinningLotto winningLotto) {
-        if (winningLotto.checkBonusNumber(lotto)) {
+    private static Optional<Rank> sortSecond(Lotto lotto, WinningLotto winningLotto) {
+        if (winningLotto.containsBonusNumber(lotto)) {
             return Optional.of(SECOND);
         }
         return Optional.of(THIRD);
+    }
+
+    private static Optional<Rank> sortElse(int count) {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> count == rank.match)
+                .findFirst();
     }
 
     public BigDecimal getPrize() {

@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import lotto.domain.Money;
-import lotto.domain.Rank;
+import lotto.model.Money;
+import lotto.model.Rank;
 
 public class ResultRepository {
 
@@ -34,9 +34,8 @@ public class ResultRepository {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Rank rank : Rank.values()) {
-            sb.append(String.format(rank.getMessage(), result.get(rank))).append("\n");
-        }
+        Arrays.stream(Rank.values())
+                .forEach(rank -> sb.append(String.format(rank.getMessage(), result.get(rank))).append("\n"));
         return sb.toString();
     }
 }

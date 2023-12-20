@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.model;
 
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -10,9 +10,7 @@ public class WinningLottoTest {
     void validateDistinctBonusNumber() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 6;
-        Assertions.assertThatThrownBy(() -> {
-                    new WinningLotto(lotto, bonusNumber);
-                })
+        Assertions.assertThatThrownBy(() -> new WinningLotto(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

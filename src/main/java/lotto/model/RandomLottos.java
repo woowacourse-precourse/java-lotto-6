@@ -1,19 +1,19 @@
-package lotto.domain;
+package lotto.model;
 
-import static lotto.domain.LottoDetails.LOTTO_MAXIMUM;
-import static lotto.domain.LottoDetails.LOTTO_MINIMUM;
-import static lotto.domain.LottoDetails.LOTTO_SIZE;
+import static lotto.constants.LottoDetails.LOTTO_MAXIMUM;
+import static lotto.constants.LottoDetails.LOTTO_MINIMUM;
+import static lotto.constants.LottoDetails.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Lottos {
+public class RandomLottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos(Money money) {
+    public RandomLottos(Money money) {
         lottos = new ArrayList<>();
         generateLottos(money);
     }

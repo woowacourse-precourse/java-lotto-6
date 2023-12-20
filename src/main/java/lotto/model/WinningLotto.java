@@ -1,6 +1,4 @@
-package lotto.domain;
-
-import static lotto.view.ErrorMessage.ERROR;
+package lotto.model;
 
 public class WinningLotto {
 
@@ -15,7 +13,7 @@ public class WinningLotto {
 
     private void validateDistinctBonusNumbers(int bonusNumber) {
         if (winningNumbers.containsNumber(bonusNumber)) {
-            throw new IllegalArgumentException(ERROR);
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 
@@ -23,7 +21,7 @@ public class WinningLotto {
         return winningNumbers.match(lotto);
     }
 
-    public boolean checkBonusNumber(Lotto lotto) {
+    public boolean containsBonusNumber(Lotto lotto) {
         return lotto.containsNumber(bonusNumber);
     }
 }

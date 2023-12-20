@@ -1,17 +1,15 @@
-package lotto.domain;
+package lotto.dto;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class MoneyTest {
+public class MoneyFormTest {
 
-    @ValueSource(ints = {1980, 1999, 2001, 15900})
+    @ValueSource(strings = {"만원", "10$", "1000₩"})
     @ParameterizedTest
-    void validatePriceTest(int price) {
-        Assertions.assertThatThrownBy(() -> {
-                    new Money(price);
-                })
+    void validateNumberFormatTest(String input) {
+        Assertions.assertThatThrownBy(() -> new MoneyForm(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

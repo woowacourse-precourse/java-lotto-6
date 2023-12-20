@@ -1,15 +1,18 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.WinningLotto;
+import java.math.BigDecimal;
+import lotto.dto.BonusNumberForm;
+import lotto.dto.MoneyForm;
+import lotto.dto.WinningNumbersForm;
+import lotto.model.Lotto;
+import lotto.model.Money;
+import lotto.model.RandomLottos;
+import lotto.model.WinningLotto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Controller {
-
     private final LottoService lottoService;
 
     public Controller(LottoService lottoService) {
@@ -18,29 +21,51 @@ public class Controller {
 
     public void run() {
         Money money = money();
-        OutputView.printNumbersOfLotto(money.getNumbersOfLotto());
-        Lottos lottos = lottos(money);
-        OutputView.print(lottos.toString());
+        RandomLottos randomLottos = randomLottos(money);
         WinningLotto winningLotto = winningLotto();
-        lottoService.calculate(lottos, winningLotto);
-        OutputView.print(lottoService.getResult());
-        OutputView.printPercent(lottoService.getPercent(money));
+        lottoService.calculate(randomLottos, winningLotto);
+        String result = lottoService.getResult();
+        OutputView.print(result);
+        BigDecimal percent = lottoService.getPercent(money);
+        OutputView.printPercent(percent);
     }
 
     private Money money() {
-        return InputView.inputMoney();
+        while (true) {
+            try {
+                MoneyForm moneyForm = InputView.inputMoney();
+                Money money = new Money(moneyForm.getPrice());
+                OutputView.printNumbersOfLotto(money.getNumbersOfLotto());
+                return money;
+            } catch (IllegalArgumentException e) {
+                OutputView.print(e.getMessage());
+            }
+        }
     }
 
-    private Lottos lottos(Money money) {
-        return new Lottos(money);
+    private RandomLottos randomLottos(Money money) {
+        RandomLottos randomLottos = new RandomLottos(money);
+        OutputView.print(randomLottos.toString());
+        return randomLottos;
     }
 
     private WinningLotto winningLotto() {
-        Lotto winningNumbers = InputView.inputWinningNumbers();
+        Lotto winningNumbers = winningNumber();
         while (true) {
             try {
-                int bonusNumber = InputView.inputBonusNumber();
-                return new WinningLotto(winningNumbers, bonusNumber);
+                BonusNumberForm bonusNumberForm = InputView.inputBonusNumber();
+                return new WinningLotto(winningNumbers, bonusNumberForm.getNumber());
+            } catch (IllegalArgumentException e) {
+                OutputView.print(e.getMessage());
+            }
+        }
+    }
+
+    private Lotto winningNumber() {
+        while (true) {
+            try {
+                WinningNumbersForm winningNumbersForm = InputView.inputWinningNumbers();
+                return new Lotto(winningNumbersForm.getNumbers());
             } catch (IllegalArgumentException e) {
                 OutputView.print(e.getMessage());
             }

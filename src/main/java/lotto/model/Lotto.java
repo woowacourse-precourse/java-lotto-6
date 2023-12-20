@@ -1,7 +1,6 @@
-package lotto.domain;
+package lotto.model;
 
-import static lotto.domain.LottoDetails.LOTTO_SIZE;
-import static lotto.view.ErrorMessage.ERROR;
+import static lotto.constants.LottoDetails.LOTTO_SIZE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +17,13 @@ public class Lotto {
 
     private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ERROR);
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 
     private void validateDistinctNumbers(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException(ERROR);
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 

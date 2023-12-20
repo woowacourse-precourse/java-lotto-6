@@ -15,11 +15,8 @@ public class ResultRepository {
         Arrays.stream(Rank.values()).forEach(rank -> result.put(rank, 0));
     }
 
-    public int get(Rank rank) {
-        return result.get(rank);
-    }
-
-    public void add(Rank rank, int count) {
+    public void add(Rank rank) {
+        int count = result.get(rank);
         result.put(rank, ++count);
     }
 

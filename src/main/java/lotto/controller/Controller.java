@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.math.BigDecimal;
 import lotto.dto.BonusNumberForm;
 import lotto.dto.MoneyForm;
 import lotto.dto.WinningNumbersForm;
@@ -24,10 +23,8 @@ public class Controller {
         RandomLottos randomLottos = randomLottos(money);
         WinningLotto winningLotto = winningLotto();
         lottoService.calculate(randomLottos, winningLotto);
-        String result = lottoService.getResult();
-        OutputView.print(result);
-        BigDecimal percent = lottoService.getPercent(money);
-        OutputView.printPercent(percent);
+        OutputView.print(lottoService.getResult());
+        OutputView.printPercent(lottoService.getPercent(money));
     }
 
     private Money money() {

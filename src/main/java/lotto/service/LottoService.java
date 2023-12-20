@@ -1,11 +1,8 @@
 package lotto.service;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
 import lotto.model.Money;
 import lotto.model.RandomLottos;
-import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import lotto.repository.ResultRepository;
 
@@ -19,13 +16,8 @@ public class LottoService {
 
     public void calculate(RandomLottos randomLottos, WinningLotto winningLotto) {
         resultRepository.init();
-        List<Optional<Rank>> ranks = randomLottos.getRanks(winningLotto);
-        ranks.forEach(o -> o.ifPresent(
-                rank -> {
-                    int count = resultRepository.get(rank);
-                    resultRepository.add(rank, count);
-                }
-        ));
+        randomLottos.getRanks(winningLotto)
+                .forEach(o -> o.ifPresent(resultRepository::add));
     }
 
     public String getResult() {

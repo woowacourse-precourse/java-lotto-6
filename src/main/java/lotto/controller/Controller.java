@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.dto.BonusNumberForm;
-import lotto.dto.MoneyForm;
-import lotto.dto.WinningNumbersForm;
+import lotto.dto.BonusNumberRequestDto;
+import lotto.dto.MoneyRequestDto;
+import lotto.dto.WinningNumbersRequestDto;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.model.RandomLottos;
@@ -30,12 +30,12 @@ public class Controller {
     private Money money() {
         while (true) {
             try {
-                MoneyForm moneyForm = InputView.inputMoney();
-                Money money = new Money(moneyForm.getPrice());
+                MoneyRequestDto moneyRequestDto = InputView.inputMoney();
+                Money money = new Money(moneyRequestDto.getPrice());
                 OutputView.printNumbersOfLotto(money.getNumbersOfLotto());
                 return money;
             } catch (IllegalArgumentException e) {
-                OutputView.print(e.getMessage());
+                OutputView.printError(e.getMessage());
             }
         }
     }
@@ -50,10 +50,10 @@ public class Controller {
         Lotto winningNumbers = winningNumber();
         while (true) {
             try {
-                BonusNumberForm bonusNumberForm = InputView.inputBonusNumber();
-                return new WinningLotto(winningNumbers, bonusNumberForm.getNumber());
+                BonusNumberRequestDto bonusNumberRequestDto = InputView.inputBonusNumber();
+                return new WinningLotto(winningNumbers, bonusNumberRequestDto.getNumber());
             } catch (IllegalArgumentException e) {
-                OutputView.print(e.getMessage());
+                OutputView.printError(e.getMessage());
             }
         }
     }
@@ -61,10 +61,10 @@ public class Controller {
     private Lotto winningNumber() {
         while (true) {
             try {
-                WinningNumbersForm winningNumbersForm = InputView.inputWinningNumbers();
-                return new Lotto(winningNumbersForm.getNumbers());
+                WinningNumbersRequestDto winningNumbersRequestDto = InputView.inputWinningNumbers();
+                return new Lotto(winningNumbersRequestDto.getNumbers());
             } catch (IllegalArgumentException e) {
-                OutputView.print(e.getMessage());
+                OutputView.printError(e.getMessage());
             }
         }
     }

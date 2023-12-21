@@ -13,7 +13,7 @@ public class Money {
 
     private void validatePrice(int price) {
         if (price % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException();
         }
     }
 

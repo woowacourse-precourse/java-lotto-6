@@ -9,10 +9,14 @@ public class OutputView {
     }
 
     public static void printPercent(BigDecimal percent) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", percent);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", percent);
     }
 
     public static void print(String message) {
         System.out.println(message);
+    }
+
+    public static void printError(String message) {
+        System.out.printf("[ERROR] %s\n", message);
     }
 }

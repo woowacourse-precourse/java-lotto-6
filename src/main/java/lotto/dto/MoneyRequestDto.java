@@ -1,10 +1,10 @@
 package lotto.dto;
 
-public class MoneyForm {
+public class MoneyRequestDto {
 
     private final int price;
 
-    public MoneyForm(String price) {
+    public MoneyRequestDto(String price) {
         this.price = validateNumberFormat(price);
     }
 
@@ -12,7 +12,7 @@ public class MoneyForm {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException();
         }
     }
 

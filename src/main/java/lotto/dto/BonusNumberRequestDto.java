@@ -1,10 +1,10 @@
 package lotto.dto;
 
-public class BonusNumberForm {
+public class BonusNumberRequestDto {
 
     private final int number;
 
-    public BonusNumberForm(String number) {
+    public BonusNumberRequestDto(String number) {
         this.number = validateNumberFormat(number);
     }
 
@@ -12,7 +12,7 @@ public class BonusNumberForm {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException();
         }
     }
 

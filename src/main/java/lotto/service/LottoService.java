@@ -4,27 +4,27 @@ import java.math.BigDecimal;
 import lotto.model.Money;
 import lotto.model.RandomLottos;
 import lotto.model.WinningLotto;
-import lotto.repository.ResultRepository;
+import lotto.repository.Result;
 
 public class LottoService {
 
-    private final ResultRepository resultRepository;
+    private final Result result;
 
-    public LottoService(ResultRepository resultRepository) {
-        this.resultRepository = resultRepository;
+    public LottoService(Result result) {
+        this.result = result;
     }
 
     public void calculate(RandomLottos randomLottos, WinningLotto winningLotto) {
-        resultRepository.init();
+        result.init();
         randomLottos.getRanks(winningLotto)
-                .forEach(o -> o.ifPresent(resultRepository::add));
+                .forEach(o -> o.ifPresent(result::add));
     }
 
     public String getResult() {
-        return resultRepository.toString();
+        return result.toString();
     }
 
     public BigDecimal getPercent(Money money) {
-        return resultRepository.calculatePercent(money);
+        return result.calculatePercent(money);
     }
 }

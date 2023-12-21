@@ -1,21 +1,21 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.dto.BonusNumberForm;
-import lotto.dto.MoneyForm;
-import lotto.dto.WinningNumbersForm;
+import lotto.dto.BonusNumberRequestDto;
+import lotto.dto.MoneyRequestDto;
+import lotto.dto.WinningNumbersRequestDto;
 
 public class InputView {
 
-    public static MoneyForm inputMoney() {
-        return new MoneyForm(Console.readLine());
+    public static MoneyRequestDto inputMoney() {
+        return new MoneyRequestDto(Console.readLine());
     }
 
-    public static WinningNumbersForm inputWinningNumbers() {
-        return new WinningNumbersForm(Console.readLine().split(","));
+    public static WinningNumbersRequestDto inputWinningNumbers() {
+        return new WinningNumbersRequestDto(Console.readLine());
     }
 
-    public static BonusNumberForm inputBonusNumber() {
-        return new BonusNumberForm(Console.readLine());
+    public static BonusNumberRequestDto inputBonusNumber() {
+        return new BonusNumberRequestDto(Console.readLine());
     }
 }

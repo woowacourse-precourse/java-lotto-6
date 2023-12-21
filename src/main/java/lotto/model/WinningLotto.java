@@ -13,7 +13,7 @@ public class WinningLotto {
 
     private void validateDistinctBonusNumbers(int bonusNumber) {
         if (winningNumbers.containsNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException();
         }
     }
 

@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.repository.ResultRepository;
+import lotto.repository.Result;
 import lotto.service.LottoService;
 
 public class ApplicationConfig {
@@ -9,7 +9,7 @@ public class ApplicationConfig {
         return new LottoService(resultRepository());
     }
 
-    public ResultRepository resultRepository() {
-        return new ResultRepository();
+    public Result resultRepository() {
+        return new Result();
     }
 }

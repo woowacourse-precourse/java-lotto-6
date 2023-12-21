@@ -7,7 +7,7 @@ import java.util.Map;
 import lotto.model.Money;
 import lotto.model.Rank;
 
-public class ResultRepository {
+public class Result {
 
     private static final Map<Rank, Integer> result = new HashMap<>();
 

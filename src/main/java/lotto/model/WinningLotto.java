@@ -7,8 +7,15 @@ public class WinningLotto {
 
     public WinningLotto(Lotto winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+        validateBonusNumberRange(bonusNumber);
         validateDistinctBonusNumbers(bonusNumber);
+        this.bonusNumber = bonusNumber;
+    }
+
+    private void validateBonusNumberRange(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validateDistinctBonusNumbers(int bonusNumber) {

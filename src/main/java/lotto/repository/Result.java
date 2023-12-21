@@ -1,10 +1,8 @@
 package lotto.repository;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import lotto.model.Money;
 import lotto.model.Rank;
 
 public class Result {
@@ -20,12 +18,8 @@ public class Result {
         result.put(rank, ++count);
     }
 
-    public BigDecimal calculatePercent(Money money) {
-        BigDecimal sum = new BigDecimal("0");
-        for (Rank rank : Rank.values()) {
-            sum = sum.add(rank.getPrize().multiply(new BigDecimal(result.get(rank))));
-        }
-        return sum.divide(new BigDecimal(money.getPrice())).multiply(new BigDecimal("100"));
+    public int get(Rank rank) {
+        return result.get(rank);
     }
 
     @Override

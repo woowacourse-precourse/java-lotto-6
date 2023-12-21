@@ -17,7 +17,7 @@ public class WinningLottoTest {
     }
 
     @Test
-    void validateDistinctBonusNumber() {
+    void validateDistinctBonusNumberTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 6;
         Assertions.assertThatThrownBy(() -> new WinningLotto(lotto, bonusNumber))

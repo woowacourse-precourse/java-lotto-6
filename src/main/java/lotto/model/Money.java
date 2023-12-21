@@ -2,6 +2,8 @@ package lotto.model;
 
 import static lotto.constants.LottoDetails.LOTTO_PRICE;
 
+import java.math.BigDecimal;
+
 public class Money {
 
     private final int price;
@@ -21,7 +23,7 @@ public class Money {
         return price / LOTTO_PRICE;
     }
 
-    public String getPrice() {
-        return String.valueOf(price);
+    public BigDecimal getBigDecimalPrice() {
+        return new BigDecimal(price);
     }
 }

@@ -3,6 +3,7 @@ package lotto.service;
 import java.math.BigDecimal;
 import lotto.model.Money;
 import lotto.model.RandomLottos;
+import lotto.model.Rank;
 import lotto.model.WinningLotto;
 import lotto.repository.Result;
 
@@ -25,6 +26,10 @@ public class LottoService {
     }
 
     public BigDecimal getPercent(Money money) {
-        return result.calculatePercent(money);
+        BigDecimal sum = new BigDecimal("0");
+        for (Rank rank : Rank.values()) {
+            sum = sum.add(rank.getPrize().multiply(new BigDecimal(result.get(rank))));
+        }
+        return sum.divide(money.getBigDecimalPrice()).multiply(new BigDecimal("100"));
     }
 }

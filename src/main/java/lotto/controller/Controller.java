@@ -3,10 +3,10 @@ package lotto.controller;
 import lotto.dto.BonusNumberRequestDto;
 import lotto.dto.MoneyRequestDto;
 import lotto.dto.WinningNumbersRequestDto;
-import lotto.model.Lotto;
+import lotto.model.LottoTicket;
 import lotto.model.Money;
-import lotto.model.RandomLottos;
-import lotto.model.WinningLotto;
+import lotto.model.RandomLottoTickets;
+import lotto.model.WinningLottoTicket;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,49 +20,49 @@ public class Controller {
 
     public void run() {
         Money money = money();
-        RandomLottos randomLottos = randomLottos(money);
-        WinningLotto winningLotto = winningLotto();
-        lottoService.calculate(randomLottos, winningLotto);
-        OutputView.print(lottoService.getResult());
-        OutputView.printPercent(lottoService.getPercent(money));
+        RandomLottoTickets randomLottoTickets = randomLottos(money);
+        WinningLottoTicket winningLottoTicket = winningLotto();
+        lottoService.sort(randomLottoTickets, winningLottoTicket);
+        OutputView.printNumbersOfLotto(money.numberOfLottos());
+        OutputView.printResult(randomLottoTickets.toString());
+        OutputView.printResult(lottoService.getResult());
+        OutputView.printRateOfReturn(lottoService.getRateOfReturn(money));
     }
 
     private Money money() {
         while (true) {
             try {
                 MoneyRequestDto moneyRequestDto = InputView.inputMoney();
-                Money money = new Money(moneyRequestDto.getPrice());
-                OutputView.printNumbersOfLotto(money.getNumbersOfLotto());
-                return money;
+                return new Money(moneyRequestDto.getPrice());
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e.getMessage());
             }
         }
     }
 
-    private RandomLottos randomLottos(Money money) {
-        RandomLottos randomLottos = new RandomLottos(money);
-        OutputView.print(randomLottos.toString());
-        return randomLottos;
+    private RandomLottoTickets randomLottos(Money money) {
+        RandomLottoTickets randomLottoTickets = new RandomLottoTickets();
+        money.buyLottos(randomLottoTickets);
+        return randomLottoTickets;
     }
 
-    private WinningLotto winningLotto() {
-        Lotto winningNumbers = winningNumber();
+    private WinningLottoTicket winningLotto() {
+        LottoTicket winningNumbers = winningNumber();
         while (true) {
             try {
                 BonusNumberRequestDto bonusNumberRequestDto = InputView.inputBonusNumber();
-                return new WinningLotto(winningNumbers, bonusNumberRequestDto.getNumber());
+                return new WinningLottoTicket(winningNumbers, bonusNumberRequestDto.getNumber());
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e.getMessage());
             }
         }
     }
 
-    private Lotto winningNumber() {
+    private LottoTicket winningNumber() {
         while (true) {
             try {
                 WinningNumbersRequestDto winningNumbersRequestDto = InputView.inputWinningNumbers();
-                return new Lotto(winningNumbersRequestDto.getNumbers());
+                return new LottoTicket(winningNumbersRequestDto.getNumbers());
             } catch (IllegalArgumentException e) {
                 OutputView.printError(e.getMessage());
             }

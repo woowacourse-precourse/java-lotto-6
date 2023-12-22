@@ -19,11 +19,17 @@ public class Money {
         }
     }
 
-    public int getNumbersOfLotto() {
+    public int numberOfLottos() {
         return price / LOTTO_PRICE;
     }
 
-    public BigDecimal getBigDecimalPrice() {
-        return new BigDecimal(price);
+    public void buyLottos(RandomLottoTickets randomLottoTickets) {
+        for (int i = 0; i < numberOfLottos(); i++) {
+            randomLottoTickets.generateLottoTicket();
+        }
+    }
+
+    public BigDecimal divideByMoney(BigDecimal sum) {
+        return sum.divide(new BigDecimal(price));
     }
 }

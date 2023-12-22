@@ -6,10 +6,10 @@ import lotto.service.LottoService;
 public class ApplicationConfig {
 
     public LottoService lottoService() {
-        return new LottoService(resultRepository());
+        return new LottoService(result());
     }
 
-    public Result resultRepository() {
+    public Result result() {
         return new Result();
     }
 }

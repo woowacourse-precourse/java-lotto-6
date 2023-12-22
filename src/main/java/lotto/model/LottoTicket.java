@@ -5,11 +5,11 @@ import static lotto.constants.LottoDetails.LOTTO_SIZE;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lotto {
+public class LottoTicket {
 
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public LottoTicket(List<Integer> numbers) {
         this.numbers = new ArrayList<>(numbers);
         validateLottoSize(numbers);
         validateDistinctNumbers(numbers);
@@ -31,8 +31,8 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public int match(Lotto lotto) {
-        return (int) numbers.stream().filter(lotto::containsNumber).count();
+    public int match(LottoTicket lottoTicket) {
+        return (int) numbers.stream().filter(lottoTicket::containsNumber).count();
     }
 
     @Override

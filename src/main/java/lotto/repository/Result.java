@@ -1,8 +1,10 @@
 package lotto.repository;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import lotto.model.Money;
 import lotto.model.Rank;
 
 public class Result {
@@ -18,8 +20,17 @@ public class Result {
         result.put(rank, ++count);
     }
 
-    public int get(Rank rank) {
-        return result.get(rank);
+    public BigDecimal rateOfReturn(Money money) {
+        return money.divideByMoney(sum())
+                .multiply(new BigDecimal(100));
+    }
+
+    private BigDecimal sum() {
+        BigDecimal sum = new BigDecimal(0);
+        for (Rank rank : result.keySet()) {
+            sum = sum.add(rank.multiply(result.get(rank)));
+        }
+        return sum;
     }
 
     @Override

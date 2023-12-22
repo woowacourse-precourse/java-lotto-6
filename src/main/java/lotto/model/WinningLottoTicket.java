@@ -1,11 +1,11 @@
 package lotto.model;
 
-public class WinningLotto {
+public class WinningLottoTicket {
 
-    private final Lotto winningNumbers;
+    private final LottoTicket winningNumbers;
     private final int bonusNumber;
 
-    public WinningLotto(Lotto winningNumbers, int bonusNumber) {
+    public WinningLottoTicket(LottoTicket winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;
         validateBonusNumberRange(bonusNumber);
         validateDistinctBonusNumbers(bonusNumber);
@@ -24,11 +24,11 @@ public class WinningLotto {
         }
     }
 
-    public int checkNumbers(Lotto lotto) {
-        return winningNumbers.match(lotto);
+    public int checkNumbers(LottoTicket lottoTicket) {
+        return winningNumbers.match(lottoTicket);
     }
 
-    public boolean containsBonusNumber(Lotto lotto) {
-        return lotto.containsNumber(bonusNumber);
+    public boolean containsBonusNumber(LottoTicket lottoTicket) {
+        return lottoTicket.containsNumber(bonusNumber);
     }
 }

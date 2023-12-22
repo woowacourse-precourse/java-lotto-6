@@ -22,16 +22,16 @@ public enum Rank {
         this.message = message;
     }
 
-    public static Optional<Rank> sortRank(Lotto lotto, WinningLotto winningLotto) {
-        int count = winningLotto.checkNumbers(lotto);
+    public static Optional<Rank> sort(LottoTicket lottoTicket, WinningLottoTicket winningLottoTicket) {
+        int count = winningLottoTicket.checkNumbers(lottoTicket);
         if (count == SECOND.match) {
-            return sortSecond(lotto, winningLotto);
+            return sortSecond(lottoTicket, winningLottoTicket);
         }
         return sortElse(count);
     }
 
-    private static Optional<Rank> sortSecond(Lotto lotto, WinningLotto winningLotto) {
-        if (winningLotto.containsBonusNumber(lotto)) {
+    private static Optional<Rank> sortSecond(LottoTicket lottoTicket, WinningLottoTicket winningLottoTicket) {
+        if (winningLottoTicket.containsBonusNumber(lottoTicket)) {
             return Optional.of(SECOND);
         }
         return Optional.of(THIRD);
@@ -43,8 +43,8 @@ public enum Rank {
                 .findFirst();
     }
 
-    public BigDecimal getPrize() {
-        return new BigDecimal(prize);
+    public BigDecimal multiply(int count) {
+        return new BigDecimal(this.prize * count);
     }
 
     public String getMessage() {

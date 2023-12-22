@@ -2,9 +2,8 @@ package lotto.service;
 
 import java.math.BigDecimal;
 import lotto.model.Money;
-import lotto.model.RandomLottos;
-import lotto.model.Rank;
-import lotto.model.WinningLotto;
+import lotto.model.RandomLottoTickets;
+import lotto.model.WinningLottoTicket;
 import lotto.repository.Result;
 
 public class LottoService {
@@ -15,9 +14,9 @@ public class LottoService {
         this.result = result;
     }
 
-    public void calculate(RandomLottos randomLottos, WinningLotto winningLotto) {
+    public void sort(RandomLottoTickets randomLottoTickets, WinningLottoTicket winningLottoTicket) {
         result.init();
-        randomLottos.getRanks(winningLotto)
+        randomLottoTickets.sort(winningLottoTicket)
                 .forEach(o -> o.ifPresent(result::add));
     }
 
@@ -25,11 +24,7 @@ public class LottoService {
         return result.toString();
     }
 
-    public BigDecimal getPercent(Money money) {
-        BigDecimal sum = new BigDecimal("0");
-        for (Rank rank : Rank.values()) {
-            sum = sum.add(rank.getPrize().multiply(new BigDecimal(result.get(rank))));
-        }
-        return sum.divide(money.getBigDecimalPrice()).multiply(new BigDecimal("100"));
+    public BigDecimal getRateOfReturn(Money money) {
+        return result.rateOfReturn(money);
     }
 }

@@ -19,12 +19,12 @@ public class Money {
         }
     }
 
-    public int numberOfLottos() {
+    public int numberOfLottoTickets() {
         return price / LOTTO_PRICE;
     }
 
     public void buyLottos(RandomLottoTickets randomLottoTickets) {
-        for (int i = 0; i < numberOfLottos(); i++) {
+        for (int i = 0; i < numberOfLottoTickets(); i++) {
             randomLottoTickets.generateLottoTicket();
         }
     }

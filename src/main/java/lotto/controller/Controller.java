@@ -20,10 +20,10 @@ public class Controller {
 
     public void run() {
         Money money = money();
-        RandomLottoTickets randomLottoTickets = randomLottos(money);
+        RandomLottoTickets randomLottoTickets = randomLottoTickets(money);
         WinningLottoTicket winningLottoTicket = winningLotto();
         lottoService.sort(randomLottoTickets, winningLottoTicket);
-        OutputView.printNumbersOfLotto(money.numberOfLottos());
+        OutputView.printNumberOfLottoTickets(money.numberOfLottoTickets());
         OutputView.printResult(randomLottoTickets.toString());
         OutputView.printResult(lottoService.getResult());
         OutputView.printRateOfReturn(lottoService.getRateOfReturn(money));
@@ -40,7 +40,7 @@ public class Controller {
         }
     }
 
-    private RandomLottoTickets randomLottos(Money money) {
+    private RandomLottoTickets randomLottoTickets(Money money) {
         RandomLottoTickets randomLottoTickets = new RandomLottoTickets();
         money.buyLottos(randomLottoTickets);
         return randomLottoTickets;

@@ -1,10 +1,5 @@
 package lotto.model;
 
-import static lotto.constants.LottoDetails.LOTTO_NUMBER_MAX;
-import static lotto.constants.LottoDetails.LOTTO_NUMBER_MIN;
-import static lotto.constants.LottoDetails.LOTTO_SIZE;
-
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,9 +13,7 @@ public class RandomLottoTickets {
     }
 
     public void generateLottoTicket() {
-        lottoTickets.add(
-                new LottoTicket(Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_SIZE))
-        );
+        lottoTickets.add(new LottoTicket(LottoNumbersGenerator.generateNumbers()));
     }
 
     public List<Optional<Rank>> sort(WinningLottoTicket winningLottoTicket) {

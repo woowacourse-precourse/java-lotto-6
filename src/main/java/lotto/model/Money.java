@@ -23,12 +23,6 @@ public class Money {
         return price / LOTTO_PRICE;
     }
 
-    public void buyLottos(RandomLottoTickets randomLottoTickets) {
-        for (int i = 0; i < numberOfLottoTickets(); i++) {
-            randomLottoTickets.generateLottoTicket();
-        }
-    }
-
     public BigDecimal divideByMoney(BigDecimal sum) {
         return sum.divide(new BigDecimal(price));
     }

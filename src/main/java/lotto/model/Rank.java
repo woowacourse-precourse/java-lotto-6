@@ -22,16 +22,16 @@ public enum Rank {
         this.message = message;
     }
 
-    public static Optional<Rank> sort(LottoTicket lottoTicket, WinningLottoTicket winningLottoTicket) {
-        int count = winningLottoTicket.checkNumbers(lottoTicket);
+    public static Optional<Rank> sort(Lotto lotto, WinningLotto winningLotto) {
+        int count = winningLotto.matchNumbers(lotto);
         if (count == SECOND.match) {
-            return sortSecond(lottoTicket, winningLottoTicket);
+            return sortSecond(lotto, winningLotto);
         }
         return sortElse(count);
     }
 
-    private static Optional<Rank> sortSecond(LottoTicket lottoTicket, WinningLottoTicket winningLottoTicket) {
-        if (winningLottoTicket.containsBonusNumber(lottoTicket)) {
+    private static Optional<Rank> sortSecond(Lotto lotto, WinningLotto winningLotto) {
+        if (winningLotto.containsBonusNumber(lotto)) {
             return Optional.of(SECOND);
         }
         return Optional.of(THIRD);

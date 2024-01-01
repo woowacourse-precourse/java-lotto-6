@@ -1,9 +1,7 @@
 package lotto.service;
 
-import java.math.BigDecimal;
-import lotto.model.Money;
-import lotto.model.RandomLottoTickets;
-import lotto.model.WinningLottoTicket;
+import lotto.model.Lottos;
+import lotto.model.WinningLotto;
 import lotto.repository.Result;
 
 public class LottoService {
@@ -14,17 +12,12 @@ public class LottoService {
         this.result = result;
     }
 
-    public void sort(RandomLottoTickets randomLottoTickets, WinningLottoTicket winningLottoTicket) {
+    public void run(Lottos Lottos, WinningLotto winningLotto) {
         result.init();
-        randomLottoTickets.sort(winningLottoTicket)
-                .forEach(o -> o.ifPresent(result::add));
+        Lottos.check(winningLotto).forEach(o -> o.ifPresent(result::add));
     }
 
-    public String getResult() {
-        return result.toString();
-    }
-
-    public BigDecimal getRateOfReturn(Money money) {
-        return result.rateOfReturn(money);
+    public Result getResult() {
+        return result;
     }
 }

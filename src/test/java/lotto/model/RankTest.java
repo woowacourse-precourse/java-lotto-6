@@ -11,23 +11,23 @@ public class RankTest {
 
     @Test
     void secondRankTest() {
-        LottoTicket lottoTicket = new LottoTicket(List.of(1, 2, 3, 4, 5, 7));
-        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(
-                new LottoTicket(List.of(1, 2, 3, 4, 5, 6)),
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        WinningLotto winningLotto = new WinningLotto(
+                List.of(1, 2, 3, 4, 5, 6),
                 7
         );
-        Assertions.assertThat(Rank.sort(lottoTicket, winningLottoTicket).get())
+        Assertions.assertThat(Rank.sort(lotto, winningLotto).get())
                 .isEqualTo(SECOND);
     }
 
     @Test
     void thirdRankTest() {
-        LottoTicket lottoTicket = new LottoTicket(List.of(1, 2, 3, 4, 5, 7));
-        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(
-                new LottoTicket(List.of(1, 2, 3, 4, 5, 6)),
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        WinningLotto winningLotto = new WinningLotto(
+                List.of(1, 2, 3, 4, 5, 6),
                 8
         );
-        Assertions.assertThat(Rank.sort(lottoTicket, winningLottoTicket).get())
+        Assertions.assertThat(Rank.sort(lotto, winningLotto).get())
                 .isEqualTo(THIRD);
     }
 }

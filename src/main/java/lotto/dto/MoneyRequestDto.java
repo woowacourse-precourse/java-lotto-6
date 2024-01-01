@@ -2,21 +2,13 @@ package lotto.dto;
 
 public class MoneyRequestDto {
 
-    private final int price;
-
-    public MoneyRequestDto(String price) {
-        this.price = validateNumberFormat(price);
-    }
-
-    private int validateNumberFormat(String input) {
-        try {
-            return Integer.parseInt(input.trim());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
-    }
+    private int price;
 
     public int getPrice() {
         return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

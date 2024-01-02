@@ -1,12 +1,11 @@
 package lotto.model;
 
-import java.util.List;
-
-public class WinningLotto extends Lotto {
+public class WinningLotto {
+    private final Lotto winningNumbers;
     private final int bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, int bonusNumber) {
-        super(numbers);
+    public WinningLotto(Lotto winningNumbers, int bonusNumber) {
+        this.winningNumbers = winningNumbers;
         validateDistinctBonusNumbers(bonusNumber);
         validateBonusNumberRange(bonusNumber);
         this.bonusNumber = bonusNumber;
@@ -19,12 +18,16 @@ public class WinningLotto extends Lotto {
     }
 
     private void validateDistinctBonusNumbers(int bonusNumber) {
-        if (super.getNumbers().contains(bonusNumber)) {
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }
 
+    public int numberOfMatched(Lotto lotto) {
+        return winningNumbers.match(lotto);
+    }
+
     public boolean containsBonusNumber(Lotto lotto) {
-        return lotto.getNumbers().contains(bonusNumber);
+        return lotto.contains(bonusNumber);
     }
 }

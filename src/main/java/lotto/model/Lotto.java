@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.constants.LottoDetails.LOTTO_SIZE;
+import static lotto.constants.LottoInformation.SIZE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class Lotto {
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != SIZE) {
             throw new IllegalArgumentException();
         }
     }
@@ -27,22 +27,28 @@ public class Lotto {
         }
     }
 
-    public boolean containsNumber(int number) {
+    public boolean contains(int number) {
         return numbers.contains(number);
     }
 
-    public int matchNumbers(Lotto lotto) {
-        return (int) numbers.stream()
-                .filter(lotto.numbers::contains)
+    public int match(Lotto lotto) {
+        return (int) this.numbers.stream()
+                .filter(lotto::contains)
                 .count();
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Lotto lotto) {
+            return this.numbers.stream()
+                    .filter(n -> lotto.numbers.stream().anyMatch(n::equals))
+                    .count() == SIZE;
+        }
+        return false;
     }
 }

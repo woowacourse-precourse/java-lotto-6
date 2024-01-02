@@ -8,7 +8,7 @@ public class MoneyTest {
 
     @ValueSource(ints = {1980, 1999, 2001, 15900})
     @ParameterizedTest
-    void validatePriceTest(int price) {
+    void 입력_받은_가격_검사_테스트(int price) {
         Assertions.assertThatThrownBy(() -> new Money(price))
                 .isInstanceOf(IllegalArgumentException.class);
     }

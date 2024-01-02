@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.constants.LottoDetails.LOTTO_NUMBER_MAX;
-import static lotto.constants.LottoDetails.LOTTO_NUMBER_MIN;
-import static lotto.constants.LottoDetails.LOTTO_SIZE;
+import static lotto.constants.LottoInformation.NUMBER_MAX;
+import static lotto.constants.LottoInformation.NUMBER_MIN;
+import static lotto.constants.LottoInformation.SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -10,15 +10,18 @@ import java.util.List;
 
 public class LottoMachine {
 
-    public static List<Lotto> buyLottoTickets(Money money) {
-        List<Lotto> tickets = new ArrayList<>();
-        for (int i = 0; i < money.numberOfLottoTickets(); i++) {
-            tickets.add(new Lotto(generateLottoNumbers()));
+    public List<Lotto> buyLotto(Money money) {
+        List<Lotto> randomLotto = new ArrayList<>();
+        for (int i = 0; i < money.numberOfLotto(); i++) {
+            Lotto lotto = new Lotto(generateLottoNumbers());
+            if (!randomLotto.contains(lotto)) {
+                randomLotto.add(lotto);
+            }
         }
-        return tickets;
+        return randomLotto;
     }
 
-    private static List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_SIZE);
+    private List<Integer> generateLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(NUMBER_MIN, NUMBER_MAX, SIZE);
     }
 }

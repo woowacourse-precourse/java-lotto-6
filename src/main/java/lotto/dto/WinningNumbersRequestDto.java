@@ -1,16 +1,14 @@
 package lotto.dto;
 
-import java.util.List;
-
 public class WinningNumbersRequestDto {
 
-    private List<Integer> numbers;
+    private String numbers;
 
-    public List<Integer> getNumbers() {
+    public String getNumbers() {
         return numbers;
     }
-    
-    public void setNumbers(List<Integer> numbers) {
+
+    public void setNumbers(String numbers) {
         this.numbers = numbers;
     }
 }

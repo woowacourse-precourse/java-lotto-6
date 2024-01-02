@@ -1,8 +1,6 @@
 package lotto.model;
 
-import static lotto.constants.LottoDetails.LOTTO_PRICE;
-
-import java.math.BigDecimal;
+import static lotto.constants.LottoInformation.PRICE;
 
 public class Money {
 
@@ -14,16 +12,16 @@ public class Money {
     }
 
     private void validatePrice(int price) {
-        if (price % LOTTO_PRICE != 0) {
+        if (price % PRICE != 0) {
             throw new IllegalArgumentException();
         }
     }
 
-    public int numberOfLottoTickets() {
-        return price / LOTTO_PRICE;
+    public int numberOfLotto() {
+        return price / PRICE;
     }
 
-    public BigDecimal divideByMoney(BigDecimal sum) {
-        return sum.divide(new BigDecimal(price));
+    public int getPrice() {
+        return price;
     }
 }

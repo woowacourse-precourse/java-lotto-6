@@ -1,8 +1,9 @@
 package lotto.model;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public enum Rank {
 
@@ -12,34 +13,45 @@ public enum Rank {
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원) - %d개");
 
-    private final int match;
+    private final int count;
     private final int prize;
     private final String message;
 
-    Rank(int match, int prize, String message) {
-        this.match = match;
+    Rank(int count, int prize, String message) {
+        this.count = count;
         this.prize = prize;
         this.message = message;
     }
 
-    public static Optional<Rank> sort(Lotto lotto, WinningLotto winningLotto) {
-        int count = winningLotto.matchNumbers(lotto);
-        if (count == SECOND.match) {
-            return sortSecond(lotto, winningLotto);
-        }
-        return sortElse(count);
+    public static List<Optional<Rank>> check(List<Lotto> randomLotto, WinningLotto winningLotto) {
+        return randomLotto.stream()
+                .map(lotto -> getRank(winningLotto, lotto))
+                .toList();
     }
 
-    private static Optional<Rank> sortSecond(Lotto lotto, WinningLotto winningLotto) {
-        if (winningLotto.containsBonusNumber(lotto)) {
+    private static Optional<Rank> getRank(WinningLotto winningLotto, Lotto lotto) {
+        if (isSecond(winningLotto, lotto)) {
             return Optional.of(SECOND);
         }
-        return Optional.of(THIRD);
+        if (isThird(winningLotto, lotto)) {
+            return Optional.of(THIRD);
+        }
+        return getElse(winningLotto, lotto);
     }
 
-    private static Optional<Rank> sortElse(int count) {
-        return Arrays.stream(Rank.values())
-                .filter(rank -> count == rank.match)
+    private static boolean isSecond(WinningLotto winningLotto, Lotto lotto) {
+        return winningLotto.numberOfMatched(lotto) == SECOND.count
+                && winningLotto.containsBonusNumber(lotto);
+    }
+
+    private static boolean isThird(WinningLotto winningLotto, Lotto lotto) {
+        return winningLotto.numberOfMatched(lotto) == THIRD.count
+                && !winningLotto.containsBonusNumber(lotto);
+    }
+
+    private static Optional<Rank> getElse(WinningLotto winningLotto, Lotto lotto) {
+        return Stream.of(Rank.values())
+                .filter(rank -> winningLotto.numberOfMatched(lotto) == rank.count)
                 .findFirst();
     }
 

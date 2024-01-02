@@ -68,7 +68,7 @@
         - 입력 받은 값이 6자리 미만이면 ```IllegalArgumentException``` 발생
         - 중복된 숫자가 있다면 ```IllegalArgumentException``` 발생
 
-- RandomLottos
+- LottoMachine
     - Money를 받으면 티켓 개수를 받아 개수만큼 랜덤 로또 생성
 
 - WinningLotto
@@ -82,7 +82,7 @@
 
 ### Constants
 
-- LottoDetails
+- LottoInformation
     - 로또 세부 정보를 저장
 
 ### Repository

@@ -1,21 +1,22 @@
-package lotto.view;
+package lotto.view.output;
 
-import lotto.model.Lottos;
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.repository.Result;
 
 public class OutputView {
 
-    public static void printNumberOfLottoTickets(Money money) {
-        System.out.printf("%d개를 구매했습니다.\n", money.numberOfLottoTickets());
+    public static void printNumberOfLotto(Money money) {
+        System.out.printf("%d개를 구매했습니다.\n", money.numberOfLotto());
     }
 
     public static void printResult(Result result) {
         System.out.println(result);
     }
 
-    public static void printRandomLottoTicket(Lottos Lottos) {
-        System.out.println(Lottos);
+    public static void printRandomLotto(List<Lotto> randomLotto) {
+        randomLotto.forEach(System.out::println);
     }
 
     public static void printRateOfReturn(Money money, Result result) {

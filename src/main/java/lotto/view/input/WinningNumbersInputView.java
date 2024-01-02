@@ -2,7 +2,6 @@ package lotto.view.input;
 
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
 import java.util.stream.Stream;
 import lotto.dto.WinningNumbersRequestDto;
 
@@ -10,20 +9,20 @@ public class WinningNumbersInputView {
 
     public static WinningNumbersRequestDto readWinningNumbers() {
         String input = Console.readLine();
-        return toDto(validateNumbersFormat(input));
+        validateNumbersFormat(input);
+        return toDto(input);
     }
 
-    private static WinningNumbersRequestDto toDto(List<Integer> numbers) {
+    private static WinningNumbersRequestDto toDto(String numbers) {
         WinningNumbersRequestDto dto = new WinningNumbersRequestDto();
         dto.setNumbers(numbers);
         return dto;
     }
 
-    private static List<Integer> validateNumbersFormat(String input) {
+    private static void validateNumbersFormat(String input) {
         try {
-            return Stream.of(input.split(","))
-                    .map(n -> Integer.parseInt(n.trim()))
-                    .toList();
+            Stream.of(input.split(","))
+                    .forEach(n -> Integer.parseInt(n.trim()));
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }

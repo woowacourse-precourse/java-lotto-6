@@ -1,9 +1,9 @@
 package lotto.repository;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Stream;
 import lotto.model.Money;
 import lotto.model.Rank;
 
@@ -12,7 +12,7 @@ public class Result {
     private static final Map<Rank, Integer> result = new HashMap<>();
 
     public void init() {
-        Arrays.stream(Rank.values()).forEach(rank -> result.put(rank, 0));
+        Stream.of(Rank.values()).forEach(rank -> result.put(rank, 0));
     }
 
     public void add(Rank rank) {
@@ -21,7 +21,7 @@ public class Result {
     }
 
     public BigDecimal rateOfReturn(Money money) {
-        return money.divideByMoney(sum())
+        return sum().divide(new BigDecimal(money.getPrice()))
                 .multiply(new BigDecimal(100));
     }
 
@@ -36,7 +36,7 @@ public class Result {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        Arrays.stream(Rank.values())
+        Stream.of(Rank.values())
                 .forEach(rank -> sb.append(String.format(rank.getMessage(), result.get(rank))).append("\n"));
         return sb.toString();
     }

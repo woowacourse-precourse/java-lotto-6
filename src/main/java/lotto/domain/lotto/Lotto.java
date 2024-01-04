@@ -28,7 +28,7 @@ public class Lotto {
                 .toList();
     }
 
-    public Optional<Rank> calculateRank(final lotto.domain.lotto.Lotto lotto, final int bonusNumber) {
+    public Optional<Rank> calculateRank(final Lotto lotto, final int bonusNumber) {
         final int matchCount = lotto.matchedCount(numbers);
         final boolean bonusBallMatched = numbers.contains(bonusNumber);
         return Rank.of(matchCount, bonusBallMatched);

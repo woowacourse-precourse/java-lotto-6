@@ -33,7 +33,7 @@ checkstyle {
     toolVersion = "9.2"
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
     finalizedBy 'jacocoTestReport'
 }

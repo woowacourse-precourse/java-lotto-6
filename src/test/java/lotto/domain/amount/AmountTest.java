@@ -19,7 +19,7 @@ class AmountTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, -10000, -2000, -100})
-    @DisplayName("양의 정수가 아닌 구입 금액은 입력될 수 없다.")
+    @DisplayName("양의 정수가 아닌 구입 금액은 입력될 수 없다    .")
     void amountIsNotPositive(final int amount) {
         String message = InputExceptionStatus.AMOUNT_IS_NOT_POSITIVE.getMessage();
         exceptionVerification(amount, message);

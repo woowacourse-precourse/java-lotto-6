@@ -1,4 +1,4 @@
-package lotto.numbers;
+package lotto;
 
 import java.util.List;
 

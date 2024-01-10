@@ -1,7 +1,5 @@
 package lotto.numbers;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,29 +21,20 @@ public class Lotto {
   }
 
   private void validateLottoNumbers(List<Integer> lottoNumbers) {
-    validateSize(lottoNumbers);
-    validateRange(lottoNumbers);
-    validateDuplicates(lottoNumbers);
-  }
-
-  private void validateSize(List<Integer> lottoNumbers) {
     if (lottoNumbers.size() != SIZE_OF_LOTTO) {
       throw new IllegalArgumentException("[ERROR] 로또 번호는 총 6개여야 합니다.");
     }
-  }
 
-  private void validateRange(List<Integer> lottoNumbers) {
     for (int number : lottoNumbers) {
       if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
         throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
       }
     }
-  }
 
-  private void validateDuplicates(List<Integer> lottoNumbers) {
     Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
     if (uniqueNumbers.size() < lottoNumbers.size()) {
       throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
     }
   }
 }
+

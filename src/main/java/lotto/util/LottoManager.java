@@ -8,9 +8,11 @@ import static lotto.util.Money.LOTTO_PRICE;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import lotto.numbers.Lotto;
+import lotto.numbers.UserInputNumbers;
 
 public class LottoManager {
 
@@ -18,6 +20,8 @@ public class LottoManager {
     Money money = receivePurchaseAmount();
     List<Lotto> lottos = generateLottos(money.getAmount());
     printLottoNumbers(lottos);
+    UserInputNumbers receivedLotto = receiveLottoNumber();
+    printLotto(receivedLotto);
   }
 
   private Money receivePurchaseAmount() {
@@ -58,15 +62,38 @@ public class LottoManager {
     return lottos;
   }
 
-  public void printLottoNumbers(List<Lotto> lottos) {
-    List<String> allLottoNumbers = new ArrayList<>();
+  private void printLottoNumbers(List<Lotto> lottos) {
     for (Lotto lotto : lottos) {
-      List<Integer> numbersOfOneLotto = new ArrayList<>(lotto.getLottoNumbers());
-      Collections.sort(numbersOfOneLotto);
-      allLottoNumbers.add(String.join(", ", numbersOfOneLotto.toString()));
+      List<Integer> lottoNumbers = lotto.getLottoNumbers();
+      System.out.println(lottoNumbers.toString());
     }
-    for (int i = 0; i < allLottoNumbers.size(); i++) {
-      System.out.println(allLottoNumbers.get(i));
+  }
+
+  private UserInputNumbers receiveLottoNumber() {
+    while (true) {
+      System.out.println("\n당첨 번호를 입력해 주세요.");
+      String inputNumbers = Console.readLine();
+      System.out.println("\n보너스 번호를 입력해 주세요.");
+      String inputBonusNumber = Console.readLine();
+      try {
+        String[] numbersArray = inputNumbers.split(",");
+        List<Integer> receivedLottoNumbers = new ArrayList<>();
+        Arrays.stream(numbersArray)
+            .forEach(number -> receivedLottoNumbers.add(Integer.parseInt(number.trim()))); // 공백 제거
+        List<Integer> bonusNumber = Collections.singletonList(
+            Integer.parseInt(inputBonusNumber.trim()));
+
+        return new UserInputNumbers(receivedLottoNumbers, bonusNumber);
+      } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+      }
     }
+  }
+
+  private void printLotto(UserInputNumbers receivedLotto) { // 테스트 코드 짜는 법 까먹었어요ㅜㅜ
+    List<Integer> inputLotto = receivedLotto.getReceivedLottoNumbers();
+    List<Integer> inputBonus = receivedLotto.getBonusNumber();
+    System.out.print(inputLotto);
+    System.out.print(inputBonus);
   }
 }

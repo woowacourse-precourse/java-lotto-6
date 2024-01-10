@@ -1,21 +1,51 @@
 package lotto.numbers;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
-  private final List<Integer> numbers;
+  public static final int MIN_LOTTO_NUMBER = 1;
+  public static final int MAX_LOTTO_NUMBER = 45;
+  public static final int SIZE_OF_LOTTO = 6;
+  private List<Integer> lottoNumbers;
 
-  public Lotto(List<Integer> numbers) {
-    validate(numbers);
-    this.numbers = numbers;
+  public Lotto(List<Integer> lottoNumbers) {
+    validateLottoNumbers(lottoNumbers);
+    this.lottoNumbers = lottoNumbers;
   }
 
-  private void validate(List<Integer> numbers) {
-    if (numbers.size() != 6) {
-      throw new IllegalArgumentException();
+  public List<Integer> getLottoNumbers() {
+    return lottoNumbers;
+  }
+
+  private void validateLottoNumbers(List<Integer> lottoNumbers) {
+    validateSize(lottoNumbers);
+    validateRange(lottoNumbers);
+    validateDuplicates(lottoNumbers);
+  }
+
+  private void validateSize(List<Integer> lottoNumbers) {
+    if (lottoNumbers.size() != SIZE_OF_LOTTO) {
+      throw new IllegalArgumentException("[ERROR] 로또 번호는 총 6개여야 합니다.");
     }
   }
 
-  // TODO: 추가 기능 구현
+  private void validateRange(List<Integer> lottoNumbers) {
+    for (int number : lottoNumbers) {
+      if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      }
+    }
+  }
+
+  private void validateDuplicates(List<Integer> lottoNumbers) {
+    Set<Integer> uniqueNumbers = new HashSet<>(lottoNumbers);
+    if (uniqueNumbers.size() < lottoNumbers.size()) {
+      throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+    }
+  }
 }

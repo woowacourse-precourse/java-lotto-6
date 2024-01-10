@@ -1,53 +1,69 @@
 package lotto.util;
 
+import static lotto.numbers.Lotto.MAX_LOTTO_NUMBER;
+import static lotto.numbers.Lotto.MIN_LOTTO_NUMBER;
+import static lotto.numbers.Lotto.SIZE_OF_LOTTO;
+import static lotto.util.Money.LOTTO_PRICE;
+
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import lotto.numbers.Lotto;
 
 public class LottoManager {
 
   public void runLotto() {
-    PurchaseAmount purchaseAmount = receivePurchaseAmount();
-    printSortedLottoNumbers(purchaseAmount.getAmount());
-
+    Money money = receivePurchaseAmount();
+    List<Lotto> lottos = generateLottos(money.getAmount());
+    printLottoNumbers(lottos);
   }
 
-  private PurchaseAmount receivePurchaseAmount() {
-    PurchaseAmount purchaseAmount;
+  private Money receivePurchaseAmount() {
+    Money money;
     while (true) {
       try {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
         int inputAmount = Integer.parseInt(input);
-        purchaseAmount = new PurchaseAmount(inputAmount);
+        money = new Money(inputAmount);
         break;
       } catch (IllegalArgumentException e) {
-        System.out.println("[ERROR] 1000 단위의 금액을 입력하세요.");
+        System.out.println(e.getMessage());
       }
     }
-    return purchaseAmount;
+    return money;
   }
 
-  private static void printSortedLottoNumbers(int purchaseAmount) {
-    int purchaseLotto = purchaseAmount / 1000;
-    System.out.println(purchaseLotto + "개를 구매했습니다.");
+  private List<Lotto> generateLottos(int money) {
+    int numberOfLotto = money / LOTTO_PRICE;
+    List<Lotto> lottos = new ArrayList<>();
 
-    List<List<Integer>> allLottoNumbers = generateLottoNumbers(purchaseLotto);
+    for (int i = 0; i < numberOfLotto; i++) {
+      List<Integer> lottoNumbers =
+          Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, SIZE_OF_LOTTO);
 
-    for (List<Integer> LottoNumbers : allLottoNumbers) {
-      System.out.println(LottoNumbers);
+      try {
+        Lotto lotto = new Lotto(lottoNumbers);
+        lottos.add(lotto);
+      } catch (IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+        i--;
+      }
     }
+
+    return lottos;
   }
 
-  private static List<Integer> generateLottoNumbers(int purchaseLotto) {
-    List<List<Integer>> allLottoNumbers = new ArrayList<>();
-
-    for (int ticketIndex = 0; ticketIndex < purchaseLotto; ticketIndex++) {
-      List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-      allLottoNumbers.add(numbers);
+  public void printLottoNumbers(List<Lotto> lottos) {
+    List<String> lottoNumbers = new ArrayList<>();
+    for (Lotto lotto : lottos) {
+      lottoNumbers.add(String.join(", ", lotto.getLottoNumbers().toString()));
     }
-
-    return allLottoNumbers;
+    Collections.sort(lottoNumbers);
+    for (int i = 0; i < lottoNumbers.size(); i++) {
+      System.out.println(lottoNumbers.get(i));
+    }
   }
 }

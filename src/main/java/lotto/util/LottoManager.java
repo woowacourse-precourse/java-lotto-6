@@ -38,6 +38,8 @@ public class LottoManager {
 
   private List<Lotto> generateLottos(int money) {
     int numberOfLotto = money / LOTTO_PRICE;
+    System.out.println("\n" + numberOfLotto + "개를 구매했습니다.");
+
     List<Lotto> lottos = new ArrayList<>();
 
     for (int i = 0; i < numberOfLotto; i++) {

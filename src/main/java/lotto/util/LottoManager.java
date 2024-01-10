@@ -57,13 +57,14 @@ public class LottoManager {
   }
 
   public void printLottoNumbers(List<Lotto> lottos) {
-    List<String> lottoNumbers = new ArrayList<>();
+    List<String> allLottoNumbers = new ArrayList<>();
     for (Lotto lotto : lottos) {
-      lottoNumbers.add(String.join(", ", lotto.getLottoNumbers().toString()));
+      List<Integer> numbersOfOneLotto = new ArrayList<>(lotto.getLottoNumbers());
+      Collections.sort(numbersOfOneLotto);
+      allLottoNumbers.add(String.join(", ", numbersOfOneLotto.toString()));
     }
-    Collections.sort(lottoNumbers);
-    for (int i = 0; i < lottoNumbers.size(); i++) {
-      System.out.println(lottoNumbers.get(i));
+    for (int i = 0; i < allLottoNumbers.size(); i++) {
+      System.out.println(allLottoNumbers.get(i));
     }
   }
 }

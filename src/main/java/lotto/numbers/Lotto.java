@@ -20,6 +20,17 @@ public class Lotto {
     return lottoNumbers;
   }
 
+  public int getMatchCount(UserInputNumbers receivedLotto) {
+    int matchCount = (int) lottoNumbers.stream()
+        .filter(number -> receivedLotto.getReceivedLottoNumbers().contains(number))
+        .count(); // count() 메서드는 반환 값이 long이다. int로 캐스팅 해야한다.
+    return matchCount;
+  }
+
+  public boolean isBonusMatch(UserInputNumbers receivedLotto) {
+    return lottoNumbers.contains(receivedLotto.getReceivedLottoNumbers());
+  }
+
   private void validateLottoNumbers(List<Integer> lottoNumbers) {
     if (lottoNumbers.size() != SIZE_OF_LOTTO) {
       throw new IllegalArgumentException("[ERROR] 로또 번호는 총 6개여야 합니다.");

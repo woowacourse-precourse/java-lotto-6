@@ -7,6 +7,7 @@ import static lotto.util.Money.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,6 +19,8 @@ import lotto.numbers.UserInputNumbers;
 
 public class LottoManager {
 
+  public static final int PERCENTAGE_FACTOR = 100;
+
   public void runLotto() {
     Money money = receivePurchaseAmount();
     List<Lotto> lottos = generateLottos(money.getAmount());
@@ -25,6 +28,7 @@ public class LottoManager {
     UserInputNumbers receivedLotto = receiveLottoNumber();
     Map<WinningCheck, Integer> result = calculateWinningResult(lottos, receivedLotto);
     printWinningResult(result);
+    printProfitRate(money.getAmount(), result);
   }
 
   private Money receivePurchaseAmount() {
@@ -33,8 +37,7 @@ public class LottoManager {
       try {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        int inputAmount = Integer.parseInt(input);
-        money = new Money(inputAmount);
+        money = new Money(input);
         break;
       } catch (IllegalArgumentException e) {
         System.out.println(e.getMessage());
@@ -67,7 +70,7 @@ public class LottoManager {
 
   private void printGeneratedLottoNumbers(List<Lotto> lottos) {
     for (Lotto lotto : lottos) {
-      List<Integer> lottoNumbers = lotto.getLottoNumbers();
+      List<Integer> lottoNumbers = new ArrayList<>(lotto.getLottoNumbers());
       Collections.sort(lottoNumbers);
       System.out.println(lottoNumbers);
     }
@@ -119,5 +122,22 @@ public class LottoManager {
           prize.getMatchingCount() + "개 일치" + bonus + " (" + prize.getPrizeAmount() + "원) - "
               + result.getOrDefault(prize, 0) + "개");
     }
+  }
+
+  private void printProfitRate(int amount, Map<WinningCheck, Integer> result) {
+    double totalPrize = 0;
+    for (Map.Entry<WinningCheck, Integer> entry : result.entrySet()) {
+      // entry: 맵의 각 항목을 나타내는 객체, .entrySet(): 맵의 모든 항목을 객체의 Set으로 반환
+      WinningCheck prize = entry.getKey(); // enum에 열거된 상금을 가져온다
+      int count = entry.getValue(); // 당첨 횟수를 가져온다.
+      totalPrize += Double.parseDouble(prize.getPrizeAmount()
+          .replace(",", "")) * count; // 문자열을 double로 변환하기 위해 쉼표 제거
+    }
+
+    double profitRate = (totalPrize / amount) * PERCENTAGE_FACTOR;
+    DecimalFormat df = new DecimalFormat("#.##");
+    profitRate = Double.parseDouble(df.format(profitRate)); // 소수 둘째 자리에서 반올림
+
+    System.out.println("총 수익률은 " + profitRate + "%입니다.");
   }
 }

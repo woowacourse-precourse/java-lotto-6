@@ -1,4 +1,4 @@
-package lotto.numbers;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +28,7 @@ public class Lotto {
   }
 
   public boolean isBonusMatch(UserInputNumbers receivedLotto) {
-    return lottoNumbers.contains(receivedLotto.getReceivedLottoNumbers());
+    return lottoNumbers.contains(receivedLotto.getBonusNumber());
   }
 
   private void validateLottoNumbers(List<Integer> lottoNumbers) {
@@ -48,4 +48,3 @@ public class Lotto {
     }
   }
 }
-

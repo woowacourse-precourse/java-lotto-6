@@ -1,11 +1,11 @@
-package lotto.util;
+package lotto.domain;
 
-public class Money {
+public class PurchaseAmount {
 
   public static final int LOTTO_PRICE = 1000;
   private int amount;
 
-  public Money(String input) {
+  public PurchaseAmount(String input) {
     validateIsNumeric(input);
     int inputAmount = Integer.parseInt(input);
     validatePurchaseAmount(amount);

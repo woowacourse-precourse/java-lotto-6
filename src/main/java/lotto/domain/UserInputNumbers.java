@@ -1,8 +1,8 @@
-package lotto.numbers;
+package lotto.domain;
 
-import static lotto.numbers.Lotto.MIN_LOTTO_NUMBER;
-import static lotto.numbers.Lotto.MAX_LOTTO_NUMBER;
-import static lotto.numbers.Lotto.SIZE_OF_LOTTO;
+import static lotto.domain.Lotto.MIN_LOTTO_NUMBER;
+import static lotto.domain.Lotto.MAX_LOTTO_NUMBER;
+import static lotto.domain.Lotto.SIZE_OF_LOTTO;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,22 +10,22 @@ import java.util.Set;
 
 public class UserInputNumbers {
 
-  static final int SIZE_OF_BONUS_NUMBER = 1;
   private List<Integer> receivedLottoNumbers;
-  private List<Integer> bonusNumber;
+  private int bonusNumber;
 
-  public UserInputNumbers(List<Integer> receivedLottoNumbers, List<Integer> bonusNumber) {
+  public UserInputNumbers(List<Integer> receivedLottoNumbers, int bonusNumber) {
     validateLottoNumbers(receivedLottoNumbers);
     this.receivedLottoNumbers = receivedLottoNumbers;
     validateBonusNumbers(bonusNumber);
     this.bonusNumber = bonusNumber;
   }
 
-  public List<Integer> getReceivedLottoNumbers() {
+  public List<Integer> getReceivedLottoNumbers() { // 결과 계산에 호출됨
     return receivedLottoNumbers;
   }
 
-  public List<Integer> getBonusNumber() {
+
+  public int getBonusNumber() {
     return bonusNumber;
   }
 
@@ -46,18 +46,12 @@ public class UserInputNumbers {
     }
   }
 
-  private void validateBonusNumbers(List<Integer> bonusNumber) {
-    if (bonusNumber.size() != SIZE_OF_BONUS_NUMBER) {
-      throw new IllegalArgumentException("[ERROR] 보너스 번호는 1개여야 합니다.");
+  private void validateBonusNumbers(int bonusNumber) {
+    if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+      throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
-    for (int number : bonusNumber) {
-      if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
-        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-      }
-    }
-
-    if (receivedLottoNumbers.containsAll(bonusNumber)) {
+    if (new HashSet<>(receivedLottoNumbers).contains(bonusNumber)) {
       throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
     }
   }

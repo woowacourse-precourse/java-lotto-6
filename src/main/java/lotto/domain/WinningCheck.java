@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.domain;
 
 public enum WinningCheck {
   LOSE("0", 0),

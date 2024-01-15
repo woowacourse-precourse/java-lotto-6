@@ -1,20 +1,35 @@
-필요한 기능들을 패키지로 묶어보자
+Application과 동일 선상에 RunLotto 클래스 생성
 
-- 로또 번호들이 있는 패키지 (numbers)
+RunLotto에 필요한 기능들을 패키지로 묶어보자
+
+- 도메인 모델 패키지 (domain)
+    - 사용자로부터 입력받은 구입금액을 저장하는 클래스 PurchaseAmount
     - 난수 생성된 로또 번호가 있는 클래스 Lotto
     - 사용자로부터 로또 번호 6개와 보너스 번호 1개를 입력받아 저장하는 클래스 UserInputNumbers
-- 각종 메서드가 있는 패키지 (util):
-    - LottoManager
-    - Money
-    - 당첨된 로또 개수를 enum으로 저장 (당첨금과 수 포함)
+    - 상금과 당첨 수를 저장하는 열거형 enum WinningCheck
+- 비즈니스 로직을 수행하는 서비스 패키지 (service)
+    - 당첨 결과와 수익률을 계산하는 클래스 Calculator
+    - 구입금액만큼 로또를 발행하는 클래스 LottoGenerator
+- 각종 메서드가 있는 패키지 (util)
+    - 사용자로부터 값들을 입력받는 클래스 InputManager
+    - 결과들을 출력하는 클래스 OutputManager
 
-1. 구입 금액을 입력 받는 메서드 receivePurchaseAmount() → Money 객체로 저장
-2. 로또를 발행하고 수량과 번호들을 오름차순으로 출력한다.
-   generateLottos(int money) -> return List<Lotto> lottos 객체로 저장
-   -> printGeneratedLottoNumbers(List<Lotto> lottos)
-3. 당첨 번호 6개를 입력받음(쉼표로 구분), 보너스 번호 1개를 입력받음
-   receiveLottoNumber() -> return new UserInputNumbers 객체로 저장
-4. enum 당첨 금액과 수량 저장 (출력 기능 포함)
-5. 일치하는 개수를 검사하고 등수를 체크, 출력하는 기능 Map<WinningCheck, Integer>에 저장
-   -> printWinningResult(Map<WinningCheck, Integer> result)
-6. 수익률을 출력하는 기능 (소수 둘째 자리에서 반올림) printProfitRate(int amount, Map<WinningCheck, Integer> result)
+동작 구조
+
+1. receivePurchaseAmount()로 구입금액을 입력받아 PurchaseAmount에 객체로 저장(유효성 검사)
+2. 생성된 PurchaseAmount를 매개변수로 받아 generateLottos(PurchaseAmount purchaseAmount)
+   입력받은 양 만큼 Lotto 객체로 로또를 발행(유효성 검사) -> 리턴 값은 List<Lotto>로 generatedLottos를 리턴
+3. generatedLottos를 매개변수로 받아 printGeneratedLottoNumbers(List<Lotto> lottos) 생성된 로또들을 출력
+4. receiveLottoNumber() 로또 번호 6개와 보너스 번호 1개를 입력 받아 UserInputNumbers에 객체로 저장(유효성 검사)
+5. calculateWinningResult(List<Lotto> lottos, UserInputNumbers receivedLotto)
+   Map<WinningCheck, Integer>을 이용해서 result를 생성 WinningCheck에 열거형으로 상금과 당첨 수를 저장
+   Lotto클래스에서 각 로또 당 matchCount와 bonusMatch를 가져온다 -> WinningCheck.getPrize(matchCount, bonusMatch)
+   -> 각 로또 당 상금과 수를 result에 저장 후 리턴
+6. calculateProfitRate(PurchaseAmount purchaseAmount, Map<WinningCheck, Integer> result)
+   구입금액과 결과를 비교하여 수익률을 계산(소수 둘째에서 반올림) -> 리턴 값은 double profitRate
+7. printResults(Map<WinningCheck, Integer> result, double profitRate) 최종 결과 출력
+
+해야할 것
+금액 출력 enum을 String으로 할 필요가 없다
+-> DecimalFormat decFormat = new DecimalFormat("###,###");
+calculateProfitRate 메서드 수정하기

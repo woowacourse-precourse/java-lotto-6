@@ -29,9 +29,9 @@ public class InputManager {
       System.out.println("\n당첨 번호를 입력해 주세요.");
       String inputNumbers = Console.readLine();
       try {
-        String[] numbersArray = inputNumbers.split(",");
+        String[] separatedNumbers = inputNumbers.split(",");
         List<Integer> receivedLottoNumbers = new ArrayList<>();
-        Arrays.stream(numbersArray)
+        Arrays.stream(separatedNumbers)
             .forEach(number -> receivedLottoNumbers.add(Integer.parseInt(number.trim()))); // 공백 제거
         System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine().trim());

@@ -16,10 +16,6 @@ public class Lotto {
     this.lottoNumbers = lottoNumbers;
   }
 
-  public List<Integer> getLottoNumbers() {
-    return lottoNumbers;
-  }
-
   public int getMatchCount(UserInputNumbers receivedLotto) {
     int matchCount = (int) lottoNumbers.stream()
         .filter(number -> receivedLotto.getReceivedLottoNumbers().contains(number))
@@ -46,5 +42,9 @@ public class Lotto {
     if (uniqueNumbers.size() < lottoNumbers.size()) {
       throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
     }
+  }
+
+  public List<Integer> getLottoNumbers() {
+    return lottoNumbers;
   }
 }

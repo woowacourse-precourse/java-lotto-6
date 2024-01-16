@@ -24,18 +24,6 @@ public enum WinningCheck {
     this.hasBonus = hasBonus;
   }
 
-  public String getPrizeAmount() {
-    return prizeAmount;
-  }
-
-  public int getMatchingCount() {
-    return matchingCount;
-  }
-
-  public boolean hasBonus() {
-    return hasBonus;
-  }
-
   public static WinningCheck getPrize(int matchCount, boolean bonusMatch) {
     if (matchCount == 6) {
       return FIRST_PRIZE;
@@ -50,5 +38,17 @@ public enum WinningCheck {
       return FIFTH_PRIZE;
     }
     return LOSE;
+  }
+
+  public String getPrizeAmount() {
+    return prizeAmount;
+  }
+
+  public int getMatchingCount() {
+    return matchingCount;
+  }
+
+  public boolean hasBonus() {
+    return hasBonus;
   }
 }

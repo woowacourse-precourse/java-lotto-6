@@ -20,15 +20,6 @@ public class UserInputNumbers {
     this.bonusNumber = bonusNumber;
   }
 
-  public List<Integer> getReceivedLottoNumbers() { // 결과 계산에 호출됨
-    return receivedLottoNumbers;
-  }
-
-
-  public int getBonusNumber() {
-    return bonusNumber;
-  }
-
   private void validateLottoNumbers(List<Integer> receivedLottoNumbers) {
     if (receivedLottoNumbers.size() != SIZE_OF_LOTTO) {
       throw new IllegalArgumentException("[ERROR] 로또 번호는 총 6개여야 합니다.");
@@ -54,5 +45,13 @@ public class UserInputNumbers {
     if (new HashSet<>(receivedLottoNumbers).contains(bonusNumber)) {
       throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다.");
     }
+  }
+
+  public List<Integer> getReceivedLottoNumbers() { // 결과 계산에 호출됨
+    return receivedLottoNumbers;
+  }
+
+  public int getBonusNumber() {
+    return bonusNumber;
   }
 }

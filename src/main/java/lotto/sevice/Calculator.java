@@ -32,8 +32,7 @@ public class Calculator {
     for (Map.Entry<WinningCheck, Integer> entry : result.entrySet()) {
       WinningCheck prize = entry.getKey();
       int count = entry.getValue();
-      totalPrize += Double.parseDouble(prize.getPrizeAmount()
-          .replace(",", "")) * count;
+      totalPrize += prize.getPrizeAmount() * count;
     }
 
     double profitRate = (totalPrize / purchaseAmount.getAmount()) * PERCENTAGE_FACTOR;

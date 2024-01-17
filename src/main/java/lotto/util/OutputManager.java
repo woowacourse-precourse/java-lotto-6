@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -23,14 +24,16 @@ public class OutputManager {
   }
 
   private void printWinningResult(Map<WinningCheck, Integer> result) {
+    DecimalFormat decimalFormat = new DecimalFormat("#,###");
     System.out.println("\n당첨 통계\n---");
     for (WinningCheck prize : WinningCheck.values()) {
       if (prize == WinningCheck.LOSE) {
         continue;
       }
       String bonus = prize.hasBonus() ? ", 보너스 볼 일치" : "";
+      String formattedPrize = decimalFormat.format(prize.getPrizeAmount());
       System.out.println(
-          prize.getMatchingCount() + "개 일치" + bonus + " (" + prize.getPrizeAmount() + "원) - "
+          prize.getMatchingCount() + "개 일치" + bonus + " (" + formattedPrize + "원) - "
               + result.getOrDefault(prize, 0) + "개");
     }
   }

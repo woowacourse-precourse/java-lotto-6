@@ -17,19 +17,19 @@ RunLotto에 필요한 기능들을 패키지로 묶어보자
 동작 구조
 
 1. receivePurchaseAmount()로 구입금액을 입력받아 PurchaseAmount에 객체로 저장(유효성 검사)
-2. 생성된 PurchaseAmount를 매개변수로 받아 generateLottos(PurchaseAmount purchaseAmount)
+2. 생성된 PurchaseAmount를 ㄹㄹㄹ 받아 generateLottos(PurchaseAmount purchaseAmount)
    입력받은 양 만큼 Lotto 객체로 로또를 발행(유효성 검사) -> 리턴 값은 List<Lotto>로 generatedLottos를 리턴
 3. generatedLottos를 매개변수로 받아 printGeneratedLottoNumbers(List<Lotto> lottos) 생성된 로또들을 출력
-4. receiveLottoNumber() 로또 번호 6개와 보너스 번호 1개를 입력 받아 UserInputNumbers에 객체로 저장(유효성 검사)
-5. calculateWinningResult(List<Lotto> lottos, UserInputNumbers receivedLotto)
+4. calculateWinningResult(List<Lotto> lottos, UserInputNumbers receivedLotto)
    Map<WinningCheck, Integer>을 이용해서 result를 생성 WinningCheck에 열거형으로 상금과 당첨 수를 저장
    Lotto클래스에서 각 로또 당 matchCount와 bonusMatch를 가져온다 -> WinningCheck.getPrize(matchCount, bonusMatch)
    -> 각 로또 당 상금과 수를 result에 저장 후 리턴
-6. calculateProfitRate(PurchaseAmount purchaseAmount, Map<WinningCheck, Integer> result)
+5. calculateProfitRate(PurchaseAmount purchaseAmount, Map<WinningCheck, Integer> result)
    구입금액과 결과를 비교하여 수익률을 계산(소수 둘째에서 반올림) -> 리턴 값은 double profitRate
-7. printResults(Map<WinningCheck, Integer> result, double profitRate) 최종 결과 출력
+6. printResults(Map<WinningCheck, Integer> result, double profitRate) 최종 결과 출력
 
 해야할 것
 금액 출력 enum을 String으로 할 필요가 없다
 -> DecimalFormat decFormat = new DecimalFormat("###,###");
-calculateProfitRate 메서드 수정하기
+calculateProfitRate 메서드 수정하기 receiveLottoNumber() 로또 번호 6개와 보너스 번호 1개를 입력 받아 UserInputNumbers에 객체로
+저장(유효성 검사)

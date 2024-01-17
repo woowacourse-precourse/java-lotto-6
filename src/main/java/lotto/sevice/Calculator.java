@@ -21,10 +21,7 @@ public class Calculator {
       boolean bonusMatch = lotto.isBonusMatch(receivedLotto); // receivedLotto는 bonus를 포함하고있음
 
       WinningCheck prize = WinningCheck.getPrize(matchCount, bonusMatch);
-      result.put(prize // prize 키와 해당하는 값을 Map에 넣는다. 이미 있다면 덮어쓴다
-          , result.getOrDefault(prize, 0) + 1);
-            /*키(prize)에 해당하는 값을 가져온다. 없다면 default(0)을 반환
-             -> 해당하는 현재의 당첨 수를 가져오고 그 수에 1을 더해서 새로운 당첨 수를 계산함*/
+      result.merge(prize, 1, Integer::sum);
     }
     return result;
   }

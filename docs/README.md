@@ -27,9 +27,3 @@ RunLotto에 필요한 기능들을 패키지로 묶어보자
 5. calculateProfitRate(PurchaseAmount purchaseAmount, Map<WinningCheck, Integer> result)
    구입금액과 결과를 비교하여 수익률을 계산(소수 둘째에서 반올림) -> 리턴 값은 double profitRate
 6. printResults(Map<WinningCheck, Integer> result, double profitRate) 최종 결과 출력
-
-해야할 것
-금액 출력 enum을 String으로 할 필요가 없다
--> DecimalFormat decFormat = new DecimalFormat("###,###");
-calculateProfitRate 메서드 수정하기 receiveLottoNumber() 로또 번호 6개와 보너스 번호 1개를 입력 받아 UserInputNumbers에 객체로
-저장(유효성 검사)

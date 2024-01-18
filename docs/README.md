@@ -17,7 +17,7 @@ RunLotto에 필요한 기능들을 패키지로 묶어보자
 동작 구조
 
 1. receivePurchaseAmount()로 구입금액을 입력받아 PurchaseAmount에 객체로 저장(유효성 검사)
-2. 생성된 PurchaseAmount를 ㄹㄹㄹ 받아 generateLottos(PurchaseAmount purchaseAmount)
+2. 생성된 PurchaseAmount를 받아 generateLottos(PurchaseAmount purchaseAmount)
    입력받은 양 만큼 Lotto 객체로 로또를 발행(유효성 검사) -> 리턴 값은 List<Lotto>로 generatedLottos를 리턴
 3. generatedLottos를 매개변수로 받아 printGeneratedLottoNumbers(List<Lotto> lottos) 생성된 로또들을 출력
 4. calculateWinningResult(List<Lotto> lottos, UserInputNumbers receivedLotto)

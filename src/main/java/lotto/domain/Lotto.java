@@ -9,7 +9,7 @@ public class Lotto {
   public static final int MIN_LOTTO_NUMBER = 1;
   public static final int MAX_LOTTO_NUMBER = 45;
   public static final int SIZE_OF_LOTTO = 6;
-  private List<Integer> lottoNumbers;
+  private final List<Integer> lottoNumbers;
 
   public Lotto(List<Integer> lottoNumbers) {
     validateLottoNumbers(lottoNumbers);
@@ -17,10 +17,9 @@ public class Lotto {
   }
 
   public int getMatchCount(UserInputNumbers receivedLotto) {
-    int matchCount = (int) lottoNumbers.stream()
+    return (int) lottoNumbers.stream()
         .filter(number -> receivedLotto.getReceivedLottoNumbers().contains(number))
-        .count(); // count() 메서드는 반환 값이 long이다. int로 캐스팅 해야한다.
-    return matchCount;
+        .count();
   }
 
   public boolean isBonusMatch(UserInputNumbers receivedLotto) {

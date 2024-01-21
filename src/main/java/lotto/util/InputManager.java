@@ -15,7 +15,7 @@ public class InputManager {
         int inputAmount = Integer.parseInt(Console.readLine().trim());
         return new PurchaseAmount(inputAmount);
       } catch (NumberFormatException e) {
-        System.out.println("[ERROR] 숫자여야 합니다.");
+        System.out.println(ErrorMessage.NOT_A_NUMBER.getMessage());
       } catch (IllegalArgumentException e) {
         System.out.println(e.getMessage());
       }
@@ -44,7 +44,7 @@ public class InputManager {
           .map(Integer::parseInt)
           .toList();
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("[ERROR] 숫자여야 합니다.");
+      throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.getMessage());
     }
   }
 
@@ -53,7 +53,7 @@ public class InputManager {
       System.out.println("\n보너스 번호를 입력해 주세요.");
       return Integer.parseInt(Console.readLine().trim());
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("[ERROR] 숫자여야 합니다.");
+      throw new IllegalArgumentException(ErrorMessage.NOT_A_SINGLE_NUMBER.getMessage());
     }
   }
 }

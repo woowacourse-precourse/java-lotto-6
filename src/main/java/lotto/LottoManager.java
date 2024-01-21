@@ -12,7 +12,7 @@ import lotto.service.LottoGenerator;
 import lotto.util.OutputManager;
 import lotto.domain.WinningCheck;
 
-public class RunLotto {
+public class LottoManager {
 
   private final InputManager inputManager = new InputManager();
   private final LottoGenerator lottoGenerator = new LottoGenerator();

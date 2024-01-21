@@ -10,8 +10,8 @@ import java.util.Set;
 
 public class UserInputNumbers {
 
-  private List<Integer> receivedLottoNumbers;
-  private int bonusNumber;
+  private final List<Integer> receivedLottoNumbers;
+  private final int bonusNumber;
 
   public UserInputNumbers(List<Integer> receivedLottoNumbers, int bonusNumber) {
     validateLottoNumbers(receivedLottoNumbers);

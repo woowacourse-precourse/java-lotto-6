@@ -14,7 +14,7 @@ import lotto.domain.PurchaseAmount;
 public class LottoGenerator {
 
   public static List<Lotto> generateLottos(PurchaseAmount purchaseAmount) {
-    int numberOfLotto = purchaseAmount.getAmount() / LOTTO_PRICE;
+    int numberOfLotto = purchaseAmount.getPurchaseAmount() / LOTTO_PRICE;
     System.out.println("\n" + numberOfLotto + "개를 구매했습니다.");
 
     List<Lotto> generatedLottos = new ArrayList<>();

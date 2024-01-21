@@ -15,7 +15,7 @@ public class LottoProfitRateCalculator {
         .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
         .sum();
 
-    double profitRate = (totalPrize / purchaseAmount.getAmount()) * PERCENTAGE_FACTOR;
+    double profitRate = (totalPrize / purchaseAmount.getPurchaseAmount()) * PERCENTAGE_FACTOR;
     DecimalFormat df = new DecimalFormat("#.##");
     return Double.parseDouble(df.format(profitRate));
   }

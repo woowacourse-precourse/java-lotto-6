@@ -1,17 +1,13 @@
-package lotto.sevice;
+package lotto.service;
 
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.PurchaseAmount;
 import lotto.domain.UserInputNumbers;
 import lotto.domain.WinningCheck;
 
-public class Calculator {
-
-  private static final int PERCENTAGE_FACTOR = 100;
+public class LottoResultCalculator {
 
   public Map<WinningCheck, Integer> calculateWinningResult(List<Lotto> lottos,
       UserInputNumbers receivedLotto) {
@@ -24,19 +20,5 @@ public class Calculator {
       result.merge(prize, 1, Integer::sum);
     }
     return result;
-  }
-
-  public double calculateProfitRate(PurchaseAmount purchaseAmount,
-      Map<WinningCheck, Integer> result) {
-    double totalPrize = 0;
-    for (Map.Entry<WinningCheck, Integer> entry : result.entrySet()) {
-      WinningCheck prize = entry.getKey();
-      int count = entry.getValue();
-      totalPrize += prize.getPrizeAmount() * count;
-    }
-
-    double profitRate = (totalPrize / purchaseAmount.getAmount()) * PERCENTAGE_FACTOR;
-    DecimalFormat df = new DecimalFormat("#.##");
-    return Double.parseDouble(df.format(profitRate));
   }
 }

@@ -1,6 +1,6 @@
 Application과 동일 선상에 RunLotto 클래스 생성
 
-RunLotto에 필요한 기능들을 패키지로 묶어보자
+LottoManager에 필요한 기능들을 패키지로 묶어보자
 
 - 도메인 모델 패키지 (domain)
     - 사용자로부터 입력받은 구입금액을 저장하는 클래스 PurchaseAmount
@@ -8,7 +8,8 @@ RunLotto에 필요한 기능들을 패키지로 묶어보자
     - 사용자로부터 로또 번호 6개와 보너스 번호 1개를 입력받아 저장하는 클래스 UserInputNumbers
     - 상금과 당첨 수를 저장하는 열거형 enum WinningCheck
 - 비즈니스 로직을 수행하는 서비스 패키지 (service)
-    - 당첨 결과와 수익률을 계산하는 클래스 Calculator
+    - 당첨 결과를 계산하는 클래스 LottoResultCalculator
+    - 수익률을 계산하는 클래스 LottoProfitRateCalculator
     - 구입금액만큼 로또를 발행하는 클래스 LottoGenerator
 - 각종 메서드가 있는 패키지 (util)
     - 사용자로부터 값들을 입력받는 클래스 InputManager

@@ -1,6 +1,8 @@
 package lotto.view;
 
-public class ExceptionMessage {
+import lotto.domain.Lotto;
+
+public class ExceptionMessage extends Lotto {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final String NOT_NUMBER_RANGE = "[ERROR] 숫자는 " + MIN_NUMBER + "부터 " + MAX_NUMBER + " 사이의 숫자여야 합니다.";
